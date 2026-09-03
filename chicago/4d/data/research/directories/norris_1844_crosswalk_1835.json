@@ -10,7 +10,7 @@
   "matched_more_than_one_ambiguous": 15,
   "one_1844_entry_contested_by_two_residents": 4,
   "surname_present_initial_absent_refused": 171,
-  "could_carry_occupation": 0,
+  "could_carry_occupation": 21,
   "could_carry_address": 39
  },
  "matches": [
@@ -33,6 +33,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -81,6 +82,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -129,6 +131,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -153,6 +156,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -315,6 +319,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -339,6 +344,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -363,6 +369,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -507,6 +514,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -531,6 +539,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -623,6 +632,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -692,7 +702,9 @@
      "address_1844": null
     }
    ],
-   "could_carry": [],
+   "could_carry": [
+    "occupation"
+   ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false
   },
@@ -761,6 +773,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -809,6 +822,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -881,6 +895,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -905,6 +920,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -975,6 +991,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -999,6 +1016,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1023,6 +1041,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1095,6 +1114,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1119,6 +1139,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1143,6 +1164,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1351,6 +1373,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1502,6 +1525,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1533,6 +1557,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1636,6 +1661,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1667,6 +1693,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1729,6 +1756,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",

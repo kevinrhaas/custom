@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 12:54 PM",
+  "generated_ct": "Sep 3, 2026, 12:59 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9352,7 +9352,7 @@
     {
       "id": "T-0569",
       "title": "Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9360,12 +9360,12 @@
       "legacy_id": null,
       "parent": "T-0555",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 12:18:48 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0570",
@@ -9674,6 +9674,42 @@
       "closed_at": "2026-09-03T17:10:25.086Z",
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0587",
+      "title": "Norris's 1844 directory spent on the residents layer: every 1835 person the volume meets, shown on their card with the printed line, the page and the rule",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0569",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "713",
+      "claimed_by": "run 9/3/2026, 12:27:48 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0588",
+      "title": "Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0569",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 0
     }
   ]
 }

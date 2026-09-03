@@ -539,6 +539,12 @@ def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int
     research_path = DATA / "residents" / "research_pilot.json"
     if research_path.exists():
         walk(load(research_path))
+    # T-0569 keeps Norris's 1844 directory beside the household records for the
+    # same reason, and its rows cite the volume. A citation join that stopped at
+    # the records would leave 67 cards quoting a bare source id.
+    directory_path = DATA / "residents" / "directory_1844.json"
+    if directory_path.exists():
+        walk(load(directory_path))
 
     citations = cite(sorted(cited), sources)
     emit(outdir / "residents_sources.json", {
