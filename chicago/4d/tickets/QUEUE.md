@@ -87,7 +87,8 @@ T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents lay
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
-T-0535 — The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
+T-0541 — The 1840 census images 1-25: continuation sheets 5V, 6H and 6Q read line by line and closed against their own printed column totals
+T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
 T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
@@ -324,4 +325,4 @@ T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recover
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
-T-0540 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
+T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50

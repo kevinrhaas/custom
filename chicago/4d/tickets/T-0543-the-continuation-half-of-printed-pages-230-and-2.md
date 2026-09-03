@@ -1,5 +1,5 @@
 ---
-id: T-0540
+id: T-0543
 title: The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
 state: open
 epic: META

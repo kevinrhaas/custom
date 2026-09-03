@@ -140,6 +140,45 @@ Page 230's free coloured section is empty in all 12 columns with no figure in an
 Page 232 has four free coloured people, three of them on line 31 under a head this reading
 gives as `Emanuel M[o]nd[?]`, and its footings — 1, 2, 1 and 1 — reconcile exactly.
 
+## The continuation sheets, and what closing one costs
+
+A continuation (right) sheet carries no name. It carries the other half of every household
+line: the twelve slave columns, the family TOTAL, the seven industry columns, the pensioners,
+the ten deaf/dumb/blind/insane columns and the seven schools columns — and, at the foot, the
+enumerator's own printed totals for the columns he used. **Those footer totals are the gate.**
+A continuation reading is committed only when the per-line values sum, column by column, to
+what the man who took the census wrote at the bottom of his own sheet; where a column does not
+close, the residual is recorded with it and no line is altered to make the total come out.
+
+Three of group 1's eleven continuation sheets have been read on that rule (T-0540):
+
+| image | lines | closes | page population | what it says |
+|---|---|---|---|---|
+| `33S7-9YYJ-24` | 31 | **all five columns** | 201 | agriculture 2, commerce 9, manufactures 27, learned professions 2 |
+| `33S7-9YYJ-5D` | 31 | 4 of 6 | 125 | manufactures 25, canals 2, learned 1, and 1 school with 26 scholars; totals read 128 against 125 and commerce 2 against 3 |
+| `33S7-9YYJ-5S` | 29 | **no — not committed** | 189 | 1 school with 42 scholars; the attempted reading is on the page file as an attempt, `cells` is null on every line |
+
+**`33S7-9YYJ-5S` is the useful failure.** Its attempted reading sums to 183 persons against a
+printed 189 AND 12 in agriculture against a printed 10. Two columns out by different amounts is
+not two misread glyphs; it is the row indexing itself slipping over part of the sheet, and the
+project's rule is that a half-read row is worse than an unread one. So the sheet's footer and
+its exact line count — 29, not the 28 the inventory stated to the nearest line — are committed,
+and the per-line reading is kept beside them as an ATTEMPT that nothing downstream can consume
+as fact. The next run starts from it rather than from nothing.
+
+**The cost is the other finding.** T-0535 asked for all eleven sheets plus the pairing, sized S.
+It was split twice as the size was measured — into T-0538/T-0539, then T-0540/T-0541 — because a
+sheet that closes takes something like ten passes at magnification, not one: this hand writes
+`4` as two strokes that read as `11`, its `7` and `9` differ by a loop, and its two-digit family
+totals sit hard against the column rule. Three sheets is a run.
+
+**No continuation sheet here is paired to a left sheet yet.** A right sheet has neither a name
+nor a printed page number on its exposure, so the pairing has to be earned: each page's
+population (the TOTAL footer, published on each page file as `pairing.page_population_key`) has
+to be matched against the printed age-band totals at the foot of each candidate left sheet, and
+those have not been read. T-0539 does that for all eleven at once. Until then every one of them
+is recorded as `unpaired` — never guessed.
+
 ## The cells, and the rule that decides whether a column is committed (T-0532)
 
 The age-band cells were read for the first time on printed pages **221, 222 and 226**.
