@@ -9446,7 +9446,7 @@
     {
       "structure_id": "blk_lake_clark_lot0",
       "wall": "blk_lake_clark north face, lot 0",
-      "why": "recon_1835_blk_lake_clark_a3_04 stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_lake_clark_d5_03 stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_clark_lot2",
@@ -9461,7 +9461,7 @@
     {
       "structure_id": "blk_lake_clark_lot6",
       "wall": "blk_lake_clark north face, lot 6",
-      "why": "inf_butcher_market stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_south_c3_015 stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_clark_lot7",
@@ -9476,7 +9476,7 @@
     {
       "structure_id": "blk_lake_dearborn_lot0",
       "wall": "blk_lake_dearborn north face, lot 0",
-      "why": "dole_warehouse_south stands 0.55 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "mason_blacksmith_shop stands 0.55 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_dearborn_lot2",
@@ -9486,7 +9486,7 @@
     {
       "structure_id": "blk_lake_dearborn_lot6",
       "wall": "blk_lake_dearborn north face, lot 6",
-      "why": "recon_1835_south_a3_045 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "st_marys_church stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_dearborn_lot7",
@@ -9496,12 +9496,12 @@
     {
       "structure_id": "blk_lake_franklin_lot4",
       "wall": "blk_lake_franklin north face, lot 4",
-      "why": "recon_1835_blk_lake_franklin_a1_03 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_lake_franklin_d5_01 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_franklin_lot6",
       "wall": "blk_lake_franklin north face, lot 6",
-      "why": "recon_1835_south_a3_041 stands 1.49 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "temple_lake_st_building stands 1.49 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_franklin_lot7",
@@ -9571,7 +9571,7 @@
     {
       "structure_id": "blk_randolph_clark_lot6",
       "wall": "blk_randolph_clark north face, lot 6",
-      "why": "recon_1835_blk_randolph_clark_a4_07 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_randolph_clark_c2_01 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_randolph_clinton_lot5",
@@ -9591,12 +9591,12 @@
     {
       "structure_id": "blk_randolph_dearborn_lot1",
       "wall": "blk_randolph_dearborn south face, lot 1",
-      "why": "recon_1835_blk_randolph_dearborn_a2_17 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_randolph_dearborn_h1_14 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_randolph_dearborn_lot4",
       "wall": "blk_randolph_dearborn north face, lot 4",
-      "why": "recon_1835_blk_randolph_dearborn_a4_13 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_randolph_dearborn_d1_12 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_randolph_dearborn_lot5",
@@ -9616,7 +9616,7 @@
     {
       "structure_id": "blk_randolph_market_lot1",
       "wall": "blk_randolph_market south face, lot 1",
-      "why": "recon_1835_blk_randolph_market_a1_12 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_randolph_market_d1_10 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_randolph_market_lot4",
@@ -9656,12 +9656,12 @@
     {
       "structure_id": "blk_south_water_clark_lot4",
       "wall": "blk_south_water_clark north face, lot 4",
-      "why": "recon_1835_blk_south_water_clark_a3_05 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_clark_d1_04 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_clark_lot6",
       "wall": "blk_south_water_clark north face, lot 6",
-      "why": "bates_auction_room stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "madore_beaubien_house stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_clark_lot7",
@@ -9671,7 +9671,7 @@
     {
       "structure_id": "blk_south_water_dearborn_lot0",
       "wall": "blk_south_water_dearborn north face, lot 0",
-      "why": "chicago_american_office stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "john_holbrook_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_dearborn_lot1",
@@ -9711,7 +9711,7 @@
     {
       "structure_id": "blk_south_water_franklin_lot6",
       "wall": "blk_south_water_franklin north face, lot 6",
-      "why": "recon_1835_blk_south_water_franklin_d1_04 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_franklin_d4_02 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_franklin_lot7",
@@ -9721,7 +9721,7 @@
     {
       "structure_id": "blk_south_water_lasalle_lot0",
       "wall": "blk_south_water_lasalle north face, lot 0",
-      "why": "recon_1835_blk_south_water_lasalle_a1_14 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_lasalle_d3_10 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot1",
@@ -9731,17 +9731,17 @@
     {
       "structure_id": "blk_south_water_lasalle_lot2",
       "wall": "blk_south_water_lasalle north face, lot 2",
-      "why": "recon_1835_blk_south_water_lasalle_a2_15 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_lasalle_d3_10 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot3",
       "wall": "blk_south_water_lasalle south face, lot 3",
-      "why": "recon_1835_blk_south_water_lasalle_a1_06 stands 1.61 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "thomas_church_store stands 1.61 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot4",
       "wall": "blk_south_water_lasalle north face, lot 4",
-      "why": "recon_1835_blk_south_water_lasalle_a3_07 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_lasalle_d4_02 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot5",
@@ -9771,7 +9771,7 @@
     {
       "structure_id": "blk_south_water_wells_lot2",
       "wall": "blk_south_water_wells north face, lot 2",
-      "why": "carpenter_south_water_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_wells_d1_05 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_wells_lot4",
@@ -9781,7 +9781,7 @@
     {
       "structure_id": "blk_south_water_wells_lot6",
       "wall": "blk_south_water_wells north face, lot 6",
-      "why": "brown_boarding_house stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "peck_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_wells_north_crossing_blk_south_water_lasalle_north",

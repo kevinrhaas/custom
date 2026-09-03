@@ -2697,11 +2697,20 @@ def _fence_runs(entry, laid, buildings, hf, refused):
                                     "unimproved lot is open prairie and takes no street "
                                     "fence.")})
             continue
-        setback = min(-project(frame, p)[1] for b in here for p in b["pts"])
+        # T-0461 — THE REFUSAL NAMES THE WALL IT MEASURED. The setback and the
+        # building it came from are taken together: this used to report the
+        # minimum over every building on the lot and then name `here[0]`, which
+        # is a different building the moment a lot carries two. That was latent
+        # while a lot could only hold what one placement corner landed in; under
+        # `_stands_on` it would have printed the Tremont House's 2.40 m against
+        # the New York Clothing Store's name, which is the kind of sentence this
+        # project exists not to write.
+        setback, nearest = min((-project(frame, p)[1], b["id"])
+                               for b in here for p in b["pts"])
         if setback < EDGE_FENCE_SETBACK_M:
             refused.append({"structure_id": f"{block['id']}_lot{index}",
                             "wall": f"{block['id']} {face} face, lot {index}",
-                            "why": (f"{here[0]['id']} stands {setback:.2f} m from this lot's "
+                            "why": (f"{nearest} stands {setback:.2f} m from this lot's "
                                     f"frontage line, inside the {EDGE_FENCE_SETBACK_M} m a "
                                     "street fence needs — the building IS the street wall "
                                     "here, and a fence in front of it would be a second "
