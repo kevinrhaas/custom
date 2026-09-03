@@ -86,10 +86,13 @@ alone, or 1833/1834 lists with another source, or baptism parent/godparent 1833�
 naming a resident with trade or address; projected_resident = a single appearance with nothing else;
 1839/1840 alone is never a 1835 resident (later evidence only)."
 
-**Runner notes (measured 2026-09-03 on the improve runner):** `pdftotext`, `pdftoppm`, `tesseract`
-and `openpyxl` are ABSENT; `pypdf`, `PIL`, `numpy`, `jsonschema`, `pyproj` are present; `pip install
-openpyxl` may work — try it and record the result. Write CSV always and XLSX only when openpyxl
-imports. Network: archive.org's search API and `/download/<id>/<id>_djvu.txt` work; HathiTrust
+**Runner notes (2026-09-03):** the improve runner's custom lane now installs `pdftotext` and
+`pdftoppm` (poppler-utils), `tesseract`, `openpyxl` and `pypdf` before the run (polecat-platform
+`steward-improve.yml`, on the owner's instruction the same day), and the gate installs `openpyxl` and
+`pypdf` beside `jsonschema` and `pyproj`. Check with `command -v pdftotext tesseract` and
+`python3 -c 'import openpyxl'` first — a failed install is a `::warning` in the step log, not a
+surprise — and if one is missing, fall back to `pypdf` and page reads. Write CSV always and XLSX
+when openpyxl imports. Network: archive.org's search API and `/download/<id>/<id>_djvu.txt` work; HathiTrust
 page views return 403 (its catalog API works); FamilySearch and Ancestry are login-walled — record
 them as inaccessible, never as absent; Google Books fails. Never disable TLS or unset HTTPS_PROXY.
 
