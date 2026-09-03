@@ -14,21 +14,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 430,
-      "takenAt": "2026-09-03T22:36:37.504Z",
+      "takenAt": "2026-09-03T22:37:27.425Z",
       "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "c0d5d02dbc0c",
-      "devCommit": "7566e49aa717",
-      "treeHash": "sha256:89fa9ea79ed8b3fb",
-      "treeDirty": false,
-      "changelogHash": "sha256:9a5598b9b9da40b7",
+      "commit": "fabe3ab98303",
+      "devCommit": "4261b6373b66",
+      "treeHash": "sha256:72c87049b8a961d2",
+      "treeDirty": true,
+      "changelogHash": "sha256:06fe69dc7c7eed30",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          5,
-          3.8,
-          2.9
+          2.2,
+          3.2,
+          2.7
         ]
       },
       "source": "/tmp/smoke-post-merge.log"
@@ -46,21 +46,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 516,
-      "takenAt": "2026-09-03T22:13:32.392Z",
+      "takenAt": "2026-09-03T22:37:27.330Z",
       "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "fcb4c2f869bb",
-      "devCommit": "1b26e8e23db0",
-      "treeHash": "sha256:9399c53c1c1b5127",
-      "treeDirty": false,
-      "changelogHash": "sha256:c8f3c81c13c8121d",
+      "commit": "fabe3ab98303",
+      "devCommit": "4261b6373b66",
+      "treeHash": "sha256:72c87049b8a961d2",
+      "treeDirty": true,
+      "changelogHash": "sha256:06fe69dc7c7eed30",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          4.3,
-          3.8
+          2.2,
+          3.2,
+          2.7
         ]
       },
       "source": "/tmp/smoke-d12.log"
@@ -79,21 +79,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 382,
-      "takenAt": "2026-09-03T22:13:32.301Z",
+      "takenAt": "2026-09-03T22:37:27.237Z",
       "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "fcb4c2f869bb",
-      "devCommit": "1b26e8e23db0",
-      "treeHash": "sha256:9399c53c1c1b5127",
-      "treeDirty": false,
-      "changelogHash": "sha256:c8f3c81c13c8121d",
+      "commit": "fabe3ab98303",
+      "devCommit": "4261b6373b66",
+      "treeHash": "sha256:72c87049b8a961d2",
+      "treeDirty": true,
+      "changelogHash": "sha256:06fe69dc7c7eed30",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          4.3,
-          3.8
+          2.2,
+          3.2,
+          2.7
         ]
       },
       "source": "/tmp/smoke-m1113.log"
@@ -111,21 +111,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 427,
-      "takenAt": "2026-09-03T22:13:32.207Z",
+      "takenAt": "2026-09-03T22:37:27.142Z",
       "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "fcb4c2f869bb",
-      "devCommit": "1b26e8e23db0",
-      "treeHash": "sha256:9399c53c1c1b5127",
-      "treeDirty": false,
-      "changelogHash": "sha256:c8f3c81c13c8121d",
+      "commit": "fabe3ab98303",
+      "devCommit": "4261b6373b66",
+      "treeHash": "sha256:72c87049b8a961d2",
+      "treeDirty": true,
+      "changelogHash": "sha256:06fe69dc7c7eed30",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          4.3,
-          3.8
+          2.2,
+          3.2,
+          2.7
         ]
       },
       "source": "/tmp/smoke-d1112.log"
@@ -142,24 +142,148 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 333,
-      "takenAt": "2026-09-03T22:13:32.118Z",
+      "takenAt": "2026-09-03T22:37:27.051Z",
       "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "fcb4c2f869bb",
-      "devCommit": "1b26e8e23db0",
-      "treeHash": "sha256:9399c53c1c1b5127",
-      "treeDirty": false,
-      "changelogHash": "sha256:c8f3c81c13c8121d",
+      "commit": "fabe3ab98303",
+      "devCommit": "4261b6373b66",
+      "treeHash": "sha256:72c87049b8a961d2",
+      "treeDirty": true,
+      "changelogHash": "sha256:06fe69dc7c7eed30",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          4.3,
-          3.8
+          2.2,
+          3.2,
+          2.7
         ]
       },
       "source": "/tmp/smoke-d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 160,
+      "takenAt": "2026-09-03T22:31:26.991Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "3a1058119846",
+      "devCommit": "7566e49aa717",
+      "treeHash": "sha256:74cf4bb6524200c9",
+      "treeDirty": false,
+      "changelogHash": "sha256:6e9533f5b9315321",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          2.6,
+          2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_desktop_12b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 91,
+      "takenAt": "2026-09-03T22:16:31.854Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_mobile_12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 159,
+      "takenAt": "2026-09-03T22:16:31.757Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_desktop_12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 267,
+      "takenAt": "2026-09-03T22:16:31.659Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_desktop_1.log"
     },
     {
       "viewport": "desktop",
@@ -1432,137 +1556,6 @@
         ]
       },
       "source": "/tmp/c40/smoke_d4.txt"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 68,
-      "failed": 6,
-      "failures": [
-        "mobile 390x780: a reconstructed resident has an invented period name — name \"undefined\"",
-        "mobile 390x780: the invented name is graded as invented and says so — name_basis undefined — \"\"",
-        "mobile 390x780: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
-        "mobile 390x780: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
-        "mobile 390x780: search still finds it by its part number and by its household — by spec false, by household false",
-        "mobile 390x780: a building raised for an inferred household says so — basis \"\""
-      ],
-      "wallSeconds": 82,
-      "takenAt": "2026-09-03T13:04:05.958Z",
-      "ref": "steward/t-0534-census-1840-cells-229-231-234",
-      "commit": "07b4b8ccf7b7",
-      "devCommit": "32a3c9eeca5d",
-      "treeHash": "sha256:bec0b097b31d7636",
-      "treeDirty": true,
-      "changelogHash": "sha256:a25db42361fcec87",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.4,
-          1.4,
-          1.4
-        ]
-      },
-      "source": "/tmp/c40/smoke_m3.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 332,
-      "takenAt": "2026-09-03T13:00:28.065Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "67bb0085da44",
-      "devCommit": "2b59c60ca5a2",
-      "treeHash": "sha256:2928ce3e7fd1e5c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:151980251d63a297",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.4,
-          4.6,
-          3.8
-        ]
-      },
-      "source": "/tmp/d13c.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 176,
-      "takenAt": "2026-09-03T13:00:27.967Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "67bb0085da44",
-      "devCommit": "2b59c60ca5a2",
-      "treeHash": "sha256:2928ce3e7fd1e5c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:151980251d63a297",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.4,
-          4.6,
-          3.8
-        ]
-      },
-      "source": "/tmp/m13c.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 142,
-      "takenAt": "2026-09-03T13:00:27.873Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "67bb0085da44",
-      "devCommit": "2b59c60ca5a2",
-      "treeHash": "sha256:2928ce3e7fd1e5c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:151980251d63a297",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.4,
-          4.6,
-          3.8
-        ]
-      },
-      "source": "/tmp/d3c.log"
     },
     {
       "viewport": "desktop",
