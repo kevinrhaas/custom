@@ -81,7 +81,6 @@
 # --- 2026-09-03: eighteen smoke assertions still describe the reconstructed residents
 # --- T-0489 retired, so every full smoke on dev is red and two runs (#1456, #1457) burned
 # --- their budget proving it. Repair it before the sweep's runs need a green smoke.
-T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
