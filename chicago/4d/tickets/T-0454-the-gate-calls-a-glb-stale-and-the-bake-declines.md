@@ -1,7 +1,7 @@
 ---
 id: T-0454
 title: The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 679
 claimed_by: run 9/3/2026, 1:31:56 AM CT
 blocked_on: null
 needs_bake: false
