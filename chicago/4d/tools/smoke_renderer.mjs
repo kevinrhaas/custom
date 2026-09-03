@@ -1897,6 +1897,15 @@ for (const [label, viewport, touch] of [
     //
     // The gate is still open at this point in the run (the walk tests click
     // through it much later), which is the only moment the row is on screen.
+    //
+    // T-0491. THE ROW COUNT IS NOT HARDCODED, and it was: this read `shown.length === 2`
+    // and T-0490 added a third row — the evidence population, out of the residents
+    // manifest — so the assertion failed on `dev` from 2 September without a word about
+    // the row it had not been told about. A test that names how many figures there are
+    // rots the next time the row is right; one that reads the same files the page read
+    // and compares figure for figure cannot. The residents manifest is fetched here
+    // rather than taken off the harness handle because `census.js` reads it directly and
+    // nothing puts it on `window`.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
@@ -1909,14 +1918,23 @@ for (const [label, viewport, touch] of [
         data: window.__chicago4d.census,
       };
     });
+    // The third row's figure is not on the harness handle, so it is read off the
+    // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
+    // this run is serving, which is the same file the page fetched.
+    let residentCounts = null;
+    try {
+      residentCounts = JSON.parse(
+        fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
+      ).counts || null;
+    } catch { residentCounts = null; }
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
+    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
+      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
-      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
-      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
+      gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
+      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
-      Number.isFinite(want[0]) && Number.isFinite(want[1])
-      && shown[0] === want[0] && shown[1] === want[1],
+      want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
