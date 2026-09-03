@@ -15,6 +15,39 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 299,
+      "takenAt": "2026-09-03T19:04:33.199Z",
+      "ref": "steward/t-0574-fergus-settler-obits",
+      "commit": "1aec894746c0",
+      "devCommit": "ad2b5a9ee631",
+      "treeHash": "sha256:15810d0fd14ba7e1",
+      "treeDirty": false,
+      "changelogHash": "sha256:47df51ddf5908e03",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          3.3,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_m2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 202,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 299,
       "takenAt": "2026-09-03T18:55:08.428Z",
       "ref": "steward/t-0574-fergus-settler-obits",
       "commit": "9415d29c3b03",
@@ -1526,44 +1559,6 @@
         ]
       },
       "source": "/tmp/smoke-desktop-13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 103,
-      "failed": 6,
-      "failures": [
-        "mobile 390x780: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
-        "mobile 390x780: the 956 person entries are counted — 849",
-        "mobile 390x780: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
-        "mobile 390x780: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
-        "mobile 390x780: an invented name says on the card which pool it came from",
-        "mobile 390x780: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
-      ],
-      "wallSeconds": 151,
-      "takenAt": "2026-09-03T08:32:54.631Z",
-      "ref": "steward/t-0492-land",
-      "commit": "c2a90d10562f",
-      "devCommit": "9c87d1685edf",
-      "treeHash": "sha256:63197a638204affa",
-      "treeDirty": false,
-      "changelogHash": "sha256:694e2c4ccf73f703",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.4,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke-mobile-13.log"
     },
     {
       "viewport": "desktop",
