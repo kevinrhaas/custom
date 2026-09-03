@@ -1,7 +1,7 @@
 ---
 id: T-0506
 title: The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 741
 claimed_by: run 9/3/2026, 6:12:04 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T23:53:47.655Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33816339726
 ---
 
