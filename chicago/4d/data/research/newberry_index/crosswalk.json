@@ -1,6 +1,8 @@
 {
   "schema": 1,
   "domain": "newberry_index",
+  "source_id": "newberry_genealogical_index",
+  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins.",
   "note": "THIS FILE HOLDS NO MERGES AND IT NEVER WILL. A Newberry index entry is a surname over a citation; it carries no forename, no date and no place beyond the locality of the book it points at. A surname-only merge is always a refusal under the rule this domain inherits, so every identification the index seems to offer is refused here — and the refusals are written down, one by one, because the ABSENCE of a merge reads exactly like a pair nobody has looked at, and the next sweep would do this work again. An identification becomes possible only when the work a card points at is opened and says a forename.",
   "passes": [
     {

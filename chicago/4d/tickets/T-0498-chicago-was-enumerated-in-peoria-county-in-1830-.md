@@ -1,7 +1,7 @@
 ---
 id: T-0498
 title: Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 734
+claimed_by: run 9/3/2026, 5:17:27 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T22:17:41.482Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33807961008
 ---
 
 **The owner's ask, 2026-09-03, recorded verbatim:** "create tickets to do more resident research
