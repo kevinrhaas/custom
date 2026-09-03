@@ -1,7 +1,7 @@
 ---
 id: T-0573
 title: Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 719
 claimed_by: run 9/3/2026, 1:23:14 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T18:59:21.472Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33789717786
 ---
 
