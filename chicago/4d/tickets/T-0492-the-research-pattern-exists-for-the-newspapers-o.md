@@ -1,7 +1,7 @@
 ---
 id: T-0492
 title: The research pattern exists for the newspapers only, and six new source domains have nowhere to land
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 1:31:18 AM CT
 blocked_on: null
 needs_bake: false
 ---
