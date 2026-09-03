@@ -450,4 +450,3 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
 T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-T-0599 — A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it
