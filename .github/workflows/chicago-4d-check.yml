@@ -39,7 +39,7 @@ jobs:
           node-version: '22'
 
       - name: Install validator dependencies
-        run: pip install --quiet jsonschema pyproj
+        run: pip install --quiet jsonschema pyproj openpyxl pypdf
 
       - name: Run the gate
         working-directory: chicago/4d

@@ -1,6 +1,8 @@
 # QUEUE — top is next. Everything after the ticket id on a line is a label, not data.
-# The owner owns this order. Reordered by an agent on 2026-08-30 on his explicit
-# instruction: "lots of nothing happened in the city which is bad. any decisions
+# The owner owns this order. Reordered by an agent on 2026-09-03 on his explicit
+# instruction: "Create several tickets as needed in the queue file on dev and add these to
+# the top of the queue file, since other tickets below are dependent and will help."
+# Before that, on 2026-08-30: "lots of nothing happened in the city which is bad. any decisions
 # needed, update and improve the tickets to make progress." Earlier instructions:
 # 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
 # 2026-08-28, 2026-08-27, 2026-08-23. Absent such an instruction, agents only APPEND
@@ -38,6 +40,73 @@
 # newspaper reads and street work). The BANDS, not the epic, say where a ticket
 # belongs. Correcting the field is worth a run of its own.
 
+# --- THE RESIDENT SOURCE SWEEP → CONSOLIDATION → RESIDENTS/HOUSEHOLDS UPDATE — OWNER REQUEST,
+# --- 2026-09-03, placed at the top on his instruction. His ask, verbatim: "create tickets to do
+# --- more resident research transcription and analysis or extract find public sources or APIs to
+# --- read and find data from the following reference materials, you should see them all in
+# --- GitHub — Voter Roll; Census 1830 and 1840; Fergus; Swift walker; Hh porter. And then create a
+# --- final ticket that does a review and consolidation of that research. Once complete i would
+# --- like to begin to do and update of the resident and household data based on all of your deep
+# --- research ... identifying as many residents of chicago circa 1835 ... then i would like a
+# --- summary of what the residents and households look like ... Create several tickets as needed
+# --- in the queue file on dev and add these to the top of the queue file, since other tickets
+# --- below are dependent and will help. I am concerned that there are only adjudicated mappings
+# --- through v4 and none other and we did at least 11 slices of residents to get to households
+# --- but most of your census work needs to be published, I think." And: "these
+# --- Chicago_1835_Best_Resident_Set_Research_v2.xlsx v3 and v4 should be somewhere" — ruled the same
+# --- day: "They are lost; rebuild." His other three rulings of 2026-09-03 (publish = reference
+# --- packages + the final audit; the 31 inf_ roofs stay as anonymous stock; the grading ladder is
+# --- ratified) are quoted in the tickets they bind.
+# ---
+# --- ORDER = DEPENDENCY. T-0491 first because dev's gate is RED and every branch inherits it.
+# --- T-0492 gives the six new source domains one schema and one gate before ten runs invent ten.
+# --- Then the sweeps, which may run in parallel (one source each; the 1840 images, the Fergus
+# --- volume and the unresearched 237 are pre-split so no ticket needs two runs). Then the second
+# --- wave that consumes them (serial mapping, the 1840 crosswalk, the directory, the calibration,
+# --- cohorts 13-15, the two publish halves). T-0513 consolidates ALL of it under the ratified
+# --- ladder — do not take it while any sweep ticket is open. T-0514/T-0515 write the people;
+# --- T-0516 finishes the reconstructed-roof half of the retirement; T-0517/T-0518 close with the
+# --- summary and the index. A ticket whose inputs are open says so in its body: work the input.
+# ---   wave 0  T-0491 T-0492
+# ---   wave 1  T-0493 .. T-0503   (parallel)
+# ---   wave 2  T-0504 .. T-0512   (parallel)
+# ---   wave 3  T-0513
+# ---   wave 4  T-0514 T-0515 T-0516
+# ---   wave 5  T-0517 T-0518
+T-0491 — dev's gate is red on an unmodified dev: the register drifted, two mirrors are stale, an index count disagrees, and #670 left scaffolding and two off-schema source records
+T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
+
+T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
+T-0494 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
+T-0495 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 26-50
+T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
+T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
+T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
+T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
+T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
+T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
+T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
+T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
+
+T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
+T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
+T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
+T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
+T-0508 — 237 named residents have no research row: cohort 13 of 79
+T-0509 — 237 named residents have no research row: cohort 14 of 79
+T-0510 — 237 named residents have no research row: cohort 15 of 79
+T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
+T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
+
+T-0513 — Ten sources name the same people and no file says which names are one person: the cross-source identity master under the ratified grading ladder
+
+T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
+T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
+T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
+
+T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
+T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
+
 # --- DEV'S OWN SMOKE IS RED, AND EVERY PR INHERITS IT — 2026-08-31.
 # --- 2,693 of 18,893 drawn flower heads stand over nothing at desktop width. The
 # --- same count, pose and worst offender appear on dev at 54921610 and on PR #560
@@ -46,14 +115,11 @@
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 
-# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
-# --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:
-# --- the plank walk's sawtooth against the dirt road is among the first things in
-# --- view. T-0459 is 20 signs mounted flat on facades by a generator that mentions
-# --- doors sixteen times and never once as geometry. Both are cheap beside the
-# --- ground work below, and this band is the answer to the queue's own complaint
-# --- that 41 merges added nothing a visitor could see.
-T-0460 — The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
+# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. BOTH HAVE LANDED and
+# --- the band is kept only to say so: T-0460, the plank walk's sawtooth against the
+# --- dirt road, on 2026-09-03 (#676); T-0459, twenty signs mounted flat over doors
+# --- and windows, on 2026-09-03 (#678). This band was the answer to the queue's own
+# --- complaint that 41 merges added nothing a visitor could see, and it is answered.
 # --- T-0426 IS RULED AND T-0461 IS WHAT THE RULING LEFT — 2026-08-31. The fence
 # --- stays where the lot fronts (L160 read literally); the post follows the door,
 # --- and that half has landed. What is left is that the Tremont House's goods sit
@@ -242,9 +308,5 @@ T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is n
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-
-# --- RESIDENT / HOUSEHOLD EVIDENCE SYNTHESIS — OWNER REQUEST, 2026-09-02.
-# --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
-# --- promote attested facts, promote inferred/projected residents while retiring reconstructed
-# --- people, then audit the census/research synthesis.
+T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
