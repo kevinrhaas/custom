@@ -1,0 +1,2 @@
+person_id,canonical_name,census_name,census_page,census_row,serial,identity_confidence,serial_mapping_confidence,bridge_basis,scene_date_treatment,source_workbook
+murphy_john,John Murphy,John Murphy,233,30,5102066,high,provisional-high,"1834 and 1835 Chicago poll lists; 1839 directory; 1840 household-head identity; page-wide age/sex fingerprint mapping",later_evidence_only,"Chicago_1835_Best_Resident_Set_Research_v4.xlsx"
