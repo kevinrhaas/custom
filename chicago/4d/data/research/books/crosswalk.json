@@ -11,7 +11,8 @@
       "merges": 4,
       "refusals": 6,
       "detail": "In this file. Nineteen claims is small enough that a separate detail file would only hide the reasoning.",
-      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer. The chapter's latest Chicago event is 1828; under the ladder ratified 2026-09-03 that corroborates and dates and never places anybody in 1835."
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer. The chapter's latest Chicago event is 1828; under the ladder ratified 2026-09-03 that corroborates and dates and never places anybody in 1835.",
+      "ruled_on": "Eight of the nineteen claims carry a ruling anchored to them by claim_id: bk_afc_001 (three refusals on the bare-surname list), bk_afc_004, bk_afc_007, bk_afc_008, bk_afc_010, bk_afc_011, bk_afc_014 and bk_afc_017. THE OTHER ELEVEN NAME NOBODY TO RULE ON and that is not a shortfall: bk_afc_002, bk_afc_003, bk_afc_005, bk_afc_012, bk_afc_013 and bk_afc_018 are judgements and dates about the size of the trade; bk_afc_006 is a boat and bk_afc_019 a wine bill, both graded town_finding false; bk_afc_009 and bk_afc_016 are ruled on through the Beaubien merge, which can carry only one anchor; and bk_afc_015 is Hurlbut's own identification, which the Jamie Kinzie merge rests on."
     }
   ],
   "merges": [
@@ -25,7 +26,8 @@
         "data/residents/households/hh_hubbard_gurdon.json — the occupation note naming the Ramsey Crooks correspondence on the early fur trade"
       ],
       "does_not_follow": "NOTHING IN data/residents/ IS EDITED BY THIS MERGE, and one thing it argues for is deliberately left undone. hh_hubbard_gurdon.json grades his arrival year 1818 RECONSTRUCTED and says 'the year could not be traced to a sentence here, so it is carried as a conjecture citing nothing and flagged for a later parcel to fix or delete'; bk_afc_004 is a sentence, and it gives the day. Making that change is a resident-record edit and a second demonstration, so it is proposed in T-0575 and carries its own ticket rather than being smuggled into a reading pass.",
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_004"
     },
     {
       "into": "Col. Jean Baptiste Beaubien",
@@ -37,7 +39,8 @@
         "data/residents/households/hh_beaubien_jean_baptiste.json — origin 'Detroit and the Milwaukee trade', attested, sourced andreas_1884_v1"
       ],
       "does_not_follow": "NOTHING IN data/structures/ IS EDITED BY THIS MERGE. bk_afc_009 says the house Beaubien moved his family into in 1822 was the United States Factory House, bought from the government and standing just south of Fort Dearborn — which is what this project models as jb_beaubien_homestead. That is an origin for a building record and it is a claim of 1822 about a scene of 1835, so it is proposed in T-0575 for docs/RESEARCH/jb_beaubien_homestead.md and not written into the structure here. The 1819 trading houses at the old river mouth by the foot of Harrison Street are a different building again, sixteen years and one harbour cut earlier, and nothing is drawn from them.",
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_008"
     },
     {
       "into": "James Kinzie",
@@ -49,7 +52,8 @@
         "data/residents/households/hh_kinzie_john_h.json — persons[0] (kinzie_john_h, John Harris Kinzie, attested), the man Hurlbut's note names as the half brother"
       ],
       "does_not_follow": "The KINSHIP is not written into either household record on this ticket. Hurlbut says half brother, which is a specific and easily-flattened relationship, and adding a family link between two existing households is a change to the residents dataset rather than a reading of a book. It is recorded in bk_afc_015 and proposed in T-0575. Nor does a consignment addressed to a man in 1821 put him anywhere in 1835: hh_kinzie_james.json already dates his arrival from the 1831 ferry bond and this reading does not move it.",
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_014"
     },
     {
       "into": "John Crafts",
@@ -60,7 +64,8 @@
         "data/research/old_settlers/death_notices.json fdn0137 — 'Crafts, John, died 1825.'"
       ],
       "does_not_follow": "THE TWO DEATH YEARS ARE NOT RECONCILED AND THIS MERGE DOES NOT PICK ONE. Hubbard says December, 'I think the year 1823', with the hedge in the source's own words; Fergus's printed list says 1825. Both readings stand as filed, the disagreement is the finding, and choosing between them would be inventing a certainty neither source offers. Nothing follows for the town either way: John Crafts was dead at least ten years before the scene date, he is in no resident record, and none is created.",
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_010"
     }
   ],
   "refusals": [
@@ -72,7 +77,8 @@
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_001",
         "data/residents/households/hh_kinzie_john_h.json, hh_kinzie_james.json, hh_kinzie_robert_a.json — three separate Kinzie residents"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_001"
     },
     {
       "a": "Mr. John Kinzie",
@@ -82,7 +88,8 @@
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_011",
         "data/residents/households/hh_kinzie_john_h.json — persons[0], occupation forwarding_and_commission, from his own 1834 advertisement"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_011"
     },
     {
       "a": "Hubbard",
@@ -91,7 +98,8 @@
       "evidence": [
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_001 (the bare surname) and bk_afc_004 (the full naming the merge rests on)"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_001"
     },
     {
       "a": "Beaubien",
@@ -101,7 +109,8 @@
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_001",
         "data/residents/households/hh_beaubien_jean_baptiste.json, hh_beaubien_madore.json, hh_beaubien_mark.json — three separate Beaubien residents"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_001"
     },
     {
       "a": "Mr. Conant",
@@ -111,7 +120,8 @@
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_007",
         "data/residents/households/hh_ll_reuben_conant.json — head ll_reuben_conant, division unplaced, present_on_scene_date uncertain"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_007"
     },
     {
       "a": "William H. Wallace",
@@ -121,7 +131,8 @@
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_017",
         "data/residents/index.json and data/residents/households/ — no Wallace of any spelling"
       ],
-      "pass": "T-0575"
+      "pass": "T-0575",
+      "claim_id": "bk_afc_017"
     }
   ]
 }
