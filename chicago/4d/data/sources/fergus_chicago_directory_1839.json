@@ -14,6 +14,14 @@
  "author": "Robert Fergus",
  "repository": "Allen County Public Library Genealogy Center, via the Internet Archive",
  "archived_url": "https://archive.org/details/fergusdirectoryo00ferg",
- "what_it_supplies": "A name, a trade and a street for 1,655 entries in the city of 1839, and on printed page 37 the churches, the hotels, the public offices and rooms, two named building rows and the Dutch Settlement. It is the closest address list to 1835 this project can reach.",
- "what_it_does_not_supply": "An 1835 residency, an 1835 address, and — off Lake street — any address number that means anything at all. Fergus says on printed page 3 that no street but Lake was numbered in 1839 and that 'the numbers now given are those of the present day', i.e. 1876's. It also supplies no count of its own entries against which a reading can be closed."
+ "what_it_supplies": [
+  "A name, a trade and a street for 1,655 entries in the city of 1839 — the closest address list to 1835 this project can reach.",
+  "A trade for 976 of them at a stated street, which compiles into 102 street faces (Lake 199, Clark 94, North Water 83, South Water 72).",
+  "On printed page 37: six churches with their ministers, fifteen hotels, the public offices around the Public Square, the land office, the lighthouse, the theatre, two named building rows, the Dutch Settlement, and the fire that took the Tremont House on 27 October 1839."
+ ],
+ "what_it_does_not_supply": [
+  "An 1835 residency. Four years late, and the ratified ladder never makes a resident from a later listing alone.",
+  "An address number that means anything, off Lake street. Fergus writes on printed page 3 that no street but Lake was numbered in 1839 and that 'the numbers now given are those of the present day' — 1876's. Only the street name crosses.",
+  "A count of its own entries. The volume states no number of names anywhere, so a reading of it cannot be closed against the book the way a census sheet closes against its printed totals."
+ ]
 }
