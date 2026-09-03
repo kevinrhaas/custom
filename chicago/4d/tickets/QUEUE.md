@@ -129,16 +129,18 @@
 # --- is sequenced after never. T-0513 carried exactly that bar and stood 31 tickets deep while the
 # --- queue grew above it; T-0514/T-0515, which write the people, sat behind it.
 # ---
-# --- The case that measures it: hh_carpenter_philo.json carries ONE source on Philo Carpenter
-# --- (andreas_1884_v1) while the crosswalks have already ruled six for the same man — poll 1833,
-# --- tax 1833, poll 1834, the newspaper person, and two bridge tiers at VERY LIKELY 1835. The slot
-# --- exists, the evidence is adjudicated, and they have never been introduced.
+# --- The scale, counted across the layer: 742 of 825 household records cite exactly ONE source, 70
+# --- cite two, 13 cite three, and nothing cites more. Ninety per cent of the town rests on a single
+# --- source while the crosswalks hold rulings nobody has spent. hh_carpenter_philo.json is the
+# --- worked example, not the scope: it cites andreas_1884_v1 alone while the crosswalks have ruled
+# --- six for the same man — poll 1833, tax 1833, poll 1834, the newspaper person, and two bridge
+# --- tiers at VERY LIKELY 1835. The slot exists, the evidence is adjudicated, never introduced.
 # ---
 # --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
 # --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
 # --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
 # --- reaching a town person and 0 reaching their card; this band is what moves that number.
-T-0513 — Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
+T-0513 — 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
 # --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
 # --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
@@ -146,8 +148,53 @@ T-0513 — Philo Carpenter carries one source and the crosswalks have ruled six:
 # --- which is the manual step this whole programme exists to stop relying on.
 T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
-
+# --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
+# --- items in the queue you think will yield the best research results, those ones at the top".
+# ---
+# --- This band is not a hunch. Every closed crosswalk on dev was counted, and the match rate
+# --- differs by more than an order of magnitude by WHAT KIND of source it is:
+# ---
+# ---   source                       era                    ruled  matched   match %
+# ---   civic poll/tax/voter lists    1833-1835              345      99      28.7%
+# ---   1840 census heads             1840 (later)           498       5       1.0%
+# ---   St Cyr church register        1834-1839              531       0       0.0%
+# ---   Newberry index vol 1          index to later works   319       0       0.0%
+# ---
+# --- THE CATEGORY THAT WINS IS NARROWER THAN 'CONTEMPORARY', and the church row is why this was
+# --- measured rather than guessed: the first draft of this band led with St Mary's baptismal
+# --- register on the reasoning that 1833-35 beats 1840. St Cyr's register IS 1834-39, was read in
+# --- full, and matched NOBODY — 434 of its 531 entries are unmatched. What actually predicts yield
+# --- is a LIST THE TOWN MADE OF ITS OWN NAMED INHABITANTS, dated 1833-1836. Poll books, tax lists
+# --- and land purchases name householders under their own names; a register names the Catholic
+# --- families of a parish, and an index names works.
+# ---
+# --- So the promotions, in order, and each says which clause of the ratified ladder it feeds:
+# ---   T-0557  land sales through 1836 — a government list of NAMED PURCHASERS at Chicago; the
+# ---           closest thing in the queue to the civic lists that scored 28.7%.
+# ---   T-0498  the 1830 named schedule — the only pre-1835 enumeration of the settlement, and
+# ---           still unread; the repo holds county aggregates and no names.
+# ---   T-0501  Hubbard — a resident naming his contemporaries with trade or address, which the
+# ---   T-0499  ratified ladder admits as `inferred` in as many words. Fergus 26-29 is the same
+# ---   T-0500  clause and is already deposited as 1.24 MB of unread OCR.
+# ---   T-0506  the 1839 directory — later evidence, but nearer 1835 than the 1843/44 volumes.
+# ---   T-0503  St Mary's baptismal register — on the ladder (baptism 1833-35) and deposited, so
+# ---           it is here and not at the top: the measured church yield says it will not lead.
+# ---
+# --- WHAT MOVED DOWN, and it is a real call rather than a tidy-up. Eleven more 1840 census sheet
+# --- reads and Newberry volumes 2-4 now sit below this band. Together they are ~8,000 more cards
+# --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
+# --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
+# --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
+T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
+T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
+T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
+T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
+T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
+T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
+
+
+
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
 # --- newberry spend ticket". Placed immediately above the three volume reads it depends on the
 # --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
@@ -170,14 +217,8 @@ T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
-T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
-T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
-T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
