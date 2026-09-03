@@ -52,9 +52,9 @@ is the attorney the papers put near Franklin and South Water. T-0412 is that tra
 the other side. It may not seat two addresses on a roof, or one address on two roofs.
 
 Recorded rather than drawn: the notice calls the house **LARGE** and the fabric under the
-address is a 5.36 × 6.38 m D3 count-unit dealt long before the address resolved (**T-0591**);
+address is a 5.36 × 6.38 m D3 count-unit dealt long before the address resolved (**T-0593**);
 and the **fine well** is not drawn, because this town has no well of any kind and the first
-one would stand on the single lot whose address happens to resolve (**T-0590**). Both are on
+one would stand on the single lot whose address happens to resolve (**T-0592**). Both are on
 the record in the notice's own words. A documented feature that is absent is stated, not
 omitted.
 

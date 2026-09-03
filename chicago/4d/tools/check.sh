@@ -1081,6 +1081,21 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
+# lots of research being done ... but there are not outputs or updates to the household
+# and resident data". The bridges gate above proves the links the project HAS made are
+# honest. It cannot notice the links it never made. On that day census_1840 held 562
+# names read off the sheets and a crosswalk of `passes: [], merges: [], refusals: []` —
+# every reading ticket green, every output filed, and nothing across. coverage.json
+# makes an unread image fail rather than pass quietly; this makes an unruled NAME do
+# the same. It is a ratchet, not a target: reading ahead of the bridge is the method,
+# so the gap may sit where it sits and may not silently widen.
+step "no research domain reads further ahead of the town than its baseline" \
+  python3 tools/measure_research_spend.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_research_spend.py --self-test
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.
@@ -1264,6 +1279,22 @@ step "…and its crosswalk to the 1835 residents rebuilds too" \
 # than as a hope. It also rebuilds every quote the assessment filed in passing out of the
 # committed text, because a quote from a website is a quote from something that can change
 # under you.
+# T-0574. Fergus's list of the deaths of Chicago's old settlers, and the one source this
+# project holds that carries AGES AT DEATH — which are birth years, by subtraction this
+# project does and the page does not. Two things need holding. The segmenting, because the
+# transcription wraps a long entry without indenting the turn and the rule that tells a turn
+# from a man is delicate: "Oct. 12, 1877" under O is the tail of Daniel O'Hara's entry, and a
+# rule reading the section letter alone made a new man of the month. And the GRADE, because
+# an arithmetic birth window that quietly became `documented` would be this project's own
+# invention wearing a citation. The gate rebuilds both files out of the committed text, holds
+# the count to what coverage.json declares, and refuses a record that claims the scene year
+# or grades a derived birth above `inferred`.
+step "Fergus's old-settler death notices rebuild from their committed text" \
+  python3 tools/read_fergus_obits.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_fergus_obits.py --self-test
+
 step "the Genealogy Trails inventory covers every section the county index links" \
   python3 tools/read_genealogytrails.py --check
 
