@@ -1,0 +1,64 @@
+{
+  "id": "fergus_historical_series_26_29",
+  "type": "book",
+  "citation": "Fergus' Historical Series, Nos. 26-29 (Chicago: Fergus Printing Company, 1883-1888), the four numbers bound in one volume: No. 26, William Henry Harrison's A Discourse on the Aborigines of the Ohio Valley, with the Manners and Customs matter printed after it; No. 27, Hiram W. Beckwith's The Illinois and Indiana Indians (1884); No. 28, Robert Fergus's Directory of the City of Chicago, Illinois, for 1843, with its Business Directory, alphabetical name directory and Obituary; No. 29, Julia Duncan Kirby's Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois, read before the Historical Society of Jacksonville 7 May 1885 and printed 1888.",
+  "author": "Robert Fergus (publisher of the series and compiler of No. 28 and its annotations); William Henry Harrison (No. 26); Hiram W. Beckwith (No. 27); Julia Duncan Kirby (No. 29)",
+  "date": "1883-1888 (the four numbers). No. 28 reprints a directory OF 1843 compiled in 1876-1878 and annotated by Fergus into the 1890s; No. 29 was read in 1885 and printed in 1888.",
+  "describes_date": "1843 in No. 28's entries; the 1880s and 1890s in Fergus's bracketed annotations to them, which is where its handful of 1830s statements live; 1794-1840 in No. 29, whose Chicago-bearing material is the Illinois-and-Michigan Canal between 1829 and 1837; pre-contact and early-contact Ohio and Wabash valleys in Nos. 26 and 27.",
+  "repository": "Internet Archive, item fergushistorical2629unse (Allen County Public Library copy, 858 scanned leaves). This project's deposit at chicago/reference/fergus/ holds the item's hOCR SEARCH TEXT and its hOCR PAGE INDEX and not the scan; SOURCE.yaml records the 138 MB PDF as held in the owner's own archive at projects/archive/data/chicago/reference/fergus/. Nobody in this project has handled the physical volume or seen a page image of it.",
+  "url": "https://archive.org/details/fergushistorical2629unse",
+  "archived_url": "https://archive.org/details/chicago1835-fergus-historical-series",
+  "locator": "chicago/4d/data/research/books/text/fergus_26_29.txt — the deposit search text committed BYTE FOR BYTE (sha256 0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942). Every claim's locator names its inclusive character spans inside 1-based line numbers of that file, plus the scan LEAF, the volume PART and the PRINTED FOLIO from data/research/books/page_index/fergus_26_29.json. The leaf boundaries are not derived and not aligned: they are the scanner's own, read straight out of the deposit's hOCR page index by tools/build_fergus_page_index.py, whose docstring is the argument for doing it that way.",
+  "tier": 3,
+  "rights_status": "public_domain",
+  "asset_use": "text_only",
+  "verified": true,
+  "transcribes": [
+    {
+      "work": "No. 28 — the DIRECTORY OF THE CITY OF CHICAGO FOR 1843: city, county, state and United States officers, schools, churches, societies and statistics; the Business Directory of trades with street addresses; the alphabetical name directory of about eight thousand entries; and the Obituary of Chicago's old settlers",
+      "date": "The directory describes 1843; this printing is 1883 and its introductory is dated from the 1876 Directory for 1839's reception.",
+      "tier": 2,
+      "note": "THE ONE PIECE OF THE VOLUME THAT REPRINTS A CONTEMPORARY DOCUMENT, and it is a contemporary document of 1843 and not of 1835. Its entries are rung 2 FOR 1843 — a compiled town directory of the year it names — and nothing in them is evidence about the scene year. Eight years separate them, and the directory itself records the gap: its own note at line 2944 dates the first warehouse on the South Side to the fall of 1839."
+    },
+    {
+      "work": "Robert Fergus's own annotations to No. 28, inserted in square brackets throughout the alphabetical directory and gathered in the Obituary — deaths, arrivals, birthplaces, offices held, and notes such as 'first warehouse on South Side, erected fall of 1839'",
+      "date": "Written between 1878 and the middle 1890s; the latest death this project read in them is 1896.",
+      "tier": 3,
+      "note": "COMPILER'S RECOLLECTION AT FIFTY YEARS AND AT SECOND HAND, AND THE GRADE IS THE POINT. Robert Fergus's own entry in his own directory says he was born at Glasgow in 1815 and ARRIVED AT CHICAGO ON 1 JULY 1839 (bk_fer2_044). He did not see the town of 1835. Every 1830s statement in this volume that is not in No. 29 is one of these annotations, and every one of them is a man in the 1890s writing down what he was told about a town he reached four years too late."
+    },
+    {
+      "work": "No. 29 — Julia Duncan Kirby's Biographical Sketch of Joseph Duncan, quoting at length from Duncan's own Washington diary of 1829, from his governor's messages of 1834, December 1835 and July 1837, and from his wife Elizabeth's written reminiscences",
+      "date": "Read 1885, printed 1888; the material quoted runs from 1813 to 1842.",
+      "tier": 3,
+      "note": "A daughter's paper about her father, read to a small audience of neighbours who had known him. The DIARY and the MESSAGES quoted inside it are documents of their own dates and are the strongest thing in the number; the narrative around them is family recollection. No claim here treats the two the same, and every claim taken from a quoted message names the message's own date."
+    },
+    {
+      "work": "Nos. 26 and 27 — Harrison on the aborigines of the Ohio valley and Beckwith on the Illinois and Indiana Indians",
+      "date": "1883 and 1884.",
+      "tier": 3,
+      "note": "NOT READ BY THIS RECORD'S SECOND-HALF PASS, which begins at leaf 430 and is entirely inside Nos. 28 and 29. T-0499 reads the first half. They are named here because a source record for a bound volume must say what the volume holds."
+    }
+  ],
+  "access_notes": "The deposit was already in the repository at chicago/reference/fergus/ when this reading began and was not re-fetched; nothing was downloaded for it. WHAT THE QUOTES ARE CHECKED AGAINST is fergushistorical2629unse_hocr_searchtext, committed verbatim as data/research/books/text/fergus_26_29.txt, and tools/research_domains.py --check rebuilds every quote out of it character for character. IT IS RAW OCR AND IT IS BAD IN PLACES: display type on the advertisement leaves is close to unreadable, digits fail one glyph at a time ('1S3G' for 1836, '2oth' for 20th, '34i^' for 34 1/2), and one date is refused outright as unreadable at bk_fer2_045. The quotes carry that damage as printed and the reading is in `normalized` beside each one. NO PAGE IMAGE HAS BEEN SEEN: this whole reading is transcription_mediated and every claim says so on its face. The archive.org _djvu.txt was NOT fetched, because the deposit's search text is the artifact the deposit's own page index addresses and swapping texts would break every locator in the domain.",
+  "what_it_supplies": [
+    "the Illinois-and-Michigan Canal's own chronology through the scene year, from the governor who carried it: the 1829 attempt in Washington to get the canal LOCATED and the route to Lake Erie examined; the legislature of 1834-35 adjourning without acting on it; the special session called for the first Monday of December 1835, at which Duncan reported every loan attempt failed and asked for the faith of the State to be pledged; and the law that session passed, which is described as the efficient means of completing the canal",
+    "a state census of Illinois taken in 1835, asserted in passing as the reason the December 1835 special session was called — a LEAD to an enumeration, not the enumeration",
+    "one dated negative for the south bank of the river: Fergus's note that Bristol & Porter's was the FIRST WAREHOUSE ON THE SOUTH SIDE, erected in the fall of 1839",
+    "the founding date of the Chicago Democrat — first number 20 November 1833, by John Calhoun — with the paper's 1843 address at 107 Lake Street and John Wentworth as its proprietor, and nothing between the two",
+    "six deaths inside 1830-1836 of people connected with the town: Thomas J. V. Owen the Indian agent (15 October 1835), a Dr Spring with no given name (10 November 1835), the Rev. Jesse Walker twelve miles west of Chicago (5 October 1835), Hollis Newton hotel-keeper (25 August 1835), the Rev. Allen B. Freeman (17 December 1834) and Dr Alexander Wolcott the Indian agent (25 October 1830, his the first will probated in Cook County)",
+    "Silas Wooster Sherman elected sheriff of Cook County in 1834 and again in 1836",
+    "a full trade-by-trade picture of Chicago's streets in 1843 — South Water, Lake, Clark, LaSalle, Dearborn, Kinzie, Market, Randolph, Wolcott — with named houses standing on them: the Sauganash Hotel at Lake and Market, a Tremont House on Lake Street, the Tremont Buildings at 102 Lake, a four-storey brick on South Water second door from Clark, the American and Chicago Temperance Houses, and the South Branch bridge as a landmark",
+    "two source leads this project does not hold: Charles Cleaver's Reminiscences of Early Chicago (1833), printed 1882, and Harriet Martineau's Chicago in 1836: 'Strange Early Days', reprinted 1876",
+    "the compiler's own arrival date, 1 July 1839, which grades every 1830s annotation in the volume"
+  ],
+  "what_it_does_not_supply": [
+    "ANY 1835 CHICAGO PLACEMENT. Not one. The directory is 1843, the sketch is Jacksonville, and no address in either belongs to the scene year",
+    "an 1835 population figure, an 1835 street list, or an 1835 house. The 1835 state census it mentions is mentioned and not printed",
+    "eyewitness testimony of Chicago in the 1830s. Robert Fergus arrived in 1839 and Julia Duncan Kirby was a child at Jacksonville; the volume's whole 1830s Chicago content is at second hand",
+    "the given name of the Dr Spring who died on 10 November 1835, which is what would be needed to attach the date to the Giles Spring this project holds",
+    "any ruling on which Newberry stood in Newberry & Dole in 1835. Its 1843 advertisement lists 'O. Newberry, Detroit' as an out-of-town agent of the transportation line, which is 1843 and is about Detroit",
+    "reliable digits. Years, ages and street numbers all fail in this OCR one glyph at a time, and at least one printed date is unreadable and is refused rather than guessed",
+    "page images. No claim from this source is scan_verified and none can be until the 138 MB PDF is deposited"
+  ],
+  "note": "FOUR PAMPHLETS IN ONE COVER, AND THEY DO NOT SHARE A GRADE. This record's tier is 3, which is the best the volume carries AS A WHOLE — a series of reminiscences and compilations printed forty to fifty years after the events. Two pieces of it stand higher and are graded piece by piece in `transcribes` rather than by the volume: the 1843 directory's own entries are rung 2 FOR 1843, and the diary and governor's messages quoted inside No. 29 are documents of their own dates. Nothing in the volume stands higher than 3 for 1835, because nothing in it was written by anybody who saw the town that year. The reading is split between two tickets by page index: T-0499 reads leaves 1-429 (the front matter, No. 26, No. 27 and No. 28's front matter and city lists) and T-0500 reads leaves 430-858 (No. 28's Business Directory, name directory and Obituary, the publisher's leaves, and the whole of No. 29). See data/research/books/coverage.json for exactly what each declared, and data/research/books/crosswalk.json for every identity ruled on. Nothing in data/residents/, data/structures/ or data/assets/ was edited by this reading."
+}

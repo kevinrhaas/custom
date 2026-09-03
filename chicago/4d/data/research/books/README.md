@@ -147,3 +147,37 @@ the research layer; the sharpest refusal is the "John Kinzie" of the 1834 truste
 *looks* like an easy merge and is not — the elder John Kinzie died in 1828 and this project
 holds three separate Kinzies, so a 1911 writer's shortened form is not enough to put a dated
 civic office on any one of them.
+
+---
+
+## Fergus' Historical Series Nos. 26-29 — what the volume actually holds
+
+The deposit's filename says *26-29* and says nothing more. The volume is FOUR
+PAMPHLETS BOUND IN ONE COVER, each with its own title page and its own page
+numbering starting again at 1, and one of the four is a Chicago directory. This
+table was read off the scan (T-0500, leaves 430-858; the first half is T-0499) and
+is the reason a citation from this volume must always name its **part**: "page 35"
+alone is four different pages.
+
+Leaf numbers are the scan's own, 1-based, 858 of them, from
+`page_index/fergus_26_29.json`. Printed folios are the book's.
+
+| Leaves | Part key | What it is | Printed pages |
+|---|---|---|---|
+| 1-15 | `front` | Allen County Public Library plate, the Internet Archive statement, the collective title page *FERGUS' HISTORICAL SERIES No. 26-29* (leaf 10), and Fergus Printing Company advertisements | unnumbered |
+| 16-203 | `fergus_26` | **No. 26** — William Henry Harrison, *A Discourse on the Aborigines of the Ohio Valley*, with the *Manners and Customs* matter printed after it | 1-95+ |
+| 204-395 | `fergus_27` | **No. 27** — Hiram W. Beckwith, *The Illinois and Indiana Indians* (title page leaf 208, copyright 1884, author's letter dated Danville, 5 Nov. 1883) | 1-180+ |
+| 396-645 | `fergus_28` | **No. 28** — Robert Fergus, *Directory of the City of Chicago, Illinois, for 1843* (title page leaf 400). Introductory 402-405; city, county, state and U.S. officers, schools, churches, societies and statistics 406-429; **Business Directory** 430-457; **alphabetical name directory** 458-605; **Obituary** 606-644 | 3-124 |
+| 646-850 | `fergus_29` | **No. 29** — Julia Duncan Kirby, *Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois*, read before the Historical Society of Jacksonville 7 May 1885, printed 1888 (title page leaf 658, photogravure plate leaf 654). Index at 820-844 | 1-95 |
+| 851-858 | `fergus_29` | Fergus Printing Company's closing book list | unnumbered |
+
+**Two things follow from the table and neither is obvious from the filename.**
+
+1. **The volume contains a Chicago city directory.** This project already cites
+   Fergus's 1843 directory at second hand; leaves 396-645 are the thing itself.
+   It describes **1843**, not 1835, and its only pre-1837 statements are Robert
+   Fergus's own bracketed annotations — written in the 1880s and 1890s by a man
+   whose own entry says he arrived on **1 July 1839**.
+2. **Nos. 26 and 27 are not about Chicago at all**, and No. 29 names it four
+   times in ninety-five pages. The one thread in No. 29 that reaches the town is
+   the Illinois-and-Michigan Canal.

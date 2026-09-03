@@ -41,6 +41,17 @@ step "book page indexes still match the text they index" \
 step "…and its own assertions still fire when broken" \
   python3 tools/build_book_page_index.py --self-test
 
+# Fergus' Historical Series Nos. 26-29 has the opposite problem and gets the opposite tool:
+# its deposit carries the scanner's OWN hOCR page index, so the 858 leaf boundaries are read
+# off it rather than aligned onto it. What DOES need gating is the copy — the committed text
+# is the deposit search text byte for byte, and a single edit to it would silently invalidate
+# every quote in the books domain. This re-asserts the sha256 and the line arithmetic.
+step "the Fergus 26-29 page index still matches the text it indexes" \
+  python3 tools/build_fergus_page_index.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/build_fergus_page_index.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to

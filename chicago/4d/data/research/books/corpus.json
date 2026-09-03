@@ -57,6 +57,38 @@
       "claims": "chicago/4d/data/research/books/claims/american_fur_company_hurlbut.json — 19 claims, T-0575",
       "read": "Pages 28-36, declared in coverage.json as ONE `list` item and not as nine `page` items, because the transcription marks no page breaks and this project will not invent them.",
       "note": "Registered here retrospectively by T-0501, which is the pass that gave this domain a corpus at all. Nothing about the T-0575 reading is changed by the entry."
+    },
+    {
+      "id": "fergus_26_29",
+      "title": "Fergus' Historical Series, Nos. 26-29 — No. 26, Harrison's A Discourse on the Aborigines of the Ohio Valley; No. 27, Beckwith's The Illinois and Indiana Indians; No. 28, Fergus's Directory of the City of Chicago for 1843; No. 29, Kirby's Biographical Sketch of Joseph Duncan",
+      "imprint": "Chicago: Fergus Printing Company, 1883-1888 — four numbers bound in one volume (Allen County Public Library copy)",
+      "source_id": "fergus_historical_series_26_29",
+      "archive_item": "fergushistorical2629unse",
+      "deposit": {
+        "path": "chicago/reference/fergus/fergushistorical2629unse_hocr_searchtext",
+        "path_kind": "deposit",
+        "sha256": "0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942",
+        "leaves": 858
+      },
+      "text": {
+        "path": "chicago/4d/data/research/books/text/fergus_26_29.txt",
+        "path_kind": "derived",
+        "sha256": "0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942",
+        "how": "The deposit's own hOCR search text, copied BYTE FOR BYTE by tools/build_fergus_page_index.py --build on 2026-09-03. Not cleaned, not re-flowed, not re-OCR'd. The deposit was already in the repository and nothing was fetched for it; the archive.org _djvu.txt was deliberately NOT used, because the deposit's page index addresses THIS text and swapping texts would break every locator in the domain.",
+        "corroborated_by": null
+      },
+      "page_index": {
+        "path": "chicago/4d/data/research/books/page_index/fergus_26_29.json",
+        "path_kind": "derived",
+        "generated_by": "tools/build_fergus_page_index.py --build",
+        "why": "NOT AN ALIGNMENT — A TRANSCRIPTION OF THE SCANNER'S OWN INDEX. Unlike Hubbard's autobiography, whose committed text carries no page breaks at all, this deposit ships fergushistorical2629unse_hocr_pageindex.json: 858 entries of exact character offsets into the search text, one per scanned leaf. The tool turns those offsets into 1-based line numbers, assigns each leaf to one of the volume's four numbers from the four title pages read off the scan, and reads the printed folio out of the running head where the OCR gives it.",
+        "folios_read_off_the_page": 204,
+        "folios_carried_by_offset": 159,
+        "folios_discarded": 33
+      },
+      "claims": "chicago/4d/data/research/books/claims/fergus_26_29_second_half.json — 58 claims, T-0500 (leaves 430-858). The first half, leaves 1-429, is T-0499.",
+      "read": "Leaves 430-858, declared in five items in coverage.json: the 1843 Business Directory (430-457) and Obituary (606-644) and the whole of Fergus No. 29 (658-850) read in full; the publisher's advertisement leaves (645-657, 851-858) read for Chicago titles only; the 1843 alphabetical name directory (458-605) SWEPT BY MACHINE and not read continuously, which its own declaration states. Leaves 1-429 are T-0499's.",
+      "note": "FOUR PAMPHLETS IN ONE COVER AND FOUR SEPARATE FOLIO SEQUENCES. Every number restarts its page numbering at 1, so a printed folio in this volume is meaningless without its `part`, and the page index carries both. The folio offset is not even constant WITHIN a number — an inserted plate shifts it — so the read folios are grouped into runs of a single offset and a leaf between two runs keeps printed_page null rather than being guessed at. Thirty-three folio readings that contradict every run are discarded and listed, the commonest being the directory's own running head, 'CHICAGO DIRECTORY, 1 843.', whose year reads as a page number."
     }
   ]
 }
