@@ -8,7 +8,7 @@
   "repository": "Nobody in this project has seen the book. What was read is the Genealogy Trails transcription of pages 28-36.",
   "url": "https://genealogytrails.com/ill/americanfurco.html",
   "locator": "chicago/4d/data/research/books/text/hurlbut_chicago_antiquities_28_36.txt, byte-identical to the genealogytrails cache it was taken from (data/research/genealogytrails/text/americanfurco.txt, cached 2026-09-03). Every claim's locator names its lines in that file; the page within 28-36 is NOT named, because the transcription marks no page breaks and this project will not invent them.",
-  "tier": 2,
+  "tier": 1,
   "rights_status": "public_domain",
   "asset_use": "text_only",
   "verified": true,
@@ -49,5 +49,5 @@
     "page numbers. The transcription runs pages 28-36 together with no breaks marked",
     "reliable orthography for the outfit book, and it says so: 'Pains have been taken to carefully follow the orthography' is a claim about fidelity to the manuscript, not about the manuscript being right — 'Jamie Kinzie', 'Milliwaki', 'Lower Wasbash' and 'Achoolcraft' are all on the page"
   ],
-  "note": "TWO VOICES AND THREE DOCUMENTS, and the whole value of the chapter depends on keeping them apart. Hurlbut compiles in 1881; Hubbard remembers, in quotation marks, at sixty years' distance; the invoice book is a period record of 1821-22. The record's tier is 2 for Hubbard's testimony, which is the best rung declared here, and no claim taken from Hurlbut's own narrative is graded as if it were Hubbard's. data/sources/chicago_antiquities_pratt.json is the same book at a different locator (the printing-press passage, read for T-0479) and the two are deliberately separate records: a source record cites a place, not a volume."
+  "note": "TWO VOICES AND THREE DOCUMENTS, and the whole value of the chapter depends on keeping them apart. Hurlbut compiles in 1881 and judges; Gurdon S. Hubbard remembers, inside quotation marks, at sixty years' distance; and an outward-invoice book of the Michilimackinac agency, 1821-22, is a period business record printed verbatim with its orthography kept. THE RECORD'S TIER IS 1 AND IT IS EARNED BY THE INVOICE BOOK ALONE. That is the rule this project states for a page that carries more than one document — the rung is the best rung transcribed, derived and not typed — and it is a grade of the page, not a licence over its contents. Only four claims come off the invoice book (bk_afc_014, bk_afc_016, bk_afc_017 and the goods catalogue at bk_afc_018, with the agency expenses at bk_afc_019); the Chicago narrative is Hubbard's recollection at rung 2, and Hurlbut's connecting prose and his sizing judgement are rung 4. Every claim says on its face which layer it came from, and NOTHING TAKEN FROM HURLBUT'S OWN NARRATIVE MAY BE USED AS IF IT WERE PERIOD EVIDENCE because this record is graded 1. data/sources/chicago_antiquities_pratt.json is the same book at a different locator (the printing-press passage, read for T-0479) and the two are deliberately separate records: a source record cites a place, not a volume."
 }
