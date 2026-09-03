@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 6:32 PM",
+  "generated_ct": "Sep 3, 2026, 6:37 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10022,7 +10022,7 @@
     {
       "id": "T-0604",
       "title": "Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10030,14 +10030,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-03",
+      "pr": "730",
       "claimed_by": "owner 9/3/2026, 4:31:19 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-03T22:29:24.223Z",
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": null
     },
     {
       "id": "T-0605",
@@ -10057,7 +10057,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 147
     },
     {
       "id": "T-0606",
@@ -10077,7 +10077,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0609",
@@ -10097,7 +10097,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0610",
@@ -10117,7 +10117,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     }
   ]
 }
