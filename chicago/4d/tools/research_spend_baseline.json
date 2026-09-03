@@ -9,7 +9,7 @@
   "church": 0,
   "books": 0,
   "directories": 4703,
-  "newberry_index": 2619
+  "newberry_index": 2077
  },
  "witness": {
   "civic": {
@@ -38,7 +38,7 @@
   },
   "newberry_index": {
    "read": 2619,
-   "spent": 0
+   "spent": 542
   }
  },
  "raised": [
@@ -48,6 +48,15 @@
    "to": 4703,
    "date": "2026-09-03",
    "why": "T-0571 (PR #714) read Fergus's 1843 Chicago directory — 2,695 entries — into dev while this branch was open. The read is legitimate and already merged; this branch inherits it and cannot spend it. The ceiling is raised to admit it, NOT to excuse it: T-0588 (rank 2) spends the directory on the businesses layer and T-0587 already spent 67 of it onto resident cards, so this domain has live spend tickets and the number should come back down."
+  }
+ ],
+ "lowered": [
+  {
+   "domain": "newberry_index",
+   "from": 2619,
+   "to": 2077,
+   "date": "2026-09-03",
+   "why": "T-0590 ruled on all 319 leads volume 1 offered, anchored to the 542 distinct cards they stand on: 240 refused, 79 candidates in a work this project already holds, 0 merges. Lowering a ceiling is free and is exactly what spending a domain does. The remaining 2,077 are volume 1's cards that stand under no lead at all - a surname nobody in this town carries - and they come down when a later ticket rules the surnames out in bulk or the volumes 2-4 tickets replace the arithmetic."
   }
  ]
 }
