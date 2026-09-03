@@ -115,20 +115,17 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 
-# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
-# --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:
-# --- the plank walk's sawtooth against the dirt road is among the first things in
-# --- view. T-0459 is 20 signs mounted flat on facades by a generator that mentions
-# --- doors sixteen times and never once as geometry. Both are cheap beside the
-# --- ground work below, and this band is the answer to the queue's own complaint
-# --- that 41 merges added nothing a visitor could see.
+# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. BOTH HAVE LANDED and
+# --- the band is kept only to say so: T-0460, the plank walk's sawtooth against the
+# --- dirt road, on 2026-09-03 (#676); T-0459, twenty signs mounted flat over doors
+# --- and windows, on 2026-09-03 (#678). This band was the answer to the queue's own
+# --- complaint that 41 merges added nothing a visitor could see, and it is answered.
 # --- T-0426 IS RULED AND T-0461 IS WHAT THE RULING LEFT — 2026-08-31. The fence
 # --- stays where the lot fronts (L160 read literally); the post follows the door,
 # --- and that half has landed. What is left is that the Tremont House's goods sit
 # --- on lot 7 while its own placement point falls 1.5 m outside it, so PR #562 is
 # --- parked on T-0461 and on nothing else.
 T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
-T-0459 — Signboards are mounted over doors and windows, when the same wall has blank face to put them on
 # --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
 # --- so a run cannot tell its own failure from an inherited one, and this one misstates
 # --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
@@ -311,3 +308,4 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
+T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them

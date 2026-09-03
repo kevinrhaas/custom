@@ -664,3 +664,167 @@ def from_phase(phase: dict, record: dict | None = None) -> FrameStorefrontParams
     )
     p.validate()
     return p
+
+
+# ---------------------------------------------------------------------------
+# THE ELEVATION'S SET-OUT, and the openings that fall out of it (T-0459).
+#
+# These live here so that something with no Blender can ask WHERE THE OPENINGS
+# ARE. The signage layer is the caller that needed it: it was placing painted
+# names and wall boards at a height that suited the trade and had no idea what was
+# behind them, so twenty boards were hung over doors and windows. They belong in
+# the params module for the same reason `shopfront_head_z` does — the commit gate
+# has to read them and the commit gate has no Blender.
+
+# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
+# beside this file computes the same rectangles from the same constants, and until
+# it CONSUMES these functions the two are two copies. Making it consume them is
+# T-0520, and it is a separate ticket for one reason: the asset staleness hash
+# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
+# stales every asset of that archetype — 212 of them across the three touched here
+# — and demands a town-wide rebake that does not fit beside this work. Until then:
+# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
+# COMMIT. The constants are already shared, which is most of the drift surface; the
+# arithmetic is what is not yet.
+# ---------------------------------------------------------------------------
+
+def snap(x: float, origin: float, module: float) -> float:
+    """The nearest framing line at or near `x`, measured from `origin`.
+
+    This is where the 16 in module stops being a note in a docstring: every opening
+    on the elevation is set out on it, because in a framed wall an opening lands
+    between studs or it does not land at all.
+    """
+    return origin + round((x - origin) / module) * module
+
+
+def module_m(p: "FrameStorefrontParams") -> float:
+    """The framing module the elevation is set out on."""
+    return STUD_SPACING_M if p.construction == "balloon_frame" else POST_SPACING_M
+
+
+def main_extent(p: "FrameStorefrontParams") -> tuple[float, float, float, float]:
+    """The store block's rectangle inside the footprint bbox.
+
+    The ell is carved OUT of the footprint rather than bolted onto it, so the whole
+    building stays inside the polygon the record attests — log_dwelling's rule, and
+    the one that keeps GROUND_CONTACT 'perimeter' true of the mesh.
+    """
+    w, d = p.width_m, p.depth_m
+    if not p.ell:
+        return 0.0, 0.0, w, d
+    if p.ell_side == "end":
+        return 0.0, 0.0, w - p.ell_width_m, d
+    return 0.0, p.ell_depth_m, w, d
+
+
+def ell_extent(p: "FrameStorefrontParams") -> tuple[float, float, float, float]:
+    """The ell's rectangle. A rear ell sits against the -x end of the back wall,
+    leaving the yard on the loading side; an end ell runs to the +x edge and takes
+    the whole depth."""
+    w, d = p.width_m, p.depth_m
+    if p.ell_side == "end":
+        return w - p.ell_width_m, 0.0, w, d
+    return 0.0, 0.0, p.ell_width_m, p.ell_depth_m
+
+
+def shopfront_extent(p: "FrameStorefrontParams", mx0: float,
+                     mx1: float) -> tuple[float, float, float]:
+    """(x0, x1, head_z) for the shopfront, centred on the frontage and snapped to
+    the framing module."""
+    sf_w = shopfront_width_m(p.shopfront_bays)
+    centre = (mx0 + mx1) / 2.0
+    x0 = snap(centre - sf_w / 2.0, mx0, STUD_SPACING_M)
+    x0 = min(max(x0, mx0 + 0.30), mx1 - sf_w - 0.30)
+    return x0, x0 + sf_w, p.shopfront_head_z
+
+
+def shopfront_panels(p: "FrameStorefrontParams",
+                     shop: tuple[float, float, float]) -> list[tuple]:
+    """The shopfront's panels left to right, as `(kind, u0, u1, z0, z1)`.
+
+    `kind` is `shop_door` or `show_window`; the pilasters, mullions and stall riser
+    are solid boards and are not listed, because a sign nailed over a mullion covers
+    nothing a visitor was meant to see through.
+    """
+    sx0, sx1, head = shop
+    inner0, inner1 = sx0 + SHOP_PILASTER_M, sx1 - SHOP_PILASTER_M
+    bays = p.shopfront_bays
+    fit = (inner1 - inner0 - SHOP_DOOR_W_M - bays * SHOP_MULLION_M) / bays
+    bay_w = min(fit, SHOP_BAY_W_M * 1.15)
+    run = SHOP_DOOR_W_M + bays * bay_w + bays * SHOP_MULLION_M
+    cur = inner0 + (inner1 - inner0 - run) / 2.0
+    door_at = {"left": 0, "right": bays, "centre": (bays + 1) // 2}[p.shopfront_door_side]
+
+    out: list[tuple] = []
+    for i in range(bays + 1):
+        if i == door_at:
+            out.append(("shop_door", cur, cur + SHOP_DOOR_W_M, 0.0, head))
+            cur += SHOP_DOOR_W_M
+        else:
+            out.append(("show_window", cur, cur + bay_w, SHOP_SILL_Z_M, head - 0.13))
+            cur += bay_w
+        if i < bays:
+            cur += SHOP_MULLION_M
+    return out
+
+
+def front_window_rects(p: "FrameStorefrontParams", x0: float, x1: float,
+                       shop: tuple | None) -> list[tuple]:
+    """The storey windows on the FRONT wall, as `(u0, u1, z0, z1)`.
+
+    THE BAY COUNT COMES FROM THE FRONTAGE, not from a constant — the argument is at
+    `frame_storefront._fenestration`, which draws exactly this list.
+    """
+    story_h = p.story_height_m
+    win_w, win_h = 0.85, 1.30
+    front_w = x1 - x0
+    bays = max(2, min(7, int(round(front_w / 2.45))))
+    module = module_m(p)
+    out: list[tuple] = []
+    for story in range(p.stories):
+        z0 = story * story_h + story_h * 0.30
+        if story == 0 and shop is not None:
+            continue                       # the ground storey is the shop
+        for i in range(bays):
+            cx = snap(x0 + front_w * (i + 0.5) / bays, x0, module)
+            cx = min(max(cx, x0 + win_w), x1 - win_w)
+            out.append((cx - win_w / 2, cx + win_w / 2, z0, z0 + win_h))
+    return out
+
+
+def front_openings(p: "FrameStorefrontParams") -> list[dict]:
+    """Everything on the front wall a signboard must not be hung over.
+
+    In footprint coordinates: `u` along the front wall from the polygon's own
+    origin, `z` above the base of the walls. Openings proper — the shop door, the
+    show windows, the storey windows, a plain storehouse door — plus the two pieces
+    of applied joinery the archetype puts on the same face, the fascia board and the
+    blank signboard nailed to it. Those two are not openings, but a name painted
+    across them is as wrong as one painted across the glass, and the caller is
+    entitled to know they are there.
+    """
+    mx0, _my0, mx1, _my1 = main_extent(p)
+    shop = shopfront_extent(p, mx0, mx1) if p.shopfront else None
+    out: list[dict] = []
+
+    if shop is not None:
+        sx0, sx1, head = shop
+        for kind, u0, u1, z0, z1 in shopfront_panels(p, shop):
+            out.append({"kind": kind, "u0": u0, "u1": u1, "z0": z0, "z1": z1})
+        out.append({"kind": "fascia", "u0": sx0 - 0.04, "u1": sx1 + 0.04,
+                    "z0": head, "z1": head + SHOP_FASCIA_M})
+        if p.sign is not None:
+            w = min((sx1 - sx0) * 0.78, 3.2)
+            cx = (sx0 + sx1) / 2.0
+            out.append({"kind": "archetype_sign", "u0": cx - w / 2, "u1": cx + w / 2,
+                        "z0": head + SHOP_FASCIA_M * 0.06,
+                        "z1": head + SHOP_FASCIA_M + 0.11})
+    else:
+        cx = (mx0 + mx1) / 2.0
+        out.append({"kind": "door", "u0": cx - 0.52, "u1": cx + 0.52,
+                    "z0": 0.02, "z1": 2.06})
+
+    for u0, u1, z0, z1 in front_window_rects(p, mx0, mx1, shop):
+        out.append({"kind": "window", "u0": u0, "u1": u1, "z0": z0, "z1": z1})
+    return out
