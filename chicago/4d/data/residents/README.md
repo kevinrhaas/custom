@@ -40,7 +40,7 @@ Three tools independently derive households from the 1835 register
 precedence order (best-evidenced first): `mint_documented_residents.py`
 (a person with a printed trade), `mint_placed_residents.py` (no trade, but the
 corpus places them inside the town and nowhere else), `mint_letter_list_residents.py`
-(known only from the post office's letter lists). Until T-0594 each pass
+(known only from the post office's letter lists). Until T-0598 each pass
 stamped its own prefix onto the id it minted — `hh_doc_`, `hh_placed_`,
 `hh_ll_` — so a tool could recognize "a household I minted" by filename alone,
 for its own stale-file cleanup and precedence-skip logic.
@@ -51,7 +51,7 @@ test (PART ONE of its docstring: does the corpus put this person inside the
 town, as opposed to outside it), not a lot or plat position. See the note in
 `tools/mint_placed_residents.py` right above `PART ONE — PLACEMENT`.
 
-**As of T-0594, no new household is minted with a legacy prefix.** A
+**As of T-0598, no new household is minted with a legacy prefix.** A
 household minted by any of the three tools from here on gets the same plain
 `hh_<surname>_<given>` id the ~73 hand-authored households already use, and
 records which pass minted it in `source_pass` (`"documented"` / `"placed"` /
@@ -60,7 +60,7 @@ records which pass minted it in `source_pass` (`"documented"` / `"placed"` /
 second run stays idempotent across the migration boundary and a household
 never needs two ids for the same identity.
 
-The **747 households already minted under a legacy prefix before T-0594** were
+The **747 households already minted under a legacy prefix before T-0598** were
 not renamed by that change alone — filenames are load-bearing (cross-referenced
 by hardcoded ids in several frozen, gated selector scripts and by the
 resident-research findings ledgers) and a rename touching all of them is its

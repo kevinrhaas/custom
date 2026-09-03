@@ -1,5 +1,5 @@
 ---
-id: T-0594
+id: T-0598
 title: A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it
 state: claimed
 epic: META
