@@ -60,9 +60,10 @@
     "leaves 1-14": "the 1903 republisher's front matter, press notices and Norris's preface — committed as text, not yet read out. No ticket owns it.",
     "leaves 15-30 (printed 5-20)": "the Description and Historical Sketch. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
     "leaves 76-88 (printed 66-78)": "the Statistical Account. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
-    "leaves 89-126 (printed 79-116)": "the Advertising Directory. Committed as text; T-0568.",
+    "leaves 89-126 (printed 79-116)": "the Advertising Directory. READ by T-0568 — see its declaration below and claims/norris_1844_advertiser.json.",
     "leaves 127-132": "blank in the scan — no text at all, so nothing is committed for them.",
-    "printed page 65, the foot": "Norris's own General Intelligence Agency card, set inside the last directory page. It is an advertisement, not a directory entry; it is committed in the page text and belongs to T-0568."
+    "printed page 65, the foot": "Norris's own General Intelligence Agency card, set inside the last directory page. It is an advertisement, not a directory entry; READ by T-0568 as the last of its 158 cards, and reached at page norris_1844_leaf_075, which this declaration already covers.",
+    "leaves 89-126 (printed 79-116)": "the Advertising Directory. Committed as text and READ by T-0568, which declares it in the second declaration below."
    }
   },
   {
@@ -105,6 +106,53 @@
     "the 1843 census table on printed page 76, except its three unambiguous totals": "Norris prints his 1843 census as a wide ruled table and archive.org's OCR wove its columns into a single stream of bare numbers with the headings floated out of place. The three nativity ROWS survive as rows and are quoted; the counts beside them cannot be attached to a column from this text and are NOT asserted. What is asserted from that page is what survives unambiguously: 1,177 families, and the grand totals 4,853 (1840) and 7,580 (1843). Closing the rest needs the page image, and n1844_tf_062 is the standing declaration that it has not been closed.",
     "the pairing of year to figure in the trade tables on printed page 77": "Read off the ORDER in which the OCR set the two tables — exports first, then imports — because the ruling that separated them did not survive. Stated in n1844_tf_064 rather than left implicit."
    }
+  },
+  {
+   "ticket": "T-0568",
+   "source_id": "norris_directory_1844",
+   "unit": "page",
+   "what": "Norris's General Directory of Chicago for 1844, the ADVERTISING DIRECTORY: printed pages 79-116, which are leaves 89-126 of the Internet Archive scan generaldirectory19norr. Every advertising card on every one of those pages is a claim. What no card covers on those pages — running heads, page numbers, the ornamental section headings, and two fragments the scan tore off the cards they belonged to — is listed line by line in claims/norris_1844_advertiser.json under `uncovered`. Norris's own General Intelligence Agency card at the foot of printed page 65 is read here too and is the 158th card; leaf 75 is declared by T-0566 above.",
+   "items": [
+    "norris_1844_leaf_089",
+    "norris_1844_leaf_090",
+    "norris_1844_leaf_091",
+    "norris_1844_leaf_092",
+    "norris_1844_leaf_093",
+    "norris_1844_leaf_094",
+    "norris_1844_leaf_095",
+    "norris_1844_leaf_096",
+    "norris_1844_leaf_097",
+    "norris_1844_leaf_098",
+    "norris_1844_leaf_099",
+    "norris_1844_leaf_100",
+    "norris_1844_leaf_101",
+    "norris_1844_leaf_102",
+    "norris_1844_leaf_103",
+    "norris_1844_leaf_104",
+    "norris_1844_leaf_105",
+    "norris_1844_leaf_106",
+    "norris_1844_leaf_107",
+    "norris_1844_leaf_108",
+    "norris_1844_leaf_109",
+    "norris_1844_leaf_110",
+    "norris_1844_leaf_111",
+    "norris_1844_leaf_112",
+    "norris_1844_leaf_113",
+    "norris_1844_leaf_114",
+    "norris_1844_leaf_115",
+    "norris_1844_leaf_116",
+    "norris_1844_leaf_117",
+    "norris_1844_leaf_118",
+    "norris_1844_leaf_119",
+    "norris_1844_leaf_120",
+    "norris_1844_leaf_121",
+    "norris_1844_leaf_122",
+    "norris_1844_leaf_123",
+    "norris_1844_leaf_124",
+    "norris_1844_leaf_125",
+    "norris_1844_leaf_126"
+   ],
+   "not_read_and_why": {}
   }
  ]
 }
