@@ -1,7 +1,7 @@
 ---
 id: T-0461
 title: The Tremont House's goods are laid on lot 7, which its own placement point falls outside — one building's goods on another lot's frontage
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 677
 claimed_by: run 9/2/2026, 11:52:30 PM CT
 blocked_on: null
 needs_bake: false
