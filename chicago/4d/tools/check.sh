@@ -1081,6 +1081,21 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
+# lots of research being done ... but there are not outputs or updates to the household
+# and resident data". The bridges gate above proves the links the project HAS made are
+# honest. It cannot notice the links it never made. On that day census_1840 held 562
+# names read off the sheets and a crosswalk of `passes: [], merges: [], refusals: []` —
+# every reading ticket green, every output filed, and nothing across. coverage.json
+# makes an unread image fail rather than pass quietly; this makes an unruled NAME do
+# the same. It is a ratchet, not a target: reading ahead of the bridge is the method,
+# so the gap may sit where it sits and may not silently widen.
+step "no research domain reads further ahead of the town than its baseline" \
+  python3 tools/measure_research_spend.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_research_spend.py --self-test
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.

@@ -100,6 +100,29 @@
 # --- T-0562 joined them the same afternoon on his ask "make sure you have a resident household business
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
+# --- SPEND WHAT IS ALREADY READ — OWNER REQUEST, 2026-09-03 (evening). He asked, of the
+# --- 1840 census reading tickets: "i see lots of research being done and some apparent findings
+# --- from parsing but there are not outputs or updates to the household and resident data it
+# --- seems, should i be concerned?" He was right. Measured that evening by the new
+# --- tools/measure_research_spend.py: census_1840 held 562 names read off the sheets and a
+# --- crosswalk of `passes: [], merges: [], refusals: []`. Four of 828 household records carried
+# --- an 1840 link. Every reading ticket had been green; nothing had crossed into the town.
+# ---
+# --- THE MECHANISM, because it will recur otherwise. The wave order below is right and was
+# --- never abandoned: wave 1 reads, wave 2 consumes. But wave 1 IS OPEN-ENDED — every new
+# --- source the owner adds lands at the TOP of it (T-0554..T-0557 and T-0562 on 2026-09-03 am,
+# --- then T-0566..T-0588) — so wave 2 was pushed down by every addition and never came up.
+# --- Ten more 1840 reading tickets sat above T-0504/T-0505, which would have roughly doubled
+# --- the unread-and-unruled pile before anything was ruled on.
+# ---
+# --- So the two wave-2 tickets that spend the 1840 names come up here, ahead of reading more.
+# --- This is exemption-free under the visible-progress rule: T-0505 puts named people on cards.
+# --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
+# --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
+# --- be taken while any sweep ticket is open. The rest of the wave order below stands.
+T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
+T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
+
 T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
 T-0571 — Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
 T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
@@ -130,8 +153,6 @@ T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no tex
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
 T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
-T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
 T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0508 — 237 named residents have no research row: cohort 13 of 79
