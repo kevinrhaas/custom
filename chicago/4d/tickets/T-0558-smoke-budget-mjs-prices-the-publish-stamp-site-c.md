@@ -1,7 +1,7 @@
 ---
 id: T-0558
 title: smoke_budget.mjs prices the publish stamp site/chicago/4d/walk/index.html at all 13 parts, so every publishing PR is told to run the whole gate
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 701
 claimed_by: null
 blocked_on: null
 needs_bake: false
