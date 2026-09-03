@@ -452,4 +452,3 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
-T-0604 — Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)
