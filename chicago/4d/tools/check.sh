@@ -1329,6 +1329,17 @@ step "the Newberry index stays a finding aid, and its reading rebuilds from the 
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_newberry_index.py --self-test
+# T-0590. The reading above is worth nothing until somebody rules on what it offered.
+# Volume 1 put up 319 leads and made 0 merges, and a lead nobody has answered reads
+# exactly like a lead nobody has looked at. The rulings are derived, not authored, so
+# the gate that matters is that the file still re-derives: a hand-edited outcome, a
+# lead that stopped being ruled on, or a merge appearing in a finding aid's crosswalk
+# all fail here rather than in a spend measure three weeks later.
+step "every Newberry lead is ruled on, anchored, and re-derives from the cards" \
+  python3 tools/rule_newberry_leads.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/rule_newberry_leads.py --self-test
 # T-0572. The 134 Black Hawk War veterans who enrolled AT CHICAGO in 1832. Two
 # assertions carry this one. First, the reading is taken from the CACHED PAGE and not
 # from the flattened text, because the flattening drops an empty cell and 94 of the 134
@@ -1342,6 +1353,20 @@ step "the Black Hawk War enrollments read 134 rows and keep the 83 without a sur
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_blackhawk_war.py --self-test
+
+# T-0573. Father St. Cyr's marriage register and his death page, the first Chicago
+# church record. The assertion that carries this one is the page's OWN ARITHMETIC: the
+# article prints its tally by priest — St. Cyr 22 marriages, Schaeffer 18, O'Meara 87,
+# Plunkett 1 — and the parse of the entries returns exactly those four numbers
+# independently. Nobody here has seen the register or the Review, so that agreement is
+# the only check this reading can have, and it fails if any of the four moves. The other
+# one is the trap the ticket named: footnote 5 puts three of the first four entries at
+# Bear Creek, Sangamon County, not Chicago, and those rows carry it themselves.
+step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+1" \
+  python3 tools/read_st_cyr_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_st_cyr_register.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test
@@ -1434,6 +1459,22 @@ step "…and its own assertions still fire when broken" \
 # two programmes never both claim one roof.
 step "…and the ledger that spends them into the roofs refuses every way one could lie" \
   python3 tools/inferred_occupancy.py --self-test
+
+# AND THE THIRD WAY A PAPER PLACES A BUILDING (T-0423): it prints a LOT AND A BLOCK. Where
+# an adoption claims a face and an ordinal claims neither, this claims the plat's own unit,
+# and there is exactly one of it in the corpus — G. Spring's For-Sale notice, six printings,
+# "LOT No. 7, in block No. 16 … on Lake street". The address is authored in
+# data/research/newspapers/lot_addresses.json and NOTHING ELSE about it is: the block number
+# resolves through the committed numbering, the lot number through the committed lot grid,
+# and which roof stands at the address is derived from its footprint. Gated rather than
+# committed once for the same reason the adoptions are — every step of that chain moves when
+# the town does. A block renumbered, a lot line redrawn, a second roof built onto the lot or
+# a phase promoted because a documented address landed on it all fail here.
+step "the lot-and-block address re-derives, and seating it promotes no roof" \
+  python3 tools/lot_addresses.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/lot_addresses.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

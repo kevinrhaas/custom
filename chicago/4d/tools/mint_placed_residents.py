@@ -29,7 +29,7 @@ residents is exactly the invention this project exists not to make.
   one. Every household this pass mints carries `"division": "unplaced"` — nobody
   here has been placed on a parcel. "Placed" names PART ONE below: a residency
   EVIDENCE test (does the corpus put this person inside the town, as opposed to
-  outside it), not a location. Before T-0592 that test's name doubled as this
+  outside it), not a location. Before T-0594 that test's name doubled as this
   pass's filename prefix (`hh_placed_`); a household minted from here on gets a
   plain `hh_<surname>_<given>` id instead, with `source_pass: "placed"` recording
   which test it passed — see `household_id()` / `minted_by()` below.
@@ -142,10 +142,10 @@ from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
 
 PREFIX = "hh_placed_"
 LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
-# T-0592: the pass-name/legacy-prefix pairs `town_family_names` skips for THIS
+# T-0594: the pass-name/legacy-prefix pairs `town_family_names` skips for THIS
 # pass — itself and the letter-list pass below it, never the documented pass
 # above it. Kept as pairs (not the bare prefixes `_ORDER_SKIP` used to be) so a
-# household minted plain, after T-0592, by either pass is still recognized.
+# household minted plain, after T-0594, by either pass is still recognized.
 _ORDER_SKIP = (("placed", PREFIX), ("letter_list", LETTER_LIST_PREFIX))
 PERSON_PREFIX = "placed_"
 DIVISION = "unplaced"
@@ -435,7 +435,7 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
         "head": pid,
     }
     if hid != legacy_id:
-        # A genuinely new mint (T-0592): see mint_documented_residents.record()'s
+        # A genuinely new mint (T-0594): see mint_documented_residents.record()'s
         # matching comment — a household reusing its legacy id is unchanged.
         doc["source_pass"] = "placed"
     doc.update({
@@ -650,13 +650,13 @@ def self_test() -> int:
     from mint_documented_residents import MINTED_PASSES, MINTED_PREFIXES, minted_by
     want("T-0376 skips all three minted prefixes",
          set(MINTED_PREFIXES) == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX}, True)
-    want("T-0592's pairs name the same three passes",
+    want("T-0594's pairs name the same three passes",
          {prefix for _, prefix in MINTED_PASSES} == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX},
          True)
     want("this pass skips its own and the letter-list pass's, and not T-0376's",
          {prefix for _, prefix in _ORDER_SKIP} == {PREFIX, LETTER_LIST_PREFIX}, True)
     # minted_by recognizes a household by either shape — the legacy prefix every
-    # household minted before T-0592 still carries, or the field a fresh mint
+    # household minted before T-0594 still carries, or the field a fresh mint
     # carries instead. A household with neither is nobody's.
     want("a legacy-prefixed household is recognized by its filename alone",
          minted_by(pathlib.Path(f"{PREFIX}smith_john.json"), {}, "placed", PREFIX), True)
