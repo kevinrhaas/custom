@@ -103,14 +103,106 @@ extrapolated back to 1835.
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
 
+## The continuation sheets, and what closing one costs
+
+A continuation (right) sheet carries no name. It carries the other half of every household
+line: the twelve slave columns, the family TOTAL, the seven industry columns, the pensioners,
+the ten deaf/dumb/blind/insane columns and the seven schools columns — and, at the foot, the
+enumerator's own printed totals for the columns he used. **Those footer totals are the gate.**
+A continuation reading is committed only when the per-line values sum, column by column, to
+what the man who took the census wrote at the bottom of his own sheet; where a column does not
+close, the residual is recorded with it and no line is altered to make the total come out.
+
+Three of group 1's eleven continuation sheets have been read on that rule (T-0540):
+
+| image | lines | closes | page population | what it says |
+|---|---|---|---|---|
+| `33S7-9YYJ-24` | 31 | **all five columns** | 201 | agriculture 2, commerce 9, manufactures 27, learned professions 2 |
+| `33S7-9YYJ-5D` | 31 | 4 of 6 | 125 | manufactures 25, canals 2, learned 1, and 1 school with 26 scholars; totals read 128 against 125 and commerce 2 against 3 |
+| `33S7-9YYJ-5S` | 29 | **no — not committed** | 189 | 1 school with 42 scholars; the attempted reading is on the page file as an attempt, `cells` is null on every line |
+
+**`33S7-9YYJ-5S` is the useful failure.** Its attempted reading sums to 183 persons against a
+printed 189 AND 12 in agriculture against a printed 10. Two columns out by different amounts is
+not two misread glyphs; it is the row indexing itself slipping over part of the sheet, and the
+project's rule is that a half-read row is worse than an unread one. So the sheet's footer and
+its exact line count — 29, not the 28 the inventory stated to the nearest line — are committed,
+and the per-line reading is kept beside them as an ATTEMPT that nothing downstream can consume
+as fact. The next run starts from it rather than from nothing.
+
+**The cost is the other finding.** T-0535 asked for all eleven sheets plus the pairing, sized S.
+It was split twice as the size was measured — into T-0538/T-0539, then T-0540/T-0541 — because a
+sheet that closes takes something like ten passes at magnification, not one: this hand writes
+`4` as two strokes that read as `11`, its `7` and `9` differ by a loop, and its two-digit family
+totals sit hard against the column rule. Three sheets is a run.
+
+**No continuation sheet here is paired to a left sheet yet.** A right sheet has neither a name
+nor a printed page number on its exposure, so the pairing has to be earned: each page's
+population (the TOTAL footer, published on each page file as `pairing.page_population_key`) has
+to be matched against the printed age-band totals at the foot of each candidate left sheet, and
+those have not been read. T-0539 does that for all eleven at once. Until then every one of them
+is recorded as `unpaired` — never guessed.
+
+## The cells, and the rule that decides whether a column is committed (T-0532)
+
+The age-band cells were read for the first time on printed pages **221, 222 and 226**.
+Reading them at all needed a way to say WHICH column a mark is in that does not depend on
+counting narrow rules by eye, so each page carries a `grid_note`: the 39 vertical rules are
+fitted as a single pitch off the empty right-hand columns of the same image, and the fit is
+**checked against the printed heading** — column 1 must read `Under 5`, column 27 `Under 10`
+under FREE COLORED MALES — before a single cell is read. Every cell is then cut at that grid
+and read as an image, one at a time. Nothing here is an OCR output.
+
+**A column is committed only when it balances.** The lines this pass read must SUM to the
+figure the enumerator wrote at the foot of the sheet; where they do not, the column is left
+unreconciled with its residual stated, exactly as the ticket required, because a half-checked
+column is worse than an unread one. So each page file carries two things per record:
+
+| field | what it is |
+|---|---|
+| `cells` | the committed reading — only the columns whose page total balanced |
+| `cells_first_pass` | the whole reading, balanced or not. **Not reconciled data.** It exists so the next reader starts from a reading rather than from the sheet. |
+
+and `cells_column_check` states, per column, the read sum, the printed total, how confidently
+that printed figure was read, whether it balanced, and the residual.
+
+**Printed page 221 balances on 36 of its 38 columns** and is committed on those. The two that
+do not are column 6 (free white males 30 under 40: read 10, printed 11) and column 15 (free
+white females 5 under 10: read 11, printed 13) — one and two marks this pass did not find,
+not a disagreement about what the sheet says.
+
+**Printed 222 and 226 commit nothing, and the reason is the TOTALS and not the cells.** Both
+sheets' footers are written across the foot rule and neither could be read to better than
+`low` — so no column on them can be certified, whatever the cells say. What the page files do
+record is that the read sums are *consistent with a plausible reading of the footer* on most
+columns (`read_sum_matches_an_alternate_reading`), which is a lead for the next reader and is
+explicitly not a balance. Re-read those two footers at higher magnification and most of both
+pages should commit without the cells being touched.
+
+## Two line counts the sheets do not agree with the inventory about (T-0532)
+
+The row grid was fitted the same way as the column grid and checked against the names, and on
+two of the three pages it finds fewer entries than the inventory declared:
+
+| printed page | image | inventory said | entries read | blank ruled lines at the foot |
+|---|---|---|---|---|
+| 221 | `33S7-9YYJ-2T` | 31 | **31** | 0 |
+| 222 | `33S7-9YYJ-98M` | 31 | **30** | 1 |
+| 226 | `33S7-9YYJ-B3` | 31 | **29** | 2 |
+
+The inventory's figure is `lines_with_an_entry`; the difference is blank ruled lines below the
+last household, which the page files **record as lines** rather than skip. Coverage now carries
+both numbers per image (`lines_with_an_entry` and `lines_ruled`).
+
 ## What has NOT been read yet, and where it is
 
 The age-band, free-coloured and industry cells are a column-by-column reading that has to
 be checked against the **printed column totals at the foot of each sheet** before it can
 be committed — 26 narrow columns of single strokes, where a mark one column off is a
 person of the wrong age. Committing a half-checked row would be worse than leaving it
-unread, so every `records[].cells` here is `null` with `cells_state: "not_read"`, and the
-cells are their own ticket. The other images of both read groups are inventoried in
+unread. On the three pages T-0532 read — printed 221, 222 and 226 — the cells ARE read and
+the balance is stated per column in the section above; on every other page here
+`records[].cells` is still `null` with `cells_state: "not_read"`, and those cells are their
+own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.
 

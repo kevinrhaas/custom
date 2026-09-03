@@ -1,7 +1,7 @@
 ---
 id: T-0535
 title: The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0494
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 5:41:23 AM CT
 blocked_on: null
 needs_bake: false
 ---

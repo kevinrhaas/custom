@@ -2,6 +2,9 @@
 # The owner owns this order. Reordered by an agent on 2026-09-03 on his explicit
 # instruction: "Create several tickets as needed in the queue file on dev and add these to
 # the top of the queue file, since other tickets below are dependent and will help."
+# Same day, later: T-0524 moved into the top band on his ruling "Fix the prompt and move
+# T-0524 up" — the renderer smoke asserts a resident layer that no longer exists, so no
+# full smoke can be green until it is repaired.
 # Before that, on 2026-08-30: "lots of nothing happened in the city which is bad. any decisions
 # needed, update and improve the tickets to make progress." Earlier instructions:
 # 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
@@ -74,11 +77,17 @@
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
 
+# --- T-0524 sits here, not at the bottom where T-0491 filed it, on the owner's ruling of
+# --- 2026-09-03: eighteen smoke assertions still describe the reconstructed residents
+# --- T-0489 retired, so every full smoke on dev is red and two runs (#1456, #1457) burned
+# --- their budget proving it. Repair it before the sweep's runs need a green smoke.
+T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
+
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
-T-0532 — The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
-T-0535 — The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
+T-0541 — The 1840 census images 1-25: continuation sheets 5V, 6H and 6Q read line by line and closed against their own printed column totals
+T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
 T-0530 — The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
 T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
@@ -314,7 +323,6 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
