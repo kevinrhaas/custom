@@ -1,7 +1,7 @@
 ---
 id: T-0523
 title: The 1840 census images 26-50: inventory all 25 sheets and read the names on the two pages PR #670 already read
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0495
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 683
 claimed_by: run 9/3/2026, 1:57:14 AM CT
 blocked_on: null
 needs_bake: false
