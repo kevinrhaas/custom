@@ -1,7 +1,7 @@
 ---
 id: T-0598
 title: 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 4:30:05 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33807947702
 ---
 
 **The owner's ask, 2026-09-03 (evening), verbatim:** "yes do a ticket for that on the crosswalks and
