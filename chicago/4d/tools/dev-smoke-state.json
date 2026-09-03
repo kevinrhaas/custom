@@ -13,6 +13,70 @@
       "passed": 137,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 476,
+      "takenAt": "2026-09-03T15:39:24.495Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "5f0a6a735c92",
+      "devCommit": "96eb8179e6b7",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.5,
+          3.8
+        ]
+      },
+      "source": "/tmp/s4-d.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 253,
+      "takenAt": "2026-09-03T15:39:24.406Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "5f0a6a735c92",
+      "devCommit": "96eb8179e6b7",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.5,
+          3.8
+        ]
+      },
+      "source": "/tmp/s4-m.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 359,
       "takenAt": "2026-09-03T15:11:03.650Z",
       "ref": "steward/t-0533-census-1840-sheets-225-228",
@@ -1912,68 +1976,6 @@
         ]
       },
       "source": "/tmp/d10b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "10",
-      "parts": [
-        10
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 70,
-      "takenAt": "2026-08-30T05:07:30.395Z",
-      "ref": "steward/t-0333-stove-pipe-eighteen-inches",
-      "commit": "a02a79ec44a9",
-      "devCommit": "a02a79ec44a9",
-      "treeHash": "sha256:d81bf2d90c39782b",
-      "treeDirty": false,
-      "changelogHash": "sha256:d6f2595c94849f64",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          2.6,
-          1.7
-        ]
-      },
-      "source": "/tmp/m10b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "10",
-      "parts": [
-        10
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 171,
-      "takenAt": "2026-08-30T04:55:28.053Z",
-      "ref": "steward/t-0235-smoke-budget",
-      "commit": "f4653190a035",
-      "devCommit": "127626899c4e",
-      "treeHash": "sha256:d81bf2d90c39782b",
-      "treeDirty": false,
-      "changelogHash": "sha256:d6f2595c94849f64",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          3.2,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke-d10b.log"
     }
   ]
 }
