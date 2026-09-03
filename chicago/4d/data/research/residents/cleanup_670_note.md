@@ -1,0 +1,1 @@
+Cleanup companion to PR #670 / issue #669. This branch regenerates resident/site manifests from the recovered 1840 bridge layer, makes the synthesis regression-safe, and removes temporary recovery scaffolding.
