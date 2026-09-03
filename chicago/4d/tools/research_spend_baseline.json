@@ -9,7 +9,8 @@
   "church": 0,
   "books": 85,
   "directories": 4703,
-  "newberry_index": 3148
+  "newberry_index": 3148,
+  "land_sales": 375
  },
  "witness": {
   "civic": {
@@ -39,6 +40,10 @@
   "newberry_index": {
    "read": 4646,
    "spent": 1498
+  },
+  "land_sales": {
+   "read": 375,
+   "spent": 0
   }
  },
  "raised": [
@@ -70,6 +75,14 @@
    "to": 85,
    "date": "2026-09-03",
    "why": "T-0501 read Hubbard's autobiography — 92 claims out of a 226-leaf book of PROSE, and prose is the case this measure was not built for. Its unit is a sentence, not a name: 66 of the 92 name no person at all, being the plan of Fort Dearborn, the Factor House, the sand spit, the old river mouth at The Pines, Mud Lake, the wild onion on the bank and the cornhills on the River Guarie. There is nobody in them to rule on and there never will be. EVERY NAME THE BOOK PRINTS IS RULED ON: 35 distinct persons, 7 merged, 15 refused (each anchored to the claim that names them), 2 exact matches, and 11 Illinois River and Mackinaw men the source never places at Chicago, counted and named in crosswalk.json's T-0501 pass. Spending the rest would mean inventing people to rule on. The ceiling moves once, for this reading, and the domain's next pass inherits it rather than a fresh excuse."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": null,
+   "to": 375,
+   "date": "2026-09-03",
+   "why": "NOT THIS TICKET'S WORK, and recorded that way. T-0557 (PR #738) registered a new research domain, land_sales, and merged to dev on 2026-09-03 without entering its ceiling in this baseline — so tools/check.sh fails on dev itself and on every branch cut from it, this one included, with 'land_sales: no ceiling recorded'. Verified by running the gate in a clean worktree of origin/dev. The entry is set at what that reading already stands at, 375 unspent over 375 read, which is the state T-0557 merged; it grants that domain nothing it did not already take and lets the ratchet start doing its job on it. Whoever spends those 375 purchasers onto town people should run --tighten and take this back."
   }
  ],
  "lowered": [
