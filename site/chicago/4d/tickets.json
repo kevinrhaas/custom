@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 4:20 PM",
+  "generated_ct": "Sep 3, 2026, 4:24 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9912,7 +9912,7 @@
     {
       "id": "T-0599",
       "title": "A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9920,14 +9920,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-03",
+      "pr": "721",
       "claimed_by": "owner 9/3/2026, 2:14:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-03T21:13:31.482Z",
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": null
     },
     {
       "id": "T-0600",
@@ -9947,7 +9947,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0601",
@@ -9967,7 +9967,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0602",
@@ -9987,7 +9987,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0603",
