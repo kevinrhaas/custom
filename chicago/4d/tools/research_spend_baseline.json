@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 54,
   "church": 0,
-  "books": 85,
+  "books": 132,
   "directories": 4703,
   "newberry_index": 3148,
   "land_sales": 375
@@ -30,8 +30,8 @@
    "spent": 0
   },
   "books": {
-   "read": 111,
-   "spent": 26
+   "read": 169,
+   "spent": 37
   },
   "directories": {
    "read": 4991,
@@ -91,6 +91,14 @@
    "to": 85,
    "date": "2026-09-03",
    "why": "T-0501 read Hubbard's autobiography — 92 claims out of a 226-leaf book of PROSE, and prose is the case this measure was not built for. Its unit is a sentence, not a name: 66 of the 92 name no person at all, being the plan of Fort Dearborn, the Factor House, the sand spit, the old river mouth at The Pines, Mud Lake, the wild onion on the bank and the cornhills on the River Guarie. There is nobody in them to rule on and there never will be. EVERY NAME THE BOOK PRINTS IS RULED ON: 35 distinct persons, 7 merged, 15 refused (each anchored to the claim that names them), 2 exact matches, and 11 Illinois River and Mackinaw men the source never places at Chicago, counted and named in crosswalk.json's T-0501 pass. Spending the rest would mean inventing people to rule on. The ceiling moves once, for this reading, and the domain's next pass inherits it rather than a fresh excuse."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 85,
+   "to": 132,
+   "date": "2026-09-03",
+   "why": "T-0500 read the SECOND HALF of Fergus' Historical Series Nos. 26-29 — scan leaves 430-858 — as 58 claims and ruled on 11 of them in data/research/books/crosswalk.json: 6 merges (Thomas J. V. Owen, G. S. Hubbard, Gen. Jean Baptiste Beaubien, A. Garrett, John Calhoun, William B. Ogden) and 7 refusals (Dr Spring against Giles Spring, the volume's two conflicting expansions of R. C. Bristol, O. Newberry against Oliver Newberry pending T-0396, the firm Newberry & Dole against George Washington Dole, the elder John Kinzie against his son, Rev. Jesse Walker and John Wentworth on surnames). THE OTHER 47 CANNOT BE SPENT BY THIS INSTRUMENT AND THE REASON IS THE SOURCE'S OWN SHAPE, exactly as T-0575 argued for Hurlbut. Two thirds of this half is Fergus No. 28, a directory OF 1843: its people are 1843 people, and a name in it is not a name to adjudicate against an 1835 town — the crosswalk pass lists all twenty-five persons named inside the 1830-1836 window by name, with the outcome of each, and 'no candidate in data/residents/' is the honest outcome for six of them and 'out of scope, Jacksonville' for four more. The rest of the half is Fergus No. 29, a Morgan County family memoir whose Chicago thread is the Illinois-and-Michigan Canal: its claims are a canal being located, a legislature adjourning, a loan authorised, a winter of deep snow, a book advertised. Those name institutions and events, not townspeople, and inventing name-pairs to spend them would be the corruption this instrument exists to prevent. WHAT THEY CAN BE SPENT ON IS THE TOWN, and the two that most directly can are already visible: bk_fer2_043 dates the first warehouse on the South Side to the fall of 1839, which is a dated negative for the south bank in the scene year, and bk_fer2_049 gives a Dr Spring dead on 10 November 1835 which T-0423 will want if a given name is ever found. The number comes down only if a later pass reads the 1843 alphabetical name directory ENTRY BY ENTRY — coverage.json declares that it was swept and not read — and it should not be raised again for a directory of a later decade without this argument being made afresh."
   }
  ],
  "lowered": [
