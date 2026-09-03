@@ -85,7 +85,6 @@ T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
-T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
 T-0547 — The 1840 census image 33S7-9YYJ-5V read line by line and closed against its own printed column totals
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
 T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
