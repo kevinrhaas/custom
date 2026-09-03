@@ -26,7 +26,8 @@
       "starting_occupation": "auctioneer",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_tribune_1882_05_19_fourth_reception"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -82,7 +83,8 @@
       "starting_occupation": "tavern_keeper",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_tribune_1882_04_25_old_settler_deaths"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },

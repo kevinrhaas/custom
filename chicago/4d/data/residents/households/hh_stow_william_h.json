@@ -73,9 +73,10 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "drloih_hotels"
+    "drloih_hotels",
+    "chicago_tribune_1882_04_25_old_settler_deaths"
    ],
-   "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835.",
+   "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835. OLD SETTLERS, 1882 — A DATE OF DEATH, AND NOTHING ABOUT 1835. John Wentworth's roll of old settlers who had died since 1 January 1881, kept for the Calumet Club and printed in the Chicago Tribune of 25 April 1882, carries “William H. stow, Aug. 18, 1881.”. That corroborates a Chicago residence before 1840 and fixes the END of this life, which this record did not carry; it is not an arrival and it places nobody in the town on 1 July 1835. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0478",

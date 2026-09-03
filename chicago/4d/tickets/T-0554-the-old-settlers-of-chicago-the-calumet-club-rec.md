@@ -1,7 +1,7 @@
 ---
 id: T-0554
 title: The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 10:44:21 AM CT
 blocked_on: null
 needs_bake: false
 ---

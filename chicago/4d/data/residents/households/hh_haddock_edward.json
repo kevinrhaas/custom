@@ -64,9 +64,10 @@
     "note": "Andreas, printed p. 635: Dexter Graves 'sold it to a Mr. Haddock, his son-in-law, who kept it UNTIL 1835 when it passed into the hands of Abram A. Markle'. So he kept a tavern; whether he was still keeping it on 1 July 1835 is the open half."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "chicago_tribune_1882_04_25_old_settler_deaths"
    ],
-   "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households.",
+   "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households. OLD SETTLERS, 1882 — A DATE OF DEATH, AND NOTHING ABOUT 1835. John Wentworth's roll of old settlers who had died since 1 January 1881, kept for the Calumet Club and printed in the Chicago Tribune of 25 April 1882, carries “Edward H. Haddock, May 30, 1881.”. That corroborates a Chicago residence before 1840 and fixes the END of this life, which this record did not carry; it is not an arrival and it places nobody in the town on 1 July 1835. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0478",

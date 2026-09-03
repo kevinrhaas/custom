@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 11:27 AM",
+  "generated_ct": "Sep 3, 2026, 11:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9132,7 +9132,7 @@
     {
       "id": "T-0554",
       "title": "The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9142,7 +9142,7 @@
       "opened": "2026-09-03",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 10:44:21 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -9470,6 +9470,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 9
+    },
+    {
+      "id": "T-0577",
+      "title": "The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 149
     }
   ]
 }
