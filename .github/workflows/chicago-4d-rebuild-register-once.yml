@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            chicago/4d
 
       - uses: actions/setup-python@v5
         with:
