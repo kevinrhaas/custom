@@ -27,72 +27,72 @@
     "taylor_charles",
     "temple_peter",
     "wright_john_s",
-    "ll_dalton_edward",
-    "ll_damels_samuel",
-    "ll_darling_daniel",
-    "ll_day_ann_airs",
-    "ll_dean_james_l",
-    "ll_demotte_lenac",
-    "ll_dilbee_david_b",
-    "ll_dykine_elias_s",
-    "ll_fadhams_ddward",
-    "ll_failor_william",
-    "ll_fitzlugh_daniel_i",
-    "ll_food_alonzo_c",
-    "ll_forceman_robert_r",
-    "ll_fre_humphrey_lemuel",
-    "ll_gabbs_james_i1",
-    "ll_gariner_joseph",
-    "ll_gilman_eli",
-    "ll_glen_james_l",
-    "ll_gooding_jaines",
-    "ll_goodsough_harriet_m",
-    "ll_gordon_william",
-    "ll_gould_a_b",
-    "ll_green_damel_m",
-    "ll_harris_david",
-    "ll_harrison_caleb",
-    "ll_hart_edwin_c",
-    "ll_hartman_peter",
-    "ll_hateh_betsey",
-    "ll_hickcox_joseph",
-    "ll_holliday_william",
-    "ll_holmes_hiram",
-    "ll_hopkins_henry",
-    "ll_hugunin_leonard_c",
-    "ll_daniel_hasslen",
-    "ll_daniel_howland",
-    "ll_daniel_newton",
-    "ll_daniel_o_robian",
-    "ll_daniel_platt",
-    "ll_daniel_roberson",
-    "ll_david_ayers",
-    "ll_david_bigelow",
-    "ll_david_dickson",
-    "ll_david_groover",
-    "ll_david_harris",
-    "ll_e_dimmick",
-    "ll_e_simons",
-    "ll_e_w_conte",
-    "ll_edward_a_rogers",
-    "ll_edward_b_coleman",
-    "ll_edward_poor",
-    "ll_edward_trimble",
-    "ll_elias_maynard",
-    "ll_elijah_dix",
-    "ll_elijah_garton",
-    "ll_elisha_h_hazzard",
-    "ll_eliza_pearce",
-    "ll_esther_preston",
-    "ll_ezekiel_turner",
-    "ll_f_c_berger",
-    "ll_f_h_morland",
-    "ll_f_plumer",
-    "ll_ford_freeman",
-    "ll_francis_perry",
-    "ll_geo_a_burlingame",
-    "ll_george_b_parmlee",
-    "ll_hezekiah_gifford"
+    "dalton_edward",
+    "damels_samuel",
+    "darling_daniel",
+    "day_ann_airs",
+    "dean_james_l",
+    "demotte_lenac",
+    "dilbee_david_b",
+    "dykine_elias_s",
+    "fadhams_ddward",
+    "failor_william",
+    "fitzlugh_daniel_i",
+    "food_alonzo_c",
+    "forceman_robert_r",
+    "humphrey_fre_lemuel",
+    "gabbs_james_i1",
+    "gariner_joseph",
+    "gilman_eli",
+    "glen_james_l",
+    "jaines_gooding",
+    "goodsough_harriet_m",
+    "gordon_william",
+    "gould_a_b",
+    "green_damel_m",
+    "david_harris",
+    "harrison_caleb",
+    "hart_edwin_c",
+    "hartman_peter",
+    "hateh_betsey",
+    "hickcox_joseph",
+    "holliday_william",
+    "holmes_hiram",
+    "hopkins_henry",
+    "hugunin_leonard_c",
+    "hasslen_daniel",
+    "howland_daniel",
+    "newton_daniel",
+    "robian_daniel_o",
+    "platt_daniel",
+    "roberson_daniel",
+    "ayers_david",
+    "bigelow_david",
+    "dickson_david",
+    "groover_david",
+    "harris_david",
+    "dimmick_e",
+    "simons_e",
+    "conte_e_w",
+    "rogers_edward_a",
+    "coleman_edward_b",
+    "poor_edward",
+    "trimble_edward",
+    "maynard_elias",
+    "dix_elijah",
+    "garton_elijah",
+    "hazzard_elisha_h",
+    "pearce_eliza",
+    "preston_esther",
+    "turner_ezekiel",
+    "berger_f_c",
+    "morland_f_h",
+    "plumer_f",
+    "freeman_ford",
+    "perry_francis",
+    "burlingame_geo_a",
+    "parmlee_george_b",
+    "gifford_hezekiah"
   ],
   "pending_person_ids": [],
   "outcome_counts": {
@@ -181,7 +181,7 @@
       ],
       "candidates": []
     },
-    "ll_hugunin_leonard_c": {
+    "hugunin_leonard_c": {
       "outcome": "corroborated_enrichment",
       "summary": "The Old Settlers of Chicago proceedings record Leonard C. Hugunin as arriving 17 August 1833, and the 1839 Chicago directory lists Leonard C. Hugunin as a speculator. The rare full name, dated Chicago arrival and later directory continuity independently corroborate the postal-list person without adding an unproved 1 July 1835 address.",
       "sources": [
@@ -190,7 +190,7 @@
       ],
       "candidates": []
     },
-    "ll_dalton_edward": {
+    "dalton_edward": {
       "outcome": "candidate_identity",
       "summary": "An 1840 census index places an Edward Dalton in Chicago's First Ward. Same exact name and later Chicago geography make this a useful continuity candidate, but the five-year gap and lack of an occupation, address or family bridge prevent asserting that he is the 1835 postal-list person.",
       "sources": [
@@ -212,7 +212,7 @@
         }
       ]
     },
-    "ll_gooding_jaines": {
+    "jaines_gooding": {
       "outcome": "candidate_identity",
       "summary": "Will County histories identify Deacon James Gooding, who settled Gooding's Grove in 1832 when the area was still Cook County. The printed 'Jaines' form is plausibly an OCR/transcription variant of James and the chronology is regional, but no source directly links this pioneer to the Chicago waiting letter.",
       "sources": [
@@ -234,7 +234,7 @@
         }
       ]
     },
-    "ll_gould_a_b": {
+    "gould_a_b": {
       "outcome": "candidate_identity",
       "summary": "The 1843 Chicago directory lists Ambrose B. Gould, sailor, resident on Indiana between Pine and St. Clair. Matching initials and surname plus later Chicago residence make a useful candidate, but the eight-year gap and absence of another discriminator keep the identification unasserted.",
       "sources": [
@@ -256,7 +256,7 @@
         }
       ]
     },
-    "ll_hateh_betsey": {
+    "hateh_betsey": {
       "outcome": "candidate_identity",
       "summary": "La Salle County history records Betsey Hatch of Connecticut marrying Bradish Cummings in 1836. 'Hateh' is a plausible OCR/transcription error for Hatch and the person is in northern Illinois immediately after the target period, but no source connects her to Chicago or the 1835 letter.",
       "sources": [
@@ -278,7 +278,7 @@
         }
       ]
     },
-    "ll_holliday_william": {
+    "holliday_william": {
       "outcome": "candidate_identity",
       "summary": "Greene County history places a William Holliday, a Kentucky-born physician, in White Hall by 1834. The exact name and Illinois chronology warrant retaining the record as a candidate, but White Hall is strong competing geography and no evidence links the physician to the Chicago postal item.",
       "sources": [
@@ -300,7 +300,7 @@
         }
       ]
     },
-    "ll_daniel_newton": {
+    "newton_daniel": {
       "outcome": "candidate_identity",
       "summary": "La Salle County history identifies Daniel Newton as arriving from Ohio in 1835 and becoming an Ottawa hardware merchant and Methodist preacher. Exact name, same-year northern-Illinois migration and distinctive later occupations make a strong regional candidate, but Ottawa residence and absence of a postal bridge prevent promotion.",
       "sources": [
@@ -322,7 +322,7 @@
         }
       ]
     },
-    "ll_daniel_platt": {
+    "platt_daniel": {
       "outcome": "candidate_identity",
       "summary": "Kendall County history identifies Daniel Platt as an early Lisbon Township settler in the 1833–1834 period. Exact name and northern-Illinois chronology are useful, but the documented residence is outside Chicago and no source links him to the waiting letter.",
       "sources": [
@@ -344,7 +344,7 @@
         }
       ]
     },
-    "ll_e_dimmick": {
+    "dimmick_e": {
       "outcome": "candidate_identity",
       "summary": "The 1839 Chicago directory lists Edward Dimmick, painter, of Wayman & Dimmick. The surname and E. initial match a later Chicago resident, but several Dimmick men occur in regional records and the 1835 postal entry does not expand the initial, so Edward remains an unasserted candidate.",
       "sources": [
@@ -366,7 +366,7 @@
         }
       ]
     },
-    "ll_edward_poor": {
+    "poor_edward": {
       "outcome": "candidate_identity",
       "summary": "Will County history identifies Edward Poor as an early Homer Township settler who had come from Indiana in spring 1831 and served in the Black Hawk War. Exact name and Cook/Will regional chronology make him a useful candidate, but his documented hinterland residence is not a Chicago identity bridge.",
       "sources": [
@@ -388,7 +388,7 @@
         }
       ]
     },
-    "ll_edward_trimble": {
+    "trimble_edward": {
       "outcome": "candidate_identity",
       "summary": "Kane County history records Edward Trimble with a claim near the Fox River/Geneva settlement by the 1834–1835 period and notes his marriage to a daughter of Payne. Exact name and regional chronology are useful, but the Fox River claim is competing geography and no Chicago postal bridge is present.",
       "sources": [
@@ -410,7 +410,7 @@
         }
       ]
     },
-    "ll_elijah_garton": {
+    "garton_elijah": {
       "outcome": "candidate_identity",
       "summary": "Kane County history places Elijah Garton, his wife and six children at Round Grove/St. Charles on 8 May 1834. Exact name and target-period northern-Illinois presence justify retaining the record, but the documented Fox River residence and lack of a Chicago bridge prevent assertion.",
       "sources": [
@@ -432,7 +432,7 @@
         }
       ]
     },
-    "ll_hezekiah_gifford": {
+    "gifford_hezekiah": {
       "outcome": "candidate_identity",
       "summary": "The City of Elgin states that Hezekiah Gifford first arrived in 1834 and returned with James Gifford in April 1835 to settle permanently at Elgin. The exact uncommon name and target-period proximity make a strong candidate, but the source establishes competing Elgin residence rather than Chicago identity.",
       "sources": [

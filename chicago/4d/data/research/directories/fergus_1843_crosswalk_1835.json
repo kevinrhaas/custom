@@ -17,8 +17,8 @@
  "matches": [
   {
    "resident": "A. B. Gould",
-   "person_id": "ll_gould_a_b",
-   "household_id": "hh_ll_gould_a_b",
+   "person_id": "gould_a_b",
+   "household_id": "hh_gould_a_b",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -44,8 +44,8 @@
   },
   {
    "resident": "A. Lamb",
-   "person_id": "ll_lamb_a",
-   "household_id": "hh_ll_lamb_a",
+   "person_id": "lamb_a",
+   "household_id": "hh_lamb_a",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -127,8 +127,8 @@
   },
   {
    "resident": "Bennet Bailey",
-   "person_id": "ll_bennet_bailey",
-   "household_id": "hh_ll_bennet_bailey",
+   "person_id": "bailey_bennet",
+   "household_id": "hh_bailey_bennet",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -155,8 +155,8 @@
   },
   {
    "resident": "Chas. H. Chapman",
-   "person_id": "ll_chas_h_chapman",
-   "household_id": "hh_ll_chas_h_chapman",
+   "person_id": "chapman_chas_h",
+   "household_id": "hh_chapman_chas_h",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -182,8 +182,8 @@
   },
   {
    "resident": "Clark B. Albee",
-   "person_id": "ll_clark_b_albee",
-   "household_id": "hh_ll_clark_b_albee",
+   "person_id": "albee_clark_b",
+   "household_id": "hh_albee_clark_b",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -320,8 +320,8 @@
   },
   {
    "resident": "E. L. Thrall",
-   "person_id": "doc_e_l_thrall",
-   "household_id": "hh_doc_e_l_thrall",
+   "person_id": "thrall_e_l",
+   "household_id": "hh_thrall_e_l",
    "grade_1835": "attested",
    "occupation_1835": "clothier",
    "lives_at_1835": null,
@@ -345,8 +345,8 @@
   },
   {
    "resident": "E. Simons",
-   "person_id": "ll_e_simons",
-   "household_id": "hh_ll_e_simons",
+   "person_id": "simons_e",
+   "household_id": "hh_simons_e",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -373,8 +373,8 @@
   },
   {
    "resident": "Edward A. Rogers",
-   "person_id": "ll_edward_a_rogers",
-   "household_id": "hh_ll_edward_a_rogers",
+   "person_id": "rogers_edward_a",
+   "household_id": "hh_rogers_edward_a",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -401,8 +401,8 @@
   },
   {
    "resident": "Edward Parsons",
-   "person_id": "ll_parsons_edward",
-   "household_id": "hh_ll_parsons_edward",
+   "person_id": "parsons_edward",
+   "household_id": "hh_parsons_edward",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -429,8 +429,8 @@
   },
   {
    "resident": "Elded Smith",
-   "person_id": "ll_smith_elded",
-   "household_id": "hh_ll_smith_elded",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -456,8 +456,8 @@
   },
   {
    "resident": "Frederick Myers",
-   "person_id": "ll_myers_frederick",
-   "household_id": "hh_ll_myers_frederick",
+   "person_id": "myers_frederick",
+   "household_id": "hh_myers_frederick",
    "grade_1835": "attested",
    "occupation_1835": "clerk",
    "lives_at_1835": null,
@@ -483,8 +483,8 @@
   },
   {
    "resident": "Frederick W. Page",
-   "person_id": "ll_frederick_w_page",
-   "household_id": "hh_ll_frederick_w_page",
+   "person_id": "page_frederick_w",
+   "household_id": "hh_page_frederick_w",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -622,8 +622,8 @@
   },
   {
    "resident": "H. C. Bennett",
-   "person_id": "doc_h_c_bennett",
-   "household_id": "hh_doc_h_c_bennett",
+   "person_id": "bennett_h_c",
+   "household_id": "hh_bennett_h_c",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "lives_at_1835": null,
@@ -649,8 +649,8 @@
   },
   {
    "resident": "Hamilton S. Henry",
-   "person_id": "ll_hamilton_s_henry",
-   "household_id": "hh_ll_hamilton_s_henry",
+   "person_id": "henry_hamilton_s",
+   "household_id": "hh_henry_hamilton_s",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -676,8 +676,8 @@
   },
   {
    "resident": "Hanibal Ward",
-   "person_id": "ll_ward_hanibal",
-   "household_id": "hh_ll_ward_hanibal",
+   "person_id": "ward_hanibal",
+   "household_id": "hh_ward_hanibal",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -703,8 +703,8 @@
   },
   {
    "resident": "Harvey A. Blakesley",
-   "person_id": "ll_harvey_a_blakesley",
-   "household_id": "hh_ll_harvey_a_blakesley",
+   "person_id": "blakesley_harvey_a",
+   "household_id": "hh_blakesley_harvey_a",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -785,8 +785,8 @@
   },
   {
    "resident": "Issac Stevens",
-   "person_id": "ll_stevens_issac",
-   "household_id": "hh_ll_stevens_issac",
+   "person_id": "stevens_issac",
+   "household_id": "hh_stevens_issac",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -810,8 +810,8 @@
   },
   {
    "resident": "J. A. Marshall",
-   "person_id": "doc_j_a_marshall",
-   "household_id": "hh_doc_j_a_marshall",
+   "person_id": "marshall_j_a",
+   "household_id": "hh_marshall_j_a",
    "grade_1835": "attested",
    "occupation_1835": "schoolteacher",
    "lives_at_1835": null,
@@ -837,8 +837,8 @@
   },
   {
    "resident": "J. B. Jordan",
-   "person_id": "ll_jordan_j_b",
-   "household_id": "hh_ll_jordan_j_b",
+   "person_id": "jordan_j_b",
+   "household_id": "hh_jordan_j_b",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -864,8 +864,8 @@
   },
   {
    "resident": "J. H. Collins",
-   "person_id": "doc_j_h_collins",
-   "household_id": "hh_doc_j_h_collins",
+   "person_id": "collins_j_h",
+   "household_id": "hh_collins_j_h",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "lives_at_1835": null,
@@ -892,8 +892,8 @@
   },
   {
    "resident": "J. K. Boyer",
-   "person_id": "placed_j_k_boyer",
-   "household_id": "hh_placed_j_k_boyer",
+   "person_id": "boyer_j_k",
+   "household_id": "hh_boyer_j_k",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -972,8 +972,8 @@
   },
   {
    "resident": "James H. Woodworth",
-   "person_id": "ll_woodworth_james_h",
-   "household_id": "hh_ll_woodworth_james_h",
+   "person_id": "woodworth_james_h",
+   "household_id": "hh_woodworth_james_h",
    "grade_1835": "attested",
    "occupation_1835": "dry_goods_merchant",
    "lives_at_1835": null,
@@ -997,8 +997,8 @@
   },
   {
    "resident": "James L.. Dean",
-   "person_id": "ll_dean_james_l",
-   "household_id": "hh_ll_dean_james_l",
+   "person_id": "dean_james_l",
+   "household_id": "hh_dean_james_l",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1022,8 +1022,8 @@
   },
   {
    "resident": "James R. Lawrence",
-   "person_id": "ll_james_r_lawrence",
-   "household_id": "hh_ll_james_r_lawrence",
+   "person_id": "lawrence_james_r",
+   "household_id": "hh_lawrence_james_r",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1129,8 +1129,8 @@
   },
   {
    "resident": "John P. Simpson",
-   "person_id": "ll_simpson_john_p",
-   "household_id": "hh_ll_simpson_john_p",
+   "person_id": "simpson_john_p",
+   "household_id": "hh_simpson_john_p",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1185,8 +1185,8 @@
   },
   {
    "resident": "John Thompson",
-   "person_id": "ll_john_thompson",
-   "household_id": "hh_ll_john_thompson",
+   "person_id": "thompson_john",
+   "household_id": "hh_thompson_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1212,8 +1212,8 @@
   },
   {
    "resident": "Joseph Chandler",
-   "person_id": "ll_joseph_chandler",
-   "household_id": "hh_ll_joseph_chandler",
+   "person_id": "chandler_joseph",
+   "household_id": "hh_chandler_joseph",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1266,8 +1266,8 @@
   },
   {
    "resident": "Joshua Howard",
-   "person_id": "ll_howard_joshua",
-   "household_id": "hh_ll_howard_joshua",
+   "person_id": "howard_joshua",
+   "household_id": "hh_howard_joshua",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1318,8 +1318,8 @@
   },
   {
    "resident": "Leonard, C. Hugunin",
-   "person_id": "ll_hugunin_leonard_c",
-   "household_id": "hh_ll_hugunin_leonard_c",
+   "person_id": "hugunin_leonard_c",
+   "household_id": "hh_hugunin_leonard_c",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1346,8 +1346,8 @@
   },
   {
    "resident": "Nathan Christy",
-   "person_id": "ll_nathan_christy",
-   "household_id": "hh_ll_nathan_christy",
+   "person_id": "christy_nathan",
+   "household_id": "hh_christy_nathan",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1374,8 +1374,8 @@
   },
   {
    "resident": "Parker M. Cole",
-   "person_id": "ll_parker_m_cole",
-   "household_id": "hh_ll_parker_m_cole",
+   "person_id": "cole_parker_m",
+   "household_id": "hh_cole_parker_m",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1484,8 +1484,8 @@
   },
   {
    "resident": "R. C. Bristol",
-   "person_id": "ll_r_c_bristol",
-   "household_id": "hh_ll_r_c_bristol",
+   "person_id": "bristol_r_c",
+   "household_id": "hh_bristol_r_c",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1539,8 +1539,8 @@
   },
   {
    "resident": "Sarah Childs",
-   "person_id": "ll_sarah_childs",
-   "household_id": "hh_ll_sarah_childs",
+   "person_id": "childs_sarah",
+   "household_id": "hh_childs_sarah",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1567,8 +1567,8 @@
   },
   {
    "resident": "Seth Paine",
-   "person_id": "ll_seth_paine",
-   "household_id": "hh_ll_seth_paine",
+   "person_id": "paine_seth",
+   "household_id": "hh_paine_seth",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1622,8 +1622,8 @@
   },
   {
    "resident": "Thos. Fitzgerald",
-   "person_id": "ll_thos_fitzgerald",
-   "household_id": "hh_ll_thos_fitzgerald",
+   "person_id": "fitzgerald_thos",
+   "household_id": "hh_fitzgerald_thos",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1676,8 +1676,8 @@
   },
   {
    "resident": "William Allen",
-   "person_id": "ll_allen_william",
-   "household_id": "hh_ll_allen_william",
+   "person_id": "allen_william",
+   "household_id": "hh_allen_william",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1704,8 +1704,8 @@
   },
   {
    "resident": "William G Blair",
-   "person_id": "ll_blair_william_g",
-   "household_id": "hh_ll_blair_william_g",
+   "person_id": "blair_william_g",
+   "household_id": "hh_blair_william_g",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1786,8 +1786,8 @@
   },
   {
    "resident": "Willınm Bandle",
-   "person_id": "ll_bandle_will_nm",
-   "household_id": "hh_ll_bandle_will_nm",
+   "person_id": "bandle_will_nm",
+   "household_id": "hh_bandle_will_nm",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1813,8 +1813,8 @@
   },
   {
    "resident": "Winthrop Merrill",
-   "person_id": "ll_winthrop_merrill",
-   "household_id": "hh_ll_winthrop_merrill",
+   "person_id": "merrill_winthrop",
+   "household_id": "hh_merrill_winthrop",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -1838,8 +1838,8 @@
   },
   {
    "resident": "Wm. Osborn",
-   "person_id": "ll_wm_osborn",
-   "household_id": "hh_ll_wm_osborn",
+   "person_id": "osborn_wm",
+   "household_id": "hh_osborn_wm",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2109,8 +2109,8 @@
  "ambiguous": [
   {
    "resident": "A. Garrett",
-   "person_id": "doc_a_garrett",
-   "household_id": "hh_doc_a_garrett",
+   "person_id": "garrett_a",
+   "household_id": "hh_garrett_a",
    "grade_1835": "attested",
    "occupation_1835": "auctioneer",
    "lives_at_1835": null,
@@ -2157,8 +2157,8 @@
   },
   {
    "resident": "B. S. Morris",
-   "person_id": "placed_b_s_morris",
-   "household_id": "hh_placed_b_s_morris",
+   "person_id": "morris_b_s",
+   "household_id": "hh_morris_b_s",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2194,8 +2194,8 @@
   },
   {
    "resident": "Charles C. Williams",
-   "person_id": "ll_williams_charles_c",
-   "household_id": "hh_ll_williams_charles_c",
+   "person_id": "williams_charles_c",
+   "household_id": "hh_williams_charles_c",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2429,8 +2429,8 @@
   },
   {
    "resident": "Erastus Clark",
-   "person_id": "ll_clark_erastus",
-   "household_id": "hh_ll_clark_erastus",
+   "person_id": "clark_erastus",
+   "household_id": "hh_clark_erastus",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2525,8 +2525,8 @@
   },
   {
    "resident": "H. B. Clarke",
-   "person_id": "doc_h_b_clarke",
-   "household_id": "hh_doc_h_b_clarke",
+   "person_id": "clarke_h_b",
+   "household_id": "hh_clarke_h_b",
    "grade_1835": "attested",
    "occupation_1835": "hardware_merchant",
    "lives_at_1835": null,
@@ -2620,8 +2620,8 @@
   },
   {
    "resident": "J. Curtiss",
-   "person_id": "doc_j_curtiss",
-   "household_id": "hh_doc_j_curtiss",
+   "person_id": "curtiss_j",
+   "household_id": "hh_curtiss_j",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "lives_at_1835": null,
@@ -2667,8 +2667,8 @@
   },
   {
    "resident": "J. E. Bishop",
-   "person_id": "ll_bishop_j_e",
-   "household_id": "hh_ll_bishop_j_e",
+   "person_id": "bishop_j_e",
+   "household_id": "hh_bishop_j_e",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2705,8 +2705,8 @@
   },
   {
    "resident": "J. E. Field",
-   "person_id": "ll_field_j_e",
-   "household_id": "hh_ll_field_j_e",
+   "person_id": "field_j_e",
+   "household_id": "hh_field_j_e",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2818,8 +2818,8 @@
   },
   {
    "resident": "John Fitzsimmons",
-   "person_id": "ll_john_fitzsimmons",
-   "household_id": "hh_ll_john_fitzsimmons",
+   "person_id": "fitzsimmons_john",
+   "household_id": "hh_fitzsimmons_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2951,8 +2951,8 @@
   },
   {
    "resident": "John Scott",
-   "person_id": "ll_scott_john",
-   "household_id": "hh_ll_scott_john",
+   "person_id": "scott_john",
+   "household_id": "hh_scott_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -2989,8 +2989,8 @@
   },
   {
    "resident": "John Wilson",
-   "person_id": "ll_john_wilson",
-   "household_id": "hh_ll_john_wilson",
+   "person_id": "wilson_john",
+   "household_id": "hh_wilson_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3263,8 +3263,8 @@
   },
   {
    "resident": "S. Sherwood",
-   "person_id": "ll_s_sherwood",
-   "household_id": "hh_ll_s_sherwood",
+   "person_id": "sherwood_s",
+   "household_id": "hh_sherwood_s",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3300,8 +3300,8 @@
   },
   {
    "resident": "Samuel Brookes",
-   "person_id": "ll_samuel_brookes",
-   "household_id": "hh_ll_samuel_brookes",
+   "person_id": "brookes_samuel",
+   "household_id": "hh_brookes_samuel",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3338,8 +3338,8 @@
   },
   {
    "resident": "Samuel Jackson",
-   "person_id": "ll_jackson_samuel",
-   "household_id": "hh_ll_jackson_samuel",
+   "person_id": "jackson_samuel",
+   "household_id": "hh_jackson_samuel",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3376,8 +3376,8 @@
   },
   {
    "resident": "Samuel Johnson",
-   "person_id": "ll_johnson_samuel",
-   "household_id": "hh_ll_johnson_samuel",
+   "person_id": "johnson_samuel",
+   "household_id": "hh_johnson_samuel",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3498,14 +3498,14 @@
  "refusals": [
   {
    "resident": "A. Shepherd",
-   "person_id": "ll_a_shepherd",
+   "person_id": "shepherd_a",
    "surname_in_1843": "Shepherd",
    "candidates": 3,
    "rule": "The surname 'Shepherd' is in Fergus 1843 and no entry under it carries the initial 'A' of 'A. Shepherd'. A surname-only agreement is a refusal."
   },
   {
    "resident": "A. W. Flint",
-   "person_id": "ll_a_w_flint",
+   "person_id": "flint_a_w",
    "surname_in_1843": "Flint",
    "candidates": 1,
    "rule": "The surname 'Flint' is in Fergus 1843 and no entry under it carries the initial 'A' of 'A. W. Flint'. A surname-only agreement is a refusal."
@@ -3519,98 +3519,98 @@
   },
   {
    "resident": "Albert F. Dow",
-   "person_id": "ll_dow_albert_f",
+   "person_id": "dow_albert_f",
    "surname_in_1843": "Dow",
    "candidates": 2,
    "rule": "The surname 'Dow' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Albert F. Dow'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alex. M. Kent",
-   "person_id": "ll_kent_alex_m",
+   "person_id": "kent_alex_m",
    "surname_in_1843": "Kent",
    "candidates": 4,
    "rule": "The surname 'Kent' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alex. M. Kent'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alexr. H. Tucker",
-   "person_id": "ll_alexr_h_tucker",
+   "person_id": "tucker_alexr_h",
    "surname_in_1843": "Tucker",
    "candidates": 3,
    "rule": "The surname 'Tucker' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alexr. H. Tucker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alfred Churchill",
-   "person_id": "ll_alfred_churchill",
+   "person_id": "churchill_alfred",
    "surname_in_1843": "Churchill",
    "candidates": 1,
    "rule": "The surname 'Churchill' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alfred Churchill'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alison B. Vaughn",
-   "person_id": "ll_alison_b_vaughn",
+   "person_id": "vaughn_alison_b",
    "surname_in_1843": "Vaughn",
    "candidates": 1,
    "rule": "The surname 'Vaughn' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alison B. Vaughn'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alonzo Murray",
-   "person_id": "ll_alonzo_murray",
+   "person_id": "murray_alonzo",
    "surname_in_1843": "Murray",
    "candidates": 3,
    "rule": "The surname 'Murray' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alonzo Murray'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alva Dunlap",
-   "person_id": "ll_alva_dunlap",
+   "person_id": "dunlap_alva",
    "surname_in_1843": "Dunlap",
    "candidates": 1,
    "rule": "The surname 'Dunlap' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Alva Dunlap'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Amelizo Loomis",
-   "person_id": "ll_loomis_amelizo",
+   "person_id": "loomis_amelizo",
    "surname_in_1843": "Loomis",
    "candidates": 2,
    "rule": "The surname 'Loomis' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Amelizo Loomis'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Andrew Lansing",
-   "person_id": "ll_lansing_andrew",
+   "person_id": "lansing_andrew",
    "surname_in_1843": "Lansing",
    "candidates": 2,
    "rule": "The surname 'Lansing' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Andrew Lansing'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Andrew Miles",
-   "person_id": "ll_andrew_miles",
+   "person_id": "miles_andrew",
    "surname_in_1843": "Miles",
    "candidates": 1,
    "rule": "The surname 'Miles' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Andrew Miles'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ann Airs. Day",
-   "person_id": "ll_day_ann_airs",
+   "person_id": "day_ann_airs",
    "surname_in_1843": "Day",
    "candidates": 1,
    "rule": "The surname 'Day' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Ann Airs. Day'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Anson Leonard",
-   "person_id": "ll_leonard_anson",
+   "person_id": "leonard_anson",
    "surname_in_1843": "Leonard",
    "candidates": 2,
    "rule": "The surname 'Leonard' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Anson Leonard'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Archibald Knox",
-   "person_id": "ll_archibald_knox",
+   "person_id": "knox_archibald",
    "surname_in_1843": "Knox",
    "candidates": 1,
    "rule": "The surname 'Knox' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Archibald Knox'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Archibald Maclean",
-   "person_id": "ll_maclean_archibald",
+   "person_id": "maclean_archibald",
    "surname_in_1843": "Maclean",
    "candidates": 1,
    "rule": "The surname 'Maclean' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Archibald Maclean'. A surname-only agreement is a refusal."
@@ -3624,14 +3624,14 @@
   },
   {
    "resident": "Ben Butterfield",
-   "person_id": "ll_butterfield_ben",
+   "person_id": "butterfield_ben",
    "surname_in_1843": "Butterfield",
    "candidates": 9,
    "rule": "The surname 'Butterfield' is in Fergus 1843 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Benjamin / Berry",
-   "person_id": "ll_berry_benjamin",
+   "person_id": "berry_benjamin",
    "surname_in_1843": "Berry",
    "candidates": 1,
    "rule": "The surname 'Berry' is in Fergus 1843 and no entry under it carries the initial 'B' of 'Benjamin / Berry'. A surname-only agreement is a refusal."
@@ -3652,35 +3652,35 @@
   },
   {
    "resident": "Beta L.. Barber",
-   "person_id": "ll_barber_beta_l",
+   "person_id": "barber_beta_l",
    "surname_in_1843": "Barber",
    "candidates": 1,
    "rule": "The surname 'Barber' is in Fergus 1843 and no entry under it carries the initial 'B' of 'Beta L.. Barber'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Byram King",
-   "person_id": "doc_byram_king",
+   "person_id": "king_byram",
    "surname_in_1843": "King",
    "candidates": 8,
    "rule": "The surname 'King' is in Fergus 1843 and no entry under it carries the initial 'B' of 'Byram King'. A surname-only agreement is a refusal."
   },
   {
    "resident": "C. E. Townsend",
-   "person_id": "ll_c_e_townsend",
+   "person_id": "townsend_c_e",
    "surname_in_1843": "Townsend",
    "candidates": 1,
    "rule": "The surname 'Townsend' is in Fergus 1843 and no entry under it carries the initial 'C' of 'C. E. Townsend'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Caleb Foster",
-   "person_id": "ll_caleb_foster",
+   "person_id": "foster_caleb",
    "surname_in_1843": "Foster",
    "candidates": 6,
    "rule": "The surname 'Foster' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Caleb Harrison",
-   "person_id": "ll_harrison_caleb",
+   "person_id": "harrison_caleb",
    "surname_in_1843": "Harrison",
    "candidates": 3,
    "rule": "The surname 'Harrison' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Caleb Harrison'. A surname-only agreement is a refusal."
@@ -3694,112 +3694,112 @@
   },
   {
    "resident": "Charles C. Drake",
-   "person_id": "ll_charles_c_drake",
+   "person_id": "drake_charles_c",
    "surname_in_1843": "Drake",
    "candidates": 1,
    "rule": "The surname 'Drake' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Charles H. Bartlett",
-   "person_id": "ll_charles_h_bartlett",
+   "person_id": "bartlett_charles_h",
    "surname_in_1843": "Bartlett",
    "candidates": 1,
    "rule": "The surname 'Bartlett' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles H. Bartlett'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Charles T. Richards",
-   "person_id": "ll_charles_t_richards",
+   "person_id": "richards_charles_t",
    "surname_in_1843": "Richards",
    "candidates": 1,
    "rule": "The surname 'Richards' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles T. Richards'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Charles Wells",
-   "person_id": "ll_wells_charles",
+   "person_id": "wells_charles",
    "surname_in_1843": "Wells",
    "candidates": 3,
    "rule": "The surname 'Wells' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles Wells'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Charles Winship",
-   "person_id": "ll_winship_charles",
+   "person_id": "winship_charles",
    "surname_in_1843": "Winship",
    "candidates": 3,
    "rule": "The surname 'Winship' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles Winship'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Constant Abbott",
-   "person_id": "ll_constant_abbott",
+   "person_id": "abbott_constant",
    "surname_in_1843": "Abbott",
    "candidates": 2,
    "rule": "The surname 'Abbott' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Damel M. Green",
-   "person_id": "ll_green_damel_m",
+   "person_id": "green_damel_m",
    "surname_in_1843": "Green",
    "candidates": 4,
    "rule": "The surname 'Green' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Damel M. Green'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Dangerfield Dunn",
-   "person_id": "ll_dangerfield_dunn",
+   "person_id": "dunn_dangerfield",
    "surname_in_1843": "Dunn",
    "candidates": 1,
    "rule": "The surname 'Dunn' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Dangerfield Dunn'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Daniel Baxter",
-   "person_id": "ll_baxter_daniel",
+   "person_id": "baxter_daniel",
    "surname_in_1843": "Baxter",
    "candidates": 1,
    "rule": "The surname 'Baxter' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Daniel Baxter'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Daniel Darling",
-   "person_id": "ll_darling_daniel",
+   "person_id": "darling_daniel",
    "surname_in_1843": "Darling",
    "candidates": 1,
    "rule": "The surname 'Darling' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Daniel Darling'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Davi Andrews",
-   "person_id": "ll_andrews_davi",
+   "person_id": "andrews_davi",
    "surname_in_1843": "Andrews",
    "candidates": 1,
    "rule": "The surname 'Andrews' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Davi Andrews'. A surname-only agreement is a refusal."
   },
   {
    "resident": "David Bigelow",
-   "person_id": "ll_david_bigelow",
+   "person_id": "bigelow_david",
    "surname_in_1843": "Bigelow",
    "candidates": 2,
    "rule": "The surname 'Bigelow' is in Fergus 1843 and no entry under it carries the initial 'D' of 'David Bigelow'. A surname-only agreement is a refusal."
   },
   {
    "resident": "David Harris",
-   "person_id": "ll_david_harris",
+   "person_id": "harris_david",
    "surname_in_1843": "Harris",
    "candidates": 1,
    "rule": "The surname 'Harris' is in Fergus 1843 and no entry under it carries the initial 'D' of 'David Harris'. A surname-only agreement is a refusal."
   },
   {
    "resident": "David Savage",
-   "person_id": "ll_savage_david",
+   "person_id": "savage_david",
    "surname_in_1843": "Savage",
    "candidates": 1,
    "rule": "The surname 'Savage' is in Fergus 1843 and no entry under it carries the initial 'D' of 'David Savage'. A surname-only agreement is a refusal."
   },
   {
    "resident": "DorCinrk Clement",
-   "person_id": "ll_clement_dorcinrk",
+   "person_id": "clement_dorcinrk",
    "surname_in_1843": "Clement",
    "candidates": 1,
    "rule": "The surname 'Clement' is in Fergus 1843 and no entry under it carries the initial 'D' of 'DorCinrk Clement'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Douglass Sloan",
-   "person_id": "ll_douglass_sloan",
+   "person_id": "sloan_douglass",
    "surname_in_1843": "Sloan",
    "candidates": 1,
    "rule": "The surname 'Sloan' is in Fergus 1843 and no entry under it carries the initial 'D' of 'Douglass Sloan'. A surname-only agreement is a refusal."
@@ -3813,105 +3813,105 @@
   },
   {
    "resident": "E. B. Bostwick",
-   "person_id": "ll_bostwick_e_b",
+   "person_id": "bostwick_e_b",
    "surname_in_1843": "Bostwick",
    "candidates": 1,
    "rule": "The surname 'Bostwick' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E. B. Bostwick'. A surname-only agreement is a refusal."
   },
   {
    "resident": "E. M. Fish",
-   "person_id": "ll_fish_e_m",
+   "person_id": "fish_e_m",
    "surname_in_1843": "Fish",
    "candidates": 2,
    "rule": "The surname 'Fish' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E. M. Fish'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Eben Griswold",
-   "person_id": "ll_eben_griswold",
+   "person_id": "griswold_eben",
    "surname_in_1843": "Griswold",
    "candidates": 4,
    "rule": "The surname 'Griswold' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Eben Griswold'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ebenezer Ford",
-   "person_id": "ll_ford_ebenezer",
+   "person_id": "ford_ebenezer",
    "surname_in_1843": "Ford",
    "candidates": 4,
    "rule": "The surname 'Ford' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Ebenezer Ford'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edson White",
-   "person_id": "ll_white_edson",
+   "person_id": "white_edson",
    "surname_in_1843": "White",
    "candidates": 8,
    "rule": "The surname 'White' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edson White'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edward B. Coleman",
-   "person_id": "ll_edward_b_coleman",
+   "person_id": "coleman_edward_b",
    "surname_in_1843": "Coleman",
    "candidates": 1,
    "rule": "The surname 'Coleman' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edward B. Coleman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edward Dalton",
-   "person_id": "ll_dalton_edward",
+   "person_id": "dalton_edward",
    "surname_in_1843": "Dalton",
    "candidates": 1,
    "rule": "The surname 'Dalton' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edward Dalton'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edward T. Hooker",
-   "person_id": "ll_hooker_edward_t",
+   "person_id": "hooker_edward_t",
    "surname_in_1843": "Hooker",
    "candidates": 2,
    "rule": "The surname 'Hooker' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edward T. Hooker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edward V Cooley",
-   "person_id": "ll_cooley_edward_v",
+   "person_id": "cooley_edward_v",
    "surname_in_1843": "Cooley",
    "candidates": 1,
    "rule": "The surname 'Cooley' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edward V Cooley'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edwin C. Hart",
-   "person_id": "ll_hart_edwin_c",
+   "person_id": "hart_edwin_c",
    "surname_in_1843": "Hart",
    "candidates": 2,
    "rule": "The surname 'Hart' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edwin C. Hart'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ehjah Doolittle",
-   "person_id": "ll_ehjah_doolittle",
+   "person_id": "doolittle_ehjah",
    "surname_in_1843": "Doolittle",
    "candidates": 1,
    "rule": "The surname 'Doolittle' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Ehjah Doolittle'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Eimer Baldwin",
-   "person_id": "ll_baldwin_eimer",
+   "person_id": "baldwin_eimer",
    "surname_in_1843": "Baldwin",
    "candidates": 2,
    "rule": "The surname 'Baldwin' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Eimer Baldwin'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Elam Tuller",
-   "person_id": "ll_elam_tuller",
+   "person_id": "tuller_elam",
    "surname_in_1843": "Tuller",
    "candidates": 1,
    "rule": "The surname 'Tuller' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Eli F Anderson",
-   "person_id": "ll_anderson_eli_f",
+   "person_id": "anderson_eli_f",
    "surname_in_1843": "Anderson",
    "candidates": 8,
    "rule": "The surname 'Anderson' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Eli F Anderson'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Elias Maynard",
-   "person_id": "ll_elias_maynard",
+   "person_id": "maynard_elias",
    "surname_in_1843": "Maynard",
    "candidates": 1,
    "rule": "The surname 'Maynard' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elias Maynard'. A surname-only agreement is a refusal."
@@ -3925,7 +3925,7 @@
   },
   {
    "resident": "Eliza Mir Chappel",
-   "person_id": "ll_chappel_eliza_mir",
+   "person_id": "chappel_eliza_mir",
    "surname_in_1843": "Chappel",
    "candidates": 1,
    "rule": "The surname 'Chappel' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Eliza Mir Chappel'. A surname-only agreement is a refusal."
@@ -3939,21 +3939,21 @@
   },
   {
    "resident": "Ezekiel Turner",
-   "person_id": "ll_ezekiel_turner",
+   "person_id": "turner_ezekiel",
    "surname_in_1843": "Turner",
    "candidates": 10,
    "rule": "The surname 'Turner' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Ezekiel Turner'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ford Freeman",
-   "person_id": "ll_ford_freeman",
+   "person_id": "freeman_ford",
    "surname_in_1843": "Freeman",
    "candidates": 1,
    "rule": "The surname 'Freeman' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Ford Freeman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Francis Perry",
-   "person_id": "ll_francis_perry",
+   "person_id": "perry_francis",
    "surname_in_1843": "Perry",
    "candidates": 1,
    "rule": "The surname 'Perry' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Francis Perry'. A surname-only agreement is a refusal."
@@ -3967,91 +3967,91 @@
   },
   {
    "resident": "Gardner Brooks",
-   "person_id": "ll_brooks_gardner",
+   "person_id": "brooks_gardner",
    "surname_in_1843": "Brooks",
    "candidates": 2,
    "rule": "The surname 'Brooks' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Gardner Brooks'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Geo. N. Powell",
-   "person_id": "ll_geo_n_powell",
+   "person_id": "powell_geo_n",
    "surname_in_1843": "Powell",
    "candidates": 2,
    "rule": "The surname 'Powell' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Geo. N. Powell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Geor Ballantine",
-   "person_id": "ll_ballantine_geor",
+   "person_id": "ballantine_geor",
    "surname_in_1843": "Ballantine",
    "candidates": 2,
    "rule": "The surname 'Ballantine' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Geor Ballantine'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George E. Walker",
-   "person_id": "ll_george_e_walker",
+   "person_id": "walker_george_e",
    "surname_in_1843": "Walker",
    "candidates": 9,
    "rule": "The surname 'Walker' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George E. Walker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George Knapp",
-   "person_id": "ll_knapp_george",
+   "person_id": "knapp_george",
    "surname_in_1843": "Knapp",
    "candidates": 3,
    "rule": "The surname 'Knapp' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George Knapp'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George Lee",
-   "person_id": "ll_george_lee",
+   "person_id": "lee_george",
    "surname_in_1843": "Lee",
    "candidates": 5,
    "rule": "The surname 'Lee' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George Lee'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Gideon Young",
-   "person_id": "ll_young_gideon",
+   "person_id": "young_gideon",
    "surname_in_1843": "Young",
    "candidates": 5,
    "rule": "The surname 'Young' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Gideon Young'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Gregory E. Legg",
-   "person_id": "ll_gregory_e_legg",
+   "person_id": "legg_gregory_e",
    "surname_in_1843": "Legg",
    "candidates": 1,
    "rule": "The surname 'Legg' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Gregory E. Legg'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. Crocker",
-   "person_id": "doc_h_crocker",
+   "person_id": "crocker_h",
    "surname_in_1843": "Crocker",
    "candidates": 1,
    "rule": "The surname 'Crocker' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Crocker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. H. Comstock",
-   "person_id": "ll_comstock_h_h",
+   "person_id": "comstock_h_h",
    "surname_in_1843": "Comstock",
    "candidates": 2,
    "rule": "The surname 'Comstock' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. Pease",
-   "person_id": "ll_h_pease",
+   "person_id": "pease_h",
    "surname_in_1843": "Pease",
    "candidates": 1,
    "rule": "The surname 'Pease' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Pease'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. Y. Crane",
-   "person_id": "ll_crane_h_y",
+   "person_id": "crane_h_y",
    "surname_in_1843": "Crane",
    "candidates": 1,
    "rule": "The surname 'Crane' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Y. Crane'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Harriet Gridley",
-   "person_id": "ll_harriet_gridley",
+   "person_id": "gridley_harriet",
    "surname_in_1843": "Gridley",
    "candidates": 2,
    "rule": "The surname 'Gridley' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Harriet Gridley'. A surname-only agreement is a refusal."
@@ -4065,105 +4065,105 @@
   },
   {
    "resident": "Harris David",
-   "person_id": "ll_harris_david",
+   "person_id": "david_harris",
    "surname_in_1843": "David",
    "candidates": 1,
    "rule": "The surname 'David' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Harris David'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Harrison Granger",
-   "person_id": "ll_harrison_granger",
+   "person_id": "granger_harrison",
    "surname_in_1843": "Granger",
    "candidates": 1,
    "rule": "The surname 'Granger' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Harrison Granger'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry Mitchell",
-   "person_id": "ll_henry_mitchell",
+   "person_id": "mitchell_henry",
    "surname_in_1843": "Mitchell",
    "candidates": 8,
    "rule": "The surname 'Mitchell' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Henry Mitchell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry Moore",
-   "person_id": "doc_henry_moore",
+   "person_id": "moore_henry",
    "surname_in_1843": "Moore",
    "candidates": 1,
    "rule": "The surname 'Moore' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Henry Moore'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry N. Hunt",
-   "person_id": "ll_hunt_henry_n",
+   "person_id": "hunt_henry_n",
    "surname_in_1843": "Hunt",
    "candidates": 1,
    "rule": "The surname 'Hunt' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Henry N. Hunt'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry Whiting",
-   "person_id": "ll_whiting_henry",
+   "person_id": "whiting_henry",
    "surname_in_1843": "Whiting",
    "candidates": 3,
    "rule": "The surname 'Whiting' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Henry Whiting'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Herman A. Rowley",
-   "person_id": "ll_herman_a_rowley",
+   "person_id": "rowley_herman_a",
    "surname_in_1843": "Rowley",
    "candidates": 2,
    "rule": "The surname 'Rowley' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Herman A. Rowley'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Heury C. Skinner",
-   "person_id": "ll_skinner_heury_c",
+   "person_id": "skinner_heury_c",
    "surname_in_1843": "Skinner",
    "candidates": 2,
    "rule": "The surname 'Skinner' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Heury C. Skinner'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Hiram Holmes",
-   "person_id": "ll_holmes_hiram",
+   "person_id": "holmes_hiram",
    "surname_in_1843": "Holmes",
    "candidates": 4,
    "rule": "The surname 'Holmes' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hiram Holmes'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Hiram Hovey",
-   "person_id": "ll_hiram_hovey",
+   "person_id": "hovey_hiram",
    "surname_in_1843": "Hovey",
    "candidates": 1,
    "rule": "The surname 'Hovey' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hiram Hovey'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Hugh Todd",
-   "person_id": "ll_hugh_todd",
+   "person_id": "todd_hugh",
    "surname_in_1843": "Todd",
    "candidates": 1,
    "rule": "The surname 'Todd' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hugh Todd'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ira Herrick",
-   "person_id": "ll_ira_herrick",
+   "person_id": "herrick_ira",
    "surname_in_1843": "Herrick",
    "candidates": 1,
    "rule": "The surname 'Herrick' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Ira Herrick'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Isaac L. Hill",
-   "person_id": "ll_isaac_l_hill",
+   "person_id": "hill_isaac_l",
    "surname_in_1843": "Hill",
    "candidates": 3,
    "rule": "The surname 'Hill' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Isaac L. Hill'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. Carter",
-   "person_id": "ll_j_carter",
+   "person_id": "carter_j",
    "surname_in_1843": "Carter",
    "candidates": 2,
    "rule": "The surname 'Carter' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J. Carter'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. D. Doty",
-   "person_id": "ll_j_d_doty",
+   "person_id": "doty_j_d",
    "surname_in_1843": "Doty",
    "candidates": 1,
    "rule": "The surname 'Doty' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J. D. Doty'. A surname-only agreement is a refusal."
@@ -4177,168 +4177,168 @@
   },
   {
    "resident": "James Crawford",
-   "person_id": "ll_crawford_james",
+   "person_id": "crawford_james",
    "surname_in_1843": "Crawford",
    "candidates": 1,
    "rule": "The surname 'Crawford' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James Crawford'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James H. Gibbs",
-   "person_id": "ll_james_h_gibbs",
+   "person_id": "gibbs_james_h",
    "surname_in_1843": "Gibbs",
    "candidates": 1,
    "rule": "The surname 'Gibbs' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James H. Gibbs'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James H. Phelps",
-   "person_id": "ll_james_h_phelps",
+   "person_id": "phelps_james_h",
    "surname_in_1843": "Phelps",
    "candidates": 2,
    "rule": "The surname 'Phelps' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James H. Phelps'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James Vial",
-   "person_id": "ll_james_vial",
+   "person_id": "vial_james",
    "surname_in_1843": "Vial",
    "candidates": 1,
    "rule": "The surname 'Vial' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James Vial'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Jesse Hobson",
-   "person_id": "ll_jesse_hobson",
+   "person_id": "hobson_jesse",
    "surname_in_1843": "Hobson",
    "candidates": 1,
    "rule": "The surname 'Hobson' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Jesse Hobson'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Jesse Morgan",
-   "person_id": "ll_jesse_morgan",
+   "person_id": "morgan_jesse",
    "surname_in_1843": "Morgan",
    "candidates": 4,
    "rule": "The surname 'Morgan' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Jesse Morgan'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Joan Dougherty",
-   "person_id": "ll_dougherty_joan",
+   "person_id": "dougherty_joan",
    "surname_in_1843": "Dougherty",
    "candidates": 2,
    "rule": "The surname 'Dougherty' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Joan Dougherty'. A surname-only agreement is a refusal."
   },
   {
    "resident": "John Graham",
-   "person_id": "ll_john_graham",
+   "person_id": "graham_john",
    "surname_in_1843": "Graham",
    "candidates": 2,
    "rule": "The surname 'Graham' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John Graham'. A surname-only agreement is a refusal."
   },
   {
    "resident": "John H. Woods",
-   "person_id": "ll_john_h_woods",
+   "person_id": "woods_john_h",
    "surname_in_1843": "Woods",
    "candidates": 1,
    "rule": "The surname 'Woods' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John H. Woods'. A surname-only agreement is a refusal."
   },
   {
    "resident": "John M. Nelson",
-   "person_id": "ll_john_m_nelson",
+   "person_id": "nelson_john_m",
    "surname_in_1843": "Nelson",
    "candidates": 4,
    "rule": "The surname 'Nelson' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John M. Nelson'. A surname-only agreement is a refusal."
   },
   {
    "resident": "John S. Barry",
-   "person_id": "ll_john_s_barry",
+   "person_id": "barry_john_s",
    "surname_in_1843": "Barry",
    "candidates": 3,
    "rule": "The surname 'Barry' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John S. Barry'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Joseph Gleason",
-   "person_id": "ll_joseph_gleason",
+   "person_id": "gleason_joseph",
    "surname_in_1843": "Gleason",
    "candidates": 1,
    "rule": "The surname 'Gleason' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Joseph Gleason'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Joshua Ambrose",
-   "person_id": "ll_joshua_ambrose",
+   "person_id": "ambrose_joshua",
    "surname_in_1843": "Ambrose",
    "candidates": 2,
    "rule": "The surname 'Ambrose' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Joshua Ambrose'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Levi Ayres",
-   "person_id": "ll_ayres_levi",
+   "person_id": "ayres_levi",
    "surname_in_1843": "Ayres",
    "candidates": 1,
    "rule": "The surname 'Ayres' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Levi Ayres'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Levi Cady",
-   "person_id": "ll_levi_cady",
+   "person_id": "cady_levi",
    "surname_in_1843": "Cady",
    "candidates": 2,
    "rule": "The surname 'Cady' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Levi Cady'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lewis Sperry",
-   "person_id": "ll_lewis_sperry",
+   "person_id": "sperry_lewis",
    "surname_in_1843": "Sperry",
    "candidates": 1,
    "rule": "The surname 'Sperry' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lewis Sperry'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Liman Curtis",
-   "person_id": "ll_curtis_liman",
+   "person_id": "curtis_liman",
    "surname_in_1843": "Curtis",
    "candidates": 2,
    "rule": "The surname 'Curtis' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Liman Curtis'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lorenzo Downing",
-   "person_id": "ll_lorenzo_downing",
+   "person_id": "downing_lorenzo",
    "surname_in_1843": "Downing",
    "candidates": 1,
    "rule": "The surname 'Downing' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lorenzo Downing'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lyman B. Lovell",
-   "person_id": "ll_lyman_b_lovell",
+   "person_id": "lovell_lyman_b",
    "surname_in_1843": "Lovell",
    "candidates": 1,
    "rule": "The surname 'Lovell' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lyman B. Lovell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lyman Burnet",
-   "person_id": "ll_lyman_burnet",
+   "person_id": "burnet_lyman",
    "surname_in_1843": "Burnet",
    "candidates": 1,
    "rule": "The surname 'Burnet' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lyman Burnet'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Manson Parker",
-   "person_id": "ll_manson_parker",
+   "person_id": "parker_manson",
    "surname_in_1843": "Parker",
    "candidates": 1,
    "rule": "The surname 'Parker' is in Fergus 1843 and no entry under it carries the initial 'M' of 'Manson Parker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Mary Barrows",
-   "person_id": "ll_mary_barrows",
+   "person_id": "barrows_mary",
    "surname_in_1843": "Barrows",
    "candidates": 2,
    "rule": "The surname 'Barrows' is in Fergus 1843 and no entry under it carries the initial 'M' of 'Mary Barrows'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Mary Meacham",
-   "person_id": "ll_mary_meacham",
+   "person_id": "meacham_mary",
    "surname_in_1843": "Meacham",
    "candidates": 2,
    "rule": "The surname 'Meacham' is in Fergus 1843 and no entry under it carries the initial 'M' of 'Mary Meacham'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Me-Donolds George",
-   "person_id": "ll_me_donolds_george",
+   "person_id": "george_me_donolds",
    "surname_in_1843": "George",
    "candidates": 2,
    "rule": "The surname 'George' is in Fergus 1843 and no entry under it carries the initial 'M' of 'Me-Donolds George'. A surname-only agreement is a refusal."
@@ -4352,28 +4352,28 @@
   },
   {
    "resident": "Mrs. H. Sherman",
-   "person_id": "doc_h_sherman",
+   "person_id": "sherman_h",
    "surname_in_1843": "Sherman",
    "candidates": 12,
    "rule": "The surname 'Sherman' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Mrs. S. Stephens",
-   "person_id": "ll_s_stephens",
+   "person_id": "stephens_s",
    "surname_in_1843": "Stephens",
    "candidates": 1,
    "rule": "The surname 'Stephens' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Mrs. S. Stephens'. A surname-only agreement is a refusal."
   },
   {
    "resident": "N. H. Palmer",
-   "person_id": "ll_n_h_palmer",
+   "person_id": "palmer_n_h",
    "surname_in_1843": "Palmer",
    "candidates": 1,
    "rule": "The surname 'Palmer' is in Fergus 1843 and no entry under it carries the initial 'N' of 'N. H. Palmer'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Nehemiah Myrick",
-   "person_id": "ll_nehemiah_myrick",
+   "person_id": "myrick_nehemiah",
    "surname_in_1843": "Myrick",
    "candidates": 1,
    "rule": "The surname 'Myrick' is in Fergus 1843 and no entry under it carries the initial 'N' of 'Nehemiah Myrick'. A surname-only agreement is a refusal."
@@ -4387,7 +4387,7 @@
   },
   {
    "resident": "Niles Rose",
-   "person_id": "ll_niles_rose",
+   "person_id": "rose_niles",
    "surname_in_1843": "Rose",
    "candidates": 3,
    "rule": "The surname 'Rose' is in Fergus 1843 and no entry under it carries the initial 'N' of 'Niles Rose'. A surname-only agreement is a refusal."
@@ -4401,28 +4401,28 @@
   },
   {
    "resident": "Oliver Cross",
-   "person_id": "ll_cross_oliver",
+   "person_id": "cross_oliver",
    "surname_in_1843": "Cross",
    "candidates": 1,
    "rule": "The surname 'Cross' is in Fergus 1843 and no entry under it carries the initial 'O' of 'Oliver Cross'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Orro Samuel",
-   "person_id": "ll_orro_samuel",
+   "person_id": "samuel_orro",
    "surname_in_1843": "Samuel",
    "candidates": 1,
    "rule": "The surname 'Samuel' is in Fergus 1843 and no entry under it carries the initial 'O' of 'Orro Samuel'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Orson Wheeler",
-   "person_id": "ll_wheeler_orson",
+   "person_id": "wheeler_orson",
    "surname_in_1843": "Wheeler",
    "candidates": 4,
    "rule": "The surname 'Wheeler' is in Fergus 1843 and no entry under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Oscar L. Hawley",
-   "person_id": "ll_oscar_l_hawley",
+   "person_id": "hawley_oscar_l",
    "surname_in_1843": "Hawley",
    "candidates": 1,
    "rule": "The surname 'Hawley' is in Fergus 1843 and no entry under it carries the initial 'O' of 'Oscar L. Hawley'. A surname-only agreement is a refusal."
@@ -4436,70 +4436,70 @@
   },
   {
    "resident": "P'. M. Strode",
-   "person_id": "ll_strode_p_m",
+   "person_id": "strode_p_m",
    "surname_in_1843": "Strode",
    "candidates": 1,
    "rule": "The surname 'Strode' is in Fergus 1843 and no entry under it carries the initial 'P' of \"P'. M. Strode\". A surname-only agreement is a refusal."
   },
   {
    "resident": "Palmer Stearns",
-   "person_id": "ll_palmer_stearns",
+   "person_id": "stearns_palmer",
    "surname_in_1843": "Stearns",
    "candidates": 3,
    "rule": "The surname 'Stearns' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Palmer Stearns'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Patrick Martin",
-   "person_id": "ll_patrick_martin",
+   "person_id": "martin_patrick",
    "surname_in_1843": "Martin",
    "candidates": 2,
    "rule": "The surname 'Martin' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Patrick Martin'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Paul Burdick",
-   "person_id": "ll_burdick_paul",
+   "person_id": "burdick_paul",
    "surname_in_1843": "Burdick",
    "candidates": 2,
    "rule": "The surname 'Burdick' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Paul Burdick'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Phillips James",
-   "person_id": "ll_phillips_james",
+   "person_id": "james_phillips",
    "surname_in_1843": "James",
    "candidates": 1,
    "rule": "The surname 'James' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Phillips James'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Philo C. Mills",
-   "person_id": "ll_philo_c_mills",
+   "person_id": "mills_philo_c",
    "surname_in_1843": "Mills",
    "candidates": 3,
    "rule": "The surname 'Mills' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Philo C. Mills'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Porter Fuller",
-   "person_id": "ll_porter_fuller",
+   "person_id": "fuller_porter",
    "surname_in_1843": "Fuller",
    "candidates": 4,
    "rule": "The surname 'Fuller' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Porter Fuller'. A surname-only agreement is a refusal."
   },
   {
    "resident": "R. Stewart",
-   "person_id": "doc_r_stewart",
+   "person_id": "stewart_r",
    "surname_in_1843": "Stewart",
    "candidates": 3,
    "rule": "The surname 'Stewart' is in Fergus 1843 and no entry under it carries the initial 'R' of 'R. Stewart'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ralph Stowell",
-   "person_id": "ll_ralph_stowell",
+   "person_id": "stowell_ralph",
    "surname_in_1843": "Stowell",
    "candidates": 1,
    "rule": "The surname 'Stowell' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Ralph Stowell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Reuben Farnsworth",
-   "person_id": "ll_reuben_farnsworth",
+   "person_id": "farnsworth_reuben",
    "surname_in_1843": "Farnsworth",
    "candidates": 1,
    "rule": "The surname 'Farnsworth' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Reuben Farnsworth'. A surname-only agreement is a refusal."
@@ -4513,105 +4513,105 @@
   },
   {
    "resident": "Richard Sammons",
-   "person_id": "ll_richard_sammons",
+   "person_id": "sammons_richard",
    "surname_in_1843": "Sammons",
    "candidates": 4,
    "rule": "The surname 'Sammons' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Richard Sammons'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Richard Steel",
-   "person_id": "ll_steel_richard",
+   "person_id": "steel_richard",
    "surname_in_1843": "Steel",
    "candidates": 1,
    "rule": "The surname 'Steel' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Richard Steel'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Rob't. Starkweather",
-   "person_id": "ll_starkweather_rob_t",
+   "person_id": "starkweather_rob_t",
    "surname_in_1843": "Starkweather",
    "candidates": 1,
    "rule": "The surname 'Starkweather' is in Fergus 1843 and no entry under it carries the initial 'R' of \"Rob't. Starkweather\". A surname-only agreement is a refusal."
   },
   {
    "resident": "Robert Moody",
-   "person_id": "ll_moody_robert",
+   "person_id": "moody_robert",
    "surname_in_1843": "Moody",
    "candidates": 2,
    "rule": "The surname 'Moody' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Robert Moody'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Rowland I!. Cook",
-   "person_id": "ll_cook_rowland_i",
+   "person_id": "cook_rowland_i",
    "surname_in_1843": "Cook",
    "candidates": 6,
    "rule": "The surname 'Cook' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Samuel S. Lathrop",
-   "person_id": "ll_samuel_s_lathrop",
+   "person_id": "lathrop_samuel_s",
    "surname_in_1843": "Lathrop",
    "candidates": 1,
    "rule": "The surname 'Lathrop' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Samuel S. Lathrop'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Samuel Shaw",
-   "person_id": "ll_samuel_shaw",
+   "person_id": "shaw_samuel",
    "surname_in_1843": "Shaw",
    "candidates": 3,
    "rule": "The surname 'Shaw' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Samuel Shaw'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Samuel Stuart",
-   "person_id": "ll_samuel_stuart",
+   "person_id": "stuart_samuel",
    "surname_in_1843": "Stuart",
    "candidates": 3,
    "rule": "The surname 'Stuart' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Samuel Stuart'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Sciota Evans",
-   "person_id": "ll_sciota_evans",
+   "person_id": "evans_sciota",
    "surname_in_1843": "Evans",
    "candidates": 1,
    "rule": "The surname 'Evans' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Sciota Evans'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Seth Wescott",
-   "person_id": "ll_seth_wescott",
+   "person_id": "wescott_seth",
    "surname_in_1843": "Wescott",
    "candidates": 1,
    "rule": "The surname 'Wescott' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Seth Wescott'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Sidney Dyer",
-   "person_id": "ll_sidney_dyer",
+   "person_id": "dyer_sidney",
    "surname_in_1843": "Dyer",
    "candidates": 2,
    "rule": "The surname 'Dyer' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Sidney Dyer'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Silas P. Otto",
-   "person_id": "ll_otto_silas_p",
+   "person_id": "otto_silas_p",
    "surname_in_1843": "Otto",
    "candidates": 1,
    "rule": "The surname 'Otto' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Silas P. Otto'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Stephen Mack",
-   "person_id": "ll_stephen_mack",
+   "person_id": "mack_stephen",
    "surname_in_1843": "Mack",
    "candidates": 1,
    "rule": "The surname 'Mack' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal."
   },
   {
    "resident": "T. Johnston",
-   "person_id": "ll_t_johnston",
+   "person_id": "johnston_t",
    "surname_in_1843": "Johnston",
    "candidates": 2,
    "rule": "The surname 'Johnston' is in Fergus 1843 and no entry under it carries the initial 'T' of 'T. Johnston'. A surname-only agreement is a refusal."
   },
   {
    "resident": "T. M. Morrison",
-   "person_id": "ll_t_m_morrison",
+   "person_id": "morrison_t_m",
    "surname_in_1843": "Morrison",
    "candidates": 8,
    "rule": "The surname 'Morrison' is in Fergus 1843 and no entry under it carries the initial 'T' of 'T. M. Morrison'. A surname-only agreement is a refusal."
@@ -4625,14 +4625,14 @@
   },
   {
    "resident": "Thomas Andrus",
-   "person_id": "ll_thomas_andrus",
+   "person_id": "andrus_thomas",
    "surname_in_1843": "Andrus",
    "candidates": 1,
    "rule": "The surname 'Andrus' is in Fergus 1843 and no entry under it carries the initial 'T' of 'Thomas Andrus'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Thomas S. Hyde",
-   "person_id": "ll_hyde_thomas_s",
+   "person_id": "hyde_thomas_s",
    "surname_in_1843": "Hyde",
    "candidates": 1,
    "rule": "The surname 'Hyde' is in Fergus 1843 and no entry under it carries the initial 'T' of 'Thomas S. Hyde'. A surname-only agreement is a refusal."
@@ -4646,28 +4646,28 @@
   },
   {
    "resident": "William H. Beach",
-   "person_id": "ll_william_h_beach",
+   "person_id": "beach_william_h",
    "surname_in_1843": "Beach",
    "candidates": 6,
    "rule": "The surname 'Beach' is in Fergus 1843 and no entry under it carries the initial 'W' of 'William H. Beach'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William Hunter",
-   "person_id": "ll_william_hunter",
+   "person_id": "hunter_william",
    "surname_in_1843": "Hunter",
    "candidates": 1,
    "rule": "The surname 'Hunter' is in Fergus 1843 and no entry under it carries the initial 'W' of 'William Hunter'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William Power",
-   "person_id": "ll_william_power",
+   "person_id": "power_william",
    "surname_in_1843": "Power",
    "candidates": 1,
    "rule": "The surname 'Power' is in Fergus 1843 and no entry under it carries the initial 'W' of 'William Power'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William Spencer",
-   "person_id": "ll_spencer_william",
+   "person_id": "spencer_william",
    "surname_in_1843": "Spencer",
    "candidates": 1,
    "rule": "The surname 'Spencer' is in Fergus 1843 and no entry under it carries the initial 'W' of 'William Spencer'. A surname-only agreement is a refusal."
@@ -4681,35 +4681,35 @@
   },
   {
    "resident": "Wm. Loring",
-   "person_id": "ll_wm_loring",
+   "person_id": "loring_wm",
    "surname_in_1843": "Loring",
    "candidates": 1,
    "rule": "The surname 'Loring' is in Fergus 1843 and no entry under it carries the initial 'W' of 'Wm. Loring'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Wm. T. Bently",
-   "person_id": "ll_wm_t_bently",
+   "person_id": "bently_wm_t",
    "surname_in_1843": "Bently",
    "candidates": 2,
    "rule": "The surname 'Bently' is in Fergus 1843 and no entry under it carries the initial 'W' of 'Wm. T. Bently'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Wm. Wood",
-   "person_id": "ll_wm_wood",
+   "person_id": "wood_wm",
    "surname_in_1843": "Wood",
    "candidates": 5,
    "rule": "The surname 'Wood' is in Fergus 1843 and no entry under it carries the initial 'W' of 'Wm. Wood'. A surname-only agreement is a refusal."
   },
   {
    "resident": "air. Bowen",
-   "person_id": "ll_bowen_air",
+   "person_id": "bowen_air",
    "surname_in_1843": "Bowen",
    "candidates": 4,
    "rule": "The surname 'Bowen' is in Fergus 1843 and no entry under it carries the initial 'A' of 'air. Bowen'. A surname-only agreement is a refusal."
   },
   {
    "resident": "c. Warren",
-   "person_id": "ll_warren_c",
+   "person_id": "warren_c",
    "surname_in_1843": "Warren",
    "candidates": 1,
    "rule": "The surname 'Warren' is in Fergus 1843 and no entry under it carries the initial 'C' of 'c. Warren'. A surname-only agreement is a refusal."

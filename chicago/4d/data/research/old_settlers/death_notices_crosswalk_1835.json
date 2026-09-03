@@ -19,8 +19,8 @@
  "matches": [
   {
    "resident": "A. W. Flint",
-   "person_id": "ll_a_w_flint",
-   "household_id": "hh_ll_a_w_flint",
+   "person_id": "flint_a_w",
+   "household_id": "hh_flint_a_w",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Flint' folds to the same string as the entry's, and the given name of both begins A.",
@@ -74,8 +74,8 @@
   },
   {
    "resident": "Byram King",
-   "person_id": "doc_byram_king",
-   "household_id": "hh_doc_byram_king",
+   "person_id": "king_byram",
+   "household_id": "hh_king_byram",
    "grade_1835": "attested",
    "occupation_1835": "hardware_merchant",
    "rule": "Surname 'King' folds to the same string as the entry's, and the given name of both begins B.",
@@ -99,8 +99,8 @@
   },
   {
    "resident": "Caleb Harrison",
-   "person_id": "ll_harrison_caleb",
-   "household_id": "hh_ll_harrison_caleb",
+   "person_id": "harrison_caleb",
+   "household_id": "hh_harrison_caleb",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Harrison' folds to the same string as the entry's, and the given name of both begins C.",
@@ -155,8 +155,8 @@
   },
   {
    "resident": "Davi Andrews",
-   "person_id": "ll_andrews_davi",
-   "household_id": "hh_ll_andrews_davi",
+   "person_id": "andrews_davi",
+   "household_id": "hh_andrews_davi",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Andrews' folds to the same string as the entry's, and the given name of both begins D.",
@@ -265,8 +265,8 @@
   },
   {
    "resident": "Edward A. Rogers",
-   "person_id": "ll_edward_a_rogers",
-   "household_id": "hh_ll_edward_a_rogers",
+   "person_id": "rogers_edward_a",
+   "household_id": "hh_rogers_edward_a",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Rogers' folds to the same string as the entry's, and the given name of both begins E.",
@@ -320,8 +320,8 @@
   },
   {
    "resident": "Ehjah Doolittle",
-   "person_id": "ll_ehjah_doolittle",
-   "household_id": "hh_ll_ehjah_doolittle",
+   "person_id": "doolittle_ehjah",
+   "household_id": "hh_doolittle_ehjah",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Doolittle' folds to the same string as the entry's, and the given name of both begins E.",
@@ -345,8 +345,8 @@
   },
   {
    "resident": "Elded Smith",
-   "person_id": "ll_smith_elded",
-   "household_id": "hh_ll_smith_elded",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Smith' folds to the same string as the entry's, and the given name of both begins E.",
@@ -373,8 +373,8 @@
   },
   {
    "resident": "Geo. N. Powell",
-   "person_id": "ll_geo_n_powell",
-   "household_id": "hh_ll_geo_n_powell",
+   "person_id": "powell_geo_n",
+   "household_id": "hh_powell_geo_n",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Powell' folds to the same string as the entry's, and the given name of both begins G.",
@@ -428,8 +428,8 @@
   },
   {
    "resident": "H. B. Clarke",
-   "person_id": "doc_h_b_clarke",
-   "household_id": "hh_doc_h_b_clarke",
+   "person_id": "clarke_h_b",
+   "household_id": "hh_clarke_h_b",
    "grade_1835": "attested",
    "occupation_1835": "hardware_merchant",
    "rule": "Surname 'Clarke' folds to the same string as the entry's, and the given name of both begins H.",
@@ -455,8 +455,8 @@
   },
   {
    "resident": "H. Crocker",
-   "person_id": "doc_h_crocker",
-   "household_id": "hh_doc_h_crocker",
+   "person_id": "crocker_h",
+   "household_id": "hh_crocker_h",
    "grade_1835": "attested",
    "occupation_1835": "schoolteacher",
    "rule": "Surname 'Crocker' folds to the same string as the entry's, and the given name of both begins H.",
@@ -483,8 +483,8 @@
   },
   {
    "resident": "H. Vanderbogart",
-   "person_id": "ll_h_vanderbogart",
-   "household_id": "hh_ll_h_vanderbogart",
+   "person_id": "vanderbogart_h",
+   "household_id": "hh_vanderbogart_h",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Vanderbogart' folds to the same string as the entry's, and the given name of both begins H.",
@@ -511,8 +511,8 @@
   },
   {
    "resident": "Henry Mitchell",
-   "person_id": "ll_henry_mitchell",
-   "household_id": "hh_ll_henry_mitchell",
+   "person_id": "mitchell_henry",
+   "household_id": "hh_mitchell_henry",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Mitchell' folds to the same string as the entry's, and the given name of both begins H.",
@@ -539,8 +539,8 @@
   },
   {
    "resident": "Henry Moore",
-   "person_id": "doc_henry_moore",
-   "household_id": "hh_doc_henry_moore",
+   "person_id": "moore_henry",
+   "household_id": "hh_moore_henry",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "rule": "Surname 'Moore' folds to the same string as the entry's, and the given name of both begins H.",
@@ -594,8 +594,8 @@
   },
   {
    "resident": "J. A. Marshall",
-   "person_id": "doc_j_a_marshall",
-   "household_id": "hh_doc_j_a_marshall",
+   "person_id": "marshall_j_a",
+   "household_id": "hh_marshall_j_a",
    "grade_1835": "attested",
    "occupation_1835": "schoolteacher",
    "rule": "Surname 'Marshall' folds to the same string as the entry's, and the given name of both begins J.",
@@ -622,8 +622,8 @@
   },
   {
    "resident": "James Grant",
-   "person_id": "doc_james_grant",
-   "household_id": "hh_doc_james_grant",
+   "person_id": "grant_james",
+   "household_id": "hh_grant_james",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "rule": "Surname 'Grant' folds to the same string as the entry's, and the given name of both begins J.",
@@ -650,8 +650,8 @@
   },
   {
    "resident": "John Graham",
-   "person_id": "ll_john_graham",
-   "household_id": "hh_ll_john_graham",
+   "person_id": "graham_john",
+   "household_id": "hh_graham_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Graham' folds to the same string as the entry's, and the given name of both begins J.",
@@ -678,8 +678,8 @@
   },
   {
    "resident": "John M. Nelson",
-   "person_id": "ll_john_m_nelson",
-   "household_id": "hh_ll_john_m_nelson",
+   "person_id": "nelson_john_m",
+   "household_id": "hh_nelson_john_m",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Nelson' folds to the same string as the entry's, and the given name of both begins J.",
@@ -759,8 +759,8 @@
   },
   {
    "resident": "John Thompson",
-   "person_id": "ll_john_thompson",
-   "household_id": "hh_ll_john_thompson",
+   "person_id": "thompson_john",
+   "household_id": "hh_thompson_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Thompson' folds to the same string as the entry's, and the given name of both begins J.",
@@ -815,8 +815,8 @@
   },
   {
    "resident": "Joseph Bailly",
-   "person_id": "ll_bailly_joseph",
-   "household_id": "hh_ll_bailly_joseph",
+   "person_id": "bailly_joseph",
+   "household_id": "hh_bailly_joseph",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Bailly' folds to the same string as the entry's, and the given name of both begins J.",
@@ -1119,8 +1119,8 @@
   },
   {
    "resident": "George E. Walker",
-   "person_id": "ll_george_e_walker",
-   "household_id": "hh_ll_george_e_walker",
+   "person_id": "walker_george_e",
+   "household_id": "hh_walker_george_e",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Walker' folds to the same string as the entry's, and the given name of both begins G.",
@@ -1211,8 +1211,8 @@
   },
   {
    "resident": "Jesse Morgan",
-   "person_id": "ll_jesse_morgan",
-   "household_id": "hh_ll_jesse_morgan",
+   "person_id": "morgan_jesse",
+   "household_id": "hh_morgan_jesse",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Morgan' folds to the same string as the entry's, and the given name of both begins J.",
@@ -1355,8 +1355,8 @@
   },
   {
    "resident": "John Scott",
-   "person_id": "ll_scott_john",
-   "household_id": "hh_ll_scott_john",
+   "person_id": "scott_john",
+   "household_id": "hh_scott_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Scott' folds to the same string as the entry's, and the given name of both begins J.",
@@ -1395,8 +1395,8 @@
   },
   {
    "resident": "John Wilson",
-   "person_id": "ll_john_wilson",
-   "household_id": "hh_ll_john_wilson",
+   "person_id": "wilson_john",
+   "household_id": "hh_wilson_john",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Wilson' folds to the same string as the entry's, and the given name of both begins J.",
@@ -1581,14 +1581,14 @@
  "refusals": [
   {
    "resident": "A. Lamb",
-   "person_id": "ll_lamb_a",
+   "person_id": "lamb_a",
    "surname_in_the_list": "Lamb",
    "candidates": 1,
    "rule": "The surname 'Lamb' is in Fergus's death notices and no entry under it carries the initial 'A' of 'A. Lamb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Alanson B. Vaughan",
-   "person_id": "ll_alanson_b_vaughan",
+   "person_id": "vaughan_alanson_b",
    "surname_in_the_list": "Vaughan",
    "candidates": 1,
    "rule": "The surname 'Vaughan' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alanson B. Vaughan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1602,28 +1602,28 @@
   },
   {
    "resident": "Alexr. H. Tucker",
-   "person_id": "ll_alexr_h_tucker",
+   "person_id": "tucker_alexr_h",
    "surname_in_the_list": "Tucker",
    "candidates": 1,
    "rule": "The surname 'Tucker' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alexr. H. Tucker'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Alva Dunlap",
-   "person_id": "ll_alva_dunlap",
+   "person_id": "dunlap_alva",
    "surname_in_the_list": "Dunlap",
    "candidates": 1,
    "rule": "The surname 'Dunlap' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alva Dunlap'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Ann Airs. Day",
-   "person_id": "ll_day_ann_airs",
+   "person_id": "day_ann_airs",
    "surname_in_the_list": "Day",
    "candidates": 1,
    "rule": "The surname 'Day' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Ann Airs. Day'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Archibald Knox",
-   "person_id": "ll_archibald_knox",
+   "person_id": "knox_archibald",
    "surname_in_the_list": "Knox",
    "candidates": 1,
    "rule": "The surname 'Knox' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Archibald Knox'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1637,21 +1637,21 @@
   },
   {
    "resident": "Beta L.. Barber",
-   "person_id": "ll_barber_beta_l",
+   "person_id": "barber_beta_l",
    "surname_in_the_list": "Barber",
    "candidates": 1,
    "rule": "The surname 'Barber' is in Fergus's death notices and no entry under it carries the initial 'B' of 'Beta L.. Barber'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Caleb Foster",
-   "person_id": "ll_caleb_foster",
+   "person_id": "foster_caleb",
    "surname_in_the_list": "Foster",
    "candidates": 1,
    "rule": "The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Caroline Miss Gooding",
-   "person_id": "ll_gooding_caroline",
+   "person_id": "gooding_caroline",
    "surname_in_the_list": "Gooding",
    "candidates": 2,
    "rule": "The surname 'Gooding' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caroline Miss Gooding'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1665,7 +1665,7 @@
   },
   {
    "resident": "Charles C. Drake",
-   "person_id": "ll_charles_c_drake",
+   "person_id": "drake_charles_c",
    "surname_in_the_list": "Drake",
    "candidates": 1,
    "rule": "The surname 'Drake' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1679,14 +1679,14 @@
   },
   {
    "resident": "Charles Wells",
-   "person_id": "ll_wells_charles",
+   "person_id": "wells_charles",
    "surname_in_the_list": "Wells",
    "candidates": 3,
    "rule": "The surname 'Wells' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles Wells'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Chas. H. Chapman",
-   "person_id": "ll_chas_h_chapman",
+   "person_id": "chapman_chas_h",
    "surname_in_the_list": "Chapman",
    "candidates": 1,
    "rule": "The surname 'Chapman' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1700,28 +1700,28 @@
   },
   {
    "resident": "Damel M. Green",
-   "person_id": "ll_green_damel_m",
+   "person_id": "green_damel_m",
    "surname_in_the_list": "Green",
    "candidates": 1,
    "rule": "The surname 'Green' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Damel M. Green'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Daniel Howland",
-   "person_id": "ll_daniel_howland",
+   "person_id": "howland_daniel",
    "surname_in_the_list": "Howland",
    "candidates": 1,
    "rule": "The surname 'Howland' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Daniel Howland'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Daniel Newton",
-   "person_id": "ll_daniel_newton",
+   "person_id": "newton_daniel",
    "surname_in_the_list": "Newton",
    "candidates": 1,
    "rule": "The surname 'Newton' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Daniel Newton'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "David Bigelow",
-   "person_id": "ll_david_bigelow",
+   "person_id": "bigelow_david",
    "surname_in_the_list": "Bigelow",
    "candidates": 3,
    "rule": "The surname 'Bigelow' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Bigelow'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1735,14 +1735,14 @@
   },
   {
    "resident": "David Harris",
-   "person_id": "ll_david_harris",
+   "person_id": "harris_david",
    "surname_in_the_list": "Harris",
    "candidates": 1,
    "rule": "The surname 'Harris' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Harris'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "David Swearingen",
-   "person_id": "ll_swearingen_david",
+   "person_id": "swearingen_david",
    "surname_in_the_list": "Swearingen",
    "candidates": 1,
    "rule": "The surname 'Swearingen' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Swearingen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1777,35 +1777,35 @@
   },
   {
    "resident": "Ebenezer Ford",
-   "person_id": "ll_ford_ebenezer",
+   "person_id": "ford_ebenezer",
    "surname_in_the_list": "Ford",
    "candidates": 1,
    "rule": "The surname 'Ford' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Ebenezer Ford'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Edson White",
-   "person_id": "ll_white_edson",
+   "person_id": "white_edson",
    "surname_in_the_list": "White",
    "candidates": 1,
    "rule": "The surname 'White' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Edson White'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Edwin A. Lincoln",
-   "person_id": "ll_lincoln_edwin_a",
+   "person_id": "lincoln_edwin_a",
    "surname_in_the_list": "Lincoln",
    "candidates": 1,
    "rule": "The surname 'Lincoln' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Edwin A. Lincoln'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Eli F Anderson",
-   "person_id": "ll_anderson_eli_f",
+   "person_id": "anderson_eli_f",
    "surname_in_the_list": "Anderson",
    "candidates": 1,
    "rule": "The surname 'Anderson' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eli F Anderson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Eli Gilman",
-   "person_id": "ll_gilman_eli",
+   "person_id": "gilman_eli",
    "surname_in_the_list": "Gilman",
    "candidates": 1,
    "rule": "The surname 'Gilman' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eli Gilman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1819,7 +1819,7 @@
   },
   {
    "resident": "Eliza Pearce",
-   "person_id": "ll_eliza_pearce",
+   "person_id": "pearce_eliza",
    "surname_in_the_list": "Pearce",
    "candidates": 1,
    "rule": "The surname 'Pearce' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eliza Pearce'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1833,35 +1833,35 @@
   },
   {
    "resident": "Erastus Clark",
-   "person_id": "ll_clark_erastus",
+   "person_id": "clark_erastus",
    "surname_in_the_list": "Clark",
    "candidates": 2,
    "rule": "The surname 'Clark' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Ezekiel Turner",
-   "person_id": "ll_ezekiel_turner",
+   "person_id": "turner_ezekiel",
    "surname_in_the_list": "Turner",
    "candidates": 1,
    "rule": "The surname 'Turner' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Ezekiel Turner'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Ford Freeman",
-   "person_id": "ll_ford_freeman",
+   "person_id": "freeman_ford",
    "surname_in_the_list": "Freeman",
    "candidates": 1,
    "rule": "The surname 'Freeman' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Ford Freeman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Franklin Spalding",
-   "person_id": "ll_franklin_spalding",
+   "person_id": "spalding_franklin",
    "surname_in_the_list": "Spalding",
    "candidates": 1,
    "rule": "The surname 'Spalding' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Franklin Spalding'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Frederick Myers",
-   "person_id": "ll_myers_frederick",
+   "person_id": "myers_frederick",
    "surname_in_the_list": "Myers",
    "candidates": 3,
    "rule": "The surname 'Myers' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Frederick Myers'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1875,14 +1875,14 @@
   },
   {
    "resident": "Geo. A. Burlingame",
-   "person_id": "ll_geo_a_burlingame",
+   "person_id": "burlingame_geo_a",
    "surname_in_the_list": "Burlingame",
    "candidates": 2,
    "rule": "The surname 'Burlingame' is in Fergus's death notices and no entry under it carries the initial 'G' of 'Geo. A. Burlingame'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "George Strong",
-   "person_id": "ll_strong_george",
+   "person_id": "strong_george",
    "surname_in_the_list": "Strong",
    "candidates": 1,
    "rule": "The surname 'Strong' is in Fergus's death notices and no entry under it carries the initial 'G' of 'George Strong'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1910,14 +1910,14 @@
   },
   {
    "resident": "Hanibal Ward",
-   "person_id": "ll_ward_hanibal",
+   "person_id": "ward_hanibal",
    "surname_in_the_list": "Ward",
    "candidates": 2,
    "rule": "The surname 'Ward' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hanibal Ward'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Hannah Hurlburt",
-   "person_id": "ll_hannah_hurlburt",
+   "person_id": "hurlburt_hannah",
    "surname_in_the_list": "Hurlburt",
    "candidates": 1,
    "rule": "The surname 'Hurlburt' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hannah Hurlburt'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -1931,63 +1931,63 @@
   },
   {
    "resident": "Henry N. Hunt",
-   "person_id": "ll_hunt_henry_n",
+   "person_id": "hunt_henry_n",
    "surname_in_the_list": "Hunt",
    "candidates": 3,
    "rule": "The surname 'Hunt' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Henry N. Hunt'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Henry or Little",
-   "person_id": "ll_little_henry_or",
+   "person_id": "little_henry_or",
    "surname_in_the_list": "Little",
    "candidates": 1,
    "rule": "The surname 'Little' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Henry or Little'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Ira Herrick",
-   "person_id": "ll_ira_herrick",
+   "person_id": "herrick_ira",
    "surname_in_the_list": "Herrick",
    "candidates": 1,
    "rule": "The surname 'Herrick' is in Fergus's death notices and no entry under it carries the initial 'I' of 'Ira Herrick'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. Carter",
-   "person_id": "ll_j_carter",
+   "person_id": "carter_j",
    "surname_in_the_list": "Carter",
    "candidates": 1,
    "rule": "The surname 'Carter' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. Carter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. Chester Reid",
-   "person_id": "ll_j_chester_reid",
+   "person_id": "reid_j_chester",
    "surname_in_the_list": "Reid",
    "candidates": 1,
    "rule": "The surname 'Reid' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. Chester Reid'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. D. Doty",
-   "person_id": "ll_j_d_doty",
+   "person_id": "doty_j_d",
    "surname_in_the_list": "Doty",
    "candidates": 1,
    "rule": "The surname 'Doty' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. D. Doty'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. E. Bishop",
-   "person_id": "ll_bishop_j_e",
+   "person_id": "bishop_j_e",
    "surname_in_the_list": "Bishop",
    "candidates": 1,
    "rule": "The surname 'Bishop' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. E. Bishop'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. E. Field",
-   "person_id": "ll_field_j_e",
+   "person_id": "field_j_e",
    "surname_in_the_list": "Field",
    "candidates": 2,
    "rule": "The surname 'Field' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. E. Field'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "J. H. Collins",
-   "person_id": "doc_j_h_collins",
+   "person_id": "collins_j_h",
    "surname_in_the_list": "Collins",
    "candidates": 1,
    "rule": "The surname 'Collins' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. H. Collins'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2001,42 +2001,42 @@
   },
   {
    "resident": "Jacob Fake",
-   "person_id": "ll_jacob_fake",
+   "person_id": "fake_jacob",
    "surname_in_the_list": "Fake",
    "candidates": 1,
    "rule": "The surname 'Fake' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Jacob Fake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "James Crawford",
-   "person_id": "ll_crawford_james",
+   "person_id": "crawford_james",
    "surname_in_the_list": "Crawford",
    "candidates": 1,
    "rule": "The surname 'Crawford' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James Crawford'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "James H. Gibbs",
-   "person_id": "ll_james_h_gibbs",
+   "person_id": "gibbs_james_h",
    "surname_in_the_list": "Gibbs",
    "candidates": 1,
    "rule": "The surname 'Gibbs' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James H. Gibbs'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "James Houston Work",
-   "person_id": "ll_work_james_houston",
+   "person_id": "work_james_houston",
    "surname_in_the_list": "Work",
    "candidates": 1,
    "rule": "The surname 'Work' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James Houston Work'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "James L.. Dean",
-   "person_id": "ll_dean_james_l",
+   "person_id": "dean_james_l",
    "surname_in_the_list": "Dean",
    "candidates": 1,
    "rule": "The surname 'Dean' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James L.. Dean'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "James R. Lawrence",
-   "person_id": "ll_james_r_lawrence",
+   "person_id": "lawrence_james_r",
    "surname_in_the_list": "Lawrence",
    "candidates": 1,
    "rule": "The surname 'Lawrence' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James R. Lawrence'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2050,28 +2050,28 @@
   },
   {
    "resident": "John S. Barry",
-   "person_id": "ll_john_s_barry",
+   "person_id": "barry_john_s",
    "surname_in_the_list": "Barry",
    "candidates": 1,
    "rule": "The surname 'Barry' is in Fergus's death notices and no entry under it carries the initial 'J' of 'John S. Barry'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "John Volk",
-   "person_id": "ll_john_volk",
+   "person_id": "volk_john",
    "surname_in_the_list": "Volk",
    "candidates": 1,
    "rule": "The surname 'Volk' is in Fergus's death notices and no entry under it carries the initial 'J' of 'John Volk'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Joseph Archer",
-   "person_id": "ll_archer_joseph",
+   "person_id": "archer_joseph",
    "surname_in_the_list": "Archer",
    "candidates": 1,
    "rule": "The surname 'Archer' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joseph Archer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Joseph Chadwick",
-   "person_id": "ll_chadwick_joseph",
+   "person_id": "chadwick_joseph",
    "surname_in_the_list": "Chadwick",
    "candidates": 1,
    "rule": "The surname 'Chadwick' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joseph Chadwick'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2092,42 +2092,42 @@
   },
   {
    "resident": "Leonard, C. Hugunin",
-   "person_id": "ll_hugunin_leonard_c",
+   "person_id": "hugunin_leonard_c",
    "surname_in_the_list": "Hugunin",
    "candidates": 6,
    "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard, C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Levi Ayres",
-   "person_id": "ll_ayres_levi",
+   "person_id": "ayres_levi",
    "surname_in_the_list": "Ayres",
    "candidates": 1,
    "rule": "The surname 'Ayres' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Levi Ayres'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Levi Blake",
-   "person_id": "ll_levi_blake",
+   "person_id": "blake_levi",
    "surname_in_the_list": "Blake",
    "candidates": 1,
    "rule": "The surname 'Blake' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Levi Blake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Liman Curtis",
-   "person_id": "ll_curtis_liman",
+   "person_id": "curtis_liman",
    "surname_in_the_list": "Curtis",
    "candidates": 1,
    "rule": "The surname 'Curtis' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Liman Curtis'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Lorenzo Downing",
-   "person_id": "ll_lorenzo_downing",
+   "person_id": "downing_lorenzo",
    "surname_in_the_list": "Downing",
    "candidates": 1,
    "rule": "The surname 'Downing' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lorenzo Downing'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Lyman Burnet",
-   "person_id": "ll_lyman_burnet",
+   "person_id": "burnet_lyman",
    "surname_in_the_list": "Burnet",
    "candidates": 1,
    "rule": "The surname 'Burnet' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lyman Burnet'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2141,14 +2141,14 @@
   },
   {
    "resident": "Manson Parker",
-   "person_id": "ll_manson_parker",
+   "person_id": "parker_manson",
    "surname_in_the_list": "Parker",
    "candidates": 2,
    "rule": "The surname 'Parker' is in Fergus's death notices and no entry under it carries the initial 'M' of 'Manson Parker'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Mary Meacham",
-   "person_id": "ll_mary_meacham",
+   "person_id": "meacham_mary",
    "surname_in_the_list": "Meacham",
    "candidates": 1,
    "rule": "The surname 'Meacham' is in Fergus's death notices and no entry under it carries the initial 'M' of 'Mary Meacham'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2169,42 +2169,42 @@
   },
   {
    "resident": "Nancey Ann Goodell",
-   "person_id": "ll_nancey_ann_goodell",
+   "person_id": "goodell_nancey_ann",
    "surname_in_the_list": "Goodell",
    "candidates": 1,
    "rule": "The surname 'Goodell' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Nancey Ann Goodell'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Nelson Douglass",
-   "person_id": "ll_nelson_douglass",
+   "person_id": "douglass_nelson",
    "surname_in_the_list": "Douglass",
    "candidates": 2,
    "rule": "The surname 'Douglass' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Nelson Douglass'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Niles Rose",
-   "person_id": "ll_niles_rose",
+   "person_id": "rose_niles",
    "surname_in_the_list": "Rose",
    "candidates": 1,
    "rule": "The surname 'Rose' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Niles Rose'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Orson Wheeler",
-   "person_id": "ll_wheeler_orson",
+   "person_id": "wheeler_orson",
    "surname_in_the_list": "Wheeler",
    "candidates": 3,
    "rule": "The surname 'Wheeler' is in Fergus's death notices and no entry under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Patrick Martin",
-   "person_id": "ll_patrick_martin",
+   "person_id": "martin_patrick",
    "surname_in_the_list": "Martin",
    "candidates": 1,
    "rule": "The surname 'Martin' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Patrick Martin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Peter Chase",
-   "person_id": "ll_chase_peter",
+   "person_id": "chase_peter",
    "surname_in_the_list": "Chase",
    "candidates": 2,
    "rule": "The surname 'Chase' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Peter Chase'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2218,14 +2218,14 @@
   },
   {
    "resident": "Phillips James",
-   "person_id": "ll_phillips_james",
+   "person_id": "james_phillips",
    "surname_in_the_list": "James",
    "candidates": 1,
    "rule": "The surname 'James' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Phillips James'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Philo C. Mills",
-   "person_id": "ll_philo_c_mills",
+   "person_id": "mills_philo_c",
    "surname_in_the_list": "Mills",
    "candidates": 1,
    "rule": "The surname 'Mills' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Philo C. Mills'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2239,35 +2239,35 @@
   },
   {
    "resident": "Phineas How",
-   "person_id": "ll_phineas_how",
+   "person_id": "how_phineas",
    "surname_in_the_list": "How",
    "candidates": 1,
    "rule": "The surname 'How' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Phineas How'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Porter Fuller",
-   "person_id": "ll_porter_fuller",
+   "person_id": "fuller_porter",
    "surname_in_the_list": "Fuller",
    "candidates": 1,
    "rule": "The surname 'Fuller' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Porter Fuller'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "R. Stewart",
-   "person_id": "doc_r_stewart",
+   "person_id": "stewart_r",
    "surname_in_the_list": "Stewart",
    "candidates": 1,
    "rule": "The surname 'Stewart' is in Fergus's death notices and no entry under it carries the initial 'R' of 'R. Stewart'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Reuben Conant",
-   "person_id": "ll_reuben_conant",
+   "person_id": "conant_reuben",
    "surname_in_the_list": "Conant",
    "candidates": 1,
    "rule": "The surname 'Conant' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Reuben Conant'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Richard Steel",
-   "person_id": "ll_steel_richard",
+   "person_id": "steel_richard",
    "surname_in_the_list": "Steel",
    "candidates": 1,
    "rule": "The surname 'Steel' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Richard Steel'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2281,14 +2281,14 @@
   },
   {
    "resident": "Rowland I!. Cook",
-   "person_id": "ll_cook_rowland_i",
+   "person_id": "cook_rowland_i",
    "surname_in_the_list": "Cook",
    "candidates": 2,
    "rule": "The surname 'Cook' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Ruel Starr",
-   "person_id": "ll_ruel_starr",
+   "person_id": "starr_ruel",
    "surname_in_the_list": "Starr",
    "candidates": 1,
    "rule": "The surname 'Starr' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Ruel Starr'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2302,56 +2302,56 @@
   },
   {
    "resident": "S. C. Stimson",
-   "person_id": "ll_s_c_stimson",
+   "person_id": "stimson_s_c",
    "surname_in_the_list": "Stimson",
    "candidates": 1,
    "rule": "The surname 'Stimson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'S. C. Stimson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Jackson",
-   "person_id": "ll_jackson_samuel",
+   "person_id": "jackson_samuel",
    "surname_in_the_list": "Jackson",
    "candidates": 3,
    "rule": "The surname 'Jackson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Jackson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Johnson",
-   "person_id": "ll_johnson_samuel",
+   "person_id": "johnson_samuel",
    "surname_in_the_list": "Johnson",
    "candidates": 2,
    "rule": "The surname 'Johnson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Johnson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Lewis",
-   "person_id": "doc_samuel_lewis",
+   "person_id": "lewis_samuel",
    "surname_in_the_list": "Lewis",
    "candidates": 2,
    "rule": "The surname 'Lewis' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Shaw",
-   "person_id": "ll_samuel_shaw",
+   "person_id": "shaw_samuel",
    "surname_in_the_list": "Shaw",
    "candidates": 1,
    "rule": "The surname 'Shaw' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Shaw'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Stuart",
-   "person_id": "ll_samuel_stuart",
+   "person_id": "stuart_samuel",
    "surname_in_the_list": "Stuart",
    "candidates": 3,
    "rule": "The surname 'Stuart' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Stuart'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Sciota Evans",
-   "person_id": "ll_sciota_evans",
+   "person_id": "evans_sciota",
    "surname_in_the_list": "Evans",
    "candidates": 1,
    "rule": "The surname 'Evans' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Sciota Evans'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Sidney Dyer",
-   "person_id": "ll_sidney_dyer",
+   "person_id": "dyer_sidney",
    "surname_in_the_list": "Dyer",
    "candidates": 1,
    "rule": "The surname 'Dyer' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Sidney Dyer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2372,28 +2372,28 @@
   },
   {
    "resident": "Stephen Mack",
-   "person_id": "ll_stephen_mack",
+   "person_id": "mack_stephen",
    "surname_in_the_list": "Mack",
    "candidates": 1,
    "rule": "The surname 'Mack' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "T. M. Morrison",
-   "person_id": "ll_t_m_morrison",
+   "person_id": "morrison_t_m",
    "surname_in_the_list": "Morrison",
    "candidates": 1,
    "rule": "The surname 'Morrison' is in Fergus's death notices and no entry under it carries the initial 'T' of 'T. M. Morrison'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Tho. C. Webb",
-   "person_id": "ll_tho_c_webb",
+   "person_id": "webb_tho_c",
    "surname_in_the_list": "Webb",
    "candidates": 1,
    "rule": "The surname 'Webb' is in Fergus's death notices and no entry under it carries the initial 'T' of 'Tho. C. Webb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Thomas Hoit",
-   "person_id": "placed_hoit_thomas",
+   "person_id": "hoit_thomas",
    "surname_in_the_list": "Hoit",
    "candidates": 1,
    "rule": "The surname 'Hoit' is in Fergus's death notices and no entry under it carries the initial 'T' of 'Thomas Hoit'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
@@ -2407,56 +2407,56 @@
   },
   {
    "resident": "William Allen",
-   "person_id": "ll_allen_william",
+   "person_id": "allen_william",
    "surname_in_the_list": "Allen",
    "candidates": 2,
    "rule": "The surname 'Allen' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Allen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "William G Blair",
-   "person_id": "ll_blair_william_g",
+   "person_id": "blair_william_g",
    "surname_in_the_list": "Blair",
    "candidates": 3,
    "rule": "The surname 'Blair' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William G Blair'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "William Hunter",
-   "person_id": "ll_william_hunter",
+   "person_id": "hunter_william",
    "surname_in_the_list": "Hunter",
    "candidates": 2,
    "rule": "The surname 'Hunter' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Hunter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "William Power",
-   "person_id": "ll_william_power",
+   "person_id": "power_william",
    "surname_in_the_list": "Power",
    "candidates": 1,
    "rule": "The surname 'Power' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Power'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "William Spencer",
-   "person_id": "ll_spencer_william",
+   "person_id": "spencer_william",
    "surname_in_the_list": "Spencer",
    "candidates": 2,
    "rule": "The surname 'Spencer' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Spencer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Wm. Wood",
-   "person_id": "ll_wm_wood",
+   "person_id": "wood_wm",
    "surname_in_the_list": "Wood",
    "candidates": 2,
    "rule": "The surname 'Wood' is in Fergus's death notices and no entry under it carries the initial 'W' of 'Wm. Wood'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "air. Bowen",
-   "person_id": "ll_bowen_air",
+   "person_id": "bowen_air",
    "surname_in_the_list": "Bowen",
    "candidates": 2,
    "rule": "The surname 'Bowen' is in Fergus's death notices and no entry under it carries the initial 'A' of 'air. Bowen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "c. Warren",
-   "person_id": "ll_warren_c",
+   "person_id": "warren_c",
    "surname_in_the_list": "Warren",
    "candidates": 5,
    "rule": "The surname 'Warren' is in Fergus's death notices and no entry under it carries the initial 'C' of 'c. Warren'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."

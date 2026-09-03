@@ -108,85 +108,85 @@
       "sources": ["chicagology_prefire127"],
       "candidates": [{"name": "James Couch, later Tremont House proprietor", "assessment": "strong", "asserted": false, "basis": "Exact name, brother Ira and distinctive hotel career.", "conflicts": ["Reviewed histories place the Couch hotel operation after the 1 July 1835 scene date."], "sources": ["chicagology_prefire127"]}]
     },
-    "ll_alling_prudde": {
+    "alling_prudde": {
       "outcome": "candidate_identity",
       "summary": "Prudden Alling is a plausible normalization of the unusual printed Prudde Alling, but the indexed genealogy result supplies no Chicago chronology. The spelling remains unmerged pending an original scan or dated record.",
       "sources": [],
       "candidates": [{"name": "Prudden Alling", "assessment": "possible", "asserted": false, "basis": "Rare near-exact name and likely terminal-letter loss.", "conflicts": ["No Chicago, Illinois or scene-date discriminator was found."], "sources": []}]
     },
-    "ll_blair_william_g": {
+    "blair_william_g": {
       "outcome": "candidate_identity",
       "summary": "A county history lists William G. Blair among early Winnebago County settlers. Matching initials and region make a lead, but the common name and absent Chicago-letter bridge prevent identification.",
       "sources": ["rockford_first_settlers_1835"],
       "candidates": [{"name": "William G. Blair of Winnebago County", "assessment": "possible", "asserted": false, "basis": "Exact initials and northern-Illinois chronology.", "conflicts": ["No direct Chicago post-office link; common name."], "sources": ["rockford_first_settlers_1835"]}]
     },
-    "ll_bly_rouse": {
+    "bly_rouse": {
       "outcome": "candidate_identity",
       "summary": "Rouse Bly of Huron County, Ohio is an exact uncommon-name candidate. Ohio residence supplies competing geography, so the identity is retained as a rejected or transit lead rather than imported.",
       "sources": ["ohio_firelands_rouse_bly"],
       "candidates": [{"name": "Rouse Bly of New Haven Township, Ohio", "assessment": "possible", "asserted": false, "basis": "Exact uncommon name and adult period chronology.", "conflicts": ["Documented Ohio residence and no Chicago migration bridge."], "sources": ["ohio_firelands_rouse_bly"]}]
     },
-    "ll_butterfield_ben": {
+    "butterfield_ben": {
       "outcome": "candidate_identity",
       "summary": "A historical marker places Ben Butterfield at Lockport and on a Danville-to-Chicago route from 1830-31. This is a strong regional candidate, but postal reachability does not establish town residence.",
       "sources": ["hmdb_butterfield_trail"],
       "candidates": [{"name": "Ben Butterfield of Lockport", "assessment": "strong", "asserted": false, "basis": "Exact familiar name, Cook/Will region and explicit Chicago route.", "conflicts": ["Lockport residence; no record links him to this letter."], "sources": ["hmdb_butterfield_trail"]}]
     },
-    "ll_chadwick_joseph": {
+    "chadwick_joseph": {
       "outcome": "candidate_identity",
       "summary": "Joseph M. Chadwick, a military engineer who lived in Illinois before reaching Texas in December 1835, is a possible candidate. The missing middle initial and absent Chicago bridge keep the identity unasserted.",
       "sources": ["tsaha_joseph_chadwick"],
       "candidates": [{"name": "Joseph M. Chadwick, later of Goliad", "assessment": "possible", "asserted": false, "basis": "Exact first and surname, Illinois residence and compatible chronology.", "conflicts": ["No Chicago location or letter linkage; candidate left for Texas by December 1835."], "sources": ["tsaha_joseph_chadwick"]}]
     },
-    "ll_comstock_h_h": {
+    "comstock_h_h": {
       "outcome": "candidate_identity",
       "summary": "H. H. Comstock appears in Kalamazoo County pioneer history around 1834. Exact initials and regional chronology are useful, but competing Michigan geography and no migration bridge bar a merge.",
       "sources": ["michigan_hh_comstock_history"],
       "candidates": [{"name": "H. H. Comstock of Kalamazoo County", "assessment": "possible", "asserted": false, "basis": "Exact initials, uncommon surname and Great Lakes chronology.", "conflicts": ["Michigan rather than Chicago residence; no letter bridge."], "sources": ["michigan_hh_comstock_history"]}]
     },
-    "ll_absolam_reel": {
+    "reel_absolam": {
       "outcome": "candidate_identity",
       "summary": "A contemporary Indiana court notice names Absalom Reel in March 1834. The near-exact spelling is notable, but Indiana geography and no post-office bridge make this a competing candidate only.",
       "sources": ["indiana_absalom_reel_1834"],
       "candidates": [{"name": "Absalom Reel of Indiana", "assessment": "possible", "asserted": false, "basis": "Near-exact rare name in a contemporary regional record.", "conflicts": ["Indiana record and no Chicago link; Absolam/Absalom spelling differs."], "sources": ["indiana_absalom_reel_1834"]}]
     },
-    "ll_alfred_churchill": {
+    "churchill_alfred": {
       "outcome": "candidate_identity",
       "summary": "Cook County history places an Alfred Churchill on Flag Creek and in an 1836 county political meeting. Exact name and Cook County geography are strong, but no source directly links him to the earlier letter.",
       "sources": ["goodman_history_cook_county_early"],
       "candidates": [{"name": "Alfred Churchill of Flag Creek", "assessment": "strong", "asserted": false, "basis": "Exact name, Cook County and near-date civic record.", "conflicts": ["Hinterland residence and no explicit letter linkage."], "sources": ["goodman_history_cook_county_early"]}]
     },
-    "ll_alva_dunlap": {
+    "dunlap_alva": {
       "outcome": "candidate_identity",
       "summary": "Local history says Alva Dunlap first traveled to Illinois in 1834 and later settled near Peoria. Exact uncommon name and date make a strong traveler candidate, not evidence of Chicago residence.",
       "sources": ["dunlap_alva_dunlap_history"],
       "candidates": [{"name": "Alva Dunlap of Peoria County", "assessment": "strong", "asserted": false, "basis": "Exact uncommon name and 1834 Illinois travel.", "conflicts": ["Later Peoria-area settlement and no direct letter bridge."], "sources": ["dunlap_alva_dunlap_history"]}]
     },
-    "ll_andrew_miles": {
+    "miles_andrew": {
       "outcome": "candidate_identity",
       "summary": "Kane County history places an Andrew Miles or Mills on a Fox River claim in 1834. Exact or near-exact name and date are strong, while the spelling conflict and hinterland location remain unresolved.",
       "sources": ["kane_geneva_andrew_miles"],
       "candidates": [{"name": "Andrew Miles or Mills of Kane County", "assessment": "strong", "asserted": false, "basis": "Exact given name, near-exact surname and 1834 regional claim.", "conflicts": ["Miles/Mills source conflict; no direct link to the Chicago letter."], "sources": ["kane_geneva_andrew_miles"]}]
     },
-    "ll_bennet_bailey": {
+    "bailey_bennet": {
       "outcome": "candidate_identity",
       "summary": "The 1843 Chicago directory names Bennet Bailey as a Mechanics' Institute director. Exact spelling and later Chicago civic activity make a strong candidate, but nine years and no intermediate bridge prevent a merge.",
       "sources": ["norris_chicago_directory_1843"],
       "candidates": [{"name": "Bennet Bailey of the Chicago Mechanics' Institute", "assessment": "strong", "asserted": false, "basis": "Exact name and later Chicago institutional role.", "conflicts": ["No record bridges the 1834 letter to the 1843 directory entry."], "sources": ["norris_chicago_directory_1843"]}]
     },
-    "ll_charles_h_bartlett": {
+    "bartlett_charles_h": {
       "outcome": "candidate_identity",
       "summary": "Chicago History Museum catalogs Charles H. Bartlett diaries beginning before his 1834 farming near Diamond Lake. Exact name, date and regional movement are strong; image-level diary review is still needed.",
       "sources": ["chm_bartlett_diaries"],
       "candidates": [{"name": "Charles H. Bartlett of Diamond Lake", "assessment": "strong", "asserted": false, "basis": "Exact full name and 1834 Lake County chronology.", "conflicts": ["Regional farm rather than Chicago town; letter not identified in the finding aid."], "sources": ["chm_bartlett_diaries"]}]
     },
-    "ll_clark_b_albee": {
+    "albee_clark_b": {
       "outcome": "candidate_identity",
       "summary": "Grand Haven history identifies exact-name Clark B. Albee in early commerce with Chicago-linked David Carver. The network is suggestive, but Michigan geography and no direct letter evidence keep the candidate unmerged.",
       "sources": ["migenweb_clark_albee_grand_haven"],
       "candidates": [{"name": "Clark B. Albee of Grand Haven", "assessment": "strong", "asserted": false, "basis": "Exact full name, Great Lakes trade and named Chicago associate.", "conflicts": ["Documented Michigan setting and no direct letter link."], "sources": ["migenweb_clark_albee_grand_haven"]}]
     },
-    "ll_curtis_parkes": {
+    "parkes_curtis": {
       "outcome": "candidate_identity",
       "summary": "Porter County history names Curtis Parkes in its February 1836 organization vote. Exact name and adjacent-region chronology are strong, but the Chicago letter may only reflect the nearest postal route.",
       "sources": ["porter_curtis_parkes"],

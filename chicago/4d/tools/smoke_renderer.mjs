@@ -10326,9 +10326,9 @@ for (const [label, viewport, touch] of [
       const group = mount ? mount.querySelector('details.res-ll-group') : null;
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
-      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
-      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      const letter = rows.find((r) => r.dataset.id === 'hh_luce_william');
+      const candidate = rows.find((r) => r.dataset.id === 'hh_garrett_a');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_hail_aifred');
       for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;

@@ -47,7 +47,7 @@ Frozen 2026-09-03 from `data/residents/households/*.json` — the household reco
 `index.json`, which on that date listed 824 households against 825 on disk (T-0491). Every named
 person with no research block, sorted inside the `established_profile`, `letter_list_only_present` and
 `letter_list_only_uncertain` strata, interleaved one from each stratum in turn, and chunked 76/76/76
-in fixed order. Cohort 15 runs `ll_franklin_spalding` … `wright_john`, and its strata are
+in fixed order. Cohort 15 runs `spalding_franklin` … `wright_john`, and its strata are
 27 established_profile, 24 letter_list_only_present, 25 letter_list_only_uncertain.
 
 A member that later acquires a research row does **not** make this manifest stale — that is what the

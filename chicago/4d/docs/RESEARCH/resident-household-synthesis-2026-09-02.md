@@ -27,8 +27,8 @@ A post-office letter now documents a real named person considered reachable thro
 
 Structured promotion changed **2 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
 
-- `ll_joshua_hathaway` (T-0483): birth_year=1810
-- `ll_woodworth_james_h` (T-0486): birth_year=1804
+- `hathaway_joshua` (T-0483): birth_year=1810
+- `woodworth_james_h` (T-0486): birth_year=1804
 
 ## 1840 census evidence
 

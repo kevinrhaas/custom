@@ -27,23 +27,23 @@ ESTABLISHED = (
 # rest span the source's name/OCR range.  Freezing the ids prevents a later mint
 # or corrected spelling from quietly changing who received research effort.
 LETTER_IDS = (
-    "hh_ll_hail_aifred", "hh_ll_beddlecome_ash", "hh_ll_gooding_caroline",
-    "hh_ll_benubien_charl", "hh_ll_brookins_david", "hh_ll_ehjah_doolittle",
-    "hh_ll_boles_george", "hh_ll_vyekoff_henry_s", "hh_ll_demans_j_t",
-    "hh_ll_force_john", "hh_ll_bloget_josiah_i", "hh_ll_maccoy_lorenzo",
-    "hh_ll_sunny_miches", "hh_ll_anstin_al", "hh_ll_nelson_mary",
-    "hh_ll_oakley_benjamin_w", "hh_ll_paddock_harriet", "hh_ll_payne_win",
-    "hh_ll_preston_stephen_ii", "hh_ll_starkweather_rob_t", "hh_ll_codding_sally",
-    "hh_ll_byam_seth", "hh_ll_soren_helen", "hh_ll_beger_tobias",
-    "hh_ll_saunders_william_s", "hh_ll_alanson_b_vaughan",
-    "hh_ll_m_vaughton_angus", "hh_ll_ostrander_catherine", "hh_ll_d_v_s_torry",
-    "hh_ll_dean_farren", "hh_ll_eli_benn", "hh_ll_franklin_spalding",
-    "hh_ll_h_vanderbogart", "hh_ll_hiram_eager", "hh_ll_jacob_langer",
-    "hh_ll_james_mcfadden", "hh_ll_jesse_holder", "hh_ll_john_musgrave",
-    "hh_ll_jonathan_folliott", "hh_ll_joshua_kinsey", "hh_ll_lucius_b_albyn",
-    "hh_ll_morris_cutler", "hh_ll_s_stephens", "hh_ll_orange_chauncy",
-    "hh_ll_pierce_howley", "hh_ll_roy_k_westover", "hh_ll_samuel_stuart",
-    "hh_ll_theophilus_renwick", "hh_ll_willard_conter", "hh_ll_wm_loring",
+    "hh_hail_aifred", "hh_beddlecome_ash", "hh_gooding_caroline",
+    "hh_benubien_charl", "hh_brookins_david", "hh_doolittle_ehjah",
+    "hh_boles_george", "hh_vyekoff_henry_s", "hh_demans_j_t",
+    "hh_force_john", "hh_bloget_josiah_i", "hh_lorenzo_maccoy",
+    "hh_sunny_miches", "hh_anstin_al", "hh_mary_nelson",
+    "hh_w_oakley_benjamin", "hh_harriet_paddock", "hh_win_payne",
+    "hh_ii_preston_stephen", "hh_starkweather_rob_t", "hh_codding_sally",
+    "hh_byam_seth", "hh_helen_soren", "hh_beger_tobias",
+    "hh_saunders_william_s", "hh_vaughan_alanson_b",
+    "hh_m_vaughton_angus", "hh_ostrander_catherine", "hh_torry_d_v_s",
+    "hh_farren_dean", "hh_benn_eli", "hh_spalding_franklin",
+    "hh_vanderbogart_h", "hh_eager_hiram", "hh_langer_jacob",
+    "hh_mcfadden_james", "hh_holder_jesse", "hh_musgrave_john",
+    "hh_folliott_jonathan", "hh_kinsey_joshua", "hh_albyn_lucius_b",
+    "hh_cutler_morris", "hh_stephens_s", "hh_chauncy_orange",
+    "hh_howley_pierce", "hh_westover_roy_k", "hh_stuart_samuel",
+    "hh_renwick_theophilus", "hh_conter_willard", "hh_loring_wm",
 )
 
 
@@ -55,13 +55,13 @@ LETTER_IDS = (
 # selection sentence below would have quietly claimed him as researched. The rule that
 # drew these twenty is recorded in that sentence; the twenty are recorded here.
 RICHER_UNPLACED_IDS = (
-    "hh_doc_a_garrett", "hh_doc_byram_king", "hh_doc_e_l_thrall",
-    "hh_doc_elmira_fowler", "hh_doc_h_b_clarke", "hh_doc_h_c_bennett",
-    "hh_doc_h_crocker", "hh_doc_h_sherman", "hh_doc_henry_moore",
-    "hh_doc_j_a_marshall", "hh_doc_j_curtiss", "hh_doc_j_h_collins",
-    "hh_doc_james_grant", "hh_doc_r_stewart", "hh_doc_samuel_lewis",
-    "hh_doc_wm_sabine", "hh_placed_b_s_morris", "hh_placed_hoit_thomas",
-    "hh_placed_j_k_boyer", "hh_placed_j_w_fell",
+    "hh_garrett_a", "hh_king_byram", "hh_thrall_e_l",
+    "hh_fowler_elmira", "hh_clarke_h_b", "hh_bennett_h_c",
+    "hh_crocker_h", "hh_sherman_h", "hh_moore_henry",
+    "hh_marshall_j_a", "hh_curtiss_j", "hh_collins_j_h",
+    "hh_grant_james", "hh_stewart_r", "hh_lewis_samuel",
+    "hh_sabine_wm", "hh_morris_b_s", "hh_hoit_thomas",
+    "hh_boyer_j_k", "hh_fell_j_w",
 )
 
 

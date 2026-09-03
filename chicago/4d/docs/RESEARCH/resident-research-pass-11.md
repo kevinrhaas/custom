@@ -17,7 +17,7 @@ This pass closes all 75 pending entries with 4 corroborated enrichments, 14 cand
 
 ### High-value candidates and conflicts
 
-Pierce Downer is firmly documented at Downers Grove after a Chicago/Fort Dearborn visit; Ruel Starr is firmly in Porter County, Indiana; Salmon Rutherford is at Aux Sable/Grundy County; William Luce is at Racine by January 1835; William Osborn has a contemporaneous Thorn Creek/Will County namesake; and Winthrop Merrill has both early Chicago-area history and a probable repository duplicate under `ll_merrill_winthrop`. The Wm. H. Fraser/Frazer pair is retained as an unresolved orthographic duplicate lead.
+Pierce Downer is firmly documented at Downers Grove after a Chicago/Fort Dearborn visit; Ruel Starr is firmly in Porter County, Indiana; Salmon Rutherford is at Aux Sable/Grundy County; William Luce is at Racine by January 1835; William Osborn has a contemporaneous Thorn Creek/Will County namesake; and Winthrop Merrill has both early Chicago-area history and a probable repository duplicate under `winthrop_merrill`. The Wm. H. Fraser/Frazer pair is retained as an unresolved orthographic duplicate lead.
 
 Later Chicago evidence for Edward Parsons, Robert C. Bristol, and Samuel Brookes is useful but too late to merge with the 1834-35 postal entries without an additional bridge.
 
