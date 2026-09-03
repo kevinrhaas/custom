@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 441, title: 'Signboards come off the doors and windows they hung over', kind: 'fix', ts: '2026-09-03T05:30:44.210Z', date: 'Sep 3, 2026, 12:30 AM CT',
+    items: [
+      'Twenty of this town\u2019s signboards were fixed flat against a building \u2014 six boards nailed to a front, fourteen names painted straight on the boards \u2014 and every single one of them stood over a door or a window. The Sauganash\u2019s board across a window bay is the one that was reported; a sweep found it was not some of them, it was all twenty.',
+      'The cause was not a bad rule but a missing input. The rule that puts a name on a building reasoned carefully about which door a board belonged beside \u2014 lodging is sold to arrivals who have to find the door, a name goes where it is seen furthest \u2014 and had no idea where any door actually was. It knew the wall\u2019s height and its length, and nothing about the holes in it. So a board went where the trade said, and whatever was behind it was behind it.',
+      'It now reads the doors and windows off the same set-out the building itself is built from, and places a board only where it covers none: fourteen boards slid along their own front onto blank face, three carry the same words on a longer, narrower board that fits a clear band, and two \u2014 a tannery and a drug store whose fronts genuinely have no face to spare \u2014 are shrunk to a small board on the door itself, which is what a modest office took anyway. Not a word of any sign changed; only the rectangle it is lettered on.',
+      'One name comes down. The brickyard\u2019s drying shed is open along its whole length \u2014 a roof on posts, so green brick dries in moving air \u2014 and its painted name was hanging in the gap between two of those posts. A shed with no front cannot carry a name painted on its front, and saying so is truer than lettering thin air.',
+      'What each sign was standing over, and what was done about it, is now written down per sign rather than summarised, and a test at both phone and desktop width refuses any board that goes back over an opening.',
+    ] },
   { v: 440, title: 'Seventy-five more real names receive a sourced research trail', kind: 'feature', ts: '2026-09-01T06:25:19.533Z', date: 'Sep 1, 2026, 1:25 AM CT',
     items: [
       'A fixed second cohort brings dated identity reviews to 150 of 848 eligible real named people; reconstructed residents remain excluded.',

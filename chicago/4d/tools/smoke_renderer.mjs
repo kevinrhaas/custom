@@ -2956,6 +2956,35 @@ for (const [label, viewport, touch] of [
           if (a.style?.ground === b.style?.ground) sameGround++;
         }
       }
+      // T-0459: NO BOARD OVER AN OPENING, and it is a VISIBLE-QUALITY fault so it
+      // is tested here rather than only in the commit gate. The owner reported
+      // boards sitting over doors and over windows on walls with blank face going
+      // spare, and a sweep found it was all twenty of the flat-mounted ones. The
+      // record now carries, per flat sign, the door and window rectangles of the
+      // wall it hangs on — derived from the same archetype set-out the MESH is
+      // built from — and the one rectangle it is deliberately fixed to, which is
+      // only ever a door a board was shrunk onto. Anything else it covers is the
+      // fault coming back.
+      let flatSigns = 0;
+      const overOpening = [];
+      for (const sg of signs) {
+        const fit = sg.opening_fit;
+        if (!fit) continue;
+        flatSigns++;
+        const [ba, bc] = fit.board_span_local_m;
+        // `arm_height_m` is the board's HEAD; a wall board carries a rain cap over
+        // it, which signage.js stands 0.09 m proud of the same wall.
+        const top = sg.arm_height_m + (sg.mounting === 'wall_board' ? 0.09 : 0);
+        const bot = sg.arm_height_m - sg.board_h_m;
+        const on = fit.fixed_to;
+        for (const o of fit.openings || []) {
+          if (o.u0 >= bc || o.u1 <= ba || o.z0 >= top || o.z1 <= bot) continue;
+          const isFixture = on && o.kind === on.kind && o.u0 === on.u0
+            && o.u1 === on.u1 && o.z0 === on.z0 && o.z1 === on.z1
+            && ba >= on.u0 && bc <= on.u1 && bot >= on.z0 && top <= on.z1;
+          if (!isFixture) overOpening.push(`${sg.structure_id} over ${o.kind}`);
+        }
+      }
       // The South Water row, which is the street the town actually reads as one:
       // every sign whose anchor sits on the frontage line north of the block.
       const row = signs.filter((sg) => sg.anchor_local_enu_m[1] > -10
@@ -2977,6 +3006,8 @@ for (const [label, viewport, touch] of [
         unattributed,
         spans: spans.length,
         signs: signs.length,
+        flatSigns,
+        overOpening,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
         // T-0130: the board and the card have to agree about WHO, over the whole
         // set and not only at the Tremont. Punctuation is dropped because the
@@ -3017,6 +3048,13 @@ for (const [label, viewport, touch] of [
       + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
     check(`${label}: the whole signage layer is one draw call`,
       boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // T-0459. The count is asserted as well as the faults, so the test cannot pass
+    // by finding no flat signs to look at.
+    check(`${label}: no board is fixed over a door or a window`,
+      boards.flatSigns >= 15 && boards.overOpening?.length === 0,
+      `${boards.flatSigns} flat-mounted board(s) tested against their own wall's `
+      + `openings, ${boards.overOpening?.length ?? '?'} over one`
+      + (boards.overOpening?.length ? `: ${boards.overOpening.join(', ')}` : ''));
     // AND ITS SHADOW IS STILL IN THE FRAME. T-0115 dropped the derived furniture
     // out of the shadow map at `light` and put the signboards back in by
     // measurement, because the shadow is most of what a board contributes to the
