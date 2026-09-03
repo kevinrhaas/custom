@@ -1,7 +1,7 @@
 ---
 id: T-0492
 title: The research pattern exists for the newspapers only, and six new source domains have nowhere to land
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 685
+claimed_by: run 9/3/2026, 3:00:56 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -89,3 +89,35 @@ them as inaccessible, never as absent; Google Books fails. Never disable TLS or 
 **Links:** T-0257 (the extraction schema) · T-0299 / T-0397 (identity passes and refusals) · T-0262 (the
 coverage declaration) · T-0486 / T-0487 (the research-row contract) · `chicago/reference/resident-research/README.md`
 (the package contract) · T-0493–T-0507 (the sweep this unblocks).
+
+---
+
+**LANDED 2026-09-03.** Built and verified on `steward/t-0492-research-domains-scaffold`
+(PR #680), which parked on `hold` because `dev` was red on T-0491's faults at the time and
+a run does not launder an inherited red into `dev`. T-0491 merged (#682); this branch is
+that work rebased onto the green `dev`, with two integration corrections the rebase forced:
+
+- `data/research/census_1840/` is no longer empty — T-0495's read landed on `dev` in the
+  meantime with its own `README.md` and a `coverage.json` in an `images[]` shape. Both of
+  `dev`'s files are kept verbatim; the scaffold contributes only the domain's missing
+  `crosswalk.json` and its `claims/`, `records/` and `text/` homes. That domain's coverage
+  therefore declares nothing to the shared gate yet, which the ratified contract permits
+  ("an undeclared item is not read yet and is not a fault") — migrating it is **T-0536**.
+- the `T-0523` ticket file the parked branch carried reached `dev` on its own, so it is not
+  duplicated here.
+
+**Two measured corrections to the ask, carried in the code, the manifests and
+`docs/RESEARCH/resident-research-pass-13.md`:**
+
+- the frame is **228** named residents with no research row, not 237 (238 records
+  carry no research block, less 5 unnamed placeholders and 5 real named people in
+  `inf_*`/`hh_inf_*` records), so the cohorts are **76/76/76** and the files are
+  named for what they hold;
+- **225 of the 228 are the pilot, pass 2 and pass 3 cohorts** — reserved and never
+  researched (T-0511 from the other side). "Zero overlap with passes 1-12" is
+  therefore unmeetable as written: the population satisfying it is three people.
+  The selector enforces zero overlap among 13/14/15 and zero overlap with the 611
+  people who already hold a research row, which is the non-overlap that carries
+  the meaning.
+
+The five `inf_*` people are **T-0523**.

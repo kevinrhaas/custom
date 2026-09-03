@@ -1,0 +1,287 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-9M5",
+ "image": "chicago/reference/census1840/33S7-9YYJ-9M5.jpg",
+ "printed_page": 229,
+ "sheet_side": "left",
+ "division": "S. W. Sherman (as written in the printed heading)",
+ "state": "Illinois",
+ "county": "Cook",
+ "reading": "scan_verified",
+ "read_pass": "names only",
+ "cells_state": "not_read",
+ "cells_note": "not read in this pass. The 26 free-white age-band cells, the free-coloured cells and the industry columns are a column-by-column reading that must be checked against the printed column totals at the foot of the sheet before it can be committed; that is the sibling ticket's demonstration, and a half-read row would be worse than an unread one.",
+ "lines_ruled_with_an_entry": 30,
+ "records": [
+  {
+   "line": 1,
+   "as_read": "John Dohlin",
+   "normalized": "John Dohlin",
+   "name_confidence": "low",
+   "note": "Dohlin / Dahlin; #670 reads Doblin",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 2,
+   "as_read": "John Wilson",
+   "normalized": "John Wilson",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 3,
+   "as_read": "Cornely Dwyer",
+   "normalized": "Cornelius Dwyer",
+   "name_confidence": "medium",
+   "note": "Cornely as written; Cornelius expanded",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 4,
+   "as_read": "John Diley",
+   "normalized": "John Diley",
+   "name_confidence": "low",
+   "note": "Diley / Dilcy / Riley",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 5,
+   "as_read": "Robert Rouse",
+   "normalized": "Robert Rouse",
+   "name_confidence": "medium",
+   "note": "Rouse / Rowse",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 6,
+   "as_read": "Peter Portmine",
+   "normalized": "Peter Portmine",
+   "name_confidence": "low",
+   "note": "Portmine / Fortune / Portune",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 7,
+   "as_read": "John Grays",
+   "normalized": "John Grays",
+   "name_confidence": "low",
+   "note": "a long dash follows the surname",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 8,
+   "as_read": "John Kigney",
+   "normalized": "John Kigney",
+   "name_confidence": "low",
+   "note": "Kigney / Higney / Kearney",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 9,
+   "as_read": "Mrs Muriel Adams",
+   "normalized": "Mrs Muriel Adams",
+   "name_confidence": "low",
+   "note": "prefixed Mrs; given name reads Muriel / Marcel",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 10,
+   "as_read": "Mrs Mary Westenoff",
+   "normalized": "Mrs Mary Westenoff",
+   "name_confidence": "low",
+   "note": "Westenoff / Westorff",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 11,
+   "as_read": "Mrs Catharine Dalton",
+   "normalized": "Mrs Catharine Dalton",
+   "name_confidence": "medium",
+   "note": "prefixed Mrs",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 12,
+   "as_read": "Isaac Wickmore",
+   "normalized": "Isaac Wickmore",
+   "name_confidence": "low",
+   "note": "Wickmore / Wilmore / Whitmore",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 13,
+   "as_read": "Geo. F. Foster",
+   "normalized": "George F. Foster",
+   "name_confidence": "low",
+   "note": "initial reads F or T; Foster / Fostro",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 14,
+   "as_read": "Edwd Colvin",
+   "normalized": "Edward Colvin",
+   "name_confidence": "medium",
+   "note": "Colvin / Calvin",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 15,
+   "as_read": "Abraham Cole",
+   "normalized": "Abraham Cole",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 16,
+   "as_read": "Mahlon D. Ogden",
+   "normalized": "Mahlon D. Ogden",
+   "name_confidence": "high",
+   "note": "the Chicago landowner; brother of William B. Ogden",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 17,
+   "as_read": "John Regan",
+   "normalized": "John Regan",
+   "name_confidence": "medium",
+   "note": "Regan / Rogan",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 18,
+   "as_read": "James Roth",
+   "normalized": "James Roth",
+   "name_confidence": "low",
+   "note": "given reads James or Henry; Roth / Ruth",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 19,
+   "as_read": "A[?] C. Hubbard",
+   "normalized": "A[?] C. Hubbard",
+   "name_confidence": "low",
+   "note": "given name unread; surname Hubbard is firm",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 20,
+   "as_read": "Millard Porter",
+   "normalized": "Millard Porter",
+   "name_confidence": "low",
+   "note": "Millard / Mallard / Willard",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 21,
+   "as_read": "Warman Beaman",
+   "normalized": "Warman Beaman",
+   "name_confidence": "low",
+   "note": "Warman / Norman / Warren; Beaman / Beaum",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 22,
+   "as_read": "Nathaniel Gould",
+   "normalized": "Nathaniel Gould",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 23,
+   "as_read": "John McCloud",
+   "normalized": "John McCloud",
+   "name_confidence": "medium",
+   "note": "McCloud / McLeod",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 24,
+   "as_read": "Thomas Lee",
+   "normalized": "Thomas Lee",
+   "name_confidence": "medium",
+   "note": "Lee / Lice",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 25,
+   "as_read": "Bart Doney",
+   "normalized": "Bart Doney",
+   "name_confidence": "low",
+   "note": "Doney / Dovey",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 26,
+   "as_read": "R. D. Coe",
+   "normalized": "R. D. Coe",
+   "name_confidence": "low",
+   "note": "initials read R. D. or R. O.",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 27,
+   "as_read": "Patrick Egan",
+   "normalized": "Patrick Egan",
+   "name_confidence": "medium",
+   "note": "Egan / Eagan",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 28,
+   "as_read": "Patrick Sanderken",
+   "normalized": "Patrick Sanderken",
+   "name_confidence": "low",
+   "note": "Sanderken / Sanderkin / Sanderburt",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 29,
+   "as_read": "Hugh K. McHenry",
+   "normalized": "Hugh K. McHenry",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 30,
+   "as_read": "Mrs Mary Morris",
+   "normalized": "Mrs Mary Morris",
+   "name_confidence": "medium",
+   "note": "prefixed Mrs",
+   "reading": "scan_verified",
+   "cells": null
+  }
+ ]
+}

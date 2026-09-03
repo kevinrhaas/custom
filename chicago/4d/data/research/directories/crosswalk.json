@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "domain": "directories",
+  "note": "The ONLY place two differently-spelled names in this domain may become one person, in data/research/newspapers/identity.json's shape and under its rules: a merge needs a rule, the rule names BOTH spellings verbatim, and a surname-only merge is always a refusal. A refusal is declared as explicitly as a merge — the absence of one reads like a pair nobody has looked at yet.",
+  "passes": [],
+  "merges": [],
+  "refusals": []
+}
