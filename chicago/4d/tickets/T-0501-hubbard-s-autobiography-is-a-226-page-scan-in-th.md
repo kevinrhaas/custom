@@ -1,7 +1,7 @@
 ---
 id: T-0501
 title: Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 737
 claimed_by: run 9/3/2026, 4:29:07 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T22:30:47.083Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33807967575
 ---
 
