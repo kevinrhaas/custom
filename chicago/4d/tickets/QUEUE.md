@@ -120,8 +120,6 @@
 # --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
 # --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
 # --- be taken while any sweep ticket is open. The rest of the wave order below stands.
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
-T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
 
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
@@ -129,7 +127,6 @@ T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State 
 # --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
-T-0590 — Volume 1 of the Newberry index offered 319 leads and made 0 merges: rule on every lead before volumes 2-4 add more
 
 T-0578 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
