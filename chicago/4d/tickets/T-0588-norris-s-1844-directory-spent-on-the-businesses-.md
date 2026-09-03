@@ -27,9 +27,17 @@ Piece 2 of 2 of **T-0569 — Norris's 1844 directory spent on the layers: the 18
 - Every one of them is date-flagged; an 1844 listing alone never puts a business in the 1835 town.
 - Counts in the PR: firms read, firms dated at or before 1835, firms written, firms refused.
 
-**WAITS ON T-0567 AND T-0568.** The foundings are printed in the Description and Historical
-Sketch, the Statistical Account and the advertising cards, and none of those is read yet. Both
-of those tickets sit above this one in QUEUE, so the order already answers it; this note is here
-so a run that reaches this ticket first does not start without them. The directory proper's own
-65 business-kind entries are the weakest part of T-0566's reading (a firm whose comma falls
-before its ampersand reads as a person), and T-0568's cards are what corrects them.
+**BOTH ITS INPUTS LANDED WHILE T-0587 WAS IN FLIGHT, AND ONE OF THEM SHORTENS THIS TICKET.**
+T-0567 read the Description, the Historical Sketch and the Statistical Account as 65 dated town
+findings (#710). T-0568 read the Advertising Directory card by card — 158 cards, 204 proprietors
+— and reports **no founding date before 1843** anywhere in it (#712). So the advertiser, which
+looked like the richest source of "established 18xx", dates nothing back to this town. What is
+left to work with is the sketch's own dated statements and Fergus's 1843 directory
+(`data/sources/fergus_chicago_directory_1843.json`), and the honest first move on this ticket is
+to measure how many firms those two actually reach before writing any of them. A pass that
+writes nothing and says why it wrote nothing closes this ticket; a pass that stretches an 1844
+listing back to 1835 to have something to show does not.
+
+The directory proper's own 65 business-kind entries remain the weakest part of T-0566's reading
+(a firm whose comma falls before its ampersand reads as a person), and T-0568's cards are what
+corrects them.

@@ -24,8 +24,14 @@ transcription of the directory. A reading made through that is
 `transcription_mediated`; a reading made off the page image is `scan_verified` and
 outranks it. Say which.
 
-**Hand-authored:** `claims/`, `text/`, `coverage.json`, `crosswalk.json`.
-**Generated:** nothing here yet; `data/research/domains.json` is, and is gated.
+**Hand-authored:** `text/`, `coverage.json`, `crosswalk.json`,
+`claims/norris_1844_town_findings.json`, and the READING of a source that is not a
+list — `norris_1844_advertiser_index.json`, which says where each advertising card
+begins and ends.
+**Generated:** `claims/norris_1844_directory_entries.json`,
+`claims/norris_1844_advertiser.json`, `norris_1844_crosswalk_1835.json` and
+`norris_1844_advertiser_crosswalk_1835.json`, each by the tool named in its own
+`generated_by`, each with a `--check`; and `data/research/domains.json`, which is gated.
 
 **Coverage.** Declare the PAGES read. A directory is finite and countable, which
 makes an undeclared page an honest "not yet" and a declared empty one a fault.
@@ -76,8 +82,10 @@ heuristic over inconsistent nineteenth-century punctuation, `as_printed` carries
 the whole line, and the quote carries it unedited. Firm detection is the weakest
 part of it — `Frink, Walker, & Co.` reads as a person because the comma falls
 before the ampersand — and 65 entries are graded `kind: business` where the true
-number is higher. T-0568 reads the Advertising Directory and will correct the
-business side from the cards.
+number is higher. T-0568 has now read the Advertising Directory, below; it did NOT
+regrade those 65, because the advertiser is a separate 158-card file that stands
+beside the directory proper rather than editing it, and regrading a generated file
+from a second source is a pass of its own.
 
 **1844 IS NINE YEARS LATE, and this is the whole discipline of the file.** Every
 claim carries `describes_date: "1844"`. Nothing here is an 1835 fact. The one place
@@ -94,9 +102,10 @@ T-0569 is the ticket that spends the reading on the layers.
 
 **What was not read** is named in `coverage.json`: the 1903 front matter, the
 Description and Historical Sketch (T-0567), the Statistical Account (T-0567), the
-Advertising Directory (T-0568) and Norris's own General Intelligence Agency card at
-the foot of printed page 65. All of it is committed as page text, so those tickets
-start from the text rather than from the network.
+Advertising Directory (T-0568, read — see below) and Norris's own General
+Intelligence Agency card at the foot of printed page 65 (T-0568, read). All of it is
+committed as page text, so those tickets started from the text rather than from the
+network.
 
 ### What T-0569 spent it on — `data/residents/directory_1844.json`
 
@@ -205,5 +214,93 @@ page image), and the ordering assumption behind the trade tables on page 77.
 household, business or structure was created, graded or regraded by this pass. Under the
 ratified ladder of 2026-09-03 a source printed nine years after the scene never on its own
 makes an 1835 fact; T-0569 is the ticket that spends this reading and T-0566's on the
-layers. The remaining unread part of the volume is the Advertising Directory, leaves
-89-126 — T-0568.
+layers. The Advertising Directory, leaves 89-126, has since been read by T-0568 and is
+the section below; the only part of the volume still unread is the 1903 republisher's
+front matter, leaves 1-14, which no ticket owns.
+
+---
+
+## Norris's 1844 ADVERTISING DIRECTORY — the cards
+
+**Read for T-0568** (piece 3 of the owner's T-0555). **158 advertising cards** off
+printed pages 79-116, plus Norris's own General Intelligence Agency card at the foot
+of printed page 65, which T-0566's coverage sent here. They name **204 proprietors**
+between them and **156** carry a firm name.
+
+**A card is not a line, so the boundaries are read by eye.** The directory proper is
+a list and a line-by-line reader can see its entries. The advertiser is 38 pages of
+display cards — a firm's name, its trade, its partners and its address, set in
+whatever type the subscriber paid for, over anything from three lines to
+twenty-four. Where each card begins and ends is therefore READ, and the reading is
+committed in `norris_1844_advertiser_index.json`: leaf, line range, and what the card
+says. `tools/read_norris_1844_advertiser.py --build` turns that into
+`claims/norris_1844_advertiser.json`, **slicing every quote out of the committed page
+text at the card's own line range**, so a quote cannot drift from the page it claims
+to come from; `--check` rebuilds and compares, and the domain gate rebuilds the quote
+a second time from the same text. Nothing here is typed into a quote.
+
+**What no card reaches is counted, not hidden.** 65 advertiser lines fall outside
+every card, and all 65 are listed with their text under `uncovered` in the claims
+file. They are the running heads and page numbers, the ornamental section headings
+(`Stnrtioneera` for Auctioneers, `HJookbtn&trg*` for Bookbinders, `l)otcls` for
+Hotels — this is what OCR does to a decorated capital), the signature marks, and two
+fragments the scan tore off the cards they belonged to: `  paid` on printed page 89
+and `Office and House opposite the City Hotel.` on printed page 80. The second sits
+between two law cards and is left out of both rather than given to one it may not
+belong to.
+
+**Two cards lost their headings to the scan** and are filed with `firm: null` rather
+than a guess: the attorneys' card opening printed page 79, whose surviving lines name
+A. O. Beaumont and Mark Skinner, and a banking card on printed page 82 that opens at
+its address, 127 Lake street. Guessing either name would be inventing a citation.
+
+**Display type is what OCR reads worst**, so the damage in this section is heavier
+than in the directory proper and it is left in every quote: `SMITH & BALUNGALL` and
+`P. BALLINOALL` are the same name twice on one card, `BOTSFORD & BEEKS` heads a card
+whose partner signs `C. BEERS`, `ERT REYNOLDS` is Robert Reynolds with three letters
+gone, and `Chicago, Jan. 1st, 1344` is 1844. The repair, where one is safe, is in
+`normalized`, and the reading grade is `transcription_mediated` for all 158.
+
+**THE FOUNDING DATES ARE NOT THERE, and that is the finding.** T-0555 asked for
+"often 'established 18xx'" and the answer is that Norris's advertiser almost never
+prints one. **Seven** cards carry a date at all, and every one of them is 1843 or
+1844: the Pittsburg Iron Store's `CHICAGO, ILL. 1844`, Osterhoudt's `Jauunry, 1844`
+at the Sauganash, John Murphy's `Chicago, Jan. 1st, 1844` at the United States Hotel,
+Perkins & Fenton's `Chicago, Jan. 1st, 1844`, and the three Garrett cards of December
+1843 — of which Garrett & Seaman is the only true founding statement in the section,
+a partnership announced before it exists, "to commence on the 1st of May, 1844". **No
+card in the advertiser dates a business to 1835 or earlier.** What some cards do
+carry is an undated claim of age — Joseph E. Ware "still continues", Chas. Taylor
+asks "a continuance of the liberal patronage hitherto extended to him", Washington
+Hall is a "well known Hotel" that "has recently undergone extensive additions", the
+Chicago Bookbindery is "LATE BOWMAN & ROSS", the Lake Street House is the "Late
+Farmers' Exchange", and Dr. Tew has been at it "for the last five years". Those are
+recorded in each card's `notes` as what they are: a firm asserting it is older than
+this book, with no year attached. **Not one of them reaches 1835 on its own**, and
+none has been written to a business record.
+
+**The crosswalk.** `norris_1844_advertiser_crosswalk_1835.json`, by
+`tools/crosswalk_norris_1844_advertiser.py`, runs the same rule the directory-proper
+crosswalk runs, so the two files can be read side by side: surname folded, first
+initials must agree, a surname-only agreement is always a refusal. Of the 204 printed
+proprietor names, **157** carry a given name or an initial and can be matched at all;
+**47** are printed as a bare surname — `Skinner & Smith`, `Clybourn & Hovey`,
+`Spring & Goodrich` — and are unmatchable by construction. Against the 847 people in
+the residents layer: **14** meet exactly one card, **2** meet more than one and are
+left ambiguous (A. Garrett, who signs three cards, and G. S. Hubbard, who signs two —
+both are almost certainly one man twice over, and the rule does not get to say so),
+**0** are contested, and **52** have their surname on a card under a different
+initial and are refused outright. That file **changes no resident record and writes
+no business**; T-0569 is the ticket that spends it.
+
+**What the advertiser does not settle.** T-0566 left a note saying this ticket would
+"correct the business side from the cards" — the 65 entries the directory-proper
+reader graded `kind: business` where the true number is higher. It has not: the 158
+cards are a separate file, and rewriting a generated claims file out of a second
+source is a pass of its own with its own rule to write down. The cards are here for
+whoever takes it.
+
+**AN ADVERTISING CARD IS A SUBSCRIPTION.** The page says so itself — "CONTAINING THE
+CARDS OF SUBSCRIBERS". These 158 firms are not the trades of Chicago in 1844; they
+are the part of them that had money for display type and chose to spend it. A trade
+absent from this section is not a trade absent from the town.
