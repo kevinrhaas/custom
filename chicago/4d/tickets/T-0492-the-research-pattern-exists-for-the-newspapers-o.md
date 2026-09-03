@@ -102,7 +102,7 @@ that work rebased onto the green `dev`, with two integration corrections the reb
   `dev`'s files are kept verbatim; the scaffold contributes only the domain's missing
   `crosswalk.json` and its `claims/`, `records/` and `text/` homes. That domain's coverage
   therefore declares nothing to the shared gate yet, which the ratified contract permits
-  ("an undeclared item is not read yet and is not a fault") — migrating it is **T-0531**.
+  ("an undeclared item is not read yet and is not a fault") — migrating it is **T-0536**.
 - the `T-0523` ticket file the parked branch carried reached `dev` on its own, so it is not
   duplicated here.
 
