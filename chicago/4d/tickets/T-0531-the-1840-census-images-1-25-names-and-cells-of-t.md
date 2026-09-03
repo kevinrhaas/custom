@@ -1,7 +1,7 @@
 ---
 id: T-0531
 title: The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0494
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: null
 blocked_on: null

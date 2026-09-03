@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 12:10 PM",
+  "generated_ct": "Sep 3, 2026, 12:15 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8718,7 +8718,7 @@
     {
       "id": "T-0531",
       "title": "The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8726,12 +8726,12 @@
       "legacy_id": null,
       "parent": "T-0494",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": null
     },
     {
       "id": "T-0532",
@@ -9617,6 +9617,24 @@
     },
     {
       "id": "T-0584",
+      "title": "The 1840 census images 1-25: names and cells of the left sheets printed 210 and 215",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0531",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "707",
+      "claimed_by": "run 9/3/2026, 12:08:34 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0584",
       "title": "The ledger records the instant a ticket finished and which run claimed it",
       "state": "done",
       "epic": "META",
@@ -9634,6 +9652,24 @@
       "closed_at": "2026-09-03T17:10:25.086Z",
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0585",
+      "title": "The 1840 census images 1-25: names and cells of the left sheet printed 219",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0531",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 13
     }
   ]
 }

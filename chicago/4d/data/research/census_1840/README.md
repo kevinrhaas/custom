@@ -457,3 +457,37 @@ key first, because the TOTAL column a continuation sheet foots comes out of the 
 is the one name a modern reader can be sure of; the bridge from a named 1840 head to an 1835
 record is T-0505's step, under a ladder that is explicit that 1839/1840 alone is never a 1835
 resident.
+
+## Printed 210 and 215, read to the cell (T-0584)
+
+Two more left sheets of image group 1 are now read line by line and column by column,
+and both were closed against the figures the enumerator footed on his own sheet.
+
+| printed page | image | lines with an entry | columns balanced | not committed |
+|---|---|---|---|---|
+| 210 | `33S7-9YYJ-9RG` | 30 (inventory said 31) | 36 of 38 | free white females Under 5 (14) and 5 under 10 (15) |
+| 215 | `33S7-9YYJ-9WF` | 31 (inventory's figure stands) | 37 of 38 | free white females 30 under 40 (19) |
+
+**The footings corrected the reading twice, and the reading corrected the footings twice.**
+On 210 the columns for free white males 20 under 30 and 30 under 40 were first read off a
+1400 px contact view as 25 and 16; the line-by-line sums came to 29 and 19, and zoomed on
+the footing itself both figures are plainly 29 and 19. The other way round, on 215 the
+first column template — anchored on the strongest 39 rule detections rather than on the
+printed heading — started one whole column too far right, which would have aged every
+person on the sheet by one band. Rendering the template over the printed heading is what
+caught it, and it is why the grid note on every page file states that check.
+
+**What the two sheets are.** They are not alike. Printed 210 is a page of large households:
+30 entries carrying 179 free white persons, one of them (line 1) of fourteen. Printed 215
+is the opposite — 31 entries, and columns 6 and 7 (free white males 30 under 40 and 40
+under 50) carry 49 of its 116 free white persons between them, mostly one man to a
+household. Printed 215 also carries the only free coloured persons read from image group 1
+so far: six of them in John Johnson's household on line 29, and one on line 5.
+
+**Two residual columns are left standing rather than forced.** On 210, free white females
+Under 5 reads 14 against a printed 16 and 5 under 10 reads 18 against a printed 15 — equal
+and opposite to within one, which is the shape of marks read into the wrong one of two
+adjacent columns; the montage was cut at the leaned rules, re-read, and did not move them.
+On 215, free white females 30 under 40 reads 17 against a printed 19. Those columns are
+omitted from `cells` and kept in `cells_first_pass`, which is read but unreconciled and is
+not data anything downstream may use.

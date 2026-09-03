@@ -33,9 +33,14 @@ chicago/reference/walkthroughs/*.mov
 chicago/reference/newspapers/**/*.pdf
 chicago/reference/newspapers/*.pdf
 # The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
+chicago/reference/hh-porter-a-short-autobiography/*.pdf
+chicago/reference/chicago-massacre-1812/*.pdf
+chicago/reference/additional/vital-records-1871+/*.pdf
 
-# IPUMS extracts: redistribution prohibited by IPUMS license, local-only.
-# Originals live at projects/archive/data/chicago/reference/ipums/.
+# IPUMS extracts: redistribution prohibited by IPUMS license (published to
+# Internet Archive anyway, see ipums-usa.yaml/ipums-nhgis.yaml, but kept out
+# of git regardless). Originals live at
+# projects/archive/data/chicago/reference/ipums/.
 # See chicago/reference/ipums/README.md.
 chicago/reference/ipums/*.csv
 chicago/reference/ipums/*.pdf
