@@ -76,7 +76,11 @@
 T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
-T-0494 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
+T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
+T-0532 — The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
+T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
+T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
+T-0535 — The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
 T-0530 — The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
 T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224

@@ -97,3 +97,15 @@ them as inaccessible, never as absent; Google Books fails. Never disable TLS or 
 `chicago/reference/census1840/validation/H_1840_chicago_name_crosswalk_README.txt` (the fingerprint
 method) · T-0504 (serial mapping) · T-0505 (crosswalk) · T-0507 (composition calibration) ·
 `data/sources/census_1840_chicago_name_crosswalk.json` and `census_1840_chicago_v4_research.json`.
+
+---
+
+**Correction from T-0494's run, 2026-09-03.** The deposit holds **74 distinct images in 75 files**,
+not 75 in 76: `33S7-9YYJ-9WF (1).jpg` is a byte-identical copy of `33S7-9YYJ-9WF.jpg`
+(md5 `4cc1ca3ff88c213598c1cfe409938a35`), `ls chicago/reference/census1840/*.jpg | wc -l` is 75 and
+`md5sum *.jpg | awk '{print $1}' | sort -u | wc -l` is 74. This ticket's group is therefore
+**images 51-74 — 24 images, not 25**. The title still says 51-75; the body wins.
+`data/research/census_1840/coverage.json` carries the corrected deposit block and the group
+boundaries, and pages 233 and 235 — the last two of PR #670's seven calibration pages — are expected
+in this group. Read `data/research/census_1840/README.md` before starting.
+

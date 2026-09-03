@@ -1,0 +1,296 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-99F",
+ "image": "chicago/reference/census1840/33S7-9YYJ-99F.jpg",
+ "printed_page": 234,
+ "sheet_side": "left",
+ "division": "S. W. Sherman (as written in the printed heading)",
+ "state": "Illinois",
+ "county": "Cook",
+ "reading": "scan_verified",
+ "read_pass": "names only",
+ "cells_state": "not_read",
+ "cells_note": "not read in this pass. The 26 free-white age-band cells, the free-coloured cells and the industry columns are a column-by-column reading that must be checked against the printed column totals at the foot of the sheet before it can be committed; that is the sibling ticket's demonstration, and a half-read row would be worse than an unread one.",
+ "lines_ruled_with_an_entry": 31,
+ "records": [
+  {
+   "line": 1,
+   "as_read": "Manzo Huntington",
+   "normalized": "Manzo Huntington",
+   "name_confidence": "low",
+   "note": "Manzo / Alanzo / Alonzo",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 2,
+   "as_read": "Geo. Shelley",
+   "normalized": "George Shelley",
+   "name_confidence": "medium",
+   "note": "Shelley / Skelley",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 3,
+   "as_read": "Ed. Kimberley",
+   "normalized": "Ed. Kimberley",
+   "name_confidence": "medium",
+   "note": "Kimberley / Kimberly",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 4,
+   "as_read": "Peter Sill",
+   "normalized": "Peter Sill",
+   "name_confidence": "low",
+   "note": "Sill / Silk / Bell",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 5,
+   "as_read": "Morris Prindle",
+   "normalized": "Morris Prindle",
+   "name_confidence": "medium",
+   "note": "Prindle / Brindle",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 6,
+   "as_read": "M[rs] Hannah Hawking",
+   "normalized": "Mrs Hannah Hawking",
+   "name_confidence": "low",
+   "note": "prefixed Mr or Mrs; Hawking / Harting",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 7,
+   "as_read": "Richd Sapin",
+   "normalized": "Richard Sapin",
+   "name_confidence": "low",
+   "note": "Sapin / Lapin / Tapin",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 8,
+   "as_read": "James Hings",
+   "normalized": "James Hings",
+   "name_confidence": "low",
+   "note": "Hings / Hugs / Higgs",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 9,
+   "as_read": "James McGuyre",
+   "normalized": "James McGuyre",
+   "name_confidence": "medium",
+   "note": "McGuyre / McGuire",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 10,
+   "as_read": "James Schuecker",
+   "normalized": "James Schuecker",
+   "name_confidence": "low",
+   "note": "Schuecker / Schmecker / Schuester",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 11,
+   "as_read": "John Fogt",
+   "normalized": "John Fogt",
+   "name_confidence": "low",
+   "note": "Fogt / Fost / Vogt",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 12,
+   "as_read": "Petr Coker",
+   "normalized": "Peter Coker",
+   "name_confidence": "low",
+   "note": "Coker / Esker / Cober",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 13,
+   "as_read": "Thomas McLam",
+   "normalized": "Thomas McLam",
+   "name_confidence": "low",
+   "note": "McLam / McLain / McLean",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 14,
+   "as_read": "[?]ernon Ladneny",
+   "normalized": "[?]ernon Ladneny",
+   "name_confidence": "low",
+   "note": "given part-unread; Ladneny / Ladney / Lademy",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 15,
+   "as_read": "Ackson Thoffy",
+   "normalized": "Ackson Thoffy",
+   "name_confidence": "low",
+   "note": "Ackson / Jackson; Thoffy / Thorpe",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 16,
+   "as_read": "Wm Frank",
+   "normalized": "William Frank",
+   "name_confidence": "medium",
+   "note": "Frank / Franke",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 17,
+   "as_read": "Henry Weber",
+   "normalized": "Henry Weber",
+   "name_confidence": "low",
+   "note": "Weber / Weler / Miller",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 18,
+   "as_read": "B. Johnson",
+   "normalized": "B. Johnson",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 19,
+   "as_read": "G. H. Reeser",
+   "normalized": "G. H. Reeser",
+   "name_confidence": "low",
+   "note": "initials G. H. / G. W.; Reeser / Reever",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 20,
+   "as_read": "Danl Miller",
+   "normalized": "Daniel Miller",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 21,
+   "as_read": "Peter Emson",
+   "normalized": "Peter Emson",
+   "name_confidence": "low",
+   "note": "Emson / Ericson / Erisson",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 22,
+   "as_read": "S. Shinson",
+   "normalized": "S. Shinson",
+   "name_confidence": "low",
+   "note": "Shinson / Stinson / Shiveson",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 23,
+   "as_read": "Peter Cahin",
+   "normalized": "Peter Cahin",
+   "name_confidence": "low",
+   "note": "Cahin / Cahon / Cahill",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 24,
+   "as_read": "John Fitz Patrick",
+   "normalized": "John Fitz Patrick",
+   "name_confidence": "high",
+   "note": "written as three words",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 25,
+   "as_read": "Henry Gilkin",
+   "normalized": "Henry Gilkin",
+   "name_confidence": "low",
+   "note": "Gilkin / Gillen / Gilfin",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 26,
+   "as_read": "Halvor Christian",
+   "normalized": "Halvor Christian",
+   "name_confidence": "low",
+   "note": "Halvor / Halvon; Christian / Christiaa",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 27,
+   "as_read": "Henry Snakin",
+   "normalized": "Henry Snakin",
+   "name_confidence": "low",
+   "note": "Snakin / Sackin / Snelling",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 28,
+   "as_read": "[?]ollis Kapham",
+   "normalized": "[?]ollis Kapham",
+   "name_confidence": "low",
+   "note": "given part-unread, Follis / Sollie / Dollie; Kapham / Kaphan",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 29,
+   "as_read": "Joseph Manbeck",
+   "normalized": "Joseph Manbeck",
+   "name_confidence": "low",
+   "note": "given reads Joseph / Jacob",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 30,
+   "as_read": "John Shaw",
+   "normalized": "John Shaw",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 31,
+   "as_read": "Frit Diedrick",
+   "normalized": "Frit Diedrick",
+   "name_confidence": "low",
+   "note": "Frit / Fred / Veit; Diedrick / Diednck / Dietrich",
+   "reading": "scan_verified",
+   "cells": null
+  }
+ ]
+}

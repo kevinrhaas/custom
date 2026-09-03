@@ -1,7 +1,7 @@
 ---
 id: T-0494
 title: The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
+closed: 2026-09-03
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 2:59:15 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -97,3 +97,22 @@ them as inaccessible, never as absent; Google Books fails. Never disable TLS or 
 `chicago/reference/census1840/validation/H_1840_chicago_name_crosswalk_README.txt` (the fingerprint
 method) · T-0504 (serial mapping) · T-0505 (crosswalk) · T-0507 (composition calibration) ·
 `data/sources/census_1840_chicago_name_crosswalk.json` and `census_1840_chicago_v4_research.json`.
+
+---
+
+**What the run of 2026-09-03 delivered before splitting this ticket.** All 25 images of group 1 are
+declared in `data/research/census_1840/coverage.json` — sheet side, printed page, line count, and
+what has and has not been read from each. The NAMES of the three pages PR #670 also read were
+transcribed in full off the sheets (229 in `33S7-9YYJ-9M5`, 231 in `-38`, 234 in `-99F`: 92 lines,
+3 high / 31 medium / 58 low) and crosswalked line by line against #670's rows in
+`crosswalk_670.json`, which now also runs a row-offset test per page. Printed page 206
+(`33S7-9YYJ-95F`) turned out to be the enumeration's certificate and recapitulation sheet and was
+read in full; printed page 238 (`33S7-9YYJ-C8`) is printed, numbered and empty, and is declared as
+such. The deposit count was corrected: 74 distinct images in 75 files, not 75 in 76, so the third
+group is images 51-74.
+
+It was split because the remaining work — nine unread left sheets, eleven continuation sheets, and
+the 26 narrow age-band columns that only become committable once they are checked against the
+enumerator's own printed totals — is several runs of reading, not one, and shipping a
+self-invented "(1/2)" is not allowed. The five children carry it.
+

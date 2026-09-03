@@ -1,0 +1,296 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-38",
+ "image": "chicago/reference/census1840/33S7-9YYJ-38.jpg",
+ "printed_page": 231,
+ "sheet_side": "left",
+ "division": "S. W. Sherman (as written in the printed heading)",
+ "state": "Illinois",
+ "county": "Cook",
+ "reading": "scan_verified",
+ "read_pass": "names only",
+ "cells_state": "not_read",
+ "cells_note": "not read in this pass. The 26 free-white age-band cells, the free-coloured cells and the industry columns are a column-by-column reading that must be checked against the printed column totals at the foot of the sheet before it can be committed; that is the sibling ticket's demonstration, and a half-read row would be worse than an unread one.",
+ "lines_ruled_with_an_entry": 31,
+ "records": [
+  {
+   "line": 1,
+   "as_read": "Wm S. Lansome",
+   "normalized": "William S. Lansome",
+   "name_confidence": "low",
+   "note": "Lansome / Lanserie / Sansome",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 2,
+   "as_read": "H. Butterworth",
+   "normalized": "H. Butterworth",
+   "name_confidence": "low",
+   "note": "initial H or W; Butterworth / Cutterworth",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 3,
+   "as_read": "Wm Harmon",
+   "normalized": "William Harmon",
+   "name_confidence": "low",
+   "note": "Harmon / Hairman / Harrison",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 4,
+   "as_read": "Stephen Turner",
+   "normalized": "Stephen Turner",
+   "name_confidence": "low",
+   "note": "given reads Stephen / Sephian; Turner / Ginner",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 5,
+   "as_read": "John Connel",
+   "normalized": "John Connel",
+   "name_confidence": "medium",
+   "note": "Connel / Connell",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 6,
+   "as_read": "John F[?]hman",
+   "normalized": "John F[?]hman",
+   "name_confidence": "low",
+   "note": "surname largely unread",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 7,
+   "as_read": "John Coghlen",
+   "normalized": "John Coghlen",
+   "name_confidence": "medium",
+   "note": "Coghlen / Coghlan",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 8,
+   "as_read": "Saml Carpenter",
+   "normalized": "Samuel Carpenter",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 9,
+   "as_read": "[?] Meehan",
+   "normalized": "[?] Meehan",
+   "name_confidence": "low",
+   "note": "given name unread; Meehan / Muehan",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 10,
+   "as_read": "Stephen Sexton",
+   "normalized": "Stephen Sexton",
+   "name_confidence": "medium",
+   "note": "Sexton / Sextos",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 11,
+   "as_read": "Pattemore Nicholz",
+   "normalized": "Pattemore Nicholz",
+   "name_confidence": "low",
+   "note": "Pattemore / Patthimore; Nicholz / Nickalls",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 12,
+   "as_read": "Edward Murphey",
+   "normalized": "Edward Murphey",
+   "name_confidence": "high",
+   "note": "Murphey as written",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 13,
+   "as_read": "Michael Duffy",
+   "normalized": "Michael Duffy",
+   "name_confidence": "medium",
+   "note": "Duffy / Duffey",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 14,
+   "as_read": "Benj Williams",
+   "normalized": "Benjamin Williams",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 15,
+   "as_read": "Barry Grant",
+   "normalized": "Barry Grant",
+   "name_confidence": "low",
+   "note": "Barry / Benny / Henry",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 16,
+   "as_read": "A. C. Walton",
+   "normalized": "A. C. Walton",
+   "name_confidence": "medium",
+   "note": "Walton / Malthos",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 17,
+   "as_read": "Ezra Taylor",
+   "normalized": "Ezra Taylor",
+   "name_confidence": "low",
+   "note": "given reads Ezra / Eyre",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 18,
+   "as_read": "Dr Lewis Peck",
+   "normalized": "Dr Lewis Peck",
+   "name_confidence": "low",
+   "note": "prefixed Dr; Peck / Post / Park",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 19,
+   "as_read": "F[?]d Rowland",
+   "normalized": "F[?]d Rowland",
+   "name_confidence": "low",
+   "note": "given name part-unread; Rowland is firm",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 20,
+   "as_read": "Jarid Moot",
+   "normalized": "Jarid Moot",
+   "name_confidence": "low",
+   "note": "Jarid / Jane / Jared; Moot / Most",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 21,
+   "as_read": "Manny Berry",
+   "normalized": "Manny Berry",
+   "name_confidence": "low",
+   "note": "Manny / Tommy / Henry",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 22,
+   "as_read": "W. O. Stone",
+   "normalized": "W. O. Stone",
+   "name_confidence": "low",
+   "note": "initials W. O. / N. C.; Stone / Shoe",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 23,
+   "as_read": "Robt Berry",
+   "normalized": "Robert Berry",
+   "name_confidence": "low",
+   "note": "Berry / Beavy",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 24,
+   "as_read": "John Bliss",
+   "normalized": "John Bliss",
+   "name_confidence": "medium",
+   "note": "Bliss / Blisee",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 25,
+   "as_read": "Wm Grove",
+   "normalized": "William Grove",
+   "name_confidence": "low",
+   "note": "Grove / Gooe / Gore",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 26,
+   "as_read": "John Leonard",
+   "normalized": "John Leonard",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 27,
+   "as_read": "[?] Sanser",
+   "normalized": "[?] Sanser",
+   "name_confidence": "low",
+   "note": "given unread, reads Isaac or Doct; Sanser / Sancer",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 28,
+   "as_read": "C[?] A. O. Beaumont",
+   "normalized": "C[?] A. O. Beaumont",
+   "name_confidence": "low",
+   "note": "given part-unread; Beaumont / Beaumoak",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 29,
+   "as_read": "[?] Nicholson",
+   "normalized": "[?] Nicholson",
+   "name_confidence": "low",
+   "note": "initial unread, R or S",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 30,
+   "as_read": "M. Bennigricker",
+   "normalized": "M. Bennigricker",
+   "name_confidence": "low",
+   "note": "Bennigricker / Bennington",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 31,
+   "as_read": "John Rankin",
+   "normalized": "John Rankin",
+   "name_confidence": "medium",
+   "note": "Rankin / Randkin",
+   "reading": "scan_verified",
+   "cells": null
+  }
+ ]
+}
