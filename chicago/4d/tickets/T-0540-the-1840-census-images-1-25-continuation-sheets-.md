@@ -1,7 +1,7 @@
 ---
 id: T-0540
 title: The 1840 census images 1-25: continuation sheets 24, 5D and 5S read line by line and closed against their own printed column totals
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0538
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 689
 claimed_by: run 9/3/2026, 5:55:41 AM CT
 blocked_on: null
 needs_bake: false
