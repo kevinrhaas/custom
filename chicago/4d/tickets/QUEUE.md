@@ -248,7 +248,3 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 # --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
 # --- promote attested facts, promote inferred/projected residents while retiring reconstructed
 # --- people, then audit the census/research synthesis.
-T-0487 — Adjudicate the complete resident research corpus against newspaper and census evidence
-T-0488 — Promote attested resident and household findings from the adjudicated research corpus
-T-0489 — Promote inferred and projected residents and retire the pre-existing reconstructed resident layer
-T-0490 — Audit the resident and household census synthesis and publish the evidence-based population summary

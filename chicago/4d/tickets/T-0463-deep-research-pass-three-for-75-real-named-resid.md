@@ -1,7 +1,7 @@
 ---
 id: T-0463
 title: Deep research pass three for 75 real named residents
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-01
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 624
 claimed_by: null
 blocked_on: null
 needs_bake: false

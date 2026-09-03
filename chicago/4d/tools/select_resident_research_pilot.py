@@ -88,6 +88,7 @@ def derive() -> dict:
     richer = sorted(
         (hh for hh in households.values()
          if hh.get("division") == "unplaced"
+         and not str(hh.get("id") or "").startswith("hh_inf_")
          and len(hh.get("persons", [])) == 1
          and not hh["persons"][0].get("letter_list_only")
          and hh["persons"][0].get("grade") != "reconstructed"),

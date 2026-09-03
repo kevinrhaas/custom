@@ -102,7 +102,7 @@ const EFFORT = {
 // and American transcriptions, and the documented businesses/residents seeded
 // from them. Registered 2026-08-28 with the epic's nine founding tickets
 // (T-0256..T-0264), on the owner's instruction.
-const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META', 'PAPERS'];
+const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META', 'PAPERS', 'SOUTH_TIME'];
 const BY = ['owner', 'loop', 'steward'];
 // Workable = an agent may take it off the queue. `claimed`/`review` stay in the
 // queue so a crashed run's ticket is still visible in priority order rather

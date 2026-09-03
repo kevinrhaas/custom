@@ -1,7 +1,7 @@
 ---
 id: T-0490
 title: Final resident, household and occupation citation and coverage audit
-state: blocked-tech
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 668
 claimed_by: null
 blocked_on: T-0489 must land the inferred-resident and household integration on dev.
 needs_bake: false

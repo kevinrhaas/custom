@@ -69,7 +69,7 @@ step "platted block parcels match their recipe and the committed lots" \
 # re-runs its own placement gates, so a centre that drifts onto another building,
 # onto water or off the modelled ground fails here rather than in a bake.
 step "inferred households, adoptions and their buildings match the programme" \
-  python3 tools/generate_inferred_households.py --check
+  python3 tools/synthesize_resident_research.py --check
 
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
@@ -1008,7 +1008,7 @@ PY
 # The invented names, re-derived. Deterministic from each person's id, so a name
 # that changed without the pools or the generator changing is a real finding.
 step "the reconstructed residents' invented names re-derive" \
-  python3 tools/generate_inferred_names.py --check
+  python3 tools/synthesize_resident_research.py --check
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
@@ -1028,7 +1028,7 @@ step "one new household renames only the people it collides with" \
 # that quietly stopped being refused would otherwise plant a real man on a roof
 # his own record contradicts. `--report` prints the deal and every refusal.
 step "the documented residents on reconstructed roofs re-derive from the register" \
-  python3 tools/replace_invented_residents.py --check
+  python3 tools/synthesize_resident_research.py --check
 
 # And the pass that ADDS one (T-0376). The register's `new_resident` people are
 # the ones this reconstruction does not hold at all; where it can also read a
@@ -1039,7 +1039,7 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 # St. Joseph, or a second copy of a real resident into the town's people.
 # `--report` prints the mint and every refusal with its reason.
 step "the minted documented residents re-derive from the register" \
-  python3 tools/mint_documented_residents.py --check
+  python3 tools/synthesize_resident_research.py --check
 
 # And the pass that adds the rest of that half (T-0373): the `new_resident` people
 # the papers name with NO trade at all. There is no trade to anchor them, so the
@@ -1067,7 +1067,7 @@ step "…and its own assertions still fire when broken" \
 # one. `--report` prints the mint and every refusal with its reason; `--scale` counts
 # what the ruling did to the town on whatever tree it is run against.
 step "the minted letter-list residents re-derive from the register" \
-  python3 tools/mint_letter_list_residents.py --check
+  python3 tools/synthesize_resident_research.py --check
 
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it

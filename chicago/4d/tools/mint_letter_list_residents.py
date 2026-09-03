@@ -794,10 +794,12 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                                     f"unique and ascending, so 'the newest return' cannot "
                                     f"be read off it")
             occ = person.get("occupation") or {}
-            if occ.get("value") != "none_recorded":
+            rr = person.get("resident_research") or {}
+            independently_corroborated = bool(rr.get("asserted_identity") and rr.get("source_ids"))
+            if occ.get("value") != "none_recorded" and not independently_corroborated:
                 problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "
                                 f"letter list gives no trade and this pass may not read "
-                                f"one in")
+                                f"one in without independently corroborated resident research")
         for key in ("lives_at", "works_at"):
             value = (doc.get(key) or {}).get("value")
             if value is not None:

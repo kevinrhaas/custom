@@ -3295,18 +3295,6 @@
       "asset": "gltf/recon_1835_blk_south_water_lasalle_a1_14__inferred_1835.glb"
     },
     {
-      "id": "recon_1835_blk_south_water_lasalle_a1_14",
-      "name": "Reconstructed A1 stable #14",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a1_14.json",
-      "asset": "gltf/recon_1835_blk_south_water_lasalle_a1_14__inferred_1835.glb"
-    },
-    {
-      "id": "recon_1835_blk_south_water_lasalle_a2_15",
-      "name": "Reconstructed A2 barn or carriage shed #15",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a2_15.json",
-      "asset": "gltf/recon_1835_blk_south_water_lasalle_a2_15__inferred_1835.glb"
-    },
-    {
       "id": "recon_1835_blk_south_water_lasalle_a2_15",
       "name": "Reconstructed A2 barn or carriage shed #15",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a2_15.json",
@@ -3317,12 +3305,6 @@
       "name": "Reconstructed A3 privy #07",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a3_07.json",
       "asset": "gltf/recon_1835_blk_south_water_lasalle_a3_07__inferred_1835.glb"
-    },
-    {
-      "id": "recon_1835_blk_south_water_lasalle_c3_13",
-      "name": "Reconstructed C3 narrow two-story store #13",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_c3_13.json",
-      "asset": "gltf/recon_1835_blk_south_water_lasalle_c3_13__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_lasalle_c3_13",
@@ -3343,22 +3325,10 @@
       "asset": "gltf/recon_1835_blk_south_water_lasalle_d1_08__inferred_1835.glb"
     },
     {
-      "id": "recon_1835_blk_south_water_lasalle_d1_08",
-      "name": "Reconstructed D1 older log dwelling #08",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d1_08.json",
-      "asset": "gltf/recon_1835_blk_south_water_lasalle_d1_08__inferred_1835.glb"
-    },
-    {
       "id": "recon_1835_blk_south_water_lasalle_d2_05",
       "name": "Reconstructed D2 rough plank dwelling or shanty #05",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d2_05.json",
       "asset": "gltf/recon_1835_blk_south_water_lasalle_d2_05__inferred_1835.glb"
-    },
-    {
-      "id": "recon_1835_blk_south_water_lasalle_d2_09",
-      "name": "Reconstructed D2 rough plank dwelling or shanty #09",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d2_09.json",
-      "asset": "gltf/recon_1835_blk_south_water_lasalle_d2_09__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_lasalle_d2_09",

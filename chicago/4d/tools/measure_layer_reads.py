@@ -168,6 +168,7 @@ MACHINERY_LEAVES = frozenset({
 # removes the need for the rest.
 AMBIGUOUS_LEAVES = frozenset({
     "rgb",        # `diffuseColor.rgb` is a three.js shader field, in four files
+    "min", "max", # generic range/math leaves; require their data parent to match
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
@@ -188,6 +189,9 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
+    # These leaves also occur in the separately rendered research_pilot payload;
+    # a bare-name text scan cannot attribute those accesses to the embedded block.
+    "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
 })
 
 # ---------------------------------------------------------------------------
@@ -387,6 +391,7 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
+    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
     # T-0379. The owner ruled that every letter-list name the evidence admits joins
     # the town, which made this cohort most of the people in it, so the section is
     # SPLIT on this flag rather than sorted by it: the households the rest of the
@@ -401,7 +406,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
-    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -494,13 +498,10 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # like the household's own, and they go through `claimRow` now.
     "persons[].age_on_scene_date.value": ("shown", "claimRow('Age on 1 July 1835', aged && aged.value"),
     "persons[].birth_year.value": ("shown", "claimRow('Born', born && born.value"),
-    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value"),
     "persons[].age_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
     "persons[].birth_year.confidence": ("shown", "swatch(block.confidence)"),
-    "persons[].name_basis.confidence": ("shown", "swatch(block.confidence)"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
     "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
-    "persons[].name_basis.note": ("shown", "escapeHtml(block.note)"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {

@@ -1,7 +1,7 @@
 ---
 id: T-0488
 title: Promote attested resident and household findings from the adjudicated research corpus
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: L
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 668
 claimed_by: null
 blocked_on: T-0487
 needs_bake: false

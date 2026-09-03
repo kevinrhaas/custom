@@ -1,1 +1,12 @@
-{"id":"resident_research_fergus_directory_1839","type":"directory","citation":"Fergus' Directory of the City of Chicago, 1839.","date":"1839","describes_date":"1839","url":"https://ldsgenealogy.com/IL/Fergus-directory-of-the-city-of-Chicago-1839.htm","tier":2,"verified":true,"note":"Four years after scene date; useful for later continuity/candidate discrimination only."}
+{
+  "id": "resident_research_fergus_directory_1839",
+  "type": "book",
+  "citation": "Fergus' Directory of the City of Chicago, 1839.",
+  "date": "1839",
+  "describes_date": "1839",
+  "url": "https://ldsgenealogy.com/IL/Fergus-directory-of-the-city-of-Chicago-1839.htm",
+  "tier": 2,
+  "verified": true,
+  "note": "Four years after scene date; useful for later continuity/candidate discrimination only.",
+  "rights_status": "check_required"
+}

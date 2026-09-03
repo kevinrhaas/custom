@@ -1,7 +1,7 @@
 ---
 id: T-0480
 title: Research sixth 75-person real-resident cohort
-state: closed
+state: done
 epic: META
 requested_by: owner
 seen: true

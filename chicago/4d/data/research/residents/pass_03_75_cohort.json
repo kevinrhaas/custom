@@ -381,7 +381,7 @@
       "person_id": "ll_aiker_samuel",
       "name": "Samuel Aiker",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -397,7 +397,7 @@
       "person_id": "ll_akers_simon",
       "name": "Simon Akers",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -413,7 +413,7 @@
       "person_id": "ll_allen_william",
       "name": "William Allen",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -429,7 +429,7 @@
       "person_id": "ll_allin_richard",
       "name": "Richard Allin",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -445,7 +445,7 @@
       "person_id": "ll_alling_prudde",
       "name": "Prudde Alling",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -461,7 +461,7 @@
       "person_id": "ll_anderson_eli_f",
       "name": "Eli F Anderson",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -477,7 +477,7 @@
       "person_id": "ll_archer_joseph",
       "name": "Joseph Archer",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -493,7 +493,7 @@
       "person_id": "ll_ayres_levi",
       "name": "Levi Ayres",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -509,7 +509,7 @@
       "person_id": "ll_bakwith_albert",
       "name": "Albert Bakwith",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -525,7 +525,7 @@
       "person_id": "ll_bebee_orson",
       "name": "Orson Bebee",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -541,7 +541,7 @@
       "person_id": "ll_beeson_william",
       "name": "William Beeson",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -557,7 +557,7 @@
       "person_id": "ll_benton_datas_e",
       "name": "Datas E Benton",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -573,7 +573,7 @@
       "person_id": "ll_bishop_j_e",
       "name": "J. E. Bishop",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -589,7 +589,7 @@
       "person_id": "ll_blair_william_g",
       "name": "William G Blair",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -605,7 +605,7 @@
       "person_id": "ll_bly_rouse",
       "name": "Rouse Bly",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -621,7 +621,7 @@
       "person_id": "ll_bullen_jeduthnn",
       "name": "Jeduthnn Bullen",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -637,7 +637,7 @@
       "person_id": "ll_bullock_stephen",
       "name": "Stephen Bullock",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -653,7 +653,7 @@
       "person_id": "ll_burbee_jonathan",
       "name": "Jonathan Burbee",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -669,7 +669,7 @@
       "person_id": "ll_butterfield_ben",
       "name": "Ben Butterfield",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -685,7 +685,7 @@
       "person_id": "ll_chadwick_joseph",
       "name": "Joseph Chadwick",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -701,7 +701,7 @@
       "person_id": "ll_chambers_john",
       "name": "John Chambers",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -717,7 +717,7 @@
       "person_id": "ll_chanpagne_batist",
       "name": "Batist Chanpagne",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -733,7 +733,7 @@
       "person_id": "ll_chase_peter",
       "name": "Peter Chase",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -749,7 +749,7 @@
       "person_id": "ll_clark_erastus",
       "name": "Erastus Clark",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -765,7 +765,7 @@
       "person_id": "ll_comstock_h_h",
       "name": "H. H. Comstock",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -781,7 +781,7 @@
       "person_id": "ll_absolam_reel",
       "name": "Absolam Reel",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -797,7 +797,7 @@
       "person_id": "ll_adam_vandorwerk",
       "name": "Adam Vandorwerk",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -813,7 +813,7 @@
       "person_id": "ll_alexander_wilkes",
       "name": "Alexander Wilkes",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -829,7 +829,7 @@
       "person_id": "ll_alexr_h_tucker",
       "name": "Alexr. H. Tucker",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -845,7 +845,7 @@
       "person_id": "ll_alfred_churchill",
       "name": "Alfred Churchill",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -861,7 +861,7 @@
       "person_id": "ll_alison_b_vaughn",
       "name": "Alison B. Vaughn",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -877,7 +877,7 @@
       "person_id": "ll_almon_perring",
       "name": "Almon Perring",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -893,7 +893,7 @@
       "person_id": "ll_alonzo_castle",
       "name": "Alonzo Castle",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -909,7 +909,7 @@
       "person_id": "ll_alva_crandal",
       "name": "Alva Crandal",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -925,7 +925,7 @@
       "person_id": "ll_alva_dunlap",
       "name": "Alva Dunlap",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -941,7 +941,7 @@
       "person_id": "ll_amos_rathburn",
       "name": "Amos Rathburn",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -957,7 +957,7 @@
       "person_id": "ll_andrew_miles",
       "name": "Andrew Miles",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -973,7 +973,7 @@
       "person_id": "ll_anthony_heere",
       "name": "Anthony Heere",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -989,7 +989,7 @@
       "person_id": "ll_aram_winsor",
       "name": "Aram Winsor",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1005,7 +1005,7 @@
       "person_id": "ll_asa_doel",
       "name": "Asa Doel",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1021,7 +1021,7 @@
       "person_id": "ll_austin_parsalls",
       "name": "Austin Parsalls",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1037,7 +1037,7 @@
       "person_id": "ll_b_r_paige",
       "name": "B. R. Paige",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1053,7 +1053,7 @@
       "person_id": "ll_bennet_bailey",
       "name": "Bennet Bailey",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1069,7 +1069,7 @@
       "person_id": "ll_carl_romer",
       "name": "Carl Romer",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1085,7 +1085,7 @@
       "person_id": "ll_charles_h_bartlett",
       "name": "Charles H. Bartlett",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1101,7 +1101,7 @@
       "person_id": "ll_charles_t_richards",
       "name": "Charles T. Richards",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1117,7 +1117,7 @@
       "person_id": "ll_chas_h_chapman",
       "name": "Chas. H. Chapman",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1133,7 +1133,7 @@
       "person_id": "ll_clark_b_albee",
       "name": "Clark B. Albee",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1149,7 +1149,7 @@
       "person_id": "ll_curtis_parkes",
       "name": "Curtis Parkes",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1165,7 +1165,7 @@
       "person_id": "ll_ebenozer_alden",
       "name": "Ebenozer Alden",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "attested",
+      "starting_grade": "inferred",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [

@@ -1,7 +1,7 @@
 ---
 id: T-0489
 title: Promote inferred and projected residents and retire the pre-existing reconstructed resident layer
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: L
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 668
 claimed_by: null
 blocked_on: T-0488
 needs_bake: false

@@ -208,7 +208,7 @@ def promote(person, hh, item):
 
 
 def census_source():
-    return {"id":"census_1840_chicago_name_crosswalk","type":"federal_census_crosswalk",
+    return {"id":"census_1840_chicago_name_crosswalk","type":"dataset",
         "citation":"1840 U.S. Census, Chicago, Cook County, Illinois — committed head-of-household transcription/IPUMS serial crosswalk and household variables.",
         "date":"1840","describes_date":"1840",
         "locator":"chicago/reference/census1840/validation/H_1840_chicago_with_names_partial.csv",
@@ -352,6 +352,16 @@ def check():
     for g in ("attested","inferred","reconstructed"):
         if int(declared.get(g) or 0)!=actual.get(g,0): problems.append(f"index {g} count disagrees with records")
     if not LEDGER.exists() or not SUMMARY.exists(): problems.append("synthesis ledger/summary missing")
+    programme=load(PROGRAMME)
+    if programme.get("resident_population_active") is not False:
+        problems.append("retired reconstructed resident programme is not marked inactive")
+    for d in docs:
+        if str(d.get("id") or "").startswith("hh_inf_") and (value(d.get("lives_at")) is not None or value(d.get("works_at")) is not None):
+            problems.append(f"{d.get('id')} survived synthesis but is still placed")
+    for path in STRUCTURES.glob("inf_*.json"):
+        d=load(path); a=d.get("resident_assignment") or {}
+        if a.get("status") != "unassigned":
+            problems.append(f"{path.name} is inferred stock without resident_assignment=unassigned")
     if problems:
         print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1
     print(f"OK: {len(people)} people; {actual.get('attested',0)} attested, {actual.get('inferred',0)} inferred, 0 reconstructed; {sum(p.get('resident_subtype')==PROJECTED for p in people)} projected")

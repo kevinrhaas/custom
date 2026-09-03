@@ -10,6 +10,14 @@
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
     },
+    "andreas_history_chicago_william_p_cleaveland": {
+      "source_id": "andreas_history_chicago_william_p_cleaveland",
+      "citation": "A. T. Andreas, History of Chicago, vol. 1 (1884), exact-name occurrence for William P. Cleaveland in early-Chicago civic/person material.",
+      "url": "https://highlanderjuan.com/wp-content/uploads/2019/05/A.T.-Andreas-History-of-Chicago-Vol-1.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "andreas_seth_paine_1834": {
       "source_id": "andreas_seth_paine_1834",
       "citation": "A. T. Andreas, History of Cook County, Illinois (Chicago, 1884), pp. 315-320, Seth Paine biography; accessed through an IAPSOP excerpt.",
@@ -203,6 +211,22 @@
       "tier": 2,
       "tier_label": "near-primary recollection"
     },
+    "chicago_old_settlers_hugunin_1883": {
+      "source_id": "chicago_old_settlers_hugunin_1883",
+      "citation": "Old Settlers of Chicago, Seventh Annual Reception proceedings, 1883, deceased-members roster for Leonard C. Hugunin",
+      "url": "https://www.lib.uchicago.edu/ead/pdf/lanefamily-0008-005-01.pdf",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "chicagology_chicago_brick": {
+      "source_id": "chicagology_chicago_brick",
+      "citation": "Chicagology, “Chicago Brick,” historical compilation of early Chicago brickmaking.",
+      "url": "https://chicagology.com/rebuilding/rebuilding160/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "chicagology_first_post_office": {
       "source_id": "chicagology_first_post_office",
       "citation": "\"Chicago's First Post Office.\" Chicagology, transcribing J. Seymour Currey, \"U. S. Government and Post Office Buildings,\" Fort Dearborn Magazine, December 1922.",
@@ -314,6 +338,22 @@
         "any citation whatever for its addendum"
       ]
     },
+    "chicagology_prefire278": {
+      "source_id": "chicagology_prefire278",
+      "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",
+      "url": "https://chicagology.com/prefire/prefire278/",
+      "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+          "date": "1883-07-22",
+          "tier": 2,
+          "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+        }
+      ]
+    },
     "chicagology_wolf_point_walters": {
       "source_id": "chicagology_wolf_point_walters",
       "citation": "Chicagology, 'Wolf's Point and the Town of Chicago,' transcription/excerpt from A. T. Andreas, History of Chicago, identifying William Walters as proprietor of the Wolf Point Tavern, 1833-1836.",
@@ -370,6 +410,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "cook_county_mclintock_bachelors_grove": {
+      "source_id": "cook_county_mclintock_bachelors_grove",
+      "citation": "Album of Genealogy and Biography, Cook County, Illinois, Thomas Franklin McClintock entry.",
+      "url": "https://ldsgenealogy.com/IL/books/Album-of-genealogy-and-biography-Cook-County-Illinois-2nd-ed-part-17.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "cpl_augustus_garrett_biography": {
       "source_id": "cpl_augustus_garrett_biography",
       "citation": "Chicago Public Library. \"Mayor Augustus Garrett Biography.\"",
@@ -414,6 +462,14 @@
       "source_id": "cpn_madore_beaubien",
       "citation": "Citizen Potawatomi Nation Cultural Heritage Center, Madore Beaubien",
       "url": "https://www.potawatomiheritage.com/encyclopedia/beaubien-madore-b/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "dalton_1840_chicago_census_index": {
+      "source_id": "dalton_1840_chicago_census_index",
+      "citation": "Dalton Data Bank, Illinois census indexes, 1840: Edward Dalton, Chicago 1st Ward",
+      "url": "https://daltondatabank.net/Illinois.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -481,6 +537,22 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    "early_illinois_barrows_school": {
+      "source_id": "early_illinois_barrows_school",
+      "citation": "Early Illinois, account of early Chicago schools and Miss Chappel's school.",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Early_Illinois_%28IA_earlyillinois00port%29.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "elgin_history_gifford": {
+      "source_id": "elgin_history_gifford",
+      "citation": "City of Elgin, Illinois, official history and historic-district history: Hezekiah and James Gifford",
+      "url": "https://elginil.gov/334/Historic-Districts-Landmarks",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     "encyclopedia_chicago_balloon_frame": {
       "source_id": "encyclopedia_chicago_balloon_frame",
@@ -562,10 +634,42 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "fcp_treaty_chicago_1833_payments": {
+      "source_id": "fcp_treaty_chicago_1833_payments",
+      "citation": "Forest County Potawatomi Cultural Center, September 26, 1833 — Treaty of Chicago, payment schedule.",
+      "url": "https://www.fcpotawatomi.com/cultural-preservation/treaties/september-26-1833-treaty-of-chicago/",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "fergus_chicago_directory_1839": {
+      "source_id": "fergus_chicago_directory_1839",
+      "citation": "Fergus' Directory of the City of Chicago, 1839",
+      "url": "https://ldsgenealogy.com/IL/books/Fergus-directory-of-the-city-of-Chicago-1839-part-2.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "fergus_chicago_directory_1843": {
+      "source_id": "fergus_chicago_directory_1843",
+      "citation": "Robert Fergus, Directory of the City of Chicago, Illinois, for 1843, Fergus Historical Series No. 28",
+      "url": "https://cook-ilgw.genealogyvillage.com/1843-chicago-directory/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "first_presbyterian_chicago_1833_1913": {
       "source_id": "first_presbyterian_chicago_1833_1913",
       "citation": "The First Presbyterian Church, 1833–1913",
       "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/The_First_Presbyterian_church%2C_1833-1913%3B_a_history_of_the_oldest_organization_in_Chicago%2C_with_biographical_sketches_of_the_ministers_and_extracts_from_the_choir_records_%28IA_firstpreschurch00otis%29.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "geneanet_cook_baumgarten_1836": {
+      "source_id": "geneanet_cook_baumgarten_1836",
+      "citation": "Geneanet indexed excerpt from Album of Genealogy and Biography, Cook County, Illinois (1897), Moritz Baumgarten reference.",
+      "url": "https://en.geneanet.org/fonds/bibliotheque/?go=1&nom=BAUMGARTEN&prenom=",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -586,6 +690,31 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "greene_history_william_holliday_1834": {
+      "source_id": "greene_history_william_holliday_1834",
+      "citation": "History of Greene County, Illinois, White Hall history: William Holliday",
+      "url": "https://libsysdigi.library.illinois.edu/oca/Books2008-06/historyofgreenec00clap/historyofgreenec00clap.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "hathaway_1834": {
+      "source_id": "hathaway_1834",
+      "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+      "url": "https://www.loc.gov/item/2008621683/",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "platted extent"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
+    },
     "history_medicine_chicago_kimberly_maxwell": {
       "source_id": "history_medicine_chicago_kimberly_maxwell",
       "citation": "History of Medicine and Surgery and Physicians and Surgeons of Chicago (Chicago: Biographical Publishing Corporation, 1922), biographies of Philip Maxwell and Edmund Stoughton Kimberly.",
@@ -601,6 +730,14 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "ida_will_property_1842_hawley": {
+      "source_id": "ida_will_property_1842_hawley",
+      "citation": "Illinois Digital Archives / New Lenox Public Library, Roll of Property Owners in Will County in 1842.",
+      "url": "https://www.idaillinois.org/digital/collection/p16614coll84/id/47/",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     "illinois_courts_caton_biography": {
       "source_id": "illinois_courts_caton_biography",
@@ -666,10 +803,42 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "kane_history_geneva_edward_trimble": {
+      "source_id": "kane_history_geneva_edward_trimble",
+      "citation": "History of Kane County, Illinois, Geneva Township pioneer account: Edward Trimble",
+      "url": "https://genealogytrails.com/ill/kane/geneva.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kane_history_gideon_young_naperville": {
+      "source_id": "kane_history_gideon_young_naperville",
+      "citation": "History of Kane County / St. Charles Township early-settlement account, Gideon Young at Naperville in January 1835.",
+      "url": "https://genealogytrails.com/ill/kane/stcharles.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kane_history_st_charles_1904": {
+      "source_id": "kane_history_st_charles_1904",
+      "citation": "Historical Encyclopedia of Illinois and History of Kane County, St. Charles Township pioneer account",
+      "url": "https://ldsgenealogy.com/IL/books/Historical-encyclopedia-of-Illinois-and-History-of-Kane-County-part-142.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "kaneville_amanda_miner": {
       "source_id": "kaneville_amanda_miner",
       "citation": "Kaneville Township History, Amos and Amanda Miner",
       "url": "https://www.kanevilletownship.com/township_history.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kendall_history_daniel_platt": {
+      "source_id": "kendall_history_daniel_platt",
+      "citation": "History of Kendall County, Illinois, Daniel Platt pioneer account",
+      "url": "https://libsysdigi.library.illinois.edu/oca/Books2008-05/historyofkendall00hick/historyofkendall00hick.pdf",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -681,6 +850,30 @@
       "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
       "tier": 2,
       "tier_label": "near-primary recollection"
+    },
+    "lake_county_coroner_starr_titus_1839": {
+      "source_id": "lake_county_coroner_starr_titus_1839",
+      "citation": "Lake County, Illinois Coroner's Office, 2018 Annual Report, history of the office.",
+      "url": "https://www.lakecountyil.gov/DocumentCenter/View/40316/2018-LC-Coroner-Annual-Report-Final",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "lasalle_history_betsey_hatch_1836": {
+      "source_id": "lasalle_history_betsey_hatch_1836",
+      "citation": "Elmer Baldwin, History of La Salle County, Illinois (1877), Deer Park pioneer account: Betsey Hatch",
+      "url": "https://lasalle.illinoisgenweb.org/1877history/1877historydeerpark.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "lasalle_history_daniel_newton_1835": {
+      "source_id": "lasalle_history_daniel_newton_1835",
+      "citation": "History of La Salle County, Illinois (1877), Ottawa pioneer account: Daniel Newton",
+      "url": "https://lasalle.illinoisgenweb.org/1877history/1877historyottawa.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     "lasalle_history_james_mcfadden": {
       "source_id": "lasalle_history_james_mcfadden",
@@ -706,10 +899,26 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "marsh_genealogy_martin_cleland_1886": {
+      "source_id": "marsh_genealogy_martin_cleland_1886",
+      "citation": "Lucius B. Marsh, The Genealogy of John Marsh of Salem and His Descendants, 1633–1886, Martin Cleland family entry.",
+      "url": "https://www.seekingmyroots.com/members/files/G004343.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "mclean_history_jesse_w_fell": {
       "source_id": "mclean_history_jesse_w_fell",
       "citation": "McLean County Museum of History. \"Jesse Weldon Fell.\"",
       "url": "https://mchistory.org/research/biographies/fell-jesse-weldon",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "michigan_city_history_william_teall": {
+      "source_id": "michigan_city_history_william_teall",
+      "citation": "History of Michigan City, Indiana (1908), early-settlement and merchant-license discussion of William Teall.",
+      "url": "https://ldsgenealogy.com/IN/books/History-of-Michigan-City-Indiana-part-13.htm",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -778,24 +987,13 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
-    "owner_chicago_1835_reconstruction_spec_2026": {
-      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
-      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
-      "url": "",
+    "okstate_treaty_chicago_1833": {
+      "source_id": "okstate_treaty_chicago_1833",
+      "citation": "Oklahoma State University Libraries, Treaty with the Chippewa, etc., 1833 (transcription of the treaty text).",
+      "url": "https://treaties.okstate.edu/treaties/treaty-with-the-chippewa-etc-1833-0402",
       "archived_url": "",
-      "tier": 5,
-      "tier_label": "modern retrospective illustration/reconstruction",
-      "what_it_supplies": [
-        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
-        "Thirty-five architectural family definitions with dimensional and massing bands.",
-        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
-        "A required distinction between named documentary landmarks and anonymous inferred infill."
-      ],
-      "what_it_does_not_supply": [
-        "A surviving July 1835 building census or parcel-by-parcel roof register.",
-        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
-        "Authority to replace stronger building-specific evidence already represented in the dataset."
-      ]
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     "pal_chicago_incorporation_1835": {
       "source_id": "pal_chicago_incorporation_1835",
@@ -869,6 +1067,110 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "racine_old_settlers_elisha_raymond_1871": {
+      "source_id": "racine_old_settlers_elisha_raymond_1871",
+      "citation": "Official Record of the Old Settlers' Society of Racine County, Wisconsin, Raymond settlement account.",
+      "url": "https://www.vindustries.com/racinehistory/wp-content/uploads/2016/01/yale.39002013462198-1454213983_optimized.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_chandler_cook_history": {
+      "source_id": "resident_research_chandler_cook_history",
+      "citation": "A. T. Andreas, History of Cook County, Illinois (1884), harbor improvements section.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-Cook-County-Illinois-From-the-Earliest-Period-to-the-Present-Time-part-26.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_cook_county_andrews_1884": {
+      "source_id": "resident_research_cook_county_andrews_1884",
+      "citation": "History of Cook County, Illinois (1884), Kensington biographical sketch of David Andrews.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-Cook-County-Illinois-From-the-Earliest-Period-to-the-Present-Time-part-159.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_cook_harbor_jackson": {
+      "source_id": "resident_research_cook_harbor_jackson",
+      "citation": "History of Cook County, Illinois (1884), Chicago harbor improvement account naming Samuel Jackson.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-Cook-County-Illinois-From-the-Earliest-Period-to-the-Present-Time-part-37.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_cook_morrison_album": {
+      "source_id": "resident_research_cook_morrison_album",
+      "citation": "Album of Genealogy and Biography, Cook County, Illinois — Orsemus Morrison entry.",
+      "url": "https://cook.illinoisgenweb.org/history/albumofgenealogy.html",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_fergus_directory_1839": {
+      "source_id": "resident_research_fergus_directory_1839",
+      "citation": "Fergus' Directory of the City of Chicago, 1839.",
+      "url": "https://ldsgenealogy.com/IL/Fergus-directory-of-the-city-of-Chicago-1839.htm",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "resident_research_fergus_directory_1843": {
+      "source_id": "resident_research_fergus_directory_1843",
+      "citation": "Robert Fergus, Directory of the City of Chicago, Illinois for 1843.",
+      "url": "https://www.genealogytrails.com/ill/cook/1843directory_2.html",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "resident_research_hobson_pioneer": {
+      "source_id": "resident_research_hobson_pioneer",
+      "citation": "Our Pioneer Heritage, Jesse Hobson biographical material.",
+      "url": "https://belnapfamily.org/DUP_OPH_vol02.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_hobson_woodruff": {
+      "source_id": "resident_research_hobson_woodruff",
+      "citation": "Wilford Woodruff Papers, Jesse Hobson subject profile.",
+      "url": "https://wilfordwoodruffpapers.org/subjects/jesse-hobson",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "resident_research_myers_glen_ellyn": {
+      "source_id": "resident_research_myers_glen_ellyn",
+      "citation": "The Story of an Old Town—Glen Ellyn (1928), Myers family section.",
+      "url": "https://cdn.wildapricot.com/360922/resources/Documents/DCGS%20research%20resources/Other%20DuPage%20Genealogy%20data/1928--Story_of_an_Old_Town_Glen_Ellyn.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_pugsley_barrien_vanburen": {
+      "source_id": "resident_research_pugsley_barrien_vanburen",
+      "citation": "History of Berrien and Van Buren Counties, Michigan (1880), Paw Paw Township, John K. Pugsley migration narrative.",
+      "url": "https://ldsgenealogy.com/MI/books/History-of-Berrien-and-Van-Buren-counties-Michigan-With-biographical-sketches-of-its-prominent-men-and-pioneers-part-126.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "resident_research_tribune_mitchell_1883": {
+      "source_id": "resident_research_tribune_mitchell_1883",
+      "citation": "Chicago Tribune, May 18, 1883, old-settlers reception report, University of Chicago Lane Family papers copy.",
+      "url": "https://www.lib.uchicago.edu/ead/pdf/lanefamily-0008-005-02.pdf",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "resident_research_will_county_1878": {
+      "source_id": "resident_research_will_county_1878",
+      "citation": "History of Will County, Illinois (1878), Yankee Settlement/Joliet early-settlement chapters.",
+      "url": "https://will-ilgw.genealogyvillage.com/history/1878-2.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "rochester_porter_chappel_marriage": {
       "source_id": "rochester_porter_chappel_marriage",
       "citation": "Rochester newspaper marriage notices, Jeremiah Porter and Eliza Chappel",
@@ -877,6 +1179,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "rochester_selden_family_biography": {
+      "source_id": "rochester_selden_family_biography",
+      "citation": "Rochester Public Library Local History & Genealogy Division, Selden family papers biographical note.",
+      "url": "https://archives.libraryweb.org/repositories/2/resources/392",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
     "rockford_first_settlers_1835": {
       "source_id": "rockford_first_settlers_1835",
       "citation": "History of Rockford and Winnebago County, first-settlers roster",
@@ -884,6 +1194,54 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "rockford_history_charles_works": {
+      "source_id": "rockford_history_charles_works",
+      "citation": "History of Rockford and Winnebago County, Illinois, from the First Settlement in 1834 to the Civil War (1900), First Congregational Church membership.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-Rockford-and-Winnebago-County-Illinois-from-the-first-settlement-in-1834-to-the-civil-war-part-9.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "rr_andreas_chicago_1884_pass11": {
+      "source_id": "rr_andreas_chicago_1884_pass11",
+      "citation": "Alfred T. Andreas, History of Chicago, vol. 1 (1884), early land-sale table and First Baptist Church history.",
+      "url": "https://highlanderjuan.com/wp-content/uploads/2019/05/A.T.-Andreas-History-of-Chicago-Vol-1.pdf",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "rr_baptist_chicago_lathrop": {
+      "source_id": "rr_baptist_chicago_lathrop",
+      "citation": "Andreas-derived history of early Chicago Baptist churches and ministers.",
+      "url": "https://baptisthistoryhomepage.com/illinois.chicg.bp.chs.mns.html",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "rr_cook_democratic_republicans_1834": {
+      "source_id": "rr_cook_democratic_republicans_1834",
+      "citation": "History of Cook County, Illinois, quoting Chicago Democrat, Oct. 15, 1834 political meeting list.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-Cook-County-Illinois-being-a-general-survey-of-Cook-County-history-including-a-condensed-history-of-Chicago-from-the-earliest-settlement-to-the-present-time-volume-I-part-31.htm",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "rr_dupage_andrus_1882": {
+      "source_id": "rr_dupage_andrus_1882",
+      "citation": "Rufus Blanchard, History of DuPage County, Illinois (1882), Thomas Andrus account.",
+      "url": "https://genealogytrails.com/ill/dupage/bios.html",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "rr_racine_old_settlers_1871": {
+      "source_id": "rr_racine_old_settlers_1871",
+      "citation": "Official Record of the Old Settlers' Society of Racine County, Wisconsin (1871).",
+      "url": "https://www.vindustries.com/racinehistory/wp-content/uploads/2016/01/yale.39002013462198-1454213983_optimized.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     "talcott_chester_house_1835": {
       "source_id": "talcott_chester_house_1835",
@@ -913,6 +1271,22 @@
       "source_id": "uiuc_daniel_elston_papers",
       "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston papers catalog record",
       "url": "https://archon.library.illinois.edu/ihlc/index.php?p=collections/controlcard&id=614",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "ushouse_james_h_woodworth": {
+      "source_id": "ushouse_james_h_woodworth",
+      "citation": "U.S. House of Representatives, History, Art & Archives, James Hutchinson Woodworth (1804–1869).",
+      "url": "https://history.house.gov/People/Listing/W/WOODWORTH,-James-Hutchinson-(W000734)/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "ushouse_john_reynolds_illinois": {
+      "source_id": "ushouse_john_reynolds_illinois",
+      "citation": "U.S. House of Representatives, History, Art & Archives, John Reynolds (1788–1865).",
+      "url": "https://history.house.gov/People/Detail/20301",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -996,6 +1370,22 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "will_homer_history_1907": {
+      "source_id": "will_homer_history_1907",
+      "citation": "History of Will County, Illinois (1907), Homer Township pioneer account",
+      "url": "https://libsysdigi.library.illinois.edu/OCA/Books2012-06/historyofwillcou/historyofwillcou01maue/historyofwillcou01maue.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "wright_in_memoriam_1885": {
+      "source_id": "wright_in_memoriam_1885",
+      "citation": "Augustine W. Wright, In Memoriam, John S. Wright: An Address Delivered Before the Chicago Historical Society, 21 July 1885.",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/In_memoriam%2C_John_S._Wright_.._%28IA_inmemoriamjohnsw00wrig%29.pdf",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     "wttw_ira_couch": {
       "source_id": "wttw_ira_couch",

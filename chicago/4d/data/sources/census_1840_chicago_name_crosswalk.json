@@ -1,6 +1,6 @@
 {
   "id": "census_1840_chicago_name_crosswalk",
-  "type": "federal_census_crosswalk",
+  "type": "dataset",
   "citation": "1840 U.S. Census, Chicago, Cook County, Illinois — committed head-of-household transcription/IPUMS serial crosswalk and household variables.",
   "date": "1840",
   "describes_date": "1840",

@@ -298,6 +298,35 @@
       "type": "boolean",
       "default": false,
       "description": "Blocks release of any scene including this record. Set for anything touching Indigenous history or human depiction pending external review."
+    },
+    "resident_assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "confidence",
+        "note"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "unassigned",
+            "assigned"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "attested",
+            "inferred",
+            "reconstructed"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "Resident-placement state after the evidence-only population synthesis. Unassigned stock remains geometry without an invented occupant."
     }
   },
   "$defs": {
