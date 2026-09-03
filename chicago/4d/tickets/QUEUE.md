@@ -102,7 +102,6 @@ T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State 
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
-T-0551 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed page 234, checked against the sheet's own column totals
 T-0547 — The 1840 census image 33S7-9YYJ-5V read line by line and closed against its own printed column totals
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
 T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
@@ -345,3 +344,4 @@ T-0536 — The census_1840 domain declares its 25 read images in its own images[
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
+T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column

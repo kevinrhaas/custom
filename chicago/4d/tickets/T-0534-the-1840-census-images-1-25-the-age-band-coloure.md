@@ -54,3 +54,8 @@ Town findings — any business, street, landscape or appearance fact — go in
 `crosswalk_670.json` · `claims.json` · T-0492 (the shared research-domain shape) · T-0504 (serial
 mapping) · T-0505 (crosswalk to 1835) · T-0507 (composition calibration) ·
 `data/sources/census_1840_chicago_familysearch_images.json`
+
+**Note, 2026-09-03.** The run that claimed this ticket before the split (PR #698) read all three pages
+to the cell. Its 234 landed as T-0551; its 229 and 231 arrived after T-0550's reading of the same two
+pages (PR #697) and disagree with it on 20 and 25 lines — kept verbatim in
+`data/research/census_1840/second_readings/`, reconciled by T-0559.

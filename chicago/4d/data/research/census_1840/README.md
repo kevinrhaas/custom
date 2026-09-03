@@ -287,6 +287,46 @@ The inventory's figure is `lines_with_an_entry`; the difference is blank ruled l
 last household, which the page files **record as lines** rather than skip. Coverage now carries
 both numbers per image (`lines_with_an_entry` and `lines_ruled`).
 
+## Printed 234 to the cell, and a second reading of 229 and 231 that does not agree with the first (T-0551, PR #698)
+
+`33S7-9YYJ-99F` (printed **234**, 31 lines) is read to the cell: **37 of 38 columns balance the
+enumerator's own footings and are committed**. The one that does not is free white females 5 under
+10 — ten marks against a footing of 11 — and line 17 is the candidate, its mark carrying a second
+stroke at the foot that this pass read as an inked start to a 1 and that could be the base of a 2.
+Line 2 (*Geo. Shelley*) is the deposit's largest household so far — 7 males 20-30, 4 males 30-40,
+6 females 20-30 and 4 females 30-40 — and every one of those four columns closes on its footing with
+that reading in it. A single line that large is a lodging house rather than a family, and it is the
+sort of thing T-0507's composition calibration will need to hold separately. All twelve free
+coloured columns are empty and footed empty.
+
+**The same run also read printed 229 and 231 to the cell, and so, one batch earlier, did T-0550
+(PR #697).** Two independent readings of the same two sheets now exist, and they do not agree.
+T-0550's is the committed reading in `pages/`; this run's is preserved verbatim in
+`second_readings/` (its page files exactly as PR #698 first carried them), and the disagreement is
+stated here rather than one reading being chosen by whichever landed first:
+
+| printed page | lines | names agree | lines whose cells differ | column checks that differ (second reading / committed) |
+|---|---|---|---|---|
+| 229 (`33S7-9YYJ-9M5`) | 30 | 30 of 30 | **20** | free white males Under 5: 9 read against 14 footed on the second reading, 10 against 10 on the committed one; free white males 30 under 40: 8 read against 7 footed on the second reading, 8 against 1 on the committed one; free white females Under 5: 19 read against 19 footed on the second reading, 19 against 11 on the committed one |
+| 231 (`33S7-9YYJ-38`) | 31 | 31 of 31 | **25** | free white females 5 under 10: 9 read against 9 footed on the second reading, 12 against 12 on the committed one; free white females 20 under 30: 20 read against 20 footed on the second reading, 20 against 21 on the committed one; free white females 40 under 50: 3 read against 3 footed on the second reading, 3 against 5 on the committed one |
+
+The names agree on every line. The cells do not, and the pattern is not scatter: on 229 the strokes
+one reading puts in the first column (free white males Under 5) the other puts in column 14 (free
+white females Under 5), and on 231 marks sit in column 15 on one reading and column 18 on the other.
+The two readings also read the FOOTINGS differently in exactly those columns — which is why each
+reading balances, on a different set of columns, and each records a different pair as unreconciled
+(second reading: free white males Under 5, free white males 30 under 40 on 229 and free white females 5 under 10 on 231;
+committed: free white males 30 under 40, free white females Under 5 and free white females 20 under 30, free white females 40 under 50). Two grids fitted
+to the same photograph put the same marks in different columns, and a footing read at the wrong
+column agrees with the marks read at the wrong column. **That means a column that balances is
+not, on its own, a column read right**, and the committed cells of 229 and 231 are ONE reading
+until the two are reconciled against the sheets — which is what the reconciliation ticket filed
+with this PR asks for, starting from the columns named above.
+
+Printed 229's line count is settled at 30 by both readings independently, on the same argument
+(the footings close on 30 lines and there is no 31st ruled line), so that finding stands whichever
+reading of the cells prevails.
+
 ## What has NOT been read yet, and where it is
 
 The age-band, free-coloured and industry cells are a column-by-column reading that has to
@@ -294,11 +334,14 @@ be checked against the **printed column totals at the foot of each sheet** befor
 be committed — 26 narrow columns of single strokes, where a mark one column off is a
 person of the wrong age. Committing a half-checked row would be worse than leaving it
 unread, so a page's `records[].cells` stays `null` with `cells_state: "not_read"` until that
-check is done. Five pages have had it: printed 230 and 232 (T-0530 — 62 households, every
+check is done. Eight pages have had it: printed 230 and 232 (T-0530 — 62 households, every
 age band and free coloured column read line by line, 73 of 76 footings reconciled exactly,
-the three that do not named on the page files) and printed 221, 222 and 226 (T-0532 — the
+the three that do not named on the page files), printed 221, 222 and 226 (T-0532 — the
 balance stated per column in the section above, 221 committed on 36 of 38 columns, 222 and
-226 committing nothing until their footers are re-read). On every other page here the cells
+226 committing nothing until their footers are re-read), printed 229 and 231
+(T-0550 — 36 of 38 columns committed on each, printed 229's line count settled at 30, and a second
+reading of both on PR #698 that does not agree with it, see below) and printed 234 (T-0551 — 37 of 38).
+On every other page here the cells
 are still `not_read`, and those cells are their own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.
