@@ -1,7 +1,7 @@
 ---
 id: T-0504
 title: 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 724
+claimed_by: run 9/3/2026, 2:33:14 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T20:09:23.623Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796870672
 ---
 
 **The owner's ask, 2026-09-03, recorded verbatim:** "create tickets to do more resident research

@@ -135,13 +135,18 @@
 # --- exists, the evidence is adjudicated, and they have never been introduced.
 # ---
 # --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
-# --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py reports
-# --- read vs ruled; what it still does NOT report is ruled vs ON A CARD, which is this band's job.
+# --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
+# --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
+# --- reaching a town person and 0 reaching their card; this band is what moves that number.
 T-0513 — Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
+# --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
+# --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
+# --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
+# --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
+# --- which is the manual step this whole programme exists to stop relying on.
+T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
 
-T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
 # --- newberry spend ticket". Placed immediately above the three volume reads it depends on the
@@ -400,3 +405,7 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
+T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
+T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
+T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
+T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
