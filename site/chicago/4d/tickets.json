@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 10:11 AM",
+  "generated_ct": "Sep 3, 2026, 10:23 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9006,7 +9006,7 @@
     {
       "id": "T-0547",
       "title": "The 1840 census image 33S7-9YYJ-5V read line by line and closed against its own printed column totals",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9014,12 +9014,12 @@
       "legacy_id": null,
       "parent": "T-0541",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0548",
@@ -9236,6 +9236,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 140
+    },
+    {
+      "id": "T-0564",
+      "title": "The 1840 census sheet 33S7-9YYJ-5V: the eight middle columns read and eleven of twelve closed against the enumerator's own footing",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0547",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "702",
+      "claimed_by": "run 9/3/2026, 10:23:53 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0565",
+      "title": "The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0547",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 5
     }
   ]
 }

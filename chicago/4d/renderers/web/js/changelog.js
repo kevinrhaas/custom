@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'An 1840 census sheet agrees with the census taker\u2019s own addition', kind: 'fix', ts: '2026-09-03T14:21:16.839Z', date: 'Sep 3, 2026, 9:21 AM CT',
+  { v: 458, title: 'An 1840 census sheet agrees with the census taker\u2019s own addition', kind: 'fix', ts: '2026-09-03T14:21:16.839Z', date: 'Sep 3, 2026, 9:21 AM CT',
     items: [
       'The right-hand pages of the 1840 census carry no names \u2014 fifteen columns of figures, and at the foot of each the total the census taker added up himself. That footing is the only check on a reading, and a good one.',
       'One sheet was published yesterday with two columns wrong. Its trades column came to seventeen against the fifteen he footed, and the two was left standing rather than tidied away, which was right. Its professions column was not read at all: only two of three entries could be found.',
