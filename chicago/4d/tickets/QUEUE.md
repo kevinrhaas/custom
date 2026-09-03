@@ -114,7 +114,7 @@ T-0578 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook Co
 T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 
-T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
+T-0585 — The 1840 census images 1-25: names and cells of the left sheet printed 219
 T-0565 — The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
 T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
