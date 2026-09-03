@@ -1,7 +1,7 @@
 ---
 id: T-0575
 title: Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 725
 claimed_by: run 9/3/2026, 2:34:08 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T20:19:22.200Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796887297
 ---
 
