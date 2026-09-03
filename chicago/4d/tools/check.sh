@@ -1270,6 +1270,21 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
+# T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
+# no printing this project holds dates any of the 207 firms at or before 1835, so nothing
+# was written to the businesses layer. A negative result is the easiest artefact in the
+# repository to corrupt: nobody re-reads it, and a hand-edit that promotes one firm to
+# "dated 1834" would put a business in the town on nobody's authority. So the whole file
+# rebuilds from its four committed inputs and diffs, and the rules it rests on — that the
+# sketch route reads the printed quote and never this project's own gloss, that a
+# one-surname firm needs an agreeing initial, that a founding year has to be carried by
+# founding language — are asserted with cases that fire.
+step "Norris's 1844 firms re-derive their dating against 1835" \
+  python3 tools/date_norris_1844_businesses.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/date_norris_1844_businesses.py --self-test
+
 # T-0556. An INVENTORY of a website is the one research artefact that rots silently: it
 # is a set of judgements about pages nobody will open again, and the only way to notice
 # that a section was quietly dropped from it is to go and re-walk the site. So the county

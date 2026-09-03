@@ -1,7 +1,7 @@
 ---
 id: T-0588
 title: Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0569
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 717
+claimed_by: run 9/3/2026, 1:21:18 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T18:49:22.116Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33789709731
 ---
 
 Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835.
