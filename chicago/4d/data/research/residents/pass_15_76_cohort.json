@@ -23,8 +23,8 @@
   },
   "people": [
     {
-      "household_id": "hh_ll_franklin_spalding",
-      "person_id": "ll_franklin_spalding",
+      "household_id": "hh_spalding_franklin",
+      "person_id": "spalding_franklin",
       "name": "Franklin Spalding",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -49,8 +49,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_curtis_liman",
-      "person_id": "ll_curtis_liman",
+      "household_id": "hh_curtis_liman",
+      "person_id": "curtis_liman",
       "name": "Liman Curtis",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -63,8 +63,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_frederick_w_page",
-      "person_id": "ll_frederick_w_page",
+      "household_id": "hh_page_frederick_w",
+      "person_id": "page_frederick_w",
       "name": "Frederick W. Page",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_davenport_dennis",
-      "person_id": "ll_davenport_dennis",
+      "household_id": "hh_davenport_dennis",
+      "person_id": "davenport_dennis",
       "name": "Dennis Davenport",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -104,8 +104,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_george_r_makepiece",
-      "person_id": "ll_george_r_makepiece",
+      "household_id": "hh_makepiece_george_r",
+      "person_id": "makepiece_george_r",
       "name": "George R. Makepiece",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_demans_j_t",
-      "person_id": "ll_demans_j_t",
+      "household_id": "hh_demans_j_t",
+      "person_id": "demans_j_t",
       "name": "J. T Demans",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_gregory_e_legg",
-      "person_id": "ll_gregory_e_legg",
+      "household_id": "hh_legg_gregory_e",
+      "person_id": "legg_gregory_e",
       "name": "Gregory E. Legg",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_dement_wm",
-      "person_id": "ll_dement_wm",
+      "household_id": "hh_dement_wm",
+      "person_id": "dement_wm",
       "name": "Wm. Dement",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_h_vanderbogart",
-      "person_id": "ll_h_vanderbogart",
+      "household_id": "hh_vanderbogart_h",
+      "person_id": "vanderbogart_h",
       "name": "H. Vanderbogart",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_dow_albert_f",
-      "person_id": "ll_dow_albert_f",
+      "household_id": "hh_dow_albert_f",
+      "person_id": "dow_albert_f",
       "name": "Albert F. Dow",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_hannah_hurlburt",
-      "person_id": "ll_hannah_hurlburt",
+      "household_id": "hh_hurlburt_hannah",
+      "person_id": "hurlburt_hannah",
       "name": "Hannah Hurlburt",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -251,8 +251,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ehjah_doolittle",
-      "person_id": "ll_ehjah_doolittle",
+      "household_id": "hh_doolittle_ehjah",
+      "person_id": "doolittle_ehjah",
       "name": "Ehjah Doolittle",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_hiram_eager",
-      "person_id": "ll_hiram_eager",
+      "household_id": "hh_eager_hiram",
+      "person_id": "eager_hiram",
       "name": "Hiram Eager",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_fairchilds_ransom",
-      "person_id": "ll_fairchilds_ransom",
+      "household_id": "hh_fairchilds_ransom",
+      "person_id": "fairchilds_ransom",
       "name": "Ransom Fairchilds",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -307,8 +307,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_jacob_langer",
-      "person_id": "ll_jacob_langer",
+      "household_id": "hh_langer_jacob",
+      "person_id": "langer_jacob",
       "name": "Jacob Langer",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -334,8 +334,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_felch_alaneon",
-      "person_id": "ll_felch_alaneon",
+      "household_id": "hh_felch_alaneon",
+      "person_id": "felch_alaneon",
       "name": "Alaneon Felch",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -348,8 +348,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_james_mcfadden",
-      "person_id": "ll_james_mcfadden",
+      "household_id": "hh_mcfadden_james",
+      "person_id": "mcfadden_james",
       "name": "James McFadden",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -375,8 +375,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_force_john",
-      "person_id": "ll_force_john",
+      "household_id": "hh_force_john",
+      "person_id": "force_john",
       "name": "John Force",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_jesse_holder",
-      "person_id": "ll_jesse_holder",
+      "household_id": "hh_holder_jesse",
+      "person_id": "holder_jesse",
       "name": "Jesse Holder",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -415,8 +415,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ford_ebenezer",
-      "person_id": "ll_ford_ebenezer",
+      "household_id": "hh_ford_ebenezer",
+      "person_id": "ford_ebenezer",
       "name": "Ebenezer Ford",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -429,8 +429,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_john_musgrave",
-      "person_id": "ll_john_musgrave",
+      "household_id": "hh_musgrave_john",
+      "person_id": "musgrave_john",
       "name": "John Musgrave",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -455,8 +455,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_galusha_ezra",
-      "person_id": "ll_galusha_ezra",
+      "household_id": "hh_galusha_ezra",
+      "person_id": "galusha_ezra",
       "name": "Ezra Galusha",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -469,8 +469,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_jonathan_folliott",
-      "person_id": "ll_jonathan_folliott",
+      "household_id": "hh_folliott_jonathan",
+      "person_id": "folliott_jonathan",
       "name": "Jonathan Folliott",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -495,8 +495,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_gooding_caroline",
-      "person_id": "ll_gooding_caroline",
+      "household_id": "hh_gooding_caroline",
+      "person_id": "gooding_caroline",
       "name": "Caroline Miss Gooding",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_joshua_kinsey",
-      "person_id": "ll_joshua_kinsey",
+      "household_id": "hh_kinsey_joshua",
+      "person_id": "kinsey_joshua",
       "name": "Joshua Kinsey",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -523,8 +523,8 @@
       ]
     },
     {
-      "household_id": "hh_placed_b_s_morris",
-      "person_id": "placed_b_s_morris",
+      "household_id": "hh_morris_b_s",
+      "person_id": "morris_b_s",
       "name": "B. S. Morris",
       "stratum": "established_profile",
       "starting_grade": "attested",
@@ -535,8 +535,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_hail_aifred",
-      "person_id": "ll_hail_aifred",
+      "household_id": "hh_hail_aifred",
+      "person_id": "hail_aifred",
       "name": "Aifred Hail",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -549,8 +549,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_lucius_b_albyn",
-      "person_id": "ll_lucius_b_albyn",
+      "household_id": "hh_albyn_lucius_b",
+      "person_id": "albyn_lucius_b",
       "name": "Lucius B. Albyn",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -563,8 +563,8 @@
       ]
     },
     {
-      "household_id": "hh_placed_hoit_thomas",
-      "person_id": "placed_hoit_thomas",
+      "household_id": "hh_hoit_thomas",
+      "person_id": "hoit_thomas",
       "name": "Thomas Hoit",
       "stratum": "established_profile",
       "starting_grade": "attested",
@@ -575,8 +575,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_maccoy_lorenzo",
-      "person_id": "ll_maccoy_lorenzo",
+      "household_id": "hh_lorenzo_maccoy",
+      "person_id": "lorenzo_maccoy",
       "name": "maccoy Lorenzo",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -589,8 +589,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_m_vaughton_angus",
-      "person_id": "ll_m_vaughton_angus",
+      "household_id": "hh_m_vaughton_angus",
+      "person_id": "m_vaughton_angus",
       "name": "Angus M'Vaughton",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -603,8 +603,8 @@
       ]
     },
     {
-      "household_id": "hh_placed_j_k_boyer",
-      "person_id": "placed_j_k_boyer",
+      "household_id": "hh_boyer_j_k",
+      "person_id": "boyer_j_k",
       "name": "J. K. Boyer",
       "stratum": "established_profile",
       "starting_grade": "attested",
@@ -615,8 +615,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_nelson_mary",
-      "person_id": "ll_nelson_mary",
+      "household_id": "hh_mary_nelson",
+      "person_id": "mary_nelson",
       "name": "Nelson mary Miss",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_morris_cutler",
-      "person_id": "ll_morris_cutler",
+      "household_id": "hh_cutler_morris",
+      "person_id": "cutler_morris",
       "name": "Morris Cutler",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -643,8 +643,8 @@
       ]
     },
     {
-      "household_id": "hh_placed_j_w_fell",
-      "person_id": "placed_j_w_fell",
+      "household_id": "hh_fell_j_w",
+      "person_id": "fell_j_w",
       "name": "J. W. Fell",
       "stratum": "established_profile",
       "starting_grade": "attested",
@@ -655,8 +655,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_oakley_benjamin_w",
-      "person_id": "ll_oakley_benjamin_w",
+      "household_id": "hh_w_oakley_benjamin",
+      "person_id": "w_oakley_benjamin",
       "name": "Oakley Benjamin W.",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -669,8 +669,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_orange_chauncy",
-      "person_id": "ll_orange_chauncy",
+      "household_id": "hh_chauncy_orange",
+      "person_id": "chauncy_orange",
       "name": "Orange Chauncy",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -695,8 +695,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_paddock_harriet",
-      "person_id": "ll_paddock_harriet",
+      "household_id": "hh_harriet_paddock",
+      "person_id": "harriet_paddock",
       "name": "Paddock Harriet Miss.",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -709,8 +709,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ostrander_catherine",
-      "person_id": "ll_ostrander_catherine",
+      "household_id": "hh_ostrander_catherine",
+      "person_id": "ostrander_catherine",
       "name": "Catherine Ostrander",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -735,8 +735,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_payne_win",
-      "person_id": "ll_payne_win",
+      "household_id": "hh_win_payne",
+      "person_id": "win_payne",
       "name": "Payne Win.",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_pierce_howley",
-      "person_id": "ll_pierce_howley",
+      "household_id": "hh_howley_pierce",
+      "person_id": "howley_pierce",
       "name": "Pierce Howley",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -776,8 +776,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_preston_stephen_ii",
-      "person_id": "ll_preston_stephen_ii",
+      "household_id": "hh_ii_preston_stephen",
+      "person_id": "ii_preston_stephen",
       "name": "Preston Stephen II.",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -790,8 +790,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_roy_k_westover",
-      "person_id": "ll_roy_k_westover",
+      "household_id": "hh_westover_roy_k",
+      "person_id": "westover_roy_k",
       "name": "Roy K. Westover",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -816,8 +816,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_saunders_william_s",
-      "person_id": "ll_saunders_william_s",
+      "household_id": "hh_saunders_william_s",
+      "person_id": "saunders_william_s",
       "name": "William S. Saunders",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -830,8 +830,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_s_stephens",
-      "person_id": "ll_s_stephens",
+      "household_id": "hh_stephens_s",
+      "person_id": "stephens_s",
       "name": "Mrs. S. Stephens",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -856,8 +856,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_soren_helen",
-      "person_id": "ll_soren_helen",
+      "household_id": "hh_helen_soren",
+      "person_id": "helen_soren",
       "name": "Soren Helen Miss",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -870,8 +870,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_stuart",
-      "person_id": "ll_samuel_stuart",
+      "household_id": "hh_stuart_samuel",
+      "person_id": "stuart_samuel",
       "name": "Samuel Stuart",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -896,8 +896,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_starkweather_rob_t",
-      "person_id": "ll_starkweather_rob_t",
+      "household_id": "hh_starkweather_rob_t",
+      "person_id": "starkweather_rob_t",
       "name": "Rob't. Starkweather",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -910,8 +910,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_theophilus_renwick",
-      "person_id": "ll_theophilus_renwick",
+      "household_id": "hh_renwick_theophilus",
+      "person_id": "renwick_theophilus",
       "name": "Theophilus Renwick",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -936,8 +936,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_sunny_miches",
-      "person_id": "ll_sunny_miches",
+      "household_id": "hh_sunny_miches",
+      "person_id": "sunny_miches",
       "name": "Miches! Sunny",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -950,8 +950,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_willard_conter",
-      "person_id": "ll_willard_conter",
+      "household_id": "hh_conter_willard",
+      "person_id": "conter_willard",
       "name": "Willard Conter",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -976,8 +976,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_vyekoff_henry_s",
-      "person_id": "ll_vyekoff_henry_s",
+      "household_id": "hh_vyekoff_henry_s",
+      "person_id": "vyekoff_henry_s",
       "name": "Henry S. Vyekoff",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -990,8 +990,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_loring",
-      "person_id": "ll_wm_loring",
+      "household_id": "hh_loring_wm",
+      "person_id": "loring_wm",
       "name": "Wm. Loring",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",

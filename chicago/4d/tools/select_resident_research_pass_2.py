@@ -24,27 +24,27 @@ KNOWN_IDS = (
 )
 
 PRESENT_LETTER_IDS = (
-    "ll_bailly_joseph", "ll_chappel_eliza_mir", "ll_dement_wm",
-    "ll_curtenius_fred_k", "ll_avery_charles", "ll_bemis_samuel_c",
-    "ll_blood_amos", "ll_boardman_elect", "ll_bostwick_e_b",
-    "ll_bradstreet_j_p", "ll_brooks_gardner", "ll_brush_matthias",
-    "ll_burdick_paul", "ll_case_nehemiah", "ll_chamberlain_l_c",
-    "ll_cooley_edward_v", "ll_cook_rowland_i", "ll_covell_thomas_r",
-    "ll_curtis_liman", "ll_davenport_dennis", "ll_dow_albert_f",
-    "ll_fairchilds_ransom", "ll_felch_alaneon", "ll_ford_ebenezer",
-    "ll_galusha_ezra",
+    "bailly_joseph", "chappel_eliza_mir", "dement_wm",
+    "curtenius_fred_k", "avery_charles", "bemis_samuel_c",
+    "blood_amos", "boardman_elect", "bostwick_e_b",
+    "bradstreet_j_p", "brooks_gardner", "brush_matthias",
+    "burdick_paul", "case_nehemiah", "chamberlain_l_c",
+    "cooley_edward_v", "cook_rowland_i", "covell_thomas_r",
+    "curtis_liman", "davenport_dennis", "dow_albert_f",
+    "fairchilds_ransom", "felch_alaneon", "ford_ebenezer",
+    "galusha_ezra",
 )
 
 UNCERTAIN_LETTER_IDS = (
-    "ll_aaron_parcel", "ll_aron_parcell", "ll_alonzo_murray",
-    "ll_alonzo_murry", "ll_caleb_foster", "ll_chester_house",
-    "ll_elam_tuller", "ll_david_ingersall", "ll_elihu_d_filer",
-    "ll_charles_c_drake", "ll_amanda_miner", "ll_amy_c_wear",
-    "ll_angeline_vann", "ll_archibald_knox", "ll_asa_brundage",
-    "ll_constant_abbott", "ll_dangerfield_dunn", "ll_david_p_frame",
-    "ll_eben_griswold", "ll_elijah_wentworth_sen", "ll_enos_covalt",
-    "ll_frederick_w_page", "ll_george_r_makepiece", "ll_gregory_e_legg",
-    "ll_hannah_hurlburt",
+    "parcel_aaron", "parcell_aron", "murray_alonzo",
+    "murry_alonzo", "foster_caleb", "house_chester",
+    "tuller_elam", "ingersall_david", "filer_elihu_d",
+    "drake_charles_c", "miner_amanda", "wear_amy_c",
+    "vann_angeline", "knox_archibald", "brundage_asa",
+    "abbott_constant", "dunn_dangerfield", "frame_david_p",
+    "griswold_eben", "sen_elijah_wentworth", "covalt_enos",
+    "page_frederick_w", "makepiece_george_r", "legg_gregory_e",
+    "hurlburt_hannah",
 )
 
 

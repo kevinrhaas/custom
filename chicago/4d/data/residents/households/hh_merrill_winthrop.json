@@ -71,13 +71,13 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
-    "summary": "The repository already contains a separate ll_merrill_winthrop postal person, making this likely a transposed-name duplicate requiring adjudication. Local history also places Winthrop Merrill with his family in the Chicago/Jefferson Township migration context by the mid-1830s.",
+    "summary": "The repository already contains a separate winthrop_merrill postal person, making this likely a transposed-name duplicate requiring adjudication. Local history also places Winthrop Merrill with his family in the Chicago/Jefferson Township migration context by the mid-1830s.",
     "source_ids": [
      "rr_nw_chicago_merrill"
     ],
     "candidates": [
      {
-      "id": "ll_merrill_winthrop",
+      "id": "winthrop_merrill",
       "asserted": false,
       "basis": "Exact name components reversed in another repository resident; local history places Winthrop Merrill in early Chicago-area migration.",
       "conflicts": [

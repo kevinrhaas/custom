@@ -45,7 +45,7 @@
       "rule": "G. S. Lee witnessed the marriage of John Latzky and Potily Morris on 1 October 1835. George Lee is a letter-list name, graded inferred. The surnames fold equal and the first initials agree, so the mechanical rule reaches it — and it stops there: the S of G. S. Lee is unaccounted for, the resident is a projection off a list of letters waiting at the post office rather than an attestation, and a first initial is one attribute, not two.",
       "evidence": [
         "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_009_3",
-        "data/residents/households/hh_ll_george_lee.json — ll_george_lee (inferred)"
+        "data/residents/households/hh_lee_george.json — lee_george (inferred)"
       ],
       "pass": "T-0573"
     },
@@ -106,7 +106,7 @@
       "rule": "Julian Andrews was eighteen days old when he was buried on 17 July 1835. Davi Andrews is a letter-list resident, graded attested on the list and an adult by the nature of that list. The surname folds equal, the forenames do not agree, and an infant cannot be an adult; the pair is refused as an identity. That the child may have been of that household is a different claim and this register does not make it — no parent is named in the entry.",
       "evidence": [
         "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_06_1",
-        "data/residents/households/hh_ll_andrews_davi.json — ll_andrews_davi"
+        "data/residents/households/hh_andrews_davi.json — andrews_davi"
       ],
       "pass": "T-0573"
     }

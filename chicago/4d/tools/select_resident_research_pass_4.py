@@ -26,27 +26,27 @@ ESTABLISHED_IDS = (
 )
 
 PRESENT_LETTER_IDS = (
-    "ll_sewyer_edward_f", "ll_shattick_walter", "ll_shepherd_albert",
-    "ll_shielde_willam", "ll_simpaon_lyman", "ll_simpson_john_p",
-    "ll_skinner_heury_c", "ll_smith_elded", "ll_sorton_lymor",
-    "ll_souee_theson", "ll_spencer_william", "ll_spicer_charles",
-    "ll_sprague_willinm_b", "ll_stallord_arnold", "ll_stark_b_b",
-    "ll_stater_asa_p", "ll_steel_richard", "ll_stevens_issac",
-    "ll_stocking_austin", "ll_stoel_c_ii", "ll_stold_abraham_f",
-    "ll_strode_p_m", "ll_strong_george", "ll_swapp_abram",
-    "ll_swearingen_david",
+    "sewyer_edward_f", "shattick_walter", "albert_shepherd",
+    "shielde_willam", "simpaon_lyman", "simpson_john_p",
+    "skinner_heury_c", "smith_elded", "lymor_sorton",
+    "souee_theson", "spencer_william", "spicer_charles",
+    "sprague_willinm_b", "stallord_arnold", "stark_b_b",
+    "stater_asa_p", "steel_richard", "stevens_issac",
+    "stocking_austin", "stoel_c_ii", "stold_abraham_f",
+    "strode_p_m", "strong_george", "swapp_abram",
+    "swearingen_david",
 )
 
 UNCERTAIN_LETTER_IDS = (
-    "ll_seth_b_doane", "ll_seth_paine", "ll_seth_wescott",
-    "ll_sidney_arrowsmith", "ll_sidney_dyer", "ll_simmons_medad_i",
-    "ll_stephen_andress", "ll_stephen_mack", "ll_stephen_may",
-    "ll_stith_sherrygood", "ll_thos_w_donkin", "ll_timothy_barbour",
-    "ll_timothy_titcomb", "ll_tindal_james", "ll_tryon_david",
-    "ll_vandeventer_wm", "ll_w_l_d_ewing", "ll_w_y_lewin",
-    "ll_wampler_westley", "ll_ward_hanibal", "ll_wells_charles",
-    "ll_westley_diggins", "ll_wheeler_orson", "ll_white_edson",
-    "ll_whiting_henry",
+    "doane_seth_b", "paine_seth", "wescott_seth",
+    "arrowsmith_sidney", "dyer_sidney", "simmons_medad_i",
+    "andress_stephen", "mack_stephen", "may_stephen",
+    "stith_sherrygood", "donkin_thos_w", "barbour_timothy",
+    "titcomb_timothy", "tindal_james", "tryon_david",
+    "vandeventer_wm", "ewing_w_l_d", "lewin_w_y",
+    "wampler_westley", "ward_hanibal", "wells_charles",
+    "diggins_westley", "wheeler_orson", "white_edson",
+    "whiting_henry",
 )
 
 
