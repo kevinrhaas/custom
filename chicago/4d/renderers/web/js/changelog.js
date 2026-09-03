@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 441, title: 'A safety timer was compared with the wrong clock', kind: 'fix', ts: '2026-09-03T05:02:28.117Z', date: 'Sep 3, 2026, 12:02 AM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the checks that run before anything reaches you, and a note about them that had been wrong for three days.',
+      'Those checks are split into eight pieces that run side by side, and each piece is given half an hour to finish. A separate arrangement runs the whole lot end to end in one go, with an hour and a half. A page describing all this compared one figure with the other and concluded the half hour belonged to some other machine — so three outstanding jobs, each measuring how close a piece comes to its limit, were told they had been measuring against the wrong thing.',
+      'They had not. A limit on one piece and a reading of all eight together are not the same quantity, and neither bounds the other. The page now names all three limits, says which file each is written in, and says what each one bounds.',
+      'The machines turned out to be the same machine too, which the files themselves show: the same kind of runner, the same browser at the same version, and the same software renderer in every case. The two timings behind the original claim are four seconds apart, and are kept with a note saying which part of them is verified and which is not.',
+      'The piece-by-piece table is now worked out by a tool that reads the split from the file that defines it, rather than being written down by hand. Written down by hand it had gone stale four times this year. A check that runs on every commit now refuses to pass if those pieces ever stop covering the whole suite exactly once.'
+    ] },
   { v: 440, title: 'Seventy-five more real names receive a sourced research trail', kind: 'feature', ts: '2026-09-01T06:25:19.533Z', date: 'Sep 1, 2026, 1:25 AM CT',
     items: [
       'A fixed second cohort brings dated identity reviews to 150 of 848 eligible real named people; reconstructed residents remain excluded.',

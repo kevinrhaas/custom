@@ -1,7 +1,7 @@
 ---
 id: T-0450
 title: SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-31
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/2/2026, 11:56:49 PM CT
 blocked_on: null
 needs_bake: false
 ---

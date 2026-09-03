@@ -6,17 +6,30 @@
  *   node tools/smoke_budget.mjs                    # the measured cost of the whole gate
  *   node tools/smoke_budget.mjs --for <path>…      # the parts that cover those files
  *   node tools/smoke_budget.mjs --for-diff [ref]   # the same, off `git diff --name-only`
+ *   node tools/smoke_budget.mjs --legs             # the nightly gate leg by leg, vs its cap
  *   node tools/smoke_budget.mjs --self-test        # the map has not rotted (check.sh)
  *
- * WHY THIS EXISTS. Three tickets — T-0170, T-0173, T-0181 — reason about the
- * desktop legs' margin against a **30-minute** cap. On the steward runner the
- * whole gate was measured at 55 m 10 s on 2026-08-27, so that cap describes
- * some other machine and those three margins are margins against a number that
- * was never taken here. And a steward run's single foreground command is capped
- * at 600 s, so no run can take the gate whole: it takes the parts that cover
- * what it touched, and until now nothing said which those are. A run therefore
+ * WHY THIS EXISTS. A steward run's single foreground command is capped at 600 s,
+ * so no run can take the gate whole: it takes the parts that cover what it
+ * touched, and until this tool nothing said which those are. A run therefore
  * either ran all fifteen commands — more than its whole budget — or picked by
  * feel.
+ *
+ * THERE ARE THREE CAPS AND THEY BOUND THREE DIFFERENT THINGS (T-0450). This
+ * file used to say the 30-minute cap T-0170, T-0173 and T-0181 reason against
+ * "describes some other machine", and offered the gate's 55 m 10 s whole-body
+ * figure as the proof. It is not proof, because the two are not the same
+ * quantity, and the machine is the same one:
+ *   - 600 s   caps ONE FOREGROUND COMMAND in a steward run — this tool's budget;
+ *   - 30 min  caps ONE LEG of the nightly gate (`chicago-4d-bake.yml` § `smoke`,
+ *             `timeout-minutes`), one viewport over one range of parts, eight
+ *             legs in parallel — which is the bound those three tickets take
+ *             their margins against, correctly;
+ *   - 90 min  caps the WHOLE body in one process (`chicago-4d-smoke.yml`
+ *             § `smoke`, `timeout-minutes`), which has no per-leg cap at all,
+ *             and is what the 55 m 10 s reading was taken under.
+ * Neither of the last two bounds the other. `--legs` totals the record against
+ * the per-leg cap; the default report totals it against the whole-body one.
  *
  * THE FIGURES ARE READ, NEVER ASSERTED. Every second printed here comes out of
  * `tools/dev-smoke-state.json`, the standing record T-0216 built, filtered to
@@ -84,6 +97,66 @@ const HALVED_AT = Date.parse('2026-08-30T06:14:00Z');              // T-0170
  *  `ALL` means every part: the file feeds the whole scene, so no part can be
  *  ruled out. That is also what an UNKNOWN path maps to. */
 const ALL = Array.from({ length: PARTS }, (_, i) => i + 1);
+
+/** THE GATE'S OWN SHAPE, READ OUT OF THE WORKFLOWS RATHER THAN RESTATED HERE
+ *  (T-0450). The nightly gate cuts each viewport into stage LEGS and caps each
+ *  leg; the full-body workflow runs everything in one process and caps the job.
+ *  Both figures were prose in docs/SMOKE-BUDGET.md, in three places, spelled in
+ *  a part numbering that has been re-cut four times in 2026 — so they are read
+ *  from the files that actually carry them, and `--self-test` holds the legs
+ *  against `PARTS`. A checkout without `.github/` (a sparse one, say) gets
+ *  `null` and a report that says so, never a guessed number. */
+const BAKE_WF = path.join(REPO, '.github', 'workflows', 'chicago-4d-bake.yml');
+const FULL_WF = path.join(REPO, '.github', 'workflows', 'chicago-4d-smoke.yml');
+
+/** The body of a top-level job in a workflow file: everything from `  <job>:`
+ *  down to the next line at that indent. Sliced rather than matched, because a
+ *  regex built by string concatenation is one escape away from silently
+ *  matching nothing, and a budget tool that quietly reports no legs is exactly
+ *  the failure T-0450 is about. */
+function jobBlock(file, job) {
+  let src;
+  try { src = fs.readFileSync(file, 'utf8'); } catch { return null; }
+  const lines = src.split('\n');
+  const head = lines.findIndex((l) => l === `  ${job}:`);
+  if (head < 0) return null;
+  const body = [];
+  for (let i = head + 1; i < lines.length; i++) {
+    const l = lines[i];
+    if (l.trim() && !/^ {3}/.test(l)) break;    // back out to the next job, or to column 0
+    body.push(l);
+  }
+  return body.join('\n');
+}
+
+function gateShape() {
+  const bake = jobBlock(BAKE_WF, 'smoke');
+  const full = jobBlock(FULL_WF, 'smoke');
+  const shape = { legCapS: null, wholeCapS: null, legs: null, viewports: null };
+  if (bake) {
+    const cap = /^ {4}timeout-minutes: (\d+)$/m.exec(bake);
+    const stage = /^ {8}stage: \[([^\]]*)\]$/m.exec(bake);
+    const view = /^ {8}viewport: \[([^\]]*)\]$/m.exec(bake);
+    if (cap) shape.legCapS = Number(cap[1]) * 60;
+    if (view) shape.viewports = view[1].split(',').map((t) => t.trim().replace(/^'|'$/g, '')).filter(Boolean);
+    if (stage) {
+      shape.legs = stage[1].split(',').map((t) => t.trim().replace(/^'|'$/g, '')).filter(Boolean)
+        .map((label) => {
+          const [lo, hi] = label.split('-');
+          const a = Number(lo);
+          const b = hi === undefined ? a : Number(hi);
+          const parts = [];
+          for (let i = a; i <= b; i++) parts.push(i);
+          return { label, parts };
+        });
+    }
+  }
+  if (full) {
+    const cap = /^ {4}timeout-minutes: (\d+)$/m.exec(full);
+    if (cap) shape.wholeCapS = Number(cap[1]) * 60;
+  }
+  return shape;
+}
 /** NONE is not a gap. It is the map SAYING that no part of the smoke body reads
  *  this path, which is a different statement from "nobody wrote a row for it" —
  *  the second maps to the whole gate. A NONE-only change still runs one cheap
@@ -364,13 +437,73 @@ function reportCost(groups) {
     console.log('');
   }
   const both = ['desktop', 'mobile'].reduce((a, v) => a + cover(groups, v, ALL).chosen.reduce((x, g) => x + g.median, 0), 0);
+  const shape = gateShape();
   console.log(`  BOTH VIEWPORTS, EVERY PART: ${fmt(both)}`);
   console.log('  † renumbered from a reading filed before the T-0346 cut (2026-08-30).');
   console.log('');
-  console.log('  THE 30-MINUTE CAP T-0170, T-0173 AND T-0181 REASON AGAINST IS NOT THIS');
-  console.log(`  MACHINE'S. The gate here costs ${fmt(both)}, and no single command may exceed`);
-  console.log(`  ${CEILING_S} s, so a run takes the parts that cover its change: --for <path>…`);
+  console.log('  THIS TOTAL IS A WHOLE-BODY FIGURE, and the only cap it is comparable with');
+  console.log(`  is the one on the whole body: ${capText(shape.wholeCapS)} for both viewports in one process,`);
+  console.log(`  ${wf(FULL_WF)} § smoke, timeout-minutes.`);
+  console.log(`  The nightly gate's ${capText(shape.legCapS)} caps ONE LEG and not this — see --legs (T-0450).`);
+  console.log('');
+  console.log(`  And a steward run's single foreground command may not exceed ${CEILING_S} s,`);
+  console.log('  so a run takes the parts that cover its change: --for <path>…');
 }
+
+const wf = (f) => path.relative(REPO, f);
+const capText = (s) => (s == null ? '(unread)' : `${Math.round(s / 60)} min`);
+
+/** The nightly gate as it is actually RUN: legs, each under its own cap.
+ *  T-0450 — the default report above totals the whole body, which is the wrong
+ *  quantity to compare with a per-leg timeout, and this project spent three
+ *  tickets' margins on the confusion. */
+function reportLegs(groups) {
+  const shape = gateShape();
+  if (!shape.legs) {
+    console.log('THE NIGHTLY GATE\'S LEGS — cannot be read.');
+    console.log(`  ${wf(BAKE_WF)} is not in this checkout, or its smoke job's`);
+    console.log('  matrix no longer looks like `stage: [...]`. No figure is guessed here.');
+    return;
+  }
+  const viewports = shape.viewports || ['mobile', 'desktop'];
+  console.log('THE NIGHTLY GATE, LEG BY LEG');
+  console.log(`Legs and cap read from ${wf(BAKE_WF)} § smoke. Seconds read from`);
+  console.log('tools/dev-smoke-state.json, the same steward-runner readings as the default');
+  console.log(`report. ${viewports.length} viewport(s) x ${shape.legs.length} stage range(s) = `
+    + `${viewports.length * shape.legs.length} legs, IN PARALLEL,`);
+  console.log(`each capped at ${capText(shape.legCapS)}. A leg's cap bounds the leg and nothing else.\n`);
+  let worst = null;
+  for (const viewport of viewports) {
+    console.log(`  ${viewport}`);
+    for (const leg of shape.legs) {
+      const { chosen, missing } = cover(groups, viewport, leg.parts);
+      const total = chosen.reduce((a, g) => a + g.median, 0);
+      const spill = [...new Set(chosen.flatMap((g) => g.parts))].filter((q) => !leg.parts.includes(q))
+        .sort((a, b) => a - b);
+      const notes = [];
+      if (missing.length) notes.push(`part(s) ${stageArg(missing)} unmeasured`);
+      // A reading that spans the leg boundary prices this leg HIGH, so the
+      // margin beside it is a floor on the real margin, never a ceiling.
+      if (spill.length) notes.push(`cost is an UPPER bound, margin a LOWER one — the only readings also cover part(s) ${stageArg(spill)}`);
+      const margin = shape.legCapS == null || missing.length ? null : shape.legCapS - total;
+      if (margin != null && !spill.length && (worst == null || margin < worst.margin)) {
+        worst = { margin, viewport, label: leg.label };
+      }
+      console.log(`    stage ${leg.label.padEnd(6)} ${fmt(total).padStart(8)}`
+        + `   margin ${margin == null ? '     —' : fmt(margin)}`
+        + (notes.length ? `   (${notes.join('; ')})` : ''));
+    }
+    console.log('');
+  }
+  if (worst) {
+    console.log(`  WORST FULLY MEASURED MARGIN: ${viewportLabel(worst)} at ${fmt(worst.margin)}.`);
+  }
+  console.log('  A margin is a margin against the machine that measured it — these readings');
+  console.log('  were taken on the improve runner, and T-0215 put a factor of twenty on what');
+  console.log('  contention does to them. ROADMAP § THE RUN BUDGET is the record of that.');
+}
+
+const viewportLabel = (w) => `${w.viewport} ${w.label}`;
 
 function reportFor(paths) {
   const groups = measured();
@@ -470,6 +603,21 @@ function selfTest() {
 
   if (!eq(stageArg([1, 2, 3, 5, 7, 8]), '1-3,5,7-8')) fails.push('stageArg does not fold contiguous runs');
 
+  // T-0450 — the nightly gate's legs must tile the parts exactly once, which is
+  // what makes "the union of the legs is the gate" checkable rather than
+  // asserted. The workflow comment has said so since T-0171 and nothing held it.
+  // A checkout without `.github/` is a skip, not a failure: the tool reports the
+  // legs as unreadable there and guesses nothing.
+  const shape = gateShape();
+  if (shape.legs) {
+    const covered = shape.legs.flatMap((l) => l.parts);
+    const once = [...new Set(covered)].sort((a, b) => a - b);
+    if (covered.length !== once.length) fails.push(`the ${wf(BAKE_WF)} smoke legs overlap: ${shape.legs.map((l) => l.label).join(' ')}`);
+    if (!eq(once, ALL)) fails.push(`the ${wf(BAKE_WF)} smoke legs do not tile parts 1..${PARTS}: ${shape.legs.map((l) => l.label).join(' ')}`);
+    if (!shape.legCapS) fails.push(`no timeout-minutes on the ${wf(BAKE_WF)} smoke job — the per-leg cap cannot be read`);
+    if (!shape.wholeCapS) fails.push(`no timeout-minutes on the ${wf(FULL_WF)} smoke job — the whole-body cap cannot be read`);
+  }
+
   // Every group in the record must renumber into current parts.
   for (const g of measured()) {
     if (g.parts.some((p) => p < 1 || p > PARTS)) fails.push(`a reading renumbers outside 1..${PARTS}: ${key(g.parts)}`);
@@ -480,12 +628,15 @@ function selfTest() {
     console.error(`smoke budget self-test: ${fails.length} failure(s)`);
     process.exit(1);
   }
+  const legs = gateShape().legs;
   console.log(`smoke budget self-test: the map covers all ${PARTS} parts, `
-    + `${COVERAGE.length} patterns all exist, the renumbering holds`);
+    + `${COVERAGE.length} patterns all exist, the renumbering holds`
+    + (legs ? `, the ${legs.length} gate legs tile 1-${PARTS} exactly once` : ', gate legs not in this checkout'));
 }
 
 const argv = process.argv.slice(2);
 if (argv[0] === '--self-test') selfTest();
+else if (argv[0] === '--legs') reportLegs(measured());
 else if (argv[0] === '--for') reportFor(argv.slice(1));
 else if (argv[0] === '--for-diff') {
   const ref = argv[1] || 'origin/dev';
@@ -494,6 +645,6 @@ else if (argv[0] === '--for-diff') {
   if (!paths.length) console.log(`nothing under chicago/4d/ changed against ${ref}`);
   else reportFor(paths.map((p) => p.replace(/^chicago\/4d\//, '')));
 } else if (argv.length && argv[0].startsWith('-')) {
-  console.error('usage: smoke_budget.mjs [--for <path>… | --for-diff [ref] | --self-test]');
+  console.error('usage: smoke_budget.mjs [--legs | --for <path>… | --for-diff [ref] | --self-test]');
   process.exit(2);
 } else reportCost(measured());

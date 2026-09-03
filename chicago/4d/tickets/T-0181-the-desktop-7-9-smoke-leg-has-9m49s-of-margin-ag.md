@@ -134,3 +134,32 @@ stations were 7 m 04 s of a part killed at 9 m 25 s — so old part 7 is now par
 parts 8-11 are 9-12. Read this ticket's post-T-0346 numbers through `old 8→9, 9→10, 10→11,
 11→12`, and old part 7 as new parts 7+8. The mobile legs are `1-2 3-6 7-9 10-12` and carry
 exactly what they carried. The readings themselves stand; only the labels moved.
+
+**RE-READ 2026-09-03 AGAINST THE CORRECTED BUDGET PAGE (T-0450), AND THE OBJECTION ABOVE
+IS WITHDRAWN.** The paragraph headed *"AND THE 30-MINUTE CAP THIS TICKET REASONS AGAINST
+IS NOT THIS MACHINE'S"* is wrong and is retracted here rather than deleted. Two quantities
+were compared that do not bound each other: **30 minutes caps ONE LEG** of the nightly
+gate (`chicago-4d-bake.yml` § `smoke`, `timeout-minutes`, eight legs in parallel), while
+the **55 m 10 s** offered as its refutation is the whole body in one process on
+`chicago-4d-smoke.yml`, which carries no per-leg cap at all and a 90-minute job timeout.
+The runners are also the same machine — both `ubuntu-latest`, both `playwright@1.56.1`
+and chromium alone, and `smoke_renderer.mjs` passes `--enable-unsafe-swiftshader`
+wherever it runs. **So this ticket was reasoning about the right cap all along**, and
+`docs/SMOKE-BUDGET.md` § THREE CAPS now says so.
+
+**AND THE LEG THIS TICKET IS ABOUT IS NOW CALLED `10-13`.** Its subject is the desktop
+leg measured at 20 m 11 s on bake run #273, when the legs were `1-2 3-4 5-6 7-9` over
+nine parts. Pushed through the three cuts of 2026-08-30 — T-0346, T-0173, T-0170 — old
+`7+8+9` is today's `10+11+12+13`, which is the fourth leg of the current matrix and still
+the tail. `node tools/smoke_budget.mjs --legs` prices it from the standing record at
+**17 m 51 s, a margin of 12 m 09 s**, and names it the worst fully measured margin of the
+eight legs. Against run #273's 9 m 49 s that is a wider margin, not a narrower one.
+
+**THIS DOES NOT CLOSE THE TICKET, AND THE REASON IS THE TICKET'S OWN.** That 17 m 51 s is
+SUMMED from three per-part readings taken one part per foreground command, so it pays a
+boot per command where a leg boots once — it is a prediction of a leg from parts, which is
+exactly the move this ticket was opened to object to when T-0171 made it. It is an upper
+bound and a useful one; it is not a measurement of the leg. **The acceptance stands
+unchanged**: the worst desktop leg's wall clock measured on at least three separate runs,
+the spread recorded, and the cap or the cut set from the spread. What T-0450 removes is
+only the claim that the cap those measurements would be taken against is the wrong one.

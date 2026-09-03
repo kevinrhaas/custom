@@ -1,0 +1,89 @@
+{
+ "id": "hh_adams_william_h",
+ "name": "The William H. Adams evidence household — confirmed 1835 voter, unplaced",
+ "division": "unplaced",
+ "head": "adams_william_h",
+ "arrival": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested. The recovered research establishes direct 1835 voter presence but does not state an arrival date."
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "No 1835 dwelling is asserted by the recovered bridge research."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "No 1835 workplace is asserted by the recovered bridge research."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "resident_research_v4_1835_census_bridge"
+  ],
+  "note": "Direct appearance as William H. Adams on the 1835 Chicago poll list establishes him as a real circa-1835 Chicago resident, but the recovered research does not establish that the poll was taken exactly on the 1835-07-01 scene date."
+ },
+ "persons": [
+  {
+   "id": "adams_william_h",
+   "name": "William Hanford Adams",
+   "relationship": "head",
+   "grade": "attested",
+   "sex": "male",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "inferred",
+    "sources": [
+     "resident_research_v4_1835_census_bridge"
+    ],
+    "note": "No occupation is promoted from the recovered bridge evidence."
+   },
+   "later_census": {
+    "year": 1840,
+    "source_id": "census_1840_chicago_v4_research",
+    "serial": 5101954,
+    "head_name_transcribed": "Wm Hanford Adams",
+    "head_name_normalized": "William Hanford Adams",
+    "name_confidence": "High",
+    "identity_confidence": "High",
+    "serial_mapping_confidence": "High provisional",
+    "census_page": 229,
+    "census_row": 9,
+    "source_image": "33S7-9YYJ-9M5.jpg",
+    "household": {
+     "persons": 2,
+     "children_under_10": 0,
+     "male": 1,
+     "female": 1
+    },
+    "bridge_basis": "The recovered v4 research records direct 1835 poll-list appearance as William H. Adams, a 1839 directory match, a 1843 directory expansion to William Hanford Adams, and a page-229 row-to-SERIAL assignment supported by paired continuation and household fingerprinting.",
+    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. The second person in the 1840 household is not minted into the 1835 household without separate evidence."
+   },
+   "sources": [
+    "resident_research_v4_1835_census_bridge"
+   ],
+   "note": "RECOVERED CONFIRMED RESIDENT. The v4 census/resident research classifies William H. Adams as A — CONFIRMED 1835 VOTER with High confidence and identifies the 1840 household head as William Hanford Adams. This record restores that direct 1835 evidence to the canonical resident layer while leaving residence, occupation and family structure unasserted where the evidence does not support them."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "Issue #669 recovery. This is deliberately a one-person 1835 evidence container even though the linked 1840 census household contains two people. Five years of household change cannot be silently projected backward."
+}
