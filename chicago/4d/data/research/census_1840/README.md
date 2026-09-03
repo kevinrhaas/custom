@@ -215,6 +215,63 @@ columns (`read_sum_matches_an_alternate_reading`), which is a lead for the next 
 explicitly not a balance. Re-read those two footers at higher magnification and most of both
 pages should commit without the cells being touched.
 
+## The 30-versus-31 question on printed page 229, settled (T-0534)
+
+The most consequential thing in this directory is now settled, and it was settled by arithmetic
+rather than by looking harder at the ruling. **Printed page 229 carries 30 household entries.**
+PR #670 carries 31 rows for it. The test is the enumerator's own footings: on a page where the
+column totals close, a 31st household has to put its people somewhere, and on 33S7-9YYJ-9M5 there
+is nowhere left. **Seventeen of the nineteen columns that carry a mark close EXACTLY on the 30
+lines read** — free white males 1-5, 7-10 and free white females 15-22 — against the figures
+written at the foot of the sheet. So at least one of #670's 31 rows for that page has no line to
+sit on, which is what `crosswalk_670.json`'s `row_offset_test` could only suspect. Nothing here
+says which row is the intruder; that is a reading of #670, not of the sheet.
+
+**A second finding sits beside it.** Line 26 of page 229 is a named head — the reading gives
+`R. D. Coe` — with **no mark in any of the 38 columns**. A ruled, named line with a household of
+nobody. It is not an artefact of the two columns that fail to balance: neither of them carries a
+mark on line 26 either. It is recorded as it stands, an empty `cells` object on a named line.
+
+## The cells of printed 229 and 231, and where the footings and the marks part company (T-0534)
+
+Both pages are read to the cell on the T-0532 rule — a column is committed only where the lines
+read SUM to the figure the enumerator footed — and **36 of 38 columns commit on each**. The four
+that do not are named rather than smoothed:
+
+| page | column | marks | the sheet's footing | what it looks like |
+|---|---|---|---|---|
+| 229 | free white males, 30 under 40 | 8 | 1 | not a reading dispute. A column montage of all 30 cells shows eight separate single strokes, on lines 2, 3, 4, 8, 15, 18, 20 and 28, and the footing is one stroke. Either the footing was never finished or it was written for a different column. |
+| 229 | free white females, Under 5 | 19 | 11, or 19 | the footing is two long diagonals on the worst-degraded paper on the sheet. This hand writes `1` as a long diagonal, so `11` is the literal reading — but the second stroke carries a hook that reads as a `9`, and 19 is exactly what the marks come to. Neither reading is preferred here. |
+| 231 | free white females, 20 under 30 | 20 | 21, or 20 | the footing is a `2` followed by a character that is either this hand's `1` or its `0`. A montage of all 31 cells of the column, cut and read one at a time, gives 20 and no twenty-first mark to find. |
+| 231 | free white females, 40 under 50 | 3 | 5 | a genuine shortfall. The montage shows marks on lines 11, 24 and 29 only, and the footing is an unambiguous `5`. Two people this pass did not find. |
+
+Everything else closes. **Page 231 is the cleanest sheet read in this deposit so far**: 34 of its
+36 non-empty-or-footed columns balance on the first pass, including two-digit footings of 14, 30,
+14, 16, 12 and 9. Page 229 is the worst-exposed, and it still closes on 36.
+
+**Neither page has a free coloured person.** All 12 free-coloured columns are blank down both
+sheets and blank in both footings, and that is recorded as a balance at zero rather than as
+silence.
+
+**The reading's populations**, which are the reading's and not the sheet's: page 229 is 71 free
+white males and 81 free white females, 152 in all; page 231 is 83 and 74, 157. Taking every
+footing exactly as written instead would give 137 and 160. Both are candidate keys for T-0539's
+pairing of the eleven continuation sheets, and both should be treated as ±the residuals above
+until a right sheet's TOTAL column confirms one.
+
+**How the grid was fitted here, because it differs from T-0532's.** The 39 vertical rules were
+fitted as a single pitch over the whole width of the sheet's own body and then checked against the
+printed heading — column 1 must read `Under 5`, column 27 `Under 10` under FREE COLORED MALES,
+column 38 `100 and upwards`. That check is what caught the thing a fixed grid would have missed:
+**the rules of this book lean, and so do the lines.** The same column grid sits about 10 px left
+of the printed rules at the head of a sheet and 10 px right of them at its foot; and on
+33S7-9YYJ-9M5 the writing lines drop about 45 px between the left edge of the table and its right,
+which is more than half a row — so a flat row grid reads the free-coloured end of a line into the
+wrong household. Both leans are carried in the grid. Every column carrying a mark was then read a
+second time as a montage of its own 30 or 31 cells; that second pass is what separated three
+name-tails intruding from the NAMES column into column 1 of page 229 from the tally marks, and it
+is what makes the 8-against-1 above a finding rather than a miscount.
+
 ## Two line counts the sheets do not agree with the inventory about (T-0532)
 
 The row grid was fitted the same way as the column grid and checked against the names, and on
@@ -230,65 +287,45 @@ The inventory's figure is `lines_with_an_entry`; the difference is blank ruled l
 last household, which the page files **record as lines** rather than skip. Coverage now carries
 both numbers per image (`lines_with_an_entry` and `lines_ruled`).
 
-## Printed 229, 231 and 234 to the cell, and what the footings settle (T-0534)
+## Printed 234 to the cell, and a second reading of 229 and 231 that does not agree with the first (T-0551, PR #698)
 
-The three pages PR #670 also read — `33S7-9YYJ-9M5` (printed 229, 30 lines), `33S7-9YYJ-38`
-(231, 31) and `33S7-9YYJ-99F` (234, 31) — are now read to the cell. **110 of their 114 columns
-balance the enumerator's own footings and are committed**; the four that do not are named below
-and left unreconciled with their residuals stated.
+`33S7-9YYJ-99F` (printed **234**, 31 lines) is read to the cell: **37 of 38 columns balance the
+enumerator's own footings and are committed**. The one that does not is free white females 5 under
+10 — ten marks against a footing of 11 — and line 17 is the candidate, its mark carrying a second
+stroke at the foot that this pass read as an inked start to a 1 and that could be the base of a 2.
+Line 2 (*Geo. Shelley*) is the deposit's largest household so far — 7 males 20-30, 4 males 30-40,
+6 females 20-30 and 4 females 30-40 — and every one of those four columns closes on its footing with
+that reading in it. A single line that large is a lodging house rather than a family, and it is the
+sort of thing T-0507's composition calibration will need to hold separately. All twelve free
+coloured columns are empty and footed empty.
 
-| printed page | image | lines | columns committed | free white males | free white females | free coloured |
-|---|---|---|---|---|---|---|
-| 229 | `33S7-9YYJ-9M5` | 30 | 36 of 38 | 70 read / 74 footed | 81 | 0 |
-| 231 | `33S7-9YYJ-38` | 31 | 37 of 38 | 83 | 71 | 0 |
-| 234 | `33S7-9YYJ-99F` | 31 | 37 of 38 | 104 | 77 read / 78 footed | 0 |
+**The same run also read printed 229 and 231 to the cell, and so, one batch earlier, did T-0550
+(PR #697).** Two independent readings of the same two sheets now exist, and they do not agree.
+T-0550's is the committed reading in `pages/`; this run's is preserved verbatim in
+`second_readings/` (its page files exactly as PR #698 first carried them), and the disagreement is
+stated here rather than one reading being chosen by whichever landed first:
 
-All three sheets' free coloured sections are empty in all twelve columns, with no figure in any
-of the twelve footings — a swept-and-empty section, recorded rather than omitted.
-
-**Printed 229's line count is settled, and that was worth more than the cells.** The parent ticket
-put it this way: the sheet carries 30 ruled entries and #670 carries 31 rows for it, so at least
-one #670 row has no line to sit on, and the column totals are the independent test of which count
-is right. They are, and the answer is 30. There is no 31st ruled line: the foot rule and the
-totals row follow *Mrs Mary Owens* directly, with no ruled gap between them. And 36 of the 38
-footings close on a 30-line reading — including columns 5 and 18, the two heaviest on the page at
-31 and 24, which a missing household could not leave untouched. A 31st line would have to
-contribute to columns 1 and 6 alone, and column 6 is over by one, not under. **PR #670's 31st row
-for printed page 229 is not a household this sheet enumerates.**
-
-**The four columns that do not balance.**
-
-| page | column | read | footed | what it is |
+| printed page | lines | names agree | lines whose cells differ | column checks that differ (second reading / committed) |
 |---|---|---|---|---|
-| 229 | free white males Under 5 | 9 | 14 | six lines carry name-flourish ink inside column 1 |
-| 229 | free white males 30 under 40 | 8 | 7 | one of eight strokes is not the enumerator's |
-| 231 | free white females 5 under 10 | 9 | *blot* | the footing is an ink blot; 9 is its likeliest reading |
-| 234 | free white females 5 under 10 | 10 | 11 | line 17's mark carries a second stroke at the foot |
+| 229 (`33S7-9YYJ-9M5`) | 30 | 30 of 30 | **20** | free white males Under 5: 9 read against 14 footed on the second reading, 10 against 10 on the committed one; free white males 30 under 40: 8 read against 7 footed on the second reading, 8 against 1 on the committed one; free white females Under 5: 19 read against 19 footed on the second reading, 19 against 11 on the committed one |
+| 231 (`33S7-9YYJ-38`) | 31 | 31 of 31 | **25** | free white females 5 under 10: 9 read against 9 footed on the second reading, 12 against 12 on the committed one; free white females 20 under 30: 20 read against 20 footed on the second reading, 20 against 21 on the committed one; free white females 40 under 50: 3 read against 3 footed on the second reading, 3 against 5 on the committed one |
 
-Page 229's column 1 is the instructive one. Lines 16, 19, 22, 28, 29 and 30 each carry ink inside
-the first age band, and on every one of them it is continuous with the terminal flourish of the
-name written beside it. This pass judged all six to be flourish; the enumerator's own 14 says five
-of them are strokes. Neither reading is preferred here and both are recorded — but those six cells,
-named, are where the next reader starts, which is the whole reason for stating a residual instead
-of forcing a total.
+The names agree on every line. The cells do not, and the pattern is not scatter: on 229 the strokes
+one reading puts in the first column (free white males Under 5) the other puts in column 14 (free
+white females Under 5), and on 231 marks sit in column 15 on one reading and column 18 on the other.
+The two readings also read the FOOTINGS differently in exactly those columns — which is why each
+reading balances, on a different set of columns, and each records a different pair as unreconciled
+(second reading: free white males Under 5, free white males 30 under 40 on 229 and free white females 5 under 10 on 231;
+committed: free white males 30 under 40, free white females Under 5 and free white females 20 under 30, free white females 40 under 50). Two grids fitted
+to the same photograph put the same marks in different columns, and a footing read at the wrong
+column agrees with the marks read at the wrong column. **That means a column that balances is
+not, on its own, a column read right**, and the committed cells of 229 and 231 are ONE reading
+until the two are reconciled against the sheets — which is what the reconciliation ticket filed
+with this PR asks for, starting from the columns named above.
 
-**Two readings the footings confirmed, which is what a check is for.** Printed 229 line 3 carries an
-**8** in free white males 20 under 30 — a figure the first pass could not tell from a 3, and column
-5 closes at 31 only with the eight in it. Printed 234 line 2 (*Geo. Shelley*) is the deposit's
-largest household so far — 7 males 20-30, 4 males 30-40, 6 females 20-30 and 4 females 30-40 — and
-all four of those columns close on their footings with those figures in them. A single line that
-large is a lodging house rather than a family, and it is the sort of thing T-0507's composition
-calibration will need to hold separately.
-
-**The grid has a LEAN, it is not the same lean twice, and that is now measured rather than assumed.**
-The 39 vertical rules are fitted off each image's own printed heading band and then re-fitted every
-250 px down the page, so the drift is read off the sheet instead of carried over. It runs **-30 px on
-`33S7-9YYJ-9M5` and +18 px on `33S7-9YYJ-38`** between heading and footing — up to half a column, and
-with the opposite sign on two images of the same book. T-0534's first reading of printed 231 was made
-on a grid borrowed from printed 229 and its bottom third had to be read again; one household's oldest
-man moved from *70 under 80* to *60 under 70* when the grid was measured rather than assumed. Any
-later pass that reads cells off these images should fit the lean per image, and `grid_note` on each
-page file says how.
+Printed 229's line count is settled at 30 by both readings independently, on the same argument
+(the footings close on 30 lines and there is no 31st ruled line), so that finding stands whichever
+reading of the cells prevails.
 
 ## What has NOT been read yet, and where it is
 
@@ -301,8 +338,10 @@ check is done. Eight pages have had it: printed 230 and 232 (T-0530 — 62 house
 age band and free coloured column read line by line, 73 of 76 footings reconciled exactly,
 the three that do not named on the page files), printed 221, 222 and 226 (T-0532 — the
 balance stated per column in the section above, 221 committed on 36 of 38 columns, 222 and
-226 committing nothing until their footers are re-read), and printed 229, 231 and 234
-(T-0534 — 110 of 114 columns committed, and printed 229's line count settled at 30). On every other page here the cells
+226 committing nothing until their footers are re-read), printed 229 and 231
+(T-0550 — 36 of 38 columns committed on each, printed 229's line count settled at 30, and a second
+reading of both on PR #698 that does not agree with it, see below) and printed 234 (T-0551 — 37 of 38).
+On every other page here the cells
 are still `not_read`, and those cells are their own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.

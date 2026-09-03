@@ -1,7 +1,7 @@
 ---
 id: T-0534
 title: The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
-state: done
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -10,8 +10,8 @@ legacy_id: null
 parent: T-0494
 opened: 2026-09-03
 closed: 2026-09-03
-pr: 698
-claimed_by: run 9/3/2026, 7:58:58 AM CT
+pr: null
+claimed_by: null
 blocked_on: null
 needs_bake: false
 ---
@@ -54,3 +54,8 @@ Town findings — any business, street, landscape or appearance fact — go in
 `crosswalk_670.json` · `claims.json` · T-0492 (the shared research-domain shape) · T-0504 (serial
 mapping) · T-0505 (crosswalk to 1835) · T-0507 (composition calibration) ·
 `data/sources/census_1840_chicago_familysearch_images.json`
+
+**Note, 2026-09-03.** The run that claimed this ticket before the split (PR #698) read all three pages
+to the cell. Its 234 landed as T-0551; its 229 and 231 arrived after T-0550's reading of the same two
+pages (PR #697) and disagree with it on 20 and 25 lines — kept verbatim in
+`data/research/census_1840/second_readings/`, reconciled by T-0554.

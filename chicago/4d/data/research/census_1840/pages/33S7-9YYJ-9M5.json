@@ -9,11 +9,12 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "names (T-0494) + cells (T-0534)",
+ "read_pass": "names (T-0523) and cells (T-0534)",
  "lines_ruled": 30,
  "lines_ruled_with_an_entry": 30,
  "lines_ruled_and_blank": 0,
- "line_count_note": "30 ruled entry lines, all 30 carrying an entry, and NO blank ruled line below the last: the foot rule and the enumerator's totals row follow the last name directly. The row grid was fitted to the name column and checked block by block against the committed names.",
+ "line_count_note": "30 ruled lines, all 30 carrying a NAME. The schema-1 reading's figure of 30 is restated unchanged, and the cells confirm it — see line_count_finding.",
+ "line_count_finding": "THE 30-versus-31 QUESTION IS SETTLED BY THE SHEET'S OWN ARITHMETIC, and it was worth more than the cells. PR #670 carries 31 rows for printed page 229; the sheet carries 30 ruled entries. Seventeen of the nineteen columns that carry a mark on this page CLOSE EXACTLY on the 30 lines read here — free white males 1,2,3,4,5,7,8,9,10 and free white females 15,16,17,18,19,20,21,22 — against the figures the enumerator footed at the bottom of his own sheet. A 31st household would have had to put its people somewhere, and there is nowhere left: every balanced column is already full at 30 lines. So the sheet has 30 entries and at least one of #670's 31 rows for this page has no line to sit on, which is what crosswalk_670.json's row_offset_test could only suspect. Nothing here says WHICH #670 row is the intruder. A second finding sits beside it: line 26 — R. D. Coe — is a NAMED head with no mark in any of the 38 columns — a household of nobody — and the two columns that do not balance are not the reason, because neither carries a mark on line 26 either.",
  "columns": [
   {
    "column": 1,
@@ -206,10 +207,11 @@
    "band": "100 and upwards"
   }
  ],
- "grid_note": "HOW THE CELLS WERE LOCATED, because a mark one column off is a person of the wrong age and the method has to be inspectable. The 39 vertical rules were fitted as a single pitch off the PRINTED HEADING band of the same image — where the boxed column labels rule strongly enough to be found — by least squares over every rule the band gives up, and the fit was checked against the heading itself: column 1 must read `Under 5` and column 27 `Under 10` under FREE COLORED MALES before a single cell is read. The sheet is scanned with a LEAN, and the lean is measured rather than assumed: the same 39-rule model is re-fitted every 250 px down the page and the drift read off, which on this deposit runs between -30 px and +18 px from heading to footing — up to half a column, and it has the opposite SIGN on different images of the same book. A grid carried over from a neighbouring page is therefore wrong by half a column at the foot, which is exactly how a mark lands in the next age band; T-0534's first reading of printed 231 was made on such a carried-over grid and its bottom third had to be read again. The 30 or 31 ruled lines were fitted the same way and checked against the committed names, block by block, with the name column rendered beside the cells. Every cell was then read as an image at the fitted grid, with the column number drawn on the crop. No cell value here is an OCR output.",
+ "grid_note": "HOW THE CELLS WERE LOCATED, because a mark one column off is a person of the wrong age. The 39 vertical rules were fitted as a SINGLE PITCH over the whole width by maximising the darkness profile of the sheet's own body at 39 evenly spaced positions, and the fit was CHECKED AGAINST THE PRINTED HEADING before a single cell was read — column 1 must read 'Under 5', column 27 'Under 10' under FREE COLORED MALES, column 38 '100 and upwards'. The rules of this book lean: measured against the printed heading the same grid sits about 10 px left at the head of the sheet and 10 px right at its foot, so the column positions carry that lean rather than a single x. The 30/31 writing lines were fitted the same way off the NAMES column and checked against the names themselves, and they lean too — on 33S7-9YYJ-9M5 the ruling drops about 45 px between the left edge of the table and its right, which is more than half a row, so a flat row grid puts the free-coloured end of a line into the wrong household. Every cell carrying ink was then read as an image, and every column carrying a mark was read a SECOND time as a montage of its own 30 or 31 cells; that second pass is what separated three name-tails intruding into column 1 of 33S7-9YYJ-9M5 from the tally marks. No cell value here is an OCR output.",
  "cells_state": "partial",
- "cells_note": "A COLUMN IS COMMITTED ONLY WHERE IT BALANCES: the lines this pass read must SUM to the figure the enumerator wrote at the foot of his own sheet, and a column that does not is left unreconciled with its residual stated rather than forced, because a half-checked column is worse than an unread one. `cells` carries only the balanced columns. `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A blank cell on the schedule IS a zero and is recorded by absence; no line was skipped. 36 of 38 columns balance the enumerator's own footings on a THIRTY-line reading, including the two heaviest on the page — column 5 at 31 and column 18 at 24. Column 5's balance settles a glyph the reading turned on: line 3 carries an EIGHT there, not a three, and the footing only closes with the eight in it. The two columns that do not balance are named rather than smoothed. Column 1 (free white males Under 5) reads 9 against a footing this pass reads as 14: six lines — 16, 19, 22, 28, 29 and 30 — carry ink inside column 1 that is the terminal FLOURISH of the name written beside it, and this pass judged all six to be flourish rather than stroke. If the footing is 14 then five of those six are strokes, and those six cells are exactly where the next reader should start; the figure itself was read at `low` because its second glyph is angular where the same hand's 9 — column 14's footing, 19 — is looped. Column 6 (free white males 30 under 40) reads 8 against a footing of 7, and that 7 is unambiguous at magnification (a barred top and a long diagonal), so one of this pass's eight strokes in that column is not the enumerator's: lines 2, 3, 4, 8, 15, 18, 20 and 28 are the eight it found.",
+ "cells_note": "A column is committed only where the lines this pass read SUM to the figure the enumerator wrote at the foot of the sheet. `cells` carries the committed columns only; `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A column that is blank down the page and blank in the footing is treated as balanced at zero: the sheet says nothing and the reading says nothing.",
  "cells_columns_committed": [
+  1,
   2,
   3,
   4,
@@ -221,7 +223,6 @@
   11,
   12,
   13,
-  14,
   15,
   16,
   17,
@@ -247,16 +248,25 @@
   37,
   38
  ],
+ "page_free_population": {
+  "free_white_males": 71,
+  "free_white_females": 81,
+  "free_coloured": 0,
+  "total": 152,
+  "note": "the sum of the marks read on the 30 lines. 71 + 81 = 152, of which the two uncommitted columns contribute 8 (males 30 under 40) and 19 (females Under 5). By the sheet's own footings the figure would be 64 + 73 = 137, but neither of those two footings can be trusted: the males 30 under 40 footing is a single stroke against eight marks that a column montage confirms one at a time, and the females Under 5 footing is two strokes on badly degraded paper that read equally as 11 and as 19. This total is therefore the READING's total and is not the sheet's own; the page's population will be settled by the continuation sheet's TOTAL column, which is not yet paired to this page."
+ },
  "cells_column_check": [
   {
    "column": 1,
    "band": "free white males Under 5",
-   "read_sum": 9,
-   "printed_total": 14,
+   "read_sum": 10,
+   "printed_total": 10,
    "printed_total_reading": "low",
-   "balanced": false,
-   "residual": -5,
-   "printed_total_alternate_readings": null,
+   "balanced": true,
+   "residual": 0,
+   "printed_total_alternate_readings": [
+    16
+   ],
    "read_sum_matches_an_alternate_reading": false
   },
   {
@@ -286,7 +296,7 @@
    "band": "free white males 15 under 20",
    "read_sum": 2,
    "printed_total": 2,
-   "printed_total_reading": "medium",
+   "printed_total_reading": "low",
    "balanced": true,
    "residual": 0,
    "printed_total_alternate_readings": null,
@@ -297,7 +307,7 @@
    "band": "free white males 20 under 30",
    "read_sum": 31,
    "printed_total": 31,
-   "printed_total_reading": "high",
+   "printed_total_reading": "medium",
    "balanced": true,
    "residual": 0,
    "printed_total_alternate_readings": null,
@@ -307,10 +317,10 @@
    "column": 6,
    "band": "free white males 30 under 40",
    "read_sum": 8,
-   "printed_total": 7,
-   "printed_total_reading": "high",
+   "printed_total": 1,
+   "printed_total_reading": "medium",
    "balanced": false,
-   "residual": 1,
+   "residual": 7,
    "printed_total_alternate_readings": null,
    "read_sum_matches_an_alternate_reading": false
   },
@@ -319,10 +329,12 @@
    "band": "free white males 40 under 50",
    "read_sum": 3,
    "printed_total": 3,
-   "printed_total_reading": "medium",
+   "printed_total_reading": "low",
    "balanced": true,
    "residual": 0,
-   "printed_total_alternate_readings": null,
+   "printed_total_alternate_readings": [
+    5
+   ],
    "read_sum_matches_an_alternate_reading": false
   },
   {
@@ -341,7 +353,7 @@
    "band": "free white males 60 under 70",
    "read_sum": 1,
    "printed_total": 1,
-   "printed_total_reading": "medium",
+   "printed_total_reading": "low",
    "balanced": true,
    "residual": 0,
    "printed_total_alternate_readings": null,
@@ -395,12 +407,14 @@
    "column": 14,
    "band": "free white females Under 5",
    "read_sum": 19,
-   "printed_total": 19,
-   "printed_total_reading": "medium",
-   "balanced": true,
-   "residual": 0,
-   "printed_total_alternate_readings": null,
-   "read_sum_matches_an_alternate_reading": false
+   "printed_total": 11,
+   "printed_total_reading": "low",
+   "balanced": false,
+   "residual": 8,
+   "printed_total_alternate_readings": [
+    19
+   ],
+   "read_sum_matches_an_alternate_reading": true
   },
   {
    "column": 15,
@@ -451,7 +465,7 @@
    "band": "free white females 30 under 40",
    "read_sum": 7,
    "printed_total": 7,
-   "printed_total_reading": "medium",
+   "printed_total_reading": "low",
    "balanced": true,
    "residual": 0,
    "printed_total_alternate_readings": null,
@@ -692,7 +706,6 @@
    "note": "",
    "reading": "scan_verified",
    "cells": {
-    "14": 3,
     "18": 1
    },
    "cells_first_pass": {
@@ -709,8 +722,8 @@
    "note": "Cornely as written; Cornelius expanded",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "5": 8,
-    "14": 1,
     "15": 1,
     "16": 1,
     "17": 1,
@@ -735,6 +748,7 @@
    "note": "Diley / Dilcy / Riley",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "5": 1,
     "18": 1
    },
@@ -769,6 +783,7 @@
    "note": "Portmine / Fortune / Portune",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "5": 1,
     "7": 1,
     "15": 1,
@@ -791,7 +806,6 @@
    "reading": "scan_verified",
    "cells": {
     "5": 4,
-    "14": 1,
     "16": 1,
     "18": 1
    },
@@ -811,7 +825,6 @@
    "reading": "scan_verified",
    "cells": {
     "5": 1,
-    "14": 2,
     "18": 1,
     "19": 1
    },
@@ -832,7 +845,6 @@
    "reading": "scan_verified",
    "cells": {
     "2": 2,
-    "14": 2,
     "18": 1,
     "21": 1
    },
@@ -851,6 +863,7 @@
    "note": "Westenoff / Westorff",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "15": 1,
     "17": 1,
     "19": 1
@@ -938,7 +951,7 @@
    "note": "",
    "reading": "scan_verified",
    "cells": {
-    "14": 1,
+    "1": 1,
     "18": 2
    },
    "cells_first_pass": {
@@ -998,7 +1011,6 @@
    "cells": {
     "2": 2,
     "3": 2,
-    "14": 1,
     "16": 1,
     "17": 1,
     "19": 1
@@ -1039,8 +1051,8 @@
    "note": "Millard / Mallard / Willard",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "10": 1,
-    "14": 1,
     "16": 1,
     "18": 2
    },
@@ -1061,6 +1073,7 @@
    "note": "Warman / Norman / Warren; Beaman / Beaum",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "2": 4,
     "4": 1,
     "5": 1,
@@ -1090,7 +1103,6 @@
    "cells": {
     "4": 1,
     "5": 1,
-    "14": 2,
     "17": 1,
     "18": 1
    },
@@ -1111,7 +1123,6 @@
    "reading": "scan_verified",
    "cells": {
     "5": 1,
-    "14": 1,
     "18": 1
    },
    "cells_first_pass": {
@@ -1130,7 +1141,6 @@
    "cells": {
     "2": 1,
     "7": 1,
-    "14": 1,
     "15": 2,
     "16": 1,
     "17": 1,
@@ -1154,8 +1164,8 @@
    "note": "Doney / Dovey",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "5": 1,
-    "14": 2,
     "18": 1
    },
    "cells_first_pass": {
@@ -1172,8 +1182,8 @@
    "name_confidence": "low",
    "note": "initials read R. D. or R. O.",
    "reading": "scan_verified",
-   "cells": null,
-   "cells_first_pass": null
+   "cells": {},
+   "cells_first_pass": {}
   },
   {
    "line": 27,
@@ -1183,6 +1193,7 @@
    "note": "Egan / Eagan",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "5": 1,
     "18": 1
    },
@@ -1200,10 +1211,12 @@
    "note": "Sanderken / Sanderkin / Sanderburt",
    "reading": "scan_verified",
    "cells": {
+    "1": 1,
     "2": 1,
     "19": 1
    },
    "cells_first_pass": {
+    "1": 1,
     "2": 1,
     "6": 1,
     "19": 1
@@ -1218,7 +1231,6 @@
    "reading": "scan_verified",
    "cells": {
     "5": 1,
-    "14": 1,
     "19": 1
    },
    "cells_first_pass": {
