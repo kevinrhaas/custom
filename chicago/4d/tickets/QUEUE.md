@@ -77,7 +77,12 @@ T-0492 — The research pattern exists for the newspapers only, and six new sour
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0494 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
-T-0495 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 26-50
+T-0530 — The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
+T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
+T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
+T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
+T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
+T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule

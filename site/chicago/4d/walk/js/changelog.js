@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 445, title: 'The 1840 census sheets are read off the page', kind: 'fix', ts: '2026-09-03T07:23:41.892Z', date: 'Sep 3, 2026, 2:23 AM CT',
+    items: [
+      'This project holds seventy-five photographs of the 1840 census sheets for Chicago, and until now the only names taken out of them came from a spreadsheet that has since been lost — two hundred and ten households, recovered second hand, with nothing pointing back at a line on a page.',
+      'Two of those pages have now been read off the photographs themselves, line by line. Of the sixty-two households on them, ten agree with the recovered list on both first name and surname, and thirty-three agree on neither. Line seventeen of one page reads Gurdon S. Hubbard where the list said Saml. J. McCord; line twenty-five reads John H. Kinzie where it said John W. Rogers. Two of the most consequential names in the town were not in the list at all.',
+      'Nothing was deleted. Both readings are kept side by side with the reason the photograph is treated as the senior one, because the sheet is evidence and the lost spreadsheet is a memory of evidence.',
+      'What it means for the work queued behind it: plans to match these households to a national dataset, and to bridge them to the people already standing in this town, cannot use the recovered list as ground truth until it has been re-read against the images. That is the point of reading the calibration pages first.',
+      'The other twenty-three photographs in this group are now catalogued — which are name sheets and which are the continuation half, what page number each carries, how many lines are filled, and which three are blank or struck through — so the next pass reads pages instead of hunting for them. One of them is not a household page at all: its totals run to three figures where every other sheet counts a family, which is what a summary of whole districts looks like.',
+      'None of this is a claim about 1835. The 1840 census is later evidence, and on its own it never makes anybody a resident of this town.',
+    ] },
   { v: 444, title: 'Three residents show the 1840 census page they turn up on again', kind: 'fix', ts: '2026-09-03T06:40:11.091Z', date: 'Sep 3, 2026, 1:40 AM CT',
     items: [
       'Three of this town\u2019s people \u2014 John Murphy, William Hanford Adams and John Miller \u2014 have been carrying a link to the household they head in the 1840 federal census, five years after the day this scene is set. The link was in the data and nothing on the card read it: twenty-four separate figures were being sent to your browser for those three people and not one of them reached a page.',
