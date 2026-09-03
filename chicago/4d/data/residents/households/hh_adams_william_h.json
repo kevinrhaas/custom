@@ -4,9 +4,10 @@
  "division": "unplaced",
  "head": "adams_william_h",
  "arrival": {
-  "value": null,
+  "value": "1835",
   "confidence": "reconstructed",
-  "note": "Not attested. The recovered research establishes direct 1835 voter presence but does not state an arrival date."
+  "note": "NOT AN ATTESTED ARRIVAL. Direct appearance on the 1835 Chicago poll establishes presence sometime in 1835; this year is only the latest year that evidence forces, not a claim that Adams arrived during 1835.",
+  "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
