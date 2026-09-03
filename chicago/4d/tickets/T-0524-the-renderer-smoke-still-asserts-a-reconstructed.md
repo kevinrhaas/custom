@@ -1,7 +1,7 @@
 ---
 id: T-0524
 title: The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 7:01:24 AM CT
 blocked_on: null
 needs_bake: false
 ---
