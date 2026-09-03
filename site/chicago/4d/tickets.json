@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 12:09 PM",
+  "generated_ct": "Sep 3, 2026, 12:10 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9618,7 +9618,7 @@
     {
       "id": "T-0584",
       "title": "The ledger records the instant a ticket finished and which run claimed it",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9626,14 +9626,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-03",
+      "pr": "709",
       "claimed_by": "run 9/3/2026, 12:09:01 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-03T17:10:25.086Z",
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": null
     }
   ]
 }
