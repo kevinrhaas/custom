@@ -352,13 +352,20 @@ def mint(docs: dict, index: dict):
     def norm(s):
         return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
+    # T-0599: a plain id no longer says whose previous answer it is on its own —
+    # the legacy `doc_` prefix still does, for any household not yet migrated, but
+    # a migrated one only says so in its own source_pass field.
+    own_pass = {doc["head"] for doc in docs.values() if doc.get("source_pass") == "documented"}
+
+    def is_own_prior_answer(target: str) -> bool:
+        return target.startswith(PERSON_PREFIX) or target in own_pass
+
     # The pool, and its own previous answer read back (see the module docstring).
     candidates = [p for p in register["persons"]
                   if p.get("occupation") and not p.get("letter_list_only")
                   and (p.get("action") == "new_resident"
                        or (p.get("action") == "enrich"
-                           and str(p.get("action_target") or "")
-                           .startswith(PERSON_PREFIX)))]
+                           and is_own_prior_answer(str(p.get("action_target") or ""))))]
     candidates.sort(key=lambda p: (-len(gazetteer[p["id"]]["mentions"]),
                                    p["first_seen"], p["id"]))
 

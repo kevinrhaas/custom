@@ -383,17 +383,20 @@ def norm_place(s: str) -> str:
     return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
 
-def letter_list_pool(register: dict) -> list[dict]:
+def letter_list_pool(register: dict, own_pass: frozenset[str] = frozenset()) -> list[dict]:
     """Every letter-list-only name the town does not hold.
 
     Includes this pass's own previous answer, read back as an `enrich` on one of its
-    own person ids — see the docstring's last paragraph.
+    own person ids — see the docstring's last paragraph. The legacy `ll_` prefix
+    still says that on its own for any household not yet migrated to a plain id
+    (T-0599); `own_pass` names the ones that have, by their own source_pass field.
     """
     return [p for p in register["persons"]
             if p.get("letter_list_only")
             and (p.get("action") == "new_resident"
                  or (p.get("action") == "enrich"
-                     and str(p.get("action_target") or "").startswith(PERSON_PREFIX)))]
+                     and (str(p.get("action_target") or "").startswith(PERSON_PREFIX)
+                          or str(p.get("action_target") or "") in own_pass)))]
 
 
 def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
@@ -482,8 +485,10 @@ def mint(docs: dict, index: dict):
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
     in_town = in_town_places()
+    own_pass = frozenset(doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") == "letter_list")
 
-    return apply_refusals(rank(letter_list_pool(register), gazetteer),
+    return apply_refusals(rank(letter_list_pool(register, own_pass), gazetteer),
                           gazetteer, known, in_town)
 
 
@@ -741,10 +746,13 @@ def scale_report() -> None:
     and written down nowhere else in this file. `docs/LIBERTIES.md` L182 carries a
     dated statement of it, and its Scope count is gated against this same data.
     """
-    files, accepted, refusals = build()
+    files, accepted, refusals, _mine_paths = build()
     index = json.loads(files[INDEX])
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
-    pool = letter_list_pool(load(REGISTER))
+    docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+    own_pass = frozenset(doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") == "letter_list")
+    pool = letter_list_pool(load(REGISTER), own_pass)
     multi = [p for p in pool
              if len(returns_of(gazetteer[p["id"]]["mentions"])) >= RANKED_FIRST_RETURNS]
 

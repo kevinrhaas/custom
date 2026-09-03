@@ -21,8 +21,8 @@
  "matches": [
   {
    "resident": "B. S. Morris",
-   "person_id": "placed_b_s_morris",
-   "household_id": "hh_placed_b_s_morris",
+   "person_id": "morris_b_s",
+   "household_id": "hh_morris_b_s",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -111,8 +111,8 @@
   },
   {
    "resident": "Edward A. Rogers",
-   "person_id": "ll_edward_a_rogers",
-   "household_id": "hh_ll_edward_a_rogers",
+   "person_id": "rogers_edward_a",
+   "household_id": "hh_rogers_edward_a",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -135,8 +135,8 @@
   },
   {
    "resident": "Elded Smith",
-   "person_id": "ll_smith_elded",
-   "household_id": "hh_ll_smith_elded",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -159,8 +159,8 @@
   },
   {
    "resident": "H. B. Clarke",
-   "person_id": "doc_h_b_clarke",
-   "household_id": "hh_doc_h_b_clarke",
+   "person_id": "clarke_h_b",
+   "household_id": "hh_clarke_h_b",
    "grade_1835": "attested",
    "occupation_1835": "hardware_merchant",
    "lives_at_1835": null,
@@ -183,8 +183,8 @@
   },
   {
    "resident": "Harvey A. Blakesley",
-   "person_id": "ll_harvey_a_blakesley",
-   "household_id": "hh_ll_harvey_a_blakesley",
+   "person_id": "blakesley_harvey_a",
+   "household_id": "hh_blakesley_harvey_a",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -207,8 +207,8 @@
   },
   {
    "resident": "J. Curtiss",
-   "person_id": "doc_j_curtiss",
-   "household_id": "hh_doc_j_curtiss",
+   "person_id": "curtiss_j",
+   "household_id": "hh_curtiss_j",
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "lives_at_1835": null,
@@ -231,8 +231,8 @@
   },
   {
    "resident": "J. E. Bishop",
-   "person_id": "ll_bishop_j_e",
-   "household_id": "hh_ll_bishop_j_e",
+   "person_id": "bishop_j_e",
+   "household_id": "hh_bishop_j_e",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -277,8 +277,8 @@
   },
   {
    "resident": "S. Sherwood",
-   "person_id": "ll_s_sherwood",
-   "household_id": "hh_ll_s_sherwood",
+   "person_id": "sherwood_s",
+   "household_id": "hh_sherwood_s",
    "grade_1835": "inferred",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -350,8 +350,8 @@
  "ambiguous": [
   {
    "resident": "A. Garrett",
-   "person_id": "doc_a_garrett",
-   "household_id": "hh_doc_a_garrett",
+   "person_id": "garrett_a",
+   "household_id": "hh_garrett_a",
    "grade_1835": "attested",
    "occupation_1835": "auctioneer",
    "lives_at_1835": null,
@@ -422,7 +422,7 @@
  "refusals": [
   {
    "resident": "Albert F. Dow",
-   "person_id": "ll_dow_albert_f",
+   "person_id": "dow_albert_f",
    "surname_on_a_card": "Dow",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Dow' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Albert F. Dow'. A surname-only agreement is a refusal."
@@ -443,21 +443,21 @@
   },
   {
    "resident": "Ben Butterfield",
-   "person_id": "ll_butterfield_ben",
+   "person_id": "butterfield_ben",
    "surname_on_a_card": "Butterfield",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Butterfield' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Caleb Foster",
-   "person_id": "ll_caleb_foster",
+   "person_id": "foster_caleb",
    "surname_on_a_card": "Foster",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Foster' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Charles Wells",
-   "person_id": "ll_wells_charles",
+   "person_id": "wells_charles",
    "surname_on_a_card": "Wells",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Wells' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'Charles Wells'. A surname-only agreement is a refusal."
@@ -478,21 +478,21 @@
   },
   {
    "resident": "Edson White",
-   "person_id": "ll_white_edson",
+   "person_id": "white_edson",
    "surname_on_a_card": "White",
    "cards_under_that_surname": 2,
    "rule": "The surname 'White' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Edson White'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Elam Tuller",
-   "person_id": "ll_elam_tuller",
+   "person_id": "tuller_elam",
    "surname_on_a_card": "Tuller",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Tuller' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Eli F Anderson",
-   "person_id": "ll_anderson_eli_f",
+   "person_id": "anderson_eli_f",
    "surname_on_a_card": "Anderson",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Anderson' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Eli F Anderson'. A surname-only agreement is a refusal."
@@ -513,7 +513,7 @@
   },
   {
    "resident": "Erastus Clark",
-   "person_id": "ll_clark_erastus",
+   "person_id": "clark_erastus",
    "surname_on_a_card": "Clark",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Clark' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal."
@@ -527,14 +527,14 @@
   },
   {
    "resident": "George E. Walker",
-   "person_id": "ll_george_e_walker",
+   "person_id": "walker_george_e",
    "surname_on_a_card": "Walker",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Walker' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George E. Walker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George Knapp",
-   "person_id": "ll_knapp_george",
+   "person_id": "knapp_george",
    "surname_on_a_card": "Knapp",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Knapp' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Knapp'. A surname-only agreement is a refusal."
@@ -555,14 +555,14 @@
   },
   {
    "resident": "H. H. Comstock",
-   "person_id": "ll_comstock_h_h",
+   "person_id": "comstock_h_h",
    "surname_on_a_card": "Comstock",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Comstock' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Harriet Gridley",
-   "person_id": "ll_harriet_gridley",
+   "person_id": "gridley_harriet",
    "surname_on_a_card": "Gridley",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Gridley' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Harriet Gridley'. A surname-only agreement is a refusal."
@@ -576,28 +576,28 @@
   },
   {
    "resident": "Henry Mitchell",
-   "person_id": "ll_henry_mitchell",
+   "person_id": "mitchell_henry",
    "surname_on_a_card": "Mitchell",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Mitchell' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Henry Mitchell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry Whiting",
-   "person_id": "ll_whiting_henry",
+   "person_id": "whiting_henry",
    "surname_on_a_card": "Whiting",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Whiting' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Henry Whiting'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Heury C. Skinner",
-   "person_id": "ll_skinner_heury_c",
+   "person_id": "skinner_heury_c",
    "surname_on_a_card": "Skinner",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Skinner' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Heury C. Skinner'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Hiram Hovey",
-   "person_id": "ll_hiram_hovey",
+   "person_id": "hovey_hiram",
    "surname_on_a_card": "Hovey",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Hovey' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Hiram Hovey'. A surname-only agreement is a refusal."
@@ -611,35 +611,35 @@
   },
   {
    "resident": "Issac Stevens",
-   "person_id": "ll_stevens_issac",
+   "person_id": "stevens_issac",
    "surname_on_a_card": "Stevens",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Stevens' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. H. Collins",
-   "person_id": "doc_j_h_collins",
+   "person_id": "collins_j_h",
    "surname_on_a_card": "Collins",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Collins' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'J. H. Collins'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. K. Boyer",
-   "person_id": "placed_j_k_boyer",
+   "person_id": "boyer_j_k",
    "surname_on_a_card": "Boyer",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Boyer' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'J. K. Boyer'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James H. Phelps",
-   "person_id": "ll_james_h_phelps",
+   "person_id": "phelps_james_h",
    "surname_on_a_card": "Phelps",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Phelps' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James H. Phelps'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Jesse Morgan",
-   "person_id": "ll_jesse_morgan",
+   "person_id": "morgan_jesse",
    "surname_on_a_card": "Morgan",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Morgan' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Jesse Morgan'. A surname-only agreement is a refusal."
@@ -667,21 +667,21 @@
   },
   {
    "resident": "Levi Cady",
-   "person_id": "ll_levi_cady",
+   "person_id": "cady_levi",
    "surname_on_a_card": "Cady",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Cady' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'Levi Cady'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Manson Parker",
-   "person_id": "ll_manson_parker",
+   "person_id": "parker_manson",
    "surname_on_a_card": "Parker",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Parker' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'Manson Parker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Mary Barrows",
-   "person_id": "ll_mary_barrows",
+   "person_id": "barrows_mary",
    "surname_on_a_card": "Barrows",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Barrows' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'Mary Barrows'. A surname-only agreement is a refusal."
@@ -695,7 +695,7 @@
   },
   {
    "resident": "Mrs. H. Sherman",
-   "person_id": "doc_h_sherman",
+   "person_id": "sherman_h",
    "surname_on_a_card": "Sherman",
    "cards_under_that_surname": 4,
    "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
@@ -709,7 +709,7 @@
   },
   {
    "resident": "Orson Wheeler",
-   "person_id": "ll_wheeler_orson",
+   "person_id": "wheeler_orson",
    "surname_on_a_card": "Wheeler",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Wheeler' stands on an 1844 advertising card and no proprietor under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal."
@@ -730,7 +730,7 @@
   },
   {
    "resident": "R. C. Bristol",
-   "person_id": "ll_r_c_bristol",
+   "person_id": "bristol_r_c",
    "surname_on_a_card": "Bristol",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Bristol' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'R. C. Bristol'. A surname-only agreement is a refusal."
@@ -751,7 +751,7 @@
   },
   {
    "resident": "Rowland I!. Cook",
-   "person_id": "ll_cook_rowland_i",
+   "person_id": "cook_rowland_i",
    "surname_on_a_card": "Cook",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal."
@@ -765,14 +765,14 @@
   },
   {
    "resident": "Seth Paine",
-   "person_id": "ll_seth_paine",
+   "person_id": "paine_seth",
    "surname_on_a_card": "Paine",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Paine' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Seth Paine'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Sidney Dyer",
-   "person_id": "ll_sidney_dyer",
+   "person_id": "dyer_sidney",
    "surname_on_a_card": "Dyer",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Dyer' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Sidney Dyer'. A surname-only agreement is a refusal."

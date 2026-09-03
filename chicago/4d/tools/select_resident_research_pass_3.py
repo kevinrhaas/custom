@@ -19,25 +19,25 @@ ESTABLISHED_IDS = (
 )
 
 PRESENT_LETTER_IDS = (
-    "ll_aiker_samuel", "ll_akers_simon", "ll_allen_william", "ll_allin_richard",
-    "ll_alling_prudde", "ll_anderson_eli_f", "ll_archer_joseph", "ll_ayres_levi",
-    "ll_bakwith_albert", "ll_bebee_orson", "ll_beeson_william",
-    "ll_benton_datas_e", "ll_bishop_j_e", "ll_blair_william_g", "ll_bly_rouse",
-    "ll_bullen_jeduthnn", "ll_bullock_stephen", "ll_burbee_jonathan",
-    "ll_butterfield_ben", "ll_chadwick_joseph", "ll_chambers_john",
-    "ll_chanpagne_batist", "ll_chase_peter", "ll_clark_erastus",
-    "ll_comstock_h_h",
+    "aiker_samuel", "akers_simon", "allen_william", "allin_richard",
+    "alling_prudde", "anderson_eli_f", "archer_joseph", "ayres_levi",
+    "bakwith_albert", "bebee_orson", "beeson_william",
+    "benton_datas_e", "bishop_j_e", "blair_william_g", "bly_rouse",
+    "bullen_jeduthnn", "bullock_stephen", "burbee_jonathan",
+    "butterfield_ben", "chadwick_joseph", "chambers_john",
+    "chanpagne_batist", "chase_peter", "clark_erastus",
+    "comstock_h_h",
 )
 
 UNCERTAIN_LETTER_IDS = (
-    "ll_absolam_reel", "ll_adam_vandorwerk", "ll_alexander_wilkes",
-    "ll_alexr_h_tucker", "ll_alfred_churchill", "ll_alison_b_vaughn",
-    "ll_almon_perring", "ll_alonzo_castle", "ll_alva_crandal", "ll_alva_dunlap",
-    "ll_amos_rathburn", "ll_andrew_miles", "ll_anthony_heere", "ll_aram_winsor",
-    "ll_asa_doel", "ll_austin_parsalls", "ll_b_r_paige", "ll_bennet_bailey",
-    "ll_carl_romer", "ll_charles_h_bartlett", "ll_charles_t_richards",
-    "ll_chas_h_chapman", "ll_clark_b_albee", "ll_curtis_parkes",
-    "ll_ebenozer_alden",
+    "reel_absolam", "vandorwerk_adam", "wilkes_alexander",
+    "tucker_alexr_h", "churchill_alfred", "vaughn_alison_b",
+    "perring_almon", "castle_alonzo", "crandal_alva", "dunlap_alva",
+    "rathburn_amos", "miles_andrew", "heere_anthony", "winsor_aram",
+    "doel_asa", "parsalls_austin", "paige_b_r", "bailey_bennet",
+    "romer_carl", "bartlett_charles_h", "richards_charles_t",
+    "chapman_chas_h", "albee_clark_b", "parkes_curtis",
+    "alden_ebenozer",
 )
 
 def derive() -> dict:
