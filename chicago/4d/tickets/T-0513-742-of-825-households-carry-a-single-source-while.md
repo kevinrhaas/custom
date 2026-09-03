@@ -1,7 +1,7 @@
 ---
 id: T-0513
 title: 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 732
+claimed_by: run 9/3/2026, 4:29:32 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T22:01:26.317Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33807940502
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "And then create a final ticket that does a review and
