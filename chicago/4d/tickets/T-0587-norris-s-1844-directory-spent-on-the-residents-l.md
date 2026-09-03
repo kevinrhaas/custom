@@ -1,7 +1,7 @@
 ---
 id: T-0587
 title: Norris's 1844 directory spent on the residents layer: every 1835 person the volume meets, shown on their card with the printed line, the page and the rule
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0569
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 713
 claimed_by: run 9/3/2026, 12:27:48 PM CT
 blocked_on: null
 needs_bake: false
