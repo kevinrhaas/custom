@@ -1,6 +1,6 @@
 ---
 id: T-0513
-title: Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
+title: 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
 state: open
 epic: META
 requested_by: owner
@@ -36,8 +36,24 @@ was permanently one sweep away.
 **So the bar is lifted and the ticket is INCREMENTAL.** It consolidates what is CLOSED, and it runs
 again. It does not wait for the corpus to be finished, because the corpus is never finished.
 
-**The measured case the owner named.** `hh_carpenter_philo.json` carries ONE source on Philo
-Carpenter — `andreas_1884_v1`. The crosswalks have already ruled six or more for the same man:
+**THE SCALE OF IT, and it is not one man.** Counted across the whole residents layer:
+
+| distinct sources cited | household records |
+|---|---|
+| 1 | **742** |
+| 2 | 70 |
+| 3 | 13 |
+| **total** | **825** |
+
+**Ninety per cent of the town's households rest on a single source, and no record anywhere cites more
+than three.** That is the defect. It is not that one card is thin; it is that corroboration is
+almost entirely absent from the layer a visitor reads, while the crosswalks that would supply it sit
+in `data/research/` holding rulings nobody has spent. The second hop of
+`tools/measure_research_spend.py` puts the other end of the same fact at 109 rulings reaching a town
+person and 0 reaching that person's card.
+
+**The case the owner named, as the worked example.** `hh_carpenter_philo.json` carries ONE source on
+Philo Carpenter — `andreas_1884_v1`. The crosswalks have already ruled six or more for the same man:
 `poll_1833_006`, `tax_1833_012`, `poll_1834_023`, the newspaper person `person_philo_carpenter`, and
 two bridge-candidate tiers at "VERY LIKELY 1835". The slot exists (`persons[].sources`), the evidence
 exists and is adjudicated, and the two have never been introduced. That is what a pass delivers: a
