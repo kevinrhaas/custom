@@ -17,9 +17,12 @@
         "original": "Illinois Catholic Historical Review, vol. 4 (July 1921 - April 1922), printing the death page of Father St. Cyr's Chicago register"
       },
       "describes_date": "1835-10-15",
-      "entities": ["Thomas Owen"],
+      "entities": [
+        "Thomas Owen"
+      ],
       "town_finding": true,
-      "notes": "A scene-year death of a named office-holder, and the office is one the reconstruction has a building for. 'Col. T. J. V. Owen' signs the 1833 poll list this project already holds (data/research/civic/records/voter_lists_1833_1835.json), and Thomas Jefferson Vance Owen was the Chicago Indian agent. THE IDENTITY IS NOT MERGED HERE: the register gives 'Thomas Owen' with no middle initials, one source is a poll list and the other a priest's death note, and the crosswalk rule for that merge has not been stated. Filed as the reading it is — an agent of the Indians died at Chicago on 15 October 1835 — and left for the identity layer to adjudicate under the ladder."
+      "notes": "A scene-year death of a named office-holder, and the office is one the reconstruction has a building for. 'Col. T. J. V. Owen' signs the 1833 poll list this project already holds (data/research/civic/records/voter_lists_1833_1835.json), and Thomas Jefferson Vance Owen was the Chicago Indian agent. THE IDENTITY IS NOT MERGED HERE: the register gives 'Thomas Owen' with no middle initials, one source is a poll list and the other a priest's death note, and the crosswalk rule for that merge has not been stated. Filed as the reading it is — an agent of the Indians died at Chicago on 15 October 1835 — and left for the identity layer to adjudicate under the ladder.",
+      "superseded_by": "SUPERSEDED BY T-0573. The reading is now a record — data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_07_1 — and the identity this claim explicitly declined to settle is settled: data/research/church/crosswalk.json merges 'Thomas Owen' into the attested resident 'Thomas Jefferson Vance Owen' on the office and the date of death agreeing as well as the name. This claim is kept, not deleted: it is the record of what was known when it was filed."
     },
     {
       "id": "gt_002",
@@ -34,9 +37,13 @@
         "original": "Illinois Catholic Historical Review, vol. 4 (July 1921 - April 1922)"
       },
       "describes_date": "1835-07-02",
-      "entities": ["Leon Bourrassa", "John Baptist Bourrassa"],
+      "entities": [
+        "Leon Bourrassa",
+        "John Baptist Bourrassa"
+      ],
       "town_finding": false,
-      "notes": "A household in the scene year, dated to the day: a Bourrassa family with an infant born in early June 1835 and buried in early July. The same register's marriage page has 'Mar., 1835, Mark Bourassa, Josette Chevalier' — a DIFFERENT forename, and the two are deliberately not joined here. The age is the source's own; the birth date is arithmetic and is stated as an inference, not read."
+      "notes": "A household in the scene year, dated to the day: a Bourrassa family with an infant born in early June 1835 and buried in early July. The same register's marriage page has 'Mar., 1835, Mark Bourassa, Josette Chevalier' — a DIFFERENT forename, and the two are deliberately not joined here. The age is the source's own; the birth date is arithmetic and is stated as an inference, not read.",
+      "superseded_by": "SUPERSEDED BY T-0573. The reading is now two records — data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_05_1 (the infant) and st_cyr_death_05_2 (Leon Bourrassa) — and the Bourassa/Bourrassa pair this claim deliberately left open is now an explicit REFUSAL in data/research/church/crosswalk.json rather than an absence. This claim is kept, not deleted: it is the record of what was known when it was filed."
     },
     {
       "id": "gt_003",
@@ -51,7 +58,10 @@
         "original": "not named on the page; the surrounding paragraphs quote Andreas"
       },
       "describes_date": "1832",
-      "entities": ["Lake Street", "Wabash Avenue"],
+      "entities": [
+        "Lake Street",
+        "Wabash Avenue"
+      ],
       "town_finding": true,
       "notes": "A PLACE, three years before the scene, on ground the reconstruction models: hasty burials of the 1832 cholera dead near Lake and Wabash. Whether anything was visible there in 1835 is exactly what this claim does NOT say, and no marker may be placed on the strength of it. Recorded because the fact is hard to find and easy to lose, and because the 1847 City Cemetery — everything else on the page — is twelve years too late to matter here."
     },
@@ -85,7 +95,9 @@
         "original": "Henry H. Hurlbut, 'Chicago Antiquities' (Chicago, 1881), pages 28-36"
       },
       "describes_date": "1820s-1830s",
-      "entities": ["American Fur Company"],
+      "entities": [
+        "American Fur Company"
+      ],
       "town_finding": true,
       "notes": "A judgement, not an observation, and written in 1881 about the decades before the scene — it is filed as a size argument, not as a fact about any building. It bears on how much fur-trade apparatus the town should show: Hurlbut says the answer is 'a port of a very limited district', which is smaller than the name 'American Fur Company' invites. The same page names Hubbard, Beaubien, Crafts and the Kinzies as the company's Chicago men; those are people this project already models, and the reading of them is a run of its own, not this one."
     }

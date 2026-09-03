@@ -2,7 +2,113 @@
   "schema": 1,
   "domain": "church",
   "note": "The ONLY place two differently-spelled names in this domain may become one person, in data/research/newspapers/identity.json's shape and under its rules: a merge needs a rule, the rule names BOTH spellings verbatim, and a surname-only merge is always a refusal. A refusal is declared as explicitly as a merge — the absence of one reads like a pair nobody has looked at yet.",
-  "passes": [],
-  "merges": [],
-  "refusals": []
+  "passes": [
+    {
+      "pass": "T-0573",
+      "what": "The scene-year entries of Father St. Cyr's marriage and death pages against data/residents/.",
+      "readings_examined": 26,
+      "residents_examined": 849,
+      "merges": 1,
+      "refusals": 8,
+      "detail": "data/research/church/st_cyr_crosswalk.json"
+    }
+  ],
+  "merges": [
+    {
+      "into": "Thomas Jefferson Vance Owen",
+      "from": "Thomas Owen",
+      "rule": "The death page reads \"Died at Chicago the 15th of October, 1835, Thomas Owen, agent of the Indians\". The project's resident record for Thomas Jefferson Vance Owen is graded attested, gives his occupation as the Indian agent, and already carries \"He died at Chicago on 15 October 1835\" out of Andreas. Surname folds equal; the register's Thomas Owen is a prefix of Thomas Jefferson Vance Owen initial for initial; and TWO further attributes agree independently — the office (agent of the Indians / indian_agent) and the exact date of death (15 October 1835). Three agreements from two sources that did not copy each other is the bar this domain sets for a merge, and a common-name coincidence does not reach it: no second man was the Indian agent at Chicago dying on that day.",
+      "evidence": [
+        "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_07_1",
+        "data/residents/households/hh_owen_thomas_jv.json — persons[0] (owen_thomas_jv, attested, occupation indian_agent)",
+        "data/residents/households/hh_owen_thomas_jv.json — present_on_scene_date, sourced andreas_1884_v1"
+      ],
+      "supersedes": "gt_001 in data/research/genealogytrails/claims/town_findings_genealogytrails.json, which filed the reading and explicitly declined the merge because no rule had been stated. This is the rule, and this is the adjudication it waited for.",
+      "does_not_follow": "NOTHING IN data/residents/ IS EDITED BY THIS. The register corroborates a death Andreas already gave; it adds no residence, no household member and no placement, and under the ladder ratified 2026-09-03 a corroboration is not a promotion.",
+      "pass": "T-0573"
+    }
+  ],
+  "refusals": [
+    {
+      "a": "John Murphy",
+      "b": "John Murphy",
+      "rule": "The register's John Murphy married Bridget Rogers at Chicago on 26 April 1835. The project holds an attested resident John Murphy, tavern-keeper, in charge of the house from August 1834 to 1836, whose household already carries a wife, Harriet Murphy. The two spellings are IDENTICAL and that is exactly why this is refused rather than merged: John Murphy is among the commonest names in a town taking a large Irish Catholic influx, the only agreement available is the name itself, and the merge would marry the town's tavern-keeper to a second woman in the middle of the scene year on no evidence at all. A name agreeing with itself is not a second attribute.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_006_1",
+        "data/residents/households/hh_murphy_john.json — murphy_john (attested, tavern_keeper) and murphy_harriet (inferred)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "G. S. Lee",
+      "b": "George Lee",
+      "rule": "G. S. Lee witnessed the marriage of John Latzky and Potily Morris on 1 October 1835. George Lee is a letter-list name, graded inferred. The surnames fold equal and the first initials agree, so the mechanical rule reaches it — and it stops there: the S of G. S. Lee is unaccounted for, the resident is a projection off a list of letters waiting at the post office rather than an attestation, and a first initial is one attribute, not two.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_009_3",
+        "data/residents/households/hh_ll_george_lee.json — ll_george_lee (inferred)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Mark Bourassa",
+      "b": "Leon Bourrassa",
+      "rule": "THE TRAP T-0573 NAMED. Mark Bourassa married Josette Chevalier at Chicago in March 1835 on the marriage page; Leon Bourrassa buried a 28-day-old son on 2 July 1835 on the death page. They are not joined. The surnames do not even fold equal — bourassa against bourrassa, one r against two — and Mark and Leon are two different forenames rather than two spellings of one. That the two pages print the same family within four months is worth recording and is not evidence of one man; a French Chicago family of the 1830s had brothers.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_005_1",
+        "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_05_2"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Josette Chevalier",
+      "b": "Catherine Chevalier Robinson",
+      "rule": "Josette Chevalier is the bride of March 1835. Catherine Chevalier Robinson is an attested resident whose Chevalier is a middle name, her surname on the record being Robinson. The forenames disagree outright, and a shared family name that is not even in the same position in the two readings is the weakest link this domain recognises. Refused.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_005_2",
+        "data/residents/households/hh_robinson_alexander.json — robinson_catherine (attested)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Thomas Witkins",
+      "b": "John Watkins",
+      "rule": "Thomas Witkins witnessed the marriage of Patrick Carroll and Mary Hogan on 21 April 1835 — and the SAME PAGE's prose calls him Thomas Watkins, which is a reading this project should keep. The resident it would reach is John Watkins, the attested North Side schoolteacher. The forenames are different names. Refused, and the near-miss is recorded because the surnames are close enough that the mechanical rule never even offered the pair — witkins does not fold to watkins — and a later sweep would otherwise meet it fresh.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_007_3",
+        "data/research/church/claims/st_cyr_register_prose.json st_cyr_c002",
+        "data/residents/households/hh_watkins_john.json — watkins_john (attested, schoolteacher)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Mary Hogan",
+      "b": "John S. C. Hogan",
+      "rule": "Mary Hogan is the bride of 21 April 1835. John S. C. Hogan is an attested resident. The surname folds equal and nothing else does: a surname-only agreement is always a refusal here, and the register gives no relation between them to reason from.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_007_2",
+        "data/residents/households/hh_hogan_john_s_c.json — hogan_john_s_c (attested)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Mary Green",
+      "b": "Major John Greene",
+      "rule": "Mary Green married Michael Nolan on 29 August 1835. Major John Greene is an attested resident. The surnames do not fold equal — green against greene — and the forenames are a woman's and a man's. Recorded because the pair looks like a spelling variant at a glance and is not one.",
+      "evidence": [
+        "data/research/church/records/st_cyr_marriages_1834_1839.json st_cyr_marriage_008_2",
+        "data/residents/households/hh_greene_john.json — greene_john (attested)"
+      ],
+      "pass": "T-0573"
+    },
+    {
+      "a": "Julian Andrews",
+      "b": "Davi Andrews",
+      "rule": "Julian Andrews was eighteen days old when he was buried on 17 July 1835. Davi Andrews is a letter-list resident, graded attested on the list and an adult by the nature of that list. The surname folds equal, the forenames do not agree, and an infant cannot be an adult; the pair is refused as an identity. That the child may have been of that household is a different claim and this register does not make it — no parent is named in the entry.",
+      "evidence": [
+        "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_06_1",
+        "data/residents/households/hh_ll_andrews_davi.json — ll_andrews_davi"
+      ],
+      "pass": "T-0573"
+    }
+  ]
 }
