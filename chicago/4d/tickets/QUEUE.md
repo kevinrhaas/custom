@@ -248,3 +248,4 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 # --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
 # --- promote attested facts, promote inferred/projected residents while retiring reconstructed
 # --- people, then audit the census/research synthesis.
+T-0521 — dev's own check.sh gate is red in ten steps since the 1840 census merge, so no branch can prove itself
