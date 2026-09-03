@@ -128,7 +128,6 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 # --- on lot 7 while its own placement point falls 1.5 m outside it, so PR #562 is
 # --- parked on T-0461 and on nothing else.
 T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
-T-0461 — The Tremont House's goods are laid on lot 7, which its own placement point falls outside — one building's goods on another lot's frontage
 T-0459 — Signboards are mounted over doors and windows, when the same wall has blank face to put them on
 # --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
 # --- so a run cannot tell its own failure from an inherited one, and this one misstates

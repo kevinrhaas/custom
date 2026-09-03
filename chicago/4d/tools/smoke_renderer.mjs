@@ -4278,10 +4278,38 @@ for (const [label, viewport, touch] of [
       // no run opens and no crossing is added, and the shop stands 1.50 m back
       // from the frontage line, inside the 3.0 m a street fence needs, which was
       // already refused on that wall.
+      // T-0461 asked whether a lot is improved by the building STANDING on it or
+      // by where one corner of it landed, and it was the corner: `at` is the
+      // placement origin, which is a footprint VERTEX on 366 of the 367 placed
+      // records and the centroid on none. `_stands_on` now asks whether the
+      // committed footprint and the lot share ground. It can only ADD occupancy
+      // — 28 more across the town's 144 platted lots, none removed, 125 improved
+      // lots to 131 — so every figure here moves in one direction each.
+      // POSTS 18 to 20, and both are buildings whose own door is on the face
+      // they now stand on: tremont_house_1, a documented hotel on the Lake face
+      // of blk_south_water_clark, and exchange_coffee_house on the Lake face of
+      // blk_south_water_franklin. Each had 90% and more of its frontage on the
+      // lot and its origin corner just off it.
+      // FENCES 35 to 32, and every one of the three is the SAME clause T-0028
+      // and T-0380 are already recorded against — a wall inside the 3.0 m a
+      // street fence needs, so the building IS the street wall there. They are
+      // blk_south_water_clark lot 7 (tremont_house_1, 2.40 m),
+      // blk_lake_dearborn lot 2 (mason_blacksmith_shop, 0.55 m) and
+      // blk_south_water_lasalle lot 3 (recon_1835_blk_south_water_lasalle_a1_06,
+      // 1.61 m). The first is what T-0461 was filed for: that fence stood
+      // between the footway and the Tremont House's own goods.
+      // REFUSED 83 to 85 — the two new setback refusals above that were not
+      // already refused as prairie, plus one post refused for want of a walk at
+      // harmon_loomis_store, less one lot (blk_randolph_clinton lot 4) that
+      // stops reading as prairie and takes its fence. Six further refusals do
+      // not move in COUNT but change their WORDING, from "no committed building
+      // stands on this platted lot" to the building that does and how far back
+      // it stands. WALKS and CROSSINGS do not move: this rule reads lots, and a
+      // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 18 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.posts === 20 && frontage.census?.fences === 32
+        && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4505,11 +4533,20 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 17
-        && frontage.census?.hitching === 17
+    // T-0461 makes it NINETEEN, and neither is a building arriving or a trade
+    // settling: both already stood, with a documented trade the rule accepts,
+    // on a lot the containment test could not see them on. `_stands_on` asks
+    // whether the footprint and the lot share ground instead of where the
+    // placement origin — a footprint VERTEX, on 366 of 367 records — happened to
+    // fall, and tremont_house_1 (a hotel, 13.76 m of its 15.24 m frontage on
+    // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
+    // finds. The street-edge population is seventeen; the two on a record's own
+    // ground do not move, because those come from the Sauganash's own plates.
+    check(`${label}: the nineteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 19
+        && frontage.census?.hitching === 19
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 15
+        && frontage.hitching.filter((h) => h.street).length === 17
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -4868,8 +4905,18 @@ for (const [label, viewport, touch] of [
     // has to be exact, and a walk that shrank under a floor would be a march
     // quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
+      // T-0461 LOWERS THE FENCE FLOOR, 34 to 32, and it is the one figure here
+      // this project should expect to fall. The other three are laid ground —
+      // faces, metres of walk, decks — and a rule that shrank those would be
+      // refusing ground it used to lay, which is what a floor is for. Fence
+      // RUNS are not: the street-fence rule refuses by design, and `_stands_on`
+      // finding the building actually standing on a lot is how three lots came
+      // to be refused under the clause that says a wall inside 3.0 m of the
+      // frontage line IS the street wall. The exact count is asserted above in
+      // the frontage census (32), so this stays a floor rather than becoming a
+      // second place to keep the same number.
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 32
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
