@@ -5,15 +5,15 @@
  "deposit": {
   "files": 75,
   "distinct_images": 74,
-  "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg \u2014 byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each, md5 4cc1ca3ff88c213598c1cfe409938a35)",
-  "correction": "the deposit holds 74 DISTINCT images, not 75. `ls chicago/reference/census1840/*.jpg | wc -l` is 75 and one of those 75 is the duplicate copy, so 74 remain; `md5sum *.jpg | awk '{print $1}' | sort -u | wc -l` is 74. T-0494/T-0495/T-0496, the source record and the schema-1 coverage all said 75 distinct / 76 files. Group 3 is therefore images 51-74 \u2014 24 images, not 25.",
+  "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg — byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each, md5 4cc1ca3ff88c213598c1cfe409938a35)",
+  "correction": "the deposit holds 74 DISTINCT images, not 75. `ls chicago/reference/census1840/*.jpg | wc -l` is 75 and one of those 75 is the duplicate copy, so 74 remain; `md5sum *.jpg | awk '{print $1}' | sort -u | wc -l` is 74. T-0494/T-0495/T-0496, the source record and the schema-1 coverage all said 75 distinct / 76 files. Group 3 is therefore images 51-74 — 24 images, not 25.",
   "ordering": "ls chicago/reference/census1840/*.jpg | sort, with the duplicate copy removed first so the index runs 1..74 over the 74 distinct images. Group 1 ends at 33S7-9YYJ-C8 and group 2 begins at 33S7-9YYJ-DD, which is the boundary the schema-1 declaration already used.",
   "deposit_is_read_only": true
  },
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image \u2014 a hole is meant to fail rather than pass quietly.",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven.",
    "images": [
     {
      "index": 1,
@@ -22,10 +22,11 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, schools \u2014 filled",
+     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, schools — filled. Read line by line and CLOSES against all five of its own printed column totals (201 persons; agriculture 2, commerce 9, manufactures 27, learned professions 2).",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "continuation_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-24.json",
+     "note": "the calibration sheet for the continuation reading (T-0540)"
     },
     {
      "index": 2,
@@ -59,10 +60,11 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled",
+     "what_it_is": "continuation sheet, filled; the schools columns carry 1 primary/common school and 26 scholars. Read line by line; manufactures, navigation of canals, learned professions and the schools pair close, the family totals read 128 against a printed 125 and commerce 2 against a printed 3.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "continuation_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-5D.json",
+     "note": "committed with two residuals recorded rather than adjusted away (T-0540)"
     },
     {
      "index": 5,
@@ -70,11 +72,12 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-5S.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 28,
-     "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 42",
+     "lines_with_an_entry": 29,
+     "what_it_is": "continuation sheet, filled; the schools columns carry 1 primary/common school and 42 scholars. 29 ruled lines carry an entry, not the 28 this inventory first stated to the nearest line. READ AND NOT COMMITTED: the attempted reading sums to 183 persons against a printed 189 and 12 in agriculture against a printed 10, so the row alignment is in doubt and every `cells` is null.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "continuation_cells_attempted_not_closed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-5S.json",
+     "note": "footer row and exact line count committed; the attempted per-line reading is kept on the page file as an attempt for the next run (T-0540)"
     },
     {
      "index": 6,
@@ -218,7 +221,7 @@
      "sheet_side": "left",
      "printed_page": "unknown",
      "lines_with_an_entry": 31,
-     "what_it_is": "names + free-white age bands, filled; the printed page number is NOT on the image \u2014 the top-right corner where it sits falls outside the exposure",
+     "what_it_is": "names + free-white age bands, filled; the printed page number is NOT on the image — the top-right corner where it sits falls outside the exposure",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
@@ -354,13 +357,16 @@
      "medium": 31,
      "low": 58
     },
-    "inventoried_only": 20
+    "inventoried_only": 17,
+    "continuation_sheets_read": 2,
+    "continuation_sheets_attempted_not_closed": 1,
+    "continuation_lines_committed": 62
    },
-   "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view."
   },
   {
    "range": "images 26-50 of 74",
-   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image \u2014 a hole is meant to fail rather than pass quietly.",
+   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly.",
    "images": [
     {
      "index": 26,
@@ -478,7 +484,7 @@
      "sheet_side": "right",
      "printed_page": 237,
      "lines_with_an_entry": 33,
-     "what_it_is": "continuation sheet whose TOTAL column carries three-figure numbers (128, 131, 187, 117 ...) rather than household counts \u2014 this sheet is not a household page and wants reading as what it is before any serial is hung on it",
+     "what_it_is": "continuation sheet whose TOTAL column carries three-figure numbers (128, 131, 187, 117 ...) rather than household counts — this sheet is not a household page and wants reading as what it is before any serial is hung on it",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null
@@ -527,7 +533,7 @@
      "sheet_side": "left",
      "printed_page": null,
      "lines_with_an_entry": 0,
-     "what_it_is": "a printed but UNFILLED left sheet \u2014 no page number written, no entries",
+     "what_it_is": "a printed but UNFILLED left sheet — no page number written, no entries",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null
@@ -563,7 +569,7 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 0,
-     "what_it_is": "a continuation sheet struck through corner to corner with a large X and a pen doodle \u2014 cancelled, no entries",
+     "what_it_is": "a continuation sheet struck through corner to corner with a large X and a pen doodle — cancelled, no entries",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null
@@ -700,7 +706,7 @@
    "source": "FamilySearch",
    "query": "the collection page behind these image ids (collection 1786457)",
    "date": "2026-09-03",
-   "result": "login-walled \u2014 recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
+   "result": "login-walled — recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
   }
  ]
 }
