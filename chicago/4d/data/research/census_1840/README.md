@@ -491,3 +491,81 @@ adjacent columns; the montage was cut at the leaned rules, re-read, and did not 
 On 215, free white females 30 under 40 reads 17 against a printed 19. Those columns are
 omitted from `cells` and kept in `cells_first_pass`, which is read but unreconciled and is
 not data anything downstream may use.
+
+## Every named head has an outcome now (T-0505)
+
+The 498 names read off the 19 left sheets in this repo were in no state at all: three of
+them were bridged to an 1835 person and the rest were neither matched nor refused, which
+reads exactly like a pile nobody has looked at, so the next sweep would have looked at it
+again. `tools/crosswalk_census_1840_heads.py --build` writes
+`resident_crosswalk.json`, which gives every one of them an outcome and the rule that
+decided it, and it fills this domain's `crosswalk.json` — which held
+`passes: [], merges: [], refusals: []` — with 5 merge(s) and 139 refusal(s).
+
+**The counts.** 5 matched, 5 candidate, 488 refused.
+
+| rule | heads |
+|---|---|
+| `L1 unreadable_name` | 141 |
+| `L2 no_surname_in_the_1835_pools` | 230 |
+| `L3 given_name_conflict` | 94 |
+| `L4 initial_only` | 21 |
+| `L5 name_is_not_unique` | 2 |
+| `L6 matched` | 5 |
+| `L6a low_confidence_caps_at_candidate` | 1 |
+| `L7 candidate` | 4 |
+
+**The ladder is deliberately hard to climb.** `matched` needs the full forename and the
+surname to agree, the name to be unique BOTH among the 498 heads and among the 1835
+persons, the reader's own grade on that name to be `medium` or better, and a discriminator
+that is independent of the name — an 1843 Fergus or 1844 Norris directory entry adjudicated
+to that person, or an 1840 bridge already adjudicated. An appearance of the SAME NAME on a
+poll list or a letter list is NOT a discriminator: it is the same name again, and it cannot
+separate two people who share it. Those appearances are recorded on every head as
+`same_name_support`, and they never promote a candidate.
+
+**What it found.**
+
+| 1840 head | 1835 person | printed page / line | rule |
+|---|---|---|---|
+| William H. Stow | William H. Stow | 225 / 20 | L6 |
+| William Allen | William Allen | 230 / 26 | L6 |
+| Philo Carpenter | Philo Carpenter | 217 / 29 | L6 |
+| John Davis | John Davis | 232 / 13 | L6 |
+| Gurdon S. Hubbard | Gurdon Saltonstall Hubbard | 232 / 17 | L6 |
+
+and 5 candidate(s):
+
+| 1840 head | 1835 person | printed page / line | rule |
+|---|---|---|---|
+| John Wilson | John Wilson | 229 / 2 | L7 |
+| John H. Kinzie | John Harris Kinzie | 232 / 25 | L7 |
+| Byram King | Byram King | 207 / 4 | L7 |
+| Samuel C. Jackson | Samuel Jackson | 207 / 5 | L7 |
+| Joseph M. Chandler | Joseph Chandler | 207 / 6 | L6a |
+
+**John Murphy is now a refusal, and that is the most useful thing in the pass.** The
+adjudicated bridge in `census_1840_identity_bridges.csv` puts him on printed page 233 row
+30. This repo has read a `[?]ohn Murphy` on printed page 222 line 27 — a different line, on
+a sheet the bridge does not name, and printed 233 has not been read here at all. Two 1840
+lines carry the name, so neither identifies the man, and the pair is refused under L5 with
+the conflict written down. The bridge is not withdrawn here: this file adjudicates lines
+and T-0515 owns the bridge table. Reading printed 233 settles it.
+
+**The 29 heads the 2 September legacy matcher left unmatched are re-adjudicated**, and they
+split three ways: 14 sit on printed pages this repo has not read yet and are refused as
+unverifiable rather than carried forward (the workbook behind them is lost — the owner's
+ruling of 2026-09-03 is "They are lost; rebuild"); 13 sit on pages that HAVE been read here
+line by line and no line on them carries the name, so the workbook row is refused in favour
+of the page; and 2 are found in this reading and take an ordinary ladder outcome.
+
+**Town finding.** The only spatial signal an 1840 sheet carries is the order the enumerator
+walked it in. 2 adjacent pair(s) of matched-or-candidate heads are recorded under
+`town_findings` — an 1840 fact about 1840 neighbours, which places nothing on the 1835
+ground and may not.
+
+**Nothing here mints or regrades anybody.** Each `matched` head carries a PROPOSED
+`later_census` block in the shape PR #670 wrote, with `serial: null` because the
+page-to-IPUMS-serial fingerprint is T-0504 and is not landed; T-0515 applies them. The
+ratified ladder binds throughout: an 1839 or 1840 appearance alone is never an 1835
+resident, and 1840 household composition is never back-projected to the scene.
