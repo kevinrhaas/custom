@@ -179,6 +179,18 @@
     "pages 2-4, lines 1-16 (or 1-17 on page 4)": "The transcriber's repeated banner, Fergus's REMARKS on his abbreviations, and the A-Z navigation. The REMARKS are how this reading knows that bet is between, res is residence and bds is boards; they are quoted in the domain README rather than filed as claims about the town.",
     "pages 2-4, the last two lines of each": "'©2007 Kim Torp' and 'Genealogy Trails' — the transcriber's footer."
    }
+  },
+  {
+   "ticket": "T-0576",
+   "source_id": "norris_directory_1844",
+   "unit": "list",
+   "what": "A SECOND READING, not a new range. Norris's 1844 directory proper and its addenda — the same printed pages T-0566 declares above — checked entry by entry against Kim Torp's independent transcription on genealogytrails.com, cached at data/research/genealogytrails/text/1844directory.txt and 1844dir2.txt. The comparison is data/research/directories/second_readings/norris_1844_genealogytrails.json, built and gated by tools/compare_norris_1844_readings.py.",
+   "items": [],
+   "why_no_items": "This declaration reaches no page the domain has not already read, and it must not: an item here would be a coverage key nothing in records/ or claims/ can satisfy. It is declared so that a later reader knows the check WAS made and when, which is the other thing coverage.json is for.",
+   "checked_on": "2026-09-03",
+   "result": "2,065 of T-0566's 2,073 entries matched (99.61%), of Kim Torp's 2,070 (99.76%). 1,190 identical, 808 agreeing at a ratio of 0.90 or better, 67 differing below it, 8 in the archive reading alone and 5 in hers. The addenda count agrees exactly at 117 in both. Every disagreement is held with BOTH readings verbatim and neither is preferred; nothing in claims/ was deleted, rewritten or regraded.",
+   "the_addenda": "Both readings separate the addenda from the directory proper and both hold 117 entries in it, and no matched pair crosses the boundary. They are reached differently: T-0566 reads the addenda off printed pages 62-65 of the scan, and the Genealogy Trails page sets them after a heading and six lines of Norris's own prose introducing them, at lines 854-973 of 1844dir2.txt. Those six prose lines are named in the comparison's lines_not_entries and are the only place the two sources' segmentation of the section could have differed.",
+   "what_it_found_that_is_not_yet_fixed": "The archive reading runs two printed entries into one claim at n1844_e1332 — Peter Myers of Chicago avenue and Andrew Nelson of North Water street — and reads Hiram where Kim Torp reads A. J. for the Woodbury clerking at T. W. Salisbury's. Both stand as recorded disagreements. Repairing a generated claims file out of a second source is a pass of its own with its own rule to write down; see second_readings/README.md."
   }
  ]
 }

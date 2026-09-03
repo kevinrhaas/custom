@@ -127,7 +127,6 @@ T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the 
 T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
 T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
-T-0576 — Norris's 1844 directory read a second time: the independent Genealogy Trails transcription checked entry by entry against T-0566's 2,073, and every disagreement preserved
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
 # --- newberry spend ticket". Placed immediately above the three volume reads it depends on the
