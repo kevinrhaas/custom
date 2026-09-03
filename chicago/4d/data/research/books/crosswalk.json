@@ -15,6 +15,18 @@
       "detail": "In this file. Nineteen claims is small enough that a separate detail file would only hide the reasoning.",
       "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer. The chapter's latest Chicago event is 1828; under the ladder ratified 2026-09-03 that corroborates and dates and never places anybody in 1835.",
       "ruled_on": "Eight of the nineteen claims carry a ruling anchored to them by claim_id: bk_afc_001 (three refusals on the bare-surname list), bk_afc_004, bk_afc_007, bk_afc_008, bk_afc_010, bk_afc_011, bk_afc_014 and bk_afc_017. THE OTHER ELEVEN NAME NOBODY TO RULE ON and that is not a shortfall: bk_afc_002, bk_afc_003, bk_afc_005, bk_afc_012, bk_afc_013 and bk_afc_018 are judgements and dates about the size of the trade; bk_afc_006 is a boat and bk_afc_019 a wine bill, both graded town_finding false; bk_afc_009 and bk_afc_016 are ruled on through the Beaubien merge, which can carry only one anchor; and bk_afc_015 is Hurlbut's own identification, which the Jamie Kinzie merge rests on."
+    },
+    {
+      "pass": "T-0501",
+      "what": "Every person named in The Autobiography of Gurdon Saltonstall Hubbard (1911) at the pages declared in coverage.json, ruled against this project's own residents. THE BOOK'S PEOPLE ARE MOSTLY NOT THE SCENE YEAR'S PEOPLE and that is the first thing this pass established: Hubbard's own narrative stops in November 1830, so almost every name he prints is named for something done between 1812 and 1830. The 1830-1836 namings are concentrated in two places — the town-trustee list of 11 August 1834 and the 1835 material — and both are Caroline McIlvaine's 1911 Introduction, not Hubbard.",
+      "readings_examined": 92,
+      "residents_examined": 12,
+      "merges": 7,
+      "refusals": 15,
+      "exact_matches": 2,
+      "detail": "In this file. THE COUNT THE TICKET ASKS FOR: 35 distinct persons are named across the 92 claims. Seven are merged, fifteen are refused, two match this project's spelling exactly and need no merge (J. K. Boyer at bk_hub_026 against data/residents/households/hh_placed_j_k_boyer.json, and Gurdon Saltonstall Hubbard on the title page, already merged into by T-0575 and not re-declared here). The remaining eleven are named for events wholly outside this town — Deschamps, Ramsey Crooks, Warner, Bieson, Beebeau, Bourbonais, Hall, Jombeau, Vasseur, Portier and Dominick Bray, all of them Illinois River and Mackinaw men — and are recorded here as examined and unmatched rather than ruled on one by one, because none of them is ever placed at Chicago by the source.",
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer. Under the ladder ratified 2026-09-03 this source corroborates and dates and places nobody in 1835: its eyewitness ends in 1830 and its 1835 pages are a 1911 compilation.",
+      "ruled_on": "The rulings are anchored to bk_hub_026 (the town trustees of 11 August 1834), bk_hub_016 and bk_hub_031 (the 1835 arrivals and the 1835 land purchase), bk_hub_040, bk_hub_041, bk_hub_048, bk_hub_049 and bk_hub_094 (the Kinzie household), bk_hub_065 (Beaubien after Craft), bk_hub_090 (Wolcott and Heacock in the fort), bk_hub_097 (Caldwell and Shaub-e-nee) and bk_hub_102 (Caldwell in November 1830). The other claims name no person to rule on, or name one already ruled on: that is not a shortfall, it is what a book of landscape, buildings and river mouths looks like."
     }
   ],
   "merges": [
@@ -68,6 +80,96 @@
       "does_not_follow": "THE TWO DEATH YEARS ARE NOT RECONCILED AND THIS MERGE DOES NOT PICK ONE. Hubbard says December, 'I think the year 1823', with the hedge in the source's own words; Fergus's printed list says 1825. Both readings stand as filed, the disagreement is the finding, and choosing between them would be inventing a certainty neither source offers. Nothing follows for the town either way: John Crafts was dead at least ten years before the scene date, he is in no resident record, and none is created.",
       "pass": "T-0575",
       "claim_id": "bk_afc_010"
+    },
+    {
+      "into": "Gurdon Saltonstall Hubbard",
+      "from": "Gurdon Hubbard",
+      "rule": "Caroline M. McIlvaine's Introduction calls him 'Gurdon Hubbard' throughout — 'In 1834 Gurdon Hubbard went to Chicago to remain for the rest of his life' — while the title page of the same volume prints Gurdon Saltonstall Hubbard, and this project's resident record is Gurdon Saltonstall Hubbard, graded attested. The merge rests on the volume itself and not on a surname: one book, one man, two spellings of him between its covers, with the fuller form on its own title page. Gurdon is not a common given name and the Introduction is explicitly about the subject of the Autobiography.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_013",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_014",
+        "data/residents/households/hh_hubbard_gurdon.json",
+        "the title page of the volume, read at leaf 15 of data/research/books/text/hubbard_autobiography_1911.txt"
+      ],
+      "does_not_follow": "It does not follow that anything McIlvaine says about him in 1835 is eyewitness. She is writing in 1911 and Hubbard's own narrative ends in November 1830 (bk_hub_104).",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_013"
+    },
+    {
+      "into": "John Harris Kinzie",
+      "from": "John H. Kinzie",
+      "rule": "Hubbard writes 'John H. Kinzie' of the Mackinaw clerk of about his own age whose father then resided at Chicago and who gave him letters of introduction to the family. This project's resident record is John Harris Kinzie, graded attested, whose own 1834 advertisement is for 'J. H. Kinzie, forwarding and commission merchant' and who had been Indian sub-agent at Fort Winnebago. Given name, middle initial and surname agree initial for initial; the father at Chicago agrees; and John H. Kinzie is how the man signed himself. A surname alone would be refused here and this is not one.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_040",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_041",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "does_not_follow": "It does not follow that he was at Chicago in 1818. Hubbard is explicit that John H. Kinzie 'was stationed permanently at Mackinaw, and was not to be sent into the Indian country'.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_040"
+    },
+    {
+      "into": "Robert Allen Kinzie",
+      "from": "Robert Kinzie",
+      "rule": "Hubbard names 'Robert Kinzie' twice: as 'their youngest son, Robert, late paymaster of the U. S. Army' among the family he met in 1818, and as the man who rose with him and swam the river to the fort fire. This project's resident record is Robert Allen Kinzie, graded attested, named in the 1833 roster as one of 'The Kinzies, John and Robert A., merchants' and recorded by Andreas as the one who remained in Chicago when the rest of the family left in the spring of 1831. Given name plus the same household plus the same generation; the middle name is supplied by this project's record and not contradicted by the book.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_048",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_094",
+        "data/residents/households/hh_kinzie_robert_a.json"
+      ],
+      "does_not_follow": "It does not follow that he is placed anywhere in 1835 by this source. Both namings are 1818 and 1827.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_048"
+    },
+    {
+      "into": "Russel E. Heacock",
+      "from": "Russell E. Heacock",
+      "rule": "The book prints 'Russell E. Heacock' as one of two American families occupying the old log officers' quarters inside the pickets of the ungarrisoned fort in July 1827. This project's resident record is Russel E. Heacock, graded attested, an attorney and justice of the peace who Andreas says 'had come in 1827'. The two spellings differ by one letter in the surname and agree in given name, middle initial and surname otherwise; the arrival year in this project's own record is the year of the book's naming. The one-l and two-l spellings of this surname are both in nineteenth-century print.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_090",
+        "data/residents/households/hh_heacock_russel_e.json"
+      ],
+      "does_not_follow": "It does not follow that his 1835 dwelling was in the fort. The naming is July 1827, when the fort had no garrison; by 1835 it had.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_090"
+    },
+    {
+      "into": "John S. C. Hogan",
+      "from": "J. S. C. Hogan",
+      "rule": "McIlvaine's list of the town trustees chosen at the election of 11 August 1834 names 'J. S. C. Hogan'. This project's resident record is John S. C. Hogan, graded attested — 'John S. C. Hogan, Postmaster, came in 1832'. Three initials and a surname against a given name and the same three-part sequence, in the same town, in a civic list two years after this project's own record has him arriving. Initials plus a surname would be a refusal if the initials were two; three initials in the same order against the same surname, in a printed list of five trustees, is a match.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_026",
+        "data/residents/households/hh_hogan_john_s_c.json"
+      ],
+      "does_not_follow": "It does not follow that this project may now grade him a trustee. The list is McIlvaine's, written in 1911, and belongs beside the town's own record of the 1834 election and not in front of it.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_026"
+    },
+    {
+      "into": "Col. Jean Baptiste Beaubien",
+      "from": "Jean Baptiste Beaubien",
+      "rule": "Hubbard writes that the American Fur Company's round-log storehouse on the river edge, built and occupied by its agent Mr John Craft, 'after the death of Mr. Craft, was occupied by Jean Baptiste Beaubien'. This project's resident record is Col. Jean Baptiste Beaubien, graded attested, 'J. B. Beaubien, merchant' in the 1833 roster and a licensed trader on the county court's earliest permits. Given name, both middle names and surname agree in full; the rank is this project's addition and the trade agrees. Hurlbut's chapter makes the same succession from Craft to Beaubien and this project already merged the same man there.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_065",
+        "data/residents/households/hh_beaubien_jean_baptiste.json",
+        "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_008"
+      ],
+      "does_not_follow": "It does not follow that the storehouse is data/structures/jb_beaubien_homestead.json. Hubbard's building is a round-log Fur Company storehouse on the river edge east of a hewn-log house; that identification is a separate argument and this pass does not make it.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_065"
+    },
+    {
+      "into": "Billy Caldwell (Sauganash)",
+      "from": "Billy Caldwell",
+      "rule": "Hubbard names 'Billy Caldwell' as the man who drew Shaub-e-nee's annuity for him, who had Shaub-e-nee as his guest at Chicago the evening before Governor Cass's visit in July 1827, and who was camped with his wife near Yellow Head Point in November 1830. This project's resident record is Billy Caldwell (Sauganash), graded attested, born about 1780 and dying at Chicago in 1841. Given name and surname agree exactly; the parenthesis is this project's own gloss of his Potawatomi name and adds nothing to distinguish; and the association with Shaub-e-nee is in both.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_097",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_103",
+        "data/residents/households/hh_caldwell_billy.json"
+      ],
+      "does_not_follow": "It does not follow that he is placed at Chicago in 1835. The two namings are 1827 and November 1830, and the November 1830 one puts him camped near the Kankakee, not in the town.",
+      "pass": "T-0501",
+      "claim_id": "bk_hub_097"
     }
   ],
   "refusals": [
@@ -135,6 +237,179 @@
       ],
       "pass": "T-0575",
       "claim_id": "bk_afc_017"
+    },
+    {
+      "a": "John Kinzie",
+      "b": "John Harris Kinzie",
+      "rule": "McIlvaine's list of the town trustees elected on 11 August 1834 names 'John Kinzie'. This project holds John Harris Kinzie, James Kinzie and Robert Allen Kinzie as three separate attested residents, and the elder John Kinzie — the man of Hubbard's own 1818 pages — died in 1828 and cannot be the trustee. So the printed name is impossible for the man it looks like and ambiguous among the men it could be. Reading 'John Kinzie' as John Harris Kinzie would put a dated civic office on one named resident on the strength of a 1911 writer's shortened form of a name three residents share. REFUSED, and the reasoning is the record: the identification is probable and it is not this pass's to make.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_026",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_041",
+        "data/residents/households/hh_kinzie_john_h.json",
+        "data/residents/households/hh_kinzie_james.json",
+        "data/residents/households/hh_kinzie_robert_a.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_026"
+    },
+    {
+      "a": "Mr. Kinzie",
+      "b": "John Harris Kinzie",
+      "rule": "Through the 1818 and 1827 narrative Hubbard writes 'Mr. Kinzie' for the head of the house opposite the fort — the man whose long log cabin with a rude piazza he ate breakfast in, and who got on the guard-house roof in a wet blanket. That is the elder John Kinzie, who died in 1828, and this project holds no record for him; John Harris Kinzie is his son and is a different man. 'Mr. Kinzie' is a surname with a courtesy title, which this domain's rule makes a refusal outright. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_049",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_094",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_049"
+    },
+    {
+      "a": "E. Goodrich",
+      "b": "Grant Goodrich",
+      "rule": "The trustee list of 11 August 1834 names 'E. Goodrich'. This project holds no Goodrich household at all, and the only Goodrich this project's prose mentions is Grant Goodrich, whose given initial is G and not E. An initial and a surname is surname-only under this domain's rule, and here the one initial that exists disagrees. REFUSED, and recorded so the next sweep does not repeat the search.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_026",
+        "data/residents/households/ — no Goodrich household exists"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_025"
+    },
+    {
+      "a": "E. O. Gale",
+      "b": "Stephen F. Gale",
+      "rule": "McIlvaine quotes 'Mr. E. O. Gale in his Reminiscences of Early Chicago' for the arrival of the brig Illinois on 25 May 1835, with 'himself and brother William with their parents'. This project holds Stephen F. Gale, graded attested. Two initials against a given name and a middle initial, none of them agreeing, on a shared surname. REFUSED. It is worth writing down that the Gale family arrived together in May 1835 by this account, which is a lead on Stephen F. Gale's own arrival and not a merge.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_016",
+        "data/residents/households/hh_gale_stephen_f.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_016"
+    },
+    {
+      "a": "William Gale",
+      "b": "Stephen F. Gale",
+      "rule": "The same passage names Hubbard's informant's 'brother William' — William Gale — among the passengers of 25 May 1835. This project holds Stephen F. Gale, graded attested. William Gale against Stephen F. Gale is a disagreement of given names on a shared surname and is refused for that reason alone, without reaching the middle initial. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_016",
+        "data/residents/households/hh_gale_stephen_f.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_017"
+    },
+    {
+      "a": "Fernando Jones",
+      "b": "Benjamin Jones",
+      "rule": "The same passage names the family of 'our lamented friend and \"oldest citizen,\" Fernando Jones' among the Illinois's passengers of 25 May 1835. This project holds Benjamin Jones, graded attested. Fernando against Benjamin is a disagreement of given names on a shared surname. REFUSED. Fernando Jones is a real and well-documented early Chicagoan and the refusal here says only that this project does not yet hold him.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_016",
+        "data/residents/households/hh_jones_benjamin.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_018"
+    },
+    {
+      "a": "Russell",
+      "b": "Russell Janea",
+      "rule": "The Sunday Times account of the March 1835 purchase names Hubbard's partners as 'Messrs. Russell and Mather'. This project holds a letter-list resident recorded as Russell Janea, graded inferred. 'Russell' alone is a bare surname and a surname-only merge is always a refusal here however good the rule; that the only candidate is itself a letter-list reading of uncertain order makes it worse. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_031",
+        "data/residents/households/hh_ll_russell_janea.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_031"
+    },
+    {
+      "a": "Mather",
+      "b": "Judge James H. Roberts",
+      "rule": "The same account names 'Mather' as the third purchaser and, further down, says the Chicago Historical Society received the plat by gift of 'one of Mr. Mather's descendants, Judge James H. Roberts'. This project holds no Mather. 'Mather' is a bare surname; Judge James H. Roberts is a descendant writing decades later and not the man. REFUSED on both counts, and recorded because a run reading the Russell & Mather addition will meet this name and should meet this note with it.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_031",
+        "data/residents/households/ — no Mather household exists"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_033"
+    },
+    {
+      "a": "David Hunter",
+      "b": "William Hunter",
+      "rule": "Hubbard names 'David Hunter' twice — as the Lieut. of the 5th U. S. Infantry commanding Fort Dearborn to 20 May 1831, and as the Major-General who married John Kinzie's youngest daughter Maria. This project holds a letter-list resident recorded as William Hunter, graded inferred. David against William is a disagreement of given names on a shared surname. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_048",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_053",
+        "data/residents/households/hh_ll_william_hunter.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_053"
+    },
+    {
+      "a": "Alexander Wolcott",
+      "b": "Col. Jean Baptiste Beaubien",
+      "rule": "Doctor Alexander Wolcott, Indian agent, is named twice in this reading: as the man left in charge of the fort when the troops withdrew in October 1823, and as living in the brick building just within the north stockade in July 1827. THIS PROJECT HOLDS NO WOLCOTT HOUSEHOLD. He is set here against Col. Jean Baptiste Beaubien only because Beaubien is the nearest thing this project has — the other named man occupying a Fort Dearborn building in the 1820s — and the two are plainly different men with different names and different buildings. REFUSED, and recorded as an absence: Wolcott died in 1830 and belongs to the town before the scene.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_051",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_090",
+        "data/residents/households/hh_beaubien_jean_baptiste.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_051"
+    },
+    {
+      "a": "Mrs. Helm",
+      "b": "Juliette Augusta Magill Kinzie",
+      "rule": "Hubbard names 'Mrs. Helm' as John Kinzie's eldest daughter, at the 1818 breakfast table and again crying fire from her window in 1827. She is a surname with a courtesy title, which this domain's rule makes a refusal outright, and this project holds no Helm. She is set against Juliette Augusta Magill Kinzie because Juliette is the only attested Kinzie woman this project holds, and the two are different women — Juliette married into the family in 1830, twelve years after this naming. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_048",
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_093",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_093"
+    },
+    {
+      "a": "Maria Kinzie",
+      "b": "Juliette Augusta Magill Kinzie",
+      "rule": "Hubbard names 'Maria' as John Kinzie's youngest daughter, 'now the wife of Major-General David Hunter'; Maria Kinzie is that name with the family surname the sentence gives her. Set against Juliette Augusta Magill Kinzie, the only Kinzie woman this project holds: Maria Kinzie is a daughter of the house and Juliette Augusta Magill Kinzie married John Harris Kinzie in 1830, so they are a sister and a sister-in-law and not one woman. REFUSED, and this project holds no Maria Kinzie.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_048",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_048"
+    },
+    {
+      "a": "Shaub-e-nee",
+      "b": "Billy Caldwell (Sauganash)",
+      "rule": "Hubbard names Shaub-e-nee repeatedly — welcoming him at Bureau Post, absent from the 1827 payment with his annuity drawn by Caldwell, and going into Big Foot's village alone. He is a single name and this project holds no record for him. He is set against Billy Caldwell (Sauganash) because the two are named in the same sentence and both carry a Potawatomi name beside an English one, which is exactly the kind of pairing a careless sweep would collapse. They are two men and the source says so in one breath. REFUSED.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_097",
+        "data/residents/households/hh_caldwell_billy.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_097"
+    },
+    {
+      "a": "Antoine Ouilmette",
+      "b": "Col. Jean Baptiste Beaubien",
+      "rule": "Hubbard's 1818 building count names 'a cabin on the north side occupied by Antoine Ouilmette'. This project holds no Ouilmette household. He is set against Col. Jean Baptiste Beaubien as the nearest French-Canadian trader household this project holds, and they are different men with different names on different sides of the river. REFUSED, and recorded as an absence rather than a match: the naming is 1818 and nothing here places Ouilmette in 1835.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_066",
+        "data/residents/households/hh_beaubien_jean_baptiste.json"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_066"
+    },
+    {
+      "a": "John Craft",
+      "b": "Col. Jean Baptiste Beaubien",
+      "rule": "Hubbard names 'Mr. John Craft', the American Fur Company's agent who erected and occupied the round-log storehouse and after whose death Beaubien occupied it. This project holds no Craft. He is set against Col. Jean Baptiste Beaubien because the two are named as successive occupants of ONE building and a sweep reading the building forward from Beaubien would meet Craft as its previous name; they are two men and the succession is the whole point of the sentence. REFUSED. Hurlbut's chapter names him 'Crafts' with an s and dates his death 'in December, of I think the year 1823'.",
+      "evidence": [
+        "data/research/books/claims/hubbard_autobiography_1911.json bk_hub_065",
+        "data/residents/households/hh_beaubien_jean_baptiste.json",
+        "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_007"
+      ],
+      "pass": "T-0501",
+      "claim_id": "bk_hub_065"
     }
   ]
 }

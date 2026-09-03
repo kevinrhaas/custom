@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 54,
   "church": 0,
-  "books": 11,
+  "books": 85,
   "directories": 4703,
   "newberry_index": 3148,
   "land_sales": 375
@@ -30,8 +30,8 @@
    "spent": 0
   },
   "books": {
-   "read": 19,
-   "spent": 8
+   "read": 111,
+   "spent": 26
   },
   "directories": {
    "read": 4991,
@@ -83,6 +83,14 @@
    "to": 375,
    "date": "2026-09-03",
    "why": "NOT this ticket's read, and recorded here because dev is red without it. PR #738 (T-0557) registered the land_sales domain in domains.json and read 375 Illinois public-domain tract sales into it, and did not record a ceiling — so --gate fails on every branch cut from dev with 'no ceiling recorded', which is the gate working exactly as designed on a domain that entered the registry without one. The figure is what #738 read and has not yet ruled on; its own crosswalk matched 17 purchasers, and the number should come down as that adjudication continues. T-0598 takes no credit for it and asks that the next land_sales ticket own it."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 11,
+   "to": 85,
+   "date": "2026-09-03",
+   "why": "T-0501 read Hubbard's autobiography — 92 claims out of a 226-leaf book of PROSE, and prose is the case this measure was not built for. Its unit is a sentence, not a name: 66 of the 92 name no person at all, being the plan of Fort Dearborn, the Factor House, the sand spit, the old river mouth at The Pines, Mud Lake, the wild onion on the bank and the cornhills on the River Guarie. There is nobody in them to rule on and there never will be. EVERY NAME THE BOOK PRINTS IS RULED ON: 35 distinct persons, 7 merged, 15 refused (each anchored to the claim that names them), 2 exact matches, and 11 Illinois River and Mackinaw men the source never places at Chicago, counted and named in crosswalk.json's T-0501 pass. Spending the rest would mean inventing people to rule on. The ceiling moves once, for this reading, and the domain's next pass inherits it rather than a fresh excuse."
   }
  ],
  "lowered": [

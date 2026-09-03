@@ -183,7 +183,6 @@
 # --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
-T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
 T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
