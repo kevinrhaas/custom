@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 4:53 AM",
+  "generated_ct": "Sep 3, 2026, 5:36 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8070,7 +8070,7 @@
     {
       "id": "T-0493",
       "title": "Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8080,7 +8080,7 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 5:36:32 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
