@@ -64,7 +64,8 @@ jobs:
             chicago/4d/data/research/residents/README_669.tmp \
             chicago/4d/data/research/residents/census_1840_bridge_notes.md \
             chicago/4d/data/research/residents/census_1840_identity_bridges_pending.csv \
-            chicago/4d/data/research/residents/census_bridge_recovery_status.json
+            chicago/4d/data/research/residents/census_bridge_recovery_status.json \
+            chicago/4d/data/research/residents/cleanup_670_note.md
       - name: Commit cleanup outputs
         run: |
           git config user.name 'Kevin Haas'
