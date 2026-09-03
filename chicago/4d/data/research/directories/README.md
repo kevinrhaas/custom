@@ -24,6 +24,10 @@ transcription of the directory. A reading made through that is
 `transcription_mediated`; a reading made off the page image is `scan_verified` and
 outranks it. Say which.
 
+**Second readings.** `second_readings/` holds a volume read INDEPENDENTLY of the reading
+committed in `claims/`, kept whole so a disagreement between two readings of one printed book
+survives the merge. Nothing downstream reads it; see `second_readings/README.md`.
+
 **Hand-authored:** `text/`, `coverage.json`, `crosswalk.json`,
 `claims/norris_1844_town_findings.json`, and the READING of a source that is not a
 list — `norris_1844_advertiser_index.json`, which says where each advertising card
@@ -106,6 +110,24 @@ Advertising Directory (T-0568, read — see below) and Norris's own General
 Intelligence Agency card at the foot of printed page 65 (T-0568, read). All of it is
 committed as page text, so those tickets started from the text rather than from the
 network.
+
+### Read a second time — T-0576
+
+**2,065 of these 2,073 entries have now been checked against a second, independent
+transcription** of the same printed book: Kim Torp's, published on genealogytrails.com in 2002
+and typed from a different copy. `second_readings/norris_1844_genealogytrails.json` holds the
+alignment and `second_readings/README.md` says what it found. **99.61% match; 1,190 of the
+matched pairs identical, 808 agreeing, 67 differing, 8 entries in this reading alone and 5 in
+hers; the addenda count agrees exactly at 117.** Nothing in `claims/` was deleted, rewritten or
+regraded by that pass and neither reading is preferred — both stand, verbatim, wherever they
+differ.
+
+**Two defects in the file above are named there and NOT yet repaired.** `n1844_e1332` is two
+printed entries in one claim — the scan ran Andrew Nelson's line onto the end of Peter Myers's —
+and the Woodbury clerking at T. W. Salisbury's is `Hiram` here and `A. J.` in her transcription,
+which is a person this reconstruction would get wrong. Rewriting a generated claims file out of a
+second source is a pass of its own, with its own rule to write down, and it has not been done
+here for the same reason T-0568 did not regrade the 65 businesses.
 
 ### What T-0569 spent it on — `data/residents/directory_1844.json`
 
