@@ -327,3 +327,4 @@ T-0536 — The census_1840 domain declares its 25 read images in its own images[
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
+T-0558 — smoke_budget.mjs prices the publish stamp site/chicago/4d/walk/index.html at all 13 parts, so every publishing PR is told to run the whole gate
