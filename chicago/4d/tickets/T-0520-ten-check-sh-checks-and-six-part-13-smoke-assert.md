@@ -1,6 +1,6 @@
 ---
-id: T-0519
-title: Both dev gates are red after PR #670: two schema errors in a source record and six resident assertions in part 13
+id: T-0520
+title: Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
 state: open
 epic: META
 requested_by: loop
@@ -16,7 +16,7 @@ blocked_on: null
 needs_bake: false
 ---
 
-Both dev gates are red after PR #670: two schema errors in a source record and six resident assertions in part 13.
+Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes.
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
@@ -26,7 +26,25 @@ merged.** PR #670 (`Merge PR #670: integrate recovered 1840 census household evi
 mirror stale. None of the three is caused by any open steward branch — each was
 reproduced against `origin/dev`'s own committed files.
 
-## 1. `check.sh` — two schema errors, and they fail the dev gate
+## 1. `check.sh` — TEN named checks fail, on four independent causes
+
+**The full failing set, taken from a clean `origin/dev` worktree at `6e72679b`** — not
+from a branch, so nothing here is anyone's work in progress:
+
+| check | cause |
+|---|---|
+| dataset (schema, provenance, date gates, licenses, staleness, publish) | **A** |
+| validator self-tests | **A** (it re-runs the dataset validation) |
+| inferred households, adoptions and their buildings match the programme | **B** |
+| the reconstructed residents' invented names re-derive | **B** |
+| the documented residents on reconstructed roofs re-derive from the register | **B** |
+| the minted documented residents re-derive from the register | **B** |
+| the minted letter-list residents re-derive from the register | **B** |
+| every flora and fauna figure is declared read or banked unread | **C** |
+| the scene-date register re-derives, and every action names its target | **D** |
+| published mirror matches its source | **E** — *already repaired, see §3* |
+
+### A — a source record fails its own schema
 
 ```
 FAIL  source resident_research_v4_1835_census_bridge.json: rights_status:
@@ -35,8 +53,6 @@ FAIL  source resident_research_v4_1835_census_bridge.json: rights_status:
 FAIL  source resident_research_v4_1835_census_bridge.json: type:
       'research_synthesis' is not one of ['map', 'book', 'newspaper', 'manuscript',
       'illustration', 'photograph', 'website', 'dataset', 'article', 'legal']
-FAIL  2 error(s), 127 warning(s)
-   ^ dataset (schema, provenance, date gates, licenses, staleness, publish) failed
 ```
 
 The record was committed in `4fa63347` and is on `dev` unmodified. It is the **only
@@ -53,6 +69,36 @@ rights question and belongs to the owner. `docs/PROVENANCE.md` is the vocabulary
 sits under. **Whichever is chosen, the reasoning goes next to it**, because a source
 record that fails its own schema is the one thing this project's honesty rules cannot
 absorb quietly.
+
+
+### B — `RESIDENT SYNTHESIS FAIL — index attested count disagrees with records`
+
+One line, printed by five different checks, each of which re-runs the resident
+synthesis: the residents index and the resident records no longer agree on how many
+people are attested. It is the single largest cause here and the one that most needs a
+number rather than a repair guess — which count is right, the index's or the records'?
+
+### C — four `later_census` figures nobody reads
+
+```
+FAIL  residents/household:persons[].later_census.year is a figure on 3 record(s) that
+      no renderer reads, and it is not in layer_reads_baseline.json.
+      Wire it up, or bank it with --update in the same commit.
+```
+
+The same for `.source_id`, `.source_image` and `.serial_mapping_confidence`. The gate's
+own instruction names both remedies; taking either is a decision about whether the 1840
+census bridge is meant to reach a card. **This is a deliberate gate, not a bug** — the
+project refuses to carry a figure that claims something and shows nobody.
+
+### D — the scene-date register is not what a rebuild produces
+
+```
+FAIL  chicago/4d/data/research/newspapers/register_1835.json is not what a rebuild
+      produces — run tools/compile_register.py --build and commit the result
+```
+
+Mechanical, and the fix is in the message.
 
 ## 2. Smoke part 13 — six resident assertions, and the counts have moved
 
@@ -96,8 +142,10 @@ so the cause is not looked for twice.
 
 ## Acceptance
 
-1. `./tools/check.sh` is green on `dev`, and the source record's `type` and
-   `rights_status` carry a stated reason for whichever repair was taken.
+1. `./tools/check.sh` is green on `dev` — all ten checks — and the source record's
+   `type` and `rights_status` carry a stated reason for whichever repair was taken. The
+   four causes are independent and can be taken as four units; A and D are small, B is
+   the one to size carefully.
 2. `SMOKE_VIEWPORT=mobile SMOKE_STAGE=13 node tools/smoke_renderer.mjs --published` is
    SMOKE PASS on `dev`, with each of the six assertions either re-derived from the
    shipped data or shown to be reporting a real regression in it.

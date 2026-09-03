@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 12:23 AM",
+  "generated_ct": "Sep 3, 2026, 12:33 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8032,8 +8032,8 @@
       "queue_rank": null
     },
     {
-      "id": "T-0519",
-      "title": "Both dev gates are red after PR #670: two schema errors in a source record and six resident assertions in part 13",
+      "id": "T-0520",
+      "title": "Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes",
       "state": "open",
       "epic": "META",
       "requested_by": "loop",

@@ -248,4 +248,4 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 # --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
 # --- promote attested facts, promote inferred/projected residents while retiring reconstructed
 # --- people, then audit the census/research synthesis.
-T-0519 — Both dev gates are red after PR #670: two schema errors in a source record and six resident assertions in part 13
+T-0520 — Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
