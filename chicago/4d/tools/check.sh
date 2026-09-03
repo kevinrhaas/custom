@@ -1214,6 +1214,21 @@ step "the six research domains hold one shape" \
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 
+# T-0556. An INVENTORY of a website is the one research artefact that rots silently: it
+# is a set of judgements about pages nobody will open again, and the only way to notice
+# that a section was quietly dropped from it is to go and re-walk the site. So the county
+# index page is committed RAW beside the readable cache, and this re-extracts its links
+# and refuses an inventory that has no row for one of them — the ticket's acceptance
+# ("covers every section the index links, none skipped silently") as an assertion rather
+# than as a hope. It also rebuilds every quote the assessment filed in passing out of the
+# committed text, because a quote from a website is a quote from something that can change
+# under you.
+step "the Genealogy Trails inventory covers every section the county index links" \
+  python3 tools/read_genealogytrails.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_genealogytrails.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test
 

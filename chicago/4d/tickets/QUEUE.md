@@ -104,7 +104,12 @@ T-0554 — The Old Settlers of Chicago: the Calumet Club receptions (1879 on) fo
 T-0567 — Norris's 1844 directory: the Description and Historical Sketch and the Statistical Account read as dated town findings
 T-0568 — Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
 T-0569 — Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
-T-0556 — genealogytrails.com Cook County: inventory every section of the site, grade what it holds for 1835 Chicago, and split the extraction of residents, households, businesses, structures and occupations into tickets
+T-0571 — Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
+T-0572 — The 134 Black Hawk War veterans who enrolled at Chicago in 1832, read from the Illinois State Archives index and crosswalked to the 1833-1835 town lists
+T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
+T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
+T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
+T-0576 — Norris's 1844 directory read a second time: the independent Genealogy Trails transcription checked entry by entry against T-0566's 2,073, and every disagreement preserved
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 T-0562 — The Genealogical Index of the Newberry Library (4 vols., Internet Archive chicago1835-newberry-genealogical-index): read the index for every 1835 surname and every Chicago, Cook County and Illinois citation, and follow the pointers into the genealogies that date and place residents, households and businesses
 
