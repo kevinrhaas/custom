@@ -66,10 +66,27 @@ BOOKS_INDEXED = {
         # first_folio). Roman for the front matter, arabic for the body. Both are
         # CHECKED against the folios the OCR actually gives, and a disagreement is
         # an error and not a silent correction.
+        # THE SCAN IS OUT OF ORDER AND THIS IS WHERE THAT IS WRITTEN DOWN. Leaves 11
+        # and 12 carry pages xv and xvi of the Introduction, and they were
+        # photographed at the FRONT of the item, ahead of the title page. The text
+        # proves it and the folios confirm it: leaf 26 ends "Quoting Mr. Gale's
+        # characteristic manner of narration:", leaf 11 opens the Gale quotation,
+        # leaf 12 ends "his engine was soon put to", and leaf 27 opens "use as
+        # 'Fire King Engine No. I,'". Six folios READ off the page (xviii, xix, xxi,
+        # xxiv, xxv at leaves 28-35) fix the run above the displacement, and the
+        # Contents' own "Introduction ix" fixes the run below it. A single run
+        # across leaves 21-37 would put two whole pages between xvi and xvii, which
+        # is why this is three runs and not one.
         "folio_runs": [
-            {"first_leaf": 21, "last_leaf": 37, "first_folio": 11, "numeral": "roman"},
+            {"first_leaf": 11, "last_leaf": 12, "first_folio": 15, "numeral": "roman"},
+            {"first_leaf": 21, "last_leaf": 26, "first_folio": 9, "numeral": "roman"},
+            {"first_leaf": 27, "last_leaf": 37, "first_folio": 17, "numeral": "roman"},
             {"first_leaf": 39, "last_leaf": 220, "first_folio": 1, "numeral": "arabic"},
         ],
+        # Reading order, where it is not leaf order. Stated so a coverage
+        # declaration can say what it swept without the reader rediscovering it.
+        "reading_order_note": "Leaves 11-12 (pages xv-xvi) belong between leaves 26 "
+                              "and 27; everything else reads in leaf order.",
     },
 }
 
@@ -191,6 +208,7 @@ def build_one(key: str, spec: dict) -> dict:
 
     starts = line_starts(text)
     entries = []
+    disagreements = []
     for i, t in enumerate(nleaf_texts):
         leaf = i + 1
         entry = {"leaf": leaf, "printed_page": None, "folio_source": None,
@@ -200,10 +218,26 @@ def build_one(key: str, spec: dict) -> dict:
         if printed is not None:
             entry["printed_page"] = printed
             entry["folio_source"] = "offset"
-            # Confirm against the folio the OCR prints at the foot of the leaf.
+            # Confirm against the folio the OCR prints at the foot of the leaf. A
+            # folio that is well formed, the right LENGTH, and says something other
+            # than the run says is a hard error and not a note: it is the fault that
+            # hid the displaced leaves 11-12 behind a tidy constant offset until the
+            # text itself gave them away.
             tail = [l.strip() for l in leaves[i].split("\n") if l.strip()]
-            if tail and tail[-1].strip().lower().strip(".") == printed.lower():
+            got = re.sub(r"[^0-9A-Za-z]", "", tail[-1]).lower() if tail else ""
+            # The OCR reads an arabic folio's 1 as an i or an l about as often as
+            # not — page 11 comes back "ii" and page 111 "iii" — so on an arabic
+            # leaf those glyphs are folded before the comparison. Doing it the other
+            # way round would let a roman folio pass as an arabic one, so it is not
+            # done the other way round.
+            if printed.isdigit():
+                got = got.translate(str.maketrans("ilo", "110"))
+            well_formed = bool(re.fullmatch(r"[ivxlcdm]+|[0-9]+", got))
+            if got == printed.lower():
                 entry["folio_source"] = "read"
+            elif well_formed and len(got) == len(printed):
+                disagreements.append("leaf %d: the page prints folio %r, the runs say %r"
+                                     % (leaf, got, printed))
         if t:
             pos = positions[i]
             if pos is not None and pos < len(back):
@@ -224,7 +258,18 @@ def build_one(key: str, spec: dict) -> dict:
         if entry["aligned"]:
             entry["line_end"] = (nxt["line_start"] - 1) if nxt else len(starts)
             entry["char_end"] = (nxt["char_start"] - 1) if nxt else len(text)
+            # A leaf that could not be aligned is swallowed by its predecessor's
+            # range, and a claim citing those lines would name the wrong leaf. Say
+            # so on the leaf that swallows it rather than leaving the range to look
+            # clean: `runs_into` is the list of leaves whose text is inside this
+            # entry's line span, and no claim may cite a leaf that has one.
+            swallowed = [e["leaf"] for e in entries[i + 1:(nxt["leaf"] - 1) if nxt else len(entries)]
+                         if not e["aligned"] and not e["blank"]]
+            if swallowed:
+                entry["runs_into"] = swallowed
 
+    if disagreements:
+        raise SystemExit("the folio runs contradict the page:\n  " + "\n  ".join(disagreements))
     read = sum(1 for e in entries if e["folio_source"] == "read")
     return {
         "schema": 1,
@@ -245,6 +290,7 @@ def build_one(key: str, spec: dict) -> dict:
         "text_lines": len(starts),
         "deposit_pdf": spec["deposit_pdf"],
         "deposit_sha256": hashlib.sha256(pdf.read_bytes()).hexdigest(),
+        "reading_order_note": spec["reading_order_note"],
         "leaves": len(entries),
         "leaves_aligned": sum(1 for e in entries if e["aligned"]),
         "leaves_blank": sum(1 for e in entries if e["blank"]),

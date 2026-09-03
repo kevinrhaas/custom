@@ -10,10 +10,11 @@
   "text_lines": 8271,
   "deposit_pdf": "chicago/reference/swift-walker-autobiography/autobiographyofg00hubb.pdf",
   "deposit_sha256": "95571d98ba11eae0570d42e48eb4fb5fb7f68d7843d8f984f115f8dd64ca34df",
+  "reading_order_note": "Leaves 11-12 (pages xv-xvi) belong between leaves 26 and 27; everything else reads in leaf order.",
   "leaves": 226,
   "leaves_aligned": 207,
   "leaves_blank": 18,
-  "folios_read": 165,
+  "folios_read": 179,
   "leaves_aligned_exactly": 183,
   "pages": [
     {
@@ -121,8 +122,8 @@
     },
     {
       "leaf": 11,
-      "printed_page": null,
-      "folio_source": null,
+      "printed_page": "xv",
+      "folio_source": "offset",
       "blank": false,
       "aligned": true,
       "char_start": 56,
@@ -134,8 +135,8 @@
     },
     {
       "leaf": 12,
-      "printed_page": null,
-      "folio_source": null,
+      "printed_page": "xvi",
+      "folio_source": "offset",
       "blank": false,
       "aligned": true,
       "char_start": 1679,
@@ -215,7 +216,10 @@
       "opens": "^\\Mi$\\^tt$' deface As heretofore, the series continues to",
       "align_method": "exact",
       "line_end": 212,
-      "char_end": 6517
+      "char_end": 6517,
+      "runs_into": [
+        19
+      ]
     },
     {
       "leaf": 19,
@@ -239,7 +243,7 @@
     },
     {
       "leaf": 21,
-      "printed_page": "xi",
+      "printed_page": "ix",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -252,7 +256,7 @@
     },
     {
       "leaf": 22,
-      "printed_page": "xii",
+      "printed_page": "x",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -265,7 +269,7 @@
     },
     {
       "leaf": 23,
-      "printed_page": "xiii",
+      "printed_page": "xi",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -278,7 +282,7 @@
     },
     {
       "leaf": 24,
-      "printed_page": "xiv",
+      "printed_page": "xii",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -291,7 +295,7 @@
     },
     {
       "leaf": 25,
-      "printed_page": "xv",
+      "printed_page": "xiii",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -304,7 +308,7 @@
     },
     {
       "leaf": 26,
-      "printed_page": "xvi",
+      "printed_page": "xiv",
       "folio_source": "offset",
       "blank": false,
       "aligned": true,
@@ -601,7 +605,7 @@
     {
       "leaf": 49,
       "printed_page": "11",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 51004,
@@ -666,7 +670,7 @@
     {
       "leaf": 54,
       "printed_page": "16",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 59427,
@@ -692,7 +696,7 @@
     {
       "leaf": 56,
       "printed_page": "18",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 62808,
@@ -1511,7 +1515,7 @@
     {
       "leaf": 119,
       "printed_page": "81",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 167046,
@@ -1771,7 +1775,7 @@
     {
       "leaf": 139,
       "printed_page": "101",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 200807,
@@ -1836,7 +1840,7 @@
     {
       "leaf": 144,
       "printed_page": "106",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 209207,
@@ -1862,7 +1866,7 @@
     {
       "leaf": 146,
       "printed_page": "108",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 212399,
@@ -1901,7 +1905,7 @@
     {
       "leaf": 149,
       "printed_page": "111",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 217424,
@@ -1966,7 +1970,7 @@
     {
       "leaf": 154,
       "printed_page": "116",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 225935,
@@ -2460,7 +2464,7 @@
     {
       "leaf": 192,
       "printed_page": "154",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 288317,
@@ -2538,7 +2542,7 @@
     {
       "leaf": 198,
       "printed_page": "160",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 298430,
@@ -2642,7 +2646,7 @@
     {
       "leaf": 206,
       "printed_page": "168",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 311470,
@@ -2798,7 +2802,7 @@
     {
       "leaf": 218,
       "printed_page": "180",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 332763,
@@ -2811,7 +2815,7 @@
     {
       "leaf": 219,
       "printed_page": "181",
-      "folio_source": "offset",
+      "folio_source": "read",
       "blank": false,
       "aligned": true,
       "char_start": 334507,
