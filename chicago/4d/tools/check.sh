@@ -1465,6 +1465,21 @@ step "the lot-and-block address re-derives, and seating it promotes no roof" \
 step "…and its own assertions still fire when broken" \
   python3 tools/lot_addresses.py --self-test
 
+# THE 1840 CENSUS LINE -> IPUMS SERIAL JOIN (T-0504). IPUMS holds 964 Chicago households as
+# age-band counts with no names; every one of them is also a ruled line on a page image that
+# carries the head's name, and the twenty-six free-white age-band columns are the only thing
+# the two share. The join is DERIVED from the committed page readings rather than kept by
+# hand — which is what the owner's lost v3/v4 workbooks were — so the thing worth gating is
+# that it still re-derives: a page reading that changes and a crosswalk that does not is
+# exactly the drift a workbook cannot report and this can. --check also holds the refusals:
+# an ambiguous fingerprint attaches no serial, a serial is attached to at most one line, and
+# a column the page does not close against the enumerator's own foot total is not compared.
+step "the 1840 census line-to-serial crosswalk re-derives from the page readings" \
+  python3 tools/census_1840_fingerprint.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/census_1840_fingerprint.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'
