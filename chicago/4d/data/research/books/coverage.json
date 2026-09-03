@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "domain": "books",
+  "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
+  "declarations": []
+}

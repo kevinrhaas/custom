@@ -73,7 +73,6 @@
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
-T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
@@ -318,3 +317,4 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
+T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
