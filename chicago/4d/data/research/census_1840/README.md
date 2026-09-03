@@ -327,6 +327,51 @@ Printed 229's line count is settled at 30 by both readings independently, on the
 (the footings close on 30 lines and there is no 31st ruled line), so that finding stands whichever
 reading of the cells prevails.
 
+## Three more sheets read to the same rule (T-0533)
+
+| image | printed page | entries | blank ruled lines | columns committed | `cells_state` |
+|---|---|---|---|---|---|
+| `33S7-9YYJ-9HY` | 225 | 23 | 8 | 38 of 38 | `read` |
+| `33S7-9YYJ-6J` | 228 | 17 | 14 | 38 of 38 | `read` |
+| `33S7-9YYJ-9MX` | unknown | 31 | 0 | 36 of 38 | `read_partly_reconciled` |
+
+**Two of the three balance completely.** On 225 the twenty-three entries sum to the
+enumerator's own 10, 5, 5, 9, 14, 12, 4, 2, 0, 1 across the male bands and 13, 6, 4, 2,
+17, 6, 4, 0, 1 across the female; on 228 to 6, 2, 3, 2, 8, 8, 1, 1 and 8, 10, 1, 1, 8, 9,
+2, 0, 1. Both sheets leave the FREE COLORED PERSONS block wholly unfilled, with no total
+written under it, so those twelve columns commit at zero.
+
+On `33S7-9YYJ-9MX` twenty-four of the twenty-six free-white columns close and **two do
+not** — free white males Under 5 (sheet 11, thirty-one lines 18) and 5 under 10 (9
+against 10). Those two are absent from `cells` and kept in `cells_first_pass`, which is
+the same shape T-0532 set: the reading is evidence of what is on the page, and it is not
+reconciled data.
+
+Three things the totals rows taught, which the remaining cell tickets will want:
+
+- **This hand's `8` is a reversed S with a closed head** and passes for a `5` until you
+  have seen four of them. Four columns on page 228 were first read 5 and are 8.
+- **Two-digit totals straddle the printed rule.** The second digit of 14, 17, 29 and 10
+  each falls partly into the next cell, so reading a cell in isolation loses it — the
+  page-225 female 20-under-30 total read as 13 and is 17.
+- **The check catches the reader at least as often as the sheet.** Every apparent failure
+  on 225 and 228, and two on `9MX`, was a printed digit misread rather than a mark
+  miscounted.
+
+Two more inventory counts are now exact: page 225 stops at line **23** (inventory said
+25) and page 228 at line **17** (said 18). The remainder of each sheet is ruled and
+blank, and those lines are recorded as lines.
+
+`33S7-9YYJ-9MX` keeps `printed_page: "unknown"`. The corner carrying the number is
+outside the exposure; the `(p. 4.)` in the printed heading is the form's plate marker and
+is not the book's page; and it is not inferred from the filename order, which is not the
+book's order. T-0504's serial fingerprint is the route that can place it.
+
+One household is worth naming before anyone reads these sheets as families: **line 1 of
+`33S7-9YYJ-9MX` holds nineteen men** — 11 in their twenties, 8 in their thirties, no
+women under forty and no children. That one line is most of why its 30-under-40 column
+totals 21.
+
 ## What has NOT been read yet, and where it is
 
 The age-band, free-coloured and industry cells are a column-by-column reading that has to

@@ -13,7 +13,7 @@
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698).",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full — names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet.",
    "images": [
     {
      "index": 1,
@@ -114,11 +114,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-6J.jpg",
      "sheet_side": "left",
      "printed_page": 228,
-     "lines_with_an_entry": 18,
+     "lines_with_an_entry": 17,
      "what_it_is": "names + free-white age bands; the sheet stops after 18 ruled entries and the rest of the page is blank",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-6J.json",
+     "lines_ruled": 31,
+     "note": "all 26 free-white columns balance against the enumerator's own totals; the FREE COLORED block is unfilled",
+     "line_count_correction": "the inventory said 18 lines with an entry, stated to the nearest line; the fitted row grid and the names give 17, and lines 18-31 are ruled and blank."
     },
     {
      "index": 9,
@@ -192,11 +195,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-9HY.jpg",
      "sheet_side": "left",
      "printed_page": 225,
-     "lines_with_an_entry": 25,
+     "lines_with_an_entry": 23,
      "what_it_is": "names + free-white age bands; the sheet stops after 25 ruled entries",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-9HY.json",
+     "lines_ruled": 31,
+     "note": "all 26 free-white columns balance against the enumerator's own totals; the FREE COLORED block is unfilled",
+     "line_count_correction": "the inventory said 25 lines with an entry, stated to the nearest line; the fitted row grid and the names give 23, and lines 24-31 are ruled and blank."
     },
     {
      "index": 15,
@@ -233,9 +239,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled; the printed page number is NOT on the image — the top-right corner where it sits falls outside the exposure",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "printed page unknown: recorded as unknown rather than guessed from neighbouring ids, because the sorted filename order is not the book order"
+     "read_state": "names_and_cells_read_partly_reconciled",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-9MX.json",
+     "note": "printed page unread — the corner is outside the exposure. 24 of 26 free-white columns balance and are committed; free white males Under 5 and 5 under 10 do not and are not committed. See the page file's cells_column_check.",
+     "lines_ruled": 31
     },
     {
      "index": 18,
@@ -369,7 +376,7 @@
      "medium": 40,
      "low": 139
     },
-    "inventoried_only": 14,
+    "inventoried_only": 8,
     "continuation_sheets_read": 2,
     "continuation_sheets_attempted_not_closed": 1,
     "continuation_lines_committed": 62,
