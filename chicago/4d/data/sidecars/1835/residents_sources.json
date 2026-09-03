@@ -1163,6 +1163,14 @@
       "tier": 2,
       "tier_label": "near-primary recollection"
     },
+    "resident_research_v4_1835_census_bridge": {
+      "source_id": "resident_research_v4_1835_census_bridge",
+      "citation": "Chicago 1835 Best Resident Set Research v4 — working synthesis of 1833–1835 poll/tax evidence, 1839/1843 directories, and the 1840 census/IPUMS crosswalk.",
+      "url": "",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "resident_research_will_county_1878": {
       "source_id": "resident_research_will_county_1878",
       "citation": "History of Will County, Illinois (1878), Yankee Settlement/Joliet early-settlement chapters.",

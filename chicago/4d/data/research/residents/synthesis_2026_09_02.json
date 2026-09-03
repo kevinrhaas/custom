@@ -568,186 +568,227 @@
   ],
   "structure_policy": "Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry.",
   "census_1840": {
-    "eligible_named_rows": 29,
-    "linked": [],
-    "ambiguous": [],
-    "unmatched_named_heads": [
+    "recovery_issue": 669,
+    "named_household_heads_retained": 210,
+    "serial_linked_household_heads_retained": 210,
+    "linked": [
       {
-        "name": "Andrew Larson",
-        "serial": 5102124,
-        "page": 235,
-        "row": 2
+        "person_id": "murphy_john",
+        "serial": 5102066,
+        "name": "John Murphy",
+        "page": 233,
+        "row": 30,
+        "bridge_status": "validated",
+        "identity_confidence": "high",
+        "serial_mapping_confidence": "provisional-high"
       },
       {
-        "name": "Andrew Turner",
-        "serial": 5102116,
-        "page": 235,
-        "row": 18
+        "person_id": "adams_william_h",
+        "serial": 5101954,
+        "name": "William Hanford Adams",
+        "page": 229,
+        "row": 9,
+        "bridge_status": "validated",
+        "identity_confidence": "high",
+        "serial_mapping_confidence": "high-provisional"
       },
       {
-        "name": "C. P. Bradley",
-        "serial": 5102100,
-        "page": 234,
-        "row": 3
-      },
-      {
-        "name": "Daniel Miller",
-        "serial": 5102086,
-        "page": 234,
-        "row": 20
-      },
-      {
-        "name": "Frederick Larson",
-        "serial": 5102129,
-        "page": 235,
-        "row": 7
-      },
-      {
-        "name": "George Knerr",
-        "serial": 5102130,
-        "page": 235,
-        "row": 8
-      },
-      {
-        "name": "Henry Hall",
-        "serial": 5102122,
-        "page": 235,
-        "row": 24
-      },
-      {
-        "name": "Henry Miller",
-        "serial": 5102083,
-        "page": 234,
-        "row": 17
-      },
-      {
-        "name": "Henry Smith",
-        "serial": 5102093,
-        "page": 234,
-        "row": 27
-      },
-      {
-        "name": "Hiram McLean",
-        "serial": 5102110,
-        "page": 234,
-        "row": 13
-      },
-      {
-        "name": "James Lancaster",
-        "serial": 5102107,
-        "page": 234,
-        "row": 10
-      },
-      {
-        "name": "James McGuyre",
-        "serial": 5102106,
-        "page": 234,
-        "row": 9
-      },
-      {
-        "name": "John Evans",
-        "serial": 5102087,
-        "page": 234,
-        "row": 21
-      },
-      {
-        "name": "John McHale",
-        "serial": 5102118,
-        "page": 235,
-        "row": 20
-      },
-      {
-        "name": "Joseph Willemin",
-        "serial": 5102134,
-        "page": 235,
-        "row": 12
-      },
-      {
-        "name": "Julius Ketchum",
-        "serial": 5102094,
-        "page": 234,
-        "row": 28
-      },
-      {
-        "name": "Michael Diversey",
-        "serial": 5102135,
-        "page": 235,
-        "row": 13
-      },
-      {
-        "name": "Moses Winship",
-        "serial": 5102095,
-        "page": 234,
-        "row": 1
-      },
-      {
-        "name": "Nathan Miller",
-        "serial": 5102115,
-        "page": 235,
-        "row": 17
-      },
-      {
-        "name": "Nicholas Neudorf",
-        "serial": 5102128,
-        "page": 235,
-        "row": 6
-      },
-      {
-        "name": "P. P. Robinson",
-        "serial": 5102084,
-        "page": 234,
-        "row": 18
-      },
-      {
-        "name": "Peter Gabel",
-        "serial": 5102109,
-        "page": 234,
-        "row": 12
-      },
-      {
-        "name": "Richard Frink",
-        "serial": 5102132,
-        "page": 235,
-        "row": 10
-      },
-      {
-        "name": "Thomas Lindsey",
-        "serial": 5102111,
-        "page": 234,
-        "row": 14
-      },
-      {
-        "name": "Veit Dietrich",
-        "serial": 5102098,
-        "page": 234,
-        "row": 31
-      },
-      {
-        "name": "William H. Reed",
-        "serial": 5102085,
-        "page": 234,
-        "row": 19
-      },
-      {
-        "name": "William Lill",
-        "serial": 5102117,
-        "page": 235,
-        "row": 19
-      },
-      {
-        "name": "William Nicholson",
-        "serial": 5102127,
-        "page": 235,
-        "row": 5
-      },
-      {
-        "name": "William Tuttle",
-        "serial": 5102131,
-        "page": 235,
-        "row": 9
+        "person_id": "miller_john",
+        "serial": 5102035,
+        "name": "John Miller",
+        "page": 232,
+        "row": 3,
+        "bridge_status": "provisional",
+        "identity_confidence": "medium",
+        "serial_mapping_confidence": "medium-high"
       }
     ],
-    "rule": "One-to-one normalized-name links only; 1840 household facts remain dated later evidence."
+    "validated_identity_bridges": 2,
+    "provisional_identity_bridges": 1,
+    "not_yet_linked_to_canonical_1835_resident": 207,
+    "legacy_partial_matcher": {
+      "eligible_named_rows": 29,
+      "linked": [],
+      "ambiguous": [],
+      "unmatched_named_heads": [
+        {
+          "name": "Andrew Larson",
+          "serial": 5102124,
+          "page": 235,
+          "row": 2
+        },
+        {
+          "name": "Andrew Turner",
+          "serial": 5102116,
+          "page": 235,
+          "row": 18
+        },
+        {
+          "name": "C. P. Bradley",
+          "serial": 5102100,
+          "page": 234,
+          "row": 3
+        },
+        {
+          "name": "Daniel Miller",
+          "serial": 5102086,
+          "page": 234,
+          "row": 20
+        },
+        {
+          "name": "Frederick Larson",
+          "serial": 5102129,
+          "page": 235,
+          "row": 7
+        },
+        {
+          "name": "George Knerr",
+          "serial": 5102130,
+          "page": 235,
+          "row": 8
+        },
+        {
+          "name": "Henry Hall",
+          "serial": 5102122,
+          "page": 235,
+          "row": 24
+        },
+        {
+          "name": "Henry Miller",
+          "serial": 5102083,
+          "page": 234,
+          "row": 17
+        },
+        {
+          "name": "Henry Smith",
+          "serial": 5102093,
+          "page": 234,
+          "row": 27
+        },
+        {
+          "name": "Hiram McLean",
+          "serial": 5102110,
+          "page": 234,
+          "row": 13
+        },
+        {
+          "name": "James Lancaster",
+          "serial": 5102107,
+          "page": 234,
+          "row": 10
+        },
+        {
+          "name": "James McGuyre",
+          "serial": 5102106,
+          "page": 234,
+          "row": 9
+        },
+        {
+          "name": "John Evans",
+          "serial": 5102087,
+          "page": 234,
+          "row": 21
+        },
+        {
+          "name": "John McHale",
+          "serial": 5102118,
+          "page": 235,
+          "row": 20
+        },
+        {
+          "name": "Joseph Willemin",
+          "serial": 5102134,
+          "page": 235,
+          "row": 12
+        },
+        {
+          "name": "Julius Ketchum",
+          "serial": 5102094,
+          "page": 234,
+          "row": 28
+        },
+        {
+          "name": "Michael Diversey",
+          "serial": 5102135,
+          "page": 235,
+          "row": 13
+        },
+        {
+          "name": "Moses Winship",
+          "serial": 5102095,
+          "page": 234,
+          "row": 1
+        },
+        {
+          "name": "Nathan Miller",
+          "serial": 5102115,
+          "page": 235,
+          "row": 17
+        },
+        {
+          "name": "Nicholas Neudorf",
+          "serial": 5102128,
+          "page": 235,
+          "row": 6
+        },
+        {
+          "name": "P. P. Robinson",
+          "serial": 5102084,
+          "page": 234,
+          "row": 18
+        },
+        {
+          "name": "Peter Gabel",
+          "serial": 5102109,
+          "page": 234,
+          "row": 12
+        },
+        {
+          "name": "Richard Frink",
+          "serial": 5102132,
+          "page": 235,
+          "row": 10
+        },
+        {
+          "name": "Thomas Lindsey",
+          "serial": 5102111,
+          "page": 234,
+          "row": 14
+        },
+        {
+          "name": "Veit Dietrich",
+          "serial": 5102098,
+          "page": 234,
+          "row": 31
+        },
+        {
+          "name": "William H. Reed",
+          "serial": 5102085,
+          "page": 234,
+          "row": 19
+        },
+        {
+          "name": "William Lill",
+          "serial": 5102117,
+          "page": 235,
+          "row": 19
+        },
+        {
+          "name": "William Nicholson",
+          "serial": 5102127,
+          "page": 235,
+          "row": 5
+        },
+        {
+          "name": "William Tuttle",
+          "serial": 5102131,
+          "page": 235,
+          "row": 9
+        }
+      ],
+      "rule": "One-to-one normalized-name links only; 1840 household facts remain dated later evidence."
+    },
+    "rule": "All 210 resolved 1840 row-to-SERIAL household records are retained as dated evidence. Canonical 1835 links require an explicit adjudicated person_id bridge and are graded validated or provisional; no fuzzy/common-name promotion."
   },
   "before": {
     "households": 920,
@@ -760,14 +801,14 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 824,
-    "persons": 848,
-    "attested": 117,
+    "households": 825,
+    "persons": 849,
+    "attested": 118,
     "inferred": 731,
     "reconstructed": 0,
     "letter_list_only": 727,
     "projected_residents": 706,
-    "census_1840_linked": 0
+    "census_1840_linked": 3
   },
   "retirement": {
     "removed_people": 108,

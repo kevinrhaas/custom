@@ -81,18 +81,27 @@
     "head_name_normalized": "John Murphy",
     "name_confidence": "High",
     "identity_confidence": "High",
-    "serial_mapping_confidence": "Provisional-High",
+    "bridge_status": "validated",
+    "serial_mapping_confidence": "Provisional-High (paired continuation + age/sex fingerprint)",
     "census_page": 233,
     "census_row": 30,
     "source_image": "33SQ-GYYJ-RJ.jpg",
+    "source_kind": "1840 left/name image + paired continuation 33SQ-GYYJ-9SQ.jpg",
     "household": {
      "persons": 6,
      "children_under_10": 2,
      "male": 3,
-     "female": 3
+     "female": 3,
+     "agriculture": 0,
+     "commerce": 0,
+     "manufactures_trades": 0,
+     "inland_navigation": 0,
+     "professions_engineering": 0,
+     "foreigners_not_naturalized": 0,
+     "illiterate_over_21": 0
     },
-    "bridge_basis": "John Murphy appears on the 1834 and 1835 Chicago poll lists; the 1840 household-head reading is strong and the row-to-SERIAL assignment is supported by paired continuation plus the page-wide age/sex fingerprint.",
-    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. The six-person 1840 household is evidence for household-reconciliation research five years after the 1835-07-01 scene; it does not assert six people under the Murphy roof in 1835."
+    "bridge_basis": "1834 and 1835 Chicago poll lists; 1839 directory; 1840 household-head identity; page-wide age/sex fingerprint mapping",
+    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence."
    },
    "sources": [
     "andreas_1884_v1"

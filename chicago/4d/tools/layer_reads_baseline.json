@@ -65,11 +65,11 @@
       "records": 31
     },
     "residents/household:division": {
-      "records": 824,
+      "records": 825,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 824,
+      "records": 825,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:persons[].biographical_evidence.age_on_1835_07_01.value.max": {
@@ -135,9 +135,6 @@
     "residents/household:persons[].resident_subtype": {
       "records": 706
     },
-    "residents/manifest:counts.census_1840_linked": {
-      "records": 1
-    },
     "residents/manifest:counts.households": {
       "records": 1,
       "refused_because": "The panel renders one row per household and counts the rows. A tally shown beside a list it might disagree with is worse than no tally; validate.py holds the two equal, which is where a disagreement should surface, not on the card."
@@ -146,11 +143,11 @@
       "records": 1
     },
     "residents/manifest:households[].head": {
-      "records": 824,
+      "records": 825,
       "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 824,
+      "records": 825,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
