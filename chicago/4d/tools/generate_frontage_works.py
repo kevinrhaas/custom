@@ -2371,6 +2371,65 @@ def _inside(pt, poly) -> bool:
     return hit
 
 
+def _segments_cross(a, b, c, d) -> bool:
+    """Do segments a-b and c-d properly cross? Sign of the cross product, twice."""
+    def side(p, q, r):
+        return (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])
+    d1, d2 = side(c, d, a), side(c, d, b)
+    d3, d4 = side(a, b, c), side(a, b, d)
+    return ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0))
+
+
+def _stands_on(building, lot) -> bool:
+    """Does this committed building stand on this platted lot?
+
+    T-0461 — AND THE ANSWER USED TO BE ASKED OF ONE POINT, WHICH IS A CORNER.
+
+    Every rule below that needs to know whether a lot is improved used to read
+    `_inside(b["at"], lot["polygon"])`. `at` is the placement ORIGIN, and this
+    dataset's placement origin is not the middle of a building: it is a VERTEX of
+    the footprint, on 366 of the 367 placed footprints in `data/sidecars/1835/`,
+    and the centroid on none of them. On 179 of those it does not even fall
+    strictly inside the building's own outline. So the question "does a building
+    stand on this lot" was being answered by where ONE CORNER of it landed.
+
+    The case that exposed it. `tremont_house_1` is 15.24 m of frontage running
+    west from its origin at (687.82, -91.42), and 13.76 m of that — 90% of the
+    building — stands on lot 7 of `blk_south_water_clark`. Its origin is the
+    south-EAST corner, and that corner falls 1.48 m east of the lot. Under the
+    point test lot 7 therefore read as open prairie with the Tremont House
+    standing on it, and T-0461's report — one building's goods laid on another
+    lot's frontage — is that reading, not a fact about the goods: the goods stand
+    0.55 m off the Tremont House's own south wall, on ground the Tremont House
+    itself occupies.
+
+    THE RULE IS THE OBVIOUS ONE. A building stands on a lot when its committed
+    footprint and the lot's polygon share ground — a corner of one inside the
+    other, or an edge of one crossing an edge of the other. It cannot take ground
+    away from any rule that had it (a point inside the lot is inside the
+    footprint's overlap too), so it is monotone by construction: measured over
+    all 144 platted lots it ADDS 28 lot occupancies and removes none, and the
+    town goes from 125 improved lots to 131.
+
+    This does NOT reopen T-0426. That ruling — a lot that fronts a street takes
+    its street fence at that frontage, whatever way the building on it faces — is
+    unchanged and still read literally. All that changes is which lots have a
+    building standing on them at all.
+    """
+    poly = lot["polygon"]
+    pts = building["pts"]
+    if any(_inside(p, poly) for p in pts):
+        return True
+    if any(_inside(p, pts) for p in poly):
+        return True
+    for i in range(len(pts)):
+        for j in range(len(poly)):
+            if _segments_cross(pts[i], pts[(i + 1) % len(pts)],
+                               poly[j], poly[(j + 1) % len(poly)]):
+                return True
+    return False
+
+
 def _wall_on(point, half_w, outward, buildings) -> str | None:
     """The committed building standing where a board of this width would lie, or None.
 
@@ -2638,7 +2697,7 @@ def _fence_runs(entry, laid, buildings, hf, refused):
         spans = [project(frame, tuple(p)) for p in lot["polygon"]]
         s0 = min(s for s, _ in spans)
         s1 = max(s for s, _ in spans)
-        here = [b for b in buildings if _inside(b["at"], lot["polygon"])]
+        here = [b for b in buildings if _stands_on(b, lot)]
         if not here:
             refused.append({"structure_id": f"{block['id']}_lot{index}",
                             "wall": f"{block['id']} {face} face, lot {index}",
@@ -2646,11 +2705,20 @@ def _fence_runs(entry, laid, buildings, hf, refused):
                                     "unimproved lot is open prairie and takes no street "
                                     "fence.")})
             continue
-        setback = min(-project(frame, p)[1] for b in here for p in b["pts"])
+        # T-0461 — THE REFUSAL NAMES THE WALL IT MEASURED. The setback and the
+        # building it came from are taken together: this used to report the
+        # minimum over every building on the lot and then name `here[0]`, which
+        # is a different building the moment a lot carries two. That was latent
+        # while a lot could only hold what one placement corner landed in; under
+        # `_stands_on` it would have printed the Tremont House's 2.40 m against
+        # the New York Clothing Store's name, which is the kind of sentence this
+        # project exists not to write.
+        setback, nearest = min((-project(frame, p)[1], b["id"])
+                               for b in here for p in b["pts"])
         if setback < EDGE_FENCE_SETBACK_M:
             refused.append({"structure_id": f"{block['id']}_lot{index}",
                             "wall": f"{block['id']} {face} face, lot {index}",
-                            "why": (f"{here[0]['id']} stands {setback:.2f} m from this lot's "
+                            "why": (f"{nearest} stands {setback:.2f} m from this lot's "
                                     f"frontage line, inside the {EDGE_FENCE_SETBACK_M} m a "
                                     "street fence needs — the building IS the street wall "
                                     "here, and a fence in front of it would be a second "
@@ -2700,143 +2768,154 @@ def _edge_hitching(entry, laid, chunks, buildings, hf, streets, refused):
     street = entry["street"]
     name = streets[street]["name"]
     out = []
+    # T-0461 — ONE POST SERVES ONE DOOR, so this walks the face's BUILDINGS and
+    # not its lots. Neither a post's position nor its id depends on the lot it
+    # was met on: both are derived from the building's own projection onto the
+    # face. Under the point test that was harmless, because one corner lands on
+    # one lot. Under `_stands_on` a footprint may span two lots of the same face
+    # — 22 of the town's do — and enumerating lot by lot would stand a second
+    # post with the SAME id at the SAME coordinate as the first. So a building is
+    # met once per face, at the first of its lots, and that lot is what its
+    # refusal names.
+    met: dict[str, tuple[dict, str]] = {}
     for index, lot in enumerate(block.get("lots", [])):
         if lot.get("tier") != face:
             continue
-        here = [b for b in buildings if _inside(b["at"], lot["polygon"])]
-        for b in sorted(here, key=lambda x: x["id"]):
-            where = f"{block['id']} {face} face, lot {index}"
-            trade = b["trade"]
-            if b["id"] in EDGE_OWN_POSTS:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"{b['id']} already stands its own hitching post(s): its frontage "
-                    "record in this same layer draws them from its own reference "
-                    "plates, which is a stronger claim than this rule makes. A post "
-                    "here would be the street edge duplicating one of the two "
-                    "frontages the layer was built from.")})
-                continue
-            if trade in WORKS_TRADES:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"{b['id']} is a {trade} — a works and a warehouse took carts and "
-                    "drays at a yard gate, not riders at a post, which is the same "
-                    "distinction that hangs a board over a footway at a counter and "
-                    "paints a firm's name on a works front. No hitching post is set.")})
-                continue
-            if trade not in PUBLIC_TRADES:
-                continue          # a dwelling, a privy, a stable — nothing to refuse
-            if b["trade_grade"] not in TRADE_GRADES:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"the trade at {b['id']} is {b['trade_grade']} — dealt by the roof "
-                    "schedule rather than held on evidence. A hitching post there "
-                    "would be furniture standing on an invention. No post is set.")})
-                continue
-            # T-0426 — A POST BELONGS AT THE FACE THE DOOR IS ON, and until now
-            # this rule asked only whether the footprint fell inside the lot.
-            #
-            # The lot says which street it fronts; the BUILDING says which way it
-            # faces, and on a deep lot those are two different streets. The New
-            # York Clothing Store fronts east onto Dearborn at bearing 90 and
-            # stands on a lot whose face looks south onto Lake at 180.5, so the
-            # containment test stood its post 49 m from its own door — furniture
-            # for a stranger off a street the shop does not open onto.
-            #
-            # The post is what this refusal covers and nothing else. Whether the
-            # same containment should still lay a street-lining FENCE on that
-            # face is a different question over a shared rule, and it is the
-            # owner's: see T-0426.
-            face_out = math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0
-            off_face = abs((b["bearing"] - face_out + 180.0) % 360.0 - 180.0)
-            if off_face > EDGE_HITCH_FACE_TOL_DEG:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"{b['id']} faces {b['bearing']:.1f}deg and this platted face looks "
-                    f"{face_out:.1f}deg — {off_face:.1f}deg apart, over the "
-                    f"{EDGE_HITCH_FACE_TOL_DEG}deg this layer allows. The lot fronts "
-                    f"{name} and the building's door does not, so a post here would "
-                    "serve a street the trade does not open onto. No post is set.")})
-                continue
-            spans = [project(frame, tuple(p)) for p in b["pts"]]
-            f0 = min(t for t, _ in spans)
-            f1 = max(t for t, _ in spans)
-            at_t = f0 + EDGE_HITCH_ALONG * (f1 - f0)
-            run = None
-            for k, (lo, hi) in enumerate(laid, start=1):
-                if lo - 1e-6 <= at_t <= hi + 1e-6:
-                    run = k
-            if run is None:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"no walk is laid at {at_t:.1f} m along this face, where a post off "
-                    f"{b['id']}'s own frontage would stand — a post stands in the verge "
-                    "OUTSIDE a walk, and there is no walk here to stand outside of.")})
-                continue
-            at = _point_on(frame, at_t, EDGE_HITCH_OFFSET_M)
-            half = HITCH_SQ_M / 2.0
-            blocked = _wall_on(at, half, frame["outward"], buildings)
-            if blocked:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"{blocked} stands on the ground a post off {b['id']}'s frontage "
-                    "would occupy. No post is set.")})
-                continue
-            ground = min(hf.height(at[0] + frame["outward"][0] * o,
-                                   at[1] + frame["outward"][1] * o)
-                         for o in (-half, 0.0, half))
-            if ground is None or ground < EDGE_DRY_M:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"the ground under a post off {b['id']}'s frontage stands at "
-                    f"{ground:+.2f} m — at or under the water, and this project sinks "
-                    "no post into the river. No post is set.")})
-                continue
-            d, _p = _nearest_on_path((at[0] + frame["outward"][0] * half,
-                                      at[1] + frame["outward"][1] * half),
-                                     streets[street]["path"])
-            clear = d - streets[street]["track_w"] / 2.0
-            if clear < EDGE_TRACK_MARGIN_M:
-                refused.append({"structure_id": b["id"], "wall": where, "why": (
-                    f"a post off {b['id']}'s frontage would leave {clear:.2f} m between "
-                    f"its outer face and the {name} track, under the "
-                    f"{EDGE_TRACK_MARGIN_M} m this layer keeps out of the travelled "
-                    "way. No post is set.")})
-                continue
-            out.append({
-                "id": f"{block['id']}_{face}_hitching_{b['id']}",
-                "belongs_to": STREET_EDGE_ID,
-                "kind": "hitching_post",
-                "confidence": "reconstructed",
-                "street": street,
-                "street_name": name,
-                "chunk": chunks[run - 1],
-                "stands_at": b["id"],
-                "trade": trade,
-                "trade_confidence": b["trade_grade"],
-                "at_local_enu_m": [_round(at[0]), _round(at[1])],
-                "facade_bearing_deg": _round(
-                    math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0, 1),
-                "post_height_m": HITCH_H_M,
-                "post_square_m": HITCH_SQ_M,
-                "cap_square_m": HITCH_CAP_SQ_M,
-                "cap_thickness_m": HITCH_CAP_T_M,
-                "along_frontage_frac": EDGE_HITCH_ALONG,
-                "clear_of_track_m": _round(clear),
-                "stands_on_m": _round(ground),
-                "note": (
-                    f"A POST AT THE ROAD EDGE OUTSIDE {b['name'] or b['id']}, for a "
-                    "rider to tie to. WHY HERE is a rule and not a placement: this "
-                    f"frontage's trade is `{trade}` — one of the trades this project "
-                    "already rules take their custom from a stranger off the street "
-                    "(tools/generate_business_signboards.py, PUBLIC_TRADES, the same "
-                    "clause that decides which frontage hangs a board) — and that "
-                    f"trade is held `{b['trade_grade']}` rather than dealt by a "
-                    "schedule. WHERE is derived: the footprint is projected onto its "
-                    f"own platted face, the post stands at {EDGE_HITCH_ALONG:.2f} of "
-                    f"that frontage and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot "
-                    f"line — {HITCH_VERGE_M:.2f} m clear of the walk's outer edge, the "
-                    "same verge the Sauganash's own posts stand in — on committed "
-                    f"ground at {ground:+.2f} m with {clear:.2f} m still between it and "
-                    f"the {name} track. WHAT IS INVENTED: that a post stood on this "
-                    "ground at noon on 1 July 1835, and its height, its section and its "
-                    "capped head, which are the Sauganash's numbers carried across "
-                    f"(docs/LIBERTIES.md L136). docs/LIBERTIES.md {STREET_EDGE_LIBERTY}."
-                ),
-            })
+        for b in sorted((x for x in buildings if _stands_on(x, lot)),
+                        key=lambda x: x["id"]):
+            met.setdefault(b["id"], (b, f"{block['id']} {face} face, lot {index}"))
+    for b, where in met.values():
+        trade = b["trade"]
+        if b["id"] in EDGE_OWN_POSTS:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"{b['id']} already stands its own hitching post(s): its frontage "
+                "record in this same layer draws them from its own reference "
+                "plates, which is a stronger claim than this rule makes. A post "
+                "here would be the street edge duplicating one of the two "
+                "frontages the layer was built from.")})
+            continue
+        if trade in WORKS_TRADES:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"{b['id']} is a {trade} — a works and a warehouse took carts and "
+                "drays at a yard gate, not riders at a post, which is the same "
+                "distinction that hangs a board over a footway at a counter and "
+                "paints a firm's name on a works front. No hitching post is set.")})
+            continue
+        if trade not in PUBLIC_TRADES:
+            continue          # a dwelling, a privy, a stable — nothing to refuse
+        if b["trade_grade"] not in TRADE_GRADES:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"the trade at {b['id']} is {b['trade_grade']} — dealt by the roof "
+                "schedule rather than held on evidence. A hitching post there "
+                "would be furniture standing on an invention. No post is set.")})
+            continue
+        # T-0426 — A POST BELONGS AT THE FACE THE DOOR IS ON, and until now
+        # this rule asked only whether the footprint fell inside the lot.
+        #
+        # The lot says which street it fronts; the BUILDING says which way it
+        # faces, and on a deep lot those are two different streets. The New
+        # York Clothing Store fronts east onto Dearborn at bearing 90 and
+        # stands on a lot whose face looks south onto Lake at 180.5, so the
+        # containment test stood its post 49 m from its own door — furniture
+        # for a stranger off a street the shop does not open onto.
+        #
+        # The post is what this refusal covers and nothing else. Whether the
+        # same containment should still lay a street-lining FENCE on that
+        # face is a different question over a shared rule, and it is the
+        # owner's: see T-0426.
+        face_out = math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0
+        off_face = abs((b["bearing"] - face_out + 180.0) % 360.0 - 180.0)
+        if off_face > EDGE_HITCH_FACE_TOL_DEG:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"{b['id']} faces {b['bearing']:.1f}deg and this platted face looks "
+                f"{face_out:.1f}deg — {off_face:.1f}deg apart, over the "
+                f"{EDGE_HITCH_FACE_TOL_DEG}deg this layer allows. The lot fronts "
+                f"{name} and the building's door does not, so a post here would "
+                "serve a street the trade does not open onto. No post is set.")})
+            continue
+        spans = [project(frame, tuple(p)) for p in b["pts"]]
+        f0 = min(t for t, _ in spans)
+        f1 = max(t for t, _ in spans)
+        at_t = f0 + EDGE_HITCH_ALONG * (f1 - f0)
+        run = None
+        for k, (lo, hi) in enumerate(laid, start=1):
+            if lo - 1e-6 <= at_t <= hi + 1e-6:
+                run = k
+        if run is None:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"no walk is laid at {at_t:.1f} m along this face, where a post off "
+                f"{b['id']}'s own frontage would stand — a post stands in the verge "
+                "OUTSIDE a walk, and there is no walk here to stand outside of.")})
+            continue
+        at = _point_on(frame, at_t, EDGE_HITCH_OFFSET_M)
+        half = HITCH_SQ_M / 2.0
+        blocked = _wall_on(at, half, frame["outward"], buildings)
+        if blocked:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"{blocked} stands on the ground a post off {b['id']}'s frontage "
+                "would occupy. No post is set.")})
+            continue
+        ground = min(hf.height(at[0] + frame["outward"][0] * o,
+                               at[1] + frame["outward"][1] * o)
+                     for o in (-half, 0.0, half))
+        if ground is None or ground < EDGE_DRY_M:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"the ground under a post off {b['id']}'s frontage stands at "
+                f"{ground:+.2f} m — at or under the water, and this project sinks "
+                "no post into the river. No post is set.")})
+            continue
+        d, _p = _nearest_on_path((at[0] + frame["outward"][0] * half,
+                                  at[1] + frame["outward"][1] * half),
+                                 streets[street]["path"])
+        clear = d - streets[street]["track_w"] / 2.0
+        if clear < EDGE_TRACK_MARGIN_M:
+            refused.append({"structure_id": b["id"], "wall": where, "why": (
+                f"a post off {b['id']}'s frontage would leave {clear:.2f} m between "
+                f"its outer face and the {name} track, under the "
+                f"{EDGE_TRACK_MARGIN_M} m this layer keeps out of the travelled "
+                "way. No post is set.")})
+            continue
+        out.append({
+            "id": f"{block['id']}_{face}_hitching_{b['id']}",
+            "belongs_to": STREET_EDGE_ID,
+            "kind": "hitching_post",
+            "confidence": "reconstructed",
+            "street": street,
+            "street_name": name,
+            "chunk": chunks[run - 1],
+            "stands_at": b["id"],
+            "trade": trade,
+            "trade_confidence": b["trade_grade"],
+            "at_local_enu_m": [_round(at[0]), _round(at[1])],
+            "facade_bearing_deg": _round(
+                math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0, 1),
+            "post_height_m": HITCH_H_M,
+            "post_square_m": HITCH_SQ_M,
+            "cap_square_m": HITCH_CAP_SQ_M,
+            "cap_thickness_m": HITCH_CAP_T_M,
+            "along_frontage_frac": EDGE_HITCH_ALONG,
+            "clear_of_track_m": _round(clear),
+            "stands_on_m": _round(ground),
+            "note": (
+                f"A POST AT THE ROAD EDGE OUTSIDE {b['name'] or b['id']}, for a "
+                "rider to tie to. WHY HERE is a rule and not a placement: this "
+                f"frontage's trade is `{trade}` — one of the trades this project "
+                "already rules take their custom from a stranger off the street "
+                "(tools/generate_business_signboards.py, PUBLIC_TRADES, the same "
+                "clause that decides which frontage hangs a board) — and that "
+                f"trade is held `{b['trade_grade']}` rather than dealt by a "
+                "schedule. WHERE is derived: the footprint is projected onto its "
+                f"own platted face, the post stands at {EDGE_HITCH_ALONG:.2f} of "
+                f"that frontage and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot "
+                f"line — {HITCH_VERGE_M:.2f} m clear of the walk's outer edge, the "
+                "same verge the Sauganash's own posts stand in — on committed "
+                f"ground at {ground:+.2f} m with {clear:.2f} m still between it and "
+                f"the {name} track. WHAT IS INVENTED: that a post stood on this "
+                "ground at noon on 1 July 1835, and its height, its section and its "
+                "capped head, which are the Sauganash's numbers carried across "
+                f"(docs/LIBERTIES.md L136). docs/LIBERTIES.md {STREET_EDGE_LIBERTY}."
+            ),
+        })
     out.sort(key=lambda q: q["id"])
     return out
 
