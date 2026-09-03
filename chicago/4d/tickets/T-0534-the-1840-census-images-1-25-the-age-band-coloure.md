@@ -1,7 +1,7 @@
 ---
 id: T-0534
 title: The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0494
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: null
 blocked_on: null

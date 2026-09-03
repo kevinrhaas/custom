@@ -51,9 +51,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": true,
-     "read_state": "names_transcribed",
+     "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-38.json",
-     "note": "one of the seven pages PR #670 read"
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed; free white females 20 under 30 and 40 under 50 do not and are left unreconciled with their residuals",
+     "lines_ruled": 31
     },
     {
      "index": 4,
@@ -90,8 +91,9 @@
      "lines_with_an_entry": 28,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-5V.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0547"
     },
     {
      "index": 7,
@@ -102,8 +104,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 40",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-6H.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0548"
     },
     {
      "index": 8,
@@ -126,8 +129,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-6Q.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0549"
     },
     {
      "index": 10,
@@ -214,9 +218,10 @@
      "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": true,
-     "read_state": "names_transcribed",
+     "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-9M5.json",
-     "note": "one of the seven pages PR #670 read; the scan carries 30 ruled entries and #670 carries 31 rows for it"
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed, the two that do not are named on the page file. The 30-versus-31 disagreement with PR #670 is SETTLED against the sheet's own footings: 30 entries, and line 26 is a named head with no mark in any column",
+     "lines_ruled": 30
     },
     {
      "index": 17,
@@ -367,19 +372,21 @@
     "continuation_sheets_read": 2,
     "continuation_sheets_attempted_not_closed": 1,
     "continuation_lines_committed": 62,
-    "cells_read_pages": 3,
+    "cells_read_pages": 5,
     "cells_columns_committed": {
      "33S7-9YYJ-2T": 36,
      "33S7-9YYJ-98M": 0,
-     "33S7-9YYJ-B3": 0
+     "33S7-9YYJ-B3": 0,
+     "33S7-9YYJ-9M5": 36,
+     "33S7-9YYJ-38": 36
     },
-    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands."
+    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round — against the enumerator's own column footings rather than against the ruling — and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too."
    },
    "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view."
   },
   {
    "range": "images 26-50 of 74",
-   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0526 (names and cells of printed 216, 217, 218 and 224) was split on measurement into T-0547 (printed 216 and 217, read here) and T-0548 (printed 218 and 224): one left sheet is 31 to 33 lines across 38 hand-written columns, and two of them is a run's demonstration, not four.",
+   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings. T-0526 (names and cells of printed 216, 217, 218 and 224) was split on measurement into T-0552 (printed 216 and 217, read here) and T-0553 (printed 218 and 224): one left sheet is 31 to 33 lines across 38 hand-written columns, and two of them is a run's demonstration, not four.",
    "images": [
     {
      "index": 26,
@@ -393,7 +400,7 @@
      "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-DD.json",
      "lines_ruled": 31,
-     "note": "read by T-0547 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns, at a grid located from the image's own darkness profile. Four columns do not close against the enumerator's own footings and their residuals are on the page file; the coloured block closes exactly. The inventory's line count is restated unchanged."
+     "note": "read by T-0552 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns, at a grid located from the image's own darkness profile. Four columns do not close against the enumerator's own footings and their residuals are on the page file; the coloured block closes exactly. The inventory's line count is restated unchanged."
     },
     {
      "index": 27,
@@ -492,7 +499,7 @@
      "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-RC.json",
      "lines_ruled": 31,
-     "note": "read by T-0547 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns. All nine of the enumerator's male footings close exactly; three female footings do not and carry their residuals. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 31 - counted twice, once down the names and once on a drawn grid, with no blank ruled line between entries.",
+     "note": "read by T-0552 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns. All nine of the enumerator's male footings close exactly; three female footings do not and carry their residuals. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 31 - counted twice, once down the names and once on a drawn grid, with no blank ruled line between entries.",
      "line_count_corrected_from": 33
     },
     {
@@ -634,11 +641,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-93G.jpg",
      "sheet_side": "left",
      "printed_page": 207,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-93G.json",
+     "note": "read line by line by T-0545. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
     },
     {
      "index": 47,
@@ -670,11 +678,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-992.jpg",
      "sheet_side": "left",
      "printed_page": 208,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-992.json",
+     "note": "read line by line by T-0545. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
     },
     {
      "index": 50,
@@ -714,11 +723,13 @@
     ],
     "names_transcribed_pages": 2,
     "names_transcribed_lines": 62,
-    "inventoried_only": 23,
+    "inventoried_only": 21,
     "cells_transcribed_pages": 2,
-    "cells_transcribed_lines": 62
+    "cells_transcribed_lines": 62,
+    "names_and_cells_transcribed_pages": 2,
+    "names_and_cells_transcribed_lines": 60
    },
-   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. The two transcribed pages' counts (31 each) are confirmed line by line; the other 23 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly."
   }
  ],
  "negative_and_inaccessible": [
