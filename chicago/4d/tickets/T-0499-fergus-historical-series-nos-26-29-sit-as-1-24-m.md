@@ -1,7 +1,7 @@
 ---
 id: T-0499
 title: Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 739
 claimed_by: run 9/3/2026, 6:13:26 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T23:50:40.432Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33816329157
 ---
 
