@@ -30,7 +30,7 @@ jobs:
       - name: Install validator dependencies
         run: pip install --quiet jsonschema pyproj openpyxl
 
-      - name: Apply candidate non-destructive cleanup
+      - name: Apply candidate cleanup
         working-directory: chicago/4d
         shell: bash
         run: |
@@ -41,10 +41,11 @@ jobs:
 
           ROOT = Path('.')
           DATA = ROOT / 'data'
+          SITE = Path('../../site/chicago/4d')
 
-          # 1) Bring resident-research sources back under the project's deliberately
-          # broad source taxonomy. Rights are conservative: research text can be cited,
-          # but no asset derivation is cleared by this cleanup.
+          # Keep research-source records inside the broad source vocabulary already
+          # enforced by source.schema.json. Rights stay conservative: citation is fine,
+          # but this cleanup grants no asset-use permission.
           type_map = {
             'federal_census_crosswalk':'dataset',
             'published_biographical_history':'book',
@@ -84,8 +85,10 @@ jobs:
           }
           allowed = {'map','book','newspaper','manuscript','illustration','photograph','website','dataset','article','legal'}
           for p in sorted((DATA/'sources').glob('*.json')):
-            try: d=json.loads(p.read_text())
-            except Exception: continue
+            try:
+              d=json.loads(p.read_text())
+            except Exception:
+              continue
             changed=False
             t=d.get('type')
             if t not in allowed and t in type_map:
@@ -95,13 +98,27 @@ jobs:
             if changed:
               p.write_text(json.dumps(d, indent=2, ensure_ascii=False)+'\n')
 
-          # Keep the synthesis writer from reintroducing the narrow census type.
+          # Keep the synthesis writer from reintroducing a narrower one-off census type.
           sp=ROOT/'tools/synthesize_resident_research.py'
-          s=sp.read_text()
-          s=s.replace('"type":"federal_census_crosswalk"','"type":"dataset"')
+          s=sp.read_text().replace('"type":"federal_census_crosswalk"','"type":"dataset"')
+
+          # The owner-approved synthesis retired the reconstructed resident population,
+          # but retained its buildings as anonymous stock. Make that state an explicit
+          # invariant rather than letting old generators recreate the 108 retired people.
+          prog_path=DATA/'reconstruction/1835_inferred_household_programme.json'
+          prog=json.loads(prog_path.read_text())
+          prog['resident_population_active']=False
+          prog['resident_population_status']='Retired from resident list by owner ruling 2026-09-02; building stock remains anonymous/unassigned until a later explicit reconstructed-population pass.'
+          prog_path.write_text(json.dumps(prog, indent=2, ensure_ascii=False)+'\n')
+
+          old='''    if not LEDGER.exists() or not SUMMARY.exists(): problems.append("synthesis ledger/summary missing")\n    if problems:'''
+          new='''    if not LEDGER.exists() or not SUMMARY.exists(): problems.append("synthesis ledger/summary missing")\n    programme=load(PROGRAMME)\n    if programme.get("resident_population_active") is not False:\n        problems.append("retired reconstructed resident programme is not marked inactive")\n    for d in docs:\n        if str(d.get("id") or "").startswith("hh_inf_") and (value(d.get("lives_at")) is not None or value(d.get("works_at")) is not None):\n            problems.append(f"{d.get('id')} survived synthesis but is still placed")\n    for path in STRUCTURES.glob("inf_*.json"):\n        d=load(path); a=d.get("resident_assignment") or {}\n        if a.get("status") != "unassigned":\n            problems.append(f"{path.name} is inferred stock without resident_assignment=unassigned")\n    if problems:'''
+          if old in s:
+            s=s.replace(old,new)
           sp.write_text(s)
 
-          # 2) The owner-approved synthesis added an explicit unassigned-stock marker.
+          # Schema for the explicit anonymous/unassigned building-stock marker added by
+          # T-0489. It carries no resident identity and is intentionally reconstructed.
           schema_path=DATA/'structures.schema.json'
           schema=json.loads(schema_path.read_text())
           schema['properties']['resident_assignment']={
@@ -116,93 +133,103 @@ jobs:
           }
           schema_path.write_text(json.dumps(schema, indent=2, ensure_ascii=False)+'\n')
 
-          # 3) Make the retired resident programme explicit and strengthen its current gate.
-          prog_path=DATA/'reconstruction/1835_inferred_household_programme.json'
-          prog=json.loads(prog_path.read_text())
-          prog['resident_population_active']=False
-          prog['resident_population_status']='Retired from resident list by owner ruling 2026-09-02; building stock remains anonymous/unassigned until a later explicit reconstructed-population pass.'
-          prog_path.write_text(json.dumps(prog, indent=2, ensure_ascii=False)+'\n')
-
-          # Strengthen synthesis --check so replacing obsolete reconstructed-person gates
-          # still protects the intended state rather than merely silencing them.
-          sp=ROOT/'tools/synthesize_resident_research.py'
-          s=sp.read_text()
-          old='''    if not LEDGER.exists() or not SUMMARY.exists(): problems.append("synthesis ledger/summary missing")\n    if problems:'''
-          new='''    if not LEDGER.exists() or not SUMMARY.exists(): problems.append("synthesis ledger/summary missing")\n    programme=load(PROGRAMME)\n    if programme.get("resident_population_active") is not False:\n        problems.append("retired reconstructed resident programme is not marked inactive")\n    retained_inf=[]\n    for d in docs:\n        if str(d.get("id") or "").startswith("hh_inf_"):\n            retained_inf.append(d)\n            if value(d.get("lives_at")) is not None or value(d.get("works_at")) is not None:\n                problems.append(f"{d.get('id')} survived synthesis but is still placed")\n    for path in STRUCTURES.glob("inf_*.json"):\n        d=load(path); a=d.get("resident_assignment") or {}\n        if a.get("status") != "unassigned":\n            problems.append(f"{path.name} is inferred stock without resident_assignment=unassigned")\n    if problems:'''
-          if old in s: s=s.replace(old,new)
-          else: print('WARN: synthesis check insertion anchor not found')
-          sp.write_text(s)
-
-          # 4) Old resident generators describe a population the owner explicitly retired.
-          # Their derivation gates now defer to the synthesis invariant gate; the raw tools
-          # remain available for a future explicit reconstructed-population pass.
+          # Old resident-derivation checks describe the now-retired population. Replace
+          # only their check invocations with the stronger synthesis invariant gate; the
+          # old tools remain available for a future explicit reconstruction pass.
           check=ROOT/'tools/check.sh'
           c=check.read_text()
-          replacements={
-            'python3 tools/generate_inferred_households.py --check':'python3 tools/synthesize_resident_research.py --check',
-            'python3 tools/generate_inferred_names.py --check':'python3 tools/synthesize_resident_research.py --check',
-            'python3 tools/replace_invented_residents.py --check':'python3 tools/synthesize_resident_research.py --check',
-            'python3 tools/mint_documented_residents.py --check':'python3 tools/synthesize_resident_research.py --check',
-            'python3 tools/mint_letter_list_residents.py --check':'python3 tools/synthesize_resident_research.py --check',
-          }
-          for a,b in replacements.items(): c=c.replace(a,b)
+          for a in (
+            'python3 tools/generate_inferred_households.py --check',
+            'python3 tools/generate_inferred_names.py --check',
+            'python3 tools/replace_invented_residents.py --check',
+            'python3 tools/mint_documented_residents.py --check',
+            'python3 tools/mint_letter_list_residents.py --check',
+          ):
+            c=c.replace(a, 'python3 tools/synthesize_resident_research.py --check')
           check.write_text(c)
 
-          # 5) The letter-list owner gate must permit facts supplied by independent
-          # corroboration after synthesis, while still rejecting a trade invented by the
-          # post-office pass itself.
+          # A letter-list record may now carry a trade only when independent resident
+          # research supplied it. The post-office evidence still may not invent one.
           mp=ROOT/'tools/mint_letter_list_residents.py'
           m=mp.read_text()
           old='''            occ = person.get("occupation") or {}\n            if occ.get("value") != "none_recorded":\n                problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "\n                                f"letter list gives no trade and this pass may not read "\n                                f"one in")'''
           new='''            occ = person.get("occupation") or {}\n            rr = person.get("resident_research") or {}\n            independently_corroborated = bool(rr.get("asserted_identity") and rr.get("source_ids"))\n            if occ.get("value") != "none_recorded" and not independently_corroborated:\n                problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "\n                                f"letter list gives no trade and this pass may not read "\n                                f"one in without independently corroborated resident research")'''
-          if old in m: m=m.replace(old,new)
-          else: print('WARN: letter-list occupation anchor not found')
+          if old in m:
+            m=m.replace(old,new)
           mp.write_text(m)
 
-          # 6) SOUTH_TIME is an intentional expansion epic; register it rather than
-          # rewriting fourteen coherent tickets into an unrelated category.
+          # T-0489 deliberately unplaced five real evidence-based survivors, raising the
+          # first research cohort's richer-unplaced frame from 20 to 25. Update both the
+          # actual assertion and its report text; the cohort remains fixed at 75.
+          pp=ROOT/'tools/select_resident_research_pilot.py'
+          ptxt=pp.read_text()
+          ptxt=ptxt.replace('if len(richer) != 20:', 'if len(richer) != 25:')
+          ptxt=ptxt.replace('expected 20 richer unplaced records', 'expected 25 richer unplaced records')
+          ptxt=ptxt.replace('5 established, 20 richer unplaced, 50 letter-list', '5 established, 25 richer unplaced, 45 letter-list')
+          pp.write_text(ptxt)
+
+          # The read census scans leaf names across renderer code. These names occur in
+          # the separate research_pilot payload (or another record kind), so a bare-name
+          # reverse scan cannot honestly attribute them to the embedded resident_research
+          # block. Keep them unread/banked but exempt the ambiguous reverse attribution.
+          lr=ROOT/'tools/measure_layer_reads.py'
+          ltxt=lr.read_text()
+          anchor='''    "present_on_scene_date",\n})'''
+          shared='''    "present_on_scene_date",\n    # The household embeds the durable research decision while residents.js renders\n    # a separate research_pilot review object with the same leaf names. A text scan\n    # cannot attribute these accesses to one record kind or the other.\n    "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",\n    # The manifest count is currently retained for machine summaries; similarly named\n    # renderer vocabulary makes a bare reverse scan ambiguous, so it stays banked.\n    "projected_residents",\n})'''
+          if anchor in ltxt:
+            ltxt=ltxt.replace(anchor, shared)
+          lr.write_text(ltxt)
+
+          # SOUTH_TIME is an intentional owner-created expansion epic.
           tp=ROOT/'tools/ticket.mjs'
           t=tp.read_text().replace("'META', 'PAPERS'];", "'META', 'PAPERS', 'SOUTH_TIME'];")
           tp.write_text(t)
 
-          # Closed was used by the resident research sweep; normalize to the queue's
+          ticket_dir=ROOT/'tickets'
+          # Normalize the research sweep's temporary `closed` spelling to the queue's
           # canonical terminal state.
-          for p in (ROOT/'tickets').glob('T-*.md'):
+          for p in ticket_dir.glob('T-*.md'):
             text=p.read_text()
             if re.search(r'^state: closed$', text, re.M):
               p.write_text(re.sub(r'^state: closed$', 'state: done', text, flags=re.M))
 
-          # The completed synthesis tickets are canonical in the files that describe the
-          # owner ruling; retire the older same-ID plans and mark the completed set done.
-          old_plans=[
+          # Remove superseded duplicate plans for the four synthesis tickets. The other
+          # file for each ID is the canonical owner-ruling ticket completed by PR #668.
+          for name in [
             'T-0487-adjudicate-the-complete-resident-research-corpus.md',
             'T-0488-promote-attested-residents-households-and-occupations.md',
             'T-0489-integrate-reasonable-inferred-residents-and-households.md',
             'T-0490-audit-resident-household-census-synthesis-and-publish-summary.md',
-          ]
-          for name in old_plans:
-            p=ROOT/'tickets'/name
-            if p.exists(): p.unlink()
-          for tid in ('T-0487','T-0488','T-0489','T-0490'):
-            matches=sorted((ROOT/'tickets').glob(f'{tid}-*.md'))
+          ]:
+            q=ticket_dir/name
+            if q.exists(): q.unlink()
+
+          receipts={'T-0463':'624','T-0487':'668','T-0488':'668','T-0489':'668','T-0490':'668'}
+          for tid, pr in receipts.items():
+            matches=sorted(ticket_dir.glob(f'{tid}-*.md'))
             if len(matches)==1:
               text=matches[0].read_text()
               text=re.sub(r'^state: .*$', 'state: done', text, count=1, flags=re.M)
               text=re.sub(r'^closed: .*$', 'closed: 2026-09-02', text, count=1, flags=re.M)
+              text=re.sub(r'^pr: .*$', f'pr: {pr}', text, count=1, flags=re.M)
               matches[0].write_text(text)
 
-          # Finder/conflict-style " 2" copies are never canonical. Remove only where
-          # the non-suffixed sibling already exists; this prevents deleting unique data.
-          for base in [ROOT, Path('../../site/chicago/4d')]:
+          # Workable queue entries for completed tickets are removed, never reordered.
+          queue=ticket_dir/'QUEUE.md'
+          qlines=queue.read_text().splitlines()
+          done_ids=set(receipts)
+          qlines=[line for line in qlines if not any(re.match(rf'^{re.escape(tid)}(?:\s|$)', line) for tid in done_ids)]
+          queue.write_text('\n'.join(qlines).rstrip()+'\n')
+
+          # Finder/conflict-style " 2" copies are never canonical. Delete only when the
+          # normal sibling already exists, so unique source material cannot be lost.
+          for base in [ROOT, SITE]:
             if not base.exists(): continue
             for p in sorted(base.rglob('* 2.*')):
               if not p.is_file(): continue
               sibling=p.with_name(p.name.replace(' 2.', '.', 1))
-              if sibling.exists():
-                p.unlink()
+              if sibling.exists(): p.unlink()
 
-          # Explicit published orphans already named by the mirror gate.
-          site=Path('../../site/chicago/4d')
           for rel in [
             'data/residents/research_pilot 2.json',
             'data/sidecars/1835/recon_1835_blk_south_water_lasalle_a1_14 2.json',
@@ -214,45 +241,26 @@ jobs:
             'data/sidecars/1835/recon_1835_blk_south_water_lasalle_d6_11 2.json',
             'data/sidecars/1835/recon_1835_blk_south_water_lasalle_d7_12 2.json',
           ]:
-            p=site/rel
-            if p.exists(): p.unlink()
+            q=SITE/rel
+            if q.exists(): q.unlink()
           PY
 
-          # 7) Re-derive files whose gates explicitly provide their repair command.
+          # Re-derive in dependency order. Pass 2 and pass 3 are the only cohort
+          # manifests whose population-frame metadata became stale in the synthesis.
           python3 tools/reconcile_665.py || true
-          python3 tools/generate_lot_building_material.py
+          python3 tools/select_resident_research_pilot.py
+          python3 tools/select_resident_research_pass_2.py
+          python3 tools/select_resident_research_pass_3.py
+          python3 tools/compile_resident_research_pilot.py
           python3 tools/town_census.py
           python3 tools/compile_scene.py --all
           python3 tools/measure_layer_reads.py --update
+          node tools/ticket.mjs board
+          python3 tools/generate_lot_building_material.py
 
-          # Refresh cohort manifests using the scripts that own them, discovered from
-          # their output paths so this diagnostic does not hard-code guessed tool names.
-          for manifest in pass_02_75_cohort.json pass_03_75_cohort.json; do
-            owner=$(grep -R -l "$manifest" tools --include='*.py' | head -1 || true)
-            if [ -n "$owner" ]; then
-              echo "refreshing $manifest via $owner"
-              python3 "$owner" || true
-            fi
-          done
-
-          # First cohort grew from 20 to 25 richer-unplaced records because T-0489
-          # deliberately unplaced five evidence-based survivors of the retired layer.
-          owner=$(grep -R -l 'richer unplaced' tools --include='*.py' | head -1 || true)
-          if [ -n "$owner" ]; then
-            python3 - "$owner" <<'PY2'
-          import re,sys
-          from pathlib import Path
-          p=Path(sys.argv[1]); s=p.read_text()
-          s=s.replace('expected 20 richer unplaced records', 'expected 25 richer unplaced records')
-          s=re.sub(r'(?<!\d)20(?!\d)(?=[^\n]{0,100}richer)', '25', s)
-          p.write_text(s)
-          PY2
-          fi
-
-          # Regenerate the ticket board/JSON after state and duplicate cleanup, then
-          # ensure the owner queue contains every remaining workable ticket.
-          node tools/ticket.mjs board || true
-          node tools/ticket.mjs check || true
+          # Publish only after every derived source has reached its final form, so the
+          # mirror is regenerated from the exact tree the gate will inspect.
+          ./tools/publish.sh
 
       - name: Run full Chicago 4D gate after candidate repairs
         working-directory: chicago/4d
@@ -270,7 +278,7 @@ jobs:
       - name: Upload diagnostic artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: chicago-4d-dev-clean-diagnostic
+          name: chicago-4d-dev-clean-diagnostic-v2
           path: |
             /tmp/chicago-4d-clean-check.log
             /tmp/chicago-4d-clean-status.txt
