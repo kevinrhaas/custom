@@ -1,5 +1,5 @@
 ---
-id: T-0524
+id: T-0530
 title: The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
 state: open
 epic: META

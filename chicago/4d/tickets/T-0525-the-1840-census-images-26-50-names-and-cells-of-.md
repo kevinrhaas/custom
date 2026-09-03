@@ -27,5 +27,5 @@ Inventoried in `data/research/census_1840/coverage.json`; ~31, 31, 31 and 34 lin
 **Acceptance:** (one demonstration, never weakened to pass)
 - One `pages/<id>.json` per image, every ruled line with an entry present (or `illegible`), enumeration
   order preserved, `reading: scan_verified`, no IPUMS serial attached.
-- Column sums checked against the printed totals at the foot of each sheet, as T-0524 establishes.
+- Column sums checked against the printed totals at the foot of each sheet, as T-0530 establishes.
 - `coverage.json` moves these four from `inventoried_only` and restates their line counts exactly.

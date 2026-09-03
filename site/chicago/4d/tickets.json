@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 2:23 AM",
+  "generated_ct": "Sep 3, 2026, 2:41 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8591,24 +8591,6 @@
     },
     {
       "id": "T-0524",
-      "title": "The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals",
-      "state": "open",
-      "epic": "META",
-      "requested_by": "owner",
-      "seen": false,
-      "effort": "S",
-      "legacy_id": null,
-      "parent": "T-0495",
-      "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
-      "needs_bake": false,
-      "queue_rank": 4
-    },
-    {
-      "id": "T-0524",
       "title": "The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three",
       "state": "open",
       "epic": "META",
@@ -8623,7 +8605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 133
     },
     {
       "id": "T-0525",
@@ -8714,6 +8696,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 9
+    },
+    {
+      "id": "T-0530",
+      "title": "The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0495",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
     }
   ]
 }
