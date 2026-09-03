@@ -1,5 +1,5 @@
 ---
-id: T-0596
+id: T-0602
 title: The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
 state: open
 epic: META
@@ -51,5 +51,5 @@ T-0590 happened to anchor its rows to card ids.
 
 **Effort.** S — the counting is one file and the domain registry already has a place to declare this.
 
-**Links:** T-0578 (which hit both) · T-0590 (the ruling that shows the ratchet working) · T-0597 (the
+**Links:** T-0578 (which hit both) · T-0590 (the ruling that shows the ratchet working) · T-0603 (the
 volume-2 spend) · T-0505 (the refusal discipline) · `tools/measure_research_spend.py`.

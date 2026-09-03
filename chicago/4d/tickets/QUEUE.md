@@ -120,9 +120,81 @@
 # --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
 # --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
 # --- be taken while any sweep ticket is open. The rest of the wave order below stands.
+# --- CONSOLIDATION RUNS ALONGSIDE THE READS, NOT AFTER THEM — owner, 2026-09-03 (evening):
+# --- "dont land those tickets at the very end maybe every few you should do that consolidation".
+# ---
+# --- THE RULE THIS BAND EXISTS TO ENFORCE: after every few source tickets close, the next run is a
+# --- consolidation pass, not another source. Not at the end — there is no end. Wave 1 is open-ended
+# --- by design (the owner adds sources as he finds them), so anything sequenced AFTER 'all sweeps'
+# --- is sequenced after never. T-0513 carried exactly that bar and stood 31 tickets deep while the
+# --- queue grew above it; T-0514/T-0515, which write the people, sat behind it.
+# ---
+# --- The scale, counted across the layer: 742 of 825 household records cite exactly ONE source, 70
+# --- cite two, 13 cite three, and nothing cites more. Ninety per cent of the town rests on a single
+# --- source while the crosswalks hold rulings nobody has spent. hh_carpenter_philo.json is the
+# --- worked example, not the scope: it cites andreas_1884_v1 alone while the crosswalks have ruled
+# --- six for the same man — poll 1833, tax 1833, poll 1834, the newspaper person, and two bridge
+# --- tiers at VERY LIKELY 1835. The slot exists, the evidence is adjudicated, never introduced.
+# ---
+# --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
+# --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
+# --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
+# --- reaching a town person and 0 reaching their card; this band is what moves that number.
+T-0513 — 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
+# --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
+# --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
+# --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
+# --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
+# --- which is the manual step this whole programme exists to stop relying on.
+T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
-T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
+# --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
+# --- items in the queue you think will yield the best research results, those ones at the top".
+# ---
+# --- This band is not a hunch. Every closed crosswalk on dev was counted, and the match rate
+# --- differs by more than an order of magnitude by WHAT KIND of source it is:
+# ---
+# ---   source                       era                    ruled  matched   match %
+# ---   civic poll/tax/voter lists    1833-1835              345      99      28.7%
+# ---   1840 census heads             1840 (later)           498       5       1.0%
+# ---   St Cyr church register        1834-1839              531       0       0.0%
+# ---   Newberry index vol 1          index to later works   319       0       0.0%
+# ---
+# --- THE CATEGORY THAT WINS IS NARROWER THAN 'CONTEMPORARY', and the church row is why this was
+# --- measured rather than guessed: the first draft of this band led with St Mary's baptismal
+# --- register on the reasoning that 1833-35 beats 1840. St Cyr's register IS 1834-39, was read in
+# --- full, and matched NOBODY — 434 of its 531 entries are unmatched. What actually predicts yield
+# --- is a LIST THE TOWN MADE OF ITS OWN NAMED INHABITANTS, dated 1833-1836. Poll books, tax lists
+# --- and land purchases name householders under their own names; a register names the Catholic
+# --- families of a parish, and an index names works.
+# ---
+# --- So the promotions, in order, and each says which clause of the ratified ladder it feeds:
+# ---   T-0557  land sales through 1836 — a government list of NAMED PURCHASERS at Chicago; the
+# ---           closest thing in the queue to the civic lists that scored 28.7%.
+# ---   T-0498  the 1830 named schedule — the only pre-1835 enumeration of the settlement, and
+# ---           still unread; the repo holds county aggregates and no names.
+# ---   T-0501  Hubbard — a resident naming his contemporaries with trade or address, which the
+# ---   T-0499  ratified ladder admits as `inferred` in as many words. Fergus 26-29 is the same
+# ---   T-0500  clause and is already deposited as 1.24 MB of unread OCR.
+# ---   T-0506  the 1839 directory — later evidence, but nearer 1835 than the 1843/44 volumes.
+# ---   T-0503  St Mary's baptismal register — on the ladder (baptism 1833-35) and deposited, so
+# ---           it is here and not at the top: the measured church yield says it will not lead.
+# ---
+# --- WHAT MOVED DOWN, and it is a real call rather than a tidy-up. Eleven more 1840 census sheet
+# --- reads and Newberry volumes 2-4 now sit below this band. Together they are ~8,000 more cards
+# --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
+# --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
+# --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
+T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
+T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
+T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
+T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
+T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
+T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
+
+
+
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
 # --- newberry spend ticket". Placed immediately above the three volume reads it depends on the
 # --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
@@ -144,14 +216,8 @@ T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
-T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
-T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
-T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
@@ -159,7 +225,6 @@ T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
 T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 
-T-0513 — Ten sources name the same people and no file says which names are one person: the cross-source identity master under the ratified grading ladder
 
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
@@ -380,6 +445,10 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
-T-0594 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
-T-0595 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
-T-0596 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
+T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
+T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
+T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
+T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
+T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
+T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
+T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing

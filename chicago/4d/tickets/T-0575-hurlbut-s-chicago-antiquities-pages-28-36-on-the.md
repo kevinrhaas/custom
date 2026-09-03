@@ -1,7 +1,7 @@
 ---
 id: T-0575
 title: Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 725
+claimed_by: run 9/3/2026, 2:34:08 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T20:19:22.200Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796887297
 ---
 
 Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried.
@@ -62,3 +64,45 @@ its merges — surname-only is always a refusal.
 **The ladder.** The owner ratified it on 2026-09-03 and it binds this ticket: a source later than
 1835 alone never makes an 1835 resident. It corroborates, it enriches, and above all it DATES.
 Everything read here carries `describes_date`.
+
+---
+
+## PROPOSALS OUT OF THE READING (T-0575, 2026-09-03)
+
+The acceptance says *anything that would change a structure or an asset is proposed in
+the ticket, not done in it.* Nothing under `data/structures/`, `data/assets/`,
+`data/residents/` or `data/scene/` was touched by this ticket. Four things the chapter
+argues for, each with its own ticket:
+
+1. **Hubbard's arrival is datable now — T-0594.** `hh_hubbard_gurdon.json` grades
+   `arrival: 1818` as `reconstructed` and says the year "could not be traced to a sentence
+   here". `bk_afc_004` is the sentence, with the day: Montreal 13 May 1818, Mackinaw 4
+   July, Chicago "the last day of October or first day of November of that year". The
+   two-day ambiguity must survive the fix.
+2. **`jb_beaubien_homestead` has an origin — T-0595.** `bk_afc_009`: the United States
+   Factory House, just south of Fort Dearborn, bought from the government by the American
+   Fur Company in 1822, Beaubien's family moved into it. A note and a research page, not a
+   regrade: it is a claim of 1822 about a building standing in 1835, and `bk_afc_008`'s
+   1819 trading houses at the old river mouth are a *different* building again.
+3. **The trade goods need a ruling before they need a model — T-0596.** `bk_afc_018`
+   itemises about 130 articles of the Chicago-country trade of about 1828. Read with
+   `bk_afc_005` and `bk_afc_012` the honest answer may be that the scene should show
+   *less* fur-trade apparatus, not more, and that belongs in `docs/LIBERTIES.md` before
+   anything is lettered.
+4. **The two Kinzie households are half brothers — T-0597.** `bk_afc_015`, Hurlbut's own
+   note. Half brother, in that form.
+
+**And one thing this reading deliberately did NOT propose.** The chapter is a size
+argument — Hurlbut's "a very limited district of distribution" (`bk_afc_003`) and
+Hubbard's own "this place never had been preeminent as a trading-post, as this was not
+the Indian hunting-ground" (`bk_afc_012`), from two men who did not copy each other.
+That is a reason to ask how much fur-trade apparatus the town shows, and it is *not* on
+its own a warrant to delete any of it: an 1881 judgement about the 1820s cannot by
+itself remove a building placed on other evidence. The question is T-0596's, with the
+reasoning going into `docs/LIBERTIES.md`, and it is not answered here.
+
+**What the chapter settles outright.** The words "American Fur Company" do not belong
+anywhere in the 1835 scene. Hubbard bought the company's entire Illinois interest in
+1828 (`bk_afc_005`) and Astor sold the company in 1834 (`bk_afc_013`); whatever fur
+trade stands in this town in the scene year is a private business, and a signboard
+saying otherwise would be wrong.

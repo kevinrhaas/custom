@@ -2,6 +2,16 @@
   "schema": 1,
   "domain": "books",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
-  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
-  "declarations": []
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT HERE IS `list` AND NOT `page`, ON PURPOSE. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it. Declaring nine pages would mean assigning each claim to a page nobody has seen, which is an invention, and the gate would then be checking a fiction rather than a reading. The chapter is therefore declared as the single item it was delivered as, its page RANGE is named in every claim's locator, and the day this project reads the book itself the declaration can become nine pages honestly.",
+  "declarations": [
+    {
+      "unit": "list",
+      "items": ["hurlbut_chicago_antiquities_1881_pp28_36"],
+      "ticket": "T-0575",
+      "what": "Henry H. Hurlbut, Chicago Antiquities (Chicago, 1881), pages 28-36 — the chapter on the American Fur Company and Chicago, read in full: Hurlbut's narrative, the long passage quoted from Gurdon S. Hubbard, the extracts from the Michilimackinac outfit book of 1821-22, and the closing catalogue of goods for the trade of the Chicago country.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hurlbut_chicago_antiquities_28_36.txt (214 lines, byte-identical to data/research/genealogytrails/text/americanfurco.txt)",
+      "not_read": "Nothing in the chapter. What is NOT declared is the rest of the book: Chicago Antiquities is read here at pages 28-36 only, and data/sources/chicago_antiquities_pratt.json is a separate reading of a separate passage. The other books this domain exists for — Fergus' Historical Series Nos. 26-29, Hubbard's autobiography, H. H. Porter's Short Autobiography — are undeclared because they are unread, which is not a fault and must not be reported as one."
+    }
+  ]
 }

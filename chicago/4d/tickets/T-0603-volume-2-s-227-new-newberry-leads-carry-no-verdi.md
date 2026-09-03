@@ -1,5 +1,5 @@
 ---
-id: T-0597
+id: T-0603
 title: Volume 2's 227 new Newberry leads carry no verdict, and T-0590's ladder is written and ready for them
 state: done
 epic: META
@@ -23,7 +23,7 @@ Volume 2's 227 new Newberry leads carry no verdict, and T-0590's ladder is writt
 **Where this stands.** T-0590 ruled all 319 leads volume 1 offered — 240 refused, 79 candidates testable in
 a work this project already holds, 0 merges — anchored to the 542 cards they stand on, and brought the
 domain's unspent ceiling down from 2,619 to 2,077. T-0578 then read volume 2, which raises the leads to
-**546**. The 227 it adds carry nothing, and the ceiling went back up to 4,104 to admit the read.
+**546**. The 227 it adds carry nothing, and the ceiling went to 3,148 to admit the read.
 
 **Why it is a small ticket.** The ladder exists, it is committed in `lead_crosswalk.json` under `ladder`,
 and its five steps are mechanical: no exact surname key reached -> `ocr_variant_only`; no Chicago or Cook
@@ -58,8 +58,8 @@ set out to create. `tools/rule_newberry_leads.py` was extended from `entries_vol
 `ocr_variant_only`, 144 `locality_absent`, 48 `surname_only_chicago`), 0 merges, 0 discriminators
 found.** `matched` is still reachable and still unreached. The acquisition list grows from 166 cards to
 **274**, 60 of them still carrying a legible year. The spend rose with the read, 542 cards to 947, and
-the ceiling raise in `research_spend_baseline.json` is 1,622 rather than the 2,027 an unruled read would
+the ceiling raise in `research_spend_baseline.json` is 1,395 rather than the 2,027 an unruled read would
 have cost.
 
 **Links:** T-0590 (the ladder and volume 1's ruling) · T-0578 (the read that added them) · T-0562 ·
-T-0596 (what the ratchet miscounts) · `data/research/newberry_index/lead_crosswalk.json`.
+T-0602 (what the ratchet miscounts) · `data/research/newberry_index/lead_crosswalk.json`.

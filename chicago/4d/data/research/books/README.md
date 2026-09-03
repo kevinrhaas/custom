@@ -39,3 +39,43 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 **This is research, not payload.** Nothing under `data/research/` reaches
 `site/chicago/4d/`.
+
+---
+
+## What has been read (T-0575, 2026-09-03)
+
+**Hurlbut's *Chicago Antiquities* (1881), pages 28-36** — the chapter on the American
+Fur Company and Chicago. Nineteen claims at
+`claims/american_fur_company_hurlbut.json`, out of this project's own committed copy
+of the transcription at `text/hurlbut_chicago_antiquities_28_36.txt`, which is
+byte-identical to the genealogytrails cache it was taken from. Source record:
+`data/sources/chicago_antiquities_american_fur_co.json`.
+
+**Three voices, and every claim says which it is.** Hurlbut compiles in 1881 and
+judges; Gurdon S. Hubbard remembers inside quotation marks at sixty years' distance;
+and an outward-invoice book of the Michilimackinac agency, 1821-22, is a period record
+printed verbatim with its orthography kept. The source record's `transcribes[]` grades
+the three separately — 4, 2 and 1 — and the record's own tier is 2, which is
+Hubbard's rung and not Hurlbut's.
+
+**What the chapter is for.** It is a SIZE ARGUMENT about the town, said twice by two
+men who did not copy each other: Hurlbut's "Chicago was the port and point of a very
+limited district of distribution", and Hubbard's "this place never had been preeminent
+as a trading-post, as this was not the Indian hunting-ground". With the two dates
+beside them — Hubbard bought the company's whole Illinois interest in 1828, and Astor
+sold the company in 1834 — it settles what this town may say about the American Fur
+Company in 1835, which is nothing.
+
+**Nothing here is payload.** No structure, asset, resident or household record was
+changed by this reading. The readings that argue for such a change — Hubbard's dated
+1818 arrival against a resident record that grades the same year "reconstructed", the
+Factory House origin of `jb_beaubien_homestead`, the catalogue of trade goods, and the
+James / John H. Kinzie half-brotherhood — are written as proposals in T-0575 and carry
+their own tickets. **The chapter's latest Chicago event is 1828**, so it dates and
+corroborates and places nobody.
+
+**`coverage.json` declares this chapter as one `list` item and not as nine `page`
+items**, because the transcription marks no page breaks. The page RANGE is named in
+every locator; a page number would be an invention, and the gate would then be checking
+a fiction. The day this project reads the book itself, the declaration can become nine
+pages honestly.

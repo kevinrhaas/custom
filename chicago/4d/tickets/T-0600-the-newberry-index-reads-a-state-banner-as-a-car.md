@@ -1,5 +1,5 @@
 ---
-id: T-0594
+id: T-0600
 title: The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 state: open
 epic: META

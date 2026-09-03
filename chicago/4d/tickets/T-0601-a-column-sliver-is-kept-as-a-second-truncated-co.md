@@ -1,5 +1,5 @@
 ---
-id: T-0595
+id: T-0601
 title: A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 state: open
 epic: META
@@ -48,5 +48,5 @@ card; what it corrupts is the COUNT, not the locality.
 **Effort.** S. The measurement is a script over two committed text files and can be run before anything
 is changed.
 
-**Links:** T-0578 (which caught it) · T-0594 (the other two false-positive classes from the same draw) ·
+**Links:** T-0578 (which caught it) · T-0600 (the other two false-positive classes from the same draw) ·
 T-0562 (the parent read) · `precision_sample.json` block `2`, record `nbi_v02_1775`.

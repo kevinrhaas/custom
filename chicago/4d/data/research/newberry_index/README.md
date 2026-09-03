@@ -100,11 +100,11 @@ Volume 2's five are **two classes, and both are new**:
   `, III,` the pattern matched on is the wreck of a Newberry call number.
 
 Both are left in the records with their verdicts — a card struck where nobody can see it
-is a precision figure nobody can check — and **T-0594** carries the rules that would
+is a precision figure nobody can check — and **T-0600** carries the rules that would
 refuse them. The same draw found a third thing that is not a precision error: a column
 sliver is kept as a second, truncated copy of a card the neighbouring pass read in full
 (`nbi_v02_1775` is `nbi_v02_1779` again), because the passes deduplicate on (page,
-heading, body) and a truncated sliver never matches its full sibling. **T-0595** measures
+heading, body) and a truncated sliver never matches its full sibling. **T-0601** measures
 how many. And volume 2 showed the sample cannot measure recall: `nbi_v02_0937` is a
 Chicago card — 'Henrotin family. — Chicago, Ill. (Andreas, A. T.) 1884-6' — whose body
 lost the word 'Chicago', so it is bucketed Illinois-only and is missing from the 501. The
@@ -247,8 +247,9 @@ one raises it for a hand ruling; it never merges on it.
 The 319 leads stand on **542 distinct cards**, and the spend measure counts cards rather
 than leads because it dedupes on the anchor — a card standing under both the residents and
 the voters layer has been looked at once. So that ticket spent 542 and brought the domain's
-ceiling in `tools/research_spend_baseline.json` down from 2,619 to 2,077; volume 2's read
-and ruling together take it to **3,699** on 947 cards spent.
+ceiling in `tools/research_spend_baseline.json` down from 2,619 to 2,077, which PR #727's
+recount restated as 1,753 on 866 units; volume 2's read and ruling together take the
+ceiling to **3,148** on 1,498 spent.
 
 `acquisition_list.json` is the other half of the finding and is deliberately not a lead
 list: over both volumes, 274 Chicago and Cook County cards whose citation matched no work in

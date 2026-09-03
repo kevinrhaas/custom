@@ -5,11 +5,11 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 562,
+  "census_1840": 54,
   "church": 0,
-  "books": 0,
+  "books": 11,
   "directories": 4703,
-  "newberry_index": 3699
+  "newberry_index": 3148
  },
  "witness": {
   "civic": {
@@ -22,15 +22,15 @@
   },
   "census_1840": {
    "read": 562,
-   "spent": 0
+   "spent": 508
   },
   "church": {
    "read": 0,
    "spent": 0
   },
   "books": {
-   "read": 0,
-   "spent": 0
+   "read": 19,
+   "spent": 8
   },
   "directories": {
    "read": 4991,
@@ -38,7 +38,7 @@
   },
   "newberry_index": {
    "read": 4646,
-   "spent": 947
+   "spent": 1498
   }
  },
  "raised": [
@@ -50,11 +50,18 @@
    "why": "T-0571 (PR #714) read Fergus's 1843 Chicago directory — 2,695 entries — into dev while this branch was open. The read is legitimate and already merged; this branch inherits it and cannot spend it. The ceiling is raised to admit it, NOT to excuse it: T-0588 (rank 2) spends the directory on the businesses layer and T-0587 already spent 67 of it onto resident cards, so this domain has live spend tickets and the number should come back down."
   },
   {
-   "domain": "newberry_index",
-   "from": 2077,
-   "to": 3699,
+   "domain": "books",
+   "from": 0,
+   "to": 11,
    "date": "2026-09-03",
-   "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more, and it is the reason this raise is 1,622 and not 2,027. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND went up with the read, from 542 cards to 947, and what remains unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0596 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and count_spent sees only rulings carrying an id anchor, so crosswalk.json's one pass and five written refusals count as zero."
+   "why": "T-0575 read Hurlbut's Chicago Antiquities pages 28-36 — the American Fur Company chapter — as 19 claims, and ruled on 8 of them in data/research/books/crosswalk.json: 4 merges (Gurdon S. Hubbard, Jean Baptiste Beaubien, Jamie Kinzie, Mr. John Crafts) and 6 refusals, each anchored to the claim it adjudicates. THE OTHER 11 NAME NOBODY, AND THAT IS WHAT THIS CHAPTER IS. It is prose and mostly judgement: Hurlbut's 'Chicago was the port and point of a very limited district of distribution', Hubbard's 'this place never had been preeminent as a trading-post', Hubbard buying the company's Illinois interest in 1828, Astor selling the company in 1834, a batteau, a wine bill and a list of trade goods. This instrument measures NAME adjudication, so those 11 cannot be spent by it however well they are used, and pretending otherwise by inventing name-pairs would be the corruption the instrument exists to prevent. What they CAN be spent on is the town, and four tickets were opened in the same PR to do it: T-0594 (Hubbard's arrival date against a resident record that grades the same year 'reconstructed' citing nothing), T-0595 (the Factory House origin of jb_beaubien_homestead), T-0596 (a ruling in docs/LIBERTIES.md on how much fur-trade apparatus the scene may show, which the chapter argues should be LESS), T-0597 (the Kinzie half-brotherhood). The number does not come back down when those land, because they are not crosswalk rulings; it comes down only if a later reading of this same chapter finds names in it, and it should not be raised again for prose without this same argument being made afresh."
+  },
+  {
+   "domain": "newberry_index",
+   "from": 1753,
+   "to": 3148,
+   "date": "2026-09-03",
+   "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND rose with the read, from 866 to 1,498 under the counting T-0592 (PR #727) introduced. What stays unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0602 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and an unanchored crosswalk ruling counts as nothing, so crosswalk.json's one pass and five written refusals count as zero."
   }
  ],
  "lowered": [
@@ -65,5 +72,8 @@
    "date": "2026-09-03",
    "why": "T-0590 ruled on all 319 leads volume 1 offered, anchored to the 542 distinct cards they stand on: 240 refused, 79 candidates in a work this project already holds, 0 merges. Lowering a ceiling is free and is exactly what spending a domain does. The remaining 2,077 are volume 1's cards that stand under no lead at all - a surname nobody in this town carries - and they come down when a later ticket rules the surnames out in bulk or the volumes 2-4 tickets replace the arithmetic."
   }
- ]
+ ],
+ "unwritten_ceiling": {
+  "census_1840": 6
+ }
 }
