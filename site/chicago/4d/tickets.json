@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 3:43 PM",
+  "generated_ct": "Sep 3, 2026, 3:46 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8435,7 +8435,7 @@
     },
     {
       "id": "T-0513",
-      "title": "Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources",
+      "title": "742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources",
       "state": "open",
       "epic": "META",
       "requested_by": "owner",

@@ -129,16 +129,18 @@
 # --- is sequenced after never. T-0513 carried exactly that bar and stood 31 tickets deep while the
 # --- queue grew above it; T-0514/T-0515, which write the people, sat behind it.
 # ---
-# --- The case that measures it: hh_carpenter_philo.json carries ONE source on Philo Carpenter
-# --- (andreas_1884_v1) while the crosswalks have already ruled six for the same man — poll 1833,
-# --- tax 1833, poll 1834, the newspaper person, and two bridge tiers at VERY LIKELY 1835. The slot
-# --- exists, the evidence is adjudicated, and they have never been introduced.
+# --- The scale, counted across the layer: 742 of 825 household records cite exactly ONE source, 70
+# --- cite two, 13 cite three, and nothing cites more. Ninety per cent of the town rests on a single
+# --- source while the crosswalks hold rulings nobody has spent. hh_carpenter_philo.json is the
+# --- worked example, not the scope: it cites andreas_1884_v1 alone while the crosswalks have ruled
+# --- six for the same man — poll 1833, tax 1833, poll 1834, the newspaper person, and two bridge
+# --- tiers at VERY LIKELY 1835. The slot exists, the evidence is adjudicated, never introduced.
 # ---
 # --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
 # --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
 # --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
 # --- reaching a town person and 0 reaching their card; this band is what moves that number.
-T-0513 — Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
+T-0513 — 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
 # --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
 # --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
