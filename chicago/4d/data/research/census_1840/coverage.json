@@ -90,8 +90,9 @@
      "lines_with_an_entry": 28,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-5V.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0547"
     },
     {
      "index": 7,
@@ -102,8 +103,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 40",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-6H.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0548"
     },
     {
      "index": 8,
@@ -126,8 +128,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "footer_and_structure_read_cells_not_committed",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-6Q.json",
+     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0549"
     },
     {
      "index": 10,
