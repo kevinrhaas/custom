@@ -19,5 +19,5 @@
     "direct_1835_poll_hits": 2,
     "any_1833_1835_list_hit": 4
   },
-  "fields": ["page","row","serial","serial_candidate_block","serial_confidence","raw_scan_reading","preferred_name","alternate_candidates","name_confidence","correction_validation_basis","1833_poll","1833_tax","1834_poll","1835_poll","1835_residence_recommendation","1835_confidence","1835_basis","1839_directory_match","include_in_1835_core","research_priority","household_total","persons","children_lt_10","males","females","agriculture","commerce","manufactures_trades","inland_navigation","professions_engineering","foreigners_not_naturalized","illiterate_gt_21","source_image"]
+  "fields": ["page","row","serial","serial_candidate_block","serial_confidence","raw_scan_reading","preferred_name","alternate_candidates","name_confidence","correction_validation_basis","1833_poll","1833_tax","1834_poll","1835_poll","1835_residence_recommendation","1835_confidence","1835_basis","1839_directory_match","include_in_1835_core","research_priority","household_total","persons","children_lt_10","males","females","agriculture","commerce","manufactures_trades","inland_navigation","professions_engineering","foreigners_not_naturalized","illiterate_gt_21","source_image","source_kind","1840_collection_url","1839_directory_url"]
 }
