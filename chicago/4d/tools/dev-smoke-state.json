@@ -3,6 +3,70 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "3,13",
+      "parts": [
+        3,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 174,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 333,
+      "takenAt": "2026-09-03T16:07:01.643Z",
+      "ref": "steward/t-0555-norris-1844-directory",
+      "commit": "adaed441406f",
+      "devCommit": "95f8a81cc64e",
+      "treeHash": "sha256:859f87267d87ab06",
+      "treeDirty": false,
+      "changelogHash": "sha256:228472cda0ec75ee",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.6,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_desktop.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,13",
+      "parts": [
+        3,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 174,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 176,
+      "takenAt": "2026-09-03T16:07:01.564Z",
+      "ref": "steward/t-0555-norris-1844-directory",
+      "commit": "adaed441406f",
+      "devCommit": "95f8a81cc64e",
+      "treeHash": "sha256:859f87267d87ab06",
+      "treeDirty": false,
+      "changelogHash": "sha256:228472cda0ec75ee",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.6,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_mobile.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12-13",
       "parts": [
         12,

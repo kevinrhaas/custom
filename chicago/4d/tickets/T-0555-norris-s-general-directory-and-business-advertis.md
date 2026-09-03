@@ -1,7 +1,7 @@
 ---
 id: T-0555
 title: Norris's General Directory and Business Advertiser of Chicago for 1844 (HathiTrust chi.56111136): parse residents, businesses and occupations, date-flag them as later evidence, and use them to validate and enrich the 1835 residences and businesses
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 10:45:06 AM CT
 blocked_on: null
 needs_bake: false
 ---
