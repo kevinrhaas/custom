@@ -4,10 +4,9 @@
 
 - **T-0429** Open blk_south_water_lasalle: 8 roofs of headroom on three free lots · needs-bake · claimed · run 8/30/2026, 1:51:13 AM CT
 
-## In the queue, in the owner’s order (148)
+## In the queue, in the owner’s order (147)
 
 - **T-0504** 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial · **OWNER**
-- **T-0505** Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names · **OWNER**
 - **T-0575** Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried · **OWNER**
 - **T-0557** The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures · **OWNER**
 - **T-0578** The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at · **OWNER**
@@ -221,9 +220,10 @@
 - **T-0562** The Genealogical Index of the Newberry Library (4 vols., Internet Archive chicago1835-newberry-genealogical-index): read the index for every 1835 surname and every Chicago, Cook County and Illinois citation, and follow the pointers into the genealogies that date and place residents, households and businesses · **OWNER** — T-0570, T-0578, T-0579, T-0580
 - **T-0569** Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated · **OWNER** — T-0587, T-0588
 
-## Finished, newest first — 100 of 325; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 326; the older ones are in the ticket files (100)
 
 - **T-0590** Volume 1 of the Newberry index offered 319 leads and made 0 merges: rule on every lead before volumes 2-4 add more · **OWNER** · Sep 3, 2026, 2:58 PM · [PR #723](https://github.com/kevinrhaas/custom/pull/723)
+- **T-0505** Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names · **OWNER** · Sep 3, 2026, 2:55 PM · [PR #722](https://github.com/kevinrhaas/custom/pull/722)
 - **T-0423** G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now · Sep 3, 2026, 2:07 PM · [PR #720](https://github.com/kevinrhaas/custom/pull/720)
 - **T-0574** Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents · **OWNER** · Sep 3, 2026, 2:04 PM · [PR #718](https://github.com/kevinrhaas/custom/pull/718)
 - **T-0573** Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836 · **OWNER** · Sep 3, 2026, 1:59 PM · [PR #719](https://github.com/kevinrhaas/custom/pull/719)
@@ -322,5 +322,4 @@
 - **T-0272** The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it · needs-bake · 2026-08-29 · [PR #534](https://github.com/kevinrhaas/custom/pull/534)
 - **T-0383** S. B. Cobb's saddlery at Lake and Canal still letters the firm the American says dissolved in February 1835 · 2026-08-29 · [PR #533](https://github.com/kevinrhaas/custom/pull/533)
 - **T-0336** The 31 July 1835 letter list, standing in all four August Democrats · **OWNER** · 2026-08-29 · [PR #532](https://github.com/kevinrhaas/custom/pull/532)
-- **T-0376** The documented tradespeople the papers name, whose trade the town never invented, join it as residents · **OWNER** · 2026-08-29 · [PR #531](https://github.com/kevinrhaas/custom/pull/531)
 
