@@ -3,7 +3,8 @@
  "domain": "newberry_index",
  "volumes": [
   1,
-  2
+  2,
+  3
  ],
  "ticket": "T-0590",
  "generated_by": "tools/rule_newberry_leads.py --write",
@@ -11,8 +12,8 @@
  "_doc": "GENERATED. The Chicago and Cook County cards, over every volume read, whose citation the works table did not reach. An ACQUISITION LIST, not leads: each names a printed work that this project cannot open, and nothing here says which work. Deliberately keyed `cards` and not `records`, because these are already counted as read under records/entries_vol_NN.json and a second copy would read as a second reading in tools/measure_research_spend.py.",
  "note": "T-0581, T-0582 and T-0583 already exist for three of the works the Chicago cards name. This residue is the rest, and it is the weakest part of the volume-1 reading: the photostat's text layer mangles author names so badly that a citation reading '(Ayidrciu, K T.) 1884' cannot be assigned to a work without opening the index page again. The publication year is what survives, so it is carried and nothing is inferred from it.",
  "counts": {
-  "cards": 274,
-  "with_a_year_on_the_card": 60
+  "cards": 369,
+  "with_a_year_on_the_card": 81
  },
  "cards": [
   {
@@ -5469,6 +5470,1896 @@
     ],
     "index_page": 1015,
     "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0066",
+   "as_read": "Lloyd | mm_ Chicago, 111. Second Proib. Ch„ 1847^2. (Granf",
+   "surname_key": "Lloyd",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1847"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     137,
+     138
+    ],
+    "index_page": 27,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0091",
+   "as_read": "Long | . Chicago,",
+   "surname_key": "Long",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     187,
+     188
+    ],
+    "index_page": 37,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0095",
+   "as_read": "i np | — Cook Co., Ijl..at Stilt Book Co., Pub,) 1900, Lo",
+   "surname_key": "i np",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     195,
+     196
+    ],
+    "index_page": 37,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0115",
+   "as_read": "LoVd | — Chicago, III. Second Presb. Ch., 1842-92. (Grant,",
+   "surname_key": "LoVd",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     235,
+     236
+    ],
+    "index_page": 46,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_0126",
+   "as_read": "Loveleaa | Cook Co",
+   "surname_key": "Loveleaa",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     257,
+     258
+    ],
+    "index_page": 58,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0156",
+   "as_read": "Lukona family Lull | Chicago,",
+   "surname_key": "Lukona family Lull",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     317,
+     318
+    ],
+    "index_page": 74,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0157",
+   "as_read": "Lukona | -Chicago, II",
+   "surname_key": "Lukona",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     319,
+     320
+    ],
+    "index_page": 74,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0158",
+   "as_read": "Lukona | . Harrison Co,, 0,. (Hanna, C.-A.) 1900. ,00« » Cook Co.,",
+   "surname_key": "Lukona",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     321,
+     322
+    ],
+    "index_page": 74,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0190",
+   "as_read": "Lyne, or Lynes | Spotsylvania Co., Va. (Crorier, W.A.jEd.) i Chicago",
+   "surname_key": "Lyne, or Lynes",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     385,
+     386
+    ],
+    "index_page": 86,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0195",
+   "as_read": "Lyon | < Chicago, Hi. lldOUC, J. anu kir,..aii(l, J.) 1CJ5>",
+   "surname_key": "Lyon",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     395,
+     396
+    ],
+    "index_page": 87,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0302",
+   "as_read": "McDonald | - Chicago, III, Second Presb. Ch., 1842-92. (Orsai",
+   "surname_key": "McDonald",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     609,
+     610
+    ],
+    "index_page": 117,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0309",
+   "as_read": "MoDourall | ' ___Va.,loumaliofHioieofBurxetie.,l6l9-l776 í'1-n.-t-.,; P — Chicago",
+   "surname_key": "MoDourall",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     623,
+     624
+    ],
+    "index_page": 120,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0335",
+   "as_read": "McGraw | Chicago, III., Dir-ctory, 1839. fFprgus h,st, ser",
+   "surname_key": "McGraw",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1839"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     675,
+     676
+    ],
+    "index_page": 129,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0353",
+   "as_read": "Mackay | Chicago, Iii. l i i ., ' i « j á Sitkkiiili W 1395'",
+   "surname_key": "Mackay",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     711,
+     712
+    ],
+    "index_page": 137,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0354",
+   "as_read": "Mackay | Cook Co., Ill, (Anil,can, A. I.) ,334 ,450.",
+   "surname_key": "Mackay",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     713,
+     714
+    ],
+    "index_page": 137,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0437",
+   "as_read": "Mahnffav | Mague family. Cook Co",
+   "surname_key": "Mahnffav",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     879,
+     880
+    ],
+    "index_page": 168,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0456",
+   "as_read": "Uallory | Cook Co",
+   "surname_key": "Uallory",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     917,
+     918
+    ],
+    "index_page": 177,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0464",
+   "as_read": "ltanlor | Chicago, III. flUsts, J, and Klrtlend, J.) tS95i",
+   "surname_key": "ltanlor",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     933,
+     934
+    ],
+    "index_page": 181,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0467",
+   "as_read": "Maniorro | _ _ Chicago, III. Second Presb. Ch , 1843-92, (Grant",
+   "surname_key": "Maniorro",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1843"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     939,
+     940
+    ],
+    "index_page": 181,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0473",
+   "as_read": "-Mann | Chicago » v",
+   "surname_key": "-Mann",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     951,
+     952
+    ],
+    "index_page": 183,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_0474",
+   "as_read": "Mann | Chicago, III. ('.Void, D, IV,) 13311 543.",
+   "surname_key": "Mann",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     953,
+     954
+    ],
+    "index_page": 183,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_0537",
+   "as_read": "Meson | _ _ _ Chicago, III. Second Presb. Ch., »842-92. (G rant.",
+   "surname_key": "Meson",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1079,
+     1080
+    ],
+    "index_page": 223,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0547",
+   "as_read": "Mathor | Chicago, III. Second Presb. Ch., 1842-92. (Grant, —— G r o t o n",
+   "surname_key": "Mathor",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1099,
+     1100
+    ],
+    "index_page": 231,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0557",
+   "as_read": "Mattoson | Chicago, Iii, (Acorcas, A. i.) , o4-6i M 1-3.",
+   "surname_key": "Mattoson",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1119,
+     1120
+    ],
+    "index_page": 236,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0641",
+   "as_read": "STorrill | . , Chicago, III. Second Presb. Ch, 1842-9;. (Grant,",
+   "surname_key": "STorrill",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1287,
+     1288
+    ],
+    "index_page": 275,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0688",
+   "as_read": "t l l | Chicago, IH, (An.ccas, f„ T.) 18344 W .",
+   "surname_key": "t l l",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1381,
+     1382
+    ],
+    "index_page": 297,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0755",
+   "as_read": "iicxffntt | I Cook Co., III. (Anerent, A, 1.) 1004 iC4C,",
+   "surname_key": "iicxffntt",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1515,
+     1516
+    ],
+    "index_page": 325,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0770",
+   "as_read": "Mont -onery | Chicago, III, Second Presh . , , .3i ,Grant",
+   "surname_key": "Mont -onery",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1545,
+     1546
+    ],
+    "index_page": 336,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_0776",
+   "as_read": "I l'oody | — Chicago, III. a-,:,eas, T.l !884-6i 1-3.",
+   "surname_key": "I l'oody",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1557,
+     1558
+    ],
+    "index_page": 340,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_0790",
+   "as_read": "Mooro | Chicago, III. (Wood, 0. W.) 1881: 270.",
+   "surname_key": "Mooro",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1881"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1585,
+     1586
+    ],
+    "index_page": 344,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0805",
+   "as_read": "Moron | ». li 2. Chicago",
+   "surname_key": "Moron",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1615,
+     1616
+    ],
+    "index_page": 351,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0806",
+   "as_read": "Moron | • . Ea.Cirt »-7.0-44»-^ Chicago, I",
+   "surname_key": "Moron",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1617,
+     1618
+    ],
+    "index_page": 351,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0821",
+   "as_read": "MerpanttViW | Chicago, III, ( „ r , , M",
+   "surname_key": "MerpanttViW",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1647,
+     1648
+    ],
+    "index_page": 360,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_0835",
+   "as_read": "Morrison | Chicago, III, (ni,., c l , hi t.i lao-r-vll 1—3.",
+   "surname_key": "Morrison",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1675,
+     1676
+    ],
+    "index_page": 368,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0836",
+   "as_read": "ori-iron | , .Chicago, li,, tijtie;, ,, ei» l.itkii Mor",
+   "surname_key": "ori-iron",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1677,
+     1678
+    ],
+    "index_page": 368,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0837",
+   "as_read": "Uorrlson | Chicago, III. (V.ood, tl, V.,1 lob.: 394. Uor",
+   "surname_key": "Uorrlson",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1679,
+     1680
+    ],
+    "index_page": 368,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0843",
+   "as_read": "UoTMiMoeB NAleejiOr De Unlae | C-1897]! l i l M T . 1 6 7 4 , also Index, Chicago",
+   "surname_key": "UoTMiMoeB NAleejiOr De Unlae",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1897"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1691,
+     1692
+    ],
+    "index_page": 371,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0848",
+   "as_read": "MorBon | . Cook Co.",
+   "surname_key": "MorBon",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1701,
+     1702
+    ],
+    "index_page": 375,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_0852",
+   "as_read": "Morton f | Chicago, lá. ( K , . : , , I , RShlj'nIj j . ) |B«s,",
+   "surname_key": "Morton f",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1709,
+     1710
+    ],
+    "index_page": 376,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0888",
+   "as_read": "Muir | Cook Co., III. (Ant.-CL-., K T.) 1884 i450.",
+   "surname_key": "Muir",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1781,
+     1782
+    ],
+    "index_page": 394,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0918",
+   "as_read": "Murphy | • Chicago, lil. (Wood, Ü. .uo.. 394,",
+   "surname_key": "Murphy",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1841,
+     1842
+    ],
+    "index_page": 405,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0930",
+   "as_read": "Murry f t | Chicago,'I;....' . .' 1895:",
+   "surname_key": "Murry f t",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1895"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1865,
+     1866
+    ],
+    "index_page": 409,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_0936",
+   "as_read": "jMyriok | « Cook Co,, III. Utratiitaa, ,.. ï.j 1884 • « « •",
+   "surname_key": "jMyriok",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1877,
+     1878
+    ],
+    "index_page": 415,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1045",
+   "as_read": "Noble | See indlcet, F 8324.11 Chicago",
+   "surname_key": "Noble",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2095,
+     2096
+    ],
+    "index_page": 463,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1046",
+   "as_read": "Noble | See index.) E 483.61 Chicago",
+   "surname_key": "Noble",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2097,
+     2098
+    ],
+    "index_page": 463,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1047",
+   "as_read": "Noble | Í J. Chicago",
+   "surname_key": "Noble",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2099,
+     2100
+    ],
+    "index_page": 463,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1048",
+   "as_read": "Noble | 254. K 69.2 _ _ Cook Co",
+   "surname_key": "Noble",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2101,
+     2102
+    ],
+    "index_page": 463,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1052",
+   "as_read": "oble | Chicago, III., Direr lory, 1839. (Fergus Bit s i",
+   "surname_key": "oble",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1839"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2109,
+     2110
+    ],
+    "index_page": 463,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1060",
+   "as_read": "lorield | J Cook Co,, 10, ,;",
+   "surname_key": "lorield",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2125,
+     2126
+    ],
+    "index_page": 468,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1088",
+   "as_read": "Novate | .Cook Co.. k (La Stile Book Co,, Pub.) 1900.",
+   "surname_key": "Novate",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2181,
+     2182
+    ],
+    "index_page": 480,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1123",
+   "as_read": "Ogden | — - Chicago, 1 1 1 , . Create and conta of",
+   "surname_key": "Ogden",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2251,
+     2252
+    ],
+    "index_page": 496,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1136",
+   "as_read": "Oliver | — Chicago, 1 1 1 . , C r e a t e and o o a t a o f",
+   "surname_key": "Oliver",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2277,
+     2278
+    ],
+    "index_page": 502,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1145",
+   "as_read": "Olmeted | Cook Co.,'lil, (And,dút, ,,, „4 , Wald",
+   "surname_key": "Olmeted",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2295,
+     2296
+    ],
+    "index_page": 505,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1151",
+   "as_read": "O'lleil | Chicago,",
+   "surname_key": "O'lleil",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2307,
+     2308
+    ],
+    "index_page": 508,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1207",
+   "as_read": "Paft, | — Chicago, 1,1. ! , , o s , , L ^ l 1 M r k ,, ,n (",
+   "surname_key": "Paft,",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2419,
+     2420
+    ],
+    "index_page": 534,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1218",
+   "as_read": "Panooet | , l l l i r t e i e . K a r l y Chlcaro and. (Chicago I",
+   "surname_key": "Panooet",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2441,
+     2442
+    ],
+    "index_page": 549,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1231",
+   "as_read": "Parkor | c. Cong, Chicago, Iii. i t u * , , ; , „ 3 3 |",
+   "surname_key": "Parkor",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2467,
+     2468
+    ],
+    "index_page": 556,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1267",
+   "as_read": "J Patton r | I Chicago,",
+   "surname_key": "J Patton r",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2539,
+     2540
+    ],
+    "index_page": 586,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1285",
+   "as_read": "Poabody | Chicago, . ' . . . !.! ' ? i 3 l I Peebod",
+   "surname_key": "Poabody",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2575,
+     2576
+    ],
+    "index_page": 594,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1289",
+   "as_read": "Peacock | — _ Chicago, in., f . . . , . . } - , idöa. |re__ ,. , 11",
+   "surname_key": "Peacock",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2583,
+     2584
+    ],
+    "index_page": 596,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1305",
+   "as_read": "Pearaon | Chicago, in,,'in.,.. , , L y , . . F 860 . H r",
+   "surname_key": "Pearaon",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2615,
+     2616
+    ],
+    "index_page": 602,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1312",
+   "as_read": "T Peck | Chicago, ill., Ui .",
+   "surname_key": "T Peck",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2629,
+     2630
+    ],
+    "index_page": 606,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1361",
+   "as_read": "Perrv | . — Chicago, Hi;, D i r r c l r r y „ l 8 3 9 , (Fergus M ' l , s-r",
+   "surname_key": "Perrv",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2727,
+     2728
+    ],
+    "index_page": 637,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1446",
+   "as_read": "Plereon | Chicago, III. ,V,csc:, I __\\ Fir land, J.) 1999. I \" irbr",
+   "surname_key": "Plereon",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2897,
+     2898
+    ],
+    "index_page": 677,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1472",
+   "as_read": "Pitkin | _ - Chicago, III. Second Presb. Ch., 1842-93 rr ,",
+   "surname_key": "Pitkin",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2949,
+     2950
+    ],
+    "index_page": 689,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1494",
+   "as_read": "Pohor | Cook Co., , 7 3 a P",
+   "surname_key": "Pohor",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2993,
+     2994
+    ],
+    "index_page": 703,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1562",
+   "as_read": "Powers | Chicago, »I, ( A , f,) , g .n 0 f e i l ( A B4 8|",
+   "surname_key": "Powers",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3129,
+     3130
+    ],
+    "index_page": 738,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1579",
+   "as_read": "Prentie | Chicago",
+   "surname_key": "Prentie",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3163,
+     3164
+    ],
+    "index_page": 749,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1655",
+   "as_read": "Purlngton,or Purinton | k—Chicago, III, Second Presb. Ch., 1842-92. (Grent",
+   "surname_key": "Purlngton,or Purinton",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3315,
+     3316
+    ],
+    "index_page": 777,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1678",
+   "as_read": "Quinlan | _ A l w a t e r fam. (Atwaler, F.) 1901, Chicago,",
+   "surname_key": "Quinlan",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3361,
+     3362
+    ],
+    "index_page": 789,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1679",
+   "as_read": "Quinlan | __ Culls fam. (Ho vard, C. H . C.) 1892. See Indox I I . — » Chicago,",
+   "surname_key": "Quinlan",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1892"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3363,
+     3364
+    ],
+    "index_page": 789,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1681",
+   "as_read": "inlan | Chicago, lir. Second FVetb. C h „ 1842-92. (Graal,",
+   "surname_key": "inlan",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3367,
+     3368
+    ],
+    "index_page": 789,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1694",
+   "as_read": "Rahm | . Cook Co,, III. \",- ' , 7. T.) 1384 tS45,",
+   "surname_key": "Rahm",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3393,
+     3394
+    ],
+    "index_page": 794,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1703",
+   "as_read": "Raleton | — Chicago 111 Second Pr.sb. Ch, ,842-92. (Gr.nl.",
+   "surname_key": "Raleton",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3411,
+     3412
+    ],
+    "index_page": 796,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1708",
+   "as_read": "Ranchor, | a n o h i c o u r t , Samlana d e . See Chicago, II",
+   "surname_key": "Ranchor,",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3421,
+     3422
+    ],
+    "index_page": 799,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1735",
+   "as_read": "Raamunnnn r | Cook Co., III. S : ' ; . - . I.) 1384'763 _",
+   "surname_key": "Raamunnnn r",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3475,
+     3476
+    ],
+    "index_page": 810,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1764",
+   "as_read": "hnymorid | • Chicago, III. Second Presb. Ch., 1842-92. (Grant,",
+   "surname_key": "hnymorid",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3533,
+     3534
+    ],
+    "index_page": 818,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1813",
+   "as_read": "Retehmnn | —Pennlylrania. Artliivet, 2, Mr. Í16I4- J, IBlia-313^7 ; . Chicago,",
+   "surname_key": "Retehmnn",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3631,
+     3632
+    ],
+    "index_page": 837,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1865",
+   "as_read": "Rice | 3. ÏJ 384.31 Chicago,",
+   "surname_key": "Rice",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3735,
+     3736
+    ],
+    "index_page": 855,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1866",
+   "as_read": "Rice | Chicago",
+   "surname_key": "Rice",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3737,
+     3738
+    ],
+    "index_page": 855,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1890",
+   "as_read": "Richalaon | — Cook Co.. I",
+   "surname_key": "Richalaon",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3785,
+     3786
+    ],
+    "index_page": 871,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1902",
+   "as_read": "Ridonburr r | Cook Co., III. (Aner i., i-,t» :763. R l d o r , o r Ryder",
+   "surname_key": "Ridonburr r",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3809,
+     3810
+    ],
+    "index_page": 876,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1947",
+   "as_read": "Robbins | Chicago. 1,1. (An,:,t,-.. It, T.l 1854-61 1 . 5 , « e e",
+   "surname_key": "Robbins",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1854"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3899,
+     3900
+    ],
+    "index_page": 895,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1951",
+   "as_read": "Roberta | Roberto family. Chicago",
+   "surname_key": "Roberta",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3907,
+     3908
+    ],
+    "index_page": 899,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1955",
+   "as_read": "erts | Chicago, I I I , i Vlosct, 1, _ Kir.land, ;.) 1395:",
+   "surname_key": "erts",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3915,
+     3916
+    ],
+    "index_page": 899,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1958",
+   "as_read": "borta | Cook Co., I I I . (Anu.ci., /.. f . j ,884 t452,",
+   "surname_key": "borta",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3921,
+     3922
+    ],
+    "index_page": 899,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v03_1963",
+   "as_read": "Robertson | obertson Femily. * —.Chicago, III",
+   "surname_key": "Robertson",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3931,
+     3932
+    ],
+    "index_page": 903,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1964",
+   "as_read": "Robertson r | A,„.,i,,n li-*, \"i: .( raïfiolw-b^—iita-y sooi-tica _* Cook Co.",
+   "surname_key": "Robertson r",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3933,
+     3934
+    ],
+    "index_page": 903,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_1987",
+   "as_read": "Rockwell | Chicago, Hi. fjicces, 1, and Kir'JaeaJ, i.) I895i",
+   "surname_key": "Rockwell",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3979,
+     3980
+    ],
+    "index_page": 918,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_1995",
+   "as_read": "Rogera | , j _ Chicago, ill. Second Presb. Ch., 1842-92. (Grant, Main",
+   "surname_key": "Rogera",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3995,
+     3996
+    ],
+    "index_page": 925,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_1999",
+   "as_read": "Rogera | — - Chicago, 1 1 1 . , Croats and conta or",
+   "surname_key": "Rogera",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     4003,
+     4004
+    ],
+    "index_page": 925,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v03_2045",
+   "as_read": "Rounds | Cook Co., III. (Aod.oas, A. TJ 1884 i463.",
+   "surname_key": "Rounds",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     4095,
+     4096
+    ],
+    "index_page": 951,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_2068",
+   "as_read": "Ruckor | Chicago, 111. t f t e s , 1, and niri-l •ill, 1.) 18951",
+   "surname_key": "Ruckor",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     4141,
+     4142
+    ],
+    "index_page": 964,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v03_2121",
+   "as_read": "n family, Salisbury | . Chicago, III, (A",
+   "surname_key": "n family, Salisbury",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     4247,
+     4248
+    ],
+    "index_page": 997,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v03_2130",
+   "as_read": "nplo | Chicago, III. (A",
+   "surname_key": "nplo",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     4265,
+     4266
+    ],
+    "index_page": 1003,
+    "column": 2
    }
   }
  ]

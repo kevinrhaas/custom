@@ -42,8 +42,8 @@ This is research, not payload. `tools/publish.sh` does not copy `data/research/`
 The four PDFs are ~200 MB each and are **not committed**. Fetch one to a scratch path and
 run:
 
-    python3 tools/read_newberry_index.py --extract --volume 2 --pdf /tmp/newberry_v2.pdf
-    python3 tools/read_newberry_index.py --parse   --volume 2
+    python3 tools/read_newberry_index.py --extract --volume 3 --pdf /tmp/newberry_v3.pdf
+    python3 tools/read_newberry_index.py --parse   --volume 3
     python3 tools/read_newberry_index.py --check
 
 The volumes carry a text layer, so no OCR pass of our own is needed — but `pdftotext
@@ -77,13 +77,14 @@ drawn on one volume is not a measurement of another.
 |---|---|---|---|---|---|
 | 1 (A-C) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 | 2 (C-H) | 40 | 35 | **0.875** | 20/20 | 15/20 |
+| 3 (H-P) | 40 | 36 | **0.900** | 20/20 | 16/20 |
 
-**The Chicago and Cook stratum has not missed yet** — 40 of 40 across both volumes —
-and every bad keep in either draw is in the Illinois-only stratum. That matters because
+**The Chicago and Cook stratum has not missed yet** — 60 of 60 across three volumes —
+and every bad keep in any draw is in the Illinois-only stratum. That matters because
 the Chicago and Cook County cards are the ones `follow_up.json` ranks the reading order
 on. The draws are stratified 20/20 and the volumes are not, so weighted by the
-population volume 2's estimate is 0.813 and the 0.875 above is the figure comparable
-with volume 1's.
+population volume 2's estimate is 0.813 and volume 3's is 0.849; the figures in the
+table are the ones comparable with each other.
 
 Volume 1's one bad keep is `nbi_v01_2226`, whose entire line is `I II.`: three strokes
 and a stop is the shape of the abbreviation and on that card it is the only thing there.
@@ -98,6 +99,38 @@ Volume 2's five are **two classes, and both are new**:
 - **A call number read as a state** (the fifth). `nbi_v02_1106` is 'Holden family. —
   Hapgood fam. (Hapgood, W.) 1898. See index. E. 7. H 21', naming no locality; the
   `, III,` the pattern matched on is the wreck of a Newberry call number.
+
+Volume 3's four are **one old class and three new ones, and every one of them is text
+that is not on the card**:
+
+- **A volume number in roman** — `nbi_v03_1443`, 'Pierce family. — John Dwight. (Dwight,
+  B. W.) 1874. See Index III.' *See index III.* is a standing formula on these cards and
+  points at the third volume of that genealogy's index; `, III.` is exactly the shape of
+  `, Ill.`. It is the regnal problem in a second dress and it is commoner — two of the
+  four cards in that one rendered window carry the formula.
+- **The neighbouring column's sliver** — `nbi_v03_0913`, 'Murphy family. — Murray, T.H.
+  Some voices from ye olden time. 1904', a card that names no place at all. The `Illinoi`
+  that made it a keep is the first word of column 3's *Murphy family. — Illinois.* card,
+  caught in the 200-point window over column 2. The same bleed put the wrong surname on
+  `nbi_v03_1154`, an Onion card filed under the neighbour's *Onslow* — a good keep with a
+  key that can never join a lead. Deduplication on (page, heading, body) cannot catch
+  either, because a hybrid of two columns is not a duplicate of anything.
+- **A stray mark at the start of a line** — `nbi_v03_1870` is a NEW ENGLAND card,
+  'Richards family. — New England, First Settlers of. (Farmer, J.) 1829.', whose reading
+  opens `lil.`. That is on no card; the `illinois_abbreviated` pattern anchors on
+  start-of-line as well as on a comma, and the rule above the card satisfies it. Volume
+  2's banner class and this are the same failure at two different sources.
+- **The regnal class, through the rule written to stop it** — `nbi_v03_0653`,
+  'Messendene family. — England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I.
+  1865.)', read by the photostat as `Calendafium, Han, iii. and i n .`. `REGNAL` wants
+  the regnal name and a capitalised numeral; here neither survived. Volume 1 struck 35
+  cards with that rule and volume 3 shows what it still lets through.
+
+One more thing volume 3 shows that is not a precision error: on the widest pages the
+printed column 3 begins left of the 519-point crop, and its headings lose their opening
+letters — `nbi_v03_0849` is filed under `rtenoan` for a Mortensen card whose Cook County
+citation is read correctly. The crop comment already records that page widths run 689 to
+733 points; that is what the widest of them cost.
 
 Both are left in the records with their verdicts — a card struck where nobody can see it
 is a precision figure nobody can check — and **T-0600** carries the rules that would
@@ -124,9 +157,9 @@ heading verbatim.
 
 **Citations are clustered, and more than half of them are not.** The works table in the
 tool matches a citation by pattern or by similarity to one canonical spelling. It reaches
-1,928 of the 4,566 cards read so far. The 2,638 it does not reach are overwhelmingly Illinois
+2,802 of the 6,697 cards read so far. The 3,895 it does not reach are overwhelmingly Illinois
 COUNTY histories — Chapman, LeBaron, Brink & McDonough, Baldwin, Murray Williamson,
-Power — published by houses nobody has written a pattern for, and only **274** of them
+Power — published by houses nobody has written a pattern for, and only **369** of them
 name Chicago or Cook County. That residue is the weakest part of this reading and it is
 counted rather than hidden: `follow_up.json` reports it in
 `chicago_or_cook_cards_matching_no_known_work`.
@@ -172,53 +205,81 @@ carried Andrews, Bailey, Brown, Burns and Butler, which the Chicago works cite h
 The Chicago-and-Cook share is nearly identical: 25.2 per cent of volume 2's kept cards
 against 22.5 per cent of volume 1's.
 
-## The reading order, over volumes 1 and 2
+## Volume 3 (H-P), read 2026-09-03 under T-0579
+
+1,003 pages cropped and walked · **68,552 cards** assembled · **2,131 kept** for naming
+Chicago, Cook County or Illinois · of those **520 name Chicago or Cook County** ·
+1,475 distinct surname keys · **201 leads** across four layers (residents 89, census
+1840 60, voters 44, structures 8) · **0 merges**.
+
+The most cards assembled of any volume so far (68,552 against 58,488 and 58,589) on
+1,003 pages, and the fewest kept per card: H-P is the densest stretch of the alphabet
+and it is also the least Illinois one. The Chicago-and-Cook share, **24.4 per cent** of
+the kept cards, sits between volume 1's 22.5 and volume 2's 25.2 — three volumes now
+agree that about a quarter of what this index files under Illinois is filed under
+Chicago or Cook County.
+
+Volume 3's own contribution to the reading order is Andreas again, and one card that is
+not: `nbi_v03_1030`, 'Nicholson family. — Chicago, Ill., Directory, 1839. (Fergus hist.
+ser. 1876. no. 2.)', which turned up in the forty-card draw and points at the work
+T-0506 is extracting.
+
+## The reading order, over volumes 1 to 3
 
 Ranked on Chicago and Cook County cards standing on a surname this project already holds:
 
 | work | cards | Chicago/Cook | on a lead surname | held? |
 |---|---|---|---|---|
-| Andreas, *History of Chicago* (1884-6) | 760 | 579 | 123 | yes — `andreas_1884_v1` |
-| **Moses and Kirkland, *History of Chicago, Illinois* (1895)** | 202 | 132 | **35** | **no** |
-| Moses, *Illinois, historical and statistical* (1888-92) | 276 | 109 | 27 | no |
-| La Salle Book Co., Cook County biographical volumes (1900, 1909) | 125 | 57 | 10 | no |
-| Fergus, *Chicago directory for 1839* | 26 | 22 | 7 | yes |
-| Reynolds, *The pioneer history of Illinois* (1887) | 30 | 1 | 1 | no |
-| Hurlbut, *Chicago antiquities* (1881) | 2 | 2 | 0 | no |
+| A. T. Andreas, *History of Chicago, from the earliest period to the present time* (1884-1886) | 1109 | 895 | 207 | yes — `andreas_1884_v1` |
+| **John Moses and Joseph Kirkland, *History of Chicago, Illinois* (1895)** | 296 | **192** | 68 | **no** |
+| John Moses, *Illinois, historical and statistical* (1888-92) | 416 | 169 | 97 | no |
+| La Salle Book Co., *The biographical and portrait volumes of Cook County* (1900, 1909) | 179 | 91 | 34 | no |
+| Robert Fergus, *Chicago directory for 1839* (Fergus' Historical Series, 1876) | 31 | 27 | 13 | yes — `fergus_chicago_directory_1839` |
+| John Reynolds, *The pioneer history of Illinois* (1887) | 46 | 1 | 16 | no |
+| H. F. Kett & Co., *County histories published by H. F. Kett & Co. and its successors* (1877-1880) | 708 | 2 | 117 | no |
+| Henry H. Hurlbut, *Chicago antiquities* (1881) | 2 | 2 | 0 | no |
+| Illinois Society, S.A.R., *Sons of the American Revolution year book* (1896) | 154 | 0 | 32 | no |
+| Century Publishing and Engraving Co., *Encyclopedia of biography of Illinois* (1892-1902) | 57 | 0 | 11 | no |
 
-**Volume 2 did not change the finding, it doubled it.** The index's Chicago cards point
-at Andreas more than at everything else together, and this project already has Andreas.
-The largest Chicago work it points at that this project does **not** hold is still Moses
-and Kirkland's *History of Chicago* (1895): 132 Chicago and Cook County cards over the
-two volumes, 35 of them under surnames already in the residents, the poll lists or the
-1840 census — up from 76 and 16 on volume 1 alone. Both volumes are on the Internet
+**Three volumes have not changed the finding, they have tripled it.** The index's Chicago
+cards point at Andreas more than at everything else together — 895 of the 1,602 Chicago
+and Cook County cards read so far — and this project already has Andreas. The largest
+Chicago work it points at that this project does **not** hold is still Moses and
+Kirkland's *History of Chicago, Illinois* (1895): 192 Chicago and Cook County cards over
+the three volumes, up from 132 on two and 76 on one. Both volumes are on the Internet
 Archive (`historyofchicago01mose`, `historyofchicagov2mose`).
 
-## Every lead is ruled on, over both volumes
+Of the 6,697 cards read, **3,895** cite a work no pattern in the table reaches, and only
+**369** of those name Chicago or Cook County. `acquisition_list.json` carries them.
 
-T-0590 built the ladder and ruled volume 1's 319 leads; T-0578 read volume 2 and ruled the 227 it adds
-under the same ladder, in the same PR, because T-0590's gate fails the moment a volume offers a lead
-nobody has answered. `tools/rule_newberry_leads.py` reads every `entries_vol_*.json` now rather than
-volume 1's alone.
+## Every lead is ruled on, over three volumes
 
-| outcome | vol 1 (T-0590) | both volumes (T-0578) |
-|---|---:|---:|
-| leads ruled | 319 | **546** |
-| cards anchored | 542 | **947** |
-| candidate — `testable_in_a_held_work` | 79 | **146** |
-| refused — `ocr_variant_only` | 129 | 208 |
-| refused — `locality_absent` | 90 | 144 |
-| refused — `surname_only_chicago` | 21 | 48 |
-| **matched** | **0** | **0** |
-| discriminators found | 0 | 0 |
+T-0590 built the ladder and ruled volume 1's 319 leads; T-0578 read volume 2 and ruled the 227 it adds;
+T-0579 read volume 3 and ruled the 191 it adds — each under the same ladder and in the same PR as its
+read, because T-0590's gate fails the moment a volume offers a lead nobody has answered.
+`tools/rule_newberry_leads.py` reads every `entries_vol_*.json` now rather than volume 1's alone.
 
-`matched` stays reachable and unreached: the test is run over all 947 cards, not assumed. The acquisition
-list grows from 166 Chicago and Cook cards whose citation matched no work to **274**, 60 of them still
-carrying a year the photostat left legible.
+| outcome | vol 1 (T-0590) | vols 1-2 (T-0578) | vols 1-3 (T-0579) |
+|---|---:|---:|---:|
+| leads ruled | 319 | 546 | **737** |
+| cards anchored | 542 | 947 | **1,250** |
+| candidate — `testable_in_a_held_work` | 79 | 146 | **188** |
+| refused — `ocr_variant_only` | 129 | 208 | 279 |
+| refused — `locality_absent` | 90 | 144 | 206 |
+| refused — `surname_only_chicago` | 21 | 48 | 64 |
+| **matched** | **0** | **0** | **0** |
+| discriminators found | 0 | 0 | 0 |
 
-The lead ids keep the form `lead_v01_*` / `lead_v02_*`, numbered by the FIRST volume the surname appears
-in, because `lead_crosswalk.json` references 1,248 of them and a surname filed in both volumes must keep
-the id its ruling was anchored to. A merged row's `entries` carry both volumes' cards.
+`matched` stays reachable and unreached: the test is run over all 1,250 cards, not assumed — every
+forename this project holds for a candidate is searched for in the card text, and three volumes have
+turned up none. The acquisition list grows from 166 Chicago and Cook cards whose citation matched no
+work, to 274 on two volumes, to **369** on three, 81 of them still carrying a year the photostat left
+legible.
+
+The lead ids keep the form `lead_v01_*` / `lead_v02_*` / `lead_v03_*`, numbered by the FIRST volume the
+surname appears in, because `lead_crosswalk.json` anchors its rulings to them and a surname filed in more
+than one volume must keep the id its ruling was anchored to. A merged row's `entries` carry every
+volume's cards.
 
 ### Volume 1's half of it, ruled 2026-09-03 under T-0590
 
@@ -257,5 +318,5 @@ the table (166 of them volume 1's), and only 60 of them still carry a publicatio
 photostat left legible. They point at books, and three of the books
 already have tickets — T-0581, T-0582, T-0583.
 
-Volumes 3 and 4 are unread: T-0579, T-0580. Each wants its own hand-drawn precision
-sample — a number carried over from another volume is not a measurement of it.
+Volume 4 is unread: T-0580. It wants its own hand-drawn precision sample — a number
+carried over from another volume is not a measurement of it.
