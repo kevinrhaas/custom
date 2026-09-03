@@ -447,7 +447,6 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
-T-0604 — Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)
 T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
