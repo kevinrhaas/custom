@@ -51,9 +51,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": true,
-     "read_state": "names_transcribed",
+     "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-38.json",
-     "note": "one of the seven pages PR #670 read"
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed; free white females 20 under 30 and 40 under 50 do not and are left unreconciled with their residuals",
+     "lines_ruled": 31
     },
     {
      "index": 4,
@@ -214,9 +215,10 @@
      "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": true,
-     "read_state": "names_transcribed",
+     "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-9M5.json",
-     "note": "one of the seven pages PR #670 read; the scan carries 30 ruled entries and #670 carries 31 rows for it"
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed, the two that do not are named on the page file. The 30-versus-31 disagreement with PR #670 is SETTLED against the sheet's own footings: 30 entries, and line 26 is a named head with no mark in any column",
+     "lines_ruled": 30
     },
     {
      "index": 17,
@@ -367,13 +369,15 @@
     "continuation_sheets_read": 2,
     "continuation_sheets_attempted_not_closed": 1,
     "continuation_lines_committed": 62,
-    "cells_read_pages": 3,
+    "cells_read_pages": 5,
     "cells_columns_committed": {
      "33S7-9YYJ-2T": 36,
      "33S7-9YYJ-98M": 0,
-     "33S7-9YYJ-B3": 0
+     "33S7-9YYJ-B3": 0,
+     "33S7-9YYJ-9M5": 36,
+     "33S7-9YYJ-38": 36
     },
-    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands."
+    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round — against the enumerator's own column footings rather than against the ruling — and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too."
    },
    "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view."
   },

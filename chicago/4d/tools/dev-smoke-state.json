@@ -2,6 +2,106 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 99,
+      "takenAt": "2026-09-03T12:58:54.021Z",
+      "ref": "steward/t-0534-census-1840-cells-229-231-234",
+      "commit": "31e6b920c5e6",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:df8c6c0698b0ccfd",
+      "treeDirty": true,
+      "changelogHash": "sha256:736f8c4de9966e54",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.1,
+          2.8,
+          1.7
+        ]
+      },
+      "source": "/tmp/c40/smoke_m12.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 26,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 70,
+      "takenAt": "2026-09-03T12:58:53.921Z",
+      "ref": "steward/t-0534-census-1840-cells-229-231-234",
+      "commit": "31e6b920c5e6",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:df8c6c0698b0ccfd",
+      "treeDirty": true,
+      "changelogHash": "sha256:736f8c4de9966e54",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.1,
+          2.8,
+          1.7
+        ]
+      },
+      "source": "/tmp/c40/smoke_d4.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 68,
+      "failed": 6,
+      "failures": [
+        "mobile 390x780: a reconstructed resident has an invented period name — name \"undefined\"",
+        "mobile 390x780: the invented name is graded as invented and says so — name_basis undefined — \"\"",
+        "mobile 390x780: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
+        "mobile 390x780: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
+        "mobile 390x780: search still finds it by its part number and by its household — by spec false, by household false",
+        "mobile 390x780: a building raised for an inferred household says so — basis \"\""
+      ],
+      "wallSeconds": 82,
+      "takenAt": "2026-09-03T12:58:53.821Z",
+      "ref": "steward/t-0534-census-1840-cells-229-231-234",
+      "commit": "31e6b920c5e6",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:df8c6c0698b0ccfd",
+      "treeDirty": true,
+      "changelogHash": "sha256:736f8c4de9966e54",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.1,
+          2.8,
+          1.7
+        ]
+      },
+      "source": "/tmp/c40/smoke_m3.txt"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1858,99 +1958,6 @@
         ]
       },
       "source": "/tmp/smoke-m79b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 104,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 282,
-      "takenAt": "2026-08-29T21:01:03.724Z",
-      "ref": "steward/t-0410-spend-street-face-adoptions",
-      "commit": "a32b0146533c",
-      "devCommit": "40cb1d3b2075",
-      "treeHash": "sha256:6ec0be88a8731d60",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7be73ac98bbf587",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke-d9b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 128,
-      "takenAt": "2026-08-29T20:11:18.174Z",
-      "ref": "steward/t-0400-forename-forms",
-      "commit": "d1f77ae8de96",
-      "devCommit": "c7f43d4a034d",
-      "treeHash": "sha256:2deb30204051308a",
-      "treeDirty": false,
-      "changelogHash": "sha256:ab9ddda0a4628735",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          3.3,
-          2.3
-        ]
-      },
-      "source": "/tmp/s_d8.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 72,
-      "takenAt": "2026-08-29T20:11:18.104Z",
-      "ref": "steward/t-0400-forename-forms",
-      "commit": "d1f77ae8de96",
-      "devCommit": "c7f43d4a034d",
-      "treeHash": "sha256:2deb30204051308a",
-      "treeDirty": false,
-      "changelogHash": "sha256:ab9ddda0a4628735",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          3.3,
-          2.3
-        ]
-      },
-      "source": "/tmp/s_m8.log"
     }
   ]
 }
