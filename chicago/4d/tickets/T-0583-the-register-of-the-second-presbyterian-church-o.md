@@ -1,5 +1,5 @@
 ---
-id: T-0576
+id: T-0583
 title: The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
 state: open
 epic: META

@@ -1,5 +1,5 @@
 ---
-id: T-0571
+id: T-0578
 title: The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 state: open
 epic: META

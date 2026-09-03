@@ -1,5 +1,5 @@
 ---
-id: T-0575
+id: T-0582
 title: The Chicago cards of the Newberry index also point at Moses's Illinois, historical and statistical (1888-92), the La Salle Book Co. Cook County volumes (1900, 1909), Wood's Chicago 1881 and Hurlbut's Chicago antiquities (1881), and none of the four is in this project's sources
 state: open
 epic: META
@@ -28,7 +28,7 @@ and Cook County cards cite are absent from `data/sources/`:
 | Wood, D. W., Chicago (1881) | seen in the sample; not yet clustered | — |
 | Hurlbut, *Chicago antiquities* (1881) | 2 | 0 |
 
-This is the SECOND rank of the reading order — T-0574 has the largest one. The work here
+This is the SECOND rank of the reading order — T-0581 has the largest one. The work here
 is to locate each, decide whether it is reachable, and write the source record; the
 reading of each is its own ticket after that.
 

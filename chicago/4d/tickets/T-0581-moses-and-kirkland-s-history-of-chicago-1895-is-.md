@@ -1,5 +1,5 @@
 ---
-id: T-0574
+id: T-0581
 title: Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 state: open
 epic: META

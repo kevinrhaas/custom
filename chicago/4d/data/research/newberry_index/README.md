@@ -122,5 +122,5 @@ Chicago work it points at that this project does **not** hold is Moses and Kirkl
 them under surnames already in the residents, the poll lists or the 1840 census. Both
 volumes are on the Internet Archive (`historyofchicago01mose`, `historyofchicagov2mose`).
 
-Volumes 2, 3 and 4 are unread: T-0571, T-0572, T-0573. Each wants its own hand-drawn
+Volumes 2, 3 and 4 are unread: T-0578, T-0579, T-0580. Each wants its own hand-drawn
 precision sample — a number carried over from another volume is not a measurement of it.
