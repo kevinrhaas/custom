@@ -1,6 +1,6 @@
 ---
 id: T-0513
-title: Ten sources name the same people and no file says which names are one person: the cross-source identity master under the ratified grading ladder
+title: Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
 state: open
 epic: META
 requested_by: owner
@@ -18,6 +18,34 @@ needs_bake: false
 
 **The owner's ask, 2026-09-03, verbatim:** "And then create a final ticket that does a review and
 consolidation of that research."
+
+**REOPENED AS A REPEATING PASS — the owner's instruction of 2026-09-03 (evening), verbatim:**
+"right as long as you are capturing the data and then you can have or make sure there is consolidation
+tickets that build out the full cross source corroboration of these people, like if you have found and
+matched philo carpenter from those multiple sources, you should have all of those in the resident data
+for him eventually, dont land those tickets at the very end maybe every few you should do that
+consolidation".
+
+**Why the shape had to change, and it is the whole reason this ticket had not moved.** This ticket
+carried a bar in QUEUE.md — *"do not take it while any sweep ticket is open"* — written when wave 1
+looked finite. It is not: wave 1 is OPEN-ENDED, every source the owner adds lands at its top, and
+31 tickets stood ahead of this one and climbing. A gate that opens only when no sweep is open never
+opens, and T-0514/T-0515 — the tickets that actually WRITE the people — sat behind it. Consolidation
+was permanently one sweep away.
+
+**So the bar is lifted and the ticket is INCREMENTAL.** It consolidates what is CLOSED, and it runs
+again. It does not wait for the corpus to be finished, because the corpus is never finished.
+
+**The measured case the owner named.** `hh_carpenter_philo.json` carries ONE source on Philo
+Carpenter — `andreas_1884_v1`. The crosswalks have already ruled six or more for the same man:
+`poll_1833_006`, `tax_1833_012`, `poll_1834_023`, the newspaper person `person_philo_carpenter`, and
+two bridge-candidate tiers at "VERY LIKELY 1835". The slot exists (`persons[].sources`), the evidence
+exists and is adjudicated, and the two have never been introduced. That is what a pass delivers: a
+resident's card carrying every source the project has ruled for that person.
+
+**The cadence.** A consolidation pass runs after every few source tickets, not at the end — see the
+band this ticket sits in in QUEUE.md. Each pass takes the rulings closed since the last one and spends
+them onto cards. A pass that finds nothing new closed says so and costs a run nothing.
 
 **The finding.** By the time the sweep above lands, the same men and women will be named in up to ten
 places — the residents layer (848), the newspaper gazetteer (2,630 persons), the four voter lists (346

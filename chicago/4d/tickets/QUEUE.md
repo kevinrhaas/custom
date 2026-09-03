@@ -120,6 +120,32 @@
 # --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
 # --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
 # --- be taken while any sweep ticket is open. The rest of the wave order below stands.
+# --- CONSOLIDATION RUNS ALONGSIDE THE READS, NOT AFTER THEM — owner, 2026-09-03 (evening):
+# --- "dont land those tickets at the very end maybe every few you should do that consolidation".
+# ---
+# --- THE RULE THIS BAND EXISTS TO ENFORCE: after every few source tickets close, the next run is a
+# --- consolidation pass, not another source. Not at the end — there is no end. Wave 1 is open-ended
+# --- by design (the owner adds sources as he finds them), so anything sequenced AFTER 'all sweeps'
+# --- is sequenced after never. T-0513 carried exactly that bar and stood 31 tickets deep while the
+# --- queue grew above it; T-0514/T-0515, which write the people, sat behind it.
+# ---
+# --- The case that measures it: hh_carpenter_philo.json carries ONE source on Philo Carpenter
+# --- (andreas_1884_v1) while the crosswalks have already ruled six for the same man — poll 1833,
+# --- tax 1833, poll 1834, the newspaper person, and two bridge tiers at VERY LIKELY 1835. The slot
+# --- exists, the evidence is adjudicated, and they have never been introduced.
+# ---
+# --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
+# --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
+# --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
+# --- reaching a town person and 0 reaching their card; this band is what moves that number.
+T-0513 — Philo Carpenter carries one source and the crosswalks have ruled six: consolidate the closed rulings onto the cards, and again every few sources
+# --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
+# --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
+# --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
+# --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
+# --- which is the manual step this whole programme exists to stop relying on.
+T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
+
 
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
@@ -159,7 +185,6 @@ T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
 T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 
-T-0513 — Ten sources name the same people and no file says which names are one person: the cross-source identity master under the ratified grading ladder
 
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
