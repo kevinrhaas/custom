@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "_doc": "Town findings read out of the voter lists themselves (T-0493) — what the four lists say about the town, as against what they say about its people. The people are records/voter_lists_1833_1835.json.",
+  "source_id": "chicago_voter_lists_1833_1835_irad",
+  "reading_note": "Every quote is cut verbatim from data/research/civic/text/voter_lists_1833_1835.txt at the lines its locator names.",
+  "claims": [
+    {
+      "id": "v001",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "Tax List of the Town of Chicago - 1833\nAllen, Lt. James\nBeaubien, John S.\nBeaubien, Mark\nBell, William A.",
+      "normalized": "The 1833 tax list of the Town of Chicago, as published, is a list of NAMES ONLY. No assessed valuation, no lot, no amount of tax and no rank stands beside any of its 115 entries.",
+      "locator": {
+        "list": "tax_1833",
+        "line": 52,
+        "lines": [
+          52,
+          56
+        ],
+        "text_file": "voter_lists_1833_1835.txt"
+      },
+      "describes_date": "1833",
+      "entities": [],
+      "town_finding": true,
+      "notes": "T-0493 asked for the tax list to be 'read as a ranked property list — it is the closest thing to a property roll the project has'. IT CANNOT BE, and that is the finding: the published transcription carries no figures at all, so it ranks nobody and supports no placement. What it does support is presence: 115 men were taxed by the town in 1833. If a ranked roll is wanted, the IRAD original is where the figures would be, and nobody in this project has seen it."
+    },
+    {
+      "id": "v002",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Transcription note: Text, names, spelling, abbreviations, and apparent source errors are preserved as printed in the supplied PDF. The ambiguous entry “S---?, Albert” is retained exactly as shown in the source.",
+      "normalized": "The transcription states that spelling, abbreviations and apparent source errors are preserved as printed, and that the ambiguous entry 'S---?, Albert' is retained exactly as shown.",
+      "locator": {
+        "list": "poll_1834",
+        "line": 4,
+        "lines": [
+          4,
+          4
+        ],
+        "text_file": "voter_lists_1833_1835.txt"
+      },
+      "describes_date": "1993",
+      "entities": [],
+      "town_finding": false,
+      "notes": "The transcriber's own statement of method, and the reason every as_read in this domain is kept unrepaired. 'S---?, Albert' stands at line 264, in the 1834 poll list, and is carried as a record like any other: a man whose surname the poll book itself could not be read for."
+    }
+  ]
+}
