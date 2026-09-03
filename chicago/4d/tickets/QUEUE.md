@@ -110,7 +110,6 @@ T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages 
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
 T-0576 — Norris's 1844 directory read a second time: the independent Genealogy Trails transcription checked entry by entry against T-0566's 2,073, and every disagreement preserved
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
-T-0570 — The Newberry Genealogical Index, volume 1 (A-C): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0571 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0572 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0573 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
