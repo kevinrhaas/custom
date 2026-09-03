@@ -87,4 +87,4 @@ when openpyxl imports. Never disable TLS or unset HTTPS_PROXY.
 **Links:** `data/research/newspapers/identity.json` (the model) · `source_hierarchy.json` · T-0487
 (the first adjudication) · T-0514 · T-0515 · T-0517.
 
-**Inputs added 2026-09-03 (afternoon), on the owner's instruction:** T-0554 (the Old Settlers' receptions), T-0555 (Norris's 1844 directory), T-0556 (Genealogy Trails Cook County, and its split pieces) and T-0557 (the Illinois land-sales database). Do not take this ticket while any of them, or their pieces, is open.
+**Inputs added 2026-09-03 (afternoon), on the owner's instruction:** T-0554 (the Old Settlers' receptions), T-0555 (Norris's 1844 directory), T-0556 (Genealogy Trails Cook County, and its split pieces) T-0557 (the Illinois land-sales database) and T-0562 (the Newberry Genealogical Index on the Internet Archive). Do not take this ticket while any of them, or their pieces, is open.
