@@ -1,0 +1,296 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-W6",
+ "image": "chicago/reference/census1840/33S7-9YYJ-W6.jpg",
+ "printed_page": 232,
+ "sheet_side": "left",
+ "division": "S. W. Sherman (as written in the printed heading)",
+ "state": "Illinois",
+ "county": "Cook",
+ "reading": "scan_verified",
+ "read_pass": "names only",
+ "cells_state": "not_read",
+ "cells_note": "not read in this pass. The 26 free-white age-band cells, the free-coloured cells and the industry columns are a column-by-column reading that must be checked against the printed column totals at the foot of the sheet before it can be committed; that is the sibling ticket's demonstration, and a half-read row would be worse than an unread one.",
+ "lines_ruled_with_an_entry": 31,
+ "records": [
+  {
+   "line": 1,
+   "as_read": "M[?]h[?]l[?] W. Smith",
+   "normalized": "[?] W. Smith",
+   "name_confidence": "low",
+   "note": "given name unread; surname Smith clear",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 2,
+   "as_read": "Jos[?] D. Boone",
+   "normalized": "Jos. D. Boone",
+   "name_confidence": "low",
+   "note": "surname reads Boone; Boon possible",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 3,
+   "as_read": "Jaco[b] Miller",
+   "normalized": "Jacob Miller",
+   "name_confidence": "low",
+   "note": "given name could be Jacob or Lakot; surname Miller clear",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 4,
+   "as_read": "[A/N]m[y] Brown",
+   "normalized": "Amy Brown",
+   "name_confidence": "low",
+   "note": "given name could be Amy, Any or Nancy",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 5,
+   "as_read": "Wm. J. C. Scovill",
+   "normalized": "William J. C. Scovill",
+   "name_confidence": "low",
+   "note": "surname could be Scovill or Sewell",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 6,
+   "as_read": "[S/J]. B. H. Russell",
+   "normalized": "[?] B. H. Russell",
+   "name_confidence": "low",
+   "note": "initials uncertain; surname Russell clear",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 7,
+   "as_read": "Geo. O'Bryan",
+   "normalized": "George O'Bryan",
+   "name_confidence": "medium",
+   "note": "O'Bryan / O'Bryant",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 8,
+   "as_read": "Cha[s]. Sweet",
+   "normalized": "Charles Sweet",
+   "name_confidence": "low",
+   "note": "given abbreviation uncertain",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 9,
+   "as_read": "Eliza[?] [J/S]. Estey",
+   "normalized": "Elizabeth [?]. Estey",
+   "name_confidence": "low",
+   "note": "surname Estey / Estry",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 10,
+   "as_read": "John Mullen",
+   "normalized": "John Mullen",
+   "name_confidence": "medium",
+   "note": "also on p230 line 16 as a different household",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 11,
+   "as_read": "James H. Cassad[y]",
+   "normalized": "James H. Cassady",
+   "name_confidence": "medium",
+   "note": "Cassady / Casaday",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 12,
+   "as_read": "Dan[l] J. Shelby",
+   "normalized": "Daniel J. Shelby",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 13,
+   "as_read": "John Davis",
+   "normalized": "John Davis",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 14,
+   "as_read": "Geo. Carpenter",
+   "normalized": "George Carpenter",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 15,
+   "as_read": "Mich[l] McDaniel",
+   "normalized": "Michael McDaniel",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 16,
+   "as_read": "E. D. S[?]dtham",
+   "normalized": "E. D. [?]",
+   "name_confidence": "low",
+   "note": "surname unread",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 17,
+   "as_read": "Gurdon S. Hubbard",
+   "normalized": "Gurdon S. Hubbard",
+   "name_confidence": "medium",
+   "note": "the given name is distinctive and the surname reads H[u]bbard; if correct this is the Chicago merchant of that name",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 18,
+   "as_read": "S. [?] McC[?]",
+   "normalized": "[?] McC[?]",
+   "name_confidence": "low",
+   "note": "surname begins Mc; remainder unread",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 19,
+   "as_read": "Simon Doyle",
+   "normalized": "Simon Doyle",
+   "name_confidence": "low",
+   "note": "surname Doyle / Dayle",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 20,
+   "as_read": "James S. Moore",
+   "normalized": "James S. Moore",
+   "name_confidence": "low",
+   "note": "given could be James or Jas.; surname Moore / Hore",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 21,
+   "as_read": "Morgan Stocking",
+   "normalized": "Morgan Stocking",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 22,
+   "as_read": "David R. Gregg",
+   "normalized": "David R. Gregg",
+   "name_confidence": "medium",
+   "note": "Gregg / Grigg",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 23,
+   "as_read": "Dan[l] [H/K]. [?]",
+   "normalized": "Daniel [?]",
+   "name_confidence": "low",
+   "note": "surname reads Hagoon / Magoon, unresolved",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 24,
+   "as_read": "Rob[t] S. Hamilton",
+   "normalized": "Robert S. Hamilton",
+   "name_confidence": "medium",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 25,
+   "as_read": "John H. Kinzie",
+   "normalized": "John H. Kinzie",
+   "name_confidence": "medium",
+   "note": "surname reads Kinzie / Kinzer; if Kinzie this is the Chicago figure of that name",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 26,
+   "as_read": "Isaac W. [Wathen/Watkin]",
+   "normalized": "Isaac W. [?]",
+   "name_confidence": "low",
+   "note": "surname unresolved",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 27,
+   "as_read": "Edm[un]d Gill",
+   "normalized": "Edmund Gill",
+   "name_confidence": "medium",
+   "note": "Edmund / Edward",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 28,
+   "as_read": "R. S. Stuart",
+   "normalized": "R. S. Stuart",
+   "name_confidence": "low",
+   "note": "first initial R or B",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 29,
+   "as_read": "S. H. Swack[?]",
+   "normalized": "S. H. Swack[?]",
+   "name_confidence": "low",
+   "note": "surname truncated in the reading; Swackhammer possible",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 30,
+   "as_read": "C. H. Holcomb",
+   "normalized": "C. H. Holcomb",
+   "name_confidence": "low",
+   "note": "",
+   "reading": "scan_verified",
+   "cells": null
+  },
+  {
+   "line": 31,
+   "as_read": "Emanuel M[o]nd[?]",
+   "normalized": "Emanuel M[?]",
+   "name_confidence": "low",
+   "note": "surname reads Mondee / Monroe, unresolved",
+   "reading": "scan_verified",
+   "cells": null
+  }
+ ]
+}
