@@ -69,7 +69,7 @@ gate is `check.sh` and nothing else (`docs/PIPELINE.md`), so while it is red **n
 branch can be merged on a green gate and every run must either hold or merge on a
 red one.** T-0448 already records the same problem for the SMOKE; this is the same
 failure mode one tier down, on the gate that is supposed to be the fast, reliable
-half. Found by the T-0426 run, which held its PR (#PR) on it after proving its own
+half. Found by the T-0426 run, which held its PR (#675) on it after proving its own
 branch introduced no new failure and repaired one.
 
 **The mirror step is already fixed on that branch** — running `tools/publish.sh`
