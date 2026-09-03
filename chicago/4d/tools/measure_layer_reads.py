@@ -619,6 +619,14 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/household:source_pass": (
+        "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
+        "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "
+        "household I minted' from a plain hand-authored one without an id prefix. Not a "
+        "finding about the person: the evidence the panel already shows — grade, "
+        "letter_list_only, sources — is what a visitor judges the record by, and which "
+        "internal tool produced it is not part of that judgment. See "
+        "data/residents/README.md."),
 }
 
 STATES = ("mesh", "shown", "probe")

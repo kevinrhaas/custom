@@ -487,8 +487,8 @@
         "Samuel C. Jackson"
       ],
       "person_ids": [
-        "doc_byram_king",
-        "ll_jackson_samuel"
+        "king_byram",
+        "jackson_samuel"
       ],
       "outcomes": [
         "candidate",
@@ -511,8 +511,8 @@
         "Joseph M. Chandler"
       ],
       "person_ids": [
-        "ll_jackson_samuel",
-        "ll_joseph_chandler"
+        "jackson_samuel",
+        "chandler_joseph"
       ],
       "outcomes": [
         "candidate",
@@ -571,7 +571,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'young' is carried by 1 person(s) of 1835 (Gideon Young) and none of their given names is 'hugh'.",
       "surname_bearers_1835": [
-        "ll_young_gideon"
+        "young_gideon"
       ]
     },
     {
@@ -616,7 +616,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'young' is carried by 1 person(s) of 1835 (Gideon Young) and none of their given names is 'mrs'.",
       "surname_bearers_1835": [
-        "ll_young_gideon"
+        "young_gideon"
       ]
     },
     {
@@ -689,7 +689,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'crane' is carried by 1 person(s) of 1835 (H. Y. Crane) and none of their given names is 'mrs'.",
       "surname_bearers_1835": [
-        "ll_crane_h_y"
+        "crane_h_y"
       ]
     },
     {
@@ -706,7 +706,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'white' is carried by 1 person(s) of 1835 (Edson White) and none of their given names is 'george'.",
       "surname_bearers_1835": [
-        "ll_white_edson"
+        "white_edson"
       ]
     },
     {
@@ -729,7 +729,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'thomas'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -1052,7 +1052,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'turner' is carried by 1 person(s) of 1835 (Ezekiel Turner) and none of their given names is 'stephen'.",
       "surname_bearers_1835": [
-        "ll_ezekiel_turner"
+        "turner_ezekiel"
       ]
     },
     {
@@ -1198,7 +1198,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'williams' is carried by 1 person(s) of 1835 (Charles C. Williams) and none of their given names is 'benjamin'.",
       "surname_bearers_1835": [
-        "ll_williams_charles_c"
+        "williams_charles_c"
       ]
     },
     {
@@ -1215,7 +1215,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'grant' is carried by 1 person(s) of 1835 (James Grant) and none of their given names is 'barry'.",
       "surname_bearers_1835": [
-        "doc_james_grant"
+        "grant_james"
       ]
     },
     {
@@ -1310,7 +1310,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'berry' is carried by 1 person(s) of 1835 (Benjamin / Berry) and none of their given names is 'manny'.",
       "surname_bearers_1835": [
-        "ll_berry_benjamin"
+        "berry_benjamin"
       ]
     },
     {
@@ -1341,7 +1341,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'berry' is carried by 1 person(s) of 1835 (Benjamin / Berry) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
-        "ll_berry_benjamin"
+        "berry_benjamin"
       ]
     },
     {
@@ -1386,7 +1386,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'leonard' is carried by 1 person(s) of 1835 (Anson Leonard) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_leonard_anson"
+        "leonard_anson"
       ]
     },
     {
@@ -1571,7 +1571,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'nelson' is carried by 1 person(s) of 1835 (John M. Nelson) and none of their given names is 'edward'.",
       "surname_bearers_1835": [
-        "ll_john_m_nelson"
+        "nelson_john_m"
       ]
     },
     {
@@ -1826,7 +1826,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'collins' is carried by 1 person(s) of 1835 (J. H. Collins) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
-        "doc_j_h_collins"
+        "collins_j_h"
       ]
     },
     {
@@ -1960,7 +1960,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'coleman' is carried by 1 person(s) of 1835 (Edward B. Coleman) and none of their given names is 'peter'.",
       "surname_bearers_1835": [
-        "ll_edward_b_coleman"
+        "coleman_edward_b"
       ]
     },
     {
@@ -2019,7 +2019,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'cook' is carried by 1 person(s) of 1835 (Rowland I!. Cook) and none of their given names is 'martin'.",
       "surname_bearers_1835": [
-        "ll_cook_rowland_i"
+        "cook_rowland_i"
       ]
     },
     {
@@ -2177,7 +2177,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'bennett' is carried by 1 person(s) of 1835 (H. C. Bennett) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "doc_h_c_bennett"
+        "bennett_h_c"
       ]
     },
     {
@@ -2454,7 +2454,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'B. Johnson' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'johnson'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_johnson_samuel"
+        "johnson_samuel"
       ]
     },
     {
@@ -2655,7 +2655,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'shaw' is carried by 1 person(s) of 1835 (Samuel Shaw) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_samuel_shaw"
+        "shaw_samuel"
       ]
     },
     {
@@ -2728,7 +2728,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'morrison' is carried by 1 person(s) of 1835 (T. M. Morrison) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
-        "ll_t_m_morrison"
+        "morrison_t_m"
       ]
     },
     {
@@ -2773,7 +2773,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'joseph'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -2902,7 +2902,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'burk' is carried by 1 person(s) of 1835 (James Burk) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_james_burk"
+        "burk_james"
       ]
     },
     {
@@ -2919,7 +2919,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'rogers' is carried by 1 person(s) of 1835 (Edward A. Rogers) and none of their given names is 'david'.",
       "surname_bearers_1835": [
-        "ll_edward_a_rogers"
+        "rogers_edward_a"
       ]
     },
     {
@@ -3091,14 +3091,14 @@
           "name": "John Wilson"
         }
       ],
-      "person_id": "ll_john_wilson",
-      "household_id": "hh_ll_john_wilson",
+      "person_id": "wilson_john",
+      "household_id": "hh_wilson_john",
       "resident_name": "John Wilson",
       "resident_grade_1835": "inferred",
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (John Wilson = John Wilson) and the name is unique on both sides, but nothing independent of the name was found: ll_john_wilson carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 3 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (John Wilson = John Wilson) and the name is unique on both sides, but nothing independent of the name was found: wilson_john carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 3 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33S7-9YYJ-9M5",
@@ -3229,7 +3229,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'dalton' is carried by 1 person(s) of 1835 (Edward Dalton) and none of their given names is 'mrs'.",
       "surname_bearers_1835": [
-        "ll_dalton_edward"
+        "dalton_edward"
       ]
     },
     {
@@ -3260,7 +3260,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'foster' is carried by 1 person(s) of 1835 (Caleb Foster) and none of their given names is 'george'.",
       "surname_bearers_1835": [
-        "ll_caleb_foster"
+        "foster_caleb"
       ]
     },
     {
@@ -3291,7 +3291,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'cole' is carried by 1 person(s) of 1835 (Parker M. Cole) and none of their given names is 'abraham'.",
       "surname_bearers_1835": [
-        "ll_parker_m_cole"
+        "cole_parker_m"
       ]
     },
     {
@@ -3396,7 +3396,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'gould' is carried by 1 person(s) of 1835 (A. B. Gould) and none of their given names is 'nathaniel'.",
       "surname_bearers_1835": [
-        "ll_gould_a_b"
+        "gould_a_b"
       ]
     },
     {
@@ -3427,7 +3427,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'lee' is carried by 1 person(s) of 1835 (George Lee) and none of their given names is 'thomas'.",
       "surname_bearers_1835": [
-        "ll_george_lee"
+        "lee_george"
       ]
     },
     {
@@ -3518,7 +3518,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'morris' is carried by 1 person(s) of 1835 (B. S. Morris) and none of their given names is 'mrs'.",
       "surname_bearers_1835": [
-        "placed_b_s_morris"
+        "morris_b_s"
       ]
     },
     {
@@ -3591,7 +3591,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'boardman' is carried by 1 person(s) of 1835 (Elect Boardman) and none of their given names is 'mary'.",
       "surname_bearers_1835": [
-        "ll_boardman_elect"
+        "boardman_elect"
       ]
     },
     {
@@ -3692,7 +3692,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'clarke' is carried by 1 person(s) of 1835 (H. B. Clarke) and none of their given names is 'thomas'.",
       "surname_bearers_1835": [
-        "doc_h_b_clarke"
+        "clarke_h_b"
       ]
     },
     {
@@ -3846,7 +3846,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'C. E. Avery' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'avery'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_avery_charles"
+        "avery_charles"
       ]
     },
     {
@@ -4059,7 +4059,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'johnson' is carried by 1 person(s) of 1835 (Samuel Johnson) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_johnson_samuel"
+        "johnson_samuel"
       ]
     },
     {
@@ -4275,7 +4275,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. M. Strode' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'strode'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_strode_p_m"
+        "strode_p_m"
       ]
     },
     {
@@ -4320,7 +4320,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'orson'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -4407,7 +4407,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'clarke' is carried by 1 person(s) of 1835 (H. B. Clarke) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
-        "doc_h_b_clarke"
+        "clarke_h_b"
       ]
     },
     {
@@ -4508,7 +4508,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'R. R. Bristol' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'bristol'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_r_c_bristol"
+        "bristol_r_c"
       ]
     },
     {
@@ -4539,7 +4539,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'stewart' is carried by 1 person(s) of 1835 (R. Stewart) and none of their given names is 'alexander'.",
       "surname_bearers_1835": [
-        "doc_r_stewart"
+        "stewart_r"
       ]
     },
     {
@@ -4677,7 +4677,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'S. B. Collins' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'collins'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "doc_j_h_collins"
+        "collins_j_h"
       ]
     },
     {
@@ -4694,7 +4694,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. D. Clark' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'clark'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_clark_erastus"
+        "clark_erastus"
       ]
     },
     {
@@ -4711,7 +4711,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. J. Sherwood' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'sherwood'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_s_sherwood"
+        "sherwood_s"
       ]
     },
     {
@@ -4728,7 +4728,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. Brooks' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'brooks'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_brooks_gardner"
+        "brooks_gardner"
       ]
     },
     {
@@ -4843,7 +4843,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'johnson' is carried by 1 person(s) of 1835 (Samuel Johnson) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_johnson_samuel"
+        "johnson_samuel"
       ]
     },
     {
@@ -4930,7 +4930,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'turner' is carried by 1 person(s) of 1835 (Ezekiel Turner) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_ezekiel_turner"
+        "turner_ezekiel"
       ]
     },
     {
@@ -4947,7 +4947,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. E. Clark' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'clark'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_clark_erastus"
+        "clark_erastus"
       ]
     },
     {
@@ -4995,7 +4995,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'johnson' is carried by 1 person(s) of 1835 (Samuel Johnson) and none of their given names is 'seth'.",
       "surname_bearers_1835": [
-        "ll_johnson_samuel"
+        "johnson_samuel"
       ]
     },
     {
@@ -5044,7 +5044,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'andrews' is carried by 1 person(s) of 1835 (Davi Andrews) and none of their given names is 'hillery'.",
       "surname_bearers_1835": [
-        "ll_andrews_davi"
+        "andrews_davi"
       ]
     },
     {
@@ -5089,7 +5089,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'mitchell' is carried by 1 person(s) of 1835 (Henry Mitchell) and none of their given names is 'campbell'.",
       "surname_bearers_1835": [
-        "ll_henry_mitchell"
+        "mitchell_henry"
       ]
     },
     {
@@ -5106,7 +5106,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'mitchell' is carried by 1 person(s) of 1835 (Henry Mitchell) and none of their given names is 'mark'.",
       "surname_bearers_1835": [
-        "ll_henry_mitchell"
+        "mitchell_henry"
       ]
     },
     {
@@ -5210,7 +5210,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'christy' is carried by 1 person(s) of 1835 (Nathan Christy) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_nathan_christy"
+        "christy_nathan"
       ]
     },
     {
@@ -5395,7 +5395,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'woodworth' is carried by 1 person(s) of 1835 (James H. Woodworth) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
-        "ll_woodworth_james_h"
+        "woodworth_james_h"
       ]
     },
     {
@@ -5533,7 +5533,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. K. Palmer' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'palmer'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_n_h_palmer"
+        "palmer_n_h"
       ]
     },
     {
@@ -5564,7 +5564,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'cooley' is carried by 1 person(s) of 1835 (Edward V Cooley) and none of their given names is 'simon'.",
       "surname_bearers_1835": [
-        "ll_cooley_edward_v"
+        "cooley_edward_v"
       ]
     },
     {
@@ -5626,7 +5626,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'west' is carried by 1 person(s) of 1835 (Henry C. West) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
-        "ll_henry_c_west"
+        "west_henry_c"
       ]
     },
     {
@@ -5643,7 +5643,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'king' is carried by 1 person(s) of 1835 (Byram King) and none of their given names is 'nathaniel'.",
       "surname_bearers_1835": [
-        "doc_byram_king"
+        "king_byram"
       ]
     },
     {
@@ -5660,7 +5660,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'bigelow' is carried by 1 person(s) of 1835 (David Bigelow) and none of their given names is 'nancy'.",
       "surname_bearers_1835": [
-        "ll_david_bigelow"
+        "bigelow_david"
       ]
     },
     {
@@ -5806,7 +5806,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'J. C. Thompson' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'thompson'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_john_thompson"
+        "thompson_john"
       ]
     },
     {
@@ -5977,7 +5977,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'anderson' is carried by 1 person(s) of 1835 (Eli F Anderson) and none of their given names is 'james'.",
       "surname_bearers_1835": [
-        "ll_anderson_eli_f"
+        "anderson_eli_f"
       ]
     },
     {
@@ -6064,7 +6064,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'page' is carried by 1 person(s) of 1835 (Frederick W. Page) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
-        "ll_frederick_w_page"
+        "page_frederick_w"
       ]
     },
     {
@@ -6137,7 +6137,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'moore' is carried by 1 person(s) of 1835 (Henry Moore) and none of their given names is 'david'.",
       "surname_bearers_1835": [
-        "doc_henry_moore"
+        "moore_henry"
       ]
     },
     {
@@ -6178,8 +6178,8 @@
       "surname": "allen",
       "forename": "william",
       "same_name_support": [],
-      "person_id": "ll_allen_william",
-      "household_id": "hh_ll_allen_william",
+      "person_id": "allen_william",
+      "household_id": "hh_allen_william",
       "resident_name": "William Allen",
       "resident_grade_1835": "inferred",
       "discriminators": [
@@ -6290,7 +6290,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'graham' is carried by 1 person(s) of 1835 (John Graham) and none of their given names is 'david'.",
       "surname_bearers_1835": [
-        "ll_john_graham"
+        "graham_john"
       ]
     },
     {
@@ -6352,7 +6352,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -6383,7 +6383,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'shaw' is carried by 1 person(s) of 1835 (Samuel Shaw) and none of their given names is 'nancy'.",
       "surname_bearers_1835": [
-        "ll_samuel_shaw"
+        "shaw_samuel"
       ]
     },
     {
@@ -6400,7 +6400,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'knox' is carried by 1 person(s) of 1835 (Archibald Knox) and none of their given names is 'james'.",
       "surname_bearers_1835": [
-        "ll_archibald_knox"
+        "knox_archibald"
       ]
     },
     {
@@ -6669,7 +6669,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'mitchell' is carried by 1 person(s) of 1835 (Henry Mitchell) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "ll_henry_mitchell"
+        "mitchell_henry"
       ]
     },
     {
@@ -6686,7 +6686,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'hill' is carried by 1 person(s) of 1835 (Isaac L. Hill) and none of their given names is 'edmond'.",
       "surname_bearers_1835": [
-        "ll_isaac_l_hill"
+        "hill_isaac_l"
       ]
     },
     {
@@ -6845,7 +6845,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'crawford' is carried by 1 person(s) of 1835 (James Crawford) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
-        "ll_crawford_james"
+        "crawford_james"
       ]
     },
     {
@@ -7326,7 +7326,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'moore' is carried by 1 person(s) of 1835 (Henry Moore) and none of their given names is 'james'.",
       "surname_bearers_1835": [
-        "doc_henry_moore"
+        "moore_henry"
       ]
     },
     {
@@ -7354,7 +7354,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'stocking' is carried by 1 person(s) of 1835 (Austin Stocking) and none of their given names is 'morgan'.",
       "surname_bearers_1835": [
-        "ll_stocking_austin"
+        "stocking_austin"
       ]
     },
     {
@@ -7507,7 +7507,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'R. S. Stuart' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'stuart'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_samuel_stuart"
+        "stuart_samuel"
       ]
     },
     {
@@ -7538,7 +7538,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'C. H. Holcomb' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'holcomb'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_samuel_b_holcomb"
+        "holcomb_samuel_b"
       ]
     },
     {
@@ -7613,14 +7613,14 @@
           "name": "Byram King"
         }
       ],
-      "person_id": "doc_byram_king",
-      "household_id": "hh_doc_byram_king",
+      "person_id": "king_byram",
+      "household_id": "hh_king_byram",
       "resident_name": "Byram King",
       "resident_grade_1835": "attested",
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Byram King = Byram King) and the name is unique on both sides, but nothing independent of the name was found: doc_byram_king carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (Byram King = Byram King) and the name is unique on both sides, but nothing independent of the name was found: king_byram carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -7654,14 +7654,14 @@
           "name": "Samuel Jackson"
         }
       ],
-      "person_id": "ll_jackson_samuel",
-      "household_id": "hh_ll_jackson_samuel",
+      "person_id": "jackson_samuel",
+      "household_id": "hh_jackson_samuel",
       "resident_name": "Samuel Jackson",
       "resident_grade_1835": "attested",
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson) and the name is unique on both sides, but nothing independent of the name was found: ll_jackson_samuel carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 4 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson) and the name is unique on both sides, but nothing independent of the name was found: jackson_samuel carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 4 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -7679,8 +7679,8 @@
           "name": "Joseph Chandler"
         }
       ],
-      "person_id": "ll_joseph_chandler",
-      "household_id": "hh_ll_joseph_chandler",
+      "person_id": "chandler_joseph",
+      "household_id": "hh_chandler_joseph",
       "resident_name": "Joseph Chandler",
       "resident_grade_1835": "attested",
       "discriminators": [
@@ -7728,7 +7728,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'page' is carried by 1 person(s) of 1835 (Frederick W. Page) and none of their given names is 'edward'.",
       "surname_bearers_1835": [
-        "ll_frederick_w_page"
+        "page_frederick_w"
       ]
     },
     {
@@ -7779,7 +7779,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'allen' is carried by 1 person(s) of 1835 (William Allen) and none of their given names is 'james'.",
       "surname_bearers_1835": [
-        "ll_allen_william"
+        "allen_william"
       ]
     },
     {
@@ -7869,7 +7869,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'barney'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -8023,7 +8023,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'christopher'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -8046,7 +8046,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'smith' is carried by 1 person(s) of 1835 (Elded Smith) and none of their given names is 'james'.",
       "surname_bearers_1835": [
-        "ll_smith_elded"
+        "smith_elded"
       ]
     },
     {
@@ -8063,7 +8063,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'gilman' is carried by 1 person(s) of 1835 (Eli Gilman) and none of their given names is 'william'.",
       "surname_bearers_1835": [
-        "ll_gilman_eli"
+        "gilman_eli"
       ]
     },
     {
@@ -8122,7 +8122,7 @@
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'simmons' is carried by 1 person(s) of 1835 (Medad I. Simmons) and none of their given names is 'henry'.",
       "surname_bearers_1835": [
-        "ll_simmons_medad_i"
+        "simmons_medad_i"
       ]
     },
     {
@@ -8167,7 +8167,7 @@
       "rule": "L4 initial_only",
       "reason": "The head is written 'H. R. Clark Jr.' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'clark'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "ll_clark_erastus"
+        "clark_erastus"
       ]
     },
     {

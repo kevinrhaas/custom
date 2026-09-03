@@ -452,3 +452,4 @@ T-0600 — The Newberry index reads a state banner as a card body, and a wrecked
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
 T-0604 — Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)
+T-0606 — Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)

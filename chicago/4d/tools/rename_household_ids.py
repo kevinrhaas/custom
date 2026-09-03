@@ -3,6 +3,7 @@
 
     python3 tools/rename_household_ids.py             write (renames + patches index.json)
     python3 tools/rename_household_ids.py --check     the full map, zero writes
+    python3 tools/rename_household_ids.py --verify    did every rename stay reproducible?
     python3 tools/rename_household_ids.py --self-test the mechanics, on fixtures
 
 WHAT THIS IS FOR. T-0599 stopped the three mint tools (mint_documented_residents.py,
@@ -59,6 +60,24 @@ than silently doing nothing (`tools/rename_confidence_vocab.py`'s precedent for
 this hazard class) — a second run is either a bug (something reintroduced a legacy
 id) or a mistake (the tool was invoked after the migration already landed), and
 either way the right answer is to say so loudly, not exit 0 having touched nothing.
+
+`--verify` EXISTS BECAUSE THE ID SOURCE CAN LIE. `plain_fragment()` is fed the head
+person's DISPLAY name (`display()`'s output at mint time), not the raw register
+string it was built from — for almost every name that is a distinction without a
+difference, but `display()` only swaps around the FIRST comma, so a raw register
+name with a SECOND comma ("Hugunin, Leonard, C.") or a glued token (no space before
+a capital after a period, "fre.Humphrey, Lemuel") comes out the other side
+re-orderable in a way `plain_fragment()` cannot undo — the token that answers to
+`surname()` on the display string is not always the same token the ORIGINAL name
+would have answered with. Caught exactly this way on the real migration (T-0604's
+own run): 3 of 747 renamed households came out with an id their OWN mint tool no
+longer recognized as theirs — invisible to `--check`'s byte-diff (a household with
+no other minted double is not "drift", it just silently becomes unreachable) and
+only surfaces as `stale` in the OWNING mint tool's *own* `--check`, which is
+what `--verify` runs, for every renamed household, automatically. A household it
+flags needs the fix applied by hand, the way those 3 were: find the id the mint
+tool's own fresh derivation wants (its `--check`/`--report` output names it), then
+rename to THAT id, not to whatever `plain_fragment()` guessed the first time.
 """
 from __future__ import annotations
 
@@ -365,14 +384,64 @@ def self_test() -> int:
     return 0
 
 
+PASS_MODULES = (
+    ("documented", "mint_documented_residents"),
+    ("placed", "mint_placed_residents"),
+    ("letter_list", "mint_letter_list_residents"),
+)
+
+
+def verify() -> int:
+    """For every currently plain-id, source_pass-carrying household, does its OWN
+    mint tool still recognize it — or did plain_fragment() send it somewhere the
+    tool's fresh derivation does not reach? See the module docstring's `--verify`
+    section for why this can happen even when `--check` is silent about it."""
+    import importlib
+
+    stale_total = 0
+    for pass_name, modname in PASS_MODULES:
+        m = importlib.import_module(modname)
+        files, _accepted, _refusals, mine_paths = m.build()
+        stale = [p for p in sorted(mine_paths) if p not in files]
+        if not stale:
+            print(f"   ok   {pass_name}: every {modname} household is still reachable "
+                  f"by its own tool")
+            continue
+        for p in stale:
+            doc = load(p)
+            name = (head_person(doc) or {}).get("name", "?")
+            # The id the tool's OWN fresh derivation wants for this exact name, so
+            # a human fixing this by hand does not have to hunt for it separately.
+            candidate = next(
+                (q.name for q in files
+                 if json.loads(files[q]).get("persons", [{}])[0].get("name") == name),
+                None)
+            stale_total += 1
+            print(f"   STALE: {p.name} (\"{name}\") — its own tool no longer derives "
+                  f"this id" + (f"; it wants {candidate}" if candidate else
+                                 " (no live candidate matches this name at all — "
+                                 "check whether it dropped out of the register)"))
+    if stale_total:
+        print(f"\n   {stale_total} household(s) carry an id their own mint tool cannot "
+              f"reach. Fix each by hand: rewrite_household()/index.json to the id "
+              f"named above, then run --verify again.")
+        return 1
+    print("   OK: every renamed household is still reachable by its own mint tool")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="print the full map, write nothing")
+    ap.add_argument("--verify", action="store_true",
+                     help="did every already-renamed household stay reproducible?")
     ap.add_argument("--self-test", action="store_true", help="the mechanics, on fixtures")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.verify:
+        return verify()
 
     docs = read_households()
     id_map, problems = build_map(docs)

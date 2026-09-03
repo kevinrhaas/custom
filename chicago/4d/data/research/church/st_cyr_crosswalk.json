@@ -81,7 +81,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_simmons_medad_i",
+          "person_id": "simmons_medad_i",
           "name": "Medad I. Simmons",
           "grade": "inferred"
         }
@@ -120,7 +120,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_simmons_medad_i",
+          "person_id": "simmons_medad_i",
           "name": "Medad I. Simmons",
           "grade": "inferred"
         }
@@ -137,7 +137,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_simmons_medad_i",
+          "person_id": "simmons_medad_i",
           "name": "Medad I. Simmons",
           "grade": "inferred"
         }
@@ -205,7 +205,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_edward_a_rogers",
+          "person_id": "rogers_edward_a",
           "name": "Edward A. Rogers",
           "grade": "inferred"
         }
@@ -305,7 +305,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_green_damel_m",
+          "person_id": "green_damel_m",
           "name": "Damel M. Green",
           "grade": "inferred"
         }
@@ -344,7 +344,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "placed_b_s_morris",
+          "person_id": "morris_b_s",
           "name": "B. S. Morris",
           "grade": "attested"
         }
@@ -361,7 +361,7 @@
       "outcome": "candidate",
       "residents": [
         {
-          "person_id": "ll_george_lee",
+          "person_id": "lee_george",
           "name": "George Lee",
           "grade": "inferred",
           "occupation": "none_recorded"
@@ -390,7 +390,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -534,7 +534,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_white_edson",
+          "person_id": "white_edson",
           "name": "Edson White",
           "grade": "inferred"
         }
@@ -661,7 +661,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -711,7 +711,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_seaton_charles",
+          "person_id": "charles_seaton",
           "name": "Seaton charles",
           "grade": "inferred"
         }
@@ -739,7 +739,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_jackson_samuel",
+          "person_id": "jackson_samuel",
           "name": "Samuel Jackson",
           "grade": "attested"
         }
@@ -1124,7 +1124,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_seaton_charles",
+          "person_id": "charles_seaton",
           "name": "Seaton charles",
           "grade": "inferred"
         }
@@ -1163,7 +1163,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_dalton_edward",
+          "person_id": "dalton_edward",
           "name": "Edward Dalton",
           "grade": "inferred"
         }
@@ -1257,7 +1257,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_jesse_morgan",
+          "person_id": "morgan_jesse",
           "name": "Jesse Morgan",
           "grade": "inferred"
         }
@@ -1285,7 +1285,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_henry_c_west",
+          "person_id": "west_henry_c",
           "name": "Henry C. West",
           "grade": "inferred"
         }
@@ -1351,7 +1351,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_lyman_bennet",
+          "person_id": "bennet_lyman",
           "name": "Lyman Bennet",
           "grade": "inferred"
         }
@@ -1368,7 +1368,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_williams_charles_c",
+          "person_id": "williams_charles_c",
           "name": "Charles C. Williams",
           "grade": "inferred"
         }
@@ -1462,7 +1462,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -1600,7 +1600,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -1628,7 +1628,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_ward_hanibal",
+          "person_id": "ward_hanibal",
           "name": "Hanibal Ward",
           "grade": "inferred"
         }
@@ -1667,7 +1667,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_ward_hanibal",
+          "person_id": "ward_hanibal",
           "name": "Hanibal Ward",
           "grade": "inferred"
         }
@@ -1904,7 +1904,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -2053,7 +2053,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -2109,7 +2109,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_riley_bush",
+          "person_id": "bush_riley",
           "name": "Riley Bush",
           "grade": "inferred"
         }
@@ -2390,7 +2390,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -2429,7 +2429,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -2446,7 +2446,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -2628,7 +2628,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alanson_b_vaughan",
+          "person_id": "vaughan_alanson_b",
           "name": "Alanson B. Vaughan",
           "grade": "inferred"
         }
@@ -2788,7 +2788,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "placed_b_s_morris",
+          "person_id": "morris_b_s",
           "name": "B. S. Morris",
           "grade": "attested"
         }
@@ -2937,7 +2937,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_ira_herrick",
+          "person_id": "herrick_ira",
           "name": "Ira Herrick",
           "grade": "inferred"
         }
@@ -2987,7 +2987,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_sciota_evans",
+          "person_id": "evans_sciota",
           "name": "Sciota Evans",
           "grade": "attested"
         }
@@ -3081,7 +3081,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_white_edson",
+          "person_id": "white_edson",
           "name": "Edson White",
           "grade": "inferred"
         }
@@ -3109,7 +3109,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_thos_fitzgerald",
+          "person_id": "fitzgerald_thos",
           "name": "Thos. Fitzgerald",
           "grade": "inferred"
         }
@@ -3159,7 +3159,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murray",
+          "person_id": "murray_alonzo",
           "name": "Alonzo Murray",
           "grade": "inferred"
         }
@@ -3341,7 +3341,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_patrick_martin",
+          "person_id": "martin_patrick",
           "name": "Patrick Martin",
           "grade": "inferred"
         }
@@ -3523,7 +3523,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_stephen_may",
+          "person_id": "may_stephen",
           "name": "Stephen May",
           "grade": "inferred"
         }
@@ -3628,7 +3628,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_henry_c_west",
+          "person_id": "west_henry_c",
           "name": "Henry C. West",
           "grade": "inferred"
         }
@@ -3799,7 +3799,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_ward_hanibal",
+          "person_id": "ward_hanibal",
           "name": "Hanibal Ward",
           "grade": "inferred"
         }
@@ -3899,7 +3899,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "doc_j_h_collins",
+          "person_id": "collins_j_h",
           "name": "J. H. Collins",
           "grade": "attested"
         }
@@ -3965,7 +3965,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_gregory_e_legg",
+          "person_id": "legg_gregory_e",
           "name": "Gregory E. Legg",
           "grade": "inferred"
         }
@@ -4092,7 +4092,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -4142,7 +4142,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -4192,7 +4192,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -4341,7 +4341,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_john_wilson",
+          "person_id": "wilson_john",
           "name": "John Wilson",
           "grade": "inferred"
         }
@@ -4479,7 +4479,7 @@
       "outcome": "candidate",
       "residents": [
         {
-          "person_id": "ll_joseph_chandler",
+          "person_id": "chandler_joseph",
           "name": "Joseph Chandler",
           "grade": "attested",
           "occupation": "none_recorded"
@@ -4541,7 +4541,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -4580,7 +4580,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_george_lee",
+          "person_id": "lee_george",
           "name": "George Lee",
           "grade": "inferred"
         }
@@ -4949,7 +4949,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murry",
+          "person_id": "murry_alonzo",
           "name": "Alonzo Murry",
           "grade": "inferred"
         }
@@ -4988,7 +4988,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -5016,7 +5016,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -5033,7 +5033,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_samuel_shaw",
+          "person_id": "shaw_samuel",
           "name": "Samuel Shaw",
           "grade": "inferred"
         }
@@ -5193,7 +5193,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_james_burk",
+          "person_id": "burk_james",
           "name": "James Burk",
           "grade": "inferred"
         }
@@ -5419,7 +5419,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_john_fitzsimmons",
+          "person_id": "fitzsimmons_john",
           "name": "John Fitzsimmons",
           "grade": "inferred"
         }
@@ -5645,7 +5645,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_thos_fitzgerald",
+          "person_id": "fitzgerald_thos",
           "name": "Thos. Fitzgerald",
           "grade": "inferred"
         }
@@ -5662,7 +5662,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murray",
+          "person_id": "murray_alonzo",
           "name": "Alonzo Murray",
           "grade": "inferred"
         }
@@ -5679,7 +5679,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_alonzo_murray",
+          "person_id": "murray_alonzo",
           "name": "Alonzo Murray",
           "grade": "inferred"
         }
@@ -5751,7 +5751,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_jordan_j_b",
+          "person_id": "jordan_j_b",
           "name": "J. B. Jordan",
           "grade": "inferred"
         }
@@ -5790,7 +5790,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_smith_elded",
+          "person_id": "smith_elded",
           "name": "Elded Smith",
           "grade": "inferred"
         }
@@ -5818,7 +5818,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_george_lee",
+          "person_id": "lee_george",
           "name": "George Lee",
           "grade": "inferred"
         }
@@ -5923,7 +5923,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_white_edson",
+          "person_id": "white_edson",
           "name": "Edson White",
           "grade": "inferred"
         }
@@ -5951,7 +5951,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_white_edson",
+          "person_id": "white_edson",
           "name": "Edson White",
           "grade": "inferred"
         }
@@ -6122,7 +6122,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_hyde_thomas_s",
+          "person_id": "hyde_thomas_s",
           "name": "Thomas S. Hyde",
           "grade": "inferred"
         }
@@ -6238,7 +6238,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_powers_t_w",
+          "person_id": "powers_t_w",
           "name": "T. W. Powers",
           "grade": "inferred"
         }
@@ -6339,7 +6339,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_andrews_davi",
+          "person_id": "andrews_davi",
           "name": "Davi Andrews",
           "grade": "attested"
         }
@@ -6374,7 +6374,7 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "ll_perry_a_8",
+          "person_id": "8_perry_a",
           "name": "Perry A. 8.",
           "grade": "inferred"
         }
