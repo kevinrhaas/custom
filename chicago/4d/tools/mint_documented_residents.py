@@ -171,7 +171,7 @@ def plain_fragment(name: str) -> str:
     The naive `slug()` above just joins `words(name)` in whatever order the raw
     printed name happens to be in — surname-first for 'Hail, Aifred' but
     given-first for 'B. S. Morris', because that is the order the papers print
-    them in. This is the shape a NEW household's id and person id take (T-0598):
+    them in. This is the shape a NEW household's id and person id take (T-0599):
     `surname()` already finds the family name from either printed order, so this
     drops that one token from `words(name)` wherever it fell and puts it first —
     `plain_fragment("B. S. Morris")` → `morris_b_s`.
@@ -267,7 +267,7 @@ def in_town_places() -> set[str]:
 # what keeps all three re-derivable beside each other in any order.
 MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
 
-# T-0598: a household minted from here on gets a PLAIN id (`plain_fragment`
+# T-0599: a household minted from here on gets a PLAIN id (`plain_fragment`
 # above), the shape the 73 hand-authored households already use, instead of one
 # of the three prefixes above — the prefix read as a household's STATUS ("placed"
 # sounds like a lot position; it names a residency test) when it was only ever
@@ -294,7 +294,7 @@ def household_id(cand_name: str, prefix: str, pass_name: str, docs: dict,
                  taken_ids: set[str]) -> str:
     """The household id for a candidate: reuse whatever already exists for them —
     their legacy-prefixed id if this pass already minted them under one, or a
-    plain id if a run after T-0598 already minted them under that — and mint a
+    plain id if a run after T-0599 already minted them under that — and mint a
     fresh plain one otherwise, disambiguated against every id already on disk or
     claimed earlier in this same run. This is what makes `record()` reproduce an
     EXISTING candidate's id byte-for-byte (so `--check` stays green on the ~747
@@ -320,7 +320,7 @@ def town_family_names(docs: dict, index: dict, skip=MINTED_PASSES) -> set[str]:
     Read from the household records' own person names and from the index's
     researched-not-resident findings — minus the minted households named by
     `skip`, tested with `minted_by()` so a plain-named household minted after
-    T-0598 is recognized the same as a legacy-prefixed one. See MINTED_PASSES
+    T-0599 is recognized the same as a legacy-prefixed one. See MINTED_PASSES
     above for why `skip` is an order and not a set.
     """
     known: set[str] = set()
@@ -470,7 +470,7 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
         "head": pid,
     }
     if hid != legacy_id:
-        # A genuinely new mint (T-0598): the plain id carries no pass of its own,
+        # A genuinely new mint (T-0599): the plain id carries no pass of its own,
         # so the pass is recorded here instead. A household reusing its legacy id
         # does NOT gain this field retroactively — see household_id()'s docstring.
         doc["source_pass"] = "documented"

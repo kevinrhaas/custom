@@ -4400,7 +4400,7 @@ RESIDENTS = DATA / "residents"
 RESIDENT_GRADES = ("attested", "inferred", "reconstructed")
 
 # Which of the three mint tools produced this record, recorded now that a
-# plain id no longer says so on its own (T-0598: mint_documented_residents.py /
+# plain id no longer says so on its own (T-0599: mint_documented_residents.py /
 # mint_placed_residents.py / mint_letter_list_residents.py used to encode this
 # as an hh_doc_/hh_placed_/hh_ll_ filename prefix; a household minted from here
 # on carries this field instead and gets a plain hh_<surname>_<given> id). This

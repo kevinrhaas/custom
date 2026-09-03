@@ -206,7 +206,7 @@ def plain_fragment(name: str) -> str:
 
     Duplicated from mint_documented_residents.py rather than imported — see this
     file's own note above on why the two passes are independent programmes.
-    `plain_fragment("B. S. Morris")` -> `morris_b_s`; T-0598.
+    `plain_fragment("B. S. Morris")` -> `morris_b_s`; T-0599.
     """
     fam = surname(name)
     given: list[str] = []
@@ -221,7 +221,7 @@ def plain_fragment(name: str) -> str:
 
 def minted_by(path, doc: dict, pass_name: str, legacy_prefix: str) -> bool:
     """Was this household minted by the named pass — recognized either by its
-    legacy filename prefix or by its `source_pass` field (T-0598)."""
+    legacy filename prefix or by its `source_pass` field (T-0599)."""
     return path.name.startswith(legacy_prefix) or doc.get("source_pass") == pass_name
 
 
@@ -356,7 +356,7 @@ def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX)
     minted are committed and standing, and a surname they hold is a surname the town
     names.
 
-    T-0598: `skip_prefix` still names this pass's legacy prefix, but the test also
+    T-0599: `skip_prefix` still names this pass's legacy prefix, but the test also
     recognizes a household minted by this pass AFTER that change — carrying a
     plain id and `source_pass: "letter_list"` instead — via `minted_by()`.
     """
@@ -571,7 +571,7 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
         "head": pid,
     }
     if hid != legacy_id:
-        # A genuinely new mint (T-0598): see mint_documented_residents.record()'s
+        # A genuinely new mint (T-0599): see mint_documented_residents.record()'s
         # matching comment — a household reusing its legacy id is unchanged.
         doc["source_pass"] = "letter_list"
     doc.update({
@@ -889,7 +889,7 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                         f"persons carry the flag — the panel's own count sentence reads "
                         f"this number")
 
-    # T-0598: a letter-list person's id is no longer always `ll_...` or found
+    # T-0599: a letter-list person's id is no longer always `ll_...` or found
     # under an `hh_ll_...` household — it is found by the FLAG, wherever it is
     # minted, so the structure check is built from that rather than a static
     # prefix pattern that a plain id would slip past.
