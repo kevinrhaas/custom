@@ -7,9 +7,10 @@
   "describes_date": "1830",
   "repository": "Chicago History Museum (working copy, ICHi-34284); the original burned in the 1871 fire",
   "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+  "locator": "chicago/pre_fire_v1/maps/images/1830_thompson_plat.png (the sheet held in this repository; read for its stated figures, never traced for geometry)",
   "tier": 1,
   "rights_status": "public_domain",
   "asset_use": "inventory",
   "verified": false,
-  "note": "PARAMETER SOURCE, not a warping raster — no open high-resolution archival scan located, and the surviving artifact is a Canal Commissioners' working copy dated to at least 1836. Its value is the hard dimensional module: the original Town of Chicago at roughly 0.375 sq mi, 80-ft streets, 18-ft alleys. Generate street and alley geometry analytically from those figures rather than tracing pixels."
+  "note": "PARAMETER SOURCE, not a warping raster — no open high-resolution archival scan located, and the surviving artifact is a Canal Commissioners' working copy dated to at least 1836. Its value is the hard dimensional module: the original Town of Chicago at roughly 0.375 sq mi, 80-ft streets, 18-ft alleys. Generate street and alley geometry analytically from those figures rather than tracing pixels. A COPY OF THE SHEET IS HELD IN THIS REPOSITORY at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png — the owner pointed T-0444 at it on 2026-09-03 for the West Division's lot dimensions and block lot-counts, which are READ off it as figures; the rule above still governs geometry. `verified` flips to true in the commit that reads it."
 }

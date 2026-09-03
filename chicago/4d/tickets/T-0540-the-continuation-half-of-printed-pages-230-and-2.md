@@ -1,5 +1,5 @@
 ---
-id: T-0531
+id: T-0540
 title: The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
 state: open
 epic: META
@@ -15,7 +15,6 @@ claimed_by: null
 blocked_on: null
 needs_bake: false
 ---
-
 The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50.
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)

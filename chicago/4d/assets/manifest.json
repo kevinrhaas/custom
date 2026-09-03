@@ -660,8 +660,8 @@
     "jh_kinzie_forwarding_store__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 53992,
-      "inputs_sha256": "398a464dd519fbe09c27d1d121b5744729611deb988025ca9f852e02010c1f5f",
+      "bytes": 56332,
+      "inputs_sha256": "f6f8e85252c3344fd74af2c2cffe1cb667d6dd3151f6951dbedd30c835bcebb7",
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "jh_kinzie_forwarding_store"
@@ -1056,8 +1056,8 @@
     "recon_1835_blk_randolph_clark_c2_01__inferred_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 48112,
-      "inputs_sha256": "ee2f53ebde3deb37e8c43014132edcb6304bf92797731d271a4fd48564d2a391",
+      "bytes": 47804,
+      "inputs_sha256": "96871553e5d981a1b2da0054c062d92557f0a7f58a72210299a301fc30c0752d",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_clark_c2_01"
@@ -1710,6 +1710,24 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_franklin_a3_07"
     },
+    "recon_1835_blk_south_water_franklin_a3_11__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 31400,
+      "inputs_sha256": "90b63168570adf79e558046d9c8d3db0ccfb9f4b8dd90f0d077bc957da281cbe",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_franklin_a3_11"
+    },
+    "recon_1835_blk_south_water_franklin_c2_10__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 46876,
+      "inputs_sha256": "807ff9d42d42dbd711d0fdc94d27e5f7e91a9e05fcae18b6b7766933abffbc79",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_franklin_c2_10"
+    },
     "recon_1835_blk_south_water_franklin_d1_04__inferred_1835.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -1740,20 +1758,38 @@
     "recon_1835_blk_south_water_franklin_d4_02__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 28020,
-      "inputs_sha256": "3b58ea6ca1306062ea07c2d2208fc3ebfea73521a06d4daf9a01d835b9efdd24",
+      "bytes": 33636,
+      "inputs_sha256": "f144719d219973c6551685d1b2a99476fdabc194026888a8e8e833da9ae90b3d",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_franklin_d4_02"
     },
+    "recon_1835_blk_south_water_franklin_d4_08__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 30520,
+      "inputs_sha256": "a30a464aa8ce3f1f745b75c3ab3673da8a481276802ed5c4adbfe428c9bf2c5f",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_franklin_d4_08"
+    },
     "recon_1835_blk_south_water_franklin_d5_01__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 33016,
-      "inputs_sha256": "42985ab373de4852dc2ebb1670f2f141e7fe8f429c9084066e902c85684fe3aa",
+      "bytes": 29272,
+      "inputs_sha256": "dad93a3fbf2b09c9483b92ddbb0357a1ca8b6b66742f655ad30bee0c5acb43bf",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_franklin_d5_01"
+    },
+    "recon_1835_blk_south_water_franklin_d5_09__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 28336,
+      "inputs_sha256": "ea095aa09eca6e9da6cafa7d29cbe1dbff8f58b5c392ea35b1ef8374dbda643c",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_franklin_d5_09"
     },
     "recon_1835_blk_south_water_lasalle_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
@@ -3189,8 +3225,8 @@
     "temple_building__frame_1833.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 48212,
-      "inputs_sha256": "43eb01446636dae709dca5c9c17be8f9e04bca9ef2558f10d73b0078bbc2c48a",
+      "bytes": 51956,
+      "inputs_sha256": "85c8dfe635690b1605deb139e73f9b73eb2bc05d8767d9423ce6ffb35b8f623e",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "temple_building"

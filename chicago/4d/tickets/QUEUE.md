@@ -73,10 +73,13 @@
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
-T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
-T-0494 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
+T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
+T-0532 — The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
+T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
+T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
+T-0535 — The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
 T-0530 — The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
 T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
@@ -178,7 +181,6 @@ T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction
 # ---   T-0183  the 27 roofs of a block the river pinches out, returned to the South balance
 # ---   T-0384  Holbrook's store, read as an ordinal off the corner rather than street-only
 T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
@@ -314,4 +316,6 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
-T-0531 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
+T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
+T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+T-0540 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50

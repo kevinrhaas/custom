@@ -108,13 +108,19 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # change to the shared generator modules or to build.py would re-stale; the terrain and pier_crib
 # reaches stay at 2 each.
 #
+# 368 -> 372 and 366 -> 370 on 2026-09-03 (T-0430): `blk_south_water_franklin` took its
+# second deal — a party-line run of three on the block's one free lot of South Water
+# frontage and the privy in the yard behind them. Four new structure assets, so four more
+# meshes a change to the shared generator modules or to build.py would re-stale; the
+# terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 368,
+    "assets": 372,
     "restales": {
-        "generators/common/*.py": 368,
+        "generators/common/*.py": 372,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 366,
+        "generators/build.py": 370,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
