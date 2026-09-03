@@ -82,16 +82,27 @@ RESEARCH = ROOT / "data" / "research"
 REGISTRY = RESEARCH / "domains.json"
 BASELINE = Path(__file__).resolve().parent / "research_spend_baseline.json"
 
-# The arrays a crosswalk file states its rulings in. `pages` is deliberately
-# absent: census_1840/crosswalk_670.json compares five PAGES against the lost v4
-# workbook, which is a page-level agreement test and rules on nobody.
-ADJUDICATION_KEYS = ("passes", "merges", "refusals", "matches",
-                     "contested", "ambiguous", "probable", "entries")
+# WHICH ARRAY HOLDS THE RULINGS IS NOT A LIST WE MAINTAIN — it was, for one day,
+# and the list was wrong within hours. The first version whitelisted
+# passes/merges/refusals/matches/contested/ambiguous/probable/entries, and then
+# the two tickets this very gate provoked filed their work under names it had
+# never heard of: T-0505 wrote 498 rulings as `heads` in resident_crosswalk.json
+# and T-0590 wrote 319 as `lead_rulings` in lead_crosswalk.json. The measure read
+# both as zero and would have reported the town had spent nothing while it had in
+# fact spent 817 — an instrument that demands work and then cannot see it.
+#
+# So EVERY array in a crosswalk file is scanned, and the ENTRY decides, not its
+# heading: it is a ruling if it anchors to something real or states an `outcome`.
+# Structural arrays (a `ladder`, an `inputs` block, the `pages` of a page-level
+# agreement test) carry neither and are ignored without being counted anywhere.
+OUTCOME_KEY = "outcome"
 
 # What a ruling may anchor to. Order matters only for which name the dedup key
-# takes; any one of them makes the entry a spend.
-ANCHOR_KEYS = ("record_id", "entry_id", "claim_id",
-               "person_id", "resident", "matched_resident")
+# takes; any one of them makes the entry a spend. Plural forms are here because
+# one ruling may reach several cards or several people at once.
+ANCHOR_KEYS = ("record_id", "entry_id", "claim_id", "lead_id",
+               "person_id", "resident", "matched_resident",
+               "record_ids", "person_ids")
 
 # A unit is READ if it carries one of these. `quote` is here for the claims
 # domains, whose unit is a sentence the source prints rather than a name.
@@ -107,6 +118,23 @@ def read_json(path: Path):
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
+
+
+def anchor_of(ruling: dict) -> str | None:
+    """What this ruling is about, as a dedup key — or None if it names nothing.
+
+    A 1840 head is identified by its position on the sheet (`familysearch_id` +
+    `line`) rather than by any id, because the census names no ids; that pair is
+    as real an anchor as a record_id and is treated as one."""
+    for key in ANCHOR_KEYS:
+        value = ruling.get(key)
+        if isinstance(value, list) and value:
+            return f"{key}={','.join(str(v) for v in sorted(value))}"
+        if value and not isinstance(value, list):
+            return f"{key}={value}"
+    if ruling.get("familysearch_id") and ruling.get("line") is not None:
+        return f"sheet={ruling['familysearch_id']}:{ruling['line']}"
+    return None
 
 
 def count_read(domain_dir: Path) -> int:
@@ -137,18 +165,20 @@ def count_spent(domain_dir: Path) -> tuple[int, int]:
         doc = read_json(path)
         if not isinstance(doc, dict):
             continue
-        for key in ADJUDICATION_KEYS:
-            rulings = doc.get(key)
+        for key, rulings in doc.items():
             if not isinstance(rulings, list):
                 continue
-            for ruling in rulings:
+            for index, ruling in enumerate(rulings):
                 if not isinstance(ruling, dict):
                     continue
-                anchor = next((f"{k}={ruling[k]}" for k in ANCHOR_KEYS
-                               if ruling.get(k)), None)
+                anchor = anchor_of(ruling)
                 if anchor:
                     anchors.add(anchor)
-                else:
+                elif ruling.get(OUTCOME_KEY):
+                    # A stated outcome with nothing to anchor it is still a ruling
+                    # somebody made; it dedups by where it sits.
+                    anchors.add(f"{path.name}:{key}:{index}")
+                elif ruling.get("a") and ruling.get("b"):
                     pairs += 1
     return len(anchors), pairs
 

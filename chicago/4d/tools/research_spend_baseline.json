@@ -5,11 +5,11 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 557,
+  "census_1840": 54,
   "church": 0,
   "books": 0,
   "directories": 4703,
-  "newberry_index": 2077
+  "newberry_index": 1753
  },
  "witness": {
   "civic": {
@@ -22,7 +22,7 @@
   },
   "census_1840": {
    "read": 562,
-   "spent": 5
+   "spent": 508
   },
   "church": {
    "read": 0,
@@ -38,7 +38,7 @@
   },
   "newberry_index": {
    "read": 2619,
-   "spent": 542
+   "spent": 866
   }
  },
  "raised": [
