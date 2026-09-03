@@ -14,21 +14,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": null,
-      "takenAt": "2026-09-03T20:08:43.889Z",
+      "takenAt": "2026-09-03T20:10:10.674Z",
       "ref": "steward/t-0504-1840-serial-fingerprint",
-      "commit": "eac7e2614124",
-      "devCommit": "785cb85aa607",
-      "treeHash": "sha256:cee223aea6a23aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:01962813444db6bd",
+      "commit": "af734293f5c5",
+      "devCommit": "6441de640614",
+      "treeHash": "sha256:a6ced9f01ff28c3b",
+      "treeDirty": true,
+      "changelogHash": "sha256:809d62c1f9f88695",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.4,
-          4.2,
-          2.9
+          1,
+          3.1,
+          2.7
         ]
       },
       "source": "/tmp/smoke_m.log /tmp/smoke_d1.log /tmp/smoke_d2.log"
@@ -45,24 +45,86 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": null,
-      "takenAt": "2026-09-03T20:08:43.889Z",
+      "takenAt": "2026-09-03T20:10:10.674Z",
       "ref": "steward/t-0504-1840-serial-fingerprint",
-      "commit": "eac7e2614124",
-      "devCommit": "785cb85aa607",
-      "treeHash": "sha256:cee223aea6a23aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:01962813444db6bd",
+      "commit": "af734293f5c5",
+      "devCommit": "6441de640614",
+      "treeHash": "sha256:a6ced9f01ff28c3b",
+      "treeDirty": true,
+      "changelogHash": "sha256:809d62c1f9f88695",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.4,
-          4.2,
-          2.9
+          1,
+          3.1,
+          2.7
         ]
       },
       "source": "/tmp/smoke_m.log /tmp/smoke_d1.log /tmp/smoke_d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 109,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 309,
+      "takenAt": "2026-09-03T19:55:11.385Z",
+      "ref": "steward/t-0505-1840-head-crosswalk",
+      "commit": "e2f66239ff24",
+      "devCommit": "785cb85aa607",
+      "treeHash": "sha256:2711be624d540464",
+      "treeDirty": false,
+      "changelogHash": "sha256:b9b65bd3a85cc059",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.6,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 109,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 164,
+      "takenAt": "2026-09-03T19:55:11.287Z",
+      "ref": "steward/t-0505-1840-head-crosswalk",
+      "commit": "e2f66239ff24",
+      "devCommit": "785cb85aa607",
+      "treeHash": "sha256:2711be624d540464",
+      "treeDirty": false,
+      "changelogHash": "sha256:b9b65bd3a85cc059",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.6,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_m13.log"
     },
     {
       "viewport": "mobile",
@@ -1456,84 +1518,6 @@
         ]
       },
       "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0530_desktop_11-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "11-13",
-      "parts": [
-        11,
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 144,
-      "failed": 6,
-      "failures": [
-        "mobile 390x780: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
-        "mobile 390x780: the 956 person entries are counted — 849",
-        "mobile 390x780: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
-        "mobile 390x780: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
-        "mobile 390x780: an invented name says on the card which pool it came from",
-        "mobile 390x780: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
-      ],
-      "wallSeconds": 262,
-      "takenAt": "2026-09-03T11:31:00.138Z",
-      "ref": "steward/t-0530-census-cells-230-232",
-      "commit": "3e7efb4e354c",
-      "devCommit": "518411677e77",
-      "treeHash": "sha256:5f6b70abce04645a",
-      "treeDirty": false,
-      "changelogHash": "sha256:e87a54b8eff07d9c",
-      "host": {
-        "kind": "local",
-        "cpus": 4,
-        "memGB": 15.7,
-        "loadavg": [
-          3.3,
-          3.8,
-          2.7
-        ]
-      },
-      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0530_mobile_11-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 68,
-      "failed": 6,
-      "failures": [
-        "desktop 1280x800: a reconstructed resident has an invented period name — name \"undefined\"",
-        "desktop 1280x800: the invented name is graded as invented and says so — name_basis undefined — \"\"",
-        "desktop 1280x800: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
-        "desktop 1280x800: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
-        "desktop 1280x800: search still finds it by its part number and by its household — by spec false, by household false",
-        "desktop 1280x800: a building raised for an inferred household says so — basis \"\""
-      ],
-      "wallSeconds": 102,
-      "takenAt": "2026-09-03T11:30:59.992Z",
-      "ref": "steward/t-0530-census-cells-230-232",
-      "commit": "3e7efb4e354c",
-      "devCommit": "518411677e77",
-      "treeHash": "sha256:5f6b70abce04645a",
-      "treeDirty": false,
-      "changelogHash": "sha256:e87a54b8eff07d9c",
-      "host": {
-        "kind": "local",
-        "cpus": 4,
-        "memGB": 15.7,
-        "loadavg": [
-          3.3,
-          3.8,
-          2.7
-        ]
-      },
-      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0530_desktop_3.log"
     },
     {
       "viewport": "desktop",
