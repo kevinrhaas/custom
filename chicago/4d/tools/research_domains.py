@@ -104,6 +104,21 @@ DOMAINS = {
         "what": "The 1839 Chicago directory and its successors — entry by entry, "
                 "structured, and crosswalked rather than quoted at second hand.",
     },
+    # The seventh, added by T-0562 when the owner put the Newberry Library's
+    # genealogical index on the Internet Archive. It is not one of his six original
+    # domains and it is not a source of facts at all: it is a FINDING AID, and it
+    # earns a domain here because it is list-shaped, it is large, and the one thing
+    # it must never do — put a surname behind a person — is a thing only a gate can
+    # stop. `tools/read_newberry_index.py --check` is that gate; this entry is what
+    # makes the records, the coverage and the crosswalk answer to this one too.
+    "newberry_index": {
+        "title": "The Newberry genealogical index",
+        "holds": "records",
+        "what": "A four-volume photostat of the Newberry Library's genealogical card "
+                "index (G. K. Hall, 1960), read for the cards whose citation names "
+                "Chicago, Cook County or Illinois. A card says where a genealogy IS; "
+                "it never places a person, and nothing here may grade one.",
+    },
 }
 
 # The claim vocabulary is closed. An open one becomes a synonym list within a week
@@ -679,7 +694,7 @@ def main(argv=None) -> int:
         if bad:
             print("RESEARCH DOMAINS FAIL — %d problem(s)" % len(bad))
             return 1
-        print("OK: the six domains hold their shape")
+        print("OK: the %d domains hold their shape" % len(DOMAINS))
         return 0
     ap.print_help()
     return 2

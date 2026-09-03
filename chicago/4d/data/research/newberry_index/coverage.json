@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "domain": "newberry_index",
+  "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
+  "note": "The unit here is the VOLUME, not the page. All 987 pages of volume 1 were cropped, laid out and walked; the 2,579 cards kept are the ones whose body names Chicago, Cook County or Illinois, and the other ~56,000 are read and not kept. Declaring 987 pages would be a lie in the other direction — it would report a hole on every page that carries no Illinois family, and there are 344 of them.",
+  "declarations": [
+    {
+      "unit": "list",
+      "items": [
+        "vol_01"
+      ],
+      "ticket": "T-0570",
+      "note": "Volume 1 (A-C), Internet Archive file FL2091539_CP-130151_01.pdf, 987 pages, read by its text layer in four cropped column passes. 58,488 cards assembled; 2,579 kept for naming Chicago, Cook County or Illinois; 581 of those name Chicago or Cook County."
+    }
+  ],
+  "not_read": [
+    {
+      "item": "vol_02",
+      "ticket": "T-0571"
+    },
+    {
+      "item": "vol_03",
+      "ticket": "T-0572"
+    },
+    {
+      "item": "vol_04",
+      "ticket": "T-0573"
+    }
+  ]
+}
