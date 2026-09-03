@@ -100,7 +100,6 @@
 # --- T-0562 joined them the same afternoon on his ask "make sure you have a resident household business
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
-T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
 T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
 T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
