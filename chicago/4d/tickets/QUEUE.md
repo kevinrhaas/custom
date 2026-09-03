@@ -449,3 +449,4 @@ T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves 
 T-0606 — Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
