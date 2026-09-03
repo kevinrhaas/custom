@@ -1,0 +1,60 @@
+name: Regenerate census-dependent cleanup artifacts
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - '.github/workflows/census-cleanup-regenerate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install validator dependencies
+        run: pip install --quiet jsonschema pyproj
+      - name: Regenerate resident-dependent artifacts
+        working-directory: chicago/4d
+        run: |
+          python3 tools/town_census.py
+          python3 tools/select_resident_research_pilot.py
+          python3 tools/select_resident_research_pass_2.py
+          python3 tools/select_resident_research_pass_3.py
+          python3 tools/select_resident_research_pass_4.py
+          python3 tools/select_resident_research_pass_5.py
+          python3 tools/compile_resident_research_pilot.py
+          python3 tools/compile_register.py --build
+          python3 tools/measure_layer_reads.py --update
+          python3 tools/compile_scene.py --all
+          python3 tools/apply_census_1840_bridges.py
+      - name: Refresh only published data mirrors affected by this cleanup
+        run: |
+          rm -rf site/chicago/4d/data/residents
+          cp -a chicago/4d/data/residents site/chicago/4d/data/residents
+          cp -f chicago/4d/data/town_census.json site/chicago/4d/data/town_census.json
+          rm -rf site/chicago/4d/data/sidecars
+          cp -a chicago/4d/data/sidecars site/chicago/4d/data/sidecars
+      - name: Run full Chicago 4D gate
+        working-directory: chicago/4d
+        run: ./tools/check.sh
+      - name: Remove one-off workflow and commit regenerated outputs
+        run: |
+          git rm -f .github/workflows/census-cleanup-regenerate.yml
+          git config user.name 'Kevin Haas'
+          git config user.email 'kevinroberthaas@gmail.com'
+          git add -A
+          git commit -m 'fix(chicago-4d): regenerate census-dependent resident artifacts' -m 'Regenerate town census, research cohorts, scene resident sources, newspaper register, layer-read bank, and published data mirrors after the canonical population increased to 849.' -m 'Changelog: none — derived research/manifests/gate baselines for the already-merged census evidence; no new rendered geometry or visitor UI behavior.'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
