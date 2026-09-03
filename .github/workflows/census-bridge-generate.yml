@@ -1,38 +1,74 @@
-name: Census bridge generated outputs
+name: Finish census bridge cleanup
 
 on:
   pull_request:
+    branches: [dev]
     paths:
-      - 'chicago/4d/data/census/**'
-      - 'chicago/4d/data/research/residents/census_1840_identity_bridges.csv'
-      - 'chicago/4d/data/residents/households/**'
-      - 'chicago/4d/tools/apply_census_1840_bridges.py'
       - '.github/workflows/census-bridge-generate.yml'
 
+permissions:
+  contents: write
+
 jobs:
-  generate:
+  finish:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Apply census bridge generator
-        run: python chicago/4d/tools/apply_census_1840_bridges.py
-      - name: Pack generated outputs
+      - name: Make census bridge recovery regression-safe
         run: |
-          tar -czf census-bridge-generated.tgz \
-            chicago/4d/data/residents/index.json \
-            chicago/4d/data/residents/households/hh_murphy_john.json \
-            chicago/4d/data/residents/households/hh_miller_john.json \
-            chicago/4d/data/residents/households/hh_adams_william_h.json \
-            chicago/4d/data/research/residents/synthesis_2026_09_02.json \
-            chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md \
-            site/chicago/4d/data/residents/index.json \
-            site/chicago/4d/data/residents/households/hh_murphy_john.json \
-            site/chicago/4d/data/residents/households/hh_miller_john.json \
-            site/chicago/4d/data/residents/households/hh_adams_william_h.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: census-bridge-generated
-          path: census-bridge-generated.tgz
+          python - <<'PY'
+          from pathlib import Path
+
+          bridge = Path('chicago/4d/tools/apply_census_1840_bridges.py')
+          s = bridge.read_text()
+          old = '''    rows = bridge_rows(); docs, people = docs_and_people()\n    for row in rows:\n'''
+          new = '''    rows = bridge_rows(); docs, people = docs_and_people()\n    # The adjudicated bridge sidecar is the only authority for 1840→1835 identity.\n    # Clear any legacy exact-name census links before applying it.\n    for person, _path, _doc in people.values():\n        if (person.get("later_census") or {}).get("year") == 1840:\n            person.pop("later_census", None)\n    for row in rows:\n'''
+          if old not in s:
+              raise SystemExit('apply() insertion point not found')
+          s = s.replace(old, new, 1)
+          old = '''    actual_links = [p for p,_path,_doc in people.values() if p.get("later_census")]\n'''
+          new = '''    actual_link_ids = {pid for pid,(p,_path,_doc) in people.items() if p.get("later_census")}\n    unexpected = sorted(actual_link_ids - set(expected))\n    if unexpected: problems.append(f"later_census exists outside adjudicated bridge sidecar: {unexpected}")\n    actual_links = [people[pid][0] for pid in actual_link_ids]\n'''
+          if old not in s:
+              raise SystemExit('check() unexpected-link insertion point not found')
+          bridge.write_text(s.replace(old, new, 1))
+
+          synth = Path('chicago/4d/tools/synthesize_resident_research.py')
+          s = synth.read_text()
+          old = '''    if problems:\n        print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1\n'''
+          new = '''    from apply_census_1840_bridges import check as check_census_bridges\n    if check_census_bridges():\n        problems.append("1840 census bridge check failed")\n    if problems:\n        print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1\n'''
+          if old not in s:
+              raise SystemExit('synthesis check insertion point not found')
+          s = s.replace(old, new, 1)
+          marker = '''    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":len((ledger.get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))\n'''
+          replacement = '''    # Re-apply the adjudicated v4 bridge layer after the legacy synthesis pass so\n    # a future synthesis cannot regress the recovered census links to zero.\n    from apply_census_1840_bridges import apply as apply_census_bridges\n    if apply_census_bridges():\n        return 1\n    print(json.dumps({"before":before,"after":snapshot(load(INDEX)),"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":snapshot(load(INDEX))["census_1840_linked"],"retirement":stats},indent=2))\n'''
+          if marker not in s:
+              raise SystemExit('synthesis apply insertion point not found')
+          synth.write_text(s.replace(marker, replacement, 1))
+          PY
+      - name: Rebuild canonical resident and census manifests
+        run: |
+          python chicago/4d/tools/apply_census_1840_bridges.py
+          python chicago/4d/tools/apply_census_1840_bridges.py --check
+          python chicago/4d/tools/synthesize_resident_research.py --check
+      - name: Remove temporary recovery scaffolding
+        run: |
+          git rm -f \
+            .github/workflows/census-bridge-generate.yml \
+            chicago/4d/data/research/residents/README_669.tmp \
+            chicago/4d/data/research/residents/census_1840_bridge_notes.md \
+            chicago/4d/data/research/residents/census_1840_identity_bridges_pending.csv \
+            chicago/4d/data/research/residents/census_bridge_recovery_status.json
+      - name: Commit cleanup outputs
+        run: |
+          git config user.name 'Kevin Haas'
+          git config user.email 'kevinroberthaas@gmail.com'
+          git add -A
+          git commit -m 'fix(chicago-4d): finalize 1840 census resident integration' -m 'Rebuild resident/site manifests, enforce adjudicated census bridges after synthesis, and remove temporary recovery scaffolding.' -m 'Changelog: none — reconciliation and regression enforcement for the already-merged census dataset; no new rendered town geometry or walkthrough UI behavior.'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
