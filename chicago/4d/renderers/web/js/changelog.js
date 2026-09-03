@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 441, title: 'Why the street fence and the hitching post part company', kind: 'change', ts: '2026-09-03T05:01:20.701Z', date: 'Sep 3, 2026, 12:01 AM CT',
+    items: [
+      'Two pieces of furniture stand at a lot\u2019s street edge here: a board fence along the boundary, and a hitching post outside the shop. Both used to be decided by the same question \u2014 does a building stand on this lot? \u2014 and on a deep lot that question can put either of them on a street the shop\u2019s door never opens onto.',
+      'They were ruled apart, and this is that ruling written where a reader meets it rather than left in a ticket. The fence stays with the LOT: a lot that fronts a street takes its board fence at that frontage whichever way the building on it faces, because a fence encloses ground and it is the ground that fronts the street. The post follows the DOOR, because a post is for a stranger arriving off the street the shop actually opens onto.',
+      'The record the town publishes for its street edge stated four tests for a hitching post while the rule was applying five. The fifth is now written there, next to a sentence saying the fence deliberately does not follow the door \u2014 so what you can read is what was run.',
+      'Measured across all five frontage records, before and after: eighteen posts against eighty-three written refusals, unchanged. One building trips the newer test \u2014 the auction room on South Water Street at Clark, its door facing eighty-nine degrees away from the frontage it stands on \u2014 and it was already going without a post for want of a footway to stand beside.',
+      'Nothing in the town moved today. This is the reasoning behind what is already standing, recorded so the next reader inherits the answer instead of the argument.'
+    ] },
   { v: 440, title: 'Seventy-five more real names receive a sourced research trail', kind: 'feature', ts: '2026-09-01T06:25:19.533Z', date: 'Sep 1, 2026, 1:25 AM CT',
     items: [
       'A fixed second cohort brings dated identity reviews to 150 of 848 eligible real named people; reconstructed residents remain excluded.',

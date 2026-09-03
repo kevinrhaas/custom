@@ -2619,6 +2619,18 @@ def _fence_runs(entry, laid, buildings, hf, refused):
     front of it would be a second one, and (4) the walk was actually laid at its
     foot, which is what the plate shows and what keeps a fence off ground this
     generator has already refused as wet, rolling or occupied.
+
+    CLAUSE (2) ASKS ONLY WHETHER A BUILDING STANDS ON THE LOT, AND THAT IS A
+    RULING RATHER THAN AN OVERSIGHT (T-0426). On a deep lot the street the lot
+    fronts and the street the building's door opens onto are two different
+    streets, and the owner was asked which one the fence follows. He ruled,
+    2026-08-31, for the lot: "a lot that fronts a street takes its street-lining
+    board fence at that frontage, whatever way the building standing on it
+    faces" — L160 read literally, because the first Cook County jail engraving
+    shows the fence on the lot line and a house at the back of a deep lot does
+    not make the lot unimproved. So no facing test belongs here. The hitching
+    post in `_edge_hitching` is the half that DOES follow the door, and it is
+    refused by facing there; the two rules differ on purpose.
     """
     frame = entry["frame"]
     block = entry["block"]
@@ -2734,8 +2746,11 @@ def _edge_hitching(entry, laid, chunks, buildings, hf, streets, refused):
             #
             # The post is what this refusal covers and nothing else. Whether the
             # same containment should still lay a street-lining FENCE on that
-            # face is a different question over a shared rule, and it is the
-            # owner's: see T-0426.
+            # face was put to the owner as a separate question over a shared
+            # rule, and on 2026-08-31 he ruled the fence stays with the LOT's
+            # frontage whatever way the building faces. `_fence_runs` is
+            # therefore unchanged and is correct by ruling rather than by
+            # default; see its docstring, T-0426 and docs/LIBERTIES.md L160.
             face_out = math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0
             off_face = abs((b["bearing"] - face_out + 180.0) % 360.0 - 180.0)
             if off_face > EDGE_HITCH_FACE_TOL_DEG:
@@ -3383,6 +3398,15 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
                 f"{EDGE_TRACK_MARGIN_M} m. It stands at {EDGE_HITCH_ALONG:.2f} of the "
                 "BUILDING's own frontage — not the lot's, because two trades can "
                 f"share a lot — and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot line. "
+                "A POST FOLLOWS THE DOOR, NOT THE LOT: where the building's own "
+                f"facing differs from the platted face by more than "
+                f"{EDGE_HITCH_FACE_TOL_DEG} deg the post is refused in writing, "
+                "because a deep lot can front one street while the trade standing "
+                "on it opens onto another, and a post is furniture for a stranger "
+                "off the street the door is on. THE STREET FENCE DOES NOT follow "
+                "the door — it stays at the frontage of the lot it encloses "
+                "whatever way that building faces, which is the owner's ruling of "
+                "2026-08-31 and is L160 read literally. "
                 "Every refusal "
                 "below names the clause that refused it. Read them in "
                 "tools/generate_frontage_works.py."

@@ -10313,11 +10313,13 @@
       "title": "South Water, Lake and Randolph Streets get plank sidewalks, board crossings, street-lining fences and hitching posts, all of it invented and all of it derived from the plat",
       "section": "per_subject",
       "subjects": [
-        "sauganash_hotel"
+        "bates_auction_room",
+        "sauganash_hotel",
+        "tremont_house_1"
       ],
       "covers": [],
-      "recorded": "2026-08-27",
-      "revised": "2026-08-27",
+      "recorded": "2026-09-03",
+      "revised": "2026-09-03",
       "fields": [
         {
           "label": "Decision",
@@ -10345,11 +10347,15 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-08-27."
+          "text": "2026-08-27. **AMENDED 2026-09-03 — THE FENCE FOLLOWS THE LOT AND THE POST FOLLOWS THE DOOR (T-0426).** Two of this liberty's clauses read the same test — *does a committed building stand inside this platted lot* — and on a DEEP lot that test answers a question neither of them asked. `blk_south_water_clark` runs two lot tiers, north onto South Water and south onto Lake, and **no lot in that block fronts Dearborn Street at all**; a shop addressed in Dearborn therefore stands on a lot whose frontage is Lake, 49 m from its own door. Found while placing the New York Clothing Store (T-0385), measured on that branch, and it forced the question of which street the furniture belongs to. **The two clauses were ruled apart, and this liberty now says so.** **The street fence stays with the LOT.** The owner ruled, 2026-08-31, verbatim: *\"a lot that fronts a street takes its street-lining board fence at that frontage, whatever way the building standing on it faces.\"* That is `L160` read literally — the first Cook County jail engraving shows the fence standing on the lot line, and a house set at the back of a deep lot does not make the lot unimproved. **Nothing in the fence rule changes**, and no metre of the 1,669.0 m already laid moves; what changes is that the clause is now correct BY RULING rather than by default, and a later reader meeting the same collision has the answer instead of the argument. **The hitching post follows the DOOR, and that half is a new refusal.** A post is furniture for a stranger off the street, so it belongs at the face the trade opens onto. `EDGE_HITCH_FACE_TOL_DEG` — **45 deg**, the midpoint of a right-angled grid where a building fronting its own lot's street reads within a few degrees of the face and one fronting the cross street reads about 90 off, with no population in between to tune to — refuses a post whose building faces further than that from the platted face it would stand on, **and the refusal is written into the record with both bearings**, exactly as every other refusal here is. **Measured across all five frontage records, before the clause and after it: 18 posts against 83 stated refusals, unchanged.** Exactly one committed building trips it — `bates_auction_room` on `blk_south_water_clark`'s north face, facing 90.0 deg against a face that looks 0.9 deg, 89.1 deg apart — and it was already being refused further down the same rule for want of a walk to stand outside of. So no post moves; what moves is that its refusal now names the reason that is actually true, which is that the lot fronts South Water Street and the auction room's door does not. The clause bites for the first time when a shop like the New York Clothing Store stands on such a lot with a walk laid in front of it, and landing it before that building rather than after it is the whole reason it is here. **What the record now states.** The generated `rule.note` in `data/frontage/town_street_edge.json` carried four hitching clauses and the generator applied five; the fifth is now stated there, together with the sentence saying the fence deliberately does NOT follow the door. **No source in this repository states that either rule is right** — both are the same tier-5 pictorial invention the rest of this liberty rests on, and the ruling is an owner's reading of the plate, not a document. **What is left over is a different fault and is filed as T-0461**: the Tremont House's goods are laid on ground inside lot 7 while `tremont_house_1`'s own placement point falls 1.5 m outside that lot, so one building's goods sit on another lot's frontage. The fence ruling is what exposed it; it is not what caused it."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-03."
         },
         {
           "label": "Revised",
-          "text": "2026-08-27."
+          "text": "2026-09-03."
         }
       ]
     },
