@@ -1329,6 +1329,17 @@ step "the Newberry index stays a finding aid, and its reading rebuilds from the 
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_newberry_index.py --self-test
+# T-0590. The reading above is worth nothing until somebody rules on what it offered.
+# Volume 1 put up 319 leads and made 0 merges, and a lead nobody has answered reads
+# exactly like a lead nobody has looked at. The rulings are derived, not authored, so
+# the gate that matters is that the file still re-derives: a hand-edited outcome, a
+# lead that stopped being ruled on, or a merge appearing in a finding aid's crosswalk
+# all fail here rather than in a spend measure three weeks later.
+step "every Newberry lead is ruled on, anchored, and re-derives from the cards" \
+  python3 tools/rule_newberry_leads.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/rule_newberry_leads.py --self-test
 # T-0572. The 134 Black Hawk War veterans who enrolled AT CHICAGO in 1832. Two
 # assertions carry this one. First, the reading is taken from the CACHED PAGE and not
 # from the flattened text, because the flattening drops an empty cell and 94 of the 134
@@ -1464,6 +1475,21 @@ step "the lot-and-block address re-derives, and seating it promotes no roof" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/lot_addresses.py --self-test
+
+# THE 1840 CENSUS LINE -> IPUMS SERIAL JOIN (T-0504). IPUMS holds 964 Chicago households as
+# age-band counts with no names; every one of them is also a ruled line on a page image that
+# carries the head's name, and the twenty-six free-white age-band columns are the only thing
+# the two share. The join is DERIVED from the committed page readings rather than kept by
+# hand — which is what the owner's lost v3/v4 workbooks were — so the thing worth gating is
+# that it still re-derives: a page reading that changes and a crosswalk that does not is
+# exactly the drift a workbook cannot report and this can. --check also holds the refusals:
+# an ambiguous fingerprint attaches no serial, a serial is attached to at most one line, and
+# a column the page does not close against the enumerator's own foot total is not compared.
+step "the 1840 census line-to-serial crosswalk re-derives from the page readings" \
+  python3 tools/census_1840_fingerprint.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/census_1840_fingerprint.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

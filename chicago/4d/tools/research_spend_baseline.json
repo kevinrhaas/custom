@@ -9,7 +9,7 @@
   "church": 0,
   "books": 0,
   "directories": 4703,
-  "newberry_index": 4646
+  "newberry_index": 3699
  },
  "witness": {
   "civic": {
@@ -38,7 +38,7 @@
   },
   "newberry_index": {
    "read": 4646,
-   "spent": 0
+   "spent": 947
   }
  },
  "raised": [
@@ -51,10 +51,19 @@
   },
   {
    "domain": "newberry_index",
-   "from": 2619,
-   "to": 4646,
+   "from": 2077,
+   "to": 3699,
    "date": "2026-09-03",
-   "why": "T-0578 read volume 2 (C-H) of the Newberry Genealogical Index: 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. The ceiling is raised because THIS DOMAIN CANNOT BE SPENT IN THIS RATCHET'S UNITS, and that is by design rather than by neglect. A Newberry card is a pointer to a book, not a statement about a person; tools/read_newberry_index.py --check FAILS if the source id newberry_genealogical_index ever appears behind a resident, household, structure or reconstruction record, and crosswalk.json holds zero merges by rule because a shared surname is a lead and never a match. So no reading of any volume will ever move a name from 'read' to 'ruled on' here, and volumes 3 and 4 (T-0579, T-0580) will raise this number again by roughly the same amount. What this domain actually spends is the READING ORDER: follow_up.json ranks the works its Chicago cards point at, and the tickets that open those works are its output — T-0581 (Moses and Kirkland, 1895: 132 Chicago and Cook County cards over the two volumes, 35 on surnames this project already holds) is the live one. T-0596 asks the ratchet to measure a finding-aid domain on those terms instead, so this ceiling stops climbing meaninglessly. Two things it also exposed, and neither is an excuse: the precision sample's 80 rows are counted as read though they are re-readings of records already counted, and 'spent' sees only crosswalk rulings carrying an id anchor, so this crosswalk's one pass and five refusals count as zero."
+   "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more, and it is the reason this raise is 1,622 and not 2,027. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND went up with the read, from 542 cards to 947, and what remains unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0596 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and count_spent sees only rulings carrying an id anchor, so crosswalk.json's one pass and five written refusals count as zero."
+  }
+ ],
+ "lowered": [
+  {
+   "domain": "newberry_index",
+   "from": 2619,
+   "to": 2077,
+   "date": "2026-09-03",
+   "why": "T-0590 ruled on all 319 leads volume 1 offered, anchored to the 542 distinct cards they stand on: 240 refused, 79 candidates in a work this project already holds, 0 merges. Lowering a ceiling is free and is exactly what spending a domain does. The remaining 2,077 are volume 1's cards that stand under no lead at all - a surname nobody in this town carries - and they come down when a later ticket rules the surnames out in bulk or the volumes 2-4 tickets replace the arithmetic."
   }
  ]
 }

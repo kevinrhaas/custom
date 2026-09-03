@@ -31,6 +31,8 @@ can be stopped.
 | `precision_sample.json` | **hand** | forty cards of EACH volume, drawn at random and adjudicated one at a time against the page image. The only thing here that measures whether the reading is any good. One block per volume: a number drawn on one volume is not a measurement of another |
 | `coverage.json` | **hand** | which volumes have been read |
 | `crosswalk.json` | **hand** | no merges, and the refusals written out one by one |
+| `lead_crosswalk.json` | `tools/rule_newberry_leads.py --write` | every lead in `leads.json` ruled on and anchored to the cards it stands on, over every volume read. Still no merges |
+| `acquisition_list.json` | `tools/rule_newberry_leads.py --write` | the Chicago and Cook County cards whose citation the works table could not read — books, not leads |
 
 This is research, not payload. `tools/publish.sh` does not copy `data/research/`, and
 `tools/newspaper_corpus.py --check` asserts it stays out of `site/chicago/4d/`.
@@ -191,6 +193,68 @@ and Kirkland's *History of Chicago* (1895): 132 Chicago and Cook County cards ov
 two volumes, 35 of them under surnames already in the residents, the poll lists or the
 1840 census — up from 76 and 16 on volume 1 alone. Both volumes are on the Internet
 Archive (`historyofchicago01mose`, `historyofchicagov2mose`).
+
+## Every lead is ruled on, over both volumes
+
+T-0590 built the ladder and ruled volume 1's 319 leads; T-0578 read volume 2 and ruled the 227 it adds
+under the same ladder, in the same PR, because T-0590's gate fails the moment a volume offers a lead
+nobody has answered. `tools/rule_newberry_leads.py` reads every `entries_vol_*.json` now rather than
+volume 1's alone.
+
+| outcome | vol 1 (T-0590) | both volumes (T-0578) |
+|---|---:|---:|
+| leads ruled | 319 | **546** |
+| cards anchored | 542 | **947** |
+| candidate — `testable_in_a_held_work` | 79 | **146** |
+| refused — `ocr_variant_only` | 129 | 208 |
+| refused — `locality_absent` | 90 | 144 |
+| refused — `surname_only_chicago` | 21 | 48 |
+| **matched** | **0** | **0** |
+| discriminators found | 0 | 0 |
+
+`matched` stays reachable and unreached: the test is run over all 947 cards, not assumed. The acquisition
+list grows from 166 Chicago and Cook cards whose citation matched no work to **274**, 60 of them still
+carrying a year the photostat left legible.
+
+The lead ids keep the form `lead_v01_*` / `lead_v02_*`, numbered by the FIRST volume the surname appears
+in, because `lead_crosswalk.json` references 1,248 of them and a surname filed in both volumes must keep
+the id its ruling was anchored to. A merged row's `entries` carry both volumes' cards.
+
+### Volume 1's half of it, ruled 2026-09-03 under T-0590
+
+A lead offered and never answered reads exactly like a lead nobody has looked at, and
+that is what `tools/measure_research_spend.py` found: 2,619 units read here, **0 ruled
+on** — the project's largest unspent read. `lead_crosswalk.json` closes it. Every one of
+the 319 leads carries a verdict, and every verdict is anchored to a card and, where the
+heading picks out exactly one of them, to the person in the town it reaches.
+
+| outcome | leads | why |
+|---|---:|---|
+| refused — `ocr_variant_only` | 129 | no candidate reaches the heading by an exact surname key; the heading is not certainly that surname at all |
+| refused — `locality_absent` | 90 | every card under the heading names Illinois and neither Chicago nor Cook County |
+| refused — `surname_only_chicago` | 21 | a Chicago card on an exact surname, waiting on a work nobody here holds |
+| candidate — `testable_in_a_held_work` | 79 | a Chicago card on an exact surname citing Andreas or the 1839 directory — answerable without acquiring anything |
+| **matched** | **0** | — |
+
+**`matched` is reachable and volume 1 does not reach it.** The one thing that could lift a
+lead off a bare surname is a forename on the card, so the tool looks for one rather than
+asserting there is none: every forename this project holds for a candidate is searched for
+in the card text, with the surname's own OCR variants and the locality words filtered out
+because 'Cook' on a Cook County card and 'Cary' under a Carey heading are not forenames.
+`counts.discriminators_found` is **0** across all 542 cards. A later volume that does yield
+one raises it for a hand ruling; it never merges on it.
+
+The 319 leads stand on **542 distinct cards**, and the spend measure counts cards rather
+than leads because it dedupes on the anchor — a card standing under both the residents and
+the voters layer has been looked at once. So that ticket spent 542 and brought the domain's
+ceiling in `tools/research_spend_baseline.json` down from 2,619 to 2,077; volume 2's read
+and ruling together take it to **3,699** on 947 cards spent.
+
+`acquisition_list.json` is the other half of the finding and is deliberately not a lead
+list: over both volumes, 274 Chicago and Cook County cards whose citation matched no work in
+the table (166 of them volume 1's), and only 60 of them still carry a publication year the
+photostat left legible. They point at books, and three of the books
+already have tickets — T-0581, T-0582, T-0583.
 
 Volumes 3 and 4 are unread: T-0579, T-0580. Each wants its own hand-drawn precision
 sample — a number carried over from another volume is not a measurement of it.

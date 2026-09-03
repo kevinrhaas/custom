@@ -120,8 +120,6 @@
 # --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
 # --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
 # --- be taken while any sweep ticket is open. The rest of the wave order below stands.
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
-T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
 
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
@@ -130,7 +128,6 @@ T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State 
 # --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
-T-0590 — Volume 1 of the Newberry index offered 319 leads and made 0 merges: rule on every lead before volumes 2-4 add more
 
 T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
@@ -385,4 +382,4 @@ T-0592 — The fine well on lot 7 of block 16 is documented and the town has no 
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0594 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0595 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
-T-0596 — The research-spend ratchet measures a finding aid in units it can never earn, so the Newberry ceiling climbs by a volume every read
+T-0596 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing

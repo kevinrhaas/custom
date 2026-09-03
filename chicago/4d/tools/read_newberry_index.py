@@ -743,9 +743,20 @@ def parse(volume: int) -> dict:
         path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
         if path.exists():
             all_records.extend(load(path).get("records") or [])
+    # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
+    # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
+    # surname filed in both volumes must keep the id its ruling was written against;
+    # a surname new to volume 2 gets `lead_v02_*`. A bare `lead_<key>_<layer>` would
+    # orphan every one of those rulings.
+    first_volume = {}
+    for rec in all_records:
+        vol = int(rec["id"][5:7])
+        key = rec["normalized"]["surname_key"]
+        first_volume[key] = min(first_volume.get(key, vol), vol)
     leads_all, follow_all, unmatched_all, unmatched_chi_all, by_key_all = \
         leads_and_follow(all_records, layers,
-                         lambda key, layer: "lead_%s_%s" % (key, layer))
+                         lambda key, layer: "lead_v%02d_%s_%s"
+                                            % (first_volume[key], key, layer))
     dump(DOMAIN / "leads.json", {
         "schema": SCHEMA,
         "_doc": "GENERATED. Surname -> the residents, voters, 1840 heads and structures "
