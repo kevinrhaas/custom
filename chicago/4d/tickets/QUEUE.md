@@ -123,8 +123,6 @@
 T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
 T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
 
-T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
-T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 # --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a

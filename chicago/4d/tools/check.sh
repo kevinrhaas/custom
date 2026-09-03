@@ -1270,6 +1270,21 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
+# T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
+# no printing this project holds dates any of the 207 firms at or before 1835, so nothing
+# was written to the businesses layer. A negative result is the easiest artefact in the
+# repository to corrupt: nobody re-reads it, and a hand-edit that promotes one firm to
+# "dated 1834" would put a business in the town on nobody's authority. So the whole file
+# rebuilds from its four committed inputs and diffs, and the rules it rests on — that the
+# sketch route reads the printed quote and never this project's own gloss, that a
+# one-surname firm needs an agreeing initial, that a founding year has to be carried by
+# founding language — are asserted with cases that fire.
+step "Norris's 1844 firms re-derive their dating against 1835" \
+  python3 tools/date_norris_1844_businesses.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/date_norris_1844_businesses.py --self-test
+
 # T-0556. An INVENTORY of a website is the one research artefact that rots silently: it
 # is a set of judgements about pages nobody will open again, and the only way to notice
 # that a section was quietly dropped from it is to go and re-walk the site. So the county
@@ -1279,6 +1294,22 @@ step "…and its crosswalk to the 1835 residents rebuilds too" \
 # than as a hope. It also rebuilds every quote the assessment filed in passing out of the
 # committed text, because a quote from a website is a quote from something that can change
 # under you.
+# T-0574. Fergus's list of the deaths of Chicago's old settlers, and the one source this
+# project holds that carries AGES AT DEATH — which are birth years, by subtraction this
+# project does and the page does not. Two things need holding. The segmenting, because the
+# transcription wraps a long entry without indenting the turn and the rule that tells a turn
+# from a man is delicate: "Oct. 12, 1877" under O is the tail of Daniel O'Hara's entry, and a
+# rule reading the section letter alone made a new man of the month. And the GRADE, because
+# an arithmetic birth window that quietly became `documented` would be this project's own
+# invention wearing a citation. The gate rebuilds both files out of the committed text, holds
+# the count to what coverage.json declares, and refuses a record that claims the scene year
+# or grades a derived birth above `inferred`.
+step "Fergus's old-settler death notices rebuild from their committed text" \
+  python3 tools/read_fergus_obits.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_fergus_obits.py --self-test
+
 step "the Genealogy Trails inventory covers every section the county index links" \
   python3 tools/read_genealogytrails.py --check
 
