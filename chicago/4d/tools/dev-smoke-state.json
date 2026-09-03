@@ -3,67 +3,66 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "12-13",
+      "stage": "3,12",
       "parts": [
-        12,
-        13
+        3,
+        12
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 137,
+      "passed": 102,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 388,
-      "takenAt": "2026-09-03T18:48:51.709Z",
-      "ref": "steward/t-0588-norris-1844-businesses",
-      "commit": "8d45d92fd651",
-      "devCommit": "679a4a1eada7",
-      "treeHash": "sha256:2c6f58d541462ffb",
+      "wallSeconds": null,
+      "takenAt": "2026-09-03T20:08:43.889Z",
+      "ref": "steward/t-0504-1840-serial-fingerprint",
+      "commit": "eac7e2614124",
+      "devCommit": "785cb85aa607",
+      "treeHash": "sha256:cee223aea6a23aa6",
       "treeDirty": false,
-      "changelogHash": "sha256:a640c564af920462",
+      "changelogHash": "sha256:01962813444db6bd",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.3,
-          3.8,
-          2.2
+          4.4,
+          4.2,
+          2.9
         ]
       },
-      "source": "/tmp/smoke-desktop-12-13.log"
+      "source": "/tmp/smoke_m.log /tmp/smoke_d1.log /tmp/smoke_d2.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "12-13",
+      "viewport": "desktop",
+      "stage": "13",
       "parts": [
-        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 137,
+      "passed": 109,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 209,
-      "takenAt": "2026-09-03T18:48:51.625Z",
-      "ref": "steward/t-0588-norris-1844-businesses",
-      "commit": "8d45d92fd651",
-      "devCommit": "679a4a1eada7",
-      "treeHash": "sha256:2c6f58d541462ffb",
+      "wallSeconds": null,
+      "takenAt": "2026-09-03T20:08:43.889Z",
+      "ref": "steward/t-0504-1840-serial-fingerprint",
+      "commit": "eac7e2614124",
+      "devCommit": "785cb85aa607",
+      "treeHash": "sha256:cee223aea6a23aa6",
       "treeDirty": false,
-      "changelogHash": "sha256:a640c564af920462",
+      "changelogHash": "sha256:01962813444db6bd",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.3,
-          3.8,
-          2.2
+          4.4,
+          4.2,
+          2.9
         ]
       },
-      "source": "/tmp/smoke-mobile-12-13.log"
+      "source": "/tmp/smoke_m.log /tmp/smoke_d1.log /tmp/smoke_d2.log"
     },
     {
       "viewport": "mobile",
@@ -193,6 +192,70 @@
         ]
       },
       "source": "/tmp/smoke_m.log /tmp/smoke_d1.log /tmp/smoke_d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 388,
+      "takenAt": "2026-09-03T18:48:51.709Z",
+      "ref": "steward/t-0588-norris-1844-businesses",
+      "commit": "8d45d92fd651",
+      "devCommit": "679a4a1eada7",
+      "treeHash": "sha256:2c6f58d541462ffb",
+      "treeDirty": false,
+      "changelogHash": "sha256:a640c564af920462",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.8,
+          2.2
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12-13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 209,
+      "takenAt": "2026-09-03T18:48:51.625Z",
+      "ref": "steward/t-0588-norris-1844-businesses",
+      "commit": "8d45d92fd651",
+      "devCommit": "679a4a1eada7",
+      "treeHash": "sha256:2c6f58d541462ffb",
+      "treeDirty": false,
+      "changelogHash": "sha256:a640c564af920462",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.8,
+          2.2
+        ]
+      },
+      "source": "/tmp/smoke-mobile-12-13.log"
     },
     {
       "viewport": "mobile",
@@ -1471,158 +1534,6 @@
         ]
       },
       "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0530_desktop_3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 68,
-      "failed": 6,
-      "failures": [
-        "mobile 390x780: a reconstructed resident has an invented period name — name \"undefined\"",
-        "mobile 390x780: the invented name is graded as invented and says so — name_basis undefined — \"\"",
-        "mobile 390x780: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
-        "mobile 390x780: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
-        "mobile 390x780: search still finds it by its part number and by its household — by spec false, by household false",
-        "mobile 390x780: a building raised for an inferred household says so — basis \"\""
-      ],
-      "wallSeconds": 86,
-      "takenAt": "2026-09-03T11:30:59.855Z",
-      "ref": "steward/t-0530-census-cells-230-232",
-      "commit": "3e7efb4e354c",
-      "devCommit": "518411677e77",
-      "treeHash": "sha256:5f6b70abce04645a",
-      "treeDirty": false,
-      "changelogHash": "sha256:e87a54b8eff07d9c",
-      "host": {
-        "kind": "local",
-        "cpus": 4,
-        "memGB": 15.7,
-        "loadavg": [
-          3.3,
-          3.8,
-          2.7
-        ]
-      },
-      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0530_mobile_3.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 103,
-      "failed": 6,
-      "failures": [
-        "desktop 1280x800: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
-        "desktop 1280x800: the 956 person entries are counted — 849",
-        "desktop 1280x800: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
-        "desktop 1280x800: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
-        "desktop 1280x800: an invented name says on the card which pool it came from",
-        "desktop 1280x800: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
-      ],
-      "wallSeconds": 280,
-      "takenAt": "2026-09-03T08:47:47.942Z",
-      "ref": "steward/t-0492-land",
-      "commit": "75091fa4e288",
-      "devCommit": "61eaeb7e7e6e",
-      "treeHash": "sha256:4c6da5933fe7602a",
-      "treeDirty": false,
-      "changelogHash": "sha256:795471da95ceb2a3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke-d2.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 103,
-      "failed": 6,
-      "failures": [
-        "mobile 390x780: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
-        "mobile 390x780: the 956 person entries are counted — 849",
-        "mobile 390x780: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
-        "mobile 390x780: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
-        "mobile 390x780: an invented name says on the card which pool it came from",
-        "mobile 390x780: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
-      ],
-      "wallSeconds": 149,
-      "takenAt": "2026-09-03T08:47:47.845Z",
-      "ref": "steward/t-0492-land",
-      "commit": "75091fa4e288",
-      "devCommit": "61eaeb7e7e6e",
-      "treeHash": "sha256:4c6da5933fe7602a",
-      "treeDirty": false,
-      "changelogHash": "sha256:795471da95ceb2a3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke-m2.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 103,
-      "failed": 6,
-      "failures": [
-        "desktop 1280x800: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
-        "desktop 1280x800: the 956 person entries are counted — 849",
-        "desktop 1280x800: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
-        "desktop 1280x800: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
-        "desktop 1280x800: an invented name says on the card which pool it came from",
-        "desktop 1280x800: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
-      ],
-      "wallSeconds": 274,
-      "takenAt": "2026-09-03T08:32:54.730Z",
-      "ref": "steward/t-0492-land",
-      "commit": "c2a90d10562f",
-      "devCommit": "9c87d1685edf",
-      "treeHash": "sha256:63197a638204affa",
-      "treeDirty": false,
-      "changelogHash": "sha256:694e2c4ccf73f703",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.4,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke-desktop-13.log"
     },
     {
       "viewport": "desktop",
