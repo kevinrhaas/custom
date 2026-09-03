@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Apply/check adjudicated 1840 census identity bridges (issue #669).
+"""Apply/check recovered 1840 census household evidence and 1835 identity bridges.
 
-This intentionally does not fuzzy-match census names.  The bridge CSV is the
-adjudication boundary: only an existing canonical person_id explicitly present
-there may receive a later_census record.  Household counts remain dated 1840
-and never mint 1835 household members.
+Issue #669.  The 210-row census dataset is dated 1840 evidence.  The bridge CSV
+is the adjudication boundary for attaching an 1840 head to an existing 1835
+canonical resident.  `validated` and `provisional` are kept distinct, and no
+1840 spouse/child/boarder is minted into the 1835 household from census counts.
 """
 from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import json
 import re
 from collections import Counter
@@ -21,11 +22,14 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 RESEARCH = DATA / "research" / "residents"
 BRIDGES = RESEARCH / "census_1840_identity_bridges.csv"
-SCOPE = RESEARCH / "census_1840_row_serial_scope.json"
+CENSUS_DIR = DATA / "census" / "1840"
+CENSUS_INDEX = CENSUS_DIR / "index.json"
+CENSUS_ROWS = CENSUS_DIR / "household_heads.csv.gz"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
 SITE = ROOT.parent.parent / "site" / "chicago" / "4d"
 SOURCE_ID = "census_1840_chicago_v4_research"
+ALLOWED_STATUS = {"validated", "provisional"}
 
 
 def load(path: Path):
@@ -38,8 +42,26 @@ def dump(path: Path, doc, indent=1):
 
 
 def as_int(row, key):
-    v = (row.get(key) or "").strip()
+    v = str(row.get(key) or "").strip()
     return int(v) if v else None
+
+
+def census_rows():
+    if not CENSUS_ROWS.exists():
+        raise ValueError(f"missing census evidence file: {CENSUS_ROWS}")
+    with gzip.open(CENSUS_ROWS, "rt", newline="", encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    manifest = load(CENSUS_INDEX)
+    expected = int(manifest.get("records") or 0)
+    if len(rows) != expected or expected != 210:
+        raise ValueError(f"census household row count drift: file={len(rows)} manifest={expected}, expected 210")
+    serials = [as_int(r, "serial") for r in rows]
+    if any(s is None for s in serials) or len(set(serials)) != len(serials):
+        raise ValueError("1840 SERIAL values are blank or non-unique")
+    pages = sorted({as_int(r, "page") for r in rows})
+    if pages != [229, 230, 231, 232, 233, 234, 235]:
+        raise ValueError(f"unexpected census page coverage: {pages}")
+    return rows
 
 
 def bridge_rows():
@@ -48,6 +70,9 @@ def bridge_rows():
     seen_person = set(); seen_serial = set()
     for row in rows:
         pid = row["person_id"].strip(); serial = as_int(row, "serial")
+        status = (row.get("bridge_status") or "").strip()
+        if status not in ALLOWED_STATUS:
+            raise ValueError(f"invalid bridge_status for {pid}: {status!r}")
         if not pid or pid in seen_person:
             raise ValueError(f"duplicate/blank bridge person_id: {pid!r}")
         if serial is None or serial in seen_serial:
@@ -56,25 +81,41 @@ def bridge_rows():
     return rows
 
 
-def later_census(row):
+def census_lookup(rows):
+    return {as_int(r, "serial"): r for r in rows}
+
+
+def later_census(row, census):
+    serial = as_int(row, "serial")
+    source = census[serial]
+    household = {
+        "persons": as_int(source, "persons"),
+        "children_under_10": as_int(source, "children_lt_10"),
+        "male": as_int(source, "males"),
+        "female": as_int(source, "females"),
+        "agriculture": as_int(source, "agriculture"),
+        "commerce": as_int(source, "commerce"),
+        "manufactures_trades": as_int(source, "manufactures_trades"),
+        "inland_navigation": as_int(source, "inland_navigation"),
+        "professions_engineering": as_int(source, "professions_engineering"),
+        "foreigners_not_naturalized": as_int(source, "foreigners_not_naturalized"),
+        "illiterate_over_21": as_int(source, "illiterate_gt_21"),
+    }
     return {
         "year": 1840,
         "source_id": SOURCE_ID,
-        "serial": as_int(row, "serial"),
-        "head_name_transcribed": row["census_name"].strip(),
-        "head_name_normalized": row["canonical_name"].strip(),
-        "name_confidence": row["identity_confidence"].strip().title(),
+        "serial": serial,
+        "head_name_transcribed": source.get("raw_scan_reading") or row["census_name"].strip(),
+        "head_name_normalized": source.get("preferred_name") or row["canonical_name"].strip(),
+        "name_confidence": source.get("name_confidence") or row["identity_confidence"].strip().title(),
         "identity_confidence": row["identity_confidence"].strip().title(),
-        "serial_mapping_confidence": row["serial_mapping_confidence"].strip().replace("-", " ").title(),
-        "census_page": as_int(row, "census_page"),
-        "census_row": as_int(row, "census_row"),
-        "source_image": row["source_image"].strip() or None,
-        "household": {
-            "persons": as_int(row, "persons_1840"),
-            "children_under_10": as_int(row, "children_under_10_1840"),
-            "male": as_int(row, "male_1840"),
-            "female": as_int(row, "female_1840"),
-        },
+        "bridge_status": row["bridge_status"].strip(),
+        "serial_mapping_confidence": source.get("serial_confidence") or row["serial_mapping_confidence"].strip(),
+        "census_page": as_int(source, "page"),
+        "census_row": as_int(source, "row"),
+        "source_image": source.get("source_image") or row["source_image"].strip() or None,
+        "source_kind": source.get("source_kind") or None,
+        "household": household,
         "bridge_basis": row["bridge_basis"].strip(),
         "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence."
     }
@@ -132,22 +173,24 @@ def rebuild_index(index, docs):
     return index
 
 
-def update_ledger(rows):
+def update_ledger(rows, all_census):
     ledger = load(LEDGER)
     old = dict(ledger.get("census_1840") or {})
-    scope = load(SCOPE)
     linked = [{"person_id":r["person_id"].strip(), "serial":as_int(r,"serial"), "name":r["canonical_name"].strip(),
                "page":as_int(r,"census_page"), "row":as_int(r,"census_row"),
+               "bridge_status":r["bridge_status"].strip(),
                "identity_confidence":r["identity_confidence"].strip(),
                "serial_mapping_confidence":r["serial_mapping_confidence"].strip()} for r in rows]
+    validated = [r for r in linked if r["bridge_status"] == "validated"]
+    provisional = [r for r in linked if r["bridge_status"] == "provisional"]
     ledger["census_1840"] = {
         "recovery_issue": 669,
-        "v4_named_heads_reviewed": int(scope["named_household_head_rows_under_review"]),
-        "v4_best_resident_set_rows_with_serial": int(scope["best_resident_set_rows_with_serial"]),
+        "named_household_heads_retained": len(all_census),
+        "serial_linked_household_heads_retained": len(all_census),
         "linked": linked,
-        "validated_identity_bridges": len(linked),
-        "not_promoted_from_v4_to_1835": int(scope["named_household_head_rows_under_review"]) - len(linked),
-        "ambiguous": [],
+        "validated_identity_bridges": len(validated),
+        "provisional_identity_bridges": len(provisional),
+        "not_yet_linked_to_canonical_1835_resident": len(all_census) - len(linked),
         "legacy_partial_matcher": {
             "eligible_named_rows": old.get("eligible_named_rows"),
             "linked": old.get("linked") or [],
@@ -155,24 +198,27 @@ def update_ledger(rows):
             "unmatched_named_heads": old.get("unmatched_named_heads") or [],
             "rule": old.get("rule"),
         },
-        "rule": "Explicit adjudicated person_id bridges from recovered v4 research only. No fuzzy/common-name promotion; 1840 household facts remain dated later evidence."
+        "rule": "All 210 resolved 1840 row-to-SERIAL household records are retained as dated evidence. Canonical 1835 links require an explicit adjudicated person_id bridge and are graded validated or provisional; no fuzzy/common-name promotion."
     }
     dump(LEDGER, ledger, 2)
 
 
-def update_summary(nlinks):
+def update_summary(rows, all_census):
+    validated = [r for r in rows if r["bridge_status"] == "validated"]
+    provisional = [r for r in rows if r["bridge_status"] == "provisional"]
+    nlinks = len(rows)
     text = SUMMARY.read_text(encoding="utf-8")
     text = re.sub(r"\| Linked to named 1840 census household \|\s*0\s*\|\s*\d+\s*\|",
                   f"| Linked to named 1840 census household | 0 | {nlinks} |", text)
     section = f'''## 1840 census evidence
 
-**{nlinks} validated 1835↔1840 identity links** are now attached to canonical residents from the recovered v4 census/resident adjudication: John Murphy (1840 p.233 r.30, IPUMS SERIAL 5102066) and William Hanford Adams (p.229 r.9, SERIAL 5101954). Both retain identity and SERIAL-mapping confidence separately.
+The recovered v4 work is now retained as a complete dated census layer: **{len(all_census)} named 1840 household-head rows on printed pages 229–235, all with resolved IPUMS SERIALs and household demographic fields**. These records live under `data/census/1840/` whether or not they can yet be tied safely to a 1 July 1835 resident.
 
-The recovered v4 work covers **210 named 1840 household heads on printed pages 229–235** and carries **117 row→IPUMS SERIAL assignments** in the best-resident set. Those 117 SERIAL-bearing rows are not 117 asserted 1835 identities: only the two direct/high-confidence bridges above are promoted to the canonical 1835 layer; the rest remain later-only or candidate evidence pending an independent 1835 bridge.
+Canonical resident linkage is a separate assertion. There are currently **{len(validated)} validated High-confidence 1835↔1840 identity bridges** — John Murphy (1840 p.233 r.30, SERIAL 5102066) and William Hanford Adams (p.229 r.9, SERIAL 5101954) — plus **{len(provisional)} provisional bridge**, John Miller ↔ John J. Miller (p.232 r.3, SERIAL 5102035). Miller is independently attested as the Chicago tanner and 1833 trustee, but the 1840 middle initial is new, so the link remains Medium/provisional rather than High.
 
-**1840 is later evidence, not the 1835 household.** Household totals, children, sex structure and industry variables are retained under `later_census` for household-reconciliation research, but are not projected backward to 1 July 1835. In particular, the 1840 Murphy household has 6 persons (2 children under 10; 3 male; 3 female) and the Adams household has 2 persons (1 male; 1 female); no missing 1835 spouse/child is minted from those counts alone.
+**1840 is later evidence, not the 1835 household.** Household totals, children, sex structure, industry, foreigner and literacy fields are retained under the census dataset and `later_census` links for household-reconciliation research, but are not projected backward to 1 July 1835. Murphy's 1840 household has 6 people; Adams 2; Miller 5. Those counts do not themselves mint spouses, children, partners, servants or boarders into the 1835 resident layer.
 
-The old September 2 result of “0 links / 29 unmatched heads” is retained in the machine ledger as the **legacy partial matcher** result. It came from the older pages-234/235 CSV plus exact normalized-name matching and did not consume the later v4 adjudication.
+The old September 2 “0 links / 29 unmatched heads” result is preserved in the machine ledger as the **legacy partial matcher** result. It came from the older pages-234/235 partial CSV plus exact normalized-name matching and did not consume the later v4 adjudication.
 
 '''
     text = re.sub(r"## 1840 census evidence\n.*?(?=## Placement / structures)", section, text, flags=re.S)
@@ -180,16 +226,19 @@ The old September 2 result of “0 links / 29 unmatched heads” is retained in 
 
 
 def apply():
+    all_rows = census_rows(); lookup = census_lookup(all_rows)
     rows = bridge_rows(); docs, people = docs_and_people()
     for row in rows:
-        pid = row["person_id"].strip()
+        pid = row["person_id"].strip(); serial = as_int(row, "serial")
         if pid not in people:
             raise SystemExit(f"bridge person_id not found in canonical residents: {pid}")
+        if serial not in lookup:
+            raise SystemExit(f"bridge SERIAL not found in 210-row census dataset: {serial}")
         person, _path, _doc = people[pid]
-        person["later_census"] = later_census(row)
+        person["later_census"] = later_census(row, lookup)
     for path, doc in docs.items(): dump(path, doc, 1)
     index = rebuild_index(load(INDEX), docs); dump(INDEX, index, 1)
-    update_ledger(rows); update_summary(len(rows))
+    update_ledger(rows, all_rows); update_summary(rows, all_rows)
     site_hh = SITE / "data" / "residents" / "households"; site_hh.mkdir(parents=True, exist_ok=True)
     for row in rows:
         _person, path, doc = people[row["person_id"].strip()]
@@ -200,26 +249,33 @@ def apply():
 
 
 def check():
+    all_rows = census_rows(); lookup = census_lookup(all_rows)
     rows = bridge_rows(); docs, people = docs_and_people(); problems=[]
     expected = {r["person_id"].strip(): r for r in rows}
-    actual_links = {pid:p.get("later_census") for pid,(p,_path,_doc) in people.items() if p.get("later_census")}
     for pid, row in expected.items():
         if pid not in people:
             problems.append(f"bridge person missing: {pid}"); continue
+        serial = as_int(row,"serial")
+        if serial not in lookup:
+            problems.append(f"bridge serial absent from 210-row census dataset: {serial}"); continue
         got = people[pid][0].get("later_census") or {}
-        if got.get("serial") != as_int(row,"serial") or got.get("census_page") != as_int(row,"census_page") or got.get("census_row") != as_int(row,"census_row"):
+        if got.get("serial") != serial or got.get("census_page") != as_int(row,"census_page") or got.get("census_row") != as_int(row,"census_row"):
             problems.append(f"bridge drift for {pid}")
-    unexpected = sorted(set(actual_links) - set(expected))
-    if unexpected: problems.append(f"later_census exists outside adjudicated bridge sidecar: {unexpected}")
+        if got.get("bridge_status") != row.get("bridge_status"):
+            problems.append(f"bridge status drift for {pid}")
+    actual_links = [p for p,_path,_doc in people.values() if p.get("later_census")]
     index = load(INDEX); counts=index.get("counts") or {}
-    if int(counts.get("census_1840_linked") or 0) != len(rows): problems.append("index census_1840_linked disagrees with bridge CSV")
+    if int(counts.get("census_1840_linked") or 0) != len(actual_links): problems.append("index census_1840_linked disagrees with resident records")
     if int(counts.get("households") or 0) != len(docs): problems.append("index household count disagrees with records")
     people_count=sum(len(d.get("persons") or []) for d in docs.values())
     if int(counts.get("persons") or 0) != people_count: problems.append("index person count disagrees with records")
     ledger=load(LEDGER); census=ledger.get("census_1840") or {}
-    if int(census.get("validated_identity_bridges") or 0) != len(rows): problems.append("ledger bridge count disagrees")
+    validated=sum(r["bridge_status"]=="validated" for r in rows); provisional=sum(r["bridge_status"]=="provisional" for r in rows)
+    if int(census.get("named_household_heads_retained") or 0) != 210: problems.append("ledger does not retain all 210 census heads")
+    if int(census.get("validated_identity_bridges") or 0) != validated: problems.append("ledger validated bridge count disagrees")
+    if int(census.get("provisional_identity_bridges") or 0) != provisional: problems.append("ledger provisional bridge count disagrees")
     summary=SUMMARY.read_text(encoding="utf-8")
-    if f"**{len(rows)} validated 1835↔1840 identity links**" not in summary: problems.append("summary census section is stale")
+    if "**210 named 1840 household-head rows" not in summary: problems.append("summary census coverage is stale")
     site_index=SITE/"data"/"residents"/"index.json"
     if not site_index.exists() or site_index.read_text(encoding="utf-8") != INDEX.read_text(encoding="utf-8"): problems.append("published resident index mirror is stale")
     for pid,row in expected.items():
@@ -232,7 +288,7 @@ def check():
         print("CENSUS BRIDGE FAIL")
         for p in problems: print(" -", p)
         return 1
-    print(f"OK: {len(rows)} validated census identity bridges; {len(docs)} households; {people_count} canonical persons; no 1840 household members back-projected")
+    print(f"OK: 210 census households retained; {validated} validated + {provisional} provisional resident bridges; {len(docs)} resident households; {people_count} canonical persons")
     return 0
 
 
