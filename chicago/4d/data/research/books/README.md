@@ -1,7 +1,7 @@
 # Books and reminiscences — prose, read the way the newspapers are read
 
-**What lives here.** Fergus' Historical Series Nos. 26-29 (1.24 MB of raw OCR,
-with no text, no register and no claim read out of it), Gurdon Hubbard's
+**What lives here.** Fergus' Historical Series Nos. 26-29 (read in its first half
+by T-0499 - see the contents table below), Gurdon Hubbard's
 autobiography (a 226-page scan the project has never mentioned), H. H. Porter's
 *Short Autobiography* (66 MB, a garbled text layer, and nothing yet saying whether
 it carries 1835 Chicago at all), and the memoirs printed beside them (T-0499,
@@ -147,3 +147,101 @@ the research layer; the sharpest refusal is the "John Kinzie" of the 1834 truste
 *looks* like an easy merge and is not — the elder John Kinzie died in 1828 and this project
 holds three separate Kinzies, so a 1911 writer's shortened form is not enough to put a dated
 civic office on any one of them.
+
+---
+
+## Fergus' Historical Series, Nos. 26-29 — what the volume actually holds
+
+**The deposit's filename says 26-29 and until T-0499 nothing said what that meant.**
+It is four separately printed pamphlets bound as one, each with its own title page and
+its own folio run starting at 1 — which is why a page number in this volume is not
+unique and why every claim cites its LEAF. The table is read off the four title pages
+inside; the front matter names no contents at all.
+
+| No. | Title | Author | Printed | Leaves |
+|---|---|---|---|---|
+| — | Library plate, digitisation note, half-title "FERGUS' HISTORICAL SERIES No. 26 - 29", Fergus Printing Company advertisements | — | — | 1–14 |
+| 26 | *A Discourse on the Aborigines of the Ohio Valley*, with the Fort Wayne Indian speeches of 2 October 1811 appended and footnoted | William Henry Harrison (the discourse, 1838); Hiram W. Beckwith (the footnotes) | 1883 | 15–206 |
+| 27 | *The Illinois and Indiana Indians* | Hiram W. Beckwith | 1884 | 207–398 |
+| 28 | *Directory of the City of Chicago, Illinois, for 1843* | compiled by Robert Fergus | **1896** | 399–656 |
+| 29 | *Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois* | Julia Duncan Kirby | 1888 | 657–858 |
+
+The leaf ranges include each number's own advertisement and cover leaves, which is why
+they meet with no gap. Blank and plate leaves are inside them: 624 of the 858 leaves
+carry text.
+
+## What has been read (T-0499, 2026-09-03) — the first half by page index
+
+**Leaves 1–429**, declared as four `list` items in `coverage.json` with no hole. That is
+the front matter, No. 26 entire, No. 27 entire, and No. 28 down to the port statistics,
+stopping where the 1843 business directory begins at leaf 430. **T-0500 takes leaves
+430–858.** Forty-one claims at `claims/fergus_26_29_first_half.json`; twenty of them are
+town findings. The target was stated before the reading began and is in the ticket: at
+least forty claims and at least eighteen town findings.
+
+**THE ASK WAS FOR SETTLERS' REMINISCENCES AND THIS HALF IS NOT THAT.** The Fergus numbers
+in general are where the settlers of the 1830s told their own stories thirty and forty
+years on. Numbers 26 to 29 are a discourse on the mound-builders, a tribal history, a
+directory and a governor's life. **No. 26 is a sweep that came back all but empty, and
+that is evidence**: four claims out of 192 leaves, every one of them from the 1811
+speeches appended to the discourse rather than from the discourse itself, which never
+reaches the Illinois lakeshore.
+
+**The two numbers that do touch Chicago miss the scene year from both sides.** No. 27
+reaches it fourteen years early and No. 28 eight years late, and every claim's
+`describes_date` says so.
+
+**No. 27 — Beckwith, and it is the better of the two.** Where he compiles he is tier 3;
+where he quotes Henry R. Schoolcraft on the Chicago treaty of August 1821 he is
+transmitting an eyewitness journal, and that is where the landscape comes from: **a belt
+of forest skirting the south branch, and beyond it the extensive level plain stretching
+to the lake shore** — the first independent corroboration in this domain of the shape the
+project's heightfield and timber belt already assume. With it: **a scattered Potawatomi
+village on both branches of the river** (the site was inhabited, and not at a point);
+the stream's name read as *a skunk* primarily and *a wild onion* secondarily, in that
+order; the Des Plaines named for a maple growing along its banks; **a seated bower on the
+green along the north bank, near the old John Kinzie house and directly under the guns of
+the fort**, which bounds how built that bank can have been; and between two and three
+thousand people assembled there, the largest crowd figure this project holds for this
+ground.
+
+**No. 28 — a directory *for 1843* that was compiled in 1896**, by a man who did not reach
+Chicago until July 1839, out of a canvass of 1843 of which he himself writes that
+"sailors were made tailors, and tailors sailors, names were spelled at and locations
+guessed". That sentence is a claim in this file (`bk_fer_043`) and it is the most useful
+thing in the pamphlet, because **it bears directly on T-0506**: the "1839 Chicago
+directory" this project cites is, on the same compiler's account, an 1876 publication —
+the same retrospective act, thirty-seven years after its year. What the pamphlet still
+gives the town is **the mail across the scene date** (horseback weekly in 1832 under
+Jonathan Nash Bailey; a semi-weekly four-horse stage from 1834; **tri-weekly in 1835**),
+**the Chicago Lyceum instituted 2 December 1834**, seven churches placed to the block
+face as an upper bound on 1835, a Masonic lodge in a third storey at Clark and South
+Water, and the earliest customs figures for the port — 1836, exports $1,000.64 against
+imports $325,203.90, with the custom house's own warning that both understate.
+
+**One reading was refused outright.** The 1843 census table's ward columns are woven by
+the OCR into lines of loose digits. The totals appear to read 7,580 against 4,853, and
+"appear to read" is not a transcription: `bk_fer_057` records the refusal instead of the
+number, and says what a run would have to do to get it.
+
+**The identity pass is small on purpose.** `crosswalk.json` rules on the five names that
+fall in the 1830–1836 window — two merges (Billy Caldwell into Billy Caldwell
+(Sauganash); John Stephen Coates Hogan into John S. C. Hogan, which dates the
+postmastership the resident record already half-carried) and three refusals (Jonathan
+Nash Bailey against Bennet Bailey; John Kinzie against his son John Harris Kinzie;
+"Mrs. Kinzie" against Juliette Augusta Magill Kinzie, on the surname-only rule). Every
+other name in 429 leaves is outside the window, and the pass says so by name so the next
+sweep does not do the work again.
+
+**Nothing here is payload.** No structure, asset, resident or household record was
+changed by this reading.
+
+**The page index needed no alignment, and that is new.** Hubbard's leaf boundaries had to
+be transferred from a second file by `difflib`. This volume's deposit carries the hOCR
+page index emitted with the same OCR pass that made the text, so the 858 leaf boundaries
+are exact arithmetic; `tools/build_book_page_index.py` grew a second derivation mode for
+it (`derivation: hocr_page_index`) and hard-fails unless the ranges tile the committed
+text with no gap and no overlap. **Its folios are read or they are null** — the volume
+binds four pamphlets that each restart at 1, so there is no offset to carry and a carried
+folio would be an invention. 194 of the 624 non-blank leaves print one the reader could
+take.

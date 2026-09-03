@@ -22,9 +22,9 @@
   "identities_on_a_card": 840,
   "identities_in_two_or_more_domains": 1132,
   "derived_refusals": 1800,
-  "declared_merges": 268,
+  "declared_merges": 270,
   "appearances_moved_by_a_landed_adjudication": 74,
-  "declared_refusals": 1055
+  "declared_refusals": 1058
  },
  "identities": [
   {"id":"id_abbott_constant","surname":"abbott","forename":"constant","canonical_person_id":"ll_constant_abbott","household_id":"hh_ll_constant_abbott","merge_rules":["M1"],"appearances":[{"domain":"newspapers","record_id":"person_constant_abbott","source_id":"chicago_newspapers_1833_1835","as_read":"Constant Abbott","locator":"chicago_democrat_1834_04_01#c001","describes_date":"1834-04-01","evidence_class":"newspaper_letter_list"},{"domain":"residents","record_id":"ll_constant_abbott","source_id":null,"as_read":"Constant Abbott","locator":"hh_ll_constant_abbott","describes_date":null,"evidence_class":"town_layer"}],"domains":["newspapers","residents"],"sources_offered":["chicago_newspapers_1833_1835"],"sources_cited_on_the_card":["chicago_democrat_1833_1835"],"sources_the_card_has_not_learned":["chicago_newspapers_1833_1835"],"rulings_reaching_this_person":8,"rulings_that_state_no_source":8},
@@ -8651,6 +8651,8 @@
   {"a":"J. S. C. Hogan","b":"John S. C. Hogan","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_026","data/residents/households/hh_hogan_john_s_c.json"]},
   {"a":"Jean Baptiste Beaubien","b":"Col. Jean Baptiste Beaubien","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_065","data/residents/households/hh_beaubien_jean_baptiste.json","data/research/books/claims/american_fur_company_hurlbut.json bk_afc_008"]},
   {"a":"Billy Caldwell","b":"Billy Caldwell (Sauganash)","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_097","data/research/books/claims/hubbard_autobiography_1911.json bk_hub_103","data/residents/households/hh_caldwell_billy.json"]},
+  {"a":"Billy Caldwell","b":"Billy Caldwell (Sauganash)","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/fergus_26_29_first_half.json bk_fer_024","data/residents/households/hh_caldwell_billy.json","data/sources/fergus_historical_series_26_29.json"]},
+  {"a":"John Stephen Coates Hogan","b":"John S. C. Hogan","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/fergus_26_29_first_half.json bk_fer_052","data/residents/households/hh_hogan_john_s_c.json","data/sources/fergus_historical_series_26_29.json"]},
   {"a":"William H. Stow","b":"William H. Stow","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-9HY","T-0505","data/research/census_1840/resident_crosswalk.json","fergus_chicago_directory_1843"]},
   {"a":"William Allen","b":"William Allen","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-NY","T-0505","data/research/census_1840/resident_crosswalk.json","norris_directory_1844","fergus_chicago_directory_1843"]},
   {"a":"Philo Carpenter","b":"Philo Carpenter","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-RC","T-0505","data/research/census_1840/resident_crosswalk.json","norris_directory_1844","fergus_chicago_directory_1843"]},
@@ -8709,6 +8711,9 @@
   {"a":"Shaub-e-nee","b":"Billy Caldwell (Sauganash)","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_097","data/residents/households/hh_caldwell_billy.json"]},
   {"a":"Antoine Ouilmette","b":"Col. Jean Baptiste Beaubien","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_066","data/residents/households/hh_beaubien_jean_baptiste.json"]},
   {"a":"John Craft","b":"Col. Jean Baptiste Beaubien","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/hubbard_autobiography_1911.json bk_hub_065","data/residents/households/hh_beaubien_jean_baptiste.json","data/research/books/claims/american_fur_company_hurlbut.json bk_afc_007"]},
+  {"a":"Jonathan Nash Bailey","b":"Bennet Bailey","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_first_half.json bk_fer_052","data/residents/households/hh_ll_bennet_bailey.json"]},
+  {"a":"John Kinzie","b":"John Harris Kinzie","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_first_half.json bk_fer_028","data/research/books/claims/fergus_26_29_first_half.json bk_fer_012","data/residents/households/hh_kinzie_john_h.json"]},
+  {"a":"Mrs. Kinzie","b":"Juliette Augusta Magill Kinzie","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_first_half.json bk_fer_012","data/residents/households/hh_kinzie_john_h.json"]},
   {"a":"Joseph LaFramboy","b":"Clouded L Framboy","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_029","census1830_n580_030"]},
   {"a":"Hugh Walker","b":"James Walker","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_007","census1830_n580_014"]},
   {"a":"Willard Scott","b":"Stephen J Scott","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n582_005","census1830_n582_013"]},
