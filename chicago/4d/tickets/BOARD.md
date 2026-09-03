@@ -228,7 +228,7 @@
 
 ## Finished, newest first — 100 of 314; the older ones are in the ticket files (100)
 
-- **T-0584** The ledger records the instant a ticket finished and which run claimed it · **OWNER** · Sep 3, 2026, 12:10 PM · [PR #709](https://github.com/kevinrhaas/custom/pull/709)
+- **T-0586** The ledger records the instant a ticket finished and which run claimed it · **OWNER** · Sep 3, 2026, 12:10 PM · [PR #709](https://github.com/kevinrhaas/custom/pull/709)
 - **T-0570** The Newberry Genealogical Index, volume 1 (A-C): the Chicago, Cook County and Illinois cards, their leads and the works they point at · **OWNER** · 2026-09-03 · [PR #708](https://github.com/kevinrhaas/custom/pull/708)
 - **T-0584** The 1840 census images 1-25: names and cells of the left sheets printed 210 and 215 · **OWNER** · 2026-09-03 · [PR #707](https://github.com/kevinrhaas/custom/pull/707)
 - **T-0554** The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations · **OWNER** · 2026-09-03 · [PR #706](https://github.com/kevinrhaas/custom/pull/706)

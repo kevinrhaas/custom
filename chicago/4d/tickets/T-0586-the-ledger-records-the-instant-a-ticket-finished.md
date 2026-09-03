@@ -1,5 +1,5 @@
 ---
-id: T-0584
+id: T-0586
 title: The ledger records the instant a ticket finished and which run claimed it
 state: done
 epic: META
