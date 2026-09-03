@@ -1,0 +1,748 @@
+#!/usr/bin/env python3
+"""What the research domains have READ, against what the town has SPENT.
+
+WHY THIS EXISTS. On 2026-09-03 the owner reported, of the 1840 census reading
+tickets: "i see lots of research being done and some apparent findings from
+parsing but there are not outputs or updates to the household and resident data
+it seems, should i be concerned?"
+
+He was right, and nothing in the repo could have told him so. Every reading
+ticket DOES leave an output — T-0584 wrote 2,354 lines of page records, a
+coverage entry and a changelog line — so no gate was red and no run was idle.
+The hole was one layer down: `data/research/census_1840/` held 562 named heads
+read off the sheets and `census_1840/crosswalk.json` held `passes: []`,
+`merges: []`, `refusals: []`. Nothing had crossed into the town. Four of 828
+household records carried an 1840 link.
+
+`coverage.json` already answers "which images have been looked at, and what has
+NOT been read from them" — deliberately, so a hole fails rather than passes
+quietly. This is the same instrument one step later: which names have been READ,
+and how many of them anybody has RULED ON. A domain may read far ahead of its
+spending — the ratified ladder REQUIRES it, since 1839/1840 alone is never an
+1835 resident and the bridge is a separate adjudicated step — but the gap may
+not silently WIDEN. That is what this gate holds.
+
+THE MEASURE, and what each half deliberately does not count.
+
+  read    a unit captured off a source and carrying a name or a quote: an entry
+          of a `records` array (domains that hold records) or of a `claims`
+          array (domains that hold claims). Continuation-sheet lines that carry
+          cells and no name are not names and do not count.
+
+  spent   a crosswalk entry ANCHORED to something real — a read record
+          (`record_id`, `entry_id`, `claim_id`) or a person in the town
+          (`person_id`, `resident`, `matched_resident`). Deduped by that anchor,
+          because civic adjudicates its 479 voters in `voter_crosswalk.json`
+          AND rules on name pairs in `crosswalk.json`, and summing the two array
+          lengths reported civic as 571 spent against 492 read — a domain more
+          than finished. An instrument that reports -79 unspent is worse than no
+          instrument.
+
+          A REFUSAL COUNTS AS SPENT. census_1840/crosswalk.json says why: "A
+          refusal is declared as explicitly as a merge — the absence of one
+          reads like a pair nobody has looked at yet." Ruling that a name is
+          NOT a town person is the adjudication; it is not a failure to do one.
+
+  id pairs a merge/refusal ruling on two spellings (`a` / `b`) with no anchor.
+          Reported, never counted as spend: it is a ruling about the sources'
+          own vocabulary, not about whether the town gained anything.
+
+  unspent read - spent. NOT a defect count. census_1830, church and books read
+          nothing yet and are honestly 0/0; a domain reading ahead of a bridge
+          ticket is the method working.
+
+THE GATE is a ratchet, not a target. `unspent` may not exceed the figure in
+research_spend_baseline.json. Read more and you must rule on more, or say in the
+PR why the baseline moves. Raising a baseline is a decision somebody makes on
+purpose; drifting past it is what happened for three weeks.
+
+THE RATCHET HAS TWO DIRECTIONS, and only one of them costs anything. Raising a
+ceiling says the project chose to read further ahead of its adjudication, so it
+takes one domain and a written reason. Lowering is what SPENDING a domain earns,
+can only make this gate stricter, and is therefore free. Without the second
+direction the first is a slow leak: a domain spent to nothing would keep the
+ceiling its worst day earned and could drift back up to it in silence.
+
+    tools/measure_research_spend.py              the table
+    tools/measure_research_spend.py --gate       the ratchet, and what slack it sees
+    tools/measure_research_spend.py --raise newberry_index --why "T-0578 read vol 2"
+    tools/measure_research_spend.py --tighten    reclaim slack after spending
+    tools/measure_research_spend.py --rebaseline first write only
+    tools/measure_research_spend.py --self-test
+"""
+from __future__ import annotations
+
+import argparse
+import json
+from datetime import date
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+RESEARCH = ROOT / "data" / "research"
+REGISTRY = RESEARCH / "domains.json"
+BASELINE = Path(__file__).resolve().parent / "research_spend_baseline.json"
+
+# WHICH ARRAY HOLDS THE RULINGS IS NOT A LIST WE MAINTAIN — it was, for one day,
+# and the list was wrong within hours. The first version whitelisted
+# passes/merges/refusals/matches/contested/ambiguous/probable/entries, and then
+# the two tickets this very gate provoked filed their work under names it had
+# never heard of: T-0505 wrote 498 rulings as `heads` in resident_crosswalk.json
+# and T-0590 wrote 319 as `lead_rulings` in lead_crosswalk.json. The measure read
+# both as zero and would have reported the town had spent nothing while it had in
+# fact spent 817 — an instrument that demands work and then cannot see it.
+#
+# So EVERY array in a crosswalk file is scanned, and the ENTRY decides, not its
+# heading: it is a ruling if it anchors to something real or states an `outcome`.
+# Structural arrays (a `ladder`, an `inputs` block, the `pages` of a page-level
+# agreement test) carry neither and are ignored without being counted anywhere.
+OUTCOME_KEY = "outcome"
+
+# What a ruling may anchor to. Order matters only for which name the dedup key
+# takes; any one of them makes the entry a spend. Plural forms are here because
+# one ruling may reach several cards or several people at once.
+ANCHOR_KEYS = ("record_id", "entry_id", "claim_id", "lead_id",
+               "person_id", "resident", "matched_resident",
+               "record_ids", "person_ids")
+
+# A unit is READ if it carries one of these. `quote` is here for the claims
+# domains, whose unit is a sentence the source prints rather than a name.
+NAME_KEYS = ("normalized", "as_read", "quote")
+
+
+def is_crosswalk(path: Path) -> bool:
+    return "crosswalk" in path.name
+
+
+def read_json(path: Path):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+# ---------------------------------------------------------------------------
+# THE SECOND HOP. Everything above measures research READ against research RULED
+# ON. That is two thirds of the owner's original question and not the third he
+# actually asked — "there are not outputs or updates to the household and
+# resident data". A ruling lives in data/research/; a VISITOR sees data/residents/.
+#
+# Measured the evening of 2026-09-03, on the ten 1840 heads T-0505 matched or
+# graded candidate: ten name a real resident record, ten records exist, and NOT
+# ONE carries a single source its own ruling rests on. Philo Carpenter's card
+# cites `andreas_1884_v1` and nothing else while the ruling for him rests on
+# Fergus 1843 and Norris 1844 and the crosswalks hold four more. The evidence and
+# the slot have never been introduced.
+#
+# So: of the rulings that reach a person in the town, how many reach that
+# person's CARD? A ruling counts as written when the record it names cites at
+# least one source the ruling itself rests on. That is deliberately generous —
+# it asks whether the card learned ANYTHING from the ruling, not whether it
+# learned everything — because a strict test would read 0 forever and tell
+# nobody anything new.
+RESIDENTS = DATA_DIR = ROOT / "data" / "residents"
+PERSON_KEYS = ("household_id", "person_id", "person_ids", "resident", "matched_resident")
+WRITTEN_OUTCOMES = ("matched", "candidate")
+
+
+def resident_records() -> dict:
+    """Every resident record by its own id — households and the people files alike."""
+    out = {}
+    for path in sorted(RESIDENTS.rglob("*.json")):
+        doc = read_json(path)
+        if isinstance(doc, dict) and doc.get("id"):
+            out[doc["id"]] = doc
+    return out
+
+
+def cited_sources(doc) -> set:
+    """Every source id a record cites, at any depth. `sources` is the field the
+    residents layer has always used; nothing else counts as a citation."""
+    found = set()
+    def walk(node):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    found.update(v for v in value if isinstance(v, str))
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+    walk(doc)
+    return found
+
+
+def rests_on(ruling: dict) -> set:
+    """The source ids a ruling rests on — what its card would have to learn."""
+    out = set()
+    for disc in ruling.get("discriminators") or []:
+        if isinstance(disc, dict) and disc.get("source_id"):
+            out.add(disc["source_id"])
+    for support in ruling.get("same_name_support") or []:
+        if isinstance(support, dict) and support.get("source_id"):
+            out.add(support["source_id"])
+    if ruling.get("source_id"):
+        out.add(ruling["source_id"])
+    return out
+
+
+def people_named(ruling: dict) -> list:
+    out = []
+    for key in PERSON_KEYS:
+        value = ruling.get(key)
+        if isinstance(value, list):
+            out.extend(str(v) for v in value if v)
+        elif value:
+            out.append(str(value))
+    return out
+
+
+def count_written(domain_dir: Path, records: dict) -> tuple:
+    """(reached, judgeable, wrote) for rulings that name a person in the town.
+
+    JUDGEABLE IS NOT A TECHNICALITY, it is the difference between a measurement and
+    a smear. civic's voter_crosswalk matches 99 voters to residents and states no
+    `source_id` and no `discriminators` on any of them — the ruling never says what
+    it rests on, so nothing can be checked against the card, and reporting those 99
+    as "unwritten" would be the same failure as the whitelist bug: a number that
+    looks like a finding and is really an artefact of the instrument. They are
+    counted as unjudgeable and PRINTED, because an unjudgeable ruling is its own
+    small defect — a crosswalk that cannot say what it rests on cannot be spent."""
+    reached = judgeable = wrote = 0
+    for path in sorted(domain_dir.rglob("*.json")):
+        if not is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        for rulings in doc.values():
+            if not isinstance(rulings, list):
+                continue
+            for ruling in rulings:
+                if not isinstance(ruling, dict):
+                    continue
+                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES:
+                    continue
+                named = [p for p in people_named(ruling) if p in records]
+                if not named:
+                    continue
+                reached += 1
+                wants = rests_on(ruling)
+                if not wants:
+                    continue
+                judgeable += 1
+                if any(wants & cited_sources(records[p]) for p in named):
+                    wrote += 1
+    return reached, judgeable, wrote
+
+
+def anchor_of(ruling: dict) -> str | None:
+    """What this ruling is about, as a dedup key — or None if it names nothing.
+
+    A 1840 head is identified by its position on the sheet (`familysearch_id` +
+    `line`) rather than by any id, because the census names no ids; that pair is
+    as real an anchor as a record_id and is treated as one."""
+    for key in ANCHOR_KEYS:
+        value = ruling.get(key)
+        if isinstance(value, list) and value:
+            return f"{key}={','.join(str(v) for v in sorted(value))}"
+        if value and not isinstance(value, list):
+            return f"{key}={value}"
+    if ruling.get("familysearch_id") and ruling.get("line") is not None:
+        return f"sheet={ruling['familysearch_id']}:{ruling['line']}"
+    return None
+
+
+def count_read(domain_dir: Path) -> int:
+    """Named units captured in a domain, over every JSON it holds but its crosswalks."""
+    total = 0
+    for path in sorted(domain_dir.rglob("*.json")):
+        if is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        for key in ("records", "claims"):
+            units = doc.get(key)
+            if not isinstance(units, list):
+                continue
+            total += sum(1 for u in units if isinstance(u, dict)
+                         and any(u.get(n) for n in NAME_KEYS))
+    return total
+
+
+def count_spent(domain_dir: Path) -> tuple[int, int]:
+    """(anchored rulings, deduped) and (unanchored name-pair rulings)."""
+    anchors: set[str] = set()
+    pairs = 0
+    for path in sorted(domain_dir.rglob("*.json")):
+        if not is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        for key, rulings in doc.items():
+            if not isinstance(rulings, list):
+                continue
+            for index, ruling in enumerate(rulings):
+                if not isinstance(ruling, dict):
+                    continue
+                anchor = anchor_of(ruling)
+                if anchor:
+                    anchors.add(anchor)
+                elif ruling.get(OUTCOME_KEY):
+                    # A stated outcome with nothing to anchor it is still a ruling
+                    # somebody made; it dedups by where it sits.
+                    anchors.add(f"{path.name}:{key}:{index}")
+                elif ruling.get("a") and ruling.get("b"):
+                    pairs += 1
+    return len(anchors), pairs
+
+
+def measure() -> list[dict]:
+    registry = read_json(REGISTRY)
+    if not isinstance(registry, dict) or not registry.get("domains"):
+        raise SystemExit(f"unreadable domain registry: {REGISTRY}")
+    records = resident_records()
+    rows = []
+    for entry in registry["domains"]:
+        domain_dir = ROOT / entry["path"]
+        if not domain_dir.is_dir():
+            raise SystemExit(f"registered domain has no directory: {entry['path']}")
+        read = count_read(domain_dir)
+        spent, pairs = count_spent(domain_dir)
+        reached, judgeable, wrote = count_written(domain_dir, records)
+        rows.append({"domain": entry["id"], "holds": entry["holds"],
+                     "read": read, "spent": spent,
+                     "unspent": read - spent, "id_pairs": pairs,
+                     "reached": reached, "judgeable": judgeable, "wrote": wrote,
+                     "unwritten": judgeable - wrote,
+                     "unjudgeable": reached - judgeable})
+    return rows
+
+
+def unregistered() -> list[str]:
+    """Domain directories on disk that the registry does not name.
+
+    Not a failure: `newspapers` is registered nowhere on purpose (domains.json
+    says "beside the newspapers") and `residents` is the destination layer, not
+    a source. Printed so a NEW domain cannot be read into existence unmeasured.
+    """
+    registry = read_json(REGISTRY) or {}
+    known = {Path(d["path"]).name for d in registry.get("domains", [])}
+    return sorted(p.name for p in RESEARCH.iterdir()
+                  if p.is_dir() and p.name not in known)
+
+
+def report() -> str:
+    rows = measure()
+    out = ["domain            holds      read    spent  unspent  id pairs",
+           "-" * 58]
+    for r in rows:
+        out.append(f"{r['domain']:<17}{r['holds']:<9}{r['read']:>7}"
+                   f"{r['spent']:>9}{r['unspent']:>9}{r['id_pairs']:>10}")
+    out.append("-" * 58)
+    out.append(f"{'TOTAL':<26}{sum(r['read'] for r in rows):>7}"
+               f"{sum(r['spent'] for r in rows):>9}"
+               f"{sum(r['unspent'] for r in rows):>9}"
+               f"{sum(r['id_pairs'] for r in rows):>10}")
+    # The second hop, printed only for domains that have rulings reaching a person.
+    hop = [r for r in rows if r["reached"]]
+    out.append("")
+    out.append("ruled onto a town person, and whether their CARD learned it:")
+    if hop:
+        out.append("domain            reached  judgeable  on a card  unwritten  no source stated")
+        out.append("-" * 78)
+        for r in hop:
+            out.append(f"{r['domain']:<17}{r['reached']:>7}{r['judgeable']:>11}"
+                       f"{r['wrote']:>11}{r['unwritten']:>11}{r['unjudgeable']:>18}")
+        out.append("-" * 78)
+        out.append(f"{'TOTAL':<17}{sum(r['reached'] for r in hop):>7}"
+                   f"{sum(r['judgeable'] for r in hop):>11}"
+                   f"{sum(r['wrote'] for r in hop):>11}"
+                   f"{sum(r['unwritten'] for r in hop):>11}"
+                   f"{sum(r['unjudgeable'] for r in hop):>18}")
+    else:
+        out.append("  no ruling in any domain yet names a person in the residents layer")
+    extra = unregistered()
+    if extra:
+        out.append("")
+        out.append("not registered in domains.json (not measured): " + ", ".join(extra))
+    return "\n".join(out)
+
+
+def gate(quiet: bool = False) -> int:
+    baseline = read_json(BASELINE)
+    if not isinstance(baseline, dict):
+        print(f"   no baseline at {BASELINE.name} — run --rebaseline")
+        return 1
+    ceilings = baseline.get("unspent_ceiling", {})
+    rows = measure()
+    faults = []
+    for r in rows:
+        if r["domain"] not in ceilings:
+            faults.append(f"{r['domain']}: no ceiling recorded — a new domain must "
+                          f"enter the baseline deliberately (unspent {r['unspent']})")
+            continue
+        ceiling = ceilings[r["domain"]]
+        if r["unspent"] > ceiling:
+            faults.append(f"{r['domain']}: {r['unspent']} unspent, ceiling {ceiling} "
+                          f"(+{r['unspent'] - ceiling}) — {r['read']} read, {r['spent']} ruled on")
+    for domain in ceilings:
+        if not any(r["domain"] == domain for r in rows):
+            faults.append(f"{domain}: in the baseline and not in domains.json")
+    # THE SECOND HOP, held the same way. A ruling that reaches a person and never
+    # reaches their card is the fault the owner reported in the first place, and
+    # it is the one thing nothing measured until now.
+    written = baseline.get("unwritten_ceiling", {})
+    for r in rows:
+        if not r["reached"]:
+            continue
+        if not r["judgeable"]:
+            continue
+        ceiling = written.get(r["domain"])
+        if ceiling is None:
+            faults.append(f"{r['domain']}: {r['unwritten']} ruling(s) reach a town person "
+                          f"and no unwritten ceiling is recorded")
+        elif r["unwritten"] > ceiling:
+            faults.append(f"{r['domain']}: {r['unwritten']} ruled onto a person whose card "
+                          f"has not learned it, ceiling {ceiling} "
+                          f"(+{r['unwritten'] - ceiling}) — {r['reached']} reached, {r['wrote']} written")
+    if faults:
+        print("   research read faster than the town spent it:")
+        for f in faults:
+            print(f"     {f}")
+        print("   Rule on the names, or raise that one domain's ceiling with")
+        print("     tools/measure_research_spend.py --raise <domain> --why \"...\"")
+        return 1
+    # SLACK IS REPORTED, ALWAYS. A ceiling only ever moved up, and this gate would
+    # have stayed silent about it: a domain spent all the way down keeps the ceiling
+    # its worst day earned, and may drift back up to it unnoticed. That is a ratchet
+    # with one tooth. `--tighten` reclaims it and needs no justification, because
+    # lowering a ceiling can only make this gate stricter.
+    slack = [(r["domain"], ceilings[r["domain"]] - r["unspent"]) for r in rows
+             if r["domain"] in ceilings and ceilings[r["domain"]] > r["unspent"]]
+    slack += [(f"{r['domain']} (unwritten)", written[r["domain"]] - r["unwritten"])
+              for r in rows if r["domain"] in written and written[r["domain"]] > r["unwritten"]]
+    if slack and not quiet:
+        for domain, by in slack:
+            print(f"   reclaimable: {domain} sits {by} under its ceiling")
+        print("   tools/measure_research_spend.py --tighten takes it back")
+    if not quiet:
+        print(report())
+    return 0
+
+
+def write_baseline(doc: dict) -> None:
+    BASELINE.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n",
+                        encoding="utf-8")
+
+
+def rebaseline() -> int:
+    """FIRST WRITE ONLY. It used to rewrite every domain from current state, which
+    is how a run raising one ceiling would have silently absorbed the drift of all
+    the others — no reason recorded anywhere, which is the exact fault this file
+    exists to catch. Raising is now per-domain and costs a sentence (`--raise`);
+    lowering is free (`--tighten`)."""
+    if BASELINE.exists():
+        print(f"   {BASELINE.name} already exists — refusing to rewrite every ceiling at once.")
+        print("   Raise ONE domain, with a reason:  --raise <domain> --why \"...\"")
+        print("   Reclaim slack after spending:     --tighten")
+        return 1
+    rows = measure()
+    write_baseline({
+        "schema": 1,
+        "_doc": ("The unspent ceiling per research domain — read minus ruled-on. RAISING A "
+                 "NUMBER HERE IS A DECISION and is written by --raise, which requires a "
+                 "reason and touches one domain. Lowering is free and is what spending a "
+                 "domain does: --tighten reclaims the slack. --rebaseline writes this file "
+                 "once and then refuses, so no run can launder every ceiling in one go."),
+        "generated_by": "tools/measure_research_spend.py --rebaseline",
+        "unspent_ceiling": {r["domain"]: r["unspent"] for r in rows},
+        "unwritten_ceiling": {r["domain"]: r["unwritten"] for r in rows if r["judgeable"]},
+        "witness": {r["domain"]: {"read": r["read"], "spent": r["spent"]} for r in rows},
+        "raised": [],
+    })
+    print(f"wrote {BASELINE.name}")
+    print(report())
+    return 0
+
+
+def raise_ceiling(domain: str, why: str, hop: str = "read") -> int:
+    """Raise ONE domain's ceiling on ONE hop, and record who said why.
+
+    hop 'read'  — the read-vs-ruled ceiling (`unspent_ceiling`)
+    hop 'write' — the ruled-vs-on-a-card ceiling (`unwritten_ceiling`)"""
+    baseline = read_json(BASELINE)
+    if not isinstance(baseline, dict):
+        print(f"   no baseline at {BASELINE.name} — run --rebaseline")
+        return 1
+    rows = {r["domain"]: r for r in measure()}
+    if domain not in rows:
+        print(f"   {domain} is not a domain in domains.json — nothing to raise")
+        return 1
+    if not why.strip():
+        print("   --why is required: a raise says the project chose to read further "
+              "ahead of its adjudication, and somebody has to say why")
+        return 1
+    if hop not in ("read", "write"):
+        print("   --hop must be 'read' (read vs ruled) or 'write' (ruled vs on a card)")
+        return 1
+    row = rows[domain]
+    field = "unspent_ceiling" if hop == "read" else "unwritten_ceiling"
+    figure = row["unspent"] if hop == "read" else row["unwritten"]
+    ceilings = baseline.setdefault(field, {})
+    was = ceilings.get(domain)
+    if was is not None and figure <= was:
+        print(f"   {domain} is at {figure} against a {hop} ceiling of {was} — "
+              "nothing to raise. Use --tighten to reclaim the slack.")
+        return 1
+    ceilings[domain] = figure
+    baseline.setdefault("witness", {})[domain] = {"read": row["read"], "spent": row["spent"]}
+    baseline.setdefault("raised", []).append({
+        "domain": domain, "hop": hop, "from": was, "to": figure,
+        "date": date.today().isoformat(), "why": why.strip()})
+    write_baseline(baseline)
+    print(f"raised {domain} ({hop}): {was} -> {figure}")
+    print(f"  why: {why.strip()}")
+    return 0
+
+
+def tighten() -> int:
+    """Lower every ceiling that sits above what the domain now reads. Always safe:
+    it can only make the gate stricter, so it needs no reason and asks for none."""
+    baseline = read_json(BASELINE)
+    if not isinstance(baseline, dict):
+        print(f"   no baseline at {BASELINE.name} — run --rebaseline")
+        return 1
+    ceilings = baseline.setdefault("unspent_ceiling", {})
+    written = baseline.setdefault("unwritten_ceiling", {})
+    moved = []
+    for row in measure():
+        was = ceilings.get(row["domain"])
+        if was is not None and row["unspent"] < was:
+            ceilings[row["domain"]] = row["unspent"]
+            baseline.setdefault("witness", {})[row["domain"]] = {
+                "read": row["read"], "spent": row["spent"]}
+            moved.append((row["domain"], was, row["unspent"]))
+        was_w = written.get(row["domain"])
+        if was_w is not None and row["unwritten"] < was_w:
+            written[row["domain"]] = row["unwritten"]
+            moved.append((f"{row['domain']} (unwritten)", was_w, row["unwritten"]))
+    if not moved:
+        print("every ceiling already sits at what its domain reads — nothing to reclaim")
+        return 0
+    write_baseline(baseline)
+    for domain, was, now in moved:
+        print(f"tightened {domain}: {was} -> {now} (reclaimed {was - now})")
+    return 0
+
+
+def self_test() -> int:
+    """Every assertion this gate makes, proved to fire when the fault is present."""
+    failures = []
+
+    def fires(label: str, condition: bool) -> None:
+        if not condition:
+            failures.append(label)
+
+    # --- the read counter
+    fires("a record with a normalized name is read",
+          sum(1 for u in [{"normalized": "W. H. Adams"}]
+              if any(u.get(n) for n in NAME_KEYS)) == 1)
+    fires("a continuation line with cells and no name is NOT read",
+          sum(1 for u in [{"line": 4, "cells": {"1": 2}}]
+              if any(u.get(n) for n in NAME_KEYS)) == 0)
+    fires("an as_read-only record is still read",
+          sum(1 for u in [{"as_read": "Wm S. Lans[?]me"}]
+              if any(u.get(n) for n in NAME_KEYS)) == 1)
+    fires("a claims unit counts by its quote",
+          sum(1 for u in [{"quote": "the town then had four stores"}]
+              if any(u.get(n) for n in NAME_KEYS)) == 1)
+
+    # --- the spend counter, on a scratch tree
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        (d / "voter_crosswalk.json").write_text(json.dumps({"entries": [
+            {"record_id": "poll_1833_001", "outcome": "matched"},
+            {"record_id": "poll_1833_002", "outcome": "refused"}]}))
+        spent, pairs = count_spent(d)
+        fires("two anchored rulings are two spends", spent == 2)
+        fires("…and neither is an id pair", pairs == 0)
+
+        # the civic double-count this tool was written to avoid
+        (d / "crosswalk.json").write_text(json.dumps({"refusals": [
+            {"a": "Medard Beaubien", "b": "Col. Jean Baptiste Beaubien"}]}))
+        spent, pairs = count_spent(d)
+        fires("an unanchored name-pair ruling is NOT a spend", spent == 2)
+        fires("…it is reported as an id pair", pairs == 1)
+
+        # one record ruled on twice in two files is one spend
+        (d / "second_crosswalk.json").write_text(json.dumps({"matches": [
+            {"record_id": "poll_1833_001", "person_id": "adams_william_h"}]}))
+        spent, _ = count_spent(d)
+        fires("one record ruled on in two files is one spend", spent == 2)
+
+        # a refusal that names a person is spent
+        (d / "third_crosswalk.json").write_text(json.dumps({"refusals": [
+            {"person_id": "beaubien_jean_baptiste", "rule": "surname only"}]}))
+        spent, _ = count_spent(d)
+        fires("an anchored refusal IS a spend", spent == 3)
+
+        # `pages` is not an adjudication array
+        (d / "crosswalk_670.json").write_text(json.dumps({
+            "pages": [{"printed_page": 229}, {"printed_page": 231}]}))
+        spent, pairs = count_spent(d)
+        # `pages` is not in ADJUDICATION_KEYS, so the file adds nothing at all —
+        # the one id pair still standing is the Beaubien refusal above.
+        fires("a page-level agreement test rules on nobody",
+              spent == 3 and pairs == 1)
+
+        # a non-crosswalk file is never a spend, however it is shaped
+        (d / "records.json").write_text(json.dumps({"entries": [
+            {"record_id": "x"}]}))
+        spent, _ = count_spent(d)
+        fires("only a crosswalk file carries rulings", spent == 3)
+
+        # the read counter over the same tree
+        (d / "page.json").write_text(json.dumps({"records": [
+            {"as_read": "A"}, {"line": 2}, {"normalized": "B"}]}))
+        fires("read counts names and skips the blank line", count_read(d) == 2)
+        fires("…and never reads a crosswalk as a source",
+              count_read(d) == 2)
+
+    # --- the second hop
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["fergus_1843"]}]},
+                 "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        (d / "x_crosswalk.json").write_text(json.dumps({"heads": [
+            {"outcome": "matched", "household_id": "hh_a",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "matched", "household_id": "hh_b",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "matched", "household_id": "hh_b"},
+            {"outcome": "matched", "household_id": "hh_nobody",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "refused", "household_id": "hh_a",
+             "discriminators": [{"source_id": "fergus_1843"}]}]}))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("a ruling naming a person in the town is reached", reached == 3)
+        fires("…a refusal is not, however well sourced", reached == 3)
+        fires("…nor is one naming a person the town does not have", reached == 3)
+        fires("a ruling stating no source is unjudgeable, not unwritten",
+              judgeable == 2)
+        fires("a card citing the ruling's own source has learned it", wrote == 1)
+        fires("…and a card citing something else has not", judgeable - wrote == 1)
+
+        fires("same_name_support counts as what a ruling rests on",
+              rests_on({"same_name_support": [{"source_id": "s1"}]}) == {"s1"})
+        fires("a bare source_id counts too", rests_on({"source_id": "s2"}) == {"s2"})
+        fires("a ruling resting on nothing states nothing", rests_on({}) == set())
+        fires("sources are found at any depth in a record",
+              cited_sources({"a": {"b": [{"sources": ["deep"]}]}}) == {"deep"})
+        fires("a plural person_ids ruling names every person it reaches",
+              people_named({"person_ids": ["p1", "p2"]}) == ["p1", "p2"])
+
+    # --- the ratchet
+    def over(unspent: int, ceiling: int) -> bool:
+        return unspent > ceiling
+    fires("the gate fires when the gap widens", over(563, 562))
+    fires("the gate is silent when the gap holds", not over(562, 562))
+    fires("the gate is silent when a domain is spent down", not over(0, 562))
+
+    # --- raising and tightening, against a real baseline file
+    global BASELINE
+    kept = BASELINE
+    # These cases drive the real writers, which report to stdout by design. A
+    # self-test that narrates every one of them buries its own verdict.
+    import contextlib, io
+    hush = contextlib.redirect_stdout(io.StringIO())
+    try:
+        with tempfile.TemporaryDirectory() as tmp, hush:
+            BASELINE = Path(tmp) / "baseline.json"
+            rows = measure()
+            live = {r["domain"]: r["unspent"] for r in rows}
+            some = rows[0]["domain"]
+
+            fires("--rebaseline writes the file when there is none",
+                  rebaseline() == 0 and BASELINE.exists())
+            fires("…and REFUSES a second time, so no run launders every ceiling at once",
+                  rebaseline() == 1)
+
+            doc = json.loads(BASELINE.read_text())
+            fires("the first write records every domain",
+                  doc["unspent_ceiling"] == live)
+
+            fires("a raise with no reason is refused",
+                  raise_ceiling(some, "   ") == 1)
+            fires("a raise on an unknown domain is refused",
+                  raise_ceiling("no_such_domain", "because") == 1)
+            fires("a raise with nothing to raise is refused, and points at --tighten",
+                  raise_ceiling(some, "because") == 1)
+
+            # drop one ceiling below the live figure so a raise is genuinely owed
+            doc["unspent_ceiling"][some] = live[some] - 1
+            BASELINE.write_text(json.dumps(doc))
+            fires("the gate fires on that one domain", gate(quiet=True) == 1)
+            fires("a reasoned raise is taken", raise_ceiling(some, "T-9999 read it") == 0)
+            after = json.loads(BASELINE.read_text())
+            fires("…the ceiling moves to what the domain now reads",
+                  after["unspent_ceiling"][some] == live[some])
+            fires("…the reason is written down, with what it moved from and to",
+                  after["raised"][-1]["why"] == "T-9999 read it"
+                  and after["raised"][-1]["to"] == live[some])
+            fires("…and only that domain moved", all(
+                  after["unspent_ceiling"][d] == live[d] for d in live if d != some))
+            fires("the gate is green again", gate(quiet=True) == 0)
+
+            # slack: a ceiling above the live figure is reclaimable
+            after["unspent_ceiling"][some] = live[some] + 50
+            BASELINE.write_text(json.dumps(after))
+            fires("slack does not fire the gate", gate(quiet=True) == 0)
+            fires("--tighten reclaims it", tighten() == 0)
+            fires("…down to what the domain reads",
+                  json.loads(BASELINE.read_text())["unspent_ceiling"][some] == live[some])
+            fires("…and a second --tighten has nothing left to take", tighten() == 0)
+            fires("…and never RAISES a ceiling that is already tight",
+                  json.loads(BASELINE.read_text())["unspent_ceiling"] == live)
+    finally:
+        BASELINE = kept
+
+    for line in failures:
+        print(f"   SILENT: {line}")
+    print("SELF-TEST %s — %d case(s)" % ("FAIL" if failures else "PASS", 46))
+    return 1 if failures else 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--gate", action="store_true")
+    parser.add_argument("--rebaseline", action="store_true")
+    parser.add_argument("--raise", dest="raise_domain", metavar="DOMAIN",
+                        help="raise ONE domain's ceiling to what it now reads; needs --why")
+    parser.add_argument("--why", default="", help="the reason a raise is being taken")
+    parser.add_argument("--hop", default="read", choices=("read", "write"),
+                        help="which ceiling to raise: read (read vs ruled) or write (ruled vs on a card)")
+    parser.add_argument("--tighten", action="store_true",
+                        help="lower every ceiling to what its domain now reads (always safe)")
+    parser.add_argument("--self-test", action="store_true", dest="self_test")
+    parser.add_argument("--quiet", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        return self_test()
+    if args.raise_domain:
+        return raise_ceiling(args.raise_domain, args.why, args.hop)
+    if args.tighten:
+        return tighten()
+    if args.rebaseline:
+        return rebaseline()
+    if args.gate:
+        return gate(quiet=args.quiet)
+    print(report())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

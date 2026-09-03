@@ -392,6 +392,14 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
     "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
+    # T-0491. Three of these people are bridged to a named head of household in the
+    # 1840 census, and PR #670 attached that bridge without giving the panel any way
+    # to say so. Both copies are read now: the total in the count sentence, so a
+    # reader sees how few there are before opening anything, and the per-row tally
+    # as a chip, so which rows they are costs no fetch. The bridge itself is on the
+    # person's card, argument and all — see `persons[].later_census.*` below.
+    "counts.census_1840_linked": ("shown", "counts.census_1840_linked"),
+    "households[].census_1840_linked": ("shown", "entry.census_1840_linked"),
     # T-0379. The owner ruled that every letter-list name the evidence admits joins
     # the town, which made this cohort most of the people in it, so the section is
     # SPLIT on this flag rather than sorted by it: the households the rest of the
@@ -502,6 +510,64 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].birth_year.confidence": ("shown", "swatch(block.confidence)"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
     "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
+    # T-0491. The 1840 identity bridge, on the three people that carry one. PR #670
+    # attached it and declared nothing, so twenty-four figures reached a browser
+    # unread — which is the exact shape this census exists to catch, and the cheap
+    # answer was to bank all of them. NONE is banked. An identity bridge is an
+    # ARGUMENT — a transcribed name, a normalised reading of it, the page, the row,
+    # the serial, and three separate confidences in three separate steps — and each
+    # of those is a thing a reader can disagree with only if they can see it.
+    "persons[].later_census.year": ("shown", "Found again in the ${escapeHtml(String(census.year))} census"),
+    "persons[].later_census.source_id": ("shown", "citationsById.get(census.source_id)"),
+    "persons[].later_census.serial": ("shown", "enumeration serial ${\n        escapeHtml(String(census.serial))}"),
+    "persons[].later_census.census_page": ("shown", "Page ${escapeHtml(String(census.census_page))}"),
+    "persons[].later_census.census_row": ("shown", "escapeHtml(String(census.census_row))"),
+    "persons[].later_census.head_name_transcribed": ("shown", "escapeHtml(census.head_name_transcribed)"),
+    "persons[].later_census.head_name_normalized": ("shown", "escapeHtml(census.head_name_normalized)"),
+    "persons[].later_census.source_image": ("shown", "from image ${escapeHtml(census.source_image)}"),
+    # Which image the row was read off, and whether a paired continuation sheet was
+    # needed to read it — the 1840 schedules run a household across two facing pages,
+    # and a serial fixed from one image alone is a weaker reading than one fixed from
+    # both. It is printed beside the image it qualifies.
+    "persons[].later_census.source_kind": ("shown", "escapeHtml(census.source_kind)"),
+    "persons[].later_census.bridge_basis": ("shown", "escapeHtml(census.bridge_basis)"),
+    "persons[].later_census.bridge_status": ("shown", "escapeHtml(words(census.bridge_status))"),
+    # Three confidences, not one. The papers can be right about the name and wrong
+    # about the man, and the row can be assigned to the wrong serial with both of
+    # those right, so the card prints the three and says they fail independently.
+    "persons[].later_census.name_confidence": ("shown", "escapeHtml(words(census.name_confidence))"),
+    "persons[].later_census.identity_confidence": ("shown", "escapeHtml(words(census.identity_confidence))"),
+    "persons[].later_census.serial_mapping_confidence": ("shown", "escapeHtml(words(census.serial_mapping_confidence))"),
+    # The 1840 household tallies, shown WITH the record's refusal printed under
+    # them. These are the figures most likely to be read back onto 1835 by a
+    # visitor doing the arithmetic themselves, and hiding them does not stop that
+    # — it only removes the sentence that says the arithmetic is wrong.
+    "persons[].later_census.household.persons": ("shown", "['People in the household', hh.persons]"),
+    "persons[].later_census.household.children_under_10": ("shown", "['Children under ten', hh.children_under_10]"),
+    "persons[].later_census.household.male": ("shown", "['Male', hh.male]"),
+    "persons[].later_census.household.female": ("shown", "['Female', hh.female]"),
+    "persons[].later_census.household.agriculture": ("shown", "['Employed in agriculture', hh.agriculture]"),
+    "persons[].later_census.household.commerce": ("shown", "['Employed in commerce', hh.commerce]"),
+    "persons[].later_census.household.manufactures_trades": ("shown", "['Employed in manufactures and trades', hh.manufactures_trades]"),
+    "persons[].later_census.household.inland_navigation": ("shown", "['Employed in inland navigation', hh.inland_navigation]"),
+    "persons[].later_census.household.professions_engineering": ("shown", "['In a learned profession or engineering', hh.professions_engineering]"),
+    "persons[].later_census.household.foreigners_not_naturalized": ("shown", "['Foreigners not naturalized', hh.foreigners_not_naturalized]"),
+    "persons[].later_census.household.illiterate_over_21": ("shown", "['Over twenty-one and unable to read or write', hh.illiterate_over_21]"),
+    # And the same line read off the photograph of the sheet, shown beside the
+    # recovered figures rather than instead of them, with the sentence that says
+    # where the two disagree (T-0530).
+    "persons[].later_census.scan_verified.read_by": ("shown", "read by ${escapeHtml(scan.read_by)}"),
+    "persons[].later_census.scan_verified.sources": ("shown", "(scan.sources || []).map((id) => citationsById.get(id))"),
+    "persons[].later_census.scan_verified.image": ("shown", "From ${escapeHtml(scan.image)}"),
+    "persons[].later_census.scan_verified.line": ("shown", "Line ${escapeHtml(String(scan.line))}"),
+    "persons[].later_census.scan_verified.head_name_as_read": ("shown", "escapeHtml(scan.head_name_as_read)"),
+    "persons[].later_census.scan_verified.free_persons": ("shown", "['People on the line', scan.free_persons]"),
+    "persons[].later_census.scan_verified.males": ("shown", "['Male', scan.males]"),
+    "persons[].later_census.scan_verified.females": ("shown", "['Female', scan.females]"),
+    "persons[].later_census.scan_verified.children_under_10": ("shown", "['Children under ten', scan.children_under_10]"),
+    "persons[].later_census.scan_verified.age_bands": ("shown", "band by band: ${escapeHtml(scan.age_bands)}"),
+    "persons[].later_census.scan_verified.column_totals_check": ("shown", "escapeHtml(scan.column_totals_check)"),
+    "persons[].later_census.scan_disagreement": ("shown", "escapeHtml(census.scan_disagreement)"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {

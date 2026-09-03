@@ -4,7 +4,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pilot.py",
   "population_frame": {
-    "eligible_real_named_people": 848,
+    "eligible_real_named_people": 849,
     "sample_size": 75,
     "strata": {
       "established_profile": 5,
@@ -25,7 +25,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_tribune_1882_05_19_fourth_reception"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -39,7 +40,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_tribune_1882_05_19_fourth_reception"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -99,7 +101,7 @@
         "chicago_american_1835",
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_byram_king",
@@ -113,7 +115,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_e_l_thrall",
@@ -127,7 +129,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_elmira_fowler",
@@ -141,7 +143,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_h_b_clarke",
@@ -155,7 +157,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_h_c_bennett",
@@ -169,7 +171,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_h_crocker",
@@ -183,7 +185,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_h_sherman",
@@ -197,7 +199,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_henry_moore",
@@ -212,7 +214,7 @@
         "chicago_american_1835",
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_j_a_marshall",
@@ -226,7 +228,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_j_curtiss",
@@ -240,7 +242,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_j_h_collins",
@@ -254,7 +256,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_james_grant",
@@ -268,7 +270,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_r_stewart",
@@ -283,7 +285,7 @@
         "chicago_american_1835",
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_samuel_lewis",
@@ -297,7 +299,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_doc_wm_sabine",
@@ -311,7 +313,7 @@
       "sources": [
         "chicago_american_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_placed_b_s_morris",
@@ -325,7 +327,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_placed_hoit_thomas",
@@ -339,7 +341,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_placed_j_k_boyer",
@@ -353,7 +355,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_placed_j_w_fell",
@@ -367,7 +369,7 @@
       "sources": [
         "chicago_democrat_1833_1835"
       ],
-      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+      "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
     {
       "household_id": "hh_ll_hail_aifred",

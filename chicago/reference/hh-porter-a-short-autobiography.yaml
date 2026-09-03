@@ -1,0 +1,18 @@
+id: hh-porter-autobiography
+title: "H. H. Porter: A Short Autobiography, Written for His Children and Grandchildren"
+creator: H. H. Porter
+date: 1915
+description: >
+  Privately-printed 1915 autobiography, scanned from Kansas City Public
+  Library (same digitization pipeline as Kirkland's Story of Chicago).
+  Used as a source in the Chicago 1830s research corpus.
+redistribution_status: public
+copyright_status: public-domain
+internet_archive:
+  item: chicago1835-hh-porter-autobiography
+  url: https://archive.org/details/chicago1835-hh-porter-autobiography
+files:
+  - name: 4582673.pdf
+    bytes: 65888855
+    sha256: cc884a721b7390aeb717753d19fa7143af8b2a09044db37e8f3a606d763030dc
+local_archive_path: projects/archive/data/chicago/reference/hh-porter-a-short-autobiography/

@@ -4768,6 +4768,7 @@ stroke; any tax, insurance or sale description naming a walk in front of a lot; 
 Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
 path this entry cites into a `source_id` and the lettering's warrant into a citation.
 **Recorded:** 2026-08-18.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 
 ### L136 — The Sauganash's frontage: two more plank walks, a crossing, and two posts nobody measured
@@ -5674,6 +5675,49 @@ at `balanced` and about 15,400 at each tier either side, so what refuses it is t
 rung rather than the town. It is filed with its number attached rather than bought with a
 sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
 **Recorded:** 2026-08-27.
+**Revised:** 2026-08-27.
+**AMENDED 2026-09-03 — THE WALKS GET STRING PIECES, AND ONE MORE INVENTED MEMBER (T-0460).**
+The owner reported the plank walk meeting the dirt road in a **jagged sawtooth**, from a
+close stand, and said it was among the first things a visitor sees. It was: a walk laid as
+boards alone ends, at each side, in a row of board ENDS — at a 0.32 m pitch with a 0.02 m
+gap between them over a deck standing 0.11 m proud of the road, the outer edge of 3.17 km
+of sidewalk was about twenty thousand short end-grain faces with daylight between them, and
+the one member that did reach the ground (the 2.08 m bay stringer) stood 0.09 m inboard,
+in shadow under the overhanging ends. He named the only two treatments he would accept:
+the walk sits **consistently over** the road, or the boards **meet the mud** as boards in
+mud do. **The first was taken.**
+**What is now drawn, and what of it is new invention.** Each walk is held between two
+**string pieces** — 0.09 m stock running ALONG the walk down each side, taking the outermost
+0.09 m of its own 1.83 m width so the walk does not widen, its top flush with the boards it
+holds and its foot reaching the lowest ground under its own length. The boards stop at its
+inner face. This costs no timber the layer did not already draw: the string piece IS the bay
+stringer, moved out to the walk's own edge and brought up flush with the deck instead of
+stopping under it, so the box count does not move. What is NEW invention is exactly one
+thing — **that these walks were built with edge timbers at all**, and its 0.09 m section.
+No source in this repository states it. It is the same class of invention as the width,
+the rise and the plank pitch this entry already claims, and it is claimed on the same
+grounds: a plank sidewalk of ordinary sawn stock is what the plates show, and boards held
+between string pieces is how such a walk is built.
+**And a second thing moved with it, which is a correction rather than an invention.** A
+board used to sample the terrain under its own centre, which put a fresh height on the deck
+every 0.32 m — a walk laid in stringer bays does not do that, because the bay is the timber
+that carries the boards. Every board in a bay now takes THAT BAY's height, which is what
+makes the top of the string piece and the tops of the boards it holds one line to the
+millimetre. Measured over the whole town: the largest height step between two consecutive
+string pieces is **0.026 m**, against the 0.04 m the generator already audits a bay's ground
+flat to. The rises are NOT reduced — the walk standing 0.11 m over the road is the point of
+the treatment the owner chose, and what changed is that the rise now presents as one made
+face instead of a row of end-grain steps.
+**What is NOT treated, stated rather than left to be found.** The **board crossings** keep
+their 0.06 m rise and take no string piece. A crossing lies in the wheel track, its boards
+are laid ALONG the way a foot travels, and its sides are therefore already one continuous
+board face rather than a comb of ends — there is no sawtooth on a crossing to resolve, and
+an edge timber raised across a road is a thing to catch a wheel on.
+**Held by the gate:** `tools/smoke_renderer.mjs` marches one named 98.6 m run in 0.2 m
+stations and asks each of the 487 for timber from the deck down to the ground at the walk's
+own edge line. On the geometry this replaced, **487 of 487** stations read as an open edge;
+on the string piece, **0 of 487**.
+
 
 **AMENDED 2026-09-03 — THE FENCE FOLLOWS THE LOT AND THE POST FOLLOWS THE DOOR (T-0426).**
 Two of this liberty's clauses read the same test — *does a committed building stand inside
@@ -7727,6 +7771,7 @@ wharfing order for Water Street east of Dearborn; any view of the slough mouth o
 South Water bank showing the crossing's walking surface or a bank walk; a committed
 crossing at the La Salle mouth would close the one gap in the run.
 **Recorded:** 2026-08-21.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 ### L155 — Terrain: the fort's river frontage is cut steeper than the banks either side of it
 **Decision:** the south division's `face_profile` in
@@ -10034,3 +10079,66 @@ named trade) · tickets **T-0384** (this), **T-0306** (its parent, the American'
 advertisement).
 **Covers:** `john_holbrook_store.frame_1835.footprint`, `john_holbrook_store.frame_1835.form.stories`, `john_holbrook_store.frame_1835.form.siding_exposure_m`.
 **Recorded:** 2026-08-30.
+
+### L216 — The one lot-and-block address in the corpus is seated on a roof nothing says is that house
+**Decision:** where a newspaper prints a LOT AND A BLOCK — the plat's own language, and the
+strongest placement statement this corpus makes — the address is seated on the reconstructed
+roof already standing on that lot, and the roof gains the address and nothing else. There is
+exactly one such address: G. Spring's For-Sale notice, six printings in the *Chicago
+Democrat* between 1834-06-18 and 1834-11-19, "LOT No. 7, in block No. 16, one lot east of
+Haddock's Tavern, on Lake street … a large Dwelling-House and fine well". `docs/LOT-ADDRESS.md`
+is the policy, `data/research/newspapers/lot_addresses.json` the authored address,
+`tools/lot_addresses.py --check` the gate that re-derives it on every commit.
+
+**What is not invented:** the address. Four of the six printings carry "lot 7", "block 16",
+"Lake street", the neighbouring tavern and the house itself unbroken, and the two that do not
+are named in the ledger with what the column edge took from each. Nor is the block number
+invented: T-0358 derived it, and it is the one derived number in that file an independent
+source agrees with — the notice's own "on Lake street" and the tavern one lot west of it land
+on the block the count reaches from the Wright sheet's numeral.
+
+**What is invented, and it is the step from a number to a roof.** Four lots to a block face is
+a reading of ONE block; the lot lines that reading divides a block into are the plat module's
+and are drawn from no sheet; the counter-clockwise numbering was read off block 18's crop and
+applied to every block by counting. So "lot 7" is a conjectural line bearing a documented
+number, and the roof whose centroid falls inside it is an anonymous count-unit the 665-roof
+programme raised to meet an aggregate — dealt to the D3 family long before this address
+resolved to anything. **Nothing says that roof is that house.** Its existence, position,
+footprint and every form value are exactly what they were, still conjectural under **L92**,
+and the seating is graded at the bottom tier for that reason: `confidence` is `const:
+"reconstructed"` in the schema and the gate re-reads the phase and fails if a documented
+address has promoted it.
+
+**The source says LARGE and the fabric does not answer to the word.** The roof under this
+address is a 5.36 × 6.38 m one-room cottage. That is a real contradiction between a documented
+adjective and a reconstructed massing, and it is recorded here rather than repaired, because
+repairing it means re-dealing the block's family mix and re-baking, which is a second
+demonstration. The card carries the notice's own words, so a visitor reads "a large
+Dwelling-House" beside a small one and can see the seam.
+
+**The well is documented and is not drawn.** The notice's second structure is "a fine well".
+The town has no well — no archetype, no committed structure, no yard record — so drawing this
+one would raise a new kind of object for the whole scene rather than place a known one, and it
+would be the only well in Chicago. The absence is stated on the record instead of passed over,
+which is the distinction this document exists for: an omission that says so is not the same
+liberty as one that does not.
+
+**Three things this deliberately does not claim, and each is a field or a gate.** A person:
+the advertiser is who to apply to for terms, `is_the_occupant` and `is_the_owner` are `false`
+in the ledger and refused if they are not, and this house is NOT named for G. Spring — the same
+man is the attorney the papers put second door west of Franklin and South Water, and **T-0412**
+is the same trap read from the other side. A promotion: the phase stays `reconstructed`. And a
+second building: an address landing on two roofs, or two addresses landing on one, are both
+refusals rather than allocations, because an address that names more than one building has
+placed none of them.
+
+**How to resolve:** a canal-commission lot record, a deed or an assessment naming this lot
+would replace the conjectural line with a recovered one and would make the seating a reading
+rather than an allocation. Thompson's own lot numerals for block 16, read off a sheet, would
+do the same for the numbering. A measured description of the house would end the contradiction
+between the word LARGE and the massing under it.
+Related: **L212** (street-face adoption — a face, never a lot) · **L215** (the corner ordinal —
+a position, and no lot) · **L92** (the anonymous roofs' own conjecture) · **L157** (the vacancy
+this title stops asserting) · tickets **T-0423** (this), **T-0358** (the block numbering it
+spends), **T-0324**, **T-0412** (the vendor trap).
+**Recorded:** 2026-09-03.

@@ -182,7 +182,149 @@ function researchHtml(review, citationsById) {
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
-function personHtml(person, citationsById, researchByPerson) {
+/**
+ * The 1840 census household a person's record is bridged to — five years after
+ * this scene, and that gap is the whole reason this block is rendered rather
+ * than banked.
+ *
+ * PR #670 attached the bridge to three people and declared none of its figures,
+ * so twenty-four values were being shipped to a browser with nothing reading
+ * them (T-0491). Banking them would have been the cheap answer and the wrong
+ * one: an identity bridge is an ARGUMENT — a transcribed name, a normalised
+ * reading of it, the page and row it stands on, the serial it was assigned and
+ * three separate confidences in those steps — and an argument a visitor cannot
+ * see is an assertion. It is shown whole, headed by the year, so that no part of
+ * it can be mistaken for an 1835 fact.
+ *
+ * THE HOUSEHOLD TALLIES ARE SHOWN FOR THE SAME REASON. They are the strongest
+ * temptation on this card — six people under a roof in 1840 is not six people
+ * under it in 1835 — and the record's own note says so in as many words. The
+ * note is printed directly beneath them, because a figure withheld cannot be
+ * argued with and a figure shown with its refusal can.
+ */
+function laterCensusHtml(census, citationsById) {
+  if (!census) return '';
+  const hh = census.household || {};
+  const cite = citationsById.get(census.source_id);
+  const tallies = [
+    ['People in the household', hh.persons],
+    ['Children under ten', hh.children_under_10],
+    ['Male', hh.male],
+    ['Female', hh.female],
+    ['Employed in agriculture', hh.agriculture],
+    ['Employed in commerce', hh.commerce],
+    ['Employed in manufactures and trades', hh.manufactures_trades],
+    ['Employed in inland navigation', hh.inland_navigation],
+    ['In a learned profession or engineering', hh.professions_engineering],
+    ['Foreigners not naturalized', hh.foreigners_not_naturalized],
+    ['Over twenty-one and unable to read or write', hh.illiterate_over_21],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Found again in the ${escapeHtml(String(census.year))} census</dt>
+    <dd>${swatch(null)}Head of household <b>${escapeHtml(census.head_name_normalized)}</b>,
+      transcribed on the page as <q>${escapeHtml(census.head_name_transcribed)}</q>${
+        census.bridge_status ? ` · ${escapeHtml(words(census.bridge_status))} bridge` : ''}
+      <br><span class="res-why">Page ${escapeHtml(String(census.census_page))}, row ${
+        escapeHtml(String(census.census_row))}, enumeration serial ${
+        escapeHtml(String(census.serial))}${
+        census.source_image ? `, from image ${escapeHtml(census.source_image)}` : ''}${
+        census.source_kind ? ` (${escapeHtml(census.source_kind)})` : ''}.
+        The reading of the name is graded ${escapeHtml(words(census.name_confidence))}, the
+        identification of it with this person ${escapeHtml(words(census.identity_confidence))},
+        and the assignment of the row to that serial ${
+        escapeHtml(words(census.serial_mapping_confidence))} — three separate steps, each of
+        which can be wrong on its own.</span>
+      <br><span class="res-why">${escapeHtml(census.bridge_basis)}</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      ${census.note ? `<span class="res-why">${escapeHtml(census.note)}</span>` : ''}
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</dd>
+    ${scanHtml(census, citationsById)}`;
+}
+
+/**
+ * The same line, read off the photograph of the sheet (T-0530).
+ *
+ * The block above it is a RECOVERY: 210 rows taken out of a workbook the owner
+ * has ruled lost, which cite no line on any page. Where the page has since been
+ * read — column by column, checked against the footings the enumerator wrote at
+ * the bottom of his own sheet — the two do not always agree, and on the one
+ * household this reaches they disagree about how many people in it were men.
+ *
+ * BOTH ARE SHOWN, and the sentence between them says which is senior and why.
+ * Replacing the recovered figures with the scan would have been tidier and would
+ * have destroyed the finding: the bridge that put this person on this line was
+ * built out of the workbook's row, so a card showing only the sheet would be
+ * quoting evidence the identification never rested on.
+ */
+function scanHtml(census, citationsById) {
+  const scan = census.scan_verified;
+  if (!scan) return '';
+  const cites = (scan.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const tallies = [
+    ['People on the line', scan.free_persons],
+    ['Male', scan.males],
+    ['Female', scan.females],
+    ['Children under ten', scan.children_under_10],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Read again off the page itself</dt>
+    <dd>${swatch('attested')}Line ${escapeHtml(String(scan.line))} of the photographed sheet,
+      where the head of the household is written <q>${escapeHtml(scan.head_name_as_read)}</q>.
+      <br><span class="res-why">From ${escapeHtml(scan.image)}, read by ${escapeHtml(scan.read_by)}.</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      <span class="res-why">On the line, band by band: ${escapeHtml(scan.age_bands)}.</span>
+      <br><span class="res-why">The sheet foots its own columns and that footing is the only
+        check this reading has: ${escapeHtml(scan.column_totals_check)}.</span>
+      ${census.scan_disagreement
+        ? `<br><span class="res-why">${escapeHtml(census.scan_disagreement)}</span>` : ''}
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+/**
+ * Norris's directory of 1844, on the people it meets (T-0569).
+ *
+ * The volume is nine years after this scene and that gap is the whole reason
+ * this is rendered rather than banked. An 1844 line can only do two things for a
+ * person of 1835 — say they were still in Chicago, and print a trade or a street
+ * the 1835 record never had — and both of those are ARGUMENTS a reader can only
+ * disagree with if they can see the line, the page and the rule that reached it.
+ *
+ * THE THREE STATUSES ARE ALL SHOWN, and that is the point of the section rather
+ * than a caveat on it. Forty-eight people meet one entry and nobody else meets
+ * it; fifteen meet several and this project does not choose between them; four
+ * share one entry with another person in this town, so no match is made. A
+ * section that showed only the first would be reporting the crosswalk's
+ * successes and hiding its arithmetic.
+ *
+ * THE LINE IS QUOTED AND ITS PARSE IS NOT. Splitting a printed entry into a
+ * trade and an address is a heuristic over inconsistent nineteenth-century
+ * punctuation, and on this volume it yields trades like "of W". The card carries
+ * the line as Norris set it and archive.org read it, damage and all, and says
+ * separately what the line HOLDS that the 1835 record lacks.
+ */
+function laterDirectoryHtml(found, citationsById) {
+  if (!found) return '';
+  const cites = (found.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const lines = (found.entries || []).map((e) => `<li><q>${escapeHtml(e.as_printed)}</q>
+    <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
+      escapeHtml(e.claim_id)}.</span></li>`).join('');
+  const carried = (found.carries || [])
+    .map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
+  return `<dt>Found again in Norris's directory of ${escapeHtml(String(found.year))}</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${
+      escapeHtml(words(found.match_status))}</span>${
+      carried.length
+        ? `<span class="res-chip res-research">1844 supplies ${escapeHtml(carried.join(' and '))}</span>`
+        : ''}
+      ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
+      <span class="res-why">${escapeHtml(found.match_rule)}</span>
+      <br><span class="res-why">${escapeHtml(found.note)}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+function personHtml(person, citationsById, researchByPerson, directoryByPerson) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -214,6 +356,8 @@ function personHtml(person, citationsById, researchByPerson) {
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
+      ${laterCensusHtml(person.later_census, citationsById)}
+      ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
   </details>`;
@@ -246,6 +390,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
       <span class="res-role">${escapeHtml(words(entry.division))} division · ${
         entry.persons} ${entry.persons === 1 ? 'person' : 'people'}</span>
       <span class="res-chips">${gradeChips(entry.grades)}${
+        entry.census_1840_linked
+          ? `<span class="res-chip res-research">${entry.census_1840_linked} bridged to an 1840 census household</span>` : ''}${
         reaches || !orphanChip
           ? '' : '<span class="res-chip res-orphan">on no building card</span>'}</span></summary>
     <div class="lib-body res-hh-body"><p class="legend-note">Loading…</p></div>
@@ -253,7 +399,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-function householdHtml(hh, citationsById, researchByPerson) {
+function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
   const persons = Array.isArray(hh.persons) ? hh.persons : [];
   const party = hh.party_size_on_arrival || null;
   return `<dl class="lib-body res-fields">
@@ -274,7 +420,7 @@ function householdHtml(hh, citationsById, researchByPerson) {
       ${hh.research_note
         ? `<dt>What this record is worth</dt><dd>${escapeHtml(hh.research_note)}</dd>` : ''}
     </dl>
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson)).join('')}</div>`;
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson)).join('')}</div>`;
 }
 
 /**
@@ -459,6 +605,22 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — resident research reviews are not shown`);
   }
 
+  // Norris's 1844 directory, joined on person_id (T-0569). Beside the records
+  // rather than inside them, for the reason `tools/spend_norris_1844.py` sets
+  // out: most of these people live in records a mint regenerates byte for byte,
+  // and an 1844 listing is evidence about 1844 offered beside a person of 1835
+  // rather than a fact of theirs. Its absence costs the section this block and
+  // nothing else.
+  const directoryByPerson = new Map();
+  let directoryCounts = {};
+  try {
+    const found = await getJson('residents/directory_1844.json');
+    directoryCounts = found.counts || {};
+    for (const row of found.people || []) directoryByPerson.set(row.person_id, row);
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the 1844 directory findings are not shown`);
+  }
+
   const vocab = index.vocabulary || {};
   const entries = Array.isArray(index.households) ? [...index.households] : [];
   if (!entries.length) return fail('the manifest lists no household');
@@ -503,11 +665,29 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `admits should be held, so they are listed together, below the households the `
           + `rest of the corpus documents, and which of these people are a name and `
           + `nothing else can be seen without opening anything. ` : '')
+      + (counts.census_1840_linked
+        // T-0491. Three people carry an identity bridge to a named head of household
+        // in the 1840 census, and the bridge is an argument rather than a fact: it is
+        // shown whole on the person's card, three confidences and all. The count is
+        // here so that a reader can see how few of them there are before opening one.
+        ? `${counts.census_1840_linked} of these people are bridged to a named household `
+          + `in the 1840 census, five years after this scene — later evidence, shown with `
+          + `its reasoning and never read back onto 1835. ` : '')
       + (researchByPerson.size
         ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
           + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `
           + `${researchCounts.candidate_identity || 0} candidate identities kept unmerged, and `
           + `${researchCounts.no_corroboration || 0} searches with no safe match. ` : '')
+      + (directoryByPerson.size
+        // T-0569. The first Chicago directory is of 1844 and this town is of 1835,
+        // so the sentence leads with the gap rather than with the number: what
+        // these people gain is corroboration and a line to read, never a date, a
+        // trade or a street in 1835.
+        ? `${directoryByPerson.size} of them are met by a name in Norris's directory of `
+          + `1844 — ${directoryCounts.single_entry || 0} by one entry alone, `
+          + `${directoryCounts.ambiguous || 0} by several this project will not choose `
+          + `between, and ${directoryCounts.contested || 0} by an entry another person `
+          + `here has as good a claim to. Nine years late, and read back onto nobody. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
@@ -531,7 +711,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       const body = el.querySelector('.res-hh-body');
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
-        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson);
+        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);

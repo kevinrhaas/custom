@@ -109,6 +109,26 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "census_1840_chicago_familysearch_images": {
+      "source_id": "census_1840_chicago_familysearch_images",
+      "citation": "1840 U.S. Census, population schedules, Chicago, Cook County, Illinois — FamilySearch digital images of the enumerator's sheets, division of S. W. Sherman.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "the names of heads of families as written, in enumeration order",
+        "each household's line position on its printed page",
+        "the 13 free-white male and 13 free-white female age-band tallies",
+        "free coloured male and female counts",
+        "on the continuation sheets: the family total, the six industry columns, pensioners for revolutionary or military service, deaf/dumb/blind, and the schools and illiteracy columns"
+      ],
+      "what_it_does_not_supply": [
+        "any address, street or lot",
+        "any member of a household other than its head, by name",
+        "any statement about 1835 — it is later evidence and cannot on its own place a person in the scene"
+      ]
+    },
     "chicago_american_1835": {
       "source_id": "chicago_american_1835",
       "citation": "The Chicago American. Vol. I, No. 1 (June 8, 1835) through Vol. I, No. 12 (August 29, 1835). Chicago, Ill.: T. O. Davis. Thirteen issues, OCR-assisted research transcriptions from page scans.",
@@ -218,6 +238,31 @@
       "archived_url": "",
       "tier": 2,
       "tier_label": "near-primary recollection"
+    },
+    "chicago_tribune_1882_04_25_old_settler_deaths": {
+      "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
+      "citation": "Chicago Tribune, April 25, 1882, “THE OLD SETTLERS. Deaths During the Year.” — the Calumet Club's fourth annual reception announced for 18 May, with John Wentworth's list of old settlers who had died since 1 January 1881.",
+      "url": "https://chicagology.com/goldenage/goldenage063/",
+      "archived_url": "http://web.archive.org/web/20260611041246/https://chicagology.com/goldenage/goldenage063/",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "chicago_tribune_1882_05_19_fourth_reception": {
+      "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+      "citation": "Chicago Tribune, May 19, 1882, report of the Calumet Club's fourth annual reception to “The Old Settlers of Chicago”, held 18 May 1882, with the list “Names of Old Settlers Present, Residents and of Age Prior to 1840” and the speeches of Vice-President J. W. Doane and the Hon. John Wentworth.",
+      "url": "https://chicagology.com/goldenage/goldenage063/",
+      "archived_url": "http://web.archive.org/web/20260611041246/https://chicagology.com/goldenage/goldenage063/",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "128 named men who were of age and living in Chicago before 1 January 1840, and where each of them lived in 1882",
+        "the club's own arithmetic of the settler population: 414 known old settlers, 35 dead in the year, 118 in the house, 160 at the third reception",
+        "a handful of trades and firsts attached to the year's dead — a Fort Dearborn gunsmith, the first grist-mill, the first mail rider to Milwaukee, the first frame building west of the river"
+      ],
+      "what_it_does_not_supply": [
+        "a year of arrival for any guest",
+        "an 1835 address: every address printed is of 1882"
+      ]
     },
     "chicagology_chicago_brick": {
       "source_id": "chicagology_chicago_brick",
@@ -652,8 +697,8 @@
     },
     "fergus_chicago_directory_1843": {
       "source_id": "fergus_chicago_directory_1843",
-      "citation": "Robert Fergus, Directory of the City of Chicago, Illinois, for 1843, Fergus Historical Series No. 28",
-      "url": "https://cook-ilgw.genealogyvillage.com/1843-chicago-directory/",
+      "citation": "Robert Fergus, Directory of the City of Chicago, Illinois, for 1843, Fergus Historical Series No. 28 (Chicago: Fergus Printing Company, 1896), compiled from the canvass made August-December 1843",
+      "url": "https://genealogytrails.com/ill/cook/1843directory_1.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -963,6 +1008,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "norris_directory_1844": {
+      "source_id": "norris_directory_1844",
+      "citation": "J. W. Norris, General Directory and Business Advertiser of the City of Chicago, for the Year 1844: together with a Historical Sketch and Statistical Account, to the Present Time (Chicago: Ellis & Fergus, printers, 1844); read in the T. F. Bohan republication of 1903, University of Illinois copy",
+      "url": "https://archive.org/details/generaldirectory19norr",
+      "archived_url": "https://archive.org/details/generaldirectory19norr",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
+    },
     "nps_bailly_homestead": {
       "source_id": "nps_bailly_homestead",
       "citation": "National Park Service, Joseph Bailly Homestead nomination",
@@ -1162,6 +1215,14 @@
       "archived_url": "",
       "tier": 2,
       "tier_label": "near-primary recollection"
+    },
+    "resident_research_v4_1835_census_bridge": {
+      "source_id": "resident_research_v4_1835_census_bridge",
+      "citation": "Chicago 1835 Best Resident Set Research v4 — working synthesis of 1833–1835 poll/tax evidence, 1839/1843 directories, and the 1840 census/IPUMS crosswalk.",
+      "url": "",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     "resident_research_will_county_1878": {
       "source_id": "resident_research_will_county_1878",

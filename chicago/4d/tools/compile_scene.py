@@ -539,6 +539,12 @@ def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int
     research_path = DATA / "residents" / "research_pilot.json"
     if research_path.exists():
         walk(load(research_path))
+    # T-0569 keeps Norris's 1844 directory beside the household records for the
+    # same reason, and its rows cite the volume. A citation join that stopped at
+    # the records would leave 67 cards quoting a bare source id.
+    directory_path = DATA / "residents" / "directory_1844.json"
+    if directory_path.exists():
+        walk(load(directory_path))
 
     citations = cite(sorted(cited), sources)
     emit(outdir / "residents_sources.json", {
@@ -1141,7 +1147,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                     collect(v)
 
         collect(phase)
-        for key in ("function", "occupants"):
+        for key in ("function", "occupants", "lot_address"):
             collect(st.get(key, {}))
         if st.get("reconstruction", {}).get("source_id"):
             cited.add(st["reconstruction"]["source_id"])
@@ -1160,6 +1166,20 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             if key in st:
                 attributes[key] = {k: v for k, v in st[key].items() if k in
                                    ("value", "confidence", "sources", "note", "geometry")}
+        # T-0423. A LOT-AND-BLOCK ADDRESS IS AN ATTRIBUTE OF THE BUILDING, and it travels
+        # as one so that the card renders it with the same chip, sources and reasoning as
+        # everything else it says. The row's `value` is the title the address gives the
+        # house — `display-name.js` reads it from here rather than from a second copy —
+        # and its grade is the bottom tier, because the words are read and the lot lines
+        # they land on are not. The record's own `lot_address` block keeps the block and
+        # lot numbers; the card wants the sentence, not the arithmetic.
+        if "lot_address" in st:
+            attributes["lot_address"] = {
+                "value": st["lot_address"]["title"],
+                "confidence": st["lot_address"]["confidence"],
+                "sources": st["lot_address"]["sources"],
+                "note": st["lot_address"]["note"],
+            }
 
         # THE PHASE'S CLAIM ABOUT ITSELF. Every `form` attribute has carried its
         # note to the card since the card was written; the two phase-level blocks

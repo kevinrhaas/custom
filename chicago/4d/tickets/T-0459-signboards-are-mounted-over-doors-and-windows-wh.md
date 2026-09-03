@@ -1,7 +1,7 @@
 ---
 id: T-0459
 title: Signboards are mounted over doors and windows, when the same wall has blank face to put them on
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 678
+claimed_by: run 9/2/2026, 11:57:24 PM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -47,6 +47,24 @@ LETTER_IDS = (
 )
 
 
+# Frozen for the same reason as LETTER_IDS, and it took a mint to notice they were
+# not (T-0491). This stratum was DERIVED — "every richer, real named resident still
+# lacking a dwelling" — which was true on the day the cohort was fixed and stopped
+# being a fixed cohort the moment the layer gained another such person. PR #670 minted
+# William Hanford Adams from the 1840 census bridge, the count went to 21, and the
+# selection sentence below would have quietly claimed him as researched. The rule that
+# drew these twenty is recorded in that sentence; the twenty are recorded here.
+RICHER_UNPLACED_IDS = (
+    "hh_doc_a_garrett", "hh_doc_byram_king", "hh_doc_e_l_thrall",
+    "hh_doc_elmira_fowler", "hh_doc_h_b_clarke", "hh_doc_h_c_bennett",
+    "hh_doc_h_crocker", "hh_doc_h_sherman", "hh_doc_henry_moore",
+    "hh_doc_j_a_marshall", "hh_doc_j_curtiss", "hh_doc_j_h_collins",
+    "hh_doc_james_grant", "hh_doc_r_stewart", "hh_doc_samuel_lewis",
+    "hh_doc_wm_sabine", "hh_placed_b_s_morris", "hh_placed_hoit_thomas",
+    "hh_placed_j_k_boyer", "hh_placed_j_w_fell",
+)
+
+
 def load_households() -> dict[str, dict]:
     index = json.loads((RESIDENTS / "index.json").read_text())
     return {
@@ -85,21 +103,20 @@ def derive() -> dict:
             "Established, occupationally identified resident selected for deeper household research.",
         ))
 
-    richer = sorted(
-        (hh for hh in households.values()
-         if hh.get("division") == "unplaced"
-         and not str(hh.get("id") or "").startswith("hh_inf_")
-         and len(hh.get("persons", [])) == 1
-         and not hh["persons"][0].get("letter_list_only")
-         and hh["persons"][0].get("grade") != "reconstructed"),
-        key=lambda hh: hh["id"],
-    )
-    if len(richer) != 20:
-        raise SystemExit(f"expected 20 richer unplaced records, found {len(richer)}")
+    missing = [hid for hid in RICHER_UNPLACED_IDS if hid not in households]
+    if missing:
+        raise SystemExit(f"pilot cohort members are no longer in the resident layer: {missing}")
+    richer = [households[hid] for hid in RICHER_UNPLACED_IDS]
+    for hh in richer:
+        if (hh.get("division") != "unplaced"
+                or len(hh.get("persons", [])) != 1
+                or hh["persons"][0].get("letter_list_only")
+                or hh["persons"][0].get("grade") == "reconstructed"):
+            raise SystemExit(f"{hh['id']}: no longer the kind of record this stratum was drawn from")
     for hh in richer:
         people.append(member(
             hh, "newspaper_profile_unplaced",
-            "All richer, real named residents still lacking a dwelling were included, not sampled.",
+            "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched.",
         ))
 
     for hid in LETTER_IDS:

@@ -79,6 +79,7 @@
     "census_page": 232,
     "census_row": 3,
     "source_image": "33S7-9YYJ-W6.jpg",
+    "source_kind": "1840 census scan + continuation-sheet alignment",
     "household": {
      "persons": 5,
      "children_under_10": 2,
@@ -92,8 +93,24 @@
      "foreigners_not_naturalized": 0,
      "illiterate_over_21": 0
     },
-    "bridge_basis": "The v4 census research links the 1840 John J. Miller row to John Miller appearances in the 1833 poll and tax lists and the 1834 poll. The canonical resident is independently attested as John Miller, Chicago tanner from 1831 and an 1833 town trustee. The new middle initial in 1840 prevents a High-confidence identity assertion, so the link remains provisional.",
-    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. The five-person 1840 household is retained for household-reconciliation research; no spouse, child or other member is asserted under John Miller's 1835 roof from these counts alone."
+    "bridge_basis": "1833 poll and tax plus 1834 poll name continuity; existing canonical John Miller is independently attested in Chicago from 1831 as the tannery partner and 1833 town trustee; the 1840 middle initial J is new, so the bridge remains provisional",
+    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence.",
+    "scan_verified": {
+     "read_by": "T-0530",
+     "sources": [
+      "census_1840_chicago_familysearch_images"
+     ],
+     "image": "chicago/reference/census1840/33S7-9YYJ-W6.jpg",
+     "line": 3,
+     "head_name_as_read": "Jaco[b] Miller",
+     "free_persons": 5,
+     "males": 2,
+     "females": 3,
+     "children_under_10": 3,
+     "age_bands": "1 male under 5; 1 male 20 to 29; 2 females under 5; 1 female 20 to 29",
+     "column_totals_check": "1 of 38 columns do not reconcile with the sheet's own footings: free_white_male 20_to_29: read 33, footing 35"
+    },
+    "scan_disagreement": "The page has since been read off the image and does NOT give the same household. Recovered workbook against the sheet: males 1 against 2; females 4 against 3; children under ten 2 against 3. Neither is deleted. The sheet is the senior reading — it is the record, and the workbook is a memory of the record — but the bridge to this person was built on the workbook's row, so the disagreement is shown rather than resolved here."
    },
    "sources": [
     "andreas_1884_v1"

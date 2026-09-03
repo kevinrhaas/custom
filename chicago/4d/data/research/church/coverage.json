@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "domain": "church",
+  "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
+  "declarations": [
+    {
+      "unit": "list",
+      "ticket": "T-0573",
+      "items": [
+        "st_cyr_marriages_1834_1839",
+        "st_cyr_deaths_1834_1837"
+      ],
+      "counts": {
+        "st_cyr_marriages_1834_1839": 513,
+        "st_cyr_deaths_1834_1837": 13
+      },
+      "what_was_read": "Both pages of genealogytrails.com/ill/cook printing Father St. Cyr's register out of the Illinois Catholic Historical Review vol. 4: the marriage register (128 entries, 513 named readings) and the death and burial page (11 entries, 13 named readings), in full, including the article's prose and every footnote.",
+      "what_was_not_read": "THE BAPTISMS. The same article tallies 282 baptisms by the same three priests and this page prints none of them; that is T-0503's object and it is undeclared here rather than declared and empty."
+    }
+  ]
+}

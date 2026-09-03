@@ -14,7 +14,7 @@
   },
   "treatment": {
     "confidence": "reconstructed",
-    "note": "Walk 1.83 m wide, its deck 0.11 m over the ground, 0.055 m boards at a 0.26 m pitch laid ACROSS the way a foot travels — the same drawn treatment as every walk this layer lays. Over the crossing's deck the boards ride the committed `walk_surface_m` and the stringers are omitted; on the two approach fills each board samples the terrain under its own centre. Not one of these numbers is a record's; they are how the layer is DRAWN."
+    "note": "Walk 1.83 m wide, its deck 0.11 m over the ground, 0.055 m boards at a 0.26 m pitch laid ACROSS the way a foot travels and held between two string pieces down its sides (T-0460) — the same drawn treatment as every walk this layer lays. Over the crossing's deck the boards ride the committed `walk_surface_m` and the string pieces are cut to the board thickness with no foot, because boards on a deck lie on the deck; on the two approach fills each board samples the terrain under its own centre and carries its own length of string piece, butted against its neighbours so the face stays unbroken. Not one of these numbers is a record's; they are how the layer is DRAWN."
   },
   "rule": {
     "note": "Every figure in this record is read off the crossing's committed sidecar, and the generator refuses to write the file if any of four things stops being true: the deck must still be water-anchored and still state a walk_surface_m, it must still lie east-west, it must still be wide enough to carry the wagon way AND this walk side by side, and there must still be at least a metre of open water under the footway's own line — a plank crossing over dry ground is the fault this ticket was filed about. Read the clauses in tools/generate_frontage_works.py."
