@@ -13,7 +13,7 @@
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven.",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets.",
    "images": [
     {
      "index": 1,
@@ -37,8 +37,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-2T.json",
+     "lines_ruled": 31,
+     "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory's line count is restated unchanged"
     },
     {
      "index": 3,
@@ -158,11 +160,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-98M.jpg",
      "sheet_side": "left",
      "printed_page": 222,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-98M.json",
+     "lines_ruled": 31,
+     "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 30 entries and 1 blank ruled line(s) at the foot"
     },
     {
      "index": 13,
@@ -294,11 +298,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-B3.jpg",
      "sheet_side": "left",
      "printed_page": 226,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 29,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-B3.json",
+     "lines_ruled": 31,
+     "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 29 entries and 2 blank ruled line(s) at the foot"
     },
     {
      "index": 24,
@@ -350,17 +356,24 @@
     "printed_page_number_unreadable": [
      "33S7-9YYJ-9MX"
     ],
-    "names_transcribed_pages": 3,
-    "names_transcribed_lines": 92,
+    "names_transcribed_pages": 6,
+    "names_transcribed_lines": 182,
     "name_confidence": {
      "high": 3,
-     "medium": 31,
-     "low": 58
+     "medium": 40,
+     "low": 139
     },
-    "inventoried_only": 17,
+    "inventoried_only": 14,
     "continuation_sheets_read": 2,
     "continuation_sheets_attempted_not_closed": 1,
-    "continuation_lines_committed": 62
+    "continuation_lines_committed": 62,
+    "cells_read_pages": 3,
+    "cells_columns_committed": {
+     "33S7-9YYJ-2T": 36,
+     "33S7-9YYJ-98M": 0,
+     "33S7-9YYJ-B3": 0
+    },
+    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands."
    },
    "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view."
   },
