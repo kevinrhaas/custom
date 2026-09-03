@@ -122,7 +122,6 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 # --- doors sixteen times and never once as geometry. Both are cheap beside the
 # --- ground work below, and this band is the answer to the queue's own complaint
 # --- that 41 merges added nothing a visitor could see.
-T-0460 — The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
 # --- T-0426 IS RULED AND T-0461 IS WHAT THE RULING LEFT — 2026-08-31. The fence
 # --- stays where the lot fronts (L160 read literally); the post follows the door,
 # --- and that half has landed. What is left is that the Tremont House's goods sit
@@ -312,3 +311,4 @@ T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is n
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
+T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge

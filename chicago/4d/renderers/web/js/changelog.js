@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 441, title: 'The plank sidewalks get an edge instead of ragged board ends', kind: 'fix', ts: '2026-09-03T05:39:48.658Z', date: 'Sep 3, 2026, 12:39 AM CT',
+    items: [
+      'Walk up to a sidewalk in this town and it used to fall apart under you. From a few paces the boards read as a footway; from close up the side of it was a saw-blade — three kilometres of walk ending, at each edge, in twenty thousand short board ends with daylight between them and a hard shadow where the last board stood four inches over the dirt. It looked like planks dropped on the ground rather than a walk somebody built.',
+      'The walks are now held between two edge timbers, one down each side, their tops level with the boards they carry and their feet reaching the ground. That is how a plank sidewalk is actually built: the boards are laid across, and something takes their ends. The walk is exactly as wide as it was — the edge timber takes the outermost three and a half inches of the width rather than being added outside it — and it costs the town no extra timber, because the beam that already ran under each walk has simply moved out to the edge where it can be seen doing its job.',
+      'The boards themselves also stopped disagreeing with each other. Each one used to take its own height from the mud beneath it, so the surface stepped very slightly every foot along its length; now every board in a bay sits on the bay that carries it, and the largest step anywhere in the town between one length of edge timber and the next is twenty-six millimetres.',
+      'The walk still stands proud of the road, and that was the choice rather than an oversight — a plank walk in a street of mud is meant to be a step up out of it. What changed is that the step is now one made face instead of a row of end grain.',
+      'Board crossings — the planks laid over the road at the corners — are deliberately untouched. Their boards run the way you walk rather than across it, so their sides were already a continuous face, and an edge timber raised across a road is something for a cartwheel to find.',
+      'None of this is a claim about 1835. No record in this project says a walk stood on any of these streets, let alone how it was built, and the whole layer still vanishes when you hide reconstructed work.',
+    ] },
   { v: 440, title: 'Seventy-five more real names receive a sourced research trail', kind: 'feature', ts: '2026-09-01T06:25:19.533Z', date: 'Sep 1, 2026, 1:25 AM CT',
     items: [
       'A fixed second cohort brings dated identity reviews to 150 of 848 eligible real named people; reconstructed residents remain excluded.',
