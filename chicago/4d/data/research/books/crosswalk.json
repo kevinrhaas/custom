@@ -222,7 +222,7 @@
       "rule": "Hurlbut says John Crafts 'was a trader sent to Chicago by a Mr. Conant, of Detroit'. This project holds one Conant: Reuben Conant, a name off the post office's letter lists, unplaced, with no trade recorded and his presence on the scene date graded uncertain. Merging Mr. Conant into Reuben Conant would join a surname and nothing else — the source gives no given name at all, and a merge on a bare surname is always a refusal here. It would also join two men the sources put in different towns and fifteen years apart: Hurlbut's Conant is a Detroit merchant of about 1818 who is not said ever to have come to Chicago, and Reuben Conant is a name somebody was writing to AT Chicago by 20 May 1835. Refused.",
       "evidence": [
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_007",
-        "data/residents/households/hh_ll_reuben_conant.json — head ll_reuben_conant, division unplaced, present_on_scene_date uncertain"
+        "data/residents/households/hh_conant_reuben.json — head conant_reuben, division unplaced, present_on_scene_date uncertain"
       ],
       "pass": "T-0575",
       "claim_id": "bk_afc_007"
