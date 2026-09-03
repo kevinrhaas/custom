@@ -66,10 +66,13 @@ the inferred category so we can filter by attested or inferred."
 — `blocked_on` carries one id, so CHECK THE LEDGER; a consolidation run before its inputs land is a
 consolidation run twice.
 
-**Runner notes (measured 2026-09-03 on the improve runner):** `pdftotext`, `pdftoppm`, `tesseract`
-and `openpyxl` are ABSENT; `pypdf`, `PIL`, `numpy`, `jsonschema`, `pyproj` are present; `pip install
-openpyxl` may work — try it and record the result. Write CSV always and XLSX only when openpyxl
-imports. Never disable TLS or unset HTTPS_PROXY.
+**Runner notes (2026-09-03):** the improve runner's custom lane now installs `pdftotext` and
+`pdftoppm` (poppler-utils), `tesseract`, `openpyxl` and `pypdf` before the run (polecat-platform
+`steward-improve.yml`, on the owner's instruction the same day), and the gate installs `openpyxl` and
+`pypdf` beside `jsonschema` and `pyproj`. Check with `command -v pdftotext tesseract` and
+`python3 -c 'import openpyxl'` first — a failed install is a `::warning` in the step log, not a
+surprise — and if one is missing, fall back to `pypdf` and page reads. Write CSV always and XLSX
+when openpyxl imports. Never disable TLS or unset HTTPS_PROXY.
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
