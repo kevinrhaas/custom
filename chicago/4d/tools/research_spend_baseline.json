@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 562,
   "church": 0,
-  "books": 0,
+  "books": 11,
   "directories": 4703,
   "newberry_index": 2077
  },
@@ -29,8 +29,8 @@
    "spent": 0
   },
   "books": {
-   "read": 0,
-   "spent": 0
+   "read": 19,
+   "spent": 8
   },
   "directories": {
    "read": 4991,
@@ -48,6 +48,13 @@
    "to": 4703,
    "date": "2026-09-03",
    "why": "T-0571 (PR #714) read Fergus's 1843 Chicago directory — 2,695 entries — into dev while this branch was open. The read is legitimate and already merged; this branch inherits it and cannot spend it. The ceiling is raised to admit it, NOT to excuse it: T-0588 (rank 2) spends the directory on the businesses layer and T-0587 already spent 67 of it onto resident cards, so this domain has live spend tickets and the number should come back down."
+  },
+  {
+   "domain": "books",
+   "from": 0,
+   "to": 11,
+   "date": "2026-09-03",
+   "why": "T-0575 read Hurlbut's Chicago Antiquities pages 28-36 — the American Fur Company chapter — as 19 claims, and ruled on 8 of them in data/research/books/crosswalk.json: 4 merges (Gurdon S. Hubbard, Jean Baptiste Beaubien, Jamie Kinzie, Mr. John Crafts) and 6 refusals, each anchored to the claim it adjudicates. THE OTHER 11 NAME NOBODY, AND THAT IS WHAT THIS CHAPTER IS. It is prose and mostly judgement: Hurlbut's 'Chicago was the port and point of a very limited district of distribution', Hubbard's 'this place never had been preeminent as a trading-post', Hubbard buying the company's Illinois interest in 1828, Astor selling the company in 1834, a batteau, a wine bill and a list of trade goods. This instrument measures NAME adjudication, so those 11 cannot be spent by it however well they are used, and pretending otherwise by inventing name-pairs would be the corruption the instrument exists to prevent. What they CAN be spent on is the town, and four tickets were opened in the same PR to do it: T-0594 (Hubbard's arrival date against a resident record that grades the same year 'reconstructed' citing nothing), T-0595 (the Factory House origin of jb_beaubien_homestead), T-0596 (a ruling in docs/LIBERTIES.md on how much fur-trade apparatus the scene may show, which the chapter argues should be LESS), T-0597 (the Kinzie half-brotherhood). The number does not come back down when those land, because they are not crosswalk rulings; it comes down only if a later reading of this same chapter finds names in it, and it should not be raised again for prose without this same argument being made afresh."
   }
  ],
  "lowered": [
