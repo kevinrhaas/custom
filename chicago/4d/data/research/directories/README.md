@@ -143,3 +143,67 @@ the crosswalk regenerates with the count corrected.
 
 **Still 1844.** Nothing here regrades, moves, dates or employs anybody in 1835. Under the
 ratified ladder an 1844 listing alone never makes an 1835 resident.
+
+---
+
+## …and its Description, Historical Sketch and Statistical Account
+
+**Read for T-0567** (piece 2 of the owner's T-0555). T-0566 read the volume's list of
+names and deliberately left the two parts of it that are PROSE AND TABLES: the
+**Description and Historical Sketch**, printed pages 5-20 (leaves 15-30), and the
+**Statistical Account**, printed pages 66-78 (leaves 76-88). Those 29 leaves are now read,
+as **65 town findings** in `claims/norris_1844_town_findings.json`.
+
+**Why they are `claims` and not `records`.** A directory entry is a row in a list; a
+sentence in Norris's sketch is an assertion about the town, made nine years after the fact
+by a man selling the town to its own inhabitants. It has an author, a purpose and a date,
+and the shape that carries all three is a claim with `town_finding: true`. Every quote is
+lifted unedited out of the committed page text and `tools/research_domains.py --check`
+rebuilds it character-for-character — that check is this file's gate, and a hand-edit to
+one word of one quote fails it.
+
+**`describes_date` IS THE FIELD THAT MATTERS.** It is the year the STATEMENT describes,
+never the year the book was printed. Of the 65 findings only 21 are about 1844; the rest
+run from 1673 to 1843, and **four are about 1835** — the scene year of this
+reconstruction. Sorting the file by that field is the whole point of having read it:
+
+| `describes_date` | what is there |
+| --- | --- |
+| **1835** (4) | Norris's population of the scene year — "said to amount to 5,500 … could not have been much less than 3000"; the autumn prairie fires running over the third and fourth wards "so late as '35 or '6"; speculation raging "with great violence during '35-6"; and the eastern mail arriving TRI-WEEKLY by four-horse stage in 1835 |
+| 1832 (6) | the pre-boom town, named building by building — see below |
+| 1833-1834 (5) | the harbour work begun, the light-house re-erected, the school section sold, the Democrat founded, the first brick buildings |
+| 1836-1837 (10) | the year after the scene and the crash: canal work begun 1836, Hydraulic Company 1836, six churches by 1836, city charter 1837, fort evacuated 1837 |
+| 1673-1829 (10) | Marquette, Greenville 1795, the 1804 fort and Fur Company post, the 1812 evacuation, the 1816 rebuild as Fort Dearborn, the canal board of 1829 that laid the plat out |
+| 1840-1844 (30) | the town of the directory — its wards, officers, churches, presses, fire companies, trade and 1843 census |
+
+**The passage this ticket was worth a run for** is on printed page 12 (leaf 22), where
+Norris inventories what stood at Chicago in 1832 and names it: the Fur Company house that
+Col. Beaubien later occupied; Colonel Owings's house 80 rods south of it, since washed
+away by the lake; "Cobweb Castle" on block No. 1, Dr Alexander Wolcott's; John Kinzie's
+dwelling east of the Lake House; a log building at Dearborn and South Water; Mark
+Beaubien's tavern on the site of the Sauganash, "generally known as the Eagle"; a building
+on block 14; and Robinson's cabin at Wolf Point. Eight buildings, most with a street, a
+block or a landmark. **They are 1832 buildings.** What they fix is the floor the scene was
+built up from, not the scene — and whether any of them still stood on 1 July 1835 is a
+question this file does not answer.
+
+**What it does NOT settle for 1835, said plainly.** Norris has no 1835 census — none was
+taken — and his figure for the year is a recollection with a 2,500-person spread in it. He
+gives no 1835 street list, no 1835 building count and no 1835 officers. The famous "five
+or six houses" sentence on leaf 21 is about 1832, not 1835, and the claim that quotes it
+says so at length, because a later run reading that line out of context would put a
+hamlet where the reconstruction has a town. The three OCR slips that change a date —
+`1932` for 1832, `1617` for 1816, `1342` for 1842 — are repaired in `normalized` only and
+named in the notes of the claims that carry them.
+
+**What was declared unread, and why**, is in `coverage.json`: the 1843 census table on
+printed page 76 beyond its three unambiguous totals (the OCR wove its columns into one
+stream of bare numbers and the nativity counts cannot be attached to a heading without the
+page image), and the ordering assumption behind the trade tables on page 77.
+
+**Nothing here is payload, and nothing here was written onto a record.** No resident,
+household, business or structure was created, graded or regraded by this pass. Under the
+ratified ladder of 2026-09-03 a source printed nine years after the scene never on its own
+makes an 1835 fact; T-0569 is the ticket that spends this reading and T-0566's on the
+layers. The remaining unread part of the volume is the Advertising Directory, leaves
+89-126 — T-0568.

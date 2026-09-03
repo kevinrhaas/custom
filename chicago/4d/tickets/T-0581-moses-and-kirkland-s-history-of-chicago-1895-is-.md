@@ -31,6 +31,16 @@ Both volumes are on the Internet Archive: `historyofchicago01mose`,
 `historyofchicagov2mose`. Read `data/research/newberry_index/follow_up.json` and
 `leads.json` for the surnames to look up first.
 
+**2026-09-03, owner:** volume 1 also now sits under the project's own Internet Archive
+account, at `historyofchicago01mose_202609`
+(https://archive.org/details/historyofchicago01mose_202609) — the PDF plus an epub, uploaded
+directly rather than derived from the existing item above. See
+`chicago/reference/moses-kirkland-history-of-chicago-v1.yaml` for the source record. Volume 2
+has not been uploaded here; the pre-existing `historyofchicagov2mose` item above is still the
+locator for it. Note: the epub in the new upload is named `historyofchicago01andr.epub`
+("andr", not "mose") — worth the owner confirming it's actually the Moses/Kirkland text and
+not an Andreas file that got mixed in.
+
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 - A source record for the work, with the IA identifier as its locator, its tier and its
   rights stated.
