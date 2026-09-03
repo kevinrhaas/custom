@@ -58,11 +58,52 @@
    ],
    "not_read_and_why": {
     "leaves 1-14": "the 1903 republisher's front matter, press notices and Norris's preface — committed as text, not yet read out. No ticket owns it.",
-    "leaves 15-30 (printed 5-20)": "the Description and Historical Sketch. Committed as text and read by T-0567, which is where its dated statements go.",
-    "leaves 76-88 (printed 66-78)": "the Statistical Account. Committed as text; T-0567.",
+    "leaves 15-30 (printed 5-20)": "the Description and Historical Sketch. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
+    "leaves 76-88 (printed 66-78)": "the Statistical Account. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
     "leaves 89-126 (printed 79-116)": "the Advertising Directory. Committed as text; T-0568.",
     "leaves 127-132": "blank in the scan — no text at all, so nothing is committed for them.",
     "printed page 65, the foot": "Norris's own General Intelligence Agency card, set inside the last directory page. It is an advertisement, not a directory entry; it is committed in the page text and belongs to T-0568."
+   }
+  },
+  {
+   "ticket": "T-0567",
+   "source_id": "norris_directory_1844",
+   "unit": "page",
+   "what": "Norris's General Directory of Chicago for 1844, the two parts of the volume that are PROSE AND TABLES rather than a list of names: the DESCRIPTION AND HISTORICAL SKETCH, printed pages 5-20 (leaves 15-30), and the STATISTICAL ACCOUNT, printed pages 66-78 (leaves 76-88). Read as dated town findings — every claim carries `town_finding: true` and a `describes_date` naming the year the STATEMENT describes, which for most of them is not 1844 and for four of them is 1835.",
+   "items": [
+    "norris_1844_leaf_015",
+    "norris_1844_leaf_016",
+    "norris_1844_leaf_017",
+    "norris_1844_leaf_018",
+    "norris_1844_leaf_019",
+    "norris_1844_leaf_020",
+    "norris_1844_leaf_021",
+    "norris_1844_leaf_022",
+    "norris_1844_leaf_023",
+    "norris_1844_leaf_024",
+    "norris_1844_leaf_025",
+    "norris_1844_leaf_026",
+    "norris_1844_leaf_027",
+    "norris_1844_leaf_028",
+    "norris_1844_leaf_029",
+    "norris_1844_leaf_030",
+    "norris_1844_leaf_076",
+    "norris_1844_leaf_077",
+    "norris_1844_leaf_078",
+    "norris_1844_leaf_079",
+    "norris_1844_leaf_080",
+    "norris_1844_leaf_081",
+    "norris_1844_leaf_082",
+    "norris_1844_leaf_083",
+    "norris_1844_leaf_084",
+    "norris_1844_leaf_085",
+    "norris_1844_leaf_086",
+    "norris_1844_leaf_087",
+    "norris_1844_leaf_088"
+   ],
+   "not_read_and_why": {
+    "the 1843 census table on printed page 76, except its three unambiguous totals": "Norris prints his 1843 census as a wide ruled table and archive.org's OCR wove its columns into a single stream of bare numbers with the headings floated out of place. The three nativity ROWS survive as rows and are quoted; the counts beside them cannot be attached to a column from this text and are NOT asserted. What is asserted from that page is what survives unambiguously: 1,177 families, and the grand totals 4,853 (1840) and 7,580 (1843). Closing the rest needs the page image, and n1844_tf_062 is the standing declaration that it has not been closed.",
+    "the pairing of year to figure in the trade tables on printed page 77": "Read off the ORDER in which the OCR set the two tables — exports first, then imports — because the ruling that separated them did not survive. Stated in n1844_tf_064 rather than left implicit."
    }
   }
  ]
