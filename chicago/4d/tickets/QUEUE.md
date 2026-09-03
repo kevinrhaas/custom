@@ -77,11 +77,10 @@
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
 
-# --- T-0524 sits here, not at the bottom where T-0491 filed it, on the owner's ruling of
-# --- 2026-09-03: eighteen smoke assertions still describe the reconstructed residents
-# --- T-0489 retired, so every full smoke on dev is red and two runs (#1456, #1457) burned
-# --- their budget proving it. Repair it before the sweep's runs need a green smoke.
-T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
+# --- T-0524 sat here on the owner's ruling of 2026-09-03 — the smoke assertions that still
+# --- described the reconstructed residents T-0489 retired, which made every full smoke on
+# --- dev red. CLOSED in PR #696: parts 3 and 13 are green in both viewports. The band is
+# --- kept as the record of why it was ranked here, not as a slot for anything else.
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure

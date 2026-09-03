@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 453, title: 'Nothing you can see: the gate stops asking for people who left', kind: 'fix', ts: '2026-09-03T12:44:57.205Z', date: 'Sep 3, 2026, 7:44 AM CT',
+    items: [
+      'Nothing in the town changed. This is a repair to the checks that run before anything is allowed to ship, and it is here because those checks had been failing for a week for the wrong reason.',
+      'On 2 September this project retired a whole population of residents \u2014 people it had invented, with invented period names, to fill trades the town demonstrably needed. Twelve checks went on asking for them anyway. Every piece of work started since inherited the same twelve failures, which meant no release could show a clean run, and a real fault would have been lost among them.',
+      'Six of the twelve were counting. They held the size of the people layer as numbers typed in when they were written \u2014 how many households, how many people, how many research reviews \u2014 so the day those figures moved for a good reason, the checks called it a failure. They now read the figures out of the same published files your browser reads, and cross-check those files against themselves.',
+      'The other six described things that no longer exist. None was quietly deleted. Each one now asks after what replaced it, or checks that the retired thing really is gone \u2014 so if an invented name ever appears on a card again without a decision behind it, something says so.',
+    ] },
   { v: 452, title: 'Three 1840 census sheets: their footings read, their lines not', kind: 'fix', ts: '2026-09-03T12:33:00.913Z', date: 'Sep 3, 2026, 7:33 AM CT',
     items: [
       'Three more right-hand pages of the 1840 census \u2014 the continuation sheets that carry the numbers rather than the names \u2014 have been worked on. What is published from them is the enumerator\u2019s own arithmetic: the totals he wrote across the foot of each sheet. On the clearest of the three he footed a hundred and ninety-eight people, four in commerce, fifteen in manufactures and trades, eighteen on the canals and lakes, eight in the learned professions.',
