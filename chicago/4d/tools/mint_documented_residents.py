@@ -165,6 +165,28 @@ def slug(name: str) -> str:
                                      " ".join(words(name)).lower())).strip("_")
 
 
+def plain_fragment(name: str) -> str:
+    """surname_given..., the shape the hand-authored households already use.
+
+    The naive `slug()` above just joins `words(name)` in whatever order the raw
+    printed name happens to be in — surname-first for 'Hail, Aifred' but
+    given-first for 'B. S. Morris', because that is the order the papers print
+    them in. This is the shape a NEW household's id and person id take (T-0599):
+    `surname()` already finds the family name from either printed order, so this
+    drops that one token from `words(name)` wherever it fell and puts it first —
+    `plain_fragment("B. S. Morris")` → `morris_b_s`.
+    """
+    fam = surname(name)
+    given: list[str] = []
+    dropped = False
+    for w in words(name):
+        if not dropped and w.lower().strip("'") == fam:
+            dropped = True
+            continue
+        given.append(w)
+    return slug(fam + " " + " ".join(given)) if given else slug(fam)
+
+
 def issue_of(claim_id: str) -> str:
     """'chicago_democrat_1834_06_11#c003' → 'the Democrat of 11 June 1834, column 3'."""
     stem = claim_id.split("#")[0]
@@ -245,17 +267,65 @@ def in_town_places() -> set[str]:
 # what keeps all three re-derivable beside each other in any order.
 MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
 
+# T-0599: a household minted from here on gets a PLAIN id (`plain_fragment`
+# above), the shape the 73 hand-authored households already use, instead of one
+# of the three prefixes above — the prefix read as a household's STATUS ("placed"
+# sounds like a lot position; it names a residency test) when it was only ever
+# meant to say which pass minted the record. `source_pass` carries that instead.
+# The ~747 households already minted under a legacy prefix are UNCHANGED by this
+# — see `household_id()` — and stay that way until a dedicated migration renames
+# them (tracked separately; this file does not do it).
+#
+# `MINTED_PASSES` pairs each pass's own name (the `source_pass` value it writes
+# on a freshly minted household) with the legacy prefix that marks a household
+# minted by that pass BEFORE this field existed, in the same precedence order as
+# `MINTED_PREFIXES` above. `minted_by()` is the union test — a household counts
+# as this pass's whether it still carries the legacy prefix or the field.
+MINTED_PASSES = (("documented", "hh_doc_"), ("placed", "hh_placed_"),
+                 ("letter_list", "hh_ll_"))
 
-def town_family_names(docs: dict, index: dict, skip=MINTED_PREFIXES) -> set[str]:
+
+def minted_by(path, doc: dict, pass_name: str, legacy_prefix: str) -> bool:
+    """Was this household minted by the named pass — recognized either way."""
+    return path.name.startswith(legacy_prefix) or doc.get("source_pass") == pass_name
+
+
+def household_id(cand_name: str, prefix: str, pass_name: str, docs: dict,
+                 taken_ids: set[str]) -> str:
+    """The household id for a candidate: reuse whatever already exists for them —
+    their legacy-prefixed id if this pass already minted them under one, or a
+    plain id if a run after T-0599 already minted them under that — and mint a
+    fresh plain one otherwise, disambiguated against every id already on disk or
+    claimed earlier in this same run. This is what makes `record()` reproduce an
+    EXISTING candidate's id byte-for-byte (so `--check` stays green on the ~747
+    legacy households this pass has already minted) while a genuinely new
+    candidate gets the new plain shape.
+    """
+    legacy_id = prefix + slug(cand_name)
+    base_id = "hh_" + plain_fragment(cand_name)
+    for hid in (legacy_id, base_id):
+        path = HOUSEHOLDS / f"{hid}.json"
+        if path in docs and minted_by(path, docs[path], pass_name, prefix):
+            return hid
+    candidate_id, n = base_id, 2
+    while (HOUSEHOLDS / f"{candidate_id}.json") in docs or candidate_id in taken_ids:
+        candidate_id = f"{base_id}_{n}"
+        n += 1
+    return candidate_id
+
+
+def town_family_names(docs: dict, index: dict, skip=MINTED_PASSES) -> set[str]:
     """The family names the committed dataset already has something to say about.
 
     Read from the household records' own person names and from the index's
     researched-not-resident findings — minus the minted households named by
-    `skip`; see MINTED_PREFIXES above for why that is an order and not a set.
+    `skip`, tested with `minted_by()` so a plain-named household minted after
+    T-0599 is recognized the same as a legacy-prefixed one. See MINTED_PASSES
+    above for why `skip` is an order and not a set.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if path.name.startswith(tuple(skip)):
+        if any(minted_by(path, doc, pass_name, prefix) for pass_name, prefix in skip):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")
@@ -330,7 +400,7 @@ def mint(docs: dict, index: dict):
 # the records
 # ---------------------------------------------------------------------------
 
-def record(cand: dict, gaz: dict) -> dict:
+def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     name = display(cand["name"])
     fam = surname(cand["name"]).title()
     trade = cand["occupation"]
@@ -341,7 +411,10 @@ def record(cand: dict, gaz: dict) -> dict:
     reads = ", ".join(gaz.get("occupations") or [trade_words])
     places = list(gaz.get("associated_places") or [])
     titles = titles_in(cand["name"])
-    pid = PERSON_PREFIX + slug(cand["name"])
+
+    legacy_id = PREFIX + slug(cand["name"])
+    hid = household_id(cand["name"], PREFIX, "documented", docs, taken_ids)
+    pid = (PERSON_PREFIX + slug(cand["name"])) if hid == legacy_id else hid.removeprefix("hh_")
 
     person = {
         "id": pid,
@@ -391,10 +464,17 @@ def record(cand: dict, gaz: dict) -> dict:
 
     present = "present" if cand["last_seen"] >= SCENE_DATE else "uncertain"
     doc = {
-        "id": PREFIX + slug(cand["name"]),
+        "id": hid,
         "name": f"The {fam} household — a documented {trade_words}, unplaced in the town",
         "division": DIVISION,
         "head": pid,
+    }
+    if hid != legacy_id:
+        # A genuinely new mint (T-0599): the plain id carries no pass of its own,
+        # so the pass is recorded here instead. A household reusing its legacy id
+        # does NOT gain this field retroactively — see household_id()'s docstring.
+        doc["source_pass"] = "documented"
+    doc.update({
         "arrival": {
             "value": cand["first_seen"],
             "confidence": "inferred",
@@ -460,7 +540,7 @@ def record(cand: dict, gaz: dict) -> dict:
             f"tools/mint_documented_residents.py derives the whole minted set and "
             f"prints every candidate it refused, with the reason."
         ),
-    }
+    })
     return doc
 
 
@@ -471,13 +551,14 @@ def build(preload: dict | None = None):
     index = (json.loads(preload[INDEX]) if preload is not None and INDEX in preload
              else load(INDEX))
 
+    mine_paths = {p for p, doc in docs.items() if minted_by(p, doc, "documented", PREFIX)}
     accepted, refusals = mint(docs, index)
 
     files = {}
     rows = []
     seen: set[str] = set()
     for cand, gaz in accepted:
-        doc = record(cand, gaz)
+        doc = record(cand, gaz, docs, seen)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
@@ -498,7 +579,8 @@ def build(preload: dict | None = None):
             "review_required": doc["review_required"],
         })
 
-    keep = [r for r in index["households"] if not r["id"].startswith(PREFIX)]
+    mine_ids = {p.stem for p in mine_paths}
+    keep = [r for r in index["households"] if r["id"] not in mine_ids]
     index["households"] = sorted(keep + rows, key=lambda r: r["id"])
     totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
     persons = 0
@@ -510,13 +592,16 @@ def build(preload: dict | None = None):
     index["counts"]["persons"] = persons
     index["counts"]["by_grade"] = totals
     files[INDEX] = dumps(index, 1)
-    return files, accepted, refusals
+    return files, accepted, refusals, mine_paths
 
 
-def report(accepted, refusals) -> None:
+def report(accepted, refusals, docs: dict) -> None:
     print(f"MINTED — {len(accepted)} documented resident(s)")
+    shown: set[str] = set()
     for cand, gaz in accepted:
-        print(f"  {PREFIX + slug(cand['name']):34s} {cand['occupation']:26s} "
+        hid = household_id(cand["name"], PREFIX, "documented", docs, shown)
+        shown.add(hid)
+        print(f"  {hid:34s} {cand['occupation']:26s} "
               f"{display(cand['name'])[:24]:26s} ({len(gaz['mentions'])} mention(s), "
               f"{cand['first_seen']}..{cand['last_seen']})")
     print(f"\nREFUSED — {len(refusals)} candidate(s), with the reason")
@@ -532,15 +617,15 @@ def main() -> int:
                     help="print the mint and every refusal")
     args = ap.parse_args()
 
-    files, accepted, refusals = build()
+    files, accepted, refusals, mine_paths = build()
     if args.report:
-        report(accepted, refusals)
+        docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+        report(accepted, refusals, docs)
         return 0
     if args.check:
         drift = [p for p, text in files.items()
                  if not p.exists() or p.read_text(encoding="utf-8") != text]
-        stale = [p for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json"))
-                 if p not in files]
+        stale = [p for p in sorted(mine_paths) if p not in files]
         for p in drift + stale:
             print(f"   DRIFT: {p.relative_to(ROOT)}")
         if drift or stale:
@@ -551,7 +636,7 @@ def main() -> int:
               f"register, {len(refusals)} candidate(s) refused")
         return 0
 
-    for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json")):
+    for p in sorted(mine_paths):
         if p not in files:
             p.unlink()
     for p, text in files.items():

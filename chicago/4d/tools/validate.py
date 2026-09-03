@@ -4399,6 +4399,17 @@ RESIDENTS = DATA / "residents"
 
 RESIDENT_GRADES = ("attested", "inferred", "reconstructed")
 
+# Which of the three mint tools produced this record, recorded now that a
+# plain id no longer says so on its own (T-0599: mint_documented_residents.py /
+# mint_placed_residents.py / mint_letter_list_residents.py used to encode this
+# as an hh_doc_/hh_placed_/hh_ll_ filename prefix; a household minted from here
+# on carries this field instead and gets a plain hh_<surname>_<given> id). This
+# is provenance for the mint tools' own idempotency, not a finding about the
+# person, so it stays optional and off the manifest's public vocabulary block:
+# the ~70-odd hand-authored households were never minted by any pass and never
+# carry the key at all.
+RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list")
+
 # The term this programme was renamed away from. Anything mapping to a grade
 # gets a message naming the rename rather than a generic "unknown value", so the
 # next person to reach for it learns why.
@@ -4605,6 +4616,11 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         if h.get("division") not in divisions:
             rep.error(where, f"division '{h.get('division')}' is not declared in the manifest "
                              f"vocabulary")
+        source_pass = h.get("source_pass")
+        if source_pass is not None and source_pass not in RESIDENT_SOURCE_PASSES:
+            rep.error(where, f"source_pass '{source_pass}' is not one of "
+                             f"{RESIDENT_SOURCE_PASSES} - omit the key on a hand-authored "
+                             f"household, or match one of the three mint tools' pass names")
 
         # --- persons -------------------------------------------------------
         persons = h.get("persons") or []
