@@ -4,11 +4,8 @@ __pycache__/
 *.pyc
 
 # Large reference PDFs/scans (exceed GitHub 100MB limit) - keep local only.
-# The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
 chicago/reference/Andreas-History_of_Chicago.pdf
 chicago/reference/planning/Andreas-History_of_Chicago.pdf
-chicago/reference/newspapers/**/*.pdf
-chicago/reference/newspapers/*.pdf
 
 # Large video captures - keep local only
 chicago/reference/movies/
@@ -33,6 +30,9 @@ stay/geo-cache/
 # being re-downloaded into the tracked dirs by mistake.
 chicago/reference/fergus/*.pdf
 chicago/reference/walkthroughs/*.mov
+chicago/reference/newspapers/**/*.pdf
+chicago/reference/newspapers/*.pdf
+# The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
 
 # IPUMS extracts: redistribution prohibited by IPUMS license, local-only.
 # Originals live at projects/archive/data/chicago/reference/ipums/.
