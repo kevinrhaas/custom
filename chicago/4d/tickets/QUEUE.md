@@ -88,7 +88,7 @@ T-0533 — The 1840 census images 1-25: names and cells of the two short left sh
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
 T-0541 — The 1840 census images 1-25: continuation sheets 5V, 6H and 6Q read line by line and closed against their own printed column totals
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
-T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
+T-0546 — The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
