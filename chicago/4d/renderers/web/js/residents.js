@@ -182,6 +182,65 @@ function researchHtml(review, citationsById) {
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
+/**
+ * The 1840 census household a person's record is bridged to — five years after
+ * this scene, and that gap is the whole reason this block is rendered rather
+ * than banked.
+ *
+ * PR #670 attached the bridge to three people and declared none of its figures,
+ * so twenty-four values were being shipped to a browser with nothing reading
+ * them (T-0491). Banking them would have been the cheap answer and the wrong
+ * one: an identity bridge is an ARGUMENT — a transcribed name, a normalised
+ * reading of it, the page and row it stands on, the serial it was assigned and
+ * three separate confidences in those steps — and an argument a visitor cannot
+ * see is an assertion. It is shown whole, headed by the year, so that no part of
+ * it can be mistaken for an 1835 fact.
+ *
+ * THE HOUSEHOLD TALLIES ARE SHOWN FOR THE SAME REASON. They are the strongest
+ * temptation on this card — six people under a roof in 1840 is not six people
+ * under it in 1835 — and the record's own note says so in as many words. The
+ * note is printed directly beneath them, because a figure withheld cannot be
+ * argued with and a figure shown with its refusal can.
+ */
+function laterCensusHtml(census, citationsById) {
+  if (!census) return '';
+  const hh = census.household || {};
+  const cite = citationsById.get(census.source_id);
+  const tallies = [
+    ['People in the household', hh.persons],
+    ['Children under ten', hh.children_under_10],
+    ['Male', hh.male],
+    ['Female', hh.female],
+    ['Employed in agriculture', hh.agriculture],
+    ['Employed in commerce', hh.commerce],
+    ['Employed in manufactures and trades', hh.manufactures_trades],
+    ['Employed in inland navigation', hh.inland_navigation],
+    ['In a learned profession or engineering', hh.professions_engineering],
+    ['Foreigners not naturalized', hh.foreigners_not_naturalized],
+    ['Over twenty-one and unable to read or write', hh.illiterate_over_21],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Found again in the ${escapeHtml(String(census.year))} census</dt>
+    <dd>${swatch(null)}Head of household <b>${escapeHtml(census.head_name_normalized)}</b>,
+      transcribed on the page as <q>${escapeHtml(census.head_name_transcribed)}</q>${
+        census.bridge_status ? ` · ${escapeHtml(words(census.bridge_status))} bridge` : ''}
+      <br><span class="res-why">Page ${escapeHtml(String(census.census_page))}, row ${
+        escapeHtml(String(census.census_row))}, enumeration serial ${
+        escapeHtml(String(census.serial))}${
+        census.source_image ? `, from image ${escapeHtml(census.source_image)}` : ''}${
+        census.source_kind ? ` (${escapeHtml(census.source_kind)})` : ''}.
+        The reading of the name is graded ${escapeHtml(words(census.name_confidence))}, the
+        identification of it with this person ${escapeHtml(words(census.identity_confidence))},
+        and the assignment of the row to that serial ${
+        escapeHtml(words(census.serial_mapping_confidence))} — three separate steps, each of
+        which can be wrong on its own.</span>
+      <br><span class="res-why">${escapeHtml(census.bridge_basis)}</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      ${census.note ? `<span class="res-why">${escapeHtml(census.note)}</span>` : ''}
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</dd>`;
+}
+
 function personHtml(person, citationsById, researchByPerson) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -214,6 +273,7 @@ function personHtml(person, citationsById, researchByPerson) {
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
+      ${laterCensusHtml(person.later_census, citationsById)}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
   </details>`;
@@ -246,6 +306,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
       <span class="res-role">${escapeHtml(words(entry.division))} division · ${
         entry.persons} ${entry.persons === 1 ? 'person' : 'people'}</span>
       <span class="res-chips">${gradeChips(entry.grades)}${
+        entry.census_1840_linked
+          ? `<span class="res-chip res-research">${entry.census_1840_linked} bridged to an 1840 census household</span>` : ''}${
         reaches || !orphanChip
           ? '' : '<span class="res-chip res-orphan">on no building card</span>'}</span></summary>
     <div class="lib-body res-hh-body"><p class="legend-note">Loading…</p></div>
@@ -503,6 +565,14 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `admits should be held, so they are listed together, below the households the `
           + `rest of the corpus documents, and which of these people are a name and `
           + `nothing else can be seen without opening anything. ` : '')
+      + (counts.census_1840_linked
+        // T-0491. Three people carry an identity bridge to a named head of household
+        // in the 1840 census, and the bridge is an argument rather than a fact: it is
+        // shown whole on the person's card, three confidences and all. The count is
+        // here so that a reader can see how few of them there are before opening one.
+        ? `${counts.census_1840_linked} of these people are bridged to a named household `
+          + `in the 1840 census, five years after this scene — later evidence, shown with `
+          + `its reasoning and never read back onto 1835. ` : '')
       + (researchByPerson.size
         ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
           + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `

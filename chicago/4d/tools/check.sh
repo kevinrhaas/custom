@@ -1069,6 +1069,18 @@ step "…and its own assertions still fire when broken" \
 step "the minted letter-list residents re-derive from the register" \
   python3 tools/synthesize_resident_research.py --check
 
+# T-0491. The 1840 identity bridges — three adjudicated links from a canonical 1835
+# resident to a named head of household in the federal census five years later. The
+# contract is that 1840 is LATER EVIDENCE: the 210 census rows are retained whole, a
+# canonical link needs an explicit adjudicated person_id and is graded `validated` or
+# `provisional`, and no 1840 spouse, child or boarder is minted into an 1835 household
+# from a count. `--check` re-derives all of that, and it ran nowhere but its own
+# workflow, so PR #670 could add a bridge, leave the manifest counts and the published
+# mirror behind it, and merge on a gate that never looked. It looks here now, beside the
+# synthesis it shares the ledger with.
+step "the 1840 identity bridges re-derive and back-project nothing" \
+  python3 tools/apply_census_1840_bridges.py --check
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.

@@ -134,19 +134,34 @@
   ]
  },
  "counts": {
-  "households": 824,
-  "persons": 848,
+  "households": 825,
+  "persons": 849,
   "by_grade": {
-   "attested": 117,
+   "attested": 118,
    "inferred": 731,
    "reconstructed": 0
   },
   "letter_list_only": 727,
   "projected_residents": 706,
-  "census_1840_linked": 0,
+  "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108
  },
  "households": [
+  {
+   "id": "hh_adams_william_h",
+   "file": "households/hh_adams_william_h.json",
+   "head": "adams_william_h",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "census_1840_linked": 1
+  },
   {
    "id": "hh_bates_john_jr",
    "file": "households/hh_bates_john_jr.json",
@@ -12713,7 +12728,8 @@
    "lives_at": null,
    "works_at": "miller_tannery",
    "present_on_scene_date": "present",
-   "review_required": false
+   "review_required": false,
+   "census_1840_linked": 1
   },
   {
    "id": "hh_mulford_e_h",
@@ -12742,7 +12758,8 @@
    "lives_at": "exchange_coffee_house",
    "works_at": "exchange_coffee_house",
    "present_on_scene_date": "present",
-   "review_required": false
+   "review_required": false,
+   "census_1840_linked": 1
   },
   {
    "id": "hh_norton_nelson_r",

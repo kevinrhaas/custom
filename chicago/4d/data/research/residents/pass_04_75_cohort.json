@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_4.py",
   "population_frame": {
-    "eligible_real_named_people": 848,
+    "eligible_real_named_people": 849,
     "previously_reviewed": 225,
     "sample_size": 75,
     "cumulative_reviewed": 300,
@@ -16,80 +16,305 @@
     }
   },
   "people": [
-    {"person_id": "haddock_edward", "stratum": "established_profile"},
-    {"person_id": "handy_major", "stratum": "established_profile"},
-    {"person_id": "mason_matthias", "stratum": "established_profile"},
-    {"person_id": "maxwell_philip", "stratum": "established_profile"},
-    {"person_id": "mckee_david", "stratum": "established_profile"},
-    {"person_id": "meeker_joseph", "stratum": "established_profile"},
-    {"person_id": "miller_john", "stratum": "established_profile"},
-    {"person_id": "mulford_e_h", "stratum": "established_profile"},
-    {"person_id": "murphy_john", "stratum": "established_profile"},
-    {"person_id": "norton_nelson_r", "stratum": "established_profile"},
-    {"person_id": "pierce_asahel", "stratum": "established_profile"},
-    {"person_id": "porthier_joseph", "stratum": "established_profile"},
-    {"person_id": "pruyne_peter", "stratum": "established_profile"},
-    {"person_id": "kimberly_edmund_s", "stratum": "established_profile"},
-    {"person_id": "sproat_grenville", "stratum": "established_profile"},
-    {"person_id": "st_cyr_john_mary", "stratum": "established_profile"},
-    {"person_id": "steele_ashbel", "stratum": "established_profile"},
-    {"person_id": "stow_william_h", "stratum": "established_profile"},
-    {"person_id": "sweet_alanson", "stratum": "established_profile"},
-    {"person_id": "taylor_anson_h", "stratum": "established_profile"},
-    {"person_id": "thomas_frederick", "stratum": "established_profile"},
-    {"person_id": "walters_william", "stratum": "established_profile"},
-    {"person_id": "watkins_john", "stratum": "established_profile"},
-    {"person_id": "kinzie_james", "stratum": "established_profile"},
-    {"person_id": "kinzie_robert_a", "stratum": "established_profile"},
-    {"person_id": "ll_sewyer_edward_f", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_shattick_walter", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_shepherd_albert", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_shielde_willam", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_simpaon_lyman", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_simpson_john_p", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_skinner_heury_c", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_smith_elded", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_sorton_lymor", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_souee_theson", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_spencer_william", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_spicer_charles", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_sprague_willinm_b", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stallord_arnold", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stark_b_b", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stater_asa_p", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_steel_richard", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stevens_issac", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stocking_austin", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stoel_c_ii", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_stold_abraham_f", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_strode_p_m", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_strong_george", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_swapp_abram", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_swearingen_david", "stratum": "letter_list_only_present"},
-    {"person_id": "ll_seth_b_doane", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_seth_paine", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_seth_wescott", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_sidney_arrowsmith", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_sidney_dyer", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_simmons_medad_i", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_stephen_andress", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_stephen_mack", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_stephen_may", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_stith_sherrygood", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_thos_w_donkin", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_timothy_barbour", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_timothy_titcomb", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_tindal_james", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_tryon_david", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_vandeventer_wm", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_w_l_d_ewing", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_w_y_lewin", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_wampler_westley", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_ward_hanibal", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_wells_charles", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_westley_diggins", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_wheeler_orson", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_white_edson", "stratum": "letter_list_only_uncertain"},
-    {"person_id": "ll_whiting_henry", "stratum": "letter_list_only_uncertain"}
+    {
+      "person_id": "haddock_edward",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "handy_major",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "mason_matthias",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "maxwell_philip",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "mckee_david",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "meeker_joseph",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "miller_john",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "mulford_e_h",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "murphy_john",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "norton_nelson_r",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "pierce_asahel",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "porthier_joseph",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "pruyne_peter",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "kimberly_edmund_s",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "sproat_grenville",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "st_cyr_john_mary",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "steele_ashbel",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "stow_william_h",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "sweet_alanson",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "taylor_anson_h",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "thomas_frederick",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "walters_william",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "watkins_john",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "kinzie_james",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "kinzie_robert_a",
+      "stratum": "established_profile"
+    },
+    {
+      "person_id": "ll_sewyer_edward_f",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_shattick_walter",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_shepherd_albert",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_shielde_willam",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_simpaon_lyman",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_simpson_john_p",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_skinner_heury_c",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_smith_elded",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_sorton_lymor",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_souee_theson",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_spencer_william",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_spicer_charles",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_sprague_willinm_b",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stallord_arnold",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stark_b_b",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stater_asa_p",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_steel_richard",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stevens_issac",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stocking_austin",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stoel_c_ii",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_stold_abraham_f",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_strode_p_m",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_strong_george",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_swapp_abram",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_swearingen_david",
+      "stratum": "letter_list_only_present"
+    },
+    {
+      "person_id": "ll_seth_b_doane",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_seth_paine",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_seth_wescott",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_sidney_arrowsmith",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_sidney_dyer",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_simmons_medad_i",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_stephen_andress",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_stephen_mack",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_stephen_may",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_stith_sherrygood",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_thos_w_donkin",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_timothy_barbour",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_timothy_titcomb",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_tindal_james",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_tryon_david",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_vandeventer_wm",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_w_l_d_ewing",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_w_y_lewin",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_wampler_westley",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_ward_hanibal",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_wells_charles",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_westley_diggins",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_wheeler_orson",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_white_edson",
+      "stratum": "letter_list_only_uncertain"
+    },
+    {
+      "person_id": "ll_whiting_henry",
+      "stratum": "letter_list_only_uncertain"
+    }
   ]
 }
