@@ -129,7 +129,6 @@ T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State 
 # --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
-T-0590 — Volume 1 of the Newberry index offered 319 leads and made 0 merges: rule on every lead before volumes 2-4 add more
 
 T-0578 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at

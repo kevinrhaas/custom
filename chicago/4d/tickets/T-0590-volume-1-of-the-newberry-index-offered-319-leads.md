@@ -1,7 +1,7 @@
 ---
 id: T-0590
 title: Volume 1 of the Newberry index offered 319 leads and made 0 merges: rule on every lead before volumes 2-4 add more
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 723
+claimed_by: run 9/3/2026, 2:37:17 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T19:58:29.178Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796903261
 ---
 
 **The owner's ask, 2026-09-03 (evening), recorded verbatim:** "and yes create a newberry spend

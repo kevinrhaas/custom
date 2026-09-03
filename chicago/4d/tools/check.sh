@@ -1329,6 +1329,17 @@ step "the Newberry index stays a finding aid, and its reading rebuilds from the 
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_newberry_index.py --self-test
+# T-0590. The reading above is worth nothing until somebody rules on what it offered.
+# Volume 1 put up 319 leads and made 0 merges, and a lead nobody has answered reads
+# exactly like a lead nobody has looked at. The rulings are derived, not authored, so
+# the gate that matters is that the file still re-derives: a hand-edited outcome, a
+# lead that stopped being ruled on, or a merge appearing in a finding aid's crosswalk
+# all fail here rather than in a spend measure three weeks later.
+step "every Newberry lead is ruled on, anchored, and re-derives from the cards" \
+  python3 tools/rule_newberry_leads.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/rule_newberry_leads.py --self-test
 # T-0572. The 134 Black Hawk War veterans who enrolled AT CHICAGO in 1832. Two
 # assertions carry this one. First, the reading is taken from the CACHED PAGE and not
 # from the flattened text, because the flattening drops an empty cell and 94 of the 134
