@@ -1,7 +1,7 @@
 ---
 id: T-0503
 title: Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 742
+claimed_by: run 9/4/2026, 1:00:18 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T06:21:37.355Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33839205388
 ---
 
 **The owner's ask, 2026-09-03, recorded verbatim:** "create tickets to do more resident research

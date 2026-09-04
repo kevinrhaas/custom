@@ -200,7 +200,6 @@
 T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
 
 
@@ -467,3 +466,4 @@ T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and scho
 T-0645 — Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse
+T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
