@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 36,
+    "pages_held": 38,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 254,
@@ -22992,6 +22992,16 @@
       "lines": []
     },
     {
+      "familysearch_id": "33S7-9YYJ-BF",
+      "image": "chicago/reference/census1840/33S7-9YYJ-BF.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "continuation cells",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
+    },
+    {
       "familysearch_id": "33S7-9YYJ-C8",
       "image": "chicago/reference/census1840/33S7-9YYJ-C8.jpg",
       "printed_page": 238,
@@ -30625,6 +30635,16 @@
         "no_band_level_cells": 0,
         "pattern_carried_by_no_household": 0
       }
+    },
+    {
+      "familysearch_id": "33S7-9YYJ-V2",
+      "image": "chicago/reference/census1840/33S7-9YYJ-V2.jpg",
+      "printed_page": 237,
+      "sheet_side": "right",
+      "read_pass": "page kind, the TOTAL column in full, the six footing rows, and the grand-total row's occupation and schools cells. There are no household lines to read: this sheet enumerates nobody.",
+      "fingerprintable": false,
+      "why_not": "a RECAPITULATION sheet: every ruled line is a division total of the enumeration, not a household, so there is no family whose age-band fingerprint could be compared and no head to name. No serial may be hung on any line of it, and pairing it to a left sheet would not help - a recapitulation's left sheet carries aggregates too, not the twenty-six free-white age bands this tool matches on.",
+      "lines": []
     },
     {
       "familysearch_id": "33S7-9YYJ-W6",

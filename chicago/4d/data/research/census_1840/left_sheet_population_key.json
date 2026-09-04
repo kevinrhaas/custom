@@ -623,14 +623,14 @@
   },
   {
    "familysearch_id": "33S7-9YYJ-BF",
-   "page_population_key": null,
-   "page_population_key_state": "not_read",
+   "page_population_key": 133,
+   "page_population_key_state": "read",
    "line_count_key": 31,
-   "line_count_key_state": "inventory_to_the_nearest_line",
+   "line_count_key_state": "read_line_by_line",
    "schools": null,
-   "state": "unpaired_key_not_yet_read",
+   "state": "unpaired_key_read",
    "paired_to_printed_page": null,
-   "evidence": "No page file, no footing read, no population key. T-0641 owns this sheet, which the inventory calls filled but very faint.",
+   "evidence": "T-0655 read this sheet line by line: page file data/research/census_1840/pages/33S7-9YYJ-BF.json. The enumerator's own TOTAL footing is 133; the line-by-line sum of the same column is 114, a residual of -19 that the page file carries. Pair on 133 \u2014 it is the enumerator's own arithmetic \u2014 but note that none of the candidates below stands at either figure, so this key does not close the pairing on its own. The sheet offers no schools signal at all (no schools figure on any line or at the foot) and one industry signal: seven families in manufactures and trades, closing exactly, and nothing in any other industry column.",
    "candidates_considered": [
     {
      "printed_page": 215,
