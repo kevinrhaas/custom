@@ -8,16 +8,16 @@
   "norris_directory_1844"
  ],
  "standard": "An 1844 directory entry corroborates and enriches; under the ratified ladder it never makes an 1835 resident. Every person here keeps the grade, the occupation, the residence and the dates their 1835 evidence gave them.",
- "refusals_not_shown": "The 171 people whose surname is in the volume under no entry carrying their initial are refused in the crosswalk and reach no card.",
+ "refusals_not_shown": "The 176 people whose surname is in the volume under no entry carrying their initial are refused in the crosswalk and reach no card.",
  "counts": {
   "residents_considered": 847,
-  "people_shown": 67,
-  "single_entry": 48,
+  "people_shown": 68,
+  "single_entry": 49,
   "ambiguous": 15,
   "contested": 4,
-  "refused_in_crosswalk": 171,
-  "carrying_a_trade": 21,
-  "carrying_a_street": 39
+  "refused_in_crosswalk": 176,
+  "carrying_a_trade": 22,
+  "carrying_a_street": 40
  },
  "people": [
   {
@@ -1389,6 +1389,31 @@
    "carries": [],
    "contested_with": [],
    "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record already states what this line could have supplied, so the entry is corroboration and nothing else. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "resident": "A. 8. Perry",
+   "year": 1844,
+   "match_status": "single_entry",
+   "match_rule": "Surname 'Perry' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e1425",
+     "printed_page": 51,
+     "as_printed": "Perry, A. S. barber, house reservation"
+    }
+   ],
+   "carries": [
+    "occupation",
+    "address"
+   ],
+   "contested_with": [],
+   "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no trade and no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
    "sources": [
     "norris_directory_1844"
    ]

@@ -2096,19 +2096,19 @@
    ],
    "candidates": [
     {
-     "id": "f_mabbet_benjamin",
+     "id": "mabbet_benjamin_f",
      "name": "Mabbet Benjamin F.",
      "rule": "exact surname"
     },
     {
-     "id": "w_oakley_benjamin",
+     "id": "oakley_benjamin_w",
      "name": "Oakley Benjamin W.",
      "rule": "exact surname"
     }
    ],
    "person_ids": [
-    "f_mabbet_benjamin",
-    "w_oakley_benjamin"
+    "mabbet_benjamin_f",
+    "oakley_benjamin_w"
    ],
    "works_cited": [
     "sons_of_the_american_revolution_illinois_1896"
@@ -6560,13 +6560,13 @@
    ],
    "candidates": [
     {
-     "id": "p_clapp_a",
+     "id": "clapp_a_p",
      "name": "Clapp. A. P.",
      "rule": "exact surname"
     }
    ],
    "person_ids": [
-    "p_clapp_a"
+    "clapp_a_p"
    ],
    "works_cited": [
     "andreas_history_of_chicago"
@@ -15856,26 +15856,26 @@
      "rule": "exact surname"
     },
     {
-     "id": "k_pugsley_john",
+     "id": "pugsley_john_k",
      "name": "Pugsley John K.",
      "rule": "exact surname"
     },
     {
-     "id": "l_pixley_john",
+     "id": "pixley_john_l",
      "name": "Pixley John L.",
      "rule": "exact surname"
     },
     {
-     "id": "v_regera_john",
+     "id": "regera_john_v",
      "name": "Regera John V.",
      "rule": "exact surname"
     }
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pugsley_john_k",
+    "pixley_john_l",
+    "regera_john_v"
    ],
    "works_cited": [
     "andreas_history_of_chicago"
@@ -15934,26 +15934,26 @@
      "rule": "OCR variant (0.89 similarity to 'john')"
     },
     {
-     "id": "k_pugsley_john",
+     "id": "pugsley_john_k",
      "name": "Pugsley John K.",
      "rule": "OCR variant (0.89 similarity to 'john')"
     },
     {
-     "id": "l_pixley_john",
+     "id": "pixley_john_l",
      "name": "Pixley John L.",
      "rule": "OCR variant (0.89 similarity to 'john')"
     },
     {
-     "id": "v_regera_john",
+     "id": "regera_john_v",
      "name": "Regera John V.",
      "rule": "OCR variant (0.89 similarity to 'john')"
     }
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pugsley_john_k",
+    "pixley_john_l",
+    "regera_john_v"
    ],
    "works_cited": [
     "andreas_history_of_chicago"
@@ -18412,14 +18412,14 @@
      "rule": "exact surname"
     },
     {
-     "id": "t_orinsbey_martin",
+     "id": "orinsbey_martin_t",
      "name": "Orinsbey martin T.",
      "rule": "exact surname"
     }
    ],
    "person_ids": [
     "martin_patrick",
-    "t_orinsbey_martin"
+    "orinsbey_martin_t"
    ],
    "works_cited": [],
    "held_works": [],
@@ -18445,14 +18445,14 @@
      "rule": "OCR variant (0.92 similarity to 'martin')"
     },
     {
-     "id": "t_orinsbey_martin",
+     "id": "orinsbey_martin_t",
      "name": "Orinsbey martin T.",
      "rule": "OCR variant (0.92 similarity to 'martin')"
     }
    ],
    "person_ids": [
     "martin_patrick",
-    "t_orinsbey_martin"
+    "orinsbey_martin_t"
    ],
    "works_cited": [],
    "held_works": [],
@@ -18910,13 +18910,13 @@
    ],
    "candidates": [
     {
-     "id": "m_kean_joseph",
+     "id": "mkean_joseph",
      "name": "Joseph M'Kean",
      "rule": "OCR variant (0.91 similarity to 'mkean')"
     }
    ],
    "person_ids": [
-    "m_kean_joseph"
+    "mkean_joseph"
    ],
    "works_cited": [
     "county_histories_kett_and_co"
@@ -18994,7 +18994,7 @@
    ],
    "candidates": [
     {
-     "id": "m_lean_john_y",
+     "id": "mlean_john_y",
      "name": "John Y. M'Lean",
      "rule": "OCR variant (0.91 similarity to 'mlean')"
     },
@@ -19005,7 +19005,7 @@
     }
    ],
    "person_ids": [
-    "m_lean_john_y",
+    "mlean_john_y",
     "maclean_archibald"
    ],
    "works_cited": [],
@@ -21048,14 +21048,14 @@
      "rule": "exact surname"
     },
     {
-     "id": "r_norton_n",
+     "id": "norton_n_r",
      "name": "Norton N. R.",
      "rule": "exact surname"
     }
    ],
    "person_ids": [
     "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r"
    ],
    "works_cited": [
     "andreas_history_of_chicago",
@@ -21668,7 +21668,7 @@
    ],
    "candidates": [
     {
-     "id": "p_aylor_john_o",
+     "id": "paylor_john_o",
      "name": "John O. P'aylor",
      "rule": "OCR variant (0.91 similarity to 'paylor')"
     },
@@ -21679,7 +21679,7 @@
     }
    ],
    "person_ids": [
-    "p_aylor_john_o",
+    "paylor_john_o",
     "paylor_margnret_g"
    ],
    "works_cited": [
@@ -22059,7 +22059,7 @@
    ],
    "candidates": [
     {
-     "id": "8_perry_a",
+     "id": "perry_a_8",
      "name": "Perry A. 8.",
      "rule": "exact surname"
     },
@@ -22070,7 +22070,7 @@
     }
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "works_cited": [
@@ -22125,7 +22125,7 @@
    ],
    "candidates": [
     {
-     "id": "8_perry_a",
+     "id": "perry_a_8",
      "name": "Perry A. 8.",
      "rule": "OCR variant (0.89 similarity to 'perry')"
     },
@@ -22136,7 +22136,7 @@
     }
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "works_cited": [],
@@ -30830,9 +30830,9 @@
     "lead_v01_clapp_residents"
    ],
    "person_ids": [
-    "p_clapp_a"
+    "clapp_a_p"
    ],
-   "person_id": "p_clapp_a",
+   "person_id": "clapp_a_p",
    "evidence": [
     "nbi_v01_1467",
     "data/research/newberry_index/leads.json"
@@ -30863,9 +30863,9 @@
     "lead_v01_clapp_residents"
    ],
    "person_ids": [
-    "p_clapp_a"
+    "clapp_a_p"
    ],
-   "person_id": "p_clapp_a",
+   "person_id": "clapp_a_p",
    "evidence": [
     "nbi_v01_1468",
     "data/research/newberry_index/leads.json"
@@ -30896,9 +30896,9 @@
     "lead_v01_clapp_residents"
    ],
    "person_ids": [
-    "p_clapp_a"
+    "clapp_a_p"
    ],
-   "person_id": "p_clapp_a",
+   "person_id": "clapp_a_p",
    "evidence": [
     "nbi_v01_1469",
     "data/research/newberry_index/leads.json"
@@ -40037,9 +40037,9 @@
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pixley_john_l",
+    "pugsley_john_k",
+    "regera_john_v"
    ],
    "person_id": null,
    "evidence": [
@@ -43125,8 +43125,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43163,8 +43163,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43201,8 +43201,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43239,8 +43239,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43277,8 +43277,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43315,8 +43315,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -43353,8 +43353,8 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_nelson_r",
-    "r_norton_n"
+    "norton_n_r",
+    "norton_nelson_r"
    ],
    "person_id": null,
    "evidence": [
@@ -45437,9 +45437,9 @@
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pixley_john_l",
+    "pugsley_john_k",
+    "regera_john_v"
    ],
    "person_id": null,
    "evidence": [
@@ -45475,9 +45475,9 @@
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pixley_john_l",
+    "pugsley_john_k",
+    "regera_john_v"
    ],
    "person_id": null,
    "evidence": [
@@ -45513,9 +45513,9 @@
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pixley_john_l",
+    "pugsley_john_k",
+    "regera_john_v"
    ],
    "person_id": null,
    "evidence": [
@@ -47940,8 +47940,8 @@
     "lead_v01_benjamin_residents"
    ],
    "person_ids": [
-    "f_mabbet_benjamin",
-    "w_oakley_benjamin"
+    "mabbet_benjamin_f",
+    "oakley_benjamin_w"
    ],
    "person_id": null,
    "evidence": [
@@ -51325,7 +51325,7 @@
     "lead_v01_pery_voters"
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "person_id": null,
@@ -60359,9 +60359,9 @@
    ],
    "person_ids": [
     "john_meclure",
-    "k_pugsley_john",
-    "l_pixley_john",
-    "v_regera_john"
+    "pixley_john_l",
+    "pugsley_john_k",
+    "regera_john_v"
    ],
    "person_id": null,
    "evidence": [
@@ -62682,9 +62682,9 @@
     "lead_v03_mckean_residents"
    ],
    "person_ids": [
-    "m_kean_joseph"
+    "mkean_joseph"
    ],
-   "person_id": "m_kean_joseph",
+   "person_id": "mkean_joseph",
    "evidence": [
     "nbi_v03_0355",
     "data/research/newberry_index/leads.json"
@@ -62783,8 +62783,8 @@
     "lead_v03_mclean_residents"
    ],
    "person_ids": [
-    "m_lean_john_y",
-    "maclean_archibald"
+    "maclean_archibald",
+    "mlean_john_y"
    ],
    "person_id": null,
    "evidence": [
@@ -63163,7 +63163,7 @@
    ],
    "person_ids": [
     "martin_patrick",
-    "t_orinsbey_martin"
+    "orinsbey_martin_t"
    ],
    "person_id": null,
    "evidence": [
@@ -63197,7 +63197,7 @@
    ],
    "person_ids": [
     "martin_patrick",
-    "t_orinsbey_martin"
+    "orinsbey_martin_t"
    ],
    "person_id": null,
    "evidence": [
@@ -65788,7 +65788,7 @@
     "lead_v03_perry_voters"
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "person_id": null,
@@ -65824,7 +65824,7 @@
     "lead_v03_perry_voters"
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "person_id": null,
@@ -65860,7 +65860,7 @@
     "lead_v03_perry_voters"
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "person_id": null,
@@ -65896,7 +65896,7 @@
     "lead_v01_pery_voters"
    ],
    "person_ids": [
-    "8_perry_a",
+    "perry_a_8",
     "perry_francis"
    ],
    "person_id": null,
@@ -66304,7 +66304,7 @@
     "lead_v03_payor_residents"
    ],
    "person_ids": [
-    "p_aylor_john_o",
+    "paylor_john_o",
     "paylor_margnret_g"
    ],
    "person_id": null,

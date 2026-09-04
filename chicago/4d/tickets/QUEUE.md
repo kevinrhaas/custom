@@ -66,7 +66,6 @@ T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
-T-0638 — A trailing middle initial took the surname slot, so 19 letter-list households are named 'The C household' and can never match a directory
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0632 — Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
@@ -290,3 +289,4 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it

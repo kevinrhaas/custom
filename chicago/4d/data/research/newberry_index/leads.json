@@ -1637,12 +1637,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "f_mabbet_benjamin",
+          "id": "mabbet_benjamin_f",
           "name": "Mabbet Benjamin F.",
           "rule": "exact surname"
         },
         {
-          "id": "w_oakley_benjamin",
+          "id": "oakley_benjamin_w",
           "name": "Oakley Benjamin W.",
           "rule": "exact surname"
         }
@@ -5184,7 +5184,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "p_clapp_a",
+          "id": "clapp_a_p",
           "name": "Clapp. A. P.",
           "rule": "exact surname"
         }
@@ -12458,17 +12458,17 @@
           "rule": "exact surname"
         },
         {
-          "id": "k_pugsley_john",
+          "id": "pugsley_john_k",
           "name": "Pugsley John K.",
           "rule": "exact surname"
         },
         {
-          "id": "l_pixley_john",
+          "id": "pixley_john_l",
           "name": "Pixley John L.",
           "rule": "exact surname"
         },
         {
-          "id": "v_regera_john",
+          "id": "regera_john_v",
           "name": "Regera John V.",
           "rule": "exact surname"
         }
@@ -12520,17 +12520,17 @@
           "rule": "OCR variant (0.89 similarity to 'john')"
         },
         {
-          "id": "k_pugsley_john",
+          "id": "pugsley_john_k",
           "name": "Pugsley John K.",
           "rule": "OCR variant (0.89 similarity to 'john')"
         },
         {
-          "id": "l_pixley_john",
+          "id": "pixley_john_l",
           "name": "Pixley John L.",
           "rule": "OCR variant (0.89 similarity to 'john')"
         },
         {
-          "id": "v_regera_john",
+          "id": "regera_john_v",
           "name": "Regera John V.",
           "rule": "OCR variant (0.89 similarity to 'john')"
         }
@@ -14484,7 +14484,7 @@
           "rule": "exact surname"
         },
         {
-          "id": "t_orinsbey_martin",
+          "id": "orinsbey_martin_t",
           "name": "Orinsbey martin T.",
           "rule": "exact surname"
         }
@@ -14509,7 +14509,7 @@
           "rule": "OCR variant (0.92 similarity to 'martin')"
         },
         {
-          "id": "t_orinsbey_martin",
+          "id": "orinsbey_martin_t",
           "name": "Orinsbey martin T.",
           "rule": "OCR variant (0.92 similarity to 'martin')"
         }
@@ -14875,7 +14875,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "m_kean_joseph",
+          "id": "mkean_joseph",
           "name": "Joseph M'Kean",
           "rule": "OCR variant (0.91 similarity to 'mkean')"
         }
@@ -14940,7 +14940,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "m_lean_john_y",
+          "id": "mlean_john_y",
           "name": "John Y. M'Lean",
           "rule": "OCR variant (0.91 similarity to 'mlean')"
         },
@@ -16592,7 +16592,7 @@
           "rule": "exact surname"
         },
         {
-          "id": "r_norton_n",
+          "id": "norton_n_r",
           "name": "Norton N. R.",
           "rule": "exact surname"
         }
@@ -17088,7 +17088,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "p_aylor_john_o",
+          "id": "paylor_john_o",
           "name": "John O. P'aylor",
           "rule": "OCR variant (0.91 similarity to 'paylor')"
         },
@@ -17399,7 +17399,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "8_perry_a",
+          "id": "perry_a_8",
           "name": "Perry A. 8.",
           "rule": "exact surname"
         },
@@ -17453,7 +17453,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "8_perry_a",
+          "id": "perry_a_8",
           "name": "Perry A. 8.",
           "rule": "OCR variant (0.89 similarity to 'perry')"
         },
