@@ -1,5 +1,5 @@
 ---
-id: T-0701
+id: T-0705
 title: Clark, Filer & Co. is printed five doors east of Randolph in June 1834 and three that December: settle the numeral off the page images
 state: open
 epic: META
@@ -53,5 +53,5 @@ ordinal off this corner from being turned into a position and bars a `lot_claim`
 - If and only if the count is settled, the bar on spending this ordinal is lifted and
   said to be lifted; if it is not settled, the bar stays and the reason is the image.
 
-**Related:** T-0440 (which found it and wrote the bar) · T-0702 (the reader that cannot
+**Related:** T-0440 (which found it and wrote the bar) · T-0706 (the reader that cannot
 see this phrase at all) · `docs/CORNER-ORDINAL.md` · T-0384.

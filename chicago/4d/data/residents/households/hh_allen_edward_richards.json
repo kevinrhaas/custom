@@ -55,9 +55,9 @@
    "id": "allen_edward_richards",
    "name": "Edward Richards Allen",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "civic_mint": true,
-   "ladder_rule": "G2b",
+   "ladder_rule": "G1c",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -69,7 +69,7 @@
     "chicago_voter_lists_1833_1835_irad",
     "fergus_chicago_directory_1843"
    ],
-   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from directory_1843, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1834 names this person at Chicago by 31 December 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). OLD SETTLERS, 1882 — CORROBORATION, NOT A NEW FACT ABOUT 1835. The Calumet Club's fourth annual reception to the settlers of Chicago prior to 1840, held 18 May 1882, printed this man among the guests present as “Allen, Edward R., Aurora, Ill.” (Chicago Tribune, 19 May 1882). The club's criterion was residence in Chicago before 1 January 1840 and majority by then: the roster therefore corroborates a pre-1840 Chicago residence and says he was alive in 1882. It gives NO year of arrival, and the address it prints is where he lived in 1882, forty-seven years after the scene date — it is not an 1835 residence and is not read as one. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
+   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from directory_1843, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1834 names this person at Chicago by 31 December 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). OLD SETTLERS, 1882 — CORROBORATION, NOT A NEW FACT ABOUT 1835. The Calumet Club's fourth annual reception to the settlers of Chicago prior to 1840, held 18 May 1882, printed this man among the guests present as “Allen, Edward R., Aurora, Ill.” (Chicago Tribune, 19 May 1882). The club's criterion was residence in Chicago before 1 January 1840 and majority by then: the roster therefore corroborates a pre-1840 Chicago residence and says he was alive in 1882. It gives NO year of arrival, and the address it prints is where he lived in 1882, forty-seven years after the scene date — it is not an 1835 residence and is not read as one. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "civic_evidence": [
     {
      "list": "poll_1834",
@@ -78,7 +78,7 @@
      "record_id": "poll_1834_004",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "book_evidence": [
@@ -89,7 +89,7 @@
      "record_id": "f1843_e0192",
      "describes_date": "1843",
      "source": "fergus_chicago_directory_1843",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -100,7 +100,7 @@
      "record_id": "person_edward_allen",
      "describes_date": "1835-05-20",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

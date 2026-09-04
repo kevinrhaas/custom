@@ -1,5 +1,5 @@
 ---
-id: T-0702
+id: T-0706
 title: The register's ordinal reader cannot see a door count whose 'doors' the reading pass reconstructed in brackets, so 'five [doors east] of the corner' falls through to street_only
 state: open
 epic: META
@@ -52,7 +52,7 @@ and a gate can refuse to spend it. That is a proposal, not a decision.
   is measured and not hoped for.
 - If bracketed words become readable, a placement that rests on one is marked as resting
   on one, and `docs/CORNER-ORDINAL.md` says what may be spent from it.
-- Clark, Filer & Co. is NOT placed by this ticket regardless: T-0701 holds the bar on its
+- Clark, Filer & Co. is NOT placed by this ticket regardless: T-0705 holds the bar on its
   door count and this ticket may not lift it.
 
-**Related:** T-0440 · T-0701 · T-0384 · `docs/CORNER-ORDINAL.md`.
+**Related:** T-0440 · T-0705 · T-0384 · `docs/CORNER-ORDINAL.md`.

@@ -537,7 +537,7 @@ decided by the grouping unless it is stated. Clark, Filer & Co.'s two printings 
 different number of doors off that corner — 'five' set legibly in June against a December
 numeral the reading pass reconstructs as 'three' from `bre` — and that is not a spelling, so
 its `cannot_say` bars any ordinal off this corner from being spent into a position under
-`docs/CORNER-ORDINAL.md` until the page images settle the numeral (T-0701). A house may not
+`docs/CORNER-ORDINAL.md` until the page images settle the numeral (T-0705). A house may not
 carry a spelling and an anchor change over the same readings; the compile refuses both.
 Silent printings are carried on `silent_readings` beside a declared change, because a
 printing that gives no anchor is not an anchor a rule can be asked to claim, and nothing is
