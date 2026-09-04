@@ -480,6 +480,15 @@ step "…and its own assertions still fire when broken" \
 step "the West Division module, and the ceiling that answers the owner's shift report" \
   python3 tools/measure_west_division_module.py --self-test
 
+# T-0446. Carroll and Fulton are the two West Division tiers the plat carries and no
+# committed file held. Fulton is fitted to four surviving intersections; Carroll does
+# not survive inside the plat and is the MIDPOINT of its two neighbours, so it is the
+# one line here that a move of kinzie or fulton would silently falsify. The self-test
+# holds that midpoint inside the bracket its neighbours put it in, and holds the band
+# comparison docs/RESEARCH/west_division_tiers.md reports.
+step "the West Division's tiers, and Carroll's midpoint still inside its own bracket" \
+  python3 tools/measure_west_division_tiers.py --self-test
+
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
 # block recipes quietly acted on it: every log dwelling the five South Water blocks were
