@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The notice said a large dwelling-house; the town had built a cottage', kind: 'change', ts: '',
+  { v: 535, title: 'The notice said a large dwelling-house; the town had built a cottage', kind: 'change', ts: '2026-09-04T23:50:10.386Z', date: 'Sep 4, 2026, 6:50 PM CT',
     items: [
       'One building here is placed by a newspaper giving a lot AND a block \u2014 the plat\u2019s own language, and the most precise placement the surviving Chicago papers make. G. Spring ran it for sale in the Chicago Democrat six times in 1834: \u201cLOT No. 7, in block No. 16, one lot east of Haddock\u2019s Tavern, on Lake street \u2026 There is on said lot a large Dwelling-House and fine well.\u201d',
       'Worked out onto ground last September, that address landed on a roof this project had invented long before, to make the town\u2019s roof count come out right \u2014 the smallest dwelling it deals, a one-room frame cottage 5.4 by 6.4 metres. So the card on Lake Street quoted a source calling the house LARGE over a building you could walk around in twelve paces. The mismatch was written down and left alone, because repairing it meant re-dealing the block and rebuilding the model.',
