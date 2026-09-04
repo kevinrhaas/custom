@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 26,
+    "pages_held": 28,
     "pages_fingerprintable": 16,
     "lines_read_on_fingerprintable_pages": 492,
     "unique": 172,
@@ -26098,6 +26098,34 @@
       }
     },
     {
+      "familysearch_id": "33S7-9YYJ-JM",
+      "image": "chicago/reference/census1840/33S7-9YYJ-JM.jpg",
+      "printed_page": 224,
+      "sheet_side": "left",
+      "read_pass": "names and cells",
+      "fingerprintable": false,
+      "columns_committed_basis": "column_closure",
+      "columns_compared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "why_not": "only 15 of the 26 free-white age-band columns close against the enumerator's printed foot totals on this page, below the 20 this tool requires: a fingerprint that narrow does not identify a household, it only looks like it does. Reconcile the columns and this page becomes readable.",
+      "lines": []
+    },
+    {
       "familysearch_id": "33S7-9YYJ-NY",
       "image": "chicago/reference/census1840/33S7-9YYJ-NY.jpg",
       "printed_page": 230,
@@ -26485,6 +26513,35 @@
         "no_band_level_cells": 31,
         "pattern_carried_by_no_household": 0
       }
+    },
+    {
+      "familysearch_id": "33S7-9YYJ-PC",
+      "image": "chicago/reference/census1840/33S7-9YYJ-PC.jpg",
+      "printed_page": 218,
+      "sheet_side": "left",
+      "read_pass": "names and cells",
+      "fingerprintable": false,
+      "columns_committed_basis": "column_closure",
+      "columns_compared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "why_not": "only 16 of the 26 free-white age-band columns close against the enumerator's printed foot totals on this page, below the 20 this tool requires: a fingerprint that narrow does not identify a household, it only looks like it does. Reconcile the columns and this page becomes readable.",
+      "lines": []
     },
     {
       "familysearch_id": "33S7-9YYJ-RC",
