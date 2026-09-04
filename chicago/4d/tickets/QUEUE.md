@@ -259,6 +259,7 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- THE PIPELINE AND ITS RUNNERS — the loop's own health.
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it

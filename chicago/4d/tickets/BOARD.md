@@ -4,7 +4,7 @@
 
 - **T-0429** Open blk_south_water_lasalle: 8 roofs of headroom on three free lots · needs-bake · claimed · run 8/30/2026, 1:51:13 AM CT
 
-## In the queue, in the owner’s order (154)
+## In the queue, in the owner’s order (155)
 
 - **T-0515** 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence · **OWNER**
 - **T-0666** Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
@@ -135,6 +135,7 @@
 - **T-0181** The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 - **T-0236** The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening · **OWNER**
 - **T-0238** Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+- **T-0674** A bot-opened PR never runs the dev gate before merge, and two of them broke dev · **OWNER**
 - **T-0232** The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 - **T-0234** The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it · **OWNER**
 - **T-0301** Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
