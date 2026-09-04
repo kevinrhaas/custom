@@ -5,11 +5,11 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 54,
+  "census_1840": 85,
   "church": 0,
   "books": 126,
-  "directories": 4703,
-  "newberry_index": 3148,
+  "directories": 6396,
+  "newberry_index": 5078,
   "land_sales": 375
  },
  "witness": {
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 562,
+   "read": 593,
    "spent": 508
   },
   "church": {
@@ -34,12 +34,12 @@
    "spent": 26
   },
   "directories": {
-   "read": 4991,
+   "read": 6684,
    "spent": 288
   },
   "newberry_index": {
-   "read": 4646,
-   "spent": 1498
+   "read": 7165,
+   "spent": 2087
   },
   "land_sales": {
    "read": 375,
@@ -99,6 +99,30 @@
    "to": 126,
    "date": "2026-09-03",
    "why": "T-0499 read the first half of Fergus' Historical Series Nos. 26-29 on the owner's direct ask, and the reading is deliberately wider than its rulings. Of 41 claims, 36 carry no person this town could hold: they are landscape, buildings, streets, civic institutions and port statistics, and the crosswalk has nothing to rule on in them. Only five names in 429 leaves fall in the 1830-1836 window and ALL FIVE ARE RULED ON - two merges and three refusals - with every name outside the window listed by name in the pass so the next sweep does not re-examine it. The gap this raise opens is not unadjudicated names; it is town findings waiting for the structure and terrain tickets that will spend them."
+  },
+  {
+   "domain": "newberry_index",
+   "hop": "read",
+   "from": 3148,
+   "to": 5078,
+   "date": "2026-09-04",
+   "why": "T-0579 and T-0580 read volumes 3 (H-P) and 4 (P-Z), adding 2,439 records to a domain whose ruling tool had last run against volumes 1-2. The reading is the deliverable of two approved tickets and the ladder requires reading ahead of adjudication; what has not happened yet is the ruling pass over the new volumes, which tools/rule_newberry_leads.py performs and T-0590 established. T-0618's reader and the three page bands T-0619/T-0620/T-0621 will add volume 4's re-OCR on top of this, so this ceiling is a floor for that work, not a licence to stop ruling."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 4703,
+   "to": 6396,
+   "date": "2026-09-04",
+   "why": "T-0506 read Fergus' 1839 directory entry by entry and crosswalked it against four pools, and the Norris 1844 and Fergus 1843 reads precede it. A directory entry is never an 1835 resident on its own - it is later evidence read backwards - so this domain is designed to stand far ahead of its spending, and the spending is the crosswalk adjudication plus T-0514 (mint residents from the consolidated evidence) and T-0515 (regrade the 727 letter-list-only residents). T-0611 will read the 1839 appendices on top of this."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 54,
+   "to": 85,
+   "date": "2026-09-04",
+   "why": "The 1840 sheet reads (T-0565, T-0585 and the image-band tickets) added 31 named heads beyond the last baseline. 1840 is five years after the scene and can never be an 1835 residency on its own; the bridge work is apply_census_1840_bridges.py and the two resident tickets T-0514/T-0515, both open and queued."
   }
  ],
  "lowered": [
