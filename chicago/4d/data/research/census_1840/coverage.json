@@ -344,14 +344,17 @@
           "file": "chicago/reference/census1840/33S7-9YYJ-B1.jpg",
           "sheet_side": "right",
           "printed_page": null,
-          "lines_with_an_entry": 31,
-          "what_it_is": "continuation sheet, filled",
+          "lines_with_an_entry": 30,
+          "what_it_is": "continuation sheet, filled; 30 lines, page population 165 by the enumerator's own footer and 164 by the line-by-line reading — the tightest close in the deposit. Ten of its eleven written columns close exactly; the family totals are one person short and the canal-navigation column one over. Line 27 is a 54-person household, the largest read anywhere in the deposit. Line 1 carries the sheet's only schools figures — one primary or common school and 90 scholars — and line 2 its only deaf-and-dumb entry.",
           "in_pr_670_calibration_set": false,
-          "read_state": "inventoried_only",
-          "page_file": null,
+          "read_state": "continuation_cells_read",
+          "page_file": "data/research/census_1840/pages/33S7-9YYJ-B1.json",
           "paired_to_printed_page": null,
-          "pairing_state": "unpaired_key_not_yet_read",
-          "pairing_tested_by": "T-0642"
+          "pairing_state": "unpaired_key_now_readable",
+          "pairing_tested_by": "T-0642",
+          "lines_with_an_entry_note": "restated off the sheet by T-0653. The inventory figure was 31 `to the nearest line`; the line-by-line reading finds 30 entries on a 76.0 px grid fitted to the industry columns, with a thirty-first line slot at y2949 that is blank in all 37 columns.",
+          "note": "committed with two residuals recorded rather than adjusted away: family totals -1 and navigation of canals, lakes and rivers +1 (T-0653). Read with 33S7-9YYJ-6Q's digit key, in which the matched pair of slashes is a 4; reading it 11 as 33S7-9YYJ-8D does would put the column at 149 against the printed 165.",
+          "pairing_key_note": "T-0642 left this one `unpaired_key_not_yet_read` because the sheet's own population key had not been read. It has now: page population 165 by the footer (164 by the line-by-line reading, and the two agree to one person), 30 lines, and a 54-person household on line 27 — the largest in the deposit, and a strong second signal. The pairing test can be run against this sheet."
         },
         {
           "index": 22,
