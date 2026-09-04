@@ -13,7 +13,7 @@
  "cells_note": "every ruled line's free-white age-band and free-coloured cells are read off the deposited image against column bounds MEASURED on the leaf rather than assigned by eye. Cells absent from the sheet are 0, not null. The free-coloured block is blank on this sheet and its printed free-coloured totals are blank too.",
  "lines_ruled_with_an_entry": 31,
  "lines_note": "31, and the count is the inventory's. `coverage.json` said 31 'to the nearest line' from the contact-sheet pass and this reading confirms it exactly. The count is not a clustering: a peak fit to the name column's own ink separates 32 groups, and one of them (over line 26) is the superscript `Junr` the enumerator wrote above the surname, not a line. The 31 that remain are the 31 the two footer rows close against.",
- "no_horizontal_rules": "MEASURED ON THIS IMAGE, and it is the same finding the continuation sheets carry: the leaf has NO horizontal ruled lines inside the body. A row-darkness profile taken across the empty free-coloured block finds two strong rules on the leaf — under the printed heading and above the enumerator's footer — and nothing between them. The printed form rules this page vertically only, so every row assignment comes from the enumerator's own ink. On a LEFT sheet that is cheap rather than hard, because every line carries a name: the name column's ink is the row index, and each cell is then assigned to the nearest name.",
+ "no_horizontal_rules": "MEASURED ON THIS IMAGE, and it is the same finding the continuation sheets carry: the leaf has NO horizontal ruled lines inside the body. A row-darkness profile taken across the empty free-coloured block finds two strong rules on the leaf \u2014 under the printed heading and above the enumerator's footer \u2014 and nothing between them. The printed form rules this page vertically only, so every row assignment comes from the enumerator's own ink. On a LEFT sheet that is cheap rather than hard, because every line carries a name: the name column's ink is the row index, and each cell is then assigned to the nearest name.",
  "column_geometry": {
   "derived_by": "column bounds measured on this leaf from the vertical printed rules, then carried down the body with the measured skew",
   "free_white_male_rules_px": [
@@ -74,7 +74,7 @@
  "line_index": {
   "lines": 31,
   "derived_by": "a Gaussian-smoothed ink profile of the name column (x 420-787), peak-picked and merged within 30 px",
-  "method": "the name column is the one column with an entry on every line of a left sheet, so it — and not the age-band cells — carries the row index. The 32 peaks it yields are reduced to 31 by the one pair that is a name and its own superscript (line 26, `Junr`). Every cell is then assigned to the nearest line, and the assignment is checked, not assumed: the residuals run from 0 to -22 px against a line pitch of 66 to 94 px, so no cell is nearer a neighbouring line than its own.",
+  "method": "the name column is the one column with an entry on every line of a left sheet, so it \u2014 and not the age-band cells \u2014 carries the row index. The 32 peaks it yields are reduced to 31 by the one pair that is a name and its own superscript (line 26, `Junr`). Every cell is then assigned to the nearest line, and the assignment is checked, not assumed: the residuals run from 0 to -22 px against a line pitch of 66 to 94 px, so no cell is nearer a neighbouring line than its own.",
   "line_y_px": [
    680,
    757,
@@ -220,7 +220,7 @@
    "reconciles": true
   }
  ],
- "reconciliation": "EVERY column the sheet carries a printed total for closes exactly. Nine male columns (16, 10, 7, 6, 28, 19, 5, 1, 1) and nine female columns (14, 12, 9, 10, 22, 17, 2, 1, 1) were summed from the read cells and compared with the enumerator's own footing: eighteen of eighteen agree, residual zero on every one. Two readings were changed BY that check rather than to satisfy it, and both are recorded here because a closure that hides its corrections is worth nothing: the males 20-under-30 footing was first read as 25 from a reduced overview and is 28 at magnification (the second glyph is an 8 whose two bowls close, not a 5 whose top bar is separate — the sheet's own 5 stands two cells to the right for comparison), and the free-white under-5 female column needed two `2`s at lines 27 and 30 that a component filter had dropped as over-tall, which the column's shortfall of 4 is what found. Three ink specks are recorded as specks and not as entries — one in the female 60-under-70 column at line 3, one in the female 80-under-90 column at line 20, and one rule fragment in the female 10-under-15 column at line 21 — and the closure is the reason: every column they stand in either closes without them or is printed blank.",
+ "reconciliation": "EVERY column the sheet carries a printed total for closes exactly. Nine male columns (16, 10, 7, 6, 28, 19, 5, 1, 1) and nine female columns (14, 12, 9, 10, 22, 17, 2, 1, 1) were summed from the read cells and compared with the enumerator's own footing: eighteen of eighteen agree, residual zero on every one. Two readings were changed BY that check rather than to satisfy it, and both are recorded here because a closure that hides its corrections is worth nothing: the males 20-under-30 footing was first read as 25 from a reduced overview and is 28 at magnification (the second glyph is an 8 whose two bowls close, not a 5 whose top bar is separate \u2014 the sheet's own 5 stands two cells to the right for comparison), and the free-white under-5 female column needed two `2`s at lines 27 and 30 that a component filter had dropped as over-tall, which the column's shortfall of 4 is what found. Three ink specks are recorded as specks and not as entries \u2014 one in the female 60-under-70 column at line 3, one in the female 80-under-90 column at line 20, and one rule fragment in the female 10-under-15 column at line 21 \u2014 and the closure is the reason: every column they stand in either closes without them or is printed blank.",
  "derived_totals": {
   "free_white_males": 93,
   "free_white_females": 88,
@@ -231,10 +231,13 @@
  "free_coloured_note": "BLANK, and measured blank rather than eyeballed: an ink census over the twelve free-coloured columns, at the same local-background threshold the free-white columns were cut with, finds no component at all above 40 px of area and 12 px of height. The printed free-coloured footings are blank to match.",
  "pairing": {
   "paired_to_printed_page": null,
-  "state": "unpaired",
+  "state": "paired",
   "why": "a left sheet carries its own printed page number (209) and its own names, so it needs no pairing to be read. Its pairing to a CONTINUATION sheet is the separate reading T-0528/T-0539 make, and it is not asserted here.",
   "page_population_key": 181,
-  "page_population_key_note": "the free-white persons this sheet enumerates, derived from the read cells and closing against eighteen printed column totals. A continuation sheet whose TOTAL footing reads 181 is this leaf; that test belongs to the pairing ticket, not here."
+  "page_population_key_note": "the free-white persons this sheet enumerates, derived from the read cells and closing against eighteen printed column totals. A continuation sheet whose TOTAL footing reads 181 is this leaf; that test belongs to the pairing ticket, not here.",
+  "paired_to_continuation_sheet": "33SQ-GYYJ-9CZ",
+  "paired_by": "T-0656",
+  "why_paired": "the test this block said belonged to the pairing ticket has been made. 33SQ-GYYJ-9CZ foots 181 under TOTAL, which is this leaf's page population exactly, and no other left sheet read anywhere in the deposit foots 181. It carries 30 entries against this leaf's 31 names, and the one it does not carry is line 10 - the Calhoun line this reading already recorded as carrying a name and not one cell. The continuation writing no family total there is a second and independent witness that the line enumerates nobody. The evidence is in pairing_key_26_50.json. Not one cell of this reading was changed by the pairing."
  },
  "records": [
   {
@@ -474,7 +477,7 @@
     "fc_f_55_100": 0,
     "fc_f_100up": 0
    },
-   "note": "given name reads Jacob or Charles; the surname's last four letters are one continuous stroke — Cunnehett / Cummehett"
+   "note": "given name reads Jacob or Charles; the surname's last four letters are one continuous stroke \u2014 Cunnehett / Cummehett"
   },
   {
    "line": 6,
@@ -713,7 +716,7 @@
     "fc_f_55_100": 0,
     "fc_f_100up": 0
    },
-   "note": "see records_note: this line carries a name and NOT ONE cell on the whole sheet. A household of no persons cannot be enumerated, so the line is an insertion, a correction or a struck entry rather than a head with an empty schedule — recorded as the sheet has it, not resolved"
+   "note": "see records_note: this line carries a name and NOT ONE cell on the whole sheet. A household of no persons cannot be enumerated, so the line is an insertion, a correction or a struck entry rather than a head with an empty schedule \u2014 recorded as the sheet has it, not resolved"
   },
   {
    "line": 11,
@@ -1720,6 +1723,6 @@
    "note": "Bond is legible; the given name reads Numan or Norman"
   }
  ],
- "records_note": "one record per ruled line carrying an entry, 31 of them, in the enumerator's own order — never reordered, and no line skipped. `cells` carries all thirty-eight columns of the left sheet at their read value, with 0 for a blank cell (a blank on this form is a zero, not an unknown). Names are recorded twice: `as_read` keeps the brackets over what the hand does not settle, `normalized` drops to `[?]` whatever a second source would have to supply. Nothing here mints or regrades an 1835 resident: the 1840 census is LATER EVIDENCE and the ratified ladder is explicit that 1839/1840 alone is never a 1835 resident. No IPUMS serial is attached (T-0504). LINE 10 IS THE ONE ANOMALY and it is recorded rather than resolved: it carries a name and not one cell anywhere on the sheet, and since a head of family is himself a person, a household of nobody cannot be enumerated — so the line is an insertion, a correction or a struck entry. Reading it as a household would invent a person; dropping it would edit the sheet. It is kept, at zero, with the anomaly stated.",
+ "records_note": "one record per ruled line carrying an entry, 31 of them, in the enumerator's own order \u2014 never reordered, and no line skipped. `cells` carries all thirty-eight columns of the left sheet at their read value, with 0 for a blank cell (a blank on this form is a zero, not an unknown). Names are recorded twice: `as_read` keeps the brackets over what the hand does not settle, `normalized` drops to `[?]` whatever a second source would have to supply. Nothing here mints or regrades an 1835 resident: the 1840 census is LATER EVIDENCE and the ratified ladder is explicit that 1839/1840 alone is never a 1835 resident. No IPUMS serial is attached (T-0504). LINE 10 IS THE ONE ANOMALY and it is recorded rather than resolved: it carries a name and not one cell anywhere on the sheet, and since a head of family is himself a person, a household of nobody cannot be enumerated \u2014 so the line is an insertion, a correction or a struck entry. Reading it as a household would invent a person; dropping it would edit the sheet. It is kept, at zero, with the anomaly stated.",
  "ticket": "T-0546"
 }
