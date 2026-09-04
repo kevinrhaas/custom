@@ -1147,7 +1147,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                     collect(v)
 
         collect(phase)
-        for key in ("function", "occupants", "lot_address"):
+        for key in ("function", "occupants", "lot_address", "land_owner"):
             collect(st.get(key, {}))
         if st.get("reconstruction", {}).get("source_id"):
             cited.add(st["reconstruction"]["source_id"])
@@ -1179,6 +1179,19 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "confidence": st["lot_address"]["confidence"],
                 "sources": st["lot_address"]["sources"],
                 "note": st["lot_address"]["note"],
+            }
+
+        # T-0609. WHO ENTERED THE GROUND UNDER THE ROOF is an attribute of the building
+        # for the same reason the address is: it is a claim with a source, a grade and a
+        # reason, and the card already renders those. The register is a register of
+        # TRANSACTIONS, so the row's own words are what travel — the block's `note`
+        # carries what it does not claim, which is the part a visitor most needs.
+        if "land_owner" in st:
+            attributes["land_owner"] = {
+                "value": st["land_owner"]["value"],
+                "confidence": st["land_owner"]["confidence"],
+                "sources": st["land_owner"]["sources"],
+                "note": st["land_owner"]["note"],
             }
 
         # THE PHASE'S CLAIM ABOUT ITSELF. Every `form` attribute has carried its

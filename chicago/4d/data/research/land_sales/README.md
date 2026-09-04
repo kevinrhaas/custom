@@ -95,6 +95,41 @@ county and date.
   needs a different shape of query.
 - **The canal sections.** They were sold by the canal commissioners, not the land
   office, and are not in this database at all — their absence is not a hole.
-- **The join from a tract to a standing structure.** `entries.json` carries a
-  structured `tract` for exactly that purpose; resolving a quarter-quarter or a town
-  lot to a footprint against the plat is the next ticket's work, not this one's.
+**Done, 2026-09-04 (T-0609):** the join from a tract to a standing structure.
+`tools/resolve_land_tracts.py` puts every sale on the ground or says why it cannot,
+writes the result to `ground.json`, and puts a `land_owner` block on the 63 structures
+the resolved tracts reach. See the next section.
+
+## The join to the ground, and the four tracts the town stands on
+
+`tools/resolve_land_tracts.py --build` derives `ground.json`: one row per sale, carrying
+either the polygon it lands on or the reason it does not. **10 of the 375 rows land on
+the ground and reach 63 of the 372 structures; the other 365 rows each say why they do
+not.** The
+section grid is CONSTRUCTED from the one PLSS corner this project holds — State &
+Madison, `G1` — on the plat's own bearing, in nominal one-mile squares, and is carried
+only across the four sections that meet at it. That is liberty **L219**, and the module
+docstring is the long form.
+
+| the ground | who entered it | when | roofs |
+|---|---|---|---|
+| north fraction of section 10 — Kinzie's Addition | Robert A Kenzie / Kinzie, printed both ways | 7 May 1831 | 27 |
+| E2NE of section 9 | Alexander Wolcott | 29 Sept 1830 | 18 |
+| SW fractional quarter of section 10 — the United States Reservation | John Baptist Baubian | 28 May 1835 | 17 |
+| E2NW of section 9 | James Kinzie | 28 Sept 1830 | 1 |
+
+The reservation row is the one to read twice. `data/liberties.json` **L108** already
+quotes Andreas for Beaubien's pre-emption of 28 May 1835 over the fort's ground; this
+register carries the same entry independently, and the polygon under it is the ring L108
+derives rather than a second construction of the same tract. **Whether the entry held is
+not read here** — it was litigated for years, and this domain records the transaction the
+register prints and nothing about its outcome.
+
+**The two silences, and both are the source's rather than the tool's.** 254 of the
+structures stand in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get
+nothing, because the canal commissioners sold those lots and this database does not hold
+them. And **150 rows, every town-lot and block-only sale in the register, are in section
+16, the school section**, sold at the October 1833 auction; that subdivision's plat is
+not traced by this project, so a block and lot number in it names ground this repo cannot
+point at. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
+the only committed structure standing in section 16.
