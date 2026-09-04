@@ -1,0 +1,24 @@
+{
+  "id": "eliza_chappel_school_shore_view",
+  "type": "illustration",
+  "citation": "Unattributed drawing of a log building on a shore, with a woman in its doorway, a crowd of children on the bank, canoes afloat and drawn up, and a white lighthouse tower on a low point in the middle distance. Deposited by the repository owner on 2026-09-03 with the description \"a great pic of the shore along there and the eliza chappel school at clark and lake\".",
+  "date": "undated",
+  "describes_date": "not established; the lighthouse tower it draws is a terminus post quem that has not yet been read",
+  "repository": "not stated. The file arrives with a social-media filename (21617595_10203558686525015_5452300313452439832_n.jpg) and carries no artist, title, date or holding institution.",
+  "locator": "chicago/reference/images/chicago/eliza-chappel-school/21617595_10203558686525015_5452300313452439832_n.jpg",
+  "tier": 5,
+  "rights_status": "check_required",
+  "rights_note": "Provenance unknown. Until the original is located with its terms stated, cite in text and derive no asset from it. It arrives without artist, date or repository, so it cannot yet be argued out of copyright on age the way the Braunhold and Trowbridge plates can.",
+  "asset_use": "cross_check",
+  "verified": false,
+  "note": "FILED BEFORE IT IS SPENT, WHICH IS THE POINT OF THIS RECORD (T-0617, 2026-09-04).\n\nWHAT IT SHOWS. A one-storey LOG building at the right, gable roof, a door and two windows on the near face, saddle-notched corners; a woman in a white apron standing in the doorway; girls in bonnets and aprons streaming along the bank toward it. To the left, a shore: one canoe afloat with paddlers, two more drawn up with figures around them. In the middle distance a white lighthouse tower on a low point, and beyond it a scatter of small gabled buildings on a flat prairie horizon.\n\nTHE CAPTION AND THE PICTURE DISAGREE, AND THAT IS THE USEFUL PART. Clark and Lake is inland, and the 1834 destination of Chappell's school on that corner was the FRAME First Presbyterian Church — not a log building, and not on a shore. Two readings are open and this record asserts neither:\n  (a) It is Chappell's FIRST school of September 1833, the \"small log house formerly used as a store\" that the Beaubien material identifies as Mark Beaubien's own original cabin beside the Sauganash at Lake and Market. That corner stands on the south branch's bank, which is a shore with canoes on it. On this reading the picture is a FIFTH view of the Sauganash's log annex, and the most informative one, because it shows the building nearly square-on.\n  (b) It is some other log schoolhouse, in which case it belongs to whatever record it does depict and not to the Sauganash at all.\n\nHOW IT GETS SETTLED, AND IT IS A MEASUREMENT RATHER THAN AN IMPRESSION. The lighthouse is the control: it fixes the view direction toward the river mouth and puts the scene at or after the harbour light's construction, and the tree already holds chicago_harbor_lighthouse_1838.jpg to compare the tower against. The bank's bearing, the tower's position and the building's orientation read together say which corner of the town this can be standing on. That work is its own ticket, T-0649.\n\nWHAT MAY NOT BE DONE WITH IT MEANWHILE. It is an undated retrospective drawing by an unnamed hand until someone establishes otherwise. It may not move an attributed plate — Braunhold, Petford, Trowbridge — on any axis where the two disagree. Where it agrees with them it corroborates; where it is alone it is a single weak view, graded the way T-0092 graded the shutter leaves.\n\ndocs/RESEARCH/sauganash_image_accuracy.md § 4 is where this is written up, and it records that T-0617 deliberately did NOT spend this image.",
+  "what_it_supplies": [
+    "nothing yet: no attribute of any committed record rests on this image"
+  ],
+  "what_it_does_not_supply": [
+    "its own subject — whether the log building it draws is the Sauganash's annex or another schoolhouse is unsettled",
+    "its own date, artist, title or repository",
+    "any coordinate, footprint outline or dimension",
+    "corroboration of the Braunhold engraving: nothing has yet been read off it"
+  ]
+}

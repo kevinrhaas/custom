@@ -777,6 +777,18 @@ step "the ways the fort plates draw are still the ways the town was built to" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_fort_ways_plate.py --self-test
 
+# T-0617. The same rule, applied to the owner's four Sauganash views: a row of
+# docs/RESEARCH/sauganash_image_accuracy.md states a measurement, names the tool
+# that made it, and prints the number. This gates on the four claims the note
+# rests on — five bays over five with the door in the middle, and an annex whose
+# courses are coarser than the block's siding — and on drift in the banked
+# reading, which is how a detector edit that quietly moves a number gets caught.
+step "Braunhold's Sauganash still says what the research note says it says" \
+  python3 tools/measure_sauganash_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_sauganash_plate.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
