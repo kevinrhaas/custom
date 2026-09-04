@@ -5452,12 +5452,12 @@
     "person_id": "allen_edward_richards",
     "household_id": "hh_allen_edward_richards",
     "resident_name": "Edward Richards Allen",
-    "resident_grade": "inferred",
+    "resident_grade": "attested",
     "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
     "rung": "no_change",
-    "reason": "the person is already in the residents layer at grade 'inferred'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source."
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source."
    }
   },
   {

@@ -13,6 +13,38 @@
       "passed": 50,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 297,
+      "takenAt": "2026-09-04T23:50:44.479Z",
+      "ref": "steward/t-0440-clark-filer-live-placement",
+      "commit": "cf5ac47370a2",
+      "devCommit": "0adde686953a",
+      "treeHash": "sha256:bf67eb26c8596247",
+      "treeDirty": true,
+      "changelogHash": "sha256:c761848cafebf5c8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_d1112c.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 50,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 300,
       "takenAt": "2026-09-04T23:42:09.058Z",
       "ref": "steward/t-0440-clark-filer-live-placement",
@@ -1493,38 +1525,6 @@
         ]
       },
       "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 137,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 261,
-      "takenAt": "2026-09-04T13:37:29.068Z",
-      "ref": "steward/t-0611-fergus-1839-appendices",
-      "commit": "c7455273a7eb",
-      "devCommit": "80330dc7a46b",
-      "treeHash": "sha256:2d27265a1ca841ab",
-      "treeDirty": false,
-      "changelogHash": "sha256:3602f3491e9942b1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          4.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
     },
     {
       "viewport": "desktop",
