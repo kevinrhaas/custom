@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 528, title: 'The country around the town, read for who bought it', kind: 'change', ts: '2026-09-04T21:57:07.546Z', date: 'Sep 4, 2026, 4:57 PM CT',
+    items: [
+      'Nothing in the town moved today. This is about the ground OUTSIDE it \u2014 the five townships that ring Chicago, which the federal land register had never been opened for here. It has now been read the same way the town\u2019s own two were: section by section, all 180 of them, each walked to the end of its results rather than to the end of its first page.',
+      '387 sales through 1836, and every single one is a plain cash entry at the land office \u2014 no school-section auction, no canal land, because neither exists out there. They arrive late and all at once: one sale in 1833, thirty-eight in 1834, three hundred and eighteen in 1835, thirty in the first months of 1836. That is the land rush reaching the prairie a year behind the town.',
+      'Nine of the buyers are men this town already holds. Hiram Pearsons entered seventeen tracts out in the ring and Walter Newberry six, while the lots inside the town were changing hands under their names too. The register states a home county for only thirty-two of the 387 rows, so none of the nine is treated as evidence of where anybody lived \u2014 a purchase is a transaction, and that is all it is allowed to say here.',
+      'Nothing in the scene changed and nothing was meant to. None of this ground is inside the town, no building stands on any of it, and no resident was minted, moved or regraded. What the town gains is the country around it: 57,000 acres and $125,000 of it now on the record, against 20,000 before.',
+      'Where the reading stops is written down as carefully as where it found something. 116 of the 180 sections were walked to the end and held no sale before 1837 \u2014 read, empty, and not a hole \u2014 and each is listed by name so the next reader does not ask again.',
+      'Every ruling in these files now cites the sales it was made from. 480 judgements here \u2014 this name is that man, this one is not \u2014 named no record at all, which meant nobody could check them and nothing counted them. All 480 do now.',
+    ] },
   { v: 527, title: 'Why this town believes 531 of its people were here', kind: 'change', ts: '2026-09-04T21:39:21.631Z', date: 'Sep 4, 2026, 4:39 PM CT',
     items: [
       'Open any resident in the Evidence panel and you can now read the case for them \u2014 not just the verdict. Until today, more than half the people in this town carried a grade, and the reasoning behind that grade was written down in a file nobody opens.',
