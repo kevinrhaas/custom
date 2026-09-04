@@ -1,7 +1,7 @@
 ---
 id: T-0592
 title: The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 5:49:45 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926189060
 ---
 
 G. Spring's For-Sale notice names TWO structures on lot 7 of block 16 — "a large
