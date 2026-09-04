@@ -736,7 +736,7 @@
    "resident": "Edward Richards Allen",
    "person_id": "allen_edward_richards",
    "household_id": "hh_allen_edward_richards",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -3312,7 +3312,7 @@
    "resident": "Edmund L Kimberly",
    "person_id": "kimberly_edmund_l",
    "household_id": "hh_kimberly_edmund_l",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -3736,7 +3736,7 @@
    "resident": "John Cook",
    "person_id": "cook_john",
    "household_id": "hh_cook_john",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -6212,7 +6212,7 @@
    "resident": "Seth Johnson",
    "person_id": "johnson_seth",
    "household_id": "hh_johnson_seth",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -10580,7 +10580,7 @@
   {
    "resident": "Seth Johnson",
    "person_id": "johnson_seth",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e1412",
     "as_printed": "Johnson, Sanford, carpenter, Dearborn, bds John Gray [died April 10, 1873. aged 65]",
@@ -10637,7 +10637,7 @@
   {
    "resident": "Truman G Wright",
    "person_id": "wright_truman_g",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e2678",
     "as_printed": "Wright, Timothy, bds Mrs. John Wright [lives New York City]",
@@ -10675,7 +10675,7 @@
   {
    "resident": "Willard Jones",
    "person_id": "jones_willard",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e1433",
     "as_printed": "Jones, William [Golden]. (B. J. & Co.), res 94 Randolph, s.e. cor Dearborn, member of Board of Health [died",
@@ -10694,7 +10694,7 @@
   {
    "resident": "Willard Jones",
    "person_id": "jones_willard",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e1435",
     "as_printed": "Jones, William Edwin (Ogden & J.). bds Wllliam B. Ogden [died March 9, 1851. aged 34.",
@@ -10713,7 +10713,7 @@
   {
    "resident": "Willard Jones",
    "person_id": "jones_willard",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e1436",
     "as_printed": "Jones, William Harrison, clerk, H. W. Bigelow, bds William Jones [died, Aiken. S.C.. April 25,. 1850. aged 23.]",
