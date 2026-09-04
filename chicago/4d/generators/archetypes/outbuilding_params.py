@@ -697,3 +697,127 @@ def from_phase(phase: dict, record: dict | None = None) -> OutbuildingParams:
     )
     p.validate()
     return p
+
+
+# ---------------------------------------------------------------------------
+# THE OPENINGS, and where they fall on each elevation (T-0459).
+#
+# These live here so that something with no Blender can ask WHERE THE OPENINGS
+# ARE. The signage layer is the caller that needed it: eight of this archetype's
+# sheds carry a painted name, and the generator that placed them knew the wall's
+# height and its frontage and nothing at all about the doorway in the middle of it.
+
+# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
+# beside this file computes the same rectangles from the same constants, and until
+# it CONSUMES these functions the two are two copies. Making it consume them is
+# T-0520, and it is a separate ticket for one reason: the asset staleness hash
+# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
+# stales every asset of that archetype — 212 of them across the three touched here
+# — and demands a town-wide rebake that does not fit beside this work. Until then:
+# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
+# COMMIT. The constants are already shared, which is most of the drift surface; the
+# arithmetic is what is not yet.
+# ---------------------------------------------------------------------------
+
+def loft_rect(p: "OutbuildingParams") -> tuple:
+    """(u0, u1, z0, z1) of the hay door on `p.loft_side`."""
+    side = p.loft_side
+    run = p.side_run_m(side)
+    dw, dh = p.loft_door_size_m
+    if p.roof_type == "shed":
+        z1 = float(p.wall_height_m) + p.roof_rise_m - 0.22
+    else:
+        z1 = float(p.wall_height_m) + p.roof_rise_m * 0.74
+    return (run / 2.0 - dw / 2.0, run / 2.0 + dw / 2.0, z1 - dh, z1)
+
+
+def vent_rect(p: "OutbuildingParams"):
+    """The one small unglazed opening this archetype gives a closed outbuilding, as
+    `(side, (u0, u1, z0, z1))`, or None.
+
+    A FIXED DEFAULT, not a record's value: `fenestration` is read for its confidence
+    and never for its value, exactly as in frame_tavern, because a tint is not a
+    building. A stable with no opening but its door is a crate, and a smokehouse needs
+    to breathe — but the size, the shape and the position of this hole are the
+    archetype's, and docs/LIBERTIES.md owns them the moment a record uses this
+    archetype.
+
+    Skipped on anything under 2.4 m: a privy's ventilation is the gaps between its own
+    boards, and cutting a window in one would be inventing a fitting.
+    """
+    if min(p.width_m, p.depth_m) < 2.4 or p.open_sides:
+        return None
+    order = ["back", "left", "right", "front"]
+    for side in order:
+        if side == p.door_side and p.door != "none":
+            continue
+        if side == p.loft_side:
+            continue
+        run = p.side_run_m(side)
+        if run < 1.4:
+            continue
+        z1 = min(float(p.wall_height_m) - 0.30, 2.35)
+        if z1 < 1.2:
+            continue
+        return (side, (run * 0.62 - 0.19, run * 0.62 + 0.19, z1 - 0.32, z1))
+    return None
+
+
+def openings(p: "OutbuildingParams") -> dict:
+    """side -> [(kind, u0, u1, z0, z1), ...] — every hole in the building.
+
+    Independent of construction, unlike `boarding_holes`: a log shed's doorway is
+    drawn as an assembly standing in FRONT of the logs rather than as a hole cut
+    through them, but it is still a doorway, and a name painted across it is still
+    a name painted across a doorway.
+    """
+    out: dict = {}
+    if p.open_sides:
+        # An open bay runs the whole elevation and up to the plate under the eave —
+        # `_plate_z` in the mesh module, the LOWEST point of that elevation's top
+        # profile, which on a shed's high side is the wall height plus the whole
+        # rise. The bound here is that maximum rather than the exact plate, and
+        # deliberately generous: the only solid face an open side has is the beam
+        # itself, 0.18 m of it, which is a member and not a wall, and a caller
+        # asking "may something be fixed here" must not be told yes because a
+        # hand's breadth of timber crosses the top of a wagon bay.
+        for side in p.open_sides:
+            out.setdefault(side, []).append(
+                ("open_bay", 0.0, p.side_run_m(side), 0.0,
+                 float(p.wall_height_m) + p.roof_rise_m))
+    if p.door != "none":
+        dw, dh = p.door_size_m
+        um = p.side_run_m(p.door_side) / 2.0
+        out.setdefault(p.door_side, []).append(
+            ("door", um - dw / 2.0, um + dw / 2.0, 0.0, dh))
+    if p.loft and p.loft_side:
+        u0, u1, z0, z1 = loft_rect(p)
+        out.setdefault(p.loft_side, []).append(("loft_door", u0, u1, z0, z1))
+    v = vent_rect(p)
+    if v:
+        side, (u0, u1, z0, z1) = v
+        out.setdefault(side, []).append(("vent", u0, u1, z0, z1))
+    return out
+
+
+def boarding_holes(p: "OutbuildingParams") -> dict:
+    """side -> [(u0, u1, z0, z1), ...] to be cut out of the boarding.
+
+    Only meaningful for boarded construction; the log path ignores it, because a hole in
+    a log wall is not a hole in this model. The open bays are not listed either — an
+    open side has no boarding to cut.
+    """
+    if p.construction == "log":
+        return {}
+    return {side: [(u0, u1, z0, z1) for kind, u0, u1, z0, z1 in rects
+                   if kind != "open_bay"]
+            for side, rects in openings(p).items()}
+
+
+def front_openings(p: "OutbuildingParams") -> list[dict]:
+    """Everything on the front wall a signboard must not be hung over, in footprint
+    coordinates: `u` along the front from the polygon's origin, `z` above the base of
+    the walls. The archetype's `front` side IS the footprint's max-v edge (see `_to3`
+    in the mesh module), so no transform is needed."""
+    return [{"kind": kind, "u0": u0, "u1": u1, "z0": z0, "z1": z1}
+            for kind, u0, u1, z0, z1 in openings(p).get("front", [])]

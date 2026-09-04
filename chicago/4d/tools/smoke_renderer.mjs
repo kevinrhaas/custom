@@ -1897,6 +1897,15 @@ for (const [label, viewport, touch] of [
     //
     // The gate is still open at this point in the run (the walk tests click
     // through it much later), which is the only moment the row is on screen.
+    //
+    // T-0491. THE ROW COUNT IS NOT HARDCODED, and it was: this read `shown.length === 2`
+    // and T-0490 added a third row — the evidence population, out of the residents
+    // manifest — so the assertion failed on `dev` from 2 September without a word about
+    // the row it had not been told about. A test that names how many figures there are
+    // rots the next time the row is right; one that reads the same files the page read
+    // and compares figure for figure cannot. The residents manifest is fetched here
+    // rather than taken off the harness handle because `census.js` reads it directly and
+    // nothing puts it on `window`.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
@@ -1909,14 +1918,23 @@ for (const [label, viewport, touch] of [
         data: window.__chicago4d.census,
       };
     });
+    // The third row's figure is not on the harness handle, so it is read off the
+    // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
+    // this run is serving, which is the same file the page fetched.
+    let residentCounts = null;
+    try {
+      residentCounts = JSON.parse(
+        fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
+      ).counts || null;
+    } catch { residentCounts = null; }
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
+    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
+      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
-      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
-      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
+      gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
+      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
-      Number.isFinite(want[0]) && Number.isFinite(want[1])
-      && shown[0] === want[0] && shown[1] === want[1],
+      want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
@@ -2385,7 +2403,7 @@ for (const [label, viewport, touch] of [
         .filter((st) => st.record === 'sauganash_yard_trees')
         .map((st) => ({
           ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          inYard: st.e > 101.4 && st.e < 117.42 && st.n < -130.6 && st.n > -151.07,
           clear: onRun(st.e, st.n),
         }));
       return {
@@ -2956,6 +2974,35 @@ for (const [label, viewport, touch] of [
           if (a.style?.ground === b.style?.ground) sameGround++;
         }
       }
+      // T-0459: NO BOARD OVER AN OPENING, and it is a VISIBLE-QUALITY fault so it
+      // is tested here rather than only in the commit gate. The owner reported
+      // boards sitting over doors and over windows on walls with blank face going
+      // spare, and a sweep found it was all twenty of the flat-mounted ones. The
+      // record now carries, per flat sign, the door and window rectangles of the
+      // wall it hangs on — derived from the same archetype set-out the MESH is
+      // built from — and the one rectangle it is deliberately fixed to, which is
+      // only ever a door a board was shrunk onto. Anything else it covers is the
+      // fault coming back.
+      let flatSigns = 0;
+      const overOpening = [];
+      for (const sg of signs) {
+        const fit = sg.opening_fit;
+        if (!fit) continue;
+        flatSigns++;
+        const [ba, bc] = fit.board_span_local_m;
+        // `arm_height_m` is the board's HEAD; a wall board carries a rain cap over
+        // it, which signage.js stands 0.09 m proud of the same wall.
+        const top = sg.arm_height_m + (sg.mounting === 'wall_board' ? 0.09 : 0);
+        const bot = sg.arm_height_m - sg.board_h_m;
+        const on = fit.fixed_to;
+        for (const o of fit.openings || []) {
+          if (o.u0 >= bc || o.u1 <= ba || o.z0 >= top || o.z1 <= bot) continue;
+          const isFixture = on && o.kind === on.kind && o.u0 === on.u0
+            && o.u1 === on.u1 && o.z0 === on.z0 && o.z1 === on.z1
+            && ba >= on.u0 && bc <= on.u1 && bot >= on.z0 && top <= on.z1;
+          if (!isFixture) overOpening.push(`${sg.structure_id} over ${o.kind}`);
+        }
+      }
       // The South Water row, which is the street the town actually reads as one:
       // every sign whose anchor sits on the frontage line north of the block.
       const row = signs.filter((sg) => sg.anchor_local_enu_m[1] > -10
@@ -2977,6 +3024,8 @@ for (const [label, viewport, touch] of [
         unattributed,
         spans: spans.length,
         signs: signs.length,
+        flatSigns,
+        overOpening,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
         // T-0130: the board and the card have to agree about WHO, over the whole
         // set and not only at the Tremont. Punctuation is dropped because the
@@ -3017,6 +3066,13 @@ for (const [label, viewport, touch] of [
       + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
     check(`${label}: the whole signage layer is one draw call`,
       boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // T-0459. The count is asserted as well as the faults, so the test cannot pass
+    // by finding no flat signs to look at.
+    check(`${label}: no board is fixed over a door or a window`,
+      boards.flatSigns >= 15 && boards.overOpening?.length === 0,
+      `${boards.flatSigns} flat-mounted board(s) tested against their own wall's `
+      + `openings, ${boards.overOpening?.length ?? '?'} over one`
+      + (boards.overOpening?.length ? `: ${boards.overOpening.join(', ')}` : ''));
     // AND ITS SHADOW IS STILL IN THE FRAME. T-0115 dropped the derived furniture
     // out of the shadow map at `light` and put the signboards back in by
     // measurement, because the shadow is most of what a board contributes to the
@@ -4082,7 +4138,145 @@ for (const [label, viewport, touch] of [
                  recorded: q.post_height_m ?? null,
                  clear: q.clear_of_track_m ?? null, text: q.text ?? null };
       });
+      // THE EDGE RULE (T-0460), proved on the drawn geometry rather than on a
+      // number the layer reports about itself.
+      //
+      // A plank walk used to end, at each side, in a row of board ENDS: at a
+      // 0.32 m pitch with a 0.02 m gap between them over a deck standing 0.11 m
+      // proud of the road, the outer edge was ten thousand short end-grain
+      // faces with daylight between them. That is the sawtooth the owner
+      // reported, and the rule that replaces it is: **a walk's side is a
+      // continuous string piece — timber at the walk's own edge line, from the
+      // deck it holds down to the ground it stands on, at EVERY station along
+      // the run.**
+      //
+      // So this marches one named 98 m walk in 0.2 m stations, takes every
+      // vertex in the layer standing within 0.03 m of that walk's edge line on
+      // either side, and asks each station for two things: a vertex up at the
+      // deck, and a vertex down at the ground. A comb of board ends answers the
+      // first and not the second — the old bay stringer that did reach the
+      // ground stood 0.09 m inboard, outside this band, which is exactly why
+      // the edge read as ragged — so this check FAILS on the geometry it was
+      // written against and passes on the string piece that replaced it.
+      const edge = (() => {
+        const walk = (f?.walks ?? []).find((w) => w.id === 'blk_lake_clark_north_walk_1');
+        const line = walk?.centreline_local_enu_m;
+        if (!Array.isArray(line) || line.length !== 2) return null;
+        const half = (walk.width_m ?? 1.83) / 2;
+        const rise = walk.rise_m ?? 0.11;
+        const [a0, b0] = line;
+        const de = b0[0] - a0[0];
+        const dn = b0[1] - a0[1];
+        const len = Math.hypot(de, dn);
+        const ue = de / len;
+        const un = dn / len;
+        const STEP = 0.2;
+        // The run's own ends are skipped: a walk is cut where its face stops and
+        // the last half-metre is the joint, not the edge this rule is about.
+        const from = 0.5;
+        const to = len - 0.5;
+        const cells = Math.max(1, Math.floor((to - from) / STEP));
+        const hi = new Array(cells).fill(-Infinity);
+        const lo = new Array(cells).fill(Infinity);
+        // BY THE FACE, NOT BY THE VERTEX. A string piece is a box 2.08 m long,
+        // so it carries vertices only at its two ends: asked for vertices, 441
+        // of these 487 stations read empty on geometry that is in fact
+        // continuous timber. What a station has to be covered by is a FACE, so
+        // this walks the layer's triangles — the buffers are non-indexed, three
+        // vertices to a triangle — takes those lying wholly in the edge band,
+        // and fills every station the triangle spans with the height range it
+        // covers there.
+        for (const t of timber) {
+          const pos = t.geometry?.getAttribute('position');
+          if (!pos) continue;
+          for (let i = 0; i + 2 < pos.count; i += 3) {
+            let lo3 = Infinity;
+            let hi3 = -Infinity;
+            let a3 = Infinity;
+            let b3 = -Infinity;
+            let inBand = true;
+            for (let k = 0; k < 3; k++) {
+              const e = pos.getX(i + k) - a0[0];
+              const n = -pos.getZ(i + k) - a0[1];
+              if (Math.abs(Math.abs(-e * un + n * ue) - half) > 0.03) { inBand = false; break; }
+              const along = e * ue + n * un;
+              if (along < a3) a3 = along;
+              if (along > b3) b3 = along;
+              const y = pos.getY(i + k);
+              if (y < lo3) lo3 = y;
+              if (y > hi3) hi3 = y;
+            }
+            if (!inBand) continue;
+            const c0 = Math.max(0, Math.ceil((a3 - from) / STEP));
+            const c1 = Math.min(cells - 1, Math.floor((b3 - from) / STEP));
+            for (let c = c0; c <= c1; c++) {
+              if (hi3 > hi[c]) hi[c] = hi3;
+              if (lo3 < lo[c]) lo[c] = lo3;
+            }
+          }
+        }
+        let open = 0;
+        let empty = 0;
+        let worst = 0;
+        for (let c = 0; c < cells; c++) {
+          if (hi[c] === -Infinity) { empty += 1; open += 1; continue; }
+          const t = from + (c + 0.5) * STEP;
+          const g = terrain.surfaceHeight(a0[0] + ue * t, a0[1] + un * t);
+          if (!Number.isFinite(g)) continue;
+          // Up at the deck AND down at the ground: a station that answers only
+          // one of the two is an open edge, and how far the timber falls short
+          // of the ground is what the sawtooth measured.
+          const deep = lo[c] - (g + 0.02);
+          const tall = (g + rise - 0.06) - hi[c];
+          if (deep > 0 || tall > 0) {
+            open += 1;
+            worst = Math.max(worst, deep, tall);
+          }
+        }
+        return { id: walk.id, len: Math.round(len * 10) / 10, cells, open, empty,
+                 worst: Math.round(worst * 1000) / 1000 };
+      })();
+      // THE DECAL ORDER (T-0625), and it is asserted structurally because the
+      // fault it catches is invisible to every count this layer reports about
+      // itself. The street ribbon is a decal — depthWrite off, polygonOffset
+      // -8/-32 so the terrain cannot punch through its drape — and that offset
+      // scales with the polygon's depth slope, which at the grazing angle a road
+      // is seen at is large enough to beat the 0.06 m a board crossing stands
+      // above it. The ribbon then paints over the crossing in hard triangular
+      // patches. frontage.js answers that by drawing the timber AFTER the
+      // ribbon, which requires two things that are easy to separate by accident:
+      // the two must be in the SAME render list (three draws every opaque before
+      // any transparent, and renderOrder cannot reach across the two lists), and
+      // the timber's renderOrder must be the higher. The layer shipped with only
+      // the second for two months and the comment claiming both.
+      const decal = (() => {
+        let root = f?.group;
+        while (root?.parent) root = root.parent;
+        if (!root) return null;
+        const street = [];
+        const timber = [];
+        root.traverse((o) => {
+          const m = o.material;
+          if (!m) return;
+          for (const mm of (Array.isArray(m) ? m : [m])) {
+            const nm = mm?.name || '';
+            if (/^street-/.test(nm)) street.push({ transparent: !!mm.transparent, order: o.renderOrder });
+            else if (nm === 'frontage-timber') timber.push({ transparent: !!mm.transparent, order: o.renderOrder });
+          }
+        });
+        if (!street.length || !timber.length) return null;
+        return {
+          street: street.length,
+          timber: timber.length,
+          sameList: street.every((s) => timber.every((t) => t.transparent === s.transparent)),
+          timberAfter: street.every((s) => timber.every((t) => t.order > s.order)),
+          streetOrder: street[0].order,
+          timberOrder: timber[0].order,
+        };
+      })();
       return {
+        edge,
+        decal,
         hitching,
         recordIds: (f?.records ?? []).map((r) => r.id),
         noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
@@ -4179,10 +4373,50 @@ for (const [label, viewport, touch] of [
       // no run opens and no crossing is added, and the shop stands 1.50 m back
       // from the frontage line, inside the 3.0 m a street fence needs, which was
       // already refused on that wall.
+      // T-0461 asked whether a lot is improved by the building STANDING on it or
+      // by where one corner of it landed, and it was the corner: `at` is the
+      // placement origin, which is a footprint VERTEX on 366 of the 367 placed
+      // records and the centroid on none. `_stands_on` now asks whether the
+      // committed footprint and the lot share ground. It can only ADD occupancy
+      // — 28 more across the town's 144 platted lots, none removed, 125 improved
+      // lots to 131 — so every figure here moves in one direction each.
+      // POSTS 18 to 20, and both are buildings whose own door is on the face
+      // they now stand on: tremont_house_1, a documented hotel on the Lake face
+      // of blk_south_water_clark, and exchange_coffee_house on the Lake face of
+      // blk_south_water_franklin. Each had 90% and more of its frontage on the
+      // lot and its origin corner just off it.
+      // FENCES 35 to 32, and every one of the three is the SAME clause T-0028
+      // and T-0380 are already recorded against — a wall inside the 3.0 m a
+      // street fence needs, so the building IS the street wall there. They are
+      // blk_south_water_clark lot 7 (tremont_house_1, 2.40 m),
+      // blk_lake_dearborn lot 2 (mason_blacksmith_shop, 0.55 m) and
+      // blk_south_water_lasalle lot 3 (recon_1835_blk_south_water_lasalle_a1_06,
+      // 1.61 m). The first is what T-0461 was filed for: that fence stood
+      // between the footway and the Tremont House's own goods.
+      // REFUSED 83 to 85 — the two new setback refusals above that were not
+      // already refused as prairie, plus one post refused for want of a walk at
+      // harmon_loomis_store, less one lot (blk_randolph_clinton lot 4) that
+      // stops reading as prairie and takes its fence. Six further refusals do
+      // not move in COUNT but change their WORDING, from "no committed building
+      // stands on this platted lot" to the building that does and how far back
+      // it stands. WALKS and CROSSINGS do not move: this rule reads lots, and a
+      // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 18 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        // T-0626 takes it back to NINETEEN, and it is the first time this count
+        // has gone DOWN. Nothing was refused for being badly placed: the log
+        // cabin beside the Sauganash stopped being a drug store. Its record was
+        // titled Philo Carpenter's Log Drug Store and carried `drug_store` as
+        // its function, three years after Carpenter moved out of it, and the
+        // hitching rule stands a post at a frontage whose TRADE it accepts. With
+        // the trade gone — the record now states three former uses and no
+        // current one — the frontage has no trade to take custom from a stranger
+        // off the street, so the post retires with the signboard that lettered
+        // the same man's name over the same door. Walks, crossings, fences and
+        // refusals do not move: the building is still there and still the street
+        // wall on that face.
+        && frontage.census?.posts === 19 && frontage.census?.fences === 32
+        && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4231,6 +4465,41 @@ for (const [label, viewport, touch] of [
       + `vertex ${frontage.deckTop?.toFixed(3)} m above it, ${frontage.bandBreaches} `
       + `vertice(s) past even their own relief allowance (worst by `
       + `${frontage.worstBreach?.toFixed(3)} m)`);
+    // THE WALK'S SIDE IS A MADE EDGE, NOT A ROW OF BOARD ENDS (T-0460). The
+    // owner reported the plank walk meeting the dirt road in a jagged sawtooth
+    // — "it's like the first thing we see" — and the treatment chosen was the
+    // first of the two he would accept: the walk sits consistently OVER the
+    // road, held between two string pieces whose tops are flush with the boards
+    // and whose feet reach the ground. The probe above walks one named 98 m run
+    // in 0.2 m stations and asks every one of them for timber from the deck to
+    // the ground at the walk's own edge line; it is written to fail on the comb
+    // of board ends this replaced.
+    // T-0625. The owner reported the crossing at Lake and South Water still
+    // broken after T-0460 shipped: the road was painting over the plank deck in
+    // triangular patches, which reads as the same sawtooth from the street but
+    // is a render-order fault, not a geometry one. T-0460's probe above cannot
+    // see it — the timber IS there, at the right height, with a continuous edge;
+    // it is simply not the thing on the screen. So this asserts the ordering
+    // contract itself: same render list, timber after the ribbon.
+    check(`${label}: the street decal cannot paint over the timber laid on it`,
+      frontage.decal !== null && frontage.decal.sameList && frontage.decal.timberAfter,
+      frontage.decal === null
+        ? 'no street ribbon or no frontage timber in the scene to compare'
+        : `${frontage.decal.street} street material(s) and ${frontage.decal.timber} timber `
+          + `mesh(es): sameList=${frontage.decal.sameList} (three draws every opaque before `
+          + `any transparent, so renderOrder cannot order across the two lists), `
+          + `timberAfter=${frontage.decal.timberAfter} `
+          + `(street renderOrder ${frontage.decal.streetOrder}, timber ${frontage.decal.timberOrder})`);
+
+    check(`${label}: a plank walk's side is one made edge for its whole length`,
+      frontage.edge !== null && frontage.edge.open === 0 && frontage.edge.cells > 400
+        && frontage.census?.kerb > 3000,
+      `${frontage.edge?.id ?? 'no walk probed'}: ${frontage.edge?.open} of `
+      + `${frontage.edge?.cells} station(s) over ${frontage.edge?.len} m show an open `
+      + `edge (${frontage.edge?.empty} with no timber at all, worst by `
+      + `${frontage.edge?.worst} m); the layer laid ${frontage.census?.kerb} length(s) `
+      + `of string piece, the largest step between two consecutive ones `
+      + `${frontage.census?.kerbStep_m} m`);
     // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
     // height came from a number beside the mesh rather than from a terrain sample
     // floats; a board hung too low is one a visitor walks through.
@@ -4388,11 +4657,28 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 17
-        && frontage.census?.hitching === 17
+    // T-0461 makes it NINETEEN, and neither is a building arriving or a trade
+    // settling: both already stood, with a documented trade the rule accepts,
+    // on a lot the containment test could not see them on. `_stands_on` asks
+    // whether the footprint and the lot share ground instead of where the
+    // placement origin — a footprint VERTEX, on 366 of 367 records — happened to
+    // fall, and tremont_house_1 (a hotel, 13.76 m of its 15.24 m frontage on
+    // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
+    // finds. The street-edge population is seventeen; the two on a record's own
+    // ground do not move, because those come from the Sauganash's own plates.
+    // T-0626 makes it EIGHTEEN, the first fall in this line, and it is a trade
+    // leaving rather than a building. `philo_carpenter_log_shop` — Mark
+    // Beaubien's own cabin, let to Philo Carpenter in 1832, to John S. Wright,
+    // then to Eliza Chappel's school until 1834 — stopped carrying `drug_store`
+    // as its function, because on 1 July 1835 it is neither a drug store nor a
+    // school and no source reached says what it was. The hitching rule accepts a
+    // frontage by its TRADE, so the post retires with it. The street-edge
+    // population is sixteen; the two on a record's own ground do not move.
+    check(`${label}: the eighteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 18
+        && frontage.census?.hitching === 18
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 15
+        && frontage.hitching.filter((h) => h.street).length === 16
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -4751,8 +5037,18 @@ for (const [label, viewport, touch] of [
     // has to be exact, and a walk that shrank under a floor would be a march
     // quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
+      // T-0461 LOWERS THE FENCE FLOOR, 34 to 32, and it is the one figure here
+      // this project should expect to fall. The other three are laid ground —
+      // faces, metres of walk, decks — and a rule that shrank those would be
+      // refusing ground it used to lay, which is what a floor is for. Fence
+      // RUNS are not: the street-fence rule refuses by design, and `_stands_on`
+      // finding the building actually standing on a lot is how three lots came
+      // to be refused under the clause that says a wall inside 3.0 m of the
+      // frontage line IS the street wall. The exact count is asserted above in
+      // the frontage census (32), so this stays a floor rather than becoming a
+      // second place to keep the same number.
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 32
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
@@ -5554,47 +5850,83 @@ for (const [label, viewport, touch] of [
     });
     await page.waitForTimeout(250);
 
-    // --- the invented residents have names now (K18) ------------------------
+    // --- the evidence-only households, after the invented names went (T-0524) -
     //
-    // Every reconstructed resident used to be "A baker (inferred resident,
-    // unnamed)". They carry invented names so a reconstructed household reads
-    // as a household — and a name LOOKS like a fact in a way a wall height does
-    // not, so the record has to declare it. What is pinned here is that the
-    // walkthrough SHOWS the declaration: a visitor who reads a name must be able
-    // to see, in the same card, that we made it up.
+    // WHAT THIS BLOCK USED TO ASSERT, AND WHY IT NO LONGER CAN. Until 2 September
+    // 2026 the layer minted a `reconstructed` person for every household the
+    // occupation census argued the town needed, gave each one an invented period
+    // name, and carried a `name_basis` block declaring the invention. K18 pinned
+    // the declaration: a visitor who reads a name must be able to see, in the same
+    // card, that we made it up. The owner's T-0489 ruling retired that population —
+    // `data/residents/index.json` now reads `by_grade.reconstructed: 0` — and the
+    // records that survived it say so in as many words ("The invented name this
+    // record used to carry, and its name_basis block, are retired: an invented name
+    // is not kept beside a documented one").
+    //
+    // So the subject of the first two assertions is gone, and the honest move is
+    // not to delete a passing-shaped check: it is to keep the wire and turn it
+    // round. What the layer now promises is the OPPOSITE promise — that the
+    // invented-name programme left nothing behind — and that is what is asserted,
+    // over the manifest's own tally and over the record this block already fetches.
+    // If a future run mints an invented name again, this trips.
+    //
+    // The `hh_inf_` households the ruling kept are `unplaced` evidence-only
+    // households: one head the papers name, graded `inferred`, on no roof.
     const invented = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const res = await fetch(new URL('residents/index.json', api.dataBase));
       const index = await res.json();
       const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
       const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
-      const person = hh.persons.find((p) => p.grade === 'reconstructed');
+      const head = hh.persons.find((p) => p.relationship === 'head') || hh.persons[0];
       return {
+        id: hh.id,
         household: hh.name,
-        name: person?.name,
-        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
-        basisGrade: person?.name_basis?.confidence,
-        basisNote: (person?.name_basis?.note || '').slice(0, 60),
+        name: head?.name,
+        headGrade: head?.grade,
+        headNote: (head?.note || '').slice(0, 400),
+        // The retirement, read three ways: the layer's own tally, this record's
+        // people, and the block that carried the declaration.
+        reconstructedInLayer: index.counts?.by_grade?.reconstructed,
+        reconstructedHere: hh.persons.filter((p) => p.grade === 'reconstructed').length,
+        anyNameBasis: hh.persons.some((p) => !!p.name_basis),
+        opening: String(hh.name ?? '').trim().split(/\s+/)[0]
+          .replace(/[^A-Za-z]/g, '').toLowerCase(),
         grades: index.vocabulary.grades,
       };
     });
-    check(`${label}: a reconstructed resident has an invented period name`,
-      /^[A-Z][a-z]+ [A-Z]/.test(invented.name ?? '')
-      && !/unnamed|inferred resident/i.test(invented.name ?? ''),
-      `name "${invented.name}"`);
-    check(`${label}: the invented name is graded as invented and says so`,
-      invented.basisGrade === 'reconstructed'
-      && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
-      `name_basis ${invented.basisGrade} — "${invented.basisNote}"`);
-    // The layer-word in this label was `inferred` until K23a, and so was this
-    // assertion — which is how a name claiming a better grade than its own
-    // record survived a release gate. It is pinned to the HEAD'S OWN GRADE now
-    // rather than to a literal, so the label cannot drift from the record again
-    // and cannot be satisfied by whichever word happens to be in fashion.
+    check(`${label}: an evidence-only household's head is a person a source names`,
+      /^[A-Z]/.test(invented.name ?? '')
+      && !/unnamed|inferred resident/i.test(invented.name ?? '')
+      && invented.grades?.includes(invented.headGrade)
+      && invented.headGrade !== 'reconstructed',
+      `head "${invented.name}" graded ${invented.headGrade}`);
+    // The inverse of the retired K18 check, and the reason it is here rather than
+    // deleted: `name_basis` is still rendered by `js/residents.js` (the "How this
+    // person is named" row), so nothing in the renderer stops an invented name
+    // coming back. The DATA is what the ruling changed, so the data is the gate.
+    check(`${label}: the invented-name programme left nothing behind on this layer`,
+      invented.reconstructedInLayer === 0 && invented.reconstructedHere === 0
+      && invented.anyNameBasis === false,
+      `${invented.reconstructedInLayer} reconstructed people in the manifest, `
+      + `${invented.reconstructedHere} on ${invented.id}, `
+      + `name_basis present: ${invented.anyNameBasis}`);
+    // The layer-word in this label was `inferred` until K23a, and this assertion
+    // was pinned to the HEAD'S OWN GRADE — which is how a name claiming a better
+    // grade than its own record survived a release gate. T-0489 renamed these
+    // households again, to "Evidence-only household — <head>", and that phrase is
+    // NOT a grade word, so pinning to the head's grade now asserts a coincidence.
+    // The two things worth keeping are kept instead: the household is named for
+    // the person it is a household of, and its opening word may never be a grade
+    // the record does not hold — the K23a rule, applied to household names too.
     check(`${label}: the household is named for its head and still says which layer it is`,
-      /household/.test(invented.household ?? '')
-      && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
-      `household "${invented.household}" against head grade ${invented.headGrade}`);
+      /household/i.test(invented.household ?? '')
+      && !!invented.name && (invented.household ?? '').includes(invented.name)
+      && /evidence-only/i.test(invented.household ?? '')
+      && !['attested', 'inferred', 'reconstructed', 'documented', 'conjectural',
+        'recommended'].includes(invented.opening),
+      `household "${invented.household}" for head "${invented.name}" `
+      + `graded ${invented.headGrade}`);
 
     // --- the prose may not name a level the record is not (K23a) ------------
     //
@@ -5697,12 +6029,26 @@ for (const [label, viewport, touch] of [
       };
       // And the search has to answer to BOTH names, which is the whole argument for
       // keeping the production identity anywhere.
+      //
+      // T-0524: this used to pick ONE record for both halves — an anonymous roof that
+      // an inferred household had been placed on — and T-0489 emptied `residents` on
+      // every one of the 249 anonymous roofs, so the find returned `undefined` and both
+      // halves read off an empty object. The two halves are two claims and they now
+      // take the subject each one is actually about: the production identity is the
+      // anonymous programme's, so `bySpec` reads an anonymous roof (any of them, since
+      // none is occupied any more); "found by the people in it" is a claim about a
+      // record that HAS people, so `byHousehold` reads one of the 48 that do. Neither
+      // half was weakened — the same two things are asserted, on subjects that exist.
       const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
         ?.reconstruction?.status === 'inferred_anonymous'
-        && (registry.get(id)?.sidecar?.residents ?? []).length);
+        && mod.displayName(registry.get(id).sidecar, id).spec);
       const sidecar = registry.get(anonId)?.sidecar ?? {};
       const terms = mod.searchTerms(sidecar, anonId);
-      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
+      const housedId = [...registry.keys()].find((id) => /^The\s+(.+?)\s+household\b/
+        .test((registry.get(id)?.sidecar?.residents ?? [])[0]?.name ?? ''));
+      const housed = registry.get(housedId)?.sidecar ?? {};
+      const surname = /^The\s+(.+?)\s+household\b/.exec(housed.residents?.[0]?.name ?? '');
+      const housedTerms = mod.searchTerms(housed, housedId);
       // The card itself: opened on that record, reading what a visitor reads.
       window.__chicago4d.popup.show(registry.get(anonId));
       const card = {
@@ -5716,7 +6062,8 @@ for (const [label, viewport, touch] of [
       return { specShaped, anonymous, empty, planted, card,
                searchable: {
                  bySpec: terms.includes(sidecar.name ?? '\u0000'),
-                 byHousehold: !!surname && terms.includes(surname[1]),
+                 byHousehold: !!surname && housedTerms.includes(surname[1]),
+                 housedId, household: surname?.[1] ?? '',
                } };
     });
     check(`${label}: no building titles itself by its part number`,
@@ -5733,9 +6080,11 @@ for (const [label, viewport, touch] of [
       && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
       `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
       + `over reference "${titles.card.reference.trim()}"`);
-    check(`${label}: search still finds it by its part number and by its household`,
+    check(`${label}: search still finds a roof by its part number and a house by its household`,
       titles.searchable.bySpec && titles.searchable.byHousehold,
-      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
+      `by spec ${titles.searchable.bySpec} on ${titles.card.id}, `
+      + `by household ${titles.searchable.byHousehold} `
+      + `("${titles.searchable.household}" on ${titles.searchable.housedId})`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //
@@ -6024,7 +6373,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18', 'L217'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -6446,8 +6795,20 @@ for (const [label, viewport, touch] of [
     // meet the town's people is this card. Before it existed the layer stopped at
     // the repo — the failure mode that looks identical, from the street, to the
     // work never having been done. The discriminating half is the third check: a
-    // building the programme RAISED for a hypothesised household has to say so,
-    // or the card reads as evidence that somebody lived here.
+    // building whose household is there for a REASON has to say what the reason
+    // is, or the card reads as bare evidence that somebody lived here.
+    //
+    // T-0524: that third read was `inf_cooperage_south` — a roof the inferred-
+    // household programme had raised, whose section had to carry
+    // "BECAUSE OF THIS HOUSEHOLD" over `grade-reconstructed` people. T-0489
+    // retired that programme and emptied `residents` on all 31 `inferred_household`
+    // roofs, so the section is not rendered on any of them and the assertion had no
+    // subject; the string it looked for is in no record in the tree any more.
+    // The claim it was making — the card states the BASIS on which this household
+    // is attached to this building — survives on the five records that still carry
+    // one, so it is read there. T-0516 is the open ticket that decides what those
+    // 31 roofs now say; when a roof carries a household again, the reconstructed
+    // half of this check belongs back here alongside the documented half.
     const who = await page.evaluate(() => {
       const read = (id) => {
         window.__chicago4d.pick(id);
@@ -6463,7 +6824,7 @@ for (const [label, viewport, touch] of [
       };
       return {
         brown: read('brown_boarding_house'),
-        inferred: read('inf_cooperage_south'),
+        basis: read('harmon_log_cabin'),
         none: read('log_jail'),
       };
     });
@@ -6475,11 +6836,13 @@ for (const [label, viewport, touch] of [
       who.brown.grades.some((c) => c.includes('grade-inferred'))
       && !who.brown.grades.some((c) => c.includes('conf-')),
       who.brown.grades.join('|'));
-    check(`${label}: a building raised for an inferred household says so`,
-      who.inferred.present
-      && who.inferred.grades.every((c) => c.includes('grade-reconstructed'))
-      && /BECAUSE OF THIS HOUSEHOLD/.test(who.inferred.basis),
-      `basis "${who.inferred.basis.slice(0, 80)}"`);
+    check(`${label}: a building's household says on the card why it is attached there`,
+      who.basis.present && who.basis.grades.length > 0
+      && who.basis.grades.every((c) => /\bgrade-(attested|inferred|reconstructed)\b/.test(c))
+      && !who.basis.grades.some((c) => c.includes('conf-'))
+      && /the household is the one the sources attach to it/.test(who.basis.basis)
+      && who.basis.text !== who.brown.text,
+      `basis "${who.basis.basis.slice(0, 80)}", grades ${who.basis.grades.join('|')}`);
     check(`${label}: a building with no household gets no section at all`,
       !who.none.present && who.none.recorded.length === 0,
       `present ${who.none.present}`);
@@ -6953,6 +7316,31 @@ for (const [label, viewport, touch] of [
       absurd.length
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
+
+    // --- the Sauganash is two masses, not one box (T-0626) ------------------
+    //
+    // The owner reported this building from the walk: a mass missing at the back
+    // and a log hut standing in front of its street door. Both were record faults
+    // and both are fixed, so the fix is asserted where a regression would show —
+    // in the RENDERED bounds, not in the JSON, because a record that grew a
+    // `cross_wing` attribute nothing built would read as fixed everywhere else.
+    //
+    // Orientation-agnostic on purpose. The plan is a 9.92 m frontage on Lake
+    // Street with an 8 m block behind it and an 8 m wing behind THAT, so one
+    // horizontal extent is about 16.5 m with the roof overhangs and the other
+    // about 10.4 m; which of the two is x and which is z is the placement's
+    // business and not this assertion's. The box it replaces was 12 x 8, whose
+    // long side is 12.5 m — well under the floor here, so a revert fails.
+    const saugBox = scale.perStructure.find((st) => st.id === 'sauganash_hotel');
+    const saugPlan = saugBox ? [saugBox.size[0], saugBox.size[2]].sort((a, b) => b - a) : null;
+    check(`${label}: the Sauganash is rendered as its two-mass plan`,
+      !!saugPlan && saugPlan[0] >= 15.0 && saugPlan[0] <= 18.0
+      && saugPlan[1] >= 9.5 && saugPlan[1] <= 11.5,
+      saugPlan
+        ? `plan ${saugPlan[0].toFixed(2)} x ${saugPlan[1].toFixed(2)} m `
+          + `(want the long axis 15-18 m for block + cross wing, the short 9.5-11.5 m `
+          + `for the measured five-bay frontage; the retired placeholder was 12 x 8)`
+        : 'sauganash_hotel is not in the instance bounds at all');
 
     // --- nothing hovers -----------------------------------------------------
     //
@@ -10018,11 +10406,18 @@ for (const [label, viewport, touch] of [
       // manifest loaded, so one is opened here and read back.
       const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
       const collapsed = rows.length ? rows.every((r) => !r.open) : false;
-      // T-0021. Two more rows, because the three graded claims that were being
-      // printed as objects are not on the Beaubien record: `name_basis` is on
-      // the 113 reconstructed people and `age_on_scene_date`/`birth_year` on the
-      // nine the sources date. A row that carries neither cannot fail for them.
-      const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
+      // T-0021. Two more rows, because the graded claims that were being printed
+      // as objects are not on the Beaubien record: `age_on_scene_date` and
+      // `birth_year` are on the nine the sources date. A row that carries neither
+      // cannot fail for them.
+      // T-0524: the third of those claims was `name_basis`, on the 113
+      // reconstructed people, and this row was `hh_inf_baker_south_01` — one of
+      // them. T-0489 retired that population and every id like it, so the lookup
+      // matched nothing and every read off it was the empty string. The row is
+      // taken from the manifest's own first `hh_inf_` household instead of a
+      // literal id, so the next ruling that renames them does not silently empty
+      // this read again; what it now carries is an evidence-only household.
+      const named = rows.find((r) => String(r.dataset.id ?? '').startsWith('hh_inf_'));
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
       // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
       // people the post office's letter lists minted and on nobody else, so no row
@@ -10032,9 +10427,9 @@ for (const [label, viewport, touch] of [
       const group = mount ? mount.querySelector('details.res-ll-group') : null;
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
-      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
-      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      const letter = rows.find((r) => r.dataset.id === 'hh_luce_william');
+      const candidate = rows.find((r) => r.dataset.id === 'hh_garrett_a');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_hail_aifred');
       for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;
@@ -10053,7 +10448,13 @@ for (const [label, viewport, touch] of [
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
         notResident: window.__chicago4d.residents?.notResident ?? 0,
-        error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
+        // T-0524: this fell back to a fixed sentence, so the failure detail read
+        // "(no residents on the handle)" even when the handle was there and the
+        // count had simply moved — which is how six correct-shaped reds read as a
+        // missing section for a day. The handle's own message, or nothing.
+        error: window.__chicago4d.residents
+          ? (window.__chicago4d.residents.error ?? '')
+          : 'no residents on the handle',
         rendered: rows.length,
         orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
         // T-0379: the two halves of the list, and the group that holds the second.
@@ -10081,24 +10482,74 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // T-0524, and the shape every figure below now takes. These assertions carried
+    // the layer's SIZE as a literal — 920 households, 956 people, 193 evidenced,
+    // 764 off-card, 150 reviews — and a test that hardcodes a count rots the next
+    // time the count is right: T-0489 moved all five on 2 September 2026 and six
+    // assertions went red for being correct about a town that had changed. So the
+    // expectation is READ, independently, out of the two committed files the page
+    // itself fetched, exactly as T-0491 repaired the gate-census assertion (#682).
+    //
+    // The independence matters, or this is a tautology. Nothing here reads the
+    // handle: `residents/index.json` and `residents/research_pilot.json` are
+    // fetched again and the figures recomputed off the raw rows, so what is
+    // asserted is that the SECTION agrees with the DATA. And each check carries a
+    // floor besides, because a manifest that lost its households would otherwise
+    // satisfy "the card shows all of them" with nothing on the card at all.
+    const expected = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const index = await (await fetch(new URL('residents/index.json', api.dataBase))).json();
+      const pilot = await (await fetch(new URL('residents/research_pilot.json', api.dataBase))).json();
+      const rows = Array.isArray(index.households) ? index.households : [];
+      const off = rows.filter((e) => !e.lives_at && !e.works_at);
+      const reviews = Array.isArray(pilot.reviews) ? pilot.reviews : [];
+      return {
+        households: rows.length,
+        statedHouseholds: index.counts?.households,
+        persons: index.counts?.persons,
+        summedPersons: rows.reduce((n, e) => n + (e.persons || 0), 0),
+        reconstructed: index.counts?.by_grade?.reconstructed,
+        letterList: rows.filter((e) => e.letter_list_only).length,
+        evidenced: rows.filter((e) => !e.letter_list_only).length,
+        offCard: off.length,
+        letterListOffCard: off.filter((e) => e.letter_list_only).length,
+        researchReviewed: new Set(reviews.map((r) => r.person_id)).size,
+        researchCounts: pilot.counts || {},
+      };
+    });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 920 && residents.rendered === 920 && !residents.busy,
-      `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 956 person entries are counted`, residents.persons === 956,
-      `${residents.persons}`);
-    // T-0379, and the assertion the ruling itself asked for. 727 of the 920
-    // households are a name on a post-office list and nothing else, and the
-    // ruling's own test of a good implementation is that a visitor can tell which
-    // ones at a glance. So: the town's evidenced households are still 193 rows in
-    // the section proper — the list did not become three-quarters noise — the
-    // cohort is one group holding all 727, and that group is CLOSED when the
-    // section mounts. A regression here does not break the page; it drowns it,
-    // which is why it is a number and not an eyeball.
+      expected.households > 500 && expected.statedHouseholds === expected.households
+      && residents.households === expected.households
+      && residents.rendered === expected.households && !residents.busy,
+      `${residents.households} loaded / ${residents.rendered} rendered of `
+      + `${expected.households} in the manifest`
+      + (residents.error ? ` (${residents.error})` : ''));
+    check(`${label}: every person entry in the manifest is counted`,
+      expected.persons > 500 && expected.persons === expected.summedPersons
+      && residents.persons === expected.persons,
+      `${residents.persons} on the handle, ${expected.persons} stated, `
+      + `${expected.summedPersons} summed off the rows`);
+    // T-0379, and the assertion the ruling itself asked for. Most of the layer is
+    // a name on a post-office list and nothing else, and the ruling's own test of
+    // a good implementation is that a visitor can tell which ones at a glance. So:
+    // the cohort is ONE group holding every letter-list row and no other, the two
+    // halves account for the whole layer, and the group is CLOSED when the section
+    // mounts. A regression here does not break the page; it drowns it, which is
+    // why it is a number and not an eyeball.
+    // T-0524 took the literals out. It read `evidenced === 193`, whose comment
+    // argued "the list did not become three-quarters noise" — after T-0489 removed
+    // 108 reconstructed households the evidenced side is a far smaller share than
+    // that, and the sentence was arguing for a town that no longer exists. What is
+    // worth pinning is the PARTITION, which is true at any size.
     check(`${label}: the letter-list cohort is held apart from the evidenced town`,
-      residents.evidenced === 193 && residents.letterList === 727
-      && residents.groupRows === 727 && residents.groupClosedOnMount === true,
-      `${residents.evidenced} evidenced / ${residents.letterList} letter-list, `
-      + `${residents.groupRows} in the group, closed on mount: `
+      expected.letterList > 100 && expected.evidenced > 20
+      && residents.evidenced === expected.evidenced
+      && residents.letterList === expected.letterList
+      && residents.evidenced + residents.letterList === expected.households
+      && residents.groupRows === expected.letterList
+      && residents.groupClosedOnMount === true,
+      `${residents.evidenced} evidenced / ${residents.letterList} letter-list of `
+      + `${expected.households}, ${residents.groupRows} in the group, closed on mount: `
       + `${residents.groupClosedOnMount}`);
     check(`${label}: the group says what that evidence is worth before it is opened`,
       /post office/.test(residents.groupText)
@@ -10116,18 +10567,29 @@ for (const [label, viewport, touch] of [
     // the papers name with no trade either. In every case the chip is the card
     // telling the truth rather than a regression.
     // T-0379 SPLIT THIS NUMBER IN TWO, and the split is the honest form of it. Of
-    // the 764 households that reach no building card, 727 are the letter-list
-    // cohort and reach none BY DEFINITION — a list of uncalled-for letters gives a
-    // name and no address, so a chip announcing it on every one of those rows is
-    // wallpaper, and the group's own summary says it once instead. The chip stays
-    // where it is a finding: 37 households the rest of the corpus documents and
-    // this project still could not attach to a building. That 37 is the number a
-    // regression would move, so it is the number asserted.
+    // the households that reach no building card, the letter-list cohort reaches
+    // none BY DEFINITION — a list of uncalled-for letters gives a name and no
+    // address, so a chip announcing it on every one of those rows is wallpaper,
+    // and the group's own summary says it once instead. The chip stays where it is
+    // a finding: the households the rest of the corpus documents and this project
+    // still could not attach to a building.
+    // T-0524 took the three literals (764 / 37 / 727) out for the reason above:
+    // T-0489 moved the first two to 770 and 43 and the assertion went red for
+    // being right about the wrong town. All three are derivable from the manifest
+    // rows — off-card is "neither lives_at nor works_at", which is the same
+    // predicate `js/residents.js` applies — and the CHIP COUNT is the one that
+    // carries the finding, so it is asserted as the arithmetic difference rather
+    // than as a number somebody typed. A chip appearing on a letter-list row, or
+    // going missing from a documented one, still fails here.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 764 && residents.orphanChips === 37
-      && residents.letterListOffCard === 727,
+      expected.offCard > 0 && expected.offCard > expected.letterListOffCard
+      && residents.offCard === expected.offCard
+      && residents.letterListOffCard === expected.letterListOffCard
+      && residents.orphanChips === expected.offCard - expected.letterListOffCard,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s) / `
-      + `${residents.letterListOffCard} of them letter-list`);
+      + `${residents.letterListOffCard} of them letter-list — the manifest says `
+      + `${expected.offCard} / ${expected.offCard - expected.letterListOffCard} / `
+      + `${expected.letterListOffCard}`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
     // The lazy read, proved by opening the household that IS the finding: Mark
@@ -10160,14 +10622,27 @@ for (const [label, viewport, touch] of [
     check(`${label}: no figure reaches a person's row as [object Object]`,
       !/\[object Object\]/.test(residents.text),
       residents.text.slice(Math.max(0, residents.text.indexOf('[object Object]') - 80), 200));
-    // And the row the fault was hiding. It matches the VALUE and not the note:
-    // the note under "What the sources say" carries "THE NAME IS INVENTED" on
+    // And the row the fault was hiding. It matched the VALUE and not the note:
+    // the note under "What the sources say" carried "THE NAME IS INVENTED" on
     // these records too and reached the card throughout, so an assertion on that
-    // sentence passes on the broken build — checked, and it did. What was lost
-    // is which pool the name was drawn from, and that is only in `name_basis`.
-    check(`${label}: an invented name says on the card which pool it came from`,
-      /How this person is named/.test(residents.namedText)
-      && /invented from the [A-Za-z ]+ pool/.test(residents.namedText),
+    // sentence passed on the broken build — checked, and it did. What was lost
+    // was which pool the name was drawn from, and that was only in `name_basis`.
+    //
+    // T-0524: there is no invented name on this layer any more. T-0489 retired the
+    // reconstructed population and the `hh_inf_` households that survived it carry
+    // a head the papers name, with the `name_basis` block explicitly struck ("an
+    // invented name is not kept beside a documented one"). So the assertion has no
+    // subject, and deleting it would delete the wire this fault came down: the
+    // [object Object] check above is a NEGATIVE, and it passes on a card that
+    // renders nothing at all, which is exactly the state that check was written
+    // against. The positive it needs is kept, on what that row now carries — the
+    // reasoning that says the roof is not the man's evidence — and the retirement
+    // is asserted alongside it, so a `name_basis` block reappearing on this layer
+    // without a ruling fails here rather than passing quietly.
+    check(`${label}: an evidence-only household's row says what its roof is not`,
+      /What the sources say/.test(residents.namedText)
+      && /THIS ROOF DID NOT COME FROM HIS RECORD/.test(residents.namedText)
+      && !/How this person is named/.test(residents.namedText),
       residents.namedText.slice(0, 200));
     // The nine the sources actually date, with the reasoning that says which of
     // the two figures the source states and which is arithmetic off it.
@@ -10202,15 +10677,30 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
-    // T-0442: a candidate biography is useful only if it remains visibly a
+    // T-0442/T-0462: a candidate biography is useful only if it remains visibly a
     // candidate. The same public payload also carries negative work so silence
     // cannot be mistaken for a person who was never researched.
-    check(`${label}: the 75-person research pilot reaches resident cards`,
-      residents.researchReviewed === 75
-      && residents.researchCounts.corroborated_enrichment === 4
-      && residents.researchCounts.candidate_identity === 7
-      && residents.researchCounts.no_corroboration === 64,
-      `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)}`);
+    // T-0524 took the four literals (150 / 31 / 30 / 89) out. The review layer has
+    // grown to 375 since, and a count that is right is not a regression. The
+    // expectation is read out of `residents/research_pilot.json` — the file the
+    // page fetched — and the three named buckets are cross-footed against the
+    // review list itself, which is the half a hardcoded number never gave: a
+    // `counts` block that stops agreeing with its own `reviews` array now fails,
+    // and so does a card layer that shows fewer reviews than the file holds.
+    check(`${label}: every resident research review reaches a resident card`,
+      expected.researchReviewed > 100
+      && Object.values(expected.researchCounts).reduce((n, v) => n + v, 0)
+        === expected.researchReviewed
+      && residents.researchReviewed === expected.researchReviewed
+      && residents.researchCounts.corroborated_enrichment
+        === expected.researchCounts.corroborated_enrichment
+      && residents.researchCounts.candidate_identity
+        === expected.researchCounts.candidate_identity
+      && residents.researchCounts.no_corroboration
+        === expected.researchCounts.no_corroboration,
+      `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)} — `
+      + `the file holds ${expected.researchReviewed}: `
+      + `${JSON.stringify(expected.researchCounts)}`);
     check(`${label}: candidate identities are visibly unmerged`,
       /Augustus Garrett/.test(residents.candidateText)
       && /candidate identity.{0,20}not merged/i.test(residents.candidateText)

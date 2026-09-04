@@ -59,9 +59,17 @@ def git(*args, cwd=None):
 
 
 def committed(path, cwd=None):
-    """The path as HEAD has it, or None when HEAD does not have it."""
+    """The path as HEAD has it in BYTES, or None when HEAD does not have it.
+
+    Bytes, not text, because a content path is not always text. `text=True` here
+    decoded every committed file as UTF-8, and the bake crashed outright the first
+    time a BINARY content file was dirty — `UnicodeDecodeError: 0xf8 in position
+    12` on PR #675, whose publish regenerated 372 .glb derivatives. The stamp
+    comparison is the only caller that wants characters, and it decodes there,
+    where it can say what a failure to decode MEANS.
+    """
     r = subprocess.run(["git", "show", f"HEAD:{path}"], cwd=cwd or REPO,
-                       capture_output=True, text=True)
+                       capture_output=True)
     return r.stdout if r.returncode == 0 else None
 
 
@@ -82,13 +90,18 @@ def normalise_gate(text):
 
 def is_stamp_only(path, cwd=None):
     """True when this dirty path carries the build stamp and nothing else."""
-    old = committed(path, cwd)
-    if old is None:
+    old_bytes = committed(path, cwd)
+    if old_bytes is None:
         return False                      # a NEW file is never just a stamp
     new_path = (cwd or REPO) / pathlib.Path(path)
     if not new_path.exists():
         return False                      # a DELETED file is content
-    new = new_path.read_text(encoding="utf-8")
+    try:
+        old = old_bytes.decode("utf-8")
+        new = new_path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return False                      # a BINARY file is content, never a stamp
+
     if path == BUILD_JSON:
         try:
             a, b = json.loads(old), json.loads(new)
@@ -151,6 +164,11 @@ def _sandbox(tmp):
     (root / GATE_PAGE).write_text(
         "<html><body>\n" + GATE_PLACEHOLDER + "\n<p>the town</p></body></html>\n")
     (root / "chicago/4d/data/thing.json").write_text('{"a": 1}\n')
+    # A COMMITTED BINARY file, because a published tree is mostly .glb and .png
+    # and this tool used to decode every committed path as UTF-8. 0xf8 is the
+    # byte that actually killed the bake on PR #675.
+    (root / "site/chicago/4d/walk/master.glb").write_bytes(
+        b"glTF\x02\x00\x00\x00" + bytes(range(0xf0, 0x100)))
     git("init", "-q", cwd=root)
     git("config", "user.email", "t@example.com", cwd=root)
     git("config", "user.name", "t", cwd=root)
@@ -194,6 +212,18 @@ def self_test():
         case("a NEW published file is content",
              content_paths(root), ["site/chicago/4d/walk/asset.glb"])
         (root / "site/chicago/4d/walk/asset.glb").unlink()
+
+        # THE CRASH THIS TOOL TOOK ON PR #675, as a case rather than a story.
+        # A committed binary file that CHANGES reaches `is_stamp_only`, which
+        # read both sides as UTF-8 text; the bake died with UnicodeDecodeError
+        # instead of reporting the content, and a green tree looked broken.
+        glb = root / "site/chicago/4d/walk/master.glb"
+        glb.write_bytes(b"glTF\x02\x00\x00\x00" + bytes(range(0xe0, 0xf0)))
+        case("a committed BINARY file that changed is content, not a crash",
+             content_paths(root), ["site/chicago/4d/walk/master.glb"])
+        glb.write_bytes(b"glTF\x02\x00\x00\x00" + bytes(range(0xf0, 0x100)))
+        case("…and restoring its bytes makes it clean again",
+             content_paths(root), [])
 
         p = root / GATE_PAGE
         p.write_text(p.read_text().replace("the town", "the TOWN"))

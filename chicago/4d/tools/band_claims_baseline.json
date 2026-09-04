@@ -2,7 +2,7 @@
   "$note": "ROADMAP K25(a). Every form value in this project's reconstructed buildings that sits outside the family band its own note cites. This file is a RATCHET, not an allowance: tools/check.sh fails on any offender that is not here and on any listed offender whose value has moved. K25(b) empties it and deletes it. Regenerate with tools/measure_band_claims.py --write-baseline, and only ever to record a repair.",
   "counts": {
     "footprint": 2,
-    "levels": 3
+    "levels": 2
   },
   "measured": "2026-08-15",
   "offenders": {
@@ -26,13 +26,6 @@
       "family": "W5",
       "marginal": false,
       "value": "loft = true"
-    },
-    "recon_1835_blk_randolph_clark_c2_01:levels": {
-      "band": "'1.5' (=> 1.5-1.5)",
-      "detail": "+0.5 levels outside",
-      "family": "C2",
-      "marginal": true,
-      "value": "1.5 storey + loft = 2"
     },
     "recon_1835_west_021:levels": {
       "band": "'1' (=> 1-1)",

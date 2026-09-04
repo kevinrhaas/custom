@@ -10,17 +10,17 @@
   "data/residents/households/"
  ],
  "buildings": {
-  "standing": 355,
+  "standing": 359,
   "target": 662,
-  "records_in_scene": 367,
+  "records_in_scene": 371,
   "basis": "Physical roofs credited by the roof reconciliation, not structure records: a bridge, a pier, a palisade and a parade ground are records that are not buildings.",
   "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
  },
  "people": {
-  "housed": 142,
-  "households_housed": 121,
+  "housed": 29,
+  "households_housed": 20,
   "group_entries": 3,
-  "households_without_a_dwelling": 799,
+  "households_without_a_dwelling": 1360,
   "town_total": 3265,
   "town_total_dwellings": 398,
   "town_total_source": "andreas_1884_v1",

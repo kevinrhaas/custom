@@ -19,9 +19,12 @@
  *  - BOARD.md and tickets.json are GENERATED. `check` refuses a stale board the
  *    same way check_published refuses a stale mirror (build.json, 2026-08-15).
  *  - IDs are assigned here, not guessed by authors — two branches that each
- *    guess "top + 1" both get it wrong (the v93/v98 collisions). A cross-branch
- *    collision is still possible at creation; `check` catches it at merge and
- *    `restamp` is the remedy.
+ *    guess "top + 1" both get it wrong (the v93/v98 collisions). `nextIdNum`
+ *    counts merged tickets AND every branch still in flight on the remote, over
+ *    ALL origin refs — narrowing that scan to `steward/*` is what let T-0672 be
+ *    minted twice on 2026-09-04, from a `claude/*` branch it could not see. Two
+ *    branches created in the same instant can still collide; `check` catches it
+ *    at merge and `restamp` is the remedy.
  *  - QUEUE.md order belongs to the owner. This tool APPENDS on `new`, REMOVES
  *    on `done`/`block`/`withdraw`, and never reorders. `check` asserts the
  *    queue is exactly the workable-open set, so it cannot silently drift from
@@ -73,6 +76,13 @@ const MIRROR = path.resolve(ROOT, '../../site/chicago/4d/tickets.json');
 const PUBLISH_SH = path.join(ROOT, 'tools/publish.sh');
 const PUBLISH_PIN = 'cp -f tickets/tickets.json "$SITE/tickets.json"';
 
+/** The day the ledger began stamping the finishing instant. Tickets closed on or
+ *  after it must carry `closed_at`; everything older is left as it was recorded. */
+const CLOSED_AT_SINCE = '2026-09-04';
+
+/** This repository on GitHub — the board links its PRs, and `inflight` its pulls page. */
+const REPO_URL = 'https://github.com/kevinrhaas/custom';
+
 const STATES = ['open', 'claimed', 'review', 'done', 'blocked-owner', 'blocked-tech',
   'withdrawn', 'split'];
 /**
@@ -102,7 +112,7 @@ const EFFORT = {
 // and American transcriptions, and the documented businesses/residents seeded
 // from them. Registered 2026-08-28 with the epic's nine founding tickets
 // (T-0256..T-0264), on the owner's instruction.
-const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META', 'PAPERS'];
+const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META', 'PAPERS', 'SOUTH_TIME'];
 const BY = ['owner', 'loop', 'steward'];
 // Workable = an agent may take it off the queue. `claimed`/`review` stay in the
 // queue so a crashed run's ticket is still visible in priority order rather
@@ -135,7 +145,10 @@ function loadAll() {
 
 function writeTicket(t) {
   const keys = ['id', 'title', 'state', 'epic', 'requested_by', 'seen', 'effort',
-    'legacy_id', 'parent', 'opened', 'closed', 'pr', 'claimed_by', 'blocked_on', 'needs_bake'];
+    'legacy_id', 'parent', 'opened', 'closed', 'pr', 'claimed_by', 'blocked_on', 'needs_bake',
+    // Appended, never inserted: a ticket file written by an older checkout is
+    // still valid, and these two are read as null when absent.
+    'closed_at', 'claimed_run'];
   const fm = keys.map((k) => `${k}: ${t[k] ?? 'null'}`).join('\n');
   writeFileSync(t.file, `---\n${fm}\n---\n${t.body ?? ''}`);
 }
@@ -143,6 +156,28 @@ function writeTicket(t) {
 function today() {
   // Central Time, the project's clock (AGENTS.md).
   return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Chicago' });
+}
+
+/** The instant, in UTC. `closed` is the Central Time DAY a ticket finished, which
+ *  is what a person reads; `closed_at` is the instant, which is what an ordering
+ *  needs. Two tickets closed on the same day were closed in an order, and before
+ *  this existed the board had to fall back on ticket id — so the newest work
+ *  read as if it had been done alphabetically. */
+function nowIso() { return new Date().toISOString(); }
+
+/** The project's clock, spelled the way the board and the changelog spell it. */
+function ctFmt(d) {
+  return new Date(d).toLocaleString('en-US', { timeZone: 'America/Chicago',
+    month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+}
+
+/** The Actions run that is executing this command, when there is one. A steward
+ *  run's Bash calls inherit the step environment, so a claim made by the loop can
+ *  say WHICH run holds the ticket — the thing `claimed_by`'s timestamp could never
+ *  answer. A claim made by hand gets null, honestly. */
+function runUrl() {
+  const { GITHUB_SERVER_URL: server, GITHUB_REPOSITORY: repo, GITHUB_RUN_ID: id } = process.env;
+  return server && repo && id ? `${server}/${repo}/actions/runs/${id}` : null;
 }
 
 function slugOf(title) {
@@ -207,9 +242,22 @@ function remoteIdMax() {
     // Refresh the steward refs so a branch pushed minutes ago is visible. Cheap:
     // these branches are a few commits off dev and share nearly all their objects.
     try {
-      git(['fetch', '--quiet', '--prune', 'origin', '+refs/heads/steward/*:refs/remotes/origin/steward/*']);
+      git(['fetch', '--quiet', '--prune', 'origin', '+refs/heads/*:refs/remotes/origin/*']);
     } catch { /* offline, or no such refspec — fall through to whatever is cached */ }
-    const refs = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin/steward'])
+    // EVERY origin ref, not just `steward/*`. This scanned `refs/remotes/origin/steward`
+    // alone until 2026-09-04, which left two holes that both bit on the same day:
+    //
+    //   - `origin/dev` ITSELF was never read. A clone whose local tickets/ is behind dev
+    //     — any branch cut before a merge landed — would take its own stale local max.
+    //   - The fleet has more than one branch convention. Web sessions push `claude/*`;
+    //     T-0672 was minted twice in one afternoon because PR #765 held it on
+    //     `claude/research-output-data-updates-cst1d5`, which this scan could not see.
+    //     `agent/*` exists too. A prefix allowlist is a bug waiting for the next prefix.
+    //
+    // Measured before widening it, because the whole point is that this runs on every
+    // `new`: 410 refs scanned in 1.4 s, 499 in 1.6 s, and the incremental fetch is if
+    // anything faster unfiltered. The old narrowness bought nothing.
+    const refs = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin'])
       .split('\n').map((s) => s.trim()).filter(Boolean);
     // `<ref>:<path>` resolves against the CWD, not the top of the tree — from
     // `chicago/4d` a path of `chicago/4d/tickets` silently reads as
@@ -382,8 +430,7 @@ function queueHeader() {
 /* ----------------------------------------------------------------- board */
 
 function generateBoard(tickets) {
-  const at = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago',
-    month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+  const at = ctFmt(new Date());
   const order = queueIds();
   const rank = (t) => { const i = order.indexOf(t.id); return i < 0 ? 9999 : i; };
   const sec = (name, list, line) => list.length
@@ -397,16 +444,36 @@ function generateBoard(tickets) {
   const owner = tickets.filter((t) => t.state === 'blocked-owner');
   const tech = tickets.filter((t) => t.state === 'blocked-tech');
   const split = tickets.filter((t) => t.state === 'split');
-  const done = tickets.filter((t) => t.state === 'done')
-    .sort((a, b) => String(b.closed).localeCompare(String(a.closed))).slice(0, 20);
+  const working = tickets.filter((t) => t.state === 'claimed' || t.state === 'review')
+    .sort((a, b) => rank(a) - rank(b));
+
+  // FINISH ORDER, and it has to survive two eras of ticket. `closed` is the
+  // Central Time DAY, which every done ticket has; `closed_at` is the instant,
+  // which only tickets closed since 2026-09-03 have. So: day first, then the
+  // instant inside that day, then the PR number — which rises with time and is
+  // the only ordering the 300-odd older tickets carry. The ticket id is the last
+  // resort and never the first, because sorting finished work alphabetically is
+  // exactly the thing this section exists to stop doing.
+  const byFinish = (a, b) => String(b.closed ?? '').localeCompare(String(a.closed ?? ''))
+    || String(b.closed_at ?? '').localeCompare(String(a.closed_at ?? ''))
+    || (Number(b.pr) || 0) - (Number(a.pr) || 0)
+    || String(b.id).localeCompare(String(a.id));
+  const finished = tickets.filter((t) => t.state === 'done').sort(byFinish);
+  const shown = finished.slice(0, 100);
 
   const md = `# BOARD — generated by \`tools/ticket.mjs board\`, ${at} CT. Do not edit.\n\n`
+    + sec('Claimed — being worked now', working, (t) => `${row(t)}`
+      + `${t.claimed_by ? ` · ${t.claimed_by}` : ''}`
+      + `${t.claimed_run ? ` · [the run](${t.claimed_run})` : ''}`)
     + sec('In the queue, in the owner’s order', open, row)
     + sec('⏸ Waiting on an owner decision', owner, (t) => `${row(t)}\n  - **the question:** ${t.blocked_on}`)
     + sec('Blocked on tooling or another ticket', tech, (t) => `${row(t)} — ${t.blocked_on}`)
     + sec('Split into pieces (the pieces are in the queue)', split, (t) => `${row(t)}`
       + ` — ${tickets.filter((c) => c.parent === t.id).map((c) => c.id).join(', ')}`)
-    + sec('Recently done', done, (t) => `${row(t)} · ${t.closed}${t.pr ? ` · PR #${t.pr}` : ''}`);
+    + sec(`Finished, newest first${finished.length > shown.length
+      ? ` — ${shown.length} of ${finished.length}; the older ones are in the ticket files` : ''}`,
+    shown, (t) => `${row(t)} · ${t.closed_at ? ctFmt(t.closed_at) : t.closed}`
+      + `${t.pr ? ` · [PR #${t.pr}](${REPO_URL}/pull/${t.pr})` : ''}`);
   // Idempotent on purpose: only touch the files when the CONTENT changed, so a
   // regenerated-but-identical board stays byte-stable and the published mirror
   // (check_published.mjs compares it verbatim) does not go stale merely because
@@ -466,6 +533,19 @@ function check(tickets) {
     if (!t.title) problems.push(`${at}: no title`);
     if (t.state === 'done' && !t.pr) problems.push(`${at}: done without a pr — the closing PR is the receipt`);
     if (t.state === 'done' && !t.closed) problems.push(`${at}: done without a closed date`);
+    // The instant, not just the day (since 2026-09-04). `closed` alone cannot
+    // order two tickets finished on the same day, which is how the board came to
+    // fall back on ticket id. Only tickets closed AFTER this landed are held to
+    // it: the 312 finished before it are honest history, not a hole, and a branch
+    // cut before the tool changed must still close cleanly on merge day.
+    if (t.closed_at && Number.isNaN(Date.parse(t.closed_at))) {
+      problems.push(`${at}: closed_at "${t.closed_at}" is not a timestamp Date.parse can read`);
+    }
+    if (t.state === 'done' && !t.closed_at && String(t.closed ?? '') >= CLOSED_AT_SINCE) {
+      problems.push(`${at}: done on ${t.closed} without closed_at — close with `
+        + '`node tools/ticket.mjs done ' + `${t.id} --pr N\`, which stamps the instant; a `
+        + 'hand-written close loses the finish order');
+    }
     if (t.state?.startsWith('blocked') && !t.blocked_on) {
       problems.push(`${at}: ${t.state} without blocked_on — a block with no stated question is an abandonment`);
     }
@@ -579,7 +659,8 @@ switch (cmd) {
       requested_by: flag('by') ?? 'steward',
       seen: has('seen'), effort: flag('effort') ?? 'M',
       legacy_id: flag('legacy') ?? null,
-      opened: today(), closed: null, pr: null, claimed_by: null, blocked_on: null,
+      opened: today(), closed: null, closed_at: null, pr: null,
+      claimed_by: null, claimed_run: null, blocked_on: null,
       needs_bake: has('needs-bake'),
       body: `\n${title}.\n\n**Acceptance:** (state it before working — the definition of done, never weakened to pass)\n`,
     };
@@ -619,13 +700,17 @@ switch (cmd) {
     }
     t.state = 'claimed';
     t.claimed_by = `${flag('by') ?? 'run'} ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })} CT`;
+    // WHICH run holds it. `claimed_by` says when; when five slices run at once
+    // that is not enough to tell whose ticket this is, or to open the log of the
+    // run that went quiet with it. `--run <url>` overrides for a hand claim.
+    t.claimed_run = flag('run') ?? runUrl();
     writeTicket(t); generateBoard(loadAll());
     console.log(`${t.id} claimed`);
     break;
   }
   case 'done': {
     const t = find(tickets, args[0]);
-    t.state = 'done'; t.closed = today(); t.pr = flag('pr');
+    t.state = 'done'; t.closed = today(); t.closed_at = nowIso(); t.pr = flag('pr');
     if (!t.pr) { console.error('done needs --pr N — the closing PR is the receipt'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
     console.log(`${t.id} done (PR #${t.pr}) — removed from QUEUE`);
@@ -649,7 +734,7 @@ switch (cmd) {
   }
   case 'withdraw': {
     const t = find(tickets, args[0]);
-    t.state = 'withdrawn'; t.closed = today(); t.blocked_on = flag('why') ?? t.blocked_on;
+    t.state = 'withdrawn'; t.closed = today(); t.closed_at = nowIso(); t.blocked_on = flag('why') ?? t.blocked_on;
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
     console.log(`${t.id} withdrawn`);
     break;
@@ -713,7 +798,8 @@ switch (cmd) {
         file: path.join(DIR, `${id}-${slugOf(title)}.md`),
         id, title, state: 'open', epic: t.epic, requested_by: t.requested_by,
         seen: t.seen, effort: 'S', legacy_id: t.legacy_id, parent: t.id,
-        opened: today(), closed: null, pr: null, claimed_by: null, blocked_on: null,
+        opened: today(), closed: null, closed_at: null, pr: null,
+        claimed_by: null, claimed_run: null, blocked_on: null,
         needs_bake: false,
         body: `\n${title}.\n\nPiece ${n + 1} of ${titles.length} of **${t.id} — ${t.title}**, `
           + `split because the parent needed more than one run's demonstration to be done. `
@@ -725,7 +811,7 @@ switch (cmd) {
       console.log(`  ${id}  ${title}`);
     });
     queueReplace(t.id, rows, t.title);
-    t.state = 'split'; t.closed = today();
+    t.state = 'split'; t.closed = today(); t.closed_at = nowIso();
     writeTicket(t); generateBoard(loadAll());
     console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
     break;
@@ -785,7 +871,7 @@ switch (cmd) {
     }
     console.log('Git cannot tell you whether a branch LANDED — everything here squash-merges,');
     console.log('so a merged branch never becomes an ancestor of dev. The PR list is the truth:');
-    console.log('  https://github.com/kevinrhaas/custom/pulls\n');
+    console.log(`  ${REPO_URL}/pulls\n`);
 
     if (cold.length) {
       console.log(`Cold — finished tickets, or branches older than a run (${cold.length}):`);

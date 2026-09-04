@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "domain": "census_1830",
+  "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
+  "declarations": [
+    {
+      "ticket": "T-0498",
+      "unit": "image",
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "item": "populationsc18300024unit",
+      "read_on": "2026-09-03",
+      "items": ["n580", "n582"],
+      "what_was_read": "Every head of family in the names column of both leaves, in the enumerator's order, plus the county heading on n580 and the first five male columns of each leaf's totals row. 39 entries on n580, 28 on n582.",
+      "what_was_not_read": "The per-household age-band cells. They are on the page and legible in parts; reading twenty-eight columns for sixty-seven households is a pass of its own and half of it would be worse than none.",
+      "note": "These are the first two leaves of the enumeration district headed 'Peoria & Putnam Counties & Territory attached', which is where Chicago was enumerated in 1830."
+    }
+  ],
+  "not_declared_and_why": [
+    {
+      "items": ["n584", "and the leaves after it until the district ends"],
+      "why": "The same district continues on n584 with the county cell left empty — Reuben Flagg, John Cooper, Timothy B Clark, Pierce Hawley, Bailey Hobson, Jacob Kite and the Groves, which is the Du Page and Fox River settlement rather than the mouth of the river. Its county column was looked at to establish that the district had not ended; NOTHING on it was read. It is undeclared because it is unread, and T-0605 exists to finish it."
+    },
+    {
+      "items": ["n576", "n577", "n578", "n579", "n581", "n583"],
+      "why": "The odd leaves are the right-hand halves of the same sheets (the continuation columns), and n576-n579 belong to the county before this district. Neither was read."
+    }
+  ]
+}

@@ -95,6 +95,14 @@
         "andreas_1884_v1"
       ],
       "note": "Andreas names Clybourne as the builder in 1827 and as the operator in the 1833 packing season, with George W. Dole packing at the same premises that year. Whether anyone was working the plant on 1835-07-01 specifically is not attested; July is the wrong end of the year for packing, which is winter work, so the honest reading of the scene date is a standing building between seasons."
+    },
+    "land_owner": {
+      "value": "The ground was entered by James Kinzie, 28 September 1830",
+      "confidence": "reconstructed",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "THE MARGIN IS ONLY 8 m, which is inside the working horizontal uncertainty of the georeference (about 20 m) doubled, so the grade drops a tier: the tract is right if the constructed line is, and nothing here proves the line to better than that. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
     }
   },
   "residents": [
@@ -114,7 +122,7 @@
           "relationship": "head",
           "grade": "attested",
           "occupation": "butcher",
-          "note": "DOCUMENTED AND DELIBERATELY OUTSIDE THE TOWN, which is why this household's division is 'outside_town' and why it matters. Andreas's own roster explains the status in the same clause that gives the trade: he lived north of the limits and could not vote in the village. 'Julia K. Clark, half-brother of A. Clybourne, then living with him' is named in the next clause and is written into this household. The Clybourne family had been at Chicago since the 1820s and its assessment appears in the Peoria County taxpayer lists of 1825."
+          "note": "DOCUMENTED AND DELIBERATELY OUTSIDE THE TOWN, which is why this household's division is 'outside_town' and why it matters. Andreas's own roster explains the status in the same clause that gives the trade: he lived north of the limits and could not vote in the village. 'Julia K. Clark, half-brother of A. Clybourne, then living with him' is named in the next clause and is written into this household. The Clybourne family had been at Chicago since the 1820s and its assessment appears in the Peoria County taxpayer lists of 1825. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 1 time: Tax list of the Town of Chicago, 1833 — “Clybourne, Archibald” (tax_1833_019, line 71). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Clybourne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json)."
         }
       ],
       "research_note": "THE BUTCHER WHO LIVED OUTSIDE THE CORPORATION, and the household that forces the schema's division field to have a value for people the town did not count. Chicago's population figures - 350 in 1833, 3,265 in the town census of 1835 - are figures for a corporate area with a boundary that moved twice in eighteen months, and households like this one fall outside it while supplying it with meat. ANY LATER COUNT MUST DECIDE WHETHER TO INCLUDE THEM and this field is where that decision gets made. THE FAMILY'S BUILDINGS ARE A KNOWN PROBLEM IN THIS DATASET: data/structures/clybourn_cabins.json says outright that it is DISPLACED - the attested ground is several miles up the North Branch, outside the modelled box - so lives_at is left null here rather than pointing at a record that admits it is in the wrong place."
@@ -128,6 +136,14 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
     }
   ],
   "research_note": "PLACED OUTSIDE ITS OWN SITE, ON PURPOSE, AND THE POSITION NOTE IS THE MOST IMPORTANT FIELD IN THIS RECORD. The attested site — the east or south bank of the North Branch, south of the Bloomingdale Road, opposite the later North Chicago Rolling Mills — is roughly 3 km north-north-west of the forks and about 2.8 km beyond the northern edge of the 640 m terrain box this scene models, so the building stands at the edge of modelled ground with an error of kilometres and says so. RESEARCH GAINED IN THIS SLICE, and it is more than the dossier had: docs/research/03-structures-north.md section 3.6 records the slaughterhouse as 1827, log, on the north branch, with locations 'not pinned down in reachable sources [GAP]'. A full-text search of Andreas vol. 1 closes that gap — scan p. 1149 gives the reach and the bank, scan p. 1151 gives the bank again and the 1833 throughput, and scan p. 215 puts the family several miles up the branch at the rolling-mill ground. The dossier's [GAP] tag can be retired. WHAT THIS RECORD STILL CANNOT SAY: how big the building was, how it was arranged, where the pens and the stock yard stood, or what the plant looked like in a July between packing seasons. The associated stock yard, later called Bull's Head, is not modelled at all — this archetype builds a building and the yard is an enclosure, which is the same limitation docs/LIBERTIES.md L10 records against the Western Hotel's wagon yard.",

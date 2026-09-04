@@ -4,11 +4,8 @@ __pycache__/
 *.pyc
 
 # Large reference PDFs/scans (exceed GitHub 100MB limit) - keep local only.
-# The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
 chicago/reference/Andreas-History_of_Chicago.pdf
 chicago/reference/planning/Andreas-History_of_Chicago.pdf
-chicago/reference/newspapers/**/*.pdf
-chicago/reference/newspapers/*.pdf
 
 # Large video captures - keep local only
 chicago/reference/movies/
@@ -24,3 +21,31 @@ site/stay/artifact.html
 
 # Stay Finder: cached TIGERweb downloads for the map builder
 stay/geo-cache/
+
+# Chicago reference corpus: large source files migrated to Internet Archive.
+# Canonical copies live at archive.org/details/chicago1835-*; originals sit
+# locally at projects/archive/data/chicago/reference/ (sibling to this repo,
+# not tracked). See the *.yaml / SOURCE.yaml pointer files in chicago/reference/
+# and CORPUS_MANIFEST.csv for the mapping. Guards below catch big originals
+# being re-downloaded into the tracked dirs by mistake.
+chicago/reference/fergus/*.pdf
+chicago/reference/walkthroughs/*.mov
+chicago/reference/newspapers/**/*.pdf
+chicago/reference/newspapers/*.pdf
+# The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
+chicago/reference/hh-porter-a-short-autobiography/*.pdf
+chicago/reference/chicago-massacre-1812/*.pdf
+chicago/reference/additional/vital-records-1871+/*.pdf
+
+# IPUMS extracts: redistribution prohibited by IPUMS license (published to
+# Internet Archive anyway, see ipums-usa.yaml/ipums-nhgis.yaml, but kept out
+# of git regardless). Originals live at
+# projects/archive/data/chicago/reference/ipums/.
+# See chicago/reference/ipums/README.md.
+chicago/reference/ipums/*.csv
+chicago/reference/ipums/*.pdf
+chicago/reference/ipums/nhgis0001_csv/
+chicago/reference/ipums/nhgis0001_csv.zip
+chicago/reference/ipums/nhgis0001_shape/
+chicago/reference/ipums/nhgis0001_shape.zip
+!chicago/reference/ipums/README.md

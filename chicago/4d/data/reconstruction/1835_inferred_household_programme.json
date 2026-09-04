@@ -2393,5 +2393,7 @@
       "works_at": "temple_lake_st_building",
       "note": "His first law office, and his bedroom in the attic of the same building."
     }
-  ]
+  ],
+  "resident_population_active": false,
+  "resident_population_status": "Retired from resident list by owner ruling 2026-09-02; building stock may remain anonymous until a later explicit reconstructed-population pass."
 }

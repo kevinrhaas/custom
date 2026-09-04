@@ -173,7 +173,7 @@ function researchHtml(review, citationsById) {
       This candidate is not an asserted identity.</span>
       ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
   }).join('');
-  return `<dt>T-0442 research review</dt><dd><span class="res-chip res-research">${
+  return `<dt>Resident research review</dt><dd><span class="res-chip res-research">${
       escapeHtml(labels[review.outcome] || words(review.outcome))}</span>
     <span class="res-why">Reviewed ${escapeHtml(printedOn(review.reviewed_on))}. ${
       escapeHtml(review.summary)} A no-find records the limits of this search; it is not
@@ -182,7 +182,226 @@ function researchHtml(review, citationsById) {
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
-function personHtml(person, citationsById, researchByPerson) {
+/**
+ * The 1840 census household a person's record is bridged to — five years after
+ * this scene, and that gap is the whole reason this block is rendered rather
+ * than banked.
+ *
+ * PR #670 attached the bridge to three people and declared none of its figures,
+ * so twenty-four values were being shipped to a browser with nothing reading
+ * them (T-0491). Banking them would have been the cheap answer and the wrong
+ * one: an identity bridge is an ARGUMENT — a transcribed name, a normalised
+ * reading of it, the page and row it stands on, the serial it was assigned and
+ * three separate confidences in those steps — and an argument a visitor cannot
+ * see is an assertion. It is shown whole, headed by the year, so that no part of
+ * it can be mistaken for an 1835 fact.
+ *
+ * THE HOUSEHOLD TALLIES ARE SHOWN FOR THE SAME REASON. They are the strongest
+ * temptation on this card — six people under a roof in 1840 is not six people
+ * under it in 1835 — and the record's own note says so in as many words. The
+ * note is printed directly beneath them, because a figure withheld cannot be
+ * argued with and a figure shown with its refusal can.
+ */
+function laterCensusHtml(census, citationsById) {
+  if (!census) return '';
+  const hh = census.household || {};
+  const cite = citationsById.get(census.source_id);
+  const tallies = [
+    ['People in the household', hh.persons],
+    ['Children under ten', hh.children_under_10],
+    ['Male', hh.male],
+    ['Female', hh.female],
+    ['Employed in agriculture', hh.agriculture],
+    ['Employed in commerce', hh.commerce],
+    ['Employed in manufactures and trades', hh.manufactures_trades],
+    ['Employed in inland navigation', hh.inland_navigation],
+    ['In a learned profession or engineering', hh.professions_engineering],
+    ['Foreigners not naturalized', hh.foreigners_not_naturalized],
+    ['Over twenty-one and unable to read or write', hh.illiterate_over_21],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Found again in the ${escapeHtml(String(census.year))} census</dt>
+    <dd>${swatch(null)}Head of household <b>${escapeHtml(census.head_name_normalized)}</b>,
+      transcribed on the page as <q>${escapeHtml(census.head_name_transcribed)}</q>${
+        census.bridge_status ? ` · ${escapeHtml(words(census.bridge_status))} bridge` : ''}
+      <br><span class="res-why">Page ${escapeHtml(String(census.census_page))}, row ${
+        escapeHtml(String(census.census_row))}, enumeration serial ${
+        escapeHtml(String(census.serial))}${
+        census.source_image ? `, from image ${escapeHtml(census.source_image)}` : ''}${
+        census.source_kind ? ` (${escapeHtml(census.source_kind)})` : ''}.
+        The reading of the name is graded ${escapeHtml(words(census.name_confidence))}, the
+        identification of it with this person ${escapeHtml(words(census.identity_confidence))},
+        and the assignment of the row to that serial ${
+        escapeHtml(words(census.serial_mapping_confidence))} — three separate steps, each of
+        which can be wrong on its own.</span>
+      <br><span class="res-why">${escapeHtml(census.bridge_basis)}</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      ${census.note ? `<span class="res-why">${escapeHtml(census.note)}</span>` : ''}
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</dd>
+    ${scanHtml(census, citationsById)}`;
+}
+
+/**
+ * The same line, read off the photograph of the sheet (T-0530).
+ *
+ * The block above it is a RECOVERY: 210 rows taken out of a workbook the owner
+ * has ruled lost, which cite no line on any page. Where the page has since been
+ * read — column by column, checked against the footings the enumerator wrote at
+ * the bottom of his own sheet — the two do not always agree, and on the one
+ * household this reaches they disagree about how many people in it were men.
+ *
+ * BOTH ARE SHOWN, and the sentence between them says which is senior and why.
+ * Replacing the recovered figures with the scan would have been tidier and would
+ * have destroyed the finding: the bridge that put this person on this line was
+ * built out of the workbook's row, so a card showing only the sheet would be
+ * quoting evidence the identification never rested on.
+ */
+function scanHtml(census, citationsById) {
+  const scan = census.scan_verified;
+  if (!scan) return '';
+  const cites = (scan.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const tallies = [
+    ['People on the line', scan.free_persons],
+    ['Male', scan.males],
+    ['Female', scan.females],
+    ['Children under ten', scan.children_under_10],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Read again off the page itself</dt>
+    <dd>${swatch('attested')}Line ${escapeHtml(String(scan.line))} of the photographed sheet,
+      where the head of the household is written <q>${escapeHtml(scan.head_name_as_read)}</q>.
+      <br><span class="res-why">From ${escapeHtml(scan.image)}, read by ${escapeHtml(scan.read_by)}.</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      <span class="res-why">On the line, band by band: ${escapeHtml(scan.age_bands)}.</span>
+      <br><span class="res-why">The sheet foots its own columns and that footing is the only
+        check this reading has: ${escapeHtml(scan.column_totals_check)}.</span>
+      ${census.scan_disagreement
+        ? `<br><span class="res-why">${escapeHtml(census.scan_disagreement)}</span>` : ''}
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+/**
+ * The Chicago directories of 1839, 1843 and 1844, on the people they meet (T-0632).
+ *
+ * Every volume here is later than this scene and that gap is the whole reason this
+ * is rendered rather than banked. A later line can only do two things for a person
+ * of 1835 — say they were still in Chicago, and print a trade or a street the 1835
+ * record never had — and both of those are ARGUMENTS a reader can only disagree
+ * with if they can see the line, the page and the rule that reached it.
+ *
+ * THE THREE STATUSES ARE ALL SHOWN, and that is the point of the section rather
+ * than a caveat on it. A person met by one entry nobody else meets is a single
+ * entry; met by several, this project does not choose between them; sharing one
+ * entry with another person in this town, no match is made. A section that showed
+ * only the first would be reporting the crosswalks' successes and hiding their
+ * arithmetic.
+ *
+ * WHAT CROSSES AND WHAT DOES NOT. Norris's alphabetical volume sets a partnership
+ * where the trade would go — "of Horace Norton & Co", twice simply "of" — so its
+ * split yields a value containing no trade at all and T-0569 refused it. The line
+ * is quoted and its parse is not. The Fergus volumes set the trade first and its
+ * qualifiers after, so their split crosses with the caution printed beside it.
+ */
+function laterDirectoryHtml(found, citationsById) {
+  if (!found) return '';
+  const cites = (found.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const volumes = (found.appearances || []).map((a) => {
+    const lines = (a.entries || []).map((e) => `<li><q>${escapeHtml(e.as_printed)}</q>${
+      e.firm ? ` — ${escapeHtml(e.firm)}` : ''}
+      <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
+        escapeHtml(e.claim_id)}.</span></li>`).join('');
+    const holds = (a.holds || []).map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
+    return `<dt>Found again in ${escapeHtml(a.title)}</dt>
+      <dd>${swatch(null)}<span class="res-chip res-research">${
+        escapeHtml(words(a.match_status))}</span>${
+        holds.length
+          ? `<span class="res-chip res-research">${escapeHtml(String(a.year))} holds ${
+              escapeHtml(holds.join(' and '))}${a.parse_carries ? '' : ', and its parse does not cross'}</span>`
+          : ''}
+        ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
+        <span class="res-why">${escapeHtml(a.match_rule)}</span></dd>`;
+  }).join('');
+  return `${volumes}
+    <dd><span class="res-why">${escapeHtml(found.standard || '')}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+/**
+ * And what the RECORD itself now carries (T-0632). The layer above holds the
+ * printed lines and the crosswalks' arithmetic; the household record holds the
+ * CLAIM — the later trade and the later address, each graded, dated to the year
+ * it describes and citing the volume it was read out of. It is rendered from the
+ * record rather than from the layer on purpose: the record is what a reader who
+ * opens the JSON sees, and a card showing something its own file does not say
+ * would be two answers to one question.
+ */
+function laterClaimHtml(block, citationsById) {
+  if (!block) return '';
+  const one = (claim, label) => {
+    if (!claim) return '';
+    const cites = (claim.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    return `<dt>${escapeHtml(label)} in ${escapeHtml(String(claim.describes_date))}</dt>
+      <dd>${swatch(claim.confidence)}${escapeHtml(claim.value)}
+        <br><span class="res-why">${escapeHtml(claim.note)}</span>
+        ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+  };
+  return one(block.occupation_later, 'A trade printed against this name')
+    + one(block.address_later, 'An address printed against this name')
+    + backProjectionHtml(block.back_projection);
+}
+
+/**
+ * And what was done with the later address (T-0633), which is the half a reader
+ * cannot check from the address alone.
+ *
+ * `docs/ADDRESS-BACK-PROJECTION.md` is the fourth grammar for placing a business:
+ * a street printed four to nine years after the scene, read backwards, carried as
+ * the business's street FACE and nothing narrower. Fifteen of the eighty-seven
+ * addresses on this layer earn one; the other seventy-two do not.
+ *
+ * ALL EIGHTY-SEVEN ARE SHOWN, and that is the section rather than a caveat on it.
+ * An address the pass declines is a reading it made — the 1835 record prints no
+ * trade to position, or the directory prints a home and not a shop, or the street
+ * is `Michigan ave` where 1835 has Michigan Street, or `cor. Monroe` puts a grocer
+ * three blocks outside the platted town. A card showing only the placements would
+ * be reporting this pass's successes and hiding its arithmetic, which is exactly
+ * what the crosswalks' three match statuses above already refuse to do.
+ *
+ * NOTHING IS DRAWN. The face has no geometry, on purpose: dealing a roof to a
+ * back-projected address would be two inventions under one chip (L218, and
+ * `STREET-FACE-ADOPTION.md` limit 3). This row is where the placement reaches a
+ * visitor, the same way the fauna layer reaches one under L2.
+ */
+function backProjectionHtml(bp) {
+  if (!bp) return '';
+  const placed = bp.outcome === 'placed';
+  const label = {
+    placed: 'Positioned by reading that address backwards',
+    already_better_placed: 'Not read backwards — something better already places it',
+  }[bp.outcome] || 'That address was refused, and here is why';
+  const where = placed
+    ? `${bp.value} — ${bp.placement === 'face'
+      ? 'the street face, and nothing narrower'
+      : `${words(bp.placement)} on a crossing at ${
+        (bp.position_local_enu_m || []).join(', ')} m in the scene's local frame`}`
+    : 'no position taken';
+  const carried = bp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(bp.read_back_years))} years back, from ${
+      escapeHtml(String(bp.describes_date))}</span>` : '';
+  const clause = bp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(bp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade. A refusal is not a figure held
+  // at low confidence; it is the absence of a figure, and the record carries no
+  // `confidence` on one for exactly that reason.
+  const chip = placed ? swatch(bp.confidence) : '';
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
+}
+
+function personHtml(person, citationsById, researchByPerson, directoryByPerson, directoriesOnRecord) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -214,6 +433,9 @@ function personHtml(person, citationsById, researchByPerson) {
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
+      ${laterCensusHtml(person.later_census, citationsById)}
+      ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
+      ${laterClaimHtml((directoriesOnRecord || []).find((row) => row.person_id === person.id), citationsById)}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
   </details>`;
@@ -246,6 +468,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
       <span class="res-role">${escapeHtml(words(entry.division))} division · ${
         entry.persons} ${entry.persons === 1 ? 'person' : 'people'}</span>
       <span class="res-chips">${gradeChips(entry.grades)}${
+        entry.census_1840_linked
+          ? `<span class="res-chip res-research">${entry.census_1840_linked} bridged to an 1840 census household</span>` : ''}${
         reaches || !orphanChip
           ? '' : '<span class="res-chip res-orphan">on no building card</span>'}</span></summary>
     <div class="lib-body res-hh-body"><p class="legend-note">Loading…</p></div>
@@ -253,7 +477,10 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-function householdHtml(hh, citationsById, researchByPerson) {
+function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
+  // T-0632's block on the record: `directories.note` states what a later volume is
+  // worth and `directories.sources` names every one that met this household.
+  const onRecord = hh.directories || {};
   const persons = Array.isArray(hh.persons) ? hh.persons : [];
   const party = hh.party_size_on_arrival || null;
   return `<dl class="lib-body res-fields">
@@ -274,7 +501,9 @@ function householdHtml(hh, citationsById, researchByPerson) {
       ${hh.research_note
         ? `<dt>What this record is worth</dt><dd>${escapeHtml(hh.research_note)}</dd>` : ''}
     </dl>
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson)).join('')}</div>`;
+    ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
+        escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people)).join('')}</div>`;
 }
 
 /**
@@ -445,7 +674,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — the household records are shown without their citations`);
   }
 
-  // T-0442's deliberately separate review layer. A possible identity must not
+  // The deliberately separate review layer. A possible identity must not
   // become an asserted household fact merely because its biography is useful.
   const researchByPerson = new Map();
   let researchCounts = {};
@@ -456,7 +685,26 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     researchEligible = pilot.eligible_real_named_people || 0;
     for (const review of pilot.reviews || []) researchByPerson.set(review.person_id, review);
   } catch (err) {
-    problems.push(`residents: ${err.message} — T-0442 research reviews are not shown`);
+    problems.push(`residents: ${err.message} — resident research reviews are not shown`);
+  }
+
+  // The four directory crosswalks, joined on person_id (T-0632, replacing T-0569's
+  // 1844-only layer). Beside the records as well as on them: the record carries the
+  // later trade and street and cites the volume, and this layer carries the printed
+  // lines, the match rule and the arithmetic the card has no room for. Its absence
+  // costs the section this block and nothing else.
+  const directoryByPerson = new Map();
+  let directoryCounts = {};
+  let directoryVolumes = [];
+  try {
+    const found = await getJson('residents/directories.json');
+    directoryCounts = found.counts || {};
+    directoryVolumes = found.volumes || [];
+    for (const row of found.people || []) {
+      directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
+    }
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the directory findings are not shown`);
   }
 
   const vocab = index.vocabulary || {};
@@ -503,11 +751,33 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `admits should be held, so they are listed together, below the households the `
           + `rest of the corpus documents, and which of these people are a name and `
           + `nothing else can be seen without opening anything. ` : '')
+      + (counts.census_1840_linked
+        // T-0491. Three people carry an identity bridge to a named head of household
+        // in the 1840 census, and the bridge is an argument rather than a fact: it is
+        // shown whole on the person's card, three confidences and all. The count is
+        // here so that a reader can see how few of them there are before opening one.
+        ? `${counts.census_1840_linked} of these people are bridged to a named household `
+          + `in the 1840 census, five years after this scene — later evidence, shown with `
+          + `its reasoning and never read back onto 1835. ` : '')
       + (researchByPerson.size
         ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
           + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `
           + `${researchCounts.candidate_identity || 0} candidate identities kept unmerged, and `
           + `${researchCounts.no_corroboration || 0} searches with no safe match. ` : '')
+      + (directoryByPerson.size
+        // T-0632. The earliest Chicago directory is of 1839 and this town is of 1835,
+        // so the sentence leads with the gap rather than with the number: what these
+        // people gain is corroboration, a line to read and — where the volume prints
+        // one — a trade or a street OF ITS OWN YEAR, never a date, a trade or a street
+        // in 1835.
+        ? `${directoryByPerson.size} of them are met by a name in one of the `
+          + `${directoryVolumes.length} Chicago directories read here, of 1839, 1843 and `
+          + `1844 — ${directoryCounts.people_met_by_more_than_one_volume || 0} in more `
+          + `than one. ${directoryCounts.carrying_an_occupation || 0} carry a trade the `
+          + `1835 record never had and ${directoryCounts.carrying_an_address || 0} an `
+          + `address, each written as its own year's and read back onto nobody; `
+          + `${directoryCounts.line_held_but_parse_refused || 0} hold only a line whose `
+          + `parse this project will not cross. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
@@ -531,7 +801,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       const body = el.querySelector('.res-hh-body');
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
-        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson);
+        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);

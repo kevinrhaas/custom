@@ -404,3 +404,138 @@ def from_phase(phase: dict, record: dict | None = None) -> LogDwellingParams:
     )
     p.validate()
     return p
+
+
+# ---------------------------------------------------------------------------
+# THE ELEVATION'S SET-OUT, and the openings that fall out of it (T-0459).
+#
+# These live here so that something with no Blender can ask WHERE THE OPENINGS
+# ARE. The signage layer is the caller that needed it: it hung painted names and
+# wall boards at a height chosen for the trade, over whatever happened to be behind
+# them.
+
+# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
+# beside this file computes the same rectangles from the same constants, and until
+# it CONSUMES these functions the two are two copies. Making it consume them is
+# T-0520, and it is a separate ticket for one reason: the asset staleness hash
+# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
+# stales every asset of that archetype — 212 of them across the three touched here
+# — and demands a town-wide rebake that does not fit beside this work. Until then:
+# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
+# COMMIT. The constants are already shared, which is most of the drift surface; the
+# arithmetic is what is not yet.
+# ---------------------------------------------------------------------------
+
+def core_extent(p: "LogDwellingParams") -> tuple[float, float, float, float]:
+    """The log core's rectangle inside the footprint bbox.
+
+    The addition is carved OUT of the footprint rather than bolted onto it, so the
+    whole building stays inside the polygon the record actually attests. See the
+    dataclass docstring above.
+    """
+    w, d = p.width_m, p.depth_m
+    if not p.frame_addition:
+        return 0.0, 0.0, w, d
+    if p.frame_addition_side == "end":
+        return 0.0, 0.0, w - p.frame_addition_width_m, d
+    return 0.0, 0.0, w, d - p.frame_addition_depth_m
+
+
+def addition_extent(p: "LogDwellingParams") -> tuple[float, float, float, float]:
+    """The frame addition's rectangle. `front` is centred on the facade; `end` runs
+    to the +x edge and aligns its front wall with the core's."""
+    w, d = p.width_m, p.depth_m
+    fw, fd = p.frame_addition_width_m, p.frame_addition_depth_m
+    if p.frame_addition_side == "end":
+        return w - fw, max(d - fd, 0.0), w, d
+    x0 = (w - fw) / 2.0
+    return x0, d - fd, x0 + fw, d
+
+
+def core_front_rects(p: "LogDwellingParams") -> list[tuple]:
+    """The log core's front-wall openings as `(kind, u0, u1, z0, z1)`.
+
+    Openings in a log wall were few and small because every one of them cuts the
+    courses and has to be framed — one door and one or two small windows is the type.
+    When a front addition exists it takes the front door, so the core gets a window
+    where its door would have been.
+    """
+    x0, _y0, x1, _y1 = core_extent(p)
+    front_taken = p.frame_addition and p.frame_addition_side == "front"
+    story_h = p.wall_height_m / max(p.stories, 1)
+    xm = (x0 + x1) / 2.0
+    span = x1 - x0
+    out: list[tuple] = []
+    if not front_taken:
+        out.append(("door", xm - 0.52, xm + 0.52, 0.02, 1.95))
+    for story in range(p.stories):
+        z0 = story * story_h + story_h * 0.34
+        for u in (xm - span * 0.28, xm + span * 0.28):
+            out.append(("window", u - 0.31, u + 0.31, z0, z0 + 0.72))
+        if front_taken and story == 0:
+            out.append(("window", xm - 0.31, xm + 0.31, z0, z0 + 0.72))
+    return out
+
+
+def addition_front_rects(p: "LogDwellingParams") -> list[tuple]:
+    """The frame addition's front-wall openings as `(kind, u0, u1, z0, z1)`.
+
+    Only the elevation that faces the town: an END addition's front wall is in the
+    same plane as the core's and carries this same range of windows.
+    """
+    if not p.frame_addition:
+        return []
+    ax0, _ay0, ax1, _ay1 = addition_extent(p)
+    az = p.addition_height_m
+    xm = (ax0 + ax1) / 2.0
+    story_h = az / max(p.frame_addition_stories, 1)
+    front = p.frame_addition_side == "front"
+    out: list[tuple] = []
+    if front:
+        out.append(("door", xm - 0.55, xm + 0.55, 0.02, 2.05))
+    for story in range(p.frame_addition_stories):
+        z0 = story * story_h + story_h * 0.32
+        for fx in (0.22, 0.78):
+            u = ax0 + (ax1 - ax0) * fx
+            if story == 0 and front and abs(u - xm) < 0.9:
+                continue
+            out.append(("window", u - 0.36, u + 0.36, z0, z0 + 1.05))
+    return out
+
+
+def front_wall(p: "LogDwellingParams") -> dict:
+    """The wall standing on the footprint's max-v edge, and what is on it.
+
+    A FRONT addition is a block set into the middle of that edge, so the wall a
+    visitor faces is only as wide as the addition and the log core stands a pace
+    behind it. Anything mounted on the front has to know that: `u0`/`u1` are the
+    extent of real wall on the plane, not the footprint's own width.
+    """
+    if p.frame_addition and p.frame_addition_side == "front":
+        ax0, _ay0, ax1, _ay1 = addition_extent(p)
+        rects = addition_front_rects(p)
+        u0, u1, top = ax0, ax1, p.addition_height_m
+    else:
+        cx0, _cy0, cx1, _cy1 = core_extent(p)
+        rects = list(core_front_rects(p))
+        u0, u1, top = cx0, cx1, p.wall_height_m
+        if p.frame_addition and p.frame_addition_side == "end":
+            rects += addition_front_rects(p)
+            u1 = p.width_m
+    openings = [{"kind": k, "u0": a, "u1": c, "z0": z0, "z1": z1}
+                for k, a, c, z0, z1 in rects]
+    if p.sign is not None and p.sign_mount == "bracket":
+        # The archetype's own hanging board, on its bracket beside the front door.
+        # Not an opening, but a name painted across it is as wrong as one painted
+        # across the glass, and the caller is entitled to know it is there.
+        bx0, bx1 = (u0, u1)
+        x = min((bx0 + bx1) / 2.0 + 1.7, bx1 - 0.6)
+        z = min(top - 0.30, 2.55)
+        openings.append({"kind": "archetype_sign", "u0": x - 0.44, "u1": x + 0.44,
+                         "z0": z - 0.70, "z1": z})
+    return {"u0": u0, "u1": u1, "wall_height_m": top, "openings": openings}
+
+
+def front_openings(p: "LogDwellingParams") -> list[dict]:
+    """Everything on the front wall a signboard must not be hung over."""
+    return front_wall(p)["openings"]
