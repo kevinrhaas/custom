@@ -962,7 +962,7 @@
    "person_id": "spence_james_c",
    "name": "James C Spence",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "attested",
+   "grade_1835": "inferred",
    "rules": [
     "Surname 'Spence' folds to the same string as the 1837 entry's, and the given name of both begins J."
    ],
@@ -1364,7 +1364,7 @@
    "person_id": "shapley_major_l",
    "name": "Major L Shapley",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "attested",
+   "grade_1835": "inferred",
    "rules": [
     "Surname 'Shapley' folds to the same string as the 1837 entry's, and the given name of both begins M."
    ],
