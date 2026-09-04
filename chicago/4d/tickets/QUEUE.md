@@ -445,4 +445,7 @@ T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves 
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
 T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
-T-0613 — Volume 4 of the Newberry index has a much worse text layer than volumes 1-3, and a tesseract re-OCR reads the cards it loses
+T-0618 — The OCR reader for volume 4: --extract --ocr, resumable by page range, and the measured recovery it buys
+T-0619 — Volume 4 read by OCR, pages 1-306: the shards
+T-0620 — Volume 4 read by OCR, pages 307-612: the shards
+T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
