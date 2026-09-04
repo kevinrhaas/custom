@@ -131,12 +131,12 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-6Q.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "footer_and_structure_read_cells_not_committed",
+     "read_state": "industry_columns_closed_line_count_committed_total_column_not_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-6Q.json",
-     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0549"
+     "note": "the enumerator's own footer row is committed. T-0630 read the seven industry columns entry by entry: the four he footed (commerce 4, manufactures and trades 15, navigation of canals lakes and rivers 18, learned professions 8) close at zero residual, and the three he left blank are demonstrated blank. The LINE COUNT is now measured rather than inventoried: 30, fitted to those columns' ink with the TOTAL column excluded, at an rms of 4.97 px against 15.9 for the next best count — which corrects the 31 this file carried 'to the nearest line'. The TOTAL column's digits and the per-line cells are open on T-0631."
     },
     {
      "index": 10,
