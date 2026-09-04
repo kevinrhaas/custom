@@ -42,6 +42,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEXT = os.path.join(ROOT, "data/research/directories/text")
 OUT = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_election_1837.json")
+COVERAGE = os.path.join(ROOT, "data/research/directories/coverage.json")
 
 LEAF_TO_PRINTED = -12
 OGDEN, KINZIE = "William B. Ogden", "John H. Kinzie"
@@ -416,6 +417,30 @@ def report(claims):
                                       if c["normalized"].get("role") == kind)))
 
 
+def declared_counts():
+    """The per-leaf counts coverage.json declares for T-0664. A segmenter that loses a
+    column of a poll list is invisible to every other gate in this repository, so the
+    declaration is the second opinion — the same guard read_fergus_1843.py keeps."""
+    doc = json.load(open(COVERAGE, encoding="utf-8"))
+    for dec in doc["declarations"]:
+        if dec["ticket"] == "T-0664":
+            return dec["counts"]
+    return None
+
+
+def against_declaration(claims):
+    want = declared_counts()
+    if want is None:
+        return ["coverage.json declares no T-0664 reading, and the reading has to be "
+                "declared before it can be checked"]
+    got = {}
+    for c in claims:
+        got[c["locator"]["page"]] = got.get(c["locator"]["page"], 0) + 1
+    if got != want:
+        return ["coverage.json declares %r and the text yields %r" % (want, got)]
+    return []
+
+
 def main():
     claims, warnings = build()
     doc = payload(claims)
@@ -425,12 +450,18 @@ def main():
             print("  warning:", w)
         return 0
     if "--check" in sys.argv:
+        bad = against_declaration(claims)
+        if bad:
+            for b in bad:
+                print("fergus 1839 election:", b, file=sys.stderr)
+            return 1
         got = json.load(open(OUT, encoding="utf-8"))
         if got != doc:
             print("fergus 1839 election: %s does not match the committed text — regenerate "
                   "with --build" % os.path.relpath(OUT, ROOT), file=sys.stderr)
             return 1
-        print("fergus 1839 election: %d claims (%d voters), and they match the committed text"
+        print("fergus 1839 election: %d claims (%d voters), and they match the committed "
+              "text at the counts coverage.json declares"
               % (len(claims), doc["counts"]["voters"]))
         return 0
     with open(OUT, "w", encoding="utf-8") as fh:
