@@ -69,6 +69,38 @@
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
 # --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
 # --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
+# --- THE GRADES THE OWNER QUESTIONED — 2026-09-04, opening hh_allen_edward_richards.json: "we have
+# --- people now who have been identified in multiple sources, but they are still being marked as
+# --- inferred? they should be attested if you have seen them like this in multiple sources."
+# ---
+# --- REVIEWED, AND THE ANSWER IS THREE THINGS, NOT ONE.
+# ---
+# --- T-0691 is his question, and it turns out the tool already asked it and is waiting on him:
+# --- G2e in consolidate_resident_evidence.py declines to read a post-office letter list as the
+# --- ladder's `contemporary record naming the person in Chicago` and says in the code that it is
+# --- "the one reading put back to the owner". Allen is inferred because of exactly that line. 11
+# --- multi-source residents move on the answer here; the policy doc puts ~1,500 letter-list names
+# --- on it corpus-wide, which is why it is a ruling and not a case-by-case fix.
+# ---
+# --- NOTE WHAT IS *NOT* PROPOSED. The ratified ladder grades by the CLASS of evidence, never by
+# --- how many appearances a person has — G4 says two or more appearances of an insufficient class
+# --- stay inferred. A rule of the shape "two sources means attested" would make a man attested on
+# --- two 1843 directory entries, which G0 forbids in the same breath. None of these tickets adopts
+# --- that rule, and none should be closed by implementing it.
+# ---
+# --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
+# --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
+# --- whatever the pass that wrote it meant and nothing can be argued with. An ungraded person
+# --- cannot be regraded whichever way T-0691 goes.
+# ---
+# --- T-0693 is the owner's second observation on the same card: "there is evidence in there he is
+# --- a druggist but that is not in his person record". The file quotes the trade three times and
+# --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
+# --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
+T-0691 — Is a post-office letter list a contemporary record naming the person in Chicago? The ladder parked this for the owner and 11 multi-source residents sit on the answer
+T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
+T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
+
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
