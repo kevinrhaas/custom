@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 8:14 PM",
+  "generated_ct": "Sep 3, 2026, 8:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10154,7 +10154,7 @@
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
-      "effort": "M",
+      "effort": "L",
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
