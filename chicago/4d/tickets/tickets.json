@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 7:14 PM",
+  "generated_ct": "Sep 3, 2026, 7:50 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10068,7 +10068,7 @@
     {
       "id": "T-0606",
       "title": "Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10076,14 +10076,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-03",
+      "pr": "735",
       "claimed_by": "owner 9/3/2026, 5:26:43 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-04T00:50:37.327Z",
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": null
     },
     {
       "id": "T-0609",
@@ -10103,7 +10103,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 145
     },
     {
       "id": "T-0610",
@@ -10123,7 +10123,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 146
     },
     {
       "id": "T-0611",
@@ -10143,7 +10143,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 147
     }
   ]
 }
