@@ -400,13 +400,16 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled but very faint",
+     "what_it_is": "continuation sheet, filled but very faint; 31 lines, page population 133 by the enumerator's own footer and 114 by the line-by-line reading \u2014 a residual of -19 that is carried, not adjusted away. Manufactures and trades closes exactly at 7 and is the column the line grid was fitted to; six industry columns, the slaves block, the pensioners block, every deaf/dumb/blind/insane column and every schools column are empty on all 31 lines and at the foot. Every figure on the sheet is a single digit.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
+     "read_state": "continuation_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-BF.json",
      "paired_to_printed_page": null,
-     "pairing_state": "unpaired_key_not_yet_read",
-     "pairing_tested_by": "T-0642"
+     "pairing_state": "unpaired_population_key_read",
+     "pairing_tested_by": "T-0642",
+     "page_population_key": 133,
+     "page_population_key_source": "T-0655, the enumerator\u2019s own TOTAL footing read off this exposure",
+     "note": "read by T-0655: every ruled line recorded, all 37 columns as integers, the cells read at a fitted column grid on a de-sheared copy and checked against the printed footings. The inventory\u2019s 31 lines with an entry is confirmed line by line."
     },
     {
      "index": 25,
