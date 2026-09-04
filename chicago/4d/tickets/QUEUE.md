@@ -292,3 +292,5 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
+T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated

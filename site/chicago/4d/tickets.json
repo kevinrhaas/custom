@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 2:24 PM",
+  "generated_ct": "Sep 4, 2026, 2:33 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11438,6 +11438,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 7
+    },
+    {
+      "id": "T-0686",
+      "title": "The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 155
+    },
+    {
+      "id": "T-0687",
+      "title": "hydrology.geojson's two confidence strings no longer match the generator that says it is generated",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
