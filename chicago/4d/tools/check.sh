@@ -1696,6 +1696,20 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
 
+# T-0440. A house is minted from whichever printing the corpus carries first, and it took
+# `placement` and `street` from it — so a standing advertisement that ran without an
+# address in its first week and with one afterwards stood at `{"class": "none"}` for good
+# and read `unplaceable` in the register while three of its own printings said otherwise.
+# Fourteen houses of 206 were in that position, Clark, Filer & Co. among them. The repair
+# is in `compile_gazetteer` and its self-test above; this is the standing count, and it
+# fails only on the one thing the repair must never allow back: a live placement that
+# places nothing while a printing of the same house, on or before the scene date, places
+# it. The other two populations the report prints are NOT failures — a printed address
+# outranked by another printed address is `anchor_changes`' judgement to make, and a
+# house placed only after the scene date is the bound working.
+step "no house is placed by a printing that gave no address" \
+  python3 tools/measure_placement_silence.py --check
+
 # T-0305. Four times in its thirteen issues the Chicago American contradicts ITSELF about
 # a street, or prints one and loses the cross street that would locate it — the tailor's
 # Franklin-or-Lake, which Water street Wm. Sabine and John Dave[s] stood in, and the corner

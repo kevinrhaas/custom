@@ -24,21 +24,21 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 58,
-        "unplaceable": 93
+        "new_building": 26,
+        "street_only": 60,
+        "unplaceable": 90
       },
       "by_placement_class": {
-        "corner": 16,
-        "none": 74,
-        "relative": 98,
-        "street_only": 18
+        "corner": 18,
+        "none": 61,
+        "relative": 104,
+        "street_only": 23
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 58,
-        "unplaceable": 76
+        "new_building": 26,
+        "street_only": 60,
+        "unplaceable": 73
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -678,7 +678,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1834-06-11"
@@ -752,9 +752,9 @@
       "proprietors": [
         "Brown"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Randolph Street",
+      "street_id": "randolph",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-08",
         "last_issue": "1835-08-15"
@@ -767,11 +767,11 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
+        "kind": "business",
         "target": null,
         "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
+        "via": "business_briggs_humphrey",
+        "note": "The landmark is another documented business (business_briggs_humphrey), which places this one exactly as well as that one is placed."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -1167,9 +1167,9 @@
       "proprietors": [
         "Clark, Filer & Co."
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-05-28",
         "last_issue": "1834-12-10"
@@ -1182,19 +1182,21 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
+        "kind": "street",
         "target": null,
-        "streets": null,
+        "streets": [
+          "randolph"
+        ],
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor is a reach of randolph and names nothing narrower."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of randolph and names nothing narrower."
     },
     {
       "id": "business_collins_caton",
@@ -1653,7 +1655,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1835-07-29"
@@ -2422,7 +2424,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-08",
         "last_issue": "1835-08-15"
@@ -2439,7 +2441,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the drawbridge' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -2771,9 +2773,9 @@
         "Goss",
         "Cobb"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "corner",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-06-13"
@@ -2790,7 +2792,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "A corner of 'Lake' and 'Canal streets on the corner of Lake and', and the plat resolves both sides to ['canal', 'lake']."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -3086,7 +3088,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "corner",
       "evidence": {
         "first_issue": "1834-07-02",
         "last_issue": "1835-08-29"
@@ -3103,7 +3105,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -3111,7 +3113,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
     },
     {
       "id": "business_ingersoll_s_tavern_stand",
@@ -4119,9 +4121,9 @@
         "Wm. Jones",
         "Jones & King"
       ],
-      "street": null,
+      "street": "Water Street",
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-07-09",
         "last_issue": "1834-12-03"
@@ -4138,7 +4140,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the bridge' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -4146,7 +4148,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor 'the bridge' names nothing the committed town holds."
     },
     {
       "id": "business_jones_king_co",
@@ -4262,7 +4264,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-07-02",
         "last_issue": "1834-11-19"
@@ -4275,19 +4277,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "chicago_democrat_office",
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The landmark is the committed structure chicago_democrat_office."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "chicago_democrat_office",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure chicago_democrat_office."
     },
     {
       "id": "business_kinzie_hall",
@@ -5086,7 +5088,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-08-05"
@@ -5423,7 +5425,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-07-22"
@@ -5684,9 +5686,9 @@
       "proprietors": [
         "Rockwell"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1835-06-13",
         "last_issue": "1835-07-04"
@@ -5703,15 +5705,15 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'Apply to […] ROCKWELL, [S]outh Wate[r street] Apply 10 < ROCKWELL, Bouth Wate ant' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor 'Apply to […] ROCKWELL, [S]outh Wate[r street] Apply 10 < ROCKWELL, Bouth Wate ant' names nothing the committed town holds."
     },
     {
       "id": "business_russell_brown",
@@ -8063,7 +8065,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-09-03",
         "last_issue": "1835-07-29"
@@ -8083,7 +8085,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor \"P. Pruyne & Co's store\" names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -8091,7 +8093,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor \"P. Pruyne & Co's store\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
