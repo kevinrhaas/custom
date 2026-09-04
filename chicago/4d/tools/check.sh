@@ -1246,6 +1246,20 @@ step "the letter-list cohort is what the owner's ruling permits" \
 step "…and that gate's own assertions still fire when broken" \
   python3 tools/mint_letter_list_residents.py --self-test
 
+# T-0660. The pass reads a printed name one way now and read it another way before
+# T-0638, and the difference collides nine committed records onto a family name some
+# other record already holds. Retiring them is the owner's ruling and has not been made,
+# so what is gated here is the MEASUREMENT: the derived list of collisions, what each
+# would strand, and how far the committed cohort has drifted from what its own tool
+# derives. The report is generated, never hand-written, and --check re-derives it — the
+# failure mode it closes is a decision paper that quietly stops describing the tree it
+# was measured on while the ruling it is waiting for has not happened yet.
+step "the letter-list collision report still describes the tree" \
+  python3 tools/report_letter_list_collisions.py --check
+
+step "…and its two readings of a printed name are still two" \
+  python3 tools/report_letter_list_collisions.py --self-test
+
 # And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
 # owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
 # into a proposal; nothing in that proposal had ever been written onto a card, and only 37

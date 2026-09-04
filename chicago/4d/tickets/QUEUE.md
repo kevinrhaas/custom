@@ -73,7 +73,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
@@ -299,3 +298,4 @@ T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a r
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
+T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
