@@ -65,7 +65,6 @@
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
-T-0632 — Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence

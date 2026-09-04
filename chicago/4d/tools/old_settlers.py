@@ -232,14 +232,26 @@ def resident_index() -> list[dict]:
     rows = []
     for path in sorted((RESIDENTS / "households").glob("*.json")):
         h = load(path)
+        # OS2A READS THE RECORD'S OWN SPELLING OF THE NAME, AND NOT A DIRECTORY'S (T-0632).
+        # The rule's discriminator is that the resident's record spells the roster's
+        # forename somewhere in it, and it is implemented as a scan of the whole file.
+        # `tools/spend_directories.py` now puts a `directories` block on 129 of these
+        # records holding what Fergus 1839/1843 and Norris 1844 print against the person
+        # — and those entries were matched to the person on SURNAME PLUS INITIAL, which
+        # is the very rule OS2A exists to strengthen. Letting the block into the scan
+        # makes the test circular: it would merge a roster name because a directory
+        # matched on initials spells it out, and it silently added three merges the
+        # moment the block landed. The block is excluded, so this rule reads what it
+        # always read.
+        record_source = {k: v for k, v in h.items() if k != "directories"}
+        record_text = json.dumps(record_source, ensure_ascii=False)
         for p in h.get("persons") or []:
             surname, initial, fore = name_key(p.get("name") or "")
             rows.append({
                 "person_id": p.get("id"), "household_id": h.get("id"),
                 "name": p.get("name"), "grade": p.get("grade"),
                 "surname": surname, "initial": initial, "forenames": fore,
-                "record_text": (path.read_text(encoding="utf-8")
-                                + " " + (p.get("id") or "")).lower(),
+                "record_text": (record_text + " " + (p.get("id") or "")).lower(),
                 "file": "data/residents/households/%s" % path.name,
             })
     return rows

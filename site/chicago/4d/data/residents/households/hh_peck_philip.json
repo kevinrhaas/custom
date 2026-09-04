@@ -76,5 +76,27 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE HOUSEHOLD AT THE CENTRE OF A THREE-WAY LINK. Peck's store lodged the Presbyterian minister in its loft and Rufus Brown's log boarding house stood directly behind it - so a single corner of South Water and LaSalle carries a merchant, a minister and a boarding-house keeper, all documented, all in this parcel. That is the density the inferred phase should expect to find everywhere and can only demonstrate here."
+ "research_note": "THE HOUSEHOLD AT THE CENTRE OF A THREE-WAY LINK. Peck's store lodged the Presbyterian minister in its loft and Rufus Brown's log boarding house stood directly behind it - so a single corner of South Water and LaSalle carries a merchant, a minister and a boarding-house keeper, all documented, all in this parcel. That is the density the inferred phase should expect to find everywhere and can only demonstrate here.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "peck_philip",
+    "address_later": {
+     "value": "Clark street",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Peck, Philip F. W., real estate speculator, 242 Clark street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. The street NUMBER printed against it is a number in the 1839 grid, a numbering this town's year does not have, so the street name crosses and the number does not. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    }
+   }
+  ]
+ }
 }

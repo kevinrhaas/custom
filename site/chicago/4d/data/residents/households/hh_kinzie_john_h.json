@@ -99,5 +99,20 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE HOUSEHOLD THAT EXPOSES A DATE THE WHOLE OFFICER LAYER TURNS ON. Andreas says only that 'the third election was held in July, 1835' and then lists the officers it produced - H. Hugunin president, with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Loyd and George W. Dole as trustees. THIS PROJECT CANNOT SAY WHETHER THAT ELECTION HAD HAPPENED BY 1 JULY 1835. If it had not, the town's president on the scene date is John H. Kinzie and the 1834 board is in office; if it had, it is Hiram Hugunin. The town elections of 1833 and 1834 were both held on the tenth or eleventh of August, which is an argument that the 1835 one fell late in the month rather than at its start, but Andreas's own text says July. NO OFFICE-HOLDING CLAIM IN THIS PARCEL RESTS ON THE ANSWER, and the seven trustees of the 1835 board are deliberately not written as households on the strength of an election this project cannot date."
+ "research_note": "THE HOUSEHOLD THAT EXPOSES A DATE THE WHOLE OFFICER LAYER TURNS ON. Andreas says only that 'the third election was held in July, 1835' and then lists the officers it produced - H. Hugunin president, with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Loyd and George W. Dole as trustees. THIS PROJECT CANNOT SAY WHETHER THAT ELECTION HAD HAPPENED BY 1 JULY 1835. If it had not, the town's president on the scene date is John H. Kinzie and the 1834 board is in office; if it had, it is Hiram Hugunin. The town elections of 1833 and 1834 were both held on the tenth or eleventh of August, which is an argument that the 1835 one fell late in the month rather than at its start, but Andreas's own text says July. NO OFFICE-HOLDING CLAIM IN THIS PARCEL RESTS ON THE ANSWER, and the seven trustees of the 1835 board are deliberately not written as households on the strength of an election this project cannot date.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "kinzie_john_h"
+   },
+   {
+    "person_id": "kinzie_juliette"
+   }
+  ]
+ }
 }

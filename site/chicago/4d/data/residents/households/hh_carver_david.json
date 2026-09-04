@@ -68,5 +68,16 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "A SEAMAN AND A LUMBER MERCHANT, WHICH IS ONE MAN DESCRIBING THE WHOLE ECONOMY. Every stick of sawn lumber in the 1835 town came in by water - the lumber for St Mary's came by scow from St Joseph at $12 per thousand, hauled up from the schooner by Anson Taylor's team - and this is the household that connects the two ends of that trade. He was one of the twenty-eight electors of 10 August 1833. THE ONE SAW-MILL THE SOURCES MENTION IS DISPUTED: Andreas puts one on the North Branch below Clybourne's at the mouth of a slough just south of Division Street and prints a footnote against himself - 'John Cass says there was no mill there.'"
+ "research_note": "A SEAMAN AND A LUMBER MERCHANT, WHICH IS ONE MAN DESCRIBING THE WHOLE ECONOMY. Every stick of sawn lumber in the 1835 town came in by water - the lumber for St Mary's came by scow from St Joseph at $12 per thousand, hauled up from the schooner by Anson Taylor's team - and this is the household that connects the two ends of that trade. He was one of the twenty-eight electors of 10 August 1833. THE ONE SAW-MILL THE SOURCES MENTION IS DISPUTED: Andreas puts one on the North Branch below Clybourne's at the mouth of a slough just south of Division Street and prints a footnote against himself - 'John Cass says there was no mill there.'",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839"
+  ],
+  "people": [
+   {
+    "person_id": "carver_david"
+   }
+  ]
+ }
 }

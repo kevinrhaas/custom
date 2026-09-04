@@ -68,5 +68,26 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE MAN WHOSE PAPERWORK WOULD HAVE ANSWERED THIS PROGRAMME'S QUESTIONS. Snow is also the name attached in the Chicago literature to the balloon frame, which this dataset's structure records treat with care: data/structures/exchange_coffee_house.json notes that balloon framing 'was developed in Chicago in 1832-33, so an 1834 building could be either' and chooses braced framing as the conservative reading. Nothing in this household supports or refutes the attribution and it is recorded here as a lead, not a finding."
+ "research_note": "THE MAN WHOSE PAPERWORK WOULD HAVE ANSWERED THIS PROGRAMME'S QUESTIONS. Snow is also the name attached in the Chicago literature to the balloon frame, which this dataset's structure records treat with care: data/structures/exchange_coffee_house.json notes that balloon framing 'was developed in Chicago in 1832-33, so an 1834 building could be either' and chooses braced framing as the conservative reading. Nothing in this household supports or refutes the attribution and it is recorded here as a lead, not a finding.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "snow_george_w",
+    "address_later": {
+     "value": "res 244-6 State. s.-w. cor Jackson",
+     "confidence": "attested",
+     "describes_date": 1843,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Snow, George Washington, lumber merchant, S, Water, res 244-6 State. s.-w. cor Jackson [died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    }
+   }
+  ]
+ }
 }

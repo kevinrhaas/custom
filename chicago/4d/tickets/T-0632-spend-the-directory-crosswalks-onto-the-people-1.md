@@ -1,7 +1,7 @@
 ---
 id: T-0632
 title: Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 781
+claimed_by: run 9/4/2026, 7:43:28 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T12:47:44.253Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33867114819
 ---
 
 Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later

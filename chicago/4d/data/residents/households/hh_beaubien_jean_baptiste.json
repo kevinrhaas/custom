@@ -109,5 +109,20 @@
  ],
  "touches_removal": true,
  "review_required": true,
- "research_note": "THE OLDEST HOUSEHOLD IN THE 1835 TOWN AND THE ONE THAT MOST NEEDS THE REMOVAL FLAG. J. B. Beaubien's first wife was an Ottawa woman and his sons by her are among the town's merchants; his second wife's family is in the 1833 treaty's schedule of payments; his homestead stands on a military reservation he was claiming from the United States in the scene year. Every one of those facts touches the dispossession that was completed in August 1835, six weeks after the scene date. THE RECORD MAKES NO CLAIM ABOUT ANY PERSON'S IDENTITY, AFFILIATION OR STATUS beyond what Andreas states, and it is flagged for review under the project's standing constraint rather than treated as settled. Note also what this household is NOT: a Potawatomi household. It is a French-descended trading family with Native kin, which is a distinct and much better-documented category, and collapsing the two would be the first step towards exactly the improvisation AGENTS.md forbids."
+ "research_note": "THE OLDEST HOUSEHOLD IN THE 1835 TOWN AND THE ONE THAT MOST NEEDS THE REMOVAL FLAG. J. B. Beaubien's first wife was an Ottawa woman and his sons by her are among the town's merchants; his second wife's family is in the 1833 treaty's schedule of payments; his homestead stands on a military reservation he was claiming from the United States in the scene year. Every one of those facts touches the dispossession that was completed in August 1835, six weeks after the scene date. THE RECORD MAKES NO CLAIM ABOUT ANY PERSON'S IDENTITY, AFFILIATION OR STATUS beyond what Andreas states, and it is flagged for review under the project's standing constraint rather than treated as settled. Note also what this household is NOT: a Potawatomi household. It is a French-descended trading family with Native kin, which is a distinct and much better-documented category, and collapsing the two would be the first step towards exactly the improvisation AGENTS.md forbids.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "beaubien_jean_baptiste"
+   },
+   {
+    "person_id": "beaubien_josette"
+   }
+  ]
+ }
 }

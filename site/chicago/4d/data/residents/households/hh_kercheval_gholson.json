@@ -85,5 +85,25 @@
  ],
  "touches_removal": true,
  "review_required": true,
- "research_note": "THE SUB-AGENT, THE MILITIA CAPTAIN AND THE GUIDE - three roles that between them describe how a frontier agency actually worked, and none of which the single-value occupation field can carry. THE MILITIA ROLL IS THE MOST VALUABLE UNWORKED LIST THIS PARCEL FOUND: about forty men of the town signed it in 1832, several of whom appear nowhere else in this dataset, and it is a population census of the adult male settlement two years before the 1833 roster. Working it is derived-phase work. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to."
+ "research_note": "THE SUB-AGENT, THE MILITIA CAPTAIN AND THE GUIDE - three roles that between them describe how a frontier agency actually worked, and none of which the single-value occupation field can carry. THE MILITIA ROLL IS THE MOST VALUABLE UNWORKED LIST THIS PARCEL FOUND: about forty men of the town signed it in 1832, several of whom appear nowhere else in this dataset, and it is a population census of the adult male settlement two years before the 1833 roster. Working it is derived-phase work. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "kercheval_gholson",
+    "address_later": {
+     "value": "bds Mrs. Post",
+     "confidence": "attested",
+     "describes_date": 1843,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Kercheval, Gholson, real estate dealer, bds Mrs. Post [died California]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    }
+   }
+  ]
+ }
 }
