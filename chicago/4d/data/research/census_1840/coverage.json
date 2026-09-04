@@ -136,9 +136,9 @@
           "lines_with_an_entry": 30,
           "what_it_is": "continuation sheet, filled",
           "in_pr_670_calibration_set": false,
-          "read_state": "industry_columns_closed_line_count_committed_total_column_not_read",
+          "read_state": "industry_columns_closed_total_column_read_does_not_close",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-6Q.json",
-          "note": "the enumerator's own footer row is committed. T-0630 read the seven industry columns entry by entry: the four he footed (commerce 4, manufactures and trades 15, navigation of canals lakes and rivers 18, learned professions 8) close at zero residual, and the three he left blank are demonstrated blank. The LINE COUNT is now measured rather than inventoried: 30, fitted to those columns' ink with the TOTAL column excluded, at an rms of 4.97 px against 15.9 for the next best count — which corrects the 31 this file carried 'to the nearest line'. The TOTAL column's digits and the per-line cells are open on T-0631."
+          "note": "T-0631 read the TOTAL column digit by digit against the line grid T-0630 fitted to the industry columns' ink. Thirty numbers are committed with per-line confidences; they sum to 173 against the enumerator's printed footing of 198, and the residual of 25 is recorded in the page file rather than spent. The twelve slave columns, the pensioners, the deaf/dumb/blind/insane block and the schools block remain unread."
         },
         {
           "index": 10,

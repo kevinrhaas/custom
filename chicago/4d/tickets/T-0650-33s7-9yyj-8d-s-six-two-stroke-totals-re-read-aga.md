@@ -1,5 +1,5 @@
 ---
-id: T-0648
+id: T-0650
 title: 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
 state: open
 epic: META
