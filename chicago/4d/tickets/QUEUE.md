@@ -80,7 +80,6 @@ T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and c
 # --- and this asks whether a quarter of the town is standing in the wrong place.
 T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
-T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 
 # --- THE NORTH DIVISION AND THE WATER — OWNER MARK-UP OF THE DEV PREVIEW, 2026-08-31.

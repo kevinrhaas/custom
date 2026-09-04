@@ -1,7 +1,7 @@
 ---
 id: T-0446
 title: Carroll and Fulton: two platted tiers the West Division has no street between
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0443
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 805
 claimed_by: run 9/4/2026, 2:21:18 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T20:38:23.084Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33909436862
 ---
 
