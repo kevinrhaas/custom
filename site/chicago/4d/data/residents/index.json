@@ -185,6 +185,11 @@
     "rule": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town."
    },
    {
+    "rung": "G1c",
+    "grade": "attested",
+    "rule": "CONVERGENCE — two or more independent in-window records from DIFFERENT class families (the town's civic lists · the contemporary press, letter lists included · the parish register). Two bodies that did not copy each other naming one man inside the scene window. A letter list is never promoted on its own by this rung; it only COUNTS TOWARD convergence."
+   },
+   {
     "rung": "G2a",
     "grade": "inferred",
     "rule": "The 1835 poll list alone."
