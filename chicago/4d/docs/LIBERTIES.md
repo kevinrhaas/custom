@@ -10222,8 +10222,11 @@ that meet at that corner — 9, 10, 15 and 16 — and **213 of the 375 sales are
 and deliberately NOT put on the ground** for being outside them. Inside them each assignment
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
-tract line than that drops to `reconstructed`, and the metres are printed on the row. 26 of
-the 63 are at the bottom tier for exactly that reason. Two tracts are not grid squares at all
+tract line than that drops to `reconstructed`, and the metres are printed on the row. **49 of
+the 63 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+dealt to a lot, and nothing on an invented structure may outrank the invention that put it
+there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Only 14
+documented buildings carry the middle tier. Two tracts are not grid squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
 reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10
 clipped to the committed north bank of the main stem.

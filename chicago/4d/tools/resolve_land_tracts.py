@@ -36,7 +36,9 @@ the drift against. So the grid is carried ONLY as far as the ground this project
 and NOT put on the ground. Inside them the assignment is graded by its own margin: a
 structure more than 40 m (twice the working horizontal uncertainty of anything traced
 off the 1834 sheets) inside its tract is `inferred`, and one nearer a tract line than
-that is `reconstructed`, with the margin printed on the row.
+that is `reconstructed`, with the margin printed on the row. An INVENTED roof — one a
+recipe dealt to a lot — is `reconstructed` whatever its margin, because nothing on an
+invented structure may outrank the invention that put it there.
 
 THE TWO FRACTIONS ARE NOT GRID SQUARES, and are resolved from committed geometry
 instead. The south-west fractional quarter of section 10 — Beaubien's 75.69 acres — is
@@ -58,6 +60,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -76,6 +79,14 @@ QUARTER_M = MILE_M / 2
 HALF_QUARTER_E = MILE_M / 4
 ACRE_M2 = 4046.8564224
 SAFE_MARGIN_M = 40.0       # twice the working horizontal uncertainty (data/datum.json)
+
+# NOTHING ON AN INVENTED STRUCTURE MAY OUTRANK THE INVENTION THAT PUT IT THERE — the
+# standing rule `tools/audit_confidence.py` holds for every graded block in the corpus,
+# and it bites hardest here. The tract is real and the register's description of it is
+# read; what is invented is the ROOF STANDING ON IT, dealt to a lot by a recipe. So a
+# claim about the ground under a roof that is not there cannot be graded above the roof,
+# whatever margin it has, and 44 of the 63 drop for that reason rather than for geometry.
+INVENTED_ID = re.compile(r"^(recon_|inf_)")
 ENVELOPE_PAD_M = 200.0     # how far past the modelled ground the grid is still carried
 
 SALE_TYPES = {"FD": "federal land sale (cash entry)",
@@ -478,8 +489,9 @@ STANDING_NOTE = (
     "plat's own east-west bearing, in nominal one-mile squares.")
 
 
-def land_owner_block(rows_for_structure) -> dict:
+def land_owner_block(structure_id, rows_for_structure) -> dict:
     """The `land_owner` block written onto one structure record."""
+    invented = bool(INVENTED_ID.match(structure_id))
     rows = sorted(rows_for_structure, key=lambda pair: pair[0]["record_id"])
     primary, margin = rows[0]
     names = []
@@ -499,7 +511,15 @@ def land_owner_block(rows_for_structure) -> dict:
     elif len(rows) > 1:
         parts.append(f"The register prints {len(rows)} rows for this tract; the earliest "
                      "is quoted and the rest are listed on the row.")
-    if margin >= SAFE_MARGIN_M:
+    if invented:
+        parts.append(f"THE ROOF IS AN INVENTION AND THIS CANNOT OUTRANK IT. The "
+                     f"footprint stands {margin:.0f} m inside the tract's nearest "
+                     "boundary, which on a documented building would carry the middle "
+                     "tier, but this building was dealt to its lot by a recipe and is "
+                     "not there. The tract is real and the register's words about it "
+                     "are read; what is graded here is the claim that THIS roof stands "
+                     "on it, and that claim is the recipe's.")
+    elif margin >= SAFE_MARGIN_M:
         parts.append(f"THE MARGIN IS {margin:.0f} m: this footprint stands that far "
                      "inside the tract's nearest boundary, which is more than twice the "
                      "working horizontal uncertainty of anything traced off the 1834 "
@@ -514,7 +534,8 @@ def land_owner_block(rows_for_structure) -> dict:
 
     return {
         "value": value,
-        "confidence": "inferred" if margin >= SAFE_MARGIN_M else "reconstructed",
+        "confidence": ("reconstructed" if invented or margin < SAFE_MARGIN_M
+                       else "inferred"),
         "sources": [SOURCE_ID],
         "note": " ".join(parts),
         "tract": primary["ground"]["name"],
@@ -535,7 +556,7 @@ def derive():
     rows = resolve(entries, to_grid, from_grid, reach)
     assigned = reach_structures(rows, structures, to_grid)
 
-    blocks = {sid: land_owner_block(pairs) for sid, pairs in sorted(assigned.items())}
+    blocks = {sid: land_owner_block(sid, pairs) for sid, pairs in sorted(assigned.items())}
 
     # Where the structures that got nothing are, so the silence is measured rather
     # than left as an absence a reader has to notice.
@@ -596,6 +617,26 @@ def structure_paths():
     return {load(p)["id"]: p for p in sorted(STRUCTURES.glob("*.json"))}
 
 
+def place_block(record: dict, want: dict) -> dict:
+    """The record with `land_owner` seated after `occupants`, replacing any old one.
+
+    The old block is DROPPED rather than copied through. Iterating a record that already
+    carries `land_owner` and re-laying it at its own key would put the stale value back
+    after the new one, and the write would silently do nothing — which is exactly what
+    happened the first time this ran, and is why `--self-test` holds it below.
+    """
+    ordered = {}
+    for key, value in record.items():
+        if key == "land_owner":
+            continue
+        ordered[key] = value
+        if key == "occupants":
+            ordered["land_owner"] = want
+    if "land_owner" not in ordered:
+        ordered["land_owner"] = want
+    return ordered
+
+
 def write_blocks(blocks, dry_run=False):
     """Put `land_owner` on the records it reaches and take it off the ones it does not.
 
@@ -617,14 +658,7 @@ def write_blocks(blocks, dry_run=False):
             continue
         actions.append((sid, "write" if have is None else "update"))
         if not dry_run:
-            ordered = {}
-            for key, value in record.items():
-                ordered[key] = value
-                if key == "occupants":
-                    ordered["land_owner"] = want
-            if "land_owner" not in ordered:
-                ordered["land_owner"] = want
-            dump(path, ordered)
+            dump(path, place_block(record, want))
     return actions
 
 
@@ -719,6 +753,14 @@ def self_test():
     for block in blocks.values():
         assert not (set(block["entries"]) & voided), block["entries"]
     checks.append("no void entry reaches a structure")
+
+    # A record that already carries a block takes the NEW one, not its own old one.
+    seated = place_block({"id": "x", "occupants": {}, "land_owner": {"value": "old"},
+                          "research_note": ""}, {"value": "new"})
+    assert seated["land_owner"] == {"value": "new"}, seated["land_owner"]
+    assert list(seated) == ["id", "occupants", "land_owner", "research_note"], list(seated)
+    assert place_block({"id": "x"}, {"value": "new"})["land_owner"] == {"value": "new"}
+    checks.append("a rewritten block replaces the old one instead of being replaced by it")
 
     # Every refusal names a reason the document explains.
     for row in doc["tracts"]:
