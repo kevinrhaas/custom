@@ -183,6 +183,22 @@
 # --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
+# --- THE SAUGANASH DEEP DIVE — OWNER REQUEST, 2026-09-03, placed at the top on his
+# --- instruction: "we need also an early visible ticket to do a deep dive on the sauganash
+# --- hotel". He reported it from the dev preview: "there is an extra log structure you have in
+# --- front and i think there is a structure missing but you have it on the front and they have
+# --- it on the rear in pictures, and it looks like the full height of the main building and
+# --- similar design as the main building appears to be almost the same size, it connects from
+# --- the back and side in the images ... this is an attested structure we are putting fine
+# --- points on it". And on the finish: "you are missing a fair amount of detail, like the door,
+# --- the windows, the roof, etc." He deposited four views at
+# --- chicago/reference/images/chicago/sauganash-hotel/ and supplied a plan sketch (transcribed
+# --- in T-0616). VISIBLE work on the town's most-looked-at corner: T-0617 reads the plates,
+# --- T-0618 spends the reading. Split from T-0616 because reading four plates and rebuilding
+# --- the massing are two demonstrations.
+T-0617 — The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded
+T-0618 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
+
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
