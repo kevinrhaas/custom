@@ -744,13 +744,14 @@
     ],
     "names_transcribed_pages": 2,
     "names_transcribed_lines": 62,
-    "inventoried_only": 21,
+    "inventoried_only": 17,
     "cells_transcribed_pages": 2,
     "cells_transcribed_lines": 62,
-    "names_and_cells_transcribed_pages": 2,
-    "names_and_cells_transcribed_lines": 60
+    "names_and_cells_transcribed_pages": 6,
+    "names_and_cells_transcribed_lines": 183,
+    "counts_note": "recomputed from the images array by T-0546 rather than incremented. The block had drifted: it still said two names-and-cells pages when six had been read (230, 232, 207, 208 before this ticket, 209 and 211 in it), because each transcribing pass updated its own image and left the group tally alone."
    },
-   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. SIX pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). The remaining 17 are stated to the nearest line and a transcribing pass restates them exactly."
   }
  ],
  "negative_and_inaccessible": [
