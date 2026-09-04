@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 5:39 PM",
+  "generated_ct": "Sep 4, 2026, 5:51 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11692,6 +11692,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 148
+    },
+    {
+      "id": "T-0701",
+      "title": "Clark, Filer & Co. is printed five doors east of Randolph in June 1834 and three that December: settle the numeral off the page images",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0702",
+      "title": "The register's ordinal reader cannot see a door count whose 'doors' the reading pass reconstructed in brackets, so 'five [doors east] of the corner' falls through to street_only",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     }
   ]
 }

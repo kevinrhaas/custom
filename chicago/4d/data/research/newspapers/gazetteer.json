@@ -58739,13 +58739,13 @@
       ],
       "trade": "carriage, sign, ornamental and figure painting, and gilding",
       "goods": [],
-      "street": null,
+      "street": "Randolph Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "Briggs & Humphrey's",
+        "offset_text": "ihirassif in the abore business.ca Randolph & 2 | over Briggs & Humphrey's Cat",
+        "offset_normalized": "himself in the above business [o]n Randolph [Street …] over Briggs & Humphrey's",
+        "street": "Randolph Street"
       },
       "evidence": {
         "first_issue": "1835-06-08",
@@ -58794,6 +58794,14 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_american_1835_06_13#c014",
+          "chicago_american_1835_08_15#c004"
+        ]
+      },
       "refused_merges": [
         {
           "with": "W. H. Brown",
@@ -59416,9 +59424,13 @@
         "sofas",
         "tables"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
-        "class": "none"
+        "class": "relative",
+        "anchor": "the corner of Randolph st.",
+        "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
+        "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-05-28",
@@ -59483,6 +59495,43 @@
           }
         }
       ],
+      "anchor_spelling": {
+        "name": "the corner of Randolph st.",
+        "why": "Two readings of one crossing, differing in how the compositor abbreviated Randolph street. 1834-06-11 (repeated 1834-06-18 and 1834-07-02) sets the anchor 'the corner of Randolph st.' and 1834-12-10 sets 'the corner of Randolph street'. It is the same standing advertisement under one copy date of 10 June 1834 — 'Cabinet and Chair Ware House', the same subscribers, the same ware house 'on South water St.', the same black walnut and mahogany sofas, sideboards, bureaus, tables, bedsteads and cradles — and both printings put that ware house on South Water street a count of doors east of where Randolph street meets it. Chicago platted one Randolph Street and the corpus knows no other, so the two strings name one corner and not two.",
+        "cannot_say": "HOW MANY DOORS. The two printings do not agree on the count and this grouping does not settle it. 1834-06-11 sets 'South water St. five' with the numeral legible in the column and only the words after it torn away, normalised 'five [doors east] of the corner [of Randolph st.]'; 1834-12-10 sets ‘bre doors east', where the numeral itself is damaged and the reading pass reconstructs it inside brackets as 'three'. Nothing else in this corpus repeats either figure. Grouping the anchors makes the earliest printing's placement live, so the live reading carries 'five' — and that is a statement about WHICH PRINTING IS QUOTED, not about where the ware house stood. Until the page images settle the numeral, no ordinal off this corner may be spent into a position under docs/CORNER-ORDINAL.md and no record may declare a `lot_claim` on it; the December reading is kept with its own dates and claims so a later pass can still tell the two apart. T-0701 is the ticket.",
+        "readings": [
+          {
+            "anchor": "the corner of Randolph st.",
+            "class": "relative",
+            "first_issue": "1834-06-11",
+            "last_issue": "1834-07-02",
+            "claims": [
+              "chicago_democrat_1834_06_11#c005",
+              "chicago_democrat_1834_06_18#c009",
+              "chicago_democrat_1834_07_02#c014"
+            ]
+          },
+          {
+            "anchor": "the corner of Randolph street",
+            "class": "relative",
+            "first_issue": "1834-12-10",
+            "last_issue": "1834-12-10",
+            "claims": [
+              "chicago_democrat_1834_12_10#c005"
+            ]
+          }
+        ]
+      },
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_06_11#c005",
+          "chicago_democrat_1834_06_18#c009",
+          "chicago_democrat_1834_07_02#c014",
+          "chicago_democrat_1834_12_10#c005"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -61611,6 +61660,14 @@
           }
         }
       ],
+      "placement_undecided": {
+        "class": "relative",
+        "anchors": [
+          "the bridge, and the American office two doors off",
+          "the drawbridge"
+        ],
+        "why": "Two anchors of this house are printed at the same strength and the corpus does not say whether they are one landmark spelled twice or a house that moved. That judgement is declared in `anchor_changes`, dated and named, and is not made here."
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -61926,6 +61983,14 @@
           "merge_rule": "'Giles Spring' is 'G. Spring' with the forename printed whole, and one card ties the two forms together: BOTH records carry the copy date Dec. 3, 1834 — 'G. Spring' at 1834-12-03 among its copy dates, 'Giles Spring' at 1834-11-12 c008 and 1834-11-26 c009 — and both set the office 'second door west from the corner of Franklin and South Water streets'. The removal is printed on both sides too: 'Giles Spring' takes the office first door north from the Tremont House on Dearborn-street at 1835-05-20 c022, and 'G. Spring' prints the same removal at 1835-08-05 c019. One attorney, one office, one move. Merged INTO 'G. Spring' because that record holds ten printings against three and both anchors across the whole run."
         }
       ],
+      "placement_undecided": {
+        "class": "corner",
+        "anchors": [
+          "Franklin and South Water streets",
+          "the corner of Franklin and South Water streets"
+        ],
+        "why": "Two anchors of this house are printed at the same strength and the corpus does not say whether they are one landmark spelled twice or a house that moved. That judgement is declared in `anchor_changes`, dated and named, and is not made here."
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -62243,6 +62308,14 @@
           }
         }
       ],
+      "placement_undecided": {
+        "class": "corner",
+        "anchors": [
+          "corner of Lake and Canal streets",
+          "the corner of Lake and Canal streets"
+        ],
+        "why": "Two anchors of this house are printed at the same strength and the corpus does not say whether they are one landmark spelled twice or a house that moved. That judgement is declared in `anchor_changes`, dated and named, and is not made here."
+      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
@@ -62798,7 +62871,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
+        "class": "corner",
+        "anchor": "a corner with Clark street, unread on this line",
+        "offset_text": "corner of\nand char",
+        "offset_normalized": "corner of […] and [Cl]ar[k]",
         "street": null
       },
       "evidence": {
@@ -62883,6 +62959,13 @@
           "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "corner",
+        "claims": [
+          "chicago_democrat_1834_08_27#c008"
+        ]
+      },
       "refused_merges": [
         {
           "with": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
@@ -63765,6 +63848,18 @@
           }
         }
       ],
+      "placement_undecided": {
+        "class": "corner",
+        "anchors": [
+          "CORNER OF DEARBORN AND LAKE-STREETS",
+          "Dearborn Street and Lake Street",
+          "Dearborn and Lake streets",
+          "corner of Dearborn and Lake streets",
+          "corner of Dearborn and Lake-sts.",
+          "the corner of Dearborn and Lake streets"
+        ],
+        "why": "Two anchors of this house are printed at the same strength and the corpus does not say whether they are one landmark spelled twice or a house that moved. That judgement is declared in `anchor_changes`, dated and named, and is not made here."
+      },
       "proprietors_merged": [
         {
           "into": "J. K. Botsford",
@@ -64068,8 +64163,11 @@
       ],
       "street": "South Water Street",
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "in South Water Street, one\nthe Post Office",
+        "offset_normalized": "in South Water Street, one [door … of] the Post Office",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-03-25",
@@ -64158,6 +64256,20 @@
           "merge_rule": "'John S. C. Hogan' is 'J. S. C. Hogan' with the forename printed whole, and the printing that ties the two forms is the Brewster, Hogan & Co. dissolution — set at 1834-03-04 c010 and again at 1834-06-11 c002, where the record 'John S. C. Hogan' comes from. Its tail reads 'The business will be continued at the old stand, by Jno. S. C. Hogan, where he intends keeping on hand a general assortment as heretofore', the March printing puts the dissolved firm's stand in South Water Street, and from 25 March 1834 (c010) 'J. S. C. HOGAN' advertises on his own account in that street, with 'general assortment' among the goods, one door from the Post Office he kept (1834-08-13 c017). Same man, same trade, same street, three weeks apart. Merged INTO 'J. S. C. Hogan': that is the record that can be placed — the succession notice states no address at all, and the merge does not give it one, since the Post Office anchor it inherits is the store's own printing and not the notice's."
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_08_13#c017",
+          "chicago_democrat_1834_08_20#c007",
+          "chicago_democrat_1834_09_03#c023",
+          "chicago_democrat_1834_11_19#c009",
+          "chicago_democrat_1834_12_03#c013",
+          "chicago_democrat_1834_12_17#c009",
+          "chicago_democrat_1835_05_20#c016",
+          "chicago_democrat_1835_07_01#c002"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -65128,10 +65240,13 @@
         "window glass",
         "window sash"
       ],
-      "street": null,
+      "street": "Water Street",
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "relative",
+        "anchor": "the bridge",
+        "offset_text": "dit store in Water-st\nacar the bridge",
+        "offset_normalized": "their store in Water-street, near the bridge",
+        "street": "Water Street"
       },
       "evidence": {
         "first_issue": "1834-07-09",
@@ -65189,6 +65304,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_09_10#c008"
+        ]
+      },
       "refused_merges": [
         {
           "with": "Jones, King & Co.",
@@ -65411,8 +65533,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "relative",
+        "anchor": "the office of the Chicago Democrat",
+        "offset_text": "They can wise be found at the office"
       },
       "evidence": {
         "first_issue": "1834-07-02",
@@ -65454,6 +65577,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_11_19#c011"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -66461,7 +66591,8 @@
               "street": "Main Street"
             }
           }
-        ]
+        ],
+        "silent_readings": []
       },
       "proprietors_merged": [
         {
@@ -66842,11 +66973,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "Fort Dearborn",
+        "offset_text": "opposite to Fort Dearborn"
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -66922,6 +67051,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_05_14#c007"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -67305,11 +67441,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "relative",
-        "anchor": "the block between Clark and Dearborn streets",
-        "offset_text": "STORE BETWEEN CLARK AND DEARBORN-STREETS.",
-        "offset_normalized": "store between Clark and Dearborn streets",
-        "note": "The advertisement names the two cross streets the store stands between and NOT the street it fronts, so the placement is a block face and not a lot; the frontage is not supplied here."
+        "class": "corner",
+        "anchor": "Lasalle and Lake streets",
+        "street": "Lasalle Street and Lake Street"
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -67435,6 +67569,13 @@
           "merge_rule": "'P. Pruyne' is 'P. Pruyne & Co.' with the '& Co.' not set, and ONE advertisement is printed under both signatures. The timber notice copy-dated Ap'l. 22 runs on the '& Co.' side at 1834-04-23 c005 and 1834-04-30 c012 — 'THE subscribers having this day made an arrangement with Mr. A. McGregor … Pine Timber from 12 to 60 feet in length', signed '[P.] PRUYNE & CO.' — and on the other side at 1834-05-07 c012 as '[The] subscribers having this da[y] … from 12 to 60 f[eet] in [length,] from 6 to 14 in square. Thills supplied on short notice. Ap'l. 22. P PRUYNE'. Same opening words, same length range, same copy date, and a PLURAL subscriber over a singular signature. The house-for-sale notice at 1834-05-21 c001 carries the same copy date and the same plural — 'WE offer for sale the House on the corner of Lasalle and Lake streets' over 'Ap'l. 22. P. PRUYNE'. The surviving record already carries 'pine timber dealing' among its trades from the (timber) merge, so this is the third printing of a house the register had split three ways. Merged INTO 'P. Pruyne & Co.' because that is the record that can be placed: its store stands between Clark and Dearborn streets across four printings, while the other's live placement is `none`. ONE CAUTION THE MERGE CANNOT FIX HERE: the Lasalle-and-Lake corner it brings across is a house Pruyne OFFERS FOR SALE, not his own stand — 1834-05-21 c001 is a `building` claim and he signs it as vendor — so that reading must not be read as a second frontage for this firm. It does not become the live placement (its class outranks nothing, the source record's live placement being `none`), but it does stand in `placement_readings`, and T-0412 carries the machinery question."
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "corner",
+        "claims": [
+          "chicago_democrat_1834_05_21#c001"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -68263,13 +68404,13 @@
         "Tables",
         "Wardrobes"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "the stand formerly occupied by Clark & Co.",
+        "offset_text": "urnitere ab the stand ‘on 8 Water atreot forinerly-oceipled by Clark, Fils Go.,",
+        "offset_normalized": "[F]urniture a[t] the stand on S[outh] Water [s]tre[e]t, formerly occ[u]p[i]ed by Clark, [Fils?] [C]o.",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1835-06-13",
@@ -68337,6 +68478,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_american_1835_07_04#c004"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -68932,8 +69080,9 @@
       "goods": [],
       "street": "South Water Street",
       "placement": {
-        "class": "street_only",
-        "street": "South Water Street"
+        "class": "relative",
+        "anchor": "A. Garrett's Auction Room",
+        "offset_text": "call at ita room pa South | ter street, (A. Gartetl's Auctiog Rowe)"
       },
       "evidence": {
         "first_issue": "1835-07-22",
@@ -68991,6 +69140,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1835_08_12#c005"
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -71990,7 +72146,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "none"
+        "class": "relative",
+        "anchor": "P. Pruyne & Co's store",
+        "offset_text": "toor to P. Pruyne and co's."
       },
       "evidence": {
         "first_issue": "1834-09-03",
@@ -72049,6 +72207,13 @@
           }
         }
       ],
+      "placement_raised": {
+        "from": "the first printing to mint this house",
+        "to_class": "relative",
+        "claims": [
+          "chicago_democrat_1834_11_05#c002"
+        ]
+      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },

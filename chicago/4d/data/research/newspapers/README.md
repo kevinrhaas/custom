@@ -489,6 +489,60 @@ no refusal at all, so none was written for them; a merge would have moved the bu
 count this ticket holds fixed, so none was written either, and the reading is in the ticket
 so it is not done a third time.
 
+**WHICH placement a house is placed BY** (T-0440). Every printing's own placement is kept
+on `placement_readings` with the weeks it ran, and until this ticket nothing chose between
+them: the dict that mints a business took `placement` from whichever extraction file
+reached the key first, and no later printing could raise it. Clark, Filer & Co. is printed
+silent on 1834-05-28 and then three times "on South water St. five [doors east] of the
+corner [of Randolph st.]", and stood in the register as `{"class": "none"}`, action
+`unplaceable`, note *"The paper gives no anchor."* **Nineteen of 206 houses** were placed
+under their own printings that way, and the chooser was file order, which is not a
+judgement at all. The rule now applied is the one `firm_merges` already states for two
+houses being joined — *where one side is silent the other's reading stands; where both
+speak, keep the one that can put more of the firm on the ground* — turned on a single
+house's own printings:
+
+- a reading of class `none` is **silence**, not a rival statement, so it never outranks a
+  printing that names a street or a landmark however early it ran. So is a `street_only`
+  reading that names no street: Philo Carpenter's second printing sets `street:
+  "unstated"`, which is the corpus saying in a field what `none` says in a class;
+- among the printings that speak, the strongest class wins — `corner` over `relative` over
+  `street_only`, which is `placement_rank`, the same order the merge already trusts;
+- **and it stops there.** Where two different anchors tie at the strongest class, choosing
+  between them is a judgement about the town and this is not where it gets made. The tie
+  is refused, the minted placement stands, and the house carries `placement_undecided`
+  naming the tied anchors — which is the shape of a declaration waiting to be written.
+
+Eleven houses were raised (each carries `placement_raised` naming the printings that did
+it) and four stand refused. In the register, `business_kinzie_forsyth` went `unplaceable` →
+`new_building`, and `business_rockwell_cabinet_furniture_warehouse` and Clark, Filer & Co.
+went `unplaceable` → `street_only`.
+
+**Two spellings of one landmark** (`anchor_spellings`, T-0440) is what breaks such a tie,
+and it is the third thing two printings of one house can differ about. `firm_merges` says
+two styles are one HOUSE; `anchor_changes` says two anchors are two LANDMARKS on dated,
+non-overlapping windows and computes which is live at the scene date. Neither can take one
+house, one landmark and two abbreviations of it — there is no change to date and no firm
+to merge. Clark, Filer & Co. reads "the corner of Randolph st." through the summer of 1834
+and "the corner of Randolph street" that December, one crossing under two abbreviations of
+one platted street. A spelling is still a judgement, so it is declared and held to six
+disciplines: the house must compile; two readings at least; every reading must be an anchor
+some printing of THIS house carries, matched verbatim, claimed by one spelling only; `name`
+must be one of those readings, so the landmark is called what the corpus calls it; all the
+readings must be of one placement class, and `why` must name every one of them verbatim —
+collapsing a `relative` into a `corner` is not a respelling but a stronger claim about the
+ground; and `cannot_say` must be written down, because grouping makes ONE printing live and
+the rest history, so whatever those printings disagree about besides the landmark's name is
+decided by the grouping unless it is stated. Clark, Filer & Co.'s two printings count a
+different number of doors off that corner — 'five' set legibly in June against a December
+numeral the reading pass reconstructs as 'three' from `bre` — and that is not a spelling, so
+its `cannot_say` bars any ordinal off this corner from being spent into a position under
+`docs/CORNER-ORDINAL.md` until the page images settle the numeral (T-0701). A house may not
+carry a spelling and an anchor change over the same readings; the compile refuses both.
+Silent printings are carried on `silent_readings` beside a declared change, because a
+printing that gives no anchor is not an anchor a rule can be asked to claim, and nothing is
+thrown away.
+
 **The second firm pass is T-0400**, and it is the band where the two styles carry the SAME
 partner surnames and differ only in the FORM of a forename — whole against abbreviated
 against bare initial. T-0304 had already ruled that a forename initial is not decisive for a

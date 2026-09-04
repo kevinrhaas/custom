@@ -1005,7 +1005,18 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                             % (label, ", ".join(repr(n) for n in unnamed)))
             continue
         biz = businesses[bkey]
-        held = {r["anchor"]: r for r in biz["placement_readings"]}
+        # SILENCE IS NOT AN ANCHOR (T-0440). A printing that gives no anchor says
+        # nothing about where the house is, so it is neither a reading a rule may
+        # order nor one guard 4 can require an anchor to claim. Clark, Filer & Co.
+        # is printed once with no placement at all and three times off the corner of
+        # Randolph, and before this the silent printing made the house undeclarable:
+        # every anchor group needs a `name`, and the reading nobody printed a
+        # landmark for has none to give. The silent printings are still carried, on
+        # `silent_readings` below, because nothing is thrown away.
+        held = {r["anchor"]: r for r in biz["placement_readings"]
+                if placement_speaks(r["placement"])}
+        silent = [r for r in biz["placement_readings"]
+                  if not placement_speaks(r["placement"])]
         claimed, windows, bad = [], [], False
         for g in groups:
             readings = g.get("readings") or []
@@ -1094,7 +1105,187 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                          "live_at_scene_date": w is live,
                          "placement": w["placement"]}
                         for w in windows],
+            "silent_readings": sorted(
+                ({"first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                  "class": r["class"], "claims": sorted(r["claims"])}
+                 for r in silent),
+                key=lambda r: (r["first_issue"], r["claims"])),
         }
+    # TWO SPELLINGS OF ONE LANDMARK (T-0440), which is the third thing two printings of
+    # one house can differ about and had nowhere to live. `firm_merges` says two styles
+    # are one HOUSE. `anchor_changes` says two anchors are two LANDMARKS, dated, and
+    # which one the scene date is standing under. Between them sits the case neither can
+    # take: Clark, Filer & Co. is printed "five doors east of the corner of Randolph st."
+    # through the summer of 1834 and "bre doors east ... the corner of Randolph street"
+    # in December, one crossing under two abbreviations. It is not a change — a change
+    # needs two anchors and this is one — and it is not a merge, because there is only
+    # one house. Undeclared, the two readings tie at `relative` and the live placement
+    # below refuses them both, which is why the house read `unplaceable` with three
+    # printings naming its corner.
+    #
+    # A spelling is still a JUDGEMENT, so it is declared and held to five disciplines,
+    # each a way this could quietly assert something the corpus does not say:
+    #   1. the house has to be one the corpus compiles, or nobody can check the rule;
+    #   2. two readings at least — one spelling is not two spellings of anything;
+    #   3. every reading named has to be an anchor some printing of THIS house carries,
+    #      matched verbatim, and no reading may be claimed by two spellings;
+    #   4. `name` has to be one of those readings — the landmark is called what the
+    #      corpus calls it, never a tidier name invented here;
+    #   5. all the readings have to be of one placement CLASS, and `why` has to name
+    #      every one of them verbatim. Collapsing a `relative` reading into a `corner`
+    #      one is not a respelling, it is a stronger claim about the ground; and a
+    #      grouping whose reason does not quote what it groups cannot be argued with;
+    #   6. `cannot_say` has to be written down, for the reason `anchor_changes` needs it
+    #      and more sharply. Grouping two anchors makes ONE of the printings live and
+    #      the rest history, so whatever those printings disagree about OTHER than the
+    #      landmark's name is decided by the grouping unless it is stated here. Clark,
+    #      Filer & Co.'s two readings count a different number of doors off the same
+    #      corner, and that is not a spelling.
+    # A house may not carry a spelling AND an anchor change over the same readings: they
+    # are two accounts of the same printings and only one of them can be true.
+    spelling_of = {}
+    for rule in identity.get("anchor_spellings", []):
+        bid = rule.get("business")
+        readings = rule.get("readings") or []
+        name = rule.get("name")
+        why = (rule.get("why") or "").strip()
+        cannot = (rule.get("cannot_say") or "").strip()
+        label = "identity.json anchor_spelling %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — an anchor spelling "
+                            "for a house that is not in the corpus is a rule nobody can "
+                            "check" % label)
+            continue
+        if len(set(readings)) < 2:
+            problems.append("%s: two readings at least — one spelling is not two "
+                            "spellings of anything" % label)
+            continue
+        biz = businesses[bkey]
+        held = {r["anchor"]: r for r in biz["placement_readings"]
+                if placement_speaks(r["placement"])}
+        unknown = [r for r in readings if r not in held]
+        if unknown:
+            problems.append("%s: %s is not an anchor any printing of this house carries "
+                            "(it reads %s) — a spelling rule may only group readings the "
+                            "corpus already made"
+                            % (label, ", ".join(repr(u) for u in unknown),
+                               ", ".join(repr(a) for a in sorted(held,
+                                                                 key=lambda x: x or ""))))
+            continue
+        taken = [r for r in readings if (bkey, r) in spelling_of]
+        if taken:
+            problems.append("%s: %s is already grouped under another spelling of this "
+                            "house — one printing names one landmark"
+                            % (label, ", ".join(repr(t) for t in taken)))
+            continue
+        if name not in readings:
+            problems.append("%s: `name` %r is not one of the readings it groups — the "
+                            "landmark is called what the corpus calls it" % (label, name))
+            continue
+        classes = sorted({held[r]["class"] for r in readings})
+        if len(classes) > 1:
+            problems.append("%s: these readings are printed as %s — collapsing one class "
+                            "into another is not a respelling, it is a stronger claim "
+                            "about the ground" % (label, " and ".join(classes)))
+            continue
+        unquoted = [r for r in readings if r not in why]
+        if unquoted:
+            problems.append("%s: the reason must name %s verbatim, so the judgement can "
+                            "be read back without the code"
+                            % (label, ", ".join(repr(u) for u in unquoted)))
+            continue
+        if not cannot:
+            problems.append("%s: no `cannot_say` — grouping two anchors makes one "
+                            "printing live and the rest history, so a grouping that does "
+                            "not state what the printings still disagree about has "
+                            "decided it in silence" % label)
+            continue
+        if biz.get("anchor_change"):
+            problems.append("%s: this house also carries a declared anchor CHANGE — a "
+                            "change and a respelling are two accounts of the same "
+                            "printings and only one of them can be true" % label)
+            continue
+        for r in readings:
+            spelling_of[(bkey, r)] = name
+        biz["anchor_spelling"] = {
+            "name": name, "why": why, "cannot_say": cannot,
+            "readings": sorted(
+                ({"anchor": r, "class": held[r]["class"],
+                  "first_issue": held[r]["first_issue"], "last_issue": held[r]["last_issue"],
+                  "claims": sorted(held[r]["claims"])} for r in readings),
+                key=lambda r: (r["first_issue"], r["anchor"])),
+        }
+
+    # THE LIVE PLACEMENT OF A HOUSE PRINTED MORE THAN ONCE (T-0440). Everything above
+    # keeps every printing's reading; this is what decides WHICH of them the register is
+    # handed, and until now nothing decided it at all. The dict that mints a house takes
+    # `placement` from whichever extraction file reached the key first, and no later
+    # printing could raise it — so Clark, Filer & Co., printed silent on 1834-05-28 and
+    # then three times "on South water St. five [doors east] of the corner [of Randolph
+    # st.]", stood in the register as `{"class": "none"}` and read `unplaceable`, "The
+    # paper gives no anchor." Nineteen of 206 houses were placed under their own
+    # printings this way, and the choosing was file order, which is not a judgement.
+    #
+    # The rule is the one the firm merge already states a few dozen lines above — "where
+    # one side is silent the other's reading stands; where both speak, the merge keeps
+    # the one that can put more of the firm on the ground" — applied to a house's own
+    # printings instead of only across two houses being joined:
+    #
+    #   1. A reading of class `none` is SILENCE. It is not a rival statement about where
+    #      the house is, so it never outranks a printing that names a street or an
+    #      anchor, however early it was printed.
+    #   2. Among the printings that do speak, the strongest class wins: `corner` puts
+    #      more ground under a storefront than `relative`, and `relative` than
+    #      `street_only`. That is `placement_rank`, which the merge already trusts.
+    #   3. AND IT STOPS THERE. Where two DIFFERENT anchors tie at the strongest class,
+    #      choosing between them is a judgement about the town — one landmark respelled,
+    #      or a house that moved — and this is not the place it gets made. It is made in
+    #      `anchor_changes`, declared, dated and named, with its `cannot_say` written
+    #      down. So the tie is REFUSED here rather than broken quietly: the minted
+    #      placement stands and the house carries `placement_undecided` saying which
+    #      anchors are tied, which is the shape of a declaration waiting to be written.
+    for bkey, biz in businesses.items():
+        if biz.get("anchor_change"):
+            continue                      # a declaration outranks this computation
+        speaking = [r for r in biz["placement_readings"]
+                    if placement_speaks(r["placement"])]
+        if not speaking:
+            continue
+        best = max(placement_rank(r["placement"]) for r in speaking)
+        if best <= placement_rank(biz.get("placement")):
+            continue
+        top = [r for r in speaking if placement_rank(r["placement"]) == best]
+        anchors = sorted({spelling_of.get((bkey, r["anchor"]), r["anchor"] or "")
+                          for r in top})
+        if len(anchors) > 1:
+            biz["placement_undecided"] = {
+                "class": top[0]["class"],
+                "anchors": anchors,
+                "why": "Two anchors of this house are printed at the same strength and "
+                       "the corpus does not say whether they are one landmark spelled "
+                       "twice or a house that moved. That judgement is declared in "
+                       "`anchor_changes`, dated and named, and is not made here.",
+            }
+            continue
+        # One anchor, printed more than once: the EARLIEST printing's placement, which
+        # is the one `absorb_reading` already keeps, so the offset text quoted beside it
+        # is the one the anchor was first set with.
+        biz["placement"] = min(top, key=lambda r: (r["first_issue"],
+                                                   min(r["claims"])))["placement"]
+        biz["placement_raised"] = {
+            "from": "the first printing to mint this house",
+            "to_class": biz["placement"].get("class"),
+            "claims": sorted({c for r in top for c in r["claims"]}),
+        }
+        # …and the street that reading names, where it names ONE. `street_only` and
+        # `relative` carry the street the house stands in; a `corner` placement's
+        # `street` field holds the PAIR it crosses, which is not a street the house is
+        # on and must not be written into a field the register keys the plat with.
+        if not biz.get("street") and biz["placement"].get("street") \
+                and biz["placement"].get("class") != "corner":
+            biz["street"] = biz["placement"]["street"]
+
     # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
     # and had nowhere to live until now. `firm_surnames()` groups the register on the
     # partner surname alone, so it puts together houses that are not one house — the two
@@ -1555,6 +1746,28 @@ def placement_rank(placement):
     return order.index(cls) if cls in order else -1
 
 
+def placement_speaks(placement):
+    """Whether a printing says anything at all about where the house is (T-0440).
+
+    A class is a promise about what the reading names, and a reading that does not keep
+    it is silence however it is labelled. `none` is silence by definition; so is a
+    `street_only` reading carrying no street — Philo Carpenter's second printing sets
+    `street: "unstated"`, which is the corpus saying in a field exactly what `none` says
+    in a class. `relative` and `corner` are held to naming an anchor by the claim gate
+    below, which refuses "a %s placement with no anchor places nothing".
+
+    This is the test that separates a printing which can be ranked against another from
+    one that cannot be ranked at all, and silence never outranks a printing that names a
+    street or a landmark, however early it was printed.
+    """
+    p = placement or {}
+    if placement_rank(p) <= 0:
+        return False
+    if p.get("class") == "street_only":
+        return bool(p.get("street")) and p.get("street") != "unstated"
+    return True
+
+
 # --------------------------------------------------------------------------
 # coverage: a range someone said they READ, checked against the register
 
@@ -1890,6 +2103,12 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
+        print("  ok    %d house(s) placed by a printing later than the one that minted "
+              "them, %d declared two spellings of one landmark, %d left UNDECIDED with "
+              "their tied anchors named rather than broken quietly"
+              % (sum(1 for b in doc["businesses"] if b.get("placement_raised")),
+                 len(identity_doc.get("anchor_spellings", [])),
+                 sum(1 for b in doc["businesses"] if b.get("placement_undecided"))))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -2466,6 +2685,139 @@ def self_test():
     run_anchor(anchor_docs(["the tavern", "the hotel"], ["the hotel"]),
                anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
                "overlapping weeks", "two anchors printed in the same weeks")
+
+    # WHICH PRINTING PLACES A HOUSE (T-0440), and the declaration that breaks a tie.
+    # These use two issues for the same reason the anchor-change cases do — a house has
+    # to be printed on two days for the question to arise at all — and the EARLY issue
+    # always carries the weaker reading, because the defect being asserted against is
+    # "whichever file minted the key won", and file order puts the early one first.
+    def place_docs(early, late, name="A. Smith & Co."):
+        def doc_for(issue_id, placements, n0):
+            return {"issue_id": issue_id, "claims": [
+                {"id": "zp%d" % (n0 + n), "kind": "business", "business": {
+                    "name": name, "trade": "blacksmith", "placement": p}}
+                for n, p in enumerate(placements)]}
+        return [doc_for(early_id, early, 0), doc_for(late_id, late, 50)]
+
+    def spelling_rule(readings, name=None, why=None,
+                      cannot="the printings still disagree about the door count",
+                      business="business_a_smith_co"):
+        return {"merges": [], "anchor_spellings": [{
+            "business": business, "name": name if name is not None else readings[0],
+            "readings": readings,
+            "why": why if why is not None
+            else "one landmark under two abbreviations: %s"
+                 % " and ".join('"%s"' % r for r in readings),
+            "cannot_say": cannot}]}
+
+    SILENT = {"class": "none"}
+    TAVERN = {"class": "relative", "anchor": "the tavern", "offset_text": "by the tavern"}
+    HOTEL = {"class": "relative", "anchor": "the hotel", "offset_text": "by the hotel"}
+    TAVERN_ST = {"class": "relative", "anchor": "the tavern, on Main-st",
+                 "offset_text": "by the tavern, on Main-st", "street": "Lake Street"}
+    CORNERP = {"class": "corner", "anchor": "Lake and Dearborn streets"}
+
+    out = run_anchor(place_docs([SILENT], [TAVERN]), {"merges": []}, None,
+                     "a printing that gives no anchor never outranks one that does")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    cases.append("a silent printing minted the house and a later one placed it")
+    if got is None:
+        failures.append("the live-placement case lost its house")
+    elif got["placement"].get("anchor") != "the tavern":
+        failures.append("a house minted by a SILENT printing is still placed %r — "
+                        "silence is not a rival reading" % got["placement"])
+    elif not got.get("placement_raised"):
+        failures.append("the house was raised and left no record of it")
+    elif len(got["placement_readings"]) != 2:
+        failures.append("raising a placement threw a printing away: %d reading(s) kept"
+                        % len(got["placement_readings"]))
+
+    out = run_anchor(place_docs([TAVERN], [CORNERP]), {"merges": []}, None,
+                     "the strongest class of the printings that speak wins")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    cases.append("a corner printing outranks a relative one")
+    if got and got["placement"].get("class") != "corner":
+        failures.append("a corner reading did not outrank a relative one: %r"
+                        % got["placement"])
+
+    out = run_anchor(place_docs([SILENT], [TAVERN, HOTEL]), {"merges": []}, None,
+                     "two anchors tied at one class are refused, not broken")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    cases.append("a tie between two printed anchors")
+    if got is None:
+        failures.append("the tie case lost its house")
+    elif got["placement"].get("class") != "none":
+        failures.append("a tie between %r and %r was BROKEN and the house placed at %r; "
+                        "choosing between two printed landmarks is a declaration's job"
+                        % ("the tavern", "the hotel", got["placement"]))
+    elif sorted(got.get("placement_undecided", {}).get("anchors") or []) != \
+            ["the hotel", "the tavern"]:
+        failures.append("a refused tie did not name the anchors it could not choose "
+                        "between: %r" % got.get("placement_undecided"))
+
+    out = run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+                     spelling_rule(["the tavern", "the tavern, on Main-st"]), None,
+                     "a declared spelling breaks the tie the compiler will not")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    cases.append("two spellings of one landmark, declared")
+    if got is None:
+        failures.append("the spelling case lost its house")
+    elif got.get("placement_undecided"):
+        failures.append("a declared spelling left the house undecided: %r"
+                        % got["placement_undecided"])
+    elif got["placement"].get("anchor") != "the tavern":
+        failures.append("a declared spelling placed the house on %r, and the EARLIEST "
+                        "printing of the group is 'the tavern'" % got["placement"])
+    elif not got.get("anchor_spelling", {}).get("cannot_say"):
+        failures.append("a declared spelling carried no `cannot_say` onto the house")
+    elif len(got["placement_readings"]) != 3:
+        failures.append("a declared spelling threw a printing away: %d kept"
+                        % len(got["placement_readings"]))
+
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern", "the barn"]),
+               "not an anchor any printing of this house carries",
+               "a spelling naming a reading nobody printed")
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern"]),
+               "one spelling is not two spellings",
+               "a spelling group of one reading")
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern", "the tavern, on Main-st"],
+                             name="the tavern on Main Street"),
+               "is not one of the readings it groups",
+               "a spelling calling the landmark something nobody printed")
+    run_anchor(place_docs([SILENT], [TAVERN, CORNERP]),
+               spelling_rule(["the tavern", "Lake and Dearborn streets"]),
+               "not a respelling",
+               "a spelling collapsing a relative reading into a corner one")
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern", "the tavern, on Main-st"], cannot=""),
+               "cannot_say",
+               "a spelling that says nothing about what the printings still dispute")
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern", "the tavern, on Main-st"],
+                             why="two readings of one tavern"),
+               "must name",
+               "a spelling whose reason does not quote the readings it groups")
+    run_anchor(place_docs([SILENT], [TAVERN, TAVERN_ST]),
+               spelling_rule(["the tavern", "the tavern, on Main-st"],
+                             business="business_nobody_at_all"),
+               "no business of that id is compiled",
+               "a spelling for a house nobody claimed")
+
+    # …and a `street_only` reading that names no street is silence in a field rather
+    # than in a class, so it may not raise a house either.
+    out = run_anchor(place_docs([SILENT], [{"class": "street_only",
+                                            "street": "unstated"}]),
+                     {"merges": []}, None,
+                     "a street_only reading that names no street places nothing")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    cases.append("a street_only printing whose street is 'unstated'")
+    if got and got.get("placement_raised"):
+        failures.append("a `street_only` reading with street %r raised the house — that "
+                        "is the corpus saying in a field what `none` says in a class"
+                        % "unstated")
 
     # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
     # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
