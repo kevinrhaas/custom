@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 1:15 PM",
+  "generated_ct": "Sep 4, 2026, 1:23 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10142,7 +10142,7 @@
     {
       "id": "T-0610",
       "title": "Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10150,14 +10150,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-04",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-04T16:58:51.658Z",
       "claimed_run": null,
-      "queue_rank": 127
+      "queue_rank": null
     },
     {
       "id": "T-0611",
@@ -10197,7 +10197,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 128
+      "queue_rank": 127
     },
     {
       "id": "T-0613",
@@ -10297,7 +10297,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 129
+      "queue_rank": 128
     },
     {
       "id": "T-0620",
@@ -10317,7 +10317,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 130
+      "queue_rank": 129
     },
     {
       "id": "T-0621",
@@ -10337,7 +10337,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 131
+      "queue_rank": 130
     },
     {
       "id": "T-0625",
@@ -10437,7 +10437,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 132
+      "queue_rank": 131
     },
     {
       "id": "T-0630",
@@ -10557,7 +10557,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 133
+      "queue_rank": 132
     },
     {
       "id": "T-0636",
@@ -10577,7 +10577,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 134
+      "queue_rank": 133
     },
     {
       "id": "T-0637",
@@ -10597,7 +10597,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 135
+      "queue_rank": 134
     },
     {
       "id": "T-0638",
@@ -10777,7 +10777,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 136
+      "queue_rank": 135
     },
     {
       "id": "T-0648",
@@ -10837,7 +10837,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 137
+      "queue_rank": 136
     },
     {
       "id": "T-0652",
@@ -10857,7 +10857,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 138
+      "queue_rank": 137
     },
     {
       "id": "T-0653",
@@ -10957,7 +10957,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 138
     },
     {
       "id": "T-0658",
@@ -10977,7 +10977,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 139
     },
     {
       "id": "T-0659",
@@ -10997,7 +10997,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 140
     },
     {
       "id": "T-0660",
@@ -11017,7 +11017,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 142
+      "queue_rank": 141
     },
     {
       "id": "T-0661",
@@ -11037,7 +11037,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 143
+      "queue_rank": 142
     },
     {
       "id": "T-0662",
@@ -11057,7 +11057,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 143
     },
     {
       "id": "T-0663",
@@ -11077,7 +11077,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": 144
     },
     {
       "id": "T-0664",
@@ -11157,7 +11157,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 145
     },
     {
       "id": "T-0668",
@@ -11177,7 +11177,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 146
     },
     {
       "id": "T-0669",
@@ -11197,7 +11197,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 147
     },
     {
       "id": "T-0670",
@@ -11217,7 +11217,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0671",
@@ -11237,7 +11237,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0672",
@@ -11257,7 +11257,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0673",
@@ -11277,7 +11277,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0674",
@@ -11297,7 +11297,47 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
+    },
+    {
+      "id": "T-0675",
+      "title": "The land sales database DOES page: read T39N R14E sections 16, 21 and 29 whole",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0610",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "798",
+      "claimed_by": "run 9/4/2026, 11:58:54 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T18:12:11.612Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33897548587",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0676",
+      "title": "The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0610",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     },
     {
       "id": "T-0679",
@@ -11317,7 +11357,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 153
     }
   ]
 }
