@@ -615,3 +615,43 @@ ground and may not.
 page-to-IPUMS-serial fingerprint is T-0504 and is not landed; T-0515 applies them. The
 ratified ladder binds throughout: an 1839 or 1840 appearance alone is never an 1835
 resident, and 1840 household composition is never back-projected to the scene.
+
+---
+
+## The line index of a continuation sheet (T-0565, 2026-09-04)
+
+**A right-hand continuation sheet has no rows on it.** `read_census_continuation.py`
+measured that on `33S7-9YYJ-5V`: a row-darkness profile through the empty slaves block
+finds exactly two horizontal rules on the whole leaf — under the printed heading and above
+the enumerator's footer — and nothing between them. The printed form rules the page
+vertically only. So which LINE a number stands on cannot be counted off the paper, and
+every pass that tried to get it from the TOTAL column's own ink got a different answer:
+`coverage.json` inventoried 28 lines, one grouping threshold gave 31, another 34, and the
+page file could only record "29 to 31, favouring 31".
+
+**The fix is to stop asking the column that is in dispute.** `tools/fit_census_line_grid.py`
+fits a straight grid `y = origin + pitch × n` to the enumerator's OTHER ink — the entries
+of the written industry columns, which are read and close against their own printed
+footings — and reports the best fit for every line count in turn. On `33S7-9YYJ-5V` the 22
+industry entries choose **30 lines at an rms of 6.7 px**, against 19.9 for 28, 21.3 for 29
+and 19.0 for 31, and 15.4 or worse for every count out to 38. Dropping each anchor in turn,
+20 of the 22 jackknife refits still choose 30; the two that do not are the two endpoints,
+which shorten the span by a line when removed.
+
+The TOTAL column is then read AGAINST that grid rather than used to build it, which is what
+makes the row index and the numbers independent. It is also what a continuation sheet needs
+before it can be paired to its left sheet, so `pairing.line_count_key` is a number on this
+sheet now and not a range.
+
+**The tool reads its anchors out of the page file's own `column_closure` block** (`entry_y`),
+so it has nothing typed into it and re-runs against whatever that block holds. Only
+`33S7-9YYJ-5V` records `entry_y` today; the other continuation sheets record their column
+closures without y positions, so the tool cannot yet be turned on them. A pass that adds
+`entry_y` to `33S7-9YYJ-24`, `-5D` or `-5S` gets their line indices for the cost of the
+measurement alone.
+
+**What it does not do.** It gives an ordinal, not a reading. On `33S7-9YYJ-5V` the grid has
+30 lines and the TOTAL column has 31 glyph groups, and the surplus — one stroke at
+y2743-2772, sitting dead centre between two numbers that are each where the grid puts them —
+is recorded as unassigned rather than folded into either. A row index that cannot be wrong
+about the count is still allowed to be silent about one mark.
