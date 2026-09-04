@@ -4,7 +4,8 @@
  "volumes": [
   1,
   2,
-  3
+  3,
+  4
  ],
  "ticket": "T-0590",
  "generated_by": "tools/rule_newberry_leads.py --write",
@@ -12,7 +13,7 @@
  "_doc": "GENERATED. The Chicago and Cook County cards, over every volume read, whose citation the works table did not reach. An ACQUISITION LIST, not leads: each names a printed work that this project cannot open, and nothing here says which work. Deliberately keyed `cards` and not `records`, because these are already counted as read under records/entries_vol_NN.json and a second copy would read as a second reading in tools/measure_research_spend.py.",
  "note": "T-0581, T-0582 and T-0583 already exist for three of the works the Chicago cards name. This residue is the rest, and it is the weakest part of the volume-1 reading: the photostat's text layer mangles author names so badly that a citation reading '(Ayidrciu, K T.) 1884' cannot be assigned to a work without opening the index page again. The publication year is what survives, so it is carried and nothing is inferred from it.",
  "counts": {
-  "cards": 369,
+  "cards": 375,
   "with_a_year_on_the_card": 81
  },
  "cards": [
@@ -7360,6 +7361,121 @@
     ],
     "index_page": 1003,
     "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0012",
+   "as_read": "Sayn | Cook co.. m. <A.....-.- . . . 14.4 mm.",
+   "surname_key": "Sayn",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     29,
+     30
+    ],
+    "index_page": 36,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0094",
+   "as_read": "Staalrmn | *5 ._.ChicAgo, m. <.-...«..-.5.",
+   "surname_key": "Staalrmn",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     193,
+     194
+    ],
+    "index_page": 267,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0157",
+   "as_read": "Thnnpson | 15331193­ -- Chicago, 111. , C1-ostwo",
+   "surname_key": "Thnnpson",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     319,
+     320
+    ],
+    "index_page": 421,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0172",
+   "as_read": "EILH Todd | w.on n9a.2v. -—- lllinoinﬂnrly ﬂizicaro and. (Chicago",
+   "surname_key": "EILH Todd",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     349,
+     350
+    ],
+    "index_page": 457,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0174",
+   "as_read": "' Todd | Chicago .__Iuuc CI.‘lalicyin. (End: L.H.)1316:»",
+   "surname_key": "' Todd",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     353,
+     354
+    ],
+    "index_page": 457,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0231",
+   "as_read": "Washington | - Chicago, 113., Grant: and com: cf",
+   "surname_key": "Washington",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     467,
+     468
+    ],
+    "index_page": 664,
+    "column": 3
    }
   }
  ]
