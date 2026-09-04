@@ -1,7 +1,7 @@
 ---
 id: T-0660
 title: The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 4:03:06 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918572428
 ---
 
 The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it.
