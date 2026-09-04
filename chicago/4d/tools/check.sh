@@ -789,6 +789,18 @@ step "Braunhold's Sauganash still says what the research note says it says" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_sauganash_plate.py --self-test
 
+# T-0649. The fifth image the owner deposited beside those four, read against the
+# 1838 harbour-light plate. The reading's whole point is a NEGATIVE — the sheet is
+# composed rather than constructed, so nothing on it can be inverted to a station —
+# and a negative is exactly the kind of finding that rots in silence. This gates on
+# the ten claims docs/RESEARCH/chappel_shore_lighthouse.md rests on, and on drift in
+# the banked reading of both sheets.
+step "the Chappel shore drawing still refuses to place its own station" \
+  python3 tools/measure_chappel_shore_lighthouse.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_chappel_shore_lighthouse.py --self-test
+
 # T-0626. The plan the record now carries rests on ONE arithmetic result taken off
 # that banked reading: both lines out of the drawn apex are world-horizontals, so
 # they are two RIDGES meeting at a point, and two ridges of one wall height and one

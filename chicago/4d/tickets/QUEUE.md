@@ -28,7 +28,6 @@
 # --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04.
 # --- What is left is the fifth view he sent later — whether the Eliza Chappel shore drawing
 # --- shows this building's log annex, which its lighthouse can settle.
-T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse
 
 # --- ==========================================================================
 # --- THE CORE DATASET BEFORE MORE READING — OWNER INSTRUCTION, 2026-09-04
@@ -291,3 +290,4 @@ T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a r
 T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
+T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
