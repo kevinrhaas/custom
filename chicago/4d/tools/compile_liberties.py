@@ -232,6 +232,20 @@ def _back_projected_position_count() -> int:
     return n
 
 
+STRUCTURES_DIR = ROOT / "data" / "structures"
+
+
+def _land_owner_count() -> int:
+    """Roofs standing on a tract the register names, put there by a constructed grid.
+
+    Counted off the structure RECORDS rather than off `ground.json`'s own `counts`
+    block, for the reason the two scopes above are: a scope that reads the number
+    the pass wrote about itself is agreeing with a second opinion, not measuring.
+    """
+    return sum(1 for path in sorted(STRUCTURES_DIR.glob("*.json"))
+               if "land_owner" in json.loads(path.read_text()))
+
+
 # enumeration -> (how many it reaches now, where that number is derived from).
 #
 # A scope may only name an enumeration written down HERE. The alternative — an
@@ -250,6 +264,10 @@ SCOPE_SOURCES = {
         _back_projected_position_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/back_project_addresses.py --check"),
+    "structures.land_owner[constructed_section_grid]": (
+        _land_owner_count,
+        "data/structures/*.json, themselves re-derived by "
+        "tools/resolve_land_tracts.py --check"),
 }
 
 SECTION_KEY = {
