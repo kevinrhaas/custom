@@ -87,13 +87,40 @@
     "WIDE PAGES TRUNCATE COLUMN 3's HEADINGS — nbi_v03_0849 is filed under 'rtenoan' because page 375's printed column 3 begins left of the 519-point crop. The card's locality is right and its surname key is not, so it can never join a lead. The crop comment already records that page widths run 689 to 733 points; this is what the widest of them costs.",
     "Nothing in the forty was a Chicago or Cook card that should not have been kept: 20 of 20, as in volumes 1 and 2. Every bad keep in three volumes has been an Illinois-only one, and every one of them has come from text that is not on the card."
    ]
+  },
+  "4": {
+   "ticket": "T-0580",
+   "covers": "P - Z",
+   "draw": {
+    "method": "python random.seed(1835); random.sample(chicago_or_cook, 20) + random.sample(the rest, 20), over records/entries_vol_04.json — EXCEPT that this volume holds only 10 Chicago-or-Cook cards in all, so the first stratum is a census of it (10) and the second was drawn to 30. The strata are therefore not the same sizes as volumes 1-3 and the two per-stratum figures below are what to compare, not the flat one.",
+    "strata": [
+     "chicago_or_cook",
+     "illinois_only"
+    ],
+    "size": 40,
+    "adjudicated_against": "the page image: pdftotext -bbox located each sampled card's own line inside its cropped column, and pdftoppm rendered the 212-point column from 46 points above that line to 62 below it at 200 dpi, so every verdict was made looking at the card, its heading, the card above it, any printed banner between them and the sliver of the neighbouring column the crop carries"
+   },
+   "counts": {
+    "sampled": 40,
+    "locality_correct": 19,
+    "not_demonstrated": 21,
+    "precision": 0.475,
+    "precision_chicago_or_cook": 0.9,
+    "precision_illinois_only": 0.3333
+   },
+   "found": [
+    "THE VOLUME'S TEXT LAYER IS A DIFFERENT AND MUCH WORSE SCAN, and it is the whole story of this block. 6,548 cards were assembled from 918 pages — 7 a page, against 59, 58 and 68 a page in volumes 1, 2 and 3. A rendered page carries about 100 cards, so the earlier volumes assembled roughly 60 per cent of what is printed and this one assembles seven. 308 cards were kept against 2,579, 1,987 and 2,131; ten of them name Chicago or Cook County, against 581, 501 and 520. The card that reads 'Stoddard family.' on the page comes back from this volume's text layer as \"s:'o'ddnrdmany.\", and the heading rule needs the family word as its own token. Volume 4 is also the one file in the Internet Archive item without the Newberry's scan id — '130151_04.pdf' beside 'FL2091539_CP-130151_01.pdf' and its two fellows — so a different digitisation is the likely cause. T-0613 carries the repair.",
+    "THE CROP GEOMETRY WAS TESTED AND RULED OUT, so the shortfall could not be blamed on this project's reading. The gutters of volume 4 were measured over sixty pages from every word box on them: they fall at 192, 348 and 508 points, and the shared 200-point windows on a 173-point pitch contain each column whole. Boxes cut to the measured gutters moved heading detection from 576 to 616 over the same 61 pages — 7 per cent, against an eight-fold shortfall. The shared boxes were therefore KEPT, and volume 4 is read by exactly the method volumes 1-3 were, which is what makes the comparison above mean anything.",
+    "THE COLLAPSE IS ENTIRELY IN THE ILLINOIS-ONLY STRATUM. Chicago-and-Cook scores 0.900 — one bad keep in ten, the column sliver — which is volume 2's and volume 3's number, and it is the stratum the follow-up table and the acquisition list stand on. Illinois-only scores 0.333: twenty bad keeps in thirty. Six classes, and only one of them is new. Already named: the column sliver (nbi_v04_0174, 0190), 'See Index III.' as a genealogy's index volume (0223, 0275), the state banner or a bare 'Illinois' that is not the card's own line (0219, 0125), and the body that is nothing but mush (0205, 0290, 0228, 0211, 0057, 0170). NEW HERE: a PAGE NUMBER read as the abbreviation — nbi_v04_0183 is 'Woodruff fam. (Woodruff, F.E.) 1902:117' and the '117' came back as '111,'. The anchor the pattern already carries (a comma or a line start before the strokes) does not catch it, because the OCR supplies the comma.",
+    "AND THE TEN CHICAGO CARDS ARE THEMSELVES AN UNDERCOUNT. Three of the ten good keeps in the illinois-only stratum are Chicago cards the chicago pattern missed — 'Chicngo' (nbi_v04_0173), 'Gkgo' (0188) and 'Chh:|go' (0126) — none of which the pattern will take, because it demands i, l or 1 in the second and third places. Three in thirty sampled, on 298 illinois-only cards, puts the true Chicago-or-Cook figure nearer thirty than ten. The pattern is not widened to chase them: at this text quality a wider one would take page numbers as well, and T-0613's re-read is the answer that does not cost precision."
+   ]
   }
  },
  "counts": {
-  "sampled": 120,
-  "locality_correct": 110,
-  "not_demonstrated": 10,
-  "precision": 0.9167,
+  "sampled": 160,
+  "locality_correct": 129,
+  "not_demonstrated": 31,
+  "precision": 0.8063,
   "_doc": "The flat total over the volumes read so far, which is what tools/read_newberry_index.py --check adds up. The per-volume figures are under `volumes`, and they are the ones that mean anything: a number drawn on volume 1 is not a measurement of volume 3."
  },
  "records": [
@@ -1573,6 +1600,487 @@
    "verdict": "locality_correct",
    "note": "'Meyer family. — Marion and Clinton Co., Ill. (Brink, McDonough & Co., Pubs.) 1881: 228.'",
    "volume": 3
+  },
+  {
+   "id": "nbi_v04_0024",
+   "as_read": "Soars | Am:-or. ' ‘_ Chicago;Hi. (|\\'.c:.~:,I, and Kirkland,l.)d895l",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 67,
+   "verdict": "locality_correct",
+   "note": "'Sears family. — Chicago, Ill. (Moses, J. and Kirkland, J.) 1895' on the card; the heading reads 'Soars'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0157",
+   "as_read": "Thnnpson | 15331193­ -- Chicago, 111. , C1-ostwo",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 421,
+   "verdict": "locality_correct",
+   "note": "'Thompson family. — Chicago, Ill., Crests and coats of arms. (Tribune, Dec.19,1897:45.)'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0094",
+   "as_read": "Staalrmn | *5 ._.ChicAgo, m. <.-...«..-.5.",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 267,
+   "verdict": "locality_correct",
+   "note": "'Steen family. — Chicago, Ill. (Andreas, A. T.) 1884-6'; the heading reads 'Staalrmn'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0233",
+   "as_read": "l lntnan | .....Chicago in. undress .‘.. Y.) In «-0: _ .",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 674,
+   "verdict": "locality_correct",
+   "note": "'Watson family. — Chicago, Ill. (Andreas, A. T.) 1884-6'; the heading reads 'l lntnan'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0174",
+   "as_read": "' Todd | Chicago .__Iuuc CI.‘lalicyin. (End: L.H.)1316:»",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 457,
+   "verdict": "not_demonstrated",
+   "note": "THE COLUMN SLIVER. The card is 'Todd family. — Massachusetts, Ct. Valley in. (Everts, L. H.) 1879'. The word 'Chicago' in the reading is the left neighbour's '(Chicago See index.)' arriving through the 27-point crop overlap. Volume 3 found the same class (nbi_v03_0913); T-0601 carries it.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0231",
+   "as_read": "Washington | - Chicago, 113., Grant: and com: cf",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 664,
+   "verdict": "locality_correct",
+   "note": "'Washington family. — Chicago, Ill., Crests and coats of arms. (Tribune, Dec.19,1897:45.)'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0012",
+   "as_read": "Sayn | Cook co.. m. <A.....-.- . . . 14.4 mm.",
+   "localities": [
+    "cook_county"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 36,
+   "verdict": "locality_correct",
+   "note": "'Sayre family. — Cook Co., Ill. (Andreas, A. T.) 1884:767'; the heading reads 'Sayn'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0172",
+   "as_read": "EILH Todd | w.on n9a.2v. -—- lllinoinﬂnrly ﬂizicaro and. (Chicago",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 457,
+   "verdict": "locality_correct",
+   "note": "'Todd family. — Illinois, Early Chicago and. (Chicago Hist. Soc. Coll. 1890:4. See index.)' — Chicago on the card, and the heading carries a sliver ('EILH Todd').",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0307",
+   "as_read": "Yaunr | ._ Chicago, In. (Ar.'.’reLs,A. T.) I884-6: LL '.",
+   "localities": [
+    "chicago"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 910,
+   "verdict": "locality_correct",
+   "note": "'Young family. — Chicago, Ill. (Andreas, A. T.) 1884-6'; the heading reads 'Yaunr'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0029",
+   "as_read": "Sogur | )IBM-I900. --Cook co.. III. (Andrea: A. I.) 1334 I450.",
+   "localities": [
+    "cook_county"
+   ],
+   "chicago_or_cook": true,
+   "index_page": 75,
+   "verdict": "locality_correct",
+   "note": "'Seiber family. — Cook Co., Ill. (Andreas, A. T.) 1884:460'; the heading reads 'Sogur'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0114",
+   "as_read": "stringer | I _jﬂ\"f:\", iii... ofTrIgg IAnnor.(|IuInn,§_I_§I.)",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 325,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Stringer family. — Eng. Deanery of Trigg Minor. (Maclean, Sir J.) 1873'. England, and the 'iii...' the pattern matched is mush, not a locality.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0223",
+   "as_read": "Wilton | Ill. Indian {r.:",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 640,
+   "verdict": "not_demonstrated",
+   "note": "'SEE INDEX III.' — 'Walton family. — Dudley fam. (Dudley, D.) 1886-94. See index III.' The roman is the cited genealogy's index VOLUME. Volume 3's class (nbi_v03_1443), and in this volume it is not rare.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0227",
+   "as_read": "Warren | III.,d.«L..DowI.r,k",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 656,
+   "verdict": "locality_correct",
+   "note": "'Warren family. — Pike Co., Ill. (Chapman, C. C. & Co., Pubs.) 1880'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0137",
+   "as_read": "lna Tnyloa | na ——V1r-glnia.(mrvau, LII. 91:-1'a ‘H20",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 385,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Tayloe family. — Virginia. (Burwell, L.M. Girl's life in Va. before the war. [1895]:77.)'. 'L.M.' came back as 'LII.'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0252",
+   "as_read": "Wells | __ Illinois.(Mom, J.) 1888.92. 2v. §e_gIndex",
+   "localities": [
+    "illinois_named"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 709,
+   "verdict": "locality_correct",
+   "note": "'Wells family. — Illinois. (Moses, J.) 1888-92. 2v. See Index'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0170",
+   "as_read": "I tuomb, or Tllnonu | I l1.ﬂ",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 453,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Titcomb, or Titcome family. — N.E., Geneal. dict. of, (Savage, J.) 1860-2: 4:307, also index'. New England; the body came back as 'I l1.'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0110",
+   "as_read": "Bundling | 3 rad , I il .",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 317,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Stradling family. — Gt. Brit. and I. (Marshall, G. W. Geneal. guide.) 1879'. 'and I.' read as ', I il .'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0173",
+   "as_read": "Todd | &induu.v.fMd.I9 _-.Chicngo, Iii. (AnLi'm, T.)'I884-6; 3. gig",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 457,
+   "verdict": "locality_correct",
+   "note": "'Todd family. — Chicago, Ill. (Andreas, A. T.) 1884-6'. Illinois is right; it is in the illinois_only stratum only because 'Chicago' came back as 'Chicngo' and the chicago pattern would not take an 'n'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0188",
+   "as_read": "hall | -—..Gkgo, III. (Andrus. A. T.) nan-on ;;3_.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 524,
+   "verdict": "locality_correct",
+   "note": "'Tuttle family. — Chicago, Ill. (Andreas, A. T.) 1884-6'. Same under-bucketing: 'Chicago' read as 'Gkgo'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0205",
+   "as_read": "Vol | Iii.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 598,
+   "verdict": "not_demonstrated",
+   "note": "The body is the bare string 'Iii.' and the window around it carries Volk, Volkenburgh and Volker cards for New York, Missouri and Massachusetts. Volume 1 kept one of these (nbi_v01_2226, whole line 'I II.') and this is the same class.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0219",
+   "as_read": "Inlllng | Illinois",
+   "localities": [
+    "illinois_named"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 634,
+   "verdict": "not_demonstrated",
+   "note": "The body is the bare word 'Illinois' — a printed STATE BANNER or the neighbouring column's 'Wallingford — Illinois.', not this card's own line. Volume 2's class, four of its five bad keeps.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0139",
+   "as_read": "lnvlor | III.(Brlnk,",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 386,
+   "verdict": "locality_correct",
+   "note": "'Taylor family. — Christian Co., Ill. (Brink, McDonough & Co., Pub.) 1880:122,168'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0064",
+   "as_read": "Emit | -_._ Snngnmon00., III.(Power,1. 6.) I876; _",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 179,
+   "verdict": "locality_correct",
+   "note": "'Smith family. — Sangamon Co., Ill. (Power, J. C.) 1876'; the heading reads 'Emit'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0177",
+   "as_read": "Train | '....W|lortown, 111...,M. um. 33.. index pl.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 484,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Train, Traine, Trane, or Thaine family. — Watertown, Mass., Rec. 1894, See index pt. 3'. 'Mass.' came back as '111.,M.'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0290",
+   "as_read": "lndoxom - E | III. 1. '",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 825,
+   "verdict": "not_demonstrated",
+   "note": "The window carries only Wilsey cards for New York. The body is 'III. 1.' and no Illinois line is under the heading.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0119",
+   "as_read": "Sn-ohm | III.($339777,-3-um",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 325,
+   "verdict": "locality_correct",
+   "note": "'Strole family. — Cumberland, Jasper and Richland Co's, Ill. (Battey, F. A. & Co., Pubs.) 1884:507'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0190",
+   "as_read": "Vainiora, | ill. VI1. E Valh. _..N",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 546,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Valsey family. — Wilson ped. (Foster, J.) 1871. See Index.'; the 'ill.' is the left column's 'ex III.' through the overlap.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0127",
+   "as_read": "I St uyvceunl | ill. E.H..£5, E865-6.2 pin. ige lndlnn.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 337,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Stuyvesant family. — New York (State) Calendar hist. mss., 1630-1776. (O'Callaghan, E. B., Ed.) 1865-6. 2 pts. See Indices'. New York.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0279",
+   "as_read": "Wilcox | I11.“ m.11y. “‘-",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 791,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Wilcox family. — Plymouth (Mass.) and Rhode Island Colonies. (Peirce, E. W.) 1881'. The body came back as 'I11.“ m.11y.'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0275",
+   "as_read": "e oIndex I Whitinr, | III.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 765,
+   "verdict": "not_demonstrated",
+   "note": "'SEE INDEX III.' again — 'Whiting family. — Dudley fam. (Dudley, D.) 1886-94. See Index III.', with a second one ('John Dwight ... See Index III.') in the same window.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0057",
+   "as_read": "man | I 11.: hhb NI‘-M",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 177,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Smelt family. — Yorkshire, Eng. (Surtees Soc. 1859) 30:104'. Yorkshire; the '104' read as 'I 11.:'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0125",
+   "as_read": "Eturtevnnmgg smaovmc | I 11.52 I",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 336,
+   "verdict": "not_demonstrated",
+   "note": "The card under the heading is 'Sturtevant, or Sturdevant family. — New England hist. geneal. reg. 60. See index.'. An 'ILLINOIS' banner prints two cards below it and the body kept ('I 11.52 I') is not this card's line.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0056",
+   "as_read": "slooomb | ——-Dluldcua clan. (B-11, Lil.) 1903.",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 171,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Slocomb family. — Dinwiddie clan. (Ball, T.H.) 1903. See Index.'. Virginia; '(Ball, T.H.)' read as '(B-11, Lil.)' and ', Lil.' is the abbreviated pattern's shape.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0078",
+   "as_read": "Spence | ‘- , _..Uvi1(aeCo., 111.(lellu. 111..1..,cc.. _g..bg.1|a1g,",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 221,
+   "verdict": "locality_correct",
+   "note": "'Spence family. — Livingston Co., Ill. (LeBaron, W., Jr., & Co., Pubs.) 1878:328,353,749', under a printed ILLINOIS banner.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0126",
+   "as_read": "Eturtevnnmgg smaovmc | ___Chh:|go, ill. (Andreas.A. T.) 18344: 3. an",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 336,
+   "verdict": "locality_correct",
+   "note": "'Sturtevant family. — Chicago, Ill. (Andreas, A. T.) 1884-6'. Under-bucketed as illinois_only: 'Chicago' read as 'Chh:|go'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0183",
+   "as_read": "Tucker | R 7.3 ‘I28 1902; 111, ' . E 7\" 5‘",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 511,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Tucker family. — Woodruff fam. (Woodruff, F.E.) 1902:117'. The '111' the pattern took is the page number 117.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0228",
+   "as_read": "Warren | I 11 .",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 658,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Warren family. — Richmond, N.H. (Bassett, W.) 1884:516'. New Hampshire; the body kept is the bare 'I 11 .'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0306",
+   "as_read": "xenon | ..._ 1:-;,lLl.:'. I el her:H.. N Mr. ms.” I",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 906,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Yeatter family. — Orwig, Gottfried. (Wagenseller, G.W.) 1898:200'. No locality on it at all.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0215",
+   "as_read": "- Iallaoo | --Adams Co. , 111. (Murray, Williamson ..,..A,‘__, r",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 630,
+   "verdict": "locality_correct",
+   "note": "'Wallace family. — Adams Co., Ill. (Murray, Williamson & Phelps, Pubs.) 1879:751,770,771,839,923,931'.",
+   "volume": 4
+  },
+  {
+   "id": "nbi_v04_0211",
+   "as_read": "A Plan | i 11... 1'a...ny. ‘",
+   "localities": [
+    "illinois_abbreviated"
+   ],
+   "chicago_or_cook": false,
+   "index_page": 613,
+   "verdict": "not_demonstrated",
+   "note": "The card is 'Wait family. — Milford, Mass. (Ballou, A.) 1882:1083'. Massachusetts; the body came back as 'i 11... 1'a...ny.'.",
+   "volume": 4
   }
  ]
 }
