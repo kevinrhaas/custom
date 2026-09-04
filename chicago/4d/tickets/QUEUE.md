@@ -127,7 +127,6 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
-T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
