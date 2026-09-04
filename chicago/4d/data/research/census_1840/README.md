@@ -87,7 +87,7 @@ this means for T-0504 and T-0505 is that the 210 rows cannot be used as ground t
 a serial fingerprint or an identity bridge until they have been re-read against the
 images, and that a bridge built on #670's row NUMBERS is unsafe on at least page 231.
 
-## Two pages in this deposit are not household pages
+## Three pages in this deposit are not household pages
 
 `33S7-9YYJ-95F`, printed page **206**, is a printed left sheet used as the enumeration's
 **certificate and recapitulation**: no household lines, and a manuscript note that names
@@ -102,6 +102,39 @@ extrapolated back to 1835.
 `33S7-9YYJ-C8`, printed page **238**, is printed, numbered and wholly unfilled. A
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
+
+`33S7-9YYJ-V2`, printed page **237**, is the other recapitulation — **the sheet the
+certificate page was pointing at**. It sat in the inventory as "a continuation sheet whose
+TOTAL column carries three-figure numbers", and the three-figure numbers were the evidence:
+it enumerates nobody. Thirty ruled lines each carry a **division total** of 70 to 201
+persons, gathered into six blocks, each block closed by a ruled footing that adds it, and
+the foot of the leaf carries **4,470** — the certificate's own *"4470 — City of Chicago"*.
+Four of the six footings close exactly on the lines above them (1164, 1320, 294, 1137), on
+figures nobody typed in; the fifth is illegible under two crossing rules and the sixth block
+is a lone line with no footing of its own. The six blocks sum to 4,466 against the 4,470
+written at the foot, and **that residual of 4 is left open** rather than closed by adjusting
+a digit.
+
+The same row gives the city's employment in 1840: agriculture 25, commerce 182,
+manufactures and trades 744, navigation of the ocean 1, navigation of canals, lakes and
+rivers 44, learned professions and engineers 73, mining none — with 11 primary and common
+schools and 397 scholars. It is transcribed in `pages/33S7-9YYJ-V2.json` and claimed in
+`claims.json`, and like page 206 it is LATER EVIDENCE that may not be carried back to 1835.
+
+**Why the sheet is not a continuation sheet, measured rather than judged.**
+`tools/read_census_continuation.py` records that a household continuation leaf carries
+exactly two strong horizontal rules — under the printed heading and above the enumerator's
+footer — with the largest excess over local background anywhere between them at 4 grey
+levels. The same measurement on this leaf finds **twelve rules inside the body**, at depths
+of 23 to 117 grey levels. They are the block footings; and it is why that tool's own body
+finder mis-reports this sheet's body as one block of six.
+
+**No serial may be hung on any line of it.** A serial identifies an IPUMS *household*, and
+no line here is a household, so there is nothing for `tools/census_1840_fingerprint.py` to
+fingerprint and no head to name. The tool now says exactly that in the sheet's own row of
+`serial_crosswalk.json`, instead of the generic continuation-sheet reason, which would have
+been wrong twice: this is not a continuation sheet, and pairing it to a left sheet would not
+help — a recapitulation's left sheet carries aggregates too, not age bands. (T-0529)
 
 ## The cells, and what the sheet's own footings say about them
 
