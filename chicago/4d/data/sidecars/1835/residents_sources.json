@@ -689,11 +689,21 @@
     },
     "fergus_chicago_directory_1839": {
       "source_id": "fergus_chicago_directory_1839",
-      "citation": "Fergus' Directory of the City of Chicago, 1839",
-      "url": "https://ldsgenealogy.com/IL/books/Fergus-directory-of-the-city-of-Chicago-1839-part-2.htm",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
+      "citation": "Robert Fergus, Fergus' Directory of the City of Chicago, 1839 (Chicago: Fergus Printing Company, 1876) — Fergus' Historical Series No. 2; read from the Allen County Public Library Genealogy Center scan on the Internet Archive",
+      "url": "https://archive.org/details/fergusdirectoryo00ferg",
+      "archived_url": "https://archive.org/details/fergusdirectoryo00ferg",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "A name, a trade and a street for 1,655 entries in the city of 1839 — the closest address list to 1835 this project can reach.",
+        "A trade for 976 of them at a stated street, which compiles into 102 street faces (Lake 199, Clark 94, North Water 83, South Water 72).",
+        "On printed page 37: six churches with their ministers, fifteen hotels, the public offices around the Public Square, the land office, the lighthouse, the theatre, two named building rows, the Dutch Settlement, and the fire that took the Tremont House on 27 October 1839."
+      ],
+      "what_it_does_not_supply": [
+        "An 1835 residency. Four years late, and the ratified ladder never makes a resident from a later listing alone.",
+        "An address number that means anything, off Lake street. Fergus writes on printed page 3 that no street but Lake was numbered in 1839 and that 'the numbers now given are those of the present day' — 1876's. Only the street name crosses.",
+        "A count of its own entries. The volume states no number of names anywhere, so a reading of it cannot be closed against the book the way a census sheet closes against its printed totals."
+      ]
     },
     "fergus_chicago_directory_1843": {
       "source_id": "fergus_chicago_directory_1843",

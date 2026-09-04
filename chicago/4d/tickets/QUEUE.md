@@ -183,7 +183,6 @@
 # --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
 
@@ -194,7 +193,6 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
-T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 
 T-0585 — The 1840 census images 1-25: names and cells of the left sheet printed 219
@@ -449,3 +447,5 @@ T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves 
 T-0606 — Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
+T-0612 — dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure

@@ -389,7 +389,7 @@ READERS = {
 # because a domain missing from the coverage table reads like one nobody looked at.
 NO_PERSON_ROWS = {
     "newberry_index": ("finding_aid",
-                       "4,646 cards, every one of them a SURNAME heading a locality with no "
+                       "6,697 cards, every one of them a SURNAME heading a locality with no "
                        "forename. R1 refuses all of them by construction: a finding aid names "
                        "a book, not a man. Counted as refusals, never as appearances."),
     "census_1830": ("unread", "The named schedule has not been found; the repo holds county "
