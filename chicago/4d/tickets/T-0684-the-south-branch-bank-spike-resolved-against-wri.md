@@ -1,7 +1,7 @@
 ---
 id: T-0684
 title: The South Branch bank spike, resolved against Wright's own ink line, and the departure scan run over every water feature
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0453
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 800
 claimed_by: run 9/4/2026, 2:24:28 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T19:43:14.816Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33909450806
 ---
 
