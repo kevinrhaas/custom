@@ -12,11 +12,20 @@ The rule, written out so it reads back without the code:
   SURNAME must match after both are folded (case, punctuation and the scanner's
   usual confusions removed), AND the first initial of the given name must match.
   A surname-only agreement is a REFUSAL, however good it looks — Norris lists
-  eleven Smiths. Where one 1835 person meets more than one 1844 entry on that
-  rule the match is AMBIGUOUS and is filed as such, not resolved.
+  eleven Smiths. AND, since T-0670, where BOTH readings print a full forename and
+  the two full forenames DISAGREE the match is refused as well: the initial rule
+  was written for a town of 848 names and it declared `Abbott, Thomas L.` onto
+  Titus H. Abbott once T-0514 minted 532 more. An initial standing against a full
+  name is untouched and stays a match. The forename rule lives in
+  tools/name_agreement.py, which carries its own self-test. Where one 1835 person
+  meets more than one 1844 entry on that rule the match is AMBIGUOUS and is filed
+  as such, not resolved.
 """
 import json, os, re, sys
 from collections import defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import name_agreement as na  # the forename rule, imported rather than restated
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/norris_1844_directory_entries.json")
@@ -97,7 +106,7 @@ def main():
         if not n["firm"] and n["surname"]:
             surnames[fold(n["surname"])].append(c)
 
-    matches, ambiguous, refusals = [], [], []
+    matches, ambiguous, refusals, forename_refusals = [], [], [], []
     people = residents()
     for r in people:
         key = (fold(r["surname"]), initial(r["given"]))
@@ -113,13 +122,28 @@ def main():
                             % (r["surname"], initial(r["given"]).upper() or "-", r["name"]),
                 })
             continue
-        rows = [{
-            "claim": h["id"],
-            "as_printed": h["normalized"]["as_printed"],
-            "printed_page": h["locator"]["printed_page"],
-            "occupation_1844": h["normalized"]["occupation"],
-            "address_1844": h["normalized"]["address"],
-        } for h in hits]
+        def row_of(h):
+            return {
+                "claim": h["id"],
+                "as_printed": h["normalized"]["as_printed"],
+                "printed_page": h["locator"]["printed_page"],
+                "occupation_1844": h["normalized"]["occupation"],
+                "address_1844": h["normalized"]["address"],
+            }
+        kept, refused = [], []
+        for h in hits:
+            note = na.refusal(r["given"], h["normalized"]["given"])
+            (refused if note else kept).append((h, note))
+        for h, note in refused:
+            row = row_of(h)
+            row.update(note)
+            forename_refusals.append({
+                "resident": r["name"], "person_id": r["person_id"],
+                "grade_1835": r["grade"], "entry_1844": row,
+            })
+        if not kept:
+            continue
+        rows = [row_of(h) for h, _ in kept]
         rec = {
             "resident": r["name"], "person_id": r["person_id"],
             "household_id": r["household_id"], "grade_1835": r["grade"],
@@ -180,6 +204,12 @@ def main():
             "matched_more_than_one_ambiguous": len(ambiguous),
             "one_1844_entry_contested_by_two_residents": len(contested),
             "surname_present_initial_absent_refused": len(refusals),
+            "initial_agreed_forenames_disagreed_refused": len(forename_refusals),
+            "of_those_a_garbled_printed_forename": sum(
+                1 for f in forename_refusals if f["entry_1844"]["garbled_reading"]),
+            "residents_left_with_no_1844_entry_by_that_refusal": len(
+                {f["person_id"] for f in forename_refusals}
+                - {m["person_id"] for m in matches + ambiguous + contested}),
             "could_carry_occupation": sum(1 for m in matches if "occupation" in m["could_carry"]),
             "could_carry_address": sum(1 for m in matches if "address" in m["could_carry"]),
         },
@@ -187,6 +217,8 @@ def main():
         "contested": sorted(contested, key=lambda m: m["resident"]),
         "ambiguous": sorted(ambiguous, key=lambda m: m["resident"]),
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
+        "forename_refusals": sorted(forename_refusals,
+                                    key=lambda m: (m["resident"], m["entry_1844"]["claim"])),
     }
     if "--check" in sys.argv:
         if json.load(open(OUT, encoding="utf-8")) != doc:
