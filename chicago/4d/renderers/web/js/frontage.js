@@ -982,6 +982,41 @@ export async function createFrontage({
 
   const mat = new THREE.MeshStandardMaterial({
     color: new THREE.Color(TIMBER), roughness: 0.9, metalness: 0.0,
+    /**
+     * IN THE TRANSPARENT PASS ON PURPOSE, AND NOT BECAUSE ANY OF IT IS
+     * TRANSPARENT (T-0625). This timber is opaque and is drawn opaque: alpha is
+     * 1, `depthWrite` stays on, and nothing about the picture blends. The flag
+     * is here for ONE reason — it is what puts the layer in the same render
+     * list as the street ribbon, so that `renderOrder` below can order the two.
+     *
+     * WHY THAT IS NEEDED. three sorts opaques and transparents into SEPARATE
+     * lists and draws every opaque before any transparent; `renderOrder` sorts
+     * WITHIN a list and cannot reach across the two. The street ribbon is
+     * `transparent: true` (its alpha is genuinely graded — the track feathers
+     * at its edges and the ruts and crown modulate it), so a ribbon set to
+     * renderOrder 0 was still drawn AFTER opaque timber set to renderOrder 1.
+     * The order the comment on `mesh.renderOrder` describes was never the order
+     * that ran, for as long as that comment has been there.
+     *
+     * WHAT IT COST. The ribbon carries `polygonOffset -8/-32` to stop the
+     * terrain punching through its drape (R-BUG2, then R-BUG3 deepening it),
+     * and `polygonOffsetFactor` scales with the polygon's depth SLOPE — which at
+     * the grazing angle you view a road at is enormous. So the ribbon, drawn
+     * last and biased hard toward the camera, painted over the plank crossings
+     * standing 0.06 m above it, in hard triangular patches following the
+     * terrain's own triangulation. The owner reported it twice: it is the
+     * "jagged sawtooth" of T-0460 as seen from the street, and T-0460 fixed the
+     * walk's board ends without touching this, which is why it survived that
+     * ticket. Measured at the Sauganash crossing: 5.2 % of frame pixels wrong.
+     *
+     * WHY NOT THE OTHER TWO REPAIRS. Biasing the timber's own polygonOffset
+     * past the road's works, but it is an arms race against a number tuned
+     * twice already, and it pushes the timber through what it abuts — measured
+     * worse than this at -10/-40 and worse again at -16/-64. Making the ribbon
+     * opaque also works and is worse still: its alpha is real, and dropping the
+     * blend hardens every feathered track edge in the town.
+     */
+    transparent: true,
   });
   mat.name = 'frontage-timber';
   confidence?.patch(mat);
@@ -999,12 +1034,19 @@ export async function createFrontage({
   /**
    * DRAWN AFTER THE STREET RIBBON, and the owner's report is why. The road is a
    * decal: depthWrite off, polygonOffset -8/-32 so it hugs the terrain without
-   * z-fighting it. At a grazing angle that offset outweighs the 11 cm a board
-   * stands above the ground, so a ribbon drawn after the planks painted STRAIGHT
+   * z-fighting it. At a grazing angle that offset outweighs the 6-11 cm a board
+   * stands above the ground, so a ribbon drawn after the planks paints STRAIGHT
    * OVER a board crossing. Order is the whole fix: drawn after the ribbon, the
    * planks pass their depth test (the decal writes no depth) and the crossing
    * sits on the road the way a board laid on dirt does. Real occlusion is
    * untouched - terrain writes depth, so a walk behind a rise stays hidden.
+   *
+   * THIS LINE ALONE DID NOT DO IT, and for two months it read as though it had
+   * (T-0625). `renderOrder` orders a mesh within its own render list, and until
+   * the material above joined the transparent list this mesh was in the other
+   * one — where three draws every opaque before any transparent, whatever their
+   * renderOrder. The ordering this comment describes only became real when the
+   * material got `transparent: true`; keep the two together.
    */
   mesh.renderOrder = 1;
   mesh.name = 'frontage';

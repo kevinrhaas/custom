@@ -9,15 +9,15 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "footer, structure and column census — the per-line cells are NOT committed",
+ "read_pass": "the seven industry columns read entry by entry at magnification and set against the figures the enumerator wrote at the foot of his own columns (T-0627). He footed three of them — manufactures and trades 11, navigation of canals lakes and rivers 5, learned professions 1 — and all three CLOSE exactly; three more are empty and unfooted and agree at nothing; the seventh, navigation of the ocean, carries six entries and he footed NOTHING under it, so it cannot close and its residual is recorded as unknown. The per-line cells, the line index and the TOTAL column are NOT committed — that is T-0628.",
  "lines_ruled_with_an_entry": null,
- "lines_note": "NOT COMMITTED. Clustering the ink of the TOTAL column — the only column with an entry on every line — separates 28 groups on this sheet; coverage.json's inventory says 31, to the nearest line. The two disagree, and this pass does not settle which is right: with no horizontal rules (see `no_horizontal_rules`) a group can be one number written across two hands' widths or two numbers on adjacent lines, and the difference is exactly the row-alignment question. The count is left null rather than committed at a number the image has not yet been made to demonstrate.",
+ "lines_note": "STILL NOT COMMITTED — but for the first time the image argues a number rather than a range, and the argument is reproducible. `tools/fit_census_line_grid.py 33S7-9YYJ-6H` takes the seventeen distinct line positions the twenty-seven industry entries of this pass stand on, fits a uniform grid at every candidate line count, and scores each by the rms of the residuals:\n    lines=29  rms 18.34   lines=30  rms 18.34   lines=31  rms  5.72  <- best   lines=32  rms 17.73\n31 lines at a pitch of 75.4 px beats every alternative by a factor of 2.3, which is the same margin by which 30 won on 33S7-9YYJ-5V. It agrees with coverage.json's inventory figure of 31, and it agrees with the bound the anchors set on their own: the closest pair stands 68 px apart (y1745 and y1818 in manufactures; y2794 and y2865 in the canals column), so no pitch much above 75 can seat them all. It is recorded here as a MEASUREMENT and not as a committed line count, because the grid is only worth committing beside the TOTAL column read against it — a line index with no numbers on it is an assertion. That is T-0628, and the anchors this pass commits are its input.",
  "no_horizontal_rules": "MEASURED ON THIS IMAGE: the sheet carries NO horizontal ruled lines inside the body. A row-darkness profile taken across the empty slaves block finds exactly two strong rules on the leaf — the one under the printed heading and the one above the enumerator's footer — and nothing between them: the largest excess over local background anywhere inside the body is 5.1 grey levels, against 77 to 211 for those two printed rules. The printed form rules this page vertically only. That is the reason a continuation sheet is hard to index, and it is the thing the reading of 33S7-9YYJ-5S could not name when it reported that 'nothing on the image settles which [row] without re-reading the sheet against a row grid anchored on the ruled lines': there is no such grid to anchor on. Every row assignment on these three sheets has to come from the enumerator's own ink, and the only column with an entry on every line is TOTAL.",
  "form_note": "The right (continuation) sheet of the 1840 schedule. Columns as printed, left to right: twelve SLAVES columns (six male, six female age bands); TOTAL — number of persons in each family; seven NUMBER OF PERSONS IN EACH FAMILY EMPLOYED IN columns (mining, agriculture, commerce, manufactures and trades, navigation of the ocean, navigation of canals lakes and rivers, learned professions and engineers); PENSIONERS FOR REVOLUTIONARY OR MILITARY SERVICES (ages, names); six DEAF AND DUMB, BLIND, AND INSANE WHITE PERSONS columns; four of the same for coloured persons; and seven SCHOOLS, &c. columns. A blank cell on this form is a zero and is recorded as 0.",
  "closure_note": "The enumerator added his own totals at the foot of the sheet. Those printed totals are transcribed under `footer_as_read` and are the committed data on this sheet. Where a per-line reading is attempted it is checked against them and its residual recorded; a reading is never adjusted to make a total come out.",
  "footer_as_read": {
   "total": null,
-  "total_note": "three glyphs, read '1', a low loop, then two strokes. Same refusal as 33S7-9YYJ-5V: the middle glyph is not legible enough to commit, and the last pair is the form this hand uses for both 4 and 11. Recorded as unread rather than guessed.",
+  "total_note": "three glyphs, read '1', a low loop, then two strokes. Same refusal as 33S7-9YYJ-5V: the middle glyph is not legible enough to commit, and the last pair is the form this hand uses for both 4 and 11. Recorded as unread rather than guessed. Re-examined this pass at 2.4x and left unread: the cell carries four glyph groups, not three — a 1, a low loop, and then two strokes — and a 6 stands ABOVE the upper footer rule at x1322, which is the last body line's TOTAL entry and not part of the footing. The reading of this figure belongs with T-0628, which reads the TOTAL column.",
   "total_glyphs_as_read": "1??",
   "mining": null,
   "agriculture": null,
@@ -25,9 +25,11 @@
   "manufactures_and_trades": 11,
   "navigation_ocean": null,
   "navigation_canals_lakes_rivers": 5,
-  "learned_professions_and_engineers": null,
-  "schools_note": "this sheet is the only one of the three whose SCHOOLS, &c. block is written in: a 1 and a 40 stand at its head. Not read here; T-0548 owns it.",
-  "footer_blank_columns_note": "the mining, agriculture, commerce, navigation of the ocean, learned professions, pensioners and deaf/dumb/blind/insane blocks carry no figure at the foot of this sheet"
+  "learned_professions_and_engineers": 1,
+  "schools_note": "this sheet is the only one of the three whose SCHOOLS, &c. block is written in: a 1 and a 40 stand at its head. Still not read — it is outside the industry run this ticket owns, and T-0629 is filed for it with the slaves, pensioners and deaf/dumb/blind/insane blocks.",
+  "footer_blank_columns_note": "the mining, agriculture, commerce, navigation of the ocean, pensioners and deaf/dumb/blind/insane blocks carry no figure at the foot of this sheet. The navigation-of-the-ocean blank is the one that matters, because that column is written in.",
+  "learned_professions_note": "read in this pass, and it was recorded as carrying no figure before it. A single slash stands in the cell between the footer's two rules at x1818-1843. What sat above it and was taken for a blank footing is the last BODY line's own entry, at y2911-2959, which is above the upper footer rule at y2967.",
+  "navigation_ocean_note": "NOT WRITTEN. The cell is empty between the footer rules although the column carries six entries. Recorded as the enumerator's omission, not as a zero."
  },
  "column_ink_census": {
   "mining": 1950,
@@ -45,9 +47,9 @@
  },
  "column_ink_census_note": "A per-column ink census over the body, counting pixels 70 grey levels below each column's own 60th percentile, is committed under `column_ink_census` as the structural finding it is: it says which columns were written in at all, and it is reproducible from the image without reading a single digit. The single-width columns are clean; the wide blocks (slaves, deaf/dumb/blind/insane, schools) carry many printed rules inside the band and their counts are dominated by those rules, so they are reported but are NOT read as evidence of an entry either way.",
  "closes": false,
- "cells_state": "not_read",
+ "cells_state": "industry_columns_read",
  "records": [],
- "records_note": "empty on purpose. The per-line cells of this sheet are the work of T-0547/T-0548/T-0549; committing a row per line now would commit a line count and a row alignment this pass has not demonstrated, and the project's rule is that a half-read row is worse than an unread one.",
+ "records_note": "still empty, and deliberately. The per-line records need a row index, and this sheet has no horizontal rules to build one from (see `no_horizontal_rules`). T-0628 fits the line grid to the twenty-seven entry_y anchors this pass commits under `column_closure` — the same method that settled 33S7-9YYJ-5V at 30 lines — and reads the TOTAL column against it. Committing a row per line now would commit a row alignment nothing here has demonstrated.",
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
@@ -56,5 +58,453 @@
   "page_population_key_note": "three glyphs, read '1', a low loop, then two strokes. Same refusal as 33S7-9YYJ-5V: the middle glyph is not legible enough to commit, and the last pair is the form this hand uses for both 4 and 11. Recorded as unread rather than guessed.",
   "line_count_key": null
  },
- "ticket": "T-0548"
+ "ticket": "T-0627",
+ "column_geometry": {
+  "derived_by": "tools/read_census_continuation.py 33S7-9YYJ-6H --cover 0.50",
+  "body_between_horizontal_rules": [
+   619,
+   2959
+  ],
+  "column_pitch_px": 69,
+  "bounds_px": {
+   "total": [
+    1169,
+    1363
+   ],
+   "mining": [
+    1363,
+    1432
+   ],
+   "agriculture": [
+    1432,
+    1497
+   ],
+   "commerce": [
+    1497,
+    1554
+   ],
+   "manufactures_and_trades": [
+    1554,
+    1641
+   ],
+   "navigation_ocean": [
+    1641,
+    1715
+   ],
+   "navigation_canals_lakes_rivers": [
+    1715,
+    1801
+   ],
+   "learned_professions_and_engineers": [
+    1801,
+    1865
+   ]
+  },
+  "note": "MEASURED, not assumed, and this leaf is the one that made the instrument admit a parameter. At the tool's default continuity threshold — an x where 60 per cent of the body's rows stand darker than their own local background — 6H yields only 26 vertical rules, the industry run has a hole in it where the rule at x1715 should be, and locate_columns refuses the sheet: 'no industry run bracketed by TOTAL and PENSIONERS'. This exposure is simply paler than 5V's. Dropped to 0.50 the run is complete, and two things arrive with it that are not printed rules: a rule's own scan shadow 7 px off it at x1561, and a paper crease at x1833 inside the learned-professions cell. Both are now cut by measured filters in the tool (a 12 px merge, a 20-grey-level minimum mean darkness — the crease stands at 15.2 against 25.1 to 48.6 for the seven true rules), and 5V's geometry is unchanged by them. The eight bounds above were then checked BY EYE against the printed column heads at magnification: TOTAL, Mining, Agriculture, Commerce, Manufactures and trades, Navigation of the ocean, Navigation of canals lakes and rivers, Learned professions and engineers, and the PENSIONERS block beginning at x1865."
+ },
+ "glyph_inventory": {
+  "derived_by": "tools/read_census_continuation.py 33S7-9YYJ-6H --cover 0.50 --json",
+  "method": {
+   "ink": "local background = 25px Gaussian of the crop; ink = 45 grey levels darker",
+   "components": "8-connected after 5x5 closing, area>=40, height>=12, height/width<=4.0",
+   "grouping": "one number while dy<=55 and x does not step back",
+   "digits": "NOT READ — this tool measures boxes, a human reads the digit"
+  },
+  "numbers_per_column": {
+   "total": 32,
+   "mining": 0,
+   "agriculture": 0,
+   "commerce": 1,
+   "manufactures_and_trades": 11,
+   "navigation_ocean": 7,
+   "navigation_canals_lakes_rivers": 8,
+   "learned_professions_and_engineers": 12
+  },
+  "total_column_group_count_by_threshold": {
+   "35": 35,
+   "45": 34,
+   "55": 32,
+   "65": 29,
+   "75": 27
+  },
+  "creases_note": "This leaf is creased, and the crease is what the aspect filter added in this pass removes. Before it, a run of near-vertical slivers 1 to 10 px wide and 27 to 270 px tall stood in the ink mask of every column — 8 to 84 times as tall as wide, where the tallest number either sheet actually carries is 3.0 (a `1`, 8x24 px on 5V, 10x30 px on 6H). At the floor of 4.0 the filter cuts 70 sliver components off this sheet and NOTHING off 5V, whose committed counts are unchanged."
+ },
+ "column_closure": {
+  "mining": {
+   "entries": [],
+   "entry_y": [],
+   "read": 0,
+   "printed": null,
+   "closes": true,
+   "residual": 0,
+   "note": "Empty. The ink census finds nothing in it, no box survives the aspect filter, and the enumerator wrote no figure at its foot. Nothing read, nothing to close against, and the two agree."
+  },
+  "agriculture": {
+   "entries": [],
+   "entry_y": [],
+   "read": 0,
+   "printed": null,
+   "closes": true,
+   "residual": 0,
+   "note": "Empty, on the same three grounds as mining. In a district that is the town of Chicago and not its country, an unfooted and unwritten agriculture column is what the sheet ought to look like; it is recorded as read-and-empty, not as unread."
+  },
+  "commerce": {
+   "entries": [],
+   "entry_y": [],
+   "read": 0,
+   "printed": null,
+   "closes": true,
+   "residual": 0,
+   "note": "Empty. One box was reported, x1506-1515 y795-812, nine px wide; the crop at 6x over y750-930 shows clean paper across the whole cell. It is a speck. The enumerator footed nothing here."
+  },
+  "manufactures_and_trades": {
+   "entries": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "entry_y": [
+    677,
+    751,
+    1207,
+    1367,
+    1595,
+    1669,
+    1745,
+    1818,
+    2566,
+    2646
+   ],
+   "read": 11,
+   "printed": 11,
+   "closes": true,
+   "residual": 0,
+   "entry_boxes": [
+    [
+     1577,
+     662,
+     1625,
+     693
+    ],
+    [
+     1581,
+     728,
+     1614,
+     775
+    ],
+    [
+     1585,
+     1187,
+     1614,
+     1228
+    ],
+    [
+     1580,
+     1346,
+     1615,
+     1389
+    ],
+    [
+     1580,
+     1572,
+     1614,
+     1619
+    ],
+    [
+     1579,
+     1645,
+     1622,
+     1694
+    ],
+    [
+     1582,
+     1721,
+     1623,
+     1770
+    ],
+    [
+     1591,
+     1799,
+     1623,
+     1838
+    ],
+    [
+     1596,
+     2544,
+     1632,
+     2588
+    ],
+    [
+     1595,
+     2626,
+     1632,
+     2667
+    ]
+   ],
+   "rejected_boxes": [
+    [
+     1625,
+     2941,
+     1632,
+     2956
+    ]
+   ],
+   "note": "CLOSES at 11. Ten entries: the topmost, at y677, is a 2 — the widest mark in the column at 48 px, and the only one of the ten that is not a single slanted slash — and the other nine are 1s. 2 + 9 = 11, which is the figure at the foot. An eleventh box, x1625-1632 y2941-2956, sits seven px wide on the footer rule itself and is the footing's own ink caught by a body band that runs to y2959; it is not a body entry. Every box the instrument reported in this column and this pass did not keep was looked at on the image at magnification and carries no ink: they are crease fragments and specks, 6 to 19 px wide against 29 to 48 px for every mark that is a number. The rejection is recorded rather than silently applied — the boxes are listed under `rejected_boxes` so the next pass can disagree with it."
+  },
+  "navigation_ocean": {
+   "entries": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "entry_y": [
+    1207,
+    1358,
+    1583,
+    1660,
+    1730,
+    1811
+   ],
+   "read": 6,
+   "printed": null,
+   "closes": false,
+   "residual": null,
+   "entry_boxes": [
+    [
+     1663,
+     1188,
+     1698,
+     1227
+    ],
+    [
+     1671,
+     1338,
+     1705,
+     1379
+    ],
+    [
+     1669,
+     1563,
+     1702,
+     1604
+    ],
+    [
+     1671,
+     1640,
+     1705,
+     1681
+    ],
+    [
+     1674,
+     1712,
+     1706,
+     1748
+    ],
+    [
+     1656,
+     1792,
+     1700,
+     1831
+    ]
+   ],
+   "rejected_boxes": [
+    [
+     1689,
+     1927,
+     1698,
+     1939
+    ]
+   ],
+   "note": "DOES NOT CLOSE, and the reason is the enumerator's, not the reading's: HE NEVER FOOTED THIS COLUMN. The footer crop at 2.4x shows the cell between the 11 he wrote under manufactures and the 5 he wrote under the canals column standing empty, so there is no printed figure to close six entries against. Six 1s are read, each a single bold slash of the same form as the nine in the manufactures column, and the residual is recorded as unknown rather than as zero. Six men of this page's families employed in the navigation of the ocean is a claim about the sheet, not about the town, and it is not carried anywhere else by this ticket. Every box the instrument reported in this column and this pass did not keep was looked at on the image at magnification and carries no ink: they are crease fragments and specks, 6 to 19 px wide against 29 to 48 px for every mark that is a number. The rejection is recorded rather than silently applied — the boxes are listed under `rejected_boxes` so the next pass can disagree with it."
+  },
+  "navigation_canals_lakes_rivers": {
+   "entries": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "entry_y": [
+    2035,
+    2118,
+    2717,
+    2794,
+    2865
+   ],
+   "read": 5,
+   "printed": 5,
+   "closes": true,
+   "residual": 0,
+   "entry_boxes": [
+    [
+     1752,
+     2014,
+     1785,
+     2056
+    ],
+    [
+     1757,
+     2099,
+     1786,
+     2138
+    ],
+    [
+     1747,
+     2696,
+     1788,
+     2738
+    ],
+    [
+     1750,
+     2774,
+     1785,
+     2815
+    ],
+    [
+     1751,
+     2842,
+     1792,
+     2888
+    ]
+   ],
+   "rejected_boxes": [
+    [
+     1770,
+     2167,
+     1776,
+     2184
+    ],
+    [
+     1779,
+     2329,
+     1792,
+     2341
+    ],
+    [
+     1774,
+     2410,
+     1786,
+     2422
+    ]
+   ],
+   "note": "CLOSES at 5. Five entries, every one a single slash, against the 5 the enumerator wrote at the foot. Three further boxes — 6, 12 and 13 px wide — were rejected as crease; had any been kept the column would have overrun its own footing, which is the check working. Every box the instrument reported in this column and this pass did not keep was looked at on the image at magnification and carries no ink: they are crease fragments and specks, 6 to 19 px wide against 29 to 48 px for every mark that is a number. The rejection is recorded rather than silently applied — the boxes are listed under `rejected_boxes` so the next pass can disagree with it."
+  },
+  "learned_professions_and_engineers": {
+   "entries": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "entry_y": [
+    1122,
+    2040,
+    2120,
+    2722,
+    2839,
+    2935
+   ],
+   "read": 1,
+   "printed": 1,
+   "closes": true,
+   "residual": 0,
+   "entry_boxes": [
+    [
+     1813,
+     1091,
+     1848,
+     1153
+    ],
+    [
+     1819,
+     2017,
+     1856,
+     2063
+    ],
+    [
+     1817,
+     2098,
+     1854,
+     2143
+    ],
+    [
+     1815,
+     2700,
+     1856,
+     2745
+    ],
+    [
+     1823,
+     2796,
+     1856,
+     2883
+    ],
+    [
+     1820,
+     2911,
+     1856,
+     2959
+    ]
+   ],
+   "rejected_boxes": [
+    [
+     1822,
+     759,
+     1832,
+     772
+    ],
+    [
+     1827,
+     896,
+     1833,
+     917
+    ],
+    [
+     1837,
+     1020,
+     1856,
+     1072
+    ],
+    [
+     1836,
+     2397,
+     1847,
+     2419
+    ],
+    [
+     1834,
+     2526,
+     1844,
+     2556
+    ],
+    [
+     1828,
+     2769,
+     1839,
+     2794
+    ]
+   ],
+   "note": "CLOSES at 1, and it is the one column on this sheet whose closure turns on a glyph rather than on a count. Six marks stand in the column. The first, at y1122, is a single slash — a 1, the same form as the fifteen 1s in the two navigation columns. The other five are ELONGATED SLANTED LOOPS, closed at both ends and carrying no tail: this hand's ZERO. That reading is what the footing settles. Six 1s would foot at 6 and six 6s at 36; one 1 and five 0s foot at 1, and 1 is what the enumerator wrote. The loops are also the only zeros written anywhere on this leaf — every other column leaves a nought blank — which is worth recording as a fact about the hand rather than smoothing away. The entry at y2839 is a box 87 px tall because the closing joined the loop to a crease running through it; the ink itself centres near y2859, and T-0628 should fit to the ink and not to this box. Every box the instrument reported in this column and this pass did not keep was looked at on the image at magnification and carries no ink: they are crease fragments and specks, 6 to 19 px wide against 29 to 48 px for every mark that is a number. The rejection is recorded rather than silently applied — the boxes are listed under `rejected_boxes` so the next pass can disagree with it."
+  }
+ },
+ "closes_note": "PARTLY. Of the seven industry columns, six agree with the foot of the sheet: mining, agriculture and commerce are empty against three blank footer cells, and the three the enumerator actually footed close exactly — manufactures and trades 11 against 11, canals 5 against 5, learned professions 1 against 1. The seventh, navigation of the ocean, is written in and NOT footed, so there is no printed figure to close its six entries against; its residual is unknown, not zero. `closes` stays false because the sheet as a whole is not read: TOTAL, the twelve slave columns, pensioners, the ten deaf/dumb/blind/insane columns and the seven schools columns are still untouched.",
+ "tickets": [
+  "T-0548 (split)",
+  "T-0627 (this pass)",
+  "T-0628 (line index + TOTAL)",
+  "T-0629 (the remaining blocks)"
+ ]
 }
