@@ -474,6 +474,36 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0632. The later directories, on the record rather than only beside it. The
+    # printed lines and the crosswalks' arithmetic stay in
+    # `data/residents/directories.json`, which the panel opens once for the town; what
+    # the RECORD carries is the claim — a trade or an address a Chicago directory of
+    # 1839, 1843 or 1844 prints against this person, graded, dated to the year it
+    # describes and citing the volume. `note` and `sources` are the household's own
+    # statement of what a later volume is worth and which ones met it.
+    "directories.note": ("shown", "escapeHtml(onRecord.note)"),
+    "directories.sources": ("shown", "escapeHtml((onRecord.sources || []).join(', '))"),
+    "directories.people[].person_id": (
+        "shown", "(directoriesOnRecord || []).find((row) => row.person_id === person.id)"),
+    "directories.people[].occupation_later.value": (
+        "shown", "one(block.occupation_later, 'A trade printed against this name')"),
+    "directories.people[].address_later.value": (
+        "shown", "one(block.address_later, 'An address printed against this name')"),
+    # The three parts every claim block here shares are read once, in `laterClaimHtml`,
+    # so one expression covers each of them for both claims — the same economy the seven
+    # graded claims above are declared with.
+    "directories.people[].occupation_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].address_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].occupation_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].address_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].occupation_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].address_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].occupation_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    "directories.people[].address_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),

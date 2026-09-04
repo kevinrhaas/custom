@@ -540,6 +540,17 @@ def build(preload: dict | None = None):
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
         doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
+        # THE LATER-EVIDENCE BLOCK IS NOT THIS PASS'S AND IS CARRIED OVER (T-0632).
+        # `tools/spend_directories.py` writes a `directories` key onto the households a
+        # Chicago directory of 1839, 1843 or 1844 meets, holding what those volumes
+        # print beside the person and citing the source. It states nothing about 1835
+        # and this mint derives nothing about it, so re-deriving the record must not
+        # silently delete it — which is what this byte-for-byte gate would otherwise
+        # turn into: the spend pass writes the block, this pass rebuilds without it,
+        # and whichever ran last wins.
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        if existing.get("directories"):
+            doc["directories"] = existing["directories"]
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

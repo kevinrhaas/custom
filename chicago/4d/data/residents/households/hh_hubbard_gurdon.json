@@ -68,5 +68,17 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS. Everything about Hubbard's later Chicago life is documented here; the date he first came is a fact everyone knows and nothing in data/sources/ states. That asymmetry is worth leaving visible rather than quietly filling: it is precisely the case AGENTS.md rule 1 exists for."
+ "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS. Everything about Hubbard's later Chicago life is documented here; the date he first came is a fact everyone knows and nothing in data/sources/ states. That asymmetry is worth leaving visible rather than quietly filling: it is precisely the case AGENTS.md rule 1 exists for.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "hubbard_gurdon"
+   }
+  ]
+ }
 }

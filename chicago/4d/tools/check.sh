@@ -1280,8 +1280,18 @@ step "Norris's 1844 directory entries re-derive from the committed page text" \
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
-step "…and the 1844 findings the cards show re-derive from that crosswalk" \
-  python3 tools/spend_norris_1844.py --check
+# T-0632. And the pass that spends ALL FOUR directory crosswalks — Fergus 1839, Fergus
+# 1843, Norris 1844 and Norris's advertising cards — onto the town: the layer the panel
+# renders, the ledger that records what each volume was allowed to carry to a card and
+# what it was refused, and the `directories` block on the household records those
+# rulings name. It replaces the 1844-only pass. Gated byte for byte in all three places,
+# because the failure it guards is the one this whole ticket was filed for: a trade or a
+# street from 1844 quietly becoming a fact of 1835.
+step "…and all four directories' findings re-derive onto the cards they reach" \
+  python3 tools/spend_directories.py --check
+
+step "…and that pass's four carry rules hold over everything it derives" \
+  python3 tools/spend_directories.py --self-test
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent

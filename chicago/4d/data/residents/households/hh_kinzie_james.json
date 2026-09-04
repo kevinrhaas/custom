@@ -85,5 +85,17 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "A HOUSEHOLD WITH A FAMILY IN THE SOURCE AND NO PEOPLE IN THE RECORD. Andreas's list says 'James Kinzie and family' and this parcel writes one person, because naming a wife or counting children on the strength of the word 'family' is the exact move the grade vocabulary forbids. THE HONEST READING OF THIS RECORD is that it stands for at least three or four people and can defend only one."
+ "research_note": "A HOUSEHOLD WITH A FAMILY IN THE SOURCE AND NO PEOPLE IN THE RECORD. Andreas's list says 'James Kinzie and family' and this parcel writes one person, because naming a wife or counting children on the strength of the word 'family' is the exact move the grade vocabulary forbids. THE HONEST READING OF THIS RECORD is that it stands for at least three or four people and can defend only one.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "kinzie_james"
+   }
+  ]
+ }
 }

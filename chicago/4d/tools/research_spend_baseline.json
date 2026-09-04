@@ -8,7 +8,7 @@
   "census_1840": 229,
   "church": 0,
   "books": 126,
-  "directories": 6396,
+  "directories": 6128,
   "newberry_index": 4914,
   "land_sales": 359
  },
@@ -35,7 +35,7 @@
   },
   "directories": {
    "read": 6684,
-   "spent": 288
+   "spent": 556
   },
   "newberry_index": {
    "read": 7005,
@@ -147,6 +147,14 @@
    "to": 290,
    "date": "2026-09-04",
    "why": "T-0527 read the three remaining filled left sheets of images 26-50 (printed 227, 239 and 241) line by line: 83 more named heads. T-0495 forbids this ticket minting or regrading anybody - T-0505 crosswalks these readings and T-0514/T-0515 rule on the names - so the reading is deliberately ahead of its adjudication and the ceiling moves once, on purpose, rather than the gate being routed around."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-04",
+   "why": "T-0632 opened this hop for the directories domain and closed it in the same pass. tools/spend_directories.py rules on the 235 single-entry matches the four directory crosswalks already held, and writes each one onto the household record it names — the later trade, the later address and the source id, as graded values that describe 1839, 1843 or 1844 and touch no 1835 claim. So the ceiling is recorded at ZERO, which is what the domain now stands at: every ruling that reaches a person reaches that person's card. It is written down rather than left absent because the gate faults on an unrecorded ceiling, and because a zero somebody chose is a ratchet while an absence is a hole. Nothing here may drift back up: a later directory reading that rules on a person and does not reach their card raises this number and the gate says so."
   }
  ],
  "lowered": [
@@ -159,8 +167,9 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 6,
-  "civic": 99
+  "census_1840": 1,
+  "civic": 99,
+  "directories": 0
  },
  "unsourced_ceiling": {}
 }

@@ -74,5 +74,17 @@
  ],
  "touches_removal": true,
  "review_required": true,
- "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them."
+ "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "beaubien_madore"
+   }
+  ]
+ }
 }

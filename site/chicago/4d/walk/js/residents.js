@@ -283,48 +283,75 @@ function scanHtml(census, citationsById) {
 }
 
 /**
- * Norris's directory of 1844, on the people it meets (T-0569).
+ * The Chicago directories of 1839, 1843 and 1844, on the people they meet (T-0632).
  *
- * The volume is nine years after this scene and that gap is the whole reason
- * this is rendered rather than banked. An 1844 line can only do two things for a
- * person of 1835 — say they were still in Chicago, and print a trade or a street
- * the 1835 record never had — and both of those are ARGUMENTS a reader can only
- * disagree with if they can see the line, the page and the rule that reached it.
+ * Every volume here is later than this scene and that gap is the whole reason this
+ * is rendered rather than banked. A later line can only do two things for a person
+ * of 1835 — say they were still in Chicago, and print a trade or a street the 1835
+ * record never had — and both of those are ARGUMENTS a reader can only disagree
+ * with if they can see the line, the page and the rule that reached it.
  *
  * THE THREE STATUSES ARE ALL SHOWN, and that is the point of the section rather
- * than a caveat on it. Forty-eight people meet one entry and nobody else meets
- * it; fifteen meet several and this project does not choose between them; four
- * share one entry with another person in this town, so no match is made. A
- * section that showed only the first would be reporting the crosswalk's
- * successes and hiding its arithmetic.
+ * than a caveat on it. A person met by one entry nobody else meets is a single
+ * entry; met by several, this project does not choose between them; sharing one
+ * entry with another person in this town, no match is made. A section that showed
+ * only the first would be reporting the crosswalks' successes and hiding their
+ * arithmetic.
  *
- * THE LINE IS QUOTED AND ITS PARSE IS NOT. Splitting a printed entry into a
- * trade and an address is a heuristic over inconsistent nineteenth-century
- * punctuation, and on this volume it yields trades like "of W". The card carries
- * the line as Norris set it and archive.org read it, damage and all, and says
- * separately what the line HOLDS that the 1835 record lacks.
+ * WHAT CROSSES AND WHAT DOES NOT. Norris's alphabetical volume sets a partnership
+ * where the trade would go — "of Horace Norton & Co", twice simply "of" — so its
+ * split yields a value containing no trade at all and T-0569 refused it. The line
+ * is quoted and its parse is not. The Fergus volumes set the trade first and its
+ * qualifiers after, so their split crosses with the caution printed beside it.
  */
 function laterDirectoryHtml(found, citationsById) {
   if (!found) return '';
   const cites = (found.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
-  const lines = (found.entries || []).map((e) => `<li><q>${escapeHtml(e.as_printed)}</q>
-    <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
-      escapeHtml(e.claim_id)}.</span></li>`).join('');
-  const carried = (found.carries || [])
-    .map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
-  return `<dt>Found again in Norris's directory of ${escapeHtml(String(found.year))}</dt>
-    <dd>${swatch(null)}<span class="res-chip res-research">${
-      escapeHtml(words(found.match_status))}</span>${
-      carried.length
-        ? `<span class="res-chip res-research">1844 supplies ${escapeHtml(carried.join(' and '))}</span>`
-        : ''}
-      ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
-      <span class="res-why">${escapeHtml(found.match_rule)}</span>
-      <br><span class="res-why">${escapeHtml(found.note)}</span>
+  const volumes = (found.appearances || []).map((a) => {
+    const lines = (a.entries || []).map((e) => `<li><q>${escapeHtml(e.as_printed)}</q>${
+      e.firm ? ` — ${escapeHtml(e.firm)}` : ''}
+      <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
+        escapeHtml(e.claim_id)}.</span></li>`).join('');
+    const holds = (a.holds || []).map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
+    return `<dt>Found again in ${escapeHtml(a.title)}</dt>
+      <dd>${swatch(null)}<span class="res-chip res-research">${
+        escapeHtml(words(a.match_status))}</span>${
+        holds.length
+          ? `<span class="res-chip res-research">${escapeHtml(String(a.year))} holds ${
+              escapeHtml(holds.join(' and '))}${a.parse_carries ? '' : ', and its parse does not cross'}</span>`
+          : ''}
+        ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
+        <span class="res-why">${escapeHtml(a.match_rule)}</span></dd>`;
+  }).join('');
+  return `${volumes}
+    <dd><span class="res-why">${escapeHtml(found.standard || '')}</span>
       ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
-function personHtml(person, citationsById, researchByPerson, directoryByPerson) {
+/**
+ * And what the RECORD itself now carries (T-0632). The layer above holds the
+ * printed lines and the crosswalks' arithmetic; the household record holds the
+ * CLAIM — the later trade and the later address, each graded, dated to the year
+ * it describes and citing the volume it was read out of. It is rendered from the
+ * record rather than from the layer on purpose: the record is what a reader who
+ * opens the JSON sees, and a card showing something its own file does not say
+ * would be two answers to one question.
+ */
+function laterClaimHtml(block, citationsById) {
+  if (!block) return '';
+  const one = (claim, label) => {
+    if (!claim) return '';
+    const cites = (claim.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    return `<dt>${escapeHtml(label)} in ${escapeHtml(String(claim.describes_date))}</dt>
+      <dd>${swatch(claim.confidence)}${escapeHtml(claim.value)}
+        <br><span class="res-why">${escapeHtml(claim.note)}</span>
+        ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+  };
+  return one(block.occupation_later, 'A trade printed against this name')
+    + one(block.address_later, 'An address printed against this name');
+}
+
+function personHtml(person, citationsById, researchByPerson, directoryByPerson, directoriesOnRecord) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -358,6 +385,7 @@ function personHtml(person, citationsById, researchByPerson, directoryByPerson) 
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}
       ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
+      ${laterClaimHtml((directoriesOnRecord || []).find((row) => row.person_id === person.id), citationsById)}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
   </details>`;
@@ -400,6 +428,9 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 
 /** The household record itself, rendered into an opened row. */
 function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
+  // T-0632's block on the record: `directories.note` states what a later volume is
+  // worth and `directories.sources` names every one that met this household.
+  const onRecord = hh.directories || {};
   const persons = Array.isArray(hh.persons) ? hh.persons : [];
   const party = hh.party_size_on_arrival || null;
   return `<dl class="lib-body res-fields">
@@ -420,7 +451,9 @@ function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
       ${hh.research_note
         ? `<dt>What this record is worth</dt><dd>${escapeHtml(hh.research_note)}</dd>` : ''}
     </dl>
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson)).join('')}</div>`;
+    ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
+        escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people)).join('')}</div>`;
 }
 
 /**
@@ -605,20 +638,23 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — resident research reviews are not shown`);
   }
 
-  // Norris's 1844 directory, joined on person_id (T-0569). Beside the records
-  // rather than inside them, for the reason `tools/spend_norris_1844.py` sets
-  // out: most of these people live in records a mint regenerates byte for byte,
-  // and an 1844 listing is evidence about 1844 offered beside a person of 1835
-  // rather than a fact of theirs. Its absence costs the section this block and
-  // nothing else.
+  // The four directory crosswalks, joined on person_id (T-0632, replacing T-0569's
+  // 1844-only layer). Beside the records as well as on them: the record carries the
+  // later trade and street and cites the volume, and this layer carries the printed
+  // lines, the match rule and the arithmetic the card has no room for. Its absence
+  // costs the section this block and nothing else.
   const directoryByPerson = new Map();
   let directoryCounts = {};
+  let directoryVolumes = [];
   try {
-    const found = await getJson('residents/directory_1844.json');
+    const found = await getJson('residents/directories.json');
     directoryCounts = found.counts || {};
-    for (const row of found.people || []) directoryByPerson.set(row.person_id, row);
+    directoryVolumes = found.volumes || [];
+    for (const row of found.people || []) {
+      directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
+    }
   } catch (err) {
-    problems.push(`residents: ${err.message} — the 1844 directory findings are not shown`);
+    problems.push(`residents: ${err.message} — the directory findings are not shown`);
   }
 
   const vocab = index.vocabulary || {};
@@ -679,15 +715,19 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `${researchCounts.candidate_identity || 0} candidate identities kept unmerged, and `
           + `${researchCounts.no_corroboration || 0} searches with no safe match. ` : '')
       + (directoryByPerson.size
-        // T-0569. The first Chicago directory is of 1844 and this town is of 1835,
-        // so the sentence leads with the gap rather than with the number: what
-        // these people gain is corroboration and a line to read, never a date, a
-        // trade or a street in 1835.
-        ? `${directoryByPerson.size} of them are met by a name in Norris's directory of `
-          + `1844 — ${directoryCounts.single_entry || 0} by one entry alone, `
-          + `${directoryCounts.ambiguous || 0} by several this project will not choose `
-          + `between, and ${directoryCounts.contested || 0} by an entry another person `
-          + `here has as good a claim to. Nine years late, and read back onto nobody. ` : '')
+        // T-0632. The earliest Chicago directory is of 1839 and this town is of 1835,
+        // so the sentence leads with the gap rather than with the number: what these
+        // people gain is corroboration, a line to read and — where the volume prints
+        // one — a trade or a street OF ITS OWN YEAR, never a date, a trade or a street
+        // in 1835.
+        ? `${directoryByPerson.size} of them are met by a name in one of the `
+          + `${directoryVolumes.length} Chicago directories read here, of 1839, 1843 and `
+          + `1844 — ${directoryCounts.people_met_by_more_than_one_volume || 0} in more `
+          + `than one. ${directoryCounts.carrying_an_occupation || 0} carry a trade the `
+          + `1835 record never had and ${directoryCounts.carrying_an_address || 0} an `
+          + `address, each written as its own year's and read back onto nobody; `
+          + `${directoryCounts.line_held_but_parse_refused || 0} hold only a line whose `
+          + `parse this project will not cross. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }

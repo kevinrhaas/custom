@@ -89,5 +89,18 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE OLDEST RESIDENCE, THE ONLY VOTE AGAINST THE TOWN, AND THE LARGEST DOCUMENTED HOUSEHOLD IN THE PARCEL - a wife and five sons, the youngest born in the spring of 1835. It is also the record that best shows why the population layer must precede the building layer: this household of seven had a house built in the season before the scene date, at a street address, which the model does not contain. THE PROJECT SHOULD NOT LOSE THE ROLLERS. A documented instance of a Chicago house being moved bodily one block in 1835 is evidence about construction, weight and the town's attitude to its own buildings, and it belongs in the K4 facades work as much as here."
+ "research_note": "THE OLDEST RESIDENCE, THE ONLY VOTE AGAINST THE TOWN, AND THE LARGEST DOCUMENTED HOUSEHOLD IN THE PARCEL - a wife and five sons, the youngest born in the spring of 1835. It is also the record that best shows why the population layer must precede the building layer: this household of seven had a house built in the season before the scene date, at a street address, which the model does not contain. THE PROJECT SHOULD NOT LOSE THE ROLLERS. A documented instance of a Chicago house being moved bodily one block in 1835 is evidence about construction, weight and the town's attitude to its own buildings, and it belongs in the K4 facades work as much as here.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "heacock_russel_e"
+   }
+  ]
+ }
 }
