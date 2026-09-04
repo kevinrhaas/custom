@@ -9,8 +9,7 @@
   "confidence": "inferred",
   "sources": [
    "census_1840_chicago_familysearch_images",
-   "chicago_democrat_1833_1835",
-   "norris_directory_1844"
+   "chicago_democrat_1833_1835"
   ],
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 28 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
@@ -45,8 +44,7 @@
   "confidence": "inferred",
   "sources": [
    "census_1840_chicago_familysearch_images",
-   "chicago_democrat_1833_1835",
-   "norris_directory_1844"
+   "chicago_democrat_1833_1835"
   ],
   "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
  },
@@ -68,7 +66,7 @@
     "chicago_democrat_1833_1835",
     "norris_directory_1844"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from census_1840, directory_1844, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 28 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from census_1840, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 28 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "census_evidence": [
     {
      "list": "census_1840",
@@ -77,17 +75,6 @@
      "record_id": "33S7-9YYJ-DD:12",
      "describes_date": "1840",
      "source": "census_1840_chicago_familysearch_images",
-     "rule": "G1b"
-    }
-   ],
-   "book_evidence": [
-    {
-     "list": "directory_1844",
-     "as_read": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
-     "locator": "H. & Chamberlaine, h Mich b Cass <fe Hush",
-     "record_id": "n1844_e0782",
-     "describes_date": "1844",
-     "source": "norris_directory_1844",
      "rule": "G1b"
     }
    ],
@@ -117,6 +104,17 @@
      "record_id": "person_col_r_j_hamilton",
      "describes_date": "1834-11-26",
      "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "book_evidence": [
+    {
+     "list": "directory_1844",
+     "as_read": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
+     "locator": "H. & Chamberlaine, h Mich b Cass <fe Hush",
+     "record_id": "n1844_e0782",
+     "describes_date": "1844",
+     "source": "norris_directory_1844",
      "rule": "G1b"
     }
    ]
