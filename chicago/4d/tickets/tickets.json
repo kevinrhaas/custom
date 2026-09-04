@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 10:58 PM",
+  "generated_ct": "Sep 3, 2026, 11:01 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9060,7 +9060,7 @@
     {
       "id": "T-0549",
       "title": "The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9068,12 +9068,14 @@
       "legacy_id": null,
       "parent": "T-0541",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "closed_at": "2026-09-04T03:35:02.390Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0550",
@@ -10395,6 +10397,46 @@
     },
     {
       "id": "T-0630",
+      "title": "The 1840 census image 33S7-9YYJ-6Q: the seven industry columns closed against their printed footings, and the sheet's line count settled",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0549",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "755",
+      "claimed_by": "run 9/3/2026, 10:35:11 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T03:51:49.890Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33831645943",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0631",
+      "title": "The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0549",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 5
+    },
+    {
+      "id": "T-0632",
       "title": "The 1840 census image 33S7-9YYJ-8D read line by line and closed against its own printed column totals",
       "state": "done",
       "epic": "META",
@@ -10414,7 +10456,7 @@
       "queue_rank": null
     },
     {
-      "id": "T-0631",
+      "id": "T-0633",
       "title": "The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals",
       "state": "open",
       "epic": "META",

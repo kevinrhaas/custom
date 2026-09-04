@@ -1,5 +1,5 @@
 ---
-id: T-0630
+id: T-0632
 title: The 1840 census image 33S7-9YYJ-8D read line by line and closed against its own printed column totals
 state: done
 epic: META

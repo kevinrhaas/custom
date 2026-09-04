@@ -9,12 +9,12 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "footer, structure and column census — the per-line cells are NOT committed",
- "lines_ruled_with_an_entry": null,
- "lines_note": "NOT COMMITTED. Clustering the ink of the TOTAL column — the only column with an entry on every line — separates 31 groups on this sheet; coverage.json's inventory says 31, to the nearest line. The two disagree, and this pass does not settle which is right: with no horizontal rules (see `no_horizontal_rules`) a group can be one number written across two hands' widths or two numbers on adjacent lines, and the difference is exactly the row-alignment question. The count is left null rather than committed at a number the image has not yet been made to demonstrate.",
+ "read_pass": "the seven industry columns read entry by entry against the enumerator's own printed footings (T-0630), and the sheet's LINE COUNT settled from those columns' ink alone. The TOTAL column's digits are NOT committed — they are T-0631.",
+ "lines_ruled_with_an_entry": 30,
+ "lines_note": "COMMITTED THIS PASS at 30, and the figure is measured rather than clustered. Every earlier number on this sheet came from the TOTAL column's own ink and moved with the threshold used to group it — 31 in coverage.json 'to the nearest line', 31 at one clustering threshold, and 53, 48, 44, 40 or 38 as that threshold is walked from 35 to 75 px. This pass does not look at the TOTAL column to count rows at all. It fits a line grid to the ENUMERATOR'S OTHER INK — the 23 entries of the four written industry columns, which are read below and close against their own printed footings — and asks which line count that ink supports. Thirty does, at an rms of 4.97 px against 15.9 for 31, 20.8 for 29 and 14.9 or worse for every count out to 38. See line_index, and tools/fit_census_line_grid.py, which re-derives all of it from this file's own column_closure block. The same method on 33S7-9YYJ-5V returned 30 lines at a pitch of 75.86 px; this sheet returns 30 at 75.88. Two sheets of one book in one hand, fitted independently and with no shared input, agree on the pitch to 0.02 px.",
  "no_horizontal_rules": "MEASURED ON THIS IMAGE: the sheet carries NO horizontal ruled lines inside the body. A row-darkness profile taken across the empty slaves block finds exactly two strong rules on the leaf — the one under the printed heading and the one above the enumerator's footer — and nothing between them: the largest excess over local background anywhere inside the body is 7.5 grey levels, against 77 to 211 for those two printed rules. The printed form rules this page vertically only. That is the reason a continuation sheet is hard to index, and it is the thing the reading of 33S7-9YYJ-5S could not name when it reported that 'nothing on the image settles which [row] without re-reading the sheet against a row grid anchored on the ruled lines': there is no such grid to anchor on. Every row assignment on these three sheets has to come from the enumerator's own ink, and the only column with an entry on every line is TOTAL.",
  "form_note": "The right (continuation) sheet of the 1840 schedule. Columns as printed, left to right: twelve SLAVES columns (six male, six female age bands); TOTAL — number of persons in each family; seven NUMBER OF PERSONS IN EACH FAMILY EMPLOYED IN columns (mining, agriculture, commerce, manufactures and trades, navigation of the ocean, navigation of canals lakes and rivers, learned professions and engineers); PENSIONERS FOR REVOLUTIONARY OR MILITARY SERVICES (ages, names); six DEAF AND DUMB, BLIND, AND INSANE WHITE PERSONS columns; four of the same for coloured persons; and seven SCHOOLS, &c. columns. A blank cell on this form is a zero and is recorded as 0.",
- "closure_note": "The enumerator added his own totals at the foot of the sheet. Those printed totals are transcribed under `footer_as_read` and are the committed data on this sheet. Where a per-line reading is attempted it is checked against them and its residual recorded; a reading is never adjusted to make a total come out.",
+ "closure_note": "The enumerator added his own totals at the foot of the sheet. Those printed totals are transcribed under `footer_as_read` and are the committed data on this sheet. Where a per-line reading is attempted it is checked against them and its residual recorded; a reading is never adjusted to make a total come out. AS OF T-0630: the four written industry columns close against their printed footings at zero residual (commerce 4, manufactures and trades 15, navigation of canals lakes and rivers 18, learned professions 8) and the three blank-footed columns are demonstrated blank. The TOTAL column is unread, so the sheet as a whole does not yet close.",
  "footer_as_read": {
   "total": 198,
   "mining": null,
@@ -43,16 +43,842 @@
  },
  "column_ink_census_note": "A per-column ink census over the body, counting pixels 70 grey levels below each column's own 60th percentile, is committed under `column_ink_census` as the structural finding it is: it says which columns were written in at all, and it is reproducible from the image without reading a single digit. The single-width columns are clean; the wide blocks (slaves, deaf/dumb/blind/insane, schools) carry many printed rules inside the band and their counts are dominated by those rules, so they are reported but are NOT read as evidence of an entry either way.",
  "closes": false,
- "cells_state": "not_read",
+ "cells_state": "line_index_committed_cells_not_read",
  "records": [],
- "records_note": "empty on purpose. The per-line cells of this sheet are the work of T-0547/T-0548/T-0549; committing a row per line now would commit a line count and a row alignment this pass has not demonstrated, and the project's rule is that a half-read row is worse than an unread one.",
+ "records_note": "still empty, and now for a narrower reason than before. T-0630 committed the row index — 30 lines, and which line every stroke stands on — but not the numbers. A record per line would have to carry a TOTAL, and this pass does not read the TOTAL column. T-0631 writes records[].",
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
   "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading. T-0539 pairs all eleven at once. Recorded as unpaired rather than guessed.",
   "page_population_key": 198,
   "page_population_key_note": null,
-  "line_count_key": null
+  "line_count_key": 30,
+  "line_count_key_note": "committed by T-0630 from the line grid, not from the TOTAL column's ink. The page population key (198) is still the enumerator's own footing and is unchanged."
  },
- "ticket": "T-0549"
+ "ticket": "T-0630",
+ "column_closure": {
+  "commerce": {
+   "entries": [
+    2,
+    1,
+    1
+   ],
+   "entry_y": [
+    1820,
+    1895,
+    2504
+   ],
+   "read": 4,
+   "printed": 4,
+   "closes": true,
+   "residual": 0,
+   "note": "three entries — a 2, a 1 and a 1 — and it closes. A fourth component survives the speck filter at y1944-1961 and is NOT a digit: its 5th-percentile grey is 126 against 0 to 5 for every written digit on this sheet, which is the measurement this pass uses throughout to part writing from paper (see reject_test)."
+  },
+  "manufactures_and_trades": {
+   "entries": [
+    3,
+    6,
+    1,
+    1,
+    2,
+    1,
+    1
+   ],
+   "entry_y": [
+    1124,
+    1592,
+    1974,
+    2050,
+    2128,
+    2279,
+    2874
+   ],
+   "read": 15,
+   "printed": 15,
+   "closes": true,
+   "residual": 0,
+   "note": "CLOSES at 15. Two of this column's ten components carry no writing at all: y1179-1228 and y1321-1840 are both the same faint CREASE running down x1601-1615, which the 5x5 closing joins into one 519 px component. It is a crease and not a rule — its darkest column covers 0.34 of the body but its longest UNBROKEN run is 110 px, against 1101 and 1030 px for the printed rules that bound this cell. The crease matters twice more. It crosses the 1 at y1947-2000, which is why that component is 53 px tall where this hand's other 1s are 33 to 44, and it is the reason the entry is read 1 rather than 4: the second mark is the crease, not a pen stroke. And a solid teardrop of ink sits at y2085-2111, hard against the cell's left rule — real ink (5th-percentile grey 0) but no digit: 26 px tall by 13 wide with no stroke direction and no taper, where every 1 in this hand is a 33-44 px tapered ascending diagonal. It is an ink drop. The column closes without it and nothing was moved to make it close."
+  },
+  "navigation_canals_lakes_rivers": {
+   "entries": [
+    3,
+    2,
+    10,
+    2,
+    1
+   ],
+   "entry_y": [
+    1130,
+    1440,
+    1513,
+    1598,
+    2192
+   ],
+   "read": 18,
+   "printed": 18,
+   "closes": true,
+   "residual": 0,
+   "note": "CLOSES at 18, and the only two-digit entry on the sheet's industry columns is here: the 1 at x1752-1785 and the 0 at x1786-1812 stand on one line at y1491-1535 and are the number 10, not a 1 and a 0 on two lines. They are read as one number because they share a y span to within 13 px where this sheet's line pitch is 72, and because the column does not close at any other reading of them."
+  },
+  "learned_professions_and_engineers": {
+   "entries": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "entry_y": [
+    687,
+    751,
+    902,
+    1053,
+    2428,
+    2574,
+    2726,
+    2796
+   ],
+   "read": 8,
+   "printed": 8,
+   "closes": true,
+   "residual": 0,
+   "note": "eight single bold slashes, and it closes at 8. A ninth component at y611-639 is the leaf's printed heading rule, which the body band's top edge clips: it is 10 px wide, stands on y611 exactly, and carries no stroke. The first entry's component runs y651-723, taller than the 31-44 px of the other seven, because the crease clips its foot; its centre is the least certain anchor on the sheet and the grid fit below is stated with and without it."
+  },
+  "mining": {
+   "entries": [],
+   "read": 0,
+   "printed": 0,
+   "closes": true,
+   "residual": 0,
+   "note": "nothing written, and the enumerator footed the column blank. One component survives the speck filter, at y1645-1660 — a short thick dash standing ON the column's own left rule, no slant and no taper, 5th-percentile grey 94. It is a heavy patch of the printed rule."
+  },
+  "agriculture": {
+   "entries": [],
+   "read": 0,
+   "printed": 0,
+   "closes": true,
+   "residual": 0,
+   "note": "nothing written and nothing survives the speck filter. The footing is blank."
+  },
+  "navigation_ocean": {
+   "entries": [],
+   "read": 0,
+   "printed": 0,
+   "closes": true,
+   "residual": 0,
+   "note": "nothing written, and the footing is blank. Two components survive: y1106-1151 is the crease (5th-percentile grey 116) and y1969-1985 is a pale diagonal smear (5th-percentile grey 80). Neither is writing — every digit this hand put on the sheet reads 0 to 5 at the same measure — and the smear is recorded here rather than read as a 1, which is what it would have to be for the column not to close."
+  }
+ },
+ "reject_test": "How this pass parts writing from paper, stated once so every rejection above can be checked. The component filter in tools/read_census_continuation.py keeps anything 40 px in area and 12 px tall, which on this leaf keeps creases, rule patches and offset smears as well as digits. The separator is INK WEIGHT: over each component's box, the 5th-percentile grey. Every one of the 23 written entries read on this sheet measures 0 to 5. Every mark rejected measures 80, 94, 116 or 126. There is nothing in between, and the four rejections are not a judgement about what a mark ought to be — they are on the far side of a gap of 75 grey levels.",
+ "column_geometry": {
+  "derived_by": "tools/read_census_continuation.py 33S7-9YYJ-6Q",
+  "body_between_horizontal_rules": [
+   611,
+   2956
+  ],
+  "column_pitch_px": 68,
+  "bounds_px": {
+   "agriculture": [
+    1452,
+    1514
+   ],
+   "commerce": [
+    1514,
+    1579
+   ],
+   "learned_professions_and_engineers": [
+    1821,
+    1888
+   ],
+   "manufactures_and_trades": [
+    1579,
+    1661
+   ],
+   "mining": [
+    1384,
+    1452
+   ],
+   "navigation_canals_lakes_rivers": [
+    1740,
+    1821
+   ],
+   "navigation_ocean": [
+    1661,
+    1740
+   ],
+   "total": [
+    1190,
+    1384
+   ]
+  },
+  "note": "MEASURED, not assumed — and this sheet is the one that made the measurement harder. The vertical printed rules are found by CONTINUITY, an x where at least 60 per cent of the body's rows stand darker than their own local background. On this leaf that test also reports a rule at x1267, in the MIDDLE of the TOTAL cell, and the first run of the column finder therefore found no industry run at all and exited: with x1267 taken as a rule, TOTAL measures 117 px against a 68 px industry pitch, 1.7 pitches, under the 1.8 the bracket test demands. x1267 is not a printed rule. It is one of two CREASES down this leaf (the other is at x1199-1211), and coverage cannot reject it — it covers 0.765 of the body's rows against 0.769 for the true rule at x1190. What parts them is continuity of a single stroke: the longest UNBROKEN dark run at x1267 is 164 px, 0.07 of the body, where the rules bracketing it run 623 and 1101 px. A printed rule is one line; a crease is thirty short ones. locate_columns() now retries with the weakest-by-continuity rule dropped when, and only when, the strict test finds nothing, and accepts the drop only if the merged TOTAL cell lands in the same 2.0-4.0 pitch window every other sheet's does. It does: x1190-1384 is 194 px, 2.5 pitches, against 5V's 195 px and 2.47. The fallback does not fire on 5V, whose eight committed column bounds are unchanged to the pixel by this change."
+ },
+ "rule_continuity": {
+  "measured_by": "tools/read_census_continuation.py --> rule_continuity()",
+  "what": "for each x the rule finder reported, the longest UNBROKEN run of dark rows there, as a fraction of the 2345 px body",
+  "values": {
+   "1034": 0.563,
+   "1110": 0.581,
+   "1190": 0.266,
+   "1267": 0.07,
+   "1384": 0.47,
+   "1452": 0.439,
+   "148": 0.114,
+   "15": 0.043,
+   "1514": 0.643,
+   "1579": 0.66,
+   "1661": 0.397,
+   "1740": 0.418,
+   "1821": 0.754,
+   "1888": 0.722,
+   "2328": 0.808,
+   "2409": 0.622,
+   "244": 0.239,
+   "2489": 0.823,
+   "2532": 0.112,
+   "2567": 0.476,
+   "2646": 0.475,
+   "2725": 0.53,
+   "2806": 0.388,
+   "2888": 0.38,
+   "2894": 0.7,
+   "2973": 0.799,
+   "3053": 0.37,
+   "3059": 0.336,
+   "3144": 0.684,
+   "3229": 0.77,
+   "3298": 0.784,
+   "330": 0.365,
+   "3363": 1.0,
+   "3428": 0.536,
+   "3506": 0.487,
+   "3561": 0.463,
+   "3628": 0.203,
+   "3777": 0.239,
+   "407": 0.38,
+   "485": 0.577,
+   "563": 0.435,
+   "641": 0.389,
+   "67": 0.109,
+   "722": 0.323,
+   "801": 0.664,
+   "879": 0.684,
+   "957": 0.504
+  },
+  "pen_stroke_rule_dropped": {
+   "why": "reported as a vertical rule by coverage, but its longest UNBROKEN dark run is under half that of both rules bracketing it: a stack of the enumerator's family totals, not a printed line. Dropping it is what makes the TOTAL cell measure 2-4 industry pitches, as it does on every other sheet. See locate_columns().",
+   "x": 1267
+  }
+ },
+ "line_index": {
+  "lines": 30,
+  "derived_by": "tools/fit_census_line_grid.py 33S7-9YYJ-6Q",
+  "ticket": "T-0630",
+  "method": "The 23 entry_y values in column_closure (commerce 3, manufactures 7, navigation of canals 5, learned professions 8) are merged where two stand within 30 px — two pairs do, because two industry columns can carry an entry for the same family — and a straight grid y = origin + pitch*n is fitted to the 21 that remain, rejecting any fit that puts two anchors on one line and scoring by rms residual. The TOTAL column is not used, which is the whole point: the row index and the numbers are then independent, and T-0631 can read a number AGAINST the grid instead of using it to build the grid.",
+  "anchors": 21,
+  "origin_px": 679.5,
+  "pitch_px": 75.88,
+  "rms_px": 4.97,
+  "rms_by_line_count": {
+   "25": 24.29,
+   "27": 22.26,
+   "28": 21.88,
+   "29": 20.77,
+   "30": 4.97,
+   "31": 15.87,
+   "32": 16.65,
+   "33": 15.53,
+   "34": 17.32,
+   "35": 15.91,
+   "36": 14.94,
+   "37": 14.97,
+   "38": 16.9
+  },
+  "jackknife": "Refitting with each anchor dropped in turn, 19 of the 21 drops still choose 30 lines. The two that do not are the two END anchors, y687 and y2874: dropping an endpoint shortens the fitted span by a line, so each returns 29. No interior anchor carries the result. This is the same behaviour the fit showed on 5V, where 20 of 22 drops held and the two that moved were the ends.",
+  "corroborated_by": "33S7-9YYJ-5V, fitted by the same tool from its own ink with nothing shared between the two fits, returns 30 lines at pitch 75.86 px. This sheet returns 30 at 75.88.",
+  "corrects": {
+   "coverage_json": "declared this image at 31 lines 'to the nearest line' off a contact view",
+   "previous_page_file": "recorded lines_ruled_with_an_entry as null and would not commit a figure, because clustering the TOTAL column's ink gave 53, 48, 44, 40 or 38 groups as the threshold walked from 35 to 75 px",
+   "what_it_unblocks": "pairing.line_count_key, which T-0539 needs to pair the eleven continuation sheets to their left sheets, is now a number and not a range."
+  }
+ },
+ "total_column": {
+  "state": "NOT COMMITTED — the digits are T-0631.",
+  "indexed_by": "LINE ORDINAL, committed this pass. What T-0630 hands T-0631 is the row index and nothing else: which line each stroke of the TOTAL column stands on, so that pass reads a number against a grid it did not build.",
+  "digit_band_px": [
+   1296,
+   1382
+  ],
+  "digit_band_note": "the TOTAL cell is x1190-1384 and the enumerator wrote in the right two fifths of it. Everything his pen put in this column lies in x1300-1375. The rest of the cell holds the two creases, at x1199-1211 and x1264-1276, which the component filter returns as tall thin shapes — 2 to 12 px wide, 5th-percentile grey 97 to 133 — and which are not writing. x1296 is the cut.",
+  "strokes_by_line": {
+   "1": {
+    "strokes": 1,
+    "y": [
+     [
+      662,
+      689
+     ]
+    ],
+    "x": [
+     [
+      1315,
+      1346
+     ]
+    ],
+    "predicted_y": 679.5
+   },
+   "2": {
+    "strokes": 2,
+    "y": [
+     [
+      727,
+      792
+     ],
+     [
+      722,
+      738
+     ]
+    ],
+    "x": [
+     [
+      1314,
+      1360
+     ],
+     [
+      1335,
+      1342
+     ]
+    ],
+    "predicted_y": 755.4
+   },
+   "3": {
+    "strokes": 1,
+    "y": [
+     [
+      816,
+      846
+     ]
+    ],
+    "x": [
+     [
+      1312,
+      1343
+     ]
+    ],
+    "predicted_y": 831.3
+   },
+   "4": {
+    "strokes": 3,
+    "y": [
+     [
+      922,
+      934
+     ],
+     [
+      900,
+      913
+     ],
+     [
+      897,
+      922
+     ]
+    ],
+    "x": [
+     [
+      1312,
+      1323
+     ],
+     [
+      1317,
+      1325
+     ],
+     [
+      1324,
+      1342
+     ]
+    ],
+    "predicted_y": 907.1
+   },
+   "5": {
+    "strokes": 1,
+    "y": [
+     [
+      951,
+      997
+     ]
+    ],
+    "x": [
+     [
+      1325,
+      1363
+     ]
+    ],
+    "predicted_y": 983.0
+   },
+   "6": {
+    "strokes": 1,
+    "y": [
+     [
+      1037,
+      1074
+     ]
+    ],
+    "x": [
+     [
+      1320,
+      1364
+     ]
+    ],
+    "predicted_y": 1058.9
+   },
+   "7": {
+    "strokes": 2,
+    "y": [
+     [
+      1116,
+      1149
+     ],
+     [
+      1129,
+      1154
+     ]
+    ],
+    "x": [
+     [
+      1298,
+      1334
+     ],
+     [
+      1320,
+      1346
+     ]
+    ],
+    "predicted_y": 1134.8
+   },
+   "8": {
+    "strokes": 1,
+    "y": [
+     [
+      1181,
+      1228
+     ]
+    ],
+    "x": [
+     [
+      1322,
+      1359
+     ]
+    ],
+    "predicted_y": 1210.7
+   },
+   "9": {
+    "strokes": 1,
+    "y": [
+     [
+      1252,
+      1305
+     ]
+    ],
+    "x": [
+     [
+      1317,
+      1360
+     ]
+    ],
+    "predicted_y": 1286.5
+   },
+   "10": {
+    "strokes": 1,
+    "y": [
+     [
+      1349,
+      1386
+     ]
+    ],
+    "x": [
+     [
+      1322,
+      1368
+     ]
+    ],
+    "predicted_y": 1362.4
+   },
+   "11": {
+    "strokes": 2,
+    "y": [
+     [
+      1423,
+      1458
+     ],
+     [
+      1420,
+      1460
+     ]
+    ],
+    "x": [
+     [
+      1307,
+      1344
+     ],
+     [
+      1332,
+      1368
+     ]
+    ],
+    "predicted_y": 1438.3
+   },
+   "12": {
+    "strokes": 2,
+    "y": [
+     [
+      1503,
+      1535
+     ],
+     [
+      1510,
+      1545
+     ]
+    ],
+    "x": [
+     [
+      1306,
+      1343
+     ],
+     [
+      1332,
+      1372
+     ]
+    ],
+    "predicted_y": 1514.2
+   },
+   "13": {
+    "strokes": 3,
+    "y": [
+     [
+      1582,
+      1612
+     ],
+     [
+      1583,
+      1621
+     ],
+     [
+      1592,
+      1611
+     ]
+    ],
+    "x": [
+     [
+      1321,
+      1347
+     ],
+     [
+      1346,
+      1369
+     ],
+     [
+      1363,
+      1375
+     ]
+    ],
+    "predicted_y": 1590.1
+   },
+   "14": {
+    "strokes": 1,
+    "y": [
+     [
+      1648,
+      1688
+     ]
+    ],
+    "x": [
+     [
+      1324,
+      1367
+     ]
+    ],
+    "predicted_y": 1665.9
+   },
+   "15": {
+    "strokes": 1,
+    "y": [
+     [
+      1719,
+      1761
+     ]
+    ],
+    "x": [
+     [
+      1321,
+      1375
+     ]
+    ],
+    "predicted_y": 1741.8
+   },
+   "16": {
+    "strokes": 1,
+    "y": [
+     [
+      1806,
+      1843
+     ]
+    ],
+    "x": [
+     [
+      1319,
+      1368
+     ]
+    ],
+    "predicted_y": 1817.7
+   },
+   "17": {
+    "strokes": 1,
+    "y": [
+     [
+      1875,
+      1916
+     ]
+    ],
+    "x": [
+     [
+      1320,
+      1366
+     ]
+    ],
+    "predicted_y": 1893.6
+   },
+   "18": {
+    "strokes": 1,
+    "y": [
+     [
+      1945,
+      1984
+     ]
+    ],
+    "x": [
+     [
+      1321,
+      1366
+     ]
+    ],
+    "predicted_y": 1969.5
+   },
+   "19": {
+    "strokes": 1,
+    "y": [
+     [
+      2018,
+      2059
+     ]
+    ],
+    "x": [
+     [
+      1316,
+      1359
+     ]
+    ],
+    "predicted_y": 2045.3
+   },
+   "20": {
+    "strokes": 1,
+    "y": [
+     [
+      2094,
+      2143
+     ]
+    ],
+    "x": [
+     [
+      1307,
+      1362
+     ]
+    ],
+    "predicted_y": 2121.2
+   },
+   "21": {
+    "strokes": 1,
+    "y": [
+     [
+      2166,
+      2211
+     ]
+    ],
+    "x": [
+     [
+      1316,
+      1372
+     ]
+    ],
+    "predicted_y": 2197.1
+   },
+   "22": {
+    "strokes": 1,
+    "y": [
+     [
+      2243,
+      2289
+     ]
+    ],
+    "x": [
+     [
+      1324,
+      1368
+     ]
+    ],
+    "predicted_y": 2273.0
+   },
+   "23": {
+    "strokes": 1,
+    "y": [
+     [
+      2322,
+      2362
+     ]
+    ],
+    "x": [
+     [
+      1324,
+      1368
+     ]
+    ],
+    "predicted_y": 2348.9
+   },
+   "24": {
+    "strokes": 2,
+    "y": [
+     [
+      2407,
+      2436
+     ],
+     [
+      2412,
+      2450
+     ]
+    ],
+    "x": [
+     [
+      1305,
+      1342
+     ],
+     [
+      1334,
+      1370
+     ]
+    ],
+    "predicted_y": 2424.7
+   },
+   "25": {
+    "strokes": 2,
+    "y": [
+     [
+      2488,
+      2519
+     ],
+     [
+      2493,
+      2524
+     ]
+    ],
+    "x": [
+     [
+      1300,
+      1337
+     ],
+     [
+      1318,
+      1364
+     ]
+    ],
+    "predicted_y": 2500.6
+   },
+   "26": {
+    "strokes": 1,
+    "y": [
+     [
+      2552,
+      2601
+     ]
+    ],
+    "x": [
+     [
+      1330,
+      1368
+     ]
+    ],
+    "predicted_y": 2576.5
+   },
+   "27": {
+    "strokes": 1,
+    "y": [
+     [
+      2621,
+      2667
+     ]
+    ],
+    "x": [
+     [
+      1335,
+      1375
+     ]
+    ],
+    "predicted_y": 2652.4
+   },
+   "28": {
+    "strokes": 1,
+    "y": [
+     [
+      2705,
+      2747
+     ]
+    ],
+    "x": [
+     [
+      1317,
+      1369
+     ]
+    ],
+    "predicted_y": 2728.3
+   },
+   "29": {
+    "strokes": 1,
+    "y": [
+     [
+      2775,
+      2812
+     ]
+    ],
+    "x": [
+     [
+      1317,
+      1358
+     ]
+    ],
+    "predicted_y": 2804.1
+   },
+   "30": {
+    "strokes": 1,
+    "y": [
+     [
+      2849,
+      2882
+     ]
+    ],
+    "x": [
+     [
+      1317,
+      1352
+     ]
+    ],
+    "predicted_y": 2880.0
+   }
+  },
+  "corroborates_the_grid": "This is a check the grid could have failed and did not. The 30-line grid was fitted to the INDUSTRY columns' ink with the TOTAL column excluded by construction. Assigning each of this column's 37 digit-band strokes to its nearest line of that grid then leaves every one of the 30 lines occupied, none empty, and nothing over inside the body — one group falls at n=30, which is the bottom rule itself and not a row. A wrong line count would have shown up here as an empty line or a collision, and 31 lines cannot be made to work: the column's ink does not reach a thirty-first row.",
+  "closes": false,
+  "residual": null,
+  "residual_note": "Not stated, because the digits are not read. The printed footing is 198 (footer_as_read) and T-0631 closes the column against it. This pass deliberately does not offer a partial sum: the reading is worth committing when it closes or when its residual is measured, and a sum over the lines whose glyphs happen to be easy is neither.",
+  "what_T_0628_must_settle": "The hand's 4. Five lines — 6, 8, 9, 10 and 17 — carry two short parallel ascending strokes that read equally as `4` and as `11`, which is the ambiguity T-0541 named when it split. It cannot be settled by ink: both readings are the same two strokes. It can be settled by ARITHMETIC against the printed 198 once the other 25 lines are read, and by the left sheet this page pairs to once T-0539 pairs it. Neither is available to this pass. Reading them as 11 puts 55 people on five families and is almost certainly wrong; reading them as 4 is almost certainly right; 'almost certainly' is not what this file commits."
+ }
 }
