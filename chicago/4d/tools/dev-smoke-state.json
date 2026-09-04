@@ -3,6 +3,38 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 50,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 300,
+      "takenAt": "2026-09-04T23:42:09.058Z",
+      "ref": "steward/t-0440-clark-filer-live-placement",
+      "commit": "d2b7135c636f",
+      "devCommit": "b177fc7c77f1",
+      "treeHash": "sha256:5b0fbafb7eb75606",
+      "treeDirty": false,
+      "changelogHash": "sha256:d33be5eceaf4f3ab",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          4,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_d1112b.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1525,37 +1557,6 @@
         ]
       },
       "source": "/tmp/s2_d34.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 176,
-      "takenAt": "2026-09-04T12:31:14.082Z",
-      "ref": "steward/t-0418-occupation-vocabulary",
-      "commit": "bc6e0d73d5c7",
-      "devCommit": "7367fc189dab",
-      "treeHash": "sha256:8de916f62925d88c",
-      "treeDirty": true,
-      "changelogHash": "sha256:6714107343975932",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          1.6,
-          3.5,
-          3.1
-        ]
-      },
-      "source": "/tmp/s2_m13.log"
     },
     {
       "viewport": "mobile",
