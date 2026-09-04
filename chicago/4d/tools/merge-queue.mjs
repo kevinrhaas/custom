@@ -74,24 +74,65 @@ const T = index(theirsText);
 const closedByThem = [...B.keys()].filter((id) => !T.has(id));
 const addedByThem = [...T.keys()].filter((id) => !B.has(id));
 
-// Walk OURS line by line so every comment, band header and blank line survives
-// exactly where the owner put it. Only ticket lines are filtered.
+/**
+ * WHICH SIDE'S ORDER WINS, and this is the question the first version got wrong.
+ *
+ * It ordered on "OURS keeps the order", reasoning that the branch being merged into
+ * is the one holding the owner's instruction. That is true when ours is the newer
+ * work. It is FALSE, and destructively so, when a long-stale branch merges dev: then
+ * "ours" is the branch that predates the owner's re-rank, its old order wins, and the
+ * moment that branch merges the old order is carried back onto dev.
+ *
+ * That happened on 2026-09-04. Four PRs cut before a research-first re-rank each
+ * merged dev; each kept its own stale order; and the owner's ranking was gone from
+ * dev by the fourth — "the queue got massively reordered, we were working on all of
+ * the research items first".
+ *
+ * The honest rule is not about which side is "ours". It is about WHICH SIDE ACTUALLY
+ * RE-ORDERED. Compare the relative sequence of the ids all three versions share:
+ *   - only ours moved them   -> ours ordered deliberately; keep ours.
+ *   - only theirs moved them -> theirs ordered deliberately; keep theirs.
+ *   - neither moved them     -> no disagreement; keep ours (identical anyway).
+ *   - BOTH moved them        -> two deliberate rankings; REFUSE and let a human read.
+ */
+const seq = (m) => [...m.keys()].filter((id) => B.has(id) && T.has(id) && O.has(id));
+const sameOrder = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+const baseSeq = seq(B); const oursSeq = seq(O); const theirsSeq = seq(T);
+const oursReordered = !sameOrder(baseSeq, oursSeq);
+const theirsReordered = !sameOrder(baseSeq, theirsSeq);
+if (oursReordered && theirsReordered) {
+  console.error(`merge-queue: ${label} — BOTH sides re-ranked the queue since the merge base. `
+    + 'Two deliberate orderings cannot be merged mechanically; resolve by hand and keep the '
+    + "one the owner asked for. (This refuses rather than silently picking a side — picking "
+    + 'one is how a stale branch erased a re-rank on 2026-09-04.)');
+  process.exit(1);
+}
+// The side that did the re-ranking supplies the file we walk; the other supplies membership.
+const orderingText = theirsReordered ? theirsText : oursText;
+
+// Walk the ordering side line by line so every comment, band header and blank line
+// survives exactly where the owner put it. Only ticket lines are filtered.
+const dropped = theirsReordered
+  ? [...B.keys()].filter((id) => !O.has(id))     // what OURS closed
+  : closedByThem;
 const out = [];
-for (const line of oursText.split('\n')) {
+for (const line of orderingText.split('\n')) {
   const hit = TICKET.exec(line);
-  if (hit && closedByThem.includes(hit[1])) continue;
+  if (hit && dropped.includes(hit[1])) continue;
   out.push(line);
 }
 
 // Their new tickets land at the END, under a band that says where they came from
 // and that nobody has ranked them yet — the same place `ticket.mjs new` puts one.
-const toAppend = addedByThem.filter((id) => !O.has(id));
+const present = new Set(out.map((l) => TICKET.exec(l)?.[1]).filter(Boolean));
+const toAppend = [...new Set([...addedByThem, ...[...O.keys()].filter((id) => !B.has(id))])]
+  .filter((id) => !present.has(id));
 if (toAppend.length) {
   while (out.length && !out[out.length - 1].trim()) out.pop();
   out.push('');
   out.push('# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were');
   out.push('# --- appended here rather than guessed into a band. Rank them or leave them.');
-  for (const id of toAppend.sort()) out.push(T.get(id));
+  for (const id of toAppend.sort()) out.push(T.get(id) ?? O.get(id));
 }
 out.push('');
 
@@ -110,7 +151,7 @@ writeFileSync(ours, merged);
 const note = [];
 if (closedByThem.length) note.push(`-${closedByThem.length} closed`);
 if (toAppend.length) note.push(`+${toAppend.length} new`);
-console.error(`merge-queue: ${label} reconciled — ours' order kept`
+console.error(`merge-queue: ${label} reconciled — ${theirsReordered ? "theirs'" : "ours'"} order kept`
   + (note.length ? `, ${note.join(', ')}` : ', no membership change')
   + `, ${ids.length} queued.`);
 process.exit(0);
