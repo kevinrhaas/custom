@@ -276,7 +276,7 @@
           "work": "Poll list for the first election of Board of Trustees of the Town of Chicago (10 August 1833)",
           "date": "1833-08-10",
           "tier": 1,
-          "note": "30 entries. Andreas says twenty-eight men voted at this election; the list prints thirty names, and the discrepancy is recorded rather than repaired (claims/town_findings_andreas_v1.json c002)."
+          "note": "30 entries. Andreas says twenty-eight men voted at this election; the list prints thirty names. T-0542 searched for a count outside Andreas and found none — the Chicago Democrat did not exist until 26 November 1833 and its whole run to August 1835 carries no retrospective count of this poll — so the discrepancy STANDS, with the negative search recorded (claims/town_findings_voter_lists.json v004). On weight the thirty are the enrolments and Andreas's twenty-eight is an 1884 belief-statement ('It is believed') about the number of legal voters; neither count is repaired."
         },
         {
           "work": "Tax List of the Town of Chicago - 1833",
@@ -294,14 +294,14 @@
           "work": "1835 Poll List",
           "date": "1835",
           "tier": 1,
-          "note": "85 entries. THE LIST PRINTS NO DATE. Andreas contradicts himself on which election it was: 'The third election was held in July, 1835' in the town chapter, and 'the third election of town oHicers, which occurred August 5, 1835' in the police chapter. The scene date is 1835-07-01, so the poll falls either within days of it or 35 days after; nothing seen decides which, and T-0513 inherits the question."
+          "note": "85 entries. THE LIST PRINTS NO DATE, AND IT IS NOT THE POLL BOOK OF THE THIRD TOWN ELECTION. That election is now dated from the town's own newspaper rather than from Andreas: the Chicago Democrat of 8 July 1835 announced the election of Trustees under the new charter for 'Friday of this week' and the issue of 15 July reported that it 'took place on Friday last' with the return — FRIDAY 10 JULY 1835, nine days after the 1835-07-01 scene date (claims/town_election_1835_democrat.json d001-d005). Andreas's town chapter, 'in July, 1835', is corroborated; his police chapter's 5 August 1835 is the day the newly elected board sat and passed the town's ordinance code over Hugunin's name as President. But that return gives single candidates 124 and 142 votes, which 85 men cannot cast, and six of the ten men who stood are absent from these 85 while the list runs unbroken from Adams to Wright — so this is a DIFFERENT poll, not a short printing of that one (claims/town_findings_voter_lists.json v003). Which poll is open; the county and state general election of Monday 3 August 1835 is the nearest candidate. Until it is settled, a name here evidences presence in Chicago in 1835 and not presence on any particular day."
         }
       ],
       "what_it_supplies": [
         "345 names of men who voted at, or were taxed by, the Town of Chicago in 1833, 1834 and 1835, as printed",
         "which of the four lists each name stands on, and its position in that list",
         "the courtesy and rank titles the lists print in front of a name (Col., Lt., Major, Dr.)",
-        "for the 1835 poll list: presence in Chicago during 1835, which is the strongest residence evidence this project holds short of a newspaper naming the man"
+        "for the 1835 poll list: presence in Chicago during 1835, which is the strongest residence evidence this project holds short of a newspaper naming the man — but NOT presence on a stated day, because the list is undated and is shown not to be the poll book of the 10 July 1835 town election (T-0542)"
       ],
       "what_it_does_not_supply": [
         "any address, street, lot or dwelling",
