@@ -63,8 +63,11 @@ T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-
 # --- measure_research_spend.py; T-0602 says that tool miscounts. Rule 4. One S run.
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
 
-# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 leads
-# --- because an occupation cannot be written in a word the vocabulary does not have.
+# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
+# --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
+# --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
+# --- middle initial cannot fold to a directory surname however often they are read.
+T-0638 — A trailing middle initial took the surname slot, so 19 letter-list households are named 'The C household' and can never match a directory
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0632 — Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
