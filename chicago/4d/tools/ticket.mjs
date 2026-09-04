@@ -19,9 +19,12 @@
  *  - BOARD.md and tickets.json are GENERATED. `check` refuses a stale board the
  *    same way check_published refuses a stale mirror (build.json, 2026-08-15).
  *  - IDs are assigned here, not guessed by authors — two branches that each
- *    guess "top + 1" both get it wrong (the v93/v98 collisions). A cross-branch
- *    collision is still possible at creation; `check` catches it at merge and
- *    `restamp` is the remedy.
+ *    guess "top + 1" both get it wrong (the v93/v98 collisions). `nextIdNum`
+ *    counts merged tickets AND every branch still in flight on the remote, over
+ *    ALL origin refs — narrowing that scan to `steward/*` is what let T-0672 be
+ *    minted twice on 2026-09-04, from a `claude/*` branch it could not see. Two
+ *    branches created in the same instant can still collide; `check` catches it
+ *    at merge and `restamp` is the remedy.
  *  - QUEUE.md order belongs to the owner. This tool APPENDS on `new`, REMOVES
  *    on `done`/`block`/`withdraw`, and never reorders. `check` asserts the
  *    queue is exactly the workable-open set, so it cannot silently drift from
@@ -239,9 +242,22 @@ function remoteIdMax() {
     // Refresh the steward refs so a branch pushed minutes ago is visible. Cheap:
     // these branches are a few commits off dev and share nearly all their objects.
     try {
-      git(['fetch', '--quiet', '--prune', 'origin', '+refs/heads/steward/*:refs/remotes/origin/steward/*']);
+      git(['fetch', '--quiet', '--prune', 'origin', '+refs/heads/*:refs/remotes/origin/*']);
     } catch { /* offline, or no such refspec — fall through to whatever is cached */ }
-    const refs = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin/steward'])
+    // EVERY origin ref, not just `steward/*`. This scanned `refs/remotes/origin/steward`
+    // alone until 2026-09-04, which left two holes that both bit on the same day:
+    //
+    //   - `origin/dev` ITSELF was never read. A clone whose local tickets/ is behind dev
+    //     — any branch cut before a merge landed — would take its own stale local max.
+    //   - The fleet has more than one branch convention. Web sessions push `claude/*`;
+    //     T-0672 was minted twice in one afternoon because PR #765 held it on
+    //     `claude/research-output-data-updates-cst1d5`, which this scan could not see.
+    //     `agent/*` exists too. A prefix allowlist is a bug waiting for the next prefix.
+    //
+    // Measured before widening it, because the whole point is that this runs on every
+    // `new`: 410 refs scanned in 1.4 s, 499 in 1.6 s, and the incremental fetch is if
+    // anything faster unfiltered. The old narrowness bought nothing.
+    const refs = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin'])
       .split('\n').map((s) => s.trim()).filter(Boolean);
     // `<ref>:<path>` resolves against the CWD, not the top of the tree — from
     // `chicago/4d` a path of `chicago/4d/tickets` silently reads as

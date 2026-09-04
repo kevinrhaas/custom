@@ -72,7 +72,6 @@
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
 T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
-T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
@@ -259,6 +258,7 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- THE PIPELINE AND ITS RUNNERS — the loop's own health.
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
