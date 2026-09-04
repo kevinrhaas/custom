@@ -7008,7 +7008,7 @@
     {
       "id": "T-0426",
       "title": "A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -7018,7 +7018,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/2/2026, 11:58:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 13
@@ -8576,6 +8576,26 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 108
+    },
+    {
+      "id": "T-0521",
+      "title": "dev's own check.sh gate is red in ten steps since the 1840 census merge, so no branch can prove itself",
+      "state": "withdrawn",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Duplicate of dev's T-0522, which files the same red-gate finding; and the gate it reports was fixed by T-0491 (PR #682). Filed on this branch before either landed.",
+      "needs_bake": false,
+      "closed_at": "2026-09-03T21:35:44.629Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0522",
