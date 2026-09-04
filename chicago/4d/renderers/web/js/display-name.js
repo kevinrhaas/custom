@@ -133,6 +133,19 @@ export function displayName(sidecar, id = '') {
     return { title: `${possessive(worker)} ${noun ?? 'premises'}`, spec, vacant: false };
   }
 
+  // A DOCUMENTED ADDRESS OUTRANKS A COMPOSED VACANCY, and it has to, because the
+  // alternative is what this project spent a year avoiding: the one building in the whole
+  // newspaper corpus placed by a lot AND a block — "LOT No. 7, in block No. 16 … on Lake
+  // street", six printings of it — was titled "A vacant one-room frame cottage", which is
+  // a claim about absence made over the top of a source that says a house was there.
+  // It ranks BELOW a household, because a house the town knew by the family in it is known
+  // by the family in it, and above everything else, because the address is read and the
+  // rest of this function is composition. `attributes.lot_address` is the compiler's row
+  // (tools/lot_addresses.py seats it, docs/LOT-ADDRESS.md is the policy); the address is
+  // graded at the bottom tier there and the card's chip says so beside this title.
+  const address = sidecar?.attributes?.lot_address?.value;
+  if (address) return { title: String(address), spec, vacant: false };
+
   if (!noun || OUTBUILDING.has(noun)) {
     return { title: `${article(description)} ${description}`, spec, vacant: false };
   }

@@ -73,24 +73,12 @@
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
-T-0491 — dev's gate is red on an unmodified dev: the register drifted, two mirrors are stale, an index count disagrees, and #670 left scaffolding and two off-schema source records
-T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
 
-T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
-T-0494 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 1-25
-T-0495 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 26-50
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
-T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
-T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
-T-0505 — Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
@@ -98,9 +86,7 @@ T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
 T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 
-T-0513 — Ten sources name the same people and no file says which names are one person: the cross-source identity master under the ratified grading ladder
 
-T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
 T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
 
@@ -173,15 +159,12 @@ T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction
 # ---   T-0183  the 27 roofs of a block the river pinches out, returned to the South balance
 # ---   T-0384  Holbrook's store, read as an ordinal off the corner rather than street-only
 T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
-T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
@@ -308,3 +291,50 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
+T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
+T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
+T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
+T-0582 — The Chicago cards of the Newberry index also point at Moses's Illinois, historical and statistical (1888-92), the La Salle Book Co. Cook County volumes (1900, 1909), Wood's Chicago 1881 and Hurlbut's Chicago antiquities (1881), and none of the four is in this project's sources
+T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
+T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
+T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
+T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
+T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
+T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
+T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
+T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
+T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
+T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
+T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
+T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+T-0619 — Volume 4 read by OCR, pages 1-306: the shards
+T-0620 — Volume 4 read by OCR, pages 307-612: the shards
+T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
+T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
+T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
+T-0636 — Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
+T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
+T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
+T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
+T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
+T-0657 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line
+T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
+T-0659 — The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
+T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
+T-0661 — The other 95 printed trades the residents vocabulary still cannot say
+T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
+T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
+T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
+T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
+T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
+T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
+T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
+T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
+T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images

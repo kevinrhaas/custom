@@ -107,5 +107,18 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE PRESENCE NEEDS NO ARGUMENT, and the one that identifies a missing building. Everything about Maxwell is dated: birth, appointment, arrival, treaty witness, departure. What is not in the dataset is the room he worked in. THE GARRISON IS UNDER-REPRESENTED HERE ON PURPOSE. Fort Dearborn on 1 July 1835 was an occupied post under Major John Greene with an enlisted company, and this parcel writes only the two officers the sources name and date. Every private soldier is a documented human being whom no source in this dataset names, and turning a muster strength into person records is derived-phase work with a muster roll, not something to guess at now."
+ "research_note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE PRESENCE NEEDS NO ARGUMENT, and the one that identifies a missing building. Everything about Maxwell is dated: birth, appointment, arrival, treaty witness, departure. What is not in the dataset is the room he worked in. THE GARRISON IS UNDER-REPRESENTED HERE ON PURPOSE. Fort Dearborn on 1 July 1835 was an occupied post under Major John Greene with an enlisted company, and this parcel writes only the two officers the sources name and date. Every private soldier is a documented human being whom no source in this dataset names, and turning a muster strength into person records is derived-phase work with a muster roll, not something to guess at now.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "maxwell_philip"
+   }
+  ]
+ }
 }

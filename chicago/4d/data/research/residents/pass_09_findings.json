@@ -11,85 +11,85 @@
     "no_corroboration": 61
   },
   "completed_person_ids": [
-    "ll_joseph_burnap",
-    "ll_myers_frederick",
-    "ll_joseph_c_cone",
-    "ll_naper_joln",
-    "ll_joseph_chancie",
-    "ll_nc_doel_asa",
-    "ll_joseph_chandler",
-    "ll_neleh_william",
-    "ll_joseph_dolly",
-    "ll_nelts_wm",
-    "ll_joseph_gleason",
-    "ll_norton_n_r",
-    "ll_joseph_loveland",
-    "ll_norton_wm_h",
-    "ll_joseph_m_kean",
-    "ll_ogan_josepit",
-    "ll_joseph_schindler",
-    "ll_orinsbey_martin_t",
-    "ll_joseph_steward",
-    "ll_orro_samuel",
-    "ll_joshua_ambrose",
-    "ll_p_aylor_john_o",
-    "ll_joshua_hathaway",
-    "ll_paddock_ira",
-    "ll_joshua_provis",
-    "ll_page_elisha_s",
-    "ll_judge_silver",
-    "ll_park_hezekiah",
-    "ll_jules_chesnut",
-    "ll_parrish_stephen",
-    "ll_kinder_john",
-    "ll_parsons_jonathan",
-    "ll_knapp_george",
-    "ll_patrick_robert",
-    "ll_l_g_curtin",
-    "ll_patterson_erastus",
-    "ll_lansing_andrew",
-    "ll_paylor_margnret_g",
-    "ll_lauretta_plimpton",
-    "ll_pearce_wilden",
-    "ll_leonard_anson",
-    "ll_perce_elijah",
-    "ll_leonard_morse",
-    "ll_perry_a_8",
-    "ll_levi_blake",
-    "ll_phillips_james",
-    "ll_levi_cady",
-    "ll_phite_isnacher",
-    "ll_levi_gorton",
-    "ll_phomas_jane_f",
-    "ll_lewis_doud",
-    "ll_phompson_w_w",
-    "ll_lewis_driggs",
-    "ll_pickett_william",
-    "ll_lewis_lafton",
-    "ll_pike_luke",
-    "ll_lewis_lake",
-    "ll_pinedale_john_w",
-    "ll_lewis_sperry",
-    "ll_pitkin_timothv",
-    "ll_lilley_oskin",
-    "ll_pixley_john_l",
-    "ll_lincoln_edwin_a",
-    "ll_porter_jeremial",
-    "ll_livermore_thomas",
-    "ll_powell_reuben",
-    "ll_loner_oliver",
-    "ll_preinen_v_a",
-    "ll_lorenzo_downing",
-    "ll_pugsley_john_k",
-    "ll_loring_delano",
-    "ll_purner_john_m",
-    "ll_lyman_b_lovell",
-    "ll_puttle_daniel",
-    "ll_lyman_bennet"
+    "burnap_joseph",
+    "myers_frederick",
+    "cone_joseph_c",
+    "joln_naper",
+    "chancie_joseph",
+    "asa_nc_doel",
+    "chandler_joseph",
+    "neleh_william",
+    "dolly_joseph",
+    "nelts_wm",
+    "gleason_joseph",
+    "norton_n_r",
+    "loveland_joseph",
+    "norton_wm_h",
+    "mkean_joseph",
+    "josepit_ogan",
+    "schindler_joseph",
+    "orinsbey_martin_t",
+    "steward_joseph",
+    "samuel_orro",
+    "ambrose_joshua",
+    "paylor_john_o",
+    "hathaway_joshua",
+    "ira_paddock",
+    "provis_joshua",
+    "page_elisha_s",
+    "silver_judge",
+    "hezekiah_park",
+    "chesnut_jules",
+    "stephen_parrish",
+    "kinder_john",
+    "jonathan_parsons",
+    "knapp_george",
+    "robert_patrick",
+    "curtin_l_g",
+    "erastus_patterson",
+    "lansing_andrew",
+    "paylor_margnret_g",
+    "plimpton_lauretta",
+    "wilden_pearce",
+    "leonard_anson",
+    "elijah_perce",
+    "morse_leonard",
+    "perry_a_8",
+    "blake_levi",
+    "james_phillips",
+    "cady_levi",
+    "phite_isnacher",
+    "gorton_levi",
+    "phomas_jane_f",
+    "doud_lewis",
+    "phompson_w_w",
+    "driggs_lewis",
+    "william_pickett",
+    "lafton_lewis",
+    "luke_pike",
+    "lake_lewis",
+    "pinedale_john_w",
+    "sperry_lewis",
+    "timothv_pitkin",
+    "lilley_oskin",
+    "pixley_john_l",
+    "lincoln_edwin_a",
+    "jeremial_porter",
+    "livermore_thomas",
+    "reuben_powell",
+    "loner_oliver",
+    "preinen_v_a",
+    "downing_lorenzo",
+    "pugsley_john_k",
+    "delano_loring",
+    "purner_john_m",
+    "lovell_lyman_b",
+    "puttle_daniel",
+    "bennet_lyman"
   ],
   "pending_person_ids": [],
   "overrides": {
-    "ll_joseph_burnap": {
+    "burnap_joseph": {
       "outcome": "candidate_identity",
       "summary": "A Joseph Burnap made multiple federal land entries in Jersey County, Illinois in 1834-35. The date is useful, but the geography and absence of a Chicago discriminator make this a candidate only.",
       "confidence": "low",
@@ -100,7 +100,7 @@
       "evidence_for": "Exact name and Illinois records overlapping the letter-list period.",
       "evidence_against": "Jersey County is far from Chicago; no occupation, kin, address, or migration link connects the landholder to the Chicago letter."
     },
-    "ll_myers_frederick": {
+    "myers_frederick": {
       "outcome": "corroborated_enrichment",
       "summary": "A 1928 Glen Ellyn local history identifies Frederick Myers as a War of 1812 veteran who served as quartermaster's clerk at Fort Dearborn in 1831-33, later traded in furs and owned substantial Chicago land. The unusually specific Chicago/Fort Dearborn biography corroborates the named person, but does not prove his bodily presence on 1 July 1835.",
       "confidence": "high",
@@ -113,7 +113,7 @@
       "evidence_for": "Exact uncommon name; Fort Dearborn service; Chicago land ownership; chronology immediately precedes the letter-list returns.",
       "evidence_against": "Only the postal list connects this exact name to 1834/1835 mail; the biographical source is retrospective and does not place him in Chicago on the scene date."
     },
-    "ll_joseph_chandler": {
+    "chandler_joseph": {
       "outcome": "corroborated_enrichment",
       "summary": "Andreas names Joseph Chandler and Morgan L. Shapley as having executive charge of Chicago harbor work that began 1 July 1833, and separately says Chandler arrived from Buffalo on 27 June 1833 with Samuel Jackson and Shapley.",
       "confidence": "high",
@@ -125,7 +125,7 @@
       "evidence_for": "Exact name, named Chicago public-works role, and dated arrival immediately before the harbor work.",
       "evidence_against": "Retrospective 1884 history; the source does not supply an 1834 household/address or prove the letter was for the same Joseph Chandler beyond the strong Chicago discriminator."
     },
-    "ll_joseph_schindler": {
+    "schindler_joseph": {
       "outcome": "candidate_identity",
       "summary": "The index to Chicago's first Catholic church records (1833-44) contains Joseph entries under close variants including Schendler/Scheinegar/Shenagre. These are plausible OCR/orthographic leads but require page-level sacramental records before assertion.",
       "confidence": "medium",
@@ -136,7 +136,7 @@
       "evidence_for": "Chicago-specific church register in the correct period; multiple Joseph surname variants close to Schindler.",
       "evidence_against": "Index spellings vary materially and no page-level date/kin/address was examined here."
     },
-    "ll_joshua_hathaway": {
+    "hathaway_joshua": {
       "outcome": "corroborated_enrichment",
       "summary": "Joshua Hathaway Jr. is the named creator of the 1834 Chicago cadastral map already registered as a tier-1 project source. This independently anchors the letter-list name to professional work in Chicago in the same year.",
       "confidence": "high",
@@ -147,7 +147,7 @@
       "evidence_for": "Exact name with Jr. discriminator; primary 1834 Chicago map carrying his authorship.",
       "evidence_against": "The map proves professional activity, not residence address or presence on 1 July 1835."
     },
-    "ll_judge_silver": {
+    "silver_judge": {
       "outcome": "candidate_identity",
       "summary": "Cass County history identifies Abiel Silver, born 1797, as 'better known as Judge Silver' and a merchant at Edwardsburg, Michigan. The exact title-surname form is distinctive and geographically plausible for Chicago mail, but no direct link to this letter-list entry was found.",
       "confidence": "medium",
@@ -158,7 +158,7 @@
       "evidence_for": "Distinctive 'Judge Silver' title; nearby southwestern Michigan merchant in the same era.",
       "evidence_against": "Edwardsburg rather than Chicago; no letter, business, relative, or travel record links Abiel Silver to this Chicago post-office item."
     },
-    "ll_kinder_john": {
+    "kinder_john": {
       "outcome": "candidate_identity",
       "summary": "Macoupin County history records a John Kinder among 1831 land entrants. The exact name and Illinois date make a search lead, but the distant geography and common name prevent identity resolution.",
       "confidence": "low",
@@ -169,7 +169,7 @@
       "evidence_for": "Exact name and Illinois presence before the letter-list date.",
       "evidence_against": "Macoupin County rather than Chicago; common name; no matching occupation, kin, address or migration chain."
     },
-    "ll_patterson_erastus": {
+    "erastus_patterson": {
       "outcome": "candidate_identity",
       "summary": "Winnetka Historical Society records Erastus Patterson and family arriving via Chicago and settling in present-day Winnetka in August 1836. This is a strong regional namesake but conflicts with the July 1835 letter-list date.",
       "confidence": "medium",
@@ -180,7 +180,7 @@
       "evidence_for": "Exact uncommon name; Cook County/North Shore association and travel through Chicago.",
       "evidence_against": "Institutional local history dates arrival to 1836, one year after the letter-list entry; therefore it cannot be silently treated as the same person."
     },
-    "ll_levi_blake": {
+    "blake_levi": {
       "outcome": "candidate_identity",
       "summary": "An 1871 Racine County old-settlers record says Levi Blake and three sons reached Chicago on 10 February 1835 and continued north the next day toward Racine County. The exact name and year are strong, but the May 20 Chicago letter could be delayed mail or belong to a namesake.",
       "confidence": "medium",
@@ -191,7 +191,7 @@
       "evidence_for": "Exact name and explicit Chicago stop in February 1835.",
       "evidence_against": "The account has him continuing north months before the May letter-list return; no additional discriminator proves the waiting letter was his."
     },
-    "ll_levi_gorton": {
+    "gorton_levi": {
       "outcome": "candidate_identity",
       "summary": "A later Kendall County Record reminiscence identifies Levi C. Gorton as a pioneer who located the Aurora water-power for the McCarty brothers in 1833. The name and northern Illinois chronology are useful, but the middle initial and non-Chicago geography leave identity unresolved.",
       "confidence": "medium",
@@ -202,7 +202,7 @@
       "evidence_for": "Rare name; northern Illinois pioneer activity by 1833.",
       "evidence_against": "Source names Levi C. Gorton and places him around Aurora/Kendall County, not Chicago; no direct postal or migration link."
     },
-    "ll_pike_luke": {
+    "luke_pike": {
       "outcome": "candidate_identity",
       "summary": "Kane County history lists Luke Pike among Campton Township arrivals/claimants in 1835. The exact name and regional date make a useful lead, but no Chicago discriminator links him to the July 1 postal entry.",
       "confidence": "medium",
@@ -213,7 +213,7 @@
       "evidence_for": "Exact name; northeastern Illinois pioneer in 1835.",
       "evidence_against": "Kane County claim rather than Chicago residence; no address, relative, occupation or travel link to the letter."
     },
-    "ll_porter_jeremial": {
+    "jeremial_porter": {
       "outcome": "candidate_identity",
       "summary": "The repository already contains an attested canonical Rev. Jeremiah Porter household with Chicago service from 1833 and detailed 1835 travel chronology. 'Porter Jeremial' is therefore a strong OCR/duplicate candidate, but the letter-list spelling is not silently merged.",
       "confidence": "high",
@@ -225,7 +225,7 @@
       "evidence_for": "Near-exact OCR form; canonical Jeremiah Porter is a uniquely prominent Chicago resident in the exact period; Newberry institutional history confirms him as founding minister in 1833.",
       "evidence_against": "The postal transcription reads 'Jeremial'; no page-scan re-read was performed in this cohort, so the correction remains a candidate pending scan/adjudication."
     },
-    "ll_pugsley_john_k": {
+    "pugsley_john_k": {
       "outcome": "corroborated_enrichment",
       "summary": "An 1880 Van Buren County history says John K. Pugsley left near Utica, New York in June 1835, traveled to Chicago, prospected there, then returned to Paw Paw Township and entered land. The full middle-initial name, route and month strongly corroborate the postal-list identity while also showing a transient migration pattern.",
       "confidence": "high",
@@ -236,7 +236,7 @@
       "evidence_for": "Exact full name including middle initial; Chicago travel explicitly dated June 1835, directly adjacent to the July 1 letter-list return.",
       "evidence_against": "Retrospective county history; he may have left Chicago before July 1, so the source does not prove scene-date bodily presence."
     },
-    "ll_lyman_bennet": {
+    "bennet_lyman": {
       "outcome": "candidate_identity",
       "summary": "Stephenson County history places a Lyman Bennett near Yellow Creek in late 1835/early 1836. The near-exact surname and Illinois migration timing are suggestive but occur after the April/May 1835 Chicago letter-list returns.",
       "confidence": "low",

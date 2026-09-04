@@ -108,6 +108,14 @@
         "andreas_1884_v1"
       ],
       "note": "Beaubien is documented as the owner from 1817 and as the reservation's claimant in 1835. WHICH BUILDING OF THE HOMESTEAD GROUP HE ACTUALLY SLEPT IN ON THE SCENE DATE IS NOT ATTESTED — Andreas says he built a new residence, which is a different building from this one and is not modelled. Nothing further about the household is stated here; see review_required and the research note."
+    },
+    "land_owner": {
+      "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+      "confidence": "inferred",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS 86 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
     }
   },
   "residents": [
@@ -127,7 +135,7 @@
           "relationship": "head",
           "grade": "attested",
           "occupation": "trader",
-          "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family."
+          "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Poll list of the first election of the Board of Trustees of the Town of Chicago, 10 August 1833 — “Beaubien, J. B.” (poll_1833_003, line 24); Poll list of 1835 — “Beaubien, Col. J. B.” (poll_1835_005, line 290). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Beaubien' agrees with the entry's forenames; 4 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json)."
         },
         {
           "name": "Josette LaFramboise Beaubien",
@@ -155,6 +163,14 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
     },
     {
       "source_id": "osm_streets_2026",

@@ -1,7 +1,7 @@
 ---
 id: T-0495
 title: The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 26-50
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
+closed: 2026-09-03
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 1:30:42 AM CT
 blocked_on: null
 needs_bake: false
 ---
