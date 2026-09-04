@@ -479,7 +479,7 @@
         {
           "person_id": "lee_george",
           "name": "George Lee",
-          "grade": "inferred",
+          "grade": "attested",
           "occupation": "none_recorded"
         }
       ],
@@ -5192,7 +5192,7 @@
         {
           "person_id": "lee_george",
           "name": "George Lee",
-          "grade": "inferred"
+          "grade": "attested"
         },
         {
           "person_id": "lee_william",
@@ -6611,7 +6611,7 @@
         {
           "person_id": "lee_george",
           "name": "George Lee",
-          "grade": "inferred"
+          "grade": "attested"
         },
         {
           "person_id": "lee_william",
