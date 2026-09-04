@@ -60,7 +60,6 @@
 
 # --- GROUP 0 — the measurement itself, and it BLOCKS the ranking. This band is ordered by
 # --- measure_research_spend.py; T-0602 says that tool miscounts. Rule 4. One S run.
-T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
 
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
