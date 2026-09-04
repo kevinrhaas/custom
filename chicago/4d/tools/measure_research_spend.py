@@ -29,6 +29,18 @@ THE MEASURE, and what each half deliberately does not count.
           array (domains that hold claims). Continuation-sheet lines that carry
           cells and no name are not names and do not count.
 
+          A FILE MAY DECLARE ITSELF NOT A READING, with a top-level
+          `not_a_reading` sentence saying what it is instead, and then its units
+          are not charged to the domain (T-0602). Newberry's
+          `precision_sample.json` re-adjudicates 160 cards this domain has
+          already read, to measure how good the reading is; census_1840's
+          `second_readings/` re-reads two sheets independently so that a
+          disagreement survives. Both were charged as fresh reading, so
+          MEASURING THE READING READ THE METER UP and sampling harder made the
+          domain look further behind. Every declaration is printed by `report`,
+          with the units it withheld, because a file that could exempt itself in
+          silence would be a hole straight through this gate.
+
   spent   a crosswalk entry ANCHORED to something real — a read record
           (`record_id`, `entry_id`, `claim_id`) or a person in the town
           (`person_id`, `resident`, `matched_resident`). Deduped by that anchor,
@@ -43,9 +55,24 @@ THE MEASURE, and what each half deliberately does not count.
           reads like a pair nobody has looked at yet." Ruling that a name is
           NOT a town person is the adjudication; it is not a failure to do one.
 
+          A RULING MAY ANCHOR THROUGH ITS EVIDENCE. `evidence` and `support`
+          rows that are plain strings naming a unit THIS DOMAIN HAS READ are
+          anchors like any other id (T-0602): newberry's crosswalk refuses five
+          headings and cites fourteen card ids between them, and counting that
+          as zero said the most carefully reasoned paragraph in the domain had
+          adjudicated nothing. A string that resolves to no read unit anchors
+          nothing — the resolution is against the domain's own ids, so no ruling
+          can talk its way into a spend.
+
   id pairs a merge/refusal ruling on two spellings (`a` / `b`) with no anchor.
           Reported, never counted as spend: it is a ruling about the sources'
-          own vocabulary, not about whether the town gained anything.
+          own vocabulary, not about whether the town gained anything. WHAT COULD
+          NOT BE COUNTED IS NOW SAID OUT LOUD, per file and with the reason —
+          civic writes 90 refusals whose evidence names its sources and its
+          locators in prose ("poll_1835 line 293") rather than record ids, and
+          the honest report of that is a printed line, not a silent zero. The
+          fix for one is to write the id; guessing which record a prose locator
+          meant is the kind of invention this project forbids.
 
   unspent read - spent. NOT a defect count. census_1830, church and books read
           nothing yet and are honestly 0/0; a domain reading ahead of a bridge
@@ -116,13 +143,32 @@ OUTCOME_KEY = "outcome"
 # What a ruling may anchor to. Order matters only for which name the dedup key
 # takes; any one of them makes the entry a spend. Plural forms are here because
 # one ruling may reach several cards or several people at once.
+# `household_id` and `resident_id` are here since T-0602: the SECOND hop has read
+# them as naming a person in the town since the day it was written (PERSON_KEYS),
+# and the spend half never did — so land_sales' resident_crosswalk matched 17
+# purchasers to households by name and this measure called every one of them
+# nothing. A key that identifies a town person on one hop identifies one on both.
 ANCHOR_KEYS = ("record_id", "entry_id", "claim_id", "lead_id",
-               "person_id", "resident", "matched_resident",
-               "record_ids", "person_ids")
+               "person_id", "resident", "matched_resident", "household_id",
+               "resident_id", "record_ids", "person_ids")
 
 # A unit is READ if it carries one of these. `quote` is here for the claims
 # domains, whose unit is a sentence the source prints rather than a name.
 NAME_KEYS = ("normalized", "as_read", "quote")
+
+# HOW A FILE SAYS IT IS NOT A READING (T-0602). One top-level sentence, in the
+# file itself rather than in a registry a long way off, because the reason a
+# precision sample is not fresh reading is a fact about that file and belongs
+# where somebody opening it will see it. The VALUE is the reason and it may not
+# be empty: `not_a_reading: true` would let a file exempt itself without saying
+# why, which is the shape of every silent hole this gate exists to close.
+NOT_A_READING_KEY = "not_a_reading"
+
+# Where a ruling may name a unit it adjudicated, as a plain string. These are the
+# two blocks the crosswalks already use for "what this rests on"; a string in one
+# of them that IS an id this domain has read is an anchor (T-0602), and a string
+# that resolves to nothing is left alone.
+EVIDENCE_KEYS = ("evidence", "support")
 
 
 def is_crosswalk(path: Path) -> bool:
@@ -309,9 +355,56 @@ def anchor_of(ruling: dict) -> str | None:
     return None
 
 
-def count_read(domain_dir: Path) -> int:
-    """Named units captured in a domain, over every JSON it holds but its crosswalks."""
+def named_units(doc: dict) -> int:
+    """The named units a file holds, whether or not they are a fresh reading."""
     total = 0
+    for key in ("records", "claims"):
+        units = doc.get(key)
+        if not isinstance(units, list):
+            continue
+        total += sum(1 for u in units if isinstance(u, dict)
+                     and any(u.get(n) for n in NAME_KEYS))
+    return total
+
+
+def count_read(domain_dir: Path) -> tuple:
+    """(named units read, the files that declared themselves not a reading).
+
+    A RE-READING IS NOT A READING (T-0602). Everything here walks a domain's own
+    output, and some of that output is the domain looking at itself: a precision
+    sample re-adjudicates cards already counted, a second reading re-reads a sheet
+    already counted. Charging those as fresh names made the instrument punish the
+    two habits that keep it honest — sampling your own precision, and reading a
+    sheet twice — so a file may say `not_a_reading: "<what it is instead>"` and be
+    withheld. The declarations are returned, not swallowed: `report` prints every
+    one with the units it withheld, so an exemption is a thing somebody can see and
+    argue with rather than a number that quietly went missing."""
+    total = 0
+    declared = []
+    for path in sorted(domain_dir.rglob("*.json")):
+        if is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        units = named_units(doc)
+        why = doc.get(NOT_A_READING_KEY)
+        if isinstance(why, str) and why.strip():
+            if units:
+                declared.append((path.name, units, why.strip()))
+            continue
+        total += units
+    return total, declared
+
+
+def units_read(domain_dir: Path) -> set:
+    """Every id this domain has filed a named unit under.
+
+    What an evidence string is resolved AGAINST, and the reason resolution cannot
+    inflate a domain: a ruling anchors through its evidence only by naming a unit
+    the domain can produce. A string naming a file path, a source id or a card in
+    some other domain resolves to nothing and buys nothing."""
+    ids = set()
     for path in sorted(domain_dir.rglob("*.json")):
         if is_crosswalk(path):
             continue
@@ -319,18 +412,44 @@ def count_read(domain_dir: Path) -> int:
         if not isinstance(doc, dict):
             continue
         for key in ("records", "claims"):
-            units = doc.get(key)
-            if not isinstance(units, list):
-                continue
-            total += sum(1 for u in units if isinstance(u, dict)
-                         and any(u.get(n) for n in NAME_KEYS))
-    return total
+            for unit in doc.get(key) or []:
+                if isinstance(unit, dict) and isinstance(unit.get("id"), str):
+                    ids.add(unit["id"])
+    return ids
 
 
-def count_spent(domain_dir: Path) -> tuple[int, int]:
-    """(anchored rulings, deduped) and (unanchored name-pair rulings)."""
+def evidence_anchors(ruling: dict, ids: set) -> list:
+    """The read units a ruling names in its evidence, as anchors (T-0602).
+
+    Deliberately the SAME anchor shape a `record_id` produces, so a card ruled on
+    once by id and once through an evidence list is one spend and not two."""
+    named = []
+    for key in EVIDENCE_KEYS:
+        for row in ruling.get(key) or []:
+            if isinstance(row, str) and row in ids:
+                named.append(f"record_id={row}")
+    return named
+
+
+def count_spent(domain_dir: Path) -> tuple[int, int, list]:
+    """(anchored rulings, deduped), (unanchored name-pair rulings) and what could
+    not be counted at all — [(file, array, count, why)].
+
+    THE THIRD VALUE IS THE POINT OF T-0602. A written adjudication that this
+    measure cannot turn into a spend used to leave no trace but a number in the
+    `id pairs` column, and a domain could hold five carefully reasoned refusals
+    and read as having ruled on nothing. It is now reported per file, with the
+    reason, so the next person either writes the id that would fix it or knows why
+    it cannot be written."""
+    ids = units_read(domain_dir)
     anchors: set[str] = set()
     pairs = 0
+    uncounted: dict = {}
+
+    def note(path, key, why):
+        row = uncounted.setdefault((path.name, key, why), 0)
+        uncounted[(path.name, key, why)] = row + 1
+
     for path in sorted(domain_dir.rglob("*.json")):
         if not is_crosswalk(path):
             continue
@@ -346,13 +465,26 @@ def count_spent(domain_dir: Path) -> tuple[int, int]:
                 anchor = anchor_of(ruling)
                 if anchor:
                     anchors.add(anchor)
-                elif ruling.get(OUTCOME_KEY):
+                    continue
+                through_evidence = evidence_anchors(ruling, ids)
+                if through_evidence:
+                    anchors.update(through_evidence)
+                    continue
+                if ruling.get(OUTCOME_KEY):
                     # A stated outcome with nothing to anchor it is still a ruling
                     # somebody made; it dedups by where it sits.
                     anchors.add(f"{path.name}:{key}:{index}")
-                elif ruling.get("a") and ruling.get("b"):
+                    continue
+                if ruling.get("a") and ruling.get("b"):
                     pairs += 1
-    return len(anchors), pairs
+                    note(path, key, "a spelling pair whose evidence names no unit "
+                                    "this domain has read — write the record id")
+                elif ruling.get("rule"):
+                    note(path, key, "a written ruling naming no unit and no outcome")
+                elif ruling.get("what") and (ruling.get("pass") or ruling.get("ticket")):
+                    note(path, key, "a pass note: it records that a sweep happened "
+                                    "and names no unit, so it is not a spend")
+    return len(anchors), pairs, [(f, k, n, w) for (f, k, w), n in sorted(uncounted.items())]
 
 
 def measure() -> list[dict]:
@@ -365,11 +497,12 @@ def measure() -> list[dict]:
         domain_dir = ROOT / entry["path"]
         if not domain_dir.is_dir():
             raise SystemExit(f"registered domain has no directory: {entry['path']}")
-        read = count_read(domain_dir)
-        spent, pairs = count_spent(domain_dir)
+        read, declared = count_read(domain_dir)
+        spent, pairs, uncounted = count_spent(domain_dir)
         reached, judgeable, wrote = count_written(domain_dir, records)
         rows.append({"domain": entry["id"], "holds": entry["holds"],
                      "read": read, "spent": spent,
+                     "not_a_reading": declared, "uncounted": uncounted,
                      "unspent": read - spent, "id_pairs": pairs,
                      "reached": reached, "judgeable": judgeable, "wrote": wrote,
                      "unwritten": judgeable - wrote,
@@ -421,6 +554,22 @@ def report() -> str:
                    f"{sum(r['unjudgeable'] for r in hop):>18}")
     else:
         out.append("  no ruling in any domain yet names a person in the residents layer")
+    # WHAT THE MEASURE WITHHELD, AND WHAT IT COULD NOT COUNT (T-0602). Both blocks
+    # exist so that neither correction is a number that quietly moved: an exemption
+    # a file claimed is printed with the units it withheld, and a written ruling
+    # this tool cannot spend is printed with the reason it cannot.
+    withheld = [(r["domain"], d) for r in rows for d in r["not_a_reading"]]
+    if withheld:
+        out.append("")
+        out.append("declared not a reading, and so not charged to the domain:")
+        for domain, (name, units, why) in withheld:
+            out.append(f"  {domain} {name} — {units} unit(s): {why}")
+    uncounted = [(r["domain"], u) for r in rows for u in r["uncounted"]]
+    if uncounted:
+        out.append("")
+        out.append("written and NOT counted as spend, and why — never a silent zero:")
+        for domain, (name, key, count, why) in uncounted:
+            out.append(f"  {domain} {name}:{key} — {count} ruling(s): {why}")
     extra = unregistered()
     if extra:
         out.append("")
@@ -669,33 +818,33 @@ def self_test() -> int:
         (d / "voter_crosswalk.json").write_text(json.dumps({"entries": [
             {"record_id": "poll_1833_001", "outcome": "matched"},
             {"record_id": "poll_1833_002", "outcome": "refused"}]}))
-        spent, pairs = count_spent(d)
+        spent, pairs, _ = count_spent(d)
         fires("two anchored rulings are two spends", spent == 2)
         fires("…and neither is an id pair", pairs == 0)
 
         # the civic double-count this tool was written to avoid
         (d / "crosswalk.json").write_text(json.dumps({"refusals": [
             {"a": "Medard Beaubien", "b": "Col. Jean Baptiste Beaubien"}]}))
-        spent, pairs = count_spent(d)
+        spent, pairs, _ = count_spent(d)
         fires("an unanchored name-pair ruling is NOT a spend", spent == 2)
         fires("…it is reported as an id pair", pairs == 1)
 
         # one record ruled on twice in two files is one spend
         (d / "second_crosswalk.json").write_text(json.dumps({"matches": [
             {"record_id": "poll_1833_001", "person_id": "adams_william_h"}]}))
-        spent, _ = count_spent(d)
+        spent, *_ = count_spent(d)
         fires("one record ruled on in two files is one spend", spent == 2)
 
         # a refusal that names a person is spent
         (d / "third_crosswalk.json").write_text(json.dumps({"refusals": [
             {"person_id": "beaubien_jean_baptiste", "rule": "surname only"}]}))
-        spent, _ = count_spent(d)
+        spent, *_ = count_spent(d)
         fires("an anchored refusal IS a spend", spent == 3)
 
         # `pages` is not an adjudication array
         (d / "crosswalk_670.json").write_text(json.dumps({
             "pages": [{"printed_page": 229}, {"printed_page": 231}]}))
-        spent, pairs = count_spent(d)
+        spent, pairs, _ = count_spent(d)
         # `pages` is not in ADJUDICATION_KEYS, so the file adds nothing at all —
         # the one id pair still standing is the Beaubien refusal above.
         fires("a page-level agreement test rules on nobody",
@@ -704,15 +853,88 @@ def self_test() -> int:
         # a non-crosswalk file is never a spend, however it is shaped
         (d / "records.json").write_text(json.dumps({"entries": [
             {"record_id": "x"}]}))
-        spent, _ = count_spent(d)
+        spent, *_ = count_spent(d)
         fires("only a crosswalk file carries rulings", spent == 3)
 
         # the read counter over the same tree
         (d / "page.json").write_text(json.dumps({"records": [
             {"as_read": "A"}, {"line": 2}, {"normalized": "B"}]}))
-        fires("read counts names and skips the blank line", count_read(d) == 2)
+        fires("read counts names and skips the blank line", count_read(d)[0] == 2)
         fires("…and never reads a crosswalk as a source",
-              count_read(d) == 2)
+              count_read(d)[0] == 2)
+
+    # --- T-0602, FAULT ONE: a re-reading counted as a reading. Newberry was
+    # charged 160 units for MEASURING ITSELF and census_1840 61 for reading two
+    # sheets twice on purpose, so sampling harder read the meter up.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        (d / "page.json").write_text(json.dumps({"records": [
+            {"normalized": "A"}, {"normalized": "B"}]}))
+        sample = {"records": [{"normalized": "A"}, {"normalized": "B"}]}
+        (d / "precision_sample.json").write_text(json.dumps(sample))
+        fires("a re-reading with no declaration is charged as fresh reading",
+              count_read(d)[0] == 4)
+
+        (d / "precision_sample.json").write_text(json.dumps(
+            dict(sample, not_a_reading="a measurement of the reading")))
+        read, declared = count_read(d)
+        fires("a file declaring itself not a reading is withheld", read == 2)
+        fires("…and the declaration is REPORTED, with the units and the reason",
+              declared == [("precision_sample.json", 2, "a measurement of the reading")])
+
+        (d / "precision_sample.json").write_text(json.dumps(dict(sample, not_a_reading=True)))
+        fires("…while `not_a_reading: true` says nothing and exempts nothing",
+              count_read(d)[0] == 4)
+        (d / "precision_sample.json").write_text(json.dumps(dict(sample, not_a_reading="  ")))
+        fires("…nor does a blank reason", count_read(d)[0] == 4)
+
+    # --- T-0602, FAULT TWO: a written refusal counted as nothing. The five
+    # newberry refusals cite card ids in `evidence` as plain strings, and the
+    # measure read the most carefully reasoned paragraph in the domain as zero.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        (d / "records.json").write_text(json.dumps({"records": [
+            {"id": "nbi_v01_0452", "normalized": "Beeubion"},
+            {"id": "nbi_v01_0453", "normalized": "Beeubion"}]}))
+        refusal = {"a": "Beeubion", "b": "Jean Baptiste Beaubien", "rule": "a surname is not a man",
+                   "evidence": ["nbi_v01_0452", "nbi_v01_0453"]}
+        (d / "crosswalk.json").write_text(json.dumps({"refusals": [refusal]}))
+        spent, pairs, uncounted = count_spent(d)
+        fires("a refusal anchors through the read units its evidence names", spent == 2)
+        fires("…so it is no longer reported as a bare id pair", pairs == 0)
+        fires("…and nothing is left uncounted", uncounted == [])
+
+        # the same refusal ruled on again by id is the SAME spend, not a second one
+        (d / "second_crosswalk.json").write_text(json.dumps({"refusals": [
+            {"record_id": "nbi_v01_0452", "outcome": "refused"}]}))
+        fires("a card ruled on by id and through evidence is one spend",
+              count_spent(d)[0] == 2)
+
+        # resolution is against the domain's own ids, so it cannot be talked into
+        (d / "crosswalk.json").write_text(json.dumps({"refusals": [dict(
+            refusal, evidence=["data/residents/households/", "no_such_id"])]}))
+        spent, pairs, uncounted = count_spent(d)
+        fires("evidence naming no read unit anchors nothing", spent == 1)
+        fires("…it is an id pair, as it always was", pairs == 1)
+        fires("…and it is SAID OUT LOUD, per file, with the reason",
+              len(uncounted) == 1 and uncounted[0][:3] == ("crosswalk.json", "refusals", 1)
+              and "write the record id" in uncounted[0][3])
+
+        # a manifest row is not a ruling and is not reported as one
+        (d / "third_crosswalk.json").write_text(json.dumps({"inputs": [
+            {"what": "1840 left sheets read in this repo", "path": "pages/", "n": 17}]}))
+        fires("a structural inputs row is not a ruling anybody failed to count",
+              len(count_spent(d)[2]) == 1)
+        (d / "third_crosswalk.json").write_text(json.dumps({"passes": [
+            {"pass": "T-0570", "what": "volume 1 against the residents"}]}))
+        fires("…while a pass note IS reported, as a sweep that names no unit",
+              len(count_spent(d)[2]) == 2)
+
+        # the key the second hop always read and the spend half never did
+        (d / "crosswalk.json").write_text(json.dumps({"matches": [
+            {"household_id": "hh_pearsons_hiram", "rule": "the forename agrees in full"}]}))
+        fires("a ruling naming a town household by household_id is a spend",
+              count_spent(d)[0] == 2)
 
     # --- the second hop
     with tempfile.TemporaryDirectory() as tmp:

@@ -192,6 +192,12 @@ STATED_SHARED = frozenset({
     # These leaves also occur in the separately rendered research_pilot payload;
     # a bare-name text scan cannot attribute those accesses to the embedded block.
     "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
+    # `source` is the volume each row of a T-0514 evidence block resolves to
+    # (civic_evidence[].source and the four beside it). The only `.source` in the
+    # renderers is main.js:1808 — `asked.source === 'key'`, a keyboard event's own
+    # origin, nothing to do with a resident. The blocks reach no visitor yet and
+    # stay in the unread bank; T-0668 is the ticket that puts them on the card.
+    "source",
 })
 
 # ---------------------------------------------------------------------------
@@ -474,6 +480,55 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0632. The later directories, on the record rather than only beside it. The
+    # printed lines and the crosswalks' arithmetic stay in
+    # `data/residents/directories.json`, which the panel opens once for the town; what
+    # the RECORD carries is the claim — a trade or an address a Chicago directory of
+    # 1839, 1843 or 1844 prints against this person, graded, dated to the year it
+    # describes and citing the volume. `note` and `sources` are the household's own
+    # statement of what a later volume is worth and which ones met it.
+    "directories.note": ("shown", "escapeHtml(onRecord.note)"),
+    "directories.sources": ("shown", "escapeHtml((onRecord.sources || []).join(', '))"),
+    "directories.people[].person_id": (
+        "shown", "(directoriesOnRecord || []).find((row) => row.person_id === person.id)"),
+    "directories.people[].occupation_later.value": (
+        "shown", "one(block.occupation_later, 'A trade printed against this name')"),
+    "directories.people[].address_later.value": (
+        "shown", "one(block.address_later, 'An address printed against this name')"),
+    # The three parts every claim block here shares are read once, in `laterClaimHtml`,
+    # so one expression covers each of them for both claims — the same economy the seven
+    # graded claims above are declared with.
+    "directories.people[].occupation_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].address_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].occupation_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].address_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].occupation_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].address_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].occupation_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    "directories.people[].address_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    # T-0633. What was DONE with the later address, which is the half a reader
+    # cannot check from the address alone: the outcome, the clause that decided
+    # it, the face it earned and the years it was carried. All 87 render,
+    # refusals included — `backProjectionHtml` has no branch that drops one.
+    "directories.people[].back_projection.outcome": (
+        "shown", "bp.outcome === 'placed'"),
+    "directories.people[].back_projection.clause": (
+        "shown", "escapeHtml(String(bp.clause))"),
+    "directories.people[].back_projection.value": ("shown", "escapeHtml(where)"),
+    "directories.people[].back_projection.confidence": ("shown", "swatch(bp.confidence)"),
+    "directories.people[].back_projection.placement": (
+        "shown", "words(bp.placement)"),
+    "directories.people[].back_projection.position_local_enu_m": (
+        "shown", "(bp.position_local_enu_m || []).join(', ')"),
+    "directories.people[].back_projection.describes_date": (
+        "shown", "escapeHtml(String(bp.describes_date))"),
+    "directories.people[].back_projection.read_back_years": (
+        "shown", "escapeHtml(String(bp.read_back_years))"),
+    "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),

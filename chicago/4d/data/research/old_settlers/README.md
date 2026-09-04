@@ -18,10 +18,10 @@ deaths. Those receptions are a **source series**, and this directory reads it.
 | `death_notices.json` | Fergus's 757 death notices of Chicago's old settlers, ages at death kept verbatim beside the birth window each one implies (T-0574) |
 | `death_notices_crosswalk_1835.json` | those notices against the 1835 residents layer, and Wentworth's roll of 1882 held against Fergus's list |
 | `coverage.json` | what has been read out of a page and where it stops |
-| `people.json` | every name on the two rolls read so far, `as_read`, matched against the residents layer, with the ladder rung this source **proposes** |
+| `people.json` | every name on the three rolls read so far, `as_read`, matched against the residents layer, with the ladder rung this source **proposes** |
 | `crosswalk.json` | the identity decisions: merges, probables, refusals, each with the rule that fired |
 | `claims.json` | what the documents say *about the town*, each with its verbatim quote |
-| `text/` | the three 1882 Tribune documents as the page reprints them, so every quote can be rebuilt |
+| `text/` | the three 1882 Tribune documents as the page reprints them, and the 1879 register as the plate prints it, so every quote can be rebuilt |
 
 `tools/old_settlers.py --build | --check | --self-test | --apply-citations` owns all of
 it. The gate rebuilds the JSON out of the committed text, refuses a quote that differs by
@@ -37,10 +37,12 @@ Under the ratified ladder (T-0513) a later recollection *corroborates, enriches 
 T-0514/T-0515 to apply. Only an OS1 or OS2A merge is written onto a record, and what it
 writes is a citation and a caveat, never a grade.
 
-**2. The reading is transcription-mediated.** This project has not opened the Tribune of
-1882. Every name is carried exactly as the page prints it — `Aux. 25`, `William H. stow`,
-`Chiengo`, `Carter, 1. B.` — and the three Tribune source records keep `verified: false`
-until someone reads the newspaper itself.
+**2. The 1882 reading is transcription-mediated; the 1879 reading is not.** This project
+has not opened the Tribune of 1882. Every name there is carried exactly as the page prints
+it — `Aux. 25`, `William H. stow`, `Chiengo`, `Carter, 1. B.` — and the three Tribune
+source records keep `verified: false` until someone reads the newspaper itself. The 1879
+register is different: it was read off the **page images** of the printed proceedings
+(`reading: "page_image"`), because the Internet Archive's OCR destroys that plate.
 
 ## What is read, and what is not
 
@@ -49,12 +51,46 @@ report's own count is 118, and both numbers are carried) and John Wentworth's ro
 **40** old settlers dead since 1 January 1881. Twelve of those 168 names are people the
 residents layer already holds; six of the twelve gained a date of death.
 
-Not read, and declared in `receptions.json`: the **first** reception of 27 May 1879, whose
-printed proceedings (*Early Chicago*, Calumet Club, 1879; Internet Archive
-`earlychicagorece00calu`) carry a registry of 149 settlers **with their years of arrival** —
-the one roster in the series that dates its people, and the richest thing still unread
-here. The receptions of 1880 and 1881 are declared from the 1882 report's own arithmetic
-and their Tribune reports have not been located.
+Read (T-0577): the **first** reception of **27 May 1879**, whose printed proceedings
+(*Early Chicago*, Calumet Club, 1879; Internet Archive `earlychicagorece00calu`) set the
+register as a five-column plate on pages 84-90 — **159 entries**, each with the man's own
+date of arrival, his birthplace, his age and his 1879 post-office address. It is the one
+roster in the series that dates its people: 159 of the 327 names in `people.json` now
+carry a year of arrival where before none did, and 70 of them give a year at or before
+1835. Twenty-one are men the residents layer already holds.
+
+**159, and the proceedings say 149.** Page 72 states that "one hundred and forty-nine
+registered their names", and all three of its aggregate tables — places of birth, years of
+arrival, ages — sum to exactly 149. The register printed after them carries ten more. The
+document explains itself on the same page: *"Many left without knowing that there was a
+registry being kept. A few called afterward and signed the registry."* So the tables count
+the evening and the register is the fuller book. Which ten are the later signers is not
+stated and is not guessed; `receptions.json` → `reconciliation_1879` sets the printed and
+the read count of **every** table cell side by side, and the differences are not all
+positive, so the tables are not a clean subset of the register either. One corroboration
+that the register outruns them: Robert Fergus registered as born at Glasgow, Scotland, and
+the PLACES OF BIRTH table has no Scotland at all.
+
+Also read off the same plate: the **YEARS OF ARRIVAL** table (1818: 1 · 1826: 3 · 1831: 4
+· 1832: 5 · 1833: 16 · 1834: 15 · 1835: 22 · 1836: 40 · 1837: 20 · 1838: 11 · 1839: 12 ·
+Total 149), which this project had previously recorded as unreadable. Only its OCR is
+destroyed; the plate is perfectly legible.
+
+**A contradiction the merges surface.** Four merges — two on each roll — put a man at a
+reception whose own resident record carries a Fergus death notice from *before* it.
+`receptions.json` → `os_q_registered_after_a_documented_death` names all four, and the
+citation written onto each card states it. The clearest is `wolcott_alexander`: the card
+carries both Dr Alexander Wolcott the Indian agent, "died Oct. 25, 1830, aged 40" (born
+about 1790), and the 1843 directory's "Wolcott, Alex., surveyor … [died Aug. 11, 1884, a.
+69]" (born about 1815) — and the register's man gives his age as 64 in 1879, which is the
+surveyor's birth year and not the agent's. Splitting a card is an identity ruling, so
+nothing is withdrawn here: it goes to T-0513.
+
+Not read: the receptions of **1880** and **1881**, declared from the 1882 report's own
+arithmetic, whose Tribune reports have not been located. Nor the 1879 proceedings
+themselves — the speeches of Wentworth, Caton, Bross and the rest, which are old settlers'
+recollections of exactly this town and are a reading pass of their own (`coverage.json`
+says so, and the OCR is sound in the prose, so that pass will not need the page images).
 
 ## The second list: Fergus's death notices (T-0574)
 

@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_3.py",
   "population_frame": {
-    "eligible_real_named_people": 849,
+    "eligible_real_named_people": 1404,
     "previously_reviewed": 150,
     "sample_size": 75,
     "cumulative_reviewed": 225,
@@ -40,7 +40,8 @@
       "starting_occupation": "brickmaker",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -54,7 +55,8 @@
       "starting_occupation": "blacksmith",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -96,7 +98,8 @@
       "starting_occupation": "lumber_merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -110,7 +113,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -140,6 +144,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_11_26"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -154,7 +159,8 @@
       "starting_occupation": "clothier",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -168,7 +174,8 @@
       "starting_occupation": "hotel_keeper",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "calumet_club_early_chicago_1879"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -183,6 +190,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad",
         "drloih_hotels"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -240,7 +248,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -254,7 +263,9 @@
       "starting_occupation": "merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -299,7 +310,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -328,7 +340,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -373,7 +386,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -1061,6 +1075,7 @@
         "1835-05-20"
       ],
       "sources": [
+        "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_1835",
         "chicago_tribune_1882_04_25_old_settler_deaths"
       ],

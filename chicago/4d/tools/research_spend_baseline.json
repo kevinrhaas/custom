@@ -5,12 +5,12 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 54,
+  "census_1840": 229,
   "church": 0,
   "books": 173,
-  "directories": 4703,
-  "newberry_index": 3148,
-  "land_sales": 375
+  "directories": 7004,
+  "newberry_index": 4914,
+  "land_sales": 361
  },
  "witness": {
   "civic": {
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 562,
+   "read": 737,
    "spent": 508
   },
   "church": {
@@ -34,16 +34,16 @@
    "spent": 37
   },
   "directories": {
-   "read": 4991,
-   "spent": 288
+   "read": 7560,
+   "spent": 556
   },
   "newberry_index": {
-   "read": 4646,
-   "spent": 1498
+   "read": 7005,
+   "spent": 2091
   },
   "land_sales": {
    "read": 375,
-   "spent": 0
+   "spent": 16
   }
  },
  "raised": [
@@ -101,12 +101,92 @@
    "why": "T-0499 read the first half of Fergus' Historical Series Nos. 26-29 on the owner's direct ask, and the reading is deliberately wider than its rulings. Of 41 claims, 36 carry no person this town could hold: they are landscape, buildings, streets, civic institutions and port statistics, and the crosswalk has nothing to rule on in them. Only five names in 429 leaves fall in the 1830-1836 window and ALL FIVE ARE RULED ON - two merges and three refusals - with every name outside the window listed by name in the pass so the next sweep does not re-examine it. The gap this raise opens is not unadjudicated names; it is town findings waiting for the structure and terrain tickets that will spend them."
   },
   {
+   "domain": "newberry_index",
+   "hop": "read",
+   "from": 3148,
+   "to": 5078,
+   "date": "2026-09-04",
+   "why": "T-0579 and T-0580 read volumes 3 (H-P) and 4 (P-Z), adding 2,439 records to a domain whose ruling tool had last run against volumes 1-2. The reading is the deliverable of two approved tickets and the ladder requires reading ahead of adjudication; what has not happened yet is the ruling pass over the new volumes, which tools/rule_newberry_leads.py performs and T-0590 established. T-0618's reader and the three page bands T-0619/T-0620/T-0621 will add volume 4's re-OCR on top of this, so this ceiling is a floor for that work, not a licence to stop ruling."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 4703,
+   "to": 6396,
+   "date": "2026-09-04",
+   "why": "T-0506 read Fergus' 1839 directory entry by entry and crosswalked it against four pools, and the Norris 1844 and Fergus 1843 reads precede it. A directory entry is never an 1835 resident on its own - it is later evidence read backwards - so this domain is designed to stand far ahead of its spending, and the spending is the crosswalk adjudication plus T-0514 (mint residents from the consolidated evidence) and T-0515 (regrade the 727 letter-list-only residents). T-0611 will read the 1839 appendices on top of this."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 54,
+   "to": 85,
+   "date": "2026-09-04",
+   "why": "The 1840 sheet reads (T-0565, T-0585 and the image-band tickets) added 31 named heads beyond the last baseline. 1840 is five years after the scene and can never be an 1835 residency on its own; the bridge work is apply_census_1840_bridges.py and the two resident tickets T-0514/T-0515, both open and queued."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 85,
+   "to": 206,
+   "date": "2026-09-04",
+   "why": "T-0643 read 32 more lines of 33S7-9YYJ-8D and rules on none of them: the ticket forbids it, because the 1840 bridge to an 1835 resident is a separate adjudication (T-0505, T-0514, T-0515) and 1839/1840 alone is never a resident. Reading ahead of that bridge is the method working. This raise also absorbs the reading the other three census slices of this hour landed on dev — the ceiling was already blown at 5acb2977 before this branch merged, and it is one shared per-domain number. It is deliberately a ceiling to be TAKEN BACK: --tighten is free, and the moment the bridge tickets spend these names the ceiling should come down to what the domain has earned."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 206,
+   "to": 207,
+   "date": "2026-09-04",
+   "why": "T-0529 read 33S7-9YYJ-V2, printed 237, and found it is the enumeration's RECAPITULATION sheet: thirty division totals, six footings and a grand total of 4,470 for the city. Its one claim names NOBODY and cannot be spent, now or ever — no line of it is a household, so there is no head to rule on, no serial to attach and nothing to cross into the town. The ceiling moves by one for a claim that is structurally unspendable, not for a name left unadjudicated."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 207,
+   "to": 290,
+   "date": "2026-09-04",
+   "why": "T-0527 read the three remaining filled left sheets of images 26-50 (printed 227, 239 and 241) line by line: 83 more named heads. T-0495 forbids this ticket minting or regrading anybody - T-0505 crosswalks these readings and T-0514/T-0515 rule on the names - so the reading is deliberately ahead of its adjudication and the ceiling moves once, on purpose, rather than the gate being routed around."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-04",
+   "why": "T-0632 opened this hop for the directories domain and closed it in the same pass. tools/spend_directories.py rules on the 235 single-entry matches the four directory crosswalks already held, and writes each one onto the household record it names — the later trade, the later address and the source id, as graded values that describe 1839, 1843 or 1844 and touch no 1835 claim. So the ceiling is recorded at ZERO, which is what the domain now stands at: every ruling that reaches a person reaches that person's card. It is written down rather than left absent because the gate faults on an unrecorded ceiling, and because a zero somebody chose is a ratchet while an absence is a hole. Nothing here may drift back up: a later directory reading that rules on a person and does not reach their card raises this number and the gate says so."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 6128,
+   "to": 6893,
+   "date": "2026-09-04",
+   "why": "T-0664 read the 1837 charter election and its list of voters for mayor out of Fergus 1839, printed pages 40-46: 765 claims, of which 706 are voters. It is a POLL, not a directory of names to be ruled on one by one — its whole yield is the crosswalk it feeds, and that is committed in the same PR: 190 letter-list persons, 82 entries off the 1833-1835 poll and tax lists and 53 residents of the town are now met by a second independent book, which is the second source the ratified ladder asks for. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to the reading; the consolidation series T-0634/T-0635 measures it."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 6893,
+   "to": 7004,
+   "date": "2026-09-04",
+   "why": "T-0665 read Fergus 1839 printed pages 38-39 — the city register of 1839 and the printed tables of mayors and sheriffs — for 111 new claims. They are UNSPENDABLE by design, not unspent by neglect: Chicago was not a city until March 1837, so every office on printed page 38 postdates the scene date and nothing in the register may be written onto an 1835 record. The crosswalk in fergus_1839_register_crosswalk_1835.json rules on all 105 indexable names against the four pools and files 10 resident matches, 8 ambiguous, 25 surname-only refusals and 3 entries the rule cannot test; T-0514 and T-0515 are the passes allowed to carry any of it onto a card. The one row that reaches 1835 — Silas W. Sherman, sheriff of Cook County under the term the 1834 row opens — is filed as a derivation with its refusal and writes nothing to the town."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 359,
+   "to": 361,
+   "date": "2026-09-04",
+   "why": "T-0514 seated 531 new residents and the land-sales resident crosswalk re-derived against the larger town. Its rule matches a purchaser only where the residents layer holds EXACTLY ONE person of the surname and the forename agrees, so a bigger town makes that rule fire less: nine matches became ambiguous (Carpenter, Dole, Fullerton, Haddock x2, Heacock, Sweet, Burdick, Wooley) and six became possible for the first time (Bronson, Hale, Hartzell, Ludby, Price, Wolcott), a net loss of three rulings with nothing new read. The ceiling moves by that difference rather than the domain being re-read. T-0670 carries the matcher's surname-uniqueness weakness and T-0609 is the ticket that spends this domain properly."
+  },
+  {
    "domain": "books",
    "hop": "read",
    "from": 126,
    "to": 173,
    "date": "2026-09-04",
-   "why": "T-0500 read the SECOND HALF of Fergus' Historical Series Nos. 26-29 — scan leaves 430-858 — as 58 claims and ruled on 11 of them in data/research/books/crosswalk.json: 6 merges (Thomas J. V. Owen, G. S. Hubbard, Gen. Jean Baptiste Beaubien, A. Garrett, John Calhoun, William B. Ogden) and 7 refusals (Dr Spring against Giles Spring, the volume's two conflicting expansions of R. C. Bristol, O. Newberry against Oliver Newberry pending T-0396, the firm Newberry & Dole against George Washington Dole, the elder John Kinzie against his son, Rev. Jesse Walker and John Wentworth on surnames). THE OTHER 47 CANNOT BE SPENT BY THIS INSTRUMENT AND THE REASON IS THE SOURCE'S OWN SHAPE, exactly as T-0575 argued for Hurlbut and T-0499 for the first half of this same volume. Two thirds of this half is Fergus No. 28, a directory OF 1843: its people are 1843 people, and a name in it is not a name to adjudicate against an 1835 town — the crosswalk pass lists all twenty-five persons named inside the 1830-1836 window by name with the outcome of each, and 'no candidate in data/residents/' is the honest outcome for six of them and 'out of scope, Jacksonville' for four more. The rest of the half is Fergus No. 29, a Morgan County family memoir whose Chicago thread is the Illinois-and-Michigan Canal: its claims are a canal being located, a legislature adjourning, a loan authorised, a winter of deep snow, a book advertised. Those name institutions and events, not townspeople, and inventing name-pairs to spend them would be the corruption this instrument exists to prevent. WHAT THEY CAN BE SPENT ON IS THE TOWN, and the two that most directly can are already visible: bk_fer2_043 dates the first warehouse on the South Side to the fall of 1839, a dated negative for the south bank in the scene year, and bk_fer2_049 gives a Dr Spring dead on 10 November 1835 which T-0423 will want if a given name is ever found. The number comes down only if a later pass reads the 1843 alphabetical name directory ENTRY BY ENTRY — coverage.json declares that it was swept and not read — and it should not be raised again for a directory of a later decade without this argument being made afresh."
+   "why": "T-0500 read the second half of Fergus' Historical Series Nos. 26-29 — 58 claims and 45 town findings — completing the volume T-0499 began. The reading is deliberately wider than its rulings for the reason the first half already recorded: most of what these numbers carry is landscape, buildings, streets, civic institutions and port statistics, which the resident crosswalk has nothing to rule on. The names that DO fall in the 1830-1836 window are ruled on in the same pass; what this ceiling holds open is town findings waiting on the structure and terrain tickets that will spend them. Raised here rather than re-applying the 173 this branch set before dev moved: the baseline has changed twice since, so the figure is re-measured against the merged tree instead of carried over."
   }
  ],
  "lowered": [
@@ -119,7 +199,9 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 6,
-  "civic": 99
- }
+  "census_1840": 0,
+  "civic": 0,
+  "directories": 0
+ },
+ "unsourced_ceiling": {}
 }

@@ -5,8 +5,8 @@
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file.",
   "counts": {
     "purchasers": 202,
-    "matched": 17,
-    "refused": 185
+    "matched": 14,
+    "refused": 188
   },
   "matches": [
     {
@@ -21,34 +21,45 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "WOOLEY JEDDIAH JR",
-      "resident_id": "wooley_jeddiah",
-      "resident_name": "Jeddiah Wooley",
-      "household_id": "hh_wooley_jeddiah",
-      "match": "forename_agrees",
-      "rule": "WOOLEY JEDDIAH JR matches Jeddiah Wooley: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "CARPENTER PHILO",
-      "resident_id": "carpenter_philo",
-      "resident_name": "Philo Carpenter",
-      "household_id": "hh_carpenter_philo",
-      "match": "forename_agrees",
-      "rule": "CARPENTER PHILO matches Philo Carpenter: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
       "purchaser_as_read": "ELSTON DANIEL",
       "resident_id": "elston_daniel",
       "resident_name": "Daniel Elston",
       "household_id": "hh_elston_daniel",
       "match": "forename_agrees",
       "rule": "ELSTON DANIEL matches Daniel Elston: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "HARTZELL THOMAS",
+      "resident_id": "hartzell_thomas",
+      "resident_name": "Thomas Hartzell",
+      "household_id": "hh_hartzell_thomas",
+      "match": "forename_agrees",
+      "rule": "HARTZELL THOMAS matches Thomas Hartzell: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "ILLINOIS",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "WOLCOTT ALEXANDER",
+      "resident_id": "wolcott_alexander",
+      "resident_name": "Alexander Wolcott",
+      "household_id": "hh_wolcott_alexander",
+      "match": "forename_agrees",
+      "rule": "WOLCOTT ALEXANDER matches Alexander Wolcott: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "ILLINOIS",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "BRONSON ARTHUR",
+      "resident_id": "bronson_arthur",
+      "resident_name": "Arthur Bronson",
+      "household_id": "hh_bronson_arthur",
+      "match": "forename_agrees",
+      "rule": "BRONSON ARTHUR matches Arthur Bronson: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
@@ -109,59 +120,26 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "DOLE GEORGE W",
-      "resident_id": "dole_george_w",
-      "resident_name": "George Washington Dole",
-      "household_id": "hh_dole_george_w",
+      "purchaser_as_read": "HALE JOHN",
+      "resident_id": "hale_john",
+      "resident_name": "John Hale",
+      "household_id": "hh_hale_john",
       "match": "forename_agrees",
-      "rule": "DOLE GEORGE W matches George Washington Dole: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "rule": "HALE JOHN matches John Hale: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "FULLERTON ALEXANDER",
-      "resident_id": "fullerton_alexander",
-      "resident_name": "Alexander N. Fullerton",
-      "household_id": "hh_fullerton_alexander",
+      "purchaser_as_read": "LUDBY JOHN",
+      "resident_id": "ludby_john",
+      "resident_name": "John Ludby",
+      "household_id": "hh_ludby_john",
       "match": "forename_agrees",
-      "rule": "FULLERTON ALEXANDER matches Alexander N. Fullerton: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "HADDOCK E H",
-      "resident_id": "haddock_edward",
-      "resident_name": "Edward H. Haddock",
-      "household_id": "hh_haddock_edward",
-      "match": "initial_agrees",
-      "rule": "HADDOCK E H matches Edward H. Haddock: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "HADDOCK EDWARD H",
-      "resident_id": "haddock_edward",
-      "resident_name": "Edward H. Haddock",
-      "household_id": "hh_haddock_edward",
-      "match": "forename_agrees",
-      "rule": "HADDOCK EDWARD H matches Edward H. Haddock: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "HEACOCK RUSSEL E",
-      "resident_id": "heacock_russel_e",
-      "resident_name": "Russel E. Heacock",
-      "household_id": "hh_heacock_russel_e",
-      "match": "forename_agrees",
-      "rule": "HEACOCK RUSSEL E matches Russel E. Heacock: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+      "rule": "LUDBY JOHN matches John Ludby: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "COOK",
+      "evidence_grade": "documented",
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "MINARD IRA",
@@ -175,23 +153,12 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "BURDICK PAUL",
-      "resident_id": "burdick_paul",
-      "resident_name": "Paul Burdick",
-      "household_id": "hh_burdick_paul",
+      "purchaser_as_read": "PRICE JEREMIAH",
+      "resident_id": "price_jeremiah",
+      "resident_name": "Jeremiah Price",
+      "household_id": "hh_price_jeremiah",
       "match": "forename_agrees",
-      "rule": "BURDICK PAUL matches Paul Burdick: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "SWEET ALANSON",
-      "resident_id": "sweet_alanson",
-      "resident_name": "Alanson Sweet",
-      "household_id": "hh_sweet_alanson",
-      "match": "forename_agrees",
-      "rule": "SWEET ALANSON matches Alanson Sweet: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "rule": "PRICE JEREMIAH matches Jeremiah Price: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
@@ -264,8 +231,16 @@
     },
     {
       "a": "TAYLOR CHARLES",
-      "b": "3 residents named Taylor",
-      "rule": "TAYLOR CHARLES is refused against 3 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "9 residents named Taylor",
+      "rule": "TAYLOR CHARLES is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "WOOLEY JEDDIAH JR",
+      "b": "2 residents named Wooley",
+      "rule": "WOOLEY JEDDIAH JR is refused against 2 residents named Wooley: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -280,16 +255,16 @@
     },
     {
       "a": "KERCHEVAL BENJAMIN",
-      "b": "Gholson Kercheval",
-      "rule": "KERCHEVAL BENJAMIN is refused against Gholson Kercheval: the surname agrees and the forename does not.",
+      "b": "2 residents named Kercheval",
+      "rule": "KERCHEVAL BENJAMIN is refused against 2 residents named Kercheval: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "WRIGHT JOHN F",
-      "b": "2 residents named Wright",
-      "rule": "WRIGHT JOHN F is refused against 2 residents named Wright: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "6 residents named Wright",
+      "rule": "WRIGHT JOHN F is refused against 6 residents named Wright: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -304,8 +279,8 @@
     },
     {
       "a": "CLARK JOHN K",
-      "b": "Erastus Clark",
-      "rule": "CLARK JOHN K is refused against Erastus Clark: the surname agrees and the forename does not.",
+      "b": "4 residents named Clark",
+      "rule": "CLARK JOHN K is refused against 4 residents named Clark: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -320,8 +295,8 @@
     },
     {
       "a": "HALL WILLIAM",
-      "b": "Benjamin Hall",
-      "rule": "HALL WILLIAM is refused against Benjamin Hall: the surname agrees and the forename does not.",
+      "b": "2 residents named Hall",
+      "rule": "HALL WILLIAM is refused against 2 residents named Hall: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -360,8 +335,16 @@
     },
     {
       "a": "STEVENS ORREN R",
-      "b": "Issac Stevens",
-      "rule": "STEVENS ORREN R is refused against Issac Stevens: the surname agrees and the forename does not.",
+      "b": "2 residents named Stevens",
+      "rule": "STEVENS ORREN R is refused against 2 residents named Stevens: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "CARPENTER PHILO",
+      "b": "3 residents named Carpenter",
+      "rule": "CARPENTER PHILO is refused against 3 residents named Carpenter: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -408,16 +391,16 @@
     },
     {
       "a": "SMITH JEDUTHOM",
-      "b": "Elded Smith",
-      "rule": "SMITH JEDUTHOM is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH JEDUTHOM is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEDUTHON",
-      "b": "Elded Smith",
-      "rule": "SMITH JEDUTHON is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH JEDUTHON is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -431,33 +414,17 @@
       ]
     },
     {
-      "a": "HARTZELL THOMAS",
-      "b": "0 residents named Hartzell",
-      "rule": "HARTZELL THOMAS is refused against 0 residents named Hartzell: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "KINZIE JAMES",
-      "b": "4 residents named Kinzie",
-      "rule": "KINZIE JAMES is refused against 4 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
+      "b": "7 residents named Kinzie",
+      "rule": "KINZIE JAMES is refused against 7 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "ROBERTS EDMOND",
-      "b": "0 residents named Roberts",
-      "rule": "ROBERTS EDMOND is refused against 0 residents named Roberts: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "WOLCOTT ALEXANDER",
-      "b": "0 residents named Wolcott",
-      "rule": "WOLCOTT ALEXANDER is refused against 0 residents named Wolcott: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Edmund Roberts",
+      "rule": "ROBERTS EDMOND is refused against Edmund Roberts: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -480,24 +447,24 @@
     },
     {
       "a": "KINZIE ROBERT A",
-      "b": "4 residents named Kinzie",
-      "rule": "KINZIE ROBERT A is refused against 4 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
+      "b": "7 residents named Kinzie",
+      "rule": "KINZIE ROBERT A is refused against 7 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "NOBLE MARK SEN",
-      "b": "0 residents named Noble",
-      "rule": "NOBLE MARK SEN is refused against 0 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "4 residents named Noble",
+      "rule": "NOBLE MARK SEN is refused against 4 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "NOBLE MARK JR",
-      "b": "0 residents named Noble",
-      "rule": "NOBLE MARK JR is refused against 0 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "4 residents named Noble",
+      "rule": "NOBLE MARK JR is refused against 4 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -520,16 +487,16 @@
     },
     {
       "a": "BATES JOHN JR",
-      "b": "0 residents named Bates",
-      "rule": "BATES JOHN JR is refused against 0 residents named Bates: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Bates",
+      "rule": "BATES JOHN JR is refused against 2 residents named Bates: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BEAUBIEN MARK",
-      "b": "4 residents named Beaubien",
-      "rule": "BEAUBIEN MARK is refused against 4 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
+      "b": "12 residents named Beaubien",
+      "rule": "BEAUBIEN MARK is refused against 12 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 12.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -552,56 +519,56 @@
     },
     {
       "a": "BLANCHARD F G",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD F G is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Blanchard",
+      "rule": "BLANCHARD F G is refused against 3 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BLANCHARD F G AS",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD F G AS is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Blanchard",
+      "rule": "BLANCHARD F G AS is refused against 3 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BLANCHARD GURTREY",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD GURTREY is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Blanchard",
+      "rule": "BLANCHARD GURTREY is refused against 3 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BOND ELI A",
-      "b": "0 residents named Bond",
-      "rule": "BOND ELI A is refused against 0 residents named Bond: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "H Bond",
+      "rule": "BOND ELI A is refused against H Bond: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BOND HEMAN",
-      "b": "0 residents named Bond",
-      "rule": "BOND HEMAN is refused against 0 residents named Bond: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "H Bond",
+      "rule": "BOND HEMAN is refused against H Bond: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BOTSFORD JABEZ K",
-      "b": "0 residents named Botsford",
-      "rule": "BOTSFORD JABEZ K is refused against 0 residents named Botsford: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "J. K. Botsford",
+      "rule": "BOTSFORD JABEZ K is refused against J. K. Botsford: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BOWEN ERASTUS",
-      "b": "air. Bowen",
-      "rule": "BOWEN ERASTUS is refused against air. Bowen: the surname agrees and the forename does not.",
+      "b": "2 residents named Bowen",
+      "rule": "BOWEN ERASTUS is refused against 2 residents named Bowen: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -610,14 +577,6 @@
       "a": "BOYER JOHN K",
       "b": "J. K. Boyer",
       "rule": "BOYER JOHN K is refused against J. K. Boyer: the surname agrees and the forename does not.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "BRONSON ARTHUR",
-      "b": "0 residents named Bronson",
-      "rule": "BRONSON ARTHUR is refused against 0 residents named Bronson: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -632,8 +591,8 @@
     },
     {
       "a": "BROWN RUFUS",
-      "b": "3 residents named Brown",
-      "rule": "BROWN RUFUS is refused against 3 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "7 residents named Brown",
+      "rule": "BROWN RUFUS is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -648,40 +607,40 @@
     },
     {
       "a": "CHAPLEY MORGAN L",
-      "b": "0 residents named Chapley",
-      "rule": "CHAPLEY MORGAN L is refused against 0 residents named Chapley: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "M S Chapley",
+      "rule": "CHAPLEY MORGAN L is refused against M S Chapley: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "CHAPMAN CHARLES H",
-      "b": "Chas. H. Chapman",
-      "rule": "CHAPMAN CHARLES H is refused against Chas. H. Chapman: the surname agrees and the forename does not.",
+      "b": "2 residents named Chapman",
+      "rule": "CHAPMAN CHARLES H is refused against 2 residents named Chapman: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "COOK JOSIAH P",
-      "b": "Rowland I!. Cook",
-      "rule": "COOK JOSIAH P is refused against Rowland I!. Cook: the surname agrees and the forename does not.",
+      "b": "5 residents named Cook",
+      "rule": "COOK JOSIAH P is refused against 5 residents named Cook: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "COOK THOMAS",
-      "b": "Rowland I!. Cook",
-      "rule": "COOK THOMAS is refused against Rowland I!. Cook: the surname agrees and the forename does not.",
+      "b": "5 residents named Cook",
+      "rule": "COOK THOMAS is refused against 5 residents named Cook: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "DAVIS JOHN",
-      "b": "2 residents named Davis",
-      "rule": "DAVIS JOHN is refused against 2 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "4 residents named Davis",
+      "rule": "DAVIS JOHN is refused against 4 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -695,6 +654,14 @@
       ]
     },
     {
+      "a": "DOLE GEORGE W",
+      "b": "2 residents named Dole",
+      "rule": "DOLE GEORGE W is refused against 2 residents named Dole: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
       "a": "DOLLY FRANCIS",
       "b": "Joseph Dolly",
       "rule": "DOLLY FRANCIS is refused against Joseph Dolly: the surname agrees and the forename does not.",
@@ -704,24 +671,24 @@
     },
     {
       "a": "DRAPER JONATHAN JR",
-      "b": "0 residents named Draper",
-      "rule": "DRAPER JONATHAN JR is refused against 0 residents named Draper: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Joseph Draper",
+      "rule": "DRAPER JONATHAN JR is refused against Joseph Draper: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "FOOT JOHN",
-      "b": "0 residents named Foot",
-      "rule": "FOOT JOHN is refused against 0 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Foot",
+      "rule": "FOOT JOHN is refused against 2 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "FOOT STAN",
-      "b": "0 residents named Foot",
-      "rule": "FOOT STAN is refused against 0 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Foot",
+      "rule": "FOOT STAN is refused against 2 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -730,6 +697,14 @@
       "a": "FOWLER ALBERT",
       "b": "Elmira Fowler",
       "rule": "FOWLER ALBERT is refused against Elmira Fowler: the surname agrees and the forename does not.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "FULLERTON ALEXANDER",
+      "b": "4 residents named Fullerton",
+      "rule": "FULLERTON ALEXANDER is refused against 4 residents named Fullerton: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -744,40 +719,48 @@
     },
     {
       "a": "GOODRICH CHAUNCEY",
-      "b": "0 residents named Goodrich",
-      "rule": "GOODRICH CHAUNCEY is refused against 0 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Goodrich",
+      "rule": "GOODRICH CHAUNCEY is refused against 3 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "GOODRICH EBENEZER",
-      "b": "0 residents named Goodrich",
-      "rule": "GOODRICH EBENEZER is refused against 0 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Goodrich",
+      "rule": "GOODRICH EBENEZER is refused against 3 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "HADDOCK E H",
+      "b": "5 residents named Haddock",
+      "rule": "HADDOCK E H is refused against 5 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "HADDOCK EDWARD H",
+      "b": "5 residents named Haddock",
+      "rule": "HADDOCK EDWARD H is refused against 5 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "HALE EBENEZER",
-      "b": "0 residents named Hale",
-      "rule": "HALE EBENEZER is refused against 0 residents named Hale: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "HALE JOHN",
-      "b": "0 residents named Hale",
-      "rule": "HALE JOHN is refused against 0 residents named Hale: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "John Hale",
+      "rule": "HALE EBENEZER is refused against John Hale: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BROWN WILLIAM H",
-      "b": "3 residents named Brown",
-      "rule": "BROWN WILLIAM H is refused against 3 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "7 residents named Brown",
+      "rule": "BROWN WILLIAM H is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -800,8 +783,8 @@
     },
     {
       "a": "KING MARSHALL",
-      "b": "Byram King",
-      "rule": "KING MARSHALL is refused against Byram King: the surname agrees and the forename does not.",
+      "b": "8 residents named King",
+      "rule": "KING MARSHALL is refused against 8 residents named King: the rule needs exactly one person of the surname in the residents layer, and there are 8.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -896,8 +879,8 @@
     },
     {
       "a": "BENNETT WILLIAM",
-      "b": "H. C. Bennett",
-      "rule": "BENNETT WILLIAM is refused against H. C. Bennett: the surname agrees and the forename does not.",
+      "b": "3 residents named Bennett",
+      "rule": "BENNETT WILLIAM is refused against 3 residents named Bennett: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -912,24 +895,24 @@
     },
     {
       "a": "DAVIS LEVI",
-      "b": "2 residents named Davis",
-      "rule": "DAVIS LEVI is refused against 2 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "4 residents named Davis",
+      "rule": "DAVIS LEVI is refused against 4 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "DAVIS URSTLY",
-      "b": "2 residents named Davis",
-      "rule": "DAVIS URSTLY is refused against 2 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "4 residents named Davis",
+      "rule": "DAVIS URSTLY is refused against 4 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "DAVIS WESLEY",
-      "b": "2 residents named Davis",
-      "rule": "DAVIS WESLEY is refused against 2 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "4 residents named Davis",
+      "rule": "DAVIS WESLEY is refused against 4 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -943,33 +926,25 @@
       ]
     },
     {
-      "a": "LUDBY JOHN",
-      "b": "0 residents named Ludby",
-      "rule": "LUDBY JOHN is refused against 0 residents named Ludby: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "WELCH JOHN",
-      "b": "0 residents named Welch",
-      "rule": "WELCH JOHN is refused against 0 residents named Welch: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Michael P Welch",
+      "rule": "WELCH JOHN is refused against Michael P Welch: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "HARMON ELIJAH D",
-      "b": "3 residents named Harmon",
-      "rule": "HARMON ELIJAH D is refused against 3 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "6 residents named Harmon",
+      "rule": "HARMON ELIJAH D is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "HARRINGTON JAMES JR",
-      "b": "0 residents named Harrington",
-      "rule": "HARRINGTON JAMES JR is refused against 0 residents named Harrington: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "C Harrington",
+      "rule": "HARRINGTON JAMES JR is refused against C Harrington: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1048,24 +1023,24 @@
     },
     {
       "a": "ROBERTS CHARLES",
-      "b": "0 residents named Roberts",
-      "rule": "ROBERTS CHARLES is refused against 0 residents named Roberts: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Edmund Roberts",
+      "rule": "ROBERTS CHARLES is refused against Edmund Roberts: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "ROSS JOHN",
-      "b": "0 residents named Ross",
-      "rule": "ROSS JOHN is refused against 0 residents named Ross: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Niles Ross",
+      "rule": "ROSS JOHN is refused against Niles Ross: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "TAYLOR WILLIAM",
-      "b": "3 residents named Taylor",
-      "rule": "TAYLOR WILLIAM is refused against 3 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "9 residents named Taylor",
+      "rule": "TAYLOR WILLIAM is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1080,8 +1055,8 @@
     },
     {
       "a": "BEAUBIEN J B",
-      "b": "4 residents named Beaubien",
-      "rule": "BEAUBIEN J B is refused against 4 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
+      "b": "12 residents named Beaubien",
+      "rule": "BEAUBIEN J B is refused against 12 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 12.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1120,8 +1095,8 @@
     },
     {
       "a": "BURTON RAGAN",
-      "b": "0 residents named Burton",
-      "rule": "BURTON RAGAN is refused against 0 residents named Burton: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Burton",
+      "rule": "BURTON RAGAN is refused against 2 residents named Burton: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1136,24 +1111,24 @@
     },
     {
       "a": "MONTGOMERY JOHN",
-      "b": "0 residents named Montgomery",
-      "rule": "MONTGOMERY JOHN is refused against 0 residents named Montgomery: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Montgomery",
+      "rule": "MONTGOMERY JOHN is refused against 2 residents named Montgomery: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "WELCH PATRICK",
-      "b": "0 residents named Welch",
-      "rule": "WELCH PATRICK is refused against 0 residents named Welch: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Michael P Welch",
+      "rule": "WELCH PATRICK is refused against Michael P Welch: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "WENTWORTH ZEBIAH W",
-      "b": "0 residents named Wentworth",
-      "rule": "WENTWORTH ZEBIAH W is refused against 0 residents named Wentworth: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "2 residents named Wentworth",
+      "rule": "WENTWORTH ZEBIAH W is refused against 2 residents named Wentworth: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1192,32 +1167,40 @@
     },
     {
       "a": "GRANT ZACHARIAH",
-      "b": "James Grant",
-      "rule": "GRANT ZACHARIAH is refused against James Grant: the surname agrees and the forename does not.",
+      "b": "2 residents named Grant",
+      "rule": "GRANT ZACHARIAH is refused against 2 residents named Grant: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "HEACOCK RUSSEL E",
+      "b": "2 residents named Heacock",
+      "rule": "HEACOCK RUSSEL E is refused against 2 residents named Heacock: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "HEACOCK RUSSELL E",
-      "b": "Russel E. Heacock",
-      "rule": "HEACOCK RUSSELL E is refused against Russel E. Heacock: the surname agrees and the forename does not.",
+      "b": "2 residents named Heacock",
+      "rule": "HEACOCK RUSSELL E is refused against 2 residents named Heacock: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "KIMBERLY EDMUND S",
-      "b": "Dr Edmund Stoughton Kimberly",
-      "rule": "KIMBERLY EDMUND S is refused against Dr Edmund Stoughton Kimberly: the surname agrees and the forename does not.",
+      "b": "6 residents named Kimberly",
+      "rule": "KIMBERLY EDMUND S is refused against 6 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "ELLIS SAMUEL",
-      "b": "0 residents named Ellis",
-      "rule": "ELLIS SAMUEL is refused against 0 residents named Ellis: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "J Ellis",
+      "rule": "ELLIS SAMUEL is refused against J Ellis: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1232,8 +1215,8 @@
     },
     {
       "a": "KING ANDREW",
-      "b": "Byram King",
-      "rule": "KING ANDREW is refused against Byram King: the surname agrees and the forename does not.",
+      "b": "8 residents named King",
+      "rule": "KING ANDREW is refused against 8 residents named King: the rule needs exactly one person of the surname in the residents layer, and there are 8.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1248,24 +1231,24 @@
     },
     {
       "a": "SMITH J",
-      "b": "Elded Smith",
-      "rule": "SMITH J is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH J is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEBUTHOM",
-      "b": "Elded Smith",
-      "rule": "SMITH JEBUTHOM is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH JEBUTHOM is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEREMIAH",
-      "b": "Elded Smith",
-      "rule": "SMITH JEREMIAH is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH JEREMIAH is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1288,8 +1271,8 @@
     },
     {
       "a": "CAMPBELL STEPHEN",
-      "b": "0 residents named Campbell",
-      "rule": "CAMPBELL STEPHEN is refused against 0 residents named Campbell: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "James B Campbell",
+      "rule": "CAMPBELL STEPHEN is refused against James B Campbell: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1328,8 +1311,8 @@
     },
     {
       "a": "SMITH GEORGE",
-      "b": "Elded Smith",
-      "rule": "SMITH GEORGE is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "11 residents named Smith",
+      "rule": "SMITH GEORGE is refused against 11 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1360,16 +1343,16 @@
     },
     {
       "a": "NOBLE MARK",
-      "b": "0 residents named Noble",
-      "rule": "NOBLE MARK is refused against 0 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "4 residents named Noble",
+      "rule": "NOBLE MARK is refused against 4 residents named Noble: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "OGDEN JOHN",
-      "b": "0 residents named Ogden",
-      "rule": "OGDEN JOHN is refused against 0 residents named Ogden: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "W B Ogden",
+      "rule": "OGDEN JOHN is refused against W B Ogden: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1392,8 +1375,8 @@
     },
     {
       "a": "ANDREWS WILLAIM",
-      "b": "Davi Andrews",
-      "rule": "ANDREWS WILLAIM is refused against Davi Andrews: the surname agrees and the forename does not.",
+      "b": "4 residents named Andrews",
+      "rule": "ANDREWS WILLAIM is refused against 4 residents named Andrews: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1407,41 +1390,33 @@
       ]
     },
     {
-      "a": "PRICE JEREMIAH",
-      "b": "0 residents named Price",
-      "rule": "PRICE JEREMIAH is refused against 0 residents named Price: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "TAYLOR SOLOMON",
-      "b": "3 residents named Taylor",
-      "rule": "TAYLOR SOLOMON is refused against 3 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "9 residents named Taylor",
+      "rule": "TAYLOR SOLOMON is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "WRIGHT TRUMAN G",
-      "b": "2 residents named Wright",
-      "rule": "WRIGHT TRUMAN G is refused against 2 residents named Wright: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "6 residents named Wright",
+      "rule": "WRIGHT TRUMAN G is refused against 6 residents named Wright: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "ANDREWS WILLIAM",
-      "b": "Davi Andrews",
-      "rule": "ANDREWS WILLIAM is refused against Davi Andrews: the surname agrees and the forename does not.",
+      "b": "4 residents named Andrews",
+      "rule": "ANDREWS WILLIAM is refused against 4 residents named Andrews: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BUTTERFIELD JUSTIN",
-      "b": "Ben Butterfield",
-      "rule": "BUTTERFIELD JUSTIN is refused against Ben Butterfield: the surname agrees and the forename does not.",
+      "b": "2 residents named Butterfield",
+      "rule": "BUTTERFIELD JUSTIN is refused against 2 residents named Butterfield: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1456,8 +1431,8 @@
     },
     {
       "a": "RUSSELL JACOB",
-      "b": "0 residents named Russell",
-      "rule": "RUSSELL JACOB is refused against 0 residents named Russell: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Russell",
+      "rule": "RUSSELL JACOB is refused against 3 residents named Russell: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1488,16 +1463,16 @@
     },
     {
       "a": "REED THOMAS",
-      "b": "J. W. Reed",
-      "rule": "REED THOMAS is refused against J. W. Reed: the surname agrees and the forename does not.",
+      "b": "5 residents named Reed",
+      "rule": "REED THOMAS is refused against 5 residents named Reed: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "TUCKER ALEXANDER H",
-      "b": "Alexr. H. Tucker",
-      "rule": "TUCKER ALEXANDER H is refused against Alexr. H. Tucker: the surname agrees and the forename does not.",
+      "b": "2 residents named Tucker",
+      "rule": "TUCKER ALEXANDER H is refused against 2 residents named Tucker: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1512,16 +1487,16 @@
     },
     {
       "a": "BUTTERFIELD JENNY",
-      "b": "Ben Butterfield",
-      "rule": "BUTTERFIELD JENNY is refused against Ben Butterfield: the surname agrees and the forename does not.",
+      "b": "2 residents named Butterfield",
+      "rule": "BUTTERFIELD JENNY is refused against 2 residents named Butterfield: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "TAYLOR EDMUND D",
-      "b": "3 residents named Taylor",
-      "rule": "TAYLOR EDMUND D is refused against 3 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "9 residents named Taylor",
+      "rule": "TAYLOR EDMUND D is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1535,25 +1510,33 @@
       ]
     },
     {
+      "a": "BURDICK PAUL",
+      "b": "2 residents named Burdick",
+      "rule": "BURDICK PAUL is refused against 2 residents named Burdick: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
       "a": "BURDICK WM W",
-      "b": "Paul Burdick",
-      "rule": "BURDICK WM W is refused against Paul Burdick: the surname agrees and the forename does not.",
+      "b": "2 residents named Burdick",
+      "rule": "BURDICK WM W is refused against 2 residents named Burdick: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "DAVIS GEORGE",
-      "b": "2 residents named Davis",
-      "rule": "DAVIS GEORGE is refused against 2 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "4 residents named Davis",
+      "rule": "DAVIS GEORGE is refused against 4 residents named Davis: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "LAFROMBOIS GLADE",
-      "b": "0 residents named Lafrombois",
-      "rule": "LAFROMBOIS GLADE is refused against 0 residents named Lafrombois: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Joseph Lafrombois",
+      "rule": "LAFROMBOIS GLADE is refused against Joseph Lafrombois: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1562,6 +1545,14 @@
       "a": "ROBB DANIEL",
       "b": "0 residents named Robb",
       "rule": "ROBB DANIEL is refused against 0 residents named Robb: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "SWEET ALANSON",
+      "b": "3 residents named Sweet",
+      "rule": "SWEET ALANSON is refused against 3 residents named Sweet: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1584,8 +1575,8 @@
     },
     {
       "a": "GOODRICH GRANT",
-      "b": "0 residents named Goodrich",
-      "rule": "GOODRICH GRANT is refused against 0 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "3 residents named Goodrich",
+      "rule": "GOODRICH GRANT is refused against 3 residents named Goodrich: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1600,16 +1591,16 @@
     },
     {
       "a": "ROBINSON ROBERT",
-      "b": "Catherine Chevalier Robinson",
-      "rule": "ROBINSON ROBERT is refused against Catherine Chevalier Robinson: the surname agrees and the forename does not.",
+      "b": "3 residents named Robinson",
+      "rule": "ROBINSON ROBERT is refused against 3 residents named Robinson: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "TAYLOR ANSON H",
-      "b": "3 residents named Taylor",
-      "rule": "TAYLOR ANSON H is refused against 3 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "9 residents named Taylor",
+      "rule": "TAYLOR ANSON H is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
       "evidence": [
         "data/residents/index.json"
       ]

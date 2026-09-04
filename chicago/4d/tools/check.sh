@@ -54,6 +54,32 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
+# ours' order, theirs' closes and theirs' new tickets — because a text merge of
+# a re-ranked queue against a branch that closed tickets conflicts on every hunk,
+# and `union` would hand back both orderings with every ticket twice. Landing one
+# re-rank on 2026-09-04 cost four merges of dev and four hand reconciliations.
+step "the QUEUE.md merge driver still does what .gitattributes promises" \
+  node tools/merge-queue-selftest.mjs
+
+# THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
+# is seven repairs long, five of them in one day when `union` spliced one entry
+# into another and left valid JavaScript nobody noticed. The driver never works
+# below entry granularity, and REFUSES if both sides edited one shipped entry.
+step "the changelog merge driver still does what .gitattributes promises" \
+  node tools/merge-changelog-selftest.mjs
+
+# ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
+# say what `queue` runs — git keeps a driver command out of tracked content on
+# purpose. So each clone registers it once, and a clone that has not is NOT
+# broken: git falls back to the ordinary text merge, which is what this repo did
+# before the driver existed. Say so and move on.
+if [ -z "$(git config merge.queue.driver || true)" ] || [ -z "$(git config merge.changelog.driver || true)" ]; then
+  printf '\033[33m   note: this clone has not registered the custom merge drivers.\033[0m\n'
+  printf '\033[33m         QUEUE.md and changelog.js will conflict the old way until you run:\033[0m\n'
+  printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
+fi
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -777,6 +803,39 @@ step "the ways the fort plates draw are still the ways the town was built to" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_fort_ways_plate.py --self-test
 
+# T-0617. The same rule, applied to the owner's four Sauganash views: a row of
+# docs/RESEARCH/sauganash_image_accuracy.md states a measurement, names the tool
+# that made it, and prints the number. This gates on the four claims the note
+# rests on — five bays over five with the door in the middle, and an annex whose
+# courses are coarser than the block's siding — and on drift in the banked
+# reading, which is how a detector edit that quietly moves a number gets caught.
+step "Braunhold's Sauganash still says what the research note says it says" \
+  python3 tools/measure_sauganash_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_sauganash_plate.py --self-test
+
+# T-0649. The fifth image the owner deposited beside those four, read against the
+# 1838 harbour-light plate. The reading's whole point is a NEGATIVE — the sheet is
+# composed rather than constructed, so nothing on it can be inverted to a station —
+# and a negative is exactly the kind of finding that rots in silence. This gates on
+# the ten claims docs/RESEARCH/chappel_shore_lighthouse.md rests on, and on drift in
+# the banked reading of both sheets.
+step "the Chappel shore drawing still refuses to place its own station" \
+  python3 tools/measure_chappel_shore_lighthouse.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_chappel_shore_lighthouse.py --self-test
+
+# T-0626. The plan the record now carries rests on ONE arithmetic result taken off
+# that banked reading: both lines out of the drawn apex are world-horizontals, so
+# they are two RIDGES meeting at a point, and two ridges of one wall height and one
+# pitch meet only when they span the same width. That is what forces the cross
+# wing's span in generators/archetypes/frame_tavern.py, so it is gated rather than
+# quoted — if the finding ever flips, the record's derivation is stale.
+step "both lines out of the Sauganash's drawn apex are still ridges, not rakes" \
+  python3 tools/sauganash_apex_lines.py --gate --quiet
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
@@ -1156,6 +1215,28 @@ step "the letter-list cohort is what the owner's ruling permits" \
 step "…and that gate's own assertions still fire when broken" \
   python3 tools/mint_letter_list_residents.py --self-test
 
+# And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
+# owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
+# into a proposal; nothing in that proposal had ever been written onto a card, and only 37
+# of the 85 men on the 1835 poll list had even a surname in the residents layer. This pass
+# writes the people the ladder reaches out of the civic lists, the parish register, the
+# contemporary papers, the printed directories and the 1840 census — everything except the
+# post office's letter lists, which the pass above owns and whose pool refusal 5 keeps this
+# one out of. Gated three ways because the failure modes are all silent: a derivation that
+# stopped re-deriving would let a hand-edit stand as a reading, a refusal that stopped
+# firing would mint a Potawatomi enrollee of 1832 as an 1835 householder with an invented
+# surname order, and a gate that stopped looking would let one of these 532 quietly gain a
+# roof, a trade or a family that no source gives it. `--report` prints all 6,148 refusals
+# with their reasons; docs/LIBERTIES.md L218 carries the scale.
+step "the civic, church, press and book residents re-derive from the ladder" \
+  python3 tools/mint_civic_residents.py --check
+
+step "…and none of them claims more than a person and a reading" \
+  python3 tools/mint_civic_residents.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/mint_civic_residents.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
@@ -1247,8 +1328,46 @@ step "Norris's 1844 directory entries re-derive from the committed page text" \
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
-step "…and the 1844 findings the cards show re-derive from that crosswalk" \
-  python3 tools/spend_norris_1844.py --check
+# T-0632. And the pass that spends ALL FOUR directory crosswalks — Fergus 1839, Fergus
+# 1843, Norris 1844 and Norris's advertising cards — onto the town: the layer the panel
+# renders, the ledger that records what each volume was allowed to carry to a card and
+# what it was refused, and the `directories` block on the household records those
+# rulings name. It replaces the 1844-only pass. Gated byte for byte in all three places,
+# because the failure it guards is the one this whole ticket was filed for: a trade or a
+# street from 1844 quietly becoming a fact of 1835.
+step "…and all four directories' findings re-derive onto the cards they reach" \
+  python3 tools/spend_directories.py --check
+
+step "…and that pass's four carry rules hold over everything it derives" \
+  python3 tools/spend_directories.py --self-test
+
+# T-0633. And what is DONE with the 87 later addresses that pass leaves on the record:
+# the fourth address grammar, docs/ADDRESS-BACK-PROJECTION.md, which reads a street
+# printed four to nine years after the scene backwards and carries it as the business's
+# street FACE. All 87 are adjudicated and the refusals are committed beside the
+# placements, so the gate re-derives the whole ledger and every `back_projection` block
+# byte for byte. The failure it guards is the same one, one step further on: a face read
+# back out of an 1844 directory quietly becoming a position of 1835, or — worse, because
+# nothing else would catch it — a refusal disappearing from the record and reading to the
+# next run as an address nobody had looked at.
+step "…and the later addresses re-derive through the back-projection clauses" \
+  python3 tools/back_project_addresses.py --check
+
+step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
+  python3 tools/back_project_addresses.py --self-test
+
+# T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
+# four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
+# the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
+# had put a source on the record it named. This pass writes them. It is gated in the same
+# two directions as the directories pass because the failures are the same two: a ruling
+# that stops reaching its card, and a card that carries the paragraph for a ruling the
+# crosswalk never made.
+step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
+  python3 tools/spend_civic_voter_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_civic_voter_lists.py --self-test
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
@@ -1279,6 +1398,22 @@ step "the land tract sales re-derive from their committed deposit" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
+
+# T-0609. The register describes a tract; the structures carry a footprint; the join
+# between them is a CONSTRUCTION, not a trace — the PLSS grid is carried from the single
+# committed corner at State & Madison on the plat's own bearing (L219). Two things can go
+# wrong silently and both are held here. A hand-edited `land_owner` block would be a
+# statement about who owned ground that no longer follows from the register, and a
+# structure that MOVES would keep an owner it no longer stands under; --check re-derives
+# every block from the entries and the committed positions and refuses either. The
+# self-test holds the grid itself: that the four sections still meet at G1, that a
+# quarter still measures 160 acres, that a void entry confers nothing, and that the 150
+# school-section rows still refuse for the plat this repo does not hold.
+step "the land tracts still resolve to the same ground, and the same roofs stand on them" \
+  python3 tools/resolve_land_tracts.py --check
+
+step "…and the section grid's own assertions still fire when broken" \
+  python3 tools/resolve_land_tracts.py --self-test
 
 # T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
 # can reach, and its two halves are segmented by two different rules — the shouted head of
@@ -1311,6 +1446,46 @@ step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
 
 step "…and the 1839 street face compiled off it rebuilds too" \
   python3 tools/fergus_1839_street_faces.py --check
+
+# T-0664. The next seven pages of the same volume, printed 40-46: the charter election of
+# 2 May 1837 and its list of voters for mayor. A poll list is the easiest source in this
+# repository to lose a column of — the page is set in four columns, the OCR does not read
+# them in printed order, and a segmenter that drops one loses forty men without changing
+# any other number here. So the reading is rebuilt from the committed text AND held to the
+# per-leaf counts coverage.json declares, which is the guard T-0571 put on the 1843
+# directory for the same reason. The crosswalk is rebuilt the same way: it is a proposal
+# that changes no resident record, and a hand-edit of a proposal is how one becomes a fact
+# nobody decided.
+step "the 1837 charter election rebuilds from its committed text, at the declared counts" \
+  python3 tools/read_fergus_1839_election.py --check
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_election.py --check
+
+# T-0665. The two leaves BETWEEN the directory and the poll, printed 38-39: the city
+# register of 1839 and the printed tables of mayors and sheriffs. Three things need
+# holding here that the poll pages did not need. The SEGMENTING, because the register
+# sets all six wards of an office in one semicolon-separated run wrapped over three
+# printed lines and breaks a surname across a line end, so a rule that loses a ward
+# loses a man and changes no other number in this repository — the per-leaf counts
+# coverage.json declares are the second opinion. The YEAR COLUMN, because seven of its
+# rows are OCR damage repaired from an explicit map, and a year quietly guessed would
+# move a man's office by a term; the tables' own ascending order is what checks the
+# repairs, and the ex-officio coroners are held to the gap they are printed in. And the
+# DERIVATIONS, because the only two statements these pages make about 1 July 1835 are
+# not printed on them — who the sheriff was, and that the town had no mayor at all —
+# and a derivation that lost its refusal would be this project's inference wearing a
+# citation. The crosswalk is rebuilt the same way, for the reason the poll's is: it is
+# a proposal that changes no resident record, and a hand-edited proposal is how one
+# becomes a fact nobody decided.
+step "the 1839 city register and the mayor and sheriff tables rebuild from their committed text" \
+  python3 tools/read_fergus_1839_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_fergus_1839_register.py --self-test
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_register.py --check
 
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
@@ -1543,6 +1718,19 @@ step "…and its own assertions still fire when broken" \
 # and no row graded above what its rung of the ratified ladder allows.
 step "the cross-domain identity master re-derives, and no grade stands above its rung" \
   python3 tools/consolidate_resident_evidence.py --check
+
+# T-0638 fault C. The two READING RULES that ticket fixed are mechanical and were
+# applied; the dozen names whose LETTERS look wrong are not, and this project does not
+# invent readings. So they are written down instead — the printing, the column it was
+# printed in, and a suspicion that is graded nothing and acted on nowhere. Gated
+# because a worklist is only worth anything while it still cites the corpus it came
+# from, and because the one way this file could do harm is by quietly acquiring a
+# grade and becoming evidence for a name nobody ever read.
+step "the letter lists' suspected misreadings stay a worklist and not evidence" \
+  python3 tools/register_letter_list_suspicions.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/register_letter_list_suspicions.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test

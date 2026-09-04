@@ -5,7 +5,8 @@
   "volumes": [
     1,
     2,
-    3
+    3,
+    4
   ],
   "works": [
     {
@@ -13,9 +14,9 @@
       "title": "History of Chicago, from the earliest period to the present time",
       "author": "A. T. Andreas",
       "date": "1884-1886",
-      "cards": 1109,
-      "chicago_or_cook_cards": 895,
-      "cards_on_a_lead_surname": 207,
+      "cards": 1127,
+      "chicago_or_cook_cards": 898,
+      "cards_on_a_lead_surname": 210,
       "chicago_or_cook_cards_on_a_lead_surname": 157,
       "surnames_on_a_lead_in_chicago_or_cook": [
         "allan",
@@ -172,8 +173,8 @@
       "title": "History of Chicago, Illinois",
       "author": "John Moses and Joseph Kirkland",
       "date": "1895",
-      "cards": 296,
-      "chicago_or_cook_cards": 192,
+      "cards": 299,
+      "chicago_or_cook_cards": 193,
       "cards_on_a_lead_surname": 68,
       "chicago_or_cook_cards_on_a_lead_surname": 50,
       "surnames_on_a_lead_in_chicago_or_cook": [
@@ -235,7 +236,7 @@
       "title": "Illinois, historical and statistical",
       "author": "John Moses",
       "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
-      "cards": 416,
+      "cards": 418,
       "chicago_or_cook_cards": 169,
       "cards_on_a_lead_surname": 97,
       "chicago_or_cook_cards_on_a_lead_surname": 40,
@@ -343,7 +344,7 @@
       "title": "The pioneer history of Illinois",
       "author": "John Reynolds",
       "date": "1887",
-      "cards": 46,
+      "cards": 47,
       "chicago_or_cook_cards": 1,
       "cards_on_a_lead_surname": 16,
       "chicago_or_cook_cards_on_a_lead_surname": 1,
@@ -358,7 +359,7 @@
       "title": "County histories published by H. F. Kett & Co. and its successors",
       "author": "H. F. Kett & Co.",
       "date": "1877-1880",
-      "cards": 708,
+      "cards": 711,
       "chicago_or_cook_cards": 2,
       "cards_on_a_lead_surname": 117,
       "chicago_or_cook_cards_on_a_lead_surname": 0,
@@ -384,7 +385,7 @@
       "title": "Illinois Society, Sons of the American Revolution — year book",
       "author": "Illinois Society, S.A.R.",
       "date": "1896",
-      "cards": 154,
+      "cards": 156,
       "chicago_or_cook_cards": 0,
       "cards_on_a_lead_surname": 32,
       "chicago_or_cook_cards_on_a_lead_surname": 0,
@@ -406,8 +407,8 @@
       "reachable": "not yet located — search the Internet Archive and HathiTrust"
     }
   ],
-  "cards": 6697,
-  "cards_matching_no_known_work": 3895,
-  "chicago_or_cook_cards_matching_no_known_work": 369,
+  "cards": 7005,
+  "cards_matching_no_known_work": 4175,
+  "chicago_or_cook_cards_matching_no_known_work": 375,
   "note": "A card whose citation matches no pattern in WORKS is counted here and kept in the records; it is the queue of works nobody has named yet. Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, Baldwin, Murray Williamson, Power — which are Illinois and are not Chicago, and which is why the ranking is on the Chicago and Cook County cards."
 }

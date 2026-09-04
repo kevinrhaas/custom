@@ -78,13 +78,18 @@ drawn on one volume is not a measurement of another.
 | 1 (A-C) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 | 2 (C-H) | 40 | 35 | **0.875** | 20/20 | 15/20 |
 | 3 (H-P) | 40 | 36 | **0.900** | 20/20 | 16/20 |
+| 4 (P-Z) | 40 | 19 | **0.475** | 9/10 | 10/30 |
 
-**The Chicago and Cook stratum has not missed yet** — 60 of 60 across three volumes —
-and every bad keep in any draw is in the Illinois-only stratum. That matters because
-the Chicago and Cook County cards are the ones `follow_up.json` ranks the reading order
-on. The draws are stratified 20/20 and the volumes are not, so weighted by the
-population volume 2's estimate is 0.813 and volume 3's is 0.849; the figures in the
-table are the ones comparable with each other.
+**The Chicago and Cook stratum held for three volumes and then missed once** — 69 of 70
+across four — and all but one bad keep in any draw is in the Illinois-only stratum. That
+matters because the Chicago and Cook County cards are the ones `follow_up.json` ranks the
+reading order on. Volumes 1-3 are stratified 20/20 and the volumes are not, so weighted by
+the population volume 2's estimate is 0.813 and volume 3's is 0.849; the figures in the
+table are the ones comparable with each other. **Volume 4's row is not comparable with the
+other three and must not be read as if it were**: that volume holds only ten Chicago-or-Cook
+cards in all, so its first stratum is a census of them rather than a draw of twenty, and its
+second was drawn to thirty. Read its two stratum figures, not its flat one — and read the
+section on the volume below before spending anything it produced.
 
 Volume 1's one bad keep is `nbi_v01_2226`, whose entire line is `I II.`: three strokes
 and a stop is the shape of the abbreviation and on that card it is the only thing there.
@@ -157,9 +162,9 @@ heading verbatim.
 
 **Citations are clustered, and more than half of them are not.** The works table in the
 tool matches a citation by pattern or by similarity to one canonical spelling. It reaches
-2,802 of the 6,697 cards read so far. The 3,895 it does not reach are overwhelmingly Illinois
+2,830 of the 7,005 cards read so far. The 4,175 it does not reach are overwhelmingly Illinois
 COUNTY histories — Chapman, LeBaron, Brink & McDonough, Baldwin, Murray Williamson,
-Power — published by houses nobody has written a pattern for, and only **369** of them
+Power — published by houses nobody has written a pattern for, and only **375** of them
 name Chicago or Cook County. That residue is the weakest part of this reading and it is
 counted rather than hidden: `follow_up.json` reports it in
 `chicago_or_cook_cards_matching_no_known_work`.
@@ -224,59 +229,180 @@ not: `nbi_v03_1030`, 'Nicholson family. — Chicago, Ill., Directory, 1839. (Fer
 ser. 1876. no. 2.)', which turned up in the forty-card draw and points at the work
 T-0506 is extracting.
 
-## The reading order, over volumes 1 to 3
+## Volume 4 (P-Z), read 2026-09-03 under T-0580
+
+918 pages cropped and walked · **6,548 cards** assembled · **308 kept** for naming
+Chicago, Cook County or Illinois · of those **10 name Chicago or Cook County** ·
+258 distinct surname keys · **55 leads** across four layers (residents 28, census
+1840 12, voters 11, structures 4) · **0 merges**.
+
+**Read those numbers against the other three volumes before using anything in them.**
+
+| volume | pages | cards assembled | per page | kept | Chicago/Cook | precision |
+|---|---|---|---|---|---|---|
+| 1 (A-C) | 987 | 58,488 | 59 | 2,579 | 581 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,987 | 501 | 0.875 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 2,131 | 520 | 0.900 |
+| **4 (P-Z)** | **918** | **6,548** | **7** | **308** | **10** | **0.475** |
+
+A rendered page of this volume carries about a hundred cards, so volumes 1-3 assemble
+roughly 60 per cent of what is printed and volume 4 assembles seven. **The cause is the
+deposited file, not this project's reading**, and both halves of that were tested rather
+than asserted:
+
+- **The text layer is a different and much worse scan.** The card that prints `Stoddard
+  family.` comes back as `s:'o'ddnrdmany.`, `Btoddaxd family.`, `seoddu-d luuy.` and
+  `'I "odd."`; the heading rule needs the family word as a token of its own and gets it
+  perhaps one time in six. Volume 4 is also the one file in the Internet Archive item
+  without the Newberry's scan id — `130151_04.pdf` beside `FL2091539_CP-130151_01.pdf`
+  and its two fellows — so a different digitisation is the likely reason.
+- **The crop geometry was measured and ruled out.** Every word box on sixty pages puts
+  this volume's gutters at 192, 348 and 508 points, and the shared 200-point windows on a
+  173-point pitch contain each column whole. Boxes cut to the measured gutters moved
+  heading detection from 576 to 616 over the same 61 pages — 7 per cent, against an
+  eight-fold shortfall. The shared boxes were therefore **kept**, and this volume is read
+  by exactly the method volumes 1-3 were, which is what makes the table above mean
+  anything.
+
+The forty-card draw says the same thing from the other end. Chicago-and-Cook scores
+**0.900** — one bad keep in ten, the column sliver, which is volume 2's and volume 3's
+number — and Illinois-only scores **0.333**. Six classes of bad keep, five of them already
+named in this file (the column sliver, `See Index III.`, the state banner, a bare body of
+mush, and a call number or stray mark read as the abbreviation) and one new: **a page
+number**. `nbi_v04_0183` is 'Woodruff fam. (Woodruff, F.E.) 1902:117' and the `117` came
+back as `111,`; the anchor the pattern carries does not catch it, because the OCR supplies
+the comma in front of the strokes.
+
+And the ten Chicago cards are themselves a floor. Three of the ten good keeps in the
+Illinois-only stratum are Chicago cards the `chicago` pattern missed — `Chicngo`, `Gkgo`,
+`Chh:|go` — none of which it will take, because it wants i, l or 1 in the second and third
+places. Three in thirty sampled, over 298 Illinois-only cards, puts the true figure nearer
+thirty than ten. The pattern is not widened to chase them: at this text quality a wider one
+would take page numbers with them.
+
+**T-0613 carries the repair, and it is demonstrated rather than hoped for.** `tesseract` on
+a 300 dpi render of page 300 returns `Stoddard family.` card after card where the text layer
+returns mush. It costs about 8.5 s a page to render and 6.3 s a page to read — some 3.8
+hours for 918 pages — which is more than one run's foreground budget, and is why this
+ticket read the volume as deposited and measured what that is worth instead of quietly
+shipping a thin reading as a whole one. Until T-0613 lands, **volume 4's cards are not worth
+what volumes 1-3's are**, and `coverage.json` says so on its declaration.
+
+### The reader that repair needs, built and measured under T-0618
+
+T-0613 has been split, and its first piece is done: the reader exists, and what it
+recovers is now a measured number rather than a demonstration on one page.
+`text/vol_04_probe.json` is that measurement, written by
+`--probe --volume 4 --pdf <path>` so it can be re-run and disagreed with. Eight pages
+spread through the volume — 100, 200, … 800 — read BOTH ways:
+
+| | text layer | OCR |
+|---|---|---|
+| cards assembled | 36 | **278** (7.7×) |
+| locality cards kept | 0 | **4** |
+| characters emitted | ~59,000 a page | ~12,000 a page |
+
+The character counts are the telling part and they confirm what the section above
+diagnosed from the other end. The text layer is not short of characters; it has five
+times as many and finds eight times fewer cards. They are in the wrong places.
+
+    python3 tools/read_newberry_index.py --extract --ocr --volume 4 --pdf <path> --pages 1-110
+    …one command per range, until every page is covered…
+    python3 tools/read_newberry_index.py --extract --ocr --volume 4 --pdf <path>
+    python3 tools/read_newberry_index.py --parse   --volume 4
+
+Each page is rendered by `pdftoppm` and cropped into the **same four column windows** the
+pdftotext path uses — the boxes the section above measured and kept — each strip is read
+by tesseract at `--psm 6`, and the four column texts go to the same card assembly. The
+two readers differ only in where the characters come from, and the grade does not move:
+`transcription_mediated` was already the right grade for a machine reading a photostat,
+and a second machine reading it does not make it stronger.
+
+**It is resumable because it has to be.** `--pages A-B` reads a range and commits a shard
+under `text/ocr/vol_04/`; `--extract --ocr` with no range stitches every committed shard
+in page order and assembles. A shard records the engine, dpi, psm and crop boxes it was
+made with, and stitching **refuses** a set that disagrees, or a set with a gap — two
+ranges read at different settings are two readings of one volume, and a volume assembled
+over a gap is a partial read wearing a finished volume's file name. `--check` then holds
+the shards to the sha256 MANIFEST recorded for them, in both directions: named and
+missing, committed and unnamed.
+
+**The 3.8 hours the section above quotes is not what it costs.** That figure is 300 dpi,
+one page at a time. Two changes bring it to about **84 minutes**: 200 dpi, which loses
+nothing at this card size, and `OMP_THREAD_LIMIT=1`. The second is not a detail —
+tesseract parallelises a single image across the cores by itself, so four page workers on
+a four-core runner oversubscribe it three times over and the machine thrashes. Measured
+here: four workers at tesseract's default threading did not finish eight pages in ten
+minutes, and the same four workers with the limit set did four pages in 21.7 s. 5.5 s a
+page against 17.5 s sequential. Page-level parallelism only pays when the engine
+underneath it is single-threaded.
+
+Eighty-four minutes is still more than one run's foreground, which is why T-0613's
+remaining pieces cut the volume into three page bands (T-0619, T-0620, T-0621) that commit
+shards one at a time. **Volume 4's committed reading stays the 308-card text-layer one
+until all three are in** — a partial OCR read would be a third state of the volume and
+worse than either.
+
+## The reading order, over all four volumes
 
 Ranked on Chicago and Cook County cards standing on a surname this project already holds:
 
 | work | cards | Chicago/Cook | on a lead surname | held? |
 |---|---|---|---|---|
-| A. T. Andreas, *History of Chicago, from the earliest period to the present time* (1884-1886) | 1109 | 895 | 207 | yes — `andreas_1884_v1` |
-| **John Moses and Joseph Kirkland, *History of Chicago, Illinois* (1895)** | 296 | **192** | 68 | **no** |
-| John Moses, *Illinois, historical and statistical* (1888-92) | 416 | 169 | 97 | no |
+| A. T. Andreas, *History of Chicago, from the earliest period to the present time* (1884-1886) | 1127 | 898 | 210 | yes — `andreas_1884_v1` |
+| **John Moses and Joseph Kirkland, *History of Chicago, Illinois* (1895)** | 299 | **193** | 68 | **no** |
+| John Moses, *Illinois, historical and statistical* (1888-92) | 418 | 169 | 97 | no |
 | La Salle Book Co., *The biographical and portrait volumes of Cook County* (1900, 1909) | 179 | 91 | 34 | no |
 | Robert Fergus, *Chicago directory for 1839* (Fergus' Historical Series, 1876) | 31 | 27 | 13 | yes — `fergus_chicago_directory_1839` |
-| John Reynolds, *The pioneer history of Illinois* (1887) | 46 | 1 | 16 | no |
-| H. F. Kett & Co., *County histories published by H. F. Kett & Co. and its successors* (1877-1880) | 708 | 2 | 117 | no |
+| John Reynolds, *The pioneer history of Illinois* (1887) | 47 | 1 | 16 | no |
+| H. F. Kett & Co., *County histories published by H. F. Kett & Co. and its successors* (1877-1880) | 711 | 2 | 117 | no |
 | Henry H. Hurlbut, *Chicago antiquities* (1881) | 2 | 2 | 0 | no |
-| Illinois Society, S.A.R., *Sons of the American Revolution year book* (1896) | 154 | 0 | 32 | no |
+| Illinois Society, S.A.R., *Sons of the American Revolution year book* (1896) | 156 | 0 | 32 | no |
 | Century Publishing and Engraving Co., *Encyclopedia of biography of Illinois* (1892-1902) | 57 | 0 | 11 | no |
 
-**Three volumes have not changed the finding, they have tripled it.** The index's Chicago
-cards point at Andreas more than at everything else together — 895 of the 1,602 Chicago
-and Cook County cards read so far — and this project already has Andreas. The largest
-Chicago work it points at that this project does **not** hold is still Moses and
-Kirkland's *History of Chicago, Illinois* (1895): 192 Chicago and Cook County cards over
-the three volumes, up from 132 on two and 76 on one. Both volumes are on the Internet
-Archive (`historyofchicago01mose`, `historyofchicagov2mose`).
+**Four volumes have not changed the finding.** The index's Chicago cards point at Andreas
+more than at everything else together — 898 of the 1,612 Chicago and Cook County cards read
+so far — and this project already has Andreas. The largest Chicago work it points at that
+this project does **not** hold is still Moses and Kirkland's *History of Chicago, Illinois*
+(1895): 193 Chicago and Cook County cards, up from 192 on three volumes, 132 on two and 76
+on one. Both volumes are on the Internet Archive (`historyofchicago01mose`,
+`historyofchicagov2mose`).
 
-Of the 6,697 cards read, **3,895** cite a work no pattern in the table reaches, and only
-**369** of those name Chicago or Cook County. `acquisition_list.json` carries them.
+Volume 4 moved every one of those numbers by single digits, and that is the point rather
+than an anticlimax: P-Z is a quarter of the alphabet and it contributed ten Chicago-or-Cook
+cards where H-P contributed 520. The ranking above is, for now, a ranking over three
+volumes and a fragment; **T-0613**'s re-read is what will let the fourth speak.
 
-## Every lead is ruled on, over three volumes
+Of the 7,005 cards read, **4,175** cite a work no pattern in the table reaches, and only
+**375** of those name Chicago or Cook County. `acquisition_list.json` carries them.
+
+## Every lead is ruled on, over four volumes
 
 T-0590 built the ladder and ruled volume 1's 319 leads; T-0578 read volume 2 and ruled the 227 it adds;
-T-0579 read volume 3 and ruled the 191 it adds — each under the same ladder and in the same PR as its
+T-0579 read volume 3 and ruled the 191 it adds; T-0580 read volume 4 and ruled the 51 it adds — each
+under the same ladder and in the same PR as its
 read, because T-0590's gate fails the moment a volume offers a lead nobody has answered.
 `tools/rule_newberry_leads.py` reads every `entries_vol_*.json` now rather than volume 1's alone.
 
-| outcome | vol 1 (T-0590) | vols 1-2 (T-0578) | vols 1-3 (T-0579) |
-|---|---:|---:|---:|
-| leads ruled | 319 | 546 | **737** |
-| cards anchored | 542 | 947 | **1,250** |
-| candidate — `testable_in_a_held_work` | 79 | 146 | **188** |
-| refused — `ocr_variant_only` | 129 | 208 | 279 |
-| refused — `locality_absent` | 90 | 144 | 206 |
-| refused — `surname_only_chicago` | 21 | 48 | 64 |
-| **matched** | **0** | **0** | **0** |
-| discriminators found | 0 | 0 | 0 |
+| outcome | vol 1 (T-0590) | vols 1-2 (T-0578) | vols 1-3 (T-0579) | vols 1-4 (T-0580) |
+|---|---:|---:|---:|---:|
+| leads ruled | 319 | 546 | 737 | **788** |
+| cards anchored | 542 | 947 | 1,250 | **1,294** |
+| candidate — `testable_in_a_held_work` | 79 | 146 | 188 | **190** |
+| refused — `ocr_variant_only` | 129 | 208 | 279 | 292 |
+| refused — `locality_absent` | 90 | 144 | 206 | 242 |
+| refused — `surname_only_chicago` | 21 | 48 | 64 | 64 |
+| **matched** | **0** | **0** | **0** | **0** |
+| discriminators found | 0 | 0 | 0 | 0 |
 
-`matched` stays reachable and unreached: the test is run over all 1,250 cards, not assumed — every
-forename this project holds for a candidate is searched for in the card text, and three volumes have
+`matched` stays reachable and unreached: the test is run over all 1,294 cards, not assumed — every
+forename this project holds for a candidate is searched for in the card text, and four volumes have
 turned up none. The acquisition list grows from 166 Chicago and Cook cards whose citation matched no
-work, to 274 on two volumes, to **369** on three, 81 of them still carrying a year the photostat left
-legible.
+work, to 274 on two volumes, to 369 on three, to **375** on four, 81 of them still carrying a year the
+photostat left legible. Volume 4 adds 51 leads and 6 acquisition-list cards against volume 3's 191 and
+95 — the shortfall this file's volume 4 section measures, showing up on the other side of the ledger.
 
-The lead ids keep the form `lead_v01_*` / `lead_v02_*` / `lead_v03_*`, numbered by the FIRST volume the
+The lead ids keep the form `lead_v01_*` … `lead_v04_*`, numbered by the FIRST volume the
 surname appears in, because `lead_crosswalk.json` anchors its rulings to them and a surname filed in more
 than one volume must keep the id its ruling was anchored to. A merged row's `entries` carry every
 volume's cards.
@@ -318,5 +444,6 @@ the table (166 of them volume 1's), and only 60 of them still carry a publicatio
 photostat left legible. They point at books, and three of the books
 already have tickets — T-0581, T-0582, T-0583.
 
-Volume 4 is unread: T-0580. It wants its own hand-drawn precision sample — a number
-carried over from another volume is not a measurement of it.
+All four volumes are read. Volume 4 is read and its reading is poor, and the poverty is the
+source's rather than the method's — see its section above and **T-0613**, which carries the
+re-OCR that recovers the cards its text layer loses.

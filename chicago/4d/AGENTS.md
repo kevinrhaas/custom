@@ -38,7 +38,17 @@ disposable. The first rendered scene is `1835` (target date 1835-07-01).
    The fix for an unsourced ruling is to state the source or to WITHDRAW the ruling; rule 1
    still binds, and a plausible-looking citation that takes this gate green is worse than
    the missing one.
-8. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
+8. **A ruling names the units it ruled on, and a re-reading says it is one.** The
+   research-spend ratchet counts named units READ against the ones RULED ON, so both halves
+   have to be sayable. A refusal or a merge names its units by id — `record_id`,
+   `household_id`, or plain ids in `evidence[]` — because a ruling whose evidence points at a
+   prose locator ("poll_1835 line 293") counts as no adjudication at all, and
+   `measure_research_spend.py` will print it as uncounted with that reason. A file that
+   RE-reads what the domain already read — a precision sample, a second reading kept for its
+   disagreement — declares `not_a_reading: "<what it is instead>"` at the top, or measuring
+   your own work reads the meter up and the domain looks further behind for having checked
+   itself. Both are printed by the report; neither is ever a silent zero.
+9. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
 
 ## Standing constraint — 1835 and Indigenous history
 

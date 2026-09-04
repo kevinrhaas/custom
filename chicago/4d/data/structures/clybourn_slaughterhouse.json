@@ -96,6 +96,22 @@
     ],
     "note": "Andreas names Clybourne as the builder in 1827 and as the operator in the 1833 packing season, with George W. Dole packing at the same premises that year. Whether anyone was working the plant on 1835-07-01 specifically is not attested; July is the wrong end of the year for packing, which is winter work, so the honest reading of the scene date is a standing building between seasons."
   },
+  "land_owner": {
+    "value": "The ground was entered by James Kinzie, 28 September 1830",
+    "confidence": "reconstructed",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE MARGIN IS ONLY 8 m, which is inside the working horizontal uncertainty of the georeference (about 20 m) doubled, so the grade drops a tier: the tract is right if the constructed line is, and nothing here proves the line to better than that. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "E2NW of section 09, T39N R14E",
+    "entries": [
+      "ls0053"
+    ],
+    "date_purchased": "1830-09-28",
+    "type_of_sale": "canal land sale",
+    "margin_m": 7.7,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  },
   "research_note": "PLACED OUTSIDE ITS OWN SITE, ON PURPOSE, AND THE POSITION NOTE IS THE MOST IMPORTANT FIELD IN THIS RECORD. The attested site — the east or south bank of the North Branch, south of the Bloomingdale Road, opposite the later North Chicago Rolling Mills — is roughly 3 km north-north-west of the forks and about 2.8 km beyond the northern edge of the 640 m terrain box this scene models, so the building stands at the edge of modelled ground with an error of kilometres and says so. RESEARCH GAINED IN THIS SLICE, and it is more than the dossier had: docs/research/03-structures-north.md section 3.6 records the slaughterhouse as 1827, log, on the north branch, with locations 'not pinned down in reachable sources [GAP]'. A full-text search of Andreas vol. 1 closes that gap — scan p. 1149 gives the reach and the bank, scan p. 1151 gives the bank again and the 1833 throughput, and scan p. 215 puts the family several miles up the branch at the rolling-mill ground. The dossier's [GAP] tag can be retired. WHAT THIS RECORD STILL CANNOT SAY: how big the building was, how it was arranged, where the pens and the stock yard stood, or what the plant looked like in a July between packing seasons. The associated stock yard, later called Bull's Head, is not modelled at all — this archetype builds a building and the yard is an enclosure, which is the same limitation docs/LIBERTIES.md L10 records against the Western Hotel's wagon yard.",
   "review_required": true
 }

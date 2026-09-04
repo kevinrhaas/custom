@@ -115,6 +115,16 @@ GROUP_DY = 55               # px, within which two components are one number
 # count stops changing (6 and 8 px still catch rule fragments in agriculture and
 # the canals column), and it costs nothing — the entries stand mid-cell.
 RULE_CLEARANCE = 9          # px, cleared either side of a column's own rules
+RULE_COVER = 0.60           # fraction of body rows a printed rule must darken
+RULE_MERGE_PX = 12          # px, within which two candidates are one rule + its shadow
+RULE_MIN_DEPTH = 20.0       # grey levels of mean darkness a rule must carry
+# A paper crease that survives the ink mask arrives as a sliver: 1 to 10 px wide
+# and 27 to 270 px tall on 33S7-9YYJ-6H, which is 8 to 84 times as tall as it is
+# wide. No number written by this hand is anything like that shape. Measured over
+# every group both sheets put in the seven industry columns, the tallest real one
+# stands at 3.0 (a `1`, 8x24 px on 5V; 10x30 on 6H), so a floor at 4.0 sits above
+# every entry either sheet has and below every crease 6H has.
+MAX_ASPECT = 4.0            # height/width, above which a component is a crease
 
 
 def _np():
@@ -172,7 +182,8 @@ def horizontal_rules(a, x0, x1, thr=20.0):
     return best[1], best[2]
 
 
-def vertical_rules(a, y0, y1, cover=0.60):
+def vertical_rules(a, y0, y1, cover=RULE_COVER, merge=RULE_MERGE_PX,
+                   min_depth=RULE_MIN_DEPTH):
     """Vertical printed rules through the body band, as x centres.
 
     Found by CONTINUITY, not by mean darkness. A column of mean darkness picks up
@@ -182,14 +193,37 @@ def vertical_rules(a, y0, y1, cover=0.60):
     of the form. A printed rule runs the whole height of the table; a pen stroke
     does not. So a rule is an x where at least `cover` of the body's rows stand
     darker than their own local background.
+
+    Continuity alone is not sufficient on every leaf, and 33S7-9YYJ-6H is the one
+    that showed it. That exposure is paler than 5V's: at the default cover only
+    26 rules survive and the industry run has a hole in it, so `locate_columns`
+    refuses the sheet outright — and its fallback below cannot help, because that
+    fallback removes a rule and this leaf is missing one. Dropping the cover
+    recovers the run and brings two things with it that are NOT printed rules —
+
+      * a rule's own scan shadow, 7 px off it (x 1561 beside the true rule at
+        1554), and
+      * a paper crease at x 1833, in the learned-professions cell, which a crop
+        at magnification shows as a pale streak with no ink in it.
+
+    Two measured filters remove both without touching what the default already
+    found. `merge` folds candidates within that many px into one centre: a printed
+    rule is 4-6 px of solid ink and its shadow sits inside 12. `min_depth` drops a
+    candidate whose mean darkness below local background is under that many grey
+    levels: measured on this leaf the crease stands at 15.2 against 25.1 to 48.6
+    for the seven true rules of the industry run, and on 5V every true rule of that
+    run stands at 29.3 or more. Both are floors well under the weakest real rule
+    measured on either sheet, so they cut artefacts rather than evidence.
     """
     np = _np()
     Image, ImageFilter = _pil()
     sub = a[y0:y1, :]
     blur = Image.fromarray(sub.astype("uint8")).filter(ImageFilter.GaussianBlur(BACKGROUND_BLUR))
     bg = np.asarray(blur).astype("float32")
-    dark = (bg - sub) > 6.0
+    excess = bg - sub
+    dark = excess > 6.0
     frac = dark.mean(axis=0)
+    depth = excess.mean(axis=0)
     hits = np.where(frac >= cover)[0]
     if len(hits) == 0:
         raise SystemExit("no continuous vertical rule found in the body band")
@@ -208,11 +242,16 @@ def vertical_rules(a, y0, y1, cover=0.60):
         if len(g) > 40:
             continue  # the leaf's dark edge / gutter, not a rule
         w = frac[g]
-        out.append(int(round(float((np.asarray(g) * w).sum() / w.sum()))))
+        cx = int(round(float((np.asarray(g) * w).sum() / w.sum())))
+        if float(depth[max(0, cx - 2):cx + 3].max()) < min_depth:
+            continue    # a crease: continuous, but there is no ink in it
+        if out and cx - out[-1] <= merge:
+            continue    # a printed rule's own scan shadow, not a second rule
+        out.append(cx)
     return out
 
 
-def locate_columns(rules):
+def locate_columns(rules, continuity=None):
     """Name the eight single-width columns off the rule pitch.
 
     Two blocks of this form stand at a near-constant narrow pitch: the seven
@@ -226,6 +265,27 @@ def locate_columns(rules):
     industry run and nothing else. The pensioners block is NOT tested as one wide
     cell, because its own AGES rule divides it and an earlier cut of this
     function failed on 5V for assuming otherwise.
+
+    ONE FALLBACK, and it only fires when the strict test above finds nothing, so
+    no sheet that already passes can be moved by it. Measured on 33S7-9YYJ-6Q:
+    the strict test finds no candidate because a rule is reported at x1267, in
+    the MIDDLE of the TOTAL cell, which leaves TOTAL 117 px wide against a 68 px
+    industry pitch — 1.7 pitches, under the 1.8 the bracket demands. It is not a
+    printed rule. It is the enumerator's own column of family totals standing one
+    under another, and `cover` cannot reject it: it covers 0.765 of the body's
+    rows against 0.769 for the true rule at x1190. What separates them is
+    CONTINUITY OF A SINGLE STROKE rather than coverage — the longest UNBROKEN run
+    of dark rows at x1267 is 164 px, 0.07 of the body, while the true rules that
+    bracket it run 0.27 and 0.47 unbroken; a printed rule is one line, a stack of
+    digits is thirty short ones. So when the strict test fails, the run is
+    retried with the weakest-by-continuity rule dropped from the candidate left
+    bracket, and the drop is accepted only if the merged TOTAL cell then lands in
+    the same 2.0-4.0 pitch window every other sheet's does AND the dropped rule's
+    unbroken run is under half that of BOTH rules bracketing it. On 6Q the merged
+    cell is x1190-1384, 194 px, 2.5 pitches — the same 2.47 pitches 5V's TOTAL
+    measures — and the slaves block to its left comes out at twelve columns, as
+    the form has. Without `continuity` (which `read()` always supplies) the
+    fallback is not attempted at all.
     """
     if len(rules) < 10:
         raise SystemExit("too few vertical rules to name the middle columns")
@@ -246,15 +306,73 @@ def locate_columns(rules):
             continue        # TOTAL is a wide cell, but not as wide as a block
         if best is None or -spread > best[0]:
             best = (-spread, i, med)
-    if best is None:
-        raise SystemExit("no industry run bracketed by TOTAL and PENSIONERS: "
-                         "the form is not as expected")
-    _, i, med = best
-    run = rules[i:i + 8]
-    bounds = {"total": (rules[i - 1], run[0])}
-    for n, name in enumerate(MIDDLE_COLUMNS[1:]):
-        bounds[name] = (run[n], run[n + 1])
-    return bounds, med
+    if best is not None:
+        _, i, med = best
+        run = rules[i:i + 8]
+        bounds = {"total": (rules[i - 1], run[0])}
+        for n, name in enumerate(MIDDLE_COLUMNS[1:]):
+            bounds[name] = (run[n], run[n + 1])
+        return bounds, med
+
+    dropped = _drop_a_pen_stroke(rules, continuity)
+    if dropped is not None:
+        thinned, gone = dropped
+        bounds, med = locate_columns(thinned)
+        bounds["_total_left_rule_dropped"] = (gone, gone)
+        return bounds, med
+    raise SystemExit("no industry run bracketed by TOTAL and PENSIONERS: "
+                     "the form is not as expected")
+
+
+def _drop_a_pen_stroke(rules, continuity):
+    """The fallback described in locate_columns(): try dropping one reported rule
+    that is a stack of digits rather than a printed line, and say so.
+
+    Returns (rules without it, its x) or None. Every candidate must satisfy both
+    measured conditions — its unbroken run is under half of BOTH its neighbours',
+    and removing it makes the strict bracket test pass — so a sheet where no such
+    rule exists falls through to the SystemExit unchanged.
+    """
+    if not continuity:
+        return None
+    for k in range(1, len(rules) - 1):
+        run, left, right = continuity[k], continuity[k - 1], continuity[k + 1]
+        if run >= 0.5 * min(left, right):
+            continue
+        thinned = rules[:k] + rules[k + 1:]
+        try:
+            locate_columns(thinned)
+        except SystemExit:
+            continue
+        return thinned, rules[k]
+    return None
+
+
+def rule_continuity(a, y0, y1, rules):
+    """For each reported rule, the LONGEST UNBROKEN run of dark rows at its x, as
+    a fraction of the body height. A printed rule is one continuous line and
+    scores high; a column of the enumerator's digits covers as many rows in total
+    but in thirty short pieces, and scores low. Measured through the same local
+    background the rule finder uses, and searched +/-3 px either side of the
+    reported centre so a rule 1 px off centre is not penalised.
+    """
+    np = _np()
+    Image, ImageFilter = _pil()
+    sub = a[y0:y1, :]
+    blur = Image.fromarray(sub.astype("uint8")).filter(ImageFilter.GaussianBlur(BACKGROUND_BLUR))
+    dark = (np.asarray(blur).astype("float32") - sub) > 6.0
+    height = max(1, sub.shape[0])
+    out = []
+    for x in rules:
+        best = 0
+        for xx in range(max(0, x - 3), min(dark.shape[1], x + 4)):
+            cur = 0
+            for v in dark[:, xx]:
+                cur = cur + 1 if v else 0
+                if cur > best:
+                    best = cur
+        out.append(round(best / height, 3))
+    return out
 
 
 def ink_mask(a, x0, y0, x1, y1):
@@ -387,16 +505,19 @@ def anchors(groups_by_column, tol=30):
     return out
 
 
-def read(path):
+def read(path, cover=RULE_COVER):
     a = load(path)
     y0, y1 = horizontal_rules(a, int(a.shape[1] * 0.07), int(a.shape[1] * 0.30))
-    rules = vertical_rules(a, y0, y1)
-    bounds, pitch = locate_columns(rules)
+    rules = vertical_rules(a, y0, y1, cover=cover)
+    cont = rule_continuity(a, y0, y1, rules)
+    bounds, pitch = locate_columns(rules, cont)
+    dropped = bounds.pop("_total_left_rule_dropped", None)
     comps, groups = {}, {}
     for name, (cx0, cx1) in bounds.items():
         ix0, ix1 = cx0 + RULE_CLEARANCE, cx1 - RULE_CLEARANCE
         m = _close(ink_mask(a, ix0, y0, ix1, y1))
-        comps[name] = components(m, ix0, y0)
+        comps[name] = [c for c in components(m, ix0, y0)
+                       if (c["y1"] - c["y0"]) <= MAX_ASPECT * max(c["x1"] - c["x0"], 1)]
         groups[name] = group(comps[name])
     out = {
         "image": os.path.relpath(path, REPO),
@@ -405,10 +526,21 @@ def read(path):
         "vertical_rules": rules,
         "column_pitch_px": int(pitch),
         "column_bounds": {k: [int(v[0]), int(v[1])] for k, v in bounds.items()},
+        "rule_continuity": dict(zip((str(r) for r in rules), cont)),
+        "rule_cover": cover,
+        "pen_stroke_rule_dropped": (None if dropped is None else {
+            "x": int(dropped[0]),
+            "why": "reported as a vertical rule by coverage, but its longest UNBROKEN "
+                   "dark run is under half that of both rules bracketing it: a stack of "
+                   "the enumerator's family totals, not a printed line. Dropping it is "
+                   "what makes the TOTAL cell measure 2-4 industry pitches, as it does "
+                   "on every other sheet. See locate_columns().",
+        }),
         "method": {
             "ink": f"local background = {BACKGROUND_BLUR}px Gaussian of the crop; "
                    f"ink = {INK_BELOW_BACKGROUND} grey levels darker",
-            "components": f"8-connected after 5x5 closing, area>={MIN_AREA}, height>={MIN_HEIGHT}",
+            "components": f"8-connected after 5x5 closing, area>={MIN_AREA}, "
+                          f"height>={MIN_HEIGHT}, height/width<={MAX_ASPECT}",
             "grouping": f"one number while dy<={GROUP_DY} and x does not step back",
             "digits": "NOT READ — this tool measures boxes, a human reads the digit",
         },
@@ -461,6 +593,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("sheet", nargs="?", help="familysearch id, e.g. 33S7-9YYJ-5V")
     ap.add_argument("--json", help="write the inventory here")
+    ap.add_argument("--cover", type=float, default=RULE_COVER,
+                    help="fraction of body rows a printed rule must darken "
+                         f"(default {RULE_COVER}; 33S7-9YYJ-6H is a pale exposure "
+                         "and needs 0.50)")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
     if args.self_test:
@@ -471,7 +607,7 @@ def main():
     path = args.sheet if os.path.exists(args.sheet) else os.path.join(DEPOSIT, args.sheet + ".jpg")
     if not os.path.exists(path):
         sys.exit(f"no such image: {path}")
-    out = read(path)
+    out = read(path, cover=args.cover)
     if args.json:
         with open(args.json, "w") as fh:
             json.dump(out, fh, indent=1, sort_keys=True)

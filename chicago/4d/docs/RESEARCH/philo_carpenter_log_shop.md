@@ -1,5 +1,11 @@
 
-# Philo Carpenter's Log Drug Store — research dossier
+# Beaubien's log cabin beside the Sauganash — research dossier
+
+> **RENAMED 2026-09-04 (T-0626).** This file was headed "Philo Carpenter's Log Drug
+> Store", and so was the record, and both named a trade that had left the building three
+> years before the scene date. The building is Mark Beaubien's own original cabin, let in
+> turn to Carpenter (1832), John S. Wright and Eliza Chappel's school (1833-34), and it is
+> also the log annex drawn beside the Sauganash in every view of that hotel — see § 5.
 
 **Record:** `data/structures/philo_carpenter_log_shop.json` · **Scene status:** standing on
 1835-07-01 **on the weakest continuity argument in the parcel** · **South Water Street parcel**
@@ -46,15 +52,23 @@ in `data/exclusions.json` and the record leaves the scene.
 ## 3. The position is derived from another record — a first here
 
 The sources give a **relation**, not an address. The shop is set hard against the Sauganash's east
-wall: `sauganash_hotel`'s `frame_1831` origin is E 447174.1, N 4637265.2, 12 m wide and 8 m deep at
-bearing 0, so its north face is on the Lake Street frontage at N 4637273.2 and its east face at
-E 447186.1. **This shop's west wall is on that easting and its north face on the same frontage** —
-the two footprints touch, deliberately, because "immediately adjacent" is what the source says.
+wall: `sauganash_hotel`'s `frame_1831` origin is E 447174.1, N 4637265.2, **9.92 m wide** and 8 m
+deep at bearing 0, so its north face is on the Lake Street frontage at N 4637273.2 and its east face
+at **E 447184.02**. **This shop's west wall is on that easting and its north face on the same
+frontage** — the two footprints touch, deliberately, because "immediately adjacent" is what the
+source says. The easting moved 2.08 m west on 2026-09-04 when the hotel's 12 × 8 m placeholder was
+retired for a measured 9.92 × 8 m block (T-0626): the wall moved, so this building moved with it,
+and nothing about the claim changed.
 
 **Which side the bar was on is not attested.** East is chosen by elimination: the Sauganash's west
-face stands on the Market Street frontage, and both retrospective depictions put the surviving 1829
-log wing on the building's left front, which is the Market side. If the bar was on the west or the
-river side, this shop is on the wrong flank and moves about 20 m.
+face stands on the Market Street frontage, so nothing can stand there at all. That elimination used
+to be argued the other way round in this section — the retrospective depictions were read as putting
+the 1829 log wing on the hotel's *left front, which is the Market side*, and the hotel's own record
+drew one there. **Both were wrong in the same way:** a view is drawn from a station, not from a
+compass, and a log annex on the Market side would stand in Market Street exactly as a shop would.
+The annex at the left of every view IS this building (§ 5), so the hotel's `log_wing` is retired and
+its second, tall wing takes the same east end. If the bar was on the west or the river side, this
+shop is on the wrong flank and moves about 20 m.
 
 The 20 ft dimension runs along the street and the 16 ft is the depth, following the convention
 `hogan_store` argues for — an inference, not evidence.
@@ -90,3 +104,29 @@ rather than sixteen times:
 3. **The ground is not there.** Everything in this parcel east of about local E +320 stands
    outside the committed `e1834_harbor_cut` terrain box and is declared
    `ground_contact: outside_modelled_ground`. That is a terrain gap, not a structure gap.
+
+## 5. This building is the log annex in the Sauganash's own views (T-0626)
+
+`drloih_beaubien` captions the engraving this project measures — *"The Sauganash Hotel. The log
+cabin on the left was Chicago's first drugstore"* — and gives the tenancy in one sentence: Beaubien
+rented **his original log cabin, adjacent to his Sauganash Tavern**, to the newly arrived Philo
+Carpenter in the late summer of 1832; Carpenter, *"an ardent enemy of alcohol"*, soon moved out;
+Wright came next; and in 1833 the cabin became Eliza Chappel's school. `drloih_chappell` closes the
+last link from the other end — the school opened in September 1833 in *"a small log house formerly
+used as a store"* and moved into the First Presbyterian Church in 1834.
+
+Three consequences, and they are separable.
+
+1. **The hotel stopped drawing a copy of this building.** `sauganash_hotel.frame_1831.form.log_wing`
+   is `false` from 2026-09-04. The annex stands in the scene; it had been standing there twice, once
+   correctly as this record and once wrongly as an attached wing in front of the hotel's street face.
+2. **`sauganash_hotel`'s `log_1829` phase is this same fabric earlier**, and its 7 × 6 m placeholder
+   footprint has been reconciled to the 16 × 20 ft carried here. The two records are **not merged**,
+   and `sauganash_hotel.json` states why: that phase is the building's tavern life under Beaubien
+   and ends in 1831, while this record carries the same fabric as a let building and is the one the
+   scene builds from.
+3. **Where Chappel's first schoolroom stood is an open conflict and is not resolved.**
+   `drloih_beaubien` puts it here. Andreas puts a log school-house west of State Street between
+   South Water and Lake, held separately as `data/structures/chappel_infant_school.json`.
+   `drloih_chappell`'s own opening line says *"roughly at Lake and Clark"*, which is where the school
+   MOVED in 1834. Both records stand, both say so, and neither was promoted.

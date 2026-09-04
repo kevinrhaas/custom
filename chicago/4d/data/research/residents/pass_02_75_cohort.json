@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_2.py",
   "population_frame": {
-    "eligible_real_named_people": 849,
+    "eligible_real_named_people": 1404,
     "previously_reviewed": 75,
     "sample_size": 75,
     "cumulative_reviewed": 150,
@@ -27,7 +27,9 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -41,7 +43,8 @@
       "starting_occupation": "trader",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -69,7 +72,8 @@
       "starting_occupation": "merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -84,7 +88,9 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -113,7 +119,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -127,7 +134,8 @@
       "starting_occupation": "butcher",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -155,7 +163,8 @@
       "starting_occupation": "county_clerk",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -169,7 +178,8 @@
       "starting_occupation": "postmaster",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -184,6 +194,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad",
         "kinzie_waubun_1856"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -242,7 +253,8 @@
       "starting_occupation": "indian_agent",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -256,7 +268,8 @@
       "starting_occupation": "speculator",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -270,7 +283,8 @@
       "starting_occupation": "merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -312,7 +326,8 @@
       "starting_occupation": "surveyor",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -326,7 +341,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -355,7 +371,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "baptisthistoryhomepage"
+        "baptisthistoryhomepage",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -423,8 +440,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_curtenius_fred_k",
-      "person_id": "curtenius_fred_k",
+      "household_id": "hh_curtenius_fredk",
+      "person_id": "curtenius_fredk",
       "name": "Fred'k. Curtenius",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -546,7 +563,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },

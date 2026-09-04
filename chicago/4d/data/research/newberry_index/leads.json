@@ -5,17 +5,18 @@
   "volumes": [
     1,
     2,
-    3
+    3,
+    4
   ],
   "counts": {
-    "cards": 6697,
-    "distinct_surname_keys": 4425,
-    "leads": 737,
+    "cards": 7005,
+    "distinct_surname_keys": 4676,
+    "leads": 788,
     "leads_by_layer": {
-      "census_1840": 214,
-      "residents": 348,
-      "structures": 33,
-      "voters": 142
+      "census_1840": 226,
+      "residents": 373,
+      "structures": 36,
+      "voters": 153
     }
   },
   "leads": [
@@ -1398,14 +1399,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "barrest_wilham",
-          "name": "Wilham Barrest",
-          "rule": "OCR variant (0.92 similarity to 'barrest')"
-        },
-        {
           "id": "barre_john_s",
           "name": "John S. Barre",
           "rule": "OCR variant (0.91 similarity to 'barre')"
+        },
+        {
+          "id": "barrest_wilham",
+          "name": "Wilham Barrest",
+          "rule": "OCR variant (0.92 similarity to 'barrest')"
         }
       ],
       "entries": [
@@ -1636,12 +1637,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "f_mabbet_benjamin",
+          "id": "mabbet_benjamin_f",
           "name": "Mabbet Benjamin F.",
           "rule": "exact surname"
         },
         {
-          "id": "w_oakley_benjamin",
+          "id": "oakley_benjamin_w",
           "name": "Oakley Benjamin W.",
           "rule": "exact surname"
         }
@@ -1697,14 +1698,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "bennett_h_c",
-          "name": "H. C. Bennett",
-          "rule": "exact surname"
-        },
-        {
           "id": "bennet_lyman",
           "name": "Lyman Bennet",
           "rule": "OCR variant (0.92 similarity to 'bennet')"
+        },
+        {
+          "id": "bennett_h_c",
+          "name": "H. C. Bennett",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -2745,6 +2746,11 @@
       "layer": "residents",
       "candidates": [
         {
+          "id": "bowen_air",
+          "name": "air. Bowen",
+          "rule": "OCR variant (0.89 similarity to 'bowen')"
+        },
+        {
           "id": "brown_lemuel",
           "name": "Lemuel Brown",
           "rule": "OCR variant (0.89 similarity to 'brown')"
@@ -2758,11 +2764,6 @@
           "id": "brown_mrs_rufus",
           "name": "Mrs Rufus Brown",
           "rule": "OCR variant (0.89 similarity to 'brown')"
-        },
-        {
-          "id": "bowen_air",
-          "name": "air. Bowen",
-          "rule": "OCR variant (0.89 similarity to 'bowen')"
         }
       ],
       "entries": [
@@ -3300,14 +3301,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "brooks_gardner",
-          "name": "Gardner Brooks",
-          "rule": "exact surname"
-        },
-        {
           "id": "brookes_samuel",
           "name": "Samuel Brookes",
           "rule": "OCR variant (0.92 similarity to 'brookes')"
+        },
+        {
+          "id": "brooks_gardner",
+          "name": "Gardner Brooks",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -4128,14 +4129,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "cary_junis_a_or_j_r",
-          "name": "Junis.A.or J.R.Cary",
-          "rule": "OCR variant (0.89 similarity to 'cary')"
-        },
-        {
           "id": "carley_quartus_j",
           "name": "Quartus J. Carley",
           "rule": "OCR variant (0.91 similarity to 'carley')"
+        },
+        {
+          "id": "cary_junis_a_or_j_r",
+          "name": "Junis.A.or J.R.Cary",
+          "rule": "OCR variant (0.89 similarity to 'cary')"
         }
       ],
       "entries": [
@@ -5183,7 +5184,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "p_clapp_a",
+          "id": "clapp_a_p",
           "name": "Clapp. A. P.",
           "rule": "exact surname"
         }
@@ -5269,14 +5270,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "clarke_h_b",
-          "name": "H. B. Clarke",
-          "rule": "OCR variant (0.91 similarity to 'clarke')"
-        },
-        {
           "id": "clark_erastus",
           "name": "Erastus Clark",
           "rule": "exact surname"
+        },
+        {
+          "id": "clarke_h_b",
+          "name": "H. B. Clarke",
+          "rule": "OCR variant (0.91 similarity to 'clarke')"
         }
       ],
       "entries": [
@@ -5359,14 +5360,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "clarke_h_b",
-          "name": "H. B. Clarke",
-          "rule": "exact surname"
-        },
-        {
           "id": "clark_erastus",
           "name": "Erastus Clark",
           "rule": "OCR variant (0.91 similarity to 'clark')"
+        },
+        {
+          "id": "clarke_h_b",
+          "name": "H. B. Clarke",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -5413,14 +5414,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "cleland_martin",
-          "name": "Martin Cleland",
-          "rule": "OCR variant (0.88 similarity to 'cleland')"
-        },
-        {
           "id": "cleaveland_wm_p",
           "name": "Wm. P. Cleaveland",
           "rule": "OCR variant (0.95 similarity to 'cleaveland')"
+        },
+        {
+          "id": "cleland_martin",
+          "name": "Martin Cleland",
+          "rule": "OCR variant (0.88 similarity to 'cleland')"
         }
       ],
       "entries": [
@@ -5808,14 +5809,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "cooley_edward_v",
-          "name": "Edward V Cooley",
-          "rule": "OCR variant (0.91 similarity to 'cooley')"
-        },
-        {
           "id": "cole_parker_m",
           "name": "Parker M. Cole",
           "rule": "OCR variant (0.89 similarity to 'cole')"
+        },
+        {
+          "id": "cooley_edward_v",
+          "name": "Edward V Cooley",
+          "rule": "OCR variant (0.91 similarity to 'cooley')"
         }
       ],
       "entries": [
@@ -6085,14 +6086,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "conte_e_w",
-          "name": "E. W. Conte",
-          "rule": "OCR variant (0.89 similarity to 'conte')"
-        },
-        {
           "id": "cone_joseph_c",
           "name": "Joseph C. Cone",
           "rule": "exact surname"
+        },
+        {
+          "id": "conte_e_w",
+          "name": "E. W. Conte",
+          "rule": "OCR variant (0.89 similarity to 'conte')"
         }
       ],
       "entries": [
@@ -6794,14 +6795,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "curtis_liman",
-          "name": "Liman Curtis",
-          "rule": "OCR variant (0.91 similarity to 'curtis')"
-        },
-        {
           "id": "curtin_l_g",
           "name": "L. G. Curtin",
           "rule": "OCR variant (0.91 similarity to 'curtin')"
+        },
+        {
+          "id": "curtis_liman",
+          "name": "Liman Curtis",
+          "rule": "OCR variant (0.91 similarity to 'curtis')"
         }
       ],
       "entries": [
@@ -9241,14 +9242,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "gariner_joseph",
-          "name": "Joseph Gariner",
-          "rule": "OCR variant (0.93 similarity to 'gariner')"
-        },
-        {
           "id": "gardner_john_b",
           "name": "John B. Gardner",
           "rule": "OCR variant (0.93 similarity to 'gardner')"
+        },
+        {
+          "id": "gariner_joseph",
+          "name": "Joseph Gariner",
+          "rule": "OCR variant (0.93 similarity to 'gariner')"
         }
       ],
       "entries": [
@@ -10026,14 +10027,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "greene_john",
-          "name": "Major John Greene",
-          "rule": "OCR variant (0.91 similarity to 'greene')"
-        },
-        {
           "id": "green_damel_m",
           "name": "Damel M. Green",
           "rule": "exact surname"
+        },
+        {
+          "id": "greene_john",
+          "name": "Major John Greene",
+          "rule": "OCR variant (0.91 similarity to 'greene')"
         }
       ],
       "entries": [
@@ -10075,14 +10076,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "greene_john",
-          "name": "Major John Greene",
-          "rule": "exact surname"
-        },
-        {
           "id": "green_damel_m",
           "name": "Damel M. Green",
           "rule": "OCR variant (0.91 similarity to 'green')"
+        },
+        {
+          "id": "greene_john",
+          "name": "Major John Greene",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -10361,7 +10362,8 @@
       "id": "lead_v02_hall_residents",
       "surname_key": "hall",
       "spellings_as_printed": [
-        "Hall"
+        "Hall",
+        "hall"
       ],
       "layer": "residents",
       "candidates": [
@@ -10382,9 +10384,11 @@
         "nbi_v02_0637",
         "nbi_v02_0638",
         "nbi_v02_0639",
-        "nbi_v02_0640"
+        "nbi_v02_0640",
+        "nbi_v04_0188"
       ],
       "works_cited": [
+        "andreas_history_of_chicago",
         "county_histories_kett_and_co",
         "moses_kirkland_history_of_chicago"
       ],
@@ -10394,7 +10398,8 @@
       "id": "lead_v02_hall_structures",
       "surname_key": "hall",
       "spellings_as_printed": [
-        "Hall"
+        "Hall",
+        "hall"
       ],
       "layer": "structures",
       "candidates": [
@@ -10415,9 +10420,11 @@
         "nbi_v02_0637",
         "nbi_v02_0638",
         "nbi_v02_0639",
-        "nbi_v02_0640"
+        "nbi_v02_0640",
+        "nbi_v04_0188"
       ],
       "works_cited": [
+        "andreas_history_of_chicago",
         "county_histories_kett_and_co",
         "moses_kirkland_history_of_chicago"
       ],
@@ -11523,7 +11530,8 @@
       "id": "lead_v02_howell_residents",
       "surname_key": "howell",
       "spellings_as_printed": [
-        "Howell f"
+        "Howell f",
+        "I Howell"
       ],
       "layer": "residents",
       "candidates": [
@@ -11534,7 +11542,8 @@
         }
       ],
       "entries": [
-        "nbi_v02_1219"
+        "nbi_v02_1219",
+        "nbi_v04_0298"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -12155,14 +12164,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ingersoll_chester",
-          "name": "Chester Ingersoll",
-          "rule": "OCR variant (0.89 similarity to 'ingersoll')"
-        },
-        {
           "id": "ingersall_david",
           "name": "David Ingersall",
           "rule": "OCR variant (0.89 similarity to 'ingersall')"
+        },
+        {
+          "id": "ingersoll_chester",
+          "name": "Chester Ingersoll",
+          "rule": "OCR variant (0.89 similarity to 'ingersoll')"
         }
       ],
       "entries": [
@@ -12449,17 +12458,17 @@
           "rule": "exact surname"
         },
         {
-          "id": "l_pixley_john",
-          "name": "Pixley John L.",
-          "rule": "exact surname"
-        },
-        {
-          "id": "k_pugsley_john",
+          "id": "pugsley_john_k",
           "name": "Pugsley John K.",
           "rule": "exact surname"
         },
         {
-          "id": "v_regera_john",
+          "id": "pixley_john_l",
+          "name": "Pixley John L.",
+          "rule": "exact surname"
+        },
+        {
+          "id": "regera_john_v",
           "name": "Regera John V.",
           "rule": "exact surname"
         }
@@ -12511,17 +12520,17 @@
           "rule": "OCR variant (0.89 similarity to 'john')"
         },
         {
-          "id": "l_pixley_john",
-          "name": "Pixley John L.",
-          "rule": "OCR variant (0.89 similarity to 'john')"
-        },
-        {
-          "id": "k_pugsley_john",
+          "id": "pugsley_john_k",
           "name": "Pugsley John K.",
           "rule": "OCR variant (0.89 similarity to 'john')"
         },
         {
-          "id": "v_regera_john",
+          "id": "pixley_john_l",
+          "name": "Pixley John L.",
+          "rule": "OCR variant (0.89 similarity to 'john')"
+        },
+        {
+          "id": "regera_john_v",
           "name": "Regera John V.",
           "rule": "OCR variant (0.89 similarity to 'john')"
         }
@@ -13255,14 +13264,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "kimball_walter",
-          "name": "W. Kimball",
-          "rule": "exact surname"
-        },
-        {
           "id": "kimbal_wm",
           "name": "Wm. Kimbal",
           "rule": "OCR variant (0.92 similarity to 'kimbal')"
+        },
+        {
+          "id": "kimball_walter",
+          "name": "W. Kimball",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -13882,6 +13891,26 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v04_lden_census_1840",
+      "surname_key": "lden",
+      "spellings_as_printed": [
+        "lden"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l20",
+          "name": "James Loden",
+          "rule": "OCR variant (0.89 similarity to 'loden')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0167"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v02_lee_census_1840",
       "surname_key": "lee",
       "spellings_as_printed": [
@@ -14084,7 +14113,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_lilley_oskin",
+          "id": "lilley_oskin",
           "name": "Oskin Lilley",
           "rule": "exact surname"
         }
@@ -14104,7 +14133,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_lincoln_edwin_a",
+          "id": "lincoln_edwin_a",
           "name": "Edwin A. Lincoln",
           "rule": "exact surname"
         }
@@ -14202,7 +14231,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_wm_loring",
+          "id": "loring_wm",
           "name": "Wm. Loring",
           "rule": "exact surname"
         }
@@ -14222,7 +14251,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_lovel_kimball_or",
+          "id": "lovel_kimball_or",
           "name": "Kimball or Lovel",
           "rule": "OCR variant (0.89 similarity to 'lovel')"
         }
@@ -14242,12 +14271,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_lovel_kimball_or",
+          "id": "lovel_kimball_or",
           "name": "Kimball or Lovel",
           "rule": "exact surname"
         },
         {
-          "id": "ll_lyman_b_lovell",
+          "id": "lovell_lyman_b",
           "name": "Lyman B. Lovell",
           "rule": "OCR variant (0.91 similarity to 'lovell')"
         }
@@ -14269,7 +14298,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_stephen_mack",
+          "id": "mack_stephen",
           "name": "Stephen Mack",
           "rule": "exact surname"
         }
@@ -14380,7 +14409,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "doc_j_a_marshall",
+          "id": "marshall_j_a",
           "name": "J. A. Marshall",
           "rule": "OCR variant (0.88 similarity to 'marshall')"
         }
@@ -14450,13 +14479,13 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_orinsbey_martin_t",
-          "name": "Orinsbey martin T.",
+          "id": "martin_patrick",
+          "name": "Patrick Martin",
           "rule": "exact surname"
         },
         {
-          "id": "ll_patrick_martin",
-          "name": "Patrick Martin",
+          "id": "orinsbey_martin_t",
+          "name": "Orinsbey martin T.",
           "rule": "exact surname"
         }
       ],
@@ -14475,13 +14504,13 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_orinsbey_martin_t",
-          "name": "Orinsbey martin T.",
+          "id": "martin_patrick",
+          "name": "Patrick Martin",
           "rule": "OCR variant (0.92 similarity to 'martin')"
         },
         {
-          "id": "ll_patrick_martin",
-          "name": "Patrick Martin",
+          "id": "orinsbey_martin_t",
+          "name": "Orinsbey martin T.",
           "rule": "OCR variant (0.92 similarity to 'martin')"
         }
       ],
@@ -14500,7 +14529,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_james_g_matthews",
+          "id": "matthews_james_g",
           "name": "James G. Matthews",
           "rule": "OCR variant (0.93 similarity to 'matthews')"
         }
@@ -14540,7 +14569,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_james_g_matthews",
+          "id": "matthews_james_g",
           "name": "James G. Matthews",
           "rule": "OCR variant (0.93 similarity to 'matthews')"
         }
@@ -14580,7 +14609,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_james_g_matthews",
+          "id": "matthews_james_g",
           "name": "James G. Matthews",
           "rule": "exact surname"
         }
@@ -14622,7 +14651,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_mattison_james",
+          "id": "mattison_james",
           "name": "James Mattison",
           "rule": "OCR variant (0.88 similarity to 'mattison')"
         }
@@ -14682,12 +14711,13 @@
       "id": "lead_v03_may_residents",
       "surname_key": "may",
       "spellings_as_printed": [
-        "May"
+        "May",
+        "may"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_stephen_may",
+          "id": "may_stephen",
           "name": "Stephen May",
           "rule": "exact surname"
         }
@@ -14697,7 +14727,8 @@
         "nbi_v03_0583",
         "nbi_v03_0586",
         "nbi_v03_0587",
-        "nbi_v03_0588"
+        "nbi_v03_0588",
+        "nbi_v04_0225"
       ],
       "works_cited": [
         "county_histories_kett_and_co",
@@ -14844,7 +14875,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_joseph_m_kean",
+          "id": "mkean_joseph",
           "name": "Joseph M'Kean",
           "rule": "OCR variant (0.91 similarity to 'mkean')"
         }
@@ -14909,12 +14940,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_john_y_m_lean",
+          "id": "mlean_john_y",
           "name": "John Y. M'Lean",
           "rule": "OCR variant (0.91 similarity to 'mlean')"
         },
         {
-          "id": "ll_maclean_archibald",
+          "id": "maclean_archibald",
           "name": "Archibald Maclean",
           "rule": "OCR variant (0.92 similarity to 'maclean')"
         }
@@ -14934,7 +14965,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_winthrop_merrill",
+          "id": "merrill_winthrop",
           "name": "Winthrop Merrill",
           "rule": "exact surname"
         }
@@ -15005,7 +15036,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_michel_james",
+          "id": "michel_james",
           "name": "James Michel",
           "rule": "OCR variant (0.92 similarity to 'michel')"
         }
@@ -15275,7 +15306,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_amanda_miner",
+          "id": "miner_amanda",
           "name": "Amanda Miner",
           "rule": "OCR variant (0.91 similarity to 'miner')"
         }
@@ -15331,7 +15362,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_henry_mitchell",
+          "id": "mitchell_henry",
           "name": "Henry Mitchell",
           "rule": "exact surname"
         }
@@ -15391,7 +15422,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_henry_mitchell",
+          "id": "mitchell_henry",
           "name": "Henry Mitchell",
           "rule": "OCR variant (0.88 similarity to 'mitchell')"
         }
@@ -15448,7 +15479,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_henry_mitchell",
+          "id": "mitchell_henry",
           "name": "Henry Mitchell",
           "rule": "OCR variant (0.88 similarity to 'mitchell')"
         }
@@ -15469,7 +15500,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_james_mcfadden",
+          "id": "mcfadden_james",
           "name": "James McFadden",
           "rule": "OCR variant (0.88 similarity to 'mcfadden')"
         }
@@ -15590,7 +15621,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "doc_henry_moore",
+          "id": "moore_henry",
           "name": "Henry Moore",
           "rule": "exact surname"
         }
@@ -15649,7 +15680,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "doc_henry_moore",
+          "id": "moore_henry",
           "name": "Henry Moore",
           "rule": "OCR variant (0.91 similarity to 'moore')"
         }
@@ -15669,7 +15700,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_jesse_morgan",
+          "id": "morgan_jesse",
           "name": "Jesse Morgan",
           "rule": "OCR variant (0.91 similarity to 'morgan')"
         }
@@ -15689,7 +15720,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_james_morley",
+          "id": "morley_james",
           "name": "James Morley",
           "rule": "OCR variant (0.91 similarity to 'morley')"
         }
@@ -15715,7 +15746,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_jesse_morgan",
+          "id": "morgan_jesse",
           "name": "Jesse Morgan",
           "rule": "exact surname"
         }
@@ -15756,7 +15787,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "placed_b_s_morris",
+          "id": "morris_b_s",
           "name": "B. S. Morris",
           "rule": "exact surname"
         }
@@ -15801,7 +15832,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_t_m_morrison",
+          "id": "morrison_t_m",
           "name": "T. M. Morrison",
           "rule": "exact surname"
         }
@@ -15861,7 +15892,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_morrow_jeremiah",
+          "id": "morrow_jeremiah",
           "name": "Jeremiah Morrow",
           "rule": "exact surname"
         }
@@ -15881,7 +15912,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_leonard_morse",
+          "id": "morse_leonard",
           "name": "Leonard Morse",
           "rule": "exact surname"
         }
@@ -16168,12 +16199,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_alonzo_murray",
+          "id": "murray_alonzo",
           "name": "Alonzo Murray",
           "rule": "exact surname"
         },
         {
-          "id": "ll_alonzo_murry",
+          "id": "murry_alonzo",
           "name": "Alonzo Murry",
           "rule": "OCR variant (0.91 similarity to 'murry')"
         }
@@ -16239,12 +16270,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_alonzo_murray",
+          "id": "murray_alonzo",
           "name": "Alonzo Murray",
           "rule": "OCR variant (0.91 similarity to 'murray')"
         },
         {
-          "id": "ll_alonzo_murry",
+          "id": "murry_alonzo",
           "name": "Alonzo Murry",
           "rule": "exact surname"
         }
@@ -16362,7 +16393,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_daniel_newton",
+          "id": "newton_daniel",
           "name": "Daniel Newton",
           "rule": "exact surname"
         }
@@ -16441,7 +16472,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_night_clapp",
+          "id": "night_clapp",
           "name": "Clapp Night",
           "rule": "OCR variant (0.89 similarity to 'night')"
         }
@@ -16556,13 +16587,13 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_norton_n_r",
-          "name": "Norton N. R.",
+          "id": "norton_nelson_r",
+          "name": "Nelson R. Norton",
           "rule": "exact surname"
         },
         {
-          "id": "norton_nelson_r",
-          "name": "Nelson R. Norton",
+          "id": "norton_n_r",
+          "name": "Norton N. R.",
           "rule": "exact surname"
         }
       ],
@@ -16649,7 +16680,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_john_r_odell",
+          "id": "odell_john_r",
           "name": "John R. Odell",
           "rule": "exact surname"
         }
@@ -16695,7 +16726,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_otto_silas_p",
+          "id": "otto_silas_p",
           "name": "Silas P. Otto",
           "rule": "exact surname"
         }
@@ -16859,14 +16890,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_b_r_paige",
-          "name": "B. R. Paige",
-          "rule": "exact surname"
-        },
-        {
-          "id": "ll_frederick_w_page",
+          "id": "page_frederick_w",
           "name": "Frederick W. Page",
           "rule": "OCR variant (0.89 similarity to 'page')"
+        },
+        {
+          "id": "paige_b_r",
+          "name": "B. R. Paige",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -16910,7 +16941,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_n_h_palmer",
+          "id": "palmer_n_h",
           "name": "N. H. Palmer",
           "rule": "exact surname"
         }
@@ -16963,14 +16994,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_curtis_parkes",
-          "name": "Curtis Parkes",
-          "rule": "OCR variant (0.91 similarity to 'parkes')"
-        },
-        {
-          "id": "ll_manson_parker",
+          "id": "parker_manson",
           "name": "Manson Parker",
           "rule": "OCR variant (0.91 similarity to 'parker')"
+        },
+        {
+          "id": "parkes_curtis",
+          "name": "Curtis Parkes",
+          "rule": "OCR variant (0.91 similarity to 'parkes')"
         }
       ],
       "entries": [
@@ -16988,7 +17019,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_manson_parker",
+          "id": "parker_manson",
           "name": "Manson Parker",
           "rule": "exact surname"
         }
@@ -17057,12 +17088,12 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_p_aylor_john_o",
+          "id": "paylor_john_o",
           "name": "John O. P'aylor",
           "rule": "OCR variant (0.91 similarity to 'paylor')"
         },
         {
-          "id": "ll_paylor_margnret_g",
+          "id": "paylor_margnret_g",
           "name": "Margnret g Paylor",
           "rule": "OCR variant (0.91 similarity to 'paylor')"
         }
@@ -17161,7 +17192,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_h_pease",
+          "id": "pease_h",
           "name": "H. Pease",
           "rule": "exact surname"
         }
@@ -17328,7 +17359,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_pennington_sack_f",
+          "id": "pennington_sack_f",
           "name": "Sack F. Pennington",
           "rule": "exact surname"
         }
@@ -17348,7 +17379,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_almon_perring",
+          "id": "perring_almon",
           "name": "Almon Perring",
           "rule": "OCR variant (0.92 similarity to 'perring')"
         }
@@ -17368,13 +17399,13 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_francis_perry",
-          "name": "Francis Perry",
+          "id": "perry_a_8",
+          "name": "Perry A. 8.",
           "rule": "exact surname"
         },
         {
-          "id": "ll_perry_a_8",
-          "name": "Perry A. 8.",
+          "id": "perry_francis",
+          "name": "Francis Perry",
           "rule": "exact surname"
         }
       ],
@@ -17422,13 +17453,13 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "perry_francis",
-          "name": "Francis Perry",
+          "id": "perry_a_8",
+          "name": "Perry A. 8.",
           "rule": "OCR variant (0.89 similarity to 'perry')"
         },
         {
-          "id": "8_perry_a",
-          "name": "Perry A. 8.",
+          "id": "perry_francis",
+          "name": "Francis Perry",
           "rule": "OCR variant (0.89 similarity to 'perry')"
         }
       ],
@@ -17524,7 +17555,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_seth_paine",
+          "id": "paine_seth",
           "name": "Seth Paine",
           "rule": "OCR variant (0.89 similarity to 'paine')"
         }
@@ -17591,7 +17622,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_edward_poor",
+          "id": "poor_edward",
           "name": "Edward Poor",
           "rule": "OCR variant (0.89 similarity to 'poor')"
         }
@@ -17614,7 +17645,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_edward_poor",
+          "id": "poor_edward",
           "name": "Edward Poor",
           "rule": "exact surname"
         }
@@ -17741,7 +17772,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_geo_n_powell",
+          "id": "powell_geo_n",
           "name": "Geo. N. Powell",
           "rule": "exact surname"
         }
@@ -17786,14 +17817,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_powers_t_w",
-          "name": "T. W. Powers",
-          "rule": "OCR variant (0.91 similarity to 'powers')"
-        },
-        {
-          "id": "ll_william_power",
+          "id": "power_william",
           "name": "William Power",
           "rule": "exact surname"
+        },
+        {
+          "id": "powers_t_w",
+          "name": "T. W. Powers",
+          "rule": "OCR variant (0.91 similarity to 'powers')"
         }
       ],
       "entries": [
@@ -17815,14 +17846,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_powers_t_w",
-          "name": "T. W. Powers",
-          "rule": "exact surname"
-        },
-        {
-          "id": "ll_william_power",
+          "id": "power_william",
           "name": "William Power",
           "rule": "OCR variant (0.91 similarity to 'power')"
+        },
+        {
+          "id": "powers_t_w",
+          "name": "T. W. Powers",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -17970,7 +18001,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_amos_rathburn",
+          "id": "rathburn_amos",
           "name": "Amos Rathburn",
           "rule": "exact surname"
         }
@@ -18233,19 +18264,19 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_benjamin_richardson",
-          "name": "Benjamin Richardson",
-          "rule": "OCR variant (0.89 similarity to 'richardson')"
+          "id": "richard_mcadams",
+          "name": "McAdams Richard",
+          "rule": "OCR variant (0.93 similarity to 'richard')"
         },
         {
-          "id": "ll_charles_t_richards",
+          "id": "richards_charles_t",
           "name": "Charles T. Richards",
           "rule": "exact surname"
         },
         {
-          "id": "ll_mcadams_richard",
-          "name": "McAdams Richard",
-          "rule": "OCR variant (0.93 similarity to 'richard')"
+          "id": "richardson_benjamin",
+          "name": "Benjamin Richardson",
+          "rule": "OCR variant (0.89 similarity to 'richardson')"
         }
       ],
       "entries": [
@@ -18274,14 +18305,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_benjamin_richardson",
-          "name": "Benjamin Richardson",
-          "rule": "exact surname"
-        },
-        {
-          "id": "ll_charles_t_richards",
+          "id": "richards_charles_t",
           "name": "Charles T. Richards",
           "rule": "OCR variant (0.89 similarity to 'richards')"
+        },
+        {
+          "id": "richardson_benjamin",
+          "name": "Benjamin Richardson",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -18310,7 +18341,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_horace_risley",
+          "id": "risley_horace",
           "name": "Horace Risley",
           "rule": "OCR variant (0.91 similarity to 'risley')"
         }
@@ -18355,7 +18386,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_patrick_robert",
+          "id": "robert_patrick",
           "name": "Patrick Robert",
           "rule": "exact surname"
         }
@@ -18415,7 +18446,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_patrick_robert",
+          "id": "robert_patrick",
           "name": "Patrick Robert",
           "rule": "OCR variant (0.92 similarity to 'robert')"
         }
@@ -18465,7 +18496,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_patrick_robert",
+          "id": "robert_patrick",
           "name": "Patrick Robert",
           "rule": "OCR variant (0.92 similarity to 'robert')"
         }
@@ -18533,7 +18564,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_daniel_roberson",
+          "id": "roberson_daniel",
           "name": "Daniel Roberson",
           "rule": "OCR variant (0.94 similarity to 'roberson')"
         }
@@ -18698,7 +18729,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_edward_a_rogers",
+          "id": "rogers_edward_a",
           "name": "Edward A. Rogers",
           "rule": "exact surname"
         }
@@ -18788,7 +18819,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_niles_rose",
+          "id": "rose_niles",
           "name": "Niles Rose",
           "rule": "exact surname"
         }
@@ -18901,7 +18932,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_niles_rose",
+          "id": "rose_niles",
           "name": "Niles Rose",
           "rule": "OCR variant (0.89 similarity to 'rose')"
         }
@@ -18967,7 +18998,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_herman_a_rowley",
+          "id": "rowley_herman_a",
           "name": "Herman A. Rowley",
           "rule": "exact surname"
         }
@@ -19027,7 +19058,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_salmon_rutherford",
+          "id": "rutherford_salmon",
           "name": "Salmon Rutherford",
           "rule": "exact surname"
         }
@@ -19049,14 +19080,14 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_j_l_sackett",
-          "name": "J. L. Sackett",
-          "rule": "exact surname"
-        },
-        {
-          "id": "ll_sacket_alexander",
+          "id": "sacket_alexander",
           "name": "Alexander •* Sacket",
           "rule": "OCR variant (0.92 similarity to 'sacket')"
+        },
+        {
+          "id": "sackett_j_l",
+          "name": "J. L. Sackett",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -19090,6 +19121,1171 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v04_sayer_structures",
+      "surname_key": "sayer",
+      "spellings_as_printed": [
+        "Sayer"
+      ],
+      "layer": "structures",
+      "candidates": [
+        {
+          "id": "inf_sawpit_shed",
+          "name": "Reconstructed sawpit shed (sawyer)",
+          "rule": "OCR variant (0.91 similarity to 'sawyer')"
+        },
+        {
+          "id": "inf_sawyer_dwelling_a",
+          "name": "Reconstructed dwelling (sawyer)",
+          "rule": "OCR variant (0.91 similarity to 'sawyer')"
+        },
+        {
+          "id": "inf_sawyer_dwelling_b",
+          "name": "Reconstructed dwelling (sawyer)",
+          "rule": "OCR variant (0.91 similarity to 'sawyer')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0011"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shaw_census_1840",
+      "surname_key": "shaw",
+      "spellings_as_printed": [
+        "Shaw"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-99F:l30",
+          "name": "John Shaw",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-RC:l5",
+          "name": "Nancy Shaw",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0035",
+        "nbi_v04_0036"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shaw_residents",
+      "surname_key": "shaw",
+      "spellings_as_printed": [
+        "Shaw"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "shaw_samuel",
+          "name": "Samuel Shaw",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0035",
+        "nbi_v04_0036"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sinner_residents",
+      "surname_key": "sinner",
+      "spellings_as_printed": [
+        "Sinner"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "skinner_heury_c",
+          "name": "Heury C. Skinner",
+          "rule": "OCR variant (0.92 similarity to 'skinner')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0028"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sinner_voters",
+      "surname_key": "sinner",
+      "spellings_as_printed": [
+        "Sinner"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "tax_1833_095",
+          "name": "Joseph Skinner",
+          "rule": "OCR variant (0.92 similarity to 'skinner')"
+        },
+        {
+          "id": "poll_1834_100",
+          "name": "E. F. Skinner",
+          "rule": "OCR variant (0.92 similarity to 'skinner')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0028"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_skinner_residents",
+      "surname_key": "skinner",
+      "spellings_as_printed": [
+        "Skinner"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "skinner_heury_c",
+          "name": "Heury C. Skinner",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0051"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_skinner_voters",
+      "surname_key": "skinner",
+      "spellings_as_printed": [
+        "Skinner"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "tax_1833_095",
+          "name": "Joseph Skinner",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1834_100",
+          "name": "E. F. Skinner",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0051"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sloan_residents",
+      "surname_key": "sloan",
+      "spellings_as_printed": [
+        "Sloan"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "sloan_douglass",
+          "name": "Douglass Sloan",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0048",
+        "nbi_v04_0054"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sloane_residents",
+      "surname_key": "sloane",
+      "spellings_as_printed": [
+        "Sloane"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "sloan_douglass",
+          "name": "Douglass Sloan",
+          "rule": "OCR variant (0.91 similarity to 'sloan')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0055"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_smith_census_1840",
+      "surname_key": "smith",
+      "spellings_as_printed": [
+        "Smith"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l13",
+          "name": "Thomas E. Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-9HY:l7",
+          "name": "Joseph H. Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-9RG:l24",
+          "name": "Orson Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-9WF:l2",
+          "name": "[?]. Mark Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-RC:l3",
+          "name": "Samuel Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-W6:l1",
+          "name": "[?] W. Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l15",
+          "name": "Barney Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l22",
+          "name": "Christopher Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l23",
+          "name": "James A. Smith",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0066"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_smith_residents",
+      "surname_key": "smith",
+      "spellings_as_printed": [
+        "Smith"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "smith_elded",
+          "name": "Elded Smith",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0066"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_smith_voters",
+      "surname_key": "smith",
+      "spellings_as_printed": [
+        "Smith"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1833_024",
+          "name": "Matthias Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1834_101",
+          "name": "L. W. Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1835_071",
+          "name": "William Smith",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1835_072",
+          "name": "William V. Smith",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0066"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_soan_residents",
+      "surname_key": "soan",
+      "spellings_as_printed": [
+        "so-an"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "sloan_douglass",
+          "name": "Douglass Sloan",
+          "rule": "OCR variant (0.89 similarity to 'sloan')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0031"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spence_census_1840",
+      "surname_key": "spence",
+      "spellings_as_printed": [
+        "Spence"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-992:l3",
+          "name": "Spencer [?]",
+          "rule": "OCR variant (0.92 similarity to 'spencer')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0078"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spence_residents",
+      "surname_key": "spence",
+      "spellings_as_printed": [
+        "Spence"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "spencer_william",
+          "name": "William Spencer",
+          "rule": "OCR variant (0.92 similarity to 'spencer')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0078"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spence_voters",
+      "surname_key": "spence",
+      "spellings_as_printed": [
+        "Spence"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1835_074",
+          "name": "James C. Spence",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0078"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spencer_census_1840",
+      "surname_key": "spencer",
+      "spellings_as_printed": [
+        "Spencer"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-992:l3",
+          "name": "Spencer [?]",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0079"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spencer_residents",
+      "surname_key": "spencer",
+      "spellings_as_printed": [
+        "Spencer"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "spencer_william",
+          "name": "William Spencer",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0079"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spencer_voters",
+      "surname_key": "spencer",
+      "spellings_as_printed": [
+        "Spencer"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1835_074",
+          "name": "James C. Spence",
+          "rule": "OCR variant (0.92 similarity to 'spence')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0079"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_steel_residents",
+      "surname_key": "steel",
+      "spellings_as_printed": [
+        "Steel"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "steel_richard",
+          "name": "Richard Steel",
+          "rule": "exact surname"
+        },
+        {
+          "id": "steele_ashbel",
+          "name": "Ashbel Steele",
+          "rule": "OCR variant (0.91 similarity to 'steele')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0093"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_steel_voters",
+      "surname_key": "steel",
+      "spellings_as_printed": [
+        "Steel"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1834_104",
+          "name": "Ashbel Steele",
+          "rule": "OCR variant (0.91 similarity to 'steele')"
+        },
+        {
+          "id": "poll_1835_076",
+          "name": "Ashbel Steele",
+          "rule": "OCR variant (0.91 similarity to 'steele')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0093"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stone_census_1840",
+      "surname_key": "stone",
+      "spellings_as_printed": [
+        "Stone",
+        "Vood Stone"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-38:l22",
+          "name": "W. O. Stone",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0103",
+        "nbi_v04_0104",
+        "nbi_v04_0105"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stringer_residents",
+      "surname_key": "stringer",
+      "spellings_as_printed": [
+        "stringer"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stringer_john",
+          "name": "John Stringer",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0114"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_strong_residents",
+      "surname_key": "strong",
+      "spellings_as_printed": [
+        "Strong"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "strong_george",
+          "name": "George Strong",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0121"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_taylor_census_1840",
+      "surname_key": "taylor",
+      "spellings_as_printed": [
+        "Taylor"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-38:l17",
+          "name": "Ezra Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-9HY:l23",
+          "name": "Dennis H. Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-992:l27",
+          "name": "[?] D. Taylor",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0143"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_taylor_residents",
+      "surname_key": "taylor",
+      "spellings_as_printed": [
+        "Taylor"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "taylor_anson_h",
+          "name": "Anson H. Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "taylor_charles",
+          "name": "Charles H. Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "taylor_augustine",
+          "name": "Augustine Deodat Taylor",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0143"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_taylor_voters",
+      "surname_key": "taylor",
+      "spellings_as_printed": [
+        "Taylor"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1833_026",
+          "name": "Charles Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "tax_1833_101",
+          "name": "Anson N. Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1834_106",
+          "name": "Charles Taylor",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1835_079",
+          "name": "Charles Taylor",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0143"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thoma_census_1840",
+      "surname_key": "thoma",
+      "spellings_as_printed": [
+        "' Thoma"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9MX:l23",
+          "name": "William Thomas[?]",
+          "rule": "OCR variant (0.91 similarity to 'thomas')"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l8",
+          "name": "William H. Thomas",
+          "rule": "OCR variant (0.91 similarity to 'thomas')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0155",
+        "nbi_v04_0156"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thoma_residents",
+      "surname_key": "thoma",
+      "spellings_as_printed": [
+        "' Thoma"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "thomas_frederick",
+          "name": "Frederick Thomas",
+          "rule": "OCR variant (0.91 similarity to 'thomas')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0155",
+        "nbi_v04_0156"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thoma_structures",
+      "surname_key": "thoma",
+      "spellings_as_printed": [
+        "' Thoma"
+      ],
+      "layer": "structures",
+      "candidates": [
+        {
+          "id": "frederick_thomas_shop",
+          "name": "Frederick Thomas's Shop",
+          "rule": "OCR variant (0.91 similarity to 'thomas')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0155",
+        "nbi_v04_0156"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thomas_census_1840",
+      "surname_key": "thomas",
+      "spellings_as_printed": [
+        "I Thomas"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9MX:l23",
+          "name": "William Thomas[?]",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l8",
+          "name": "William H. Thomas",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0154"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thomas_residents",
+      "surname_key": "thomas",
+      "spellings_as_printed": [
+        "I Thomas"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "thomas_frederick",
+          "name": "Frederick Thomas",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0154"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thomas_structures",
+      "surname_key": "thomas",
+      "spellings_as_printed": [
+        "I Thomas"
+      ],
+      "layer": "structures",
+      "candidates": [
+        {
+          "id": "frederick_thomas_shop",
+          "name": "Frederick Thomas's Shop",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0154"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_todd_residents",
+      "surname_key": "todd",
+      "spellings_as_printed": [
+        "' Todd",
+        "Todd"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "todd_hugh",
+          "name": "Hugh Todd",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0173",
+        "nbi_v04_0174"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_tucker_residents",
+      "surname_key": "tucker",
+      "spellings_as_printed": [
+        "Tucker"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "tucker_alexr_h",
+          "name": "Alexr. H. Tucker",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0183"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_tucker_voters",
+      "surname_key": "tucker",
+      "spellings_as_printed": [
+        "Tucker"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1834_108",
+          "name": "H. Tucker",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0183"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_turner_census_1840",
+      "surname_key": "turner",
+      "spellings_as_printed": [
+        "Turner"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-38:l4",
+          "name": "Stephen Turner",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-B3:l4",
+          "name": "John M. Turner",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0184",
+        "nbi_v04_0185",
+        "nbi_v04_0186"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_turner_residents",
+      "surname_key": "turner",
+      "spellings_as_printed": [
+        "Turner"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "turner_ezekiel",
+          "name": "Ezekiel Turner",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0184",
+        "nbi_v04_0185",
+        "nbi_v04_0186"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_warren_residents",
+      "surname_key": "warren",
+      "spellings_as_printed": [
+        "Warren"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "warren_c",
+          "name": "c. Warren",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0227",
+        "nbi_v04_0228",
+        "nbi_v04_0230"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_washington_residents",
+      "surname_key": "washington",
+      "spellings_as_printed": [
+        "Washington"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "washington_morrow",
+          "name": "Morrow Washington",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0231"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wells_residents",
+      "surname_key": "wells",
+      "spellings_as_printed": [
+        "Wells"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wells_charles",
+          "name": "Charles Wells",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0252"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wells_voters",
+      "surname_key": "wells",
+      "spellings_as_printed": [
+        "Wells"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1834_113",
+          "name": "George Wells",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0252"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wheeler_residents",
+      "surname_key": "wheeler",
+      "spellings_as_printed": [
+        "Wheeler"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wheeler_orson",
+          "name": "Orson Wheeler",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0261"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_whistler_voters",
+      "surname_key": "whistler",
+      "spellings_as_printed": [
+        "Whistler"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "tax_1833_108",
+          "name": "Whistler",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0266"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_white_census_1840",
+      "surname_key": "white",
+      "spellings_as_printed": [
+        "' White",
+        "White"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l12",
+          "name": "George White",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0268",
+        "nbi_v04_0270"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_white_residents",
+      "surname_key": "white",
+      "spellings_as_printed": [
+        "' White",
+        "White"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "white_edson",
+          "name": "Edson White",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0268",
+        "nbi_v04_0270"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_whiting_residents",
+      "surname_key": "whiting",
+      "spellings_as_printed": [
+        "Whiting"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "whiting_henry",
+          "name": "Henry Whiting",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0276"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wilson_census_1840",
+      "surname_key": "wilson",
+      "spellings_as_printed": [
+        "Wilson"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9M5:l2",
+          "name": "John Wilson",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0292"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wilson_residents",
+      "surname_key": "wilson",
+      "spellings_as_printed": [
+        "Wilson"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wilson_john",
+          "name": "John Wilson",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0292"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wilton_voters",
+      "surname_key": "wilton",
+      "spellings_as_printed": [
+        "Wilton"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1835_084",
+          "name": "John L. Wilton",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0223"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v03_win_residents",
       "surname_key": "win",
       "spellings_as_printed": [
@@ -19098,7 +20294,7 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "ll_payne_win",
+          "id": "win_payne",
           "name": "Payne Win.",
           "rule": "exact surname"
         }

@@ -25,7 +25,7 @@ KNOWN_IDS = (
 
 PRESENT_LETTER_IDS = (
     "bailly_joseph", "chappel_eliza_mir", "dement_wm",
-    "curtenius_fred_k", "avery_charles", "bemis_samuel_c",
+    "curtenius_fredk", "avery_charles", "bemis_samuel_c",
     "blood_amos", "boardman_elect", "bostwick_e_b",
     "bradstreet_j_p", "brooks_gardner", "brush_matthias",
     "burdick_paul", "case_nehemiah", "chamberlain_l_c",
