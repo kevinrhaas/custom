@@ -1,7 +1,7 @@
 ---
 id: T-0669
 title: Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 3:57:14 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918560859
 ---
 
 Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop.
