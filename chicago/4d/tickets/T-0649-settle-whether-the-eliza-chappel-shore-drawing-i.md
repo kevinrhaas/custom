@@ -1,7 +1,7 @@
 ---
 id: T-0649
 title: Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 777
+claimed_by: run 9/4/2026, 6:19:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T11:57:49.646Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33867088988
 ---
 
 Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse.

@@ -116,6 +116,18 @@ the lighthouse is the control, and the tree already holds
 `chicago_harbor_lighthouse_1838.jpg` to compare the tower against — and it is filed as
 its own ticket, **T-0649**, rather than smuggled into this one.
 
+> **T-0649 ran on 2026-09-04 and the answer is that the lighthouse CANNOT settle it.**
+> The reading is `docs/RESEARCH/chappel_shore_lighthouse.md`, measured by
+> `tools/measure_chappel_shore_lighthouse.py`. Three adults on the same bank, at
+> depressions of 80, 140 and 144 px below the fitted horizon, are drawn 55, 61 and 65 px
+> tall: one station demands the nearest be drawn **1.80×** the furthest and it is drawn
+> **1.18×**, short by **1.523×**. **The sheet is composed, not constructed**, so no drawn
+> position on it can be inverted to a station. The tower's foot is not drawn either, so
+> its height is only bounded to **4.65–23.41 m**; and Fort Dearborn, which the committed
+> coordinates put 35 m from the light and would draw **209 px** wide beside a 48 px
+> tower, is not there — the widest mass flanking it is **7 px**. **The fifth view stays
+> unspent, and the successor that would have spent it on the annex is not filed.**
+
 ## 5. What this pass did NOT do
 
 * **No record changed.** `data/structures/sauganash_hotel.json` still carries its one
