@@ -227,9 +227,18 @@ MARK_STOCKS = {
     # A druggist's barrels are a druggist's: oil, spirits and the two bulk salts every
     # period shop list carries. Carpenter's trade is attested; the stock is not.
     "druggist": ["LINSEED OIL", "TURPENTINE", "EPSOM SALTS", "ALUM"],
-    # A trading house's stock stands on the ground before it goes inside. Kept to the
-    # provisions and the two dry stores every frontier counter held; nothing here names
-    # or depicts the people the house traded with, which is AGENTS.md's L1 constraint.
+    # A trading house's stock stands on the ground before it goes inside. These four
+    # were originally kept to "the provisions and the two dry stores every frontier
+    # counter held" — a plausibility argument with no source under it, which is the one
+    # place L166's fence (a commodity word out of the trade's OWN attested description)
+    # could not be met, because Beaubien's trading house has no attested description of
+    # its stock. T-0596 gave them one: all four are named in the American Fur Company's
+    # own catalogue of goods furnished for the trade of the Chicago country, filed as
+    # bk_afc_018 — flour, barrel salt, gunpowder and tobacco. THE LIST DID NOT CHANGE
+    # AND MAY NOT GROW FROM THAT CATALOGUE: it is c.1828 and it is a district rather
+    # than a shop, so it corroborates a word already standing and warrants no new one.
+    # Nothing here names or depicts the people the house traded with, which is
+    # AGENTS.md's L1 constraint and is not relaxed by a citation. Ruling: L221.
     "trading": ["FLOUR", "SALT", "POWDER", "TOBACCO"],
     # A forwarding house's barrels are somebody else's, in transit between a vessel and
     # a wagon — the produce the lake trade moved out of this river.
@@ -244,6 +253,8 @@ MARK_CASE_WORD = {
     "provision": "TEA",
     "counter": "DRY GOODS",
     "druggist": "GLASS",
+    # HARDWARE: the catalogue's half axes, covered copper kettles, nails, fine steels,
+    # gun flints, kettle chains, pen knives and stirrup irons (bk_afc_018, T-0596).
     "trading": "HARDWARE",
     "forwarding": "MERCHANDISE",
     "auction": "SUNDRIES",
@@ -1889,7 +1900,18 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                 "destination and the one port this project can name in writing. Nothing "
                 "else — no trademark, no maker this town is not recorded as dealing "
                 "with, no price, no date, no slogan. Read the clauses in "
-                "tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166."
+                "tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166. "
+                "THE ONE CLASS THAT COULD NOT MEET THE SECOND CLAUSE NOW DOES: the "
+                "trading house's FLOUR, SALT, POWDER, TOBACCO and HARDWARE were chosen "
+                "on period plausibility because Beaubien's trading house has no "
+                "attested description of its stock, and T-0596 found all five in the "
+                "American Fur Company's own catalogue of goods furnished for the trade "
+                "of the Chicago country (bk_afc_018). No word was added, moved or "
+                "relettered on the strength of it — that catalogue is c.1828 and names "
+                "a district rather than a shop, so docs/LIBERTIES.md L221 admits it as "
+                "corroboration for a word already standing and refuses it as a warrant "
+                "for a new one. Nothing in this town letters, models or pictures the "
+                "Indian trade or the people it was with."
             ),
             "confidence": "reconstructed",
             "stocks": {k: list(v) for k, v in sorted(MARK_STOCKS.items())},
