@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "books",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
-  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read.",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio.",
   "declarations": [
     {
       "unit": "list",
@@ -102,6 +102,38 @@
       "read": "2026-09-03",
       "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 8060-8253",
       "not_read": "Nothing in pages 178 to 182. The book ends at page 182; leaves 221 to 226 are the back matter and the library's deacidification stamp."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_26_29_front_matter_leaves_1_14"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 1-14: the Allen County Public Library's plate, the Internet Archive's digitisation note, the volume's half-title naming the range 26-29, and the Fergus Printing Company advertisement leaves bound in front of Number 26. Swept for what the volume says about itself; it says almost nothing, and the contents table in README.md had to be read off the four title pages inside."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no26_harrison_discourse_leaves_15_206"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 15-206: Fergus' Historical Series No. 26 entire - William Henry Harrison's Discourse on the Aborigines of the Ohio Valley, with the Fort Wayne Indian speeches of 1811 appended, and the advertisement leaves that close the number. SWEPT AND ALL BUT EMPTY, WHICH IS THE EVIDENCE. The discourse is about the mound-builders and the Iroquois and never reaches Chicago; four claims come out of 192 leaves and every one of them is from the appendix or its footnotes."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no27_beckwith_indians_leaves_207_398"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 207-398: Fergus' Historical Series No. 27 entire - Hiram W. Beckwith's The Illinois and Indiana Indians (1884) - and the advertisement leaves that close it. THE PAYING HALF OF THIS HALF. Read closely at the Potawatomi chapters and the 1821 Chicago treaty, which is where the site itself is described; read for Chicago and not for the tribal history at large, so the Wabash, Miami and Kickapoo chapters were swept for place names and not mined."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no28_directory_1843_leaves_399_429"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 399-429: the opening of Fergus' Historical Series No. 28, the Directory of the City of Chicago for 1843 - its title page, Robert Fergus's 1896 introductory, and the civic pages through the port statistics, stopping where the business directory begins at leaf 430. T-0500 takes the business directory onward."
     }
   ]
 }
