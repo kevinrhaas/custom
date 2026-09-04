@@ -66,8 +66,8 @@
       ]
     },
     {
-      "household_id": "hh_allison_tho_s",
-      "person_id": "allison_tho_s",
+      "household_id": "hh_allison_thos",
+      "person_id": "allison_thos",
       "name": "Tho's Allison",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -450,8 +450,8 @@
       ]
     },
     {
-      "household_id": "hh_behan_tho_s",
-      "person_id": "behan_tho_s",
+      "household_id": "hh_behan_thos",
+      "person_id": "behan_thos",
       "name": "Tho's. Behan",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -570,8 +570,8 @@
       ]
     },
     {
-      "household_id": "hh_is_bobinson_george",
-      "person_id": "is_bobinson_george",
+      "household_id": "hh_bobinson_george_is",
+      "person_id": "bobinson_george_is",
       "name": "Bobinson George IS.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -906,8 +906,8 @@
       ]
     },
     {
-      "household_id": "hh_p_clapp_a",
-      "person_id": "p_clapp_a",
+      "household_id": "hh_clapp_a_p",
+      "person_id": "clapp_a_p",
       "name": "Clapp. A. P.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [

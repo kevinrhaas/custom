@@ -247,8 +247,8 @@
       ]
     },
     {
-      "household_id": "hh_es_jones_high",
-      "person_id": "es_jones_high",
+      "household_id": "hh_jones_es_high",
+      "person_id": "jones_es_high",
       "name": "Jones, High Es",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -463,8 +463,8 @@
       ]
     },
     {
-      "household_id": "hh_e_hhelps_theodore",
-      "person_id": "e_hhelps_theodore",
+      "household_id": "hh_hhelps_theodore_e",
+      "person_id": "hhelps_theodore_e",
       "name": "Hhelps Theodore E.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -667,8 +667,8 @@
       ]
     },
     {
-      "household_id": "hh_m_fadin_james",
-      "person_id": "m_fadin_james",
+      "household_id": "hh_mfadin_james",
+      "person_id": "mfadin_james",
       "name": "James M'Fadin",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [

@@ -127,8 +127,8 @@
       ]
     },
     {
-      "household_id": "hh_wm_nelts",
-      "person_id": "wm_nelts",
+      "household_id": "hh_nelts_wm",
+      "person_id": "nelts_wm",
       "name": "Nelts Wm.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "household_id": "hh_r_norton_n",
-      "person_id": "r_norton_n",
+      "household_id": "hh_norton_n_r",
+      "person_id": "norton_n_r",
       "name": "Norton N. R.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "household_id": "hh_h_norton_wm",
-      "person_id": "h_norton_wm",
+      "household_id": "hh_norton_wm_h",
+      "person_id": "norton_wm_h",
       "name": "Norton Wm. H.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -187,8 +187,8 @@
       ]
     },
     {
-      "household_id": "hh_m_kean_joseph",
-      "person_id": "m_kean_joseph",
+      "household_id": "hh_mkean_joseph",
+      "person_id": "mkean_joseph",
       "name": "Joseph M'Kean",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "household_id": "hh_t_orinsbey_martin",
-      "person_id": "t_orinsbey_martin",
+      "household_id": "hh_orinsbey_martin_t",
+      "person_id": "orinsbey_martin_t",
       "name": "Orinsbey martin T.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -271,8 +271,8 @@
       ]
     },
     {
-      "household_id": "hh_p_aylor_john_o",
-      "person_id": "p_aylor_john_o",
+      "household_id": "hh_paylor_john_o",
+      "person_id": "paylor_john_o",
       "name": "John O. P'aylor",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -319,8 +319,8 @@
       ]
     },
     {
-      "household_id": "hh_s_page_elisha",
-      "person_id": "s_page_elisha",
+      "household_id": "hh_page_elisha_s",
+      "person_id": "page_elisha_s",
       "name": "Page Elisha S.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -535,8 +535,8 @@
       ]
     },
     {
-      "household_id": "hh_8_perry_a",
-      "person_id": "8_perry_a",
+      "household_id": "hh_perry_a_8",
+      "person_id": "perry_a_8",
       "name": "Perry A. 8.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -751,8 +751,8 @@
       ]
     },
     {
-      "household_id": "hh_l_pixley_john",
-      "person_id": "l_pixley_john",
+      "household_id": "hh_pixley_john_l",
+      "person_id": "pixley_john_l",
       "name": "Pixley John L.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -847,8 +847,8 @@
       ]
     },
     {
-      "household_id": "hh_k_pugsley_john",
-      "person_id": "k_pugsley_john",
+      "household_id": "hh_pugsley_john_k",
+      "person_id": "pugsley_john_k",
       "name": "Pugsley John K.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [

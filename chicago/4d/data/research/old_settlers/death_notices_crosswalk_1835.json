@@ -12,7 +12,7 @@
   "matched_one_entry": 34,
   "matched_more_than_one_ambiguous": 11,
   "one_entry_contested_by_two_residents": 4,
-  "surname_present_initial_absent_refused": 126,
+  "surname_present_initial_absent_refused": 128,
   "matches_carrying_a_birth_year": 20,
   "matches_carrying_a_date_of_death": 32
  },
@@ -2042,6 +2042,13 @@
    "rule": "The surname 'Lawrence' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James R. Lawrence'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
+   "resident": "Joel C. Mills",
+   "person_id": "mills_joel_c",
+   "surname_in_the_list": "Mills",
+   "candidates": 1,
+   "rule": "The surname 'Mills' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joel C. Mills'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
    "resident": "John Murphy",
    "person_id": "murphy_john",
    "surname_in_the_list": "Murphy",
@@ -2306,6 +2313,13 @@
    "surname_in_the_list": "Stimson",
    "candidates": 1,
    "rule": "The surname 'Stimson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'S. C. Stimson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Sabrina A. Mason",
+   "person_id": "mason_sabrina_a",
+   "surname_in_the_list": "Mason",
+   "candidates": 2,
+   "rule": "The surname 'Mason' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Sabrina A. Mason'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Samuel Jackson",
