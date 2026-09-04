@@ -194,7 +194,6 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
-T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 
 T-0585 — The 1840 census images 1-25: names and cells of the left sheet printed 219
 T-0565 — The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread
