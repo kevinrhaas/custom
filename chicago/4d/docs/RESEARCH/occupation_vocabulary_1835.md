@@ -130,3 +130,179 @@ carriage and sleigh makers, confectioners, pedlars, land office receivers, town
 clerks and trustees, and the state and federal offices that belong with the refusals
 above. They are the same shape of question and not this ticket's list; they are filed
 as their own ticket.
+
+---
+
+# The other 128 printed trades (T-0661)
+
+T-0661 finishes what the section above leaves open. T-0418 adjudicated the 36 phrases
+the newspaper register itself refused; sweeping the WHOLE gazetteer the same way —
+2,630 persons and 206 businesses, and the trade of each — finds **343 distinct printed
+phrases**, of which 128 were read by no table. This is the adjudication of all 128.
+Every printed phrase in the gazetteer now either gains a word or is refused with a
+reason: **311 are read, 32 are refused, 0 are unruled.** `tools/compile_register.py`
+carries the ruling as `TRADE_TO_OCCUPATION_T0661` (86 needles) and
+`T0661_NOT_IN_VOCABULARY` (23 new refusals, joining T-0418's ten and one carried
+forward).
+
+## The ordering rule holds, and it is measured
+
+`TRADE_TO_OCCUPATION_T0661` is a THIRD table, asked after both of the others, for
+T-0418's reason exactly: a word added here may fill a null and may never displace a
+reading the corpus already resolves. Re-derived under that rule:
+
+| | before | after |
+|---|---|---|
+| persons with an occupation the register could not say | 52 filled | 0 displaced |
+| businesses likewise | 32 filled | 0 displaced |
+| business action ledger | `enrich_existing` 30 / `new_building` 25 / `street_only` 58 / `unplaceable` 93 | **identical** |
+| person action ledger | `enrich` 1386 / `new_resident` 1207 / `replace_invented` 37 | `enrich` 1386 / `new_resident` **1206** / `replace_invented` **38** |
+
+**The one row that moves is an addition, not a displacement,** and it is stated here
+because the acceptance clause asked for the ledger. Trowbridge is named in one notice,
+for the "EAGLE COFFEE HOUSE (TROWBRIDGE'S)" of 24 June 1835, and the reading pass
+printed his trade as `innkeeper`. An inn is a tavern and `tavern_keeper` is this
+vocabulary's word for the man who keeps one, so he stops being a person with no trade
+and becomes a documented tavern keeper — which is to say a candidate to retire one of
+the four tavern-keeper households the town invented for want of a documented one. His
+occupation was `null` before the needle and a word after it; nothing he already read
+changed. `retirable_total` is unchanged at 10, because the four invented tavern-keeper
+households were already fully covered by candidates.
+
+## The twenty-one words gained
+
+| printed | word | who |
+|---|---|---|
+| president of the board of trustees; president of the town trustees | `town_president` | John H. Kinzie, T. J. V. Owen, S. Hugunin |
+| town clerk; clerk of the board of trustees; secretary to the town trustees | `town_clerk` | Isaac Harmon, G. W. Snow, Alex. N. Fullerton |
+| assessor | `town_assessor` | George W. Snow |
+| fire warden | `fire_warden` | Edward F. H[u]nter, appointed for the second ward, 1 October 1834 |
+| Public Administrator of Cook county | `public_administrator` | G. W. Snow, J. B. Beaubien |
+| receiver, United States Land Office; Receiver of Public Moneys | `land_office_receiver` | Edmund D. Taylor, appointed by the President with the Senate's advice, 25 March 1835 — the officer whose Register half T-0418 gave a word to |
+| hatter; hat manufacturing and dealing | `hatter` | William Clay, who "has taken up his residence in the town" and put up a factory at Lake and Franklin |
+| brewer; brewing | `brewer` | Crawford, of the Chicago Brewery, wanting 4,000 bushels of barley |
+| confectioner; confectionary | `confectioner` | Stuart, John Wellmaker |
+| livery stable keeper; liveryman; livery stable | `livery_stable_keeper` | Everson, Lathrop Johnson, J. N. Story, Thos. Emerson & Co. |
+| carriage maker; sleigh maker; carriage and sleigh making | `carriage_maker` | Briggs & Humphrey, Riggs & Humphrey, William W. Morin |
+| pedlar | `pedlar` | Bernard Jeste or [Ya]ple, whose lost package of bills was advertised |
+| trunk maker | `trunk_maker` | Goss & Cobb |
+| jeweller; jewelry | `jeweller` | J. H. Mulford |
+| silversmith | `silversmith` | J. H. Mulford's second trade |
+| liquor | `liquor_dealer` | Cromelien, Brothers & Co.; the wholesale wine and liquor store in Dearborn Street |
+| engineer; superintendent of public works | `engineer` | Lieut. James Allen, on the harbour works |
+| mail contractor | `mail_contractor` | John T. Temple |
+| music teacher; piano forte tuner | `music_teacher` | Samuel Lewis |
+| dancing master | `dancing_master` | J. A. Marshall |
+| ship chandler | `ship_chandler` | four in Fergus 1839; see the note on it below |
+
+## The words that already existed and had no needle
+
+There are more of these than there are new words, and they carry more people. `master_mariner`,
+which T-0418 minted and never reached, takes the sweep's largest single group: ten
+schooner masters, three ship masters and one sloop master, out of the port arrivals
+and clearances. `minister` — in the vocabulary from the beginning, with nothing that
+reached it — takes nine, the four printed `clergyman`, the three Baptist pastors and
+the two printed `minister` outright; the vocabulary keeps `priest` for the Catholic
+cure and `chaplain` for the garrison's. `soldier`, `farmer`, `indian_agent`,
+`county_clerk` (which Richard J. Hamilton holds under five spellings — county clerk,
+clerk of court, clerk of the circuit court, clerk of the Cook Circuit Court, clerk of
+the county commissioners' court), `justice_of_the_peace`, `attorney` (ten men printed
+"solicitor in chancery" and one conveyancer), `physician`, `druggist`, `packer` and
+`speculator` are the rest.
+
+`army_officer` gains the ranks and staff appointments the papers print — a lieutenant
+of the U.S. Army, the major of the 5th Infantry commanding the post, a post adjutant,
+an acting and an assistant commissary of subsistence.
+
+**The Cook county regiment takes `militia_officer`, not a refusal.** The ticket filed
+its colonel (John B. Beaubien) and its regimental adjutant (J. Grant, Jr.) with the
+offices of another government seat. They are not: the Cook county regiment is THIS
+county's militia, mustered at this town, and `militia_officer` has been the word for
+Josiah Stillman's commission since T-0418. The refusal ground is a livelihood held
+ELSEWHERE, and neither of these men holds one.
+
+## The twenty-three refusals, on T-0418's four grounds
+
+**An office of another government seat.** `Secretary of War` (Lewis Cass, at
+Washington), `Secretary of State of Illinois` (a state office held at Vandalia),
+`circuit judge` (Sidney Breese — a circuit bench, and the same ruling T-0418 made for
+the judge of the fifth judicial circuit).
+
+**A single act, or a temporary duty, not a living.** `clerk pro tem` and `clerk pro
+tem. of the Board of Trustees` — one meeting's duty at one board, and the office
+itself already has `town_clerk`. `price reporter for the Chicago Democrat` — a duty
+the paper's price current names, beside P. F. Peck's own printed trade. `map
+publisher` — one map, published once, by a firm whose living is the Indian trade.
+`railroad commissioner` — a commission to organise the Chicago and Vincennes Rail
+Road, which never ran; the four Chicago men who held it (Kinzie, Dole, Hubbard,
+Pruyne) are read by their own printed trades, and the fifth, William B. Archer,
+promoted it from Clark county. The ticket filed this one under the town's offices; it
+is not one, and refusing it is what keeps a Clark county promoter out of the town.
+
+**Named as an agent, and the notice does not make the agency a living.** T-0418
+refused a bare `agent` on this ground. `newspaper agent` and `newspaper subscription
+agent` are the same shape and the notices say so plainly: W. Montgomery receives
+subscriptions for the Saturday Evening Post at his own auction room, and R. Stewart
+receives them for six New-York papers *at Col. Hamilton's office* — an accommodation
+beside a trade, not a trade. `steamboat agent`: taking freight and passage for a boat
+IS the forwarding trade, and the two so printed are read by it already (John H. Kinzie)
+or are a St. Joseph house (J. Griffiths & Co., whose notice gives St. Joseph).
+`manufacturers' agent` — an agency for manufacturers John Holbrook's notice does not
+name, held beside his own printed trades. `hat manufacturers and wholesale dealers,
+Detroit` — M'Cormick & Moon advertise in Chicago from No. 109 Jefferson Avenue,
+Detroit; the FIRM's phrase is refused on their own notice's word.
+
+**A property relation, not a trade.** `land owner`, `property owner` and `landlord`,
+all three of John T. Temple, on T-0418's `steamboat owner` ground: what he held, not
+what he did.
+
+**A vessel's run.** `lake packet` and `packet service for freight and passengers
+between Chicago and the mouth of the St. Joseph`. T-0418 put vessel ownership on the
+boat's own record in `data/boats/` rather than inside a man's trade, and a packet run
+between two ports is the same shape.
+
+**The notice states no trade.** `[not stated in the notice]`, `unstated — the notice
+announces only its closing`, `unstated — the notice announces only its dissolution`,
+and `corn, sold from a barn` — one lot of corn from a barn on the Dupage, which the
+gazetteer's own note already places outside the plat.
+
+## What this ruling reaches beyond the register
+
+`tools/fergus_1839_street_faces.py` measures the same vocabulary against Fergus's 1839
+directory, where 1,655 entries print a trade. The trades it could not say fall from
+**525 to 468 distinct phrases, and from 815 entries to 736** — 57 phrases and 79
+entries the town's word list can now speak, including every farmer in the ring
+townships, the tinners, the livery stables, the mail contractors and the civil
+engineers on the canal.
+
+**And the exposure that comes with it, recorded rather than hidden.** `occupation_of`
+matches a needle as a SUBSTRING of the printed trade, which is what makes the table
+cheap and what T-0376 already showed can go wrong (`mill` inside `milliner`). Fergus
+1839 sometimes prints an employer or an address inside its occupation field, so four
+of its 1,655 rows now reach a needle through an address rather than through a trade:
+"milkman, Wm. Dili's brewery" and "real estate dealer, 6th ward, near Lill's brewery"
+reach `brewer`; "carriage-driver, Graves' livery stable" and "horse-dealer, Graves'
+livery stable" reach `livery_stable_keeper`; and two "law student" rows reach
+`attorney`. None of them is evidence — that file is explicitly a measure and its own
+note forbids placing a shop from it — and none of them is in the gazetteer the
+register compiles. It is the same exposure the FIRST table already carries with
+`store`, `boot` and `school`, widened, and it is written down here so the next pass to
+touch this matcher knows what it costs.
+
+`ship chandler` sits ABOVE `chandler` in the table for the same reason: a ship chandler
+victuals and rigs vessels and is not a maker of candles. Daniel Elston, the one
+"chandler" the gazetteer prints, is a soap and candle maker by his own notice; Fergus
+prints four ship chandlers, and reading them as candle makers would have been exactly
+T-0376's milliner-as-miller again.
+
+## What this note still does not settle
+
+- **M'Cormick & Moon read `hatter` as PERSONS.** Their firm's phrase is refused on its
+  own Detroit address, but the gazetteer also holds them as a person whose occupation
+  is printed plainly as "hatter", and the person tables give them the word. Their
+  register action is `new_resident` and was `new_resident` before this ticket, so
+  nothing moved; but a later mint pass reading occupations alone could raise a hatter's
+  shop for a Detroit house. Filed as its own ticket.
+- **Twenty-one new words is a large addition to a closed vocabulary**, and the closure
+  is the point of it. Every one of them is a phrase the papers print for a named person
+  at Chicago; none is a category invented to tidy the list.

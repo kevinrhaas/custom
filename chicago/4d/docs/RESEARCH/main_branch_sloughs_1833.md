@@ -15,7 +15,13 @@ Branch are indicated"** is captioned *"Fort Dearborn and Environs, c. 1834 (Holl
 Chicago)"*, and that figure is a reproduction of the **Conley/Stelzer pictorial map of 1833
 Chicago** — the same sheet this project holds as `conley_stelzer_1933`. The surviving
 Thompson plat working copy (Wikimedia scan, ICHi-34284 lineage) is a schematic redrawing that
-does not carry the watercourses. So the operative source for the three sloughs' courses and
+carries **one** watercourse and not the three — read at 5× under T-0452 on 2026-09-04 it
+draws a two-banked channel north out of the main stem across North Division block 6, and draws
+none anywhere else on the sheet, so it corroborates the north-side slough at block resolution
+and is silent about the other two (`docs/RESEARCH/thompson_plat_sloughs.md`). *This paragraph
+said the plat carried none until that reading; the conclusion it supports — that the count and
+all three courses are Conley/Stelzer's — is unchanged, and now rests on a reading of the sheet
+rather than on an assumption about it.* So the operative source for the three sloughs' courses and
 termini is Conley/Stelzer, exactly as ROADMAP § S2e designated — with its ceiling
 (`asset_use: orientation`, a 1933 reconstruction; positions reach `inferred` at best, nothing
 is traced from it) — and Wright 1834, the sheet this terrain is fitted to, is the check for

@@ -40,16 +40,20 @@
    "boarding_house_keeper",
    "boatman",
    "bookseller",
+   "brewer",
    "brickmaker",
    "builder",
    "butcher",
    "carpenter",
+   "carriage_maker",
    "chaplain",
    "clerk",
    "clothier",
    "coffee_house_keeper",
+   "confectioner",
    "cooper",
    "county_clerk",
+   "dancing_master",
    "dentist",
    "domestic",
    "dressmaker",
@@ -57,8 +61,10 @@
    "druggist",
    "dry_goods_merchant",
    "editor",
+   "engineer",
    "farmer",
    "ferryman",
+   "fire_warden",
    "forwarding_and_commission",
    "founder",
    "grocer",
@@ -66,19 +72,25 @@
    "harbour_agent",
    "hardware_merchant",
    "harness_maker",
+   "hatter",
    "hotel_keeper",
    "hunter",
    "indian_agent",
    "insurance_agent",
    "interpreter",
+   "jeweller",
    "joiner",
    "justice_of_the_peace",
    "labourer",
    "land_agent",
+   "land_office_receiver",
    "land_office_register",
    "laundress",
    "lighthouse_keeper",
+   "liquor_dealer",
+   "livery_stable_keeper",
    "lumber_merchant",
+   "mail_contractor",
    "mason",
    "master_mariner",
    "merchant",
@@ -86,15 +98,18 @@
    "miller",
    "milliner",
    "minister",
+   "music_teacher",
    "none_recorded",
    "packer",
    "painter",
+   "pedlar",
    "physician",
    "plasterer",
    "postmaster",
    "priest",
    "printer",
    "provision_dealer",
+   "public_administrator",
    "refectory_keeper",
    "saddler",
    "sailmaker",
@@ -103,7 +118,9 @@
    "seaman",
    "sheriff",
    "ship_carpenter",
+   "ship_chandler",
    "shoemaker",
+   "silversmith",
    "soap_and_candle_maker",
    "soldier",
    "speculator",
@@ -116,7 +133,11 @@
    "tavern_keeper",
    "teamster",
    "tinsmith",
+   "town_assessor",
+   "town_clerk",
+   "town_president",
    "trader",
+   "trunk_maker",
    "watchmaker",
    "wheelwright"
   ],
@@ -146,18 +167,75 @@
   ],
   "resident_subtypes": [
    "projected_resident"
+  ],
+  "ladder_rules": [
+   {
+    "rung": "G0",
+    "grade": "not_1835_resident",
+    "rule": "Every appearance describes a date after the scene year. 1839/1840 alone is never an 1835 resident — later evidence only."
+   },
+   {
+    "rung": "G1a",
+    "grade": "attested",
+    "rule": "The 1835 poll list and at least one other independent source."
+   },
+   {
+    "rung": "G1b",
+    "grade": "attested",
+    "rule": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town."
+   },
+   {
+    "rung": "G2a",
+    "grade": "inferred",
+    "rule": "The 1835 poll list alone."
+   },
+   {
+    "rung": "G2b",
+    "grade": "inferred",
+    "rule": "An 1833 or 1834 list (poll, tax, muster) with another source."
+   },
+   {
+    "rung": "G2c",
+    "grade": "inferred",
+    "rule": "The St Cyr register 1833-1835 — a party to a marriage or burial in the parish inside the scene window."
+   },
+   {
+    "rung": "G2d",
+    "grade": "inferred",
+    "rule": "Hubbard or Fergus or Norris naming a person the town already carries, with a trade or an address."
+   },
+   {
+    "rung": "G2e",
+    "grade": "inferred",
+    "rule": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner."
+   },
+   {
+    "rung": "G3",
+    "grade": "inferred",
+    "rule": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`."
+   },
+   {
+    "rung": "G4",
+    "grade": "inferred",
+    "rule": "Two or more appearances, none of them of a class a rung above accepts. Carries resident_subtype `projected_resident` until a rung above fires."
+   },
+   {
+    "rung": "G5",
+    "grade": null,
+    "rule": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner."
+   }
   ]
  },
  "counts": {
   "households": 1380,
   "persons": 1404,
   "by_grade": {
-   "attested": 482,
-   "inferred": 922,
+   "attested": 480,
+   "inferred": 924,
    "reconstructed": 0
   },
   "letter_list_only": 727,
-  "projected_residents": 790,
+  "projected_residents": 791,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
   "civic_mint": 531
@@ -207,7 +285,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -3265,7 +3343,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -3550,9 +3628,9 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
-   "projected_resident": false
+   "projected_resident": true
   },
   {
    "id": "hh_burlingame_geo_a",
@@ -7453,7 +7531,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -9704,7 +9782,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -11848,7 +11926,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -12846,7 +12924,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -14017,7 +14095,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -17171,7 +17249,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },
@@ -17817,7 +17895,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18395,7 +18473,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": false
   },
@@ -18505,7 +18583,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -18675,7 +18753,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -19826,7 +19904,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": false
   },

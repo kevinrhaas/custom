@@ -8,7 +8,8 @@
   "value": "1833-12-31",
   "confidence": "inferred",
   "sources": [
-   "chicago_voter_lists_1833_1835_irad"
+   "chicago_voter_lists_1833_1835_irad",
+   "fergus_chicago_directory_1843"
   ],
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
@@ -39,12 +40,13 @@
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
-  "value": "uncertain",
+  "value": "present",
   "confidence": "inferred",
   "sources": [
-   "chicago_voter_lists_1833_1835_irad"
+   "chicago_voter_lists_1833_1835_irad",
+   "fergus_chicago_directory_1843"
   ],
-  "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
+  "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
  },
  "persons": [
   {
@@ -53,7 +55,7 @@
    "relationship": "head",
    "grade": "inferred",
    "civic_mint": true,
-   "ladder_rule": "G3",
+   "ladder_rule": "G2b",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -61,9 +63,9 @@
    },
    "sources": [
     "chicago_voter_lists_1833_1835_irad",
-    "fergus_chicago_directory_1839"
+    "fergus_chicago_directory_1843"
    ],
-   "note": "PROJECTED RESIDENT. Documented once and corroborated by nothing else, so the weakest rung of `inferred` the owner's ladder defines. A SINGLE APPEARANCE AND NOTHING ELSE. Read from poll_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G3), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “M. Smith” (f1839_v0380, printed page 43, ward 2, voting for John H. Kinzie). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Smith' folds to the same string as the 1837 entry's, and the given name of both begins M. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from directory_1843, poll_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "poll_1833",
@@ -72,7 +74,18 @@
      "record_id": "poll_1833_024",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G3"
+     "rule": "G2b"
+    }
+   ],
+   "book_evidence": [
+    {
+     "list": "directory_1843",
+     "as_read": "Smith, Miss M., teacher public school 3, district 4",
+     "locator": "alphabetical directory",
+     "record_id": "f1843_e2305",
+     "describes_date": "1843",
+     "source": "fergus_chicago_directory_1843",
+     "rule": "G2b"
     }
    ],
    "resident_subtype": "projected_resident"
@@ -85,8 +98,7 @@
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [
    "fergus_chicago_directory_1839",
-   "fergus_chicago_directory_1843",
-   "norris_directory_1844"
+   "fergus_chicago_directory_1843"
   ],
   "people": [
    {

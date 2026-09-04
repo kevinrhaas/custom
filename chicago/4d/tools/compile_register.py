@@ -265,6 +265,144 @@ TRADE_TO_OCCUPATION_T0418 = (
     ("hollow ware", "stove_dealer"),
 )
 
+# T-0661 — the OTHER printed trades this vocabulary could not say. T-0418 adjudicated
+# the 36 phrases the newspaper register itself refused; sweeping the WHOLE gazetteer
+# the same way leaves 128 more printed phrases that no table above reads, across both
+# the persons and the businesses. This is the third table, and it is asked LAST for
+# the same reason the second is asked second: a word added here may fill a null and
+# may never displace a reading the corpus already resolves. Twenty-one new words joined
+# `data/residents/index.json`'s vocabulary with it; the rest are needles onto words
+# that were already there and that nothing ever reached — `soldier`, `farmer`,
+# `minister`, `indian_agent`, `county_clerk`, `packer`, `speculator`.
+# docs/RESEARCH/occupation_vocabulary_1835.md argues every one of them, and the 33
+# phrases this project REFUSES are in TRADE_NOT_IN_VOCABULARY below, checked first.
+#
+# ORDER IS THE RULE HERE TOO. "painting" sits above "carriage" because Brown offers
+# "carriage, sign, ornamental and figure painting, and gilding" and he is a painter,
+# not a carriage maker. The vessel masters take two-word needles because a bare
+# "master" would take the dancing master and the schoolmaster with them.
+TRADE_TO_OCCUPATION_T0661 = (
+    # --- the town's and the county's own offices. T-0418 settled that this vocabulary
+    # carries an office held AT CHICAGO — sheriff, county clerk, postmaster, register
+    # of the land office are all in it already — and the same reasoning admits the
+    # rest of the town's bench and board. An office held at Washington, at Vandalia or
+    # on a circuit is refused below, on T-0418's own ground.
+    ("president of the board of trustees", "town_president"),
+    ("president, board of trustees", "town_president"),
+    ("president of the town trustees", "town_president"),
+    ("clerk of the board of trustees", "town_clerk"),
+    ("secretary, board of trustees", "town_clerk"),
+    ("secretary to the town trustees", "town_clerk"),
+    ("town clerk", "town_clerk"),
+    ("assessor", "town_assessor"),
+    ("fire warden", "fire_warden"),
+    ("public administrator", "public_administrator"),
+    ("clerk of the circuit court", "county_clerk"),
+    ("clerk of the cook circuit court", "county_clerk"),
+    ("clerk of the county commissioners' court", "county_clerk"),
+    ("clerk of court", "county_clerk"),
+    ("county clerk", "county_clerk"),
+    ("justice", "justice_of_the_peace"),
+    ("indian agent", "indian_agent"),
+    ("receiver, united states land office", "land_office_receiver"),
+    ("receiver of public moneys", "land_office_receiver"),
+    # --- the garrison and the militia. `army_officer` and `militia_officer` were both
+    # in the vocabulary and between them reached four commissions; these are the ranks
+    # and staff appointments the papers actually print. The Cook county regiment is
+    # THIS county's militia, mustered at this town, which is why its colonel and its
+    # adjutant take the militia word rather than a refusal.
+    ("commissary of subsistence", "army_officer"),
+    ("post adjutant", "army_officer"),
+    ("commanding the post", "army_officer"),
+    ("u.s. army", "army_officer"),
+    ("colonel of the cook county regiment", "militia_officer"),
+    ("regimental adjutant", "militia_officer"),
+    ("soldier", "soldier"),
+    # --- the lake. `master_mariner` has been a word since T-0418 and no needle ever
+    # reached it; ten schooner masters, three ship masters and one sloop master are
+    # the largest single group in the sweep.
+    ("schooner master", "master_mariner"),
+    ("ship master", "master_mariner"),
+    ("sloop master", "master_mariner"),
+    # --- the pulpit. `minister` was in the vocabulary from the beginning with nothing
+    # to reach it. A Baptist pastor is a minister of that denomination; the vocabulary
+    # keeps `priest` for the Catholic cure and `chaplain` for the garrison's.
+    ("baptist pastor", "minister"),
+    ("clergyman", "minister"),
+    ("minister", "minister"),
+    # --- the law. Ten men are printed "solicitor in chancery" and read nothing.
+    ("solicitor", "attorney"),
+    ("conveyancer", "attorney"),
+    ("law", "attorney"),
+    # --- physic. `physician` and `druggist` both existed; neither reached a botanic
+    # practitioner, a chemist or a notice that offers "medicine and surgery".
+    ("botanic", "physician"),
+    ("medicine and surgery", "physician"),
+    ("patent medicine", "druggist"),
+    ("chemist", "druggist"),
+    # --- the trades the vocabulary had no word for at all.
+    ("painting", "painter"),
+    ("carriage", "carriage_maker"),
+    ("sleigh", "carriage_maker"),
+    ("hat manufactur", "hatter"),
+    ("hatter", "hatter"),
+    ("brew", "brewer"),
+    ("confection", "confectioner"),
+    ("livery", "livery_stable_keeper"),
+    ("pedlar", "pedlar"),
+    ("trunk maker", "trunk_maker"),
+    ("silversmith", "silversmith"),
+    ("jeweller", "jeweller"),
+    ("jewelry", "jeweller"),
+    ("liquor", "liquor_dealer"),
+    ("engineer", "engineer"),
+    ("superintendent of public works", "engineer"),
+    ("mail contractor", "mail_contractor"),
+    ("dancing master", "dancing_master"),
+    ("music teacher", "music_teacher"),
+    ("piano", "music_teacher"),
+    # --- needles onto words the vocabulary already had.
+    # An inn is a tavern, and `tavern_keeper` is this vocabulary's word for the man who
+    # keeps one. The single holder in this corpus, Trowbridge, is named in one notice
+    # for the "EAGLE COFFEE HOUSE (TROWBRIDGE'S)" — an inn under the town's other name
+    # for it — so this needle is the one addition in T-0661 that moves a row of the
+    # register's action ledger, from `new_resident` to `replace_invented` against the
+    # four tavern-keeper households the town invented for want of a documented one.
+    # That is an ADDITION, not a displacement: his occupation was null before it.
+    ("innkeeper", "tavern_keeper"),
+    ("newspaper publisher", "editor"),
+    ("academy", "schoolteacher"),
+    # "ship chandler" ABOVE "chandler": a ship chandler victuals and rigs vessels and
+    # is not a maker of candles. Daniel Elston, the one "chandler" the gazetteer prints,
+    # is a soap and candle maker by his own notice; Fergus 1839 prints four ship
+    # chandlers, and reading them as candle makers would be exactly the class of silent
+    # collision T-0376's milliner-as-miller taught this table to fear.
+    ("ship chandler", "ship_chandler"),
+    ("chandler", "soap_and_candle_maker"),
+    ("pork curer", "packer"),
+    ("tinner", "tinsmith"),
+    ("stove manufacturer", "stove_dealer"),
+    ("castings", "founder"),
+    ("ironmonger", "hardware_merchant"),
+    ("cloak", "dressmaker"),
+    ("habit maker", "dressmaker"),
+    ("surveying", "surveyor"),
+    ("provisions", "provision_dealer"),
+    ("forwarder", "forwarding_and_commission"),
+    ("storage keeper", "forwarding_and_commission"),
+    ("land speculator", "speculator"),
+    ("houses and lands", "land_agent"),
+    ("leasing town lots", "land_agent"),
+    ("letting agent", "land_agent"),
+    ("land dealer", "land_agent"),
+    ("farmer", "farmer"),
+    ("merchandise", "merchant"),
+    ("crockery", "merchant"),
+    ("leather", "merchant"),
+    ("commission dealer", "merchant"),
+    ("shopkeeper", "merchant"),
+)
+
 # T-0418, the other half of the same ruling: printed phrases this project declines to
 # translate, and the reason for each. Matched on the WHOLE printed phrase rather than
 # as a substring, because a refusal is a ruling about one phrase and a substring
@@ -297,6 +435,59 @@ TRADE_NOT_IN_VOCABULARY = {
     "steamboat owner": "the notice gives the vessel he owned, not the work he did",
 }
 
+# T-0661, the other half of the same ruling, and it follows T-0418's four grounds
+# exactly. Matched on the WHOLE printed phrase, checked before all three tables.
+T0661_NOT_IN_VOCABULARY = {
+    # An office of another government seat. This vocabulary is the town's; a word for
+    # one of these invites the mint to raise a Chicago household for a man the same
+    # record places at Washington, at Vandalia or on a circuit.
+    "secretary of war": "the Secretary of War, at Washington",
+    "secretary of state of illinois": "a state office held at Vandalia",
+    "circuit judge": "a circuit bench, not a Chicago livelihood",
+    # A single act or a temporary duty, not a living.
+    "clerk pro tem": "one meeting's duty at one board; the office itself is town_clerk",
+    "clerk pro tem. of the board of trustees":
+        "one meeting's duty at one board; the office itself is town_clerk",
+    "railroad commissioner": ("a commission to organise the Chicago and Vincennes Rail "
+                              "Road, which never ran; the four Chicago men who held it "
+                              "are read by their own printed trades and the fifth, "
+                              "William B. Archer, promoted it from Clark county"),
+    "price reporter for the chicago democrat":
+        "a duty the paper's price current names; P. F. Peck's living is printed elsewhere",
+    "map publisher": "one map, published once, by a firm whose living is the Indian trade",
+    "judge of election": "one day's duty at one poll; not a trade",
+    # Named as an agent, and the notice does not say the agency is a living. T-0418
+    # refused a bare "agent" on this ground; these are agencies performed BESIDE a
+    # printed trade, at another man's office or another town's wharf.
+    "newspaper agent": ("subscriptions received at his own auction room: an "
+                        "accommodation beside the auctioneer's trade"),
+    "newspaper subscription agent": ("subscriptions received at another man's office; "
+                                     "an accommodation, not a living"),
+    "steamboat agent": ("taking freight and passage for a boat is the forwarding trade, "
+                        "and the two so printed are read by it already (John H. Kinzie) "
+                        "or are a St. Joseph house (J. Griffiths & Co.)"),
+    "manufacturers' agent": ("an agency for manufacturers the notice does not name, "
+                             "held beside Holbrook's own printed trades"),
+    "hat manufacturers and wholesale dealers, detroit":
+        "a Detroit house advertising in Chicago; the notice gives Jefferson Avenue",
+    # A property relation: what he held, not what he did.
+    "land owner": "a holding, not a trade",
+    "property owner": "a holding, not a trade",
+    "landlord": "a holding, not a trade; Temple's living is printed as physician",
+    # A vessel's service. T-0418 put vessel ownership on the boat's own record in
+    # data/boats/ rather than in a man's trade, and a packet run is the same shape.
+    "lake packet": "a vessel's run; it belongs on the boat's record, not in a trade",
+    "packet service for freight and passengers between chicago and the mouth of the st. joseph":
+        "a vessel's run; it belongs on the boat's record, not in a trade",
+    # The notice states no trade at all.
+    "[not stated in the notice]": "the notice states no trade",
+    "unstated — the notice announces only its closing": "the notice states no trade",
+    "unstated — the notice announces only its dissolution": "the notice states no trade",
+    "corn, sold from a barn": ("one lot of corn from a barn on the Dupage, which the "
+                               "gazetteer's own note places outside the plat"),
+}
+TRADE_NOT_IN_VOCABULARY.update(T0661_NOT_IN_VOCABULARY)
+
 
 # --------------------------------------------------------------------------
 # normalising an anchor, a name and a street
@@ -316,7 +507,8 @@ def street_key(name):
     return "_".join(t.split())
 
 
-def occupation_of(text, table=TRADE_TO_OCCUPATION + TRADE_TO_OCCUPATION_T0418):
+def occupation_of(text, table=TRADE_TO_OCCUPATION + TRADE_TO_OCCUPATION_T0418
+                                    + TRADE_TO_OCCUPATION_T0661):
     """The residents vocabulary's word for a printed trade, or None.
 
     `table` is how a caller reading a person with SEVERAL printed trades keeps the
@@ -1151,7 +1343,8 @@ def compile_register(gazetteer, town, quiet=True):
     # across every trade the corpus gives him and the trade of his firm, and only a man
     # nothing there reaches is offered to the new words.
     trade_of_person = {}
-    for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418):
+    for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418,
+                  TRADE_TO_OCCUPATION_T0661):
         d = {}
         for b in gazetteer["businesses"]:
             occ = occupation_of(b.get("trade"), table)
@@ -1164,7 +1357,8 @@ def compile_register(gazetteer, town, quiet=True):
     persons = []
     for p in sorted(gazetteer["persons"], key=lambda x: x["id"]):
         occ = None
-        for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418):
+        for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418,
+                      TRADE_TO_OCCUPATION_T0661):
             for o in p.get("occupations") or []:
                 occ = occupation_of(o, table)
                 if occ:

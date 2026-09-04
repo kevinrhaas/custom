@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "books",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
-  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio.",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio. T-0500 adds five declarations for the SECOND half (leaves 430-858), and they are `list` items for a reason of their own: this volume's page boundaries ARE exact — page_index/fergus_26_29.json carries all 858 — but declaring 429 `page` items, 234 of them blank leaves, would bury the four ranges that mean something under four hundred that do not. Every claim's locator names its own scan LEAF beside its line range, so page-level coverage is available to a later pass without a re-read. ONE OF THE FIVE IS A SWEEP AND NOT A READING and says so in its own `what`: the 1843 alphabetical name directory was passed by machine against dated and known-name patterns and read closely only where it answered.",
   "declarations": [
     {
       "unit": "list",
@@ -134,6 +134,61 @@
       ],
       "ticket": "T-0499",
       "note": "Leaves 399-429: the opening of Fergus' Historical Series No. 28, the Directory of the City of Chicago for 1843 - its title page, Robert Fergus's 1896 introductory, and the civic pages through the port statistics, stopping where the business directory begins at leaf 430. T-0500 takes the business directory onward."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_28_business_directory_1843_leaves_430_457"
+      ],
+      "ticket": "T-0500",
+      "what": "Fergus' Historical Series No. 28, the Directory of the City of Chicago for 1843 — its BUSINESS DIRECTORY, printed pages 17 to 31, scan leaves 430 to 457, read in full. Trades by category with street addresses: attorneys, bankers, cabinet makers, forwarding and commission merchants, grocers, hotels and temperance houses, iron and hardware, insurance agencies, land agencies, livery stables and the rest. Read for what it says about the town's streets and houses, and for the firms whose names this project already holds from 1835.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/fergus_26_29.txt, lines 2490 to 2722 (leaf 457 is a blank verso and shares line 2722 with leaf 458)",
+      "not_read": "Nothing in the Business Directory. WHAT IT IS NOT: it is 1843. Every claim taken from it carries describes_date 1843 and NONE of its addresses is carried into the scene year. The odd-numbered leaves through this stretch carry no text but the scanner's own gutter noise and are declared with the range they sit in."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_28_name_directory_1843_leaves_458_605"
+      ],
+      "ticket": "T-0500",
+      "what": "The same number's ALPHABETICAL NAME DIRECTORY, printed pages 31 to 104, scan leaves 458 to 605 — about eight thousand entries of name, trade, employer and address, with Robert Fergus's own later annotations inserted in square brackets. SWEPT AND NOT READ CONTINUOUSLY, and the method is stated because it is the honest description: every line of the range was passed by machine against two patterns — every four-digit year from 1820 to 1836, and every personal and firm name this project's own 1835 records hold — and the thirty-odd lines that answered were then read closely and are what the claims come from.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/fergus_26_29.txt, lines 2722 to 5123",
+      "not_read": "THE OTHER EIGHT THOUSAND ENTRIES, as entries. They were swept, not read: nobody here has looked at 'Ackley, Benjamin, sailor' and decided anything about him. That is a deliberate limit and not an oversight — the directory is 1843 and a 1843 entry is not evidence about 1835 — and it means an absence in this file is NO evidence that a name is absent from the directory. A pass that wants the 1843 directory entry by entry must read it entry by entry, and should say so; this declaration is the sweep and only the sweep."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_28_obituary_leaves_606_644"
+      ],
+      "ticket": "T-0500",
+      "what": "The OBITUARY that closes Fergus No. 28, printed pages 105 to 124, scan leaves 606 to 644, read in full: names, places, dates and ages at death of Chicago's old settlers prior to 1843 and of others prominently connected with Illinois history. Read for every death falling between 1830 and 1836, which is where the only scene-year facts in the whole of Fergus No. 28 are.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/fergus_26_29.txt, lines 5123 to 5425",
+      "not_read": "Nothing in the Obituary. It says of itself that it lists 'SOME of' Chicago's old settlers, so absence from it means nothing whatever, and it is a list compiled in the 1890s about deaths going back seventy years. One man, Dr Henry Van der Bogart, is entered in it TWICE under two spellings with the same date."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_publisher_advertisement_leaves_645_657_and_851_858"
+      ],
+      "ticket": "T-0500",
+      "what": "The Fergus Printing Company's own book lists and advertisement leaves bound between No. 28 and No. 29 (scan leaves 645 to 657, including the Joseph Duncan photogravure plate at leaf 654) and at the end of the volume (leaves 851 to 858). Read for one thing only: the Chicago titles they advertise, which are LEADS to sources this project does not hold.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/fergus_26_29.txt, lines 5426 to 5585 and 6895 to 6941",
+      "not_read": "Nothing that names Chicago. The prices, bindings and page counts of the non-Chicago titles — sermons, dramas, Reynolds' histories — were passed over and are not claimed. The OCR of these leaves is the worst in the volume, being set in display type across ornamental borders, and two of the three Chicago titles could only be read because their subjects are known."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_29_duncan_sketch_leaves_658_850"
+      ],
+      "ticket": "T-0500",
+      "what": "FERGUS' HISTORICAL SERIES No. 29 — Julia Duncan Kirby's Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois, read before the Historical Society of Jacksonville on 7 May 1885 and printed at Chicago in 1888 — read in full, scan leaves 658 to 850, printed pages 1 to 95 including the index. Read for the ILLINOIS-AND-MICHIGAN CANAL, which is the only thread in it that reaches the town this project reconstructs: Duncan's 1829 diary of getting the canal located, the legislature of 1834-35 that adjourned without acting on it, the special session of December 1835 that authorised the loan, and the 1837 message that priced what the canal lands had raised.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/fergus_26_29.txt, lines 5585 to 6894",
+      "not_read": "Nothing in No. 29. What it does not CONTAIN is the more useful statement: it names Chicago four times in ninety-five pages and places nothing there. The sketch is Jacksonville and Vandalia and Washington, and its 1835 is a house being finished in Morgan County. A run reaching into this number for the town of 1835 will come back with the canal and nothing else."
     }
   ]
 }

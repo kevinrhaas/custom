@@ -245,3 +245,57 @@ text with no gap and no overlap. **Its folios are read or they are null** — th
 binds four pamphlets that each restart at 1, so there is no offset to carry and a carried
 folio would be an invention. 194 of the 624 non-blank leaves print one the reader could
 take.
+
+## What has been read (T-0500, 2026-09-03) — the second half by page index
+
+**Leaves 430–858**, declared as five `list` items in `coverage.json` with no hole, which
+completes the volume: T-0499 stopped where the 1843 business directory begins and this
+takes it from there. Fifty-eight claims at `claims/fergus_26_29_second_half.json`;
+forty-five of them are town findings. The target was stated before the reading began, in
+its own commit: fifty claims and twenty town findings.
+
+The five are **No. 28's Business Directory** (430–457) and **Obituary** (606–644) and the
+whole of **No. 29** (658–850), read in full; the **publisher's advertisement leaves**
+(645–657, 851–858) read for Chicago titles only; and **No. 28's alphabetical name
+directory** (458–605) **swept by machine and not read continuously**. That last is stated
+as plainly in its declaration as it is here, because it is the one limit that could be
+mistaken for coverage: every line was passed against two patterns — every year from 1820
+to 1836, and every personal and firm name this project's own 1835 records hold — and only
+the thirty-odd lines that answered were read. An absence from this file is therefore **no
+evidence** that a name is absent from the directory.
+
+**The directory is 1843 and the claims say so, forty times over.** Not one of its
+addresses is carried into the scene year, and the most useful thing in it is a dated
+negative: `bk_fer2_043`, Fergus's own note that Bristol & Porter's was the **first
+warehouse on the South Side, erected in the fall of 1839**. `bk_fer2_044` is why every
+other annotation of his is graded where it is — his own entry gives his arrival as
+**1 July 1839**, which is T-0499's finding reached independently from the other end of the
+book. What 1843 does give is the distance travelled: a four-storey brick on South Water
+second door from Clark, the Sauganash still at Lake and Market, a *later* Tremont House on
+Lake Street, and two shops reading their position as an ordinal off a named building —
+the same grammar T-0384 and T-0385 read for 1835.
+
+**The Obituary is where the second half touches the scene year at all**, six times:
+Thomas J. V. Owen the Indian agent (15 October 1835), the Rev. Jesse Walker twelve miles
+west of Chicago (5 October 1835), Hollis Newton hotel-keeper (25 August 1835), a **Dr
+Spring** with no given name (10 November 1835), the Rev. Allen B. Freeman (17 December
+1834) and Dr Alexander Wolcott (25 October 1830, his the first will probated in Cook
+County). The Spring line is **refused** against this project's Giles Spring and the
+refusal is the point: a surname with a doctor's title in front of it is not a lawyer, and
+T-0423 would otherwise inherit a death inside the scene year on a surname alone.
+
+**No. 29 names Chicago four times in ninety-five pages and places nothing here.** Its one
+thread that reaches the town is the Illinois-and-Michigan Canal, and that thread is worth
+the reading: Duncan's Washington diary of March 1829 pressing the War Department to get
+the route **located**; the legislature of 1834–35 adjourning without acting on it; and the
+special session of **December 1835** — the last month of the scene year — where he
+reported every attempt at a loan had failed and asked instead for the faith of the State
+to be pledged, which that session granted and which is the money the canal was built
+with. One passage naming Chicago canal lots is recorded as a **trap** (`bk_fer2_012`): it
+sits in a message headed *July 11, 1837*, so its "20th of June last" is 1837, and a sweep
+for Chicago plus a canal context would take it for 1835.
+
+**The identity pass rules on eleven claims** — six merges and seven refusals — and lists
+all twenty-five people named inside the 1830–1836 window by name with the outcome of
+each, because a crosswalk that reports only its merges cannot be audited. Nothing in
+`data/residents/`, `data/structures/` or `data/assets/` was edited.

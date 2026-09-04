@@ -181,6 +181,13 @@ on the improve runner against the published mirror, one part each, `SMOKE_TIMING
 clock for eight boots. (Mobile's 411 is these 408 plus the three checks part 4 takes only at
 mobile.)
 
+**THE TABLE ABOVE IS SPELLED IN THE PART NUMBERING OF 2026-08-24, WHICH IS NOT TODAY'S**
+(noted 2026-09-03, T-0450). Its rows are the nine parts as they stood before T-0346, T-0173
+and T-0170 each cut one in two; read forward, its part 4 is today's 4+5+6, its 5 is 7+8 and
+its 7-9 are 10-13. It is kept because it is the measurement the cuts below were sized from,
+and re-labelling it would destroy that. For what the parts and the gate's legs cost TODAY,
+in today's numbering, ask the record: `node tools/smoke_budget.mjs` and `--legs`.
+
 **The table above was taken at `ac1abb80`**, and T-0166's mobile column at the same commit.
 T-0114 merged into `dev` while this run was measuring and changed `streets.js`, so the parts
 that read the roads — 5 and 7 — will have moved a little since, and part 5's reading was taken
@@ -346,6 +353,113 @@ what these parts cost on a shared box, not a description of it. T-0215's `clickC
 back at **6 m 10 s** — T-0167's figure to the second, all 28 checks — by not paying for frames
 where the frames are not the subject. Desktop-only: the same part costs 2 m 52 s at 390×780, where
 a frame covers a quarter the pixels.
+
+**THE LEG COSTS WERE NEVER MEASURED AS LEGS, AND T-0181 MEASURED THEM — 104 REAL ONES.**
+T-0171's merge commit said its four desktop legs cost *"6 m 08 s, 8 m 47 s, 8 m 04 s and
+17 m 02 s"* and that the *"worst leg keeps better than ten minutes of margin"*. **Both claims
+are wrong, and the record is corrected here.** Those four numbers were SUMMED from T-0167's
+per-PART profile on the reasoning that a pair boots once where the profile paid a boot per
+part; not one of them was a reading of a leg. T-0181 then restated the margin as **9 m 49 s**
+from a single leg in bake run #273. That is also wrong — one sample of a quantity T-0167 had
+already written down as varying "by minutes between runs".
+
+**The readings are this workflow's own job history**, taken 2026-08-30 from the Actions API for
+`chicago-4d-bake.yml`, runs **#271-#391** — every desktop tail leg it has ever run (`7-9` before
+T-0346 renumbered the parts, `9-11` after it, and `10-12` since T-0173 halved part 7 later the same
+day; the leg carries identical content across all three renames, so they are one population). Each job is decomposed into its steps, which is what makes
+the result legible:
+
+| quantity | n | min | median | worst |
+|---|---|---|---|---|
+| the leg's **smoke command**, body completed | **90** | 9 m 26 s | **17 m 12 s** | **21 m 48 s** (#306) |
+| …of those, the ones that also passed | 47 | 12 m 10 s | 16 m 48 s | 21 m 48 s |
+| the **whole job** (checkout + install + smoke) | 90 | 10 m 41 s | 18 m 38 s | **28 m 04 s** (#293) |
+| `actions/checkout@v4` | 104 | 0 m 31 s | **0 m 38 s** | **30 m 01 s** (#284) |
+
+Standard deviation on the smoke command is **2 m 58 s**. So the honest margin on a 30-minute cap
+is **about seven minutes against the worst smoke ever recorded**, and **1 m 56 s against the worst
+whole job** — not ten minutes, and not 9 m 49 s.
+
+**THE RISK T-0181 CALLED HYPOTHETICAL HAS MATERIALISED SEVEN TIMES.** The ticket said "nothing
+today… the risk is a slow runner pushing desktop 7-9 past 30 minutes". It has, in runs **#284,
+#288, #290, #357, #358, #360 and #364**, every one killed at 30 m 1x s with `open-pr` never
+running — exactly the failure T-0171 was written to end. GitHub reports a `timeout-minutes` kill
+as `cancelled`, which is why a scan for failures missed all seven.
+
+**AND NOT ONE OF THEM WAS A SLOW SMOKE.**
+
+| run | job total | `checkout` | smoke |
+|---|---|---|---|
+| #364 | 30 m 16 s | **13 m 20 s** | 16 m 23 s |
+| #360 | 30 m 15 s | **21 m 38 s** | 8 m 08 s |
+| #358 | 30 m 15 s | **15 m 20 s** | 14 m 23 s |
+| #357 | 30 m 14 s | **21 m 19 s** | 8 m 26 s |
+| #290 | 30 m 16 s | **23 m 23 s** | 6 m 21 s |
+| #288 | 30 m 20 s | **29 m 17 s** | 0 m 33 s |
+| #284 | 30 m 07 s | **30 m 01 s** | 0 m 00 s |
+
+The checkout's median is 38 seconds and its 75th percentile is 47; but **11 of 104 exceeded five
+minutes and 7 exceeded thirteen**, and in #284 it ate the entire cap before the suite ran a single
+check. The distribution is bimodal, and the upper mode is the whole failure mode. `custom` is a
+3.2 GB monorepo of unrelated projects — `garage/` alone is 968 MB against `chicago/4d`'s 182 MB —
+and this job clones all of it to run one subtree's tools against an artifact it downloads
+separately. That is **T-0437**, filed by this ticket; it is the real defect and no cap closes it.
+
+**SO THE CUT IS THE WRONG INSTRUMENT HERE, AND THIS IS THE EVIDENCE AGAINST IT.** T-0181 offered
+two candidates and asked for a choice on evidence rather than taste. Splitting the tail leg
+further halves its smoke but leaves its checkout untouched, so every new leg draws again from the
+distribution that is actually causing the kills. Against these 104 checkouts a two-way split moves
+the expected breach rate from 7/104 to roughly 6/104 — noise — while adding a runner and another
+boot. **Three of the seven breaching checkouts are longer than a split leg's entire budget would
+be.** Splitting is not merely insufficient; it buys nothing.
+
+**THE CAP IS THEREFORE 45 MINUTES** (`chicago-4d-bake.yml`, the `smoke` job), sized on the table
+above: worst measured smoke command 21 m 48 s, plus the ~22 minutes of checkout excursion the
+raise is meant to absorb. That covers five of the seven breaches outright and the sixth against a
+median smoke. It does **not** cover #284 and #288, and it is not supposed to — a 30-minute
+checkout is a defect to fix, not a budget to fund.
+
+**The general lesson, which is now three-for-three.** T-0165 sized this cap off mobile; T-0167
+exists because T-0166's cut was sized off mobile too; T-0171's margin was summed rather than
+measured; T-0181's was one sample. Each was a number nobody had read off the thing it governed.
+**The job history is free and it is right there** — `gh api repos/OWNER/REPO/actions/runs/ID/jobs`
+gives per-step `started_at`/`completed_at` for every leg this workflow has ever run. Any future
+change to this cap or this cut should quote that, and should decompose the job into steps before
+blaming the suite, because on the evidence above the suite was never the problem.
+
+
+**AND THE THREE CAPS IN THIS SECTION BOUND THREE DIFFERENT THINGS — corrected
+2026-09-03 by T-0450, on the owner's report.** Everything above is written against the
+**600-second** per-command ceiling, which is the constraint on a steward run and is
+correct as it stands. Two other caps get quoted beside it and neither is that one, nor
+each other's:
+
+| cap | what it bounds | where it is written |
+|---|---|---|
+| **600 s** | ONE foreground command in a steward run | the harness — this section |
+| **30 min** | ONE LEG of the nightly gate: one viewport over one stage range, eight legs in parallel | `chicago-4d-bake.yml` § `smoke`, `timeout-minutes` |
+| **90 min** | the WHOLE body in one process, both viewports, no per-leg cap at all | `chicago-4d-smoke.yml` § `smoke`, `timeout-minutes` |
+
+`docs/SMOKE-BUDGET.md` opened by telling T-0170, T-0173 and T-0181 that the 30-minute
+figure their margins are taken against "is not this machine's", with the whole gate's
+**55 m 10 s** offered as proof. **It is not proof — the two are not the same quantity**,
+and 55 m 10 s is a reading of the third row, comfortably inside its own 90-minute cap.
+Those three tickets were reasoning about the leg cap correctly and the page has been
+corrected to say so. **The machine is the same one, too**: the nightly gate's legs, the
+full-body run, the dev gate and the improve runner are all `runs-on: ubuntu-latest`, the
+two smoke workflows install the same `playwright@1.56.1` and chromium alone, and
+`smoke_renderer.mjs` passes `--enable-unsafe-swiftshader` wherever it runs — so
+SwiftShader is a property of the suite rather than of one runner. T-0450 measured one leg
+at **4 m 40 s** on the gate runner and **4 m 44 s** on the improve runner; that pair is
+recorded with its provenance, and its unverified half named as such, in
+`docs/SMOKE-BUDGET.md` § THREE CAPS.
+
+**None of this moves a number above.** The 600-second ceiling this whole section is built
+on is untouched, every reading stands, and the cuts sized against them stand. What
+changes is which cap a LEG's margin is compared with, and that comparison now lives in a
+tool rather than in prose: `node tools/smoke_budget.mjs --legs` prices each of the
+nightly gate's legs — read from the workflow, never restated — against the 30-minute cap,
+and `--self-test` fails if those ranges ever stop tiling the parts exactly once.
 
 ### NEXT UP — every row says whether a visitor can SEE it
 

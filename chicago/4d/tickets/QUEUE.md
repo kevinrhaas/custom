@@ -15,6 +15,15 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
+#               back: "the queue got massively reordered, we were working on all of the
+#               research items first ... please put it back with all of the research items for
+#               improving the resident and business data at the top". HOW IT WAS LOST, because
+#               it will recur otherwise: tools/merge-queue.mjs ordered on "OURS keeps the
+#               order", and four PRs cut BEFORE the re-rank each merged dev, so the stale
+#               branch was "ours" and its old order won — then carried to dev on merge. The
+#               driver's rule is corrected in the same pass: the side that actually RE-ORDERED
+#               relative to the merge base wins, and if both did it refuses.
 #   2026-09-04  the core dataset before more reading (quoted in full in the band below)
 #   2026-09-03  "reprioritize those items in the queue you think will yield the best research"
 #   2026-09-03  "dont land those tickets at the very end maybe every few you should do that consolidation"
@@ -25,9 +34,8 @@
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
-# --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04.
-# --- What is left is the fifth view he sent later — whether the Eliza Chappel shore drawing
-# --- shows this building's log annex, which its lighthouse can settle.
+# --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04, and
+# --- T-0649 (the fifth view) with them. T-0663 is what that reading left open.
 
 # --- ==========================================================================
 # --- THE CORE DATASET BEFORE MORE READING — OWNER INSTRUCTION, 2026-09-04
@@ -58,27 +66,27 @@
 # --- norris_1844 39, and all 14 norris advertiser proprietors carry a printed trade AND
 # --- address. 99 adjudicated later addresses against 20 households with any address at all.
 
-# --- GROUP 0 — the measurement itself, and it BLOCKS the ranking. This band is ordered by
-# --- measure_research_spend.py; T-0602 says that tool miscounts. Rule 4. One S run.
-
-# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
-# --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
-# --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
-# --- middle initial cannot fold to a directory surname however often they are read.
+# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
+# --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
+# --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
+T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
-# --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
-# --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
-T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+# --- yield is a list the town made of its own named inhabitants. The land sales are the
+# --- largest untouched source of POSITION in the project, and T-0676/T-0679 are what T-0610
+# --- and T-0666 left unfinished.
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
-# --- T-0589 is the town's civic account; T-0507 the household composition calibration;
-# --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
-# --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
-T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
-T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
+# --- T-0589 is the town's civic account; T-0597 a family relation two records refuse to
+# --- state. T-0637 is last on a real dependency — joining 289 fence runs before the
+# --- addresses land joins them to 20 houses. T-0507, the household-composition
+# --- calibration this band was ordered around, closed on PR #811: 964 households of 1840
+# --- counted, and the one figure that moves the rest is that the 1835 town census gives
+# --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
+# --- dwelling held more than one household, so one family per roof undercounts.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
@@ -87,6 +95,7 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
+T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
 T-0636 — Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
 
@@ -104,7 +113,6 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
 T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
-T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0582 — The Chicago cards of the Newberry index also point at Moses's Illinois, historical and statistical (1888-92), the La Salle Book Co. Cook County volumes (1900, 1909), Wood's Chicago 1881 and Hurlbut's Chicago antiquities (1881), and none of the four is in this project's sources
@@ -137,15 +145,14 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton
 # --- exist nowhere; west-side spacing is 112.1 m against a South Division 119.2-123.4 m. Whether
 # --- the whole grid sits one street west — is `canal` really Clinton — is unmeasured, and every
-# --- building west of the river turns on it. T-0453 leads the north band because both street
-# --- tickets measure against a bank that is itself in question.
-T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
+# --- building west of the river turns on it. T-0685/T-0686/T-0687 are the bank measurements
+# --- T-0453 left behind when it closed.
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
-T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
-T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
+T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
+T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
-T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
@@ -161,10 +168,7 @@ T-0412 — A building offered FOR SALE mints a placement reading on the vendor's
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
-# --- they decide whether the ones above land on the right names and corners. T-0426 is what
-# --- the fence ruling left: the Tremont House's goods sit on lot 7, its placement point 1.5 m
-# --- outside it. T-0404 meets T-0633 — the backdating liberty LIBERTIES.md carries none of.
-T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
+# --- they decide whether the ones above land on the right names and corners.
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
@@ -190,13 +194,7 @@ T-0419 — The re-centred South Water corridor stands 8.58 m off its own block f
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 
-# --- TWO GATES THAT LIE, and each blocks a parked PR: T-0450 compares a per-leg cap with a
-# --- whole-gate total (#591 argues against the wrong bound); T-0454 calls a GLB stale that the
-# --- bake declines to rebuild (#597 blocked on this alone).
-T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
-T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
-
-# --- VISIBLE REFINEMENT — the town changing rather than growing. T-0219 is parked on PR #432.
+# --- VISIBLE REFINEMENT — the town changing rather than growing.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
@@ -230,7 +228,8 @@ T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 
 # --- THE TRIANGLE AND DRAW-CALL BUDGET — invisible, and it gates every ticket above that adds
-# --- geometry. The two AO tickets are the measured headroom.
+# --- geometry. The two AO tickets are the measured headroom. T-0672/T-0673 are the 2026-09-03
+# --- raise and its receipt: T-0672 takes every tier back down once #432 lands.
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
@@ -238,6 +237,14 @@ T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the pub
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
+T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+
+# --- A GATE THAT LIES. T-0450 corrects SMOKE-BUDGET.md, which compared a per-leg cap with a
+# --- whole-gate total. ITS WORK MERGED as #674 on 2026-09-04 but the ticket was never closed —
+# --- it still reads `claimed` with no pr. Same for T-0426 (#675) and T-0444 (#681, which says
+# --- in its own words that acceptance 1 is answered but not done). Verify each against its
+# --- acceptance and close or release it; do not re-do work that is already on dev.
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible; nothing here blocks anything above.
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
@@ -250,50 +257,59 @@ T-0037 — The liberties gate reads the whole Evidence panel, so a liberty sayin
 T-0030 — A queue card in Manager reading tickets.json
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
+T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 
-# --- THE SMOKE AND ITS RUNNER — the evidence every ticket above owes.
-T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-
-# --- THE PIPELINE AND ITS RUNNERS — the loop's own health.
+# --- THE PIPELINE AND ITS RUNNERS — the loop's own health. T-0437 is here because a 3.2 GB
+# --- clone has killed seven smoke legs; T-0674 is the owner's 2026-09-04 ruling that a
+# --- bot-opened PR must run the dev gate before it merges.
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 
 # --- PROBABLY ALREADY ANSWERED — verify, then withdraw WITH THE EVIDENCE in the ticket, never
-# --- on a guess. T-0377 and T-0388 are twins; one withdrawal closes both. T-0522 joined them
-# --- on 2026-09-04: it says dev's gate has been red on 10 legs since #670, and dev is green.
+# --- on a guess. T-0377 and T-0388 are twins; one withdrawal closes both. T-0522, T-0612 and
+# --- T-0683 all report a red dev from early September, and dev is green.
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
 T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
 T-0377 — Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
 T-0388 — Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
+T-0612 — dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
+T-0683 — Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
 
-# --- NEWLY FILED — `ticket.mjs new` appends here. NOT yet placed by the owner. Assessed
-# --- 2026-09-04 and left: none of these five is resident, household, business or location work.
+# --- NEWLY FILED — `ticket.mjs new` appends here. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
-T-0661 — The other 95 printed trades the residents vocabulary still cannot say
-T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
-T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
-T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
-T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
-T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
-T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
-T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
-T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
-T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
+T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
+T-0695 — A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira
+T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
+T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
+T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0677 — Fourteen land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
 T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
 T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
