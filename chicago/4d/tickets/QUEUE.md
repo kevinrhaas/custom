@@ -200,7 +200,6 @@
 T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
 
 
