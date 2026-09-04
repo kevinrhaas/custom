@@ -292,3 +292,4 @@ T-0660 — The letter-list pass minted the same man twice when the paper printed
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
+T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
