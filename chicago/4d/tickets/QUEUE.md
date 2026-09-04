@@ -73,7 +73,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
@@ -83,13 +82,16 @@ T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 # --- and T-0666 left unfinished.
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
-T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
-# --- T-0589 is the town's civic account; T-0507 the household composition calibration;
-# --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
-# --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
+# --- T-0589 is the town's civic account; T-0597 a family relation two records refuse to
+# --- state. T-0637 is last on a real dependency — joining 289 fence runs before the
+# --- addresses land joins them to 20 houses. T-0507, the household-composition
+# --- calibration this band was ordered around, closed on PR #811: 964 households of 1840
+# --- counted, and the one figure that moves the rest is that the 1835 town census gives
+# --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
+# --- dwelling held more than one household, so one family per roof undercounts.
 T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
@@ -151,7 +153,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- the whole grid sits one street west — is `canal` really Clinton — is unmeasured, and every
 # --- building west of the river turns on it. T-0685/T-0686/T-0687 are the bank measurements
 # --- T-0453 left behind when it closed.
-T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
@@ -174,7 +175,6 @@ T-0415 — John Wright's two buildings to let are named (east) and (west) and st
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
 # --- they decide whether the ones above land on the right names and corners.
-T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
@@ -251,7 +251,6 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- it still reads `claimed` with no pr. Same for T-0426 (#675) and T-0444 (#681, which says
 # --- in its own words that acceptance 1 is answered but not done). Verify each against its
 # --- acceptance and close or release it; do not re-do work that is already on dev.
-T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible; nothing here blocks anything above.
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
@@ -297,3 +296,8 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
+T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
