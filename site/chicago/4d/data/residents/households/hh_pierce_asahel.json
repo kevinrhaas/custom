@@ -67,9 +67,10 @@
     "note": "Builder and proprietor of the blacksmith shop this dataset models on the south side; data/structures/pierce_blacksmith_shop.json carries him as its occupant on Andreas's authority."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "calumet_club_early_chicago_1879"
    ],
-   "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
+   "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Pierce, Asahel, | 1833, Oct. 8, | East Calais, Wash. Co., Vt. | 66 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0478",
@@ -86,5 +87,39 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "ONE OF TWO BLACKSMITHS THIS DATASET CAN NAME AND PLACE, the other being David McKee at the agency. A third, Matthias Mason & Co., is documented by advertisement with no building, and Lemuel Brown is documented by roster with neither. FOUR NAMED SMITHS FOR A TOWN OF 3,265 IS PROBABLY CLOSE TO RIGHT for the documented layer and certainly short for the real one; the inferred phase should treat that ratio as its starting point rather than inventing from scratch."
+ "research_note": "ONE OF TWO BLACKSMITHS THIS DATASET CAN NAME AND PLACE, the other being David McKee at the agency. A third, Matthias Mason & Co., is documented by advertisement with no building, and Lemuel Brown is documented by roster with neither. FOUR NAMED SMITHS FOR A TOWN OF 3,265 IS PROBABLY CLOSE TO RIGHT for the documented layer and certainly short for the real one; the inferred phase should treat that ratio as its starting point rather than inventing from scratch.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "pierce_asahel",
+    "address_later": {
+     "value": "Market street",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Pierce, Asahel, plow and wagon maker, 18 Market street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. The street NUMBER printed against it is a number in the 1839 grid, a numbering this town's year does not have, so the street name crosses and the number does not. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "already_better_placed",
+     "clause": "2",
+     "value": null,
+     "describes_date": 1839,
+     "read_back_years": 4,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1839 prints an address against this name in 1839, and it is left where it is. An 1835 placement already stands: this household works at `pierce_blacksmith_shop`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later. The later address stays on the record as 1839's evidence and moves nothing."
+    }
+   }
+  ]
+ }
 }

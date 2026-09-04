@@ -1,5 +1,139 @@
 # STATUS
 
+## Shipped 2026-09-04 — T-0542: the third town election was Friday 10 July 1835, and the 85-name poll list is not its poll book
+
+**Nothing a visitor can see changed, and this is the exemption named in the PR: the finding
+was blocking T-0514, T-0515 and T-0634, all three of which mint or regrade people whose cards
+a visitor opens.** T-0493 read the four voter lists of 1833-1835 and was asked to date the
+1835 poll. It could not: the list prints no date, and Andreas dates the third town election
+twice, two hundred pages apart and not in agreement — *"The third election was held in July,
+1835"* in the town chapter, *"the third election of town oHicers, which occurred .Au- gust 5,
+1S35"* in the police chapter. The scene date is 1835-07-01, so eighty-five men's presence at
+the moment this town is drawn rested on which reading was right.
+
+### The town's own paper answers it, in two issues a week apart
+
+Nobody had asked the *Chicago Democrat*. It is in the deposit, seventy-three issues of it,
+and it settles the question three times over — `data/research/civic/claims/town_election_1835_democrat.json`:
+
+| issue | what it says | id |
+|---|---|---|
+| 10 Jun 1835 | the election is ordered by a new act, no copy of the act can be had in Chicago, and the poll is *"postponed, or adjourned, some how or other, from time to time"* | d001 |
+| 8 Jul 1835 | *"the election of Trustees under a new Charter takes place Friday of this week"* — a Wednesday paper, so **Friday 10 July 1835** | d002 |
+| 15 Jul 1835 | *"Chicago Charter Election.—This election took place on Friday last"*, with the return | d003 |
+| 15 Jul 1835 | the charter itself, Sec. 4: the annual town election moves to **the first Monday in June** | d005 |
+| 26 Aug 1835 | the new board's ordinance code, *"Passed the [5]th day of August, 183[5]. H. HUGUNIN, Pres't"* | d004 |
+
+The identification rests on the names, not on the dates alone: the men the return puts on the
+two tickets are Andreas's eight — Hugunin, Loyd, Jackson, King, Kimball, Williams, Sherman,
+Dole — which is what makes his passage and this return one event. **The third town election
+was Friday 10 July 1835, nine days AFTER the scene date.** Andreas's town chapter is right;
+his police chapter's 5 August 1835 is the day the elected board sat and passed its code. On
+either reading of that sentence — a conflation, or "election of town officers" meaning the
+board choosing the officers the charter gives it — the popular poll does not move off 10 July.
+d005 also kills the circumstantial argument that had been carried for the August reading: the
+1833 and 1834 polls fell in the second week of August under a law that the 1835 act superseded.
+
+### And the answer to the question asked was "neither"
+
+The 85-name list is **not the poll book of that election** (`town_findings_voter_lists.json`
+v003). Kimball and Dole polled 142 votes each and Hugunin 124; eighty-five men cannot cast a
+hundred and twenty-four votes for one candidate. That alone leaves *different poll* or *short
+printing*, and the membership decides between them: six of the ten men who stood — Kimball,
+Loyd, Jackson, Dole, Kinzie, Davis — are absent, while the list runs unbroken from Adams to
+Wright, so no lost page or dropped column accounts for them. **Which poll it is stays open.**
+The nearest candidate is the county and state general election of Monday 3 August 1835, at
+which Cook County chose a Recorder and at which Peter Pruyne, who stands on this list, was the
+caucus candidate; that is named as a candidate and asserted as nothing. What it means for the
+work downstream is that a name on this list evidences presence in Chicago in 1835 and **not**
+presence on any stated day — a sharper constraint than T-0514 and T-0515 were given, not a
+looser one.
+
+### What was NOT settled, and what was read to fail to settle it
+
+The 1833 discrepancy stands (v004). Andreas says twenty-eight men voted on 10 August 1833;
+the list prints thirty. **No count outside Andreas exists in anything this project holds**:
+the *Democrat*'s first number is 26 November 1833, so the poll has no contemporary report, and
+its whole run to August 1835 carries no retrospective one; the board's own ordinances printed
+31 December 1833 name no judges or clerks of that election. The nearest thing in the corpus is
+a notice in the paper's first issue, over the name of a Judge of Election, for the choice of
+one Constable for the Chicago **Magistrates District** — a district office, not a town one,
+and it is recorded because it is near, not because it bears. The one thing sayable without a
+new source is source criticism and is offered as that: Andreas's sentence is prefaced *"It is
+believed"*, it counts the town's legal voters rather than the enrolments in a poll book, and
+it was written in 1884. The judges-and-clerks hypothesis is the weaker of the two the ticket
+offered — judges and clerks of an Illinois poll were themselves electors and voted, so their
+names belong in a poll book. Neither count is repaired.
+
+### Reading is only half of it, and the meter said so
+
+Seven new units read is seven more units the civic domain had read and not ruled on, and
+`measure_research_spend.py --gate` failed on exactly that: 20 unspent against a ceiling of 13.
+**The ceiling was not raised.** The rulings were written instead, one per unit, each naming
+its unit by id — `data/research/civic/town_election_1835_crosswalk.json` — and every one of
+them is a refusal to carry, because T-0542 was forbidden to mint or regrade and says so. civic
+is back to 13 unspent, 499 read against 486 ruled on. **Nobody was added to the town, nobody
+was removed, and no grade moved.**
+
+
+## Shipped 2026-09-03 — T-0423: the corpus's one lot-and-block address is seated, and stops carding as vacant
+
+**The dwelling-house on lot 7 of block 16 is named on the card a visitor opens, instead of
+"A vacant one-room frame cottage".** G. Spring's For-Sale notice ran in the *Chicago
+Democrat* six times between 1834-06-18 and 1834-11-19 — *"LOT No. 7, in block No. 16, one
+lot east of Haddock's Tavern, on Lake street … There is on said lot a large Dwelling-House
+and fine well"* — and a lot and a block is the plat's own language, which makes it the most
+precise placement statement in the whole newspaper corpus. **This is the visible half of
+T-0358**, which committed the Thompson block numbering so the sentence could reach ground.
+It reached a polygon and stopped: the roof standing on that polygon went on titling itself
+with a claim of absence made over the top of a source saying a house was there.
+
+### The third grammar, and it needed its own policy
+
+A paper of 1834 places a building three ways, and they are three different claims:
+
+| the paper says | it constrains | the policy |
+|---|---|---|
+| a platted street and nothing narrower | a face | `docs/STREET-FACE-ADOPTION.md`, L212 |
+| a count of doors off a named corner | a position, and no lot | `docs/CORNER-ORDINAL.md`, L215 |
+| **a lot and a block** | **the plat's own unit** | **`docs/LOT-ADDRESS.md`, L216** |
+
+`data/research/newspapers/lot_addresses.json` authors the address and nothing else — the
+printed words, the printings, what the notice says stood on the lot, and who the advertiser
+was. Every step from there is derived by `tools/lot_addresses.py`: block number → block
+through the committed numbering (which the ledger may not contradict), lot number → polygon
+through the committed lot grid, polygon → **exactly one** roof by footprint centroid, or the
+address is refused. Both directions are gated in `check.sh`, and nine ways the seating could
+lie are in its `--self-test`.
+
+### The grade does not move, and the chain is why
+
+The words are read. The block number is `inferred` — three blocks counted east of the one
+numeral the Wright sheet carries. The lot number is `conjectural` twice over: four lots to a
+face is a reading of one block, the lines it numbers are drawn from no sheet, and the
+counter-clockwise scheme was read off block 18. So the seating is graded at the **bottom
+tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads the
+phase and fails if a documented address has quietly promoted a reconstructed roof.
+
+The seating writes **one block** and nothing else — no coordinate, no footprint, no form
+value, and not even the record's `function`, which the dooryard, fence, planting and
+signboard generators read to decide what stands in a yard. No mesh changed and nothing was
+re-baked. The town gained an address, not a building.
+
+### Three things it refuses, and two it records rather than draws
+
+It is **not** "G. Spring's house": he is who to apply to for terms, `is_the_occupant` and
+`is_the_owner` are `false` in the ledger and refused if they are not, and the same G. Spring
+is the attorney the papers put near Franklin and South Water. T-0412 is that trap read from
+the other side. It may not seat two addresses on a roof, or one address on two roofs.
+
+Recorded rather than drawn: the notice calls the house **LARGE** and the fabric under the
+address is a 5.36 × 6.38 m D3 count-unit dealt long before the address resolved (**T-0593**);
+and the **fine well** is not drawn, because this town has no well of any kind and the first
+one would stand on the single lot whose address happens to resolve (**T-0592**). Both are on
+the record in the notice's own words. A documented feature that is absent is stated, not
+omitted.
+
 ## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
 
 **Resident identity research now covers 150 of 848 eligible real named people

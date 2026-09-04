@@ -1,7 +1,7 @@
 ---
 id: T-0491
 title: dev's gate is red on an unmodified dev: the register drifted, two mirrors are stale, an index count disagrees, and #670 left scaffolding and two off-schema source records
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 682
+claimed_by: run 9/3/2026, 1:27:47 AM CT
 blocked_on: null
 needs_bake: false
 ---

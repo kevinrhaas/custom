@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_2.py",
   "population_frame": {
-    "eligible_real_named_people": 848,
+    "eligible_real_named_people": 1404,
     "previously_reviewed": 75,
     "sample_size": 75,
     "cumulative_reviewed": 150,
@@ -26,7 +26,10 @@
       "starting_occupation": "auctioneer",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -40,7 +43,8 @@
       "starting_occupation": "trader",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -68,7 +72,8 @@
       "starting_occupation": "merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -82,7 +87,10 @@
       "starting_occupation": "tavern_keeper",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -111,7 +119,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -125,7 +134,8 @@
       "starting_occupation": "butcher",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -153,7 +163,8 @@
       "starting_occupation": "county_clerk",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -167,7 +178,8 @@
       "starting_occupation": "postmaster",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -182,6 +194,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad",
         "kinzie_waubun_1856"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -240,7 +253,8 @@
       "starting_occupation": "indian_agent",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -254,7 +268,8 @@
       "starting_occupation": "speculator",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -268,7 +283,8 @@
       "starting_occupation": "merchant",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -310,7 +326,8 @@
       "starting_occupation": "surveyor",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -324,7 +341,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -353,7 +371,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "baptisthistoryhomepage"
+        "baptisthistoryhomepage",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -373,8 +392,8 @@
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
     {
-      "household_id": "hh_ll_bailly_joseph",
-      "person_id": "ll_bailly_joseph",
+      "household_id": "hh_bailly_joseph",
+      "person_id": "bailly_joseph",
       "name": "Joseph Bailly",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -389,8 +408,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_chappel_eliza_mir",
-      "person_id": "ll_chappel_eliza_mir",
+      "household_id": "hh_chappel_eliza_mir",
+      "person_id": "chappel_eliza_mir",
       "name": "Eliza Mir Chappel",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -405,8 +424,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_dement_wm",
-      "person_id": "ll_dement_wm",
+      "household_id": "hh_dement_wm",
+      "person_id": "dement_wm",
       "name": "Wm. Dement",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -421,8 +440,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_curtenius_fred_k",
-      "person_id": "ll_curtenius_fred_k",
+      "household_id": "hh_curtenius_fredk",
+      "person_id": "curtenius_fredk",
       "name": "Fred'k. Curtenius",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -437,8 +456,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_avery_charles",
-      "person_id": "ll_avery_charles",
+      "household_id": "hh_avery_charles",
+      "person_id": "avery_charles",
       "name": "Charles Avery",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -453,8 +472,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_bemis_samuel_c",
-      "person_id": "ll_bemis_samuel_c",
+      "household_id": "hh_bemis_samuel_c",
+      "person_id": "bemis_samuel_c",
       "name": "Samuel C Bemis",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -469,8 +488,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_blood_amos",
-      "person_id": "ll_blood_amos",
+      "household_id": "hh_blood_amos",
+      "person_id": "blood_amos",
       "name": "Amos Blood",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -485,8 +504,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_boardman_elect",
-      "person_id": "ll_boardman_elect",
+      "household_id": "hh_boardman_elect",
+      "person_id": "boardman_elect",
       "name": "Elect Boardman",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -501,8 +520,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_bostwick_e_b",
-      "person_id": "ll_bostwick_e_b",
+      "household_id": "hh_bostwick_e_b",
+      "person_id": "bostwick_e_b",
       "name": "E. B. Bostwick",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -517,8 +536,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_bradstreet_j_p",
-      "person_id": "ll_bradstreet_j_p",
+      "household_id": "hh_bradstreet_j_p",
+      "person_id": "bradstreet_j_p",
       "name": "J. P Bradstreet",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -533,8 +552,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_brooks_gardner",
-      "person_id": "ll_brooks_gardner",
+      "household_id": "hh_brooks_gardner",
+      "person_id": "brooks_gardner",
       "name": "Gardner Brooks",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -544,13 +563,14 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_brush_matthias",
-      "person_id": "ll_brush_matthias",
+      "household_id": "hh_brush_matthias",
+      "person_id": "brush_matthias",
       "name": "Matthias Brush",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -565,8 +585,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_burdick_paul",
-      "person_id": "ll_burdick_paul",
+      "household_id": "hh_burdick_paul",
+      "person_id": "burdick_paul",
       "name": "Paul Burdick",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -581,8 +601,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_case_nehemiah",
-      "person_id": "ll_case_nehemiah",
+      "household_id": "hh_case_nehemiah",
+      "person_id": "case_nehemiah",
       "name": "Nehemiah Case",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -597,8 +617,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_chamberlain_l_c",
-      "person_id": "ll_chamberlain_l_c",
+      "household_id": "hh_chamberlain_l_c",
+      "person_id": "chamberlain_l_c",
       "name": "L. C Chamberlain",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -613,8 +633,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_cooley_edward_v",
-      "person_id": "ll_cooley_edward_v",
+      "household_id": "hh_cooley_edward_v",
+      "person_id": "cooley_edward_v",
       "name": "Edward V Cooley",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -629,8 +649,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_cook_rowland_i",
-      "person_id": "ll_cook_rowland_i",
+      "household_id": "hh_cook_rowland_i",
+      "person_id": "cook_rowland_i",
       "name": "Rowland I!. Cook",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -645,8 +665,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_covell_thomas_r",
-      "person_id": "ll_covell_thomas_r",
+      "household_id": "hh_covell_thomas_r",
+      "person_id": "covell_thomas_r",
       "name": "Thomas R. Covell",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -661,8 +681,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_curtis_liman",
-      "person_id": "ll_curtis_liman",
+      "household_id": "hh_curtis_liman",
+      "person_id": "curtis_liman",
       "name": "Liman Curtis",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -677,8 +697,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_davenport_dennis",
-      "person_id": "ll_davenport_dennis",
+      "household_id": "hh_davenport_dennis",
+      "person_id": "davenport_dennis",
       "name": "Dennis Davenport",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -693,8 +713,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_dow_albert_f",
-      "person_id": "ll_dow_albert_f",
+      "household_id": "hh_dow_albert_f",
+      "person_id": "dow_albert_f",
       "name": "Albert F. Dow",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -709,8 +729,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_fairchilds_ransom",
-      "person_id": "ll_fairchilds_ransom",
+      "household_id": "hh_fairchilds_ransom",
+      "person_id": "fairchilds_ransom",
       "name": "Ransom Fairchilds",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -725,8 +745,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_felch_alaneon",
-      "person_id": "ll_felch_alaneon",
+      "household_id": "hh_felch_alaneon",
+      "person_id": "felch_alaneon",
       "name": "Alaneon Felch",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -741,8 +761,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_ford_ebenezer",
-      "person_id": "ll_ford_ebenezer",
+      "household_id": "hh_ford_ebenezer",
+      "person_id": "ford_ebenezer",
       "name": "Ebenezer Ford",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -757,8 +777,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_galusha_ezra",
-      "person_id": "ll_galusha_ezra",
+      "household_id": "hh_galusha_ezra",
+      "person_id": "galusha_ezra",
       "name": "Ezra Galusha",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -773,8 +793,8 @@
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_aaron_parcel",
-      "person_id": "ll_aaron_parcel",
+      "household_id": "hh_parcel_aaron",
+      "person_id": "parcel_aaron",
       "name": "Aaron Parcel",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -789,8 +809,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_aron_parcell",
-      "person_id": "ll_aron_parcell",
+      "household_id": "hh_parcell_aron",
+      "person_id": "parcell_aron",
       "name": "Aron Parcell",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -805,8 +825,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_alonzo_murray",
-      "person_id": "ll_alonzo_murray",
+      "household_id": "hh_murray_alonzo",
+      "person_id": "murray_alonzo",
       "name": "Alonzo Murray",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -821,8 +841,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_alonzo_murry",
-      "person_id": "ll_alonzo_murry",
+      "household_id": "hh_murry_alonzo",
+      "person_id": "murry_alonzo",
       "name": "Alonzo Murry",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -837,8 +857,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_caleb_foster",
-      "person_id": "ll_caleb_foster",
+      "household_id": "hh_foster_caleb",
+      "person_id": "foster_caleb",
       "name": "Caleb Foster",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -854,8 +874,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_chester_house",
-      "person_id": "ll_chester_house",
+      "household_id": "hh_house_chester",
+      "person_id": "house_chester",
       "name": "Chester House",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -871,8 +891,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_elam_tuller",
-      "person_id": "ll_elam_tuller",
+      "household_id": "hh_tuller_elam",
+      "person_id": "tuller_elam",
       "name": "Elam Tuller",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -888,8 +908,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_david_ingersall",
-      "person_id": "ll_david_ingersall",
+      "household_id": "hh_ingersall_david",
+      "person_id": "ingersall_david",
       "name": "David Ingersall",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -904,8 +924,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_elihu_d_filer",
-      "person_id": "ll_elihu_d_filer",
+      "household_id": "hh_filer_elihu_d",
+      "person_id": "filer_elihu_d",
       "name": "Elihu D. Filer",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -920,8 +940,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_charles_c_drake",
-      "person_id": "ll_charles_c_drake",
+      "household_id": "hh_drake_charles_c",
+      "person_id": "drake_charles_c",
       "name": "Charles C. Drake",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -936,8 +956,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_amanda_miner",
-      "person_id": "ll_amanda_miner",
+      "household_id": "hh_miner_amanda",
+      "person_id": "miner_amanda",
       "name": "Amanda Miner",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -952,8 +972,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_amy_c_wear",
-      "person_id": "ll_amy_c_wear",
+      "household_id": "hh_wear_amy_c",
+      "person_id": "wear_amy_c",
       "name": "Amy C. Wear",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -968,8 +988,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_angeline_vann",
-      "person_id": "ll_angeline_vann",
+      "household_id": "hh_vann_angeline",
+      "person_id": "vann_angeline",
       "name": "Angeline Vann",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -984,8 +1004,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_archibald_knox",
-      "person_id": "ll_archibald_knox",
+      "household_id": "hh_knox_archibald",
+      "person_id": "knox_archibald",
       "name": "Archibald Knox",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1000,8 +1020,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_asa_brundage",
-      "person_id": "ll_asa_brundage",
+      "household_id": "hh_brundage_asa",
+      "person_id": "brundage_asa",
       "name": "Asa Brundage",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1016,8 +1036,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_constant_abbott",
-      "person_id": "ll_constant_abbott",
+      "household_id": "hh_abbott_constant",
+      "person_id": "abbott_constant",
       "name": "Constant Abbott",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1032,8 +1052,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_dangerfield_dunn",
-      "person_id": "ll_dangerfield_dunn",
+      "household_id": "hh_dunn_dangerfield",
+      "person_id": "dunn_dangerfield",
       "name": "Dangerfield Dunn",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1048,8 +1068,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_david_p_frame",
-      "person_id": "ll_david_p_frame",
+      "household_id": "hh_frame_david_p",
+      "person_id": "frame_david_p",
       "name": "David P. Frame",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1064,8 +1084,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_eben_griswold",
-      "person_id": "ll_eben_griswold",
+      "household_id": "hh_griswold_eben",
+      "person_id": "griswold_eben",
       "name": "Eben Griswold",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1080,8 +1100,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_elijah_wentworth_sen",
-      "person_id": "ll_elijah_wentworth_sen",
+      "household_id": "hh_sen_elijah_wentworth",
+      "person_id": "sen_elijah_wentworth",
       "name": "Elijah Wentworth sen.",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1096,8 +1116,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_enos_covalt",
-      "person_id": "ll_enos_covalt",
+      "household_id": "hh_covalt_enos",
+      "person_id": "covalt_enos",
       "name": "Enos Covalt",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1112,8 +1132,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_frederick_w_page",
-      "person_id": "ll_frederick_w_page",
+      "household_id": "hh_page_frederick_w",
+      "person_id": "page_frederick_w",
       "name": "Frederick W. Page",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1128,8 +1148,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_george_r_makepiece",
-      "person_id": "ll_george_r_makepiece",
+      "household_id": "hh_makepiece_george_r",
+      "person_id": "makepiece_george_r",
       "name": "George R. Makepiece",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1144,8 +1164,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_gregory_e_legg",
-      "person_id": "ll_gregory_e_legg",
+      "household_id": "hh_legg_gregory_e",
+      "person_id": "legg_gregory_e",
       "name": "Gregory E. Legg",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -1160,8 +1180,8 @@
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
     {
-      "household_id": "hh_ll_hannah_hurlburt",
-      "person_id": "ll_hannah_hurlburt",
+      "household_id": "hh_hurlburt_hannah",
+      "person_id": "hurlburt_hannah",
       "name": "Hannah Hurlburt",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",

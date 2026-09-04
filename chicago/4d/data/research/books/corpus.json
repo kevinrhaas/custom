@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "domain": "books",
+  "generated_by": "hand — one entry per book whose text this project commits, written by the reading pass that committed it",
+  "_doc": "THE REGISTER OF THE BOOKS THIS PROJECT HOLDS TEXT FOR. It exists for the same reason data/research/newspapers/corpus.json does: a quote is checked against a committed file, and the file has to be traceable back to the artifact it came out of or the check is circular. Each entry says what the book is, which source record grades it, where the deposit copy is and its sha256, what derived text is committed and its sha256, how that text was produced, and what has actually been read out of it. A book with no entry here has no committed text; an entry whose sha256 no longer matches means somebody edited a transcription, which is the one thing this subtree must never do. DERIVED TEXT IS COMMITTED, SCANS AND RENDERS ARE NOT: the deposit under chicago/reference/ is read-only and nothing here is published.",
+  "books": [
+    {
+      "id": "hubbard_autobiography_1911",
+      "title": "The Autobiography of Gurdon Saltonstall Hubbard, Pa-pa-ma-ta-be, \"The Swift Walker\"",
+      "imprint": "Chicago: R. R. Donnelley & Sons Company, The Lakeside Press, Christmas 1911 — The Lakeside Classics",
+      "source_id": "hubbard_autobiography_1911",
+      "archive_item": "autobiographyofg00hubb",
+      "deposit": {
+        "path": "chicago/reference/swift-walker-autobiography/autobiographyofg00hubb.pdf",
+        "path_kind": "deposit",
+        "sha256": "95571d98ba11eae0570d42e48eb4fb5fb7f68d7843d8f984f115f8dd64ca34df",
+        "leaves": 226
+      },
+      "text": {
+        "path": "chicago/4d/data/research/books/text/hubbard_autobiography_1911.txt",
+        "path_kind": "derived",
+        "sha256": "6c226cc700b47c1ee0d3ca6c7c8898d675e03c788634e0081cbcb1634ab6a4d7",
+        "how": "curl -L https://archive.org/download/autobiographyofg00hubb/autobiographyofg00hubb_djvu.txt on 2026-09-03, committed byte for byte. The identifier was confirmed against archive.org's advancedsearch API first (numFound 1, year 1911).",
+        "corroborated_by": "pdftotext -layout over the deposited PDF's own embedded text layer, an independent extraction of the same scan, which agrees with the committed text to better than 0.9999 on whitespace-normalised comparison. The two differ only where poppler welds an italic word to its neighbour."
+      },
+      "page_index": {
+        "path": "chicago/4d/data/research/books/page_index/hubbard_autobiography_1911.json",
+        "path_kind": "derived",
+        "generated_by": "tools/build_book_page_index.py --build",
+        "why": "THE COMMITTED TEXT HAS NO PAGE BREAKS. The Internet Archive's djvu output carries not one form feed and prints no folio of its own, so the leaf boundaries are transferred onto it from the deposited PDF's text layer, which has all 226. 207 of the 208 non-blank leaves aligned; the one that did not is the Contents at leaf 19, whose columns poppler reorders, and it is declared as such.",
+        "folios_read_off_the_page": 179
+      },
+      "claims": "chicago/4d/data/research/books/claims/hubbard_autobiography_1911.json — 92 claims, T-0501",
+      "read": "Pages ix-xxvii and 27-41, 135-138, 141-144, 153-159, 165-174, 178-182, declared item by item in coverage.json. Pages 1-26, 42-134, 139-140, 145-152, 160-164, 175-177 are NOT read and are not declared: they are Montreal, Mackinaw and the Illinois River posts, and they name no Chicago.",
+      "note": "THE SCAN IS OUT OF ORDER. Pages xv and xvi were photographed at the front of the Internet Archive item, as leaves 11 and 12, ahead of the title page. The text proves it and six folios read off the page confirm it; tools/build_book_page_index.py carries the three folio runs that forces and hard-fails if a printed folio ever contradicts them."
+    },
+    {
+      "id": "hurlbut_chicago_antiquities_28_36",
+      "title": "Henry H. Hurlbut, Chicago Antiquities (Chicago, 1881), pages 28-36 — the chapter on the American Fur Company and Chicago",
+      "imprint": "Chicago, 1881",
+      "source_id": "chicago_antiquities_american_fur_co",
+      "archive_item": null,
+      "deposit": {
+        "path": "chicago/4d/data/research/genealogytrails/text/americanfurco.txt",
+        "path_kind": "derived",
+        "sha256": "8ce7c49d85524a468a6ce00ae29d808039fa4f0138a7345794cf11973fd5bae1",
+        "leaves": null
+      },
+      "text": {
+        "path": "chicago/4d/data/research/books/text/hurlbut_chicago_antiquities_28_36.txt",
+        "path_kind": "derived",
+        "sha256": "8ce7c49d85524a468a6ce00ae29d808039fa4f0138a7345794cf11973fd5bae1",
+        "how": "Copied byte-identical from this project's own genealogytrails cache, itself fetched 2026-09-03 for T-0556. NOBODY IN THIS PROJECT HAS SEEN THE BOOK; what is held is a 2006 web transcription of nine of its pages.",
+        "corroborated_by": null
+      },
+      "page_index": null,
+      "claims": "chicago/4d/data/research/books/claims/american_fur_company_hurlbut.json — 19 claims, T-0575",
+      "read": "Pages 28-36, declared in coverage.json as ONE `list` item and not as nine `page` items, because the transcription marks no page breaks and this project will not invent them.",
+      "note": "Registered here retrospectively by T-0501, which is the pass that gave this domain a corpus at all. Nothing about the T-0575 reading is changed by the entry."
+    },
+    {
+      "id": "fergus_26_29",
+      "title": "Fergus' Historical Series, Nos. 26-29, bound in one volume",
+      "imprint": "Chicago: Fergus Printing Company, 1883-1888 - four separately printed pamphlets, each with its own title page and its own folio run starting at 1",
+      "source_id": "fergus_historical_series_26_29",
+      "archive_item": "fergushistorical2629unse",
+      "deposit": {
+        "path": "chicago/reference/fergus/fergushistorical2629unse_hocr_searchtext",
+        "path_kind": "deposit",
+        "sha256": "0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942",
+        "leaves": 858
+      },
+      "text": {
+        "path": "chicago/4d/data/research/books/text/fergus_26_29.txt",
+        "path_kind": "derived",
+        "sha256": "0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942",
+        "how": "The deposit's own hOCR search text, copied byte for byte on 2026-09-03. NO FETCH WAS MADE: the file had been in chicago/reference/fergus/ unread since the deposit was laid down, with its hOCR page index beside it. tools/build_book_page_index.py --build refuses to write the index unless the committed text is byte-identical to that deposit file, so the copy is gated and not merely asserted.",
+        "corroborated_by": null
+      },
+      "page_index": {
+        "path": "chicago/4d/data/research/books/page_index/fergus_26_29.json",
+        "path_kind": "derived",
+        "generated_by": "tools/build_book_page_index.py --build",
+        "why": "THE COMMITTED TEXT HAS NO PAGE BREAKS, AND UNLIKE HUBBARD'S IT NEEDED NO ALIGNMENT TO GET THEM. The Internet Archive emitted an hOCR PAGE INDEX with the same OCR pass that produced this text, and it gives every one of the 858 leaves an exact character range in these very characters - so the boundaries are transferred by arithmetic, not searched for, and --build hard-fails unless the 858 ranges tile the text with no gap and no overlap. They do: 624 non-blank leaves, all exact.",
+        "folios_read_off_the_page": 194,
+        "folio_note": "194 of 624 non-blank leaves print a folio the head-reader could take. The rest are refused rather than carried: THIS VOLUME BINDS FOUR PAMPHLETS THAT EACH RESTART AT 1, so there is no constant offset to carry and a carried folio would be an invention. The OCR loses most of the rest to its own damage - '1 843. 1 3', 'l6', 'l843- 21' - and a claim cites its LEAF, which is exact for all 858."
+      },
+      "claims": "chicago/4d/data/research/books/claims/fergus_26_29_first_half.json - 41 claims, 20 of them town findings, T-0499. The second half is T-0500.",
+      "read": "Leaves 1-429, the first half by page index, declared as four `list` items in coverage.json: the front matter (1-14), No. 26 entire (15-206), No. 27 entire (207-398), and No. 28 through its port statistics (399-429). Leaves 430-858 are NOT read and are not declared.",
+      "note": "THE FILENAME SAYS 26-29 AND UNTIL THIS PASS NOTHING SAID WHAT THAT MEANT. The four numbers are Harrison's Discourse on the Aborigines of the Ohio Valley (26), Beckwith's Illinois and Indiana Indians (27), the Directory of the City of Chicago for 1843 (28) and Kirby's Biographical Sketch of Joseph Duncan (29); the contents table with leaf ranges is in README.md. Two of the four touch Chicago, one of them fourteen years too early and the other eight years too late, and No. 28 - the directory 'for 1843' - was compiled in 1896."
+    }
+  ]
+}

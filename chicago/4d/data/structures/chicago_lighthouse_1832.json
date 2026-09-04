@@ -112,5 +112,21 @@
     "note": "The light at the mouth of the Chicago River, the first established on Lake Michigan. Samuel Lasby was the first keeper; who kept it on 1835-07-01 was not established - Wentworth names William M. Stevens as keeper when he arrived in October 1836, and no source reached covers the gap."
   },
   "research_note": "BUILT BECAUSE IT IS THE OTHER THING ANYONE COULD SEE FROM THE RIVER MOUTH IN 1835, and graded almost entirely conjectural because two of the three things everybody repeats about it belong to a different tower. The height is documented and the lantern is documented. THE SHAPE IS NOT: 'conical' appears in this project's dossier and in data/exclusions.json and could not be traced to either source those entries cite, so the taper this archetype builds is the archetype's own and docs/LIBERTIES.md owns it. The material is an inference from the contractor and the site rather than a statement. And the position is adjacency turned into a coordinate. See docs/RESEARCH/chicago_lighthouse_1832.md.",
-  "review_required": false
+  "review_required": false,
+  "land_owner": {
+    "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+    "confidence": "reconstructed",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS ONLY 21 m, which is inside the working horizontal uncertainty of the georeference (about 20 m) doubled, so the grade drops a tier: the tract is right if the constructed line is, and nothing here proves the line to better than that. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "the south-west fractional quarter of section 10",
+    "entries": [
+      "ls0057"
+    ],
+    "date_purchased": "1835-05-28",
+    "type_of_sale": "federal land sale (cash entry)",
+    "margin_m": 20.8,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  }
 }

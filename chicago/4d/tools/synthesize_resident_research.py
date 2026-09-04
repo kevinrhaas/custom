@@ -11,6 +11,7 @@ import argparse
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -31,6 +32,38 @@ LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
 CENSUS_SOURCE = DATA / "sources" / "census_1840_chicago_name_crosswalk.json"
 PROJECTED = "projected_resident"
+
+# Every note prefix this tool has ever written, stripped repeatedly before the current
+# one is applied.  The `--check` step re-derives this file, so a re-run must land on the
+# same bytes; the earlier single-pass strip knew only the short corroborated prefix and
+# stacked a second copy of the long one's second sentence on every pass (T-0491).
+NOTE_PREFIXES = re.compile(
+    r"^(?:INDEPENDENTLY CORROBORATED RESIDENT\. "
+    r"|PROJECTED RESIDENT\. Documented in Chicago post-office evidence but not "
+    r"independently corroborated strongly enough for attested circa-1835 residence\. "
+    r"|Originally documented in Chicago post-office evidence; independent resident "
+    r"research now corroborates the identity\. )", re.I)
+
+
+RETIREMENT_NOTE = "T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced."
+
+
+def note_once(text, sentence):
+    """Append `sentence` to a note exactly once, however many runs have appended it.
+
+    Straight concatenation grew the note by one sentence on every re-run, and the gate
+    re-derives this file, so five passes left five copies (T-0491).
+    """
+    kept = re.sub(r"\s{2,}", " ", (text or "").replace(sentence, "")).strip()
+    return (kept + " " + sentence).strip()
+
+
+def strip_note_prefixes(text):
+    """Remove every leading prefix this tool writes, however many have accumulated."""
+    while True:
+        stripped = NOTE_PREFIXES.sub("", text, count=1)
+        if stripped == text: return text
+        text = stripped
 
 CORROBORATED = {"corroborated", "corroborated_enrichment"}
 CANDIDATE = {"candidate", "candidate_identity"}
@@ -389,7 +422,7 @@ def main():
             doc["name"]=f"Evidence-only household — {head.get('name',doc.get('head'))}"; doc["division"]="unplaced"
             doc["lives_at"]={"value":None,"confidence":"reconstructed","note":"T-0489: former dwelling assignment came from the retired reconstructed-household programme; real resident retained unplaced."}
             doc["works_at"]={"value":None,"confidence":"reconstructed","note":"T-0489: no workplace is assigned from a reconstructed household; later placement requires evidence."}
-            doc["research_note"]=((doc.get("research_note") or "")+" T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced.").strip()
+            doc["research_note"]=note_once(doc.get("research_note"), RETIREMENT_NOTE)
     if prior_ledger and stats["removed_people"] == 0 and stats["removed_households"] == 0:
         prior_retirement=prior_ledger.get("retirement") or {}
         stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
@@ -408,7 +441,7 @@ def main():
                 p["grade"]="inferred"; p["resident_subtype"]=PROJECTED
                 prefix="PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. "
             existing = p.get("note") or ""
-            existing = re.sub(r"^(?:INDEPENDENTLY CORROBORATED RESIDENT\. |PROJECTED RESIDENT\. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence\. )", "", existing, flags=re.I)
+            existing = strip_note_prefixes(existing)
             if outcome in CORROBORATED:
                 existing = re.sub(r"^KNOWN ONLY FROM THE POST OFFICE\.\s*", "", existing, flags=re.I)
                 existing = re.sub(r"Nothing else in the corpus names this person[^.]*\.\s*", "", existing, flags=re.I)
@@ -454,7 +487,19 @@ def main():
         for p in changed:
             q=sitestruct/p.name
             if q.exists(): q.write_text(p.read_text(encoding="utf-8"),encoding="utf-8")
-    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":len((ledger.get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
+    # T-0491. `attach_census` above is the 2 September partial name matcher, and the
+    # adjudicated v4 identity bridges outrank it — `apply_census_1840_bridges.py` owns
+    # them and keeps this file's result underneath as `legacy_partial_matcher`. The two
+    # writers shared the ledger and the summary and neither deferred, so the committed
+    # state depended on which of them ran last, and re-deriving one of them turned the
+    # other's gate red. The synthesis hands the 1840 layer back to its owner here, so a
+    # run of either tool converges on the same bytes.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import apply_census_1840_bridges
+    if apply_census_1840_bridges.apply() != 0:
+        raise SystemExit("the 1840 identity bridges did not re-apply cleanly")
+    after=snapshot(load(INDEX))
+    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":len((load(LEDGER).get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())

@@ -110,5 +110,21 @@
     "note": "The post guard's room, at the south gate. Part of it burned in the September 1827 fire that destroyed the barracks and the store-house - 'the east end of which was on fire' - and was saved by John Kinzie's son on the roof with a wet blanket, which is the most vivid thing anyone wrote about the inside of this fort."
   },
   "research_note": "One of the two buildings flanking the south gate. Its position note carries the small piece of reasoning that decides which of the two it is, and that reasoning also places the magazine - see fort_dearborn_magazine.",
-  "review_required": false
+  "review_required": false,
+  "land_owner": {
+    "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+    "confidence": "inferred",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS 58 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "the south-west fractional quarter of section 10",
+    "entries": [
+      "ls0057"
+    ],
+    "date_purchased": "1835-05-28",
+    "type_of_sale": "federal land sale (cash entry)",
+    "margin_m": 58.0,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  }
 }

@@ -42,7 +42,7 @@
         ],
         [
           102.62,
-          -104.7
+          -104.69
         ]
       ],
       "width_m": 1.22,
@@ -50,8 +50,8 @@
       "plank_run": "along",
       "plank_count": 4,
       "plank_thickness_m": 0.055,
-      "run_m": 15.87,
-      "note": "A BOARD CROSSING OVER THE STREET. Image 8 gives *plank sidewalk with a board crossing over the road* at this hotel — the 'landings' of the owner's ask — so the fact is the plate's and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them; a walk's boards run the other way. WHERE is derived: it leaves the front walk's outer edge and runs 15.87 m, which is the walk's own verge plus half the Lake Street track plus 0.60 m onto the dry ground beyond it, so it reaches across the travelled way rather than stopping in it. It lies lower than the walk because a wheel crosses it. docs/LIBERTIES.md L136."
+      "run_m": 15.88,
+      "note": "A BOARD CROSSING OVER THE STREET. Image 8 gives *plank sidewalk with a board crossing over the road* at this hotel — the 'landings' of the owner's ask — so the fact is the plate's and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them; a walk's boards run the other way. WHERE is derived: it leaves the front walk's outer edge and runs 15.88 m, which is the walk's own verge plus half the Lake Street track plus 0.60 m onto the dry ground beyond it, so it reaches across the travelled way rather than stopping in it. It lies lower than the walk because a wheel crosses it. docs/LIBERTIES.md L136."
     },
     {
       "id": "sauganash_hotel_walk_front",
@@ -66,7 +66,7 @@
           -121.48
         ],
         [
-          113.4,
+          111.32,
           -121.48
         ]
       ],
@@ -76,8 +76,8 @@
       "plank_pitch_m": 0.26,
       "plank_thickness_m": 0.055,
       "wall_offset_m": 0.2,
-      "verge_to_track_m": 4.77,
-      "note": "A PLANK WALK ON THE HOTEL'S FRONTAGE, and the plates are the whole reason it is here. The Petford watercolour of 1831 and the Braunhold engraving in Andreas (data/sources/assets/owner_brief_2026_08_18/README.md, images 8 and 9) show a plank sidewalk at this building and walks on BOTH its frontages — tier-5 retrospective views, which may drive setting and may never drive a coordinate. So WHERE is derived: the deck lies 0.20 m off the front wall, 1.83 m wide, leaving 4.77 m of verge between its outer edge and the Lake Street track — which is the number that decides a walk may lie here at all. What is invented is the width, the rise, the plank pitch, and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
+      "verge_to_track_m": 4.78,
+      "note": "A PLANK WALK ON THE HOTEL'S FRONTAGE, and the plates are the whole reason it is here. The Petford watercolour of 1831 and the Braunhold engraving in Andreas (data/sources/assets/owner_brief_2026_08_18/README.md, images 8 and 9) show a plank sidewalk at this building and walks on BOTH its frontages — tier-5 retrospective views, which may drive setting and may never drive a coordinate. So WHERE is derived: the deck lies 0.20 m off the front wall, 1.83 m wide, leaving 4.78 m of verge between its outer edge and the Lake Street track — which is the number that decides a walk may lie here at all. What is invented is the width, the rise, the plank pitch, and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
     },
     {
       "id": "sauganash_hotel_walk_left",
@@ -113,7 +113,7 @@
       "kind": "hitching_post",
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        104.76,
+        104.18,
         -119.67
       ],
       "facade_bearing_deg": 0.0,
@@ -122,8 +122,8 @@
       "cap_square_m": 0.22,
       "cap_thickness_m": 0.07,
       "along_frontage_frac": 0.28,
-      "clear_of_track_m": 3.87,
-      "note": "A POST AT THE ROAD EDGE, for a rider to tie to. Images 8 and 9 put posts at this hotel's road edge and image 10 ties a saddled horse to one. The horse itself is reference for use and scale only and is never depicted, which is the standing L1 constraint. WHERE is derived: it stands 2.93 m out from the front wall — 0.90 m clear of the walk's outer edge — at 0.28 of the frontage's own length, with 3.87 m still between it and the Lake Street track. The height, the section and the capped head are invented, and so is that a post stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
+      "clear_of_track_m": 3.88,
+      "note": "A POST AT THE ROAD EDGE, for a rider to tie to. Images 8 and 9 put posts at this hotel's road edge and image 10 ties a saddled horse to one. The horse itself is reference for use and scale only and is never depicted, which is the standing L1 constraint. WHERE is derived: it stands 2.93 m out from the front wall — 0.90 m clear of the walk's outer edge — at 0.28 of the frontage's own length, with 3.88 m still between it and the Lake Street track. The height, the section and the capped head are invented, and so is that a post stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
     },
     {
       "id": "sauganash_hotel_hitching_post_2",
@@ -131,7 +131,7 @@
       "kind": "hitching_post",
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        110.04,
+        108.54,
         -119.67
       ],
       "facade_bearing_deg": 0.0,
@@ -140,8 +140,8 @@
       "cap_square_m": 0.22,
       "cap_thickness_m": 0.07,
       "along_frontage_frac": 0.72,
-      "clear_of_track_m": 3.87,
-      "note": "A POST AT THE ROAD EDGE, for a rider to tie to. Images 8 and 9 put posts at this hotel's road edge and image 10 ties a saddled horse to one. The horse itself is reference for use and scale only and is never depicted, which is the standing L1 constraint. WHERE is derived: it stands 2.93 m out from the front wall — 0.90 m clear of the walk's outer edge — at 0.72 of the frontage's own length, with 3.87 m still between it and the Lake Street track. The height, the section and the capped head are invented, and so is that a post stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
+      "clear_of_track_m": 3.88,
+      "note": "A POST AT THE ROAD EDGE, for a rider to tie to. Images 8 and 9 put posts at this hotel's road edge and image 10 ties a saddled horse to one. The horse itself is reference for use and scale only and is never depicted, which is the standing L1 constraint. WHERE is derived: it stands 2.93 m out from the front wall — 0.90 m clear of the walk's outer edge — at 0.72 of the frontage's own length, with 3.88 m still between it and the Lake Street track. The height, the section and the capped head are invented, and so is that a post stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L136."
     }
   ],
   "refused": [
@@ -153,7 +153,7 @@
     {
       "structure_id": "sauganash_hotel",
       "wall": "right",
-      "why": "the nearest street outward of this wall is Lake Street, and it lies BESIDE the wall rather than in front of it — 0.13 m of its 16.00 m stands outward, where a frontage needs 50%. A walk laid here would run down the hotel's flank and call it a frontage — no walk is laid."
+      "why": "the nearest street outward of this wall is Lake Street, and it lies BESIDE the wall rather than in front of it — 0.13 m of its 16.02 m stands outward, where a frontage needs 50%. A walk laid here would run down the hotel's flank and call it a frontage — no walk is laid."
     }
   ],
   "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on sidewalks — the corporation legislated wooden walks within a few years of 1835 and an order of the right date would give a width and a material at a stroke; a tax, insurance or sale description naming a walk in front of this lot; or holding the Petford and Braunhold plates as proper source records with their institutions and dates. The Trowbridge plate IS one now (`trowbridge_sauganash_hotel`, T-0075, 2026-08-22) and `existence` cites it; the Petford needs a Chicago History Museum accession number and the Braunhold needs Andreas volume I at page-image level. What would NOT move: the two posts' own dimensions, which no order and no plate will ever give."
