@@ -4403,7 +4403,19 @@ for (const [label, viewport, touch] of [
       // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 20 && frontage.census?.fences === 32
+        // T-0626 takes it back to NINETEEN, and it is the first time this count
+        // has gone DOWN. Nothing was refused for being badly placed: the log
+        // cabin beside the Sauganash stopped being a drug store. Its record was
+        // titled Philo Carpenter's Log Drug Store and carried `drug_store` as
+        // its function, three years after Carpenter moved out of it, and the
+        // hitching rule stands a post at a frontage whose TRADE it accepts. With
+        // the trade gone — the record now states three former uses and no
+        // current one — the frontage has no trade to take custom from a stranger
+        // off the street, so the post retires with the signboard that lettered
+        // the same man's name over the same door. Walks, crossings, fences and
+        // refusals do not move: the building is still there and still the street
+        // wall on that face.
+        && frontage.census?.posts === 19 && frontage.census?.fences === 32
         && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4654,11 +4666,19 @@ for (const [label, viewport, touch] of [
     // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
     // finds. The street-edge population is seventeen; the two on a record's own
     // ground do not move, because those come from the Sauganash's own plates.
-    check(`${label}: the nineteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 19
-        && frontage.census?.hitching === 19
+    // T-0626 makes it EIGHTEEN, the first fall in this line, and it is a trade
+    // leaving rather than a building. `philo_carpenter_log_shop` — Mark
+    // Beaubien's own cabin, let to Philo Carpenter in 1832, to John S. Wright,
+    // then to Eliza Chappel's school until 1834 — stopped carrying `drug_store`
+    // as its function, because on 1 July 1835 it is neither a drug store nor a
+    // school and no source reached says what it was. The hitching rule accepts a
+    // frontage by its TRADE, so the post retires with it. The street-edge
+    // population is sixteen; the two on a record's own ground do not move.
+    check(`${label}: the eighteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 18
+        && frontage.census?.hitching === 18
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 17
+        && frontage.hitching.filter((h) => h.street).length === 16
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
