@@ -11,7 +11,6 @@
 - **T-0679** Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
 - **T-0597** James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 - **T-0594** Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
-- **T-0595** jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
 - **T-0593** A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 - **T-0440** Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 - **T-0596** About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
@@ -161,6 +160,7 @@
 - **T-0677** Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
 - **T-0678** The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
 - **T-0681** T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
+- **T-0701** Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 
 ## ⏸ Waiting on an owner decision (6)
 
@@ -242,9 +242,10 @@
 - **T-0640** The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals · **OWNER** — T-0643, T-0644
 - **T-0641** The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals · **OWNER** — T-0653, T-0654, T-0655
 
-## Finished, newest first — 100 of 398; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 399; the older ones are in the ticket files (100)
 
 - **T-0635** Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops · **OWNER** · Sep 4, 2026, 6:26 PM · [PR #796](https://github.com/kevinrhaas/custom/pull/796)
+- **T-0595** jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien · Sep 4, 2026, 6:02 PM · [PR #818](https://github.com/kevinrhaas/custom/pull/818)
 - **T-0589** Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3 · Sep 4, 2026, 5:04 PM · [PR #813](https://github.com/kevinrhaas/custom/pull/813)
 - **T-0676** The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E · Sep 4, 2026, 4:56 PM · [PR #816](https://github.com/kevinrhaas/custom/pull/816)
 - **T-0668** The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card · Sep 4, 2026, 4:43 PM · [PR #809](https://github.com/kevinrhaas/custom/pull/809)
@@ -343,5 +344,4 @@
 - **T-0493** Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames · **OWNER** · 2026-09-03 · [PR #692](https://github.com/kevinrhaas/custom/pull/692)
 - **T-0530** The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals · **OWNER** · 2026-09-03 · [PR #691](https://github.com/kevinrhaas/custom/pull/691)
 - **T-0532** The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226 · **OWNER** · 2026-09-03 · [PR #690](https://github.com/kevinrhaas/custom/pull/690)
-- **T-0540** The 1840 census images 1-25: continuation sheets 24, 5D and 5S read line by line and closed against their own printed column totals · **OWNER** · 2026-09-03 · [PR #689](https://github.com/kevinrhaas/custom/pull/689)
 
