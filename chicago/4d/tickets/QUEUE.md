@@ -293,3 +293,4 @@ T-0668 — The 531 civic residents ship a reading a browser never shows: put the
 T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0680 — The research spend meter cannot see land_sales' refusals: 354 adjudicated names read as unspent because a refusal is keyed on the purchaser's name and carries no record_id

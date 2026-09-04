@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 11:59 AM",
+  "generated_ct": "Sep 4, 2026, 1:04 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11294,6 +11294,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0680",
+      "title": "The research spend meter cannot see land_sales' refusals: 354 adjudicated names read as unspent because a refusal is keyed on the purchaser's name and carries no record_id",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
