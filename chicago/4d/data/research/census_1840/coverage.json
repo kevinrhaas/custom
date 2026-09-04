@@ -362,14 +362,17 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-B2.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled",
+     "lines_with_an_entry": 30,
+     "what_it_is": "continuation sheet, filled; 30 lines, page population 115 by the enumerator's own footer AND 115 by the line-by-line reading \u2014 the first sheet in the deposit whose family-total column closes exactly. Three of its four written columns close on the nose (family totals 115, manufactures and trades 17, learned professions 2) and commerce reads 13 against a printed 12. Line 18 is a 14-person household with six of them at work, the largest here; 32 of the 115 persons are returned as employed and every one in commerce, trade or the learned professions \u2014 none in agriculture, none in navigation.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
+     "read_state": "continuation_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-B2.json",
      "paired_to_printed_page": null,
-     "pairing_state": "unpaired_key_not_yet_read",
-     "pairing_tested_by": "T-0642"
+     "pairing_state": "unpaired_key_now_readable",
+     "pairing_tested_by": "T-0642",
+     "lines_with_an_entry_note": "restated off the sheet by T-0654. The inventory figure was 31 `to the nearest line`; the line-by-line reading finds 30 entries on a 75.9 px grid fitted to the 25 industry anchors alone (rms 6.17 against 15.12 for the next-best count, and 23 of 25 jackknife drops still choosing 30), with a thirty-first line slot at about y2944 blank in all 37 columns.",
+     "note": "committed with one residual recorded rather than adjusted away: commerce +1 (T-0654). The family totals close exactly at 115, which was reached by reading the TOTAL column against a grid built from the industry columns and then adding it up \u2014 not by tuning to the footing. Two manufactures cells (lines 24 and 26) are committed on the line's own family total rather than on the glyph, and say so in the page file's `manufactures_doubtful_cells`.",
+     "pairing_key_note": "T-0642 left this one `unpaired_key_not_yet_read` because the sheet's own population key had not been read. It has now: page population 115 by the footer and 115 by the line-by-line reading \u2014 one number, with no slack \u2014 over 30 lines, a 14-person household on line 18, eleven families of one or two, and an employment profile that is entirely town trade. The pairing test can be run against this sheet."
     },
     {
      "index": 23,
@@ -444,7 +447,8 @@
      238
     ],
     "printed_page_number_unreadable": [
-     "33S7-9YYJ-9MX"
+     "33S7-9YYJ-9MX",
+     "33S7-9YYJ-B2"
     ],
     "names_transcribed_pages": 8,
     "names_transcribed_lines": 243,
@@ -453,10 +457,10 @@
      "medium": 60,
      "low": 180
     },
-    "inventoried_only": 6,
-    "continuation_sheets_read": 2,
+    "inventoried_only": 5,
+    "continuation_sheets_read": 3,
     "continuation_sheets_attempted_not_closed": 1,
-    "continuation_lines_committed": 62,
+    "continuation_lines_committed": 92,
     "cells_read_pages": 8,
     "cells_columns_committed": {
      "33S7-9YYJ-2T": 36,
@@ -468,7 +472,7 @@
      "33S7-9YYJ-9RG": 36,
      "33S7-9YYJ-9WF": 37
     },
-    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each \u2014 the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round \u2014 against the enumerator's own column footings rather than against the ruling \u2014 and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too. T-0584 read printed 210 and 215 to the name and the cell: 210 carries 30 ruled entries against the inventory's 31 (the last entry is Saml. E. Clarke and the table closes immediately below it, with no blank ruled writing line at the foot), and 215's 31 stands exactly. T-0565 then measured 33S7-9YYJ-5V a third way \u2014 not off the ruling, which this sheet does not carry, and not off the TOTAL column's own ink, which moved with every threshold anyone tried, but off the 22 entries of the three written industry columns, which close against their own printed footings. That fit gives 30 lines at an rms of 6.7 px against 19.9 for 28 (the figure inventoried here), 21.3 for 29 and 19.0 for 31 (the figure the page file favoured). The inventory's 28 for this image is corrected to 30.",
+    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each \u2014 the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round \u2014 against the enumerator's own column footings rather than against the ruling \u2014 and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too. T-0584 read printed 210 and 215 to the name and the cell: 210 carries 30 ruled entries against the inventory's 31 (the last entry is Saml. E. Clarke and the table closes immediately below it, with no blank ruled writing line at the foot), and 215's 31 stands exactly. T-0565 then measured 33S7-9YYJ-5V a third way \u2014 not off the ruling, which this sheet does not carry, and not off the TOTAL column's own ink, which moved with every threshold anyone tried, but off the 22 entries of the three written industry columns, which close against their own printed footings. That fit gives 30 lines at an rms of 6.7 px against 19.9 for 28 (the figure inventoried here), 21.3 for 29 and 19.0 for 31 (the figure the page file favoured). The inventory's 28 for this image is corrected to 30. T-0654 read 33S7-9YYJ-B2 the same way: 30 lines fitted to its 25 industry anchors alone at rms 6.17, against 15.12 for 31 and 18.52 for 29, with 23 of 25 jackknife drops still choosing 30. The inventory's 31 for this image is corrected to 30, and the TOTAL column read against that grid then sums to the enumerator's own footing of 115 exactly \u2014 the first continuation sheet in the deposit to close on the nose.",
     "second_readings": {
      "33S7-9YYJ-9M5": "PR #698, disagrees with the committed reading",
      "33S7-9YYJ-38": "PR #698, disagrees with the committed reading"
