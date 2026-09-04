@@ -1,7 +1,7 @@
 ---
 id: T-0664
 title: Fergus 1839, printed pages 40-46: the charter election of 2 May 1837 and its list of voters for mayor
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0611
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 782
 claimed_by: run 9/4/2026, 8:08:40 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T13:38:11.448Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875897472
 ---
 
