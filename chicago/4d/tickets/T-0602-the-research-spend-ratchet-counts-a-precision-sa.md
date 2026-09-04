@@ -1,7 +1,7 @@
 ---
 id: T-0602
 title: The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 776
 claimed_by: run 9/4/2026, 6:19:38 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T11:43:00.912Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33867094965
 ---
 
