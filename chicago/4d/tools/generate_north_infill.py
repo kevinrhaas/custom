@@ -474,6 +474,25 @@ def main() -> int:
     drift = []
     for record in records:
         path = STRUCTURES / f"{record['id']}.json"
+        # T-0609. `land_owner` is the ONE block on these records this recipe does not
+        # own: it says which federal or canal tract the roof's position falls in, it is
+        # derived from the land-sale register by tools/resolve_land_tracts.py, and that
+        # tool's own --check re-derives every one of them on the same gate. So it is
+        # carried through a regeneration rather than wiped by it — the same arrangement
+        # the block recipe has with `lot_address`, and for the same reason: a generated
+        # file may hold a claim a second derivation owns, as long as exactly one gate
+        # owns it and nothing hand-edits it.
+        if path.exists():
+            committed = json.loads(path.read_text(encoding="utf-8"))
+            if "land_owner" in committed:
+                rebuilt = {}
+                for key, value in record.items():
+                    rebuilt[key] = value
+                    if key == "occupants":
+                        rebuilt["land_owner"] = committed["land_owner"]
+                if "land_owner" not in rebuilt:
+                    rebuilt["land_owner"] = committed["land_owner"]
+                record = rebuilt
         text = json.dumps(record, indent=2, ensure_ascii=False) + "\n"
         if args.check:
             if not path.exists():

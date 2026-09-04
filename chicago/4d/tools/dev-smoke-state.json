@@ -12,22 +12,116 @@
       "passed": 109,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 244,
-      "takenAt": "2026-09-04T16:11:45.332Z",
+      "wallSeconds": 247,
+      "takenAt": "2026-09-04T16:27:40.290Z",
       "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "6cbc0b013ba7",
-      "devCommit": "2af6460f07f9",
-      "treeHash": "sha256:a2180ab92f1b2dc1",
-      "treeDirty": false,
-      "changelogHash": "sha256:239b79fc7d303a07",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          3.8,
-          2.9
+          4.3,
+          4,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 129,
+      "takenAt": "2026-09-04T16:27:40.203Z",
+      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 187,
+      "takenAt": "2026-09-04T16:27:40.118Z",
+      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_m.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 109,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 244,
+      "takenAt": "2026-09-04T16:12:44.748Z",
+      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.6,
+          3.1,
+          2.7
         ]
       },
       "source": "/tmp/s2_d13.log"
@@ -44,21 +138,21 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 129,
-      "takenAt": "2026-09-04T16:11:45.253Z",
+      "takenAt": "2026-09-04T16:12:44.645Z",
       "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "6cbc0b013ba7",
-      "devCommit": "2af6460f07f9",
-      "treeHash": "sha256:a2180ab92f1b2dc1",
-      "treeDirty": false,
-      "changelogHash": "sha256:239b79fc7d303a07",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          3.8,
-          2.9
+          1.6,
+          3.1,
+          2.7
         ]
       },
       "source": "/tmp/s2_d12.log"
@@ -76,27 +170,58 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 189,
-      "takenAt": "2026-09-04T16:11:45.174Z",
+      "takenAt": "2026-09-04T16:12:44.541Z",
       "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "6cbc0b013ba7",
-      "devCommit": "2af6460f07f9",
-      "treeHash": "sha256:a2180ab92f1b2dc1",
-      "treeDirty": false,
-      "changelogHash": "sha256:239b79fc7d303a07",
+      "commit": "c53af535ea1e",
+      "devCommit": "c666f4ad24c2",
+      "treeHash": "sha256:77260e401722594d",
+      "treeDirty": true,
+      "changelogHash": "sha256:27d306d0c6738221",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          3.8,
-          2.9
+          1.6,
+          3.1,
+          2.7
         ]
       },
       "source": "/tmp/s2_m.log"
     },
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 215,
+      "takenAt": "2026-09-04T15:45:40.923Z",
+      "ref": "steward/t-0609-ground-under-the-roofs",
+      "commit": "c61796d40866",
+      "devCommit": "2667de843ece",
+      "treeHash": "sha256:adf1fde73ea22d2e",
+      "treeDirty": false,
+      "changelogHash": "sha256:e02ba79ec387fc54",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5,
+          4.3,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "mobile",
       "stage": "13",
       "parts": [
         13
@@ -106,88 +231,57 @@
       "passed": 109,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 246,
-      "takenAt": "2026-09-04T15:51:31.576Z",
-      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "5a4d0e61b6a9",
+      "wallSeconds": 128,
+      "takenAt": "2026-09-04T15:45:40.846Z",
+      "ref": "steward/t-0609-ground-under-the-roofs",
+      "commit": "c61796d40866",
       "devCommit": "2667de843ece",
-      "treeHash": "sha256:b2800486fa98c9fd",
+      "treeHash": "sha256:adf1fde73ea22d2e",
       "treeDirty": false,
-      "changelogHash": "sha256:8f963a331036b0df",
+      "changelogHash": "sha256:e02ba79ec387fc54",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          5.1,
+          5,
           4.3,
           2.6
         ]
       },
-      "source": "/tmp/smoke_d_13.log"
+      "source": "/tmp/smoke_m13.log"
     },
     {
       "viewport": "desktop",
-      "stage": "12",
+      "stage": "2-3",
       "parts": [
-        12
+        2,
+        3
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 37,
+      "passed": 150,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 130,
-      "takenAt": "2026-09-04T15:51:31.497Z",
-      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "5a4d0e61b6a9",
+      "wallSeconds": 288,
+      "takenAt": "2026-09-04T15:45:40.770Z",
+      "ref": "steward/t-0609-ground-under-the-roofs",
+      "commit": "c61796d40866",
       "devCommit": "2667de843ece",
-      "treeHash": "sha256:b2800486fa98c9fd",
+      "treeHash": "sha256:adf1fde73ea22d2e",
       "treeDirty": false,
-      "changelogHash": "sha256:8f963a331036b0df",
+      "changelogHash": "sha256:e02ba79ec387fc54",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          5.1,
+          5,
           4.3,
           2.6
         ]
       },
-      "source": "/tmp/smoke_d_12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 137,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 191,
-      "takenAt": "2026-09-04T15:51:31.415Z",
-      "ref": "steward/t-0666-fergus-1839-fort-dearborn-addition",
-      "commit": "5a4d0e61b6a9",
-      "devCommit": "2667de843ece",
-      "treeHash": "sha256:b2800486fa98c9fd",
-      "treeDirty": false,
-      "changelogHash": "sha256:8f963a331036b0df",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.1,
-          4.3,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_m_12_13.log"
+      "source": "/tmp/smoke_d23.log"
     },
     {
       "viewport": "desktop",
@@ -1423,69 +1517,6 @@
     },
     {
       "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 174,
-      "takenAt": "2026-09-04T09:41:09.106Z",
-      "ref": "steward/t-0654-census-1840-b2",
-      "commit": "6f214e7d94dd",
-      "devCommit": "08bc2b829f98",
-      "treeHash": "sha256:61f58fb006696ea1",
-      "treeDirty": false,
-      "changelogHash": "sha256:b446d17aef164f32",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.4,
-          4.1,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 137,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 260,
-      "takenAt": "2026-09-04T09:41:09.015Z",
-      "ref": "steward/t-0654-census-1840-b2",
-      "commit": "6f214e7d94dd",
-      "devCommit": "08bc2b829f98",
-      "treeHash": "sha256:61f58fb006696ea1",
-      "treeDirty": false,
-      "changelogHash": "sha256:b446d17aef164f32",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.4,
-          4.1,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
-    },
-    {
-      "viewport": "desktop",
       "stage": "11-12",
       "parts": [
         11,
@@ -1546,38 +1577,6 @@
         ]
       },
       "source": "/tmp/smoke_mobile9.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1-2",
-      "parts": [
-        1,
-        2
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 153,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 516,
-      "takenAt": "2026-09-03T22:57:15.356Z",
-      "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "53ddbe0478ee",
-      "devCommit": "c05acdc29f82",
-      "treeHash": "sha256:5d93e3c6edfb1f1c",
-      "treeDirty": true,
-      "changelogHash": "sha256:37a99b065f1ba58e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          1.1,
-          0.8,
-          1.2
-        ]
-      },
-      "source": "/tmp/smoke-d12.log"
     },
     {
       "viewport": "mobile",
