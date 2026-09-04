@@ -1,7 +1,7 @@
 ---
 id: T-0577
 title: The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 11:59:20 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33897563641
 ---
 
 The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu).
