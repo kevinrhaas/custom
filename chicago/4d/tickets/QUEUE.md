@@ -91,7 +91,6 @@ T-0635 — Consolidation pass 2: write every ruling closed since consolidation p
 # --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
 # --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
 T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
-T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien

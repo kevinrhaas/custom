@@ -1,7 +1,7 @@
 ---
 id: T-0507
 title: 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 811
 claimed_by: run 9/4/2026, 4:00:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T21:35:20.218Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918546773
 ---
 
