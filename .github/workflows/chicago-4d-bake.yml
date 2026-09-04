@@ -113,21 +113,48 @@ jobs:
       branch: ${{ steps.push.outputs.branch }}
       changed: ${{ steps.push.outputs.changed }}
       sha: ${{ steps.baseref.outputs.sha }}
+      base: ${{ steps.baseref.outputs.branch }}
     steps:
-      # Bake from dev when it exists: the PR's base is dev, so branching off
-      # main would put every commit already promoted-past into the diff.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Bake from dev when the pipeline is active
+
+      # WHICH TREE THIS BAKE IS ABOUT — T-0454, and the reason it is a script.
+      #
+      # This step used to be four unconditional lines: if `origin/dev` exists,
+      # `git checkout -B dev origin/dev`. Right for the nightly, which fires on
+      # the default branch and has no tree of its own to speak for. A SILENT
+      # DISCARD for a dispatch: the run is handed a branch, throws it away, and
+      # bakes dev.
+      #
+      # That is how `tools/check.sh` and this workflow came to disagree about
+      # one asset while both were right. On 2026-08-31 the gate called two GLBs
+      # on `steward/t-0429-south-water-lasalle` stale (`siding_exposure_m` 0.152
+      # -> 0.127, a mesh input); this workflow was dispatched against that exact
+      # commit, ran Blender for 12m34s, transformed 360 assets and reported
+      # "bake produced no CONTENT". It had rebuilt a FRESH dev, byte for byte,
+      # and tools/bake_content_changed.py answered honestly about the tree it was
+      # shown. The branch's stale asset was never looked at, and the remedy the
+      # gate's own error message names — "re-bake it (tools/bake.sh, or the
+      # chicago-4d-bake workflow)" — was true of the first and false of the
+      # second. `generators/build.py` never skipped anything; nothing asked it to.
+      #
+      # A shell condition could not be tested, so this is the same trade T-0180
+      # made for the content verdict: a script with a self-test, run by check.sh,
+      # which also asserts THIS FILE still calls it and still takes its PR base
+      # from the result. The rule and its tiers live in tools/bake_ref.py.
+      - name: Which ref does this bake build?
         id: baseref
         run: |
-          if git ls-remote --exit-code --heads origin dev >/dev/null 2>&1; then
-            git checkout -B dev origin/dev
-            echo "baking from dev"
-          else
-            echo "no dev ref — baking from the default branch"
+          set -euo pipefail
+          # stdout is the branch, stderr is the reason, and --github also writes
+          # the step outputs. One invocation, no grepping $GITHUB_OUTPUT back out.
+          BRANCH=$(python3 chicago/4d/tools/bake_ref.py --github)
+          if [ "$BRANCH" != "$(git rev-parse --abbrev-ref HEAD)" ]; then
+            git fetch --no-tags origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+            git checkout -B "$BRANCH" "refs/remotes/origin/$BRANCH"
           fi
+          echo "baking $BRANCH at $(git rev-parse --short HEAD)"
           # The exact commit the mirror was baked from. The smoke and open-pr jobs
           # check this out rather than the workflow ref, so all three jobs read the
           # same tools/ and the same tree — a bake that started before dev moved is
@@ -390,12 +417,20 @@ jobs:
       - name: Open the PR
         run: |
           BRANCH="${{ needs.bake.outputs.branch }}"
-          # BASE IS dev, NOT main (chicago/4d/docs/PIPELINE.md). Overnight output
-          # lands on the integration branch and reaches production only when the
-          # owner dispatches chicago-4d-promote-to-prod.yml.
+          BASE="${{ needs.bake.outputs.base }}"
+          # BASE IS THE REF THAT WAS BAKED, AND IT IS NEVER main
+          # (chicago/4d/docs/PIPELINE.md). For the nightly that is `dev`, as it
+          # has always been: overnight output lands on the integration branch and
+          # reaches production only when the owner dispatches
+          # chicago-4d-promote-to-prod.yml. For a bake dispatched against a
+          # branch it is THAT branch — T-0454: the whole point of dispatching one
+          # is to heal a stale asset the branch itself caused, and a PR into dev
+          # would carry the branch's unmerged work with it. tools/bake_ref.py
+          # refuses to resolve to the production tier, so this cannot become a PR
+          # into main by any route.
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
-            --base dev \
-            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`dev\`: merging this publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
+            --base "$BASE" \
+            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`$BASE\` — the ref this bake was built from (T-0454). Merging a \`dev\` bake publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
             --head "$BRANCH" 2>&1); then
             # GitHub reports this org/repo policy failure as a GraphQL error string.
             # Match it exactly so other gh failures still stop the workflow.
