@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 521, title: 'A safety timer was compared with the wrong clock', kind: 'fix', ts: '2026-09-04T19:20:08.305Z', date: 'Sep 4, 2026, 2:20 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the checks that run before anything reaches you, and a note about them that had been wrong for three days.',
+      'Those checks are split into eight pieces that run side by side, and each piece is given half an hour to finish. A separate arrangement runs the whole lot end to end in one go, with an hour and a half. A page describing all this compared one figure with the other and concluded the half hour belonged to some other machine — so three outstanding jobs, each measuring how close a piece comes to its limit, were told they had been measuring against the wrong thing.',
+      'They had not. A limit on one piece and a reading of all eight together are not the same quantity, and neither bounds the other. The page now names all three limits, says which file each is written in, and says what each one bounds.',
+      'The machines turned out to be the same machine too, which the files themselves show: the same kind of runner, the same browser at the same version, and the same software renderer in every case. The two timings behind the original claim are four seconds apart, and are kept with a note saying which part of them is verified and which is not.',
+      'The piece-by-piece table is now worked out by a tool that reads the split from the file that defines it, rather than being written down by hand. Written down by hand it had gone stale four times this year. A check that runs on every commit now refuses to pass if those pieces ever stop covering the whole suite exactly once.'
+    ] },
   { v: 520, title: 'The nightly\u2019s gate was dying on the download, not the test', kind: 'fix', ts: '2026-09-04T18:54:33.326Z', date: 'Sep 4, 2026, 1:54 PM CT',
     items: [
       'Nothing you can see changed today. Every night a machine rebuilds this whole town from the records and then drives the walkthrough in a real browser \u2014 at a phone\u2019s width and at a desktop\u2019s \u2014 before anything is allowed through. That check runs in eight pieces, and each piece is given half an hour. Seven times, a piece has hit the half hour and been killed, and a rebuild whose content was perfectly sound was thrown away with it.',

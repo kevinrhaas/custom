@@ -181,6 +181,13 @@ on the improve runner against the published mirror, one part each, `SMOKE_TIMING
 clock for eight boots. (Mobile's 411 is these 408 plus the three checks part 4 takes only at
 mobile.)
 
+**THE TABLE ABOVE IS SPELLED IN THE PART NUMBERING OF 2026-08-24, WHICH IS NOT TODAY'S**
+(noted 2026-09-03, T-0450). Its rows are the nine parts as they stood before T-0346, T-0173
+and T-0170 each cut one in two; read forward, its part 4 is today's 4+5+6, its 5 is 7+8 and
+its 7-9 are 10-13. It is kept because it is the measurement the cuts below were sized from,
+and re-labelling it would destroy that. For what the parts and the gate's legs cost TODAY,
+in today's numbering, ask the record: `node tools/smoke_budget.mjs` and `--legs`.
+
 **The table above was taken at `ac1abb80`**, and T-0166's mobile column at the same commit.
 T-0114 merged into `dev` while this run was measuring and changed `streets.js`, so the parts
 that read the roads — 5 and 7 — will have moved a little since, and part 5's reading was taken
@@ -419,6 +426,40 @@ measured; T-0181's was one sample. Each was a number nobody had read off the thi
 gives per-step `started_at`/`completed_at` for every leg this workflow has ever run. Any future
 change to this cap or this cut should quote that, and should decompose the job into steps before
 blaming the suite, because on the evidence above the suite was never the problem.
+
+
+**AND THE THREE CAPS IN THIS SECTION BOUND THREE DIFFERENT THINGS — corrected
+2026-09-03 by T-0450, on the owner's report.** Everything above is written against the
+**600-second** per-command ceiling, which is the constraint on a steward run and is
+correct as it stands. Two other caps get quoted beside it and neither is that one, nor
+each other's:
+
+| cap | what it bounds | where it is written |
+|---|---|---|
+| **600 s** | ONE foreground command in a steward run | the harness — this section |
+| **30 min** | ONE LEG of the nightly gate: one viewport over one stage range, eight legs in parallel | `chicago-4d-bake.yml` § `smoke`, `timeout-minutes` |
+| **90 min** | the WHOLE body in one process, both viewports, no per-leg cap at all | `chicago-4d-smoke.yml` § `smoke`, `timeout-minutes` |
+
+`docs/SMOKE-BUDGET.md` opened by telling T-0170, T-0173 and T-0181 that the 30-minute
+figure their margins are taken against "is not this machine's", with the whole gate's
+**55 m 10 s** offered as proof. **It is not proof — the two are not the same quantity**,
+and 55 m 10 s is a reading of the third row, comfortably inside its own 90-minute cap.
+Those three tickets were reasoning about the leg cap correctly and the page has been
+corrected to say so. **The machine is the same one, too**: the nightly gate's legs, the
+full-body run, the dev gate and the improve runner are all `runs-on: ubuntu-latest`, the
+two smoke workflows install the same `playwright@1.56.1` and chromium alone, and
+`smoke_renderer.mjs` passes `--enable-unsafe-swiftshader` wherever it runs — so
+SwiftShader is a property of the suite rather than of one runner. T-0450 measured one leg
+at **4 m 40 s** on the gate runner and **4 m 44 s** on the improve runner; that pair is
+recorded with its provenance, and its unverified half named as such, in
+`docs/SMOKE-BUDGET.md` § THREE CAPS.
+
+**None of this moves a number above.** The 600-second ceiling this whole section is built
+on is untouched, every reading stands, and the cuts sized against them stand. What
+changes is which cap a LEG's margin is compared with, and that comparison now lives in a
+tool rather than in prose: `node tools/smoke_budget.mjs --legs` prices each of the
+nightly gate's legs — read from the workflow, never restated — against the 30-minute cap,
+and `--self-test` fails if those ranges ever stop tiling the parts exactly once.
 
 ### NEXT UP — every row says whether a visitor can SEE it
 

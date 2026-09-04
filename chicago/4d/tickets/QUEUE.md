@@ -152,6 +152,28 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- on, the ordinances the papers yielded, the fort, what grows, and the cards a
 # --- visitor opens. T-0219 is parked on PR #432.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
+
+# --- SOUTH THROUGH TIME — OWNER EPIC, 2026-09-01. Continue T-0219's ground south
+# --- through the 1812 Fort Dearborn battle corridor and the 1880s Prairie Avenue
+# --- district. Shared geographic infrastructure comes first, then the 1812 natural
+# --- landscape/first fort/route, then the later urban terrain, grid and mansion district.
+# --- The 1812 work follows AGENTS.md's Indigenous-history review constraint: terrain,
+# --- structures and documentary geography may proceed, but human depiction is not inferred.
+T-0464 — Extend the shared south terrain from Madison through Cermak
+T-0465 — Trace the South Branch and early lakefront through the expanded field
+T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
+T-0467 — Add south-scene camera anchors, navigation and map extents
+T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
+T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
+T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
+T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
+T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
+T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
+T-0475 — Build the Prairie Avenue landmark mansion core
+T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
+T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
+
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
@@ -213,24 +235,15 @@ T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is n
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
+
+# --- RESIDENT / HOUSEHOLD EVIDENCE SYNTHESIS — OWNER REQUEST, 2026-09-02.
+# --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
+# --- promote attested facts, promote inferred/projected residents while retiring reconstructed
+# --- people, then audit the census/research synthesis.
+T-0683 — Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0464 — Extend the shared south terrain from Madison through Cermak
-T-0465 — Trace the South Branch and early lakefront through the expanded field
-T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
-T-0467 — Add south-scene camera anchors, navigation and map extents
-T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
-T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
-T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
-T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
-T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-0473 — Create an 1880s South Side terrain and urban-ground epoch
-T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
-T-0475 — Build the Prairie Avenue landmark mansion core
-T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
-T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
@@ -291,3 +304,7 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
