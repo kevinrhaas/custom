@@ -363,11 +363,19 @@ DATE_NOTE = (
     "this is a poll RESET IN 1876 and not the poll book.")
 
 ARITHMETIC_NOTE = (
-    "FERGUS'S OWN ARITHMETIC DOES NOT MATCH THE NAMES HE PRINTED, in two wards, and the "
-    "disagreement is committed rather than reconciled: counts_printed is his table on printed "
-    "page 46 and counts_read is the reading. Neither is corrected to the other. Only the page "
-    "images can say whether the printer dropped names, the OCR did, or the total was recalled "
-    "wrong in 1876.")
+    "FERGUS'S OWN ARITHMETIC DOES NOT MATCH THE NAMES HE PRINTED, in the FIRST WARD and "
+    "therefore in the total, and the disagreement is committed rather than reconciled: "
+    "counts_printed is his table on printed page 46 and counts_read is the reading. Neither is "
+    "corrected to the other. SETTLED OFF THE PAGE IMAGES FOR T-0667, in "
+    "../fergus_1839_first_ward_scan.json: printed pages 41-42 carry 167 LINES OF TYPE in the "
+    "first ward — three columns of 34, then 22, 22 and 21 — on a leading that never doubles, "
+    "with no ink below either block and no cell holding two names, and the numeral in the "
+    "table was reopened and is 170 rather than a misread 167. So the three names are missing "
+    "from the LIST and not from this reading: archive.org's OCR lost nothing here and neither "
+    "did the segmenter. WHAT THE PIXELS CANNOT SAY is why the table says three more — a "
+    "compositor dropping three lines, or a total that survived from 1837 in front of names "
+    "reconstructed from recollection in 1876, which is what the volume's own headnote on "
+    "printed page 3 warns this list is. No name is invented to close the gap.")
 
 
 def payload(claims):

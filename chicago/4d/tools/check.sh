@@ -1507,6 +1507,16 @@ step "the 1837 charter election rebuilds from its committed text, at the declare
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839_election.py --check
 
+# T-0667. That poll's first ward reads 167 names against Fergus's own table of 170, and the
+# claims file could only say the page images would have to settle it. They did:
+# verify_fergus_1839_first_ward.py counts LINES OF TYPE on printed pages 41-42 — a name the
+# OCR lost leaves no trace in the text and a double gap in the row grid — and found 167 set on
+# a leading that never doubles. The measurement needs Pillow and archive.org, so what runs
+# here is the leg that needs neither: the committed record and the committed claims file must
+# still agree on 167, per leaf. They are two files that drift apart silently otherwise.
+step "…and the first ward's 167 names still agree with what the page images were counted at" \
+  python3 tools/verify_fergus_1839_first_ward.py --offline
+
 # T-0665. The two leaves BETWEEN the directory and the poll, printed 38-39: the city
 # register of 1839 and the printed tables of mayors and sheriffs. Three things need
 # holding here that the poll pages did not need. The SEGMENTING, because the register

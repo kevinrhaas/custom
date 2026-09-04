@@ -30,6 +30,17 @@ transcription is `transcription_mediated` either way; a reading made off the pag
 committed in `claims/`, kept whole so a disagreement between two readings of one printed book
 survives the merge. Nothing downstream reads it; see `second_readings/README.md`.
 
+**Scan verifications.** Where a committed reading is doubted, the doubt is settled off the
+pixels and the measurement is kept. `fergus_1839_first_ward_scan.json` (T-0667) is the first:
+Fergus's table on printed page 46 counts three more first-ward votes in 1837 than the names
+he printed, and `tools/verify_fergus_1839_first_ward.py` counts the LINES OF TYPE on printed
+pages 41-42 rather than the words in anybody's OCR — a name archive.org lost leaves no trace
+in the text and a double gap in the row grid. It found none: 34+34+34 and 22+22+21, on a
+leading of 54 px that never doubles. So the 167 is the printer's and the three are missing
+from the list, not from this project's reading of it. The tool needs Pillow and the network,
+so `check.sh` runs only its `--offline` leg, which is the part that catches drift between the
+record and `claims/fergus_1839_election_1837.json`.
+
 **Hand-authored:** `text/`, `coverage.json`, `crosswalk.json`,
 `claims/norris_1844_town_findings.json`, and the READING of a source that is not a
 list — `norris_1844_advertiser_index.json`, which says where each advertising card
@@ -38,7 +49,8 @@ begins and ends.
 `claims/norris_1844_advertiser.json`, `norris_1844_crosswalk_1835.json`,
 `norris_1844_advertiser_crosswalk_1835.json`, `claims/fergus_1839_directory_entries.json`,
 `claims/fergus_1839_town_findings.json`, `fergus_1839_crosswalk_1835.json` and
-`fergus_1839_street_faces.json`, each by the tool named in its own `generated_by`, each
+`fergus_1839_street_faces.json` and `fergus_1839_first_ward_scan.json`, each by the tool
+named in its own `generated_by`, each
 with a `--check` that `tools/check.sh` runs; and `data/research/domains.json`, which is
 gated.
 
