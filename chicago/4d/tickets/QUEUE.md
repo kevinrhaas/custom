@@ -197,7 +197,6 @@
 # --- T-0626 spends the reading. Split from T-0616 because reading four plates and rebuilding
 # --- the massing are two demonstrations. (T-0626 was filed as T-0618 and restamped: dev's own
 # --- #749 had minted a T-0618 of its own for the Newberry volume-4 OCR reader.)
-T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 

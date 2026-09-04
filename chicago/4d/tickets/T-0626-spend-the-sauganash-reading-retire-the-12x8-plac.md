@@ -1,7 +1,7 @@
 ---
 id: T-0626
 title: Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0616
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 770
 claimed_by: run 9/4/2026, 2:01:09 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T08:13:52.429Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33846627075
 ---
 
