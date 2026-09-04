@@ -8,7 +8,7 @@
       "ticket": "T-0557",
       "what": "Every pair of differently-spelled purchasers entering the same tract in T39N R14E and T40N R14E through 1836.",
       "merges": 0,
-      "refusals": 41
+      "refusals": 61
     }
   ],
   "merges": [],
@@ -78,6 +78,70 @@
       ]
     },
     {
+      "a": "WILLIAMS GILES AS",
+      "b": "WILLIAMS GORDON S",
+      "rule": "WILLIAMS GILES AS and WILLIAMS GORDON S entered the same tract (T39N R14E sec 16, BL100) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "DOLE",
+      "b": "NEWBERRY",
+      "rule": "DOLE and NEWBERRY entered the same tract (T39N R14E sec 16, BL106) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, BL124) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HARMON CHARLES L",
+      "b": "HARMON ISAAC D",
+      "rule": "HARMON CHARLES L and HARMON ISAAC D entered the same tract (T39N R14E sec 16, BL137) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WILLIAMS GILES AS",
+      "b": "WILLIAMS GORDON S",
+      "rule": "WILLIAMS GILES AS and WILLIAMS GORDON S entered the same tract (T39N R14E sec 16, BL31) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WILLIAMS GILES AS",
+      "b": "WILLIAMS GORDON S",
+      "rule": "WILLIAMS GILES AS and WILLIAMS GORDON S entered the same tract (T39N R14E sec 16, BL32) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, BL67) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WILLIAMS GILES AS",
+      "b": "WILLIAMS GORDON S",
+      "rule": "WILLIAMS GILES AS and WILLIAMS GORDON S entered the same tract (T39N R14E sec 16, BL89) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
       "a": "HALE EBENEZER",
       "b": "HALE JOHN",
       "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT1BL26) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
@@ -112,6 +176,14 @@
     {
       "a": "HALE EBENEZER",
       "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT1BL80) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
       "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT1BL81) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
       "evidence": [
         "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
@@ -128,7 +200,63 @@
     {
       "a": "HALE EBENEZER",
       "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT1BL95) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
       "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT1BL96) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "VANDERBOGERT HENRY",
+      "b": "VANDERBOGERT JOHN AS",
+      "rule": "VANDERBOGERT HENRY and VANDERBOGERT JOHN AS entered the same tract (T39N R14E sec 16, LOT2BL120) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT2BL72) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT2BL79) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT2BL80) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT2BL95) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT3BL79) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
       "evidence": [
         "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
       ]
@@ -152,7 +280,23 @@
     {
       "a": "HALE EBENEZER",
       "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT4BL50) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
       "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT4BL71) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT4BL79) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
       "evidence": [
         "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
       ]
@@ -177,6 +321,22 @@
       "a": "HALE EBENEZER",
       "b": "HALE JOHN",
       "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT7BL95) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT8BL82) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HALE EBENEZER",
+      "b": "HALE JOHN",
+      "rule": "HALE EBENEZER and HALE JOHN entered the same tract (T39N R14E sec 16, LOT8BL95) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
       "evidence": [
         "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
       ]

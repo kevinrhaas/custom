@@ -771,9 +771,16 @@ def self_test():
 
     # Section 16's rows are all refused for the one reason, and section 9's SE quarter
     # — the original town — reaches nothing, because the canal commissioners sold it.
+    # Every one is refused; all but the rows whose printed description this project's
+    # parser will not guess at are refused for the plat. T-0675 walked the section to
+    # its end and 337 rows came back rather than the ceiling's 150, one of which reads
+    # its lot as `06126` — unparsed, and refused as that rather than as the plat.
     sixteen = [r for r in doc["tracts"] if r["section"] == "16" and r["township"] == "39N"]
-    assert sixteen and all(r["refusal"] == "subdivision_plat_not_held" for r in sixteen)
-    checks.append(f"all {len(sixteen)} school-section rows refuse for the plat this repo lacks")
+    plat = {"subdivision_plat_not_held", "description_not_read"}
+    assert sixteen and all(r["refusal"] in plat for r in sixteen)
+    assert any(r["refusal"] == "subdivision_plat_not_held" for r in sixteen)
+    checks.append(f"all {len(sixteen)} school-section rows refuse, for the plat this "
+                  "repo lacks or for a description it will not guess at")
 
     for line in checks:
         print("  ok  " + line)

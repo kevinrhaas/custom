@@ -2,12 +2,12 @@
   "schema": 1,
   "domain": "land_sales",
   "generated_by": "tools/read_land_sales.py --build",
-  "note": "The reading is BY SECTION because the database returns at most 150 rows per query and offers no paging. Seventy-two section queries were run (T39N and T40N, R14E, third principal meridian, sections 01-36); a section that returned fewer than 150 rows was read whole. The three sections that returned exactly 150 are NOT declared here: what this project holds for them is the first 150 rows the search would give, and declaring that as coverage would record a ceiling as a completed read. A declaration promises that a record reaches the item, so a section that was queried and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole. The ring townships T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E are not read at all and are not declared.",
+  "note": "The reading is BY SECTION because a whole-township query stops at the database's 150-row page and looks complete. Seventy-two section queries were run (T39N and T40N, R14E, third principal meridian, sections 01-36) and each was walked to its end through the results page's own More button, whose keyset cursor returns the rows after the last one shown (T-0675). Every section here is therefore read whole, including the three — 16, 21 and 29 — that T-0557 declared truncated because it took the first page for the whole. A declaration promises that a record reaches the item, so a section that was walked and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole. The ring townships T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E are not read at all and are not declared; that is T-0676.",
   "declarations": [
     {
       "unit": "list",
-      "ticket": "T-0557",
-      "note": "Read in full: the section query returned fewer than the database's 150-row ceiling, so every sale it holds through 1836 is in the deposit.",
+      "ticket": "T-0675",
+      "note": "Read in full: the section query was walked to its end through the More cursor, so every sale it holds through 1836 is in the deposit.",
       "items": [
         "T39N R14E sec 04",
         "T39N R14E sec 05",
@@ -16,12 +16,15 @@
         "T39N R14E sec 09",
         "T39N R14E sec 10",
         "T39N R14E sec 15",
+        "T39N R14E sec 16",
         "T39N R14E sec 17",
         "T39N R14E sec 18",
         "T39N R14E sec 20",
+        "T39N R14E sec 21",
         "T39N R14E sec 22",
         "T39N R14E sec 27",
         "T39N R14E sec 28",
+        "T39N R14E sec 29",
         "T39N R14E sec 30",
         "T39N R14E sec 31",
         "T39N R14E sec 32",
@@ -41,8 +44,8 @@
     }
   ],
   "queried_no_sales_through_1836": {
-    "ticket": "T-0557",
-    "note": "Queried section by section and read whole; the section holds no sale dated on or before 31 December 1836. Read, empty, and not a hole.",
+    "ticket": "T-0675",
+    "note": "Walked section by section to the end of the results; the section holds no sale dated on or before 31 December 1836. Read, empty, and not a hole.",
     "items": [
       "T39N R14E sec 01",
       "T39N R14E sec 02",
@@ -88,12 +91,8 @@
     ]
   },
   "not_read": {
-    "ticket": "T-0557",
-    "truncated_at_the_150_row_ceiling": [
-      "T39N R14E sec 16",
-      "T39N R14E sec 21",
-      "T39N R14E sec 29"
-    ],
+    "ticket": "T-0676",
+    "truncated_at_the_150_row_ceiling": [],
     "townships_not_read": [
       "T39N R13E",
       "T38N R14E",
@@ -101,6 +100,6 @@
       "T40N R13E",
       "T41N R14E"
     ],
-    "note": "An undeclared item is not read yet and is not a fault. These are named so that the next pass knows exactly what is left."
+    "note": "An undeclared item is not read yet and is not a fault. These are named so that the next pass knows exactly what is left. Nothing in R14E is truncated any more: T-0675 walked all seventy-two sections to their end, so that list is empty and is kept as the shape a future truncation would fill."
   }
 }
