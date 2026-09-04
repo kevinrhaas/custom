@@ -212,7 +212,7 @@ def vertical_rules(a, y0, y1, cover=0.60):
     return out
 
 
-def locate_columns(rules):
+def locate_columns(rules, continuity=None):
     """Name the eight single-width columns off the rule pitch.
 
     Two blocks of this form stand at a near-constant narrow pitch: the seven
@@ -226,6 +226,27 @@ def locate_columns(rules):
     industry run and nothing else. The pensioners block is NOT tested as one wide
     cell, because its own AGES rule divides it and an earlier cut of this
     function failed on 5V for assuming otherwise.
+
+    ONE FALLBACK, and it only fires when the strict test above finds nothing, so
+    no sheet that already passes can be moved by it. Measured on 33S7-9YYJ-6Q:
+    the strict test finds no candidate because a rule is reported at x1267, in
+    the MIDDLE of the TOTAL cell, which leaves TOTAL 117 px wide against a 68 px
+    industry pitch — 1.7 pitches, under the 1.8 the bracket demands. It is not a
+    printed rule. It is the enumerator's own column of family totals standing one
+    under another, and `cover` cannot reject it: it covers 0.765 of the body's
+    rows against 0.769 for the true rule at x1190. What separates them is
+    CONTINUITY OF A SINGLE STROKE rather than coverage — the longest UNBROKEN run
+    of dark rows at x1267 is 164 px, 0.07 of the body, while the true rules that
+    bracket it run 0.27 and 0.47 unbroken; a printed rule is one line, a stack of
+    digits is thirty short ones. So when the strict test fails, the run is
+    retried with the weakest-by-continuity rule dropped from the candidate left
+    bracket, and the drop is accepted only if the merged TOTAL cell then lands in
+    the same 2.0-4.0 pitch window every other sheet's does AND the dropped rule's
+    unbroken run is under half that of BOTH rules bracketing it. On 6Q the merged
+    cell is x1190-1384, 194 px, 2.5 pitches — the same 2.47 pitches 5V's TOTAL
+    measures — and the slaves block to its left comes out at twelve columns, as
+    the form has. Without `continuity` (which `read()` always supplies) the
+    fallback is not attempted at all.
     """
     if len(rules) < 10:
         raise SystemExit("too few vertical rules to name the middle columns")
@@ -246,15 +267,73 @@ def locate_columns(rules):
             continue        # TOTAL is a wide cell, but not as wide as a block
         if best is None or -spread > best[0]:
             best = (-spread, i, med)
-    if best is None:
-        raise SystemExit("no industry run bracketed by TOTAL and PENSIONERS: "
-                         "the form is not as expected")
-    _, i, med = best
-    run = rules[i:i + 8]
-    bounds = {"total": (rules[i - 1], run[0])}
-    for n, name in enumerate(MIDDLE_COLUMNS[1:]):
-        bounds[name] = (run[n], run[n + 1])
-    return bounds, med
+    if best is not None:
+        _, i, med = best
+        run = rules[i:i + 8]
+        bounds = {"total": (rules[i - 1], run[0])}
+        for n, name in enumerate(MIDDLE_COLUMNS[1:]):
+            bounds[name] = (run[n], run[n + 1])
+        return bounds, med
+
+    dropped = _drop_a_pen_stroke(rules, continuity)
+    if dropped is not None:
+        thinned, gone = dropped
+        bounds, med = locate_columns(thinned)
+        bounds["_total_left_rule_dropped"] = (gone, gone)
+        return bounds, med
+    raise SystemExit("no industry run bracketed by TOTAL and PENSIONERS: "
+                     "the form is not as expected")
+
+
+def _drop_a_pen_stroke(rules, continuity):
+    """The fallback described in locate_columns(): try dropping one reported rule
+    that is a stack of digits rather than a printed line, and say so.
+
+    Returns (rules without it, its x) or None. Every candidate must satisfy both
+    measured conditions — its unbroken run is under half of BOTH its neighbours',
+    and removing it makes the strict bracket test pass — so a sheet where no such
+    rule exists falls through to the SystemExit unchanged.
+    """
+    if not continuity:
+        return None
+    for k in range(1, len(rules) - 1):
+        run, left, right = continuity[k], continuity[k - 1], continuity[k + 1]
+        if run >= 0.5 * min(left, right):
+            continue
+        thinned = rules[:k] + rules[k + 1:]
+        try:
+            locate_columns(thinned)
+        except SystemExit:
+            continue
+        return thinned, rules[k]
+    return None
+
+
+def rule_continuity(a, y0, y1, rules):
+    """For each reported rule, the LONGEST UNBROKEN run of dark rows at its x, as
+    a fraction of the body height. A printed rule is one continuous line and
+    scores high; a column of the enumerator's digits covers as many rows in total
+    but in thirty short pieces, and scores low. Measured through the same local
+    background the rule finder uses, and searched +/-3 px either side of the
+    reported centre so a rule 1 px off centre is not penalised.
+    """
+    np = _np()
+    Image, ImageFilter = _pil()
+    sub = a[y0:y1, :]
+    blur = Image.fromarray(sub.astype("uint8")).filter(ImageFilter.GaussianBlur(BACKGROUND_BLUR))
+    dark = (np.asarray(blur).astype("float32") - sub) > 6.0
+    height = max(1, sub.shape[0])
+    out = []
+    for x in rules:
+        best = 0
+        for xx in range(max(0, x - 3), min(dark.shape[1], x + 4)):
+            cur = 0
+            for v in dark[:, xx]:
+                cur = cur + 1 if v else 0
+                if cur > best:
+                    best = cur
+        out.append(round(best / height, 3))
+    return out
 
 
 def ink_mask(a, x0, y0, x1, y1):
@@ -391,7 +470,9 @@ def read(path):
     a = load(path)
     y0, y1 = horizontal_rules(a, int(a.shape[1] * 0.07), int(a.shape[1] * 0.30))
     rules = vertical_rules(a, y0, y1)
-    bounds, pitch = locate_columns(rules)
+    cont = rule_continuity(a, y0, y1, rules)
+    bounds, pitch = locate_columns(rules, cont)
+    dropped = bounds.pop("_total_left_rule_dropped", None)
     comps, groups = {}, {}
     for name, (cx0, cx1) in bounds.items():
         ix0, ix1 = cx0 + RULE_CLEARANCE, cx1 - RULE_CLEARANCE
@@ -405,6 +486,15 @@ def read(path):
         "vertical_rules": rules,
         "column_pitch_px": int(pitch),
         "column_bounds": {k: [int(v[0]), int(v[1])] for k, v in bounds.items()},
+        "rule_continuity": dict(zip((str(r) for r in rules), cont)),
+        "pen_stroke_rule_dropped": (None if dropped is None else {
+            "x": int(dropped[0]),
+            "why": "reported as a vertical rule by coverage, but its longest UNBROKEN "
+                   "dark run is under half that of both rules bracketing it: a stack of "
+                   "the enumerator's family totals, not a printed line. Dropping it is "
+                   "what makes the TOTAL cell measure 2-4 industry pitches, as it does "
+                   "on every other sheet. See locate_columns().",
+        }),
         "method": {
             "ink": f"local background = {BACKGROUND_BLUR}px Gaussian of the crop; "
                    f"ink = {INK_BELOW_BACKGROUND} grey levels darker",
