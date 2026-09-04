@@ -2,6 +2,7 @@
  "schema": 2,
  "_doc": "HAND-AUTHORED. Forty cards of EACH volume read, drawn at random and adjudicated one by one against the rendered page image. Nothing else in this domain measures whether the reading is any good; this does, and it is the reason the README can put a number on it instead of an adjective. Schema 2 holds one block per volume, because a number drawn on volume 1 is not a measurement of volume 2 — the top-level counts are the flat total the gate checks, and `volumes` carries the figure that actually belongs to each reading.",
  "generated_by": "hand — the draw is reproducible, the verdicts are not",
+ "not_a_reading": "a MEASUREMENT of this domain's reading, not a reading. Every one of these 160 rows re-adjudicates a card already read and already counted in records/, so charging them again would mean the domain read 160 more names by looking harder at the names it had. T-0602: tools/measure_research_spend.py withholds them from the read count and prints this sentence when it does.",
  "ticket": "T-0562",
  "volumes": {
   "1": {
