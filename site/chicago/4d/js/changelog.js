@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 521, title: 'The river\u2019s bump sits three corners from where it was seen', kind: 'fix', ts: '2026-09-04T19:34:34.311Z', date: 'Sep 4, 2026, 2:34 PM CT',
+  { v: 522, title: 'The river\u2019s bump sits three corners from where it was seen', kind: 'fix', ts: '2026-09-04T19:44:09.870Z', date: 'Sep 4, 2026, 2:44 PM CT',
     items: [
       'Nothing in the town moved today. The owner walked the South Branch and marked a bump on the east bank that sticks out and should not be there. It was measured. Something is wrong there, and roughly where he said \u2014 but the corner he pointed at is the one part of that stretch that is correct.',
       'This river is not drawn by hand here. It is traced by machine off a survey of 1834, from the grey wash the surveyor laid along the water beside his pen line for the bank. That trace was run again from the original scan and produced the committed river exactly, character for character \u2014 so the bump is what the machine read, not something somebody typed.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'Its three neighbours to the north are twelve, twelve and fifteen metres off the drawn bank, and because they are wrong together they look smooth. So the bump is not a corner sticking out; it is the line coming back after thirty metres away. What made it wander is a hairline of pale paper inside the grey wash for that one stretch, which the machine reads as dry land and follows.',
       'The surveyor\u2019s own bank is smooth right through it: two hundred and twenty-one rows of the scan were walked one at a time, and the drawn edge moves west without ever turning back by more than a pixel and a half.',
       'Nothing was deleted. A corner is not removed for looking wrong, and straightening the wandering stretch would move the waterline that every test of wet and dry here is measured against; that is now its own piece of work, with these measurements in front of it. The same check was run over every other piece of water \u2014 the river, its three banks, the harbour reach, the sand bar, both harbour shores and the slough \u2014 so this one would not be fixed while others survived. Nothing is outside the twenty metres of slack the project already declares.',
+    ] },
+  { v: 521, title: 'A safety timer was compared with the wrong clock', kind: 'fix', ts: '2026-09-04T19:20:08.305Z', date: 'Sep 4, 2026, 2:20 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the checks that run before anything reaches you, and a note about them that had been wrong for three days.',
+      'Those checks are split into eight pieces that run side by side, and each piece is given half an hour to finish. A separate arrangement runs the whole lot end to end in one go, with an hour and a half. A page describing all this compared one figure with the other and concluded the half hour belonged to some other machine — so three outstanding jobs, each measuring how close a piece comes to its limit, were told they had been measuring against the wrong thing.',
+      'They had not. A limit on one piece and a reading of all eight together are not the same quantity, and neither bounds the other. The page now names all three limits, says which file each is written in, and says what each one bounds.',
+      'The machines turned out to be the same machine too, which the files themselves show: the same kind of runner, the same browser at the same version, and the same software renderer in every case. The two timings behind the original claim are four seconds apart, and are kept with a note saying which part of them is verified and which is not.',
+      'The piece-by-piece table is now worked out by a tool that reads the split from the file that defines it, rather than being written down by hand. Written down by hand it had gone stale four times this year. A check that runs on every commit now refuses to pass if those pieces ever stop covering the whole suite exactly once.'
     ] },
   { v: 520, title: 'The nightly\u2019s gate was dying on the download, not the test', kind: 'fix', ts: '2026-09-04T18:54:33.326Z', date: 'Sep 4, 2026, 1:54 PM CT',
     items: [
