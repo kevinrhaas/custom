@@ -12,13 +12,18 @@ repo's.
 
 TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
 
-1. THE SEARCH RETURNS AT MOST 150 ROWS AND HAS NO PAGING. A whole-township query
-   silently stops at 150 and looks complete. So the sweep asks SECTION BY SECTION,
-   thirty-six queries per township, and any section that comes back with exactly 150
-   rows is reported as TRUNCATED rather than read. The `name` field belongs to a
-   different search form and does NOT narrow a legal-description query — it replaces
-   it, returning that name from every township in Illinois, so it cannot be used to
-   break a section into smaller pieces.
+1. THE SEARCH RETURNS AT MOST 150 ROWS PER PAGE — AND IT DOES PAGE (T-0675). The
+   ceiling is real: a whole-township query stops at 150 and looks complete, which is
+   why the sweep still asks SECTION BY SECTION, thirty-six queries per township. But
+   the results page carries a **More** button, and that button is a keyset cursor:
+   `hiddenPurchaseNo` + `hiddenPurchaser` + `hiddenSectionNo`, replayed against the
+   same search, return the rows after the last one shown. Results are ordered by
+   purchaser, so the cursor walks a section to its end. `walk_section` below follows
+   it, and T-0557's three "truncated" sections — T39N R14E 16, 21 and 29 — were
+   truncated only because the first pass took the More button for a dead end.
+   The `name` field belongs to a different search form and does NOT narrow a
+   legal-description query — it replaces it, returning that name from every township
+   in Illinois, so it cannot be used to break a section into smaller pieces.
 
 2. THE SITE REFUSES DATACENTRE ADDRESSES. Every user agent from this runner's Azure
    address gets a bare 403 from the WAF. The sweep therefore fetches through the
@@ -30,10 +35,13 @@ TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import subprocess
 import sys
+import threading
 import time
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -41,7 +49,9 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://apps.ilsos.gov/isa/landSalesSearch.do"
 READER = "https://r.jina.ai/"
 OUT = ROOT / "data" / "research" / "land_sales" / "text"
-CEILING = 150
+CEILING = 150      # rows per page; the cursor below is what walks past it
+MAX_PAGES = 40     # a section deeper than this is reported, never silently cut
+CHUNK = 50         # detail pages per batch, so progress is visible and resumable
 
 COLS = ["purchase_no", "purchaser", "residence", "social_status", "aliquot_or_lot",
         "section", "township", "range", "meridian", "county", "acres", "price_per_acre",
@@ -49,6 +59,9 @@ COLS = ["purchase_no", "purchaser", "residence", "social_status", "aliquot_or_lo
 
 ROW = re.compile(r"<tr>\s*<td>\s*<a href=\"javascript:getDetails\('(\d+)'\)\">(.*?)</a>\s*</td>(.*?)</tr>", re.S)
 CELL = re.compile(r"<td>(.*?)</td>", re.S)
+# The More button's keyset cursor: the last row of the page it was rendered on.
+CUR_NO = re.compile(r'name="hiddenPurchaseNo" value="([^"]*)"')
+CUR_WHO = re.compile(r'name="hiddenPurchaser" value="([^"]*)"')
 LABELS = [("purchaser", "Purchaser"), ("residence", "Residence"),
           ("social_status", "Social Status"), ("aliquot_or_lot", "Aliquot Parts or Lot"),
           ("section", "Section Number"), ("township", "Township"), ("range", "Range"),
@@ -64,18 +77,65 @@ def clean(s: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s)).strip()
 
 
-def fetch(url: str, direct: bool, tries: int = 4) -> str:
+CACHE = None      # set by --cache: a directory of fetched pages, so a sweep resumes
+PACE = 3.0        # seconds between requests: the reader allows about 20 a minute
+_gate = threading.Lock()
+_last = [0.0]
+
+
+def cached(url: str):
+    if CACHE is None:
+        return None
+    return CACHE / (hashlib.sha1(url.encode("utf-8")).hexdigest() + ".html")
+
+
+def wait_turn() -> None:
+    """One request at a time, PACE apart. The reader answers a burst with refusals.
+
+    Measured 2026-09-04 on this runner: eight parallel requests are all refused
+    instantly, four get about fifteen through and then the bucket is empty. Racing it
+    with more workers does not fetch faster, it only spends the quota on refusals — so
+    the sweep paces itself instead, and the --cache directory is what makes the wall
+    clock survivable across runs.
+    """
+    with _gate:
+        gap = time.monotonic() - _last[0]
+        if gap < PACE:
+            time.sleep(PACE - gap)
+        _last[0] = time.monotonic()
+
+
+PAGE_OK = ("landSalesForm", "No records were found")   # a hit list, or an honest empty
+DETAIL_OK = ("Purchaser Information",)
+
+
+def fetch(url: str, direct: bool, need=PAGE_OK, tries: int = 5) -> str:
+    """One page, through the reader unless --direct, and NEVER a page that is not it.
+
+    `need` is the set of markers the wanted page may carry and a refusal carries
+    none of — the results form OR the database's own "No records were found", since a
+    section with no sale is a reading and not a failure. A throttled or truncated
+    answer can therefore never be mistaken for a short section or an empty detail.
+    Exhausting the tries RAISES: a sweep that under-reads in silence is the failure
+    this whole domain exists to avoid.
+    """
+    hit = cached(url)
+    if hit is not None and hit.exists():
+        return hit.read_text(encoding="utf-8", errors="replace")
     target = url if direct else READER + url
-    out = ""
     for attempt in range(tries):
+        wait_turn()
         r = subprocess.run(["curl", "-s", "--compressed", "--max-time", "110",
                             "-H", "X-Return-Format: html", target],
                            capture_output=True, text=True)
         out = r.stdout or ""
-        if len(out) > 2000 and ("Search Criteria" in out or "landSalesSearch" in out):
+        if len(out) > 2000 and any(m in out for m in need):
+            if hit is not None:
+                hit.parent.mkdir(parents=True, exist_ok=True)
+                hit.write_text(out, encoding="utf-8")
             return out
-        time.sleep(3 + 4 * attempt)
-    return out
+        time.sleep(2 + 6 * attempt)
+    raise RuntimeError("no usable page after %d tries: %s" % (tries, url))
 
 
 def rows_of(html: str) -> list:
@@ -105,47 +165,126 @@ def detail(html: str) -> dict:
     return out
 
 
-def sweep(townships, through_year: int, direct: bool, workers: int) -> int:
-    urls, meta = [], []
-    for tw in townships:
-        for s in range(1, 37):
-            sn = "%02d" % s
-            urls.append("%s?township=%d&norS=N&range=14&eorW=E&meridian=3&county=&name=&sectionNum=%s"
-                        % (BASE, tw, sn))
-            meta.append((tw, sn))
-    with ThreadPoolExecutor(workers) as ex:
-        pages = list(ex.map(lambda u: fetch(u, direct), urls))
-    wanted, truncated = [], []
-    for (tw, sn), html in zip(meta, pages):
+def section_url(tw: int, sn: str, cursor=None) -> str:
+    """The section query, or its continuation from the More button's cursor."""
+    q = {"township": tw, "norS": "N", "range": 14, "eorW": "E", "meridian": 3,
+         "county": "", "name": "", "sectionNum": sn}
+    if cursor:
+        q.update({"purchaseNo": "", "hiddenPurchaseNo": cursor[0],
+                  "hiddenPurchaser": cursor[1], "hiddenSectionNo": sn})
+    return BASE + "?" + urllib.parse.urlencode(q)
+
+
+def cursor_of(html: str):
+    """The (purchase no, purchaser) the More button would carry forward, or None."""
+    no, who = CUR_NO.search(html), CUR_WHO.search(html)
+    if not no or not who or not no.group(1).strip():
+        return None
+    return (no.group(1).strip(), who.group(1).strip())
+
+
+def walk_section(tw: int, sn: str, direct: bool) -> tuple:
+    """Every row of one section, following the More cursor to the end.
+
+    Returns (rows, pages walked, hit_cap). A page under the ceiling is the last one.
+    A cursor that does not move is a dead end and stops the walk rather than looping.
+    """
+    rows, seen, pages, cursor = [], set(), 0, None
+    while pages < MAX_PAGES:
+        html = fetch(section_url(tw, sn, cursor), direct)
+        pages += 1
         found = rows_of(html)
-        if len(found) >= CEILING:
+        fresh = [r for r in found if r["purchase_no"] not in seen]
+        seen.update(r["purchase_no"] for r in fresh)
+        rows += fresh
+        if len(found) < CEILING or not fresh:
+            return rows, pages, False
+        nxt = cursor_of(html)
+        if not nxt or nxt == cursor:
+            return rows, pages, False
+        cursor = nxt
+    return rows, pages, True
+
+
+def deposit_name(townships, through_year: int) -> str:
+    return "isa_land_tract_sales_t%s_r14e_through_%d.tsv" % (
+        "_t".join("%dn" % t for t in townships), through_year)
+
+
+def held_rows(townships, through_year: int) -> dict:
+    """Rows already in the committed deposit, by purchase number.
+
+    A detail page says the same thing every time it is asked, and the reader that
+    stands between this runner and the Archives allows about twenty requests a
+    minute — so re-asking for six hundred pages the repo already holds costs half an
+    hour and changes nothing. The sweep therefore carries the deposit's own rows
+    forward and fetches only what is new; `--refetch` reads every page again from
+    scratch, which is what to run when the source itself may have changed.
+    """
+    path = OUT / deposit_name(townships, through_year)
+    if not path.exists():
+        return {}
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if not lines:
+        return {}
+    head = lines[0].split("\t")
+    out = {}
+    for line in lines[1:]:
+        cells = line.split("\t")
+        if len(cells) != len(head):
+            continue
+        row = dict(zip(head, cells))
+        out[row["purchase_no"]] = row
+    return out
+
+
+def sweep(townships, through_year: int, direct: bool, workers: int,
+          refetch: bool = False) -> int:
+    meta = [(tw, "%02d" % s) for tw in townships for s in range(1, 37)]
+    print("  walking %d section queries" % len(meta), flush=True)
+    with ThreadPoolExecutor(workers) as ex:
+        walks = list(ex.map(lambda m: walk_section(m[0], m[1], direct), meta))
+    wanted, truncated, deep = [], [], []
+    for (tw, sn), (found, pages, hit_cap) in zip(meta, walks):
+        if hit_cap:
             truncated.append("T%dN R14E sec %s" % (tw, sn))
+        elif pages > 1:
+            deep.append("T%dN R14E sec %s: %d pages, %d rows" % (tw, sn, pages, len(found)))
         for row in found:
             year = row["date_purchased"][-4:]
             if year.isdigit() and int(year) <= through_year:
                 wanted.append(row["purchase_no"])
+    for line in deep:
+        print("  walked %s" % line)
     wanted = sorted(set(wanted))
-    with ThreadPoolExecutor(workers) as ex:
-        pages = list(ex.map(lambda p: fetch("%s?purchaseNo=%s" % (BASE, p), direct), wanted))
-    records = []
-    for pno, html in zip(wanted, pages):
-        d = detail(html)
-        if not d.get("purchaser"):
-            print("  ✗ %s: no detail page" % pno)
-            return 1
-        records.append(dict(d, purchase_no=pno))
+    held = {} if refetch else held_rows(townships, through_year)
+    todo = [p for p in wanted if p not in held]
+    print("  %d sales through %d across %d sections; %d already in the deposit, "
+          "%d detail pages to fetch" % (len(wanted), through_year, len(meta),
+                                        len(wanted) - len(todo), len(todo)), flush=True)
+    records = [held[p] for p in wanted if p in held]
+    for start in range(0, len(todo), CHUNK):
+        batch = todo[start:start + CHUNK]
+        with ThreadPoolExecutor(workers) as ex:
+            pages = list(ex.map(lambda p: fetch("%s?purchaseNo=%s" % (BASE, p), direct, need=DETAIL_OK), batch))
+        for pno, html in zip(batch, pages):
+            d = detail(html)
+            if not d.get("purchaser"):
+                print("  ✗ %s: no detail page" % pno)
+                return 1
+            records.append(dict(d, purchase_no=pno))
+        print("    %d/%d" % (len(records), len(wanted)), flush=True)
     records.sort(key=lambda r: (r["township"], r["section"], r["purchaser"], r["purchase_no"]))
     OUT.mkdir(parents=True, exist_ok=True)
-    name = "isa_land_tract_sales_t%s_r14e_through_%d.tsv" % (
-        "_t".join("%dn" % t for t in townships), through_year)
+    name = deposit_name(townships, through_year)
     lines = ["\t".join(COLS)]
     for r in records:
         lines.append("\t".join(r[c].replace("\t", " ") for c in COLS))
     (OUT / name).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("land sales sweep: %d sales through %d written to %s" % (len(records), through_year, name))
     if truncated:
-        print("TRUNCATED at the database's %d-row ceiling, NOT read whole: %s"
-              % (CEILING, ", ".join(truncated)))
+        print("STILL SHORT after %d pages, NOT read whole: %s"
+              % (MAX_PAGES, ", ".join(truncated)))
     return 0
 
 
@@ -157,11 +296,19 @@ def main(argv=None) -> int:
     ap.add_argument("--direct", action="store_true",
                     help="fetch the origin rather than the r.jina.ai reader")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--refetch", action="store_true",
+                    help="ask for every detail page again instead of carrying the deposit forward")
+    ap.add_argument("--cache", default=None,
+                    help="directory of fetched pages, so an interrupted sweep resumes")
     args = ap.parse_args(argv)
     if not args.sweep:
         ap.print_help()
         return 2
-    return sweep(args.township or [39, 40], args.through_year, args.direct, args.workers)
+    global CACHE
+    if args.cache:
+        CACHE = Path(args.cache)
+    return sweep(args.township or [39, 40], args.through_year, args.direct,
+                 args.workers, args.refetch)
 
 
 if __name__ == "__main__":

@@ -43,12 +43,14 @@ RESIDENTS = ROOT / "data" / "residents"
 SOURCE_ID = "isa_public_domain_land_tract_sales"
 TSV = "isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
 
-# The three sections of T39N R14E whose section query returned exactly 150 rows — the
-# database's per-query ceiling, and it offers no paging. Their rows below are the first
-# 150 the search returned and NOT the section; they are carried, and the section is not
-# declared read. Naming them here is what stops a later pass reading the truncation as
-# completeness.
-TRUNCATED = {("39N", "14E", "16"), ("39N", "14E", "21"), ("39N", "14E", "29")}
+# T-0557 read three sections of T39N R14E — 16, 21 and 29 — as truncated: their section
+# query returned exactly 150 rows, the database's per-page ceiling, and the pass took
+# that for the end of what could be asked. It is not. The results page carries a More
+# button whose keyset cursor walks the rest, `harvest_land_sales.py` follows it, and
+# T-0675 read all three whole: 337 sales through 1836 in section 16, 4 in 21, 4 in 29,
+# against the 154 the first page gave. So no section of these two townships is
+# truncated now, and nothing here may say the source cannot be paged.
+TRUNCATED = set()
 
 # The database's own abbreviations, expanded only where the expansion is the Archives'
 # own and not this project's guess. Anything absent stays as the register wrote it.
@@ -191,8 +193,6 @@ def build_records(rows: list) -> dict:
                 "county": row["county"],
                 "volume": row["volume"],
                 "page": row["page"],
-                "truncated_section": (row["township"], row["range"], row["section"]) in
-                                     [tuple(t) for t in TRUNCATED],
             },
             "tract": tract(row),
         })
@@ -223,39 +223,43 @@ def build_coverage(rows: list) -> dict:
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
-        "note": "The reading is BY SECTION because the database returns at most 150 rows "
-                "per query and offers no paging. Seventy-two section queries were run "
-                "(T39N and T40N, R14E, third principal meridian, sections 01-36); a "
-                "section that returned fewer than 150 rows was read whole. The three "
-                "sections that returned exactly 150 are NOT declared here: what this "
-                "project holds for them is the first 150 rows the search would give, and "
-                "declaring that as coverage would record a ceiling as a completed read. "
-                "A declaration promises that a record reaches the item, so a section that "
-                "was queried and held no sale through 1836 is listed under "
-                "`queried_no_sales_through_1836` instead — read, empty, and not a hole. "
-                "The ring townships T39N R13E, T38N R14E, T38N R15E, T40N R13E and "
-                "T41N R14E are not read at all and are not declared.",
+        "note": "The reading is BY SECTION because a whole-township query stops at the "
+                "database's 150-row page and looks complete. Seventy-two section queries "
+                "were run (T39N and T40N, R14E, third principal meridian, sections 01-36) "
+                "and each was walked to its end through the results page's own More "
+                "button, whose keyset cursor returns the rows after the last one shown "
+                "(T-0675). Every section here is therefore read whole, including the "
+                "three — 16, 21 and 29 — that T-0557 declared truncated because it took "
+                "the first page for the whole. A declaration promises that a record "
+                "reaches the item, so a section that was walked and held no sale through "
+                "1836 is listed under `queried_no_sales_through_1836` instead — read, "
+                "empty, and not a hole. The ring townships T39N R13E, T38N R14E, "
+                "T38N R15E, T40N R13E and T41N R14E are not read at all and are not "
+                "declared; that is T-0676.",
         "declarations": [{
             "unit": "list",
-            "ticket": "T-0557",
-            "note": "Read in full: the section query returned fewer than the database's "
-                    "150-row ceiling, so every sale it holds through 1836 is in the "
-                    "deposit.",
+            "ticket": "T-0675",
+            "note": "Read in full: the section query was walked to its end through the "
+                    "More cursor, so every sale it holds through 1836 is in the deposit.",
             "items": declared,
         }],
         "queried_no_sales_through_1836": {
-            "ticket": "T-0557",
-            "note": "Queried section by section and read whole; the section holds no sale "
-                    "dated on or before 31 December 1836. Read, empty, and not a hole.",
+            "ticket": "T-0675",
+            "note": "Walked section by section to the end of the results; the section "
+                    "holds no sale dated on or before 31 December 1836. Read, empty, and "
+                    "not a hole.",
             "items": empty,
         },
         "not_read": {
-            "ticket": "T-0557",
+            "ticket": "T-0676",
             "truncated_at_the_150_row_ceiling": truncated,
             "townships_not_read": ["T39N R13E", "T38N R14E", "T38N R15E", "T40N R13E",
                                    "T41N R14E"],
             "note": "An undeclared item is not read yet and is not a fault. These are "
-                    "named so that the next pass knows exactly what is left.",
+                    "named so that the next pass knows exactly what is left. Nothing in "
+                    "R14E is truncated any more: T-0675 walked all seventy-two sections "
+                    "to their end, so that list is empty and is kept as the shape a "
+                    "future truncation would fill.",
         },
     }
 
@@ -502,7 +506,13 @@ def _fixture(tmp: Path) -> Path:
                      "267"]) + "\n"
         + "\t".join(["0000002", "BRIGGS", "UNKNOWN", "", "LOT8BL47", "07", "39N", "14E",
                      "3", "COOK", "0000.00", "000.00", "40.00", "SC", "10/24/1833", "817",
-                     "029"]) + "\n", encoding="utf-8")
+                     "029"]) + "\n"
+        # Section 16 is the school section, the deepest of the three the More cursor
+        # opened (T-0675). A sale in it must reach coverage like any other; until then
+        # the fixture could not tell "declared read" from "refused as truncated" at all.
+        + "\t".join(["0000003", "HALE JOHN", "UNKNOWN", "", "LOT2BL79", "16", "39N",
+                     "14E", "3", "COOK", "0000.00", "000.00", "60.00", "SC",
+                     "10/22/1833", "817", "100"]) + "\n", encoding="utf-8")
     build(d, quiet=True)
     return d
 
@@ -528,11 +538,15 @@ def self_test() -> int:
         fired.append("a surname-only purchaser is refused")
 
         cov = load(d / "coverage.json")
-        if any(i in cov["declarations"][0]["items"] for i in ("T39N R14E sec 16",
-                                                             "T39N R14E sec 21",
-                                                             "T39N R14E sec 29")):
-            print("SELF-TEST: a truncated section must not be declared read"); return 1
-        fired.append("a section truncated at the 150-row ceiling is not declared read")
+        # T-0675 read the three sections T-0557 could not, so they MUST be declared now;
+        # the assertion is the same discipline pointed the other way — a section whose
+        # sales are in the deposit and whose coverage is silent is a hole in the record.
+        if "T39N R14E sec 16" not in cov["declarations"][0]["items"]:
+            print("SELF-TEST: a section whose sales are held must be declared read")
+            return 1
+        if cov["not_read"]["truncated_at_the_150_row_ceiling"]:
+            print("SELF-TEST: no section of R14E is truncated after T-0675"); return 1
+        fired.append("every section walked whole is declared read, and none is truncated")
 
         for rel, breaker in (
             ("entries.json", lambda doc: doc.update({"count": 999})),
