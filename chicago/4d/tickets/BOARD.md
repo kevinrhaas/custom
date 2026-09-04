@@ -5,7 +5,7 @@
 - **T-0592** The fine well on lot 7 of block 16 is documented and the town has no well to draw it with · claimed · run 9/4/2026, 5:49:45 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33926189060)
 - **T-0429** Open blk_south_water_lasalle: 8 roofs of headroom on three free lots · needs-bake · claimed · run 8/30/2026, 1:51:13 AM CT
 
-## In the queue, in the owner’s order (157)
+## In the queue, in the owner’s order (159)
 
 - **T-0515** 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence · **OWNER**
 - **T-0669** Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
@@ -164,6 +164,8 @@
 - **T-0692** 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them · **OWNER**
 - **T-0693** Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing · **OWNER**
 - **T-0699** Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it · **OWNER**
+- **T-0702** The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery · needs-bake
+- **T-0703** Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door · needs-bake
 
 ## ⏸ Waiting on an owner decision (6)
 

@@ -11826,6 +11826,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 153
+    },
+    {
+      "id": "T-0702",
+      "title": "The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
+    },
+    {
+      "id": "T-0703",
+      "title": "Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 158
     }
   ]
 }
