@@ -1,7 +1,7 @@
 ---
 id: T-0452
 title: The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
-state: open
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 804
+claimed_by: run 9/4/2026, 2:21:57 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T20:26:05.378Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33909457585
 ---
 
 `data/terrain/epochs/e1834_harbor_cut/hydrology.geojson` holds **one** feature.

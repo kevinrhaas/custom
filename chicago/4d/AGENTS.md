@@ -314,8 +314,10 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   NEED**: `node tools/smoke_budget.mjs --for-diff` names the parts that cover your own
   diff and prints the commands, each packed under the 600 s foreground ceiling, with the
   measured margin — read out of the same record above, never asserted. With no arguments
-  it prints what the whole gate costs on THIS machine, which is not the 30-minute figure
-  three tickets reason against. `docs/SMOKE-BUDGET.md` is the page (T-0235). And redirect
+  it prints what the whole gate costs on this machine, against the 90-minute whole-body
+  cap; `--legs` prices the nightly gate's eight parallel legs against the 30-minute
+  PER-LEG cap, which is a different bound and the one three tickets correctly reason
+  against (T-0450). `docs/SMOKE-BUDGET.md` is the page (T-0235). And redirect
   a smoke to a FILE, never a pipe: node block-buffers stdout to a pipe, so a piped log
   stays at zero bytes until the process exits, and a run once killed a green smoke one
   minute from its finish for want of a byte to look at.
