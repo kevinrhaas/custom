@@ -1,0 +1,76 @@
+# Early Chicago: Reception to the Settlers of Chicago Prior to 1840, by the Calumet Club,
+# of Chicago, Tuesday Evening, May 27, 1879 (Chicago: Calumet Club, 1879), pages 83-90:
+# "NAMES OF OLD SETTLERS OF CHICAGO, REGISTERED AT THE CALUMET CLUB."
+#
+# SOURCE RECORD: calumet_club_early_chicago_1879
+# READ FROM: the PAGE IMAGES of the Internet Archive copy earlychicagorece00calu, via the
+#   item's own text PDF (earlychicagorece00calu.pdf), rendered at 300 dpi and rotated
+#   upright — the plate is set sideways on the page. The item's OCR text layer
+#   (earlychicagorece00calu_djvu.txt) carries the prose of the proceedings but DESTROYS
+#   this table: the registry survives in it as detached figures. Nothing in this file
+#   comes from that text layer.
+# PDF PAGE / LEAF / PRINTED PAGE: pdf 88 = leaf 88 = printed 84, and so on to printed 90.
+#
+# THE FORMAT. One registrant per line, in the order the plate prints them, as five fields
+# separated by " | " in the plate's own column order:
+#
+#     NAME. | DATE OF ARRIVAL. | BIRTHPLACE. | AGE. | PRESENT ADDRESS.
+#
+# The pipes are the transcriber's column marks and are the ONLY thing added. Everything
+# between them is verbatim, including the plate's trailing commas and periods and its
+# own spellings ("Duchess Co.", "Napierville", "Burwick, Penn."). An empty field is a
+# column the plate leaves blank for that man. A "# page N" line opens each printed page.
+#
+# THE PLATE'S OWN COUNT is 149: "of the settlers of Chicago prior to 1840, one hundred
+# and forty-nine registered their names out of the large number invited" (page 71).
+# What this transcription actually carries is counted by tools/old_settlers.py --check.
+
+# page 84
+Adams, William H. | 1837, Sept. | Westport, Conn. | 64 | Chicago.
+Adsit, James M. | 1838, April 2. | Spencertown, N.Y. | 70 | Chicago.
+Arnold, Isaac N. | 1836, Oct. | Hartwick, N.Y. | 64 | 104 Pine Street, Chicago.
+Batchelor, Ezra, | 1837, June 4, | Paxton, Mass. | 59 | Milwaukee.
+Bailey, Bennet, | 1834, August, | Harford Co., Md. | 68 | Chicago.
+Baker, Franklin, | 1838, May, | Watertown, N.Y. | 62 | Chicago.
+Baldwin, William A. | 1836, June 13, | Austerlitz, Columbia Co., N.Y. | 71 | 263 1/2 Ill. Street, Chicago.
+Balsley, John, | 1839, | Pennsylvania. | 66 | Chicago.
+Bates, John, | 1832, May 20, | Fishkill, Duchess Co., N.Y. | 76 | Chicago.
+Beaubien, Mark, | 1826, | Detroit, Mich. | 79 | Newark, Kendall Co., Ill.
+Beecher, Jerome, | 1838, July 1, | Remsen, N.Y. | 61 | Chicago.
+Beggs, Stephen R. | 1831, June, | Rockingham Co., Va. | 78 | Plainfield, Ill.
+Blake, S. Sanford, | 1834, June 15, | Burlington, Vt. | 63 | Racine, Wis.
+Blodgett, Henry W. | 1837, June, | Mass. | 57 | Waukegan.
+Boone, Levi D. | 1836, May 31, | Lexington, Ky. | 70 | Chicago.
+Botsford, Jabez K. | 1833, | Connecticut. | 66 | Chicago.
+Bowen, Erastus S. | 1833, | New York. | 64 | Chicago.
+Bradwell, James B. | 1834, June, | England. | 51 | Chicago.
+Bryan, Frederick A. | 1836, October, | England. | 59 | Chicago.
+Burley, Arthur G. | 1835, May 11, | Exeter, N. H. | 66 | Chicago.
+Burley, Augustus H. | 1837, May 25, | Exeter, N. H. | 60 | Chicago.
+Campbell, James, | 1836, May, | Northumberland Co., Penn. | 70 | Chicago.
+
+# page 85
+Carter, Thomas B. | 1838, Sept. | New Jersey. | 62 | Chicago.
+Carpenter, Abel E. | 1833, June, | Savoy, Mass. | 65 | Aurora, Ill.
+Carpenter, Philo, | 1832, | Mass. | 74 | Chicago.
+Caton, John Dean, | 1833, June, | Orange Co., N.Y. | 67 | Ottawa, Ill.
+Church, William L. | 1836, May 16, | Lima, N.Y. | 62 | Kenwood, Ill.
+Clarke, Henry W. | 1838, June, | Watertown, N.Y. | 64 | Chicago.
+Clarke, L. J. | 1836, | Vermont. | 51 | Chicago.
+Couch, James, | 1836, | New York. | 79 | Chicago.
+Clarke, Norman, | 1835, | Vermont. | 71 | Racine, Wis.
+Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.
+Cleaver, Charles, | 1833, Oct. 23, | London, England. | 64 | Chicago.
+Cook, Isaac, | 1834, February, | New Jersey. | 76 | St. Louis.
+Densmore, Eleazer W. | 1835, Sept. | Paris, N.Y. | 58 | Chicago.
+DeWolf, Calvin, | 1837, Oct. 31, | Luzerne Co., Penn. | 64 | Chicago.
+Dodson, Christian B. | 1833, August, | Burwick, Penn. | 69 | Geneva, Ill.
+Doty, Theodorus, | 1837, | New York. | 77 | Chicago.
+Drummond, Thomas, | 1835, May, | Bristol, Maine. | 69 | Winfield, Dupage Co., Ill.
+Egan, Wiley M. | 1836, Nov. | Ballston, N.Y. | 52 | Chicago.
+Elliott, James F. D. | 1838, May 30, | New York. | 55 | Mattoon, Ill.
+Ellithorpe, Albert C. | 1839, April 1, | St. Albans, Vt. | 56 | Chicago.
+Fergus, Robert, | 1839, July 1, | Glasgow, Scotland. | 64 | Chicago.
+Follansbee, Charles, | 1836, May 9, | Massachusetts. | 68 | Chicago.
+Freeman, Robert, | 1833, | Pennsylvania. | 70 | Napierville.
+Freer, L. C. Paine, | 1836, May, | Auburn, N.Y. | 65 | Chicago.
