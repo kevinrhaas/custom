@@ -90,7 +90,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -322,7 +323,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -525,7 +527,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -569,7 +572,8 @@
         "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_11_26",
         "chicago_tribune_1882_05_19_fourth_reception",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -610,7 +614,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -651,7 +656,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -694,7 +700,8 @@
         "andreas_1884_v1",
         "calumet_club_early_chicago_1879",
         "chicago_tribune_1882_05_19_fourth_reception",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -859,7 +866,8 @@
       "letter_list_returns": [],
       "sources": [
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -899,7 +907,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -1022,7 +1031,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "fergus_chicago_directory_1839"
       ]
     },
     {

@@ -120,7 +120,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -149,7 +150,8 @@
       "starting_occupation": "hotel_keeper",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "fergus_chicago_directory_1839"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
