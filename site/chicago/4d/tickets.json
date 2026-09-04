@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 11:32 AM",
+  "generated_ct": "Sep 4, 2026, 11:43 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 134
+      "queue_rank": 135
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 135
+      "queue_rank": 136
     },
     {
       "id": "T-0219",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 133
+      "queue_rank": 134
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 130
+      "queue_rank": 131
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 131
+      "queue_rank": 132
     },
     {
       "id": "T-0235",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 136
+      "queue_rank": 137
     },
     {
       "id": "T-0272",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 132
+      "queue_rank": 133
     },
     {
       "id": "T-0302",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 137
+      "queue_rank": 138
     },
     {
       "id": "T-0378",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 138
+      "queue_rank": 139
     },
     {
       "id": "T-0389",
@@ -7201,7 +7201,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 140
+      "queue_rank": 141
     },
     {
       "id": "T-0439",
@@ -7219,7 +7219,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 141
+      "queue_rank": 142
     },
     {
       "id": "T-0440",
@@ -7381,7 +7381,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 142
+      "queue_rank": 143
     },
     {
       "id": "T-0450",
@@ -8573,7 +8573,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 143
+      "queue_rank": 144
     },
     {
       "id": "T-0522",
@@ -8591,7 +8591,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 139
+      "queue_rank": 140
     },
     {
       "id": "T-0523",
@@ -8867,7 +8867,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 144
+      "queue_rank": 145
     },
     {
       "id": "T-0538",
@@ -10993,7 +10993,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": 146
     },
     {
       "id": "T-0661",
@@ -11013,7 +11013,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 147
     },
     {
       "id": "T-0662",
@@ -11033,7 +11033,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 148
     },
     {
       "id": "T-0663",
@@ -11053,7 +11053,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 149
     },
     {
       "id": "T-0664",
@@ -11133,7 +11133,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 150
     },
     {
       "id": "T-0668",
@@ -11153,7 +11153,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 152
     },
     {
       "id": "T-0669",
@@ -11173,7 +11173,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 151
     },
     {
       "id": "T-0670",
@@ -11193,7 +11193,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 153
     },
     {
       "id": "T-0671",
@@ -11233,7 +11233,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 154
     },
     {
       "id": "T-0673",
@@ -11253,7 +11253,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 155
+    },
+    {
+      "id": "T-0674",
+      "title": "A bot-opened PR never runs the dev gate before merge, and two of them broke dev",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 130
     }
   ]
 }
