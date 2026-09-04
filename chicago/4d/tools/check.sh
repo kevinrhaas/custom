@@ -1496,6 +1496,30 @@ step "…and its own assertions still fire when broken" \
 
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839_register.py --check
+# T-0666. The last four pages of the same volume, printed 47-50: the Fort Dearborn
+# Addition sale of 10-24 June 1839, and the volume's own population table. Both are set
+# in columns and the OCR does not read a columned page in printed order — its flat text
+# puts one man's price against another man's lot, and sets 1863 under 1849 — so the rows
+# are put back from the scan's word coordinates by a committed row map, and every cell in
+# it names the spans of committed page text it is made of. That map is the thing worth
+# gating: a span shifted by one line hands two hundred lots to the wrong bidders and looks
+# exactly like a reading. Two checks catch it, and they are independent. This one rebuilds
+# both claims files offline out of the committed text and the map and diffs them;
+# research_domains.py --check, already run above, rebuilds every quote in them THROUGH
+# those same spans, so a map that points at the wrong ink cannot produce a quote that
+# matches. The self-test asserts the three rules that do the reading's judging — that a
+# mark in the bidder column is a ditto only where a price is printed, so the printer's
+# brace over a block of reserved lots is not read as the man above; that a block number is
+# carried only while the lot numbers keep rising; and that a numeral the scan destroyed is
+# null and never recovered from its neighbours.
+step "Fergus 1839's Fort Dearborn lot sale and population table rebuild from the committed text and row map" \
+  python3 tools/read_fergus_1839_lots.py --check
+
+step "…and the three rules that judge that reading still fire when broken" \
+  python3 tools/read_fergus_1839_lots.py --self-test
+
+step "…and the bidders' crosswalk to the pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_lots.py --check
 
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
