@@ -28,7 +28,6 @@
 # --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04.
 # --- What is left is the fifth view he sent later — whether the Eliza Chappel shore drawing
 # --- shows this building's log annex, which its lighthouse can settle.
-T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse
 
 # --- ==========================================================================
 # --- THE CORE DATASET BEFORE MORE READING — OWNER INSTRUCTION, 2026-09-04
