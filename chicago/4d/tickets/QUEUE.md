@@ -83,7 +83,6 @@ T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 # --- and T-0666 left unfinished.
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
-T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
