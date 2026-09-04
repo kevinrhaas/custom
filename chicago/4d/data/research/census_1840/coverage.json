@@ -104,11 +104,12 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 40",
+     "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 40. The seven INDUSTRY columns are read entry by entry and six of the seven close against the enumerator's own footing (mining 0, agriculture 0 and commerce 0 at nothing written and nothing in the column; manufactures and trades 11; navigation of canals, lakes and rivers 5; learned professions 1). The seventh, navigation of the ocean, carries six entries and HE FOOTED NOTHING under it, so it cannot close and its residual is recorded as unknown.",
      "in_pr_670_calibration_set": false,
-     "read_state": "footer_and_structure_read_cells_not_committed",
+     "read_state": "industry_columns_read_and_closed_cells_not_committed",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-6H.json",
-     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0548"
+     "note": "T-0548 was split when the sheet proved to need more than one demonstration, the same cut 33S7-9YYJ-5V took: T-0627 read the industry columns (this state), T-0628 has the line index and the TOTAL column, T-0629 has the slaves, pensioners, deaf/dumb/blind/insane and schools blocks. The sheet carries no horizontal ruled lines, which is why the row index and not the digits is what is left. The tool could not even find this leaf's columns until T-0627: at the default continuity threshold the industry run has a hole in it and locate_columns refuses the sheet.",
+     "lines_with_an_entry_note": "31 here is the inventory figure, \"to the nearest line\", and it is not yet demonstrated on this sheet — clustering the TOTAL column's own ink gives 27 to 35 depending on the threshold. T-0627 commits 27 industry entry positions as anchors and bounds the pitch from below (the closest pair of anchors stands 68 px apart); Fitting a grid to those anchors (tools/fit_census_line_grid.py) picks 31 at rms 5.72 against 13 to 22 for every other candidate, which agrees with the inventory figure — but the count stays uncommitted until T-0628 reads the TOTAL column against the grid."
     },
     {
      "index": 8,
