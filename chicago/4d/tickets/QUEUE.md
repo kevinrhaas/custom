@@ -71,7 +71,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
 # --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
-T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
@@ -259,7 +258,6 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- THE PIPELINE AND ITS RUNNERS — the loop's own health.
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
-T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
@@ -288,7 +286,13 @@ T-0662 — check.sh runs synthesize_resident_research.py for three mint steps wh
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+
