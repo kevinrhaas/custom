@@ -43,7 +43,7 @@
   },
   "land_sales": {
    "read": 375,
-   "spent": 16
+   "spent": 14
   }
  },
  "raised": [
@@ -179,6 +179,14 @@
    "to": 361,
    "date": "2026-09-04",
    "why": "T-0514 seated 531 new residents and the land-sales resident crosswalk re-derived against the larger town. Its rule matches a purchaser only where the residents layer holds EXACTLY ONE person of the surname and the forename agrees, so a bigger town makes that rule fire less: nine matches became ambiguous (Carpenter, Dole, Fullerton, Haddock x2, Heacock, Sweet, Burdick, Wooley) and six became possible for the first time (Bronson, Hale, Hartzell, Ludby, Price, Wolcott), a net loss of three rulings with nothing new read. The ceiling moves by that difference rather than the domain being re-read. T-0670 carries the matcher's surname-uniqueness weakness and T-0609 is the ticket that spends this domain properly."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "write",
+   "from": null,
+   "to": 14,
+   "date": "2026-09-04",
+   "why": "T-0635 (consolidation pass 2) made these fourteen visible; it did not create them. The second hop could not see land_sales at all until this pass taught it two things: that a ruling filed under `matches` declares itself a match by the name of its container, and that resident_crosswalk.json states what it rests on (T-0598's narrow form, added to tools/read_land_sales.py in the same PR). With both, the domain's fourteen purchaser matches — Hiram Pearsons, Daniel Elston, Thomas Hartzell and eleven more, each naming a household_id and a resident_id — are judgeable for the first time, and NOT ONE of the fourteen is on the card it names. The ceiling is the size of that finding, recorded so it is paid down rather than rediscovered. This pass does not pay it: resident_crosswalk.json's own note assigns the spend to T-0514 and T-0515, T-0514 is closed and did not take it, and T-0515 is live in the queue as another run's row. T-0677 is filed to spend it — a purchase carries a tract, a date, an acreage and a price, which is POSITION, and this project has 20 households with any address at all. The number comes down when that lands and it may not drift up."
   }
  ],
  "lowered": [
@@ -193,7 +201,8 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0
+  "directories": 0,
+  "land_sales": 14
  },
  "unsourced_ceiling": {}
 }

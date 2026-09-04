@@ -357,6 +357,14 @@ def build_resident_crosswalk(rows: list) -> dict:
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
+        # T-0635. What this file adjudicates FROM, stated once at the top in the narrow
+        # form T-0598 asks for. Every ruling below rests on the same deposit — the
+        # Illinois public-domain tract-sales database — so a per-entry repetition would
+        # say nothing a reader could not read here. Without it the second hop of
+        # tools/measure_research_spend.py counted all fourteen matches UNSOURCED, which
+        # is that instrument saying, correctly, that a crosswalk which cannot name what
+        # it rests on cannot be spent.
+        "source_id": SOURCE_ID,
         "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, "
                 "or writes to data/residents/. T-0514 and T-0515 spend this file.",
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),

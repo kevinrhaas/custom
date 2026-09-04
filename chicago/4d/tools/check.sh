@@ -1369,6 +1369,19 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
 
+# T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
+# Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
+# had matched 101 entries to people this town holds, and the second hop could not even see
+# them, because both crosswalks group their rulings under the pool each was matched against
+# rather than at the top of the file. This pass writes them, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made.
+step "…and Fergus 1839's later lists are on the 97 cards they name" \
+  python3 tools/spend_fergus_1839_later_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_later_lists.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never

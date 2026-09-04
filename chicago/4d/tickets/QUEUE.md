@@ -295,4 +295,6 @@ T-0670 — The directory crosswalks bind a later entry on surname plus a first i
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+T-0677 — Fourteen land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
+T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
 
