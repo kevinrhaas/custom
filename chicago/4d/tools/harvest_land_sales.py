@@ -143,9 +143,29 @@ def sweep(townships, rng: int, through_year: int, direct: bool, workers: int) ->
                         % (BASE, tw, rng, sn))
             meta.append((tw, sn))
     with ThreadPoolExecutor(workers) as ex:
-        pages = list(ex.map(lambda u: fetch(u, direct), urls))
+        pages = dict(zip(urls, ex.map(lambda u: fetch(u, direct), urls)))
+    # A SECTION PAGE THE PROXY DROPPED LOOKS EXACTLY LIKE A SECTION WITH NO SALES —
+    # `rows_of` finds no rows in an error body and the sweep would write the section
+    # off as read and empty. So every section query is checked for a page that is
+    # actually the search's own, retried on its own, and the sweep refuses to write a
+    # deposit while one is still missing.
+    for _ in range(3):
+        missing = [u for u in urls if not _ok(pages[u])]
+        if not missing:
+            break
+        print("  … re-fetching %d section page(s) the reader dropped" % len(missing))
+        time.sleep(10)
+        with ThreadPoolExecutor(max(1, workers // 2)) as ex:
+            pages.update(zip(missing, ex.map(lambda u: fetch(u, direct), missing)))
+    missing = [m for m, u in zip(meta, urls) if not _ok(pages[u])]
+    if missing:
+        print("  ✗ %d section page(s) never came back — nothing written: %s"
+              % (len(missing), ", ".join("T%dN R%dE sec %s" % (tw, rng, sn)
+                                         for tw, sn in missing)))
+        return 1
     wanted, truncated = [], []
-    for (tw, sn), html in zip(meta, pages):
+    for (tw, sn), url in zip(meta, urls):
+        html = pages[url]
         found = rows_of(html)
         if len(found) >= CEILING:
             truncated.append("T%dN R%dE sec %s" % (tw, rng, sn))
