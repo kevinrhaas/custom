@@ -93,7 +93,7 @@ T-0447 — North Water Street's west end runs across Wolf Point, which the Thomp
 # --- street stands north of the river where the plat carries a whole division.
 # --- T-0452 is the sloughs: the plat draws three, this holds one, as a bare
 # --- centreline with no banks — and they cross the ground T-0451 wants to plat.
-T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
 
@@ -308,3 +308,5 @@ T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number a
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
+T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
+T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
