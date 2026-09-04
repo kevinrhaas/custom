@@ -167,8 +167,8 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 1,
-  "civic": 99,
+  "census_1840": 0,
+  "civic": 0,
   "directories": 0
  },
  "unsourced_ceiling": {}

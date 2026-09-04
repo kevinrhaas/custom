@@ -1293,6 +1293,19 @@ step "…and all four directories' findings re-derive onto the cards they reach"
 step "…and that pass's four carry rules hold over everything it derives" \
   python3 tools/spend_directories.py --self-test
 
+# T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
+# four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
+# the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
+# had put a source on the record it named. This pass writes them. It is gated in the same
+# two directions as the directories pass because the failures are the same two: a ruling
+# that stops reaching its card, and a card that carries the paragraph for a ruling the
+# crosswalk never made.
+step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
+  python3 tools/spend_civic_voter_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_civic_voter_lists.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never

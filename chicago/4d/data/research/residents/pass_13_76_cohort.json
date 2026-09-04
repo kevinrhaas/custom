@@ -32,6 +32,7 @@
       "letter_list_returns": [],
       "sources": [
         "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad",
         "resident_research_v4_1835_census_bridge"
       ]
     },
@@ -73,7 +74,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -113,7 +115,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -193,7 +196,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -234,7 +238,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -314,7 +319,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -354,7 +360,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -515,7 +522,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -557,7 +565,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -597,7 +606,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -637,7 +647,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -678,7 +689,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -759,7 +771,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -840,7 +853,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -961,6 +975,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad",
         "drloih_hotels"
       ]
     },
