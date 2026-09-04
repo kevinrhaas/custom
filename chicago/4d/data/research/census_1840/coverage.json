@@ -619,11 +619,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-V2.jpg",
      "sheet_side": "right",
      "printed_page": 237,
-     "lines_with_an_entry": 33,
-     "what_it_is": "continuation sheet whose TOTAL column carries three-figure numbers (128, 131, 187, 117 ...) rather than household counts \u2014 this sheet is not a household page and wants reading as what it is before any serial is hung on it",
+     "lines_with_an_entry": 30,
+     "what_it_is": "RECAPITULATION SHEET, and not a household page at all. T-0529 read it: every ruled line carries a DIVISION TOTAL of the enumeration, 70 to 201 persons, gathered into six blocks each closed by a ruled footing that adds the block, and the foot of the leaf carries a grand total of 4,470 \u2014 the figure the book's own certificate page (33S7-9YYJ-95F, printed 206) writes as '4470 \u2014 City of Chicago'. This is one of the 'Two Recapitulations at the end of the Book' that certificate names. The inventory pass filed it as a continuation sheet whose TOTAL column carried three-figure numbers; the three-figure numbers were the evidence, and this corrects the reading. NO SERIAL MAY BE HUNG ON ANY LINE OF IT and no household may be minted from it \u2014 serial_crosswalk.json now says so in the sheet's own row.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "recapitulation_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-V2.json",
+     "not_read": "the per-line occupation cells, the per-line schools cells and the deaf/dumb/blind/insane block. Declared, not silently omitted: this pass read the TOTAL column line by line, the six footing rows and the grand-total row's occupation and schools cells, and stopped there.",
+     "line_count_correction": "the inventory declared 33 lines with an entry off a 900x700 contact sheet; 30 lines carry a figure and six more are footings. The inventory reading long by three is the documented direction of that estimate."
     },
     {
      "index": 36,
@@ -842,12 +844,12 @@
     ],
     "names_transcribed_pages": 4,
     "names_transcribed_lines": 122,
-    "inventoried_only": 15,
+    "inventoried_only": 14,
     "cells_transcribed_pages": 4,
     "cells_transcribed_lines": 122,
     "names_and_cells_transcribed_pages": 6,
     "names_and_cells_transcribed_lines": 183,
-    "counts_note": "recomputed from the images array by T-0546 rather than incremented, and recomputed again when this branch merged the passes that landed beside it (T-0552, T-0553). The block had drifted because each transcribing pass updated its own image and left the group tally alone; ten of this group's twenty-five images now carry a page file."
+    "counts_note": "recomputed from the images array by T-0546 rather than incremented, and recomputed again when this branch merged the passes that landed beside it (T-0552, T-0553). The block had drifted because each transcribing pass updated its own image and left the group tally alone; ten of this group's twenty-five images now carry a page file. T-0529 recomputed inventoried_only from the images array after correcting 33S7-9YYJ-V2 from a continuation sheet to a RECAPITULATION: it is read now, and it is the group's only image that enumerates nobody, so it adds to no line or name tally."
    },
    "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Eight pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 \u2014 the contact-sheet estimate said 31 for both and was one line high), printed 217 (33 declared, 31 read, T-0552), printed 218 and 224 (both declared 33 'to the nearest line' and both carrying 30, T-0553), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). SIX of the eight counted left sheets had an inventory figure that was HIGH and none had one that was low, so the contact-sheet pass reads long by one to four lines and a transcribing pass should expect to remove lines rather than find them. The rest are stated to the nearest line and a transcribing pass restates them exactly."
   }
