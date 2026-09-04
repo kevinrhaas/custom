@@ -213,7 +213,6 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 
 
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
-T-0630 — The 1840 census image 33S7-9YYJ-6Q: the seven industry columns closed against their printed footings, and the sheet's line count settled
 T-0631 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
 T-0546 — The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211

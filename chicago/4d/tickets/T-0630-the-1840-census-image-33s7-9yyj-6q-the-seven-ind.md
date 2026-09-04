@@ -1,7 +1,7 @@
 ---
 id: T-0630
 title: The 1840 census image 33S7-9YYJ-6Q: the seven industry columns closed against their printed footings, and the sheet's line count settled
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0549
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 755
 claimed_by: run 9/3/2026, 10:35:11 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T03:51:49.890Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33831645943
 ---
 
