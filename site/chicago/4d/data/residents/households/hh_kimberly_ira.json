@@ -51,9 +51,9 @@
    "id": "kimberly_ira",
    "name": "Ira Kimberly",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "civic_mint": true,
-   "ladder_rule": "G2a",
+   "ladder_rule": "G1a",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -62,7 +62,7 @@
    "sources": [
     "chicago_voter_lists_1833_1835_irad"
    ],
-   "note": "THE 1835 POLL LIST ALONE. Read from poll_1835, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2a), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. tax_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "THE 1835 POLL LIST AND A SECOND INDEPENDENT SOURCE. Read from poll_1835, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1a), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. tax_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "tax_1833",
@@ -71,7 +71,7 @@
      "record_id": "tax_1833_058",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2a"
+     "rule": "G1a"
     },
     {
      "list": "poll_1835",
@@ -80,7 +80,7 @@
      "record_id": "poll_1835_040",
      "describes_date": "1835",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2a"
+     "rule": "G1a"
     }
    ]
   }
