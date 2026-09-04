@@ -1,7 +1,7 @@
 ---
 id: T-0675
 title: The land sales database DOES page: read T39N R14E sections 16, 21 and 29 whole
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0610
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 798
 claimed_by: run 9/4/2026, 11:58:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T18:12:11.612Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33897548587
 ---
 
