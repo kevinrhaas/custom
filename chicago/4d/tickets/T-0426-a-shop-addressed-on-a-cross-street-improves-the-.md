@@ -1,7 +1,7 @@
 ---
 id: T-0426
 title: A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/2/2026, 11:58:23 PM CT
 blocked_on: null
 needs_bake: false
 ---

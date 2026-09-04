@@ -2821,8 +2821,13 @@ def _edge_hitching(entry, laid, chunks, buildings, hf, streets, refused):
         #
         # The post is what this refusal covers and nothing else. Whether the
         # same containment should still lay a street-lining FENCE on that
-        # face is a different question over a shared rule, and it is the
-        # owner's: see T-0426.
+        # face was put to the owner as a separate question over a shared rule.
+        # He ruled it twice, the same way: on 2026-08-31 — "a lot that fronts a
+        # street takes its street-lining board fence at that frontage, whatever
+        # way the building standing on it faces" — and again on 2026-09-03,
+        # asked directly, "the answer is yes for this". So `_fence_runs` is
+        # unchanged and is correct BY RULING rather than by default; not one of
+        # the 1,669.0 m already laid moves. See T-0426 and docs/LIBERTIES.md L160.
         face_out = math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0
         off_face = abs((b["bearing"] - face_out + 180.0) % 360.0 - 180.0)
         if off_face > EDGE_HITCH_FACE_TOL_DEG:
