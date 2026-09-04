@@ -97,14 +97,17 @@
 # --- not the ~1,500 a letter-list-as-G1b reading would have moved.
 # ---
 # --- AND A THIRD PIECE, on his follow-up "so what will this fix them going forward and the existing
-# --- ones?" — GOING FORWARD ONLY, until something spends it. consolidate_resident_evidence.py
-# --- writes NO household file ("It writes NO household file", its own docstring); mint_civic_
-# --- residents.py only mints identities "the town does not already carry"; and NOTHING applies a
-# --- regrade to a card that exists. So fixing grade() would leave Willard Jones on G2a for ever.
-# --- The policy doc already records 159 standing changes (19 up, 63 down, 77 subtype) unspent since
-# --- 2026-09-03 — the same shape measure_research_spend.py found one layer up, where 109 rulings
-# --- reached a person and 0 reached a card. T-0699 now carries the spend as part (c): upgrades
-# --- apply, the 63 DOWNGRADES go to a conflict list for the owner and are never auto-applied.
+# --- ones?" — AND A CORRECTION TO THIS BAND'S FIRST ANSWER. It said "NOTHING applies a regrade to
+# --- a card that exists". That was too strong and is wrong: consolidate_resident_evidence.py
+# --- indeed writes no household file, but mint_civic_residents.py --build RE-WRITES every one of
+# --- the 531 civic-minted cards from the proposal, grade and ladder_rule included, and --check
+# --- gates them. T-0699 landed on that route: the new rung was spent onto 16 existing cards by
+# --- --build, and the directory spend, which is grade-gated, then carried those men's 1839/1843/
+# --- 1844 lines onto the same cards. What is NOT covered is the ~870 cards the civic mint does not
+# --- own, and the 63 standing DOWNGRADES, which must go to a conflict list for the owner and are
+# --- never auto-applied. PR #797 already builds exactly that (mint_civic_residents.py --regrade,
+# --- 73 applied / 89 refused, refusals written onto the person, plus a --regrade --check ratchet)
+# --- and is parked on `hold` only because dev outran its gate — land it rather than rebuild it.
 # ---
 # --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
 # --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
