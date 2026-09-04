@@ -78,7 +78,6 @@ T-0670 — The directory crosswalks bind a later entry on surname plus a first i
 # --- yield is a list the town made of its own named inhabitants. The land sales are the
 # --- largest untouched source of POSITION in the project, and T-0676/T-0679 are what T-0610
 # --- and T-0666 left unfinished.
-T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
@@ -90,7 +89,6 @@ T-0635 — Consolidation pass 2: write every ruling closed since consolidation p
 # --- counted, and the one figure that moves the rest is that the 1835 town census gives
 # --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
 # --- dwelling held more than one household, so one family per roof undercounts.
-T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
@@ -303,3 +301,7 @@ T-0691 — The letter-list cohort is 76 households out of step with its own deri
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
