@@ -57,6 +57,7 @@ MASTER = OUT_DIR / "identity_master.json"
 COVERAGE = OUT_DIR / "source_coverage.json"
 PROPOSAL = OUT_DIR / "grading_proposal.json"
 POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
+INDEX = RESIDENTS / "index.json"
 
 SCENE_YEAR = 1835
 GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
@@ -1166,6 +1167,86 @@ def invariants(master, proposal) -> list[str]:
     return problems
 
 
+
+# ---------------------------------------------------------------------------
+# THE LADDER, WHERE A BROWSER CAN READ IT (T-0668).
+#
+# `GRADE_RULES` above is the ratified ladder and it is Python. The reader is
+# JavaScript, and until this block existed nothing under `data/` carried the text
+# of a rung — so a card printing `G2c` beside a person's grade would have printed
+# a code whose meaning lives in a file no visitor opens. That is the same defect
+# the 1840 bridge had (T-0491): a verdict shown without the reasoning that reached
+# it is an assertion.
+#
+# ONE SOURCE OF TRUTH, NOT TWO. The rung text is not re-typed into the manifest by
+# hand and it is not re-typed into the renderer either. `--write-vocabulary` copies
+# it out of `GRADE_RULES`, and `--check` — which `tools/check.sh` runs — fails if
+# the manifest and the constant ever drift apart. Editing one without the other is
+# a gate failure rather than a silent lie on 531 cards.
+
+
+def ladder_vocabulary() -> list:
+    """The ratified ladder as the manifest carries it, in the ladder's own order.
+
+    A LIST of rungs and not an object keyed by rung id, because
+    `tools/measure_layer_reads.py` walks a manifest structurally: an object would
+    declare `ladder_rules.G2c.rule` as a figure of its own, eleven rungs would be
+    twenty-one figures, and every rung added later would be a new unread figure the
+    gate would demand be re-banked. A list of records is three figures, whatever the
+    ladder grows to.
+    """
+    return [{"rung": rule, "grade": grade, "rule": text}
+            for rule, (grade, text) in GRADE_RULES.items()]
+
+
+def cmd_write_vocabulary() -> int:
+    if not INDEX.exists():
+        print(f"  FAIL {INDEX.relative_to(ROOT)} is missing")
+        return 1
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    vocab = index.setdefault("vocabulary", {})
+    vocab["ladder_rules"] = ladder_vocabulary()
+    INDEX.write_text(json.dumps(index, indent=1, ensure_ascii=False) + "\n",
+                     encoding="utf-8")
+    print(f"  wrote {len(vocab['ladder_rules'])} rung(s) to "
+          f"{INDEX.relative_to(ROOT)} vocabulary.ladder_rules")
+    return 0
+
+
+def vocabulary_problems() -> list:
+    """Where the manifest's copy of the ladder disagrees with GRADE_RULES."""
+    if not INDEX.exists():
+        return [f"{INDEX.relative_to(ROOT)} is missing"]
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    got = (index.get("vocabulary") or {}).get("ladder_rules")
+    want = ladder_vocabulary()
+    if got is None:
+        return ["vocabulary.ladder_rules is missing from data/residents/index.json — "
+                "the card prints a rung id and nothing under data/ says what it means. "
+                "Run --write-vocabulary."]
+    if got == want:
+        return []
+    if not isinstance(got, list):
+        return ["vocabulary.ladder_rules must be a list of rungs"]
+    by_id = {row.get("rung"): row for row in got}
+    problems = []
+    for row in want:
+        rung = row["rung"]
+        if rung not in by_id:
+            problems.append(f"vocabulary.ladder_rules is missing rung {rung}")
+        elif by_id[rung] != row:
+            problems.append(f"vocabulary.ladder_rules disagrees with GRADE_RULES on "
+                            f"rung {rung} — the manifest says {by_id[rung]!r}")
+    for rung in by_id:
+        if rung not in {row["rung"] for row in want}:
+            problems.append(f"vocabulary.ladder_rules carries rung {rung}, "
+                            f"which the ladder no longer has")
+    if not problems:
+        problems.append("vocabulary.ladder_rules holds the rungs in an order the ladder "
+                        "does not — the card prints them in file order")
+    return problems
+
+
 def cmd_check() -> int:
     failures = 0
     _load_town_grades()
@@ -1201,6 +1282,13 @@ def cmd_check() -> int:
             failures += 1
         else:
             print("  ok    the policy doc carries every rung of the ratified ladder")
+    drift = vocabulary_problems()
+    for problem in drift[:5]:
+        print(f"  FAIL {problem}")
+    failures += 1 if drift else 0
+    if not drift:
+        print(f"  ok    data/residents/index.json carries all {len(GRADE_RULES)} rung(s) "
+              f"verbatim, so the card can print what a rung says")
     return failures
 
 
@@ -1310,6 +1398,33 @@ def cmd_self_test() -> int:
     broken_proposal["proposals"][0]["evidence_classes"] = []
     assert_fires("a grade resting on no evidence", base_master, broken_proposal)
 
+    # The ladder's copy in the manifest (T-0668). The card prints a rung id; if the
+    # manifest can drift from GRADE_RULES without the gate noticing, 531 cards can
+    # print a rung whose text is wrong, which is worse than printing no text at all.
+    real = vocabulary_problems()
+    if real:
+        print(f"  FAIL vocabulary.ladder_rules does not agree with GRADE_RULES: {real[0]}")
+        failures += 1
+    else:
+        print("  ok    vocabulary.ladder_rules agrees with GRADE_RULES as committed")
+    saved = dict(GRADE_RULES)
+    try:
+        GRADE_RULES["G2c"] = ("attested", "a rung nobody ratified")
+        if vocabulary_problems():
+            print("  ok    a rung whose text or grade drifts from the ladder is caught")
+        else:
+            print("  FAIL a drifted rung was not caught")
+            failures += 1
+        GRADE_RULES["G9z"] = ("inferred", "a rung the manifest has never heard of")
+        if any("G9z" in p for p in vocabulary_problems()):
+            print("  ok    a rung the manifest is missing is named in the failure")
+        else:
+            print("  FAIL a missing rung was not named")
+            failures += 1
+    finally:
+        GRADE_RULES.clear()
+        GRADE_RULES.update(saved)
+
     # The merge rules themselves, on names rather than fixtures.
     cases = [
         ("Adams, W. H.", ("adams", ["w", "h"])),
@@ -1399,9 +1514,12 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--report", action="store_true")
+    parser.add_argument("--write-vocabulary", action="store_true")
     args = parser.parse_args()
     if args.self_test:
         return 1 if cmd_self_test() else 0
+    if args.write_vocabulary:
+        return cmd_write_vocabulary()
     if args.check:
         return 1 if cmd_check() else 0
     if args.build or args.report:

@@ -2,13 +2,22 @@
 
 **What lives here.** The Illinois State Archives' *Illinois Public Domain Land Tract
 Sales* database, read for the two townships the town of Chicago and its north side
-stand on — **T39N R14E** and **T40N R14E**, third principal meridian — for every sale
-dated on or before **31 December 1836**. 566 sales, 260 distinct purchasers as the
-register spelled them, 20,234.24 acres and $70,485.75 of ground (T-0557, finished by
-T-0675). **All seventy-two sections are read whole**: the three T-0557 had to leave
-truncated at the search's 150-row page were walked to their end through the results
-page's own More button, which is a cursor and not a dead end. That is the second
-section below, and it is the correction that matters most here.
+stand on — **T39N R14E** and **T40N R14E**, third principal meridian — and for the five
+that ring them, for every sale dated on or before **31 December 1836**. **953 sales, 431
+distinct purchasers as the register spelled them, 57,171.59 acres and $125,223.35 of
+ground**, over 252 section queries. **Every one of those sections is read whole**: the
+three T-0557 had to leave truncated at the search's 150-row page were walked to their
+end through the results page's own More button, which is a cursor and not a dead end.
+That is the second section below, and it is the correction that matters most here.
+
+| the reading | townships | sales | purchasers | ticket |
+|---|---|---|---|---|
+| the town and its north side | T39N R14E, T40N R14E | 566 | 260 | T-0557, T-0675 |
+| the ring | T39N R13E, T40N R13E, T38N R14E, T41N R14E, T38N R15E | 387 | 209 | T-0676 |
+
+Each reading has its own deposit and its own records file, named after the townships it
+holds, and the record ids run on across them — `ls0001` upward — because
+`data/structures/*.json` cite them. **A new reading appends and never renumbers.**
 
 **This is not a list of people, and that is the whole discipline of the domain.** The
 register records a TRANSACTION. A man who entered eighty acres in T40N R14E in 1835
@@ -47,6 +56,35 @@ parser leaves `unparsed` rather than guess at. The shape of that list is the sch
 section arriving: 1833 more than doubles, and the town lot passes the half
 quarter-section as the commonest thing the register sells.
 
+**The ring, and why it is worth having (T-0676).** T-0610 asked for the country around
+the town and T-0675 read only the middle of it. The five ring townships are now read the
+same way, section by section, cursor to the end: **387 sales, every one of them a federal
+cash entry** — no school section, no canal land, because neither exists out there. They
+are late and they are sudden: 1 sale in 1833, 38 in 1834, **318 in 1835** and 30 in the
+first half of 1836. That is the land rush arriving, one year behind the town's own lots,
+and 64 of the 180 sections carry it while 116 were walked and held nothing through 1836.
+The register states a residence on 32 of the 387 — 22 COOK, and 10 spread over McLean,
+Macon, Vermilion and Champaign — so the same grading rule applies out here as in town,
+and 355 rows are `inferred`. Where the ground is: T38N R14E 152 sales, T39N R13E 145,
+T40N R13E 57, T38N R15E 18, T41N R14E 15. **None of it is inside the town**, and none of
+it resolves onto a footprint: the constructed section grid reaches only the four sections
+that meet at State & Madison (L219), so every ring row says in `ground.json` why it does
+not land.
+
+**Nine more purchaser spellings meet a person the town already holds** — William Spencer,
+Walter L. Newberry, James Whitlock, James B. Campbell, A. Garrett, John L. Wilson,
+H. Pearsons, David P. Frame and Frank Dill — which is 35 matched spellings against 396
+refused across the whole domain. Two of them are the interesting ones: **Hiram Pearsons
+enters seventeen ring tracts** and **Walter Newberry six**, both while the town's own
+lots were being traded. None carries a stated residence, so all nine are `inferred`, and
+nothing here mints or regrades a resident.
+
+**Every ruling now names the records it was made from.** `record_ids` on each match and
+each refusal in both crosswalks says which sales the ruling was made from — the spend
+meter asked for it in as many words, and it is provenance regardless: a refusal a reader
+cannot trace back to its rows is a refusal nobody can check. 480 rulings in this domain
+anchored to nothing before; none does now, and the domain reads 953 against 511 ruled on.
+
 **Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
 Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
 Elston, John Hale, Thomas Hartzell, Chester Ingersoll, Paul Kingston, Alexander Lloyd,
@@ -66,13 +104,14 @@ the shape and `tools/read_land_sales.py --check` holds the reading.
 **Hand-authored:** this README, and nothing else. Every judgement in the crosswalks was
 made by a rule that is written out beside it.
 
-**Generated, and re-derived by the gate:** `entries.json`,
-`records/entries_t39n_t40n_r14e_through_1836.json`, `coverage.json`, `crosswalk.json`
-and `resident_crosswalk.json` — all written by `tools/read_land_sales.py --build` from
-the committed deposit at `text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv`,
+**Generated, and re-derived by the gate:** `entries.json`, one `records/entries_*.json`
+per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` — all
+written by `tools/read_land_sales.py --build` from the committed deposits in `text/`,
 and all re-derived by `--check`, which refuses a committed file that has drifted. The
-deposit itself is written by `tools/harvest_land_sales.py --sweep`, which reaches the
-network and is therefore run deliberately by a research pass and never by the gate.
+deposits themselves are written by `tools/harvest_land_sales.py --sweep`, which reaches
+the network and is therefore run deliberately by a research pass and never by the gate.
+A township is a township AND a range there: `--tr 38:15` asks for T38N R15E, and each
+set of pairs writes the deposit its own name spells out.
 
 ## Two things about the source, both learned the hard way
 
@@ -113,8 +152,8 @@ county and date.
 
 ## What is NOT read, and is not a fault
 
-- **The ring townships** — T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E.
-  That is T-0676, and it is the last of what T-0610 asked for.
+- **Nothing of what T-0610 asked for.** The two townships the town stands on and the
+  five that ring them are all read whole, section by section, cursor to the end.
 - **Sales to purchasers whose stated residence is Chicago or Cook County outside these
   townships.** The database's name search cannot be filtered by residence, so this
   needs a different shape of query.

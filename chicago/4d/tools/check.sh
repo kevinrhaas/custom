@@ -1475,6 +1475,18 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
+# T-0589. The CIVIC ACCOUNT above that directory, on the same page: the officers and
+# courts, the churches and societies with their memberships, the newspapers, the mails,
+# the fire and military companies, the schools, the ward population count of 1 August
+# 1843 and the port's trade. Three shapes on one range — a wrapped line, a heading that
+# is not a claim, and three tables the transcription runs down the page one cell to a
+# line — so the same guard as the directory's: the reading is REBUILT from the committed
+# text and compared, and the count is held to what coverage.json declares. A segmenter
+# that quietly rejoins the population table's rows off by one would be invisible to
+# every other gate here.
+step "Fergus's 1843 civic account rebuilds from its committed text, at the declared count" \
+  python3 tools/read_fergus_1843_civic.py --check
+
 # T-0506. Fergus's 1839 directory — the closest address list to 1835 this project can
 # reach, and until now cited only through somebody else's web transcription. Same three
 # gates as 1843's, for the same reason: a segmenter that quietly loses forty entries is
@@ -1506,6 +1518,16 @@ step "the 1837 charter election rebuilds from its committed text, at the declare
 
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839_election.py --check
+
+# T-0667. That poll's first ward reads 167 names against Fergus's own table of 170, and the
+# claims file could only say the page images would have to settle it. They did:
+# verify_fergus_1839_first_ward.py counts LINES OF TYPE on printed pages 41-42 — a name the
+# OCR lost leaves no trace in the text and a double gap in the row grid — and found 167 set on
+# a leading that never doubles. The measurement needs Pillow and archive.org, so what runs
+# here is the leg that needs neither: the committed record and the committed claims file must
+# still agree on 167, per leaf. They are two files that drift apart silently otherwise.
+step "…and the first ward's 167 names still agree with what the page images were counted at" \
+  python3 tools/verify_fergus_1839_first_ward.py --offline
 
 # T-0665. The two leaves BETWEEN the directory and the poll, printed 38-39: the city
 # register of 1839 and the printed tables of mayors and sheriffs. Three things need
@@ -1776,6 +1798,21 @@ step "the 1840 census line-to-serial crosswalk re-derives from the page readings
 
 step "…and its own assertions still fire when broken" \
   python3 tools/census_1840_fingerprint.py --self-test
+
+# T-0507. The 1840 composition summary, and it is gated for a reason that is not staleness.
+# The figures are cheap to re-derive and would matter little if they drifted a person or two;
+# what matters is the LINE the file stands on. It is built from an extract that carries 55
+# transcribed head-of-household names and 964 household serials, and the whole value of the
+# summary is that it is counts and nothing else — 1840 household members are never minted
+# into 1835 from census counts, which is the owner's own rule. --self-test refuses the build
+# if a single one of those names or serials reaches the output, and --check refuses a
+# committed file that no longer re-derives from the extract and from T-0504's column_map. A
+# hand-edited count in there would be a fact about this town that nobody counted.
+step "the 1840 household composition re-derives, and no name or serial reaches it" \
+  python3 tools/census_1840_composition.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/census_1840_composition.py --self-test
 # T-0513. The consolidation, and the reason it is gated rather than reported: it is the
 # only file that says, for one identity, everything the project knows — and it is DERIVED
 # from seven domains that each move on their own ticket. A source read on Tuesday that
