@@ -132,6 +132,49 @@
       "locality_cards_kept": 2131,
       "text_file": "vol_03_locality_cards.txt",
       "text_sha256": "c4b3a0be16381e72b4302de0102da0f9ad0f9b349ec03a1b34ae5b753bc1cc08"
+    },
+    "4": {
+      "file": "130151_04.pdf",
+      "covers": "P - Z (as printed on the cards)",
+      "download_url": "https://archive.org/download/chicago1835-newberry-genealogical-index/130151_04.pdf",
+      "bytes": 199557770,
+      "sha256": "c1d8a6575fa3c0c3b2f9bf3831aa4e681af1c1cd17b69bcfeeb2c798c7309c81",
+      "pdf_pages": 919,
+      "crop_height": 1100,
+      "passes": [
+        {
+          "column": 0,
+          "x": 0,
+          "width": 200,
+          "sha256": "48da7cc9e8908bf1559995749c5eac4a15f31e0bea9beba28ab7062a246bea37",
+          "bytes": 11433359
+        },
+        {
+          "column": 1,
+          "x": 173,
+          "width": 200,
+          "sha256": "37664b3e372b795abd7e3f673b3a73359d1e3f4ac33f761882cc39a8330e384c",
+          "bytes": 16358648
+        },
+        {
+          "column": 2,
+          "x": 346,
+          "width": 200,
+          "sha256": "f8538edbc46cc2fc5841224af8d80789fb99755afd393e72f7bbd6b3156db268",
+          "bytes": 16276373
+        },
+        {
+          "column": 3,
+          "x": 519,
+          "width": 200,
+          "sha256": "26069683471c4077ce526d0d1d1df8d70e9b215fce1f8d1996847ad848933153",
+          "bytes": 10620995
+        }
+      ],
+      "cards_assembled": 6548,
+      "locality_cards_kept": 308,
+      "text_file": "vol_04_locality_cards.txt",
+      "text_sha256": "2955ba4bddfd5095cdd84ffa7c2ac4411e3348c881aa26249759ff3e5d1bbf20"
     }
   }
 }
