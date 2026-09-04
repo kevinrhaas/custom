@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 518, title: 'Why the street fence and the hitching post part company', kind: 'change', ts: '2026-09-04T18:35:28.736Z', date: 'Sep 4, 2026, 1:35 PM CT',
+    items: [
+      'Two pieces of furniture stand at a lot\u2019s street edge here: a board fence along the boundary, and a hitching post outside the shop. Both used to be decided by the same question \u2014 does a building stand on this lot? \u2014 and on a deep lot that question can put either of them on a street the shop\u2019s door never opens onto.',
+      'They were ruled apart, and this is that ruling written where a reader meets it rather than left in a ticket. The fence stays with the LOT: a lot that fronts a street takes its board fence at that frontage whichever way the building on it faces, because a fence encloses ground and it is the ground that fronts the street. The post follows the DOOR, because a post is for a stranger arriving off the street the shop actually opens onto.',
+      'The record the town publishes for its street edge stated four tests for a hitching post while the rule was applying five. The fifth is now written there, next to a sentence saying the fence deliberately does not follow the door \u2014 so what you can read is what was run.',
+      'Measured across all five frontage records, before and after: eighteen posts against eighty-three written refusals, unchanged. One building trips the newer test \u2014 the auction room on South Water Street at Clark, its door facing eighty-nine degrees away from the frontage it stands on \u2014 and it was already going without a post for want of a footway to stand beside.',
+      'Nothing in the town moved today. This is the reasoning behind what is already standing, recorded so the next reader inherits the answer instead of the argument.'
+    ] },
   { v: 517, title: 'The rebuild button now rebuilds the town it was pointed at', kind: 'fix', ts: '2026-09-04T18:22:37.465Z', date: 'Sep 4, 2026, 1:22 PM CT',
     items: [
       'Nothing you can see changed today. This is about the machine that rebuilds this town\u2019s buildings, and about a fault that could have left a building standing in the scene while its own written record said something else.',
