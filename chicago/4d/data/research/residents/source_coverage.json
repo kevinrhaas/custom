@@ -4,10 +4,10 @@
  "generated_by": "tools/consolidate_resident_evidence.py --build",
  "domains": {
   "census_1840": {
-   "names_read": 459,
-   "identities": 456,
+   "names_read": 490,
+   "identities": 487,
    "appearances_on_an_identity_the_town_already_carries": 14,
-   "unmatched": 445
+   "unmatched": 476
   },
   "church": {
    "names_read": 520,
@@ -79,10 +79,10 @@
   }
  },
  "overlap": {
-  "census_1840|census_1840": 456,
+  "census_1840|census_1840": 487,
   "census_1840|church": 18,
-  "census_1840|civic": 11,
-  "census_1840|directories": 94,
+  "census_1840|civic": 12,
+  "census_1840|directories": 99,
   "census_1840|newspapers": 34,
   "census_1840|old_settlers": 8,
   "census_1840|residents": 13,
@@ -116,8 +116,8 @@
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
    "R1": 614,
-   "R2": 956,
-   "R3": 150,
+   "R2": 960,
+   "R3": 151,
    "R4": 80
   },
   "declared_refusals": 1270
