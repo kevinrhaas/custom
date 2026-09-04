@@ -26,7 +26,10 @@
           "in_pr_670_calibration_set": false,
           "read_state": "continuation_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-24.json",
-          "note": "the calibration sheet for the continuation reading (T-0540)"
+          "note": "the calibration sheet for the continuation reading (T-0540)",
+          "paired_to_printed_page": 219,
+          "pairing_state": "paired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 2,
@@ -40,7 +43,9 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-2T.json",
           "lines_ruled": 31,
-          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory's line count is restated unchanged"
+          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory's line count is restated unchanged",
+          "page_population_key": 146,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 3,
@@ -54,7 +59,9 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-38.json",
           "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed; free white females 20 under 30 and 40 under 50 do not and are left unreconciled with their residuals A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-38.json) agrees on every name and disagrees on the cells of 25 of 31 lines, with the footings of columns 15, 18 and 20 read differently. The committed cells are one reading until the two are reconciled against the sheet.",
-          "lines_ruled": 31
+          "lines_ruled": 31,
+          "page_population_key": 160,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 4,
@@ -67,7 +74,10 @@
           "in_pr_670_calibration_set": false,
           "read_state": "continuation_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-5D.json",
-          "note": "committed with two residuals recorded rather than adjusted away (T-0540)"
+          "note": "committed with two residuals recorded rather than adjusted away (T-0540)",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 5,
@@ -80,7 +90,10 @@
           "in_pr_670_calibration_set": false,
           "read_state": "continuation_cells_attempted_not_closed",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-5S.json",
-          "note": "footer row and exact line count committed; the attempted per-line reading is kept on the page file as an attempt for the next run (T-0540)"
+          "note": "footer row and exact line count committed; the attempted per-line reading is kept on the page file as an attempt for the next run (T-0540)",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 6,
@@ -95,7 +108,10 @@
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-5V.json",
           "note": "T-0547 was split when the sheet proved to need more than one demonstration: T-0564 read the columns (this state), T-0565 has the line index and the seven unread totals. The sheet carries no horizontal ruled lines, which is why the row index and not the digits is what is left.",
           "lines_with_an_entry_note": "was 28, from an inventory pass, \"to the nearest line\". The reading of the sheet does not support it: the TOTAL column carries 31 numbers, 22 of them on lines a coincident industry entry fixes. 29 to 31, favouring 31 — see the page file's lines_note. Held null rather than moved from one asserted number to another.",
-          "line_count_source": "MEASURED by T-0565 off the industry-column grid (tools/fit_census_line_grid.py), not counted off a contact view. The inventory figure here was 28."
+          "line_count_source": "MEASURED by T-0565 off the industry-column grid (tools/fit_census_line_grid.py), not counted off a contact view. The inventory figure here was 28.",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 7,
@@ -110,7 +126,10 @@
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-6H.json",
           "note": "T-0548 was split when the sheet proved to need more than one demonstration, the same cut 33S7-9YYJ-5V took: T-0627 read the industry columns (this state), T-0628 committed the line index and read the TOTAL column against it (this state), T-0629 has the slaves, pensioners, deaf/dumb/blind/insane and schools blocks. The sheet carries no horizontal ruled lines, which is why the row index and not the digits is what is left. The tool could not even find this leaf's columns until T-0627: at the default continuity threshold the industry run has a hole in it and locate_columns refuses the sheet.",
           "lines_with_an_entry_note": "DEMONSTRATED at 31 by T-0628, and the inventory's \"to the nearest line\" 31 turns out to have been right. The figure comes from a straight grid fitted to the 17 merged positions of the 27 industry entries T-0627 committed, re-measured to each glyph's own ink rather than to its bounding box; 31 lines score rms 4.81 px where the next-best count scores 12.65 and the two neighbours a mis-set span would give score 18.8 and 18.7, and 15 of 17 anchor-drop refits still choose 31. The pitch it finds, 75.36 px, is within 0.7% of the 75.86 px the same instrument found on the sibling sheet 5V. The TOTAL column was not used to build it, which is what lets the column be read against it. See the page file's line_index.",
-          "total_column_does_not_close": "The 27 committed numbers sum to 207 and the footing is still one glyph short of legible. The body refutes a 104 footing outright, and it also refuses to sit with any footing beginning in 1 while the sheet's ten two-stroke figures are read as 11 — see two_stroke_figure_problem in the page file and T-0645, which carries the question."
+          "total_column_does_not_close": "The 27 committed numbers sum to 207 and the footing is still one glyph short of legible. The body refutes a 104 footing outright, and it also refuses to sit with any footing beginning in 1 while the sheet's ten two-stroke figures are read as 11 — see two_stroke_figure_problem in the page file and T-0645, which carries the question.",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 8,
@@ -125,7 +144,9 @@
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-6J.json",
           "lines_ruled": 31,
           "note": "all 26 free-white columns balance against the enumerator's own totals; the FREE COLORED block is unfilled",
-          "line_count_correction": "the inventory said 18 lines with an entry, stated to the nearest line; the fitted row grid and the names give 17, and lines 18-31 are ruled and blank."
+          "line_count_correction": "the inventory said 18 lines with an entry, stated to the nearest line; the fitted row grid and the names give 17, and lines 18-31 are ruled and blank.",
+          "page_population_key": 71,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 9,
@@ -138,7 +159,10 @@
           "in_pr_670_calibration_set": false,
           "read_state": "industry_columns_closed_total_column_read_does_not_close",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-6Q.json",
-          "note": "T-0631 read the TOTAL column digit by digit against the line grid T-0630 fitted to the industry columns' ink. Thirty numbers are committed with per-line confidences; they sum to 173 against the enumerator's printed footing of 198, and the residual of 25 is recorded in the page file rather than spent. The twelve slave columns, the pensioners, the deaf/dumb/blind/insane block and the schools block remain unread."
+          "note": "T-0631 read the TOTAL column digit by digit against the line grid T-0630 fitted to the industry columns' ink. Thirty numbers are committed with per-line confidences; they sum to 173 against the enumerator's printed footing of 198, and the residual of 25 is recorded in the page file rather than spent. The twelve slave columns, the pensioners, the deaf/dumb/blind/insane block and the schools block remain unread.",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 10,
@@ -152,7 +176,10 @@
           "read_state": "continuation_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-8D.json",
           "lines_with_an_entry_note": "restated off the sheet by T-0643. The inventory figure was 31 `to the nearest line`; the line-by-line reading finds 32, the extra one anchored by entries in both the commerce and manufactures columns at y≈2720.",
-          "note": "committed with the family-total residual (+15) recorded rather than adjusted away (T-0643)"
+          "note": "committed with the family-total residual (+15) recorded rather than adjusted away (T-0643)",
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired_partner_not_in_this_group",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 11,
@@ -179,7 +206,10 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-98M.json",
           "lines_ruled": 31,
-          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 30 entries and 1 blank ruled line(s) at the foot"
+          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 30 entries and 1 blank ruled line(s) at the foot",
+          "page_population_key": 124,
+          "page_population_key_alternate": 123,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 13,
@@ -193,7 +223,9 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-99F.json",
           "note": "one of the seven pages PR #670 read. cells read by T-0551 (PR #698, the run that had claimed T-0534 before the split) at a fitted, lean-corrected column grid: 37 of 38 columns balance the printed totals exactly on all 31 lines and are committed; column 15 (free white females 5 under 10) reads 10 against a printed 11 and is left unreconciled",
-          "lines_ruled": 31
+          "lines_ruled": 31,
+          "page_population_key": 182,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 14,
@@ -208,7 +240,9 @@
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-9HY.json",
           "lines_ruled": 31,
           "note": "all 26 free-white columns balance against the enumerator's own totals; the FREE COLORED block is unfilled",
-          "line_count_correction": "the inventory said 25 lines with an entry, stated to the nearest line; the fitted row grid and the names give 23, and lines 24-31 are ruled and blank."
+          "line_count_correction": "the inventory said 25 lines with an entry, stated to the nearest line; the fitted row grid and the names give 23, and lines 24-31 are ruled and blank.",
+          "page_population_key": 115,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 15,
@@ -222,7 +256,10 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-9K3.json",
           "lines_ruled": 31,
-          "note": "read by T-0585: every ruled line recorded, the cells read at a column grid fitted to the sheet and checked against the enumerator's own printed column totals — 37 of 38 columns balance and are committed; free colored males 24 under 36 (column 29) reads 4 against a footing that reads 11 and is left unreconciled with its residual. The inventory's figure of 31 lines with an entry stands unchanged. A page of boarding houses: four lines carry 104 of the 195 free white persons on it."
+          "note": "read by T-0585: every ruled line recorded, the cells read at a column grid fitted to the sheet and checked against the enumerator's own printed column totals — 37 of 38 columns balance and are committed; free colored males 24 under 36 (column 29) reads 4 against a footing that reads 11 and is left unreconciled with its residual. The inventory's figure of 31 lines with an entry stands unchanged. A page of boarding houses: four lines carry 104 of the 195 free white persons on it.",
+          "page_population_key": 208,
+          "page_population_key_alternate": 201,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 16,
@@ -236,7 +273,9 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-9M5.json",
           "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals — 36 of 38 columns balance and are committed, the two that do not are named on the page file. The 30-versus-31 disagreement with PR #670 is SETTLED against the sheet's own footings: 30 entries, and line 26 is a named head with no mark in any column A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-9M5.json) agrees on every name and disagrees on the cells of 20 of 30 lines, with the footings of columns 1, 6 and 14 read differently — each reading balances a different set of columns. The committed cells are one reading until the two are reconciled against the sheet.",
-          "lines_ruled": 30
+          "lines_ruled": 30,
+          "page_population_key": 137,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 17,
@@ -250,7 +289,9 @@
           "read_state": "names_and_cells_read_partly_reconciled",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-9MX.json",
           "note": "printed page unread — the corner is outside the exposure. 24 of 26 free-white columns balance and are committed; free white males Under 5 and 5 under 10 do not and are not committed. See the page file's cells_column_check.",
-          "lines_ruled": 31
+          "lines_ruled": 31,
+          "page_population_key": 152,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 18,
@@ -262,7 +303,9 @@
           "what_it_is": "names + free-white age bands, filled",
           "in_pr_670_calibration_set": false,
           "read_state": "names_and_cells_read",
-          "page_file": "data/research/census_1840/pages/33S7-9YYJ-9RG.json"
+          "page_file": "data/research/census_1840/pages/33S7-9YYJ-9RG.json",
+          "page_population_key": 187,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 19,
@@ -275,7 +318,9 @@
           "in_pr_670_calibration_set": false,
           "read_state": "names_and_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-9WF.json",
-          "note": "this is the image the deposit holds twice; '33S7-9YYJ-9WF (1).jpg' is a byte-identical copy and is not counted"
+          "note": "this is the image the deposit holds twice; '33S7-9YYJ-9WF (1).jpg' is a byte-identical copy and is not counted",
+          "page_population_key": 103,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero"
         },
         {
           "index": 20,
@@ -287,7 +332,10 @@
           "what_it_is": "continuation sheet, filled; the schools columns carry 1 and 25",
           "in_pr_670_calibration_set": false,
           "read_state": "inventoried_only",
-          "page_file": null
+          "page_file": null,
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired_key_not_yet_read",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 21,
@@ -299,7 +347,10 @@
           "what_it_is": "continuation sheet, filled",
           "in_pr_670_calibration_set": false,
           "read_state": "inventoried_only",
-          "page_file": null
+          "page_file": null,
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired_key_not_yet_read",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 22,
@@ -311,7 +362,10 @@
           "what_it_is": "continuation sheet, filled",
           "in_pr_670_calibration_set": false,
           "read_state": "inventoried_only",
-          "page_file": null
+          "page_file": null,
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired_key_not_yet_read",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 23,
@@ -325,7 +379,12 @@
           "read_state": "names_transcribed_cells_read",
           "page_file": "data/research/census_1840/pages/33S7-9YYJ-B3.json",
           "lines_ruled": 31,
-          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 29 entries and 2 blank ruled line(s) at the foot"
+          "note": "read by T-0532: every ruled line recorded, the cells read at a fitted column grid and checked against the printed column totals. the inventory declared 31 lines WITH AN ENTRY; this pass reads 29 entries and 2 blank ruled line(s) at the foot",
+          "page_population_key": 184,
+          "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json — the enumerator’s own 38 printed footings summed, blanks counted as zero",
+          "footings_read_by_t_0642": [
+            29
+          ]
         },
         {
           "index": 24,
@@ -337,7 +396,10 @@
           "what_it_is": "continuation sheet, filled but very faint",
           "in_pr_670_calibration_set": false,
           "read_state": "inventoried_only",
-          "page_file": null
+          "page_file": null,
+          "paired_to_printed_page": null,
+          "pairing_state": "unpaired_key_not_yet_read",
+          "pairing_tested_by": "T-0642"
         },
         {
           "index": 25,
@@ -405,7 +467,16 @@
           "33S7-9YYJ-38": "PR #698, disagrees with the committed reading"
         }
       },
-      "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view."
+      "line_counts_are": "read off the page at 1500 px wide and are the count of ruled lines carrying an entry, not a printed figure. The three transcribed pages' counts (30, 31, 31) are confirmed line by line; the other 22 are stated to the nearest line and a transcribing pass restates them exactly. CORRECTED 2026-09-03 by T-0540 for the three continuation sheets it read: 33S7-9YYJ-24 and -5D are 31 each as inventoried, and 33S7-9YYJ-5S is 29 and not the 28 stated here — that count is now read off the ink line by line rather than off a 1500 px contact view.",
+      "left_sheet_population_key": {
+        "ticket": "T-0642",
+        "file": "data/research/census_1840/left_sheet_population_key.json",
+        "what": "The twelve filled left sheets of this group keyed by page population — the sum of the enumerator’s own 38 printed age-band footings — and the eleven continuation sheets tested against them on both keys, the page population and the count of ruled lines carrying an entry.",
+        "read": "2026-09-04",
+        "footings_read_this_pass": "33S7-9YYJ-B3 column 29 (a cursive 2, which balances its cells and moves that sheet’s key from 182 to 184) and the seventeen columns 33S7-9YYJ-98M had recorded not_read, every one of them blank at the foot. One disagreement is recorded and not spent: 98M column 27 reads here as a single stroke against the 2 T-0532 committed, so that sheet is keyed 123 or 124.",
+        "result": "ONE of the eleven pairs — 33S7-9YYJ-24 to printed page 219 (33S7-9YYJ-9K3), on 31 lines against 31 and 201 persons against 201 — and it settles 9K3’s disputed column 29 toward 4. ONE is shown outright to have no partner in this group: 33S7-9YYJ-8D carries 32 entries and no left sheet here carries more than 31. FIVE have a committed key that matches no left sheet in the group, and FOUR have no key yet because their TOTAL footing is unread (T-0641, T-0644). The unpaired ten are not blocked on this group: they are blocked on the left-sheet footings of groups 2 and 3, which are read for names but not for cells.",
+        "rule": "A pair must match on BOTH keys. A match on one key alone is a candidate, recorded with the rule that refused it. An unpaired sheet is recorded as unpaired and never guessed."
+      }
     },
     {
       "range": "images 26-50 of 74",

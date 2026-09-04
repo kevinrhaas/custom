@@ -1,7 +1,7 @@
 ---
 id: T-0642
 title: The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0539
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 2:17:07 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33846632682
 ---
 
 The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets.
