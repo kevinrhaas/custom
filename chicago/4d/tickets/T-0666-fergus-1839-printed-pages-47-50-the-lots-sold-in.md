@@ -1,7 +1,7 @@
 ---
 id: T-0666
 title: Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-0611
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 10:03:41 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33887011653
 ---
 
 Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table.
