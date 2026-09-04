@@ -1,7 +1,7 @@
 ---
 id: T-0618
 title: The OCR reader for volume 4: --extract --ocr, resumable by page range, and the measured recovery it buys
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0613
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 749
 claimed_by: run 9/3/2026, 9:03:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T02:19:38.696Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33823914688
 ---
 
