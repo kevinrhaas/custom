@@ -3,8 +3,12 @@
 **What lives here.** The Illinois State Archives' *Illinois Public Domain Land Tract
 Sales* database, read for the two townships the town of Chicago and its north side
 stand on — **T39N R14E** and **T40N R14E**, third principal meridian — for every sale
-dated on or before **31 December 1836**. 375 sales, 202 distinct purchasers as the
-register spelled them, 19,704 acres and $43,631.32 of ground (T-0557).
+dated on or before **31 December 1836**. 566 sales, 260 distinct purchasers as the
+register spelled them, 20,234.24 acres and $70,485.75 of ground (T-0557, finished by
+T-0675). **All seventy-two sections are read whole**: the three T-0557 had to leave
+truncated at the search's 150-row page were walked to their end through the results
+page's own More button, which is a cursor and not a dead end. That is the second
+section below, and it is the correction that matters most here.
 
 **This is not a list of people, and that is the whole discipline of the domain.** The
 register records a TRANSACTION. A man who entered eighty acres in T40N R14E in 1835
@@ -14,7 +18,7 @@ purchase says only that he bought. The one column that speaks to where he lived 
 
 | Residence as the register wrote it | sales |
 |---|---|
-| UNKNOWN | 296 |
+| UNKNOWN | 485 |
 | COOK | 36 |
 | MACON | 16 |
 | VERMILION | 11 |
@@ -22,6 +26,11 @@ purchase says only that he bought. The one column that speaks to where he lived 
 | MCLEAN | 4 |
 | LASALLE | 2 |
 | IROQUOIS | 1 |
+| VIRGINIA | 1 |
+| ST. LOUIS | 1 |
+
+The last two are the register's own words and are carried as it wrote them: neither
+is an Illinois county, and this project does not correct a clerk.
 
 So a row whose Residence reads COOK is graded `documented` — for residence in **Cook
 County on the date of sale**, which in 1835 reaches far beyond the town — and every
@@ -29,17 +38,22 @@ other row is graded `inferred`, with the reasoning written on the record. Nothin
 mints a resident or regrades one. `resident_crosswalk.json` proposes correspondences
 and states the rule that made each; T-0514 and T-0515 are what spend them.
 
-**What the reading found.** Sales by year: 1830 · 13, 1831 · 8, 1832 · 3, 1833 · 150,
+**What the reading found.** Sales by year: 1830 · 17, 1831 · 8, 1832 · 3, 1833 · 337,
 1834 · 95, 1835 · 101, 1836 · 4, and one row the register dates 1810, carried verbatim
-because it is what the page says. By type: 205 federal cash entries (`FD`), 150 school
-section sales (`SC`), 20 canal sales (`CN`). By what the tract resolves to: 163 half
-quarter-sections, 113 town lots, 50 quarter-sections, 2 quarter-quarters and 47 the
-parser leaves `unparsed` rather than guess at.
+because it is what the page says. By type: 205 federal cash entries (`FD`), 337 school
+section sales (`SC`), 24 canal sales (`CN`). By what the tract resolves to: 217 town
+lots, 167 half quarter-sections, 50 quarter-sections, 2 quarter-quarters and 130 the
+parser leaves `unparsed` rather than guess at. The shape of that list is the school
+section arriving: 1833 more than doubles, and the town lot passes the half
+quarter-section as the commonest thing the register sells.
 
-**Seventeen purchasers meet a person the town already holds** — Philo Carpenter,
-Archibald Clybourne, George Washington Dole, Daniel Elston, Alexander N. Fullerton,
-Edward H. Haddock (twice, once as `HADDOCK E H`), Russel E. Heacock, Hiram Pearsons,
-Jeddiah Wooley and eight more. None of the seventeen carries a stated residence: the
+**Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
+Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
+Elston, John Hale, Thomas Hartzell, Chester Ingersoll, Paul Kingston, Alexander Lloyd,
+Ira Minard, Walter Loomis Newberry, Hiram Pearsons, Jeremiah Price, Peter Pruyne (on
+three rows, one of them `PRUYNE P AND CO`), James C Spence, Ashbel Steele, Henry
+Vanderbogert, Charles Wessencraft, Henry C. West, Alexander Wolcott, John Ludby — 26
+matched purchaser spellings against 234 refused. None carries a stated residence: the
 thirty-six COOK rows are other names, and matching them is work this pass did not do.
 
 **Shape: `records`.** A sale is a row on a page, so it takes the records shape — the
@@ -62,19 +76,30 @@ network and is therefore run deliberately by a research pass and never by the ga
 
 ## Two things about the source, both learned the hard way
 
-**The search returns at most 150 rows and offers no paging.** A whole-township query
-stops at 150 and looks complete — the first attempt at this read came back with exactly
+**The search shows at most 150 rows at a time — and it pages.** A whole-township query
+stops at 150 and looks complete: the first attempt at this read came back with exactly
 150 rows for each township and would have recorded a ceiling as a town. So the reading
-is BY SECTION, thirty-six queries per township. Sixty-nine of the seventy-two sections
-came back under the ceiling and were read whole; `coverage.json` declares the 34 of
-those that hold a sale through 1836 and lists the other 35 as queried and empty, which
-is read rather than a hole. **Three sections did not come back under the ceiling** — T39N R14E sections 16, 21 and 29, the school section and two of the West
-Division sections, whose 1848-1852 city-lot sales fill the ceiling on their own. What
-this repo holds for those three is the first 150 rows the search would give (154 of the
-375 sales below are from them), and they are deliberately **not declared read**. The
-`name` field cannot be used to break them up: it belongs to the database's other search
-form and does not narrow a legal-description query, it replaces it, returning that name
-from every township in Illinois.
+is BY SECTION, thirty-six queries per township. That much T-0557 got right. What it got
+wrong is the ceiling itself. **The results page carries a `More` button**, and that
+button is a keyset cursor — `hiddenPurchaseNo` + `hiddenPurchaser` + `hiddenSectionNo`,
+replayed against the same search, return the rows after the last one shown. Results are
+ordered by purchaser, so replaying the cursor walks a section to its end.
+`harvest_land_sales.py --sweep` follows it and prints how many pages each section took.
+
+T-0557 read the three sections that filled their first page — T39N R14E 16, 21 and 29,
+the school section and two of the West Division sections — as truncated, and declared
+them unread. T-0675 walked them: **section 16 is 3 pages and 337 sales, all of them the
+October 1833 school-section auction; section 21 is 6 pages and 781 rows, 4 of them
+through 1836; section 29 is 2 pages and 217 rows, again 4 through 1836.** So the hole
+was 191 sales wide and it is closed, and every section of both townships is now declared
+read. The lesson is worth keeping over the numbers: **a page that fills is a page, not a
+limit** — look for the cursor before recording a refusal.
+
+The `name` field still cannot be used to break a section up: it belongs to the
+database's other search form and does not narrow a legal-description query, it replaces
+it, returning that name from every township in Illinois. It DOES combine with the county
+select, which is a different way through the same ceiling and was not needed once the
+cursor was found.
 
 **The site refuses datacentre addresses.** Every user agent tried from this project's
 runner gets a bare 403 from the WAF — the session that filed T-0557 hit the same wall
@@ -88,8 +113,8 @@ county and date.
 
 ## What is NOT read, and is not a fault
 
-- **T39N R14E sections 16, 21 and 29** — truncated at the ceiling, as above.
 - **The ring townships** — T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E.
+  That is T-0676, and it is the last of what T-0610 asked for.
 - **Sales to purchasers whose stated residence is Chicago or Cook County outside these
   townships.** The database's name search cannot be filtered by residence, so this
   needs a different shape of query.
@@ -128,8 +153,8 @@ register prints and nothing about its outcome.
 **The two silences, and both are the source's rather than the tool's.** 254 of the
 structures stand in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get
 nothing, because the canal commissioners sold those lots and this database does not hold
-them. And **150 rows, every town-lot and block-only sale in the register, are in section
-16, the school section**, sold at the October 1833 auction; that subdivision's plat is
-not traced by this project, so a block and lot number in it names ground this repo cannot
-point at. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
+them. And **337 rows — every one of them in section 16, the school section**, sold at the
+October 1833 auction, are refused: 336 because that subdivision's plat is not traced by
+this project, so a block and lot number in it names ground this repo cannot point at, and
+one because the register prints its lot as `06126` and the parser will not guess. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
 the only committed structure standing in section 16.
