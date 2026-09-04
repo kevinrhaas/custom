@@ -1,7 +1,7 @@
 ---
 id: T-0529
 title: The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0495
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 774
 claimed_by: run 9/4/2026, 4:38:47 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T09:56:23.842Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33855115057
 ---
 
