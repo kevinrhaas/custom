@@ -1,6 +1,6 @@
 ---
 id: T-0691
-title: Is a post-office letter list a contemporary record naming the person in Chicago? The ladder parked this for the owner and 11 multi-source residents sit on the answer
+title: The ladder is a max over single classes and cannot see corroboration, so six men on the 1835 poll AND other lists are graded "the 1835 poll alone": add the convergence rung
 state: open
 epic: META
 requested_by: owner
@@ -16,91 +16,117 @@ blocked_on: null
 needs_bake: false
 ---
 
-**The owner, 2026-09-04, looking at `hh_allen_edward_richards.json`:** *"we have people now who have
-been identified in multiple sources, but they are still being marked as inferred? they should be
-attested if you have seen them like this in multiple sources."*
+**The owner, 2026-09-04:** *"if the letter list places someone as likely there, and then there are
+voter records, and then other records later, then that is fairly strong attestation route that they
+are a real person… can we change or improve the grading system for these people like this with
+multiple sources that are identifying them there in and around 1835?"* And, naming the pair:
+*"like to me alone these two sources together would be attestation —
+`chicago_democrat_1833_1835`, `chicago_voter_lists_1833_1835_irad`."*
 
-## The question is already asked, and it is his to answer
+**He is right, and this ticket exists because the first review of his question pushed back on it and
+was wrong.** The objection raised was that the ladder grades by CLASS and not COUNT, and that a
+count rule would make a man attested on two 1843 directory entries. That conflated two different
+things: the *number of appearances* and the *convergence of independent classes*. Two 1843 directory
+entries are one class, one era, possibly one lineage. The town's own poll list and the town's
+newspaper are two different bodies recording the same man in the same window, and that is not the
+same claim at all. The measurement below is what settled it.
 
-`tools/consolidate_resident_evidence.py` states it against rung **G2e**, in the code:
+## FINDING 1 — six men are graded on a false description of their own evidence
 
-> *"A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person
-> whose mail is at Chicago; **this tool declines to read that as the ladder's `contemporary record
-> naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put
-> back to the owner.**"*
+`grade()` reaches `G1a` (**attested** — *"The 1835 poll list and at least one other independent
+source"*) only when:
 
-And `docs/RESEARCH/resident-grading-policy.md` § *The one reading the ladder needed, put back to the
-owner* puts the stakes on it:
+```python
+if POLL_1835 in classes and len(sources) > 1:
+```
 
-> *"**Is a post-office letter list 'a contemporary record naming the person in Chicago'?** It names
-> a person whose *mail* is at Chicago. Reading it as G1b would grade roughly **1,500 letter-list
-> names `attested`** in one pass. This tool takes the cautious half … **If the owner rules the other
-> way, one line of `grade()` changes and the counts move; nothing else does.**"*
+`sources` is the set of **`source_id`s** — archival provenance. Every Chicago poll, tax and muster
+list in this project was digitised by IRAD and carries the single id
+`chicago_voter_lists_1833_1835_irad`. So a man on the 1833 tax list, the 1834 poll AND the 1835 poll
+has `len(sources) == 1`, misses `G1a`, and falls to **`G2a` — *"The 1835 poll list alone."***
 
-It has never been answered. That is why the card he opened reads as it does.
+That description is **factually untrue of the record it is applied to**. Willard Jones:
 
-## Edward Richards Allen, the case that raised it
+```
+civic: tax_1833  | Jones, Willard | source: chicago_voter_lists_1833_1835_irad
+civic: poll_1834 | Jones, Willard | source: chicago_voter_lists_1833_1835_irad
+civic: poll_1835 | Jones, Willard | source: chicago_voter_lists_1833_1835_irad
+   grade: inferred | rule: G2a  ("The 1835 poll list alone")
+```
 
-| appearance | date | class |
+Three lists, taken in three different years, by the town, of who could vote and who paid tax. **They
+are three independent records.** That one archive published them together is a fact about the
+archive, not about the evidence. Under the ladder **exactly as the owner ratified it** these six are
+already `G1a`, attested — no rung needs inventing:
+
+| | in-window records | graded |
 |---|---|---|
-| `poll_1834` — "Allen, Edward" | 1834 | an 1834 civic list |
-| **Chicago Democrat letter list — "Edward Allen"** | **1835-05-20** | **an 1833-35 newspaper, printing him by name** |
-| Fergus 1839 / 1843 — "druggist, Leroy M. Boyce" | 1839, 1843 | later evidence |
-| Chicago Tribune, Old Settlers' fourth reception | 1882 | later recollection, corroborates pre-1840 residence |
+| Willard Jones | tax 1833 · poll 1834 · poll 1835 | G2a |
+| Peter Pryne | tax 1833 · poll 1834 · poll 1835 | G2a |
+| Ira Kimberly | tax 1833 · poll 1835 | G2a |
+| John Foot | tax 1833 · poll 1835 | G2a |
+| Dexter Hapgood | poll 1833 · poll 1835 | G2a |
+| Edmund L Kimberly | poll 1834 · poll 1835 | G2a |
 
-He is graded **G2b — inferred** ("an 1833 or 1834 list with another source"). The letter list of
-20 May 1835 is the only appearance that could reach **G1b — attested** ("a contemporary record
-naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the
-town"), and G2e is exactly the rule that declines to let it.
+**This half is a defect fix, not a policy change**, and it should land first and separately.
 
-So: a man named on an 1834 Chicago poll list, named again in a Chicago paper in May 1835, printed
-as a Chicago druggist in 1839 and 1843, and received in 1882 as a settler of Chicago before 1840,
-is `inferred`. The owner's instinct that this reads wrong is a fair reading of that card.
+## FINDING 2 — the ladder cannot express convergence at all
 
-## What is measured, so the ruling is made on figures
+`grade()` is a **first-match cascade**: it asks "does any ONE class reach this rung?" and stops. It
+never asks "do several independent classes agree?" So Edward Richards Allen —
 
-Counted over `data/residents/households/` on dev, 2026-09-04:
+| record | date | body that made it |
+|---|---|---|
+| `poll_1834` | 1834 | the town's electors |
+| Chicago Democrat letter list | **1835-05-20** | the town's newspaper |
+| Fergus directory | 1839, 1843 | a commercial directory |
+| Tribune, Old Settlers' reception | 1882 | the Calumet Club, criterion = Chicago before 1840 |
+
+— reaches `G2b` and stops, and would reach `G2b` on two of those four just as well. **Four
+independent bodies naming one man across 1834 → 1835 → 1843 → 1882 grade identically to two.** That
+is the gap the owner is pointing at, and no ruling on the letter list alone closes it.
+
+## What is measured
+
+Over `data/residents/households/` on dev, 2026-09-04:
 
 | | |
 |---|---|
-| people graded `inferred` citing **2 or more** sources | **54** |
-| …of those, carrying an 1833-35 newspaper **letter-list** appearance | **11** |
-| by rule: G2b 33 · G2c 3 · **no ladder_rule at all 18** (that is T-0692, not this ticket) | |
-| letter-list names fleet-wide the policy doc says a G1b reading would lift | **~1,500** |
+| people graded `inferred` | 922 |
+| …on the 1835 poll **plus** another in-window record (Finding 1) | **6** |
+| …with 2+ distinct in-window classes but no 1835 poll (the Allen shape) | **14** |
+| …carrying **both** the Democrat and the IRAD voter lists — the owner's named pair | **17** |
+| of those 17, carrying no `ladder_rule` at all | 6 (T-0692's population) |
 
-**11 people move on this ruling here; ~1,500 move when the ladder is applied to the whole corpus.**
-That gap is the reason to rule deliberately rather than case by case.
-
-## THE COUNTER-ARGUMENT, WRITTEN OUT, because the cautious half has a real basis
-
-A letter list is the post office advertising **uncollected mail**. It is evidence that somebody
-*sent* to that person at Chicago — not that the person was standing in Chicago. It is the one class
-of source in this project where the name's presence is an act by a third party rather than by the
-person. That is a genuine distinction, and it is why the tool graded it down rather than up.
-
-**It is also why the count alone must not decide it.** The ratified ladder grades by the CLASS of
-evidence, never by how many appearances there are — G4 says so explicitly: *"Two or more
-appearances, none of them of a class a rung above accepts"* stays `inferred`. A rule of the shape
-"two sources means attested" would make a man attested on two 1843 directory entries, which the
-ladder's own G0 forbids in the same breath. **This ticket does not propose that rule and should not
-be closed by implementing it.**
+**Roughly twenty people.** Not the ~1,500 the letter-list-as-G1b reading would have moved — because
+this rung asks for CONVERGENCE, not for a letter list to be promoted on its own. That distinction is
+what makes it safe.
 
 ## The ask
 
-1. **Put the question to the owner in one sentence and record the answer in the ledger** — not only
-   in a PR comment. The last two rulings this project needed were both lost that way (T-0673 records
-   the triangle fork that was never filed; T-0426's fence ruling was made on 2026-08-31, implemented,
-   and stranded for four days).
-2. If he rules a letter list **IS** G1b: change the one line of `grade()`, re-run
-   `consolidate_resident_evidence.py --build`, and land the regrade as its own PR with the before/
-   after counts — expect roughly 1,500 names to move, so it is a slice of its own, not a rider.
-3. If he rules it is **NOT**: G2e stands, and the policy doc gains the ruling with its date so the
-   next reader meets the answer instead of the argument. **Allen's card then also gains a sentence
-   saying why a man in four sources is `inferred`** — the grade is defensible but the card does not
-   currently defend it.
-4. Either way, **`hh_allen_edward_richards.json` is the worked example** and should be named in the
-   policy doc, because it is the clearest case of the tension the ruling resolves.
+1. **Fix `G1a`'s independence test.** Independence is a property of the RECORD — a distinct list,
+   taken on a distinct occasion, by a distinct body — not of the `source_id` that digitised it.
+   Count distinct `(list, describes_date)` records, not `source_id`s. The six above become `G1a`
+   under the existing rung and no new policy is needed.
+2. **Add a convergence rung — `G1c`, attested.** Two or more independent in-window records **of
+   different class families**, naming the same identity. The families are: the town's civic lists
+   (poll/tax/muster), the contemporary press (the 1833-35 papers, letter lists included), and the
+   parish register. Allen qualifies on civic + press. **A letter list is not promoted on its own** —
+   `G2e`/`G3` still hold it down alone — it only counts toward convergence, which is precisely the
+   owner's reading: *"the letter list places someone as likely there, AND there are voter records."*
+3. **`G0` SURVIVES UNTOUCHED.** Later evidence never constitutes attestation by itself. Allen's 1843
+   directory and 1882 reception corroborate and date; the two in-window records are what earn the
+   rung. A man with four later sources and nothing in-window stays `not_1835_resident`.
+4. **Independence must be defined before it is counted**, or convergence becomes an artefact:
+   - nine printings of one letter list are ONE record, not nine — T-0318, T-0424, T-0428 are the
+     tickets that establish which printings are the same list;
+   - the same man minted twice from two printings is one identity, not two — that is T-0660;
+   - the identity merge must be sound first, or two men wrongly merged manufacture their own
+     corroboration. `crosswalk.json`'s refusal rules already govern this and are the gate.
+5. **Land it as a proposal.** `consolidate_resident_evidence.py --build` prints proposed changes
+   without writing household files; the regrade is a separate PR with before/after counts and the
+   twenty names listed, each checkable by hand. At this size they should be checked by hand.
 
-**Done when** the ruling is written in `docs/RESEARCH/resident-grading-policy.md` with its date and
-the owner's words, `GRADE_RULES` agrees with it, and the count of `inferred` people carrying 2+
-sources is either explained on their cards or moved.
+**Done when** no person record is described by a rung that contradicts its own evidence blocks,
+`G1c` exists with its independence rule written down, the twenty are regraded or individually
+explained, and `docs/RESEARCH/resident-grading-policy.md` carries the owner's words and the date.

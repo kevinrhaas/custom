@@ -75,18 +75,26 @@
 # ---
 # --- REVIEWED, AND THE ANSWER IS THREE THINGS, NOT ONE.
 # ---
-# --- T-0691 is his question, and it turns out the tool already asked it and is waiting on him:
-# --- G2e in consolidate_resident_evidence.py declines to read a post-office letter list as the
-# --- ladder's `contemporary record naming the person in Chicago` and says in the code that it is
-# --- "the one reading put back to the owner". Allen is inferred because of exactly that line. 11
-# --- multi-source residents move on the answer here; the policy doc puts ~1,500 letter-list names
-# --- on it corpus-wide, which is why it is a ruling and not a case-by-case fix.
+# --- T-0691. THE FIRST REVIEW OF HIS QUESTION PUSHED BACK AND WAS WRONG, and the ticket says so.
+# --- The objection was "the ladder grades by CLASS not COUNT, and a count rule would make a man
+# --- attested on two 1843 directory entries". That conflated the NUMBER OF APPEARANCES with the
+# --- CONVERGENCE OF INDEPENDENT CLASSES. Two 1843 directory entries are one class, one era, maybe
+# --- one lineage; the town's poll list and the town's newspaper are two different bodies recording
+# --- the same man in the same window. He named the pair himself: chicago_democrat_1833_1835 and
+# --- chicago_voter_lists_1833_1835_irad. 17 inferred people carry both.
 # ---
-# --- NOTE WHAT IS *NOT* PROPOSED. The ratified ladder grades by the CLASS of evidence, never by
-# --- how many appearances a person has — G4 says two or more appearances of an insufficient class
-# --- stay inferred. A rule of the shape "two sources means attested" would make a man attested on
-# --- two 1843 directory entries, which G0 forbids in the same breath. None of these tickets adopts
-# --- that rule, and none should be closed by implementing it.
+# --- AND MEASURING IT FOUND A PLAIN DEFECT UNDERNEATH. G1a fires on
+# --- `POLL_1835 in classes and len(sources) > 1`, where `sources` counts archival source_ids —
+# --- and every poll, tax and muster list in this project carries the single IRAD id. So a man on
+# --- the 1833 tax list, the 1834 poll AND the 1835 poll has len(sources)==1, misses G1a, and is
+# --- graded G2a: "The 1835 poll list alone", which is FALSE OF HIS OWN EVIDENCE BLOCKS. Six men
+# --- read that way today (Willard Jones, Peter Pryne, Ira Kimberly, John Foot, Dexter Hapgood,
+# --- Edmund L Kimberly). That half is a bug fix under the ladder AS RATIFIED, not a policy change.
+# ---
+# --- THE GUARD THAT STAYS: G0. Later evidence never attests on its own — a letter list is still
+# --- not promoted alone, it only COUNTS TOWARD convergence, which is exactly his reading: "the
+# --- letter list places someone as likely there, AND there are voter records". ~20 people move,
+# --- not the ~1,500 a letter-list-as-G1b reading would have moved.
 # ---
 # --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
 # --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
@@ -97,7 +105,7 @@
 # --- a druggist but that is not in his person record". The file quotes the trade three times and
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
-T-0691 — Is a post-office letter list a contemporary record naming the person in Chicago? The ladder parked this for the owner and 11 multi-source residents sit on the answer
+T-0691 — The ladder is a max over single classes and cannot see corroboration, so six men on the 1835 poll AND other lists are graded "the 1835 poll alone": add the convergence rung
 T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
 T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
