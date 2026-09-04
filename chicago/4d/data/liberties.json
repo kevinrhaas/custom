@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 216,
+  "count": 217,
   "liberties": [
     {
       "id": "L1",
@@ -162,7 +162,7 @@
     },
     {
       "id": "L5",
-      "title": "Sauganash Hotel: both footprints are invented",
+      "title": "Sauganash Hotel: the frame block's DEPTH is invented, and now it is the only half that is",
       "section": "per_subject",
       "subjects": [
         "sauganash_hotel"
@@ -173,12 +173,6 @@
           "structure": "sauganash_hotel",
           "phase": "frame_1831",
           "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "sauganash_hotel",
-          "phase": "log_1829",
-          "aspect": "footprint"
         }
       ],
       "recorded": "2026-08-09",
@@ -186,19 +180,23 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "placeholder rectangles (7×6 m log, 12×8 m frame), tagged `conjectural`."
+          "text": "the frame block's footprint is 9.92 × 8 m and the 8 m is a placeholder. The frontage is measured (see below); the depth is a plausible figure for the type carrying no evidence at all, and the two are graded together at the weaker."
         },
         {
           "label": "Why",
-          "text": "no dimensions are attested in any source reached. The rectangles are plausible for the type and carry no evidence whatsoever."
+          "text": "no source reached states a dimension of this building, and one drawn view cannot give a depth — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 — so a sheet that fixes the frontage leaves the depth exactly where it was. It is held at the old placeholder's own number rather than re-guessed, because the placement derivation offsets this origin by the footprint's depth to stand the north face on Lake Street, and moving a number with nothing behind it would move the building."
+        },
+        {
+          "label": "Resolved in part, 2026-09-04 (T-0626)",
+          "text": "two of the three rectangles this entry used to admit are no longer inventions. The 12 m frontage was retired for a measured 9.92 m — five bays that rectify to equal against the plate's own vanishing point, at a scale datum whose bias the same pass bounded at 2.7 %, which refutes 12 m rather than merely failing to support it. And the `log_1829` cabin's 7 × 6 m placeholder was retired for Andreas' attested 16 × 20 ft, once `drloih_beaubien` identified that cabin with the log building Andreas measures; that value is `inferred` on the identification and is out of this entry's Covers."
         },
         {
           "label": "How to resolve",
-          "text": "Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building rectangle once the datum is verified."
+          "text": "Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building rectangle once the datum is verified. A second view of this building from a DIFFERENT station would give the depth directly — every view held is the same composition."
         },
         {
           "label": "Covers",
-          "text": "`sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`."
+          "text": "`sauganash_hotel.frame_1831.footprint`."
         },
         {
           "label": "Recorded",
@@ -10177,6 +10175,7 @@
       "title": "The Sauganash's fabric from the three views: wing door and hood, frontispiece, brick and moss, and the louvre pitch",
       "section": "per_subject",
       "subjects": [
+        "philo_carpenter_log_shop",
         "sauganash_hotel"
       ],
       "covers": [],
@@ -10194,6 +10193,10 @@
         {
           "label": "Consequence",
           "text": "a visitor at Lake and Market sees the wing keep its own working entrance under a hood, a dressed front door, brick stacks and a moss-dark roof — none of it described by any 1835 witness, whose one vivid sentence gives the white paint and the bright-blue shutters — and cannot read a single size off the mesh as evidence. The Evidence panel's grades say what each claim rests on; the geometry carries each claim's own confidence (the louvre slats are graded weaker than the leaves they sit in); this entry admits the numbers."
+        },
+        {
+          "label": "Superseded in part, 2026-09-04 (T-0626)",
+          "text": "the log wing this entry dressed is not the hotel's to draw. `drloih_beaubien` captions the very engraving cited here — \"The log cabin on the left was Chicago's first drugstore\" — so the annex in all three views is `philo_carpenter_log_shop`, a record this dataset already held and already stood at the same corner; the hotel was drawing it a second time, in front of its own street face, which the owner reported. `log_wing`, `log_wing_door` and `log_wing_porch_hood` are `false` on the record from that date, so the leaf, the hood and their two posts are no longer built. Nothing else in this entry moves: the frontispiece, the brick, the moss roof and the louvre pitch are the main block's and are unchanged, and the door and hood are not withdrawn as READINGS — they belong to the cabin's own record. **L217** carries what replaced the wing."
         },
         {
           "label": "How to resolve",
@@ -13652,6 +13655,54 @@
         {
           "label": "Recorded",
           "text": "2026-09-03."
+        }
+      ]
+    },
+    {
+      "id": "L217",
+      "title": "The Sauganash's second mass: the plate fixes its height and its span, and this fixes how far it runs back",
+      "section": "per_subject",
+      "subjects": [
+        "sauganash_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "sauganash_hotel",
+          "phase": "frame_1831",
+          "aspect": "form.cross_wing_depth_m"
+        }
+      ],
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Sauganash Hotel (`sauganash_hotel`, frame_1831) gains a second two-storey mass — a cross wing standing back off its own rear wall at the east end, clapboard like the block, its ridge running away at right angles at the block's own ridge height, two lights in its far gable and one in the attic above them, and no stack."
+        },
+        {
+          "label": "One number in that is invented\nand it is the only one",
+          "text": "`cross_wing_depth_m`, how far the wing runs back, set at 8.0 m. The gable lights, their sills and the attic light are the archetype's, as every opening on this building's wings has been since **L154**."
+        },
+        {
+          "label": "Why",
+          "text": "everything else about the wing is measured, and the measurement is arithmetic on a banked reading rather than a look at a picture. T-0617 put the near apex of Braunhold's plate at (648, 350) with one line out of it at image slope −0.318 and one at +0.095. `tools/sauganash_apex_lines.py` projects each onto the vertical through the vanishing point of the plane it lies in — the plate gives both horizontal vanishing points and, from their orthogonality, its own focal length — and both come out **horizontal in the world**, 1.35° and 0.11°, where a 38° rake in the same plane would have been drawn at slope −1.99 against the −0.318 measured. Two ridges, not a ridge and a rake. Two gable ridges of one wall height and one pitch stand at one height only if they span the same width, so the wing's SPAN is the main block's own depth and the archetype refuses to build it at any other; `tools/check.sh` gates on the finding. What no single sheet can give is a DEPTH — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 says so, and from the plate's station this wing is behind the main block with only its ridge showing. So 8.0 m is the owner's own reading of the views, *\"almost the same size\"*, taken as the block's 8 m depth, which makes the wing square in plan. It was also chosen to leave the fenced rear yard its Market Street gateway and its three kept trees: nothing about that yard is attested either, and a wing sized to fill it would be one guess crowding another."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor at Lake and Market sees the three-part building all three views draw — the five-bay block on the street, a second mass of the same ridge height running back behind its east end, and the log cabin at that same end on the street line — where until now they saw one 12 × 8 m box with a log wing wrongly stood in front of its face. The wing's ridge height and its span are readings and carry the record's `inferred`; its length is this entry's and carries `reconstructed`, so the Evidence panel grades the two apart. Nobody can read the wing's depth off the mesh as evidence. The rear yard's drawn ground is notched around it and its east elm moved 2.1 m to keep its stated 2.5 m off a fence that also moved."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the individual building rectangles on Hathaway 1834 or Wright 1834 at the Lake and Market corner would give the whole plan at once and end both this entry and the frontage measurement it stands beside; Andreas vol. 1 p. 106 (\"Eagle Exchange\"), unread at page-image level, is the other standing lead; a second view of this building **from a different station** — every one held is the same composition — would give the depth directly. Related: **L154** (the fabric this entry stands beside, and the log wing it supersedes) · **L136** (the front of this building, from the same three plates) · **L139** (the yard trees this wing was sized around) · tickets **T-0626** (this), **T-0617** (the reading it spends), **T-0616** (the owner's brief)."
+        },
+        {
+          "label": "Covers",
+          "text": "`sauganash_hotel.frame_1831.form.cross_wing_depth_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04."
         }
       ]
     },

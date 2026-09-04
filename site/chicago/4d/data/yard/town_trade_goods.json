@@ -7,8 +7,8 @@
   "target_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin, the same frame data/enclosures/ and data/signage/ and the sidecars' placement.local_e / local_n use.",
   "counts": {
-    "frontages": 28,
-    "objects": 158,
+    "frontages": 27,
+    "objects": 155,
     "wagons": 66,
     "wagons_by_kind": {
       "farm_box": 26,
@@ -20,7 +20,7 @@
     "wagon_stands_refused": 41,
     "benches": 1,
     "sheds": 1,
-    "marked_objects": 158,
+    "marked_objects": 155,
     "distinct_marks": 75
   },
   "existence": {
@@ -2578,87 +2578,6 @@
       ]
     },
     {
-      "structure_id": "philo_carpenter_log_shop",
-      "name": "Philo Carpenter's Log Drug Store",
-      "trade": "drug_store",
-      "trade_confidence": "inferred",
-      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
-      "confidence": "reconstructed",
-      "facade_bearing_deg": 0.0,
-      "frontage_m": 6.1,
-      "usable_frontage_m": 5.1,
-      "standoff_m": 0.55,
-      "ground_quad_local_enu_m": [
-        [
-          113.4,
-          -127.5
-        ],
-        [
-          119.5,
-          -127.5
-        ],
-        [
-          119.5,
-          -122.62
-        ],
-        [
-          113.4,
-          -122.62
-        ]
-      ],
-      "items": [
-        {
-          "kind": "barrel",
-          "pose": "upright",
-          "at_local_enu_m": [
-            114.21,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "LINSEED OIL"
-            ],
-            "letterform": "stencil",
-            "says": "commodity"
-          }
-        },
-        {
-          "kind": "barrel",
-          "pose": "upright",
-          "at_local_enu_m": [
-            114.83,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "TURPENTINE"
-            ],
-            "letterform": "stencil",
-            "says": "commodity"
-          }
-        },
-        {
-          "kind": "crate",
-          "tier": 0,
-          "at_local_enu_m": [
-            116.12,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "PHILO CARPENTER",
-              "CHICAGO"
-            ],
-            "letterform": "shipping",
-            "says": "shipping"
-          }
-        }
-      ]
-    },
-    {
       "structure_id": "pruyne_kimball_drugstore",
       "name": "Pruyne & Kimball's Drug Store",
       "trade": "drug_store",
@@ -2844,8 +2763,8 @@
       "why_goods": "a public house takes its provisions in by the barrel and puts the empties back out",
       "confidence": "reconstructed",
       "facade_bearing_deg": 0.0,
-      "frontage_m": 12.0,
-      "usable_frontage_m": 11.0,
+      "frontage_m": 9.92,
+      "usable_frontage_m": 8.92,
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
@@ -2853,11 +2772,11 @@
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -122.6
         ],
         [

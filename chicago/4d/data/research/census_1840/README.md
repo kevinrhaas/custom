@@ -172,12 +172,15 @@ sheet that closes takes something like ten passes at magnification, not one: thi
 `4` as two strokes that read as `11`, its `7` and `9` differ by a loop, and its two-digit family
 totals sit hard against the column rule. Three sheets is a run.
 
-**No continuation sheet here is paired to a left sheet yet.** A right sheet has neither a name
-nor a printed page number on its exposure, so the pairing has to be earned: each page's
-population (the TOTAL footer, published on each page file as `pairing.page_population_key`) has
-to be matched against the printed age-band totals at the foot of each candidate left sheet, and
-those have not been read. T-0539 does that for all eleven at once. Until then every one of them
-is recorded as `unpaired` — never guessed.
+**One continuation sheet here is paired to a left sheet, and ten are not.** A right sheet has
+neither a name nor a printed page number on its exposure, so the pairing has to be earned: each
+page's population (the TOTAL footer, published on each page file as `pairing.page_population_key`)
+has to be matched against the printed age-band totals at the foot of each candidate left sheet.
+T-0642 read those footings for all twelve filled left sheets of the group and ran the test on all
+eleven continuations — see the section below and
+`data/research/census_1840/left_sheet_population_key.json`. Everything it did not pair stays
+recorded as `unpaired`, with the candidate it came nearest to and the rule that refused it —
+never guessed.
 
 ## The cells, and the rule that decides whether a column is committed (T-0532)
 
@@ -655,3 +658,132 @@ measurement alone.
 y2743-2772, sitting dead centre between two numbers that are each where the grid puts them —
 is recorded as unassigned rather than folded into either. A row index that cannot be wrong
 about the count is still allowed to be silent about one mark.
+
+## Printed pages 218 and 224, read to the cell (T-0553)
+
+`33S7-9YYJ-PC` (printed **218**) and `33S7-9YYJ-JM` (printed **224**) finish T-0526's four
+left sheets, after T-0552 read 216 and 217. Sixty households, every one of the 38 age-band
+columns on each line, and the enumerator's own footings transcribed beside them.
+
+**Both sheets close.** Every column either sheet's enumerator footed reproduces from the
+cells exactly — sixteen of sixteen on page 218 (113 people), fifteen of fifteen on page 224
+(175 people). That is thirty-one footed columns closing at a residual of zero, and it is a
+check on the grid as much as on the reading.
+
+| sheet | block | footings that close | that do not |
+|---|---|---|---|
+| 218 `33S7-9YYJ-PC` | free white males | **7 of 7** | — |
+| 218 | free white females | **9 of 9** | — |
+| 218 | free coloured | unfooted; body empty | — |
+| 224 `33S7-9YYJ-JM` | free white males | **7 of 7** | — |
+| 224 | free white females | **8 of 8** | — |
+| 224 | free coloured | unfooted; body empty | — |
+
+**The column grid has to be measured twice, and the second measurement is the one that
+matters.** T-0552 already found that a grid taken off the printed header is a quarter of a
+column out in the middle of the page. These two sheets add the other half of the lesson.
+Fitting an evenly spaced comb to the whole leaf finds the pitch correctly — 79.8 px on page
+218 — but it cannot tell you WHICH rule the block starts at, and on page 218 its strongest
+fit for the free-white-female block was one entire column to the right of the truth. Read
+that way, every woman on the sheet is one age band too young and nothing announces it. What
+settled it was the printed header read at magnification: the box lettered `Under / 5` for
+the female block occupies x=1799–1878 on that leaf, and the male `100 / and up- / wards.`
+box ends at 1799. Both sheets' block edges are fixed that way and the comb is used only for
+the pitch and the drift. The drift is real and it is why the fit is banded: page 218's male
+block starts at x=768.5 near the top of the body and at x=798.5 near the foot.
+
+**A line count corrected, twice.** The inventory declared page 218 at 33 lines "to the
+nearest line" and page 224 at 33. Each carries **30**, counted twice — once down the names
+column at magnification and once on the drawn grid — with no blank ruled line between
+entries. With page 217 (33 declared, 31 read) that is three of this group's four counted
+left sheets whose inventory figure was high, and the pattern is worth stating for the sheets
+still uncounted: the "to the nearest line" figures in `coverage.json` run about 8% long.
+
+**Five marks refused, all of them named.** Four on page 224 and one on page 218 are recorded
+as no entry rather than as a person, and each refusal is written on the page file with the
+reason and with what the column would have footed had the mark been read. Four of the five
+lie on the path of the flourished tail this hand gives the name to their left; the fifth is
+a descender from the line above, which a gridded re-read at 2.2x made plain. None of the
+five was refused because a total wanted it: the cells were read and fixed before the footer
+was looked at.
+
+**One footer glyph is doubtful and says so.** Page 224's male 20–30 footing is two figures,
+`3` and a small bowl above a right-turning curl. The same second glyph stands in the 30–40
+footing beside it, where the column reads 17 from the cells; so the glyph is a 7 and the
+20–30 footing is 37, which is what the cells give. The alternatives (2, 9) and their
+residuals are on the page file.
+
+**What this means for pairing.** Neither sheet is paired to its continuation — that is
+T-0539's work. Each publishes its page population as the key that pairing will read: 113 for
+page 218, 175 for page 224, on 30 lines each.
+
+## The left-sheet population key, and what pairs to what (T-0642, 2026-09-04)
+
+A continuation sheet has no name and no printed page number, so it can only be joined to its
+left half by numbers. Two are available. The **line count** — ruled lines carrying an entry —
+must be the same on both halves of one opening. The **page population** is given twice: on the
+left sheet as the sum of the enumerator's 38 printed age-band footings, and on the right sheet
+as the printed footing of the TOTAL column. `left_sheet_population_key.json` publishes both for
+every sheet in image group 1 and states the outcome of the test for all eleven continuations.
+
+**The rule: a pair must match on BOTH keys.** A match on one key alone is recorded as a
+candidate with the rule that refused it, so a later pass can retry it rather than rediscover it.
+The right key is always the enumerator's own TOTAL footing and never a pass's line-by-line sum
+of that column — the two differ on four of the seven sheets that have both.
+
+| printed page | image | entries | page population |
+|---|---|---|---|
+| 210 | `33S7-9YYJ-9RG` | 30 | 187 |
+| 215 | `33S7-9YYJ-9WF` | 31 | 103 |
+| 219 | `33S7-9YYJ-9K3` | 31 | **208 as footed, 201 by its own lines** |
+| 221 | `33S7-9YYJ-2T` | 31 | 146 |
+| 222 | `33S7-9YYJ-98M` | 30 | 123 or 124 |
+| 225 | `33S7-9YYJ-9HY` | 23 | 115 |
+| 226 | `33S7-9YYJ-B3` | 29 | **184** |
+| 228 | `33S7-9YYJ-6J` | 17 | 71 |
+| 229 | `33S7-9YYJ-9M5` | 30 | 137 |
+| 231 | `33S7-9YYJ-38` | 31 | 160 |
+| 234 | `33S7-9YYJ-99F` | 31 | 182 |
+| unknown | `33S7-9YYJ-9MX` | 31 | 152 |
+
+**Two footings were read off the page this pass**, because two sheets had columns their
+cell-reading passes recorded as `not_read`. On `33S7-9YYJ-B3` twenty of the twenty-one are blank
+and the twenty-first — column 29, free coloured males 24 under 36 — carries a cursive **2** that
+balances the 2 its cells hold; that figure moves the sheet's key from 182 to 184. On
+`33S7-9YYJ-98M` all seventeen are blank, which fixes its key rather than leaving it open — and
+the same reading disagrees with one figure already committed: column 27 is a single diagonal
+stroke where T-0532 read 2. The disagreement is recorded, not spent: the sheet is keyed **123 or
+124**, and neither value pairs with anything, so nothing in this pass turns on it.
+
+**One of the eleven pairs.** `33S7-9YYJ-24` — the calibration sheet of the whole continuation
+reading, which closes on all five of its own footed columns — carries 31 entries and foots 201
+persons. Printed page **219** (`33S7-9YYJ-9K3`) carries 31 entries and its own 31 lines hold
+exactly **201**. Nothing else in the group comes within eleven of that number by either measure.
+
+**And that pairing settles a glyph the sheet alone could not.** 9K3's column 29 is footed with
+two hooked diagonals, which T-0585 read as **11** against **4** in the column's own 31 cells; it
+committed neither and recorded the residual of 7. If the footing were 11 the page would hold 208
+persons and the facing continuation foots 201; read as 4, the two sheets agree to the person.
+That is a second and independent witness for 4 — and it is the same two-stroke 4/11 form that
+T-0627 and T-0645 settled toward 4 on `33S7-9YYJ-6H`. The page file is not rewritten: the
+residual stays where T-0585 put it, with this pairing named beside it.
+
+**One is shown outright to have no partner here.** `33S7-9YYJ-8D` carries **32** entries, read
+line by line by T-0643 and anchored on a thirty-second line the inventory had missed. No left
+sheet in images 1-25 carries more than 31, so 8D's left half is not in this image group at all.
+That is a fact about the deposit, and it is the frame for the rest: the deposit is ordered by
+sorted filename, not by the book, so an opening is only whole inside one group by accident.
+
+**Five have a committed key that matches nothing here**, and each is recorded with its nearest
+candidate: `33S7-9YYJ-5D` (125) against printed 222 at 123–124, refused on 31 entries against 30;
+`33S7-9YYJ-5S` (189, 29 entries) against printed 226, the group's **only** 29-entry left sheet,
+refused because B3 keys 184 and its own lines hold 185; `33S7-9YYJ-6H` (144) against printed 221,
+which brackets it at 146 footed and 143 read; `33S7-9YYJ-6Q` (198) and `33S7-9YYJ-5V` (165
+favoured, uncommitted) against no 30-entry sheet within eleven. **Four have no key at all yet** —
+`33S7-9YYJ-9WS`, `-B1`, `-B2` and `-BF` have unread TOTAL footings and belong to T-0644 and
+T-0641.
+
+**What the ten unpaired sheets are actually blocked on** is not more reading of this group. It is
+the left-sheet footings of image groups 2 and 3: nine of those sheets are read for names and none
+of them for cells, so none of them has a population key to be tested against.
+
