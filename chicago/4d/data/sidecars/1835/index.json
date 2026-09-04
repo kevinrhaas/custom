@@ -2696,7 +2696,7 @@
     },
     {
       "id": "philo_carpenter_log_shop",
-      "name": "Philo Carpenter's Log Drug Store",
+      "name": "Beaubien's log cabin, beside the Sauganash",
       "sidecar": "sidecars/1835/philo_carpenter_log_shop.json",
       "asset": "gltf/philo_carpenter_log_shop__log_1832.glb"
     },

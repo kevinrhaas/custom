@@ -2403,7 +2403,7 @@ for (const [label, viewport, touch] of [
         .filter((st) => st.record === 'sauganash_yard_trees')
         .map((st) => ({
           ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          inYard: st.e > 101.4 && st.e < 117.42 && st.n < -130.6 && st.n > -151.07,
           clear: onRun(st.e, st.n),
         }));
       return {
@@ -4236,8 +4236,47 @@ for (const [label, viewport, touch] of [
         return { id: walk.id, len: Math.round(len * 10) / 10, cells, open, empty,
                  worst: Math.round(worst * 1000) / 1000 };
       })();
+      // THE DECAL ORDER (T-0625), and it is asserted structurally because the
+      // fault it catches is invisible to every count this layer reports about
+      // itself. The street ribbon is a decal — depthWrite off, polygonOffset
+      // -8/-32 so the terrain cannot punch through its drape — and that offset
+      // scales with the polygon's depth slope, which at the grazing angle a road
+      // is seen at is large enough to beat the 0.06 m a board crossing stands
+      // above it. The ribbon then paints over the crossing in hard triangular
+      // patches. frontage.js answers that by drawing the timber AFTER the
+      // ribbon, which requires two things that are easy to separate by accident:
+      // the two must be in the SAME render list (three draws every opaque before
+      // any transparent, and renderOrder cannot reach across the two lists), and
+      // the timber's renderOrder must be the higher. The layer shipped with only
+      // the second for two months and the comment claiming both.
+      const decal = (() => {
+        let root = f?.group;
+        while (root?.parent) root = root.parent;
+        if (!root) return null;
+        const street = [];
+        const timber = [];
+        root.traverse((o) => {
+          const m = o.material;
+          if (!m) return;
+          for (const mm of (Array.isArray(m) ? m : [m])) {
+            const nm = mm?.name || '';
+            if (/^street-/.test(nm)) street.push({ transparent: !!mm.transparent, order: o.renderOrder });
+            else if (nm === 'frontage-timber') timber.push({ transparent: !!mm.transparent, order: o.renderOrder });
+          }
+        });
+        if (!street.length || !timber.length) return null;
+        return {
+          street: street.length,
+          timber: timber.length,
+          sameList: street.every((s) => timber.every((t) => t.transparent === s.transparent)),
+          timberAfter: street.every((s) => timber.every((t) => t.order > s.order)),
+          streetOrder: street[0].order,
+          timberOrder: timber[0].order,
+        };
+      })();
       return {
         edge,
+        decal,
         hitching,
         recordIds: (f?.records ?? []).map((r) => r.id),
         noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
@@ -4364,7 +4403,19 @@ for (const [label, viewport, touch] of [
       // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 20 && frontage.census?.fences === 32
+        // T-0626 takes it back to NINETEEN, and it is the first time this count
+        // has gone DOWN. Nothing was refused for being badly placed: the log
+        // cabin beside the Sauganash stopped being a drug store. Its record was
+        // titled Philo Carpenter's Log Drug Store and carried `drug_store` as
+        // its function, three years after Carpenter moved out of it, and the
+        // hitching rule stands a post at a frontage whose TRADE it accepts. With
+        // the trade gone — the record now states three former uses and no
+        // current one — the frontage has no trade to take custom from a stranger
+        // off the street, so the post retires with the signboard that lettered
+        // the same man's name over the same door. Walks, crossings, fences and
+        // refusals do not move: the building is still there and still the street
+        // wall on that face.
+        && frontage.census?.posts === 19 && frontage.census?.fences === 32
         && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4423,6 +4474,23 @@ for (const [label, viewport, touch] of [
     // in 0.2 m stations and asks every one of them for timber from the deck to
     // the ground at the walk's own edge line; it is written to fail on the comb
     // of board ends this replaced.
+    // T-0625. The owner reported the crossing at Lake and South Water still
+    // broken after T-0460 shipped: the road was painting over the plank deck in
+    // triangular patches, which reads as the same sawtooth from the street but
+    // is a render-order fault, not a geometry one. T-0460's probe above cannot
+    // see it — the timber IS there, at the right height, with a continuous edge;
+    // it is simply not the thing on the screen. So this asserts the ordering
+    // contract itself: same render list, timber after the ribbon.
+    check(`${label}: the street decal cannot paint over the timber laid on it`,
+      frontage.decal !== null && frontage.decal.sameList && frontage.decal.timberAfter,
+      frontage.decal === null
+        ? 'no street ribbon or no frontage timber in the scene to compare'
+        : `${frontage.decal.street} street material(s) and ${frontage.decal.timber} timber `
+          + `mesh(es): sameList=${frontage.decal.sameList} (three draws every opaque before `
+          + `any transparent, so renderOrder cannot order across the two lists), `
+          + `timberAfter=${frontage.decal.timberAfter} `
+          + `(street renderOrder ${frontage.decal.streetOrder}, timber ${frontage.decal.timberOrder})`);
+
     check(`${label}: a plank walk's side is one made edge for its whole length`,
       frontage.edge !== null && frontage.edge.open === 0 && frontage.edge.cells > 400
         && frontage.census?.kerb > 3000,
@@ -4598,11 +4666,19 @@ for (const [label, viewport, touch] of [
     // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
     // finds. The street-edge population is seventeen; the two on a record's own
     // ground do not move, because those come from the Sauganash's own plates.
-    check(`${label}: the nineteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 19
-        && frontage.census?.hitching === 19
+    // T-0626 makes it EIGHTEEN, the first fall in this line, and it is a trade
+    // leaving rather than a building. `philo_carpenter_log_shop` — Mark
+    // Beaubien's own cabin, let to Philo Carpenter in 1832, to John S. Wright,
+    // then to Eliza Chappel's school until 1834 — stopped carrying `drug_store`
+    // as its function, because on 1 July 1835 it is neither a drug store nor a
+    // school and no source reached says what it was. The hitching rule accepts a
+    // frontage by its TRADE, so the post retires with it. The street-edge
+    // population is sixteen; the two on a record's own ground do not move.
+    check(`${label}: the eighteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 18
+        && frontage.census?.hitching === 18
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 17
+        && frontage.hitching.filter((h) => h.street).length === 16
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -6297,7 +6373,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18', 'L217'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -7240,6 +7316,31 @@ for (const [label, viewport, touch] of [
       absurd.length
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
+
+    // --- the Sauganash is two masses, not one box (T-0626) ------------------
+    //
+    // The owner reported this building from the walk: a mass missing at the back
+    // and a log hut standing in front of its street door. Both were record faults
+    // and both are fixed, so the fix is asserted where a regression would show —
+    // in the RENDERED bounds, not in the JSON, because a record that grew a
+    // `cross_wing` attribute nothing built would read as fixed everywhere else.
+    //
+    // Orientation-agnostic on purpose. The plan is a 9.92 m frontage on Lake
+    // Street with an 8 m block behind it and an 8 m wing behind THAT, so one
+    // horizontal extent is about 16.5 m with the roof overhangs and the other
+    // about 10.4 m; which of the two is x and which is z is the placement's
+    // business and not this assertion's. The box it replaces was 12 x 8, whose
+    // long side is 12.5 m — well under the floor here, so a revert fails.
+    const saugBox = scale.perStructure.find((st) => st.id === 'sauganash_hotel');
+    const saugPlan = saugBox ? [saugBox.size[0], saugBox.size[2]].sort((a, b) => b - a) : null;
+    check(`${label}: the Sauganash is rendered as its two-mass plan`,
+      !!saugPlan && saugPlan[0] >= 15.0 && saugPlan[0] <= 18.0
+      && saugPlan[1] >= 9.5 && saugPlan[1] <= 11.5,
+      saugPlan
+        ? `plan ${saugPlan[0].toFixed(2)} x ${saugPlan[1].toFixed(2)} m `
+          + `(want the long axis 15-18 m for block + cross wing, the short 9.5-11.5 m `
+          + `for the measured five-bay frontage; the retired placeholder was 12 x 8)`
+        : 'sauganash_hotel is not in the instance bounds at all');
 
     // --- nothing hovers -----------------------------------------------------
     //
@@ -10326,9 +10427,9 @@ for (const [label, viewport, touch] of [
       const group = mount ? mount.querySelector('details.res-ll-group') : null;
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
-      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
-      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      const letter = rows.find((r) => r.dataset.id === 'hh_luce_william');
+      const candidate = rows.find((r) => r.dataset.id === 'hh_garrett_a');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_hail_aifred');
       for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;

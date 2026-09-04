@@ -18,8 +18,8 @@
   "selection_policy": "After the pilot and passes 2–5, filter to real named letter_list_only residents; exclude reconstructed/inf_* and unnamed/count placeholders; sort person_id within present and uncertain strata, interleave present then uncertain, and take this fixed chunk in sequence. The manifest is frozen to prevent duplicate research.",
   "people": [
     {
-      "household_id": "hh_ll_parker_m_cole",
-      "person_id": "ll_parker_m_cole",
+      "household_id": "hh_cole_parker_m",
+      "person_id": "cole_parker_m",
       "name": "Parker M. Cole",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -30,8 +30,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_parsons_edward",
-      "person_id": "ll_parsons_edward",
+      "household_id": "hh_parsons_edward",
+      "person_id": "parsons_edward",
       "name": "Edward Parsons",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -42,8 +42,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_patrick_malone",
-      "person_id": "ll_patrick_malone",
+      "household_id": "hh_malone_patrick",
+      "person_id": "malone_patrick",
       "name": "Patrick Malone",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -54,8 +54,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_patrick_martin",
-      "person_id": "ll_patrick_martin",
+      "household_id": "hh_martin_patrick",
+      "person_id": "martin_patrick",
       "name": "Patrick Martin",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -66,8 +66,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_paul_kingston",
-      "person_id": "ll_paul_kingston",
+      "household_id": "hh_kingston_paul",
+      "person_id": "kingston_paul",
       "name": "Paul Kingston",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -78,8 +78,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_pennington_sack_f",
-      "person_id": "ll_pennington_sack_f",
+      "household_id": "hh_pennington_sack_f",
+      "person_id": "pennington_sack_f",
       "name": "Sack F. Pennington",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_peter_d_huguenin",
-      "person_id": "ll_peter_d_huguenin",
+      "household_id": "hh_huguenin_peter_d",
+      "person_id": "huguenin_peter_d",
       "name": "Peter D. Huguenin",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_peter_schander",
-      "person_id": "ll_peter_schander",
+      "household_id": "hh_schander_peter",
+      "person_id": "schander_peter",
       "name": "Peter Schander",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_philo_c_mills",
-      "person_id": "ll_philo_c_mills",
+      "household_id": "hh_mills_philo_c",
+      "person_id": "mills_philo_c",
       "name": "Philo C. Mills",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_phineas_how",
-      "person_id": "ll_phineas_how",
+      "household_id": "hh_how_phineas",
+      "person_id": "how_phineas",
       "name": "Phineas How",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_pierce_downer",
-      "person_id": "ll_pierce_downer",
+      "household_id": "hh_downer_pierce",
+      "person_id": "downer_pierce",
       "name": "Pierce Downer",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_poke_edward",
-      "person_id": "ll_poke_edward",
+      "household_id": "hh_poke_edward",
+      "person_id": "poke_edward",
       "name": "Edward Poke",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_porter_fuller",
-      "person_id": "ll_porter_fuller",
+      "household_id": "hh_fuller_porter",
+      "person_id": "fuller_porter",
       "name": "Porter Fuller",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_powers_t_w",
-      "person_id": "ll_powers_t_w",
+      "household_id": "hh_powers_t_w",
+      "person_id": "powers_t_w",
       "name": "T. W. Powers",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -187,8 +187,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_quartus_j_carley",
-      "person_id": "ll_quartus_j_carley",
+      "household_id": "hh_carley_quartus_j",
+      "person_id": "carley_quartus_j",
       "name": "Quartus J. Carley",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_r_c_bristol",
-      "person_id": "ll_r_c_bristol",
+      "household_id": "hh_bristol_r_c",
+      "person_id": "bristol_r_c",
       "name": "R. C. Bristol",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ralph_stowell",
-      "person_id": "ll_ralph_stowell",
+      "household_id": "hh_stowell_ralph",
+      "person_id": "stowell_ralph",
       "name": "Ralph Stowell",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_reuben_beech",
-      "person_id": "ll_reuben_beech",
+      "household_id": "hh_beech_reuben",
+      "person_id": "beech_reuben",
       "name": "Reuben Beech",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -235,8 +235,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_reuben_bench",
-      "person_id": "ll_reuben_bench",
+      "household_id": "hh_bench_reuben",
+      "person_id": "bench_reuben",
       "name": "Reuben Bench",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_reuben_conant",
-      "person_id": "ll_reuben_conant",
+      "household_id": "hh_conant_reuben",
+      "person_id": "conant_reuben",
       "name": "Reuben Conant",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -259,8 +259,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_reuben_farnsworth",
-      "person_id": "ll_reuben_farnsworth",
+      "household_id": "hh_farnsworth_reuben",
+      "person_id": "farnsworth_reuben",
       "name": "Reuben Farnsworth",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -271,8 +271,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_richard_b_allan",
-      "person_id": "ll_richard_b_allan",
+      "household_id": "hh_allan_richard_b",
+      "person_id": "allan_richard_b",
       "name": "Richard B. Allan",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_richard_sammons",
-      "person_id": "ll_richard_sammons",
+      "household_id": "hh_sammons_richard",
+      "person_id": "sammons_richard",
       "name": "Richard Sammons",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -295,8 +295,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_riley_bush",
-      "person_id": "ll_riley_bush",
+      "household_id": "hh_bush_riley",
+      "person_id": "bush_riley",
       "name": "Riley Bush",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -307,8 +307,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_robert_baines",
-      "person_id": "ll_robert_baines",
+      "household_id": "hh_baines_robert",
+      "person_id": "baines_robert",
       "name": "Robert Baines",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -319,8 +319,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ruel_starr",
-      "person_id": "ll_ruel_starr",
+      "household_id": "hh_starr_ruel",
+      "person_id": "starr_ruel",
       "name": "Ruel Starr",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -331,8 +331,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_s_c_stimson",
-      "person_id": "ll_s_c_stimson",
+      "household_id": "hh_stimson_s_c",
+      "person_id": "stimson_s_c",
       "name": "S. C. Stimson",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -343,8 +343,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_s_sherwood",
-      "person_id": "ll_s_sherwood",
+      "household_id": "hh_sherwood_s",
+      "person_id": "sherwood_s",
       "name": "S. Sherwood",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -355,8 +355,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_salle_john_h",
-      "person_id": "ll_salle_john_h",
+      "household_id": "hh_salle_john_h",
+      "person_id": "salle_john_h",
       "name": "John H. Salle",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -367,8 +367,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_salmon_rutherford",
-      "person_id": "ll_salmon_rutherford",
+      "household_id": "hh_rutherford_salmon",
+      "person_id": "rutherford_salmon",
       "name": "Salmon Rutherford",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -379,8 +379,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_b_holcomb",
-      "person_id": "ll_samuel_b_holcomb",
+      "household_id": "hh_holcomb_samuel_b",
+      "person_id": "holcomb_samuel_b",
       "name": "Samuel B. Holcomb",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -391,8 +391,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_brookes",
-      "person_id": "ll_samuel_brookes",
+      "household_id": "hh_brookes_samuel",
+      "person_id": "brookes_samuel",
       "name": "Samuel Brookes",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -403,8 +403,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_devoe",
-      "person_id": "ll_samuel_devoe",
+      "household_id": "hh_devoe_samuel",
+      "person_id": "devoe_samuel",
       "name": "Samuel Devoe",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -415,8 +415,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_haviland",
-      "person_id": "ll_samuel_haviland",
+      "household_id": "hh_haviland_samuel",
+      "person_id": "haviland_samuel",
       "name": "Samuel Haviland",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -427,8 +427,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_kendall",
-      "person_id": "ll_samuel_kendall",
+      "household_id": "hh_kendall_samuel",
+      "person_id": "kendall_samuel",
       "name": "Samuel Kendall",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -439,8 +439,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_olingar",
-      "person_id": "ll_samuel_olingar",
+      "household_id": "hh_olingar_samuel",
+      "person_id": "olingar_samuel",
       "name": "Samuel Olingar",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -451,8 +451,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_s_lathrop",
-      "person_id": "ll_samuel_s_lathrop",
+      "household_id": "hh_lathrop_samuel_s",
+      "person_id": "lathrop_samuel_s",
       "name": "Samuel S. Lathrop",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -463,8 +463,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_shaw",
-      "person_id": "ll_samuel_shaw",
+      "household_id": "hh_shaw_samuel",
+      "person_id": "shaw_samuel",
       "name": "Samuel Shaw",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -475,8 +475,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_shively",
-      "person_id": "ll_samuel_shively",
+      "household_id": "hh_shively_samuel",
+      "person_id": "shively_samuel",
       "name": "Samuel Shively",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -487,8 +487,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_stout",
-      "person_id": "ll_samuel_stout",
+      "household_id": "hh_stout_samuel",
+      "person_id": "stout_samuel",
       "name": "Samuel Stout",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -499,8 +499,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_samuel_toby",
-      "person_id": "ll_samuel_toby",
+      "household_id": "hh_toby_samuel",
+      "person_id": "toby_samuel",
       "name": "Samuel. Toby",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -511,8 +511,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_sanderlin_petey",
-      "person_id": "ll_sanderlin_petey",
+      "household_id": "hh_sanderlin_petey",
+      "person_id": "sanderlin_petey",
       "name": "Petey Sanderlin",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -523,8 +523,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_sarah_childs",
-      "person_id": "ll_sarah_childs",
+      "household_id": "hh_childs_sarah",
+      "person_id": "childs_sarah",
       "name": "Sarah Childs",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -535,8 +535,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_sciota_evans",
-      "person_id": "ll_sciota_evans",
+      "household_id": "hh_evans_sciota",
+      "person_id": "evans_sciota",
       "name": "Sciota Evans",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -547,8 +547,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_t_godfrey",
-      "person_id": "ll_t_godfrey",
+      "household_id": "hh_godfrey_t",
+      "person_id": "godfrey_t",
       "name": "T. Godfrey",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -559,8 +559,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_t_johnston",
-      "person_id": "ll_t_johnston",
+      "household_id": "hh_johnston_t",
+      "person_id": "johnston_t",
       "name": "T. Johnston",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -571,8 +571,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_t_m_morrison",
-      "person_id": "ll_t_m_morrison",
+      "household_id": "hh_morrison_t_m",
+      "person_id": "morrison_t_m",
       "name": "T. M. Morrison",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -583,8 +583,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_tho_c_webb",
-      "person_id": "ll_tho_c_webb",
+      "household_id": "hh_webb_tho_c",
+      "person_id": "webb_tho_c",
       "name": "Tho. C. Webb",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -595,8 +595,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thomas_andrus",
-      "person_id": "ll_thomas_andrus",
+      "household_id": "hh_andrus_thomas",
+      "person_id": "andrus_thomas",
       "name": "Thomas Andrus",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -607,8 +607,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thomas_conger",
-      "person_id": "ll_thomas_conger",
+      "household_id": "hh_conger_thomas",
+      "person_id": "conger_thomas",
       "name": "Thomas Conger",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -620,8 +620,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thomas_dustin",
-      "person_id": "ll_thomas_dustin",
+      "household_id": "hh_dustin_thomas",
+      "person_id": "dustin_thomas",
       "name": "Thomas Dustin",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -632,8 +632,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thomas_u_moreland",
-      "person_id": "ll_thomas_u_moreland",
+      "household_id": "hh_moreland_thomas_u",
+      "person_id": "moreland_thomas_u",
       "name": "Thomas U. Moreland",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -644,8 +644,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thomas_van_vatzah",
-      "person_id": "ll_thomas_van_vatzah",
+      "household_id": "hh_vatzah_thomas_van",
+      "person_id": "vatzah_thomas_van",
       "name": "Thomas Van Vatzah",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -656,8 +656,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_thos_fitzgerald",
-      "person_id": "ll_thos_fitzgerald",
+      "household_id": "hh_fitzgerald_thos",
+      "person_id": "fitzgerald_thos",
       "name": "Thos. Fitzgerald",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -668,8 +668,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wame_john",
-      "person_id": "ll_wame_john",
+      "household_id": "hh_wame_john",
+      "person_id": "wame_john",
       "name": "John Wame",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -680,8 +680,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_allger",
-      "person_id": "ll_william_allger",
+      "household_id": "hh_allger_william",
+      "person_id": "allger_william",
       "name": "William Allger",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -692,8 +692,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_crisey",
-      "person_id": "ll_william_crisey",
+      "household_id": "hh_crisey_william",
+      "person_id": "crisey_william",
       "name": "William Crisey",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -704,8 +704,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_elliot",
-      "person_id": "ll_william_elliot",
+      "household_id": "hh_elliot_william",
+      "person_id": "elliot_william",
       "name": "William Elliot",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -716,8 +716,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_h_beach",
-      "person_id": "ll_william_h_beach",
+      "household_id": "hh_beach_william_h",
+      "person_id": "beach_william_h",
       "name": "William H. Beach",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -728,8 +728,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_hunter",
-      "person_id": "ll_william_hunter",
+      "household_id": "hh_hunter_william",
+      "person_id": "hunter_william",
       "name": "William Hunter",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -740,8 +740,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_luce",
-      "person_id": "ll_william_luce",
+      "household_id": "hh_luce_william",
+      "person_id": "luce_william",
       "name": "William Luce",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -753,8 +753,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_power",
-      "person_id": "ll_william_power",
+      "household_id": "hh_power_william",
+      "person_id": "power_william",
       "name": "William Power",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -765,8 +765,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_r_dorby",
-      "person_id": "ll_william_r_dorby",
+      "household_id": "hh_dorby_william_r",
+      "person_id": "dorby_william_r",
       "name": "William R. Dorby",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -777,8 +777,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_william_teal",
-      "person_id": "ll_william_teal",
+      "household_id": "hh_teal_william",
+      "person_id": "teal_william",
       "name": "William Teal",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -789,8 +789,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_williams_charles_c",
-      "person_id": "ll_williams_charles_c",
+      "household_id": "hh_williams_charles_c",
+      "person_id": "williams_charles_c",
       "name": "Charles C. Williams",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -801,8 +801,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wilson_mcclinton",
-      "person_id": "ll_wilson_mcclinton",
+      "household_id": "hh_mcclinton_wilson",
+      "person_id": "mcclinton_wilson",
       "name": "Wilson McClinton",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -813,8 +813,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_winship_charles",
-      "person_id": "ll_winship_charles",
+      "household_id": "hh_winship_charles",
+      "person_id": "winship_charles",
       "name": "Charles Winship",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -825,8 +825,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_winters_moses",
-      "person_id": "ll_winters_moses",
+      "household_id": "hh_winters_moses",
+      "person_id": "winters_moses",
       "name": "Moses Winters",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -837,8 +837,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_winthrop_merrill",
-      "person_id": "ll_winthrop_merrill",
+      "household_id": "hh_merrill_winthrop",
+      "person_id": "merrill_winthrop",
       "name": "Winthrop Merrill",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -849,8 +849,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_b_m_ewen",
-      "person_id": "ll_wm_b_m_ewen",
+      "household_id": "hh_mewen_wm_b",
+      "person_id": "mewen_wm_b",
       "name": "Wm. B. M'Ewen",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -861,8 +861,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_h_fraser",
-      "person_id": "ll_wm_h_fraser",
+      "household_id": "hh_fraser_wm_h",
+      "person_id": "fraser_wm_h",
       "name": "Wm. H. Fraser",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -873,8 +873,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_h_frazer",
-      "person_id": "ll_wm_h_frazer",
+      "household_id": "hh_frazer_wm_h",
+      "person_id": "frazer_wm_h",
       "name": "Wm. H. Frazer",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -885,8 +885,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_h_goddard",
-      "person_id": "ll_wm_h_goddard",
+      "household_id": "hh_goddard_wm_h",
+      "person_id": "goddard_wm_h",
       "name": "Wm. H. Goddard",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -897,8 +897,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_kimbal",
-      "person_id": "ll_wm_kimbal",
+      "household_id": "hh_kimbal_wm",
+      "person_id": "kimbal_wm",
       "name": "Wm. Kimbal",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -909,8 +909,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_osborn",
-      "person_id": "ll_wm_osborn",
+      "household_id": "hh_osborn_wm",
+      "person_id": "osborn_wm",
       "name": "Wm. Osborn",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [

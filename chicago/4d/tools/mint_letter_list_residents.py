@@ -176,29 +176,88 @@ def titles_in(name: str) -> set[str]:
     return {w.lower().strip("'") for w in re.split(r"\s+", raw.strip())} & TITLES
 
 
+def full_word(token: str) -> bool:
+    """Is this token a name, or is it an initial standing in for one? (T-0638)
+
+    The post office prints an initial as one letter and a stop (`C.`), sometimes as
+    a digit where the type or the scan failed (`8.`), sometimes as a two-character
+    cluster the same way (`II.`, `IS.`, `I1.`), and it abbreviates a forename to two
+    letters (`Wm.`). None of those can be a family name; three letters or more, with
+    a letter somewhere in them, is the shortest thing this corpus prints that can.
+    Deliberately conservative: it decides only whether a token could BE the surname,
+    never which token is.
+    """
+    token = token.strip("'")
+    return len(token) >= 3 and any(c.isalpha() for c in token)
+
+
+def surname_is_first_token(name: str) -> bool:
+    """Does this printing put the family name FIRST, with no comma to say so?
+
+    T-0638. `surname()` below reads the last token as the family name, which is right
+    for `Joel C. Mills` and wrong for `Mills Joel C.` — the post office's lists print
+    both orders and only sometimes punctuate the second. The tell is that the token
+    the plain rule lands on is not a name at all but an initial, while an earlier
+    token is: `Mills Joel C.` ends on `C.`, `Perry A. 8.` on `8.`, `Nelts Wm.` on an
+    abbreviated forename. When that happens the family name is the FIRST full token.
+    """
+    parts = words(name)
+    if not parts:
+        return False
+    if "," in name:
+        head = words(name.partition(",")[0])
+        picked = head[-1] if head else parts[0]
+    else:
+        picked = parts[-1]
+    return not full_word(picked) and any(full_word(w) for w in parts)
+
+
 def surname(name: str) -> str:
     """The family name, lowercased, from either order the papers print it in."""
     parts = words(name)
     if not parts:
         return ""
-    if "," in name:
+    if surname_is_first_token(name):
+        picked = next(w for w in parts if full_word(w))
+    elif "," in name:
         head = words(name.partition(",")[0])
-        return (head[-1] if head else parts[0]).lower().strip("'")
-    return parts[-1].lower().strip("'")
+        picked = head[-1] if head else parts[0]
+    else:
+        picked = parts[-1]
+    return picked.lower().strip("'").replace("'", "")
 
 
 def display(name: str) -> str:
-    """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one."""
-    if "," not in name:
-        return name.strip()
-    head, _, tail = name.partition(",")
-    tail = tail.strip()
-    return f"{tail} {head.strip()}".strip() if tail else head.strip()
+    """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one.
+
+    T-0638 taught it the unpunctuated second order too: `Mills Joel C.` -> `Joel C.
+    Mills`. Only the ORDER of the printed tokens moves, and the stop that followed
+    the leading surname goes with it — no token is recased, respelled or dropped,
+    because every one of these names is an OCR reading and this pass does not
+    correct readings (see docs/RESEARCH/letter-list-reading-suspicions.md).
+    """
+    if "," in name:
+        head, _, tail = name.partition(",")
+        tail = tail.strip()
+        return f"{tail} {head.strip()}".strip() if tail else head.strip()
+    tokens = name.split()
+    if len(tokens) >= 2 and surname_is_first_token(name):
+        moved = tokens[0]
+        if full_word(moved) and moved.endswith("."):
+            moved = moved[:-1]
+        return " ".join(tokens[1:] + [moved])
+    return name.strip()
 
 
 def slug(name: str) -> str:
-    return re.sub(r"_+", "_", re.sub(r"[^a-z0-9]+", "_",
-                                     " ".join(words(name)).lower())).strip("_")
+    """T-0638: an apostrophe JOINS inside a token, it does not split it. The
+    period's Scots and Irish prefix and its contracted forenames are one word each
+    — `M'Clintock` is `mclintock`, not `m_clintock`, and `Fred'k` is `fredk` — so
+    eight Scots and Irish surnames stop sorting under `m`. `St Cyr`, whose two parts
+    are separated by a space and not an apostrophe, is untouched.
+    """
+    plain = " ".join(words(name)).lower().replace("'", "")
+    return re.sub(r"_+", "_", re.sub(r"[^a-z0-9]+", "_", plain)).strip("_")
 
 
 def plain_fragment(name: str) -> str:
@@ -212,7 +271,7 @@ def plain_fragment(name: str) -> str:
     given: list[str] = []
     dropped = False
     for w in words(name):
-        if not dropped and w.lower().strip("'") == fam:
+        if not dropped and w.lower().strip("'").replace("'", "") == fam:
             dropped = True
             continue
         given.append(w)
@@ -383,17 +442,20 @@ def norm_place(s: str) -> str:
     return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
 
-def letter_list_pool(register: dict) -> list[dict]:
+def letter_list_pool(register: dict, own_pass: frozenset[str] = frozenset()) -> list[dict]:
     """Every letter-list-only name the town does not hold.
 
     Includes this pass's own previous answer, read back as an `enrich` on one of its
-    own person ids — see the docstring's last paragraph.
+    own person ids — see the docstring's last paragraph. The legacy `ll_` prefix
+    still says that on its own for any household not yet migrated to a plain id
+    (T-0599); `own_pass` names the ones that have, by their own source_pass field.
     """
     return [p for p in register["persons"]
             if p.get("letter_list_only")
             and (p.get("action") == "new_resident"
                  or (p.get("action") == "enrich"
-                     and str(p.get("action_target") or "").startswith(PERSON_PREFIX)))]
+                     and (str(p.get("action_target") or "").startswith(PERSON_PREFIX)
+                          or str(p.get("action_target") or "") in own_pass)))]
 
 
 def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
@@ -482,8 +544,10 @@ def mint(docs: dict, index: dict):
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
     in_town = in_town_places()
+    own_pass = frozenset(doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") == "letter_list")
 
-    return apply_refusals(rank(letter_list_pool(register), gazetteer),
+    return apply_refusals(rank(letter_list_pool(register, own_pass), gazetteer),
                           gazetteer, known, in_town)
 
 
@@ -741,10 +805,13 @@ def scale_report() -> None:
     and written down nowhere else in this file. `docs/LIBERTIES.md` L182 carries a
     dated statement of it, and its Scope count is gated against this same data.
     """
-    files, accepted, refusals = build()
+    files, accepted, refusals, _mine_paths = build()
     index = json.loads(files[INDEX])
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
-    pool = letter_list_pool(load(REGISTER))
+    docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+    own_pass = frozenset(doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") == "letter_list")
+    pool = letter_list_pool(load(REGISTER), own_pass)
     multi = [p for p in pool
              if len(returns_of(gazetteer[p["id"]]["mentions"])) >= RANKED_FIRST_RETURNS]
 
@@ -931,8 +998,103 @@ def gate() -> int:
     return 0
 
 
+NAME_READING_CASES = (
+    # printed as the post office set it,   surname,     the card's display name
+    # --- surname printed FIRST, no comma to say so (T-0638, fault A) -----------
+    ("Perry A. 8.", "perry", "A. 8. Perry"),
+    ("Mason Sabrina A.", "mason", "Sabrina A. Mason"),
+    ("merrich J. B.", "merrich", "J. B. merrich"),
+    ("Mills Joel C.", "mills", "Joel C. Mills"),
+    ("Hhelps Theodore E.", "hhelps", "Theodore E. Hhelps"),
+    ("Mabbet Benjamin F.", "mabbet", "Benjamin F. Mabbet"),
+    ("Norton Wm. H.", "norton", "Wm. H. Norton"),
+    ("Preston Stephen II.", "preston", "Stephen II. Preston"),
+    ("Bobinson George IS.", "bobinson", "George IS. Bobinson"),
+    ("Pugsley John K.", "pugsley", "John K. Pugsley"),
+    ("Pixley John L.", "pixley", "John L. Pixley"),
+    ("Clapp. A. P.", "clapp", "A. P. Clapp"),
+    ("Norton N. R.", "norton", "N. R. Norton"),
+    ("Page Elisha S.", "page", "Elisha S. Page"),
+    ("Orinsbey martin T.", "orinsbey", "martin T. Orinsbey"),
+    ("Regera John V.", "regera", "John V. Regera"),
+    ("Oakley Benjamin W.", "oakley", "Benjamin W. Oakley"),
+    ("Nelts Wm.", "nelts", "Wm. Nelts"),
+    # …and the three the printing gives no forename at all
+    ("McLoud I.", "mcloud", "I. McLoud"),
+    ("Willinm G.", "willinm", "G. Willinm"),
+    ("Ranwin O.", "ranwin", "O. Ranwin"),
+    # --- given-first, which the rule must NOT touch ----------------------------
+    ("Joel C. Mills", "mills", "Joel C. Mills"),
+    ("B. S. Morris", "morris", "B. S. Morris"),
+    ("A[n]drew W. Borland", "borland", "A[n]drew W. Borland"),
+    ("John Bates Jr.", "bates", "John Bates Jr."),
+    ("Joshua Hathaway jr.", "hathaway", "Joshua Hathaway jr."),
+    # a mangled INITIAL beside a sound surname is fault C, not fault A: the id is
+    # already right and this rule must leave both of them alone
+    ("8. G. Abbot", "abbot", "8. G. Abbot"),
+    ("James I1. Gabbs", "gabbs", "James I1. Gabbs"),
+    # --- the comma the papers do sometimes print -------------------------------
+    ("Hail, Aifred", "hail", "Aifred Hail"),
+    ("Foot, S.", "foot", "S. Foot"),
+    # --- a genuine two-part surname, which must survive all of it --------------
+    ("Rev. John Mary Irenaeus St Cyr", "cyr", "Rev. John Mary Irenaeus St Cyr"),
+)
+
+SLUG_CASES = (
+    # the period's Scots and Irish prefix is ONE word, not a letter and a word
+    ("Thomas M'Clintock", "thomas_mclintock", "mclintock_thomas"),
+    ("Angus M'Vaughton", "angus_mvaughton", "mvaughton_angus"),
+    ("Wm. B. M'Ewen", "wm_b_mewen", "mewen_wm_b"),
+    ("John O. P'aylor", "john_o_paylor", "paylor_john_o"),
+    # …and so is a contracted forename
+    ("Tho's Allison", "thos_allison", "allison_thos"),
+    ("Fred'k. Curtenius", "fredk_curtenius", "curtenius_fredk"),
+    ("Sam'l. L. Selden", "saml_l_selden", "selden_saml_l"),
+    ("Rob't. Starkweather", "robt_starkweather", "starkweather_robt"),
+    # a space is not an apostrophe: St Cyr slugs exactly as it always has
+    ("Rev. John Mary Irenaeus St Cyr", "john_mary_irenaeus_st_cyr",
+     "cyr_john_mary_irenaeus_st"),
+)
+
+
+def name_reading_self_test() -> int:
+    """T-0638. Every row of the ticket's own table, plus the forms the fix must not
+    break, proved against `surname()`, `display()` and `slug()` directly.
+
+    These are the three functions the household id, the household name and the
+    person's display name are all derived from, so a regression here silently
+    renames people. Fixtures, never the tree: the tree's own answer is gated
+    separately by `--gate` and `--check`."""
+    failed = 0
+    for printed, want_surname, want_display in NAME_READING_CASES:
+        got_s, got_d = surname(printed), display(printed)
+        if got_s != want_surname:
+            failed += 1
+            print(f"   FAIL surname({printed!r}) -> {got_s!r}, expected {want_surname!r}")
+        if got_d != want_display:
+            failed += 1
+            print(f"   FAIL display({printed!r}) -> {got_d!r}, expected {want_display!r}")
+    for printed, want_slug, want_fragment in SLUG_CASES:
+        got_slug, got_fragment = slug(printed), plain_fragment(printed)
+        if got_slug != want_slug:
+            failed += 1
+            print(f"   FAIL slug({printed!r}) -> {got_slug!r}, expected {want_slug!r}")
+        if got_fragment != want_fragment:
+            failed += 1
+            print(f"   FAIL plain_fragment({printed!r}) -> {got_fragment!r}, "
+                  f"expected {want_fragment!r}")
+    if failed:
+        print(f"   {failed} name-reading assertion(s) failed")
+        return 1
+    print(f"   OK: all {len(NAME_READING_CASES)} name readings and "
+          f"{len(SLUG_CASES)} slugs are what the papers print")
+    return 0
+
+
 def self_test() -> int:
     """Break each invariant on a copy of the tree and require the gate to name it."""
+    if name_reading_self_test():
+        return 1
     docs, index, structures = read_tree()
     if gate_problems(docs, index, structures):
         print("   the committed tree does not pass its own gate; fix that first")

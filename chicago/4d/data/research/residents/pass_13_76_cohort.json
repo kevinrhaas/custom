@@ -32,12 +32,13 @@
       "letter_list_returns": [],
       "sources": [
         "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad",
         "resident_research_v4_1835_census_bridge"
       ]
     },
     {
-      "household_id": "hh_ll_aiker_samuel",
-      "person_id": "ll_aiker_samuel",
+      "household_id": "hh_aiker_samuel",
+      "person_id": "aiker_samuel",
       "name": "Samuel Aiker",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -50,8 +51,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_aaron_parcel",
-      "person_id": "ll_aaron_parcel",
+      "household_id": "hh_parcel_aaron",
+      "person_id": "parcel_aaron",
       "name": "Aaron Parcel",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -73,12 +74,14 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_akers_simon",
-      "person_id": "ll_akers_simon",
+      "household_id": "hh_akers_simon",
+      "person_id": "akers_simon",
       "name": "Simon Akers",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -91,8 +94,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_absolam_reel",
-      "person_id": "ll_absolam_reel",
+      "household_id": "hh_reel_absolam",
+      "person_id": "reel_absolam",
       "name": "Absolam Reel",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -113,12 +116,13 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_allen_william",
-      "person_id": "ll_allen_william",
+      "household_id": "hh_allen_william",
+      "person_id": "allen_william",
       "name": "William Allen",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -131,8 +135,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_adam_vandorwerk",
-      "person_id": "ll_adam_vandorwerk",
+      "household_id": "hh_vandorwerk_adam",
+      "person_id": "vandorwerk_adam",
       "name": "Adam Vandorwerk",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -157,8 +161,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_allin_richard",
-      "person_id": "ll_allin_richard",
+      "household_id": "hh_allin_richard",
+      "person_id": "allin_richard",
       "name": "Richard Allin",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -171,8 +175,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alanson_b_vaughan",
-      "person_id": "ll_alanson_b_vaughan",
+      "household_id": "hh_vaughan_alanson_b",
+      "person_id": "vaughan_alanson_b",
       "name": "Alanson B. Vaughan",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -193,12 +197,13 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_alling_prudde",
-      "person_id": "ll_alling_prudde",
+      "household_id": "hh_alling_prudde",
+      "person_id": "alling_prudde",
       "name": "Prudde Alling",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -211,8 +216,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alexander_wilkes",
-      "person_id": "ll_alexander_wilkes",
+      "household_id": "hh_wilkes_alexander",
+      "person_id": "wilkes_alexander",
       "name": "Alexander Wilkes",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -234,12 +239,14 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_anderson_eli_f",
-      "person_id": "ll_anderson_eli_f",
+      "household_id": "hh_anderson_eli_f",
+      "person_id": "anderson_eli_f",
       "name": "Eli F Anderson",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -252,8 +259,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alexr_h_tucker",
-      "person_id": "ll_alexr_h_tucker",
+      "household_id": "hh_tucker_alexr_h",
+      "person_id": "tucker_alexr_h",
       "name": "Alexr. H. Tucker",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -278,8 +285,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_anstin_al",
-      "person_id": "ll_anstin_al",
+      "household_id": "hh_anstin_al",
+      "person_id": "anstin_al",
       "name": "Mr. Al. Anstin",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -292,8 +299,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alfred_churchill",
-      "person_id": "ll_alfred_churchill",
+      "household_id": "hh_churchill_alfred",
+      "person_id": "churchill_alfred",
       "name": "Alfred Churchill",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -314,12 +321,13 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_archer_joseph",
-      "person_id": "ll_archer_joseph",
+      "household_id": "hh_archer_joseph",
+      "person_id": "archer_joseph",
       "name": "Joseph Archer",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -332,8 +340,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alison_b_vaughn",
-      "person_id": "ll_alison_b_vaughn",
+      "household_id": "hh_vaughn_alison_b",
+      "person_id": "vaughn_alison_b",
       "name": "Alison B. Vaughn",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -354,12 +362,13 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_avery_charles",
-      "person_id": "ll_avery_charles",
+      "household_id": "hh_avery_charles",
+      "person_id": "avery_charles",
       "name": "Charles Avery",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -372,8 +381,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_almon_perring",
-      "person_id": "ll_almon_perring",
+      "household_id": "hh_perring_almon",
+      "person_id": "perring_almon",
       "name": "Almon Perring",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -398,8 +407,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_ayres_levi",
-      "person_id": "ll_ayres_levi",
+      "household_id": "hh_ayres_levi",
+      "person_id": "ayres_levi",
       "name": "Levi Ayres",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -412,8 +421,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alonzo_castle",
-      "person_id": "ll_alonzo_castle",
+      "household_id": "hh_castle_alonzo",
+      "person_id": "castle_alonzo",
       "name": "Alonzo Castle",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -438,8 +447,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_bailly_joseph",
-      "person_id": "ll_bailly_joseph",
+      "household_id": "hh_bailly_joseph",
+      "person_id": "bailly_joseph",
       "name": "Joseph Bailly",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -452,8 +461,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alonzo_murray",
-      "person_id": "ll_alonzo_murray",
+      "household_id": "hh_murray_alonzo",
+      "person_id": "murray_alonzo",
       "name": "Alonzo Murray",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -478,8 +487,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_bakwith_albert",
-      "person_id": "ll_bakwith_albert",
+      "household_id": "hh_bakwith_albert",
+      "person_id": "bakwith_albert",
       "name": "Albert Bakwith",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -492,8 +501,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alonzo_murry",
-      "person_id": "ll_alonzo_murry",
+      "household_id": "hh_murry_alonzo",
+      "person_id": "murry_alonzo",
       "name": "Alonzo Murry",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -515,12 +524,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_bebee_orson",
-      "person_id": "ll_bebee_orson",
+      "household_id": "hh_bebee_orson",
+      "person_id": "bebee_orson",
       "name": "Orson Bebee",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -533,8 +543,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alva_crandal",
-      "person_id": "ll_alva_crandal",
+      "household_id": "hh_crandal_alva",
+      "person_id": "crandal_alva",
       "name": "Alva Crandal",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -556,13 +566,15 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_11_26",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_beddlecome_ash",
-      "person_id": "ll_beddlecome_ash",
+      "household_id": "hh_beddlecome_ash",
+      "person_id": "beddlecome_ash",
       "name": "Ash Beddlecome",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -575,8 +587,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_alva_dunlap",
-      "person_id": "ll_alva_dunlap",
+      "household_id": "hh_dunlap_alva",
+      "person_id": "dunlap_alva",
       "name": "Alva Dunlap",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -597,12 +609,13 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_beeson_william",
-      "person_id": "ll_beeson_william",
+      "household_id": "hh_beeson_william",
+      "person_id": "beeson_william",
       "name": "William Beeson",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -615,8 +628,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_amanda_miner",
-      "person_id": "ll_amanda_miner",
+      "household_id": "hh_miner_amanda",
+      "person_id": "miner_amanda",
       "name": "Amanda Miner",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -637,12 +650,13 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_beger_tobias",
-      "person_id": "ll_beger_tobias",
+      "household_id": "hh_beger_tobias",
+      "person_id": "beger_tobias",
       "name": "Tobias Beger",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -655,8 +669,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_amos_rathburn",
-      "person_id": "ll_amos_rathburn",
+      "household_id": "hh_rathburn_amos",
+      "person_id": "rathburn_amos",
       "name": "Amos Rathburn",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -678,12 +692,14 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "calumet_club_early_chicago_1879",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_bemis_samuel_c",
-      "person_id": "ll_bemis_samuel_c",
+      "household_id": "hh_bemis_samuel_c",
+      "person_id": "bemis_samuel_c",
       "name": "Samuel C Bemis",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -696,8 +712,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_amy_c_wear",
-      "person_id": "ll_amy_c_wear",
+      "household_id": "hh_wear_amy_c",
+      "person_id": "wear_amy_c",
       "name": "Amy C. Wear",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -723,8 +739,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_benton_datas_e",
-      "person_id": "ll_benton_datas_e",
+      "household_id": "hh_benton_datas_e",
+      "person_id": "benton_datas_e",
       "name": "Datas E Benton",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -737,8 +753,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_andrew_miles",
-      "person_id": "ll_andrew_miles",
+      "household_id": "hh_miles_andrew",
+      "person_id": "miles_andrew",
       "name": "Andrew Miles",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -759,12 +775,13 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_benubien_charl",
-      "person_id": "ll_benubien_charl",
+      "household_id": "hh_benubien_charl",
+      "person_id": "benubien_charl",
       "name": "Charl Benubien",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -777,8 +794,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_angeline_vann",
-      "person_id": "ll_angeline_vann",
+      "household_id": "hh_vann_angeline",
+      "person_id": "vann_angeline",
       "name": "Angeline Vann",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -800,12 +817,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_11_26"
       ]
     },
     {
-      "household_id": "hh_ll_bishop_j_e",
-      "person_id": "ll_bishop_j_e",
+      "household_id": "hh_bishop_j_e",
+      "person_id": "bishop_j_e",
       "name": "J. E. Bishop",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -818,8 +836,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_anthony_heere",
-      "person_id": "ll_anthony_heere",
+      "household_id": "hh_heere_anthony",
+      "person_id": "heere_anthony",
       "name": "Anthony Heere",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -840,12 +858,13 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_ll_blair_william_g",
-      "person_id": "ll_blair_william_g",
+      "household_id": "hh_blair_william_g",
+      "person_id": "blair_william_g",
       "name": "William G Blair",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -858,8 +877,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_aram_winsor",
-      "person_id": "ll_aram_winsor",
+      "household_id": "hh_winsor_aram",
+      "person_id": "winsor_aram",
       "name": "Aram Winsor",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -884,8 +903,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_bloget_josiah_i",
-      "person_id": "ll_bloget_josiah_i",
+      "household_id": "hh_bloget_josiah_i",
+      "person_id": "bloget_josiah_i",
       "name": "Josiah I Bloget",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -898,8 +917,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_archibald_knox",
-      "person_id": "ll_archibald_knox",
+      "household_id": "hh_knox_archibald",
+      "person_id": "knox_archibald",
       "name": "Archibald Knox",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -920,12 +939,13 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "calumet_club_early_chicago_1879"
       ]
     },
     {
-      "household_id": "hh_ll_blood_amos",
-      "person_id": "ll_blood_amos",
+      "household_id": "hh_blood_amos",
+      "person_id": "blood_amos",
       "name": "Amos Blood",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -938,8 +958,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_aron_parcell",
-      "person_id": "ll_aron_parcell",
+      "household_id": "hh_parcell_aron",
+      "person_id": "parcell_aron",
       "name": "Aron Parcell",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -961,12 +981,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad",
         "drloih_hotels"
       ]
     },
     {
-      "household_id": "hh_ll_bly_rouse",
-      "person_id": "ll_bly_rouse",
+      "household_id": "hh_bly_rouse",
+      "person_id": "bly_rouse",
       "name": "Rouse Bly",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -979,8 +1000,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_asa_brundage",
-      "person_id": "ll_asa_brundage",
+      "household_id": "hh_brundage_asa",
+      "person_id": "brundage_asa",
       "name": "Asa Brundage",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -1005,8 +1026,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_boardman_elect",
-      "person_id": "ll_boardman_elect",
+      "household_id": "hh_boardman_elect",
+      "person_id": "boardman_elect",
       "name": "Elect Boardman",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
@@ -1019,8 +1040,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_asa_doel",
-      "person_id": "ll_asa_doel",
+      "household_id": "hh_doel_asa",
+      "person_id": "doel_asa",
       "name": "Asa Doel",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -1033,8 +1054,8 @@
       ]
     },
     {
-      "household_id": "hh_doc_a_garrett",
-      "person_id": "doc_a_garrett",
+      "household_id": "hh_garrett_a",
+      "person_id": "garrett_a",
       "name": "A. Garrett",
       "stratum": "established_profile",
       "starting_grade": "attested",

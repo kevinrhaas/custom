@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 216,
+  "count": 220,
   "liberties": [
     {
       "id": "L1",
@@ -95,6 +95,57 @@
       ]
     },
     {
+      "id": "L218",
+      "title": "Fourteen businesses stand on a street a directory printed after 1835",
+      "section": "standing",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "address_back_projection.positions[placed]",
+        "count": 14
+      },
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`address_back_projection.positions[placed]` — 14 businesses"
+        },
+        {
+          "label": "Decision",
+          "text": "where the 1835 record attests a trade and no source of the scene year says where it stood, a **street** printed against that person in Fergus's Chicago directory of 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's street **face**. The placement is graded `reconstructed`, the note says how many years it was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`."
+        },
+        {
+          "label": "Why",
+          "text": "the town prints trades far more often than it prints doors. Twenty of 825 households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87 later addresses sitting on the record with nothing reading them. The volumes that print doors are all later than the scene, so the choice was a stated back-projection or no position at all — the same choice L60 records for the estray pen, decided the same way: an absent placement is invisible while a graded one is legible and correctable."
+        },
+        {
+          "label": "Consequence",
+          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Fourteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names and twelve have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
+        },
+        {
+          "label": "What is NOT claimed, and this is the load-bearing half",
+          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic is visible and not just the successes."
+        },
+        {
+          "label": "Where it reaches a reader",
+          "text": "the Evidence panel's household card, as text. Nothing is drawn — the same admission **L2** makes for the fauna layer, and made in the same words rather than overstating \"rendered\"."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source inside the scene year that prints a door. The 1835 poll and tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are all closer to 1835 than a directory is, and any one of them that places one of these businesses supersedes this entry under the policy's clause 2 without an argument."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04 (T-0633)."
+        },
+        {
+          "label": "Restated",
+          "text": "2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass binds a later entry to a resident only where the surname reaches one person. A bigger town made `Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer carries the later address this pass reads, and his North Water Street face is withdrawn — the one street in the town no other rule can seat a shop on, which is what makes the withdrawal worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because the same larger town let the directory spend reach more people; 105 of the new refusals are clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that caused it."
+        }
+      ]
+    },
+    {
       "id": "L4",
       "title": "Sauganash Hotel: the gallery question, and how it was decided",
       "section": "per_subject",
@@ -162,7 +213,7 @@
     },
     {
       "id": "L5",
-      "title": "Sauganash Hotel: both footprints are invented",
+      "title": "Sauganash Hotel: the frame block's DEPTH is invented, and now it is the only half that is",
       "section": "per_subject",
       "subjects": [
         "sauganash_hotel"
@@ -173,12 +224,6 @@
           "structure": "sauganash_hotel",
           "phase": "frame_1831",
           "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "sauganash_hotel",
-          "phase": "log_1829",
-          "aspect": "footprint"
         }
       ],
       "recorded": "2026-08-09",
@@ -186,19 +231,23 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "placeholder rectangles (7×6 m log, 12×8 m frame), tagged `conjectural`."
+          "text": "the frame block's footprint is 9.92 × 8 m and the 8 m is a placeholder. The frontage is measured (see below); the depth is a plausible figure for the type carrying no evidence at all, and the two are graded together at the weaker."
         },
         {
           "label": "Why",
-          "text": "no dimensions are attested in any source reached. The rectangles are plausible for the type and carry no evidence whatsoever."
+          "text": "no source reached states a dimension of this building, and one drawn view cannot give a depth — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 — so a sheet that fixes the frontage leaves the depth exactly where it was. It is held at the old placeholder's own number rather than re-guessed, because the placement derivation offsets this origin by the footprint's depth to stand the north face on Lake Street, and moving a number with nothing behind it would move the building."
+        },
+        {
+          "label": "Resolved in part, 2026-09-04 (T-0626)",
+          "text": "two of the three rectangles this entry used to admit are no longer inventions. The 12 m frontage was retired for a measured 9.92 m — five bays that rectify to equal against the plate's own vanishing point, at a scale datum whose bias the same pass bounded at 2.7 %, which refutes 12 m rather than merely failing to support it. And the `log_1829` cabin's 7 × 6 m placeholder was retired for Andreas' attested 16 × 20 ft, once `drloih_beaubien` identified that cabin with the log building Andreas measures; that value is `inferred` on the identification and is out of this entry's Covers."
         },
         {
           "label": "How to resolve",
-          "text": "Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building rectangle once the datum is verified."
+          "text": "Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building rectangle once the datum is verified. A second view of this building from a DIFFERENT station would give the depth directly — every view held is the same composition."
         },
         {
           "label": "Covers",
-          "text": "`sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`."
+          "text": "`sauganash_hotel.frame_1831.footprint`."
         },
         {
           "label": "Recorded",
@@ -10177,6 +10226,7 @@
       "title": "The Sauganash's fabric from the three views: wing door and hood, frontispiece, brick and moss, and the louvre pitch",
       "section": "per_subject",
       "subjects": [
+        "philo_carpenter_log_shop",
         "sauganash_hotel"
       ],
       "covers": [],
@@ -10194,6 +10244,10 @@
         {
           "label": "Consequence",
           "text": "a visitor at Lake and Market sees the wing keep its own working entrance under a hood, a dressed front door, brick stacks and a moss-dark roof — none of it described by any 1835 witness, whose one vivid sentence gives the white paint and the bright-blue shutters — and cannot read a single size off the mesh as evidence. The Evidence panel's grades say what each claim rests on; the geometry carries each claim's own confidence (the louvre slats are graded weaker than the leaves they sit in); this entry admits the numbers."
+        },
+        {
+          "label": "Superseded in part, 2026-09-04 (T-0626)",
+          "text": "the log wing this entry dressed is not the hotel's to draw. `drloih_beaubien` captions the very engraving cited here — \"The log cabin on the left was Chicago's first drugstore\" — so the annex in all three views is `philo_carpenter_log_shop`, a record this dataset already held and already stood at the same corner; the hotel was drawing it a second time, in front of its own street face, which the owner reported. `log_wing`, `log_wing_door` and `log_wing_porch_hood` are `false` on the record from that date, so the leaf, the hood and their two posts are no longer built. Nothing else in this entry moves: the frontispiece, the brick, the moss roof and the louvre pitch are the main block's and are unchanged, and the door and hood are not withdrawn as READINGS — they belong to the cabin's own record. **L217** carries what replaced the wing."
         },
         {
           "label": "How to resolve",
@@ -13662,6 +13716,124 @@
         {
           "label": "Recorded",
           "text": "2026-09-03."
+        }
+      ]
+    },
+    {
+      "id": "L217",
+      "title": "The Sauganash's second mass: the plate fixes its height and its span, and this fixes how far it runs back",
+      "section": "per_subject",
+      "subjects": [
+        "sauganash_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "sauganash_hotel",
+          "phase": "frame_1831",
+          "aspect": "form.cross_wing_depth_m"
+        }
+      ],
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Sauganash Hotel (`sauganash_hotel`, frame_1831) gains a second two-storey mass — a cross wing standing back off its own rear wall at the east end, clapboard like the block, its ridge running away at right angles at the block's own ridge height, two lights in its far gable and one in the attic above them, and no stack."
+        },
+        {
+          "label": "One number in that is invented\nand it is the only one",
+          "text": "`cross_wing_depth_m`, how far the wing runs back, set at 8.0 m. The gable lights, their sills and the attic light are the archetype's, as every opening on this building's wings has been since **L154**."
+        },
+        {
+          "label": "Why",
+          "text": "everything else about the wing is measured, and the measurement is arithmetic on a banked reading rather than a look at a picture. T-0617 put the near apex of Braunhold's plate at (648, 350) with one line out of it at image slope −0.318 and one at +0.095. `tools/sauganash_apex_lines.py` projects each onto the vertical through the vanishing point of the plane it lies in — the plate gives both horizontal vanishing points and, from their orthogonality, its own focal length — and both come out **horizontal in the world**, 1.35° and 0.11°, where a 38° rake in the same plane would have been drawn at slope −1.99 against the −0.318 measured. Two ridges, not a ridge and a rake. Two gable ridges of one wall height and one pitch stand at one height only if they span the same width, so the wing's SPAN is the main block's own depth and the archetype refuses to build it at any other; `tools/check.sh` gates on the finding. What no single sheet can give is a DEPTH — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 says so, and from the plate's station this wing is behind the main block with only its ridge showing. So 8.0 m is the owner's own reading of the views, *\"almost the same size\"*, taken as the block's 8 m depth, which makes the wing square in plan. It was also chosen to leave the fenced rear yard its Market Street gateway and its three kept trees: nothing about that yard is attested either, and a wing sized to fill it would be one guess crowding another."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor at Lake and Market sees the three-part building all three views draw — the five-bay block on the street, a second mass of the same ridge height running back behind its east end, and the log cabin at that same end on the street line — where until now they saw one 12 × 8 m box with a log wing wrongly stood in front of its face. The wing's ridge height and its span are readings and carry the record's `inferred`; its length is this entry's and carries `reconstructed`, so the Evidence panel grades the two apart. Nobody can read the wing's depth off the mesh as evidence. The rear yard's drawn ground is notched around it and its east elm moved 2.1 m to keep its stated 2.5 m off a fence that also moved."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the individual building rectangles on Hathaway 1834 or Wright 1834 at the Lake and Market corner would give the whole plan at once and end both this entry and the frontage measurement it stands beside; Andreas vol. 1 p. 106 (\"Eagle Exchange\"), unread at page-image level, is the other standing lead; a second view of this building **from a different station** — every one held is the same composition — would give the depth directly. Related: **L154** (the fabric this entry stands beside, and the log wing it supersedes) · **L136** (the front of this building, from the same three plates) · **L139** (the yard trees this wing was sized around) · tickets **T-0626** (this), **T-0617** (the reading it spends), **T-0616** (the owner's brief)."
+        },
+        {
+          "label": "Covers",
+          "text": "`sauganash_hotel.frame_1831.form.cross_wing_depth_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04."
+        }
+      ]
+    },
+    {
+      "id": "L219",
+      "title": "Sixty-three roofs are told who entered their ground by a survey grid nobody traced",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "structures.land_owner[constructed_section_grid]",
+        "count": 63
+      },
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`structures.land_owner[constructed_section_grid]` — 63 structures"
+        },
+        {
+          "label": "Decision",
+          "text": "the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than traced, and 63 structures carry a `land_owner` block that rests on them. The construction is one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State & Madison, whose own note has said since the datum work that it is the *PLSS section corner: sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake, Randolph and Washington agree on to the sixth decimal, in **nominal one-mile squares**. The quarters and half-quarters an entry like `E2NE` names are that square halved and halved again. `tools/resolve_land_tracts.py` builds all of it and re-derives it on every `tools/check.sh`."
+        },
+        {
+          "label": "Why",
+          "text": "the Illinois State Archives register describes 375 sales by legal description and the structures carry footprints, and until T-0609 nothing joined them — so the register could say who entered the ground under Fort Dearborn and the walkthrough could not. Putting the description on the ground needs a survey grid, and this project holds no traced one: no section-line vector, no second corner, no township plat. It holds one corner. Carrying a nominal mile from it is the same construction, from the same point and the same bearing, that **L108** already declared for the United States Reservation's south and west boundaries and **L182** for Madison's centreline — so no new kind of claim is being made about where the survey ran, only a wider use of the one already on the books. **What bounds it, and this is the half that matters.** A nominal mile is not a surveyed mile: a township's north and west tiers absorb its closing error, and with one corner there is nothing to measure the drift against. So the grid is carried ONLY across the four sections that meet at that corner — 9, 10, 15 and 16 — and **213 of the 375 sales are recorded as read and deliberately NOT put on the ground** for being outside them. Inside them each assignment is graded by its own margin: a footprint more than 40 m inside its tract, twice the working horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a tract line than that drops to `reconstructed`, and the metres are printed on the row. **49 of the 63 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe dealt to a lot, and nothing on an invented structure may outrank the invention that put it there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Only 14 documented buildings carry the middle tier. Two tracts are not grid squares at all and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10 clipped to the committed north bank of the main stem."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor who opens the card on Fort Dearborn's barracks now reads *The ground was entered by John Baptist Baubian, 28 May 1835* with an `inferred` or `reconstructed` chip beside it and the whole argument behind `why` — including the three things the row does not claim (that he still held it, that he lived there, that the entry held). 254 structures in the original town read nothing at all, because the canal commissioners sold those lots and this register does not hold them, and one house on Monroe Street reads nothing because the school section's own subdivision plat is not traced here."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a traced section line — the GLO township plat of T39N R14E, or a second committed corner a mile from the first — would replace the nominal mile with a measurement and lift the whole population a tier, and would also say by how much the construction was wrong. The School Section Addition's 1833 plat would separately unlock the 150 rows this entry refuses. Related: **L108** (the reservation boundary, from the same corner and the same bearing) · **L182** (Madison's centreline, likewise) · **L216** (the other placement that rests on lot lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04."
+        }
+      ]
+    },
+    {
+      "id": "L220",
+      "title": "531 people join the town on the town's own lists, and a household is written round each of them",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[civic_mint]",
+        "count": 531
+      },
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`residents.persons[civic_mint]` — 531 people"
+        },
+        {
+          "label": "Decision",
+          "text": "on 2026-09-03 the owner ratified a grading ladder for resident evidence, quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains, clusters them into identities and writes `grading_proposal.json`, which says per identity what the ladder makes of it. That file was a proposal and nothing in it had been written onto a card. Measured on `dev` before this pass, only 37 of the 85 men on the 1835 poll list had even a surname in the residents layer. `tools/mint_civic_residents.py` writes the rest: every identity the ladder grades `attested` or `inferred` that the town did not already carry, on the evidence of the civic lists, the parish register, the contemporary press, the two printed directories with the old settlers' death notices, and the 1840 census. 531 of them, in 531 households of one. **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence was upgraded to allow it: every one of the 531 is named in a record this project has transcribed, and the person carries that reading AS READ, with its locator, its record id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_evidence[]`, `press_evidence[]`, `book_evidence[]` or `census_evidence[]`. The liberty is the same one L207, L213 and L214 record and it is the only way this dataset can carry a person at all: **that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and `works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no figure drawn (L1). A reader who counts this town's households is counting 531 containers that were written to hold a name, and no single record says so, because no single record is wrong. **What the arrival claims, and what it refuses to.** `arrival` is a BOUND, written `not_later_than` the earliest record inside the scene year that names the person, at that record's own precision — a full date where a paper gives one, the year's end where a list gives only a year. For 99 of the 531 that bound falls after 1 July 1835, because the earliest source naming them is later than the day this scene models; the validator warns that the bound straddles the scene date, the note says so in words, and `present_on_scene_date` is `uncertain` for exactly those people. `present` is written only where the record BRACKETS the day — the person is named at Chicago at or before 1 July 1835 and named again at or after it. **What the refusals take, and they are what stands between a transcription and this town's population.** 6,155 of the 6,686 identities the proposal offers are refused, in order: 4,256 the ladder does not reach at all (an 1839 directory or an 1840 census appearance alone is never an 1835 resident), 949 whose only scene-year source is a post-office letter list — the pool of the pass beside this one, `tools/mint_letter_list_residents.py`, which the owner's ruling of 2026-08-30 already settled — 828 the town already carries, 110 resting on the 1832 Black Hawk War enrollment alone, 7 whose id is a person's already, 3 the project has researched and left OUT in `index.json`'s `researched_not_resident`, and 2 firms. The counts move with the corpus; `--report` re-derives them on any tree. **The 1832 muster refusal, and why it is written down here.** The enrollment record states its own ladder — *\"An 1832 enrollment is EARLIER evidence and never an 1835 residence on its own: it places the man in this town in 1832, which is why it dates and corroborates rather than mints\"* — and this pass does not overturn a reading the project has already made from a rung the consolidation assigns generically. It also keeps the pass away from the 94 rows the index prints in the INDIAN company with no surname comma at all: those names cannot be read in a surname-first model without inventing an order for them, and any record touching the removal is subject to AGENTS.md's standing constraint rather than to a mint tool's judgement. **The tension with L213, stated rather than buried.** `tools/mint_placed_residents.py` put the register's tradeless people through a residency test derived from the corpus and refused 382 of them, on the reasoning that *a name printed in a Chicago paper is not a Chicago resident*. The owner's ladder, ratified a fortnight later, reads the same evidence differently at rung G1b, and 315 of the 531 minted here are minted on it. This pass applies the ladder because the ladder is the ratified rule and T-0514 is the instruction to spend it; the disagreement is not resolved by this entry, it is recorded by it, and the two tests are both still in the tree and both still gated. **What the new anchors cost downstream, measured.** The directory crosswalks match a later entry to a resident on surname plus the FIRST INITIAL of the given name — their own documented rule, which refuses a surname-only agreement and states its reasoning on every match. 531 new surnames give that rule more to bind to: it declared 35 merges onto people minted here, and 23 of those agree on the initial while the full forenames behind it differ — some a spelling (Absalom against Absolom), some plainly two people (Thomas L. Abbott onto Titus H. Abbott; Michael onto Mary Hogan). Nothing is hidden by that — each card shows the entry AS READ, so the discrepancy is on the page rather than under it — but the rule is looser than it was worth being when the town held 848 names, and T-0667 carries the finding."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town goes from 848 households and 872 people to 1,380 and 1,404; `attested` from 141 to 482 and `inferred` from 731 to 922 — the extra four beyond this pass's own 531 are what the passes beside it reach once the register is recompiled against a larger town. `data/residents/` grows from 7.2 MB to 13 MB on disk (2.7 MB of new records over 531 new files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is added, and not one of the 531 is placed anywhere: `housed` in the town census does not move at all, which is the ruling's own condition, measured. Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) · **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514** (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04."
         }
       ]
     },

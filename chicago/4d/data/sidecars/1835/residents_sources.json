@@ -61,6 +61,41 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "blackhawk_war_chicago_enrollments_isa": {
+      "source_id": "blackhawk_war_chicago_enrollments_isa",
+      "citation": "\"Black Hawk War Veterans who Enlisted at Chicago\" — the Illinois State Archives database indexing volume 1 of Ellen M. Whitney, ed., *The Black Hawk War 1831-1832* (Springfield: Illinois State Historical Library, 1970), transcribed and donated to the Archives by Fred Delap of Kansas, Illinois, and republished by the Genealogy Trails Transcription Team. 134 rows, each giving name, rank, company, place of enrollment and regiment or brigade.",
+      "url": "https://genealogytrails.com/ill/cook/blackhawkwar.htm",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "transcribes": [
+        {
+          "work": "Ellen M. Whitney, ed., The Black Hawk War 1831-1832, volume 1 (Illinois State Historical Library, 1970)",
+          "date": "1832",
+          "tier": 1,
+          "note": "THE ORIGINAL. It prints, for each veteran, name, rank, unit, place and dates of enrollment, and remarks on his service, with unit history following the rolls. Nobody in this project has seen it: the layer actually read is the State Archives INDEX of it, which carries the name, the rank, the company, the place of enrollment and the regiment and nothing else — no date of enrollment, no remark, no service record."
+        },
+        {
+          "work": "Illinois State Archives Black Hawk War veterans database — the Chicago enrollments",
+          "date": "1832",
+          "tier": 1,
+          "note": "134 rows. Ninety-four of them carry the company 'INDIAN' with the Rank cell left empty; forty stand in G Kercheval's company (one CPT, one 1LT, one 2LT, 37 PVT). One hundred and thirty-three carry the regiment 'ODD', which the page's own footnote expands as 'Unassigned Colonel'; the row for ZARLEY, J W leaves that cell empty."
+        }
+      ],
+      "what_it_supplies": [
+        "134 men who demonstrably stood in Chicago in 1832 to enroll for the Black Hawk War, three years before the scene",
+        "the rank and company each man enrolled in, and the regiment or brigade he was assigned to",
+        "83 names printed WITHOUT a surname comma — the French and Potawatomi forms ('AS KE WITT', 'WAB-ME-MIC', 'BOURBONNOIS, FRANCIS SR' being of the other kind) — which is the part of the town's population this project is least able to recover elsewhere",
+        "Gholson Kercheval's company as the commonest single body of Chicago enrollments, which touches a man who signs the 1833 poll list this project already holds"
+      ],
+      "what_it_does_not_supply": [
+        "any date of enrollment beyond the year of the war — the index drops the dates the book prints",
+        "any residence, address, lot, trade, age or household",
+        "any evidence at all that a man was still in Chicago in 1835: enrolling at a place is presence at that place on that day and nothing more",
+        "any woman, and any man who did not enroll",
+        "the remarks on service that Whitney's volume carries, which are only obtainable from the Archives by post"
+      ]
+    },
     "buck_pioneer_milwaukee": {
       "source_id": "buck_pioneer_milwaukee",
       "citation": "James S. Buck, Pioneer History of Milwaukee",
@@ -92,6 +127,25 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "calumet_club_early_chicago_1879": {
+      "source_id": "calumet_club_early_chicago_1879",
+      "citation": "Early Chicago: Reception to the Settlers of Chicago Prior to 1840, by the Calumet Club, of Chicago, Tuesday Evening, May 27, 1879 (Chicago: Calumet Club, 1879) — the printed proceedings of the FIRST old-settlers' reception, with the registry of settlers who signed it.",
+      "url": "https://archive.org/details/earlychicagorece00calu",
+      "archived_url": "https://archive.org/download/earlychicagorece00calu/earlychicagorece00calu_djvu.txt",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the date, host and criterion of the first reception, 27 May 1879",
+        "the club's own count of 149 settlers who registered during the evening",
+        "the printed REGISTER itself, pages 84-90: 159 entries, each with the man's name, his own date of arrival in Chicago, his birthplace, his age and his 1879 post-office address — the only roster in the series that dates its people",
+        "the three aggregate tables of printed page 72 — places of birth, years of arrival and ages — each summing to 149, read off the plate rather than the OCR"
+      ],
+      "what_it_does_not_supply": [
+        "a residence in 1835. A date of arrival here is what the man said in 1879, forty to sixty years after the fact, and the club's criterion reaches to the end of 1839",
+        "which of the 159 printed entries are the 'few [who] called afterward and signed the registry' and are therefore outside the 149 the tables count — the plate does not mark them, and this project does not guess",
+        "an address in 1835: the register's fifth column is the 1879 post-office address"
+      ]
     },
     "catholic_chicago_st_cyr_1833": {
       "source_id": "catholic_chicago_st_cyr_1833",
@@ -262,6 +316,52 @@
       "what_it_does_not_supply": [
         "a year of arrival for any guest",
         "an 1835 address: every address printed is of 1882"
+      ]
+    },
+    "chicago_voter_lists_1833_1835_irad": {
+      "source_id": "chicago_voter_lists_1833_1835_irad",
+      "citation": "\"Early Chicago Voter Lists\" — the poll list of the first election of the Board of Trustees of the Town of Chicago (10 August 1833), the tax list of the Town of Chicago, 1833, the election returns and poll list of 1834 filed 11 August 1834, and the 1835 poll list. Transcribed from the Illinois Regional Archives Depository originals by Ingrid Latimer Schulz, published in Chicago Genealogist XXV/4 (Summer 1993), and republished by the Genealogy Trails Transcription Team.",
+      "url": "https://genealogytrails.com/ill/cook/polllist.html",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "transcribes": [
+        {
+          "work": "Poll list for the first election of Board of Trustees of the Town of Chicago (10 August 1833)",
+          "date": "1833-08-10",
+          "tier": 1,
+          "note": "30 entries. Andreas says twenty-eight men voted at this election; the list prints thirty names. T-0542 searched for a count outside Andreas and found none — the Chicago Democrat did not exist until 26 November 1833 and its whole run to August 1835 carries no retrospective count of this poll — so the discrepancy STANDS, with the negative search recorded (claims/town_findings_voter_lists.json v004). On weight the thirty are the enrolments and Andreas's twenty-eight is an 1884 belief-statement ('It is believed') about the number of legal voters; neither count is repaired."
+        },
+        {
+          "work": "Tax List of the Town of Chicago - 1833",
+          "date": "1833",
+          "tier": 1,
+          "note": "115 entries. Names only — as published it carries no valuation, no lot and no figure, so it is not a ranked property roll (claims/town_findings_voter_lists.json v001)."
+        },
+        {
+          "work": "Election Returns - Poll List of 1834, filed 11 August 1834",
+          "date": "1834-08-11",
+          "tier": 1,
+          "note": "115 entries. Andreas independently dates the second town election to 11 August 1834, which corroborates the list's own heading."
+        },
+        {
+          "work": "1835 Poll List",
+          "date": "1835",
+          "tier": 1,
+          "note": "85 entries. THE LIST PRINTS NO DATE, AND IT IS NOT THE POLL BOOK OF THE THIRD TOWN ELECTION. That election is now dated from the town's own newspaper rather than from Andreas: the Chicago Democrat of 8 July 1835 announced the election of Trustees under the new charter for 'Friday of this week' and the issue of 15 July reported that it 'took place on Friday last' with the return — FRIDAY 10 JULY 1835, nine days after the 1835-07-01 scene date (claims/town_election_1835_democrat.json d001-d005). Andreas's town chapter, 'in July, 1835', is corroborated; his police chapter's 5 August 1835 is the day the newly elected board sat and passed the town's ordinance code over Hugunin's name as President. But that return gives single candidates 124 and 142 votes, which 85 men cannot cast, and six of the ten men who stood are absent from these 85 while the list runs unbroken from Adams to Wright — so this is a DIFFERENT poll, not a short printing of that one (claims/town_findings_voter_lists.json v003). Which poll is open; the county and state general election of Monday 3 August 1835 is the nearest candidate. Until it is settled, a name here evidences presence in Chicago in 1835 and not presence on any particular day."
+        }
+      ],
+      "what_it_supplies": [
+        "345 names of men who voted at, or were taxed by, the Town of Chicago in 1833, 1834 and 1835, as printed",
+        "which of the four lists each name stands on, and its position in that list",
+        "the courtesy and rank titles the lists print in front of a name (Col., Lt., Major, Dr.)",
+        "for the 1835 poll list: presence in Chicago during 1835, which is the strongest residence evidence this project holds short of a newspaper naming the man — but NOT presence on a stated day, because the list is undated and is shown not to be the poll book of the 10 July 1835 town election (T-0542)"
+      ],
+      "what_it_does_not_supply": [
+        "any address, street, lot or dwelling",
+        "any age, trade, household or family member",
+        "any date more precise than a list's own heading — and the 1835 list has no heading date at all",
+        "any woman, and any man who neither voted nor was taxed"
       ]
     },
     "chicagology_chicago_brick": {
@@ -687,13 +787,51 @@
       "tier": 2,
       "tier_label": "near-primary recollection"
     },
+    "fergus_1843_old_settler_death_notices": {
+      "source_id": "fergus_1843_old_settler_death_notices",
+      "citation": "\"OBITUARY. Names, places, dates, and ages at death of some of Chicago's Old Settlers, prior to 1843, and other well-known citizens who arrived after 1843, together with others prominently connected with Illinois history\", in Robert Fergus, Directory of the City of Chicago, Illinois, for 1843, Fergus Historical Series No. 28 (Chicago: Fergus Printing Company, 1896)",
+      "url": "https://genealogytrails.com/ill/cook/earlysettlerobits.html",
+      "archived_url": "https://genealogytrails.com/ill/cook/earlysettlerobits.html",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "transcribes": [
+        {
+          "work": "OBITUARY — names, places, dates and ages at death of Chicago's Old Settlers, printed by Robert Fergus in his 1896 reprint of the Directory of the City of Chicago for 1843",
+          "date": "1896",
+          "tier": 4,
+          "note": "The compiler is fifty-three years and more after most of the deaths he lists, and his own preface calls the 1843 canvass behind the directory 'careless and indifferent'. The list carries this project's only body of ages at death, and through them its only body of derived birth windows."
+        }
+      ],
+      "what_it_supplies": [
+        "a date of death for 725 named people the compiler connects with Chicago",
+        "an age at death for 608 of them, printed as the volume prints it — 'aged 40', 'a. 89½', 'aged 82-2-15'",
+        "through that age, an interval the birth falls in: 599 derived birth windows, 166 of them narrow enough to name a single year",
+        "a trade or office for 325 of them, and a place of death for 358 who did not die in Chicago",
+        "four printed dates of birth, which are documented and not derived"
+      ],
+      "what_it_does_not_supply": [
+        "arrival before 1843 — the list's own header says it also names 'other well-known citizens who arrived after 1843, together with others prominently connected with Illinois history', and Gov. Richard Yates, Henry Ward Beecher, Marquette and La Salle are all printed in it",
+        "residence in Chicago on 1 July 1835, which nothing in the list speaks to",
+        "a year of arrival, which the list never prints"
+      ]
+    },
     "fergus_chicago_directory_1839": {
       "source_id": "fergus_chicago_directory_1839",
-      "citation": "Fergus' Directory of the City of Chicago, 1839",
-      "url": "https://ldsgenealogy.com/IL/books/Fergus-directory-of-the-city-of-Chicago-1839-part-2.htm",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
+      "citation": "Robert Fergus, Fergus' Directory of the City of Chicago, 1839 (Chicago: Fergus Printing Company, 1876) — Fergus' Historical Series No. 2; read from the Allen County Public Library Genealogy Center scan on the Internet Archive",
+      "url": "https://archive.org/details/fergusdirectoryo00ferg",
+      "archived_url": "https://archive.org/details/fergusdirectoryo00ferg",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "A name, a trade and a street for 1,655 entries in the city of 1839 — the closest address list to 1835 this project can reach.",
+        "A trade for 976 of them at a stated street, which compiles into 102 street faces (Lake 199, Clark 94, North Water 83, South Water 72).",
+        "On printed page 37: six churches with their ministers, fifteen hotels, the public offices around the Public Square, the land office, the lighthouse, the theatre, two named building rows, the Dutch Settlement, and the fire that took the Tremont House on 27 October 1839."
+      ],
+      "what_it_does_not_supply": [
+        "An 1835 residency. Four years late, and the ratified ladder never makes a resident from a later listing alone.",
+        "An address number that means anything, off Lake street. Fergus writes on printed page 3 that no street but Lake was numbered in 1839 and that 'the numbers now given are those of the present day' — 1876's. Only the street name crosses.",
+        "A count of its own entries. The volume states no number of names anywhere, so a reading of it cannot be closed against the book the way a census sheet closes against its printed totals."
+      ]
     },
     "fergus_chicago_directory_1843": {
       "source_id": "fergus_chicago_directory_1843",
@@ -1303,6 +1441,43 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    "st_cyr_register_ichr_v4": {
+      "source_id": "st_cyr_register_ichr_v4",
+      "citation": "The first Chicago Catholic church register — Father John Mary Irenaeus St. Cyr's marriage register and his death and burial page — as printed and annotated in the *Illinois Catholic Historical Review*, vol. 4 (July 1921 - April 1922), and republished in two pages by the Genealogy Trails Transcription Team. 128 dated marriages of 1834-1839, each naming groom, bride, witnesses and officiating priest, and 11 deaths and burials of June 1834 to March 1837.",
+      "url": "https://genealogytrails.com/ill/cook/marriages_catholic.html",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "transcribes": [
+        {
+          "work": "The first Chicago Catholic church record, kept by Father J. M. I. St. Cyr from 1833 and continued by Fathers Bernard Schaeffer and Timothy O'Meara to 1839",
+          "date": "1833-1839",
+          "tier": 1,
+          "note": "THE ORIGINAL, and nobody in this project has seen it. What is read here is a 1921-22 article that prints the marriage entries and the death entries and comments on them. The article itself says the death record 'is contained on a single page' of the book."
+        },
+        {
+          "work": "Illinois Catholic Historical Review, vol. 4 (July 1921 - April 1922)",
+          "date": "1921",
+          "tier": 2,
+          "note": "The layer actually read, at one further remove: the Genealogy Trails team transcribed these two pages out of the Review and this project read the transcription. Every record citing this source is graded transcription_mediated, twice over."
+        }
+      ],
+      "what_it_supplies": [
+        "128 marriages at Chicago (125 of them) between 1834 and 1839, each dated, and each naming its witnesses BY NAME — 513 named readings of people standing at a named place on a named day",
+        "six marriages IN THE SCENE YEAR, which with their witnesses put twenty named people in Chicago on five days of 1835",
+        "eleven deaths and burials, four of them in 1835, including the death of Thomas Owen, agent of the Indians, at Chicago on 15 October 1835",
+        "the register's own arithmetic — 22 St. Cyr marriages, 18 Schaeffer, 87 O'Meara, 1 Plunkett — which verifies any reading of it without the book",
+        "the dates bounding each priest's time at Chicago, which is what makes an unsigned entry attributable",
+        "the Irish, French and German Catholic population of the town, which is the part the poll books and letter lists reach least well"
+      ],
+      "what_it_does_not_supply": [
+        "any address, lot, dwelling or workplace — the register places nobody anywhere in the town",
+        "any age, except for three infants and one nine-year-old on the death page",
+        "the baptisms. The article tallies 282 of them by these same priests and prints none; that register is T-0503's object and is not in this source",
+        "residence. A marriage at Chicago on a day of 1835 is presence on that day, and presence is not residence",
+        "reliable spelling. The article says so itself: a French and German priest writing Irish and English names, and an Irish priest writing French and German ones"
+      ]
     },
     "talcott_chester_house_1835": {
       "source_id": "talcott_chester_house_1835",

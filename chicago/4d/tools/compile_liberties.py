@@ -213,6 +213,54 @@ def _letter_list_person_count() -> int:
     return n
 
 
+def _civic_mint_person_count() -> int:
+    """People the town holds because its own civic, church, press, book and census
+    records name them, minted by tools/mint_civic_residents.py (T-0514).
+
+    Counted off the household RECORDS for the reason the letter-list scope above
+    gives at length: reading `index.json`'s denormalised `counts` block would be
+    agreeing with a second opinion rather than measuring.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        n += sum(1 for p in doc.get("persons") or [] if p.get("civic_mint"))
+    return n
+
+
+def _back_projected_position_count() -> int:
+    """Businesses standing on a face read back out of a later directory (T-0633).
+
+    Counted off the household RECORDS, for the same reason the letter-list scope
+    is: `address_back_projection.json` carries its own `counts` block, and a
+    scope that reads a number the pass wrote about itself is agreeing rather than
+    measuring. The record is what a reader opens, so the record is what is
+    counted.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        for person in (doc.get("directories") or {}).get("people") or []:
+            bp = person.get("back_projection") or {}
+            if bp.get("outcome") == "placed":
+                n += 1
+    return n
+
+
+STRUCTURES_DIR = ROOT / "data" / "structures"
+
+
+def _land_owner_count() -> int:
+    """Roofs standing on a tract the register names, put there by a constructed grid.
+
+    Counted off the structure RECORDS rather than off `ground.json`'s own `counts`
+    block, for the reason the two scopes above are: a scope that reads the number
+    the pass wrote about itself is agreeing with a second opinion, not measuring.
+    """
+    return sum(1 for path in sorted(STRUCTURES_DIR.glob("*.json"))
+               if "land_owner" in json.loads(path.read_text()))
+
+
 # enumeration -> (how many it reaches now, where that number is derived from).
 #
 # A scope may only name an enumeration written down HERE. The alternative — an
@@ -227,6 +275,18 @@ SCOPE_SOURCES = {
         _letter_list_person_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/mint_letter_list_residents.py --check"),
+    "residents.persons[civic_mint]": (
+        _civic_mint_person_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/mint_civic_residents.py --check"),
+    "address_back_projection.positions[placed]": (
+        _back_projected_position_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/back_project_addresses.py --check"),
+    "structures.land_owner[constructed_section_grid]": (
+        _land_owner_count,
+        "data/structures/*.json, themselves re-derived by "
+        "tools/resolve_land_tracts.py --check"),
 }
 
 SECTION_KEY = {

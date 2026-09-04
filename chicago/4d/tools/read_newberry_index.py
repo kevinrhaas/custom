@@ -62,8 +62,10 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import gzip
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -361,31 +363,17 @@ def surname_key(printed: str) -> str:
     return max(words, key=len)
 
 
+
 # ---------------------------------------------------------------- extraction
 
-def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
-    """Crop, read, assemble the cards, keep the locality ones, commit the text."""
-    out_dir = out_dir or (DOMAIN / "text")
-    spec = VOLUMES[volume]
-    if not pdf.exists():
-        raise SystemExit("no such pdf: %s" % pdf)
-    if shutil.which("pdftotext") is None:
-        raise SystemExit("pdftotext is not installed — poppler-utils")
+def assemble(columns: dict, pages: int) -> tuple:
+    """Cards out of four column texts, and the locality ones kept.
 
-    tmp = Path(tempfile.mkdtemp(prefix="newberry_"))
-    pass_hashes = []
-    columns = {}
-    for i, (x, w) in enumerate(CROPS):
-        dest = tmp / ("col%d.txt" % i)
-        subprocess.run(["pdftotext", "-layout", "-x", str(x), "-y", "0",
-                        "-W", str(w), "-H", str(CROP_HEIGHT), str(pdf), str(dest)],
-                       check=True)
-        text = dest.read_text(encoding="utf-8", errors="replace")
-        pass_hashes.append({"column": i, "x": x, "width": w,
-                            "sha256": sha256_text(text), "bytes": len(text)})
-        columns[i] = text.split("\f")
-
-    pages = max(len(v) for v in columns.values())
+    `columns` maps a crop index to that column's text for every page, in page order —
+    exactly what `pdftotext`'s form-feed split gives, and exactly what the OCR path
+    rebuilds. Everything downstream of this function is blind to where the characters
+    came from, which is the point: the two readers differ only in the reading.
+    """
     cards = []
     for pno in range(1, pages + 1):
         for col in sorted(columns):
@@ -414,7 +402,11 @@ def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
                          "line": card["line"], "heading": card["heading"],
                          "body": body, "buckets": names})
     kept.sort(key=lambda c: (c["page"], c["column"], c["line"], c["body"]))
+    return cards, kept
 
+
+def commit_text(volume: int, kept: list, out_dir: Path) -> tuple:
+    """The kept cards, two lines per card, at the locators every record will name."""
     lines = ["# The Newberry Genealogical Index, volume %d — the cards whose body names"
              % volume,
              "# Chicago, Cook County or Illinois, verbatim as the volume's text layer",
@@ -431,7 +423,12 @@ def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
     text_path = out_dir / text_name
     text_path.parent.mkdir(parents=True, exist_ok=True)
     text_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return text_name, text_path
 
+
+def write_manifest(volume: int, pdf: Path, out_dir: Path, pages: int, extra: dict,
+                   cards: int, kept: int, text_name: str, text_path: Path) -> None:
+    spec = VOLUMES[volume]
     manifest_path = out_dir / "MANIFEST.json"
     manifest = load(manifest_path) if manifest_path.exists() else {
         "schema": SCHEMA,
@@ -442,7 +439,7 @@ def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
         "ia_url": "https://archive.org/details/" + IA_ITEM,
         "volumes": {},
     }
-    manifest["volumes"][str(volume)] = {
+    entry = {
         "file": spec["file"],
         "covers": spec["covers"],
         "download_url": "https://archive.org/download/%s/%s" % (IA_ITEM, spec["file"]),
@@ -450,15 +447,376 @@ def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
         "sha256": sha256_file(pdf),
         "pdf_pages": pages,
         "crop_height": CROP_HEIGHT,
-        "passes": pass_hashes,
-        "cards_assembled": len(cards),
-        "locality_cards_kept": len(kept),
+    }
+    entry.update(extra)
+    entry.update({
+        "cards_assembled": cards,
+        "locality_cards_kept": kept,
         "text_file": text_name,
         "text_sha256": sha256_file(text_path),
-    }
+    })
+    manifest["volumes"][str(volume)] = entry
     dump(manifest_path, manifest)
+
+
+def extract(volume: int, pdf: Path, out_dir: Path = None) -> dict:
+    """Crop, read, assemble the cards, keep the locality ones, commit the text."""
+    out_dir = out_dir or (DOMAIN / "text")
+    if not pdf.exists():
+        raise SystemExit("no such pdf: %s" % pdf)
+    if shutil.which("pdftotext") is None:
+        raise SystemExit("pdftotext is not installed — poppler-utils")
+
+    tmp = Path(tempfile.mkdtemp(prefix="newberry_"))
+    pass_hashes = []
+    columns = {}
+    for i, (x, w) in enumerate(CROPS):
+        dest = tmp / ("col%d.txt" % i)
+        subprocess.run(["pdftotext", "-layout", "-x", str(x), "-y", "0",
+                        "-W", str(w), "-H", str(CROP_HEIGHT), str(pdf), str(dest)],
+                       check=True)
+        text = dest.read_text(encoding="utf-8", errors="replace")
+        pass_hashes.append({"column": i, "x": x, "width": w,
+                            "sha256": sha256_text(text), "bytes": len(text)})
+        columns[i] = text.split("\f")
+
+    pages = max(len(v) for v in columns.values())
+    cards, kept = assemble(columns, pages)
+    text_name, text_path = commit_text(volume, kept, out_dir)
+    write_manifest(volume, pdf, out_dir, pages,
+                   {"read_by": "text_layer", "passes": pass_hashes},
+                   len(cards), len(kept), text_name, text_path)
     shutil.rmtree(tmp, ignore_errors=True)
     return {"cards": len(cards), "kept": len(kept), "pages": pages}
+
+
+# ------------------------------------------------------------ the OCR path
+#
+# WHY THERE IS A SECOND READER, AND WHICH VOLUME NEEDS IT (T-0614). Volume 4 is not the
+# same scan as the other three. The Internet Archive item carries volumes 1-3 as
+# `FL…_CP-130151_0N.pdf` and volume 4 as `130151_04.pdf`, and volume 4's embedded text
+# layer is a much poorer OCR whose word boxes are scattered across the page instead of
+# stacked in the four card columns — so cropping to a column, which is the whole trick
+# above, no longer isolates one. Run over volume 4 the text-layer path assembles 6,548
+# cards and keeps 308 out of 918 pages, against volume 3's 68,552 and 2,131 out of
+# 1,004. The page IMAGES are perfectly legible; only the text layer is not. So the
+# volume is read by re-reading the images.
+#
+# WHAT IT DOES NOT CHANGE. The OCR path produces the same four column texts the
+# pdftotext path produces and hands them to the same `assemble`. Nothing downstream
+# knows the difference, and the grade does not move: `transcription_mediated` was
+# already the right grade for a machine reading a photostat, and a second machine
+# reading it does not make it stronger.
+#
+# WHY IT IS RESUMABLE. At the measured rate the volume is about 83 minutes of compute,
+# which does not fit in one run's foreground. `--pages A-B` reads a range and commits a
+# shard; `--extract --ocr` with no range stitches the shards in page order. A shard
+# records the settings it was made with and stitching refuses a set that disagrees,
+# because two ranges read at different dpi are two different readings of one volume.
+
+OCR_DPI = 200
+OCR_PSM = "6"          # one uniform block of text: a cropped column is exactly that.
+OCR_WORKERS = 4
+OCR_SHARD_SCHEMA = 1
+
+
+def write_gz(path: Path, text: str) -> None:
+    """gzip with a zeroed header stamp, because the shard is gated on its sha256.
+
+    `gzip.open` writes the current mtime into the header, so the same bytes compress
+    to a different file every second and MANIFEST's hash of a shard would never hold.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    raw = text.encode("utf-8")
+    with open(path, "wb") as fh:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=fh, compresslevel=9,
+                           mtime=0) as gz:
+            gz.write(raw)
+
+
+def ocr_engine() -> str:
+    """The tesseract build, verbatim, because it is part of what made the characters."""
+    if shutil.which("tesseract") is None:
+        raise SystemExit("tesseract is not installed — the OCR path needs tesseract-ocr")
+    out = subprocess.run(["tesseract", "--version"], capture_output=True, text=True)
+    return (out.stdout or out.stderr).strip().split("\n")[0].strip()
+
+
+def ocr_settings(dpi: int = OCR_DPI, psm: str = OCR_PSM) -> dict:
+    return {"engine": ocr_engine(), "dpi": int(dpi), "psm": str(psm),
+            "crops": [list(c) for c in CROPS], "crop_height": CROP_HEIGHT,
+            "render": "pdftoppm -gray -png"}
+
+
+def _ocr_one_page(job) -> tuple:
+    """Render one page's four column strips and read each. Returns (page, [4 texts]).
+
+    OMP_THREAD_LIMIT=1 is not a detail. Tesseract parallelises a single image across
+    the cores by itself, so four page workers on a four-core runner oversubscribe it
+    three times over and the machine thrashes: measured on this runner, four workers
+    at tesseract's default threading did not finish EIGHT pages in ten minutes, and
+    the same four workers with the limit set did four pages in 21.7 s — 5.4 s a page
+    against 17.5 s a page sequential. Page-level parallelism only pays when the
+    engine underneath it is single-threaded.
+    """
+    pdf, page, dpi, psm, workdir = job
+    env = dict(os.environ, OMP_THREAD_LIMIT="1")
+    texts = []
+    for i, (x, w) in enumerate(CROPS):
+        stem = str(Path(workdir) / ("p%05d_c%d" % (page, i)))
+        subprocess.run(["pdftoppm", "-r", str(dpi), "-f", str(page), "-l", str(page),
+                        "-gray", "-png",
+                        "-x", str(round(x * dpi / 72.0)), "-y", "0",
+                        "-W", str(round(w * dpi / 72.0)),
+                        "-H", str(round(CROP_HEIGHT * dpi / 72.0)),
+                        str(pdf), stem], check=True, capture_output=True)
+        shot = next(iter(sorted(Path(workdir).glob("p%05d_c%d-*.png" % (page, i)))), None)
+        if shot is None:                      # a page the renderer declined to draw
+            texts.append("")
+            continue
+        subprocess.run(["tesseract", str(shot), stem, "--psm", str(psm), "-l", "eng"],
+                       check=True, capture_output=True, env=env)
+        texts.append(Path(stem + ".txt").read_text(encoding="utf-8", errors="replace"))
+        shot.unlink(missing_ok=True)
+        Path(stem + ".txt").unlink(missing_ok=True)
+    return page, texts
+
+
+def ocr_pages(pdf: Path, wanted: list, dpi: int = OCR_DPI, psm: str = OCR_PSM,
+              workers: int = OCR_WORKERS) -> dict:
+    """Read these pages in one parallel batch. Returns {page: [4 column texts]}.
+
+    The batch is the unit that matters for cost: one page handed to four workers is
+    one worker's work, and timing that would tell a later run the volume costs three
+    times what it does.
+    """
+    from concurrent.futures import ProcessPoolExecutor
+    if shutil.which("pdftoppm") is None:
+        raise SystemExit("pdftoppm is not installed — poppler-utils")
+    ocr_engine()                      # fail here, not inside a worker, when it is absent
+    tmp = Path(tempfile.mkdtemp(prefix="newberry_ocr_"))
+    out = {}
+    try:
+        jobs = [(pdf, page, dpi, psm, str(tmp)) for page in wanted]
+        with ProcessPoolExecutor(max_workers=max(1, int(workers))) as ex:
+            for page, texts in ex.map(_ocr_one_page, jobs):
+                out[page] = texts
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return out
+
+
+def shard_path(volume: int, first: int, last: int, shard_dir: Path) -> Path:
+    return shard_dir / ("vol_%02d" % volume) / ("pages_%04d-%04d.json.gz" % (first, last))
+
+
+def ocr_range(volume: int, pdf: Path, first: int, last: int, dpi: int = OCR_DPI,
+              psm: str = OCR_PSM, workers: int = OCR_WORKERS,
+              shard_dir: Path = None) -> Path:
+    """Read one page range and commit its shard. The unit a run can actually finish."""
+    shard_dir = shard_dir or (DOMAIN / "text" / "ocr")
+    if not pdf.exists():
+        raise SystemExit("no such pdf: %s" % pdf)
+    if shutil.which("pdftoppm") is None:
+        raise SystemExit("pdftoppm is not installed — poppler-utils")
+    if first < 1 or last < first:
+        raise SystemExit("--pages wants A-B with 1 <= A <= B, got %d-%d" % (first, last))
+
+    pages = {str(p): t for p, t in
+             ocr_pages(pdf, list(range(first, last + 1)), dpi, psm, workers).items()}
+
+    out = shard_path(volume, first, last, shard_dir)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    body = json.dumps({"schema": OCR_SHARD_SCHEMA, "volume": volume,
+                       "first": first, "last": last,
+                       "settings": ocr_settings(dpi, psm),
+                       "pdf_sha256": sha256_file(pdf),
+                       "pages": pages},
+                      ensure_ascii=False, sort_keys=True)
+    write_gz(out, body)
+    return out
+
+
+def read_shards(volume: int, shard_dir: Path = None) -> tuple:
+    """Every committed shard for a volume, stitched into column texts in page order.
+
+    Returns (columns, pages, settings, shard_records). Refuses a set of shards that
+    disagree about the settings or about which pdf they read, and refuses a gap: a
+    volume assembled out of ranges that do not cover it is a partial read wearing a
+    finished volume's file name, which is exactly what a later run would trust.
+    """
+    shard_dir = shard_dir or (DOMAIN / "text" / "ocr")
+    found = sorted((shard_dir / ("vol_%02d" % volume)).glob("pages_*.json.gz"))
+    if not found:
+        raise SystemExit("no OCR shards for volume %d under %s — run --extract --ocr "
+                         "--pages A-B first" % (volume, shard_dir))
+    settings = None
+    pdf_sha = None
+    by_page = {}
+    records = []
+    for path in found:
+        with gzip.open(path, "rt", encoding="utf-8") as fh:
+            doc = json.load(fh)
+        if settings is None:
+            settings, pdf_sha = doc["settings"], doc.get("pdf_sha256")
+        elif doc["settings"] != settings:
+            raise SystemExit("%s was read with different settings from %s — two ranges "
+                             "read differently are two readings, not one"
+                             % (path.name, found[0].name))
+        elif doc.get("pdf_sha256") != pdf_sha:
+            raise SystemExit("%s read a different pdf from %s" % (path.name, found[0].name))
+        for page, texts in doc["pages"].items():
+            by_page[int(page)] = texts
+        records.append({"shard": path.name, "first": doc["first"], "last": doc["last"],
+                        "pages": len(doc["pages"]), "sha256": sha256_file(path)})
+    pages = max(by_page)
+    missing = [p for p in range(1, pages + 1) if p not in by_page]
+    if missing:
+        raise SystemExit("pages %s have no shard — the volume is not read yet (%d of %d)"
+                         % (fmt_ranges(missing), len(by_page), pages))
+    columns = {i: [by_page[p][i] for p in range(1, pages + 1)] for i in range(len(CROPS))}
+    records.sort(key=lambda r: r["first"])
+    return columns, pages, settings, records
+
+
+def fmt_ranges(nums: list) -> str:
+    """1,2,3,7,8 as '1-3,7-8' — a gap report has to be readable to be acted on."""
+    out, start, prev = [], None, None
+    for n in sorted(nums):
+        if start is None:
+            start = prev = n
+        elif n == prev + 1:
+            prev = n
+        else:
+            out.append("%d" % start if start == prev else "%d-%d" % (start, prev))
+            start = prev = n
+    if start is not None:
+        out.append("%d" % start if start == prev else "%d-%d" % (start, prev))
+    return ",".join(out)
+
+
+def extract_ocr(volume: int, pdf: Path, out_dir: Path = None,
+                shard_dir: Path = None) -> dict:
+    """Stitch the committed shards and assemble the volume out of them."""
+    out_dir = out_dir or (DOMAIN / "text")
+    columns, pages, settings, records = read_shards(volume, shard_dir)
+    cards, kept = assemble(columns, pages)
+    text_name, text_path = commit_text(volume, kept, out_dir)
+    write_manifest(volume, pdf, out_dir, pages,
+                   {"read_by": "ocr", "ocr": settings, "ocr_shards": records},
+                   len(cards), len(kept), text_name, text_path)
+    return {"cards": len(cards), "kept": len(kept), "pages": pages,
+            "shards": len(records)}
+
+
+
+
+# ------------------------------------------------------------- the probe (T-0614)
+#
+# The measurement that justified splitting T-0580, kept as a command rather than a
+# paragraph so it can be re-run and disagreed with. It reads a fixed sample of pages
+# BOTH ways and reports the ratio; an impression that one reader is better than the
+# other is worth nothing next to a count of the cards each one finds on the same page.
+
+PROBE_PAGES = [100, 200, 300, 400, 500, 600, 700, 800]
+
+
+def text_layer_columns(pdf: Path, first: int, last: int, tmp: Path) -> dict:
+    """The pdftotext path's four column texts for one page range."""
+    columns = {}
+    for i, (x, w) in enumerate(CROPS):
+        dest = tmp / ("probe_col%d_%d.txt" % (i, first))
+        subprocess.run(["pdftotext", "-layout", "-f", str(first), "-l", str(last),
+                        "-x", str(x), "-y", "0", "-W", str(w), "-H", str(CROP_HEIGHT),
+                        str(pdf), str(dest)], check=True)
+        columns[i] = dest.read_text(encoding="utf-8", errors="replace").split("\f")
+    return columns
+
+
+def probe(volume: int, pdf: Path, sample: list = None, dpi: int = OCR_DPI,
+          psm: str = OCR_PSM, workers: int = OCR_WORKERS, out_dir: Path = None) -> dict:
+    """Read a fixed page sample both ways and write the comparison as data."""
+    import time
+    out_dir = out_dir or (DOMAIN / "text")
+    sample = sample or PROBE_PAGES
+    if not pdf.exists():
+        raise SystemExit("no such pdf: %s" % pdf)
+
+    manifest = load(out_dir / "MANIFEST.json")
+    others = {v: {"file": d.get("file"), "pdf_pages": d.get("pdf_pages"),
+                  "cards_assembled": d.get("cards_assembled"),
+                  "locality_cards_kept": d.get("locality_cards_kept"),
+                  "read_by": d.get("read_by", "text_layer"),
+                  "cards_per_page": round(d["cards_assembled"] / d["pdf_pages"], 1)
+                  if d.get("cards_assembled") and d.get("pdf_pages") else None}
+              for v, d in sorted(manifest.get("volumes", {}).items())
+              if int(v) != volume}
+
+    tmp = Path(tempfile.mkdtemp(prefix="newberry_probe_"))
+    rows = []
+    try:
+        # The whole volume the committed way, into a scratch directory — the figure
+        # this is all about, and it has to be the real one over all 918 pages rather
+        # than the sample scaled up. Nothing of it is committed.
+        whole = extract(volume, pdf, out_dir=tmp / "text_layer")
+        t0 = time.time()
+        read = ocr_pages(pdf, sample, dpi=dpi, psm=psm, workers=workers)
+        ocr_seconds = time.time() - t0
+        for page in sample:
+            tl = text_layer_columns(pdf, page, page, tmp)
+            tl_cards, tl_kept = assemble(tl, 1)
+            oc = {i: [read[page][i]] for i in range(len(CROPS))}
+            ocr_cards, ocr_kept = assemble(oc, 1)
+            rows.append({"page": page,
+                         "text_layer": {"cards": len(tl_cards), "kept": len(tl_kept),
+                                        "chars": sum(len(c[0]) for c in tl.values())},
+                         "ocr": {"cards": len(ocr_cards), "kept": len(ocr_kept),
+                                 "chars": sum(len(c[0]) for c in oc.values())}})
+        settings = ocr_settings(dpi, psm)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    tl_total = sum(r["text_layer"]["cards"] for r in rows)
+    ocr_total = sum(r["ocr"]["cards"] for r in rows)
+    per_page = ocr_seconds / max(1, len(sample))
+    pdf_pages = int(subprocess.run(["pdfinfo", str(pdf)], capture_output=True,
+                                   text=True).stdout.split("Pages:")[1].split()[0])
+    doc = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/read_newberry_index.py --probe. Why volume %d is "
+                "read by OCR and the other volumes are not, measured on a fixed page "
+                "sample read both ways (T-0614)." % volume,
+        "volume": volume,
+        "file": VOLUMES[volume]["file"],
+        "bytes": pdf.stat().st_size,
+        "sha256": sha256_file(pdf),
+        "pdf_pages": pdf_pages,
+        "other_volumes": others,
+        "text_layer_whole_volume": {
+            "cards_assembled": whole["cards"],
+            "locality_cards_kept": whole["kept"],
+            "cards_per_page": round(whole["cards"] / whole["pages"], 1),
+            "_doc": "What --extract (the pdftotext path every other volume was read "
+                    "with) gets off this volume. Compare cards_per_page with "
+                    "other_volumes: that gap is the finding. Not committed as a "
+                    "reading — see the ticket.",
+        },
+        "sample": sample,
+        "pages": rows,
+        "totals": {"text_layer_cards": tl_total, "ocr_cards": ocr_total,
+                   "text_layer_kept": sum(r["text_layer"]["kept"] for r in rows),
+                   "ocr_kept": sum(r["ocr"]["kept"] for r in rows),
+                   "ocr_over_text_layer": round(ocr_total / tl_total, 1) if tl_total
+                   else None},
+        "ocr_settings": settings,
+        "ocr_cost": {"workers": int(workers), "seconds_per_page": round(per_page, 1),
+                     "whole_volume_minutes": round(per_page * pdf_pages / 60.0),
+                     "_doc": "What a page costs at these settings on the steward "
+                             "runner, and what the whole volume would cost. This is "
+                             "what T-0615's page ranges are sized from."},
+    }
+    dump(out_dir / ("vol_%02d_probe.json" % volume), doc)
+    return doc
 
 
 # ---------------------------------------------------------------- the layers
@@ -577,45 +935,19 @@ def works_of(body: str):
     return out
 
 
-def parse(volume: int) -> dict:
-    text_name, _lines, cards = read_committed_cards(volume)
-    layers = layer_names()
+def leads_and_follow(records, layers, lead_id):
+    """The leads and the reading order over a set of records.
 
-    records = []
-    for n, card in enumerate(cards, start=1):
-        key = surname_key(card["heading"])
-        records.append({
-            "id": "nbi_v%02d_%04d" % (volume, n),
-            "as_read": "%s | %s" % (card["heading"], card["body"]),
-            "normalized": {
-                "surname_as_printed": card["heading"],
-                "surname_key": key,
-                "localities": card["buckets"],
-                # The distinction that decides what is worth reading next. A card
-                # naming Fulton or Sangamon County is Illinois and is kept; it is not
-                # Chicago, and a work is ranked on the Chicago and Cook County cards
-                # it carries, not on its county histories.
-                "chicago_or_cook": bool({"chicago", "cook_county"} & set(card["buckets"])),
-                "works_cited": works_of(card["body"]),
-            },
-            "locator": {
-                "list": "vol_%02d" % volume,
-                "text_file": text_name,
-                "lines": [card["heading_line"], card["body_line"]],
-                "index_page": card["page"],
-                "column": card["column"],
-            },
-            "reading": "transcription_mediated",
-            "confidence": "documented",
-            "notes": "A card in the Newberry index, not a statement about a person. "
-                     "What is documented is that the index files this surname with a "
-                     "citation naming %s; the citation itself is unread until the work "
-                     "it names is opened."
-                     % (", ".join(card["buckets"]) or "a locality"),
-        })
-
-    # The leads. One row per (index surname, layer), carrying every card that
-    # surname stands on and every project id it could bear on.
+    Called twice: once on ONE volume's records, for that volume's own counts, and
+    once on EVERY parsed volume's records, for the committed `leads.json` and
+    `follow_up.json`. Before T-0578 it was inlined in parse() and ran on one volume
+    only, so reading volume 2 overwrote volume 1's 319 leads with volume 2's 215
+    instead of carrying both — the reading order is a fact about the whole index, not
+    about whichever volume was read last. `lead_id` is passed in because a per-volume
+    id would collide across volumes on a surname both of them file.
+    """
+    # One row per (index surname, layer), carrying every card that surname stands
+    # on and every project id it could bear on.
     by_key = {}
     for rec in records:
         by_key.setdefault(rec["normalized"]["surname_key"], []).append(rec)
@@ -632,7 +964,7 @@ def parse(volume: int) -> dict:
             if not hits:
                 continue
             leads.append({
-                "id": "lead_v%02d_%s_%s" % (volume, key, layer),
+                "id": lead_id(key, layer),
                 "surname_key": key,
                 "spellings_as_printed": sorted({r["normalized"]["surname_as_printed"]
                                                 for r in by_key[key]}),
@@ -672,6 +1004,48 @@ def parse(volume: int) -> dict:
     unmatched_chi = [r for r in unmatched if r["normalized"]["chicago_or_cook"]]
     follow.sort(key=lambda w: (-w["chicago_or_cook_cards_on_a_lead_surname"],
                                -w["chicago_or_cook_cards"], -w["cards"], w["key"]))
+    return leads, follow, unmatched, unmatched_chi, by_key
+
+
+def parse(volume: int) -> dict:
+    text_name, _lines, cards = read_committed_cards(volume)
+    layers = layer_names()
+
+    records = []
+    for n, card in enumerate(cards, start=1):
+        key = surname_key(card["heading"])
+        records.append({
+            "id": "nbi_v%02d_%04d" % (volume, n),
+            "as_read": "%s | %s" % (card["heading"], card["body"]),
+            "normalized": {
+                "surname_as_printed": card["heading"],
+                "surname_key": key,
+                "localities": card["buckets"],
+                # The distinction that decides what is worth reading next. A card
+                # naming Fulton or Sangamon County is Illinois and is kept; it is not
+                # Chicago, and a work is ranked on the Chicago and Cook County cards
+                # it carries, not on its county histories.
+                "chicago_or_cook": bool({"chicago", "cook_county"} & set(card["buckets"])),
+                "works_cited": works_of(card["body"]),
+            },
+            "locator": {
+                "list": "vol_%02d" % volume,
+                "text_file": text_name,
+                "lines": [card["heading_line"], card["body_line"]],
+                "index_page": card["page"],
+                "column": card["column"],
+            },
+            "reading": "transcription_mediated",
+            "confidence": "documented",
+            "notes": "A card in the Newberry index, not a statement about a person. "
+                     "What is documented is that the index files this surname with a "
+                     "citation naming %s; the citation itself is unread until the work "
+                     "it names is opened."
+                     % (", ".join(card["buckets"]) or "a locality"),
+        })
+
+    leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
+        records, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
 
     counts = {
         "cards": len(records),
@@ -699,33 +1073,6 @@ def parse(volume: int) -> dict:
         "counts": counts,
         "records": records,
     })
-    dump(DOMAIN / "leads.json", {
-        "schema": SCHEMA,
-        "_doc": "GENERATED. Surname -> the residents, voters, 1840 heads and structures "
-                "a Newberry card COULD bear on. Never a merge: see crosswalk.json, "
-                "which holds none and says why.",
-        "generated_by": "tools/read_newberry_index.py --parse",
-        "volume": volume,
-        "counts": counts,
-        "leads": leads,
-    })
-    dump(DOMAIN / "follow_up.json", {
-        "schema": SCHEMA,
-        "_doc": "GENERATED. The works the Chicago, Cook County and Illinois cards point "
-                "at, ranked by how many of this project's people they could bear on. "
-                "This is the reading order for the follow-up tickets.",
-        "generated_by": "tools/read_newberry_index.py --parse",
-        "volume": volume,
-        "works": follow,
-        "cards_matching_no_known_work": len(unmatched),
-        "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi),
-        "note": "A card whose citation matches no pattern in WORKS is counted here and "
-                "kept in the records; it is the queue of works nobody has named yet. "
-                "Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, "
-                "Baldwin, Murray Williamson, Power — which are Illinois and are not "
-                "Chicago, and which is why the ranking is on the Chicago and Cook "
-                "County cards.",
-    })
     index_path = DOMAIN / "entries.json"
     index = load(index_path) if index_path.exists() else {}
     volumes = index.get("volumes") or {}
@@ -741,6 +1088,68 @@ def parse(volume: int) -> dict:
         "volumes_parsed": sorted(int(k) for k in volumes),
         "volumes_unread": sorted(v for v in VOLUMES if str(v) not in volumes),
         "volumes": {k: volumes[k] for k in sorted(volumes, key=int)},
+    })
+
+    # THE LEADS AND THE READING ORDER ARE FACTS ABOUT THE WHOLE INDEX, not about the
+    # volume that happened to be read last, so they are rebuilt from EVERY parsed
+    # volume's committed records. Until T-0578 they were written from this volume
+    # alone, and reading volume 2 silently replaced volume 1's 319 leads with volume
+    # 2's 215; entries.json accumulated and these two did not.
+    parsed = sorted(int(k) for k in volumes)
+    all_records = []
+    for vol in parsed:
+        path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
+        if path.exists():
+            all_records.extend(load(path).get("records") or [])
+    # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
+    # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
+    # surname filed in both volumes must keep the id its ruling was written against;
+    # a surname new to volume 2 gets `lead_v02_*`. A bare `lead_<key>_<layer>` would
+    # orphan every one of those rulings.
+    first_volume = {}
+    for rec in all_records:
+        vol = int(rec["id"][5:7])
+        key = rec["normalized"]["surname_key"]
+        first_volume[key] = min(first_volume.get(key, vol), vol)
+    leads_all, follow_all, unmatched_all, unmatched_chi_all, by_key_all = \
+        leads_and_follow(all_records, layers,
+                         lambda key, layer: "lead_v%02d_%s_%s"
+                                            % (first_volume[key], key, layer))
+    dump(DOMAIN / "leads.json", {
+        "schema": SCHEMA,
+        "_doc": "GENERATED. Surname -> the residents, voters, 1840 heads and structures "
+                "a Newberry card COULD bear on, over every volume read so far. Never a "
+                "merge: see crosswalk.json, which holds none and says why.",
+        "generated_by": "tools/read_newberry_index.py --parse",
+        "volumes": parsed,
+        "counts": {
+            "cards": len(all_records),
+            "distinct_surname_keys": len(by_key_all),
+            "leads": len(leads_all),
+            "leads_by_layer": {layer: sum(1 for ld in leads_all
+                                          if ld["layer"] == layer)
+                               for layer in sorted(layers)},
+        },
+        "leads": leads_all,
+    })
+    dump(DOMAIN / "follow_up.json", {
+        "schema": SCHEMA,
+        "_doc": "GENERATED. The works the Chicago, Cook County and Illinois cards point "
+                "at, over every volume read so far, ranked by how many of this "
+                "project's people they could bear on. This is the reading order for "
+                "the follow-up tickets.",
+        "generated_by": "tools/read_newberry_index.py --parse",
+        "volumes": parsed,
+        "works": follow_all,
+        "cards": len(all_records),
+        "cards_matching_no_known_work": len(unmatched_all),
+        "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi_all),
+        "note": "A card whose citation matches no pattern in WORKS is counted here and "
+                "kept in the records; it is the queue of works nobody has named yet. "
+                "Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, "
+                "Baldwin, Murray Williamson, Power — which are Illinois and are not "
+                "Chicago, and which is why the ranking is on the Chicago and Cook "
+                "County cards.",
     })
     return counts
 
@@ -768,6 +1177,32 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
     elif manifest.get("ia_item") != IA_ITEM:
         bad.append("MANIFEST names ia_item %r, not the identifier the owner uploaded "
                    "the volumes under" % manifest.get("ia_item"))
+
+    # A volume read by OCR is only reproducible while the shards it was assembled out
+    # of are still there and still hash the same. They are the intermediate here, the
+    # way the four pdftotext passes are the intermediate for a text-layer volume, and
+    # unlike those they are committed — so they can rot, and this says so when they do.
+    for volume, vol in sorted((manifest or {}).get("volumes", {}).items()):
+        if vol.get("read_by") != "ocr":
+            continue
+        shard_root = domain / "text" / "ocr" / ("vol_%02d" % int(volume))
+        named = {r["shard"]: r for r in vol.get("ocr_shards") or []}
+        if not named:
+            bad.append("MANIFEST says volume %s was read by OCR and names no shard — "
+                       "the reading is not reproducible" % volume)
+        for name, rec in sorted(named.items()):
+            path = shard_root / name
+            if not path.exists():
+                bad.append("volume %s: MANIFEST names OCR shard %s, which is not "
+                           "committed" % (volume, name))
+            elif sha256_file(path) != rec.get("sha256"):
+                bad.append("volume %s: OCR shard %s does not hash to what MANIFEST "
+                           "says it does" % (volume, name))
+        for path in sorted(shard_root.glob("pages_*.json.gz")):
+            if path.name not in named:
+                bad.append("volume %s: OCR shard %s is committed but MANIFEST does not "
+                           "name it — the committed text was assembled without it"
+                           % (volume, path.name))
 
     for path in sorted((domain / "records").glob("entries_vol_*.json")):
         doc = load(path)
@@ -988,6 +1423,95 @@ def self_test() -> int:
         print("  DID NOT FIRE: a person graded off the finding aid")
         ok = False
 
+    # ---- the OCR path (T-0614). Two shards standing in for two page ranges, and
+    # every way a run could stitch them into something that is not one reading.
+    def shard(dirpath, volume, first, last, pages, settings=None, pdf_sha="deadbeef"):
+        out = shard_path(volume, first, last, dirpath)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        body = json.dumps({"schema": OCR_SHARD_SCHEMA, "volume": volume,
+                           "first": first, "last": last,
+                           "settings": settings or {"engine": "tesseract 0.0", "dpi": 200,
+                                                    "psm": "6",
+                                                    "crops": [list(c) for c in CROPS],
+                                                    "crop_height": CROP_HEIGHT,
+                                                    "render": "pdftoppm -gray -png"},
+                           "pdf_sha256": pdf_sha, "pages": pages},
+                          ensure_ascii=False, sort_keys=True)
+        write_gz(out, body)
+        return out
+
+    CARD = ["Abbott family.\n  Chicago, Ill. (Dodd, S.) 1624: 111.\n", "", "", ""]
+    BLANK = ["", "", "", ""]
+
+    tmp = Path(tempfile.mkdtemp(prefix="nbi_ocr_"))
+    try:
+        shard(tmp, 4, 1, 1, {"1": CARD})
+        shard(tmp, 4, 2, 2, {"2": BLANK})
+        columns, pages, settings, records = read_shards(4, tmp)
+        cards, kept = assemble(columns, pages)
+        if pages == 2 and len(cards) == 1 and len(kept) == 1 \
+                and kept[0]["heading"] == "Abbott" and "chicago" in kept[0]["buckets"] \
+                and len(records) == 2:
+            print("  fires: two OCR shards stitch into one volume and assemble")
+            fired.append("ocr stitch")
+        else:
+            print("  DID NOT FIRE: two OCR shards stitch into one volume and assemble "
+                  "(pages=%r cards=%r kept=%r)" % (pages, len(cards), len(kept)))
+            ok = False
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    def refuses(label, build):
+        good = True
+        tmp = Path(tempfile.mkdtemp(prefix="nbi_ocr_"))
+        try:
+            build(tmp)
+            read_shards(4, tmp)
+            print("  DID NOT FIRE: %s" % label)
+            good = False
+        except SystemExit as exc:
+            print("  fires: %s — %s" % (label, str(exc)[:110]))
+            fired.append(label)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+        return good
+
+    ok &= refuses("shards read at two different dpi stitched into one volume",
+                  lambda t: (shard(t, 4, 1, 1, {"1": CARD}),
+                             shard(t, 4, 2, 2, {"2": BLANK},
+                                   settings={"engine": "tesseract 0.0", "dpi": 400,
+                                             "psm": "6",
+                                             "crops": [list(c) for c in CROPS],
+                                             "crop_height": CROP_HEIGHT,
+                                             "render": "pdftoppm -gray -png"})))
+    ok &= refuses("shards read off two different pdfs stitched into one volume",
+                  lambda t: (shard(t, 4, 1, 1, {"1": CARD}),
+                             shard(t, 4, 2, 2, {"2": BLANK}, pdf_sha="cafe")))
+    ok &= refuses("a volume assembled with a page range missing",
+                  lambda t: (shard(t, 4, 1, 1, {"1": CARD}),
+                             shard(t, 4, 3, 3, {"3": BLANK})))
+    ok &= refuses("a volume assembled with no shard at all", lambda t: None)
+
+    def ocr_manifest(dom, mutate):
+        """Mark volume 1 as OCR-read off one committed shard, then break it."""
+        root = dom / "text" / "ocr"
+        path = shard(root, 1, 1, 1, {"1": CARD})
+        doc = load(dom / "text" / "MANIFEST.json")
+        doc["volumes"]["1"]["read_by"] = "ocr"
+        doc["volumes"]["1"]["ocr_shards"] = [{"shard": path.name, "first": 1, "last": 1,
+                                              "pages": 1, "sha256": sha256_file(path)}]
+        dump(dom / "text" / "MANIFEST.json", doc)
+        mutate(dom, root, path)
+
+    ok &= run("an OCR shard MANIFEST names that is not committed",
+              lambda d: ocr_manifest(d, lambda dom, root, path: path.unlink()))
+    ok &= run("an OCR shard edited after the volume was assembled off it",
+              lambda d: ocr_manifest(d, lambda dom, root, path: shard(
+                  root, 1, 1, 1, {"1": ["Adams family.\n  Cook Co., Ill.\n", "", "", ""]})))
+    ok &= run("an OCR shard committed that MANIFEST does not name",
+              lambda d: ocr_manifest(d, lambda dom, root, path: shard(
+                  root, 1, 9, 9, {"9": BLANK})))
+
     if not ok:
         print("SELF-TEST FAIL")
         return 1
@@ -1001,18 +1525,55 @@ def main(argv=None) -> int:
     ap.add_argument("--extract", action="store_true")
     ap.add_argument("--parse", action="store_true")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--probe", action="store_true",
+                    help="read a fixed page sample both ways and write the comparison "
+                         "to text/vol_NN_probe.json")
     ap.add_argument("--self-test", action="store_true", dest="self_test")
     ap.add_argument("--volume", type=int, default=1, choices=sorted(VOLUMES))
     ap.add_argument("--pdf", type=Path)
+    ap.add_argument("--ocr", action="store_true",
+                    help="read the page images instead of the embedded text layer "
+                         "(volume 4 — see the OCR path)")
+    ap.add_argument("--pages", help="A-B: read only this page range and commit its "
+                                    "shard. Without it, --extract --ocr stitches every "
+                                    "committed shard and assembles the volume.")
+    ap.add_argument("--dpi", type=int, default=OCR_DPI)
+    ap.add_argument("--psm", default=OCR_PSM)
+    ap.add_argument("--workers", type=int, default=OCR_WORKERS)
     args = ap.parse_args(argv)
 
     if args.extract:
         if not args.pdf:
             raise SystemExit("--extract needs --pdf: the volume is not committed, and "
                              "MANIFEST.json says where to fetch it")
-        out = extract(args.volume, args.pdf)
-        print("volume %d: %d cards assembled, %d kept" % (args.volume, out["cards"],
-                                                            out["kept"]))
+        if args.pages and not args.ocr:
+            raise SystemExit("--pages is the OCR path's resume switch and means nothing "
+                             "without --ocr: pdftotext reads the whole volume at once")
+        if args.pages:
+            m = re.fullmatch(r"\s*(\d+)\s*-\s*(\d+)\s*", args.pages)
+            if not m:
+                raise SystemExit("--pages wants A-B, got %r" % args.pages)
+            first, last = int(m.group(1)), int(m.group(2))
+            shard = ocr_range(args.volume, args.pdf, first, last,
+                              dpi=args.dpi, psm=args.psm, workers=args.workers)
+            print("volume %d: pages %d-%d read into %s"
+                  % (args.volume, first, last, shard.name))
+        elif args.ocr:
+            out = extract_ocr(args.volume, args.pdf)
+            print("volume %d: %d cards assembled, %d kept, from %d OCR shard(s) over "
+                  "%d pages" % (args.volume, out["cards"], out["kept"], out["shards"],
+                                out["pages"]))
+        else:
+            out = extract(args.volume, args.pdf)
+            print("volume %d: %d cards assembled, %d kept" % (args.volume, out["cards"],
+                                                                out["kept"]))
+    if args.probe:
+        if not args.pdf:
+            raise SystemExit("--probe needs --pdf")
+        doc = probe(args.volume, args.pdf, dpi=args.dpi, psm=args.psm,
+                    workers=args.workers)
+        print(json.dumps({"totals": doc["totals"], "ocr_cost": doc["ocr_cost"]},
+                         indent=2, ensure_ascii=False))
     if args.parse:
         counts = parse(args.volume)
         print(json.dumps(counts, indent=2, ensure_ascii=False))
@@ -1024,7 +1585,8 @@ def main(argv=None) -> int:
             print("  " + line)
         print("newberry index: %s" % ("FAIL (%d)" % len(bad) if bad else "ok"))
         return 1 if bad else 0
-    if not (args.extract or args.parse or args.check or args.self_test):
+    if not (args.extract or args.parse or args.check or args.self_test
+            or args.probe):
         ap.print_help()
     return 0
 

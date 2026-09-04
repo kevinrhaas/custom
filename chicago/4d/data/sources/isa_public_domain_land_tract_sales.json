@@ -1,0 +1,12 @@
+{
+  "id": "isa_public_domain_land_tract_sales",
+  "type": "dataset",
+  "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+  "date": "database of the federal land office registers",
+  "describes_date": "1830/1836",
+  "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+  "tier": 1,
+  "verified": true,
+  "note": "The Archives' index to the sales registers of the federal land offices. Each row carries the purchaser as the register wrote it, the purchaser's stated residence (a COUNTY, and most often UNKNOWN), the aliquot part or town lot, section, township, range, meridian, county, acres, price per acre, total price, type of sale, date of purchase, and the register volume and page. This project read it for T39N R14E and T40N R14E, third principal meridian, through 31 December 1836 (T-0557). The database's own search returns at most 150 rows per query and offers no paging, which is why the reading is by section and why three sections of T39N R14E are declared unread; see data/research/land_sales/README.md. The site refuses this runner's datacentre address outright (403 from every user agent), so the pages were fetched through the public r.jina.ai reader, which returns the origin's own HTML — the access route is recorded on every record's locator and changes nothing about what the page says.",
+  "rights_status": "check_required"
+}

@@ -457,6 +457,14 @@ def build(write=True):
                 "An outcome here is an OUTCOME, not a promotion: nothing in this file "
                 "mints or regrades a resident (T-0514, T-0515 do that).",
         "generated_by": "tools/read_voter_lists.py --build",
+        # T-0598. Every ruling in this file rests on the four lists and on nothing
+        # else, so the file says so once rather than 345 times. Without it nothing
+        # could carry a ruling here onto a resident card: `persons[].sources` is a
+        # list of SOURCE IDS, and a crosswalk that names a person and not a source
+        # can only be spent by a human rereading the whole file.
+        "source_id": SOURCE_ID,
+        "publication_source_id": "chicago_genealogist_1993_voter_lists",
+        "crosswalk_target": "data/residents/households/*.json",
         "residents_compared": len(people),
         "counts": {
             "entries": len(entries),

@@ -15,18 +15,18 @@ OUTDIR = ROOT.parent / "reference/resident-research/T-0479"
 
 CANDIDATE_IDS = {
     "murphy_harriet": "cand_harriet_murphy_us_hotel",
-    "ll_dalton_edward": "cand_edward_dalton_chicago_1840",
-    "ll_gooding_jaines": "cand_james_gooding_grove",
-    "ll_gould_a_b": "cand_ambrose_b_gould_1843",
-    "ll_hateh_betsey": "cand_betsey_hatch_lasalle",
-    "ll_holliday_william": "cand_william_holliday_white_hall",
-    "ll_daniel_newton": "cand_daniel_newton_ottawa",
-    "ll_daniel_platt": "cand_daniel_platt_lisbon",
-    "ll_e_dimmick": "cand_edward_dimmick_1839",
-    "ll_edward_poor": "cand_edward_poor_homer",
-    "ll_edward_trimble": "cand_edward_trimble_geneva",
-    "ll_elijah_garton": "cand_elijah_garton_st_charles",
-    "ll_hezekiah_gifford": "cand_hezekiah_gifford_elgin",
+    "dalton_edward": "cand_edward_dalton_chicago_1840",
+    "jaines_gooding": "cand_james_gooding_grove",
+    "gould_a_b": "cand_ambrose_b_gould_1843",
+    "hateh_betsey": "cand_betsey_hatch_lasalle",
+    "holliday_william": "cand_william_holliday_white_hall",
+    "newton_daniel": "cand_daniel_newton_ottawa",
+    "platt_daniel": "cand_daniel_platt_lisbon",
+    "dimmick_e": "cand_edward_dimmick_1839",
+    "poor_edward": "cand_edward_poor_homer",
+    "trimble_edward": "cand_edward_trimble_geneva",
+    "garton_elijah": "cand_elijah_garton_st_charles",
+    "gifford_hezekiah": "cand_hezekiah_gifford_elgin",
 }
 EXPECTED = {
     "corroborated_enrichment": 5,
@@ -48,7 +48,7 @@ PROPOSED = {
     "kimball_walter": {"occupation": "merchant; W. Kimball's New Store", "address": "South Water / Clark junction in 1833 advertisement"},
     "lampman_henry_s": {"migration": "then of Ann Arbor before spring-1833 Chicago brickyard work", "occupation": "brickmaker/workman at Tyler K. Blodgett's brickyard"},
     "wright_john_s": {"address": "Chicago original-town land purchases documented in the Wright papers; later dates not back-projected"},
-    "ll_hugunin_leonard_c": {"migration": "arrived Chicago 1833-08-17", "occupation": "speculator by 1839 directory"},
+    "hugunin_leonard_c": {"migration": "arrived Chicago 1833-08-17", "occupation": "speculator by 1839 directory"},
 }
 
 

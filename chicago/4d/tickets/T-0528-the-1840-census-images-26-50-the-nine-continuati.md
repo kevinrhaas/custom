@@ -1,7 +1,7 @@
 ---
 id: T-0528
 title: The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0495
 opened: 2026-09-03
-closed: null
+closed: 2026-09-04
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T08:53:15.828Z
+claimed_run: null
 ---
 
 The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page.

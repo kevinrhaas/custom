@@ -16,6 +16,38 @@ blocked_on: null
 needs_bake: false
 ---
 
+## ★ THE OWNER'S RULING, 2026-09-03 (evening) — RECORDED, because the last one was lost
+
+Asked: *"Does an improved Lake-fronting lot take a fence at its Lake frontage — L160's
+engraving read literally — even when the building that improved it faces Dearborn?"*
+
+**His answer, verbatim: "the answer is yes for this".**
+
+So the split this ticket describes is settled, and it settles the way PR #675 already
+built it — **the fence follows the LOT, the post follows the DOOR**:
+
+- **The FENCE is right.** An improved Lake-fronting lot takes its fence at its Lake
+  frontage, L160 read literally, whatever street the building that improved it faces.
+  The 24.7 m on lot 7 stays. This is now a rule across all 359 committed footprints and
+  not a special case for the New York Clothing Store.
+- **The POST is the bug.** A hitching post belongs at the face its own door is on. Standing
+  the clothing store's post on Lake Street, 49 m from its Dearborn door, with the face's
+  bearing 180.5 written over the building's own 90, is wrong and is fixed rather than
+  admitted.
+
+**Why this ruling is written HERE and not only on the PR.** The owner reported that he had
+already answered the triangle-budget fork "from before but it may have been lost" — and it
+had been: PR #599 pointed at **T-0441** as the ticket holding that decision, and T-0441 was
+never filed (there is a clean id gap between T-0440 and T-0442). A ruling that lives only in
+a PR comment is a ruling the queue cannot see. This one goes in the ledger first.
+
+**What it unblocks.** PR #675 implements exactly this reading and needs only a merge from
+dev and a re-derive — its gate is red on two STALE-DERIVED failures (`register_1835.json`
+not what a rebuild produces, and the resident index's attested count disagreeing with the
+records), neither of which is this parcel's logic. Behind it, **PR #562 (T-0385)** parks on
+`hold` waiting for this answer and can then be re-gated.
+
+
 A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods.
 
 **Acceptance:** the town's derived street furniture is no longer laid off a lot tier that

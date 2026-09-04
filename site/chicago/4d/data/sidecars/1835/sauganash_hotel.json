@@ -46,11 +46,11 @@
         0
       ],
       [
-        12,
+        9.92,
         0
       ],
       [
-        12,
+        9.92,
         8
       ],
       [
@@ -59,8 +59,10 @@
       ]
     ],
     "confidence": "reconstructed",
-    "sources": [],
-    "note": "PLACEHOLDER — the central unresolved question of this record. NO DIMENSIONS FOR THE SAUGANASH ARE ATTESTED in any source reached. This 12 x 8 m rectangle is a plausible two-story frame tavern footprint and nothing more. Two leads remain: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834, which requires the datum work first. Until then this renders as conjectural massing. NOTE ON WHAT THIS TAG MEANS: conjectural here is about SIZE, not about existence or character. That the building was a two-storey white frame block is documented (Wau-Bun); how big it was is unknown. The renderer therefore does NOT dither the massing on account of this tag — see generators/archetypes/frame_tavern.py — and the dimensional uncertainty is carried in the sidecar instead."
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE TWO-MASS PLAN, AND THE 12 x 8 m PLACEHOLDER IS RETIRED (T-0626, spending T-0617's reading). THE FRONTAGE IS DERIVED AND THE DEPTH IS NOT, and the block is graded at the weaker of the two. FRONTAGE 9.92 m: Braunhold's engraving draws five bays on the street face and rectified against that face's own vanishing point the five are EQUAL to 2.4 % (tools/measure_sauganash_plate.py, bay_rhythm.rectified_gaps 0.997 / 1.011 / 1.020 / 0.972). The bay measures 1.984 m at the plate's stated scale datum — a standing adult at 1.70 m, hat included, the two men on the walk reading 147 and 143 px — so five bays are 9.92 m. THE DATUM'S BIAS IS SMALL AND BOUNDED, which is what makes this a measurement rather than a floor: the men stand a pace forward of the wall, and the plate's own focal length puts them 43.0 m from the station (f 3664.7 px on a 145 px figure of 1.70 m), so a pace is 2.7 %. The frontage is therefore 9.9-10.2 m and 12 m IS REFUTED rather than merely unsupported. The value taken is the measured 9.92 and is not fudged up into the correction. What does still move it is the 1.70 m datum itself: at 1.60 m the frontage reads 9.3 m and at 1.80 m 10.5 m. DEPTH 8.0 m IS UNCHANGED AND IS STILL A RECONSTRUCTION. One plate gives no depth (docs/RESEARCH/sauganash_image_accuracy.md row 11), so nothing has measured it; it is held at the placeholder's own figure deliberately, because the placement above offsets this origin by the footprint's own 8 m depth to stand the north face on the Lake Street frontage, and moving a number with no evidence behind it would move the building. THE SECOND MASS IS NOT IN THIS POLYGON, on the precedent green_tree_tavern's rear ell set: an attached wing is the archetype's, sized by this phase's own form attributes (cross_wing, cross_wing_depth_m, cross_wing_end), and the polygon is the main block's plan. The one lead this note used to carry is still open: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834. NOTE ON WHAT THIS TAG MEANS: conjectural here is about SIZE, not about existence or character. That the building was a two-storey white frame block is documented (Wau-Bun); how big it was is measured off one retrospective sheet and no better. The renderer therefore does NOT dither the massing on account of this tag — see generators/archetypes/frame_tavern.py — and the dimensional uncertainty is carried in the sidecar instead."
   },
   "attributes": {
     "stories": {
@@ -129,29 +131,29 @@
       "note": "REVISED 2026-08-09 after examining the images directly. No period source attests a gallery or porch either way, but the two surviving retrospective depictions both show the building WITHOUT one: the F. Braunhold engraving in Andreas (1884) and panel 14 of the Kurz and Allison sheet (1893) each show a plain two-story clapboard block with a modest entrance and no veranda. Caveat on independence — the Kurz and Allison panel closely follows the Andreas composition and is probably derived from it, so these are not two witnesses so much as one witness and a copy. 'No gallery' is therefore better attested than 'gallery' without being documented. See docs/RESEARCH/sauganash_hotel.md."
     },
     "log_wing": {
-      "value": true,
+      "value": false,
       "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "kurz_allison_1893"
       ],
-      "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied. Since T-0092 the wing's own entrance is carried by log_wing_door and log_wing_porch_hood, each at its own grade."
+      "note": "RETIRED 2026-09-04 (T-0626), BECAUSE IT WAS THE SAME BUILDING DRAWN TWICE. This attribute stood a one-storey log wing FORWARD of the frame block's street face at its left third, and the owner reported exactly that from the dev preview: 'there is an extra log structure you have in front'. Two things are wrong with it and they are different. WHERE: all three views put the log annex at the END of the composition, beside the tall wing, and the main block's street face is unobstructed in every one of them. WHOSE: the annex is not this record's to draw. drloih_beaubien captions the very engraving this project measures — 'The Sauganash Hotel. The log cabin on the left was Chicago's first drugstore' — and that cabin is data/structures/philo_carpenter_log_shop.json, the 16 x 20 ft log building Andreas puts on Lake Street near the river, held here since 2026-08-11 and already sited hard against this block's EAST face on the same Lake Street frontage. So the annex stands in the scene, at the end, beside the wing; it simply stood there twice. The value is false rather than deleted so that the claim, its sources and its grade stay legible. The 1829 cabin's survival is not withdrawn — it is carried on the log_1829 phase below, which is that same building, and on the shop's own record."
     },
     "log_wing_door": {
-      "value": true,
+      "value": false,
       "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
-      "note": "THE WING KEPT ITS OWN DOOR, OPENING DIRECT TO GRADE in its street face — no stoop, no climb to the frame block's floor: the 1829 cabin's entrance surviving in use. Two of the three views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Braunhold engraving in Andreas puts the wing's shed-roofed porch over 'the door' (image 9), and the Trowbridge drawing states 'the log wing's door direct to grade' (image 10). Tier-5 retrospective views may drive fenestration as inferred and never a dimension: the leaf's size and its centred position are the archetype's numbers, claimed at docs/LIBERTIES.md L154. The brief's binaries are not yet committed, so images 9 and 10 are cited via the README until T-0075 lands identifications."
+      "note": "RETIRED 2026-09-04 (T-0626), BECAUSE IT WAS THE SAME BUILDING DRAWN TWICE. This attribute stood a one-storey log wing FORWARD of the frame block's street face at its left third, and the owner reported exactly that from the dev preview: 'there is an extra log structure you have in front'. Two things are wrong with it and they are different. WHERE: all three views put the log annex at the END of the composition, beside the tall wing, and the main block's street face is unobstructed in every one of them. WHOSE: the annex is not this record's to draw. drloih_beaubien captions the very engraving this project measures — 'The Sauganash Hotel. The log cabin on the left was Chicago's first drugstore' — and that cabin is data/structures/philo_carpenter_log_shop.json, the 16 x 20 ft log building Andreas puts on Lake Street near the river, held here since 2026-08-11 and already sited hard against this block's EAST face on the same Lake Street frontage. So the annex stands in the scene, at the end, beside the wing; it simply stood there twice. The value is false rather than deleted so that the claim, its sources and its grade stay legible. The 1829 cabin's survival is not withdrawn — it is carried on the log_1829 phase below, which is that same building, and on the shop's own record. The door itself is not withdrawn: two views draw the cabin's own entrance direct to grade, and it belongs to the record that holds the cabin."
     },
     "log_wing_porch_hood": {
-      "value": true,
+      "value": false,
       "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
-      "note": "A SHED-ROOFED PORCH HOOD OVER THE WING DOOR, ON POSTS TO GRADE — IMAGE 9 ONLY: the Braunhold engraving draws 'the log wing with its shed-roofed porch over the door' (data/sources/assets/owner_brief_2026_08_18/README.md), and neither the Petford view nor the Trowbridge drawing resolves a hood either way, so this is a single-view inference and weaker than the door it shelters — the geometry carries this attribute's own confidence, not the door's. Pitch, projection and the two posts are the archetype's numbers: docs/LIBERTIES.md L154."
+      "note": "RETIRED 2026-09-04 (T-0626), BECAUSE IT WAS THE SAME BUILDING DRAWN TWICE. This attribute stood a one-storey log wing FORWARD of the frame block's street face at its left third, and the owner reported exactly that from the dev preview: 'there is an extra log structure you have in front'. Two things are wrong with it and they are different. WHERE: all three views put the log annex at the END of the composition, beside the tall wing, and the main block's street face is unobstructed in every one of them. WHOSE: the annex is not this record's to draw. drloih_beaubien captions the very engraving this project measures — 'The Sauganash Hotel. The log cabin on the left was Chicago's first drugstore' — and that cabin is data/structures/philo_carpenter_log_shop.json, the 16 x 20 ft log building Andreas puts on Lake Street near the river, held here since 2026-08-11 and already sited hard against this block's EAST face on the same Lake Street frontage. So the annex stands in the scene, at the end, beside the wing; it simply stood there twice. The value is false rather than deleted so that the claim, its sources and its grade stay legible. The 1829 cabin's survival is not withdrawn — it is carried on the log_1829 phase below, which is that same building, and on the shop's own record. The hood is not withdrawn either; like the door it belongs to the cabin's own record, and it rested on the engraving alone."
     },
     "roof_pitch_deg": {
       "value": 38.0,
@@ -161,7 +163,7 @@
     "fenestration": {
       "value": "five_bay_regular",
       "confidence": "inferred",
-      "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe.",
+      "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe. MEASURED 2026-09-04 (T-0626, spending T-0617): the scheme this attribute has carried all along is the one the plate draws, and it is no longer typological inference. Braunhold's street face detects five openings in the upper storey and five in the ground storey, with the door the MIDDLE of the five — the darkest opening on the ground storey at ink 0.494, and nothing else on the sheet is inked like an open door onto an unlit room. The five are EQUAL: drawn gaps of 169.2, 161.1, 153.0 and 137.5 px are a 20.4 % spread that reads as an irregular rhythm and is not one, rectifying to 0.997, 1.011, 1.020 and 0.972 against the face's own vanishing point. The GRADE does not move — one sheet, tier 5, its two companions copies of it — and neither does the geometry, which already drew this. What changes is that the row now rests on a measurement: docs/RESEARCH/sauganash_image_accuracy.md rows 1-4.",
       "geometry": "simplified"
     },
     "entrance_frontispiece": {
@@ -191,6 +193,24 @@
       "value": 0.152,
       "confidence": "reconstructed",
       "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 6 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
+    },
+    "cross_wing": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "THE SECOND TWO-STOREY MASS, AND THE PLATE PROVES IT BY ARITHMETIC. The owner reported it missing on 2026-09-03 from the dev preview: 'i think there is a structure missing but you have it on the front and they have it on the rear in pictures, and it looks like the full height of the main building and similar design as the main building appears to be almost the same size, it connects from the back and side in the images.' T-0617 measured the near apex at (648, 350) with one line running out of it at image slope -0.318 and one at +0.095, and called the right-hand one a ridge on the strength of the asymmetry alone. T-0626 finished the sum. Project each line onto the vertical through the vanishing point of the plane it lies in — the plate gives both horizontal vanishing points and its own focal length, recovered from their orthogonality — and BOTH come out horizontal in the world: 1.35 deg and 0.11 deg, where a 38 deg rake in the same plane would have been DRAWN at image slope -1.99 against the -0.318 measured. So they are two RIDGES meeting at one apex, not a ridge and a rake, and the mass the owner reported is on the sheet as a measurement rather than as an impression. tools/sauganash_apex_lines.py is that arithmetic and tools/check.sh gates on it. THE SHARED APEX IS ALSO WHAT SIZES THE WING: two gable ridges of one wall height and one pitch meet at a point only when they span the same width, so the wing's span is this block's own depth and the archetype refuses to build it at any other. GRADE. One sheet — Braunhold's. The Petford watercolour and the Trowbridge drawing are the same composition from the same station, so they copy it rather than corroborate it (docs/RESEARCH/sauganash_image_accuracy.md section 1), and a tier-5 retrospective that passes its own perspective test may be read for PROPORTION and never for a coordinate. CITED ON BRAUNHOLD ALONE. The Petford and Trowbridge views were dropped from this row on 2026-09-04 for the reason the reading itself gives: they are the same composition from the same station, so listing them would dress a copy as a corroboration — and trowbridge_sauganash_hotel's rights are unresolved, so citing it here would put a mesh on a source nobody has checked for nothing gained."
+    },
+    "cross_wing_end": {
+      "value": "x_max",
+      "confidence": "inferred",
+      "note": "WHICH END IS DECIDED BY THE PLAT, NOT BY THE PLATE. All three views put the tall wing and the log annex at the LEFT of the composition, at the same end of the building; nothing in any of them says which real end of it that is, and a retrospective view may not drive a coordinate in any case. The lot decides. This phase's placement stands the block's WEST face on Market Street's east kerb line at a 0 m setback, so a wing at the west end would stand in Market Street. It goes at the EAST end — x_max in the archetype's local frame — which is also the end the log annex already stands against: data/structures/philo_carpenter_log_shop.json is set hard on this block's east face, by the same elimination and stated there since 2026-08-11. Graded inferred, because the premise the elimination runs on — a 0 m setback from an 80 ft platted street — is itself the placement's own inference. NO SOURCES ON THIS ROW, DELIBERATELY: it cites nothing because it rests on nothing new. The plat equivalence, the kerb line and the 0 m setback are all this phase's own position block, which carries its sources; repeating them here would claim a second, independent standing this row does not have."
+    },
+    "cross_wing_depth_m": {
+      "value": 8.0,
+      "confidence": "reconstructed",
+      "note": "INVENTED WITHIN A BOUND, AND IT IS THE ONLY NUMBER ON THIS MASS THAT IS. How far the wing runs BACK is what one sheet cannot give (docs/RESEARCH/sauganash_image_accuracy.md row 11): from the plate's station the wing stands behind the main block with only its ridge showing, so the drawing carries its height and its direction and not its length. 8.0 m is the owner's own reading of the views — 'almost the same size' as the main block — taken as equal to the block's 8 m depth, which is also the span the shared apex forces on the wing, so the wing comes out square in plan. docs/LIBERTIES.md L217 owns the invention. The number was also chosen to leave the fenced rear yard, its Market Street gateway and its three kept trees their room: nothing about that yard is attested either, and a wing sized to fill it would be one guess crowding another."
     },
     "function": {
       "value": "tavern_inn",

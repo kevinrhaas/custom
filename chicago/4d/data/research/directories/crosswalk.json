@@ -18,6 +18,14 @@
    "file": "data/research/directories/fergus_1843_crosswalk_1835.json",
    "changed_no_resident_record": true,
    "rule": "Under the ratified grading ladder an 1843 listing alone never makes an 1835 resident. Nothing in that file has been spent on a resident record; T-0569 is the ticket that spends it, and T-0574 is the ticket that spends the 43 matched death notices as birth years."
+  },
+  {
+   "ticket": "T-0506",
+   "source_id": "fergus_chicago_directory_1839",
+   "what": "Fergus' 1839 directory — 1,655 personal and firm entries off printed pages 5-36 — tried against FOUR pools of 1835 names on surname-fold plus first initial: the 849-person residents layer, the 345 voter, poll and tax entries (T-0493), the 2,630 letter-list and newspaper persons, and the 498 heads of household read off the 1840 census. The result — 84 residents matched to one entry, 20 ambiguous, 7 contested and 130 surname-only refusals, plus 123 voters, 334 letter-list names and 89 1840 heads matched — is written out name by name in fergus_1839_crosswalk_1835.json beside this file, for the same reason Norris's and Fergus 1843's are: a crosswalk between two LAYERS is not the same object as a merge of two SPELLINGS inside this domain.",
+   "file": "data/research/directories/fergus_1839_crosswalk_1835.json",
+   "changed_no_resident_record": true,
+   "rule": "Under the ratified grading ladder an 1839 listing alone never makes an 1835 resident, and this volume is weaker still: it is Fergus's 1876 completion, from the recollections of Old Settlers, of a six-page list he set up from memory in 1839. Nothing in that file has been spent on a resident record; T-0513 consolidates it and T-0514/T-0515 are the passes allowed to write people. One further rule is peculiar to this source and travels with every row: an address NUMBER in it is an 1876 number everywhere except Lake street, on the compiler's own statement (printed page 3), so only the street name may cross — address_is_street_only marks each row."
   }
  ],
  "merges": [],

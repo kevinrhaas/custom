@@ -65,11 +65,11 @@
       "records": 31
     },
     "residents/household:division": {
-      "records": 825,
+      "records": 1380,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 825,
+      "records": 1380,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:persons[].biographical_evidence.age_on_1835_07_01.value.max": {
@@ -80,6 +80,117 @@
     },
     "residents/household:persons[].biographical_evidence.birth_year.value": {
       "records": 2
+    },
+    "residents/household:persons[].book_evidence[].as_read": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].describes_date": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].list": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].locator": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].record_id": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].rule": {
+      "records": 167
+    },
+    "residents/household:persons[].book_evidence[].source": {
+      "records": 167
+    },
+    "residents/household:persons[].census_evidence[].as_read": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].describes_date": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].list": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].locator": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].record_id": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].rule": {
+      "records": 20
+    },
+    "residents/household:persons[].census_evidence[].source": {
+      "records": 20
+    },
+    "residents/household:persons[].church_evidence[].as_read": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].describes_date": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].list": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].locator": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].record_id": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].rule": {
+      "records": 37
+    },
+    "residents/household:persons[].church_evidence[].source": {
+      "records": 37
+    },
+    "residents/household:persons[].civic_evidence[].as_read": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].describes_date": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].list": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].locator": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].record_id": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].rule": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_evidence[].source": {
+      "records": 221
+    },
+    "residents/household:persons[].civic_mint": {
+      "records": 531
+    },
+    "residents/household:persons[].ladder_rule": {
+      "records": 531
+    },
+    "residents/household:persons[].press_evidence[].as_read": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].describes_date": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].list": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].locator": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].record_id": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].rule": {
+      "records": 384
+    },
+    "residents/household:persons[].press_evidence[].source": {
+      "records": 384
     },
     "residents/household:persons[].resident_research.asserted_identity": {
       "records": 611
@@ -133,7 +244,14 @@
       "records": 611
     },
     "residents/household:persons[].resident_subtype": {
-      "records": 706
+      "records": 790
+    },
+    "residents/household:source_pass": {
+      "records": 1302,
+      "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
+    },
+    "residents/manifest:counts.civic_mint": {
+      "records": 1
     },
     "residents/manifest:counts.households": {
       "records": 1,
@@ -142,16 +260,19 @@
     "residents/manifest:counts.reconstructed_removed_in_2026_09_02_synthesis": {
       "records": 1
     },
+    "residents/manifest:households[].civic_mint": {
+      "records": 531
+    },
     "residents/manifest:households[].head": {
-      "records": 825,
+      "records": 1380,
       "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 825,
+      "records": 1380,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 706
+      "records": 1237
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1

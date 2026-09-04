@@ -281,8 +281,18 @@ MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
 # minted by that pass BEFORE this field existed, in the same precedence order as
 # `MINTED_PREFIXES` above. `minted_by()` is the union test — a household counts
 # as this pass's whether it still carries the legacy prefix or the field.
+# `("civic", "hh_civic_")` is the fourth pass (T-0514,
+# tools/mint_civic_residents.py) and it is here for a reason its own docstring
+# argues at length: it sits BESIDE the letter-list pass on a pool its refusal 5
+# makes disjoint, not above it, so none of the three passes here should read its
+# households as "the town already names a <Surname>". That test is a proxy for
+# identity resolution over evidence that is a bare name, and the civic pass does
+# not need the proxy — its identities come from the consolidation, which resolves
+# on surname AND forename signature. Letting these three see it would retire
+# hundreds of committed letter-list records on a surname collision alone, which is
+# the opposite of the ruling of 2026-08-30.
 MINTED_PASSES = (("documented", "hh_doc_"), ("placed", "hh_placed_"),
-                 ("letter_list", "hh_ll_"))
+                 ("letter_list", "hh_ll_"), ("civic", "hh_civic_"))
 
 
 def minted_by(path, doc: dict, pass_name: str, legacy_prefix: str) -> bool:
@@ -352,13 +362,20 @@ def mint(docs: dict, index: dict):
     def norm(s):
         return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
+    # T-0599: a plain id no longer says whose previous answer it is on its own —
+    # the legacy `doc_` prefix still does, for any household not yet migrated, but
+    # a migrated one only says so in its own source_pass field.
+    own_pass = {doc["head"] for doc in docs.values() if doc.get("source_pass") == "documented"}
+
+    def is_own_prior_answer(target: str) -> bool:
+        return target.startswith(PERSON_PREFIX) or target in own_pass
+
     # The pool, and its own previous answer read back (see the module docstring).
     candidates = [p for p in register["persons"]
                   if p.get("occupation") and not p.get("letter_list_only")
                   and (p.get("action") == "new_resident"
                        or (p.get("action") == "enrich"
-                           and str(p.get("action_target") or "")
-                           .startswith(PERSON_PREFIX)))]
+                           and is_own_prior_answer(str(p.get("action_target") or ""))))]
     candidates.sort(key=lambda p: (-len(gazetteer[p["id"]]["mentions"]),
                                    p["first_seen"], p["id"]))
 

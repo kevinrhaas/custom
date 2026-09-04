@@ -191,6 +191,123 @@
    "result": "2,065 of T-0566's 2,073 entries matched (99.61%), of Kim Torp's 2,070 (99.76%). 1,190 identical, 808 agreeing at a ratio of 0.90 or better, 67 differing below it, 8 in the archive reading alone and 5 in hers. The addenda count agrees exactly at 117 in both. Every disagreement is held with BOTH readings verbatim and neither is preferred; nothing in claims/ was deleted, rewritten or regraded.",
    "the_addenda": "Both readings separate the addenda from the directory proper and both hold 117 entries in it, and no matched pair crosses the boundary. They are reached differently: T-0566 reads the addenda off printed pages 62-65 of the scan, and the Genealogy Trails page sets them after a heading and six lines of Norris's own prose introducing them, at lines 854-973 of 1844dir2.txt. Those six prose lines are named in the comparison's lines_not_entries and are the only place the two sources' segmentation of the section could have differed.",
    "what_it_found_that_is_not_yet_fixed": "The archive reading runs two printed entries into one claim at n1844_e1332 — Peter Myers of Chicago avenue and Andrew Nelson of North Water street — and reads Hiram where Kim Torp reads A. J. for the Woodbury clerking at T. W. Salisbury's. Both stand as recorded disagreements. Repairing a generated claims file out of a second source is a pass of its own with its own rule to write down; see second_readings/README.md."
+  },
+  {
+   "ticket": "T-0506",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "Fergus' Directory of the City of Chicago, 1839 (Fergus Printing Company, 1876), the ALPHABETICAL DIRECTORY: printed pages 5-36, which are leaves 17-48 of the Internet Archive scan fergusdirectoryo00ferg. Every entry on every one of those pages is a claim in claims/fergus_1839_directory_entries.json.",
+   "items": [
+    "fergus_1839_leaf_017",
+    "fergus_1839_leaf_018",
+    "fergus_1839_leaf_019",
+    "fergus_1839_leaf_020",
+    "fergus_1839_leaf_021",
+    "fergus_1839_leaf_022",
+    "fergus_1839_leaf_023",
+    "fergus_1839_leaf_024",
+    "fergus_1839_leaf_025",
+    "fergus_1839_leaf_026",
+    "fergus_1839_leaf_027",
+    "fergus_1839_leaf_028",
+    "fergus_1839_leaf_029",
+    "fergus_1839_leaf_030",
+    "fergus_1839_leaf_031",
+    "fergus_1839_leaf_032",
+    "fergus_1839_leaf_033",
+    "fergus_1839_leaf_034",
+    "fergus_1839_leaf_035",
+    "fergus_1839_leaf_036",
+    "fergus_1839_leaf_037",
+    "fergus_1839_leaf_038",
+    "fergus_1839_leaf_039",
+    "fergus_1839_leaf_040",
+    "fergus_1839_leaf_041",
+    "fergus_1839_leaf_042",
+    "fergus_1839_leaf_043",
+    "fergus_1839_leaf_044",
+    "fergus_1839_leaf_045",
+    "fergus_1839_leaf_046",
+    "fergus_1839_leaf_047",
+    "fergus_1839_leaf_048"
+   ]
+  },
+  {
+   "ticket": "T-0506",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed page 37 (leaf 49): the churches, the hotels, the public offices and rooms, the two named rows, the Dutch Settlement and the footnote recording the Tremont House fire of 27 October 1839. Town findings, in claims/fergus_1839_town_findings.json. NOT DECLARED by THIS reading, and read elsewhere or not at all: leaves 52-58 (printed 40-46), the 1837 charter election and its list of voters for mayor, READ by T-0664 and declared below; leaves 50-51 (printed 38-39), the city register and the lists of mayors and sheriffs, READ by T-0665 and declared below; leaves 59-62 (printed 47-50), the lots sold in the Fort Dearborn Addition and the population table, READ by T-0666 and declared below; and leaves 63-80, the 1843 preface and Fergus's historical sketch, which have no ticket. T-0611 was the appendices ticket and was split into those three on 2026-09-04.",
+   "items": [
+    "fergus_1839_leaf_049"
+   ]
+  },
+  {
+   "ticket": "T-0664",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed pages 40-46, which are leaves 52-58 of the Internet Archive scan fergusdirectoryo00ferg: THE CHARTER ELECTION OF 2 MAY 1837 AND ITS LIST OF VOTERS FOR MAYOR. Printed page 40 is the two party tickets, the six polling places and the eighteen judges of election; printed pages 41-46 are the poll itself, ward by ward and candidate by candidate, one claim per voter, closing with Fergus's two totals tables and the six ward boundaries they are counted under. All of it is in claims/fergus_1839_election_1837.json and every claim carries describes_date 1837-05-02 — this is a poll taken twenty-two months after the scene date and reset from recollection in 1876, and nothing in it is an 1835 fact.",
+   "items": [
+    "fergus_1839_leaf_052",
+    "fergus_1839_leaf_053",
+    "fergus_1839_leaf_054",
+    "fergus_1839_leaf_055",
+    "fergus_1839_leaf_056",
+    "fergus_1839_leaf_057",
+    "fergus_1839_leaf_058"
+   ],
+   "counts": {
+    "fergus_1839_leaf_052": 51,
+    "fergus_1839_leaf_053": 102,
+    "fergus_1839_leaf_054": 146,
+    "fergus_1839_leaf_055": 157,
+    "fergus_1839_leaf_056": 112,
+    "fergus_1839_leaf_057": 133,
+    "fergus_1839_leaf_058": 64
+   },
+   "counts_note": "Claims per leaf, and read_fergus_1839_election.py --check holds the reading to them: a segmenter that quietly loses a column of a poll list is invisible to every other gate here.",
+   "not_read_and_why": {
+    "leaves 50-51 (printed 38-39)": "the city register of 1839 and the printed lists of mayors and sheriffs. Committed as text by T-0664 and READ OUT by T-0665 on 2026-09-04, which declares them below.",
+    "leaves 59-62 (printed 47-50)": "the lots sold in the Fort Dearborn Addition, 10-24 June 1839, and the volume's own population table. READ by T-0666 — see the declaration below, claims/fergus_1839_ft_dearborn_lots.json and claims/fergus_1839_population.json.",
+    "printed page 46, the arithmetic": "Fergus's ward totals ARE read, as two tally claims. They do not agree with the names he printed: five wards match exactly and the FIRST WARD is three names short of its own total, 167 read against 170 printed. Neither number is corrected to the other; T-0667 is the ticket for settling it off the page images."
+   }
+  },
+  {
+   "ticket": "T-0665",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed pages 38-39, which are leaves 50-51 of the Internet Archive scan fergusdirectoryo00ferg: THE CITY REGISTER OF 1839 AND THE PRINTED LISTS OF MAYORS AND SHERIFFS. Printed page 38 is the officers of the city of Chicago in 1839 — the mayor, twelve aldermen by ward, the corporation newspaper, the high constable, six assessors, the chief engineer and his two assistants, eight single-holder offices, seven school inspectors, four police constables, six fire wardens and a board of health of three. Printed page 39 is the mayors of Chicago 1837-1873 and the sheriffs of Cook County 1831-1874, each an election-year table, with the two coroners who served ex officio between sheriffs and the two headnotes the tables print above themselves. All of it is in claims/fergus_1839_city_register.json. Every claim carries describes_date 1839 or the year of its own table row, and NONE carries 1835: Chicago was not a city until March 1837, so no office on printed page 38 existed in the town of 1835.",
+   "items": [
+    "fergus_1839_leaf_050",
+    "fergus_1839_leaf_051"
+   ],
+   "counts": {
+    "fergus_1839_leaf_050": 52,
+    "fergus_1839_leaf_051": 59
+   },
+   "counts_note": "Claims per leaf, and read_fergus_1839_register.py --check holds the reading to them. The register sets all six wards of an office in one semicolon-separated run wrapped over three printed lines and breaks a surname across a line end, so a segmenter that loses a ward loses a man without changing any other number here.",
+   "not_read_and_why": {
+    "the town's officers in 1835": "These two pages do not print them. The mayors' table begins in 1837 because the city was incorporated in March 1837, and the town's board of trustees under the 1833 incorporation is nowhere on printed pages 38-39. That absence is filed as a derivation in the claims file, and this reading does not go looking for the trustees elsewhere.",
+    "leaves 59-62 (printed 47-50)": "the lots sold in the Fort Dearborn Addition, 10-24 June 1839, and the volume's own population table. READ by T-0666 — see the declaration below, claims/fergus_1839_ft_dearborn_lots.json and claims/fergus_1839_population.json.",
+    "leaves 63-80": "the 1843 preface and Fergus's historical sketch. No ticket owns them."
+   }
+  },
+  {
+   "ticket": "T-0666",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed pages 47-50, which are leaves 59-62 of the Internet Archive scan fergusdirectoryo00ferg: the last of the appendices, and two objects rather than one. Printed 47-49 are LOTS SOLD IN FT. DEARBORN ADDITION TO THE TOWN OF CHICAGO, from the 10th to the 24th June, 1839, inclusive — the Beaubien, or Reservation, lands — set as block, lot, bidder and amount in four columns twice over per page, and read as one claim per printed row in claims/fergus_1839_ft_dearborn_lots.json, every one carrying describes_date 1839-06. Printed 50 is POPULATION OF CHICAGO, the volume's own year-by-year table, read in claims/fergus_1839_population.json with each claim carrying the year its FIGURE describes. BOTH ARE READ OUT OF THE WORD COORDINATES AND NOT OUT OF THE FLAT TEXT: archive.org's OCR reads a columned page in the order the scanner met the ink, so its flat text puts one man's price against another man's lot and sets 1863 under 1849. tools/read_fergus_1839_lots.py --map commits the row map that puts the columns back, and every cell in it names the spans of committed page text it is made of.",
+   "items": [
+    "fergus_1839_leaf_059",
+    "fergus_1839_leaf_060",
+    "fergus_1839_leaf_061",
+    "fergus_1839_leaf_062"
+   ],
+   "not_read_and_why": {
+    "printed page 49's left-hand lot column": "readable for two lines and then a smear of rotated type in this scan — the numerals come through as `<J\\\\Ui`, `00^1`, `In)` — so 62 of the 267 rows carry no lot number and the block that governs them cannot be carried either. Every one is committed with its value NULL and its ink verbatim in as_printed, never recovered from the run it sits in. T-0679 owns settling them off the page images.",
+    "the 1840 line of the population table": "printed `1 S40 .... 4,47!*` in this scan. Neither the year nor the figure can be read, so there is no 1840 claim; it is named in that file's counts rather than left silent, and the 1840 census held elsewhere in this repo is NOT borrowed to fill it.",
+    "printed page 50, the last two lines and the paragraph under them": "1885 estimated by Jno S. Wright at 1,000,000, 1911 estimated by J. X. Balestier at 2,000,000, and Fergus's paragraph on Chicago being a marvel to all creation. Projections and rhetoric printed in 1876, not counts, and read by nothing here.",
+    "leaves 63-80": "the 1843 preface and Fergus's historical sketch. No ticket owns it; T-0611 put it out of scope and the split into T-0664/T-0665/T-0666 kept it there."
+   }
   }
  ]
 }

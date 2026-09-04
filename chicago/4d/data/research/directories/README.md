@@ -1,7 +1,8 @@
 # Directories — entry by entry, structured, and crosswalked
 
-**What lives here.** The 1839 Chicago directory, which this project cites today
-from a web transcription and has never extracted, and its successors (T-0506).
+**What lives here.** The 1839 Chicago directory — extracted at last for T-0506, off
+the Internet Archive scan rather than the web transcription this project cited until
+2026-09-03 — and its successors, Fergus's 1843 and Norris's 1844.
 
 **Shape: `claims`.** A directory reads like a list and is filed as claims for one
 reason: the repository holds it as PROSE — a page of running text this project
@@ -19,10 +20,11 @@ crosswalk decide whether the name is a person this project already holds.
 1835 address. Where it corroborates a person, say so in the crosswalk with the
 rule written out; where it supplies a place, it supplies a 1839 place.
 
-**Not a second-hand citation.** The current citation is to somebody else's
-transcription of the directory. A reading made through that is
-`transcription_mediated`; a reading made off the page image is `scan_verified` and
-outranks it. Say which.
+**Not a second-hand citation.** The 1839 directory was cited here for months through
+somebody else's transcription of it; since T-0506 the senior text is the Internet Archive
+scan, and the two web-transcription source records say so. A reading made through a
+transcription is `transcription_mediated` either way; a reading made off the page image is
+`scan_verified` and outranks it. Say which.
 
 **Second readings.** `second_readings/` holds a volume read INDEPENDENTLY of the reading
 committed in `claims/`, kept whole so a disagreement between two readings of one printed book
@@ -33,9 +35,12 @@ survives the merge. Nothing downstream reads it; see `second_readings/README.md`
 list — `norris_1844_advertiser_index.json`, which says where each advertising card
 begins and ends.
 **Generated:** `claims/norris_1844_directory_entries.json`,
-`claims/norris_1844_advertiser.json`, `norris_1844_crosswalk_1835.json` and
-`norris_1844_advertiser_crosswalk_1835.json`, each by the tool named in its own
-`generated_by`, each with a `--check`; and `data/research/domains.json`, which is gated.
+`claims/norris_1844_advertiser.json`, `norris_1844_crosswalk_1835.json`,
+`norris_1844_advertiser_crosswalk_1835.json`, `claims/fergus_1839_directory_entries.json`,
+`claims/fergus_1839_town_findings.json`, `fergus_1839_crosswalk_1835.json` and
+`fergus_1839_street_faces.json`, each by the tool named in its own `generated_by`, each
+with a `--check` that `tools/check.sh` runs; and `data/research/domains.json`, which is
+gated.
 
 **Coverage.** Declare the PAGES read. A directory is finite and countable, which
 makes an undeclared page an honest "not yet" and a declared empty one a fault.
@@ -129,30 +134,41 @@ which is a person this reconstruction would get wrong. Rewriting a generated cla
 second source is a pass of its own, with its own rule to write down, and it has not been done
 here for the same reason T-0568 did not regrade the 65 businesses.
 
-### What T-0569 spent it on — `data/residents/directory_1844.json`
+### What T-0632 spends them on — the layer, the ledger and the cards
 
-The crosswalk above is a PROPOSAL and stops at the edge of the residents layer. **T-0587**
-(the residents piece of T-0569) is the pass that spends it, and what it produces is a layer
-BESIDE the household records rather than a key inside them:
-`tools/spend_norris_1844.py` reads the crosswalk and writes
-`data/residents/directory_1844.json`, which `renderers/web/js/residents.js` joins on
-`person_id` and renders on the person's own card.
+The crosswalks above are PROPOSALS and stop at the edge of the residents layer. T-0569
+spent one of the four (`tools/spend_norris_1844.py`, retired 2026-09-04);
+**`tools/spend_directories.py`** subsumes it and spends all four, in three places:
 
-**Why beside and not inside.** Most of the people this reaches live in records a mint
-regenerates byte for byte — `mint_letter_list_residents.py --check` and its four siblings diff
-the whole file — so a block written into them is drift by the next gate that runs. It is also
-the argument T-0442 already made for candidate identities, and the shape
-`residents/research_pilot.json` already has: an 1844 listing is EVIDENCE ABOUT 1844 offered
-beside a person of 1835, not a fact of theirs, and keeping it beside the record is what stops
-it reading as one.
+| file | what it holds |
+|---|---|
+| `data/residents/directories.json` | the layer the panel renders — 150 people, every volume that meets them, every entry as printed, and the graded later trade and later address |
+| `data/research/directories/spend_crosswalk_1835.json` | the ledger — 329 rulings, one per (person, volume), saying what was CARRIED to the card and what was REFUSED, with the claims and the source each rests on |
+| `data/residents/households/*.json` | a `directories` block on the 141 households those rulings name, citing the volume |
 
-**67 people, and all three statuses are shown.** 48 meet exactly one entry no other person in
-this town meets, 15 meet several and the project does not choose between them, 4 share their
-one entry with another 1835 person so no match is made. A section that showed only the first
-would be reporting the crosswalk's successes and hiding its arithmetic. Of the 48, **21** have
-no trade in the 1835 layer and a trade printed against their name in 1844, and **39** have no
-1835 street and a street printed in 1844 — stated on the card as what the line HOLDS, carried
-into no 1835 claim, and moving nobody's grade.
+**Beside the record AND on it, which is not the same as inside it.** The layer keeps the
+printed lines, the match rules and the crosswalks' arithmetic where a card has no room for
+them; the block on the record carries the later trade and street as graded values that
+describe 1839, 1843 or 1844 and cite the volume. Neither touches an 1835 claim. T-0569's
+argument for keeping this beside the record was that a mint regenerates most of these
+files byte for byte — `mint_placed_residents.py --check` is the one that actually does so,
+and it now carries an existing `directories` block over rather than deleting it, which is
+the mechanism that makes the block safe.
+
+**Four rules, all of them refusals.** Nothing is carried that a match's own `could_carry`
+does not declare; nothing is carried off an ambiguous or contested match; Norris's
+alphabetical split does not cross at all, because that volume sets a partnership where the
+trade goes and the split yields "of Horace Norton & Co" and twice simply "of"; and no 1835
+grade moves, ever — the count of grades changed is zero and `--self-test` holds it there.
+The Fergus volumes set the trade first and its qualifiers after, so their split crosses
+with a caution printed beside every value it produces.
+
+**150 people, and all three statuses are shown.** 235 single-entry matches, 73 ambiguous
+and 21 contested; 106 people are met by more than one volume. 35 gain a trade the 1835
+record never had and 87 an address; 6 hold only a line whose parse this project will not
+cross. `tools/measure_research_spend.py` reads the ledger: the domain's spend rose from
+311 to 556, and its second hop — rulings that reach a person, and whether that person's
+CARD learned them — stands at 235 reached, 235 written, 0 unwritten.
 
 **The 171 refusals reach no card.** A refusal on this rule — the surname is in the book under
 no entry carrying the person's initial — is a statement about eleven Smiths rather than about
@@ -415,6 +431,98 @@ and names **T-0589**, which owns them.
 
 ---
 
+## Robert Fergus's *Directory of the City of Chicago, 1839*
+
+**Read for T-0506.** The volume the project had cited four times and never opened:
+until 2026-09-03 every citation of the 1839 directory pointed at a web transcription
+on ldsgenealogy.com, and every cohort pass searched it by hand for one name at a
+time. **1,655 entries** off printed pages 5-36, plus **38 town findings** off printed
+page 37, read from the Allen County Public Library Genealogy Center scan on the
+Internet Archive, `fergusdirectoryo00ferg`.
+
+**Two warnings from the compiler, and they outrank everything else here.** Both are
+his own words on printed page 3.
+
+1. **The book is a recollection.** The 1839 "directory" was six blank pages at the
+   back of the City's Laws and Ordinances, filled by Fergus with the names of
+   business men as they came to him — "no canvass was necessary, and the names were
+   never written". What is printed in this volume is his **1876 completion** of that
+   list, out of the recollections of the Old Settlers he thanks on printed page 4.
+   An entry is 1839 evidence *recalled in 1876*, which is why the source record is
+   tier 2 and not tier 1.
+2. **The address numbers are 1876's.** "There were no numbers on any street (except
+   Lake Street,) at that time — the numbers now given are those of the present day."
+   Every number in this volume off Lake street locates nothing in 1839 and less in
+   1835. The street NAME is the whole of what survives, `normalized.number_is_1876`
+   marks each entry it applies to, and `address_is_street_only` carries it onto every
+   crosswalk row. Nothing downstream may place a shop from a number in this book.
+
+**No count to close against.** Fergus states no number of names anywhere in the
+volume, so the 1,655 cannot be closed the way a census sheet closes against its own
+printed totals. What can be said is what was declared: printed pages 5-36 and 37,
+page by page, in `coverage.json` — an undeclared page is an honest "not yet".
+
+**The structure is the indent**, as in Norris 1844. `text/fergus_1839_leaf_NNN.txt`
+keeps it: a turned line carries two leading spaces, computed from the word
+coordinates of the scan (`_djvu.xml`), and a line is judged turned when it starts
+more than 25 px right of the MEDIAN line start of its own page — the page is 2238 px
+wide and the turn measures about 50 px. This volume turns rarely (43 lines in 33
+pages), so the median is a safe margin where Norris's needed a mode. A turned line
+carrying fewer than three letters is one of the specks this scan's gutter collects; it
+is left in the text and attached to no entry.
+
+**What is generated here.** `claims/fergus_1839_directory_entries.json` and
+`claims/fergus_1839_town_findings.json` by `tools/read_fergus_1839.py --build`;
+`fergus_1839_crosswalk_1835.json` by `tools/crosswalk_fergus_1839.py`;
+`fergus_1839_street_faces.json` by `tools/fergus_1839_street_faces.py --build`. All
+three have a `--check` that rebuilds and compares, and all three are steps in
+`tools/check.sh`, so a hand-edit is caught. The page text under `text/` is committed
+and nothing regenerates it here.
+
+**The reading is `transcription_mediated`, all 1,655 of them** — archive.org's OCR,
+machine-read and not checked against the image by eye. The damage is left in every
+quote on purpose: `CHICAGO DIEECTQEY` for the title, `Columbian blouse` for
+*Columbian House*, `lxls` for `bds`, `F'oot` for *Foot*. A tidied quote cannot be
+found again. `normalized` is the repair, and it is best effort — the split of one
+printed line into name / trade / address is a heuristic over inconsistent
+nineteenth-century punctuation. Firm detection is its weakest part, the same
+weakness Norris's reading has and for the same reason: `Jones, King & Co.` reads as a
+person because the comma falls before the ampersand, so the 71 `kind: business`
+entries are a floor and not a count.
+
+**The crosswalk runs against four pools**, because a directory name means something
+different against each: the 849-person residents layer (enrichment of a record that
+exists), and the voter/poll/tax entries, the letter-list and newspaper persons, and
+the 1840 heads (one more line of evidence about a name nobody has made into a person
+yet). Surname-fold plus first initial, a surname-only agreement always a refusal:
+
+| pool | matched one entry | ambiguous | contested | surname-only refused |
+| --- | --- | --- | --- | --- |
+| residents, 1835 | 84 | 20 | 7 | 130 |
+| voters and polls (T-0493) | 123 | 39 | — | 74 |
+| letter list and newspapers | 334 | 89 | — | 653 |
+| 1840 heads | 89 | 31 | — | 110 |
+
+Of the 84 matched residents, 33 have no trade in the 1835 layer and an 1839 trade
+beside them, and 49 have an 1839 street. **Nothing is spent here**: no resident is
+minted, none regraded, and under the ratified ladder an 1839 listing alone is never
+an 1835 residency. T-0513 consolidates it; T-0514 and T-0515 write people.
+
+**The street face** — `fergus_1839_street_faces.json` — is the reason this volume
+matters beyond names. 976 of the entries carry an address, and folding the compiler's
+abbreviations together (`So. Water st`, `S. Water street` and `South Water st` are one
+street; Michigan avenue and Michigan street are not) gives **102 streets** with the
+trades standing on each: Lake 199, Clark 94, North Water 83, South Water 72, Dearborn
+40. It also lists the **541 printed trades the residents vocabulary cannot say** —
+836 entries' worth, `laborer` 51 of them, `drayman` 22, `canal contractor` 20 — for
+**T-0418**, which owns that gap. They are listed, not invented: adding a word to a
+closed vocabulary is T-0418's call.
+
+**Not read**: the introduction (printed 1-4), the appendices on printed 38-52 — the
+city register, the mayors, the 1837 charter election and its list of voters for
+mayor, the Fort Dearborn Addition lot sales and the population table — and Fergus's
+historical sketch. **T-0611** is the ticket for the appendices; the sketch has none.
+
 ## Do any of these firms reach the town of 1 July 1835? — `norris_1844_businesses_1835.json`
 
 **Read for T-0588** (piece 2 of the owner's T-0569). The owner's ask on the 1844
@@ -473,3 +581,35 @@ reader's entity index but never this project's gloss (the gloss says "Norris's s
 of the beginning", which would otherwise date the author's own 1844 firm to 1832), that
 a one-surname firm needs an agreeing initial on both sides, and that a founding year
 has to be carried by founding language rather than by a street number.
+
+---
+
+## What is done with the addresses — `address_back_projection.json` (T-0633)
+
+T-0632 left **87 addresses** on the people of 1835, and an address on a record that
+nothing reads is a fact nobody has decided anything about.
+`tools/back_project_addresses.py` decides. It is the fourth grammar for placing a
+building in this project — `docs/ADDRESS-BACK-PROJECTION.md` is the policy, **L218**
+the liberty, and the other three are `docs/STREET-FACE-ADOPTION.md`,
+`docs/CORNER-ORDINAL.md` and `docs/LOT-ADDRESS.md` — and the only one whose source is
+written *after* the year it places.
+
+Every one of the 87 is put through four clauses, in order, and the record says which
+one decided it: the 1835 record has to attest a **business** to position (39 refused
+there); nothing better may already place it (23 stand off, 6 more are the directory's
+own `res`/`bds` and belong to T-0669); the address has to resolve onto the **1835**
+street grid under that name and in that place (4 refused, including `Michigan ave`,
+which is not the 1835 layer's Michigan Street, and `Clark st cor. Monroe`, which puts a
+grocer three blocks outside the platted town); and what survives is graded
+`reconstructed` and says how many years it was carried.
+
+**Fifteen businesses gain a face.** Not a lot, not a roof, and not a `works_at` — the
+allocation of one roof on a face is `STREET-FACE-ADOPTION.md`'s to make about a source
+of the scene year, and stacking it on an address read back four to nine years would put
+two inventions under one chip. `lives_at` stayed at 20 and `works_at` at 50 across the
+pass, on purpose and by assertion.
+
+**The refusals are committed beside the placements**, in the ledger and on the card
+both, and `tools/check.sh` re-derives all of it byte for byte. That is not tidiness: a
+refusal that vanishes from the record reads to the next run as an address nobody had
+looked at, and the next run does the work again.

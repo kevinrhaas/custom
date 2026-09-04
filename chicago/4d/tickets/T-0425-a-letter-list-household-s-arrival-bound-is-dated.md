@@ -18,7 +18,7 @@ needs_bake: false
 
 `tools/mint_letter_list_residents.py` dates a minted household's `arrival` from the
 issue the CLAIM sits in — "The first return holding a letter for this name is the
-Democrat of 4 March 1834" on `hh_ll_thomas_conger`, written this run. T-0331 showed
+Democrat of 4 March 1834" on `hh_conger_thomas`, written this run. T-0331 showed
 that 4 March is the NINTH printing of the Chicago post office's **1 January 1834**
 return; the same list was printed in every Democrat from Vol. I No. 7 of 1834-01-07.
 So the bound is true but weak, and it is weak by an accident of which impression an

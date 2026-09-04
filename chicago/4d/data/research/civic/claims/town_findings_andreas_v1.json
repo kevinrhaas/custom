@@ -49,7 +49,7 @@
         "Mark Beaubien"
       ],
       "town_finding": false,
-      "notes": "This is the strongest external check the 1833 poll list has, and it does not agree with it. It also bears on T-0493's own arithmetic: the ticket asserted 346 entries across the four lists, the deposit and the live publication both print 345, and Andreas would make the first list smaller still."
+      "notes": "This is the strongest external check the 1833 poll list has, and it does not agree with it. It also bears on T-0493's own arithmetic: the ticket asserted 346 entries across the four lists, the deposit and the live publication both print 345, and Andreas would make the first list smaller still. T-0542 (2026-09-04): searched for a count of the 10 August 1833 voters outside Andreas and found none — see claims/town_findings_voter_lists.json v004 for what was read. The discrepancy stands, unrepaired."
     },
     {
       "id": "c003",
@@ -122,7 +122,7 @@
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "The third election was held in July, 1835, and re- sulted as follows: H. Hugunin, President;",
-      "normalized": "The third town election was held in July 1835 and returned H. Hugunin as President of the Board. The scene date of this reconstruction is 1 July 1835, so on this reading the 1835 poll list was taken within days of it — before or after is not stated.",
+      "normalized": "The third town election was held in July 1835 and returned H. Hugunin as President of the Board. CORROBORATED AND MADE EXACT BY THE TOWN'S OWN NEWSPAPER (T-0542): the Chicago Democrat announced the election of Trustees under the new charter for 'Friday of this week' on 8 July 1835 and reported on 15 July that it 'took place on Friday last'. The third town election was FRIDAY 10 JULY 1835 — nine days AFTER this reconstruction's 1835-07-01 scene date. Andreas's town chapter is right.",
       "locator": {
         "item": "historyofchicago01andr",
         "text": "historyofchicago01andr_djvu.txt",
@@ -134,14 +134,14 @@
         "H. Hugunin"
       ],
       "town_finding": true,
-      "notes": "'Hugunin, H.' stands on the 1835 poll list, which is consistent with the list being that election's poll. Only three of the eight men Andreas names as elected that year — Hugunin, King and E. B. Williams — appear among the 85, which is not what one would expect and is left standing as a fact rather than explained away."
+      "notes": "The eight men Andreas names as elected are the men the Democrat's return names as standing, Sherman included, which is the check that this passage and that return describe the same event (claims/town_election_1835_democrat.json d003). Only three of those eight stand among the 85 on the 1835 poll list, and the reason is now known: that list is not this election's poll book — its 85 names cannot have cast the 124 and 142 votes the return records (v003)."
     },
     {
       "id": "c007",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "The town of Chicago was incorporated .August 5, 1S33, and the first town election was held .-Vugust 10; but no mention is made of the election of a Constable until at the third election of town oHicers, which occurred .Au- gust 5, 1S35.",
-      "normalized": "The same volume, two hundred pages later, dates the THIRD town election to 5 August 1835 — not July. Andreas contradicts himself, and this ticket does not choose between the readings: the 1835 poll list's date is either within days of the 1 July 1835 scene date or thirty-five days after it, and nothing seen here decides which.",
+      "normalized": "The same volume, two hundred pages later, dates the THIRD town election to 5 August 1835 — not July. T-0542 RESOLVED THE CONTRADICTION IN THE TOWN CHAPTER'S FAVOUR: the popular election was Friday 10 July 1835 on the newspaper's own announcement and report. What fell on 5 August 1835 is the newly elected board's own sitting — the day it passed the town's ordinance code, over 'H. HUGUNIN, Pres't' (claims/town_election_1835_democrat.json d004). Andreas's sentence here is about the first mention of the election of a Constable, and on either reading of it — a conflation of the board's meeting with the poll, or 'election of town officers' meaning the board choosing the officers the charter gives it — the popular election does not move off 10 July.",
       "locator": {
         "item": "historyofchicago01andr",
         "text": "historyofchicago01andr_djvu.txt",
@@ -153,7 +153,7 @@
         "O. Morrison"
       ],
       "town_finding": true,
-      "notes": "The contradiction is the finding. The 1833 and 1834 elections were both held in the second week of August, which is weak circumstantial support for the August reading; the earlier passage's explicit 'in July, 1835' is direct testimony for the other. Left open for T-0513."
+      "notes": "The contradiction WAS the finding and is now closed. The circumstantial argument from the August dates of the 1833 and 1834 elections is not merely weak but wrong-footed: the act of 1835 moved the annual town election to the first Monday in June (d005), and the 1835 poll was late only because no copy of that act could be had in Chicago and the election was adjourned from time to time through June (d001). The half of Andreas's sentence about a Constable is NOT corroborated — the ordinance code as transcribed names none."
     },
     {
       "id": "c008",
