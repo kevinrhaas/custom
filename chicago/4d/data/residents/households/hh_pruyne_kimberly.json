@@ -69,9 +69,10 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "history_medicine_chicago_kimberly_maxwell"
+    "history_medicine_chicago_kimberly_maxwell",
+    "isa_public_domain_land_tract_sales"
    ],
-   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household.",
+   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household. THE FEDERAL TRACT SALES — A TRANSACTION, NOT A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales database records this name entering federal ground around the town: “PRUYNE P” — 1 sale on 1833-10-25, T39N R14E sec 16 (ls0321); “PRUYNE P AND CO” — 1 sale on 1833-10-22, T39N R14E sec 16 (ls0322); “PRUYNE PETER” — 4 sales between 1833-10-24 and 1835-06-26, T39N R13E sec 30, T39N R14E sec 16 (ls0323, ls0324, ls0858, …). A sale is a TRANSACTION and never a residence — the register's Residence column reads 'UNKNOWN' here, so it says a man of this name was buying land in these years and nothing about where he lived or what stood on the ground. The reading is transcription-mediated; the adjudication is data/research/land_sales/resident_crosswalk.json. The spellings “PRUYNE P” and “PRUYNE P AND CO” agree with this person on the surname and on an initial only, with one bearer of the surname in the layer: a weaker match, admitted under T-0670's clause that an initial against a full name stays a match while two full forenames that differ do not. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — under the ratified ladder (T-0513) the grade is applied by T-0515 against every source at once, and a purchase corroborates rather than mints.",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0478",

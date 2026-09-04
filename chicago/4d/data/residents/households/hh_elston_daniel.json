@@ -65,9 +65,10 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "isa_public_domain_land_tract_sales"
    ],
-   "note": "A MANUFACTURER, WHICH THE 1835 TOWN HAS ALMOST NONE OF. Buying tallow and house ashes is buying the by-products of the packing trade and of every household fire in the town, which makes this one business a measure of how many households there were. Andreas has a Daniel Elston running the largest of the city's five brickyards by 1854 - two decades past the scene and evidence of nothing about 1835 except that the man stayed. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+   "note": "A MANUFACTURER, WHICH THE 1835 TOWN HAS ALMOST NONE OF. Buying tallow and house ashes is buying the by-products of the packing trade and of every household fire in the town, which makes this one business a measure of how many households there were. Andreas has a Daniel Elston running the largest of the city's five brickyards by 1854 - two decades past the scene and evidence of nothing about 1835 except that the man stayed. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later. THE FEDERAL TRACT SALES — A TRANSACTION, NOT A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales database records this name entering federal ground around the town: “ELSTON DANIEL” — 1 sale on 1836-06-18, T39N R14E sec 08 (ls0047). A sale is a TRANSACTION and never a residence — the register's Residence column reads 'UNKNOWN' here, so it says a man of this name was buying land in these years and nothing about where he lived or what stood on the ground. The reading is transcription-mediated; the adjudication is data/research/land_sales/resident_crosswalk.json. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — under the ratified ladder (T-0513) the grade is applied by T-0515 against every source at once, and a purchase corroborates rather than mints."
   }
  ],
  "touches_removal": false,

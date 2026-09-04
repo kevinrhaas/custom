@@ -42,8 +42,8 @@
    "spent": 2091
   },
   "land_sales": {
-   "read": 566,
-   "spent": 24
+   "read": 953,
+   "spent": 511
   }
  },
  "raised": [
@@ -211,6 +211,14 @@
    "to": 7210,
    "date": "2026-09-04",
    "why": "T-0670 tightened the directory crosswalks to refuse a match where both readings print a full forename and the two disagree (Thomas L. Abbott was being merged onto Titus H. Abbott). 147 joins across Fergus 1843 and Norris 1844 are refused and 11 net rulings go with them: a resident whose only route to a printed claim was a bad initial-match no longer rules on it at all. The reading did not shrink; the town stopped claiming to have adjudicated eleven entries it had adjudicated wrongly. T-0696 is where the second discriminator that would win some of them back is decided."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-04",
+   "why": "T-0635, consolidation pass 2. land_sales is new to this hop, not new to the town: its resident_crosswalk stated its verdict as the array heading and stated no source, so 35 rulings binding a purchaser to a person this town holds were invisible to the second hop and unjudgeable besides. Both are fixed in the same commit and tools/spend_land_sales.py wrote all 35 onto the 31 cards they name, so the ceiling this records is ZERO — the domain enters the ratchet already spent, and cannot regrow in silence."
   }
  ],
  "lowered": [
@@ -225,7 +233,8 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0
+  "directories": 0,
+  "land_sales": 0
  },
  "unsourced_ceiling": {}
 }

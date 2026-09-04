@@ -205,6 +205,57 @@ RESIDENTS = DATA_DIR = ROOT / "data" / "residents"
 PERSON_KEYS = ("household_id", "person_id", "person_ids", "resident", "matched_resident")
 WRITTEN_OUTCOMES = ("matched", "candidate")
 
+# WHERE THIS HOP READS THE VERDICT, and why it is not `outcome` alone (T-0635).
+#
+# The spend half above refuses to whitelist array headings, and its comment says
+# why: two tickets filed their rulings under headings it had never heard of and it
+# read 817 spends as zero. THIS HOP HAD THE MIRROR OF THAT BUG FOR ITS WHOLE LIFE.
+# It required a literal `outcome` field, and the crosswalks that state their verdict
+# as the HEADING — `matches: [...]`, `merges: [...]`, with no `outcome` on the entry
+# at all — were invisible to it. Consolidation pass 2 measured what that hid:
+# land_sales' resident_crosswalk matched 35 purchasers to people this town holds and
+# this hop reported the domain as having reached nobody, so a debt of 35 unwritten
+# cards read as a clean zero. old_settlers' 39 OS1 merges are the same shape.
+#
+# The heading cannot simply be ignored the way the spend half ignores it, because
+# for THIS hop the heading is the only verdict some files give, and the difference
+# between `matches` and `refusals` is the whole question. A refusal names a person
+# and rules that the card must NOT learn from it; counting one as unwritten would
+# invent a defect. So the verdict is read in this order:
+#
+#   1. the entry's own `outcome`, where it states one — it always wins;
+#   2. otherwise the heading, and only for headings the corpus already uses as a
+#      verdict, each listed below with what the files themselves say it means;
+#   3. otherwise NOTHING IS ASSUMED. The heading is reported as unreadable, with
+#      its file and its count, because a heading this hop cannot read is exactly
+#      the hole it was blind to before and must never be a silent zero again.
+WRITTEN_HEADINGS = ("matches", "merges")
+
+# Headings the corpus uses for a ruling that names a person and writes no card. The
+# reason is each file's own, quoted, not this tool's opinion: old_settlers says of
+# `probable` "PROBABLE, NOT MERGED: no record is written on it"; the death-notice
+# crosswalk says of `contested` and `ambiguous` "no match is made"; and a refusal is
+# the ruling that the two are not one person.
+NOT_A_WRITE_HEADINGS = {
+    "refusals": "a refusal: the ruling is that the card must NOT learn this",
+    "forename_refusals": "a refusal on the forename: the same, on a stricter test",
+    "contested": "two people meet one entry, so the file makes no match",
+    "ambiguous": "one person meets more than one entry, so the file makes no match",
+    "probable": "probable is not merged — the file writes no record on it",
+}
+
+
+def verdict_is_a_write(heading: str, ruling: dict):
+    """True, False, or None when neither the entry nor its heading states a verdict."""
+    outcome = ruling.get(OUTCOME_KEY)
+    if outcome is not None:
+        return outcome in WRITTEN_OUTCOMES
+    if heading in WRITTEN_HEADINGS:
+        return True
+    if heading in NOT_A_WRITE_HEADINGS:
+        return False
+    return None
+
 
 def resident_records() -> dict:
     """Every resident record by its own id — households and the people files alike."""
@@ -317,13 +368,13 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
         if not isinstance(doc, dict):
             continue
         from_file = doc_rests_on(doc)
-        for rulings in doc.values():
+        for heading, rulings in doc.items():
             if not isinstance(rulings, list):
                 continue
             for ruling in rulings:
                 if not isinstance(ruling, dict):
                     continue
-                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES:
+                if verdict_is_a_write(heading, ruling) is not True:
                     continue
                 named = [p for p in people_named(ruling) if p in records]
                 if not named:
@@ -336,6 +387,34 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
                 if any(wants & cited_sources(records[p]) for p in named):
                     wrote += 1
     return reached, judgeable, wrote
+
+
+def unreadable_verdicts(domain_dir: Path, records: dict) -> list:
+    """(file, heading, count) for arrays that name town people and state no verdict.
+
+    NEVER A SILENT ZERO. The spend half prints every ruling it could not count and
+    the reason; this is the same promise one hop later. An array whose entries name
+    a person in this town and give neither an `outcome` nor a heading the corpus
+    uses as a verdict is a ruling this hop cannot judge — and the whole reason
+    T-0635 exists is that such arrays were being dropped without a word.
+    """
+    holes = []
+    for path in sorted(domain_dir.rglob("*.json")):
+        if not is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        for heading, rulings in doc.items():
+            if not isinstance(rulings, list):
+                continue
+            count = sum(1 for r in rulings
+                        if isinstance(r, dict)
+                        and verdict_is_a_write(heading, r) is None
+                        and any(p in records for p in people_named(r)))
+            if count:
+                holes.append((path.name, heading, count))
+    return holes
 
 
 def anchor_of(ruling: dict) -> str | None:
@@ -501,6 +580,7 @@ def measure() -> list[dict]:
         spent, pairs, uncounted = count_spent(domain_dir)
         reached, judgeable, wrote = count_written(domain_dir, records)
         rows.append({"domain": entry["id"], "holds": entry["holds"],
+                     "unreadable": unreadable_verdicts(domain_dir, records),
                      "read": read, "spent": spent,
                      "not_a_reading": declared, "uncounted": uncounted,
                      "unspent": read - spent, "id_pairs": pairs,
@@ -570,6 +650,15 @@ def report() -> str:
         out.append("written and NOT counted as spend, and why — never a silent zero:")
         for domain, (name, key, count, why) in uncounted:
             out.append(f"  {domain} {name}:{key} — {count} ruling(s): {why}")
+    holes = [(r["domain"], h) for r in rows for h in r["unreadable"]]
+    if holes:
+        out.append("")
+        out.append("names a town person and states NO verdict this hop can read "
+                   "— judged by nobody:")
+        for domain, (name, heading, count) in holes:
+            out.append(f"  {domain} {name}:{heading} — {count} ruling(s): neither an "
+                       f"`outcome` nor a heading this hop reads as a verdict. Write "
+                       f"`outcome` on the entries, or say here what the heading means.")
     extra = unregistered()
     if extra:
         out.append("")
@@ -608,7 +697,7 @@ def gate(quiet: bool = False) -> int:
             continue
         ceiling = written.get(r["domain"])
         if ceiling is None:
-            faults.append(f"{r['domain']}: {r['unwritten']} ruling(s) reach a town person "
+            faults.append(f"{r['domain']}: {r['reached']} ruling(s) reach a town person "
                           f"and no unwritten ceiling is recorded")
         elif r["unwritten"] > ceiling:
             faults.append(f"{r['domain']}: {r['unwritten']} ruled onto a person whose card "

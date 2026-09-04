@@ -415,6 +415,14 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
+        # WHAT THESE RULINGS REST ON, said once at the top, which is the form T-0598
+        # ratified for a crosswalk generated out of a single source. It was missing
+        # here, and the cost was exact: consolidation pass 2 found 35 rulings naming a
+        # person this town holds and could not judge one of them, because a ruling that
+        # never says what it rests on cannot be checked against a card. The id is the
+        # one this whole domain reads from and is already stated on entries.json and
+        # crosswalk.json; nothing about the rulings changed when it was written here.
+        "source_id": SOURCE_ID,
         "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, "
                 "or writes to data/residents/. T-0514 and T-0515 spend this file.",
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),

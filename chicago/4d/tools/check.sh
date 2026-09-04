@@ -1444,6 +1444,19 @@ step "the land tract sales re-derive from their committed deposit" \
 step "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-0635, consolidation pass 2. The register's resident crosswalk had matched 35
+# purchasers to people this town holds and not one card cited it — and nothing could see
+# that, because the crosswalk states its verdict as the array heading (`matches`) and the
+# second hop of measure_research_spend.py read the verdict from `outcome` alone. Gated in
+# the same two directions as the civic and directories passes, because the failures are
+# the same two: a ruling that stops reaching its card, and a card that carries the
+# paragraph for a ruling the crosswalk never made.
+step "…and the tract sales' matched rulings are on the cards they name" \
+  python3 tools/spend_land_sales.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_land_sales.py --self-test
+
 # T-0609. The register describes a tract; the structures carry a footprint; the join
 # between them is a CONSTRUCTION, not a trace — the PLSS grid is carried from the single
 # committed corner at State & Madison on the plat's own bearing (L219). Two things can go
