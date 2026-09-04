@@ -1,7 +1,7 @@
 ---
 id: T-0515
 title: 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 797
 claimed_by: run 9/4/2026, 11:55:31 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T17:59:44.559Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33897541903
 ---
 
