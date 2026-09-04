@@ -36,6 +36,7 @@ The rungs are tried in the order printed here; the first that fires, wins.
 | **G0** | `not_1835_resident` | Every appearance describes a date after 1835 and the town does not carry the person. This is the owner's "1839/1840 alone is never a 1835 resident" — later evidence only. |
 | **G1a** | `attested` | The 1835 poll list **and** at least one other independent source. |
 | **G1b** | `attested` | A contemporary record naming the person in Chicago — the 1833–1835 newspapers, printing the person by name in the town. |
+| **G1c** | `attested` | **CONVERGENCE (T-0699).** Two or more independent in-window records from DIFFERENT class families — the town's civic lists · the contemporary press, letter lists included · the parish register. Two bodies that did not copy each other, naming one man inside the scene window. |
 | **G2a** | `inferred` | The 1835 poll list alone. |
 | **G2b** | `inferred` | An 1833 or 1834 list (poll, tax, the 1832 muster) **with another source**. |
 | **G2c** | `inferred` | The St Cyr parish register inside 1833–1835 — a party to a marriage or a burial in the scene window. |
@@ -52,6 +53,45 @@ parish register (G2c), the contemporary press (G1b). A lone directory entry or a
 letter-list name is not one of those, so it falls to G3. The layer already agrees: the 706
 `ll_*` people it carries today are `inferred` + `projected_resident`, which is exactly what
 G3 re-derives.
+
+### G1c, and what the owner ruled on 2026-09-04
+
+He opened `hh_allen_edward_richards.json` and asked: *"we have people now who have been
+identified in multiple sources, but they are still being marked as inferred? they should be
+attested if you have seen them like this in multiple sources."* Then, naming the pair
+himself: *"like to me alone these two sources together would be attestation —
+`chicago_democrat_1833_1835`, `chicago_voter_lists_1833_1835_irad`."*
+
+**The first review pushed back and was wrong**, and the reasoning is recorded here because
+the mistake is instructive. The objection was that the ladder grades by CLASS and not COUNT,
+and that a count rule would attest a man on two 1843 directory entries. That conflated the
+NUMBER OF APPEARANCES with the CONVERGENCE OF INDEPENDENT CLASSES. Two 1843 directory
+entries are one class, one era, possibly one lineage; the town's poll list and the town's
+newspaper are two different bodies recording the same man in the same window. G1c takes the
+second reading and refuses the first: it asks for two FAMILIES, not two appearances.
+
+**A letter list is still never promoted on its own.** G2e and G3 hold it exactly where they
+did — it only COUNTS TOWARD convergence, which is precisely the owner's wording: *"the
+letter list places someone as likely there, AND there are voter records."* And **G0
+survives untouched**: two later sources with nothing in-window remain `not_1835_resident`,
+because G1c requires its records to be inside the window.
+
+### The defect G1c's measurement uncovered — records, not source_ids
+
+`G1a` and `G2b` both read *"and at least one other independent source"* and both counted
+`source_id`s. Every Chicago poll, tax and muster list in this project was digitised by IRAD
+under the single id `chicago_voter_lists_1833_1835_irad`, so:
+
+| | evidence | graded |
+|---|---|---|
+| Willard Jones | tax 1833 · poll 1834 · poll 1835 | `G2a` — **"the 1835 poll list ALONE"** |
+| Byran Guisin | tax 1833 · poll 1834 | `G4` — **`projected_resident`** |
+
+Both descriptions are false of the records they were applied to. **Independence is a
+property of the RECORD** — a distinct list, taken on a distinct occasion, by a distinct
+body — not of whoever digitised it. The rungs now count distinct
+`(evidence_class, describes_date)` records. Jones reaches `G1a` under the ladder *as
+ratified*; no new policy was needed for him.
 
 ### The one reading the ladder needed, put back to the owner
 

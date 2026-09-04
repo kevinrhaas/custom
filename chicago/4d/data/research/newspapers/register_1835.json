@@ -63,14 +63,14 @@
         "hotel_keeper": 1,
         "joiner": 1,
         "merchant": 1,
-        "none_recorded": 905,
+        "none_recorded": 888,
         "physician": 1,
         "printer": 1,
         "saddler": 1,
         "tailor": 1,
         "tavern_keeper": 4
       },
-      "households_total": 920,
+      "households_total": 903,
       "retirable_by_trade": {
         "blacksmith": 1,
         "dentist": 1,
@@ -8339,7 +8339,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "borland_andrew_w",
-      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_a_n_fullerton",
@@ -14510,7 +14510,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_b_williams",
@@ -14796,7 +14796,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_eben_griswold",
@@ -14950,7 +14950,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_edward_b_coleman",
@@ -16149,7 +16149,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "walker_george_h",
-      "action_note": "data/residents/ already holds this person as walker_george_h (hh_walker_george_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as walker_george_h (hh_walker_george_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_kercheval",
@@ -16402,7 +16402,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "chapman_george",
-      "action_note": "data/residents/ already holds this person as chapman_george (hh_chapman_george, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_george (hh_chapman_george, attested). The papers add mentions and dates."
     },
     {
       "id": "person_geo_n_powell",
@@ -19647,7 +19647,7 @@
       "last_seen": "1834-11-05",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_b_t_beaubien",
@@ -20461,7 +20461,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_a_curry",
@@ -20571,7 +20571,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "gilbert_james",
-      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_grant",
@@ -21506,7 +21506,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_john_dave",
@@ -22287,7 +22287,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "gilbert_james",
-      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_a_s",
@@ -22430,7 +22430,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_william",
@@ -22441,7 +22441,7 @@
       "last_seen": "1835-08-05",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_wm",
@@ -22452,7 +22452,7 @@
       "last_seen": "1834-09-03",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jordan_j_b",
@@ -22749,7 +22749,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "skinner_joseph",
-      "action_note": "data/residents/ already holds this person as skinner_joseph (hh_skinner_joseph, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as skinner_joseph (hh_skinner_joseph, attested). The papers add mentions and dates."
     },
     {
       "id": "person_joseph_steward",
@@ -31505,7 +31505,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "downer_stephen",
-      "action_note": "data/residents/ already holds this person as downer_stephen (hh_downer_stephen, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as downer_stephen (hh_downer_stephen, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stephen_e_dow",
@@ -36070,7 +36070,7 @@
       "last_seen": "1835-07-29",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_william_laird",
@@ -36554,7 +36554,7 @@
       "last_seen": "1834-07-23",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wm_kimbal",
@@ -36972,7 +36972,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "wright_truman_g",
-      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wright_thomas",
@@ -36983,7 +36983,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "wright_truman_g",
-      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, attested). The papers add mentions and dates."
     },
     {
       "id": "person_y_meriams",

@@ -55,9 +55,9 @@
    "id": "wright_truman_g",
    "name": "Truman G Wright",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "civic_mint": true,
-   "ladder_rule": "G2b",
+   "ladder_rule": "G1c",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -69,7 +69,7 @@
     "fergus_1843_old_settler_death_notices",
     "fergus_chicago_directory_1843"
    ],
-   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from death_notice, newspaper_letter_list, poll_1834, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. tax_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from death_notice, newspaper_letter_list, poll_1834, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. tax_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "tax_1833",
@@ -78,7 +78,7 @@
      "record_id": "tax_1833_115",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     },
     {
      "list": "poll_1834",
@@ -87,7 +87,7 @@
      "record_id": "poll_1834_115",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "book_evidence": [
@@ -98,7 +98,7 @@
      "record_id": "fdn0754",
      "describes_date": "1855",
      "source": "fergus_1843_old_settler_death_notices",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -109,7 +109,7 @@
      "record_id": "person_wright_t_g",
      "describes_date": "1834-10-22",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

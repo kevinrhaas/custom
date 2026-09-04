@@ -96,6 +96,11 @@ GRADE_RULES = {
     "G1a": ("attested", "The 1835 poll list and at least one other independent source."),
     "G1b": ("attested", "A contemporary record naming the person in Chicago — the 1833-1835 "
             "newspapers, which print the person by name in the town."),
+    "G1c": ("attested", "CONVERGENCE — two or more independent in-window records from "
+            "DIFFERENT class families (the town's civic lists · the contemporary press, "
+            "letter lists included · the parish register). Two bodies that did not copy "
+            "each other naming one man inside the scene window. A letter list is never "
+            "promoted on its own by this rung; it only COUNTS TOWARD convergence."),
     "G2a": ("inferred", "The 1835 poll list alone."),
     "G2b": ("inferred", "An 1833 or 1834 list (poll, tax, muster) with another source."),
     "G2c": ("inferred", "The St Cyr register 1833-1835 — a party to a marriage or burial "
@@ -128,6 +133,20 @@ CHURCH_SCENE_CLASS = "church_1833_1835"
 DIRECTORY_CLASSES = {"directory_1843", "directory_1844", "book_recollection"}
 LATER_CLASSES = {"census_1840", "directory_1843", "directory_1844", "death_notice",
                  "church_after_1835", "finding_aid"}
+
+# THE SCENE WINDOW, hoisted out of grade() so the record counter and the rungs read the
+# same set. Everything here describes 1832-1835; everything in LATER_CLASSES does not.
+SCENE_WINDOW_CLASSES = (CONTEMPORARY_CLASSES | EARLY_LIST_CLASSES
+                        | {POLL_1835, CHURCH_SCENE_CLASS, LETTER_LIST_CLASS})
+
+# THE CLASS FAMILIES — who MADE the record, which is what independence turns on. Two
+# entries in one family may be one body's habit; one entry in each of two families is two
+# bodies that did not copy each other. G1c is the only rung that reads this.
+CLASS_FAMILIES = {
+    "civic": EARLY_LIST_CLASSES | {POLL_1835},
+    "press": CONTEMPORARY_CLASSES | {LETTER_LIST_CLASS},
+    "church": {CHURCH_SCENE_CLASS},
+}
 
 # ---------------------------------------------------------------------------
 # Name normalisation. Deliberately small: this layer decides who is who, so every
@@ -750,6 +769,51 @@ def apply_anchors(identities, refusals, anchors):
 # THE LADDER, applied as a proposal.
 
 
+def in_window_records(identity):
+    """The distinct RECORDS naming this identity inside the scene window.
+
+    INDEPENDENCE IS A PROPERTY OF THE RECORD — a distinct list, taken on a distinct
+    occasion, by a distinct body — and NOT of the `source_id` that digitised it. This
+    function exists because the rungs used to count source_ids and got it wrong (T-0699):
+    every Chicago poll, tax and muster list in this project was published by IRAD under
+    the single id `chicago_voter_lists_1833_1835_irad`, so
+
+      Willard Jones   tax_1833 + poll_1834 + poll_1835   len(sources) == 1
+      Byran Guisin    tax_1833 + poll_1834               len(sources) == 1
+
+    Jones missed G1a and was graded G2a, "The 1835 poll list ALONE", which is false of his
+    own evidence blocks; Guisin missed G2b and fell two rungs to G4 `projected_resident`.
+    Three lists taken in three different years by the town are three records. That one
+    archive digitised them together is a fact about the archive.
+    """
+    return {(m["evidence_class"], m.get("describes_date"))
+            for m in identity["members"]
+            if m["evidence_class"] in SCENE_WINDOW_CLASSES}
+
+
+def independent_records(identity):
+    """Every distinct record naming this identity, in the window or after it.
+
+    G1a and G2b are worded "and at least one other independent source" / "with another
+    source" — the owner did not require the second one to be inside the window, because
+    the FIRST one already carries the 1835 claim and the second corroborates the identity.
+    So this counts across all classes; only G1c, which has no in-window anchor of its own
+    to rest on, insists that its records be in-window.
+
+    What it must NOT do is count `source_id`s. That was the defect: a man on three IRAD
+    lists reads as one source, and a man on the 1835 poll plus an 1843 directory reads as
+    two. Same evidence, opposite verdicts, decided by who digitised it.
+    """
+    return {(m["evidence_class"], m.get("describes_date"))
+            for m in identity["members"] if m["domain"] != "residents"}
+
+
+def in_window_families(identity):
+    """Which class families name this identity inside the scene window."""
+    classes = {m["evidence_class"] for m in identity["members"]}
+    return {name for name, members in CLASS_FAMILIES.items() if classes & members}
+
+
 def grade(identity):
     classes = {m["evidence_class"] for m in identity["members"]}
     domains = {m["domain"] for m in identity["members"]}
@@ -766,13 +830,20 @@ def grade(identity):
             return "G5", None, None
         if evidence_domains:
             return "G0", "not_1835_resident", None
-    if POLL_1835 in classes and len(sources) > 1:
+    records = independent_records(identity)
+    if POLL_1835 in classes and len(records) > 1:
         return "G1a", "attested", None
     if classes & CONTEMPORARY_CLASSES:
         return "G1b", "attested", None
+    # G1c — CONVERGENCE, and it sits here because it is an `attested` rung that the two
+    # above it cannot reach: neither the 1835 poll nor the contemporary press is present,
+    # but two DIFFERENT bodies name the man inside the window. The owner's reading, in his
+    # words: "the letter list places someone as likely there, AND there are voter records".
+    if len(in_window_families(identity)) > 1 and len(in_window_records(identity)) > 1:
+        return "G1c", "attested", None
     if POLL_1835 in classes:
         return "G2a", "inferred", None
-    if classes & EARLY_LIST_CLASSES and len(sources) > 1:
+    if classes & EARLY_LIST_CLASSES and len(records) > 1:
         return "G2b", "inferred", None
     if CHURCH_SCENE_CLASS in classes:
         return "G2c", "inferred", None
@@ -1227,6 +1298,62 @@ def cmd_check() -> int:
 
 def cmd_self_test() -> int:
     failures = 0
+
+    # ---- T-0699: the rungs count RECORDS, and convergence is a rung ----------
+    def ident(*members):
+        return {"members": [dict(domain=d, evidence_class=c, describes_date=y,
+                                 source_id=sid, record_id=f"r{i}")
+                            for i, (d, c, y, sid) in enumerate(members)]}
+
+    def rung(*members):
+        return grade(ident(*members))[0]
+
+    IRAD = "chicago_voter_lists_1833_1835_irad"
+
+    def case(name, got, want):
+        nonlocal failures
+        if got == want:
+            print(f"  ok    {name} → {got}")
+        else:
+            print(f"  FAIL  {name} → {got}, wanted {want}")
+            failures += 1
+
+    # (a) THE DEFECT. Three lists, three years, one archive. Counting source_ids
+    # made this "the 1835 poll list ALONE" (G2a) — false of the record.
+    case("three IRAD lists under one source_id reach G1a",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD),
+              ("civic", "poll_1835", "1835", IRAD)), "G1a")
+    case("…and the 1835 poll genuinely alone is still G2a",
+         rung(("civic", "poll_1835", "1835", IRAD)), "G2a")
+    case("two early lists under one source_id reach G2b, not G4",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD)), "G2b")
+
+    # (b) CONVERGENCE. Two bodies that did not copy each other, in the window.
+    case("a poll list and a letter list converge to G1c",
+         rung(("civic", "poll_1834", "1834", IRAD),
+              ("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G1c")
+    case("…but a letter list ALONE is never promoted by it",
+         rung(("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G3")
+    case("…nor are two letter lists, which are one family",
+         rung(("press", "newspaper_letter_list", "1834-04-01", "democrat"),
+              ("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G2e")
+    case("…nor are two civic lists, which are also one family",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD)), "G2b")
+    case("the parish register converges with a civic list too",
+         rung(("civic", "poll_1834", "1834", IRAD),
+              ("church", "church_1833_1835", "1834", "stcyr")), "G1c")
+
+    # (c) THE GUARD. G0 survives: later evidence never attests on its own.
+    case("two later sources and nothing in-window stay not_1835_resident",
+         rung(("books", "directory_1843", "1843", "fergus"),
+              ("books", "death_notice", "1855", "fergus")), "G0")
+    case("…and a later source cannot lift a lone letter list into convergence",
+         rung(("press", "newspaper_letter_list", "1835-05-20", "democrat"),
+              ("books", "directory_1843", "1843", "fergus")), "G2e")
+
 
     def assert_fires(what, master, proposal):
         nonlocal failures
