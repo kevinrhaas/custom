@@ -83,11 +83,23 @@
  "closes_note": "Six of the seven industry columns close exactly, and the seventh and the whole of the rest of the form is blank on the sheet and blank at its foot. Commerce reads 6 against a printed 6; manufactures and trades reads 17 against a printed 17; the learned professions read 5 against a printed 5; mining, agriculture and both navigation columns are empty on every line and carry no footer figure. THE FAMILY TOTALS DO NOT CLOSE: they read 121 against a printed 106, a residual of +15, and nothing was altered to close them. Six lines — 1, 5, 13, 19, 24 and 26 — carry a two-stroke figure in the TOTAL column. It is read as 11: the two strokes stand about 30 px apart, which is the same digit pitch as the footer's own two-digit 17 (32 px) and its three-digit 106 (36 px), and the single 1s elsewhere on the sheet are one stroke. Reading those six as 4 instead would put the column at 79 against the printed 106, a residual of -27, so neither reading closes and the larger one is the one the strokes support. 33S7-9YYJ-5D, read on the same basis by the run before this, also carries an 11 on its first line and also fails to close (128 against 125). The residual is left standing as the finding.",
  "pairing": {
   "paired_to_printed_page": null,
-  "state": "unpaired",
-  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading: the page population below has to be matched against the printed age-band totals at the foot of each candidate left sheet, and those have not been read yet. T-0642 does that for all eleven at once. Recorded as unpaired rather than guessed.",
+  "state": "unpaired_partner_not_in_this_group",
+  "why": "RESOLVED by T-0642 where this says paired, and recorded as unpaired with its rule where it does not. The earlier text of this field said the left sheets had not been footed yet; they have now.",
   "page_population_key": 106,
   "page_population_key_note": "the printed footer figure, which is what a left sheet's age-band sums are to be matched against. The line-by-line reading of the same column is 121; both are published because the pairing test has to know they differ on this sheet.",
-  "line_count_key": 32
+  "line_count_key": 32,
+  "tested_by": "T-0642",
+  "test": "both keys — the count of ruled lines carrying an entry, and the page population — against the twelve filled left sheets of image group 1, whose printed footings T-0642 read and published.",
+  "result": "THIS IS THE POSITIVE RESULT OF THE TEST. 33S7-9YYJ-8D carries 32 entries, read line by line by T-0643 and anchored by a thirty-second line the inventory had missed. No left sheet in images 1-25 carries 32 entries - eleven of the twelve are ruled to 31 and the twelfth to 30 - so this sheet's left half is NOT in this image group at all. That is a fact about the deposit rather than a failure of the reading, and it is what the other unpaired sheets below should be read against.",
+  "refusals": [
+   {
+    "printed_page": 215,
+    "familysearch_id": "33S7-9YYJ-9WF",
+    "rule": "population near, line count impossible",
+    "why": "foots 103 against this sheet's 106 and is the nearest population in the group, but carries 31 entries against 32. Refused on the line count, which is the harder of the two keys here because both figures were read line by line."
+   }
+  ],
+  "published_in": "data/research/census_1840/left_sheet_population_key.json"
  },
  "records": [
   {
