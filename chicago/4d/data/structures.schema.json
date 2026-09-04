@@ -44,6 +44,34 @@
       ],
       "description": "Generator module that builds this structure. 'authored' means a hand-built hero asset, exempt from regeneration but not from provenance."
     },
+    "land_owner": {
+      "type": "object",
+      "description": "DERIVED, never authored: who entered the federal tract this structure's position falls in, written by tools/resolve_land_tracts.py --build and re-derived by --check (T-0609). A purchase is not a title \u2014 the block names the person the Illinois State Archives' tract register records as entering the ground from the United States, on the date it gives, and says nothing about who held it on the scene date. Present only on the structures a REGULAR aliquot reaches; the grid it is resolved on is a construction from one control point (L218).",
+      "additionalProperties": false,
+      "required": ["tract", "purchasers", "confidence", "sources", "note"],
+      "properties": {
+        "tract": {"type": "string", "description": "Township, range, section and aliquot part, as the register writes them."},
+        "purchasers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "as_read", "record_id", "date_purchased", "type_of_sale"],
+            "properties": {
+              "name": {"type": "string"},
+              "as_read": {"type": "string"},
+              "record_id": {"type": "string"},
+              "date_purchased": {"type": "string"},
+              "type_of_sale": {"type": "string"}
+            }
+          }
+        },
+        "confidence": {"enum": ["documented", "inferred", "conjectural", "reconstructed"]},
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "note": {"type": "string", "minLength": 1}
+      }
+    },
     "phases": {
       "type": "array",
       "minItems": 1,

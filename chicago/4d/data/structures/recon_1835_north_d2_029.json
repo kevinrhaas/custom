@@ -2,6 +2,23 @@
   "id": "recon_1835_north_d2_029",
   "name": "Reconstructed D2 rough plank dwelling or shanty #029",
   "archetype": "outbuilding",
+  "land_owner": {
+    "tract": "T39N R14E sec 09 E2NE",
+    "purchasers": [
+      {
+        "name": "Alexander Wolcott",
+        "as_read": "WOLCOTT ALEXANDER",
+        "record_id": "ls0056",
+        "date_purchased": "1830-09-29",
+        "type_of_sale": "CN"
+      }
+    ],
+    "confidence": "inferred",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "DERIVED, and re-derived by tools/resolve_land_tracts.py --check: this block is not hand-authored and a hand-edit fails the gate. This structure's committed position falls inside T39N R14E sec 09 E2NE on the PLSS grid this project constructs from its ONE control point — G1, State & Madison, the corner of sections 9/10/15/16 — carried on the plat's own east-west bearing at the nominal section mile. The grid is a construction and not a survey (L218), G1 carries a 13.9 m residual and the position itself carries the record's own uncertainty, so a structure near a section line may be on the other side of it. AND A PURCHASE IS NOT A TITLE: Alexander Wolcott entered this tract from the United States on 1830-09-29, which is what the register records and all it records. It does not say who held the ground on 1 July 1835, in a town whose whole business that year was selling it again."
+  },
   "phases": [
     {
       "id": "inferred_1835",

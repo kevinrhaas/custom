@@ -1,0 +1,3532 @@
+{
+  "schema": 1,
+  "domain": "land_sales",
+  "generated_by": "tools/resolve_land_tracts.py --build",
+  "note": "Which resolved tract each structure's committed position falls in. A row with no tract stands on ground the register either did not sell as a regular aliquot or sold in a form this pass refuses to draw — which is most of the town, because the plat itself is fractional section 9 and the school section's lots are unplaced.",
+  "counts": {
+    "structures": 372,
+    "reached": 19,
+    "unreached": 353
+  },
+  "rows": [
+    {
+      "structure_id": "bates_auction_room",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.100558,
+        "north": 0.298427
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "beaubien_barn",
+      "phase_id": "converted_1817",
+      "miles_from_g1": {
+        "east": 0.153827,
+        "north": 0.407184
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "blacksmith_shop_state_st",
+      "phase_id": "log_1823",
+      "miles_from_g1": {
+        "east": -0.045892,
+        "north": 0.399971
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "brickyard_north_side",
+      "phase_id": "yard_1833",
+      "miles_from_g1": {
+        "east": -0.138237,
+        "north": 0.393132
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "brown_boarding_house",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.259262,
+        "north": 0.301864
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "carpenter_south_water_store",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.282357,
+        "north": 0.316452
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "chappel_infant_school",
+      "phase_id": "log_1833",
+      "miles_from_g1": {
+        "east": -0.019007,
+        "north": 0.297001
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "chicago_american_office",
+      "phase_id": "frame_1835",
+      "miles_from_g1": {
+        "east": -0.081216,
+        "north": 0.316414
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "chicago_democrat_office",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.180401,
+        "north": 0.317161
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "chicago_lighthouse_1832",
+      "phase_id": "tower_1832",
+      "miles_from_g1": {
+        "east": 0.16245,
+        "north": 0.470139
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "clybourn_cabins",
+      "phase_id": "log_1824",
+      "miles_from_g1": {
+        "east": -0.531191,
+        "north": 0.498686
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "clybourn_slaughterhouse",
+      "phase_id": "log_1827",
+      "miles_from_g1": {
+        "east": -0.543668,
+        "north": 0.504799
+      },
+      "tract": "T39N R14E sec 09 E2NW",
+      "purchasers": [
+        {
+          "name": "James Kinzie",
+          "as_read": "KINZIE JAMES",
+          "record_id": "ls0053",
+          "date_purchased": "1830-09-28",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "cobweb_castle",
+      "phase_id": "log_1820",
+      "miles_from_g1": {
+        "east": -0.017946,
+        "north": 0.402062
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "cook_county_courthouse_1835",
+      "phase_id": "wood_1835",
+      "miles_from_g1": {
+        "east": -0.174253,
+        "north": 0.156562
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "council_house",
+      "phase_id": "log_1834",
+      "miles_from_g1": {
+        "east": 0.05792,
+        "north": 0.471652
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "dearborn_street_drawbridge",
+      "phase_id": "draw_1834",
+      "miles_from_g1": {
+        "east": -0.088785,
+        "north": 0.338552
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "dole_warehouse_south",
+      "phase_id": "frame_1832",
+      "miles_from_g1": {
+        "east": -0.079908,
+        "north": 0.240691
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "elston_soap_candle_manufactory",
+      "phase_id": "works_1833",
+      "miles_from_g1": {
+        "east": -0.531929,
+        "north": 0.436541
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "estray_pen",
+      "phase_id": "pen_1833",
+      "miles_from_g1": {
+        "east": -0.230105,
+        "north": 0.090074
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "exchange_coffee_house",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.324367,
+        "north": 0.26743
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "first_presbyterian_church",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.17906,
+        "north": 0.242803
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_artillery_house",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.203933,
+        "north": 0.448857
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_barracks",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.204472,
+        "north": 0.454454
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_blockhouse",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.172543,
+        "north": 0.450038
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_commandants_quarters",
+      "phase_id": "brick_1816",
+      "miles_from_g1": {
+        "east": 0.189598,
+        "north": 0.480165
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_flagstaff",
+      "phase_id": "staff_1833_37",
+      "miles_from_g1": {
+        "east": 0.190667,
+        "north": 0.465558
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_garrison_garden",
+      "phase_id": "fence_1816",
+      "miles_from_g1": {
+        "east": 0.10957,
+        "north": 0.393502
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_guard_house",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.183141,
+        "north": 0.452727
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_magazine",
+      "phase_id": "brick_1816",
+      "miles_from_g1": {
+        "east": 0.179045,
+        "north": 0.456652
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_officers_quarters",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.178982,
+        "north": 0.472137
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_palisade",
+      "phase_id": "picket_1816",
+      "miles_from_g1": {
+        "east": 0.173087,
+        "north": 0.451117
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_parade",
+      "phase_id": "parade_1816",
+      "miles_from_g1": {
+        "east": 0.182776,
+        "north": 0.456353
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_root_house",
+      "phase_id": "cellar_1816",
+      "miles_from_g1": {
+        "east": 0.170204,
+        "north": 0.474079
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_store_house",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.191892,
+        "north": 0.451668
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "fort_dearborn_sutlers_store",
+      "phase_id": "log_1816",
+      "miles_from_g1": {
+        "east": 0.206248,
+        "north": 0.477528
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "frederick_thomas_shop",
+      "phase_id": "frame_1835",
+      "miles_from_g1": {
+        "east": -0.060392,
+        "north": 0.316994
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "goss_cobb_saddlery",
+      "phase_id": "shop_1833",
+      "miles_from_g1": {
+        "east": -0.608453,
+        "north": 0.246533
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "green_tree_tavern",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.606693,
+        "north": 0.261697
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "h_jones_store",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.307194,
+        "north": 0.315099
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "harmon_log_cabin",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.368896,
+        "north": 0.151923
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "harmon_loomis_store",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.15776,
+        "north": 0.317223
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "heacock_house_monroe",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.233141,
+        "north": -0.06049
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "hogan_store",
+      "phase_id": "log_1831",
+      "miles_from_g1": {
+        "east": -0.448021,
+        "north": 0.265532
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_artisan_dwelling_west_a",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.632688,
+        "north": 0.238399
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_artisan_dwelling_west_b",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.636294,
+        "north": 0.299888
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_bakery_lake",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.139555,
+        "north": 0.24062
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_barber_shop",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.269637,
+        "north": 0.242156
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_blacksmith_shop_west",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.632722,
+        "north": 0.219189
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_boatman_cabin_north",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.366928,
+        "north": 0.406095
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_brickmaker_dwelling_north",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.115411,
+        "north": 0.410183
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_butcher_market",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.114699,
+        "north": 0.240999
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_carpenter_dwelling_north",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.289691,
+        "north": 0.446053
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_cooperage_south",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.422453,
+        "north": 0.296137
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_cooperage_south_branch",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.479057,
+        "north": 0.173453
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_grocery_west",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.63801,
+        "north": 0.311544
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_gunsmith_shop",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.151036,
+        "north": 0.152639
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_harness_shop",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.09963,
+        "north": 0.173562
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_labourer_shanty_north_a",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.339327,
+        "north": 0.483501
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_labourer_shanty_north_b",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.314473,
+        "north": 0.483703
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_labourer_shanty_west_a",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.667936,
+        "north": 0.39384
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_labourer_shanty_west_b",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.668088,
+        "north": 0.41248
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_laundry_north",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.339023,
+        "north": 0.446031
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_mason_dwelling_north",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.289994,
+        "north": 0.483334
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_packer_dwelling",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.446986,
+        "north": 0.173417
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_sawpit_shed",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.440129,
+        "north": 0.277163
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_sawyer_dwelling_a",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.424451,
+        "north": 0.153094
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_sawyer_dwelling_b",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.405623,
+        "north": 0.153437
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_shoemaker_shop",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.307105,
+        "north": 0.241474
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_tailor_shop",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.288466,
+        "north": 0.241814
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_teamster_dwelling_south",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.257579,
+        "north": 0.241064
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_teamster_dwelling_west",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.632522,
+        "north": 0.194524
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_teamster_stable_west",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.632554,
+        "north": 0.175125
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "inf_wheelwright_shop_west",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.635894,
+        "north": 0.280492
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "james_kinzie_house",
+      "phase_id": "dwelling_1830",
+      "miles_from_g1": {
+        "east": -0.551724,
+        "north": 0.272334
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "jb_beaubien_homestead",
+      "phase_id": "factory_1817",
+      "miles_from_g1": {
+        "east": 0.153745,
+        "north": 0.417312
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "jh_kinzie_forwarding_store",
+      "phase_id": "frame_1830s",
+      "miles_from_g1": {
+        "east": -0.378269,
+        "north": 0.313885
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "john_holbrook_store",
+      "phase_id": "frame_1835",
+      "miles_from_g1": {
+        "east": -0.071746,
+        "north": 0.316278
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "kinzie_hunter_warehouse",
+      "phase_id": "warehouse_1834",
+      "miles_from_g1": {
+        "east": -0.451802,
+        "north": 0.363867
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "lake_house_construction",
+      "phase_id": "shell_1835",
+      "miles_from_g1": {
+        "east": 0.134552,
+        "north": 0.539514
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "lasalle_slough_crossing",
+      "phase_id": "crossing_1835",
+      "miles_from_g1": {
+        "east": -0.236372,
+        "north": 0.326344
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "log_jail",
+      "phase_id": "log_1833",
+      "miles_from_g1": {
+        "east": -0.232481,
+        "north": 0.153896
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "madore_beaubien_house",
+      "phase_id": "log_1831",
+      "miles_from_g1": {
+        "east": -0.101974,
+        "north": 0.318127
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "mansion_house",
+      "phase_id": "log_frame_1833",
+      "miles_from_g1": {
+        "east": -0.072654,
+        "north": 0.268914
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "mason_blacksmith_shop",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.067618,
+        "north": 0.240363
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "miller_house",
+      "phase_id": "log_frame_1827",
+      "miles_from_g1": {
+        "east": -0.514718,
+        "north": 0.360126
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "miller_tannery",
+      "phase_id": "log_1831",
+      "miles_from_g1": {
+        "east": -0.514804,
+        "north": 0.370689
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "new_york_house",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.329007,
+        "north": 0.267243
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "newberry_dole_slaughterhouse_south_branch",
+      "phase_id": "works_1834",
+      "miles_from_g1": {
+        "east": -0.475603,
+        "north": 0.157373
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "newberry_dole_warehouse",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.398629,
+        "north": 0.32018
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_bank_shed_dearborn_e1",
+      "phase_id": "shed_1835",
+      "miles_from_g1": {
+        "east": -0.080934,
+        "north": 0.403297
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_bank_shed_dearborn_e2",
+      "phase_id": "shed_1835",
+      "miles_from_g1": {
+        "east": -0.072687,
+        "north": 0.403156
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_bank_shed_dearborn_e3",
+      "phase_id": "shed_1835",
+      "miles_from_g1": {
+        "east": -0.063523,
+        "north": 0.405256
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_bank_shed_dearborn_w",
+      "phase_id": "shed_1835",
+      "miles_from_g1": {
+        "east": -0.100514,
+        "north": 0.402039
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_branch_bridge",
+      "phase_id": "log_1832",
+      "miles_from_g1": {
+        "east": -0.597432,
+        "north": 0.483422
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_pier",
+      "phase_id": "crib_1835",
+      "miles_from_g1": {
+        "east": 0.247966,
+        "north": 0.52224
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_side_school_1833",
+      "phase_id": "log_1833",
+      "miles_from_g1": {
+        "east": -0.150574,
+        "north": 0.397257
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "north_water_slough_crossing",
+      "phase_id": "crossing_1835",
+      "miles_from_g1": {
+        "east": -0.410189,
+        "north": 0.420006
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "old_bank_building",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.233013,
+        "north": 0.239734
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "peck_store",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.257011,
+        "north": 0.315918
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "philo_carpenter_log_shop",
+      "phase_id": "log_1832",
+      "miles_from_g1": {
+        "east": -0.453298,
+        "north": 0.243492
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "physicians_office",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.175949,
+        "north": 0.236324
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "pierce_blacksmith_shop",
+      "phase_id": "shop_1833",
+      "miles_from_g1": {
+        "east": -0.612545,
+        "north": 0.240025
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "pruyne_kimball_drugstore",
+      "phase_id": "frame_1830s",
+      "miles_from_g1": {
+        "east": -0.133349,
+        "north": 0.318018
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_clark_a3_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.146807,
+        "north": 0.215877
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_clark_d1_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.156602,
+        "north": 0.241481
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_clark_d3_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.153292,
+        "north": 0.241938
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_clark_d5_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.150128,
+        "north": 0.240083
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_franklin_a1_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.343776,
+        "north": 0.218373
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_franklin_d1_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.348798,
+        "north": 0.241536
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_franklin_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.34525,
+        "north": 0.239848
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_a1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.409404,
+        "north": 0.218825
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_a3_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.42648,
+        "north": 0.203541
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_d1_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.422292,
+        "north": 0.180588
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_d2_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.405991,
+        "north": 0.180123
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_d3_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.438205,
+        "north": 0.237615
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_d4_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.425877,
+        "north": 0.237174
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_lake_market_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.409279,
+        "north": 0.236455
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_a3_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.137966,
+        "north": 0.117353
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_a4_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.105684,
+        "north": 0.130191
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_c2_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.106709,
+        "north": 0.150041
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_d1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.13172,
+        "north": 0.096268
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_d2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.118692,
+        "north": 0.095736
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_d6_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.100561,
+        "north": 0.098476
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_h1_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.135837,
+        "north": 0.147022
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clark_h2_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.121567,
+        "north": 0.147281
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_a1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.665861,
+        "north": 0.131761
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_a2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.684174,
+        "north": 0.112526
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_a3_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.635907,
+        "north": 0.116791
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_d1_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.677798,
+        "north": 0.096654
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_d3_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.62898,
+        "north": 0.095981
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_d4_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.637579,
+        "north": 0.149349
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_clinton_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.665903,
+        "north": 0.148733
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a1_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.058126,
+        "north": 0.131996
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a2_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.02062,
+        "north": 0.134793
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a2_17",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.072489,
+        "north": 0.111847
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a3_09",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.053839,
+        "north": 0.116718
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a4_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.068964,
+        "north": 0.129953
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_a4_13",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.042114,
+        "north": 0.130355
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d1_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.053621,
+        "north": 0.095932
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d1_12",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.040346,
+        "north": 0.152097
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.067965,
+        "north": 0.094352
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.024534,
+        "north": 0.095558
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d3_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.07355,
+        "north": 0.149965
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d3_11",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.043545,
+        "north": 0.152601
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.071529,
+        "north": 0.093873
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d4_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.025386,
+        "north": 0.148526
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d5_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.059402,
+        "north": 0.149283
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_d6_10",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.047828,
+        "north": 0.151098
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.074761,
+        "north": 0.095734
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_a1_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.333822,
+        "north": 0.133685
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_a3_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.366331,
+        "north": 0.117002
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.360226,
+        "north": 0.09626
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.34725,
+        "north": 0.095768
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d3_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.329842,
+        "north": 0.096879
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d4_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.379125,
+        "north": 0.147832
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d5_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.350679,
+        "north": 0.147393
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_franklin_d6_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.333749,
+        "north": 0.14792
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_a1_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.441999,
+        "north": 0.113198
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_a1_12",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.451485,
+        "north": 0.112843
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_a2_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.407603,
+        "north": 0.111183
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_a3_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.44824,
+        "north": 0.129211
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_a4_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.439905,
+        "north": 0.130172
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d1_10",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.45246,
+        "north": 0.094304
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d2_09",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.455659,
+        "north": 0.093161
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d3_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.407703,
+        "north": 0.096505
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d4_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.434568,
+        "north": 0.096292
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.453654,
+        "north": 0.148603
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d5_11",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.448284,
+        "north": 0.095572
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_market_d6_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.440859,
+        "north": 0.148411
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_a1_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.29715,
+        "north": 0.133464
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_a3_09",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.290278,
+        "north": 0.128879
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_a4_10",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.290946,
+        "north": 0.115273
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_d1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.285953,
+        "north": 0.097482
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_d2_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.253544,
+        "north": 0.096057
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_d3_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.299581,
+        "north": 0.095249
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_d4_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.257486,
+        "north": 0.148959
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_d5_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.275212,
+        "north": 0.148875
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_h1_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.28873,
+        "north": 0.147716
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_randolph_wells_h2_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.304924,
+        "north": 0.147536
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_clark_a3_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.115799,
+        "north": 0.298193
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_clark_d1_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.120161,
+        "north": 0.317252
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_clark_d3_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.118554,
+        "north": 0.269289
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_clark_d4_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.133922,
+        "north": 0.270083
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_clark_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.116577,
+        "north": 0.315698
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_a3_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.069642,
+        "north": 0.297877
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.037323,
+        "north": 0.312207
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.040884,
+        "north": 0.312452
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_d1_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.04431,
+        "north": 0.316242
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_d2_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.054602,
+        "north": 0.268623
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_dearborn_d3_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.040488,
+        "north": 0.268952
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_a1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.367385,
+        "north": 0.281699
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_a3_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.350658,
+        "north": 0.296695
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_a3_11",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.365789,
+        "north": 0.296774
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_c2_10",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.368105,
+        "north": 0.311892
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d1_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.337319,
+        "north": 0.315309
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.363087,
+        "north": 0.269341
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d3_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.345434,
+        "north": 0.26943
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.33377,
+        "north": 0.314179
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d4_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.360522,
+        "north": 0.314196
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.330152,
+        "north": 0.313889
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_franklin_d5_09",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.364475,
+        "north": 0.313338
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_a1_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.209995,
+        "north": 0.282885
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_a1_14",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.222,
+        "north": 0.30114
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_a2_15",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.21225,
+        "north": 0.302952
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_a3_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.192342,
+        "north": 0.298305
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_c3_13",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.209634,
+        "north": 0.312352
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d1_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.200206,
+        "north": 0.317353
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d1_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.228037,
+        "north": 0.317155
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d2_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.210951,
+        "north": 0.26911
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d2_09",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.224386,
+        "north": 0.317925
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d3_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.17792,
+        "north": 0.268931
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d3_10",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.221362,
+        "north": 0.317112
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.196873,
+        "north": 0.31656
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.193225,
+        "north": 0.315567
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d6_11",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.217979,
+        "north": 0.315301
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_lasalle_d7_12",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.213795,
+        "north": 0.316203
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_a1_07",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.286349,
+        "north": 0.281681
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_a3_08",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.299004,
+        "north": 0.297064
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d1_05",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.287655,
+        "north": 0.316152
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d2_06",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.284675,
+        "north": 0.269113
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d3_04",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.254406,
+        "north": 0.268992
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d4_03",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.271477,
+        "north": 0.27068
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.27358,
+        "north": 0.314511
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_blk_south_water_wells_d6_01",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.269559,
+        "north": 0.314568
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a1_008",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.218385,
+        "north": 0.457151
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a1_032",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.072059,
+        "north": 0.461579
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a1_036",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.069677,
+        "north": 0.537536
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_a1_050",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.206417,
+        "north": 0.562037
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a2_033",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.037516,
+        "north": 0.47201
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a2_048",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.167452,
+        "north": 0.530095
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a2_059",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.204156,
+        "north": 0.551557
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_a3_009",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.194437,
+        "north": 0.468345
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a3_034",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.005018,
+        "north": 0.472924
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a3_051",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.25123,
+        "north": 0.551444
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a4_010",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.1597,
+        "north": 0.466444
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a4_035",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.02018,
+        "north": 0.460782
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a4_052",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.1701,
+        "north": 0.562685
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a5_011",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.135167,
+        "north": 0.472383
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_a5_049",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.247614,
+        "north": 0.563407
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_c1_020",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.03063,
+        "north": 0.440616
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_c1_047",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.275066,
+        "north": 0.537559
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_c2_027",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.036515,
+        "north": 0.516598
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d1_001",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.223985,
+        "north": 0.419962
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d1_013",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.153623,
+        "north": 0.528059
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d1_023",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.075429,
+        "north": 0.511316
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d1_053",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.234058,
+        "north": 0.512914
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d1_054",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.215975,
+        "north": 0.54011
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d1_060",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.141353,
+        "north": 0.552883
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d2_003",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.180956,
+        "north": 0.454029
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d2_014",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.122289,
+        "north": 0.541007
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d2_029",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.097741,
+        "north": 0.541092
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d2_046",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.045463,
+        "north": 0.523475
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d3_002",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.202392,
+        "north": 0.429452
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d3_006",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.103185,
+        "north": 0.454981
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d3_016",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.078042,
+        "north": 0.420993
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d3_024",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.050966,
+        "north": 0.527019
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d3_038",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.249786,
+        "north": 0.531411
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d3_042",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.101178,
+        "north": 0.524109
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d3_055",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.187529,
+        "north": 0.516421
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d4_004",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.158722,
+        "north": 0.439363
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d4_012",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.099609,
+        "north": 0.424435
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d4_017",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.053002,
+        "north": 0.434134
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d4_025",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.022636,
+        "north": 0.515207
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d4_039",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.181528,
+        "north": 0.533578
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d4_043",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.181512,
+        "north": 0.552126
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d4_056",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.163366,
+        "north": 0.536874
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d5_019",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.006367,
+        "north": 0.431745
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d5_026",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.005575,
+        "north": 0.531537
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d5_037",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.004137,
+        "north": 0.550187
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d5_041",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.203271,
+        "north": 0.526944
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d5_057",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.134251,
+        "north": 0.517866
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d6_021",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.242421,
+        "north": 0.451796
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d6_044",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.224756,
+        "north": 0.549105
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_d6_058",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.112459,
+        "north": 0.521042
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_d7_031",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.032146,
+        "north": 0.553694
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_f1_022",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.021411,
+        "north": 0.470742
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_h1_007",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.12095,
+        "north": 0.468228
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_h2_030",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.055239,
+        "north": 0.549465
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_h3_045",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.059212,
+        "north": 0.549233
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_i2_015",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.181786,
+        "north": 0.539602
+      },
+      "tract": "T39N R14E sec 09 E2NE",
+      "purchasers": [
+        {
+          "name": "Alexander Wolcott",
+          "as_read": "WOLCOTT ALEXANDER",
+          "record_id": "ls0056",
+          "date_purchased": "1830-09-29",
+          "type_of_sale": "CN"
+        }
+      ]
+    },
+    {
+      "structure_id": "recon_1835_north_t1_028",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.050671,
+        "north": 0.537248
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_w1_018",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.025098,
+        "north": 0.440579
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_w2_005",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.130461,
+        "north": 0.424278
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_north_w5_040",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": 0.000745,
+        "north": 0.458864
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a1_046",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.346353,
+        "north": 0.190339
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a2_047",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.191109,
+        "north": 0.190896
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a3_041",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.340782,
+        "north": 0.215139
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a3_043",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.185611,
+        "north": 0.215856
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a3_045",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.029432,
+        "north": 0.217171
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a4_042",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.262484,
+        "north": 0.215527
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a4_048",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.037353,
+        "north": 0.192685
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_a5_044",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.106937,
+        "north": 0.217168
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c1_003",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.35705,
+        "north": 0.229706
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c1_010",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.217155,
+        "north": 0.230812
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c1_018",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.063164,
+        "north": 0.231684
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c2_007",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.280223,
+        "north": 0.230319
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c2_036",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.373584,
+        "north": 0.180284
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c3_015",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.100886,
+        "north": 0.238137
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c3_037",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.297638,
+        "north": 0.180603
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_c3_040",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.069466,
+        "north": 0.181978
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d1_021",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.379904,
+        "north": 0.202453
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d1_033",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.075539,
+        "north": 0.205172
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d2_005",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.305993,
+        "north": 0.229845
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d2_024",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.304458,
+        "north": 0.203297
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_001",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.381652,
+        "north": 0.229618
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_008",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.262904,
+        "north": 0.230139
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_013",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.118041,
+        "north": 0.241617
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_017",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.077596,
+        "north": 0.232315
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_022",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.364792,
+        "north": 0.202548
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d3_027",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.228098,
+        "north": 0.203825
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_002",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.37094,
+        "north": 0.229673
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_006",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.293977,
+        "north": 0.230579
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_009",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.230474,
+        "north": 0.230422
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_014",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.108991,
+        "north": 0.240797
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_019",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.046758,
+        "north": 0.231914
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_025",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.287818,
+        "north": 0.203341
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d4_030",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.152051,
+        "north": 0.204347
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d5_004",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.340818,
+        "north": 0.2298
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d5_011",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.202095,
+        "north": 0.23069
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d5_016",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.105065,
+        "north": 0.239822
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d5_028",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.211,
+        "north": 0.203716
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d5_034",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.057349,
+        "north": 0.205627
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d6_012",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.185244,
+        "north": 0.230926
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d6_020",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.029381,
+        "north": 0.232144
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d6_031",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.134057,
+        "north": 0.204793
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_d7_035",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.037511,
+        "north": 0.20565
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_f1_038",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.222375,
+        "north": 0.18085
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_f2_039",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.14629,
+        "north": 0.181884
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_w1_023",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.346651,
+        "north": 0.203353
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_w2_026",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.26909,
+        "north": 0.203962
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_w3_029",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.190774,
+        "north": 0.204525
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_south_w4_032",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.112767,
+        "north": 0.204528
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_001",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.65759,
+        "north": 0.292909
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_002",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.674732,
+        "north": 0.289012
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_003",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.692157,
+        "north": 0.289513
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_005",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.664613,
+        "north": 0.33805
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_006",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.693034,
+        "north": 0.338093
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_007",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.653996,
+        "north": 0.24147
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_008",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.677235,
+        "north": 0.238746
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_009",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.709632,
+        "north": 0.237466
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_010",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.659716,
+        "north": 0.266629
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_011",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.678451,
+        "north": 0.26686
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_012",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.691198,
+        "north": 0.264983
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_014",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.656736,
+        "north": 0.192032
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_015",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.676299,
+        "north": 0.191056
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_016",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.689021,
+        "north": 0.193173
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_018",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.658355,
+        "north": 0.151635
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_019",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.686152,
+        "north": 0.150117
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_021",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.666316,
+        "north": 0.107705
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_022",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.705453,
+        "north": 0.108024
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_023",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.663219,
+        "north": 0.172915
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "recon_1835_west_024",
+      "phase_id": "inferred_1835",
+      "miles_from_g1": {
+        "east": -0.68789,
+        "north": 0.172912
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "robert_kinzie_store",
+      "phase_id": "store_1830",
+      "miles_from_g1": {
+        "east": -0.56548,
+        "north": 0.282786
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "robinson_caldwell_cabins",
+      "phase_id": "log_1831",
+      "miles_from_g1": {
+        "east": -0.580153,
+        "north": 0.306776
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "sauganash_hotel",
+      "phase_id": "frame_1831",
+      "miles_from_g1": {
+        "east": -0.459446,
+        "north": 0.241516
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "slough_log_bridge",
+      "phase_id": "log_1833",
+      "miles_from_g1": {
+        "east": -0.022801,
+        "north": 0.334104
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "south_branch_raft_bridge",
+      "phase_id": "log_1833",
+      "miles_from_g1": {
+        "east": -0.517949,
+        "north": 0.211544
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "south_pier",
+      "phase_id": "crib_1835",
+      "miles_from_g1": {
+        "east": 0.231129,
+        "north": 0.485162
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "st_marys_church",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.020867,
+        "north": 0.240699
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "steamboat_hotel",
+      "phase_id": "frame_1835",
+      "miles_from_g1": {
+        "east": 0.076889,
+        "north": 0.507846
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "temple_building",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.385886,
+        "north": 0.313753
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "temple_lake_st_building",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.338723,
+        "north": 0.239027
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "thomas_church_store",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.198672,
+        "north": 0.267369
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "tremont_house_1",
+      "phase_id": "frame_1833",
+      "miles_from_g1": {
+        "east": -0.095272,
+        "north": 0.268817
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "walker_meeting_house",
+      "phase_id": "log_1831",
+      "miles_from_g1": {
+        "east": -0.588336,
+        "north": 0.319759
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "watkins_school_house",
+      "phase_id": "house_1833",
+      "miles_from_g1": {
+        "east": 0.094979,
+        "north": 0.567466
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "western_hotel",
+      "phase_id": "frame_1834",
+      "miles_from_g1": {
+        "east": -0.610573,
+        "north": 0.146416
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "western_hotel_stable",
+      "phase_id": "stable_1834",
+      "miles_from_g1": {
+        "east": -0.60912,
+        "north": 0.131931
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "wolf_point_tavern",
+      "phase_id": "log_frame_1828",
+      "miles_from_g1": {
+        "east": -0.570912,
+        "north": 0.29374
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "wolf_point_tavern_stable",
+      "phase_id": "stable_1831",
+      "miles_from_g1": {
+        "east": -0.583078,
+        "north": 0.284383
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "wright_building_to_let_a",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.258507,
+        "north": 0.175958
+      },
+      "tract": null
+    },
+    {
+      "structure_id": "wright_building_to_let_b",
+      "phase_id": "documented_1835",
+      "miles_from_g1": {
+        "east": -0.181953,
+        "north": 0.175952
+      },
+      "tract": null
+    }
+  ]
+}
