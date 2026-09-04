@@ -10,8 +10,8 @@
   "entries_with_an_address": 976,
   "distinct_streets": 102,
   "distinct_trades": 945,
-  "trades_the_vocabulary_cannot_say": 541,
-  "entries_under_a_trade_the_vocabulary_cannot_say": 836,
+  "trades_the_vocabulary_cannot_say": 525,
+  "entries_under_a_trade_the_vocabulary_cannot_say": 815,
   "firms_with_an_address": 59
  },
  "streets": [
@@ -7826,10 +7826,6 @@
     "n": 3
    },
    {
-    "trade": "deputy-sheriff",
-    "n": 3
-   },
-   {
     "trade": "machinist, Stow’s foundry",
     "n": 3
    },
@@ -7910,10 +7906,6 @@
     "n": 2
    },
    {
-    "trade": "deputy-sheriff and constable",
-    "n": 2
-   },
-   {
     "trade": "law student, Spring & Goodrich",
     "n": 2
    },
@@ -7958,10 +7950,6 @@
     "n": 2
    },
    {
-    "trade": "tinsmith, Botsford & Beers",
-    "n": 2
-   },
-   {
     "trade": "& Hallam",
     "n": 2
    },
@@ -7995,10 +7983,6 @@
    },
    {
     "trade": "with Sylvester Marsh",
-    "n": 2
-   },
-   {
-    "trade": "justice of the peace",
     "n": 2
    },
    {
@@ -8518,10 +8502,6 @@
     "n": 1
    },
    {
-    "trade": "bookseller and stationer",
-    "n": 1
-   },
-   {
     "trade": "laborer, cor. Rush",
     "n": 1
    },
@@ -8571,10 +8551,6 @@
    },
    {
     "trade": "foundryman, Elihu Granger",
-    "n": 1
-   },
-   {
-    "trade": "1)., tinsmith, Botsford & Beers",
     "n": 1
    },
    {
@@ -8838,10 +8814,6 @@
     "n": 1
    },
    {
-    "trade": "deputy-sheriff, ex-justice of peace",
-    "n": 1
-   },
-   {
     "trade": "& Hyde",
     "n": 1
    },
@@ -9027,10 +8999,6 @@
    },
    {
     "trade": "(Harmon & Loomis)",
-    "n": 1
-   },
-   {
-    "trade": "high constable, deputy-sheriff",
     "n": 1
    },
    {
@@ -9306,10 +9274,6 @@
     "n": 1
    },
    {
-    "trade": "& John, brassfounders, 55 Clark",
-    "n": 1
-   },
-   {
     "trade": "jun., John P., waterman",
     "n": 1
    },
@@ -9375,10 +9339,6 @@
    },
    {
     "trade": "boarding-house, North State near Kinzie",
-    "n": 1
-   },
-   {
-    "trade": "alderman and justice of the peace, Dearborn",
     "n": 1
    },
    {
@@ -9482,10 +9442,6 @@
     "n": 1
    },
    {
-    "trade": "ex-sheriff",
-    "n": 1
-   },
-   {
     "trade": "clerk, Ira",
     "n": 1
    },
@@ -9495,10 +9451,6 @@
    },
    {
     "trade": "Smead, Kendall & Co",
-    "n": 1
-   },
-   {
-    "trade": "tinsmith",
     "n": 1
    },
    {
@@ -9523,10 +9475,6 @@
    },
    {
     "trade": "(Wm",
-    "n": 1
-   },
-   {
-    "trade": "tinsmith, Wm. Wheeler",
     "n": 1
    },
    {
@@ -9575,14 +9523,6 @@
    },
    {
     "trade": "st, near",
-    "n": 1
-   },
-   {
-    "trade": "assist. -postmaster, P.O",
-    "n": 1
-   },
-   {
-    "trade": "Refectory",
     "n": 1
    },
    {
@@ -9735,10 +9675,6 @@
    },
    {
     "trade": "milkman, Wooster & Wadhams",
-    "n": 1
-   },
-   {
-    "trade": "agent, Hartford Insurance Co",
     "n": 1
    },
    {

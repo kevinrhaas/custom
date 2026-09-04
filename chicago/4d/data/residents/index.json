@@ -39,6 +39,7 @@
    "blacksmith",
    "boarding_house_keeper",
    "boatman",
+   "bookseller",
    "brickmaker",
    "builder",
    "butcher",
@@ -46,6 +47,7 @@
    "chaplain",
    "clerk",
    "clothier",
+   "coffee_house_keeper",
    "cooper",
    "county_clerk",
    "dentist",
@@ -58,22 +60,29 @@
    "farmer",
    "ferryman",
    "forwarding_and_commission",
+   "founder",
    "grocer",
    "gunsmith",
+   "harbour_agent",
    "hardware_merchant",
    "harness_maker",
    "hotel_keeper",
    "hunter",
    "indian_agent",
+   "insurance_agent",
    "interpreter",
    "joiner",
    "justice_of_the_peace",
    "labourer",
+   "land_agent",
+   "land_office_register",
    "laundress",
    "lighthouse_keeper",
    "lumber_merchant",
    "mason",
+   "master_mariner",
    "merchant",
+   "militia_officer",
    "miller",
    "milliner",
    "minister",
@@ -85,22 +94,28 @@
    "postmaster",
    "priest",
    "printer",
+   "provision_dealer",
+   "refectory_keeper",
    "saddler",
    "sailmaker",
    "sawyer",
    "schoolteacher",
    "seaman",
+   "sheriff",
    "ship_carpenter",
    "shoemaker",
    "soap_and_candle_maker",
    "soldier",
    "speculator",
+   "stationer",
+   "stove_dealer",
    "sub_agent",
    "surveyor",
    "tailor",
    "tanner",
    "tavern_keeper",
    "teamster",
+   "tinsmith",
    "trader",
    "watchmaker",
    "wheelwright"
@@ -134,10 +149,10 @@
   ]
  },
  "counts": {
-  "households": 825,
-  "persons": 849,
+  "households": 848,
+  "persons": 872,
   "by_grade": {
-   "attested": 118,
+   "attested": 141,
    "inferred": 731,
    "reconstructed": 0
   },
@@ -337,6 +352,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_allen_lieut_james",
+   "file": "households/hh_allen_lieut_james.json",
+   "head": "allen_lieut_james",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_allen_william",
@@ -575,6 +604,20 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_arnold_levi_f",
+   "file": "households/hh_arnold_levi_f.json",
+   "head": "arnold_levi_f",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_arrasmith_james",
@@ -1019,6 +1062,20 @@
    "lives_at": null,
    "works_at": "bates_auction_room",
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_baxley_j_m",
+   "file": "households/hh_baxley_j_m.json",
+   "head": "baxley_j_m",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -1527,6 +1584,34 @@
    "review_required": false
   },
   {
+   "id": "hh_blanchard_w_g",
+   "file": "households/hh_blanchard_w_g.json",
+   "head": "blanchard_w_g",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_blanshard_g",
+   "file": "households/hh_blanshard_g.json",
+   "head": "blanshard_g",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_blodgett_tyler_k",
    "file": "households/hh_blodgett_tyler_k.json",
    "head": "blodgett_tyler_k",
@@ -1714,6 +1799,20 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_botsford_j_k",
+   "file": "households/hh_botsford_j_k.json",
+   "head": "botsford_j_k",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_boucher_joseph",
@@ -3016,6 +3115,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_collett_j_a",
+   "file": "households/hh_collett_j_a.json",
+   "head": "collett_j_a",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_collins_j_h",
    "file": "households/hh_collins_j_h.json",
    "head": "collins_j_h",
@@ -3156,6 +3269,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_cook_j_b",
+   "file": "households/hh_cook_j_b.json",
+   "head": "cook_j_b",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_cook_rowland_i",
@@ -4738,6 +4865,34 @@
    "projected_resident": true
   },
   {
+   "id": "hh_foot_s",
+   "file": "households/hh_foot_s.json",
+   "head": "foot_s",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_forbes_stephen",
+   "file": "households/hh_forbes_stephen.json",
+   "head": "forbes_stephen",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_force_john",
    "file": "households/hh_force_john.json",
    "letter_list_only": true,
@@ -4958,6 +5113,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_galaher_thomas",
+   "file": "households/hh_galaher_thomas.json",
+   "head": "galaher_thomas",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_gale_stephen_f",
    "file": "households/hh_gale_stephen_f.json",
    "head": "gale_stephen_f",
@@ -5064,6 +5233,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_george_c",
+   "file": "households/hh_george_c.json",
+   "head": "george_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_george_me_donolds",
@@ -5955,6 +6138,20 @@
    "review_required": false
   },
   {
+   "id": "hh_holbrook_john",
+   "file": "households/hh_holbrook_john.json",
+   "head": "holbrook_john",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_holcomb_samuel_b",
    "file": "households/hh_holcomb_samuel_b.json",
    "letter_list_only": true,
@@ -6239,6 +6436,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_hugunin_hiram",
+   "file": "households/hh_hugunin_hiram.json",
+   "head": "hugunin_hiram",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_hugunin_leonard_c",
@@ -6911,6 +7122,20 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_keeney_g_w",
+   "file": "households/hh_keeney_g_w.json",
+   "head": "keeney_g_w",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_kendall_samuel",
@@ -7969,6 +8194,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_marsh_silvester",
+   "file": "households/hh_marsh_silvester.json",
+   "head": "marsh_silvester",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_marshall_j_a",
    "file": "households/hh_marshall_j_a.json",
    "head": "marshall_j_a",
@@ -8563,6 +8802,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_montgomery_l_w",
+   "file": "households/hh_montgomery_l_w.json",
+   "head": "montgomery_l_w",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_moody_robert",
@@ -10396,6 +10649,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_russell_aaron",
+   "file": "households/hh_russell_aaron.json",
+   "head": "russell_aaron",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_rutherford_salmon",
    "file": "households/hh_rutherford_salmon.json",
    "letter_list_only": true,
@@ -10456,6 +10723,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_salisbury_stephen_m",
+   "file": "households/hh_salisbury_stephen_m.json",
+   "head": "salisbury_stephen_m",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_salle_john_h",
@@ -11126,6 +11407,20 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_smith_george",
+   "file": "households/hh_smith_george.json",
+   "head": "smith_george",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_snow_george_w",
@@ -12191,6 +12486,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_tuttle_j_b",
+   "file": "households/hh_tuttle_j_b.json",
+   "head": "tuttle_j_b",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_vanderbogart_h",
    "file": "households/hh_vanderbogart_h.json",
    "letter_list_only": true,
@@ -12494,6 +12803,20 @@
    "projected_resident": true
   },
   {
+   "id": "hh_walker_james",
+   "file": "households/hh_walker_james.json",
+   "head": "walker_james",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_walters_william",
    "file": "households/hh_walters_william.json",
    "head": "walters_william",
@@ -12760,6 +13083,20 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_whitlock_james",
+   "file": "households/hh_whitlock_james.json",
+   "head": "whitlock_james",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
   },
   {
    "id": "hh_wilden_pearce",

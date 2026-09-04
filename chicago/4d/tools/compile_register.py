@@ -222,6 +222,81 @@ TRADE_TO_OCCUPATION = (
     ("store", "merchant"),
 )
 
+# T-0418 — sixteen trades the papers print that this vocabulary had no word for, and
+# three it already had a word for and no needle to reach it with. THEY ARE A SECOND
+# TABLE, READ AFTER THE FIRST HAS FAILED, on purpose. First hit wins, so a needle
+# added above would outrank a reading the register already makes, and this ticket is
+# about the people it reads NOTHING for: a new word may fill a null and may never
+# displace a trade the corpus already resolved. (It would otherwise: John Watkins,
+# who kept the town's first school AND sold books, would stop being a schoolteacher,
+# and E. K. Hubbard would stop retiring the merchant household the town invented for
+# want of him.) Within the block the usual ordering rule holds — "house and land
+# agent" above "land agent", the land office's two officers a phrase apart. The nine
+# printed phrases this project REFUSES to translate are in TRADE_NOT_IN_VOCABULARY
+# below, checked before both tables, which is what keeps the Postmaster General of
+# the United States out of the "postmaster" needle.
+TRADE_TO_OCCUPATION_T0418 = (
+    ("register of the land office", "land_office_register"),
+    ("register, united states land office", "land_office_register"),
+    ("house and land agent", "land_agent"),
+    ("house and lot agent", "land_agent"),
+    ("houses and lots", "land_agent"),
+    ("land agent", "land_agent"),
+    ("insurance", "insurance_agent"),
+    ("harbour agent", "harbour_agent"),
+    ("harbor agent", "harbour_agent"),
+    ("master mariner", "master_mariner"),
+    ("justice of the peace", "justice_of_the_peace"),
+    ("militia officer", "militia_officer"),
+    ("army officer", "army_officer"),
+    ("postmaster", "postmaster"),
+    ("sheriff", "sheriff"),
+    ("provision dealer", "provision_dealer"),
+    ("coffee house", "coffee_house_keeper"),
+    ("refectory", "refectory_keeper"),
+    ("restorator", "refectory_keeper"),
+    ("bookseller", "bookseller"),
+    ("stationer", "stationer"),
+    ("tinsmith", "tinsmith"),
+    ("sheet iron", "tinsmith"),
+    ("founder", "founder"),
+    ("stove dealer", "stove_dealer"),
+    ("stove and hollow ware", "stove_dealer"),
+    ("hollow ware", "stove_dealer"),
+)
+
+# T-0418, the other half of the same ruling: printed phrases this project declines to
+# translate, and the reason for each. Matched on the WHOLE printed phrase rather than
+# as a substring, because a refusal is a ruling about one phrase and a substring
+# refusal would silently take the trades that contain it - a bare "agent" would
+# retire the insurance agent, the harbour agent and the land agent in the table above.
+# Checked BEFORE that table, which is what keeps the Postmaster General of the United
+# States out of the "postmaster" needle.
+# docs/RESEARCH/occupation_vocabulary_1835.md argues each one; a printed trade that is
+# neither here nor in the table above is simply unread, and reads back as
+# `occupation: null` exactly as it did before.
+TRADE_NOT_IN_VOCABULARY = {
+    # An office of another government seat. This is the vocabulary of the town's
+    # RESIDENTS, and a word for one of these is an invitation to raise a Chicago
+    # household for a man the same record places at Washington or at Vandalia.
+    "postmaster general": "the Postmaster General of the United States, at Washington",
+    "governor of illinois": "the Governor of Illinois, whose record places him at Vandalia",
+    "judge of the fifth judicial circuit": "a circuit bench, not a Chicago livelihood",
+    # A single act, not a living. Nobody was an appraiser for a living: three men were
+    # named to appraise one estate in one notice in November 1833.
+    "appraiser": "named to appraise one estate in one notice; not a trade",
+    "administratrix": "a probate role in one estate; not a trade",
+    "judge of election": "one day's duty at one poll; not a trade",
+    # Named, but not named as anything.
+    "agent": "an agent of nothing the notice states",
+    "ventriloquist": ("a travelling exhibitor: one notice, one night's entertainment, "
+                      "and no second issue that puts him in the town at all"),
+    "mechanic": "the papers' word for any skilled hand; choosing which would be invention",
+    # A property relation: what he held, not what he did - and a vessel belongs on the
+    # boat's own record rather than in a man's trade.
+    "steamboat owner": "the notice gives the vessel he owned, not the work he did",
+}
+
 
 # --------------------------------------------------------------------------
 # normalising an anchor, a name and a street
@@ -241,10 +316,17 @@ def street_key(name):
     return "_".join(t.split())
 
 
-def occupation_of(text):
-    """The residents vocabulary's word for a printed trade, or None."""
+def occupation_of(text, table=TRADE_TO_OCCUPATION + TRADE_TO_OCCUPATION_T0418):
+    """The residents vocabulary's word for a printed trade, or None.
+
+    `table` is how a caller reading a person with SEVERAL printed trades keeps the
+    T-0418 additions from displacing an established reading: ask with the first table
+    across all of them, and only then with the second (see the person loop in build).
+    """
     t = (text or "").lower()
-    for needle, occ in TRADE_TO_OCCUPATION:
+    if t.strip().strip(".,;") in TRADE_NOT_IN_VOCABULARY:
+        return None
+    for needle, occ in table:
         if needle in t:
             return occ
     return None
@@ -1063,22 +1145,33 @@ def compile_register(gazetteer, town, quiet=True):
                 return rs[0]
         return None
 
+    # Two tables, asked in order, and the order is the whole of T-0418's promise that
+    # its sixteen new words fill a null rather than displacing a reading: a man printed
+    # as both a schoolteacher and a bookseller is read by the established table first,
+    # across every trade the corpus gives him and the trade of his firm, and only a man
+    # nothing there reaches is offered to the new words.
     trade_of_person = {}
-    for b in gazetteer["businesses"]:
-        occ = occupation_of(b.get("trade"))
-        if not occ:
-            continue
-        for p in b.get("proprietors") or []:
-            trade_of_person.setdefault(slug(p), occ)
+    for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418):
+        d = {}
+        for b in gazetteer["businesses"]:
+            occ = occupation_of(b.get("trade"), table)
+            if not occ:
+                continue
+            for p in b.get("proprietors") or []:
+                d.setdefault(slug(p), occ)
+        trade_of_person[id(table)] = d
 
     persons = []
     for p in sorted(gazetteer["persons"], key=lambda x: x["id"]):
         occ = None
-        for o in p.get("occupations") or []:
-            occ = occupation_of(o)
+        for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418):
+            for o in p.get("occupations") or []:
+                occ = occupation_of(o, table)
+                if occ:
+                    break
+            occ = occ or trade_of_person[id(table)].get(slug(p["name"]))
             if occ:
                 break
-        occ = occ or trade_of_person.get(slug(p["name"]))
         match = resident_match(p["name"])
         entry = {
             "id": p["id"],

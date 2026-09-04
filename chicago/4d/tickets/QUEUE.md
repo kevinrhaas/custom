@@ -65,7 +65,6 @@
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
-T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0632 — Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
@@ -289,4 +288,6 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
+T-0661 — The other 95 printed trades the residents vocabulary still cannot say
+T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
