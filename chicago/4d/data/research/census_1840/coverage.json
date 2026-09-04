@@ -686,11 +686,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-97P.jpg",
      "sheet_side": "left",
      "printed_page": 211,
-     "lines_with_an_entry": 34,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-97P.json",
+     "note": "read line by line by T-0546. The contact-sheet inventory said 34 lines; the sheet carries 30, and the count here is now the counted one. All twenty-one printed column totals close against the read cells, residual zero — including the four free-coloured columns, the only ones read so far in this group."
     },
     {
      "index": 49,
