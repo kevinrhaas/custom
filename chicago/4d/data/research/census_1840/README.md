@@ -33,6 +33,7 @@ live on two different images.
 | `pages/<familysearch_id>.json` | one file per page read: the printed page number, the sheet side, and one record per ruled line — `line`, `as_read`, `normalized`, `name_confidence`, `reading`. |
 | `crosswalk_670.json` | the line-by-line comparison against the 210 rows PR #670 recovered from the owner's lost v4 workbook, page by page, with a row-offset test on each. |
 | `claims.json` | what the sheets say ABOUT the enumeration and about the town, as opposed to who they name. Hand-authored, each with its verbatim quote and locator. |
+| `composition_1840.json` | **counts and nothing else** — what a Chicago household looked like in 1840: the household-size distribution, the age bands, the industry columns, and the 1830 district and 1835 town placed beside them. Derived by `tools/census_1840_composition.py`, gated by `check.sh`, and refused by its own self-test if a name or a serial ever reaches it. T-0507; read `docs/RESEARCH/household-composition-1840-calibration.md` beside it. |
 
 ## The reading rules
 

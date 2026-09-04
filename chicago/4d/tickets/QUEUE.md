@@ -82,10 +82,13 @@ T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number a
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
-# --- T-0589 is the town's civic account; T-0507 the household composition calibration;
-# --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
-# --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
-T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
+# --- T-0589 is the town's civic account; T-0597 a family relation two records refuse to
+# --- state. T-0637 is last on a real dependency — joining 289 fence runs before the
+# --- addresses land joins them to 20 houses. T-0507, the household-composition
+# --- calibration this band was ordered around, closed on PR #811: 964 households of 1840
+# --- counted, and the one figure that moves the rest is that the 1835 town census gives
+# --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
+# --- dwelling held more than one household, so one family per roof undercounts.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
@@ -289,10 +292,16 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
-T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
