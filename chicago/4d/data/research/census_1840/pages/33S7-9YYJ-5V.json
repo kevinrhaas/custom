@@ -434,7 +434,7 @@
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
-  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading. T-0539 pairs all eleven at once. Recorded as unpaired rather than guessed.",
+  "why": "RESOLVED by T-0642 where this says paired, and recorded as unpaired with its rule where it does not. The earlier text of this field said the left sheets had not been footed yet; they have now.",
   "page_population_key": null,
   "page_population_key_candidates": [
    105,
@@ -443,7 +443,11 @@
   "page_population_key_favoured": 165,
   "page_population_key_note": "STILL NOT COMMITTED as the key, but 105 is now refuted rather than disfavoured (see footer_total_argument), so 165 is the only candidate the sheet's own arithmetic leaves standing. T-0539 should try 165 and treat a failure to pair as evidence against it rather than against the pairing test — and it now has a second and firmer key to try first, the line count of 30.",
   "line_count_key": 30,
-  "line_count_key_note": "COMMITTED at 30 by T-0565, off the industry-column grid rather than off the TOTAL column's ink (see line_index). T-0539 can pair on it. The previous note read '29 to 31, favouring 31'."
+  "line_count_key_note": "COMMITTED at 30 by T-0565, off the industry-column grid rather than off the TOTAL column's ink (see line_index). T-0539 can pair on it. The previous note read '29 to 31, favouring 31'.",
+  "tested_by": "T-0642",
+  "test": "both keys — the count of ruled lines carrying an entry, and the page population — against the twelve filled left sheets of image group 1, whose printed footings T-0642 read and published.",
+  "result": "The three 30-entry left sheets in the group foot 187, 123-124 and 137. None is 165, and none is 105 either, so neither candidate reading of this sheet's illegible footing is corroborated here. That is NOT evidence against 165: a continuation whose left sheet lies outside images 1-25 cannot be paired inside them, and 33S7-9YYJ-8D below shows the group does hold at least one such sheet.",
+  "published_in": "data/research/census_1840/left_sheet_population_key.json"
  },
  "ticket": "T-0564 (the columns; T-0547 split when this sheet proved to need more than one demonstration). T-0565 fitted the line index, read the seven unread numbers as far as their own evidence goes, and refuted 105.",
  "column_geometry": {
