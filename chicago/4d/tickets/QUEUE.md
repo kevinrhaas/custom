@@ -71,7 +71,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
 # --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
-T-0677 — The five ring townships around Chicago are unread in the Illinois land tract sales: sweep T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E through 1836
 T-0678 — T39N R14E sections 16, 21 and 29 stop at the land-sales database's 150-row ceiling and its search cannot narrow below a section: find a route to the rest of the 1833 town-lot sales
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
@@ -297,4 +296,3 @@ T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0680 — The research spend meter cannot see land_sales' refusals: 354 adjudicated names read as unspent because a refusal is keyed on the purchaser's name and carries no record_id
-

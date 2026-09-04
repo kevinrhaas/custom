@@ -1,7 +1,7 @@
 ---
 id: T-0677
 title: The five ring townships around Chicago are unread in the Illinois land tract sales: sweep T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E through 1836
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0610
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 799
 claimed_by: run 9/4/2026, 11:59:25 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T18:23:01.549Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33897556394
 ---
 
