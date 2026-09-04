@@ -68,7 +68,6 @@ T-0602 — The research-spend ratchet counts a precision sample as reading, and 
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
 T-0638 — A trailing middle initial took the surname slot, so 19 letter-list households are named 'The C household' and can never match a directory
-T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0632 — Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
