@@ -164,7 +164,7 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
-LEDGER = DATA / "research" / "residents" / "regrade_t0701.json"
+LEDGER = DATA / "research" / "residents" / "regrade_t0705.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
@@ -1038,7 +1038,7 @@ def self_test() -> int:
 # --regrade: the ladder's verdict on the people the town ALREADY carries
 # ---------------------------------------------------------------------------
 #
-# T-0701, the first half of T-0515. `--build` above SEATS people the town does not
+# T-0705, the first half of T-0515. `--build` above SEATS people the town does not
 # hold. This mode writes nothing new: it takes `grading_proposal.json`'s
 # `changes_to_existing_people` — 158 rows where the ratified ladder disagrees with the
 # grade a committed card carries — and applies the ones the evidence rows support.
@@ -1055,7 +1055,7 @@ def self_test() -> int:
 # the card as a refusal with its reason, so the next reader sees the argument and not a
 # silence. Measured on dev at the claim: 36 R1, 20 R2, 43 R3, 3 R4, 56 applied.
 
-REGRADE_TICKET = "T-0701"
+REGRADE_TICKET = "T-0705"
 REGRADE_LADDER_RATIFIED = "2026-09-03"
 
 # The run date, written as a constant rather than read from the clock. `--regrade
@@ -1459,7 +1459,7 @@ def main() -> int:
                     help="with --regrade: compile the ruling from the proposal. Run ONCE; "
                          "see the file's own _doc for why it is not recomputed")
     ap.add_argument("--regrade", action="store_true",
-                    help="apply the ladder to the people the town already carries (T-0701); "
+                    help="apply the ladder to the people the town already carries (T-0705); "
                          "composes with --check and --report")
     args = ap.parse_args()
 

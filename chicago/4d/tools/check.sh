@@ -1282,7 +1282,7 @@ step "…and none of them claims more than a person and a reading" \
 step "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
 
-# And the same tool's SECOND mode (T-0701), which writes nothing new: it applies the same
+# And the same tool's SECOND mode (T-0705), which writes nothing new: it applies the same
 # ladder to the 158 people the town ALREADY carries where the proposal and the committed
 # card disagree, and refuses 102 of them — 36 because the ladder abstains, 20 because the
 # proposal would lift a person out of `projected_resident` on the post office alone, 43

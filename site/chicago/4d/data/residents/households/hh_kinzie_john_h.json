@@ -88,6 +88,14 @@
       "proposal": "attested -> inferred",
       "rule": "G2b",
       "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     },
+     {
+      "ticket": "T-0705",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2b",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
      }
     ]
    }
@@ -112,6 +120,14 @@
     "refusals": [
      {
       "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     },
+     {
+      "ticket": "T-0705",
       "refused_on": "2026-09-04",
       "refusal": "R1",
       "proposal": "attested -> None",

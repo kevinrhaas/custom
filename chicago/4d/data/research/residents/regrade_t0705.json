@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "ticket": "T-0701",
+ "ticket": "T-0705",
  "generated_by": "tools/mint_civic_residents.py --regrade --ledger",
  "compiled_on": "2026-09-04",
  "ladder_ratified": "2026-09-03",

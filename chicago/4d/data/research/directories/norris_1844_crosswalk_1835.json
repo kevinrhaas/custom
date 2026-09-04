@@ -1236,7 +1236,7 @@
    "resident": "John Cook",
    "person_id": "cook_john",
    "household_id": "hh_cook_john",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -1940,7 +1940,7 @@
    "resident": "Seth Johnson",
    "person_id": "johnson_seth",
    "household_id": "hh_johnson_seth",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -6983,7 +6983,7 @@
   {
    "resident": "John Cook",
    "person_id": "cook_john",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1844": {
     "claim": "n1844_e0405",
     "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
@@ -7383,7 +7383,7 @@
   {
    "resident": "Seth Johnson",
    "person_id": "johnson_seth",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1844": {
     "claim": "n1844_e0966",
     "as_printed": "Johnson, Sanford, carpenter, Dearborn st, res J. Gray's",
@@ -7447,7 +7447,7 @@
   {
    "resident": "Willard Jones",
    "person_id": "jones_willard",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1844": {
     "claim": "n1844_e0981",
     "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",

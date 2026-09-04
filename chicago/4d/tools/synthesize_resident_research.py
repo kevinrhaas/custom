@@ -447,7 +447,7 @@ def main():
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
         p,hh=persons[pid]
-        # THE 2026-09-03 LADDER OUTRANKS THE 2026-09-02 SYNTHESIS (T-0701). This pass
+        # THE 2026-09-03 LADDER OUTRANKS THE 2026-09-02 SYNTHESIS (T-0705). This pass
         # forces every letter-list person to `inferred`/`projected_resident` from a
         # research outcome recorded before the owner ratified the grading ladder. Where
         # `tools/mint_civic_residents.py --regrade` has since ruled on a person, that

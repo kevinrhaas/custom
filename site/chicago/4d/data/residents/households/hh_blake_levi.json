@@ -91,6 +91,14 @@
       "proposal": "inferred/projected_resident -> inferred",
       "rule": "G2e",
       "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+     },
+     {
+      "ticket": "T-0705",
+      "refused_on": "2026-09-04",
+      "refusal": "R2",
+      "proposal": "inferred/projected_resident -> inferred",
+      "rule": "G2e",
+      "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
      }
     ]
    },
