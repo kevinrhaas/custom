@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 3:29 AM",
+  "generated_ct": "Sep 4, 2026, 3:49 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10706,7 +10706,7 @@
     {
       "id": "T-0654",
       "title": "The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10716,11 +10716,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 3:49:33 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855121248",
       "queue_rank": 1
     },
     {
