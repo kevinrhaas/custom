@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 12:45 AM",
+  "generated_ct": "Sep 4, 2026, 12:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10424,7 +10424,7 @@
     {
       "id": "T-0631",
       "title": "The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10432,14 +10432,14 @@
       "legacy_id": null,
       "parent": "T-0549",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-04",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 12:15:25 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 4
+      "closed_at": "2026-09-04T05:34:23.535Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33839199857",
+      "queue_rank": null
     },
     {
       "id": "T-0640",
@@ -10560,6 +10560,66 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 150
+    },
+    {
+      "id": "T-0646",
+      "title": "The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0631",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0647",
+      "title": "33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 151
+    },
+    {
+      "id": "T-0648",
+      "title": "The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid, and the digit key for this enumerator's hand taken from a sheet that closes",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0631",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "761",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T05:45:57.434Z",
+      "claimed_run": null,
+      "queue_rank": null
     }
   ]
 }

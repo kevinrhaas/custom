@@ -212,7 +212,7 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
 
-T-0631 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198
+T-0646 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap
 T-0644 — The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
 T-0641 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals
 T-0642 — The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets
@@ -466,3 +466,4 @@ T-0620 — Volume 4 read by OCR, pages 307-612: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
 T-0645 — Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's
+T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
