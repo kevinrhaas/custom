@@ -676,8 +676,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-93Y.json",
+     "note": "read line by line by T-0546. The contact-sheet inventory said 31 lines and the sheet carries 31; all eighteen printed column totals close against the read cells, residual zero."
     },
     {
      "index": 48,
