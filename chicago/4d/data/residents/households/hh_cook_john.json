@@ -57,9 +57,9 @@
    "id": "cook_john",
    "name": "John Cook",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "civic_mint": true,
-   "ladder_rule": "G2b",
+   "ladder_rule": "G1c",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -71,7 +71,7 @@
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
    ],
-   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from directory_1843, directory_1844, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 1 April 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from directory_1843, directory_1844, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 1 April 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "poll_1834",
@@ -80,7 +80,7 @@
      "record_id": "poll_1834_028",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "book_evidence": [
@@ -91,7 +91,7 @@
      "record_id": "f1843_e0695",
      "describes_date": "1843",
      "source": "fergus_chicago_directory_1843",
-     "rule": "G2b"
+     "rule": "G1c"
     },
     {
      "list": "directory_1844",
@@ -100,7 +100,7 @@
      "record_id": "n1844_e0404",
      "describes_date": "1844",
      "source": "norris_directory_1844",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -111,7 +111,7 @@
      "record_id": "person_john_cook",
      "describes_date": "1834-04-01",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

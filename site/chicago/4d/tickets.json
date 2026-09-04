@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 6:26 PM",
+  "generated_ct": "Sep 4, 2026, 6:37 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11632,6 +11632,42 @@
       "queue_rank": 144
     },
     {
+      "id": "T-0692",
+      "title": "18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 155
+    },
+    {
+      "id": "T-0693",
+      "title": "Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 156
+    },
+    {
       "id": "T-0694",
       "title": "M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit",
       "state": "open",
@@ -11730,6 +11766,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 150
+    },
+    {
+      "id": "T-0699",
+      "title": "Six men on the 1835 poll AND other lists are graded \"the 1835 poll alone\", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
     },
     {
       "id": "T-0700",

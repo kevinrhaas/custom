@@ -1720,7 +1720,7 @@
    "person_id": "downer_stephen",
    "name": "Stephen Downer",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Downer' folds to the same string as the 1837 entry's, and the given name of both begins S."
    ],
@@ -1812,7 +1812,7 @@
    "person_id": "wright_truman_g",
    "name": "Truman G Wright",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins T."
    ],
