@@ -217,8 +217,6 @@ T-0631 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by di
 T-0644 — The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
 T-0641 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals
 T-0642 — The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets
-T-0546 — The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211
-T-0553 — The 1840 census images 26-50: names and cells of the left sheets printed 218 and 224
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
