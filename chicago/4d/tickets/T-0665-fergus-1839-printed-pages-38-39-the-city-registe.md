@@ -1,7 +1,7 @@
 ---
 id: T-0665
 title: Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0611
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 787
 claimed_by: run 9/4/2026, 10:03:19 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T15:29:43.574Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33887002417
 ---
 
