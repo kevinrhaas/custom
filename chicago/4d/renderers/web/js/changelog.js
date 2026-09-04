@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 481, title: 'The plank crossing at the Sauganash, which the road was painting over', kind: 'fix', ts: '2026-09-04T02:45:53.626Z', date: 'Sep 3, 2026, 9:45 PM CT',
+    items: [
+      'The board crossing where Lake Street meets South Water \u2014 four planks laid along the way a foot travels, over sixteen metres of dirt \u2014 read from the street as a broken row of pale wedges with the road showing through it in triangular patches. It is now continuous plank from one side to the other.',
+      'The boards were never the fault. Measured on the drawn geometry, the crossing steps 7 mm at most between one segment and the next over its whole run, and nowhere on it does the road stand above the deck. What was wrong is which of the two the renderer painted last.',
+      'The road is drawn as a decal \u2014 a thin skin pulled slightly toward the viewer so the ground underneath cannot break through it. That pull is measured against the angle the surface is seen at, and a road seen down its own length is the worst case there is: the skin was being pulled far enough forward to come out in front of planks lying six centimetres above it.',
+      'The layer already meant to draw its timber after the road, and said so in a comment. It could not: the renderer keeps see-through things in a separate queue from solid ones and empties the solid queue first, so the road was always painted last whatever order the timber asked for. Putting the timber in the same queue makes the order that was written the order that runs. Nothing about the walk blends or fades \u2014 the timber is as solid as it ever was.',
+      'This is the second half of a fault reported in July: the walk\u2019s ragged edge was repaired then by giving it a proper edge timber, and that repair holds. The crossings looked ragged for a different reason, which is why fixing the first did not fix them.',
+    ] },
   { v: 480, title: 'The boarding-house page of the 1840 census', kind: 'fix', ts: '2026-09-04T02:10:28.955Z', date: 'Sep 3, 2026, 9:10 PM CT',
     items: [
       'Printed page 219 of the 1840 federal census of Chicago \u2014 one of seventy-five page images this project holds and had never read \u2014 is now read off the scan line by line: thirty-one heads of household by name, and every one of the thirty-eight age-and-colour columns beside them.',

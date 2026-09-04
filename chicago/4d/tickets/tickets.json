@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 9:10 PM",
+  "generated_ct": "Sep 3, 2026, 9:45 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10170,6 +10170,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 145
+    },
+    {
+      "id": "T-0625",
+      "title": "The street decal paints over the board crossings: renderOrder cannot order across three's opaque and transparent lists, so T-0460's ordering fix never ran",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "753",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T02:45:44.295Z",
+      "claimed_run": null,
+      "queue_rank": null
     }
   ]
 }
