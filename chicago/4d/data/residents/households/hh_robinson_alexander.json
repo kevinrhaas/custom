@@ -92,7 +92,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life."
+   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2b",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
+    ]
+   }
   },
   {
    "id": "robinson_catherine",
@@ -108,7 +120,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "NAMED, WITH A MARRIAGE DATE, A FATHER AND A DEATH DATE - which makes her one of only four women in this parcel documented in her own right rather than as 'Mrs'. Andreas: married 28 September 1826 by John Kinzie, J.P.; daughter of Francois and Mary Ann Chevalier, her father chief of a united band of Potawatomi, Ottawa and Chippewa with his village at the Calumet; she died 7 August 1860 and is buried with her husband on the bank of the Des Plaines."
+   "note": "NAMED, WITH A MARRIAGE DATE, A FATHER AND A DEATH DATE - which makes her one of only four women in this parcel documented in her own right rather than as 'Mrs'. Andreas: married 28 September 1826 by John Kinzie, J.P.; daughter of Francois and Mary Ann Chevalier, her father chief of a united band of Potawatomi, Ottawa and Chippewa with his village at the Calumet; she died 7 August 1860 and is buried with her husband on the bank of the Des Plaines.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   },
   {
    "id": "robinson_household_unnamed",
@@ -124,7 +148,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "AN ADMISSION, NOT A PERSON. Wau-Bun describes 'two or three log cabins occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions' - so the household extended beyond the couple and the source neither names nor counts it. Andreas has him settling on the Des Plaines reservation 'with his family' after the removal, and two sons and a daughter-in-law buried beside him. Do not count this entry as a person."
+   "note": "AN ADMISSION, NOT A PERSON. Wau-Bun describes 'two or three log cabins occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions' - so the household extended beyond the couple and the source neither names nor counts it. Andreas has him settling on the Des Plaines reservation 'with his family' after the removal, and two sons and a daughter-in-law buried beside him. Do not count this entry as a person.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": true,

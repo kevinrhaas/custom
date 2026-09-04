@@ -78,7 +78,19 @@
     "kinzie_waubun_1856",
     "chicago_voter_lists_1833_1835_irad"
    ],
-   "note": "PRESIDENT OF THE BOARD OF TRUSTEES FOR THE YEAR BEFORE THE SCENE DATE. He was elected a trustee at the second town election of 11 August 1834 and chosen president, and the 1834 roster is: 'J. H. Kinzie, President; Isaac Harmon, Clerk and Collector; J. S. C. Hogan, Treasurer.' Whether he was still president on 1 July 1835 depends on the date of the third election, which Andreas places only 'in July, 1835' - see the research note. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Tax list of the Town of Chicago, 1833 — “Kinzie, John” (tax_1833_062, line 114); Election returns — poll list of 1834, filed 11 August 1834 — “Kinzie, John H.” (poll_1834_067, line 236). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Kinzie' agrees with the entry's forenames; 4 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json)."
+   "note": "PRESIDENT OF THE BOARD OF TRUSTEES FOR THE YEAR BEFORE THE SCENE DATE. He was elected a trustee at the second town election of 11 August 1834 and chosen president, and the 1834 roster is: 'J. H. Kinzie, President; Isaac Harmon, Clerk and Collector; J. S. C. Hogan, Treasurer.' Whether he was still president on 1 July 1835 depends on the date of the third election, which Andreas places only 'in July, 1835' - see the research note. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Tax list of the Town of Chicago, 1833 — “Kinzie, John” (tax_1833_062, line 114); Election returns — poll list of 1834, filed 11 August 1834 — “Kinzie, John H.” (poll_1834_067, line 236). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Kinzie' agrees with the entry's forenames; 4 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json).",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2b",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
+    ]
+   }
   },
   {
    "id": "kinzie_juliette",
@@ -95,7 +107,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "THE ONLY PERSON IN THIS PARCEL WHO IS ALSO ONE OF ITS SOURCES. Wau-Bun's descriptions of the forks in 1831 - Wentworth's tavern, the log cabins occupied by Robinson, the small square log building meant for a school, the white Sauganash with bright blue shutters - are the evidence behind four structure records in data/structures/. That a household member of the 1835 town is also the eye behind a quarter of the west-bank model is worth stating plainly, and it cuts both ways: Wau-Bun is a memoir of 1856 describing 1831 and this project grades it accordingly."
+   "note": "THE ONLY PERSON IN THIS PARCEL WHO IS ALSO ONE OF ITS SOURCES. Wau-Bun's descriptions of the forks in 1831 - Wentworth's tavern, the log cabins occupied by Robinson, the small square log building meant for a school, the white Sauganash with bright blue shutters - are the evidence behind four structure records in data/structures/. That a household member of the 1835 town is also the eye behind a quarter of the west-bank model is worth stating plainly, and it cuts both ways: Wau-Bun is a memoir of 1856 describing 1831 and this project grades it accordingly.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

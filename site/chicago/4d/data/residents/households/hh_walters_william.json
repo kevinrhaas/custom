@@ -84,6 +84,16 @@
     "notes": "Andreas-derived Wolf Point history gives William Walters as proprietor of the Wolf Point Tavern from 1833 through 1836. That strongly supports scene-period continuity, but because it is a retrospective year range rather than a July 1 instrument the household's cautious presence flag is not silently upgraded here.",
     "source_ids": [
      "chicagology_wolf_point_walters"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
     ]
    }
   }

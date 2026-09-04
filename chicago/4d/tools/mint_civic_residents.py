@@ -164,6 +164,7 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
+LEDGER = DATA / "research" / "residents" / "regrade_t0701.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
@@ -1032,6 +1033,419 @@ def self_test() -> int:
 
 # ---------------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------------
+# --regrade: the ladder's verdict on the people the town ALREADY carries
+# ---------------------------------------------------------------------------
+#
+# T-0701, the first half of T-0515. `--build` above SEATS people the town does not
+# hold. This mode writes nothing new: it takes `grading_proposal.json`'s
+# `changes_to_existing_people` — 158 rows where the ratified ladder disagrees with the
+# grade a committed card carries — and applies the ones the evidence rows support.
+#
+# WHY IT IS A SEPARATE MODE AND NOT PART OF THE BUILD. `--build` derives WHOLE cards
+# from the proposal and rewrites them; the people here are somebody else's cards, most
+# of them the letter-list mint's, and this pass may only reach into two fields of them
+# plus the evidence it can cite. Keeping the two apart is what lets `--check` above go
+# on proving the mint byte for byte while this pass edits records it does not own.
+#
+# THE FOUR REFUSALS, AND WHY EACH IS A REFUSAL RATHER THAN A GRADE. The ticket's own
+# rule is that nothing may be graded DOWN without a refusal recorded on the person, and
+# the same discipline is applied upward: a proposal this pass declines is written onto
+# the card as a refusal with its reason, so the next reader sees the argument and not a
+# silence. Measured on dev at the claim: 36 R1, 20 R2, 43 R3, 3 R4, 56 applied.
+
+REGRADE_TICKET = "T-0701"
+REGRADE_LADDER_RATIFIED = "2026-09-03"
+
+# The run date, written as a constant rather than read from the clock. `--regrade
+# --check` re-applies the whole pass to the committed tree and diffs it, so a
+# `date.today()` here would turn the gate red at midnight for no change in the data.
+REGRADE_ON = "2026-09-04"
+
+# The consolidation's own reader says this layer "is not a source — it is what the
+# sources are spent onto", so it never counts toward corroboration.
+NOT_A_SOURCE = "town_layer"
+
+LETTER_LIST_CLASSES = {LETTER_LIST_CLASS}
+
+# The passes that re-derive a person's whole card byte for byte. A regrade written on
+# top of one of them is reverted by its next `--build`, silently, so it is refused here
+# and named instead. Asked of the record rather than hard-coded per person.
+DERIVED_BY = {
+    "civic": "tools/mint_civic_residents.py --build",
+    "placed": "tools/mint_placed_residents.py --build",
+    "documented": "tools/mint_documented_residents.py --build",
+}
+
+REGRADE_MARK = "REGRADED ON THE RATIFIED LADDER"
+REGRADE_SENTINEL = " — THE RECORD BELOW WAS WRITTEN BEFORE THAT RULING. "
+
+GRADE_ORDER = {"attested": 2, "inferred": 1}
+
+# The bucket headings the report groups by. Each person still carries their OWN sentence
+# on their own card and in the row beneath the heading — these say what the rule is, not
+# what it found on any one of them.
+REFUSAL_HEADLINE = {
+    "R0": "the town no longer carries the person the proposal names",
+    "R1": "the ladder abstains (G5) and an abstention is not a verdict",
+    "R2": "the proposal leaves `projected_resident` on the post office alone",
+    "R3": "the demotion is blind to a source the card cites and the ladder does not read",
+    "R4": "another pass re-derives the whole card and would revert the grade",
+}
+
+
+def strip_regrade(note: str) -> str:
+    """Drop a prefix a previous run of this pass wrote, so re-applying is idempotent."""
+    text = note or ""
+    if text.startswith(REGRADE_MARK) and REGRADE_SENTINEL in text:
+        return text.split(REGRADE_SENTINEL, 1)[1]
+    return text
+
+
+def covered_sources(master: dict) -> set:
+    """Every source id the consolidation's seven domains can actually cite.
+
+    This is the boundary R3 is drawn on. The ladder was compiled from these domains and
+    from nothing else, so a card citing a source outside them rests on ground the
+    proposal never weighed — which is the very argument rule G5 makes when it abstains,
+    asked one rung lower.
+    """
+    out: set = set()
+    for identity in master.get("identities", []):
+        for app in identity.get("appearances") or []:
+            if app.get("domain") == NOT_A_SOURCE:
+                continue
+            sid = source_of(app)
+            if sid:
+                out.add(sid)
+    return out
+
+
+def lowers(change: dict) -> bool:
+    """Is this proposal a demotion — a grade down, or a plain person made projected."""
+    before, after = change["from"], change["to"]
+    if GRADE_ORDER.get(after.get("grade"), 0) < GRADE_ORDER.get(before.get("grade"), 0):
+        return True
+    return (before.get("resident_subtype") is None
+            and after.get("resident_subtype") == "projected_resident")
+
+
+def regrade_decide(change: dict, row: dict, doc: dict, person: dict,
+                   covered: set) -> tuple[str | None, str]:
+    """(refusal id, sentence) — the id is None when the proposal is applied."""
+    pid = change["person_id"]
+
+    pass_name = str(doc.get("source_pass") or "")
+    if pass_name in DERIVED_BY:
+        return "R4", (
+            f"the card is re-derived byte for byte by `{DERIVED_BY[pass_name]}`, so a grade "
+            f"written here would be reverted by that pass's next build without anyone being "
+            f"told. The change belongs in the pass that owns the card and is refused rather "
+            f"than written and lost.")
+
+    if change["to"].get("grade") is None:
+        return "R1", (
+            "the ladder ABSTAINS (rule G5): every appearance this consolidation can see "
+            "describes a date after the scene year, and the card rests on sources outside "
+            "the seven domains it reads. G5 exists to decline to demote such a person on "
+            "later evidence, and a pass that read the abstention as a verdict would be "
+            "doing the one thing the rule forbids.")
+
+    classes = {c for c in (row.get("evidence_classes") or []) if c != NOT_A_SOURCE}
+    drops_projected = (change["from"].get("resident_subtype") == "projected_resident"
+                       and change["to"].get("resident_subtype") is None)
+    if drops_projected and classes <= LETTER_LIST_CLASSES:
+        return "R2", (
+            "the proposal lifts this person out of `projected_resident` on the post office "
+            "alone — every evidence class behind it is a Chicago letter list. T-0515's "
+            "reading of the owner's tiers binds: a letter-list name leaves "
+            "`projected_resident` when something OTHER than a letter list names them, and "
+            "nothing here does. The evidence rows do not support the proposal.")
+
+    if lowers(change):
+        outside = [s for s in (person.get("sources") or []) if s not in covered]
+        if outside:
+            return "R3", (
+                "the demotion is blind: this card cites "
+                + ", ".join(f"`{s}`" for s in sorted(outside))
+                + ", which the consolidation's seven domains do not read, so the proposal "
+                  "cannot be the whole account of what the grade rests on. Refused on the "
+                  "same argument G5 makes, one rung lower.")
+
+    return None, ""
+
+
+def transition_says(change: dict, row: dict, appearances: list) -> str:
+    """Why the CHANGE follows, in the ladder's own terms — not just which rule fired.
+
+    Quoting the rule alone reads wrong on a subtype move: G2e's words are about
+    declining `attested`, and a card that only quoted them would leave a reader asking
+    what any of it had to do with the mark coming off. So the move itself is stated,
+    and it is stated from the evidence rows rather than asserted.
+    """
+    classes = sorted({c for c in (row.get("evidence_classes") or []) if c != NOT_A_SOURCE})
+    named = ", ".join(f"`{c}`" for c in classes) or "no class the consolidation reads"
+    n = len(appearances)
+    before, after = change["from"], change["to"]
+    if before.get("resident_subtype") == "projected_resident" and not after.get("resident_subtype"):
+        return (f"`projected_resident` is the ladder's mark for a single appearance and "
+                f"nothing else (G3). This person stands in {n} appearance(s) across "
+                f"{len(classes)} evidence class(es) — {named} — so the mark comes off and "
+                f"the grade stands where it was.")
+    if not before.get("resident_subtype") and after.get("resident_subtype") == "projected_resident":
+        return (f"the card is put back to `projected_resident`: {n} appearance(s) across "
+                f"{named}, which is the weakest reading the ladder accepts for a resident.")
+    if GRADE_ORDER.get(after.get("grade"), 0) > GRADE_ORDER.get(before.get("grade"), 0):
+        return (f"the rung above is reached on {n} appearance(s) across {named}.")
+    return (f"the higher grade is not reached on what this card cites: {n} appearance(s) "
+            f"across {named}.")
+
+
+def regrade_ledger(docs: dict, index: dict) -> list:
+    """THE RULING OF THE DAY, compiled once from the proposal and then committed.
+
+    WHY THIS IS A FILE AND NOT A DERIVATION RE-RUN EVERY TIME. `grading_proposal.json`
+    is compiled FROM the committed town, and `changes_to_existing_people` is by
+    definition the rows where the proposal and a card DISAGREE. The moment this pass
+    writes a card the disagreement is gone, the row leaves the proposal, and a pass that
+    recomputed its decisions from the proposal would find nothing to do and no longer be
+    able to say what it had done. `--build` above has the same shape of problem and
+    solves it by reading its own answer back; this pass cannot, because the evidence for
+    a decision is the disagreement itself.
+
+    So the ruling is compiled ONCE, with `--regrade --ledger`, and committed. It carries
+    everything a decision rests on — the rule, the ladder's words, the move, the refusal
+    and the evidence rows read on the day — so applying it is a pure function of the
+    file and stays true when the sources under it are re-read. That is what a ruling is:
+    a record of what was decided on what was known, not a thing recomputed forever.
+    """
+    proposal, master = load(PROPOSAL), load(MASTER)
+    ladder = proposal.get("ladder") or {}
+    rows = {}
+    for row in proposal.get("proposals", []):
+        row = dict(row)
+        row["_ladder_says"] = (ladder.get(row.get("rule")) or {}).get("says") or ""
+        rows[row["identity"]] = row
+    apps = {i["id"]: [a for a in (i.get("appearances") or [])
+                      if a.get("domain") != NOT_A_SOURCE]
+            for i in master.get("identities", [])}
+    covered = covered_sources(master)
+
+    seats: dict = {}
+    for doc in docs.values():
+        for person in doc.get("persons") or []:
+            if person.get("id"):
+                seats[person["id"]] = (doc, person)
+
+    out = []
+    for change in sorted(proposal.get("changes_to_existing_people") or [],
+                         key=lambda c: c["person_id"]):
+        row = rows.get(change["identity"], {"rule": change["rule"], "_ladder_says": ""})
+        appearances = apps.get(change["identity"], [])
+        seat = seats.get(change["person_id"])
+        entry = {
+            "person_id": change["person_id"],
+            "identity": change["identity"],
+            "rule": change["rule"],
+            "ladder_says": row.get("_ladder_says") or "",
+            "from": change["from"],
+            "to": change["to"],
+            "lowers": lowers(change),
+        }
+        if seat is None:
+            entry["decision"] = "R0"
+            entry["refusal_says"] = "the town no longer carries this person id"
+            out.append(entry)
+            continue
+        doc, person = seat
+        rid, why = regrade_decide(change, row, doc, person, covered)
+        entry["decision"] = rid or "applied"
+        if rid:
+            entry["refusal_says"] = why
+            out.append(entry)
+            continue
+        blocks, cited = evidence_blocks(row, appearances)
+        entry["moved"] = transition_says(change, row, appearances)
+        entry["evidence"] = blocks
+        entry["sources"] = cited
+        if entry["lowers"]:
+            entry["refusal_says"] = (
+                f"the grade `{change['from'].get('grade')}` is REFUSED on the ratified "
+                f"ladder: {entry['ladder_says'] or 'rule ' + change['rule']} Every source "
+                f"this card cites is one the consolidation reads, so there is no evidence "
+                f"outside the ladder's seven domains for the higher grade to rest on.")
+        out.append(entry)
+    return out
+
+
+def regrade_person(person: dict, entry: dict) -> dict:
+    """The person as this pass leaves them. Pure: same ledger row, same bytes, always."""
+    out = dict(person)
+    research = dict(out.get("resident_research") or {})
+    rule = entry["rule"]
+    says = (entry.get("ladder_says") or "").strip()
+    before = f"{entry['from'].get('grade')}"
+    if entry["from"].get("resident_subtype"):
+        before += f"/{entry['from']['resident_subtype']}"
+    after = f"{entry['to'].get('grade')}"
+    if entry["to"].get("resident_subtype"):
+        after += f"/{entry['to']['resident_subtype']}"
+
+    refusals = [r for r in (research.get("refusals") or [])
+                if r.get("ticket") != REGRADE_TICKET]
+    refused = entry["decision"] != "applied"
+
+    if refused or entry.get("refusal_says"):
+        refusals.append({
+            "ticket": REGRADE_TICKET,
+            "refused_on": REGRADE_ON,
+            # A refusal of the PROPOSAL carries its rule id; a demotion that was applied
+            # carries D1, the refusal of the grade the card used to claim. The ticket's
+            # rule is that no grade is lowered without one, so it is written here on the
+            # person who was lowered rather than only in a report.
+            "refusal": entry["decision"] if refused else "D1",
+            "proposal": f"{before} -> {after}",
+            "rule": rule,
+            "refusal_says": entry["refusal_says"],
+        })
+    if refusals:
+        research["refusals"] = refusals
+    if refused:
+        out["resident_research"] = research
+        return out
+
+    for key in BLOCK_KEYS:
+        if entry.get("evidence", {}).get(key):
+            out[key] = entry["evidence"][key]
+    out["sources"] = list(dict.fromkeys(list(out.get("sources") or [])
+                                        + list(entry.get("sources") or [])))
+
+    out["grade"] = entry["to"]["grade"]
+    if entry["to"].get("resident_subtype"):
+        out["resident_subtype"] = entry["to"]["resident_subtype"]
+    else:
+        out.pop("resident_subtype", None)
+
+    research["regraded_on"] = REGRADE_ON
+    research["regrade_ticket"] = REGRADE_TICKET
+    research["rule"] = f"{rule} — {says}" if says else rule
+    research["regraded_from"] = before
+    research["regraded_to"] = after
+    research["ladder_ratified"] = REGRADE_LADDER_RATIFIED
+    research["regrade_says"] = entry.get("moved") or ""
+    out["resident_research"] = research
+
+    body = strip_regrade(out.get("note") or "")
+    out["note"] = (
+        f"{REGRADE_MARK} ({REGRADE_TICKET}, rule {rule}): {before} -> {after}. "
+        f"{entry.get('moved') or ''} The ladder's words for {rule}: {says}".strip()
+        + REGRADE_SENTINEL + body).strip()
+    return out
+
+
+def regrade_build(preload: dict | None = None):
+    """(files to write, applied rows, refused rows) — a pure read of ledger + tree."""
+    docs = ({pathlib.Path(p): json.loads(t) for p, t in preload.items()
+             if pathlib.Path(p) != INDEX}
+            if preload is not None
+            else {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))})
+    index = (json.loads(preload[INDEX]) if preload is not None and INDEX in preload
+             else load(INDEX))
+    entries = load(LEDGER)["rulings"]
+
+    where: dict = {}
+    for path, doc in docs.items():
+        for i, person in enumerate(doc.get("persons") or []):
+            if person.get("id"):
+                where[person["id"]] = (path, i)
+
+    touched: dict = {}
+    applied, refused = [], []
+    for entry in entries:
+        seat = where.get(entry["person_id"])
+        # R4 is the one refusal that writes NOTHING: the card is re-derived whole by
+        # another pass, so even a refusal noted on it would be wiped by that pass's next
+        # build and would read, wrongly, as a refusal nobody ever made.
+        if seat is None or entry["decision"] == "R4":
+            refused.append(entry)
+            continue
+        path, i = seat
+        doc = touched.get(path) or json.loads(json.dumps(docs[path]))
+        doc["persons"][i] = regrade_person(doc["persons"][i], entry)
+        touched[path] = doc
+        (applied if entry["decision"] == "applied" else refused).append(entry)
+
+    files = {path: dumps(doc, 1) for path, doc in touched.items()}
+
+    # index.json carries a per-household grade tally and two counts this pass moves.
+    # They are re-derived from the tree AS THIS PASS LEAVES IT, so the manifest and the
+    # cards cannot disagree — `synthesize_resident_research.py --check` compares them.
+    final = dict(docs)
+    final.update({p: json.loads(t) for p, t in files.items()})
+    by_id = {doc["id"]: doc for doc in final.values() if doc.get("id")}
+    for entry in index["households"]:
+        doc = by_id.get(entry["id"])
+        if not doc:
+            continue
+        tally: dict = {}
+        for person in doc.get("persons") or []:
+            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
+        entry["grades"] = dict(sorted(tally.items()))
+        # Only where the row already carries the flag. Three passes write these rows and
+        # they do not all emit it; adding the key to a row whose owner omits it turns
+        # that pass's own byte-for-byte check red for a field it never claimed.
+        if "projected_resident" in entry:
+            entry["projected_resident"] = any(
+                p.get("resident_subtype") == "projected_resident"
+                for p in doc.get("persons") or [])
+    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    for entry in index["households"]:
+        for grade, n in entry["grades"].items():
+            totals[grade] = totals.get(grade, 0) + n
+    index["counts"]["by_grade"] = totals
+    index["counts"]["projected_residents"] = sum(
+        1 for doc in final.values() for p in doc.get("persons") or []
+        if p.get("resident_subtype") == "projected_resident")
+    files[INDEX] = dumps(index, 1)
+    return files, applied, refused
+
+
+def regrade_report(applied, refused) -> None:
+    print(f"{'REGRADED':<10}{len(applied)} proposal(s) applied\n")
+    for entry in applied:
+        before = entry["from"].get("grade")
+        if entry["from"].get("resident_subtype"):
+            before += "/" + entry["from"]["resident_subtype"]
+        after = entry["to"].get("grade")
+        if entry["to"].get("resident_subtype"):
+            after += "/" + entry["to"]["resident_subtype"]
+        print(f"  {entry['rule']:<5}{entry['person_id']:<34}{before} -> {after}")
+    buckets: dict = {}
+    for entry in refused:
+        buckets.setdefault(entry["decision"], []).append(entry)
+    print(f"\n{'REFUSED':<10}{len(refused)} proposal(s) declined, "
+          f"each written on the person except R4\n")
+    for rid in sorted(buckets):
+        rows = buckets[rid]
+        print(f"  {rid}  {len(rows):>3}  {REFUSAL_HEADLINE.get(rid, '')}")
+        for entry in rows:
+            print(f"        {entry['rule']:<5}{entry['person_id']:<34}"
+                  f"{entry.get('refusal_says', '')}")
+
+
+def regrade_scale() -> None:
+    """What the pass is worth to the town, counted rather than asserted."""
+    before = load(INDEX)["counts"]
+    files, applied, refused = regrade_build()
+    after = json.loads(files[INDEX])["counts"]
+    print("what --regrade does to the town")
+    for key in ("by_grade", "projected_residents"):
+        print(f"  {key}: {before.get(key)}  ->  {after.get(key)}")
+    print(f"  rulings: {len(applied)} applied, {len(refused)} refused")
+
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -1041,12 +1455,78 @@ def main() -> int:
     ap.add_argument("--scale", action="store_true")
     ap.add_argument("--gate", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--ledger", action="store_true",
+                    help="with --regrade: compile the ruling from the proposal. Run ONCE; "
+                         "see the file's own _doc for why it is not recomputed")
+    ap.add_argument("--regrade", action="store_true",
+                    help="apply the ladder to the people the town already carries (T-0701); "
+                         "composes with --check and --report")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
     if args.gate:
         return gate()
+
+    if args.regrade:
+        if args.ledger:
+            docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+            rulings = regrade_ledger(docs, load(INDEX))
+            LEDGER.write_text(dumps({
+                "schema": 1,
+                "ticket": REGRADE_TICKET,
+                "generated_by": "tools/mint_civic_residents.py --regrade --ledger",
+                "compiled_on": REGRADE_ON,
+                "ladder_ratified": REGRADE_LADDER_RATIFIED,
+                "compiled_from": [
+                    "data/research/residents/grading_proposal.json",
+                    "data/research/residents/identity_master.json",
+                    "data/residents/households/",
+                ],
+                "_doc": (
+                    "THE RULING, not a derivation. `changes_to_existing_people` in the "
+                    "grading proposal is by definition the rows where the ladder and a "
+                    "committed card DISAGREE, so the moment the card is written the row "
+                    "leaves the proposal and the decision can no longer be recomputed "
+                    "from it. This file is compiled once, carries everything each "
+                    "decision rested on — the rule, the ladder's words, the move, the "
+                    "refusal and the evidence rows read on the day — and "
+                    "`--regrade` applies it. Recompiling it against a town this pass has "
+                    "already written would produce an empty file; that is the point, and "
+                    "it is why the compile is a separate switch."),
+                "counts": {
+                    "rulings": len(rulings),
+                    "applied": sum(1 for r in rulings if r["decision"] == "applied"),
+                    "refused": sum(1 for r in rulings if r["decision"] != "applied"),
+                },
+                "refusals": REFUSAL_HEADLINE,
+                "rulings": rulings,
+            }, 1), encoding="utf-8")
+            print(f"wrote {LEDGER.relative_to(ROOT)}; {len(rulings)} ruling(s)")
+            return 0
+        if args.scale:
+            regrade_scale()
+            return 0
+        files, applied, refused = regrade_build()
+        if args.report:
+            regrade_report(applied, refused)
+            return 0
+        if args.check:
+            stale = [p for p, text in sorted(files.items())
+                     if not p.exists() or p.read_text(encoding="utf-8") != text]
+            for path in stale:
+                print(f"   {path.relative_to(ROOT)} does not match the regrade")
+            if stale:
+                print(f"   {len(stale)} file(s) differ; run --regrade")
+                return 1
+            print(f"   OK: {len(applied)} regrade(s) and {len(refused)} refusal(s) "
+                  f"re-derive byte for byte")
+            return 0
+        for path, text in sorted(files.items()):
+            path.write_text(text, encoding="utf-8")
+        print(f"wrote {len(files)} file(s); {len(applied)} regraded, {len(refused)} refused")
+        return 0
+
     if args.scale:
         scale_report()
         return 0

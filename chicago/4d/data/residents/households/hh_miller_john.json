@@ -156,7 +156,17 @@
     "asserted_identity": false,
     "evidence_for": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
     "summary": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
-    "notes": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence."
+    "notes": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
    }
   }
  ],

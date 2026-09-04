@@ -66,7 +66,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+   "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

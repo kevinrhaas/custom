@@ -77,6 +77,16 @@
     "notes": "Early Chicago history preserves Nelson R. Norton's own chronology: arrival November 16, 1833, construction of the Dearborn Street drawbridge beginning March 1834 and completion around June. Exact name plus the distinctive shipwright/bridge role corroborate the person.",
     "source_ids": [
      "goodman_history_cook_county_early"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred/projected_resident",
+      "rule": "G3",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
     ]
    }
   }

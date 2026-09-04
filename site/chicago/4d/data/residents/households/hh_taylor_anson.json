@@ -77,7 +77,17 @@
     "reviewed_on": "",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2e",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
+    ]
    }
   },
   {

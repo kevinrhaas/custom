@@ -79,6 +79,16 @@
     "notes": "Early Chicago histories independently identify David McKee as the government/agency blacksmith near the foot of State Street. The occupation and institutional role are distinctive enough to corroborate the resident record, while the exact July 1835 workplace continuity is not extended beyond the sources.",
     "source_ids": [
      "goodman_history_cook_county_early"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
     ]
    }
   }

@@ -91,7 +91,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street."
+   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2b",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

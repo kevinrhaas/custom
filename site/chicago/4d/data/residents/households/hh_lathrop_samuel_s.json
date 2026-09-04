@@ -79,6 +79,16 @@
     "summary": "Andreas' history of Chicago's First Baptist Church names Samuel S. Lathrop as one of the church's early members after its October 1833 organization and records him building the fence around Rev. A. B. Freeman's Chicago grave. This independently corroborates the exact named Chicago resident before the 1835 postal seed.",
     "source_ids": [
      "rr_baptist_chicago_lathrop"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred/projected_resident",
+      "rule": "G3",
+      "refusal_says": "the demotion is blind: this card cites `chicago_tribune_1882_05_19_fourth_reception`, `rr_baptist_chicago_lathrop`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
     ]
    }
   }

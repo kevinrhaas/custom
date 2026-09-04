@@ -78,7 +78,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
+   "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   },
   {
    "id": "porter_eliza_chappel",
@@ -113,7 +125,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
+   "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

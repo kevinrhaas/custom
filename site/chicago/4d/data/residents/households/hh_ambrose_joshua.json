@@ -51,7 +51,7 @@
    "id": "ambrose_joshua",
    "name": "Joshua Ambrose",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -64,7 +64,7 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Ainbrose, Joshua' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 20 May 1835, column 13 — dated 1835-05-20. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
+   "note": "REGRADED ON THE RATIFIED LADDER (T-0701, rule G1b): inferred/projected_resident -> attested. `projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was. The ladder's words for G1b: A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town. — THE RECORD BELOW WAS WRITTEN BEFORE THAT RULING. PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Ainbrose, Joshua' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 20 May 1835, column 13 — dated 1835-05-20. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0483",
@@ -77,9 +77,35 @@
     "notes": "Open-web exact-name and reasonable spelling/order variants did not produce a reliable dated Chicago/Cook County discriminator beyond the seed letter-list evidence. Negative search is not evidence of nonexistence.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "regrade_ticket": "T-0701",
+    "rule": "G1b — A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+    "regraded_from": "inferred/projected_resident",
+    "regraded_to": "attested",
+    "ladder_ratified": "2026-09-03",
+    "regrade_says": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was."
    },
-   "resident_subtype": "projected_resident"
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Joshua Ambrose",
+     "locator": "chicago_democrat_1835_05_20#c013",
+     "record_id": "person_joshua_ambrose",
+     "describes_date": "1835-05-20",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Ambrose, J. E.",
+     "locator": "chicago_democrat_1835_08_19#c008",
+     "record_id": "person_ambrose_j_e",
+     "describes_date": "1835-08-19",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ]
   }
  ],
  "touches_removal": false,

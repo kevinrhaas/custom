@@ -78,7 +78,17 @@
     "asserted_identity": false,
     "evidence_for": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
     "summary": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
-    "notes": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist."
+    "notes": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
    }
   },
   {

@@ -1,0 +1,4715 @@
+{
+ "schema": 1,
+ "ticket": "T-0701",
+ "generated_by": "tools/mint_civic_residents.py --regrade --ledger",
+ "compiled_on": "2026-09-04",
+ "ladder_ratified": "2026-09-03",
+ "compiled_from": [
+  "data/research/residents/grading_proposal.json",
+  "data/research/residents/identity_master.json",
+  "data/residents/households/"
+ ],
+ "_doc": "THE RULING, not a derivation. `changes_to_existing_people` in the grading proposal is by definition the rows where the ladder and a committed card DISAGREE, so the moment the card is written the row leaves the proposal and the decision can no longer be recomputed from it. This file is compiled once, carries everything each decision rested on — the rule, the ladder's words, the move, the refusal and the evidence rows read on the day — and `--regrade` applies it. Recompiling it against a town this pass has already written would produce an empty file; that is the point, and it is why the compile is a separate switch.",
+ "counts": {
+  "rulings": 158,
+  "applied": 56,
+  "refused": 102
+ },
+ "refusals": {
+  "R0": "the town no longer carries the person the proposal names",
+  "R1": "the ladder abstains (G5) and an abstention is not a verdict",
+  "R2": "the proposal leaves `projected_resident` on the post office alone",
+  "R3": "the demotion is blind to a source the card cites and the ladder does not read",
+  "R4": "another pass re-derives the whole card and would revert the grade"
+ },
+ "rulings": [
+  {
+   "person_id": "albert_shepherd",
+   "identity": "id_albert_shepherd",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1834` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1834",
+      "as_read": "S---?, Albert",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_095",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Shepherd Albert",
+      "locator": "chicago_democrat_1835_07_01#c005",
+      "record_id": "person_shepherd_albert",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "allen_william",
+   "identity": "id_allen_william",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 4 evidence class(es) — `census_1840`, `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "Wm. Allen",
+      "locator": "230:26",
+      "record_id": "33S7-9YYJ-NY:26",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G2e"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Allen, Wm., shipcarpenter, res Wolcott, bet N. Water and Kinzie [died May 26, 1855, aged - .]",
+      "locator": "res Wolcott, bet N. Water and Kinzie",
+      "record_id": "f1843_e0198",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Allen, Win. shipwright, house Wolcott st. b. N. Water and Kinzie-",
+      "locator": "house Wolcott st. b. N. Water and Kinzie-",
+      "record_id": "n1844_e0019",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Allen, William",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_allen_william",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "ambrose_joshua",
+   "identity": "id_ambrose_joshua",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Joshua Ambrose",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_joshua_ambrose",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Ambrose, J. E.",
+      "locator": "chicago_democrat_1835_08_19#c008",
+      "record_id": "person_ambrose_j_e",
+      "describes_date": "1835-08-19",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "andrews_davi",
+   "identity": "id_andrews_davi",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_cook_county_andrews_1884`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "andrus_thomas",
+   "identity": "id_andrus_thomas",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `rr_dupage_andrus_1882`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "avery_charles",
+   "identity": "id_avery_charles",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `census_1840`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "C. E. Avery",
+      "locator": "unknown:22",
+      "record_id": "33S7-9YYJ-9MX:22",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Avery, Charles",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_avery_charles",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "bailey_bennet",
+   "identity": "id_bailey_bennet",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Bailey, Bennet, carpenter, Dearborn, bds John Gray [died November 7, 1881, aged 70-11-7]",
+      "locator": "bds John Gray",
+      "record_id": "f1843_e0244",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Bailey, Bennett, carpenter, Dearborn street, residence J. Gray's",
+      "locator": "residence J. Gray's",
+      "record_id": "n1844_e0054",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Bennet Bailey",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_bennet_bailey",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "bailly_joseph",
+   "identity": "id_bailly_joseph",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `death_notice`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Bailly, Joseph",
+      "locator": "B",
+      "record_id": "fdn0015",
+      "describes_date": "December 21, 1835",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Bailly, Joseph",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_bailly_joseph",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "barrows_mary",
+   "identity": "id_barrows_mary",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `early_illinois_barrows_school`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "barry_john_s",
+   "identity": "id_barry_john_s",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1834` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1834",
+      "as_read": "Barry, J. R.",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_007",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "John S. Barry",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_john_s_barry",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "beaubien_household_unnamed",
+   "identity": "id_therestofthebeaubienhousehold_unnamed",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "beaubien_josette",
+   "identity": "id_beaubien_josette_laframboise",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "beaubien_madore",
+   "identity": "id_beaubien_madore_benjamin",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "beaubien_mark_household",
+   "identity": "id_markbeaubiensfamily_unnamed",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "bishop_j_e",
+   "identity": "id_bishop_james_e",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "JAMES E. BISHOP, general dealer in dry goods, groceries, hardware, etc., 131 Lake Street, Chicago. N. B.- All kinds of c…",
+      "locator": "business directory",
+      "record_id": "f1843_e0044",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1843",
+      "as_read": "Bishop, Jas. E., dry goods and groceries, 131 Lake, bds T. Greenwood [died. Omaha, Neb.. February 27, 1895, aged 86.]",
+      "locator": "bds T. Greenwood",
+      "record_id": "f1843_e0355",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Bishop, James E. dry goods, groceries, and hardv/are, 131 Lake st, residence Theophilus G. Greenwood (See card)",
+      "locator": "residence Theophilus G. Greenwood (See card)",
+      "record_id": "n1844_e0141",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Bishop, J. E.",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_bishop_j_e",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "blair_william_g",
+   "identity": "id_blair_william_g",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Blair, William, hardware, etc., 111 S. Water, s.-e. cor Dearborn, bds Tremont House",
+      "locator": "cor Dearborn, bds Tremont House",
+      "record_id": "f1843_e0361",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Blair, Wm. stove and tin factory, cor Dearborn and South Water sts. residence Tremont House",
+      "locator": "residence Tremont House",
+      "record_id": "n1844_e0145",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Blair, William G",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_blair_william_g",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "blake_levi",
+   "identity": "id_blake_levi",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "blakesley_harvey_a",
+   "identity": "id_blakesley_harvey_a",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_fergus_directory_1839`, `resident_research_fergus_directory_1843`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "blodgett_tyler_k",
+   "identity": "id_blodgett_tyler_k",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "bobinson_george_is",
+   "identity": "id_bobinson_george_is",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "boilvin_nicholas",
+   "identity": "id_boilvin_nicholas",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `fcp_treaty_chicago_1833_payments`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "bradford_harriet",
+   "identity": "id_bradford_harriet",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Harriet Bradford",
+      "locator": "chicago_democrat_1834_04_08#c001",
+      "record_id": "person_harriet_bradford",
+      "describes_date": "1834-04-08",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Bradford, Harriet",
+      "locator": "chicago_democrat_1834_09_10#c011",
+      "record_id": "person_bradford_harriet",
+      "describes_date": "1834-09-10",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "bristol_r_c",
+   "identity": "id_bristol_richard_clark",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 4 evidence class(es) — `census_1840`, `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "R. R. Bristol",
+      "locator": "215:7",
+      "record_id": "33S7-9YYJ-9WF:7",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G2e"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Bristol, Richard Clark (B. & Porter), res 5 Dearborn pl [died, Brooklyn, N.Y.. July 10, 1866]",
+      "locator": "res 5 Dearborn pl",
+      "record_id": "f1843_e0431",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Bristol, R. C. of B. & Porter, residence on Reservation",
+      "locator": "B. & Porter, residence on Reservation",
+      "record_id": "n1844_e0200",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "R. C. Bristol",
+      "locator": "chicago_democrat_1834_07_16#c002",
+      "record_id": "person_r_c_bristol",
+      "describes_date": "1834-07-16",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "brookes_samuel",
+   "identity": "id_brookes_samuel_marsden",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Brookes, Samuel, florist, res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3 .",
+      "locator": "res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3",
+      "record_id": "f1843_e0442",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1843",
+      "as_read": "Brookes, Samuel Marsden, portr. & landsca. artist, bds Sam'l Brookes [died. San Francisco, Cal., January 31, 1892, aged…",
+      "locator": "bds Sam'l Brookes",
+      "record_id": "f1843_e0443",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Samuel Brookes",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_samuel_brookes",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "brooks_gardner",
+   "identity": "id_brooks_gardner",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1834` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1834",
+      "as_read": "Brooks, Gardner",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_019",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Brooks, Gardner",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_brooks_gardner",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "brown_lemuel",
+   "identity": "id_brown_lemuel",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "brown_rufus",
+   "identity": "id_brown_rufus_b",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "burbee_jonathan",
+   "identity": "id_burbee_jonathan",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "caldwell_billy",
+   "identity": "id_caldwell_billy",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "chadwick_joseph",
+   "identity": "id_chadwick_joseph",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "chandler_joseph",
+   "identity": "id_chandler_joseph_m",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_chandler_cook_history`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "chapman_chas_h",
+   "identity": "id_chapman_charles_h",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 8 appearance(s) across 5 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_1833_1835`, `newspaper_letter_list`, `tax_1833` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Chapman, Charles H.",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_017",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Chapman, Charles H., res Wells, bet Randolph and Washington",
+      "locator": "res Wells, bet Randolph and Washington",
+      "record_id": "f1843_e0591",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G1b"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Chapman, Chas. H. res Wells st. b Randolph and Washington st",
+      "locator": "res Wells st. b Randolph and Washington st",
+      "record_id": "n1844_e0326",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Chapman, C. H.",
+      "locator": "chicago_democrat_1833_11_26#c008",
+      "record_id": "person_chapman_c_h",
+      "describes_date": "1833-11-26",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "C. H. Chapman",
+      "locator": "chicago_american_1835_06_08#c010",
+      "record_id": "person_c_h_chapman",
+      "describes_date": "1833-12-24",
+      "source": "chicago_american_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Chas. H. Chapman",
+      "locator": "chicago_democrat_1834_04_01#c001",
+      "record_id": "person_chas_h_chapman",
+      "describes_date": "1834-04-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Charles H. Chapman",
+      "locator": "chicago_democrat_1834_08_13#c012",
+      "record_id": "person_charles_h_chapman",
+      "describes_date": "1834-08-13",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_american_1835",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "christy_nathan",
+   "identity": "id_christy_nathan",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "applied",
+   "moved": "the higher grade is not reached on what this card cites: 4 appearance(s) across `directory_1843`, `directory_1844`, `newspaper_letter_list`.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Christy, Nathan, laborer, res Canal, bet Lake and N. Water [died July 16, 1855, aged 56]",
+      "locator": "res Canal, bet Lake and N. Water",
+      "record_id": "f1843_e0607",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Christy, Nathan, laborer, house Canal st. b Lake and N. Water sts",
+      "locator": "house Canal st. b Lake and N. Water sts",
+      "record_id": "n1844_e0337",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Nathan Christy",
+      "locator": "chicago_democrat_1834_07_09#c005",
+      "record_id": "person_nathan_christy",
+      "describes_date": "1834-07-09",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "refusal_says": "the grade `attested` is REFUSED on the ratified ladder: A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner. Every source this card cites is one the consolidation reads, so there is no evidence outside the ladder's seven domains for the higher grade to rest on."
+  },
+  {
+   "person_id": "church_thomas",
+   "identity": "id_church_thomas",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "clark_erastus",
+   "identity": "id_clark_erastus",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1844",
+      "as_read": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum- phrey Clark's",
+      "locator": "residence Hum phrey Clark's",
+      "record_id": "n1844_e0349",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Clark, Erastus",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_clark_erastus",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "cleland_martin",
+   "identity": "id_cleland_martin",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `marsh_genealogy_martin_cleland_1886`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "clybourne_archibald",
+   "identity": "id_clybourne_archibald",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "cobb_silas_b",
+   "identity": "id_cobb_silas_b",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "cole_parker_m",
+   "identity": "id_cole_parker_m",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 6 appearance(s) across 5 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list`, `poll_1834`, `tax_1833` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Cole, Parker M.",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_020",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     },
+     {
+      "list": "poll_1834",
+      "as_read": "Cole, Parker M.",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_027",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Cole, Parker M. (Bowen & C), county poor master, bds Erastus Bowen [died June 30, 1877]",
+      "locator": "bds Erastus Bowen",
+      "record_id": "f1843_e0667",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2b"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Cole, Parker M. of Bowen & C. Lake st. near State, res E. Uowen's",
+      "locator": "res E. Uowen's",
+      "record_id": "n1844_e0383",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Parker M. Cole",
+      "locator": "chicago_democrat_1834_07_09#c005",
+      "record_id": "person_parker_m_cole",
+      "describes_date": "1834-07-09",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "couch_ira",
+   "identity": "id_couch_ira_howes",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "couch_james",
+   "identity": "id_couch_james",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "covell_thomas_r",
+   "identity": "id_covell_thomas_r",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "crawford_james",
+   "identity": "id_crawford_james_or_robert",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1835` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1835",
+      "as_read": "Crawford, James",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_017",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Jas. or Robt. Crawford",
+      "locator": "chicago_democrat_1834_04_01#c001",
+      "record_id": "person_jas_or_robt_crawford",
+      "describes_date": "1834-04-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Crawford, James",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_crawford_james",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "davis_t_o",
+   "identity": "id_davis_t_o",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "dean_james_l",
+   "identity": "id_dean_james_l",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Dean, James, saddler and harness maker, James S. Paine",
+      "locator": "alphabetical directory",
+      "record_id": "f1843_e0782",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Dean, James, saddler and harness m;iker, at Paine's",
+      "locator": "directory",
+      "record_id": "n1844_e0478",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "James Dean",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_james_dean",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Dean, James L..",
+      "locator": "chicago_democrat_1835_07_01#c004",
+      "record_id": "person_dean_james_l",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "dement_wm",
+   "identity": "id_dement_william",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "dole_george_w",
+   "identity": "id_dole_george_washington",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `chicago_democrat_1833_11_26`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "dudley_john",
+   "identity": "id_dudley_john",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "egan_emeline",
+   "identity": "id_egan_emeline",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "egan_william_b",
+   "identity": "id_egan_william_bradshaw",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "evans_sciota",
+   "identity": "id_evans_sciota",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `rr_cook_democratic_republicans_1834`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "fish_e_m",
+   "identity": "id_fish_elisha",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "fitzgerald_thos",
+   "identity": "id_fitzgerald_thomas",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 6 appearance(s) across 5 evidence class(es) — `church_after_1835`, `directory_1843`, `directory_1844`, `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "church_evidence": [
+     {
+      "list": "church_after_1835",
+      "as_read": "Thomas Fitzgerald",
+      "locator": "witness",
+      "record_id": "st_cyr_marriage_065_3",
+      "describes_date": "1837-12-14",
+      "source": "st_cyr_register_ichr_v4",
+      "rule": "G1b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Fitzgerald, Thomas, laborer, res West Water near Lake",
+      "locator": "res West Water near Lake",
+      "record_id": "f1843_e0958",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G1b"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Fitzgerald, Thomas, laborer, res West Water st. b Lake and North Water sts",
+      "locator": "res West Water st. b Lake and North Water sts",
+      "record_id": "n1844_e0605",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Thos. Fitzgerald",
+      "locator": "chicago_democrat_1834_04_08#c001",
+      "record_id": "person_thos_fitzgerald",
+      "describes_date": "1834-04-08",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Thomas Fitzgerald",
+      "locator": "chicago_democrat_1834_07_02#c028",
+      "record_id": "person_thomas_fitzgerald",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  {
+   "person_id": "fitzsimmons_john",
+   "identity": "id_fitzsimmons_john",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Fitzsimmons, John, teamster, res Michigan ave cor VanBuren",
+      "locator": "res Michigan ave cor VanBuren",
+      "record_id": "f1843_e0963",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "John Fitzsimmons",
+      "locator": "chicago_democrat_1834_07_09#c008",
+      "record_id": "person_john_fitzsimmons",
+      "describes_date": "1834-07-09",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "flint_a_w",
+   "identity": "id_flint_austin",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `death_notice`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Flint, Dr. Austin",
+      "locator": "F",
+      "record_id": "fdn0206",
+      "describes_date": "March 13, 1886",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "A. W. Flint",
+      "locator": "chicago_democrat_1834_01_28#c001",
+      "record_id": "person_a_w_flint",
+      "describes_date": "1834-01-28",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "ford_ebenezer",
+   "identity": "id_ford_ebenezer",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "fullerton_alexander",
+   "identity": "id_fullerton_alexander_n",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "gale_stephen_f",
+   "identity": "id_gale_stephen_f",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `calumet_club_early_chicago_1879`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "gooding_caroline",
+   "identity": "id_gooding_caroline",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "goss_o",
+   "identity": "id_goss_oliver",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 2 appearance(s) across `newspaper_1833_1835`.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Oliver Goss",
+      "locator": "chicago_american_1835_06_13#c015",
+      "record_id": "person_oliver_goss",
+      "describes_date": "1835-06-13",
+      "source": "chicago_american_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_american_1835"
+   ]
+  },
+  {
+   "person_id": "gould_a_b",
+   "identity": "id_gould_ambrose_b",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Gould, Ambrose B., sailor, res Indiana, bet Pine and St. Clair",
+      "locator": "res Indiana, bet Pine and St. Clair",
+      "record_id": "f1843_e1104",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Gould, Ambrose B. sailor, Indiana st. b Pine and Sand sts",
+      "locator": "b Pine and Sand sts",
+      "record_id": "n1844_e0718",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Gould, A. B.",
+      "locator": "chicago_democrat_1835_07_01#c005",
+      "record_id": "person_gould_a_b",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "greene_john",
+   "identity": "id_greene_major_john",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "haddock_edward",
+   "identity": "id_haddock_edward_h",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 5 appearance(s) across `census_1840`, `newspaper_1833_1835`, `poll_1835`, `tax_1833`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Haddock, E. H.",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_041",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     },
+     {
+      "list": "poll_1835",
+      "as_read": "Haddock, E. H.",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_028",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "E. H. Haddock",
+      "locator": "207:13",
+      "record_id": "33SQ-GYYJ-93G:13",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "E. H. Haddock",
+      "locator": "chicago_democrat_1834_07_02#c017",
+      "record_id": "person_e_h_haddock",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "hall_benjamin",
+   "identity": "id_hall_benjamin",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "hamilton_richard_j",
+   "identity": "id_hamilton_richard_jones",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "handy_major",
+   "identity": "id_handy_major",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "harmon_charles_l",
+   "identity": "id_harmon_charles_loomis",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `chicago_democrat_1833_11_26`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "harmon_elijah_d",
+   "identity": "id_harmon_elijah_dewey",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "harmon_isaac_d",
+   "identity": "id_harmon_isaac_dewey",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `chicago_democrat_1833_11_26`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "hathaway_joshua",
+   "identity": "id_hathaway_joshua",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `hathaway_1834`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "hobson_jesse",
+   "identity": "id_hobson_jesse",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_hobson_pioneer`, `resident_research_hobson_woodruff`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "hopkins_henry",
+   "identity": "id_hopkins_henry",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "hubbard_gurdon",
+   "identity": "id_hubbard_gurdon_saltonstall",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "hugunin_leonard_c",
+   "identity": "id_leonard_c_hugunin",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "inf_cooper_north_04",
+   "identity": "id_garland_j_j",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 4 appearance(s) across `newspaper_1833_1835`, `newspaper_letter_list`, `poll_1835`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1835",
+      "as_read": "Garland, J. J.",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_025",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "J. Garland",
+      "locator": "chicago_democrat_1834_06_11#c011",
+      "record_id": "person_j_garland",
+      "describes_date": "1834-06-11",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "J. J. Garland",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_j_j_garland",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "inf_joiner_north_02",
+   "identity": "id_reed_james_w",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 5 appearance(s) across `newspaper_1833_1835`, `poll_1834`, `poll_1835`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1834",
+      "as_read": "Reed, James W.",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_092",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     },
+     {
+      "list": "poll_1835",
+      "as_read": "Reed, J.W.",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_062",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "J. W. Reed",
+      "locator": "chicago_democrat_1833_12_31#c002",
+      "record_id": "person_j_w_reed",
+      "describes_date": "1833-12-31",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "James W. Reed",
+      "locator": "chicago_democrat_1834_08_13#c005",
+      "record_id": "person_james_w_reed",
+      "describes_date": "1834-08-13",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "inf_physician_south_01",
+   "identity": "id_goodhue_josiah_c",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 7 appearance(s) across `death_notice`, `newspaper_1833_1835`, `poll_1834`, `tax_1833`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Goodhue, J. C.",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_037",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1b"
+     },
+     {
+      "list": "poll_1834",
+      "as_read": "Goodhue, J.",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_044",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Goodhue, Dr. Josiah C",
+      "locator": "G",
+      "record_id": "fdn0246",
+      "describes_date": "Dec. 31, 1847",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Dr. Josiah C. Goodhue",
+      "locator": "chicago_democrat_1834_02_04#c001",
+      "record_id": "person_dr_josiah_c_goodhue",
+      "describes_date": "1834-02-04",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "J. C. Goodhue",
+      "locator": "chicago_democrat_1835_05_20#c001",
+      "record_id": "person_j_c_goodhue",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Goodhue, J. C.",
+      "locator": "chicago_democrat_1835_08_19#c010",
+      "record_id": "person_goodhue_j_c",
+      "describes_date": "1835-08-19",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "inf_tailor_north_02",
+   "identity": "id_eels_thomas_s",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 3 appearance(s) across `newspaper_1833_1835`.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Thomas S. Eels",
+      "locator": "chicago_democrat_1834_07_23#c004",
+      "record_id": "person_thomas_s_eels",
+      "describes_date": "1834-07-23",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Eels, Thomas S.",
+      "locator": "chicago_democrat_1834_09_03#c019",
+      "record_id": "person_eels_thomas_s",
+      "describes_date": "1834-09-03",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "inf_tavern_keeper_north_01",
+   "identity": "id_shrigley_john",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 5 appearance(s) across `directory_1843`, `newspaper_1833_1835`, `tax_1833`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Shrigley, John",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_094",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Shrigley, John",
+      "locator": "alphabetical directory",
+      "record_id": "f1843_e2263",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "John Shrigley",
+      "locator": "chicago_democrat_1834_08_13#c005",
+      "record_id": "person_john_shrigley",
+      "describes_date": "1834-08-13",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "J. Shrigley",
+      "locator": "chicago_democrat_1834_10_08#c006",
+      "record_id": "person_j_shrigley",
+      "describes_date": "1834-10-08",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "jackson_samuel",
+   "identity": "id_jackson_samuel",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_cook_harbor_jackson`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "jones_es_high",
+   "identity": "id_jones_high_es",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "jordan_j_b",
+   "identity": "id_jordan_james",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Jordan, James, sailor, res Washington, bet Franklin and Market",
+      "locator": "res Washington, bet Franklin and Market",
+      "record_id": "f1843_e1437",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Jordan, J. B.",
+      "locator": "chicago_democrat_1835_07_01#c005",
+      "record_id": "person_jordan_j_b",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "kimberly_edmund_s",
+   "identity": "id_kimberly_edmund_stoughton",
+   "rule": "G4",
+   "ladder_says": "Two or more appearances, none of them of a class a rung above accepts. Carries resident_subtype `projected_resident` until a rung above fires.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `history_medicine_chicago_kimberly_maxwell`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "kingston_paul",
+   "identity": "id_kingston_paul",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `rr_andreas_chicago_1884_pass11`, `rr_racine_old_settlers_1871`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "kinzie_john_h",
+   "identity": "id_kinzie_john_harris",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "kinzie_juliette",
+   "identity": "id_kinzie_juliette_augusta_magill",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "kinzie_robert_a",
+   "identity": "id_kinzie_robert_allen",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "lamb_a",
+   "identity": "id_lamb_a",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Lamb, Artemus, shipcarpenter, res 96 Michigan ave",
+      "locator": "res 96 Michigan ave",
+      "record_id": "f1843_e1539",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Lamb, Artemus. ship carpenter, house Michigan avenue",
+      "locator": "house Michigan avenue",
+      "record_id": "n1844_e1060",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Lamb, A.",
+      "locator": "chicago_democrat_1835_07_01#c005",
+      "record_id": "person_lamb_a",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "lampman_henry_s",
+   "identity": "id_lampman_henry_s",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "lansing_andrew",
+   "identity": "id_lansing_andrew_d",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "lathrop_samuel_s",
+   "identity": "id_lathrop_samuel_s",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `chicago_tribune_1882_05_19_fourth_reception`, `rr_baptist_chicago_lathrop`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "lawrence_james_r",
+   "identity": "id_lawrence_james_r",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Lawrence, J. I., mason",
+      "locator": "alphabetical directory",
+      "record_id": "f1843_e1571",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "James R. Lawrence",
+      "locator": "chicago_democrat_1834_07_02#c029",
+      "record_id": "person_james_r_lawrence",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "lee_george",
+   "identity": "id_lee_george",
+   "rule": "G2c",
+   "ladder_says": "The St Cyr register 1833-1835 — a party to a marriage or burial in the parish inside the scene window.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `church_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "church_evidence": [
+     {
+      "list": "church_1833_1835",
+      "as_read": "G. S. Lee",
+      "locator": "witness",
+      "record_id": "st_cyr_marriage_009_3",
+      "describes_date": "1835-10-01",
+      "source": "st_cyr_register_ichr_v4",
+      "rule": "G2c"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "George Lee",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_george_lee",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2c"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  {
+   "person_id": "lucas_robert",
+   "identity": "id_lucas_robert",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "luce_william",
+   "identity": "id_luce_william",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "mack_stephen",
+   "identity": "id_mack_stephen",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `tax_1833` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "tax_1833",
+      "as_read": "Mack, Stephen",
+      "locator": "tax_1833",
+      "record_id": "tax_1833_070",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Stephen Mack",
+      "locator": "chicago_democrat_1834_04_01#c002",
+      "record_id": "person_stephen_mack",
+      "describes_date": "1834-04-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "mason_matthias",
+   "identity": "id_mason_matthias",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 3 appearance(s) across `newspaper_1833_1835`, `poll_1834`.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1834",
+      "as_read": "Mason, Matthias",
+      "locator": "poll_1834",
+      "record_id": "poll_1834_070",
+      "describes_date": "1834",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Matthias Mason",
+      "locator": "chicago_democrat_1834_01_07#c008",
+      "record_id": "person_matthias_mason",
+      "describes_date": "1834-01-07",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "matthews_james_g",
+   "identity": "id_matthews_james_g",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1835` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1835",
+      "as_read": "Matthews, J. D.",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_046",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "James G. Matthews",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_james_g_matthews",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "mckee_david",
+   "identity": "id_mckee_david",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "meeker_joseph",
+   "identity": "id_meeker_joseph",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "merrill_winthrop",
+   "identity": "id_merrill_winthrop",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Merrill, Winthrop",
+      "locator": "alphabetical directory",
+      "record_id": "f1843_e1785",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Winthrop Merrill",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_winthrop_merrill",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "mills_john_a",
+   "identity": "id_mills_john_a",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R4",
+   "refusal_says": "the card is re-derived byte for byte by `tools/mint_civic_residents.py --build`, so a grade written here would be reverted by that pass's next build without anyone being told. The change belongs in the pass that owns the card and is refused rather than written and lost."
+  },
+  {
+   "person_id": "minard_ira",
+   "identity": "id_minard_ira",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "mitchell_henry",
+   "identity": "id_mitchell_henry",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_tribune_mitchell_1883`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "moreland_thomas_u",
+   "identity": "id_moreland_thomas_u",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "mulford_e_h",
+   "identity": "id_mulford_edward_h",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "murphy_harriet",
+   "identity": "id_murphy_harriet",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "murray_alonzo",
+   "identity": "id_murray_alonzo",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Alonzo Murray",
+      "locator": "chicago_democrat_1834_07_02#c029",
+      "record_id": "person_alonzo_murray",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Murray, A.",
+      "locator": "chicago_democrat_1834_09_24#c005",
+      "record_id": "person_murray_a",
+      "describes_date": "1834-09-24",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "neff_r_a",
+   "identity": "id_neff_r_a",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Neff, R. A.",
+      "locator": "chicago_democrat_1834_10_22#c002",
+      "record_id": "person_neff_r_a",
+      "describes_date": "1834-10-22",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "R. A. Neff",
+      "locator": "chicago_democrat_1835_05_20#c008",
+      "record_id": "person_r_a_neff",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "nelts_wm",
+   "identity": "id_nelts_william",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "noble_mark",
+   "identity": "id_noble_mark",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R4",
+   "refusal_says": "the card is re-derived byte for byte by `tools/mint_placed_residents.py --build`, so a grade written here would be reverted by that pass's next build without anyone being told. The change belongs in the pass that owns the card and is refused rather than written and lost."
+  },
+  {
+   "person_id": "northrop_francis_b",
+   "identity": "id_northrop_francis_b",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "norton_nelson_r",
+   "identity": "id_norton_nelson_r",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "orsemus_morrison",
+   "identity": "id_orsemus_morrison",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_cook_morrison_album`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "osborn_wm",
+   "identity": "id_osborn_william",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Osborn, William, shoe dealer, Jerome Beecher, res 145 Madison [died January 2, 1884, aged 71]",
+      "locator": "res 145 Madison",
+      "record_id": "f1843_e1934",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Wm. Osborn",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_wm_osborn",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "owen_household_unnamed",
+   "identity": "id_owenshousehold_unnamed",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "owen_thomas_jv",
+   "identity": "id_owen_thomas_jefferson_vance",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "paine_seth",
+   "identity": "id_paine_seth",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Paine, Seth, dry goods merchant [died June 6, 1872, aged 56]",
+      "locator": "alphabetical directory",
+      "record_id": "f1843_e1948",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Seth Paine",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_seth_paine",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "palmer_n_h",
+   "identity": "id_palmer_n_h",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "parsons_edward",
+   "identity": "id_parsons_edward",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Parsons, Edward (Clark, Haines & Co.), bds Daniel B. Heartt - [died January 18, 1875, aged 65]",
+      "locator": "bds Daniel B. Heartt -",
+      "record_id": "f1843_e1957",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Parsons, Edward, of Clark, Haines, & Co. res D. B. Heartt's",
+      "locator": "res D. B. Heartt's",
+      "record_id": "n1844_e1395",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Parsons, Edward",
+      "locator": "chicago_democrat_1834_10_22#c003",
+      "record_id": "person_parsons_edward",
+      "describes_date": "1834-10-22",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "peck_philip",
+   "identity": "id_peck_philip_f_w",
+   "rule": "G4",
+   "ladder_says": "Two or more appearances, none of them of a class a rung above accepts. Carries resident_subtype `projected_resident` until a rung above fires.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "poke_edward",
+   "identity": "id_poke_edward",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "porter_eliza_chappel",
+   "identity": "id_porter_eliza_chappel",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "porter_jeremiah",
+   "identity": "id_porter_jeremiah",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "porthier_joseph",
+   "identity": "id_porthier_joseph",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "powell_geo_n",
+   "identity": "id_powell_george_n",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `death_notice`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Powell, George N.",
+      "locator": "P",
+      "record_id": "fdn0526",
+      "describes_date": "January 21, 1851",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Geo. N. Powell",
+      "locator": "chicago_democrat_1834_04_01#c002",
+      "record_id": "person_geo_n_powell",
+      "describes_date": "1834-04-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "pratt_oscar",
+   "identity": "id_pratt_oscar",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "preston_stephen_ii",
+   "identity": "id_preston_stephen_ii",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "pugsley_john_k",
+   "identity": "id_pugsley_john_k",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `resident_research_pugsley_barrien_vanburen`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "risley_horace",
+   "identity": "id_risley_horace",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "robinson_alexander",
+   "identity": "id_robinson_alexander_v",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `kinzie_waubun_1856`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "robinson_catherine",
+   "identity": "id_robinson_catherine_chevalier",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "robinson_household_unnamed",
+   "identity": "id_therestoftherobinsonhousehold_unnamed",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "rogers_edward_a",
+   "identity": "id_rogers_edward_a",
+   "rule": "G1a",
+   "ladder_says": "The 1835 poll list and at least one other independent source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 4 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list`, `poll_1835` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1835",
+      "as_read": "Rogers, E.A.",
+      "locator": "poll_1835",
+      "record_id": "poll_1835_066",
+      "describes_date": "1835",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G1a"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Rogers, Edward Kendall (Horace Norton & Co.), res Indiana, bet Cass and Rush [died, Eastman, Ga., May 2, 1883, aged 70]",
+      "locator": "res Indiana, bet Cass and Rush",
+      "record_id": "f1843_e2121",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G1a"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Rogers, Edward K. of Horace Norton & Co. h Ind b Cass & Hush",
+      "locator": "h Ind b Cass & Hush",
+      "record_id": "n1844_e1507",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G1a"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Edward A. Rogers",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_edward_a_rogers",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1a"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "scott_john",
+   "identity": "id_scott_john",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 3 evidence class(es) — `directory_1843`, `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Scott, John, carpenter, res South Canal, 3d Ward [died, Oswego, N.Y., 1870, aged 68.]",
+      "locator": "res South Canal, 3d Ward",
+      "record_id": "f1843_e2197",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1844",
+      "as_read": "Scott, John, carpenter, house Canal st. 3d ward",
+      "locator": "house Canal st. 3d ward",
+      "record_id": "n1844_e1568",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Scott, John",
+      "locator": "chicago_democrat_1835_07_01#c006",
+      "record_id": "person_scott_john",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "sherwood_s",
+   "identity": "id_sherwood_stephen",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 2 evidence class(es) — `directory_1844`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1844",
+      "as_read": "Sherwood, Smith J. jeweler, 144 Lake st. house Lasalle st. b Washington and Madison sts (See card)",
+      "locator": "house Lasalle st. b Washington and Madison sts (See card)",
+      "record_id": "n1844_e1613",
+      "describes_date": "1844",
+      "source": "norris_directory_1844",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Stephen Sherwood",
+      "locator": "chicago_democrat_1834_01_28#c001",
+      "record_id": "person_stephen_sherwood",
+      "describes_date": "1834-01-28",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "S. Sherwood",
+      "locator": "chicago_democrat_1834_07_02#c033",
+      "record_id": "person_s_sherwood",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "simons_e",
+   "identity": "id_simons_edward",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 5 appearance(s) across 4 evidence class(es) — `census_1840`, `directory_1843`, `newspaper_1833_1835`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "Edward Simons",
+      "locator": "239:13",
+      "record_id": "33S7-9YYN-3CDH:13",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G1b"
+     }
+    ],
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Simons, Edward, butcher, res Jefferson [died Aug. 30, 1876, a. 60½]",
+      "locator": "res Jefferson",
+      "record_id": "f1843_e2267",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Edward Simons",
+      "locator": "chicago_democrat_1834_07_02#c031",
+      "record_id": "person_edward_simons",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     },
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "E. Simons",
+      "locator": "chicago_democrat_1835_05_20#c013",
+      "record_id": "person_e_simons",
+      "describes_date": "1835-05-20",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "simpson_john_p",
+   "identity": "id_simpson_john_p",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Simpson, John, mason, res S. Canal, bet Adams and Jackson [died before May 12,1851]",
+      "locator": "res S. Canal, bet Adams and Jackson",
+      "record_id": "f1843_e2269",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Simpson, John P.",
+      "locator": "chicago_democrat_1835_07_01#c006",
+      "record_id": "person_simpson_john_p",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "smith_matthias",
+   "identity": "id_smith_matthias",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R4",
+   "refusal_says": "the card is re-derived byte for byte by `tools/mint_civic_residents.py --build`, so a grade written here would be reverted by that pass's next build without anyone being told. The change belongs in the pass that owns the card and is refused rather than written and lost."
+  },
+  {
+   "person_id": "sproat_grenville",
+   "identity": "id_sproat_grenville_temple",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "stevens_issac",
+   "identity": "id_stevens_issac",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "I. C. STEVENS, (sign of the three hats), hat, cap, and fur manufacturer, 10S Lake Street, Chicago; hats and caps of all…",
+      "locator": "business directory",
+      "record_id": "f1843_e0168",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Stevens, Issac",
+      "locator": "chicago_democrat_1835_07_01#c006",
+      "record_id": "person_stevens_issac",
+      "describes_date": "1835-07-01",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "stow_william_h",
+   "identity": "id_stow_william_h",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "taylor_anson_h",
+   "identity": "id_taylor_anson_h",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "taylor_augustine",
+   "identity": "id_taylor_augustine_deodat",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "temple_children_four",
+   "identity": "id_children_the_four_temple",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "temple_john_t",
+   "identity": "id_temple_john_taylor",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, `baptisthistoryhomepage`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "temple_peter",
+   "identity": "id_temple_peter",
+   "rule": "G1b",
+   "ladder_says": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "the rung above is reached on 3 appearance(s) across `death_notice`, `newspaper_1833_1835`.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Temple, Dr. Peter",
+      "locator": "T",
+      "record_id": "fdn0661",
+      "describes_date": "March 18, 1889",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G1b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_1833_1835",
+      "as_read": "Temple, P.",
+      "locator": "chicago_democrat_1834_09_10#c009",
+      "record_id": "person_temple_p",
+      "describes_date": "1834-09-10",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G1b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "thompson_john",
+   "identity": "id_thompson_john_leverett",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `death_notice`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Thompson, Gen. John Leverett",
+      "locator": "T",
+      "record_id": "fdn0666",
+      "describes_date": "Jan. 31, 1888",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "John Thompson",
+      "locator": "chicago_democrat_1834_03_04#c027",
+      "record_id": "person_john_thompson",
+      "describes_date": "1834-03-04",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "toby_samuel",
+   "identity": "id_toby_samuel_e",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "vasseur_noel",
+   "identity": "id_vasseur_noel",
+   "rule": "G3",
+   "ladder_says": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `fcp_treaty_chicago_1833_payments`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "walker_george_e",
+   "identity": "id_walker_george_e",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `death_notice`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "death_notice",
+      "as_read": "Walker, George E.",
+      "locator": "W",
+      "record_id": "fdn0695",
+      "describes_date": "November 9, 1874",
+      "source": "fergus_1843_old_settler_death_notices",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "George E. Walker",
+      "locator": "chicago_democrat_1834_07_02#c033",
+      "record_id": "person_george_e_walker",
+      "describes_date": "1834-07-02",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "person_id": "walters_william",
+   "identity": "id_walters_william",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  },
+  {
+   "person_id": "williams_charles_c",
+   "identity": "id_williams_charles_c",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 2 evidence class(es) — `directory_1843`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "book_evidence": [
+     {
+      "list": "directory_1843",
+      "as_read": "Williams, Charles, cooper, North Water, bet Dearborn and Wolcott",
+      "locator": "bet Dearborn and Wolcott",
+      "record_id": "f1843_e2626",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     },
+     {
+      "list": "directory_1843",
+      "as_read": "Williams, Charles, laborer, res West Water, bet Canal and Clinton",
+      "locator": "res West Water, bet Canal and Clinton",
+      "record_id": "f1843_e2627",
+      "describes_date": "1843",
+      "source": "fergus_chicago_directory_1843",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Williams, Charles C.",
+      "locator": "chicago_democrat_1834_10_22#c007",
+      "record_id": "person_williams_charles_c",
+      "describes_date": "1834-10-22",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "wilson_john",
+   "identity": "id_wilson_john",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 4 appearance(s) across 2 evidence class(es) — `census_1840`, `newspaper_letter_list` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "census_evidence": [
+     {
+      "list": "census_1840",
+      "as_read": "John Wilson",
+      "locator": "229:2",
+      "record_id": "33S7-9YYJ-9M5:2",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G2e"
+     },
+     {
+      "list": "census_1840",
+      "as_read": "John Wilson",
+      "locator": "239:4",
+      "record_id": "33S7-9YYN-3CDH:4",
+      "describes_date": "1840",
+      "source": "census_1840_chicago_familysearch_images",
+      "rule": "G2e"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "John Wilson",
+      "locator": "chicago_democrat_1834_01_28#c001",
+      "record_id": "person_john_wilson",
+      "describes_date": "1834-01-28",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2e"
+     }
+    ]
+   },
+   "sources": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835"
+   ]
+  },
+  {
+   "person_id": "winson_wm",
+   "identity": "id_winson_william",
+   "rule": "G2b",
+   "ladder_says": "An 1833 or 1834 list (poll, tax, muster) with another source.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "applied",
+   "moved": "`projected_resident` is the ladder's mark for a single appearance and nothing else (G3). This person stands in 3 appearance(s) across 2 evidence class(es) — `newspaper_letter_list`, `poll_1833` — so the mark comes off and the grade stands where it was.",
+   "evidence": {
+    "civic_evidence": [
+     {
+      "list": "poll_1833",
+      "as_read": "Winson, William",
+      "locator": "poll_1833",
+      "record_id": "poll_1833_029",
+      "describes_date": "1833",
+      "source": "chicago_voter_lists_1833_1835_irad",
+      "rule": "G2b"
+     }
+    ],
+    "press_evidence": [
+     {
+      "list": "newspaper_letter_list",
+      "as_read": "Wm. Winson",
+      "locator": "chicago_democrat_1834_01_28#c001",
+      "record_id": "person_wm_winson",
+      "describes_date": "1834-01-28",
+      "source": "chicago_democrat_1833_1835",
+      "rule": "G2b"
+     }
+    ]
+   },
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "person_id": "wood_wm",
+   "identity": "id_wood_william",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": false,
+   "decision": "R2",
+   "refusal_says": "the proposal lifts this person out of `projected_resident` on the post office alone — every evidence class behind it is a Chicago letter list. T-0515's reading of the owner's tiers binds: a letter-list name leaves `projected_resident` when something OTHER than a letter list names them, and nothing here does. The evidence rows do not support the proposal."
+  },
+  {
+   "person_id": "woodworth_james_h",
+   "identity": "id_woodworth_james_h",
+   "rule": "G2e",
+   "ladder_says": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R3",
+   "refusal_says": "the demotion is blind: this card cites `ushouse_james_h_woodworth`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+  },
+  {
+   "person_id": "wright_john_s",
+   "identity": "id_wright_john_s",
+   "rule": "G5",
+   "ladder_says": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner.",
+   "from": {
+    "grade": "attested",
+    "resident_subtype": null
+   },
+   "to": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "lowers": true,
+   "decision": "R1",
+   "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+  }
+ ]
+}

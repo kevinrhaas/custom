@@ -76,6 +76,16 @@
     "notes": "Pioneer History of Milwaukee supplies a materially tighter migration chronology than the existing record: Joseph Porthier left Chicago with Horace Chase on February 27, 1835, briefly returned to Chicago for means, then left again March 21 and reached Milwaukee March 23. This places his removal before the July 1 scene date.",
     "source_ids": [
      "buck_pioneer_milwaukee_porthier_1835"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
     ]
    }
   }

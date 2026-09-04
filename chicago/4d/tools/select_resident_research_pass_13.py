@@ -203,8 +203,14 @@ def member(people: dict, person_id: str) -> dict:
     }
 
 
+# A RESEARCH ROW, not merely the field it lives in. `resident_research` is a shared
+# block: since T-0701 the ratified ladder writes its own ruling and its refusals into it
+# for people nobody has ever researched, and a truthy test on the block alone read 18 of
+# this cohort's people as reviewed on the strength of a grading refusal. The row this
+# frame is drawn against is the reviewed one — the programme's, carrying an outcome.
 def researched_ids(people: dict) -> set:
-    return {pid for pid, (_h, p) in people.items() if p.get("resident_research")}
+    return {pid for pid, (_h, p) in people.items()
+            if (p.get("resident_research") or {}).get("outcome")}
 
 
 def derive(pass_no: int) -> dict:

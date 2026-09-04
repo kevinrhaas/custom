@@ -92,7 +92,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "NAMED AND DATED IN THE SOURCE - married to J. B. Beaubien in 1812, daughter of Francois LaFramboise - and nothing places her in the household on 1 July 1835. She is written because a named wife of a named head is exactly the person this layer exists to record, and graded derived because the presence on the day is the reconstruction. The LaFramboise family is separately in the 1833 treaty schedules, where 'Joseph Laframboise and children' receive $1,000."
+   "note": "NAMED AND DATED IN THE SOURCE - married to J. B. Beaubien in 1812, daughter of Francois LaFramboise - and nothing places her in the household on 1 July 1835. She is written because a named wife of a named head is exactly the person this layer exists to record, and graded derived because the presence on the day is the reconstruction. The LaFramboise family is separately in the 1833 treaty schedules, where 'Joseph Laframboise and children' receive $1,000.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   },
   {
    "id": "beaubien_household_unnamed",
@@ -105,7 +117,19 @@
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [],
-   "note": "AN ADMISSION. J. B. Beaubien's family was large and is not enumerated in anything reached; two sons are named in Andreas and one of them, Madore, has his own household here. Carried as one placeholder rather than as invented individuals; do not count it as a person."
+   "note": "AN ADMISSION. J. B. Beaubien's family was large and is not enumerated in anything reached; two sons are named in Andreas and one of them, Madore, has his own household here. Carried as one placeholder rather than as invented individuals; do not count it as a person.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": true,

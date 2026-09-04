@@ -170,6 +170,20 @@ def research_rows():
     return out
 
 
+# The keys `mint_civic_residents.py --regrade` writes onto a person, and the one that
+# says it ruled. They survive a rebuild of this file; everything else here does not.
+REGRADE_KEYS = ("regraded_on", "regrade_ticket", "rule", "regraded_from", "regraded_to",
+                "ladder_ratified", "regrade_says", "refusals")
+
+
+def keep_regrade(block):
+    """The ladder's own keys on a person, or {} if the ladder has not ruled on them."""
+    block = block or {}
+    if not block.get("regraded_on"):
+        return {k: block[k] for k in ("refusals",) if block.get(k)}
+    return {k: block[k] for k in REGRADE_KEYS if k in block}
+
+
 def research_block(item):
     block = {"programme": "resident-research-2026", "ticket": item.get("ticket"),
              "outcome": item.get("outcome"), "reviewed_on": item.get("reviewed_on"),
@@ -432,8 +446,16 @@ def main():
     for pid,item in sorted(research.items()):
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
-        p,hh=persons[pid]; p["resident_research"]=research_block(item)
-        if p.get("letter_list_only"):
+        p,hh=persons[pid]
+        # THE 2026-09-03 LADDER OUTRANKS THE 2026-09-02 SYNTHESIS (T-0701). This pass
+        # forces every letter-list person to `inferred`/`projected_resident` from a
+        # research outcome recorded before the owner ratified the grading ladder. Where
+        # `tools/mint_civic_residents.py --regrade` has since ruled on a person, that
+        # ruling stands and the keys it wrote are carried through — otherwise the next
+        # build of this file would revert 56 regrades without saying so.
+        regraded = keep_regrade(p.get("resident_research"))
+        p["resident_research"]={**research_block(item), **regraded}
+        if p.get("letter_list_only") and not regraded:
             if outcome in CORROBORATED:
                 p["grade"]="attested"; p.pop("resident_subtype",None); p["sources"]=list(dict.fromkeys((p.get("sources") or [])+independent(item)))
                 prefix="INDEPENDENTLY CORROBORATED RESIDENT. "
@@ -453,7 +475,7 @@ def main():
             if changes: promoted.append({"person_id":pid,"ticket":item.get("ticket"),"changes":changes,"source_ids":independent(item)})
     missing=[]
     for pid,(p,_hh) in persons.items():
-        if p.get("letter_list_only") and pid not in research: p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
+        if p.get("letter_list_only") and pid not in research and not keep_regrade(p.get("resident_research")): p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
     ledger={"date":"2026-09-02","scene_date":"1835-07-01","tickets":["T-0487","T-0488","T-0489","T-0490"],
         "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"reserved for later explicit reconstruction; zero now"},
         "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"promoted_facts":promoted},

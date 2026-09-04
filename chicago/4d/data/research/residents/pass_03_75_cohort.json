@@ -274,12 +274,13 @@
       "person_id": "goss_o",
       "name": "O. Goss",
       "starting_evidence": "established_profile",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "starting_occupation": "saddler",
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_american_1835",
         "chicago_democrat_1833_11_26"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -435,7 +436,10 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return selected for identity and duplicate testing."
     },
@@ -595,7 +599,10 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return selected for identity and duplicate testing."
     },
@@ -611,7 +618,9 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return selected for identity and duplicate testing."
     },
@@ -771,7 +780,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return selected for identity and duplicate testing."
     },
@@ -1077,7 +1087,9 @@
       "sources": [
         "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_1835",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich earlier return selected for identity and duplicate testing."
     },
@@ -1134,14 +1146,18 @@
       "person_id": "chapman_chas_h",
       "name": "Chas. H. Chapman",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
         "1834-04-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich earlier return selected for identity and duplicate testing."
     },

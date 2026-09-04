@@ -68,7 +68,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A DOCUMENTED RESIDENT OF THE SCENE MONTH ITSELF - the American's first issue belongs to June 1835, weeks before 1 July, which makes this one of only three households in the parcel whose Chicago presence is fixed by an event inside the scene season. data/structures/chicago_american_office.json already carries him."
+   "note": "A DOCUMENTED RESIDENT OF THE SCENE MONTH ITSELF - the American's first issue belongs to June 1835, weeks before 1 July, which makes this one of only three households in the parcel whose Chicago presence is fixed by an event inside the scene season. data/structures/chicago_american_office.json already carries him.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

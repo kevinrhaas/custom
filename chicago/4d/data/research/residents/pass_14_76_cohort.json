@@ -129,7 +129,9 @@
       "sources": [
         "calumet_club_early_chicago_1879",
         "chicago_democrat_1833_1835",
-        "chicago_tribune_1882_04_25_old_settler_deaths"
+        "chicago_tribune_1882_04_25_old_settler_deaths",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {
@@ -366,13 +368,17 @@
       "person_id": "chapman_chas_h",
       "name": "Chas. H. Chapman",
       "stratum": "letter_list_only_uncertain",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [
         "1834-04-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {
@@ -806,7 +812,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "norris_directory_1844"
       ]
     },
     {
@@ -912,11 +919,12 @@
       "person_id": "goss_o",
       "name": "O. Goss",
       "stratum": "established_profile",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_american_1835",
         "chicago_democrat_1833_11_26"
       ]
     },

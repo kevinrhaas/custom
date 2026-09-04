@@ -75,6 +75,16 @@
     "summary": "Orsemus Morrison came to Chicago in 1833, acquired school-section property, and worked as a mechanic/builder.",
     "source_ids": [
      "resident_research_cook_morrison_album"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred/projected_resident",
+      "rule": "G3",
+      "refusal_says": "the demotion is blind: this card cites `resident_research_cook_morrison_album`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
     ]
    }
   }

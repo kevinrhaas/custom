@@ -78,6 +78,16 @@
     "notes": "Published Cook County biography states Robert A. Kinzie remained mostly in Chicago from 1825 to 1840, built a frame store in 1832 and became a member of Kinzie, Davis & Hyde in 1835. Exact name, family context, business and year strongly corroborate the profile.",
     "source_ids": [
      "goodman_history_cook_county_early"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred",
+      "rule": "G2b",
+      "refusal_says": "the demotion is blind: this card cites `andreas_1884_v1`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
     ]
    }
   }

@@ -82,7 +82,19 @@
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [],
-   "note": "AN ADMISSION, NOT A PERSON. Mark Beaubien's large family is a commonplace of the Chicago literature and nothing this project holds names or counts them, so they are carried as one unnamed placeholder rather than as invented individuals. Do not count this entry as a person."
+   "note": "AN ADMISSION, NOT A PERSON. Mark Beaubien's large family is a commonplace of the Chicago literature and nothing this project holds names or counts them, so they are carried as one unnamed placeholder rather than as invented individuals. Do not count this entry as a person.",
+   "resident_research": {
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "inferred -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

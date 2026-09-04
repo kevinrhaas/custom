@@ -84,7 +84,17 @@
     "reviewed_on": "",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R1",
+      "proposal": "attested -> None",
+      "rule": "G5",
+      "refusal_says": "the ladder ABSTAINS (rule G5): every appearance this consolidation can see describes a date after the scene year, and the card rests on sources outside the seven domains it reads. G5 exists to decline to demote such a person on later evidence, and a pass that read the abstention as a verdict would be doing the one thing the rule forbids."
+     }
+    ]
    }
   }
  ],

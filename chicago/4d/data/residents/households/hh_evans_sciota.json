@@ -75,6 +75,16 @@
     "summary": "A Cook County history quoting the Chicago Democrat's October 15, 1834 political list names Sciota Evans among leading Cook County Democratic-Republicans. Milwaukee records then show Sciota Evans as constable in September 1835, documenting a plausible migration after the Chicago postal seed.",
     "source_ids": [
      "rr_cook_democratic_republicans_1834"
+    ],
+    "refusals": [
+     {
+      "ticket": "T-0701",
+      "refused_on": "2026-09-04",
+      "refusal": "R3",
+      "proposal": "attested -> inferred/projected_resident",
+      "rule": "G3",
+      "refusal_says": "the demotion is blind: this card cites `rr_cook_democratic_republicans_1834`, which the consolidation's seven domains do not read, so the proposal cannot be the whole account of what the grade rests on. Refused on the same argument G5 makes, one rung lower."
+     }
     ]
    }
   }

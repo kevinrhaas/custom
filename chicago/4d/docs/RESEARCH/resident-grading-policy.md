@@ -145,3 +145,60 @@ says.
 `--check` and `--self-test` run in `tools/check.sh`. The pass is **incremental**: it
 consolidates what is closed and runs again after every few sources. A pass that finds
 nothing newly closed says so and costs a run nothing.
+
+## Spending the proposal onto the people the town already carries (T-0701)
+
+`grading_proposal.json` is a proposal and, until T-0701, nothing in it had been written
+onto an existing card. Its `changes_to_existing_people` block held **158 rows** where the
+ladder and a committed card disagreed. `tools/mint_civic_residents.py --regrade` applies
+them — a second mode of the same tool, kept apart from `--build` because `--build` derives
+WHOLE cards it owns and this mode reaches into two fields of cards it does not.
+
+**56 applied, 102 refused.** The town moved: attested **480 → 498**, inferred **924 → 906**,
+`projected_resident` **791 → 745**. Every applied person carries the rule, the ladder's
+words for it, the move it made and the evidence rows behind it; every refused person
+carries the refusal.
+
+### The four refusals, and why each is a refusal rather than a grade
+
+| | n | The rule |
+|---|---|---|
+| **R1** | 36 | **The ladder abstains.** Rule G5 says NO PROPOSAL: every appearance the consolidation can see is later than the scene year and the card rests on sources outside the seven domains. G5 exists to decline to demote such a person, and reading the abstention as a verdict would do the one thing it forbids. |
+| **R2** | 20 | **The post office alone.** The proposal lifts the person out of `projected_resident` while every evidence class behind it is a Chicago letter list. A letter-list name leaves `projected_resident` when something OTHER than a letter list names them. |
+| **R3** | 43 | **A blind demotion.** The proposal lowers a grade on a card that cites a source the seven domains do not read — `andreas_1884_v1` on 25 of them. The proposal cannot be the whole account of what the grade rests on. Refused on G5's own argument, one rung lower. |
+| **R4** | 3 | **Another pass owns the card.** `mint_civic_residents.py --build` and `mint_placed_residents.py --build` re-derive their people byte for byte; a grade written on top would be reverted silently. The change belongs in the pass that owns the card. |
+
+R3 is the finding of the pass. **43 of the 45 demotions the ladder proposes are blind** —
+the consolidation reads seven domains and the cards it would demote rest on an eighth. Only
+two demotions survive it, and both are the same correction: a card graded `attested` on a
+Chicago paper where the paper's appearance is a list of uncalled-for letters, which the
+policy above declines to read as *a contemporary record naming the person in Chicago*.
+
+**No grade is lowered without a refusal recorded on the person.** An applied demotion
+writes a `D1` refusal onto the card naming the grade refused and the ladder's reason.
+
+### Where the ruling is kept
+
+The pass writes `regraded_on`, `regrade_ticket`, `rule`, `regraded_from`, `regraded_to`,
+`regrade_says`, `ladder_ratified` and `refusals[]` into the person's `resident_research`,
+and a `REGRADED ON THE RATIFIED LADDER` prefix onto the note, above the record written
+before the ruling. `tools/synthesize_resident_research.py` — the 2026-09-02 synthesis,
+which forces every letter-list person to `inferred`/`projected_resident` from a research
+outcome recorded a day before the ladder was ratified — now carries those keys through and
+leaves a regraded person's grade alone. **The 2026-09-03 ladder outranks it.**
+
+### Running it
+
+    tools/mint_civic_residents.py --regrade            apply
+    tools/mint_civic_residents.py --regrade --check    it re-derives byte for byte
+    tools/mint_civic_residents.py --regrade --report   every regrade and every refusal
+    tools/mint_civic_residents.py --regrade --scale    what it does to the town
+
+`--regrade --check` runs in `tools/check.sh`. The run date is a constant in the tool, not
+the clock: the check re-applies the whole pass and diffs it, and a `date.today()` would
+turn the gate red at midnight for no change in the data.
+
+**Not in scope, and it is T-0702:** the five 1840 heads `crosswalk_census_1840_heads.py`
+matched carry a `proposed_later_census` block and no IPUMS serial, which
+`census_1840_identity_bridges.csv` requires. `census_1840_linked` is unchanged at 3.
+

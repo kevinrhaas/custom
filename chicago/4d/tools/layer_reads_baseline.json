@@ -99,6 +99,9 @@
     "residents/household:persons[].resident_research.evidence_for": {
       "records": 311
     },
+    "residents/household:persons[].resident_research.ladder_ratified": {
+      "records": 56
+    },
     "residents/household:persons[].resident_research.notes": {
       "records": 311
     },
@@ -111,8 +114,44 @@
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
     },
+    "residents/household:persons[].resident_research.refusals[].proposal": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.refusals[].refusal": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.refusals[].refusal_says": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.refusals[].refused_on": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.refusals[].rule": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.refusals[].ticket": {
+      "records": 100
+    },
+    "residents/household:persons[].resident_research.regrade_says": {
+      "records": 56
+    },
+    "residents/household:persons[].resident_research.regrade_ticket": {
+      "records": 56
+    },
+    "residents/household:persons[].resident_research.regraded_from": {
+      "records": 56
+    },
+    "residents/household:persons[].resident_research.regraded_on": {
+      "records": 56
+    },
+    "residents/household:persons[].resident_research.regraded_to": {
+      "records": 56
+    },
     "residents/household:persons[].resident_research.reviewed_on": {
       "records": 611
+    },
+    "residents/household:persons[].resident_research.rule": {
+      "records": 56
     },
     "residents/household:persons[].resident_research.source_ids": {
       "records": 370
@@ -124,7 +163,7 @@
       "records": 611
     },
     "residents/household:persons[].resident_subtype": {
-      "records": 790
+      "records": 745
     },
     "residents/household:source_pass": {
       "records": 1302,
