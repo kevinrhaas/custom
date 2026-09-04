@@ -2,6 +2,7 @@
   "schema": 1,
   "domain": "land_sales",
   "generated_by": "tools/read_land_sales.py --build",
+  "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file.",
   "counts": {
     "purchasers": 431,
