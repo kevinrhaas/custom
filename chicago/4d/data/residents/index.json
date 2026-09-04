@@ -167,6 +167,63 @@
   ],
   "resident_subtypes": [
    "projected_resident"
+  ],
+  "ladder_rules": [
+   {
+    "rung": "G0",
+    "grade": "not_1835_resident",
+    "rule": "Every appearance describes a date after the scene year. 1839/1840 alone is never an 1835 resident — later evidence only."
+   },
+   {
+    "rung": "G1a",
+    "grade": "attested",
+    "rule": "The 1835 poll list and at least one other independent source."
+   },
+   {
+    "rung": "G1b",
+    "grade": "attested",
+    "rule": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town."
+   },
+   {
+    "rung": "G2a",
+    "grade": "inferred",
+    "rule": "The 1835 poll list alone."
+   },
+   {
+    "rung": "G2b",
+    "grade": "inferred",
+    "rule": "An 1833 or 1834 list (poll, tax, muster) with another source."
+   },
+   {
+    "rung": "G2c",
+    "grade": "inferred",
+    "rule": "The St Cyr register 1833-1835 — a party to a marriage or burial in the parish inside the scene window."
+   },
+   {
+    "rung": "G2d",
+    "grade": "inferred",
+    "rule": "Hubbard or Fergus or Norris naming a person the town already carries, with a trade or an address."
+   },
+   {
+    "rung": "G2e",
+    "grade": "inferred",
+    "rule": "A Chicago post-office letter list of 1833-1835 and nothing stronger. The list names a person whose mail is at Chicago; this tool declines to read that as the ladder's `contemporary record naming the person in Chicago` and grades it down. See the policy doc — it is the one reading put back to the owner."
+   },
+   {
+    "rung": "G3",
+    "grade": "inferred",
+    "rule": "A single appearance and nothing else: documented once, placed by nothing. Carries resident_subtype `projected_resident`."
+   },
+   {
+    "rung": "G4",
+    "grade": "inferred",
+    "rule": "Two or more appearances, none of them of a class a rung above accepts. Carries resident_subtype `projected_resident` until a rung above fires."
+   },
+   {
+    "rung": "G5",
+    "grade": null,
+    "rule": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner."
+   }
   ]
  },
  "counts": {
