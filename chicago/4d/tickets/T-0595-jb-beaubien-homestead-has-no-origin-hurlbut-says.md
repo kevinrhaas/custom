@@ -1,7 +1,7 @@
 ---
 id: T-0595
 title: jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 818
 claimed_by: run 9/4/2026, 5:38:15 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T23:02:11.902Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926198826
 ---
 
