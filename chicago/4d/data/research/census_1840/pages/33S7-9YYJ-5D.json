@@ -92,9 +92,21 @@
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
-  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading: the page population below has to be matched against the printed age-band totals at the foot of each candidate left sheet, and those have not been read yet. T-0539 does that for all eleven at once. Recorded as unpaired rather than guessed.",
+  "why": "RESOLVED by T-0642 where this says paired, and recorded as unpaired with its rule where it does not. The earlier text of this field said the left sheets had not been footed yet; they have now.",
   "page_population_key": 125,
-  "line_count_key": 31
+  "line_count_key": 31,
+  "tested_by": "T-0642",
+  "test": "both keys — the count of ruled lines carrying an entry, and the page population — against the twelve filled left sheets of image group 1, whose printed footings T-0642 read and published.",
+  "result": "No left sheet in images 1-25 carries both 31 entries and 125 persons. The six 31-entry sheets foot 103, 208, 146, 160, 182 and 152, and the nearest of them stands 21 away.",
+  "refusals": [
+   {
+    "printed_page": 222,
+    "familysearch_id": "33S7-9YYJ-98M",
+    "rule": "population within 2, line count wrong",
+    "why": "33S7-9YYJ-98M foots 123 or 124 against this sheet's 125, which is the closest population match anywhere in the group. It is refused because it carries 30 entries and one blank ruled line where this sheet carries 31, and the test requires BOTH keys. Recorded rather than dropped: if a later pass restates either line count the pair should be tried again."
+   }
+  ],
+  "published_in": "data/research/census_1840/left_sheet_population_key.json"
  },
  "records": [
   {

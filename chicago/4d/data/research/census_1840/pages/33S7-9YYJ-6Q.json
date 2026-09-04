@@ -410,11 +410,15 @@
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
-  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading. T-0539 pairs all eleven at once. Recorded as unpaired rather than guessed.",
+  "why": "RESOLVED by T-0642 where this says paired, and recorded as unpaired with its rule where it does not. The earlier text of this field said the left sheets had not been footed yet; they have now.",
   "page_population_key": 198,
   "page_population_key_note": "still the enumerator's own printed 198 and NOT this pass's 173. The printed footing is what T-0539 pairs on, because it is the enumerator's own arithmetic over his own sheet; this pass's per-line reading is short of it by 25 and says so.",
   "line_count_key": 30,
-  "line_count_key_note": "committed by T-0630 from the line grid, not from the TOTAL column's ink. The page population key (198) is still the enumerator's own footing and is unchanged."
+  "line_count_key_note": "committed by T-0630 from the line grid, not from the TOTAL column's ink. The page population key (198) is still the enumerator's own footing and is unchanged.",
+  "tested_by": "T-0642",
+  "test": "both keys — the count of ruled lines carrying an entry, and the page population — against the twelve filled left sheets of image group 1, whose printed footings T-0642 read and published.",
+  "result": "The three 30-entry left sheets foot 187, 123-124 and 137; the nearest stands 11 away from 198. No pair.",
+  "published_in": "data/research/census_1840/left_sheet_population_key.json"
  },
  "ticket": "T-0631",
  "column_closure": {

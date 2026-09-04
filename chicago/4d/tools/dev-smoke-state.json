@@ -12,6 +12,100 @@
       "passed": 109,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 262,
+      "takenAt": "2026-09-04T07:31:36.881Z",
+      "ref": "steward/t-0642-1840-left-sheet-key",
+      "commit": "d9d846e9d81b",
+      "devCommit": "0bca03f71937",
+      "treeHash": "sha256:3c8e21e738aa9f5a",
+      "treeDirty": false,
+      "changelogHash": "sha256:731d930a4cb3edf1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_d_13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 142,
+      "takenAt": "2026-09-04T07:31:36.799Z",
+      "ref": "steward/t-0642-1840-left-sheet-key",
+      "commit": "d9d846e9d81b",
+      "devCommit": "0bca03f71937",
+      "treeHash": "sha256:3c8e21e738aa9f5a",
+      "treeDirty": false,
+      "changelogHash": "sha256:731d930a4cb3edf1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_d_12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 202,
+      "takenAt": "2026-09-04T07:31:36.715Z",
+      "ref": "steward/t-0642-1840-left-sheet-key",
+      "commit": "d9d846e9d81b",
+      "devCommit": "0bca03f71937",
+      "treeHash": "sha256:3c8e21e738aa9f5a",
+      "treeDirty": false,
+      "changelogHash": "sha256:731d930a4cb3edf1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_m_1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 109,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 330,
       "takenAt": "2026-09-04T07:46:41.703Z",
       "ref": "steward/t-0641-census-1840-b1-b2-bf",
