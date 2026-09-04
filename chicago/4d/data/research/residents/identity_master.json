@@ -24,7 +24,7 @@
   "derived_refusals": 1858,
   "declared_merges": 290,
   "appearances_moved_by_a_landed_adjudication": 78,
-  "declared_refusals": 1306
+  "declared_refusals": 1313
  },
  "identities": [
   {"id":"id_abbot_samuel_e","surname":"abbot","forename":"samuel e","merge_rules":["M1"],"appearances":[{"domain":"census_1840","record_id":"33S7-9YYN-3CDH:28","source_id":"census_1840_cook_county","as_read":"Saml E Abbot","locator":"239:28","describes_date":"1840","evidence_class":"census_1840","normalized":"Samuel E. Abbot"}],"domains":["census_1840"],"sources_offered":["census_1840_cook_county"]},
@@ -9250,6 +9250,13 @@
   {"a":"Eli B. Williams","b":"Charles C. Williams","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"poll_1834 line 283"},{"resident":"williams_charles_c"}]},
   {"a":"T. G. Wright","b":"John Wright","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"poll_1834 line 284"},{"resident":"wright_john"}]},
   {"a":"William Smith","b":"Elded Smith","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"poll_1835 line 358"},{"resident":"smith_elded"}]},
+  {"a":"chicago_democrat_1835_06_10 TOWN CHARTER","b":"any town person","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_democrat_1833_1835","locator":"data/research/civic/claims/town_election_1835_democrat.json d001"}]},
+  {"a":"chicago_democrat_1835_07_08 election announcement","b":"any town person","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_democrat_1833_1835","locator":"data/research/civic/claims/town_election_1835_democrat.json d002"}]},
+  {"a":"chicago_democrat_1835_07_15 Chicago Charter Election return","b":"any town person","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_democrat_1833_1835","locator":"data/research/civic/claims/town_election_1835_democrat.json d003"}]},
+  {"a":"chicago_democrat_1835_08_26 ordinance code, passed 5 August 1835","b":"any town person","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_democrat_1833_1835","locator":"data/research/civic/claims/town_election_1835_democrat.json d004"}]},
+  {"a":"chicago_democrat_1835_07_15 charter, Sec. 4","b":"any town person","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_democrat_1833_1835","locator":"data/research/civic/claims/town_election_1835_democrat.json d005"}]},
+  {"a":"poll_1835, the 85-name list","b":"the town election of 10 July 1835","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"data/research/civic/claims/town_findings_voter_lists.json v003"}]},
+  {"a":"poll_1833, thirty names","b":"Andreas's twenty-eight voters","rule":"D2","declared_in":"civic/town_election_1835_crosswalk.json#refusals","evidence":[{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"data/research/civic/claims/town_findings_voter_lists.json v004"}]},
   {"a":"CHIPMAN ANSEL","b":"CHIPMON ANSEL","rule":"D2","declared_in":"land_sales/crosswalk.json#refusals","evidence":["data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"]},
   {"a":"DAVENPORT WILLIAM","b":"DEVINPORT WILLIAM","rule":"D2","declared_in":"land_sales/crosswalk.json#refusals","evidence":["data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"]},
   {"a":"DEVINPORT ISAIAH","b":"DEVINPORT JOSIAH","rule":"D2","declared_in":"land_sales/crosswalk.json#refusals","evidence":["data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"]},

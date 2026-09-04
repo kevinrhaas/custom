@@ -1,7 +1,7 @@
 ---
 id: T-0542
 title: Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 786
+claimed_by: run 9/4/2026, 8:05:33 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T14:35:01.901Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875911797
 ---
 
 **Found by T-0493**, which read the four voter lists of 1833-1835 and was asked to settle

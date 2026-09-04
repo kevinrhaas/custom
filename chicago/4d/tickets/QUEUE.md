@@ -72,7 +72,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
 # --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
-T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
 T-0665 — Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs
 T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
