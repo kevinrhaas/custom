@@ -166,6 +166,13 @@ The recorded consequence: `width_confidence` stays `inferred`, the width stays W
 the plat's disagreeing figure is on the record here so that the next reader does not have to
 re-measure the sheet to find out it was looked at.
 
+*Caveat, found while this was written and already filed: `tools/trace_river.py` would write
+`width_confidence: reconstructed` and `depth_confidence: conjectural` on its next run, against
+the committed `inferred` / `reconstructed`. Two runs found that on the same day — it is
+**T-0687**, which proves with `trace_river.py --check` that the geometry is byte-identical and
+only the two strings differ. This memo argues from the committed grades, and T-0687 is where
+they get decided.*
+
 ## 7. What this reading refuses
 
 - **It does not commit a course from the plat.** Not the channel, not its banks, not its
