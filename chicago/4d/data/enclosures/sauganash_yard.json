@@ -26,19 +26,34 @@
     {
       "id": "west_rear_and_east",
       "path_local_enu_m": [
-        [101.40, -130.60],
-        [101.40, -150.92],
-        [119.50, -151.07],
-        [119.50, -127.50]
+        [
+          101.4,
+          -130.6
+        ],
+        [
+          101.4,
+          -150.92
+        ],
+        [
+          117.42,
+          -151.07
+        ],
+        [
+          117.42,
+          -127.5
+        ]
       ],
-      "note": "ONE CONTINUOUS LINE, because the two buildings that stand on this lot close the fourth side themselves. It leaves the hotel's own south-west corner (data/sidecars/1835/sauganash_hotel.json: origin 101.40 / -130.60, no rotation, 12 x 8 m) and runs south on the hotel's west wall line — the Market Street frontage, which is what a lot fence on a street frontage follows, and the argument the Western Hotel's yard record makes for its own west side. It turns east along the REAR LINE, then runs north on the east wall line of Philo Carpenter's log shop (data/sidecars/1835/philo_carpenter_log_shop.json: origin 113.40 / -127.50, 6.096 x 4.877 m, so its east wall stands at E 119.496, taken here to the centimetre) and ends at that shop's south-east corner. Between those two ends the hotel and the shop stand shoulder to shoulder along the whole Lake Street frontage — E 101.40 to 119.50 — so the yard is enclosed on the north by walls and needs no fence there. THE REAR LINE IS THE ONE INVENTED COORDINATE ON THIS RECORD and it is a rule rather than a taste: see form.rear_line."
+      "note": "ONE CONTINUOUS LINE, because the two buildings that stand on this lot close the fourth side themselves. It leaves the hotel's own south-west corner (data/sidecars/1835/sauganash_hotel.json: origin 101.40 / -130.60, no rotation, 9.92 x 8 m since T-0626) and runs south on the hotel's west wall line — the Market Street frontage, which is what a lot fence on a street frontage follows, and the argument the Western Hotel's yard record makes for its own west side. It turns east along the REAR LINE, then runs north on the east wall line of Philo Carpenter's log shop (data/sidecars/1835/philo_carpenter_log_shop.json: origin 111.32 / -127.50, 6.096 x 4.877 m, so its east wall stands at E 117.416, taken here to the centimetre) and ends at that shop's south-east corner. Between those two ends the hotel and the shop stand shoulder to shoulder along the whole Lake Street frontage — E 101.40 to 117.42 — so the yard is enclosed on the north by walls and needs no fence there. THE REAR LINE IS THE ONE INVENTED COORDINATE ON THIS RECORD and it is a rule rather than a taste: see form.rear_line. MOVED IN 2.08 M ON 2026-09-04 (T-0626) AND NOT FOR A REASON OF ITS OWN. The Sauganash's 12 x 8 m placeholder footprint was retired for a measured 9.92 x 8 m block, the log cabin set hard against its east face came west with it, and this fence follows that cabin's east wall, so the east leg came in from E 119.50 to E 117.42. The rear line, the west leg and the gateway are untouched: the rule that placed each of them is unchanged and only the wall it measures from has moved. THE SAME PASS PUT A BUILDING INSIDE THIS YARD, which no previous version of this record had to reckon with: the hotel's second two-storey mass now stands back off its own rear wall at the east end, E 103.32 to 111.32 and N -130.60 to -138.60, and the drawn ground below is notched around it. The fence does not touch it and the Market Street gateway still opens onto 1.9 m of clear ground north of the wing's south-west corner and the whole width of the yard south of it."
     }
   ],
   "openings": [
     {
       "id": "market_gate",
       "on": "market",
-      "at_local_enu_m": [101.40, -140.76],
+      "at_local_enu_m": [
+        101.4,
+        -140.76
+      ],
       "width_m": 3.66,
       "confidence": "reconstructed",
       "note": "INVENTED, and it is the one thing on this record that no plate shows at all — the three views look at the front of the hotel and see the fence end-on or running away, and none of them looks down the Market Street side. What bounds it: a fence with no opening encloses a yard nobody can enter, and an inn whose yard took firewood, water and a hitched team could not have had one. So a single gateway is drawn rather than none, on the Market frontage because that is the only run of this fence that stands on a street, and centred in that run for want of anything saying where in it stood — which is the choice the Western Hotel's Canal gate makes and states. 3.66 m is 12 ft, recorded converted per data/datum.json's units rule: narrower than that yard's attested 14 ft team gateway, because this one is a hotel's back gate and not the entrance a wagon train was driven through. Nothing states a width, a leaf, a post or a fastening."
@@ -92,14 +107,44 @@
     "geometry": "drawn",
     "treatment": "dooryard_garden",
     "interior_local_enu_m": [
-      [101.40, -130.60],
-      [101.40, -150.92],
-      [119.50, -151.07],
-      [119.50, -127.50],
-      [113.40, -127.50],
-      [113.40, -130.60]
+      [
+        101.4,
+        -130.6
+      ],
+      [
+        101.4,
+        -150.92
+      ],
+      [
+        117.42,
+        -151.07
+      ],
+      [
+        117.42,
+        -127.5
+      ],
+      [
+        111.32,
+        -127.5
+      ],
+      [
+        111.32,
+        -130.6
+      ],
+      [
+        111.32,
+        -138.6
+      ],
+      [
+        103.32,
+        -138.6
+      ],
+      [
+        103.32,
+        -130.6
+      ]
     ],
-    "note": "DRAWN SINCE 2026-08-21 (T-0067). This block used to read 'NOT DRAWN, AND SAYING SO IS THE POINT' and then named the ticket that would fix it: the ground inside this fence was the prairie sward, while image 12 of the owner's brief is explicit that fenced ground in this town read as garden, orchard and dooryard green rather than as prairie. It reads that way now — the sward is suppressed inside the ring below and renderers/web/js/yards.js lays `dooryard_garden`: short kept green over the whole yard, a bank of tilled beds in the corner farthest from the Market Street gateway, and a trodden path in from that gateway. THE BEDS ARE A RULE AND NOT A CLAIM ABOUT THIS INN'S KITCHEN: at most four, inset from the fence, laid away from the gate, so that one rule fills a 28 x 20 ft town garden plot and leaves a hotel's back yard mostly green with a garden patch in one corner. Nothing states what stood on this ground; the whole treatment is graded reconstructed and claimed in docs/LIBERTIES.md L158. What is drawn inside the fence besides the ground is the trees the same plate shows behind it — data/flora/plantings/sauganash_yard.json — which this treatment does not disturb: the SWARD is suppressed here and the woody layer is not. THE INTERIOR IS AUTHORED, for the reason the run note gives: this yard's north side is WALLS, not fence. The ring leaves the hotel's south-west corner (101.40 / -130.60), follows the fence south, east along the rear line and north up the shop's east wall line to the shop's south-east corner (119.50 / -127.50), then west along the shop's south wall to the shop's south-west corner (113.40) and south to the hotel's south-east corner, closing along the hotel's south wall. Every metre is a committed footprint edge or a coordinate already on this record's own run; the step between the two south walls is the 3.1 m the shop stands back from the hotel, and that is in the committed sidecars rather than invented here."
+    "note": "DRAWN SINCE 2026-08-21 (T-0067). This block used to read 'NOT DRAWN, AND SAYING SO IS THE POINT' and then named the ticket that would fix it: the ground inside this fence was the prairie sward, while image 12 of the owner's brief is explicit that fenced ground in this town read as garden, orchard and dooryard green rather than as prairie. It reads that way now — the sward is suppressed inside the ring below and renderers/web/js/yards.js lays `dooryard_garden`: short kept green over the whole yard, a bank of tilled beds in the corner farthest from the Market Street gateway, and a trodden path in from that gateway. THE BEDS ARE A RULE AND NOT A CLAIM ABOUT THIS INN'S KITCHEN: at most four, inset from the fence, laid away from the gate, so that one rule fills a 28 x 20 ft town garden plot and leaves a hotel's back yard mostly green with a garden patch in one corner. Nothing states what stood on this ground; the whole treatment is graded reconstructed and claimed in docs/LIBERTIES.md L158. What is drawn inside the fence besides the ground is the trees the same plate shows behind it — data/flora/plantings/sauganash_yard.json — which this treatment does not disturb: the SWARD is suppressed here and the woody layer is not. THE INTERIOR IS AUTHORED, for the reason the run note gives: this yard's north side is WALLS, not fence. The ring leaves the hotel's south-west corner (101.40 / -130.60), follows the fence south, east along the rear line and north up the shop's east wall line to the shop's south-east corner (119.50 / -127.50), then west along the shop's south wall to the shop's south-west corner (113.40) and south to the hotel's south-east corner, closing along the hotel's south wall. Every metre is a committed footprint edge or a coordinate already on this record's own run; the step between the two south walls is the 3.1 m the shop stands back from the hotel, and that is in the committed sidecars rather than invented here. RE-CUT 2026-09-04 (T-0626). Two buildings are now taken out of this outline rather than one: the log cabin on the Lake Street frontage, which moved 2.08 m west with the wall it stands against, and the hotel's second two-storey mass, which stands back off the rear wall at the east end from E 103.32 to 111.32 and N -130.60 to -138.60. A yard's drawn ground is the ground a visitor can walk on, so a mass standing in it is a notch in this polygon and not a claim about the garden — the beds are laid away from the gateway by the rule above, and the corner farthest from it is still the south-east corner, unchanged by the notch."
   },
   "research_note": "THE YARD SIDE OF THE SAUGANASH, which is the half of the owner's three views nothing had been built from. docs/LIBERTIES.md L136 took the FRONT of this building from the same three plates — the plank walks, the board crossing and the two hitching posts — and left the fence and the trees standing in the brief unbuilt; T-0091 is that remainder. WHAT IS EVIDENCE HERE IS THE KIND AND THE FACT: a vertical-board fence, tall, enclosing the rear yard, with trees behind it, in three retrospective views that agree. WHAT IS DERIVED is every coordinate — two committed footprints and one committed lot polygon give the whole line except its depth. WHAT IS INVENTED is the depth rule, the height, the board and post dimensions, the course count and the gateway, all graded reconstructed and claimed in docs/LIBERTIES.md L139. WHAT WOULD UPGRADE IT: holding the Petford, Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed brief path this record cites into a source_id; or any Chicago fence ordinance of the 1830s, or a tax or insurance description of the Lake and Market corner lot, none of which this project holds."
 }

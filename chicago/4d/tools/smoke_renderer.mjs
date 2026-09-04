@@ -2403,7 +2403,7 @@ for (const [label, viewport, touch] of [
         .filter((st) => st.record === 'sauganash_yard_trees')
         .map((st) => ({
           ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          inYard: st.e > 101.4 && st.e < 117.42 && st.n < -130.6 && st.n > -151.07,
           clear: onRun(st.e, st.n),
         }));
       return {
@@ -6353,7 +6353,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18', 'L217'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -7296,6 +7296,31 @@ for (const [label, viewport, touch] of [
       absurd.length
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
+
+    // --- the Sauganash is two masses, not one box (T-0626) ------------------
+    //
+    // The owner reported this building from the walk: a mass missing at the back
+    // and a log hut standing in front of its street door. Both were record faults
+    // and both are fixed, so the fix is asserted where a regression would show —
+    // in the RENDERED bounds, not in the JSON, because a record that grew a
+    // `cross_wing` attribute nothing built would read as fixed everywhere else.
+    //
+    // Orientation-agnostic on purpose. The plan is a 9.92 m frontage on Lake
+    // Street with an 8 m block behind it and an 8 m wing behind THAT, so one
+    // horizontal extent is about 16.5 m with the roof overhangs and the other
+    // about 10.4 m; which of the two is x and which is z is the placement's
+    // business and not this assertion's. The box it replaces was 12 x 8, whose
+    // long side is 12.5 m — well under the floor here, so a revert fails.
+    const saugBox = scale.perStructure.find((st) => st.id === 'sauganash_hotel');
+    const saugPlan = saugBox ? [saugBox.size[0], saugBox.size[2]].sort((a, b) => b - a) : null;
+    check(`${label}: the Sauganash is rendered as its two-mass plan`,
+      !!saugPlan && saugPlan[0] >= 15.0 && saugPlan[0] <= 18.0
+      && saugPlan[1] >= 9.5 && saugPlan[1] <= 11.5,
+      saugPlan
+        ? `plan ${saugPlan[0].toFixed(2)} x ${saugPlan[1].toFixed(2)} m `
+          + `(want the long axis 15-18 m for block + cross wing, the short 9.5-11.5 m `
+          + `for the measured five-bay frontage; the retired placeholder was 12 x 8)`
+        : 'sauganash_hotel is not in the instance bounds at all');
 
     // --- nothing hovers -----------------------------------------------------
     //
