@@ -465,6 +465,5 @@ T-0619 — Volume 4 read by OCR, pages 1-306: the shards
 T-0620 — Volume 4 read by OCR, pages 307-612: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
-T-0645 — Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
