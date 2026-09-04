@@ -2,6 +2,71 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 102,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 166,
+      "takenAt": "2026-09-04T18:38:08.812Z",
+      "ref": "steward/t-0677-ring-townships-land-sales",
+      "commit": "98a6e8007c1c",
+      "devCommit": "3188cf08b50a",
+      "treeHash": "sha256:9a363698f0140250",
+      "treeDirty": false,
+      "changelogHash": "sha256:d71934a23f7bfe1b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.1,
+          2.2
+        ]
+      },
+      "source": "/tmp/s2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 202,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 176,
+      "takenAt": "2026-09-04T18:35:19.910Z",
+      "ref": "steward/t-0677-ring-townships-land-sales",
+      "commit": "98a6e8007c1c",
+      "devCommit": "3188cf08b50a",
+      "treeHash": "sha256:9a363698f0140250",
+      "treeDirty": false,
+      "changelogHash": "sha256:d71934a23f7bfe1b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          2.3,
+          1.8
+        ]
+      },
+      "source": "/tmp/s1.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "3,12-13",
       "parts": [
@@ -1521,69 +1586,6 @@
         ]
       },
       "source": "/tmp/s4_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 173,
-      "takenAt": "2026-09-04T10:36:39.867Z",
-      "ref": "steward/t-0654-census-1840-b2",
-      "commit": "f96b753d1b2c",
-      "devCommit": "24363a931f38",
-      "treeHash": "sha256:315b117865b7ac8d",
-      "treeDirty": false,
-      "changelogHash": "sha256:6a10f1e172e006a2",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.3,
-          3.8
-        ]
-      },
-      "source": "/tmp/s4_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 137,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 258,
-      "takenAt": "2026-09-04T10:36:39.779Z",
-      "ref": "steward/t-0654-census-1840-b2",
-      "commit": "f96b753d1b2c",
-      "devCommit": "24363a931f38",
-      "treeHash": "sha256:315b117865b7ac8d",
-      "treeDirty": false,
-      "changelogHash": "sha256:6a10f1e172e006a2",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.3,
-          3.8
-        ]
-      },
-      "source": "/tmp/s4_m.log"
     },
     {
       "viewport": "mobile",
