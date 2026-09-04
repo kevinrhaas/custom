@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 2:21 PM",
+  "generated_ct": "Sep 4, 2026, 3:37 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11398,6 +11398,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 153
+    },
+    {
+      "id": "T-0690",
+      "title": "dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     }
   ]
 }

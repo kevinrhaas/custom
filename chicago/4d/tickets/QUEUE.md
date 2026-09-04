@@ -291,3 +291,4 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
