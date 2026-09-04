@@ -211,7 +211,6 @@ T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with n
 
 T-0654 — The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals
 T-0655 — The 1840 census image 33S7-9YYJ-BF read line by line and closed against its own printed column totals
-T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
