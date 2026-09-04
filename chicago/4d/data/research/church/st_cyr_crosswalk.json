@@ -8,8 +8,8 @@
   "targets_examined": 849,
   "rule": "Surnames must fold equal after case and punctuation are dropped, AND the forenames must agree initial for initial in one direction or the other. A surname-only agreement is always a refusal. A row the page prints without a forename is reported no_forename, carried and never matched.",
   "counts": {
-    "refusal": 83,
-    "unmatched": 434,
+    "refusal": 82,
+    "unmatched": 435,
     "candidate": 5,
     "no_forename": 4,
     "ruled_no_town_change": 5
@@ -6372,15 +6372,9 @@
       "role": "decedent",
       "describes_date": "1836-07-16",
       "scene_year": false,
-      "outcome": "refusal",
-      "residents": [
-        {
-          "person_id": "8_perry_a",
-          "name": "Perry A. 8.",
-          "grade": "inferred"
-        }
-      ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'John . . .' against 'Perry A. 8.'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-07-16 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to ''. NOT THE SCENE YEAR: this reading is dated 1836-07-16 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_death_09_1",

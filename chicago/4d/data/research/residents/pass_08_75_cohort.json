@@ -427,8 +427,8 @@
       ]
     },
     {
-      "household_id": "hh_f_mabbet_benjamin",
-      "person_id": "f_mabbet_benjamin",
+      "household_id": "hh_mabbet_benjamin_f",
+      "person_id": "mabbet_benjamin_f",
       "name": "Mabbet Benjamin F.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -475,8 +475,8 @@
       ]
     },
     {
-      "household_id": "hh_a_mason_sabrina",
-      "person_id": "a_mason_sabrina",
+      "household_id": "hh_mason_sabrina_a",
+      "person_id": "mason_sabrina_a",
       "name": "Mason Sabrina A.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -595,8 +595,8 @@
       ]
     },
     {
-      "household_id": "hh_i_mcloud",
-      "person_id": "i_mcloud",
+      "household_id": "hh_mcloud_i",
+      "person_id": "mcloud_i",
       "name": "McLoud I.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -716,8 +716,8 @@
       ]
     },
     {
-      "household_id": "hh_b_merrich_j",
-      "person_id": "b_merrich_j",
+      "household_id": "hh_merrich_j_b",
+      "person_id": "merrich_j_b",
       "name": "merrich J. B.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -788,8 +788,8 @@
       ]
     },
     {
-      "household_id": "hh_c_mills_joel",
-      "person_id": "c_mills_joel",
+      "household_id": "hh_mills_joel_c",
+      "person_id": "mills_joel_c",
       "name": "Mills Joel C.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -824,8 +824,8 @@
       ]
     },
     {
-      "household_id": "hh_m_lean_john_y",
-      "person_id": "m_lean_john_y",
+      "household_id": "hh_mlean_john_y",
+      "person_id": "mlean_john_y",
       "name": "John Y. M'Lean",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [

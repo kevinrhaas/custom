@@ -1577,6 +1577,19 @@ step "…and its own assertions still fire when broken" \
 step "the cross-domain identity master re-derives, and no grade stands above its rung" \
   python3 tools/consolidate_resident_evidence.py --check
 
+# T-0638 fault C. The two READING RULES that ticket fixed are mechanical and were
+# applied; the dozen names whose LETTERS look wrong are not, and this project does not
+# invent readings. So they are written down instead — the printing, the column it was
+# printed in, and a suspicion that is graded nothing and acted on nowhere. Gated
+# because a worklist is only worth anything while it still cites the corpus it came
+# from, and because the one way this file could do harm is by quietly acquiring a
+# grade and becoming evidence for a name nobody ever read.
+step "the letter lists' suspected misreadings stay a worklist and not evidence" \
+  python3 tools/register_letter_list_suspicions.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/register_letter_list_suspicions.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
 
