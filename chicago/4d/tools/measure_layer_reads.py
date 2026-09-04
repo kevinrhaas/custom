@@ -192,12 +192,12 @@ STATED_SHARED = frozenset({
     # These leaves also occur in the separately rendered research_pilot payload;
     # a bare-name text scan cannot attribute those accesses to the embedded block.
     "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
-    # `source` is the volume each row of a T-0514 evidence block resolves to
-    # (civic_evidence[].source and the four beside it). The only `.source` in the
-    # renderers is main.js:1808 — `asked.source === 'key'`, a keyboard event's own
-    # origin, nothing to do with a resident. The blocks reach no visitor yet and
-    # stay in the unread bank; T-0668 is the ticket that puts them on the card.
-    "source",
+    # `source` WAS here: the volume each row of a T-0514 evidence block resolves
+    # to, with the only `.source` in the renderers being main.js:1808's keyboard
+    # event. T-0668 put the blocks on the card, so `citationsById.get(entry.source)`
+    # is now a resident read and the five paths are declared shown below. The
+    # exemption is gone rather than kept as a courtesy: a stated share is an
+    # admission the scan cannot attribute an access, and this one it can.
 })
 
 # ---------------------------------------------------------------------------
@@ -444,6 +444,19 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
     "vocabulary.occupations": ("shown", "vocab.occupations"),
+    # T-0668. The ratified grading ladder, carried in the manifest because the card
+    # prints a rung id beside a person's grade and the rung's text lived in Python.
+    # `tools/consolidate_resident_evidence.py --check` holds this block equal to its
+    # own `GRADE_RULES`, so the words on 531 cards cannot drift from the ladder.
+    "vocabulary.ladder_rules[].rung": ("shown", "(ladderRules || []).find((r) => r.rung"),
+    "vocabulary.ladder_rules[].grade": ("shown", "swatch(rung && rung.grade)"),
+    "vocabulary.ladder_rules[].rule": ("shown", "rung ? escapeHtml(rung.rule)"),
+    # The consolidation's own mint, on the manifest: the tally in the count
+    # sentence, and the per-household flag as a chip on the closed row. Both were
+    # banked unread, and both collide by leaf name with `persons[].civic_mint`,
+    # which is why they are shown rather than exempted.
+    "counts.civic_mint": ("shown", "${counts.civic_mint} of these people were minted"),
+    "households[].civic_mint": ("shown", "entry.civic_mint"),
 }
 
 RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
@@ -648,6 +661,65 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].later_census.scan_verified.age_bands": ("shown", "band by band: ${escapeHtml(scan.age_bands)}"),
     "persons[].later_census.scan_verified.column_totals_check": ("shown", "escapeHtml(scan.column_totals_check)"),
     "persons[].later_census.scan_disagreement": ("shown", "escapeHtml(census.scan_disagreement)"),
+    # -----------------------------------------------------------------------
+    # T-0668. THE EVIDENCE CONSOLIDATION'S OWN READING, on the card at last.
+    #
+    # `tools/consolidate_resident_evidence.py` reads seven source domains, decides
+    # who is who and grades each person on a ratified ladder. Everything it decided
+    # was written onto the person and NOTHING read it: 44 figures over 531 people,
+    # the largest unread population this census has ever carried on one layer. That
+    # is the T-0491 defect at scale — a grade is a verdict, the appearances are the
+    # argument, and a verdict shipped without its argument is an assertion.
+    #
+    # The five domains share one row shape and one renderer — `evidenceLineHtml` —
+    # so one expression covers each leaf across all five, exactly as `claimRow`
+    # covers the graded claims above. `describes_date` is on every line on purpose:
+    # the domains are not contemporaries of each other and the ladder grades them
+    # differently for that reason.
+    "persons[].ladder_rule": ("shown", "escapeHtml(String(person.ladder_rule))"),
+    "persons[].civic_mint": ("shown", "person.civic_mint"),
+    "persons[].press_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].press_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].press_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].press_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].press_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].press_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].press_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].civic_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].civic_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].civic_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].civic_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].civic_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].civic_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].civic_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].church_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].church_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].church_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].church_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].church_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].church_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].church_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].book_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].book_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].book_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].book_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].book_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].book_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].book_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].census_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].census_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].census_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].census_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].census_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].census_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].census_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    # The two people the consolidation could date. Both go through `claimRow`, so
+    # each carries its own confidence, its reasoning and its citation like every
+    # other graded claim on this card; the age is a RANGE because a birth year with
+    # no month cannot say which side of 1 July the person turned.
+    "persons[].biographical_evidence.birth_year.value": ("shown", "bio.birth_year && bio.birth_year.value"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.min": ("shown", "between ${age.value.min}"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.max": ("shown", "and ${age.value.max}"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {
