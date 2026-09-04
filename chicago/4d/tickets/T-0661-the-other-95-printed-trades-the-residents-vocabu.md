@@ -1,7 +1,7 @@
 ---
 id: T-0661
 title: The other 95 printed trades the residents vocabulary still cannot say
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 4:06:25 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918578062
 ---
 Sweeping the whole gazetteer the way T-0418 swept its 36 finds 131 people who arrive
 with a printed trade `compile_register.py` has no word for. T-0418 spent the 36 the
