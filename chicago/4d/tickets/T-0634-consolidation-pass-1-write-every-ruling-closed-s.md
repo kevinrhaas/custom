@@ -1,7 +1,7 @@
 ---
 id: T-0634
 title: Consolidation pass 1: write every ruling closed since T-0513 onto the card it names, and report the delta on both hops
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 783
 claimed_by: run 9/4/2026, 8:05:32 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T13:41:58.934Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875904640
 ---
 
