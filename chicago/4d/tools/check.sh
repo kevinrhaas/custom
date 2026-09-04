@@ -1351,6 +1351,19 @@ step "the land tract sales re-derive from their committed deposit" \
 step "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-0609. The register says who bought the ground and the dataset says what stands on it,
+# and until now no file joined the two. The join is geometry on a grid this project
+# CONSTRUCTS from a single control point, so both halves are gated: the tracts and the
+# join re-resolve from the committed entries, and the land_owner block on a structure is
+# re-derived rather than trusted. That second half is the one that matters — a block
+# naming a man as the owner of ground a building does not stand on is exactly the kind of
+# claim this project exists not to make, and a hand-edit is how it would arrive.
+step "the land tracts re-resolve, and every land_owner block is still the join's" \
+  python3 tools/resolve_land_tracts.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/resolve_land_tracts.py --self-test
+
 # T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
 # can reach, and its two halves are segmented by two different rules — the shouted head of
 # a trade card on page 1, the current letter section on pages 2-4 — because the printer set

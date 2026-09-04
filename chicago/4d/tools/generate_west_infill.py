@@ -31,6 +31,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+from derived_overlays import strip_overlays
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 STRUCTURES = DATA / "structures"
@@ -559,7 +561,9 @@ def main() -> int:
         if args.check:
             if not path.exists():
                 drift.append(f"{path.relative_to(ROOT)} is missing")
-            elif path.read_text(encoding="utf-8") != text:
+            # Another derivation may own a block on this record; strip_overlays says
+            # which, and each is re-derived by its own gate. See tools/derived_overlays.py.
+            elif strip_overlays(path.read_text(encoding="utf-8")) != text:
                 drift.append(f"{path.relative_to(ROOT)} has drifted from the West recipe")
         else:
             path.write_text(text, encoding="utf-8")

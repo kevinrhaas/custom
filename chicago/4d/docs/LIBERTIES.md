@@ -10194,3 +10194,47 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **T-0616** (the owner's brief).
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
+
+### L219 — The whole section grid, stepped off one control point and a bearing
+
+**Decision:** every federal land tract this project puts on the ground is placed on a PLSS
+grid this project **constructs**: the corner of sections 9/10/15/16 of T39N R14E — `G1` in
+`data/traces/gcp/wright_1834_gcps.json`, State & Madison — carried on the plat's own
+east-west bearing at the nominal section mile of 5280 US survey feet, six miles to a
+township, with T40N R14E stepped six miles north of T39N along the same range line.
+`tools/resolve_land_tracts.py` builds it, `tools/check.sh` re-derives it, and 127 tracts and
+19 `land_owner` blocks rest on it.
+**Why:** this project holds ONE PLSS control point and not a single section-line trace, and
+the join the tracts were read for — who owned the ground a building stands on — cannot be
+made without a grid of some kind. The construction is not new: **L108** already carried this
+same corner on this same bearing to fix the United States Reservation's west and south
+lines, and **L109** carried it again for Madison's centreline. What is new is only its
+EXTENT — two lines became thirty-six sections in two townships — and the honest cost of that
+is that the further from G1 a tract lies, the less the nominal grid is worth, with nothing in
+the dataset able to say how much less.
+**Consequence:** every rectangle is graded `inferred` and every `land_owner` block says in
+its own note that the grid is a construction. Three errors ride on it and are stated rather
+than bounded: G1's own 13.9 m residual; the ~20 m any position traced off the 1834 sheets
+carries, which is the structure's side of the same test; and the difference between a nominal
+six-mile township and a real one, which closes on its own corners and does not measure
+5280 feet twice in a row. A structure standing within a few tens of metres of a section line
+may be on the other side of it, and nothing here can tell. **What the grid is NOT used for:
+nothing.** No block, lot, corridor, street, terrain sample or structure position is derived
+from it; it moves no vertex and stales no mesh. It answers one question — which rectangle a
+committed position falls in — and every answer is a research file plus a prose block.
+**And the refusals are the larger half.** 178 of the 305 tracts get no rectangle at all: a
+fractional part is bounded by a meander line and not by the grid, a school-section town lot
+needs the 1833 plat this project has not read, and a voided entry is a sale that did not
+stand. That includes the two tracts a reader would most want — the southwest fractional
+quarter of section 10, which is the Fort Dearborn reservation, and the north fraction of the
+same section — and drawing either as a nominal quarter would have been an invention dressed
+as a resolution.
+**How to resolve:** the General Land Office's own township plats and field notes for T39N and
+T40N R14E give the surveyed section corners directly, and reading them would replace this
+whole construction with measurement and end this entry; a second modern PLSS corner anywhere
+in either township would at least let the nominal mile be tested rather than assumed; and the
+canal commissioners' 1833 plat of the school section would place 113 of the refused tracts.
+Related: **L108** (the same corner and bearing, for the reservation's two lines) ·
+**L109** (and again, for Madison) · tickets **T-0609** (this), **T-0557** (the register this
+places), **T-0610** (the sections the database truncated, still unread).
+**Recorded:** 2026-09-04.

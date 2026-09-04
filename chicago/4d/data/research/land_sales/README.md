@@ -95,6 +95,48 @@ county and date.
   needs a different shape of query.
 - **The canal sections.** They were sold by the canal commissioners, not the land
   office, and are not in this database at all — their absence is not a hole.
-- **The join from a tract to a standing structure.** `entries.json` carries a
-  structured `tract` for exactly that purpose; resolving a quarter-quarter or a town
-  lot to a footprint against the plat is the next ticket's work, not this one's.
+- **The join from a tract to a standing structure.** Done since T-0609 — see below —
+  for the 127 tracts that are regular aliquots, and refused for the other 178.
+
+
+## The tracts on the ground, and the 19 structures they reach (T-0609)
+
+`tracts.json` puts each of the 305 distinct tracts on the ground and `structure_tracts.json` asks, of
+every structure's committed position, which tract contains it. Both are written by
+`tools/resolve_land_tracts.py --build` and re-derived by `--check`, which also refuses a
+`land_owner` block on a structure record that is not the one the join derives. The block is
+GENERATED; hand-editing one is a gate failure.
+
+**The grid is a construction, and it is the whole caveat.** This project holds one PLSS
+control point — `G1`, State & Madison, the corner of sections 9/10/15/16 of T39N R14E — and
+no section-line trace. So the grid is that corner carried on the plat's own east-west bearing
+at the nominal section mile, six miles to a township, with T40N R14E stepped six miles north.
+That is the construction **L108** and **L109** already used for two lines, extended to the
+whole grid, and **L219** records it. It is graded `inferred` everywhere and no vertex in this
+project is derived from it.
+
+| | tracts |
+|---|---|
+| resolved to a rectangle | 127 |
+| refused — a lot or a block on the 1833 school-section plat | 135 |
+| refused — a fractional part, bounded by a meander line | 23 |
+| refused — the register's VOID mark rides in the aliquot column | 20 |
+
+**The refusals are the larger half and two of them hurt.** The southwest fractional quarter
+of section 10 is the Fort Dearborn reservation John Baptist Beaubien pre-empted on
+1835-05-28; the north fraction of the same section is Robert A. Kinzie's 1831 entry. Both are
+fractional, both are bounded by water rather than by the grid, and drawing either as a
+nominal quarter would be an invention dressed as a resolution.
+
+**What the join found.** 19 of 372 structures stand on a resolved tract, all of them north of
+the river and west of State Street: 18 reconstructed North Division roofs on the east half of
+the northeast quarter of section 9, entered by **Alexander Wolcott** on 1830-09-29, and
+Clybourn's slaughterhouse on the east half of the northwest quarter, entered by **James
+Kinzie** the day before. The other 353 stand on ground this pass will not draw — most of the
+town is on fractional section 9 and on the plat itself, and the school section's lots are
+unplaced.
+
+**And a purchase is not a title.** `land_owner` names the person the register records as
+entering that ground from the United States, on the date it gives. Every one of the sales
+this join lands on is from September 1830, five years before the scene date, in a town whose
+whole business in 1835 was selling land again. The block says so in its own note.

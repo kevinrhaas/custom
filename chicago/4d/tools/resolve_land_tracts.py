@@ -367,7 +367,7 @@ LAND_OWNER_NOTE = (
     "falls inside {tract} on the PLSS grid this project constructs from its ONE control "
     "point — G1, State & Madison, the corner of sections 9/10/15/16 — carried on the "
     "plat's own east-west bearing at the nominal section mile. The grid is a "
-    "construction and not a survey (L218), G1 carries a 13.9 m residual and the position "
+    "construction and not a survey (L219), G1 carries a 13.9 m residual and the position "
     "itself carries the record's own uncertainty, so a structure near a section line may "
     "be on the other side of it. AND A PURCHASE IS NOT A TITLE: {who} entered this tract "
     "from the United States on {when}, which is what the register records and all it "
@@ -423,7 +423,7 @@ def derive() -> tuple[dict, dict]:
         "note": ("Every distinct tract in the register, resolved to a rectangle on this "
                  "project's constructed PLSS grid or refused with the reason. The grid is "
                  "one control point and a bearing, not a survey; see the module docstring "
-                 "and L218. Coordinates are local ENU metres from data/datum.json."),
+                 "and L219. Coordinates are local ENU metres from data/datum.json."),
         "frame": {
             "control_point": "G1 (State & Madison), data/traces/gcp/wright_1834_gcps.json",
             "control_point_local_enu_m": [round(frame.g1[0], 3), round(frame.g1[1], 3)],

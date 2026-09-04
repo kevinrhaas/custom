@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "land_sales",
   "generated_by": "tools/resolve_land_tracts.py --build",
-  "note": "Every distinct tract in the register, resolved to a rectangle on this project's constructed PLSS grid or refused with the reason. The grid is one control point and a bearing, not a survey; see the module docstring and L218. Coordinates are local ENU metres from data/datum.json.",
+  "note": "Every distinct tract in the register, resolved to a rectangle on this project's constructed PLSS grid or refused with the reason. The grid is one control point and a bearing, not a survey; see the module docstring and L219. Coordinates are local ENU metres from data/datum.json.",
   "frame": {
     "control_point": "G1 (State & Madison), data/traces/gcp/wright_1834_gcps.json",
     "control_point_local_enu_m": [
