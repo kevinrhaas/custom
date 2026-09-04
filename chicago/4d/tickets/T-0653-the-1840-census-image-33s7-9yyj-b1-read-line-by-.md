@@ -1,7 +1,7 @@
 ---
 id: T-0653
 title: The 1840 census image 33S7-9YYJ-B1 read line by line and closed against its own printed column totals
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0641
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 768
 claimed_by: run 9/4/2026, 2:18:59 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T07:47:27.639Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33846649199
 ---
 
