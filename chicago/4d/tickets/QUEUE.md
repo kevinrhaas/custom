@@ -140,13 +140,11 @@
 # --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
 # --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
 # --- reaching a town person and 0 reaching their card; this band is what moves that number.
-T-0513 — 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
 # --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
 # --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
 # --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
 # --- which is the manual step this whole programme exists to stop relying on.
-T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
 # --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
 # --- items in the queue you think will yield the best research results, those ones at the top".
@@ -185,13 +183,23 @@ T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest
 # --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
-T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
-T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
-T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
-T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
+# --- THE SAUGANASH DEEP DIVE — OWNER REQUEST, 2026-09-03, placed at the top on his
+# --- instruction: "we need also an early visible ticket to do a deep dive on the sauganash
+# --- hotel". He reported it from the dev preview: "there is an extra log structure you have in
+# --- front and i think there is a structure missing but you have it on the front and they have
+# --- it on the rear in pictures, and it looks like the full height of the main building and
+# --- similar design as the main building appears to be almost the same size, it connects from
+# --- the back and side in the images ... this is an attested structure we are putting fine
+# --- points on it". And on the finish: "you are missing a fair amount of detail, like the door,
+# --- the windows, the roof, etc." He deposited four views at
+# --- chicago/reference/images/chicago/sauganash-hotel/ and supplied a plan sketch (transcribed
+# --- in T-0616). VISIBLE work on the town's most-looked-at corner: T-0617 reads the plates,
+# --- T-0626 spends the reading. Split from T-0616 because reading four plates and rebuilding
+# --- the massing are two demonstrations. (T-0626 was filed as T-0618 and restamped: dev's own
+# --- #749 had minted a T-0618 of its own for the Newberry volume-4 OCR reader.)
+T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
+
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
-T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
 
 
@@ -201,17 +209,11 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
-T-0578 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
-T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
-T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 
-T-0585 — The 1840 census images 1-25: names and cells of the left sheet printed 219
-T-0565 — The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread
-T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
-T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
-T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
-T-0546 — The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211
-T-0553 — The 1840 census images 26-50: names and cells of the left sheets printed 218 and 224
+T-0646 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap
+T-0644 — The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
+T-0641 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals
+T-0642 — The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
@@ -450,6 +452,20 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
 T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-T-0599 — A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it
-T-0604 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
-T-0605 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
+T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
+T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
+T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
+T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
+T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
+T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
+T-0619 — Volume 4 read by OCR, pages 1-306: the shards
+T-0620 — Volume 4 read by OCR, pages 307-612: the shards
+T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
+T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
+T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
+T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse
+T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
+T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
+T-0654 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0653 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down

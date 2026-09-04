@@ -18,8 +18,8 @@
   "selection_policy": "After the pilot and passes 2–5, filter to real named letter_list_only residents; exclude reconstructed/inf_* and unnamed/count placeholders; sort person_id within present and uncertain strata, interleave present then uncertain, and take this fixed chunk in sequence. The manifest is frozen to prevent duplicate research.",
   "people": [
     {
-      "household_id": "hh_ll_wm_p_cleaveland",
-      "person_id": "ll_wm_p_cleaveland",
+      "household_id": "hh_cleaveland_wm_p",
+      "person_id": "cleaveland_wm_p",
       "name": "Wm. P. Cleaveland",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -30,8 +30,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_shier",
-      "person_id": "ll_wm_shier",
+      "household_id": "hh_shier_wm",
+      "person_id": "shier_wm",
       "name": "Wm. Shier",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -42,8 +42,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_t_bently",
-      "person_id": "ll_wm_t_bently",
+      "household_id": "hh_bently_wm_t",
+      "person_id": "bently_wm_t",
       "name": "Wm. T. Bently",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -54,8 +54,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_teall",
-      "person_id": "ll_wm_teall",
+      "household_id": "hh_teall_wm",
+      "person_id": "teall_wm",
       "name": "Wm. Teall",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -66,8 +66,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_winson",
-      "person_id": "ll_wm_winson",
+      "household_id": "hh_winson_wm",
+      "person_id": "winson_wm",
       "name": "Wm. Winson",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -78,8 +78,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_wm_wood",
-      "person_id": "ll_wm_wood",
+      "household_id": "hh_wood_wm",
+      "person_id": "wood_wm",
       "name": "Wm. Wood",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_woodworth_james_h",
-      "person_id": "ll_woodworth_james_h",
+      "household_id": "hh_woodworth_james_h",
+      "person_id": "woodworth_james_h",
       "name": "James H. Woodworth",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_worden_nathaniel",
-      "person_id": "ll_worden_nathaniel",
+      "household_id": "hh_worden_nathaniel",
+      "person_id": "worden_nathaniel",
       "name": "Nathaniel Worden",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_works_charles",
-      "person_id": "ll_works_charles",
+      "household_id": "hh_works_charles",
+      "person_id": "works_charles",
       "name": "Charles Works",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_young_gideon",
-      "person_id": "ll_young_gideon",
+      "household_id": "hh_young_gideon",
+      "person_id": "young_gideon",
       "name": "Gideon Young",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "household_id": "hh_ll_zearly_reason",
-      "person_id": "ll_zearly_reason",
+      "household_id": "hh_zearly_reason",
+      "person_id": "zearly_reason",
       "name": "Reason Zearly",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [

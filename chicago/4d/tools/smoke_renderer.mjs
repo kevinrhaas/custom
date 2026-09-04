@@ -4236,8 +4236,47 @@ for (const [label, viewport, touch] of [
         return { id: walk.id, len: Math.round(len * 10) / 10, cells, open, empty,
                  worst: Math.round(worst * 1000) / 1000 };
       })();
+      // THE DECAL ORDER (T-0625), and it is asserted structurally because the
+      // fault it catches is invisible to every count this layer reports about
+      // itself. The street ribbon is a decal — depthWrite off, polygonOffset
+      // -8/-32 so the terrain cannot punch through its drape — and that offset
+      // scales with the polygon's depth slope, which at the grazing angle a road
+      // is seen at is large enough to beat the 0.06 m a board crossing stands
+      // above it. The ribbon then paints over the crossing in hard triangular
+      // patches. frontage.js answers that by drawing the timber AFTER the
+      // ribbon, which requires two things that are easy to separate by accident:
+      // the two must be in the SAME render list (three draws every opaque before
+      // any transparent, and renderOrder cannot reach across the two lists), and
+      // the timber's renderOrder must be the higher. The layer shipped with only
+      // the second for two months and the comment claiming both.
+      const decal = (() => {
+        let root = f?.group;
+        while (root?.parent) root = root.parent;
+        if (!root) return null;
+        const street = [];
+        const timber = [];
+        root.traverse((o) => {
+          const m = o.material;
+          if (!m) return;
+          for (const mm of (Array.isArray(m) ? m : [m])) {
+            const nm = mm?.name || '';
+            if (/^street-/.test(nm)) street.push({ transparent: !!mm.transparent, order: o.renderOrder });
+            else if (nm === 'frontage-timber') timber.push({ transparent: !!mm.transparent, order: o.renderOrder });
+          }
+        });
+        if (!street.length || !timber.length) return null;
+        return {
+          street: street.length,
+          timber: timber.length,
+          sameList: street.every((s) => timber.every((t) => t.transparent === s.transparent)),
+          timberAfter: street.every((s) => timber.every((t) => t.order > s.order)),
+          streetOrder: street[0].order,
+          timberOrder: timber[0].order,
+        };
+      })();
       return {
         edge,
+        decal,
         hitching,
         recordIds: (f?.records ?? []).map((r) => r.id),
         noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
@@ -4423,6 +4462,23 @@ for (const [label, viewport, touch] of [
     // in 0.2 m stations and asks every one of them for timber from the deck to
     // the ground at the walk's own edge line; it is written to fail on the comb
     // of board ends this replaced.
+    // T-0625. The owner reported the crossing at Lake and South Water still
+    // broken after T-0460 shipped: the road was painting over the plank deck in
+    // triangular patches, which reads as the same sawtooth from the street but
+    // is a render-order fault, not a geometry one. T-0460's probe above cannot
+    // see it — the timber IS there, at the right height, with a continuous edge;
+    // it is simply not the thing on the screen. So this asserts the ordering
+    // contract itself: same render list, timber after the ribbon.
+    check(`${label}: the street decal cannot paint over the timber laid on it`,
+      frontage.decal !== null && frontage.decal.sameList && frontage.decal.timberAfter,
+      frontage.decal === null
+        ? 'no street ribbon or no frontage timber in the scene to compare'
+        : `${frontage.decal.street} street material(s) and ${frontage.decal.timber} timber `
+          + `mesh(es): sameList=${frontage.decal.sameList} (three draws every opaque before `
+          + `any transparent, so renderOrder cannot order across the two lists), `
+          + `timberAfter=${frontage.decal.timberAfter} `
+          + `(street renderOrder ${frontage.decal.streetOrder}, timber ${frontage.decal.timberOrder})`);
+
     check(`${label}: a plank walk's side is one made edge for its whole length`,
       frontage.edge !== null && frontage.edge.open === 0 && frontage.edge.cells > 400
         && frontage.census?.kerb > 3000,
@@ -10326,9 +10382,9 @@ for (const [label, viewport, touch] of [
       const group = mount ? mount.querySelector('details.res-ll-group') : null;
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
-      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
-      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      const letter = rows.find((r) => r.dataset.id === 'hh_luce_william');
+      const candidate = rows.find((r) => r.dataset.id === 'hh_garrett_a');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_hail_aifred');
       for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;

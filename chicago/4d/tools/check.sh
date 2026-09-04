@@ -31,6 +31,16 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# A book's page numbers are its locators, and for Hubbard's autobiography they are DERIVED:
+# the committed text is the Internet Archive's djvu OCR, which carries no page breaks at all,
+# so the leaf boundaries are carried onto it from the deposited scan. A derivation that is not
+# gated drifts, and this one is cheap — it reads committed files only and needs no poppler.
+step "book page indexes still match the text they index" \
+  python3 tools/build_book_page_index.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/build_book_page_index.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
@@ -767,6 +777,18 @@ step "the ways the fort plates draw are still the ways the town was built to" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_fort_ways_plate.py --self-test
 
+# T-0617. The same rule, applied to the owner's four Sauganash views: a row of
+# docs/RESEARCH/sauganash_image_accuracy.md states a measurement, names the tool
+# that made it, and prints the number. This gates on the four claims the note
+# rests on — five bays over five with the door in the middle, and an annex whose
+# courses are coarser than the block's siding — and on drift in the banked
+# reading, which is how a detector edit that quietly moves a number gets caught.
+step "Braunhold's Sauganash still says what the research note says it says" \
+  python3 tools/measure_sauganash_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_sauganash_plate.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
@@ -1255,6 +1277,21 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 
+# T-0557. The Illinois State Archives' land tract sales are the first source this project
+# reads that is not about people at all — it is a register of TRANSACTIONS, and the way it
+# goes wrong is by being read as a census. A purchase says a man bought ground; only the
+# register's own Residence column says where he lived, and it names a county. So the
+# reading is rebuilt from the committed deposit and diffed, the grade a row carries has to
+# follow from that column rather than from the buying, and the three sections the
+# database truncated at its own 150-row ceiling must never appear in the coverage
+# declaration — a ceiling recorded as a completed read is the one error here nothing
+# downstream could catch.
+step "the land tract sales re-derive from their committed deposit" \
+  python3 tools/read_land_sales.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_land_sales.py --self-test
+
 # T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
 # can reach, and its two halves are segmented by two different rules — the shouted head of
 # a trade card on page 1, the current letter section on pages 2-4 — because the printer set
@@ -1269,6 +1306,23 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
+
+# T-0506. Fergus's 1839 directory — the closest address list to 1835 this project can
+# reach, and until now cited only through somebody else's web transcription. Same three
+# gates as 1843's, for the same reason: a segmenter that quietly loses forty entries is
+# invisible to every other check here, a hand-edited proposal is how a proposal becomes a
+# fact nobody decided, and the street face compiled off it is what the street tickets will
+# read. The third one also guards the compiler's own warning — that every address number
+# in the volume off Lake street is an 1876 number — which is carried per row and would
+# otherwise be a sentence in a README that nothing enforces.
+step "Fergus's 1839 directory rebuilds from its committed text" \
+  python3 tools/read_fergus_1839.py --check
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839.py --check
+
+step "…and the 1839 street face compiled off it rebuilds too" \
+  python3 tools/fergus_1839_street_faces.py --check
 
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
@@ -1490,6 +1544,20 @@ step "the 1840 census line-to-serial crosswalk re-derives from the page readings
 
 step "…and its own assertions still fire when broken" \
   python3 tools/census_1840_fingerprint.py --self-test
+# T-0513. The consolidation, and the reason it is gated rather than reported: it is the
+# only file that says, for one identity, everything the project knows — and it is DERIVED
+# from seven domains that each move on their own ticket. A source read on Tuesday that
+# never reaches the master is the exact failure the owner named ("there are not outputs or
+# updates to the household and resident data"), and it looks like nothing at all until
+# somebody rebuilds by hand. --check rebuilds from the domains and fails if the committed
+# files have drifted; the invariants it holds are the acceptance's own — one row per
+# identity, no record claimed by two identities, every refusal carrying a rule that exists,
+# and no row graded above what its rung of the ratified ladder allows.
+step "the cross-domain identity master re-derives, and no grade stands above its rung" \
+  python3 tools/consolidate_resident_evidence.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/consolidate_resident_evidence.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

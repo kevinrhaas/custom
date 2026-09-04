@@ -1,7 +1,7 @@
 ---
 id: T-0557
 title: The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 738
+claimed_by: run 9/3/2026, 4:36:40 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T22:43:42.025Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33807954375
 ---
 
 The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures.

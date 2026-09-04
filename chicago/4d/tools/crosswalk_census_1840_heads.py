@@ -221,28 +221,59 @@ def read_residents() -> list:
 
 
 def read_voters() -> list:
+    """The voter pool, each entry carrying the source the civic crosswalk states.
+
+    T-0598: read from that file's own `source_id` rather than written here, so this
+    tool cannot drift from what the civic domain says it adjudicated from.
+    """
     doc = load(RESEARCH / "civic" / "voter_crosswalk.json")
+    source_id = doc.get("source_id")
     out = []
     for entry in doc.get("entries") or []:
         name = entry.get("normalized") or entry.get("as_read") or ""
         if not name.strip():
             continue
-        out.append({"name": name, "list": entry.get("list"),
+        out.append({"name": name, "list": entry.get("list"), "source_id": source_id,
                     "record_id": entry.get("record_id"), "parsed": parse_name(name)})
     return out
 
 
+def issue_sources() -> dict:
+    """issue_id -> source_id, out of the newspapers corpus.
+
+    T-0598: a gazetteer person is a name read out of one or more ISSUES, and the
+    corpus is the only place that says which printed source each issue is. Derived
+    rather than written down here, so a source id can never be invented for a
+    mention whose issue the corpus does not carry.
+    """
+    doc = load(RESEARCH / "newspapers" / "corpus.json")
+    return {i["id"]: i["source_id"] for i in doc.get("issues") or []
+            if i.get("id") and i.get("source_id")}
+
+
 def read_letter_list() -> list:
     doc = load(RESEARCH / "newspapers" / "gazetteer.json")
+    by_issue = issue_sources()
     out = []
     for person in doc.get("persons") or []:
         name = person.get("name") or ""
         if not name.strip():
             continue
-        out.append({"name": name, "id": person.get("id"),
+        # A mention is `<issue_id>#<claim>`; the issue is what carries the source.
+        sources = sorted({by_issue[m.split("#", 1)[0]]
+                          for m in person.get("mentions") or []
+                          if m.split("#", 1)[0] in by_issue})
+        out.append({"name": name, "id": person.get("id"), "source_ids": sources,
                     "letter_list_only": bool(person.get("letter_list_only")),
                     "parsed": parse_name(name)})
     return out
+
+
+# The v4 workbook this table was drawn out of, and the source record that describes
+# it: data/sources/resident_research_v4_1835_census_bridge.json cites "Chicago 1835
+# Best Resident Set Research v4", which is the `file` every row of
+# census_1835_bridge_candidates.json names. Stated, not inferred (T-0598).
+BRIDGE_SOURCE_ID = "resident_research_v4_1835_census_bridge"
 
 
 def read_bridge_candidates() -> list:
@@ -253,7 +284,7 @@ def read_bridge_candidates() -> list:
         if not name.strip():
             continue
         out.append({"name": name, "tier": row.get("1835 Tier"),
-                    "parsed": parse_name(name)})
+                    "source_id": BRIDGE_SOURCE_ID, "parsed": parse_name(name)})
     return out
 
 
@@ -315,16 +346,32 @@ def index_by(pool: list, attr: str) -> dict:
 
 
 def same_name_support(head_key: str, voters_by_key, letters_by_key, cands_by_key) -> list:
+    """Every pool that prints the same name, WITH the source each pool rests on.
+
+    T-0598: a support row naming a pool and not a source says where somebody would
+    have to go looking, not what the ruling rests on, and only the second can be
+    carried to a resident card. A row whose source cannot be derived carries none —
+    an absent source_id is honest, an invented one is the fault this gate exists for.
+    """
     support = []
     for entry in voters_by_key.get(head_key, []):
-        support.append({"pool": "voter_lists", "list": entry["list"],
-                        "record_id": entry["record_id"], "name": entry["name"]})
+        row = {"pool": "voter_lists", "list": entry["list"],
+               "record_id": entry["record_id"], "name": entry["name"]}
+        if entry.get("source_id"):
+            row["source_id"] = entry["source_id"]
+        support.append(row)
     for entry in letters_by_key.get(head_key, []):
-        support.append({"pool": "letter_list" if entry["letter_list_only"] else "newspapers",
-                        "id": entry["id"], "name": entry["name"]})
+        row = {"pool": "letter_list" if entry["letter_list_only"] else "newspapers",
+               "id": entry["id"], "name": entry["name"]}
+        if entry.get("source_ids"):
+            row["source_ids"] = entry["source_ids"]
+        support.append(row)
     for entry in cands_by_key.get(head_key, []):
-        support.append({"pool": "census_1835_bridge_candidates",
-                        "tier": entry["tier"], "name": entry["name"]})
+        row = {"pool": "census_1835_bridge_candidates",
+               "tier": entry["tier"], "name": entry["name"]}
+        if entry.get("source_id"):
+            row["source_id"] = entry["source_id"]
+        support.append(row)
     return support
 
 
@@ -683,6 +730,12 @@ def build() -> dict:
         "schema": 1,
         "ticket": TICKET,
         "generated_by": "tools/crosswalk_census_1840_heads.py --build",
+        # T-0598. What every ruling in this file was adjudicated FROM: the 1840 page
+        # images this project read. A ruling that reaches a resident and names no
+        # source cannot be carried to that resident's card by any tool, because
+        # `persons[].sources` is a list of SOURCE IDS. Corroborating pools are named
+        # per support row below, where they are known; this is the floor.
+        "source_id": "census_1840_chicago_familysearch_images",
         "what": "Every named head on the 1840 Chicago left sheets read in this repo, "
                 "adjudicated against the 1835 name pools: matched, candidate or "
                 "refused, each with the rule that decided it.",
@@ -813,8 +866,17 @@ def domain_crosswalk(doc: dict) -> dict:
         "schema": existing.get("schema", 1),
         "domain": "census_1840",
         "generated_by": "tools/crosswalk_census_1840_heads.py --build (T-0505)",
+        # T-0598: what this domain adjudicated FROM, so a merge here can be carried
+        # to a card. `evidence` on each merge below is a list of strings — an image
+        # id, a ticket, a path — and is a locator, not a source statement.
+        "source_id": "census_1840_chicago_familysearch_images",
         "note": existing.get("note"),
-        "passes": (existing.get("passes") or []) + [{
+        # REPLACE this pass, never append it. The row was appended unconditionally
+        # and the file had accumulated two identical T-0505 passes by the time
+        # T-0598 rebuilt it; read_voter_lists.py had already learned this. Rows
+        # another pass wrote are carried through untouched.
+        "passes": [x for x in (existing.get("passes") or [])
+                   if x.get("ticket") != TICKET] + [{
             "ticket": TICKET,
             "what": "every named head on the 19 left sheets read in this repo, "
                     "adjudicated against the residents layer, the voter lists, the "

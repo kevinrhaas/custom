@@ -1,7 +1,7 @@
 ---
 id: T-0549
 title: The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0541
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T03:35:02.390Z
+claimed_run: null
 ---
 
 The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals.

@@ -246,17 +246,18 @@ def business_proprietors(gazetteer: dict) -> dict:
     return out
 
 
-def already_held(register: dict) -> set:
+def already_held(register: dict, is_prior_mint_answer) -> set:
     """The register's own finding of who the committed town already holds.
 
-    `enrich` is 'this printed person IS a person in data/residents/'. Targets under
-    either minted-person prefix are excluded: those are a mint's previous answer, not
-    a resident the town held before the papers were read.
+    `enrich` is 'this printed person IS a person in data/residents/'. A target that
+    is a mint's own previous answer is excluded — `is_prior_mint_answer` says which:
+    the legacy `doc_`/`placed_` prefix still does, for any household not yet
+    migrated to a plain id (T-0599); a migrated one only says so in its own
+    source_pass field, which the caller has already read.
     """
     return {p["id"] for p in register["persons"]
             if p.get("action") == "enrich"
-            and not str(p.get("action_target") or "").startswith(
-                ("doc_", PERSON_PREFIX))}
+            and not is_prior_mint_answer(str(p.get("action_target") or ""))}
 
 
 def claim_company(gazetteer: dict) -> dict:
@@ -278,7 +279,20 @@ def mint(docs: dict, index: dict):
     gazetteer = load(GAZETTEER)
     gaz = {p["id"]: p for p in gazetteer["persons"]}
     proprietors = business_proprietors(gazetteer)
-    held = already_held(register)
+    # T-0599: a plain id no longer says whose previous answer it is on its own —
+    # the legacy `doc_`/`placed_` prefix still does, for any household not yet
+    # migrated, but a migrated one only says so in its own source_pass field.
+    own_placed = {doc["head"] for doc in docs.values() if doc.get("source_pass") == "placed"}
+    prior_mint_answer = {doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") in ("documented", "placed")}
+
+    def is_own_prior_answer(target: str) -> bool:
+        return target.startswith(PERSON_PREFIX) or target in own_placed
+
+    def is_prior_mint_answer(target: str) -> bool:
+        return target.startswith(("doc_", PERSON_PREFIX)) or target in prior_mint_answer
+
+    held = already_held(register, is_prior_mint_answer)
     company = claim_company(gazetteer)
     texts = claim_text()
     # The three-way precedence documented in mint_documented_residents.MINTED_PREFIXES:
@@ -291,8 +305,7 @@ def mint(docs: dict, index: dict):
                   if not p.get("occupation") and not p.get("letter_list_only")
                   and (p.get("action") == "new_resident"
                        or (p.get("action") == "enrich"
-                           and str(p.get("action_target") or "")
-                           .startswith(PERSON_PREFIX)))]
+                           and is_own_prior_answer(str(p.get("action_target") or ""))))]
     candidates.sort(key=lambda p: (-len(gaz[p["id"]]["mentions"]),
                                    p["first_seen"], p["id"]))
 

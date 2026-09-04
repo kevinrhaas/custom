@@ -2,16 +2,138 @@
   "schema": 1,
   "domain": "books",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
-  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT HERE IS `list` AND NOT `page`, ON PURPOSE. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it. Declaring nine pages would mean assigning each claim to a page nobody has seen, which is an invention, and the gate would then be checking a fiction rather than a reading. The chapter is therefore declared as the single item it was delivered as, its page RANGE is named in every claim's locator, and the day this project reads the book itself the declaration can become nine pages honestly.",
+  "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio.",
   "declarations": [
     {
       "unit": "list",
-      "items": ["hurlbut_chicago_antiquities_1881_pp28_36"],
+      "items": [
+        "hurlbut_chicago_antiquities_1881_pp28_36"
+      ],
       "ticket": "T-0575",
       "what": "Henry H. Hurlbut, Chicago Antiquities (Chicago, 1881), pages 28-36 — the chapter on the American Fur Company and Chicago, read in full: Hurlbut's narrative, the long passage quoted from Gurdon S. Hubbard, the extracts from the Michilimackinac outfit book of 1821-22, and the closing catalogue of goods for the trade of the Chicago country.",
       "read": "2026-09-03",
       "text": "data/research/books/text/hurlbut_chicago_antiquities_28_36.txt (214 lines, byte-identical to data/research/genealogytrails/text/americanfurco.txt)",
       "not_read": "Nothing in the chapter. What is NOT declared is the rest of the book: Chicago Antiquities is read here at pages 28-36 only, and data/sources/chicago_antiquities_pratt.json is a separate reading of a separate passage. The other books this domain exists for — Fergus' Historical Series Nos. 26-29, Hubbard's autobiography, H. H. Porter's Short Autobiography — are undeclared because they are unread, which is not a fault and must not be reported as one."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_front_matter_leaves_9_18"
+      ],
+      "ticket": "T-0501",
+      "what": "The unfoliated front matter of the 1911 Lakeside Classics printing — the half-title, the title page, the publishers' preface and the Contents (scan leaves 9 to 19). Read for what it says about where this text came from and who wrote the Introduction.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 1-212",
+      "not_read": "Nothing in it. LEAF 19, THE CONTENTS, IS THE ONE LEAF OF 208 NON-BLANK LEAVES THE PAGE INDEX COULD NOT ALIGN — poppler reorders its columns badly enough that no probe of its opening words finds a match — so leaf 18's line range swallows it and the index says so with `runs_into: [19]`. No claim here cites those lines and none may: a claim on them would name the wrong leaf."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_introduction_pp_ix_xxvii"
+      ],
+      "ticket": "T-0501",
+      "what": "Caroline M. McIlvaine's Introduction, printed pages ix to xxvii, read in full. This is the only part of the volume that describes Chicago after November 1830, and therefore the only part that describes the scene year at all: the brick building at La Salle and South Water, the population figure, the brig Illinois of 25 May 1835, the Green Tree Tavern, The Chicago American of 10 October 1835, the Russell & Mather purchase of March 1835, the canal, the water-works and the town trustees of 1834.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 5-84 and 213-887",
+      "not_read": "Nothing in pages ix to xxvii. THE RANGE IS NOT CONTIGUOUS IN THE SCAN, and that is a finding and not a gap: pages xv and xvi were photographed at the FRONT of the Internet Archive item, as leaves 11 and 12, ahead of the title page. The text proves it — leaf 26 ends 'Quoting Mr. Gale's characteristic manner of narration:', leaf 11 opens the Gale quotation, leaf 12 ends 'his engine was soon put to' and leaf 27 opens 'use as \"Fire King Engine No. I,\"' — and the folios confirm it, five of them read off the page between leaves 28 and 35 and the Contents' own 'Introduction ix' below the displacement. tools/build_book_page_index.py carries the three folio runs this forces, and hard-fails if a folio read off a page ever contradicts them."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_27_41"
+      ],
+      "ticket": "T-0501",
+      "what": "Hubbard's own narrative, printed pages 27 to 41, read in full: the Mackinaw acquaintance with John H. Kinzie, the voyage of September 1818, the first sight of the prairie from Douglas Grove, the entry into Chicago on 1 October 1818, the Kinzie house, the whole description of Fort Dearborn and its enclosure, the Factor House, the American Fur Company storehouse, Hardscrabble and Ouilmette's cabin, the river mouth and the sand spit, the cut of 1828, and the start of the Mud Lake portage. THE DENSEST CHICAGO MATERIAL IN THE BOOK.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 1956-2574",
+      "not_read": "Nothing in pages 27 to 41. Pages 1 to 26 are Hubbard's childhood at Montreal and his engagement at Mackinaw and are NOT declared: they name no Chicago and were swept for the name and not read line by line."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_135_138"
+      ],
+      "ticket": "T-0501",
+      "what": "Printed pages 135 to 138 — the return voyage down the lake and a fortnight at Chicago, where Hubbard was received by the Kinzies and by Dr Wolcott and met Pierre Chouteau, Jr.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 6317-6481",
+      "not_read": "Nothing in pages 135 to 138. Pages 139 and 140 are NOT declared: they are the winter's trading against Bourbonais at Bureau Post and name no Chicago."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_141_144"
+      ],
+      "ticket": "T-0501",
+      "what": "Printed pages 141 to 144 — the chapter opening 'Pa-pa-ma-ta-be: from St Joseph to the Kankakee; Hubbard's Trail; under the ice', including the seventy-five-mile walk that earned the name and Pierre Le Claire's ninety-mile walk of 1812 to John Kinzie at Chicago.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 6562-6729",
+      "not_read": "Nothing in pages 141 to 144. Pages 145 to 152 are NOT declared: they are the Mackinaw fur-packing season and the following winter, and name no Chicago."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_153_159"
+      ],
+      "ticket": "T-0501",
+      "what": "Printed pages 153 to 159 — '1824: placed in charge of the Illinois River trading posts', including the scuttling of the boats in the slough at Chicago against prairie fires, the opening of Hubbard's Trail and its adoption by the State road commissioners in the winter of 1833-34, and John Kinzie running out of goods at Chicago in the spring of 1825.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 7049-7326",
+      "not_read": "Nothing in pages 153 to 159. Pages 160 to 164 are NOT declared: they open the Yellow Head quarrel at the Iroquois post and name no Chicago."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_165_174"
+      ],
+      "ticket": "T-0501",
+      "what": "Printed pages 165 to 174 — the end of the Yellow Head affair, Hubbard's purchase of the Fur Company's Illinois interests, and the whole of the 'Winnebago Scare': Fort Dearborn ungarrisoned in July 1827 with Wolcott, Russell E. Heacock's family and voyageur families living in its buildings; the payment; the lightning fire that destroyed the soldiers' quarters, the storehouse and part of a guardhouse; Governor Cass's arrival; Shaub-e-nee and Billy Caldwell at Big Foot's village; and Hubbard's ride to Danville for the militia. Closing with his own letter of 25 July 1827.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 7528-7932",
+      "not_read": "Nothing in pages 165 to 174. THIS SECTION IS NOT THE DIARY and the book says so in a footnote read at bk_hub_089: it is compiled 'from statements by Mr. Hubbard in Chicago Historical Series, No. 10', which is one remove further than the rest of the narrative. Pages 175 to 177 are NOT declared: they continue the letter to his sister and the Ohio River journey, and name no Chicago."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "hubbard_1911_pp_178_182"
+      ],
+      "ticket": "T-0501",
+      "what": "Printed pages 178 to 182, the end of the book — the hog droves to Chicago to sell to the settlers and the soldiers at Fort Dearborn, the winter of the big snow of 1830-31, and the closing editorial note that the narrative ends in November 1830 having covered one third of Hubbard's life.",
+      "read": "2026-09-03",
+      "text": "data/research/books/text/hubbard_autobiography_1911.txt, lines 8060-8253",
+      "not_read": "Nothing in pages 178 to 182. The book ends at page 182; leaves 221 to 226 are the back matter and the library's deacidification stamp."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_26_29_front_matter_leaves_1_14"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 1-14: the Allen County Public Library's plate, the Internet Archive's digitisation note, the volume's half-title naming the range 26-29, and the Fergus Printing Company advertisement leaves bound in front of Number 26. Swept for what the volume says about itself; it says almost nothing, and the contents table in README.md had to be read off the four title pages inside."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no26_harrison_discourse_leaves_15_206"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 15-206: Fergus' Historical Series No. 26 entire - William Henry Harrison's Discourse on the Aborigines of the Ohio Valley, with the Fort Wayne Indian speeches of 1811 appended, and the advertisement leaves that close the number. SWEPT AND ALL BUT EMPTY, WHICH IS THE EVIDENCE. The discourse is about the mound-builders and the Iroquois and never reaches Chicago; four claims come out of 192 leaves and every one of them is from the appendix or its footnotes."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no27_beckwith_indians_leaves_207_398"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 207-398: Fergus' Historical Series No. 27 entire - Hiram W. Beckwith's The Illinois and Indiana Indians (1884) - and the advertisement leaves that close it. THE PAYING HALF OF THIS HALF. Read closely at the Potawatomi chapters and the 1821 Chicago treaty, which is where the site itself is described; read for Chicago and not for the tribal history at large, so the Wabash, Miami and Kickapoo chapters were swept for place names and not mined."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "fergus_no28_directory_1843_leaves_399_429"
+      ],
+      "ticket": "T-0499",
+      "note": "Leaves 399-429: the opening of Fergus' Historical Series No. 28, the Directory of the City of Chicago for 1843 - its title page, Robert Fergus's 1896 introductory, and the civic pages through the port statistics, stopping where the business directory begins at leaf 430. T-0500 takes the business directory onward."
     }
   ]
 }

@@ -492,6 +492,52 @@ On 215, free white females 30 under 40 reads 17 against a printed 19. Those colu
 omitted from `cells` and kept in `cells_first_pass`, which is read but unreconciled and is
 not data anything downstream may use.
 
+## Printed 219, read to the cell (T-0585)
+
+The last of the three left sheets T-0531 named is read, and image group 1 now has
+eight left sheets carrying names and cells.
+
+| printed page | image | lines with an entry | columns balanced | not committed |
+|---|---|---|---|---|
+| 219 | `33S7-9YYJ-9K3` | 31 (inventory's figure stands) | 37 of 38 | free colored males 24 under 36 (29) |
+
+**The column template was checked against the printed heading before a cell was read**,
+because that is the check T-0584 learned the hard way, and the pitch it settled on —
+x = 662.5 + 79.35 n — is the same 79.35 px pitch printed 215 carries, which is what a
+shared plate should give. Rendered over the heading it reads column 1 `Under 5` under
+MALES, column 13 `100 and upwards`, column 14 `Under 5` under FEMALES and column 26
+`100 and upwards`.
+
+**A footing settled a blot.** Line 16 carries a thick mark in free white males 20 under
+30 that a row-band view reads as a tally. Montaged against its own 31 cells it has no
+stroke form at all, and the column's printed footing of 62 balances the other eighteen
+lines exactly and refuses it. It is recorded as a blot and not as a person.
+
+**What this sheet is: boarding houses.** Printed 219 is neither 210's large families nor
+215's single men. 195 free white persons stand on 31 lines and FOUR lines carry 104 of
+them — line 18 (S. M. Osterhoudt) 33, line 29 (G. W. Cook) 27, line 10 (Wm R. Miller) 22,
+line 17 (Lyman Butterfield) 22 — each one a stack in the young bands: free white males
+20 under 30 alone carries 62 of the page's 126 men, and free white females 20 under 30
+carries 30 of its 69 women. Against those four, twelve households hold two persons or
+fewer and ten of those hold one or none. Line 25 (Oliver Henson) is the only household on
+the page with no free white person in it: as read, a boy under 10, a man 24 under 36 and
+a woman 24 under 36.
+
+**One residual column is left standing rather than forced.** Free colored males 24 under
+36 reads 4 — a 2 on line 18, a 1 on line 25, a 1 on line 29, and the montage of the whole
+column holds nothing else — against a footing of two identical hooked diagonals, which is
+the form this hand foots column 1 with (where the body confirms 11). A 4 would balance and
+the glyphs do not support one. The column is omitted from `cells` and kept in
+`cells_first_pass`, which is read but unreconciled and is not data anything downstream may
+use.
+
+**The letters are open and are recorded as open.** No name on this sheet is graded `high`:
+9 are `medium` and 22 are `low`, each with its alternates in the record's note. Two lines
+may be women heading households (line 15 `Susan McCord`, line 28 `Mad Sara L. Hoare`) and
+both forenames are among the `low` readings, so neither is asserted. Nothing here mints or
+regrades an 1835 resident: the 1840 census is later evidence and the ratified ladder is
+explicit that 1839/1840 alone is never a 1835 resident.
+
 ## Every named head has an outcome now (T-0505)
 
 The 498 names read off the 19 left sheets in this repo were in no state at all: three of
@@ -569,3 +615,101 @@ ground and may not.
 page-to-IPUMS-serial fingerprint is T-0504 and is not landed; T-0515 applies them. The
 ratified ladder binds throughout: an 1839 or 1840 appearance alone is never an 1835
 resident, and 1840 household composition is never back-projected to the scene.
+
+---
+
+## The line index of a continuation sheet (T-0565, 2026-09-04)
+
+**A right-hand continuation sheet has no rows on it.** `read_census_continuation.py`
+measured that on `33S7-9YYJ-5V`: a row-darkness profile through the empty slaves block
+finds exactly two horizontal rules on the whole leaf — under the printed heading and above
+the enumerator's footer — and nothing between them. The printed form rules the page
+vertically only. So which LINE a number stands on cannot be counted off the paper, and
+every pass that tried to get it from the TOTAL column's own ink got a different answer:
+`coverage.json` inventoried 28 lines, one grouping threshold gave 31, another 34, and the
+page file could only record "29 to 31, favouring 31".
+
+**The fix is to stop asking the column that is in dispute.** `tools/fit_census_line_grid.py`
+fits a straight grid `y = origin + pitch × n` to the enumerator's OTHER ink — the entries
+of the written industry columns, which are read and close against their own printed
+footings — and reports the best fit for every line count in turn. On `33S7-9YYJ-5V` the 22
+industry entries choose **30 lines at an rms of 6.7 px**, against 19.9 for 28, 21.3 for 29
+and 19.0 for 31, and 15.4 or worse for every count out to 38. Dropping each anchor in turn,
+20 of the 22 jackknife refits still choose 30; the two that do not are the two endpoints,
+which shorten the span by a line when removed.
+
+The TOTAL column is then read AGAINST that grid rather than used to build it, which is what
+makes the row index and the numbers independent. It is also what a continuation sheet needs
+before it can be paired to its left sheet, so `pairing.line_count_key` is a number on this
+sheet now and not a range.
+
+**The tool reads its anchors out of the page file's own `column_closure` block** (`entry_y`),
+so it has nothing typed into it and re-runs against whatever that block holds. Only
+`33S7-9YYJ-5V` records `entry_y` today; the other continuation sheets record their column
+closures without y positions, so the tool cannot yet be turned on them. A pass that adds
+`entry_y` to `33S7-9YYJ-24`, `-5D` or `-5S` gets their line indices for the cost of the
+measurement alone.
+
+**What it does not do.** It gives an ordinal, not a reading. On `33S7-9YYJ-5V` the grid has
+30 lines and the TOTAL column has 31 glyph groups, and the surplus — one stroke at
+y2743-2772, sitting dead centre between two numbers that are each where the grid puts them —
+is recorded as unassigned rather than folded into either. A row index that cannot be wrong
+about the count is still allowed to be silent about one mark.
+
+## Printed pages 218 and 224, read to the cell (T-0553)
+
+`33S7-9YYJ-PC` (printed **218**) and `33S7-9YYJ-JM` (printed **224**) finish T-0526's four
+left sheets, after T-0552 read 216 and 217. Sixty households, every one of the 38 age-band
+columns on each line, and the enumerator's own footings transcribed beside them.
+
+**Both sheets close.** Every column either sheet's enumerator footed reproduces from the
+cells exactly — sixteen of sixteen on page 218 (113 people), fifteen of fifteen on page 224
+(175 people). That is thirty-one footed columns closing at a residual of zero, and it is a
+check on the grid as much as on the reading.
+
+| sheet | block | footings that close | that do not |
+|---|---|---|---|
+| 218 `33S7-9YYJ-PC` | free white males | **7 of 7** | — |
+| 218 | free white females | **9 of 9** | — |
+| 218 | free coloured | unfooted; body empty | — |
+| 224 `33S7-9YYJ-JM` | free white males | **7 of 7** | — |
+| 224 | free white females | **8 of 8** | — |
+| 224 | free coloured | unfooted; body empty | — |
+
+**The column grid has to be measured twice, and the second measurement is the one that
+matters.** T-0552 already found that a grid taken off the printed header is a quarter of a
+column out in the middle of the page. These two sheets add the other half of the lesson.
+Fitting an evenly spaced comb to the whole leaf finds the pitch correctly — 79.8 px on page
+218 — but it cannot tell you WHICH rule the block starts at, and on page 218 its strongest
+fit for the free-white-female block was one entire column to the right of the truth. Read
+that way, every woman on the sheet is one age band too young and nothing announces it. What
+settled it was the printed header read at magnification: the box lettered `Under / 5` for
+the female block occupies x=1799–1878 on that leaf, and the male `100 / and up- / wards.`
+box ends at 1799. Both sheets' block edges are fixed that way and the comb is used only for
+the pitch and the drift. The drift is real and it is why the fit is banded: page 218's male
+block starts at x=768.5 near the top of the body and at x=798.5 near the foot.
+
+**A line count corrected, twice.** The inventory declared page 218 at 33 lines "to the
+nearest line" and page 224 at 33. Each carries **30**, counted twice — once down the names
+column at magnification and once on the drawn grid — with no blank ruled line between
+entries. With page 217 (33 declared, 31 read) that is three of this group's four counted
+left sheets whose inventory figure was high, and the pattern is worth stating for the sheets
+still uncounted: the "to the nearest line" figures in `coverage.json` run about 8% long.
+
+**Five marks refused, all of them named.** Four on page 224 and one on page 218 are recorded
+as no entry rather than as a person, and each refusal is written on the page file with the
+reason and with what the column would have footed had the mark been read. Four of the five
+lie on the path of the flourished tail this hand gives the name to their left; the fifth is
+a descender from the line above, which a gridded re-read at 2.2x made plain. None of the
+five was refused because a total wanted it: the cells were read and fixed before the footer
+was looked at.
+
+**One footer glyph is doubtful and says so.** Page 224's male 20–30 footing is two figures,
+`3` and a small bowl above a right-turning curl. The same second glyph stands in the 30–40
+footing beside it, where the column reads 17 from the cells; so the glyph is a 7 and the
+20–30 footing is 37, which is what the cells give. The alternatives (2, 9) and their
+residuals are on the page file.
+
+**What this means for pairing.** Neither sheet is paired to its continuation — that is
+T-0539's work. Each publishes its page population as the key that pairing will read: 113 for
+page 218, 175 for page 224, on 30 lines each.

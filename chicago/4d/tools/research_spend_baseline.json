@@ -5,11 +5,12 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 54,
+  "census_1840": 206,
   "church": 0,
-  "books": 11,
-  "directories": 4703,
-  "newberry_index": 1753
+  "books": 126,
+  "directories": 6396,
+  "newberry_index": 5078,
+  "land_sales": 375
  },
  "witness": {
   "civic": {
@@ -21,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 562,
+   "read": 714,
    "spent": 508
   },
   "church": {
@@ -29,16 +30,20 @@
    "spent": 0
   },
   "books": {
-   "read": 19,
-   "spent": 8
+   "read": 152,
+   "spent": 26
   },
   "directories": {
-   "read": 4991,
+   "read": 6684,
    "spent": 288
   },
   "newberry_index": {
-   "read": 2619,
-   "spent": 866
+   "read": 7165,
+   "spent": 2087
+  },
+  "land_sales": {
+   "read": 375,
+   "spent": 0
   }
  },
  "raised": [
@@ -55,6 +60,77 @@
    "to": 11,
    "date": "2026-09-03",
    "why": "T-0575 read Hurlbut's Chicago Antiquities pages 28-36 — the American Fur Company chapter — as 19 claims, and ruled on 8 of them in data/research/books/crosswalk.json: 4 merges (Gurdon S. Hubbard, Jean Baptiste Beaubien, Jamie Kinzie, Mr. John Crafts) and 6 refusals, each anchored to the claim it adjudicates. THE OTHER 11 NAME NOBODY, AND THAT IS WHAT THIS CHAPTER IS. It is prose and mostly judgement: Hurlbut's 'Chicago was the port and point of a very limited district of distribution', Hubbard's 'this place never had been preeminent as a trading-post', Hubbard buying the company's Illinois interest in 1828, Astor selling the company in 1834, a batteau, a wine bill and a list of trade goods. This instrument measures NAME adjudication, so those 11 cannot be spent by it however well they are used, and pretending otherwise by inventing name-pairs would be the corruption the instrument exists to prevent. What they CAN be spent on is the town, and four tickets were opened in the same PR to do it: T-0594 (Hubbard's arrival date against a resident record that grades the same year 'reconstructed' citing nothing), T-0595 (the Factory House origin of jb_beaubien_homestead), T-0596 (a ruling in docs/LIBERTIES.md on how much fur-trade apparatus the scene may show, which the chapter argues should be LESS), T-0597 (the Kinzie half-brotherhood). The number does not come back down when those land, because they are not crosswalk rulings; it comes down only if a later reading of this same chapter finds names in it, and it should not be raised again for prose without this same argument being made afresh."
+  },
+  {
+   "domain": "newberry_index",
+   "from": 1753,
+   "to": 3148,
+   "date": "2026-09-03",
+   "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND rose with the read, from 866 to 1,498 under the counting T-0592 (PR #727) introduced. What stays unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0602 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and an unanchored crosswalk ruling counts as nothing, so crosswalk.json's one pass and five written refusals count as zero."
+  },
+  {
+   "domain": "civic",
+   "hop": "write",
+   "from": null,
+   "to": 99,
+   "date": "2026-09-03",
+   "why": "T-0598 stated civic/voter_crosswalk.json's source at the top of the file, and 99 rulings that were UNJUDGEABLE became judgeable. Not one of them is on a card: the 99 voters T-0493 matched to residents rest on chicago_voter_lists_1833_1835_irad and no resident record cites it. This ceiling is the size of that finding, recorded so it can be paid down rather than rediscovered — it was previously invisible because the instrument could not ask the question. T-0514/T-0515 are the mint and regrade tickets that spend it; nothing here writes a card."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": null,
+   "to": 375,
+   "date": "2026-09-03",
+   "why": "NOT this ticket's read, and recorded here because dev is red without it. PR #738 (T-0557) registered the land_sales domain in domains.json and read 375 Illinois public-domain tract sales into it, and did not record a ceiling — so --gate fails on every branch cut from dev with 'no ceiling recorded', which is the gate working exactly as designed on a domain that entered the registry without one. The figure is what #738 read and has not yet ruled on; its own crosswalk matched 17 purchasers, and the number should come down as that adjudication continues. T-0598 takes no credit for it and asks that the next land_sales ticket own it."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 11,
+   "to": 85,
+   "date": "2026-09-03",
+   "why": "T-0501 read Hubbard's autobiography — 92 claims out of a 226-leaf book of PROSE, and prose is the case this measure was not built for. Its unit is a sentence, not a name: 66 of the 92 name no person at all, being the plan of Fort Dearborn, the Factor House, the sand spit, the old river mouth at The Pines, Mud Lake, the wild onion on the bank and the cornhills on the River Guarie. There is nobody in them to rule on and there never will be. EVERY NAME THE BOOK PRINTS IS RULED ON: 35 distinct persons, 7 merged, 15 refused (each anchored to the claim that names them), 2 exact matches, and 11 Illinois River and Mackinaw men the source never places at Chicago, counted and named in crosswalk.json's T-0501 pass. Spending the rest would mean inventing people to rule on. The ceiling moves once, for this reading, and the domain's next pass inherits it rather than a fresh excuse."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 85,
+   "to": 126,
+   "date": "2026-09-03",
+   "why": "T-0499 read the first half of Fergus' Historical Series Nos. 26-29 on the owner's direct ask, and the reading is deliberately wider than its rulings. Of 41 claims, 36 carry no person this town could hold: they are landscape, buildings, streets, civic institutions and port statistics, and the crosswalk has nothing to rule on in them. Only five names in 429 leaves fall in the 1830-1836 window and ALL FIVE ARE RULED ON - two merges and three refusals - with every name outside the window listed by name in the pass so the next sweep does not re-examine it. The gap this raise opens is not unadjudicated names; it is town findings waiting for the structure and terrain tickets that will spend them."
+  },
+  {
+   "domain": "newberry_index",
+   "hop": "read",
+   "from": 3148,
+   "to": 5078,
+   "date": "2026-09-04",
+   "why": "T-0579 and T-0580 read volumes 3 (H-P) and 4 (P-Z), adding 2,439 records to a domain whose ruling tool had last run against volumes 1-2. The reading is the deliverable of two approved tickets and the ladder requires reading ahead of adjudication; what has not happened yet is the ruling pass over the new volumes, which tools/rule_newberry_leads.py performs and T-0590 established. T-0618's reader and the three page bands T-0619/T-0620/T-0621 will add volume 4's re-OCR on top of this, so this ceiling is a floor for that work, not a licence to stop ruling."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 4703,
+   "to": 6396,
+   "date": "2026-09-04",
+   "why": "T-0506 read Fergus' 1839 directory entry by entry and crosswalked it against four pools, and the Norris 1844 and Fergus 1843 reads precede it. A directory entry is never an 1835 resident on its own - it is later evidence read backwards - so this domain is designed to stand far ahead of its spending, and the spending is the crosswalk adjudication plus T-0514 (mint residents from the consolidated evidence) and T-0515 (regrade the 727 letter-list-only residents). T-0611 will read the 1839 appendices on top of this."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 54,
+   "to": 85,
+   "date": "2026-09-04",
+   "why": "The 1840 sheet reads (T-0565, T-0585 and the image-band tickets) added 31 named heads beyond the last baseline. 1840 is five years after the scene and can never be an 1835 residency on its own; the bridge work is apply_census_1840_bridges.py and the two resident tickets T-0514/T-0515, both open and queued."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 85,
+   "to": 206,
+   "date": "2026-09-04",
+   "why": "T-0643 read 32 more lines of 33S7-9YYJ-8D and rules on none of them: the ticket forbids it, because the 1840 bridge to an 1835 resident is a separate adjudication (T-0505, T-0514, T-0515) and 1839/1840 alone is never a resident. Reading ahead of that bridge is the method working. This raise also absorbs the reading the other three census slices of this hour landed on dev — the ceiling was already blown at 5acb2977 before this branch merged, and it is one shared per-domain number. It is deliberately a ceiling to be TAKEN BACK: --tighten is free, and the moment the bridge tickets spend these names the ceiling should come down to what the domain has earned."
   }
  ],
  "lowered": [
@@ -67,6 +143,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 6
+  "census_1840": 6,
+  "civic": 99
  }
 }

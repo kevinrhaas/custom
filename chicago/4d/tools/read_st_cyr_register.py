@@ -711,7 +711,7 @@ REFUSALS = [
         "evidence": [
             "data/research/church/records/st_cyr_marriages_1834_1839.json "
             "st_cyr_marriage_009_3",
-            "data/residents/households/hh_ll_george_lee.json — ll_george_lee (inferred)",
+            "data/residents/households/hh_lee_george.json — lee_george (inferred)",
         ],
     },
     {
@@ -803,7 +803,7 @@ REFUSALS = [
                 "named in the entry.",
         "evidence": [
             "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_06_1",
-            "data/residents/households/hh_ll_andrews_davi.json — ll_andrews_davi",
+            "data/residents/households/hh_andrews_davi.json — andrews_davi",
         ],
     },
 ]
@@ -1090,6 +1090,10 @@ def build(root: Path = ROOT, write: bool = True):
                 "`candidate` is what the rule reaches, and a candidate is not a merge. "
                 "The adjudications are in crosswalk.json.",
         "generated_by": "tools/read_st_cyr_register.py --build",
+        # T-0598: every ruling in this file rests on the register, stated once here
+        # rather than on each of 531 rows. Without it a ruling that reaches a town
+        # person names no source and cannot be carried to that person's card.
+        "source_id": SOURCE_ID,
         "pass": TICKET,
         "target": "data/residents/households/*.json — every named person, at every grade",
         "targets_examined": len(people),
@@ -1141,9 +1145,11 @@ def build(root: Path = ROOT, write: bool = True):
                          "and the death and burial page (11 entries, 13 named readings), "
                          "in full, including the article's prose and every footnote.",
         "what_was_not_read": "THE BAPTISMS. The same article tallies 282 baptisms by the "
-                             "same three priests and this page prints none of them; that "
-                             "is T-0503's object and it is undeclared here rather than "
-                             "declared and empty.",
+                             "same three priests and this page prints none of them. They "
+                             "are NOT undeclared any more: T-0503 read them off the "
+                             "register's own eleven page images and declared all eleven "
+                             "under its own ticket in this file. What this page did not "
+                             "carry, the scans did.",
     }]
 
     gt = load(root / GT_CLAIMS)

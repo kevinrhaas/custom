@@ -397,7 +397,7 @@ const DETAIL = {
   // retirement from before but it may have been lost." It had been: PR #599
   // named T-0441 as the ticket holding the fork, and T-0441 WAS NEVER FILED —
   // a clean id gap between T-0440 and T-0442 — so four PRs sat parked for four
-  // days on a question the ledger had never been asked. T-0604 is that receipt.
+  // days on a question the ledger had never been asked. T-0654 is that receipt.
   // Told the raise would have to touch `light` as well, he ruled again, in as
   // many words: "raise all 3".
   //
@@ -442,9 +442,9 @@ const DETAIL = {
   // now boots into a tier that draws 809,209 where it drew 769,379. Whoever
   // takes the retirement below should take `light` back FIRST.
   //
-  // THE RETIREMENT IS T-0605, and it is written to be one that can actually fall
+  // THE RETIREMENT IS T-0653, and it is written to be one that can actually fall
   // due. T-0229's expiry was blocked behind a flora ticket and would never have
-  // come due (T-0231 records exactly that), so T-0605 depends on nothing: it
+  // come due (T-0231 records exactly that), so T-0653 depends on nothing: it
   // re-measures after #432 lands and lowers each tier back to the measured worst
   // plus the headroom carried here. `tools/measure_research_spend.py --tighten`
   // is the same shape one layer over — reclaiming slack is free and needs no
@@ -454,7 +454,7 @@ const DETAIL = {
   // numbers. #432 has been conflicted since 2026-08-28 and its re-derive needs
   // Blender, which the session that took this ruling did not have. The parcel
   // cost above is a measured 2026-08-28 delta applied to today's dev, not a
-  // reading of the merged tree. T-0605 re-measures the moment #432 is green, and
+  // reading of the merged tree. T-0653 re-measures the moment #432 is green, and
   // if the merged tree reads under these numbers they come DOWN to it.
   full:     { triangles: 1460000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
