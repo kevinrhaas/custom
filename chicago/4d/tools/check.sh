@@ -472,6 +472,14 @@ step "a block face carries one street line, across every generator that builds o
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_street_line.py --self-test
 
+# T-0444. The West Division's module is derived from committed files and the owner's
+# shift report is answered by a ceiling the river imposes, so both can rot silently
+# if the bank trace or either committed west line moves. The self-test is the alarm:
+# it asserts the ceiling still BINDS, which is the only thing that keeps
+# docs/RESEARCH/west_division_module.md's answer true.
+step "the West Division module, and the ceiling that answers the owner's shift report" \
+  python3 tools/measure_west_division_module.py --self-test
+
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
 # block recipes quietly acted on it: every log dwelling the five South Water blocks were
