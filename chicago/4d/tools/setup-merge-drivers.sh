@@ -20,5 +20,15 @@ git config merge.queue.name \
 git config merge.queue.driver \
   'node chicago/4d/tools/merge-queue.mjs %O %A %B %P'
 
-echo "registered: merge.queue.driver -> $(git config merge.queue.driver)"
-echo "  declared for: $(git check-attr merge -- chicago/4d/tickets/QUEUE.md)"
+git config merge.changelog.name \
+  'changelog.js — our new entries, unstamped, on top of theirs'
+git config merge.changelog.driver \
+  'node chicago/4d/tools/merge-changelog.mjs %O %A %B %P'
+
+echo "registered: merge.queue.driver     -> $(git config merge.queue.driver)"
+echo "registered: merge.changelog.driver -> $(git config merge.changelog.driver)"
+echo "  QUEUE.md:     $(git check-attr merge -- chicago/4d/tickets/QUEUE.md)"
+echo "  changelog.js: $(git check-attr merge -- chicago/4d/renderers/web/js/changelog.js)"
+echo
+echo "NOTE: a changelog merge leaves our entries UNSTAMPED on purpose. After one, run:"
+echo "  node chicago/4d/tools/stamp-changelog.mjs && node chicago/4d/tools/check-changelog.mjs"
