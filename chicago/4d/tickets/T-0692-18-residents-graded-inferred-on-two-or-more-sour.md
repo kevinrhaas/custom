@@ -17,7 +17,7 @@ needs_bake: false
 ---
 
 **Found while answering the owner's question of 2026-09-04** about people standing in several
-sources who are still graded `inferred` (T-0691 holds that question). Counting the population turned
+sources who are still graded `inferred` (T-0699 holds that question). Counting the population turned
 up a second, plainer fault underneath it.
 
 ## The finding
@@ -36,7 +36,7 @@ more sources:
 rung their `inferred` rests on, and no rung can be argued with.
 
 This is not the letter-list question. Those 33 G2b people have a rule, and it is defensible whether
-or not the owner rules the way T-0691 asks. These 18 have no answer at all, which is a different
+or not the owner rules the way T-0699 asks. These 18 have no answer at all, which is a different
 kind of gap: **an ungraded person cannot be regraded, because there is nothing to regrade from.**
 
 ## Why it matters more than 18 cards

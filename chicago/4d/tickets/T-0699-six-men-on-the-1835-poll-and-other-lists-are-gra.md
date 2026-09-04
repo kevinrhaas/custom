@@ -1,5 +1,5 @@
 ---
-id: T-0691
+id: T-0699
 title: Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
 state: open
 epic: META
@@ -14,6 +14,8 @@ pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: null
 ---
 
 **The owner, 2026-09-04:** *"if the letter list places someone as likely there, and then there are

@@ -75,7 +75,7 @@
 # ---
 # --- REVIEWED, AND THE ANSWER IS THREE THINGS, NOT ONE.
 # ---
-# --- T-0691. THE FIRST REVIEW OF HIS QUESTION PUSHED BACK AND WAS WRONG, and the ticket says so.
+# --- T-0699. THE FIRST REVIEW OF HIS QUESTION PUSHED BACK AND WAS WRONG, and the ticket says so.
 # --- The objection was "the ladder grades by CLASS not COUNT, and a count rule would make a man
 # --- attested on two 1843 directory entries". That conflated the NUMBER OF APPEARANCES with the
 # --- CONVERGENCE OF INDEPENDENT CLASSES. Two 1843 directory entries are one class, one era, maybe
@@ -103,19 +103,19 @@
 # --- regrade to a card that exists. So fixing grade() would leave Willard Jones on G2a for ever.
 # --- The policy doc already records 159 standing changes (19 up, 63 down, 77 subtype) unspent since
 # --- 2026-09-03 — the same shape measure_research_spend.py found one layer up, where 109 rulings
-# --- reached a person and 0 reached a card. T-0691 now carries the spend as part (c): upgrades
+# --- reached a person and 0 reached a card. T-0699 now carries the spend as part (c): upgrades
 # --- apply, the 63 DOWNGRADES go to a conflict list for the owner and are never auto-applied.
 # ---
 # --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
 # --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
 # --- whatever the pass that wrote it meant and nothing can be argued with. An ungraded person
-# --- cannot be regraded whichever way T-0691 goes.
+# --- cannot be regraded whichever way T-0699 goes.
 # ---
 # --- T-0693 is the owner's second observation on the same card: "there is evidence in there he is
 # --- a druggist but that is not in his person record". The file quotes the trade three times and
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
-T-0691 — Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
+T-0699 — Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
 T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
 T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
@@ -123,7 +123,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
@@ -133,7 +132,6 @@ T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 # --- and T-0666 left unfinished.
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
-T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
@@ -205,7 +203,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
@@ -345,7 +342,9 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
+T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
+T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
