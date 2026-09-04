@@ -39,3 +39,57 @@
 #
 # See polecat-platform docs/SHELL-API.md § the fleet changelog contract. The
 # fleet's other apps carry the same `merge=union` line and the same exposure.
+
+# QUEUE.md IS MERGED BY A QUEUE-AWARE DRIVER, AND NOT BY `union`.
+#
+# The lesson above applies here and points the other way. Union is a LINE union;
+# it wrecked the changelog because a changelog ENTRY is many lines. A queue entry
+# IS exactly one line, so union would not corrupt this file silently — and
+# `ticket.mjs check` catches every union failure mode loudly (`lists X twice`,
+# `is not an open ticket`, `missing from QUEUE.md`).
+#
+# But loud is not resolved. On the case that actually hurts — one side re-ranks
+# the file on the owner's instruction while the other closes and files tickets —
+# union concatenates BOTH orderings and hands back every ticket twice. Measured
+# 2026-09-04: landing one re-rank took four merges of `dev` and four hand
+# reconciliations, every one of them the same three-line rule.
+#
+# So that rule is a driver instead:
+#     result = OURS, minus what THEIRS closed, plus what THEIRS filed.
+# Ours keeps the ORDER (order is the owner's, and the branch being merged into is
+# the one holding his instruction); theirs decides MEMBERSHIP (a closed ticket is
+# closed, a filed one is real). It REFUSES rather than guesses if the result would
+# carry an id twice.
+#
+# Register it once per clone:  bash chicago/4d/tools/setup-merge-drivers.sh
+# Not registered? git falls back to the ordinary text merge and you get conflict
+# markers — the old behaviour, never something worse. `check.sh` says so.
+chicago/4d/tickets/QUEUE.md merge=queue
+
+# …AND THE CHANGELOG GETS ONE TOO, for the same reason and with the same care.
+#
+# Everything above about union stands: it is why `merge=union` is NOT on these
+# paths and must not come back. But removing union left a conflict on nearly
+# every branch, resolved by hand every time — three times on 2026-09-04 alone,
+# each the identical edit. A DRIVER IS NOT UNION: union is line-blind, and this
+# one never works below entry granularity, so it cannot splice two entries
+# together the way union did.
+#
+#     result = OURS' new entries (reset to `v: null, ts: ''`) on top of
+#              THEIRS' entries, verbatim and in their order.
+#
+# Theirs is settled history — already on dev, already stamped — so it is taken
+# whole and never renumbered. Ours goes on top UNSTAMPED, which is exactly what
+# the contract asks authors to write and what stamp-changelog.mjs then assigns:
+# two branches that each guessed "top + 1" both get it wrong.
+#
+# SO THE MERGE IS NOT DONE WHEN THE DRIVER RETURNS. It prints the reminder:
+#     node chicago/4d/tools/stamp-changelog.mjs
+#     node chicago/4d/tools/check-changelog.mjs
+#
+# It REFUSES — leaving ordinary conflict markers — if both sides edited the same
+# shipped entry differently, or if a title would appear twice. That is precisely
+# the case union got silently wrong, and it is rare enough not to automate.
+chicago/4d/renderers/web/js/changelog.js merge=changelog
+site/chicago/4d/js/changelog.js merge=changelog
+site/chicago/4d/walk/js/changelog.js merge=changelog

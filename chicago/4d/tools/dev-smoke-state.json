@@ -2,6 +2,133 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 150,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 381,
+      "takenAt": "2026-09-04T17:44:34.075Z",
+      "ref": "steward/t-0577-calumet-1879-registry",
+      "commit": "56ef77984e05",
+      "devCommit": "5b0002cfa858",
+      "treeHash": "sha256:ed6c3ee0d8ec487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:995d82d5d484c20e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_m1113.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 479,
+      "takenAt": "2026-09-04T17:44:33.980Z",
+      "ref": "steward/t-0577-calumet-1879-registry",
+      "commit": "56ef77984e05",
+      "devCommit": "5b0002cfa858",
+      "treeHash": "sha256:ed6c3ee0d8ec487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:995d82d5d484c20e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 74,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 137,
+      "takenAt": "2026-09-04T17:44:33.886Z",
+      "ref": "steward/t-0577-calumet-1879-registry",
+      "commit": "56ef77984e05",
+      "devCommit": "5b0002cfa858",
+      "treeHash": "sha256:ed6c3ee0d8ec487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:995d82d5d484c20e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 281,
+      "takenAt": "2026-09-04T17:44:33.791Z",
+      "ref": "steward/t-0577-calumet-1879-registry",
+      "commit": "56ef77984e05",
+      "devCommit": "5b0002cfa858",
+      "treeHash": "sha256:ed6c3ee0d8ec487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:995d82d5d484c20e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1580,39 +1707,6 @@
         ]
       },
       "source": "/tmp/smoke_mobile9.txt"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "11-13",
-      "parts": [
-        11,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 150,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 382,
-      "takenAt": "2026-09-03T22:57:15.264Z",
-      "ref": "steward/t-0598-crosswalks-state-their-source",
-      "commit": "53ddbe0478ee",
-      "devCommit": "c05acdc29f82",
-      "treeHash": "sha256:5d93e3c6edfb1f1c",
-      "treeDirty": true,
-      "changelogHash": "sha256:37a99b065f1ba58e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.9,
-          0.8,
-          1.1
-        ]
-      },
-      "source": "/tmp/smoke-m1113.log"
     },
     {
       "viewport": "desktop",

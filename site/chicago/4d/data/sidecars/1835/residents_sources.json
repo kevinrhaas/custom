@@ -128,6 +128,25 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "calumet_club_early_chicago_1879": {
+      "source_id": "calumet_club_early_chicago_1879",
+      "citation": "Early Chicago: Reception to the Settlers of Chicago Prior to 1840, by the Calumet Club, of Chicago, Tuesday Evening, May 27, 1879 (Chicago: Calumet Club, 1879) — the printed proceedings of the FIRST old-settlers' reception, with the registry of settlers who signed it.",
+      "url": "https://archive.org/details/earlychicagorece00calu",
+      "archived_url": "https://archive.org/download/earlychicagorece00calu/earlychicagorece00calu_djvu.txt",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the date, host and criterion of the first reception, 27 May 1879",
+        "the club's own count of 149 settlers who registered during the evening",
+        "the printed REGISTER itself, pages 84-90: 159 entries, each with the man's name, his own date of arrival in Chicago, his birthplace, his age and his 1879 post-office address — the only roster in the series that dates its people",
+        "the three aggregate tables of printed page 72 — places of birth, years of arrival and ages — each summing to 149, read off the plate rather than the OCR"
+      ],
+      "what_it_does_not_supply": [
+        "a residence in 1835. A date of arrival here is what the man said in 1879, forty to sixty years after the fact, and the club's criterion reaches to the end of 1839",
+        "which of the 159 printed entries are the 'few [who] called afterward and signed the registry' and are therefore outside the 149 the tables count — the plate does not mark them, and this project does not guess",
+        "an address in 1835: the register's fifth column is the 1879 post-office address"
+      ]
+    },
     "catholic_chicago_st_cyr_1833": {
       "source_id": "catholic_chicago_st_cyr_1833",
       "citation": "Catholic Encyclopedia, Archdiocese of Chicago entry, early institutional history describing John Mary Irenaeus St. Cyr's 1833 appointment, first Mass and first church, and his 1837 recall.",

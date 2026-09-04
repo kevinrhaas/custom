@@ -54,6 +54,32 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
+# ours' order, theirs' closes and theirs' new tickets — because a text merge of
+# a re-ranked queue against a branch that closed tickets conflicts on every hunk,
+# and `union` would hand back both orderings with every ticket twice. Landing one
+# re-rank on 2026-09-04 cost four merges of dev and four hand reconciliations.
+step "the QUEUE.md merge driver still does what .gitattributes promises" \
+  node tools/merge-queue-selftest.mjs
+
+# THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
+# is seven repairs long, five of them in one day when `union` spliced one entry
+# into another and left valid JavaScript nobody noticed. The driver never works
+# below entry granularity, and REFUSES if both sides edited one shipped entry.
+step "the changelog merge driver still does what .gitattributes promises" \
+  node tools/merge-changelog-selftest.mjs
+
+# ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
+# say what `queue` runs — git keeps a driver command out of tracked content on
+# purpose. So each clone registers it once, and a clone that has not is NOT
+# broken: git falls back to the ordinary text merge, which is what this repo did
+# before the driver existed. Say so and move on.
+if [ -z "$(git config merge.queue.driver || true)" ] || [ -z "$(git config merge.changelog.driver || true)" ]; then
+  printf '\033[33m   note: this clone has not registered the custom merge drivers.\033[0m\n'
+  printf '\033[33m         QUEUE.md and changelog.js will conflict the old way until you run:\033[0m\n'
+  printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
+fi
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -1460,6 +1486,30 @@ step "…and its own assertions still fire when broken" \
 
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839_register.py --check
+# T-0666. The last four pages of the same volume, printed 47-50: the Fort Dearborn
+# Addition sale of 10-24 June 1839, and the volume's own population table. Both are set
+# in columns and the OCR does not read a columned page in printed order — its flat text
+# puts one man's price against another man's lot, and sets 1863 under 1849 — so the rows
+# are put back from the scan's word coordinates by a committed row map, and every cell in
+# it names the spans of committed page text it is made of. That map is the thing worth
+# gating: a span shifted by one line hands two hundred lots to the wrong bidders and looks
+# exactly like a reading. Two checks catch it, and they are independent. This one rebuilds
+# both claims files offline out of the committed text and the map and diffs them;
+# research_domains.py --check, already run above, rebuilds every quote in them THROUGH
+# those same spans, so a map that points at the wrong ink cannot produce a quote that
+# matches. The self-test asserts the three rules that do the reading's judging — that a
+# mark in the bidder column is a ditto only where a price is printed, so the printer's
+# brace over a block of reserved lots is not read as the man above; that a block number is
+# carried only while the lot numbers keep rising; and that a numeral the scan destroyed is
+# null and never recovered from its neighbours.
+step "Fergus 1839's Fort Dearborn lot sale and population table rebuild from the committed text and row map" \
+  python3 tools/read_fergus_1839_lots.py --check
+
+step "…and the three rules that judge that reading still fire when broken" \
+  python3 tools/read_fergus_1839_lots.py --self-test
+
+step "…and the bidders' crosswalk to the pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_lots.py --check
 
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
