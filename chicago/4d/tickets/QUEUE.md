@@ -210,7 +210,6 @@ T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with n
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
 
-T-0646 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap
 T-0644 — The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
 T-0654 — The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals
 T-0655 — The 1840 census image 33S7-9YYJ-BF read line by line and closed against its own printed column totals
