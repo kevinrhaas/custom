@@ -1,7 +1,7 @@
 ---
 id: T-0670
 title: The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 814
 claimed_by: run 9/4/2026, 4:03:34 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T21:39:54.498Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918567032
 ---
 
