@@ -133,7 +133,6 @@ T-0536 — The census_1840 domain declares its 25 read images in its own images[
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
-T-0654 — The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals
 T-0657 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line
 T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
 T-0659 — The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
