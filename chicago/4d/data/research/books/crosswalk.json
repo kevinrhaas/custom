@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "books",
   "source_id": "chicago_antiquities_american_fur_co",
-  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins. T-0500 adds a pass over Fergus' Historical Series Nos. 26-29, second half, whose rulings rest on data/sources/fergus_historical_series_26_29.json and say so on themselves.",
+  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins. T-0500 adds a pass over the same volume's SECOND half, whose rulings rest on the same data/sources/fergus_historical_series_26_29.json and say so on themselves.",
   "note": "The ONLY place two differently-spelled names in this domain may become one person, in data/research/newspapers/identity.json's shape and under its rules: a merge needs a rule, the rule names BOTH spellings verbatim, and a surname-only merge is always a refusal. A refusal is declared as explicitly as a merge — the absence of one reads like a pair nobody has looked at yet.",
   "passes": [
     {
@@ -27,6 +27,16 @@
       "detail": "In this file. THE COUNT THE TICKET ASKS FOR: 35 distinct persons are named across the 92 claims. Seven are merged, fifteen are refused, two match this project's spelling exactly and need no merge (J. K. Boyer at bk_hub_026 against data/residents/households/hh_placed_j_k_boyer.json, and Gurdon Saltonstall Hubbard on the title page, already merged into by T-0575 and not re-declared here). The remaining eleven are named for events wholly outside this town — Deschamps, Ramsey Crooks, Warner, Bieson, Beebeau, Bourbonais, Hall, Jombeau, Vasseur, Portier and Dominick Bray, all of them Illinois River and Mackinaw men — and are recorded here as examined and unmatched rather than ruled on one by one, because none of them is ever placed at Chicago by the source.",
       "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer. Under the ladder ratified 2026-09-03 this source corroborates and dates and places nobody in 1835: its eyewitness ends in 1830 and its 1835 pages are a 1911 compilation.",
       "ruled_on": "The rulings are anchored to bk_hub_026 (the town trustees of 11 August 1834), bk_hub_016 and bk_hub_031 (the 1835 arrivals and the 1835 land purchase), bk_hub_040, bk_hub_041, bk_hub_048, bk_hub_049 and bk_hub_094 (the Kinzie household), bk_hub_065 (Beaubien after Craft), bk_hub_090 (Wolcott and Heacock in the fort), bk_hub_097 (Caldwell and Shaub-e-nee) and bk_hub_102 (Caldwell in November 1830). The other claims name no person to rule on, or name one already ruled on: that is not a shortfall, it is what a book of landscape, buildings and river mouths looks like."
+    },
+    {
+      "pass": "T-0499",
+      "what": "Every person named in leaves 1-429 of Fergus' Historical Series Nos. 26-29 whose naming falls in the 1830-1836 window, against this project's residents, voters and letter-list names. THE WINDOW IS WHAT MAKES THIS PASS SMALL. The half holds hundreds of names and almost all of them are outside it: No. 26's chiefs speak in 1811, No. 27's are dead or removed before the plat, and No. 28's officer, church and society lists are 1843 lists of 1843 men. Five names fall inside, and all five are ruled on here.",
+      "readings_examined": 41,
+      "residents_examined": 5,
+      "merges": 2,
+      "refusals": 3,
+      "outside_the_window": "Robert Fergus (a resident from 1 July 1839, four years after the scene, and the compiler rather than a subject); James W. Norris (canvassed in 1843); William Ellis (printing in 1843-44); Sidney Abell (postmaster from 1837); William Stuart (postmaster in 1843); Alson S. Sherman, Mark Skinner, William Jones, Silas Meacham, George W. Meeker and John B. Weir and the rest of the 1843 society and company officers; Capt. John Whistler (built the first fort in 1803); To-pen-ne-bec, Oseemit, Five Medals, White Loon, Little Turtle, Me-te-a and William Wells (1811-1812); Major Daniel W. Beckwith (surveying on the Kankakee in May 1834 - inside the window by date and outside it by place, and he is not claimed as a Chicago man here); Henry R. Schoolcraft (at Chicago in August 1821). NONE OF THESE WAS CROSSWALKED AND NONE IS A HOLE: a name outside the window is not a candidate, and saying so here is what keeps the next sweep from doing the work again.",
+      "note": "Two of the five inside the window are the same men this project already holds, and one of the two - Hogan - is corroborated in a way the resident record did not carry: it says Chicago's mail began in his store, and Fergus dates his postmastership and names the man before him."
     },
     {
       "pass": "T-0500",
@@ -284,6 +294,28 @@
       "claim_id": "bk_hub_097"
     },
     {
+      "into": "Billy Caldwell (Sauganash)",
+      "from": "Billy Caldwell",
+      "rule": "Beckwith's footnote at leaf 375 names 'Billy Caldwell, whose name is so intimately connected with early Chicago', as the husband of Min-ne-mung's sister. This project holds the resident Billy Caldwell (Sauganash), graded attested, interpreter to the United States Indian agency at Chicago under Col. T. J. V. Owen and present on the scene date. Billy Caldwell is Billy Caldwell (Sauganash) with the Potawatomi name dropped, which is how the shorter form is always printed; the merge does not rest on the surname, which would be refused, but on the given name plus the surname plus the town - Beckwith says 'early Chicago' and the resident record says Chicago - plus the ROLE, an intermediary between the agency and the Potawatomi, which is exactly the position a marriage into the Yellow Head's family describes. There is no second Billy Caldwell in this project and none in Beckwith.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_024",
+        "data/residents/households/hh_caldwell_billy.json",
+        "data/sources/fergus_historical_series_26_29.json"
+      ],
+      "what_it_adds": "A marriage this project did not hold: Caldwell's wife was the sister of Min-ne-mung (the Yellow Head), whose village stood at Yellow-Head's Point north of Momence on the Kankakee. It changes no placement, no grade and no household."
+    },
+    {
+      "into": "John S. C. Hogan",
+      "from": "John Stephen Coates Hogan",
+      "rule": "The 1843 directory's post-office history at leaf 419 says the eastern mail was received 'in a one-horse wagon, weekly - John Stephen Coates Hogan, postmaster', in the year after 1832. This project holds the resident John S. C. Hogan, graded attested, whose occupation note reads 'John S. C. Hogan, Postmaster, came in 1832' and whose store is this dataset's hogan_store, 'both a shop and the place where Chicago's mail began'. John Stephen Coates Hogan is John S. C. Hogan written out: three initials in order against three given names in order, S for Stephen, C for Coates, on the same surname, in the same town, in the same OFFICE, in the same years. A three-initial agreement on an uncommon expansion is not a coincidence and this is not a surname merge.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_052",
+        "data/residents/households/hh_hogan_john_s_c.json",
+        "data/sources/fergus_historical_series_26_29.json"
+      ],
+      "what_it_adds": "The expansion of the initials, the man who held the office BEFORE him (Jonathan Nash Bailey, 1832), and the mail's service level year by year across the scene date - which is what the resident record's 'where Chicago's mail began' was missing."
+    },
+    {
       "into": "Thomas Jefferson Vance Owen",
       "from": "Thomas J. V. Owen",
       "rule": "Fergus' Obituary prints the Indian agent as 'Thomas J. Y. Owen', which this project reads as Thomas J. V. Owen — the OCR's Y for V is the commonest single-glyph failure in this whole text and the printed initials are J. V. everywhere else in the corpus. Thomas Jefferson Vance Owen is this project's resident record, and Thomas J. V. Owen is that name initial for initial: J for Jefferson, V for Vance, the same surname, the same office of Indian agent, and the same town. Four things agree and the surname is the least of them. The merge carries a DEATH DATE and nothing else: 15 October 1835.",
@@ -400,7 +432,7 @@
       "rule": "Hurlbut says John Crafts 'was a trader sent to Chicago by a Mr. Conant, of Detroit'. This project holds one Conant: Reuben Conant, a name off the post office's letter lists, unplaced, with no trade recorded and his presence on the scene date graded uncertain. Merging Mr. Conant into Reuben Conant would join a surname and nothing else — the source gives no given name at all, and a merge on a bare surname is always a refusal here. It would also join two men the sources put in different towns and fifteen years apart: Hurlbut's Conant is a Detroit merchant of about 1818 who is not said ever to have come to Chicago, and Reuben Conant is a name somebody was writing to AT Chicago by 20 May 1835. Refused.",
       "evidence": [
         "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_007",
-        "data/residents/households/hh_ll_reuben_conant.json — head ll_reuben_conant, division unplaced, present_on_scene_date uncertain"
+        "data/residents/households/hh_conant_reuben.json — head conant_reuben, division unplaced, present_on_scene_date uncertain"
       ],
       "pass": "T-0575",
       "claim_id": "bk_afc_007"
@@ -588,6 +620,37 @@
       ],
       "pass": "T-0501",
       "claim_id": "bk_hub_065"
+    },
+    {
+      "a": "Jonathan Nash Bailey",
+      "b": "Bennet Bailey",
+      "rule": "The 1843 directory names Jonathan Nash Bailey as the postmaster receiving a weekly horseback mail in 1832. The only Bailey this project holds is Bennet Bailey, a letter-list household graded inferred and unplaced. Jonathan Nash Bailey and Bennet Bailey share a surname and nothing else: the given names are different names, not variant spellings of one, and no initial, trade, address or date connects them. A surname match is a clue and not an identity, and a surname-only merge is always a refusal here. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_052",
+        "data/residents/households/hh_ll_bennet_bailey.json"
+      ],
+      "note": "Worth a look by a pass that can reach the letter lists themselves: a postmaster is exactly the man whose name appears in a list of uncalled-for letters, and if a Jonathan Bailey is printed in one, this refusal becomes a merge on evidence rather than on hope. It is not one now."
+    },
+    {
+      "a": "John Kinzie",
+      "b": "John Harris Kinzie",
+      "rule": "Schoolcraft's 1821 account, as Beckwith prints it, places the treaty bower 'near the old John Kinzie house' on the north bank. This project holds John Harris Kinzie, attested, forwarding and commission merchant, present on the scene date. John Kinzie is his FATHER, dead in 1828, and the house is the father's; reading John Kinzie as John Harris Kinzie would put a fourteen-year-old boy's father's house under the son's name and would date the son's residence to 1821. The two are separate men with separate records elsewhere in this project, and a shared surname with a shared given name across two generations is the classic trap this file exists to refuse. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_028",
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_012",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "note": "The same refusal covers bk_fer_012's 'Mr. Kinzie's family at the Chicago massacre', which is the elder Kinzie's family in 1812."
+    },
+    {
+      "a": "Mrs. Kinzie",
+      "b": "Juliette Augusta Magill Kinzie",
+      "rule": "Beckwith's footnote cites 'Mrs. Kinzie's Wau-Iiun' for the Chicago massacre. This project holds Juliette Augusta Magill Kinzie, attested, recorded as the author of Wau-Bun. The work makes the identification obvious and the NAME still does not: Mrs. Kinzie is a courtesy title on a bare surname, and this file refuses a surname-only merge however good the rule, because the project holds three Kinzie households and the honorific chooses among none of them. The citation is recorded on the claim itself, where it belongs; the identity is refused. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_first_half.json bk_fer_012",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "note": "A refusal that costs nothing: nothing in this reading depends on it, because Wau-Bun is already a graded source in this project and Beckwith's footnote adds nothing to it."
     },
     {
       "a": "Dr Spring",

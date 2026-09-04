@@ -60,8 +60,8 @@
     },
     {
       "id": "fergus_26_29",
-      "title": "Fergus' Historical Series, Nos. 26-29 — No. 26, Harrison's A Discourse on the Aborigines of the Ohio Valley; No. 27, Beckwith's The Illinois and Indiana Indians; No. 28, Fergus's Directory of the City of Chicago for 1843; No. 29, Kirby's Biographical Sketch of Joseph Duncan",
-      "imprint": "Chicago: Fergus Printing Company, 1883-1888 — four numbers bound in one volume (Allen County Public Library copy)",
+      "title": "Fergus' Historical Series, Nos. 26-29, bound in one volume",
+      "imprint": "Chicago: Fergus Printing Company, 1883-1888 - four separately printed pamphlets, each with its own title page and its own folio run starting at 1",
       "source_id": "fergus_historical_series_26_29",
       "archive_item": "fergushistorical2629unse",
       "deposit": {
@@ -74,21 +74,20 @@
         "path": "chicago/4d/data/research/books/text/fergus_26_29.txt",
         "path_kind": "derived",
         "sha256": "0b8fcb14a6c65319598cf8d5fa635922c65df8d3ed3efaf969cb29b628c19942",
-        "how": "The deposit's own hOCR search text, copied BYTE FOR BYTE by tools/build_fergus_page_index.py --build on 2026-09-03. Not cleaned, not re-flowed, not re-OCR'd. The deposit was already in the repository and nothing was fetched for it; the archive.org _djvu.txt was deliberately NOT used, because the deposit's page index addresses THIS text and swapping texts would break every locator in the domain.",
+        "how": "The deposit's own hOCR search text, copied byte for byte on 2026-09-03. NO FETCH WAS MADE: the file had been in chicago/reference/fergus/ unread since the deposit was laid down, with its hOCR page index beside it. tools/build_book_page_index.py --build refuses to write the index unless the committed text is byte-identical to that deposit file, so the copy is gated and not merely asserted.",
         "corroborated_by": null
       },
       "page_index": {
         "path": "chicago/4d/data/research/books/page_index/fergus_26_29.json",
         "path_kind": "derived",
-        "generated_by": "tools/build_fergus_page_index.py --build",
-        "why": "NOT AN ALIGNMENT — A TRANSCRIPTION OF THE SCANNER'S OWN INDEX. Unlike Hubbard's autobiography, whose committed text carries no page breaks at all, this deposit ships fergushistorical2629unse_hocr_pageindex.json: 858 entries of exact character offsets into the search text, one per scanned leaf. The tool turns those offsets into 1-based line numbers, assigns each leaf to one of the volume's four numbers from the four title pages read off the scan, and reads the printed folio out of the running head where the OCR gives it.",
-        "folios_read_off_the_page": 204,
-        "folios_carried_by_offset": 159,
-        "folios_discarded": 33
+        "generated_by": "tools/build_book_page_index.py --build",
+        "why": "THE COMMITTED TEXT HAS NO PAGE BREAKS, AND UNLIKE HUBBARD'S IT NEEDED NO ALIGNMENT TO GET THEM. The Internet Archive emitted an hOCR PAGE INDEX with the same OCR pass that produced this text, and it gives every one of the 858 leaves an exact character range in these very characters - so the boundaries are transferred by arithmetic, not searched for, and --build hard-fails unless the 858 ranges tile the text with no gap and no overlap. They do: 624 non-blank leaves, all exact.",
+        "folios_read_off_the_page": 194,
+        "folio_note": "194 of 624 non-blank leaves print a folio the head-reader could take. The rest are refused rather than carried: THIS VOLUME BINDS FOUR PAMPHLETS THAT EACH RESTART AT 1, so there is no constant offset to carry and a carried folio would be an invention. The OCR loses most of the rest to its own damage - '1 843. 1 3', 'l6', 'l843- 21' - and a claim cites its LEAF, which is exact for all 858."
       },
-      "claims": "chicago/4d/data/research/books/claims/fergus_26_29_second_half.json — 58 claims, T-0500 (leaves 430-858). The first half, leaves 1-429, is T-0499.",
-      "read": "Leaves 430-858, declared in five items in coverage.json: the 1843 Business Directory (430-457) and Obituary (606-644) and the whole of Fergus No. 29 (658-850) read in full; the publisher's advertisement leaves (645-657, 851-858) read for Chicago titles only; the 1843 alphabetical name directory (458-605) SWEPT BY MACHINE and not read continuously, which its own declaration states. Leaves 1-429 are T-0499's.",
-      "note": "FOUR PAMPHLETS IN ONE COVER AND FOUR SEPARATE FOLIO SEQUENCES. Every number restarts its page numbering at 1, so a printed folio in this volume is meaningless without its `part`, and the page index carries both. The folio offset is not even constant WITHIN a number — an inserted plate shifts it — so the read folios are grouped into runs of a single offset and a leaf between two runs keeps printed_page null rather than being guessed at. Thirty-three folio readings that contradict every run are discarded and listed, the commonest being the directory's own running head, 'CHICAGO DIRECTORY, 1 843.', whose year reads as a page number."
+      "claims": "chicago/4d/data/research/books/claims/fergus_26_29_first_half.json - 41 claims, 20 of them town findings, T-0499 (leaves 1-429); chicago/4d/data/research/books/claims/fergus_26_29_second_half.json - 58 claims, 45 of them town findings, T-0500 (leaves 430-858). The volume is read whole between the two.",
+      "read": "ALL 858 LEAVES, between two tickets. T-0499 read leaves 1-429 - the front matter (1-14), No. 26 entire (15-206), No. 27 entire (207-398) and No. 28 through its port statistics (399-429) - as four `list` items in coverage.json. T-0500 read leaves 430-858 as five more: No. 28's Business Directory (430-457) and Obituary (606-644) and the whole of No. 29 (658-850) read in full; the publisher's advertisement leaves (645-657, 851-858) read for Chicago titles only; and No. 28's alphabetical name directory (458-605) SWEPT BY MACHINE and NOT read continuously, which its own declaration states in as many words.",
+      "note": "THE FILENAME SAYS 26-29 AND UNTIL THIS PASS NOTHING SAID WHAT THAT MEANT. The four numbers are Harrison's Discourse on the Aborigines of the Ohio Valley (26), Beckwith's Illinois and Indiana Indians (27), the Directory of the City of Chicago for 1843 (28) and Kirby's Biographical Sketch of Joseph Duncan (29); the contents table with leaf ranges is in README.md. Two of the four touch Chicago, one of them fourteen years too early and the other eight years too late, and No. 28 - the directory 'for 1843' - was compiled in 1896. T-0500 adds what the second half holds: eight thousand 1843 directory entries whose only pre-1837 statements are Robert Fergus's own bracketed annotations, an Obituary carrying six deaths inside 1830-1836, and No. 29's canal thread - Duncan's 1829 diary of getting the route located, the legislature of 1834-35 adjourning without acting on it, and the special session of December 1835 that authorised the loan the canal was finally built with."
     }
   ]
 }

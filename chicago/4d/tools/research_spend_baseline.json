@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 54,
   "church": 0,
-  "books": 132,
+  "books": 173,
   "directories": 4703,
   "newberry_index": 3148,
   "land_sales": 375
@@ -30,7 +30,7 @@
    "spent": 0
   },
   "books": {
-   "read": 169,
+   "read": 210,
    "spent": 37
   },
   "directories": {
@@ -96,9 +96,17 @@
    "domain": "books",
    "hop": "read",
    "from": 85,
-   "to": 132,
+   "to": 126,
    "date": "2026-09-03",
-   "why": "T-0500 read the SECOND HALF of Fergus' Historical Series Nos. 26-29 — scan leaves 430-858 — as 58 claims and ruled on 11 of them in data/research/books/crosswalk.json: 6 merges (Thomas J. V. Owen, G. S. Hubbard, Gen. Jean Baptiste Beaubien, A. Garrett, John Calhoun, William B. Ogden) and 7 refusals (Dr Spring against Giles Spring, the volume's two conflicting expansions of R. C. Bristol, O. Newberry against Oliver Newberry pending T-0396, the firm Newberry & Dole against George Washington Dole, the elder John Kinzie against his son, Rev. Jesse Walker and John Wentworth on surnames). THE OTHER 47 CANNOT BE SPENT BY THIS INSTRUMENT AND THE REASON IS THE SOURCE'S OWN SHAPE, exactly as T-0575 argued for Hurlbut. Two thirds of this half is Fergus No. 28, a directory OF 1843: its people are 1843 people, and a name in it is not a name to adjudicate against an 1835 town — the crosswalk pass lists all twenty-five persons named inside the 1830-1836 window by name, with the outcome of each, and 'no candidate in data/residents/' is the honest outcome for six of them and 'out of scope, Jacksonville' for four more. The rest of the half is Fergus No. 29, a Morgan County family memoir whose Chicago thread is the Illinois-and-Michigan Canal: its claims are a canal being located, a legislature adjourning, a loan authorised, a winter of deep snow, a book advertised. Those name institutions and events, not townspeople, and inventing name-pairs to spend them would be the corruption this instrument exists to prevent. WHAT THEY CAN BE SPENT ON IS THE TOWN, and the two that most directly can are already visible: bk_fer2_043 dates the first warehouse on the South Side to the fall of 1839, which is a dated negative for the south bank in the scene year, and bk_fer2_049 gives a Dr Spring dead on 10 November 1835 which T-0423 will want if a given name is ever found. The number comes down only if a later pass reads the 1843 alphabetical name directory ENTRY BY ENTRY — coverage.json declares that it was swept and not read — and it should not be raised again for a directory of a later decade without this argument being made afresh."
+   "why": "T-0499 read the first half of Fergus' Historical Series Nos. 26-29 on the owner's direct ask, and the reading is deliberately wider than its rulings. Of 41 claims, 36 carry no person this town could hold: they are landscape, buildings, streets, civic institutions and port statistics, and the crosswalk has nothing to rule on in them. Only five names in 429 leaves fall in the 1830-1836 window and ALL FIVE ARE RULED ON - two merges and three refusals - with every name outside the window listed by name in the pass so the next sweep does not re-examine it. The gap this raise opens is not unadjudicated names; it is town findings waiting for the structure and terrain tickets that will spend them."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 126,
+   "to": 173,
+   "date": "2026-09-04",
+   "why": "T-0500 read the SECOND HALF of Fergus' Historical Series Nos. 26-29 — scan leaves 430-858 — as 58 claims and ruled on 11 of them in data/research/books/crosswalk.json: 6 merges (Thomas J. V. Owen, G. S. Hubbard, Gen. Jean Baptiste Beaubien, A. Garrett, John Calhoun, William B. Ogden) and 7 refusals (Dr Spring against Giles Spring, the volume's two conflicting expansions of R. C. Bristol, O. Newberry against Oliver Newberry pending T-0396, the firm Newberry & Dole against George Washington Dole, the elder John Kinzie against his son, Rev. Jesse Walker and John Wentworth on surnames). THE OTHER 47 CANNOT BE SPENT BY THIS INSTRUMENT AND THE REASON IS THE SOURCE'S OWN SHAPE, exactly as T-0575 argued for Hurlbut and T-0499 for the first half of this same volume. Two thirds of this half is Fergus No. 28, a directory OF 1843: its people are 1843 people, and a name in it is not a name to adjudicate against an 1835 town — the crosswalk pass lists all twenty-five persons named inside the 1830-1836 window by name with the outcome of each, and 'no candidate in data/residents/' is the honest outcome for six of them and 'out of scope, Jacksonville' for four more. The rest of the half is Fergus No. 29, a Morgan County family memoir whose Chicago thread is the Illinois-and-Michigan Canal: its claims are a canal being located, a legislature adjourning, a loan authorised, a winter of deep snow, a book advertised. Those name institutions and events, not townspeople, and inventing name-pairs to spend them would be the corruption this instrument exists to prevent. WHAT THEY CAN BE SPENT ON IS THE TOWN, and the two that most directly can are already visible: bk_fer2_043 dates the first warehouse on the South Side to the fall of 1839, a dated negative for the south bank in the scene year, and bk_fer2_049 gives a Dr Spring dead on 10 November 1835 which T-0423 will want if a given name is ever found. The number comes down only if a later pass reads the 1843 alphabetical name directory ENTRY BY ENTRY — coverage.json declares that it was swept and not read — and it should not be raised again for a directory of a later decade without this argument being made afresh."
   }
  ],
  "lowered": [

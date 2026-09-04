@@ -711,7 +711,7 @@ REFUSALS = [
         "evidence": [
             "data/research/church/records/st_cyr_marriages_1834_1839.json "
             "st_cyr_marriage_009_3",
-            "data/residents/households/hh_ll_george_lee.json — ll_george_lee (inferred)",
+            "data/residents/households/hh_lee_george.json — lee_george (inferred)",
         ],
     },
     {
@@ -803,7 +803,7 @@ REFUSALS = [
                 "named in the entry.",
         "evidence": [
             "data/research/church/records/st_cyr_deaths_1834_1837.json st_cyr_death_06_1",
-            "data/residents/households/hh_ll_andrews_davi.json — ll_andrews_davi",
+            "data/residents/households/hh_andrews_davi.json — andrews_davi",
         ],
     },
 ]

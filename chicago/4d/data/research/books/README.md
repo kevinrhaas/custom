@@ -1,7 +1,7 @@
 # Books and reminiscences — prose, read the way the newspapers are read
 
-**What lives here.** Fergus' Historical Series Nos. 26-29 (1.24 MB of raw OCR,
-with no text, no register and no claim read out of it), Gurdon Hubbard's
+**What lives here.** Fergus' Historical Series Nos. 26-29 (read in its first half
+by T-0499 - see the contents table below), Gurdon Hubbard's
 autobiography (a 226-page scan the project has never mentioned), H. H. Porter's
 *Short Autobiography* (66 MB, a garbled text layer, and nothing yet saying whether
 it carries 1835 Chicago at all), and the memoirs printed beside them (T-0499,
@@ -150,34 +150,152 @@ civic office on any one of them.
 
 ---
 
-## Fergus' Historical Series Nos. 26-29 — what the volume actually holds
+## Fergus' Historical Series, Nos. 26-29 — what the volume actually holds
 
-The deposit's filename says *26-29* and says nothing more. The volume is FOUR
-PAMPHLETS BOUND IN ONE COVER, each with its own title page and its own page
-numbering starting again at 1, and one of the four is a Chicago directory. This
-table was read off the scan (T-0500, leaves 430-858; the first half is T-0499) and
-is the reason a citation from this volume must always name its **part**: "page 35"
-alone is four different pages.
+**The deposit's filename says 26-29 and until T-0499 nothing said what that meant.**
+It is four separately printed pamphlets bound as one, each with its own title page and
+its own folio run starting at 1 — which is why a page number in this volume is not
+unique and why every claim cites its LEAF. The table is read off the four title pages
+inside; the front matter names no contents at all.
 
-Leaf numbers are the scan's own, 1-based, 858 of them, from
-`page_index/fergus_26_29.json`. Printed folios are the book's.
+| No. | Title | Author | Printed | Leaves |
+|---|---|---|---|---|
+| — | Library plate, digitisation note, half-title "FERGUS' HISTORICAL SERIES No. 26 - 29", Fergus Printing Company advertisements | — | — | 1–14 |
+| 26 | *A Discourse on the Aborigines of the Ohio Valley*, with the Fort Wayne Indian speeches of 2 October 1811 appended and footnoted | William Henry Harrison (the discourse, 1838); Hiram W. Beckwith (the footnotes) | 1883 | 15–206 |
+| 27 | *The Illinois and Indiana Indians* | Hiram W. Beckwith | 1884 | 207–398 |
+| 28 | *Directory of the City of Chicago, Illinois, for 1843* | compiled by Robert Fergus | **1896** | 399–656 |
+| 29 | *Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois* | Julia Duncan Kirby | 1888 | 657–858 |
 
-| Leaves | Part key | What it is | Printed pages |
-|---|---|---|---|
-| 1-15 | `front` | Allen County Public Library plate, the Internet Archive statement, the collective title page *FERGUS' HISTORICAL SERIES No. 26-29* (leaf 10), and Fergus Printing Company advertisements | unnumbered |
-| 16-203 | `fergus_26` | **No. 26** — William Henry Harrison, *A Discourse on the Aborigines of the Ohio Valley*, with the *Manners and Customs* matter printed after it | 1-95+ |
-| 204-395 | `fergus_27` | **No. 27** — Hiram W. Beckwith, *The Illinois and Indiana Indians* (title page leaf 208, copyright 1884, author's letter dated Danville, 5 Nov. 1883) | 1-180+ |
-| 396-645 | `fergus_28` | **No. 28** — Robert Fergus, *Directory of the City of Chicago, Illinois, for 1843* (title page leaf 400). Introductory 402-405; city, county, state and U.S. officers, schools, churches, societies and statistics 406-429; **Business Directory** 430-457; **alphabetical name directory** 458-605; **Obituary** 606-644 | 3-124 |
-| 646-850 | `fergus_29` | **No. 29** — Julia Duncan Kirby, *Biographical Sketch of Joseph Duncan, Fifth Governor of Illinois*, read before the Historical Society of Jacksonville 7 May 1885, printed 1888 (title page leaf 658, photogravure plate leaf 654). Index at 820-844 | 1-95 |
-| 851-858 | `fergus_29` | Fergus Printing Company's closing book list | unnumbered |
+The leaf ranges include each number's own advertisement and cover leaves, which is why
+they meet with no gap. Blank and plate leaves are inside them: 624 of the 858 leaves
+carry text.
 
-**Two things follow from the table and neither is obvious from the filename.**
+## What has been read (T-0499, 2026-09-03) — the first half by page index
 
-1. **The volume contains a Chicago city directory.** This project already cites
-   Fergus's 1843 directory at second hand; leaves 396-645 are the thing itself.
-   It describes **1843**, not 1835, and its only pre-1837 statements are Robert
-   Fergus's own bracketed annotations — written in the 1880s and 1890s by a man
-   whose own entry says he arrived on **1 July 1839**.
-2. **Nos. 26 and 27 are not about Chicago at all**, and No. 29 names it four
-   times in ninety-five pages. The one thread in No. 29 that reaches the town is
-   the Illinois-and-Michigan Canal.
+**Leaves 1–429**, declared as four `list` items in `coverage.json` with no hole. That is
+the front matter, No. 26 entire, No. 27 entire, and No. 28 down to the port statistics,
+stopping where the 1843 business directory begins at leaf 430. **T-0500 takes leaves
+430–858.** Forty-one claims at `claims/fergus_26_29_first_half.json`; twenty of them are
+town findings. The target was stated before the reading began and is in the ticket: at
+least forty claims and at least eighteen town findings.
+
+**THE ASK WAS FOR SETTLERS' REMINISCENCES AND THIS HALF IS NOT THAT.** The Fergus numbers
+in general are where the settlers of the 1830s told their own stories thirty and forty
+years on. Numbers 26 to 29 are a discourse on the mound-builders, a tribal history, a
+directory and a governor's life. **No. 26 is a sweep that came back all but empty, and
+that is evidence**: four claims out of 192 leaves, every one of them from the 1811
+speeches appended to the discourse rather than from the discourse itself, which never
+reaches the Illinois lakeshore.
+
+**The two numbers that do touch Chicago miss the scene year from both sides.** No. 27
+reaches it fourteen years early and No. 28 eight years late, and every claim's
+`describes_date` says so.
+
+**No. 27 — Beckwith, and it is the better of the two.** Where he compiles he is tier 3;
+where he quotes Henry R. Schoolcraft on the Chicago treaty of August 1821 he is
+transmitting an eyewitness journal, and that is where the landscape comes from: **a belt
+of forest skirting the south branch, and beyond it the extensive level plain stretching
+to the lake shore** — the first independent corroboration in this domain of the shape the
+project's heightfield and timber belt already assume. With it: **a scattered Potawatomi
+village on both branches of the river** (the site was inhabited, and not at a point);
+the stream's name read as *a skunk* primarily and *a wild onion* secondarily, in that
+order; the Des Plaines named for a maple growing along its banks; **a seated bower on the
+green along the north bank, near the old John Kinzie house and directly under the guns of
+the fort**, which bounds how built that bank can have been; and between two and three
+thousand people assembled there, the largest crowd figure this project holds for this
+ground.
+
+**No. 28 — a directory *for 1843* that was compiled in 1896**, by a man who did not reach
+Chicago until July 1839, out of a canvass of 1843 of which he himself writes that
+"sailors were made tailors, and tailors sailors, names were spelled at and locations
+guessed". That sentence is a claim in this file (`bk_fer_043`) and it is the most useful
+thing in the pamphlet, because **it bears directly on T-0506**: the "1839 Chicago
+directory" this project cites is, on the same compiler's account, an 1876 publication —
+the same retrospective act, thirty-seven years after its year. What the pamphlet still
+gives the town is **the mail across the scene date** (horseback weekly in 1832 under
+Jonathan Nash Bailey; a semi-weekly four-horse stage from 1834; **tri-weekly in 1835**),
+**the Chicago Lyceum instituted 2 December 1834**, seven churches placed to the block
+face as an upper bound on 1835, a Masonic lodge in a third storey at Clark and South
+Water, and the earliest customs figures for the port — 1836, exports $1,000.64 against
+imports $325,203.90, with the custom house's own warning that both understate.
+
+**One reading was refused outright.** The 1843 census table's ward columns are woven by
+the OCR into lines of loose digits. The totals appear to read 7,580 against 4,853, and
+"appear to read" is not a transcription: `bk_fer_057` records the refusal instead of the
+number, and says what a run would have to do to get it.
+
+**The identity pass is small on purpose.** `crosswalk.json` rules on the five names that
+fall in the 1830–1836 window — two merges (Billy Caldwell into Billy Caldwell
+(Sauganash); John Stephen Coates Hogan into John S. C. Hogan, which dates the
+postmastership the resident record already half-carried) and three refusals (Jonathan
+Nash Bailey against Bennet Bailey; John Kinzie against his son John Harris Kinzie;
+"Mrs. Kinzie" against Juliette Augusta Magill Kinzie, on the surname-only rule). Every
+other name in 429 leaves is outside the window, and the pass says so by name so the next
+sweep does not do the work again.
+
+**Nothing here is payload.** No structure, asset, resident or household record was
+changed by this reading.
+
+**The page index needed no alignment, and that is new.** Hubbard's leaf boundaries had to
+be transferred from a second file by `difflib`. This volume's deposit carries the hOCR
+page index emitted with the same OCR pass that made the text, so the 858 leaf boundaries
+are exact arithmetic; `tools/build_book_page_index.py` grew a second derivation mode for
+it (`derivation: hocr_page_index`) and hard-fails unless the ranges tile the committed
+text with no gap and no overlap. **Its folios are read or they are null** — the volume
+binds four pamphlets that each restart at 1, so there is no offset to carry and a carried
+folio would be an invention. 194 of the 624 non-blank leaves print one the reader could
+take.
+
+## What has been read (T-0500, 2026-09-03) — the second half by page index
+
+**Leaves 430–858**, declared as five `list` items in `coverage.json` with no hole, which
+completes the volume: T-0499 stopped where the 1843 business directory begins and this
+takes it from there. Fifty-eight claims at `claims/fergus_26_29_second_half.json`;
+forty-five of them are town findings. The target was stated before the reading began, in
+its own commit: fifty claims and twenty town findings.
+
+The five are **No. 28's Business Directory** (430–457) and **Obituary** (606–644) and the
+whole of **No. 29** (658–850), read in full; the **publisher's advertisement leaves**
+(645–657, 851–858) read for Chicago titles only; and **No. 28's alphabetical name
+directory** (458–605) **swept by machine and not read continuously**. That last is stated
+as plainly in its declaration as it is here, because it is the one limit that could be
+mistaken for coverage: every line was passed against two patterns — every year from 1820
+to 1836, and every personal and firm name this project's own 1835 records hold — and only
+the thirty-odd lines that answered were read. An absence from this file is therefore **no
+evidence** that a name is absent from the directory.
+
+**The directory is 1843 and the claims say so, forty times over.** Not one of its
+addresses is carried into the scene year, and the most useful thing in it is a dated
+negative: `bk_fer2_043`, Fergus's own note that Bristol & Porter's was the **first
+warehouse on the South Side, erected in the fall of 1839**. `bk_fer2_044` is why every
+other annotation of his is graded where it is — his own entry gives his arrival as
+**1 July 1839**, which is T-0499's finding reached independently from the other end of the
+book. What 1843 does give is the distance travelled: a four-storey brick on South Water
+second door from Clark, the Sauganash still at Lake and Market, a *later* Tremont House on
+Lake Street, and two shops reading their position as an ordinal off a named building —
+the same grammar T-0384 and T-0385 read for 1835.
+
+**The Obituary is where the second half touches the scene year at all**, six times:
+Thomas J. V. Owen the Indian agent (15 October 1835), the Rev. Jesse Walker twelve miles
+west of Chicago (5 October 1835), Hollis Newton hotel-keeper (25 August 1835), a **Dr
+Spring** with no given name (10 November 1835), the Rev. Allen B. Freeman (17 December
+1834) and Dr Alexander Wolcott (25 October 1830, his the first will probated in Cook
+County). The Spring line is **refused** against this project's Giles Spring and the
+refusal is the point: a surname with a doctor's title in front of it is not a lawyer, and
+T-0423 would otherwise inherit a death inside the scene year on a surname alone.
+
+**No. 29 names Chicago four times in ninety-five pages and places nothing here.** Its one
+thread that reaches the town is the Illinois-and-Michigan Canal, and that thread is worth
+the reading: Duncan's Washington diary of March 1829 pressing the War Department to get
+the route **located**; the legislature of 1834–35 adjourning without acting on it; and the
+special session of **December 1835** — the last month of the scene year — where he
+reported every attempt at a loan had failed and asked instead for the faith of the State
+to be pledged, which that session granted and which is the money the canal was built
+with. One passage naming Chicago canal lots is recorded as a **trap** (`bk_fer2_012`): it
+sits in a message headed *July 11, 1837*, so its "20th of June last" is 1837, and a sweep
+for Chicago plus a canal context would take it for 1835.
+
+**The identity pass rules on eleven claims** — six merges and seven refusals — and lists
+all twenty-five people named inside the 1830–1836 window by name with the outcome of
+each, because a crosswalk that reports only its merges cannot be audited. Nothing in
+`data/residents/`, `data/structures/` or `data/assets/` was edited.

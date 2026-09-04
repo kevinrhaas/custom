@@ -88,6 +88,36 @@ BOOKS_INDEXED = {
         "reading_order_note": "Leaves 11-12 (pages xv-xvi) belong between leaves 26 "
                               "and 27; everything else reads in leaf order.",
     },
+    "fergus_26_29": {
+        "title": "Fergus' Historical Series, Nos. 26-29, bound in one volume "
+                 "(Chicago: Fergus Printing Company, 1883-1888)",
+        "archive_item": "fergushistorical2629unse",
+        # DERIVED A DIFFERENT WAY, AND THAT IS THE POINT OF THIS ENTRY. Hubbard's
+        # boundaries had to be ALIGNED, because the text this project commits and
+        # the artifact that knows where the leaves break are two different files.
+        # Here they are one file's two halves: the deposit carries the Internet
+        # Archive's hOCR search text AND the hOCR page index that was emitted with
+        # it, and the index gives every leaf's exact character range in that very
+        # text. Nothing is searched for, nothing is backed off, no leaf is
+        # unaligned. `--build` checks the ranges tile the text end to end with no
+        # gap and no overlap, and refuses to write an index if they do not.
+        "derivation": "hocr_page_index",
+        "deposit_text": "chicago/reference/fergus/fergushistorical2629unse_hocr_searchtext",
+        "deposit_page_index": "chicago/reference/fergus/fergushistorical2629unse_hocr_pageindex.json",
+        "leaves": 858,
+        # NO `folio_runs`, ON PURPOSE. The volume binds four separately printed
+        # pamphlets, each starting its own arabic run at 1, with plates, covers and
+        # eight pages of Fergus Printing Company advertisements between them. A
+        # constant offset would be an invention on every leaf it touched, and the
+        # gate would then be checking the invention. So a folio here is READ off the
+        # running head of the leaf or it is null, and `folio_source` is never
+        # "offset" in this book.
+        "folios": "read_only",
+        "reading_order_note": "Leaf order throughout. The four numbers run 26 "
+                              "(leaves 15-206), 27 (207-396), 28 (399-656) and 29 "
+                              "(657-858); each restarts its own folio at 1, so a "
+                              "printed page number is only unique within its number.",
+    },
 }
 
 ROMAN = [(1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"),
@@ -104,7 +134,7 @@ def roman(n: int) -> str:
 
 
 def folio_for(spec: dict, leaf: int):
-    for run in spec["folio_runs"]:
+    for run in spec.get("folio_runs") or []:
         if run["first_leaf"] <= leaf <= run["last_leaf"]:
             n = run["first_folio"] + leaf - run["first_leaf"]
             return roman(n) if run["numeral"] == "roman" else str(n)
@@ -149,6 +179,133 @@ def line_of(starts, offset: int) -> int:
         else:
             hi = mid - 1
     return lo + 1                                       # 1-based
+
+
+def read_folio(leaf_text: str):
+    """The folio printed in a leaf's running head, or None.
+
+    READ OR NOTHING. The head is set with the page number outside the title —
+    "4 HARRISONS HISTORICAL DISCOURSE." on a verso, "CHICAGO DIRECTORY, 1843. 19"
+    on a recto — so the folio is the first token or the last token of the leaf's
+    running head, and only when the rest of that head still carries letters. The
+    OCR frequently breaks the head across two lines and leaves the folio alone on
+    the first, so a first line that is NOTHING BUT a one-to-three digit number is
+    read as the folio when the next line carries the head; a bare number with no
+    head under it is refused, because a plate caption, a table cell and a plate
+    number all look like that. Four digits are refused everywhere, because this
+    volume's heads print years ("CHICAGO DIRECTORY, 1843") and a year that passed
+    for a folio would be a fiction the gate then checked. `I`, `l` and `O` are
+    folded to `1`, `1` and `0` in a token that is otherwise digits — the same fold
+    the folio check above applies for the same reason, this OCR reading 19 as "I9"
+    about as often as not.
+    """
+    lines = [l.strip() for l in leaf_text.split("\n")]
+    lines = [l for l in lines if l]
+    if not lines:
+        return None
+    head = lines[0]
+    if re.fullmatch(r"\d{1,3}", head):
+        nxt = lines[1] if len(lines) > 1 else ""
+        return head if re.search(r"[A-Za-z]{3}", nxt) else None
+    if not re.search(r"[A-Za-z]{3}", head):
+        return None
+    m = re.match(r"^(\d{1,3})\s+(?=\S*[A-Za-z])", head)
+    if m:
+        return m.group(1)
+    m = re.search(r"(?<=[A-Za-z.,;:'\u2019])[\s.,]+([0-9IlOo]{1,3})\s*[.,]?$", head)
+    if m:
+        folded = m.group(1).translate(str.maketrans("IlOo", "1100"))
+        if any(ch.isdigit() for ch in m.group(1)) and folded.isdigit():
+            return str(int(folded))
+    return None
+
+
+def build_one_hocr(key: str, spec: dict) -> dict:
+    """Leaf boundaries taken straight from the deposit's own hOCR page index.
+
+    No alignment: the index and the text were emitted by the same OCR pass over the
+    same scan, so leaf i IS text[start:end]. What this function still has to prove
+    is that the ranges tile the committed text end to end — one gap and a claim's
+    line number would name the wrong leaf — and it refuses to write an index if
+    they do not.
+    """
+    text_path = BOOKS / "text" / (key + ".txt")
+    text = text_path.read_text(encoding="utf-8")
+    deposit_text = REPO / spec["deposit_text"]
+    deposit_index = REPO / spec["deposit_page_index"]
+    for path in (deposit_text, deposit_index):
+        if not path.exists():
+            raise SystemExit("the deposit is not here: %s" % path)
+    if deposit_text.read_bytes() != text_path.read_bytes():
+        raise SystemExit("%s is not byte-identical to the deposit OCR it is copied from" % text_path)
+    ranges = json.loads(deposit_index.read_text(encoding="utf-8"))
+    if len(ranges) != spec["leaves"]:
+        raise SystemExit("the page index holds %d leaves, not %d" % (len(ranges), spec["leaves"]))
+    prev_end = 0
+    for i, row in enumerate(ranges):
+        start, end = int(row[0]), int(row[1])
+        if start != prev_end:
+            raise SystemExit("leaf %d starts at %d, leaf %d ended at %d — the ranges do "
+                             "not tile the text" % (i + 1, start, i, prev_end))
+        if end < start:
+            raise SystemExit("leaf %d ends before it starts" % (i + 1))
+        prev_end = end
+    if prev_end != len(text):
+        raise SystemExit("the ranges cover %d characters, the text has %d" % (prev_end, len(text)))
+
+    starts = line_starts(text)
+    entries = []
+    for i, row in enumerate(ranges):
+        char_start, char_end = int(row[0]), int(row[1])
+        body = text[char_start:char_end]
+        blank = not body.strip()
+        entry = {
+            "leaf": i + 1,
+            "printed_page": None if blank else read_folio(body),
+            "folio_source": None,
+            "blank": blank,
+            "aligned": not blank,
+            "align_method": None if blank else "hocr_page_index",
+            "char_start": char_start,
+            "char_end": max(char_start, char_end - 1),
+            "line_start": line_of(starts, char_start),
+            "line_end": line_of(starts, max(char_start, char_end - 1)),
+            "opens": " ".join(body.split()[:8]),
+        }
+        if entry["printed_page"] is not None:
+            entry["folio_source"] = "read"
+        entries.append(entry)
+    read = sum(1 for e in entries if e["folio_source"] == "read")
+    return {
+        "schema": 1,
+        "id": key,
+        "title": spec["title"],
+        "archive_item": spec["archive_item"],
+        "generated_by": "tools/build_book_page_index.py --build",
+        "_doc": "Leaf boundaries taken from the deposit's own hOCR page index, which "
+                "indexes the very characters of the committed text — so these are not "
+                "aligned boundaries but exact ones, and --build refuses to write this "
+                "file unless the ranges tile the text with no gap and no overlap. "
+                "`printed_page` is the folio READ off the leaf's running head and is "
+                "null where the head prints none; `folio_source` is never \"offset\" in "
+                "this book, because it binds four pamphlets that each restart at 1 and "
+                "a carried offset would be an invention. `line_start`/`line_end` are "
+                "inclusive 1-based line numbers into text/%s.txt, which is what a "
+                "claim's locator cites." % key,
+        "text_file": key + ".txt",
+        "text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+        "text_lines": len(starts),
+        "deposit_text": spec["deposit_text"],
+        "deposit_page_index": spec["deposit_page_index"],
+        "deposit_sha256": hashlib.sha256(deposit_text.read_bytes()).hexdigest(),
+        "reading_order_note": spec["reading_order_note"],
+        "leaves": len(entries),
+        "leaves_aligned": sum(1 for e in entries if e["aligned"]),
+        "leaves_blank": sum(1 for e in entries if e["blank"]),
+        "folios_read": read,
+        "leaves_aligned_exactly": sum(1 for e in entries if e["aligned"]),
+        "pages": entries,
+    }
 
 
 def build_one(key: str, spec: dict) -> dict:
@@ -330,10 +487,22 @@ def check(quiet: bool = False) -> int:
             if leaf != prev_leaf + 1:
                 bad.append("%s: leaf numbers are not consecutive at %r" % (key, leaf))
             prev_leaf = leaf
-            expected = folio_for(spec, leaf)
-            if entry.get("printed_page") != expected:
-                bad.append("%s leaf %s: printed_page %r, the folio runs say %r"
-                           % (key, leaf, entry.get("printed_page"), expected))
+            if spec.get("folios") == "read_only":
+                # No folio runs to check against, so the assertion is the one that
+                # matters here instead: a folio in this book is READ or it is null,
+                # and a carried one would be the invention the spec refuses.
+                if entry.get("printed_page") is not None and entry.get("folio_source") != "read":
+                    bad.append("%s leaf %s: printed_page %r with folio_source %r — this "
+                               "book carries no folio it did not read"
+                               % (key, leaf, entry.get("printed_page"), entry.get("folio_source")))
+                if entry.get("printed_page") is None and entry.get("folio_source") is not None:
+                    bad.append("%s leaf %s: folio_source %r on a leaf with no printed_page"
+                               % (key, leaf, entry.get("folio_source")))
+            else:
+                expected = folio_for(spec, leaf)
+                if entry.get("printed_page") != expected:
+                    bad.append("%s leaf %s: printed_page %r, the folio runs say %r"
+                               % (key, leaf, entry.get("printed_page"), expected))
             if not entry.get("aligned"):
                 continue
             if entry.get("line_start", 0) < prev_line:
@@ -362,23 +531,33 @@ def check(quiet: bool = False) -> int:
 
 
 def self_test() -> int:
-    """The gate's own assertions still fire when the index is broken."""
-    key = "hubbard_autobiography_1911"
-    path = BOOKS / "page_index" / (key + ".json")
-    original = path.read_text(encoding="utf-8")
-    doc = json.loads(original)
+    """The gate's own assertions still fire when the index is broken.
+
+    Both derivations are exercised, because they are checked by different branches:
+    the aligned book is held to its folio RUNS, and the hOCR-indexed book is held to
+    the rule that it carries no folio it did not read.
+    """
     cases = [
-        ("a text that is not the one indexed",
+        ("hubbard_autobiography_1911", "a text that is not the one indexed",
          lambda d: d.update(text_sha256="0" * 64), "built against a different text"),
-        ("a leaf whose folio contradicts the printed run",
+        ("hubbard_autobiography_1911", "a leaf whose folio contradicts the printed run",
          lambda d: d["pages"][100].update(printed_page="999"), "the folio runs say"),
-        ("line numbers that run backwards",
+        ("hubbard_autobiography_1911", "line numbers that run backwards",
          lambda d: d["pages"][100].update(line_start=1), "runs backwards"),
+        ("fergus_26_29", "a folio carried onto a leaf that never printed one",
+         lambda d: _first_folio_leaf(d).update(folio_source="offset"),
+         "no folio it did not read"),
+        ("fergus_26_29", "a folio source on a leaf with no folio",
+         lambda d: _first_folioless_leaf(d).update(folio_source="read"),
+         "on a leaf with no printed_page"),
     ]
     failures = 0
+    originals = {key: (BOOKS / "page_index" / (key + ".json")).read_text(encoding="utf-8")
+                 for key in {c[0] for c in cases}}
     try:
-        for label, break_it, wanted in cases:
-            broken = json.loads(original)
+        for key, label, break_it, wanted in cases:
+            path = BOOKS / "page_index" / (key + ".json")
+            broken = json.loads(originals[key])
             break_it(broken)
             path.write_text(json.dumps(broken, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             import io
@@ -386,17 +565,33 @@ def self_test() -> int:
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf):
                 rc = check(quiet=True)
+            path.write_text(originals[key], encoding="utf-8")
             if rc == 0 or wanted not in buf.getvalue():
                 print("  FAIL the gate does not catch %s" % label)
                 failures += 1
             else:
                 print("  caught: %s" % label)
     finally:
-        path.write_text(original, encoding="utf-8")
+        for key, original in originals.items():
+            (BOOKS / "page_index" / (key + ".json")).write_text(original, encoding="utf-8")
     if failures:
         return 1
     print("  self-test: OK")
     return 0
+
+
+def _first_folio_leaf(doc: dict) -> dict:
+    for entry in doc["pages"]:
+        if entry.get("printed_page") is not None:
+            return entry
+    raise SystemExit("the self-test needs a leaf with a folio and the index has none")
+
+
+def _first_folioless_leaf(doc: dict) -> dict:
+    for entry in doc["pages"]:
+        if entry.get("printed_page") is None and entry.get("aligned"):
+            return entry
+    raise SystemExit("the self-test needs a leaf with no folio and the index has none")
 
 
 def main() -> int:
@@ -408,7 +603,8 @@ def main() -> int:
     args = ap.parse_args()
     if args.build:
         for key, spec in BOOKS_INDEXED.items():
-            doc = build_one(key, spec)
+            doc = (build_one_hocr(key, spec) if spec.get("derivation") == "hocr_page_index"
+                   else build_one(key, spec))
             out = BOOKS / "page_index" / (key + ".json")
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

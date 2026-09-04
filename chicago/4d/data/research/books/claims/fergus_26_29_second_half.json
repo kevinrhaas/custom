@@ -10,7 +10,7 @@
     "town_findings": 20,
     "reasoning": "The second half of the volume is leaves 430-858: the 1843 Business Directory (leaves 430-457), the 1843 alphabetical name directory (458-605), the Obituary (606-644), the publisher's advertisement leaves (645-657 and 851-858), and the whole of Fergus No. 29, the Biographical Sketch of Joseph Duncan (658-850). A structural sweep before reading found an 1820s-or-1830s date on 70 of those 429 leaves and they cluster in two places: Fergus's bracketed later annotations inside the 1843 directory, and the Duncan sketch's canal and 1834-5 legislature material. NONE of the 1843 directory's own entries is 1835 evidence, and this file will not pretend otherwise, so the yield was priced off those two clusters and not off the volume's length."
   },
-  "_doc": "Fergus' Historical Series Nos. 26-29, SECOND HALF BY PAGE INDEX — scan leaves 430 to 858 of 858, read for everything they say about Chicago and Illinois between 1830 and 1836. The half divides into five things and each has its own coverage declaration: the 1843 Business Directory (leaves 430-457), the 1843 alphabetical name directory (458-605), the Obituary (606-644), the Fergus Printing Company's own book lists (645-657 and 851-858), and the whole of Fergus No. 29, the Biographical Sketch of Joseph Duncan (658-850). TWO DATES, AND EVERY CLAIM SAYS WHICH IT CARRIES. Fergus No. 28 is a directory of 1843 and describes 1843; its only pre-1837 statements are Robert Fergus's own bracketed annotations, written in the 1880s and 1890s by a man who did not reach Chicago until 1 July 1839 (bk_fer2_044). Fergus No. 29 is a daughter's paper read in 1885 about her father, and its scene-year material is the Illinois-and-Michigan Canal. NOTHING HERE IS AN 1835 CHICAGO PLACEMENT. The quote is the committed text at the locator's own spans and is never typed by hand; tools/research_domains.py --check rebuilds it character for character out of text/fergus_26_29.txt, which is the deposit's OCR committed byte for byte, so the quotes carry the OCR's own damage and the reading is in `normalized` beside each one. Every claim is transcription_mediated: this project holds the Internet Archive's hOCR search text of the scan and has not read a page image.",
+  "_doc": "Fergus' Historical Series Nos. 26-29, SECOND HALF BY PAGE INDEX — scan leaves 430 to 858 of 858, read for everything they say about Chicago and Illinois between 1830 and 1836. The half divides into five things and each has its own coverage declaration: the 1843 Business Directory (leaves 430-457), the 1843 alphabetical name directory (458-605), the Obituary (606-644), the Fergus Printing Company's own book lists (645-657 and 851-858), and the whole of Fergus No. 29, the Biographical Sketch of Joseph Duncan (658-850). The volume's own part boundaries are T-0499's, read off the four title pages and tabled in README.md: No. 28 runs to leaf 656 and No. 29 begins at 657, so the advertisement leaves between the two numbers are bound with No. 28 and each locator's `part` says so. TWO DATES, AND EVERY CLAIM SAYS WHICH IT CARRIES. Fergus No. 28 is a directory of 1843 and describes 1843; its only pre-1837 statements are Robert Fergus's own bracketed annotations, written in the 1880s and 1890s by a man who did not reach Chicago until 1 July 1839 (bk_fer2_044). Fergus No. 29 is a daughter's paper read in 1885 about her father, and its scene-year material is the Illinois-and-Michigan Canal. NOTHING HERE IS AN 1835 CHICAGO PLACEMENT. The quote is the committed text at the locator's own spans and is never typed by hand; tools/research_domains.py --check rebuilds it character for character out of text/fergus_26_29.txt, which is the deposit's OCR committed byte for byte, so the quotes carry the OCR's own damage and the reading is in `normalized` beside each one. Every claim is transcription_mediated: this project holds the Internet Archive's hOCR search text of the scan and has not read a page image.",
   "claims": [
     {
       "id": "bk_fer2_001",
@@ -87,7 +87,7 @@
         ],
         "leaf": 700,
         "part": "fergus_29",
-        "printed_page": 23,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "10 March 1829",
@@ -117,7 +117,7 @@
         ],
         "leaf": 724,
         "part": "fergus_29",
-        "printed_page": 35,
+        "printed_page": "35",
         "page": null
       },
       "describes_date": "1835 (the session of 1834-35)",
@@ -146,7 +146,7 @@
         ],
         "leaf": 724,
         "part": "fergus_29",
-        "printed_page": 35,
+        "printed_page": "35",
         "page": null
       },
       "describes_date": "December 1835",
@@ -174,7 +174,7 @@
         ],
         "leaf": 724,
         "part": "fergus_29",
-        "printed_page": 35,
+        "printed_page": "35",
         "page": null
       },
       "describes_date": "December 1835",
@@ -203,7 +203,7 @@
         ],
         "leaf": 724,
         "part": "fergus_29",
-        "printed_page": 35,
+        "printed_page": "35",
         "page": null
       },
       "describes_date": "December 1835 onward",
@@ -232,7 +232,7 @@
         ],
         "leaf": 706,
         "part": "fergus_29",
-        "printed_page": 26,
+        "printed_page": "26",
         "page": null
       },
       "describes_date": "1834",
@@ -261,7 +261,7 @@
         ],
         "leaf": 706,
         "part": "fergus_29",
-        "printed_page": 26,
+        "printed_page": "26",
         "page": null
       },
       "describes_date": "1831",
@@ -291,7 +291,7 @@
         ],
         "leaf": 706,
         "part": "fergus_29",
-        "printed_page": 26,
+        "printed_page": "26",
         "page": null
       },
       "describes_date": "1832",
@@ -321,7 +321,7 @@
         ],
         "leaf": 718,
         "part": "fergus_29",
-        "printed_page": 32,
+        "printed_page": "32",
         "page": null
       },
       "describes_date": "1834",
@@ -349,7 +349,7 @@
         ],
         "leaf": 734,
         "part": "fergus_29",
-        "printed_page": 40,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1837 — NOT 1835",
@@ -378,7 +378,7 @@
         ],
         "leaf": 736,
         "part": "fergus_29",
-        "printed_page": 41,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "11 July 1837",
@@ -407,7 +407,7 @@
         ],
         "leaf": 742,
         "part": "fergus_29",
-        "printed_page": 44,
+        "printed_page": "44",
         "page": null
       },
       "describes_date": "1836-1837",
@@ -441,7 +441,7 @@
         ],
         "leaf": 686,
         "part": "fergus_29",
-        "printed_page": 16,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "13 February 1835",
@@ -470,7 +470,7 @@
         ],
         "leaf": 778,
         "part": "fergus_29",
-        "printed_page": 62,
+        "printed_page": "62",
         "page": null
       },
       "describes_date": "1834",
@@ -501,7 +501,7 @@
         ],
         "leaf": 778,
         "part": "fergus_29",
-        "printed_page": 62,
+        "printed_page": "62",
         "page": null
       },
       "describes_date": "1835",
@@ -530,7 +530,7 @@
         ],
         "leaf": 778,
         "part": "fergus_29",
-        "printed_page": 62,
+        "printed_page": "62",
         "page": null
       },
       "describes_date": "October-November 1835",
@@ -559,7 +559,7 @@
         ],
         "leaf": 778,
         "part": "fergus_29",
-        "printed_page": 62,
+        "printed_page": "62",
         "page": null
       },
       "describes_date": "the winter of 1830-31",
@@ -587,7 +587,7 @@
         ],
         "leaf": 438,
         "part": "fergus_28",
-        "printed_page": 21,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -615,7 +615,7 @@
         ],
         "leaf": 438,
         "part": "fergus_28",
-        "printed_page": 21,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -645,7 +645,7 @@
         ],
         "leaf": 436,
         "part": "fergus_28",
-        "printed_page": 20,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -674,7 +674,7 @@
         ],
         "leaf": 444,
         "part": "fergus_28",
-        "printed_page": 24,
+        "printed_page": "24",
         "page": null
       },
       "describes_date": "1843",
@@ -703,7 +703,7 @@
         ],
         "leaf": 440,
         "part": "fergus_28",
-        "printed_page": 22,
+        "printed_page": "22",
         "page": null
       },
       "describes_date": "1843",
@@ -732,7 +732,7 @@
         ],
         "leaf": 446,
         "part": "fergus_28",
-        "printed_page": 25,
+        "printed_page": "25",
         "page": null
       },
       "describes_date": "1843",
@@ -761,7 +761,7 @@
         ],
         "leaf": 446,
         "part": "fergus_28",
-        "printed_page": 25,
+        "printed_page": "25",
         "page": null
       },
       "describes_date": "1843",
@@ -790,7 +790,7 @@
         ],
         "leaf": 432,
         "part": "fergus_28",
-        "printed_page": 18,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -824,7 +824,7 @@
         ],
         "leaf": 434,
         "part": "fergus_28",
-        "printed_page": 19,
+        "printed_page": "19",
         "page": null
       },
       "describes_date": "1843",
@@ -852,7 +852,7 @@
         ],
         "leaf": 440,
         "part": "fergus_28",
-        "printed_page": 22,
+        "printed_page": "22",
         "page": null
       },
       "describes_date": "1843",
@@ -882,7 +882,7 @@
         ],
         "leaf": 444,
         "part": "fergus_28",
-        "printed_page": 24,
+        "printed_page": "24",
         "page": null
       },
       "describes_date": "1843",
@@ -911,7 +911,7 @@
         ],
         "leaf": 454,
         "part": "fergus_28",
-        "printed_page": 29,
+        "printed_page": "29",
         "page": null
       },
       "describes_date": "1843",
@@ -939,7 +939,7 @@
         ],
         "leaf": 430,
         "part": "fergus_28",
-        "printed_page": 17,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -967,7 +967,7 @@
         ],
         "leaf": 430,
         "part": "fergus_28",
-        "printed_page": 17,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -996,7 +996,7 @@
         ],
         "leaf": 434,
         "part": "fergus_28",
-        "printed_page": 19,
+        "printed_page": "19",
         "page": null
       },
       "describes_date": "1843",
@@ -1024,7 +1024,7 @@
         ],
         "leaf": 440,
         "part": "fergus_28",
-        "printed_page": 22,
+        "printed_page": "22",
         "page": null
       },
       "describes_date": "1843",
@@ -1053,7 +1053,7 @@
         ],
         "leaf": 442,
         "part": "fergus_28",
-        "printed_page": 23,
+        "printed_page": "23",
         "page": null
       },
       "describes_date": "1843",
@@ -1082,7 +1082,7 @@
         ],
         "leaf": 444,
         "part": "fergus_28",
-        "printed_page": 24,
+        "printed_page": "24",
         "page": null
       },
       "describes_date": "1843",
@@ -1111,7 +1111,7 @@
         ],
         "leaf": 432,
         "part": "fergus_28",
-        "printed_page": 18,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843",
@@ -1140,7 +1140,7 @@
         ],
         "leaf": 444,
         "part": "fergus_28",
-        "printed_page": 24,
+        "printed_page": "24",
         "page": null
       },
       "describes_date": "1843",
@@ -1169,7 +1169,7 @@
         ],
         "leaf": 442,
         "part": "fergus_28",
-        "printed_page": 23,
+        "printed_page": "23",
         "page": null
       },
       "describes_date": "1843",
@@ -1198,7 +1198,7 @@
         ],
         "leaf": 494,
         "part": "fergus_28",
-        "printed_page": 49,
+        "printed_page": "49",
         "page": null
       },
       "describes_date": "20 November 1833 (the first number); 1843 (the address and proprietor)",
@@ -1228,7 +1228,7 @@
         ],
         "leaf": 576,
         "part": "fergus_28",
-        "printed_page": 90,
+        "printed_page": "90",
         "page": null
       },
       "describes_date": "1834 and 1836",
@@ -1257,7 +1257,7 @@
         ],
         "leaf": 474,
         "part": "fergus_28",
-        "printed_page": 39,
+        "printed_page": "39",
         "page": null
       },
       "describes_date": "1839 (the warehouse); 1843 (the entry)",
@@ -1290,7 +1290,7 @@
         ],
         "leaf": 502,
         "part": "fergus_28",
-        "printed_page": 53,
+        "printed_page": "53",
         "page": null
       },
       "describes_date": "1815 (birth); 1 July 1839 (arrival); 1843 (the entry)",
@@ -1323,7 +1323,7 @@
         ],
         "leaf": 524,
         "part": "fergus_28",
-        "printed_page": 64,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843 (the entry); the death year is NOT READ",
@@ -1352,7 +1352,7 @@
         ],
         "leaf": 466,
         "part": "fergus_28",
-        "printed_page": 35,
+        "printed_page": "35",
         "page": null
       },
       "describes_date": "1843",
@@ -1380,7 +1380,7 @@
         ],
         "leaf": 606,
         "part": "fergus_28",
-        "printed_page": 105,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1843 and after (the list's own frame)",
@@ -1406,7 +1406,7 @@
         ],
         "leaf": 632,
         "part": "fergus_28",
-        "printed_page": 118,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "15 October 1835",
@@ -1434,7 +1434,7 @@
         ],
         "leaf": 636,
         "part": "fergus_28",
-        "printed_page": 120,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "10 November 1835",
@@ -1462,7 +1462,7 @@
         ],
         "leaf": 640,
         "part": "fergus_28",
-        "printed_page": 122,
+        "printed_page": "122",
         "page": null
       },
       "describes_date": "5 October 1835",
@@ -1490,7 +1490,7 @@
         ],
         "leaf": 630,
         "part": "fergus_28",
-        "printed_page": 117,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "25 August 1835",
@@ -1518,7 +1518,7 @@
         ],
         "leaf": 606,
         "part": "fergus_28",
-        "printed_page": 105,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "21 December 1835",
@@ -1546,7 +1546,7 @@
         ],
         "leaf": 608,
         "part": "fergus_28",
-        "printed_page": 106,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "8 April 1835",
@@ -1574,7 +1574,7 @@
         ],
         "leaf": 616,
         "part": "fergus_28",
-        "printed_page": 110,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "17 December 1834",
@@ -1607,7 +1607,7 @@
         ],
         "leaf": 642,
         "part": "fergus_28",
-        "printed_page": 123,
+        "printed_page": "123",
         "page": null
       },
       "describes_date": "25 October 1830",
@@ -1641,7 +1641,7 @@
         ],
         "leaf": 624,
         "part": "fergus_28",
-        "printed_page": 114,
+        "printed_page": null,
         "page": null
       },
       "describes_date": "1803 (the settlement); 6 January 1828 (the death)",
@@ -1668,7 +1668,7 @@
           }
         ],
         "leaf": 646,
-        "part": "fergus_29",
+        "part": "fergus_28",
         "printed_page": null,
         "page": null
       },
@@ -1701,7 +1701,7 @@
           }
         ],
         "leaf": 648,
-        "part": "fergus_29",
+        "part": "fergus_28",
         "printed_page": null,
         "page": null
       },
