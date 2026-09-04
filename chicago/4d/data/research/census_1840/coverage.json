@@ -13,7 +13,7 @@
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full — names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet. T-0584 then read printed 210 and 215 in full - names AND the age-band cells, each column checked against the printed footing at the foot of its own sheet; 36 of 38 columns close on 210 and 37 of 38 on 215, and the residual columns are recorded rather than forced. T-0585 holds printed 219, the third sheet of the T-0531 group, which was split on measurement: two left sheets to the cell is a run's demonstration, not three.",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full — names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet. T-0584 then read printed 210 and 215 in full - names AND the age-band cells, each column checked against the printed footing at the foot of its own sheet; 36 of 38 columns close on 210 and 37 of 38 on 215, and the residual columns are recorded rather than forced. T-0585 holds printed 219, the third sheet of the T-0531 group, which was split on measurement: two left sheets to the cell is a run's demonstration, not three. T-0630 then read the continuation sheet 33S7-9YYJ-8D line by line and closed it against the enumerator's own footer row: the three industry columns that carry figures all close exactly (commerce 6, manufactures and trades 17, the learned professions 5) and the family totals do not — they read 121 against a printed 106. T-0631 holds 9WS and T-0628 holds B1, B2 and BF, all still unread; T-0629 holds the twelve left-sheet population key and the pairing of all eleven continuations.",
    "images": [
     {
      "index": 1,
@@ -144,11 +144,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-8D.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled",
+     "lines_with_an_entry": 32,
+     "what_it_is": "continuation sheet, filled; 32 lines, page population 106 by the enumerator's own footer and 121 by the line-by-line reading",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "continuation_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-8D.json",
+     "lines_with_an_entry_note": "restated off the sheet by T-0630. The inventory figure was 31 `to the nearest line`; the line-by-line reading finds 32, the extra one anchored by entries in both the commerce and manufactures columns at y≈2720.",
+     "note": "committed with the family-total residual (+15) recorded rather than adjusted away (T-0630)"
     },
     {
      "index": 11,
