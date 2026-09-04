@@ -1,7 +1,7 @@
 ---
 id: T-0627
 title: 33S7-9YYJ-6H: the seven industry columns read entry by entry and closed against the enumerator's own footings
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0548
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 754
 claimed_by: run 9/3/2026, 10:13:02 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T03:41:15.516Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33831650136
 ---
 
