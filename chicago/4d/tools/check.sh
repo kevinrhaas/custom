@@ -62,14 +62,21 @@ step "…and its own assertions still fire when broken" \
 step "the QUEUE.md merge driver still does what .gitattributes promises" \
   node tools/merge-queue-selftest.mjs
 
+# THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
+# is seven repairs long, five of them in one day when `union` spliced one entry
+# into another and left valid JavaScript nobody noticed. The driver never works
+# below entry granularity, and REFUSES if both sides edited one shipped entry.
+step "the changelog merge driver still does what .gitattributes promises" \
+  node tools/merge-changelog-selftest.mjs
+
 # ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
 # say what `queue` runs — git keeps a driver command out of tracked content on
 # purpose. So each clone registers it once, and a clone that has not is NOT
 # broken: git falls back to the ordinary text merge, which is what this repo did
 # before the driver existed. Say so and move on.
-if [ -z "$(git config merge.queue.driver || true)" ]; then
-  printf '\033[33m   note: the QUEUE.md merge driver is not registered in this clone.\033[0m\n'
-  printf '\033[33m         QUEUE.md merges will conflict the old way until you run:\033[0m\n'
+if [ -z "$(git config merge.queue.driver || true)" ] || [ -z "$(git config merge.changelog.driver || true)" ]; then
+  printf '\033[33m   note: this clone has not registered the custom merge drivers.\033[0m\n'
+  printf '\033[33m         QUEUE.md and changelog.js will conflict the old way until you run:\033[0m\n'
   printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
 fi
 
