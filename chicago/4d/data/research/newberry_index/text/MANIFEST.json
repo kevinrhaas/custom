@@ -12,6 +12,7 @@
       "sha256": "698d346a830221aeb893bae0d72e1e0adf1e6acc64ce8f6638571105e558dd96",
       "pdf_pages": 988,
       "crop_height": 1100,
+      "read_by": "text_layer",
       "passes": [
         {
           "column": 0,
@@ -55,6 +56,7 @@
       "sha256": "5cb90c9b4070fff48c8d2564c8aec55a6074290e2e98efd90fb2da35aa8e1d1e",
       "pdf_pages": 1016,
       "crop_height": 1100,
+      "read_by": "text_layer",
       "passes": [
         {
           "column": 0,
@@ -98,6 +100,7 @@
       "sha256": "72930ee4da0e3b3de46c5995a09ad384babb5b2860d21b8449d56d6549f36a1f",
       "pdf_pages": 1004,
       "crop_height": 1100,
+      "read_by": "text_layer",
       "passes": [
         {
           "column": 0,
@@ -141,6 +144,7 @@
       "sha256": "c1d8a6575fa3c0c3b2f9bf3831aa4e681af1c1cd17b69bcfeeb2c798c7309c81",
       "pdf_pages": 919,
       "crop_height": 1100,
+      "read_by": "text_layer",
       "passes": [
         {
           "column": 0,

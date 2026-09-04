@@ -288,6 +288,61 @@ ticket read the volume as deposited and measured what that is worth instead of q
 shipping a thin reading as a whole one. Until T-0613 lands, **volume 4's cards are not worth
 what volumes 1-3's are**, and `coverage.json` says so on its declaration.
 
+### The reader that repair needs, built and measured under T-0618
+
+T-0613 has been split, and its first piece is done: the reader exists, and what it
+recovers is now a measured number rather than a demonstration on one page.
+`text/vol_04_probe.json` is that measurement, written by
+`--probe --volume 4 --pdf <path>` so it can be re-run and disagreed with. Eight pages
+spread through the volume — 100, 200, … 800 — read BOTH ways:
+
+| | text layer | OCR |
+|---|---|---|
+| cards assembled | 36 | **278** (7.7×) |
+| locality cards kept | 0 | **4** |
+| characters emitted | ~59,000 a page | ~12,000 a page |
+
+The character counts are the telling part and they confirm what the section above
+diagnosed from the other end. The text layer is not short of characters; it has five
+times as many and finds eight times fewer cards. They are in the wrong places.
+
+    python3 tools/read_newberry_index.py --extract --ocr --volume 4 --pdf <path> --pages 1-110
+    …one command per range, until every page is covered…
+    python3 tools/read_newberry_index.py --extract --ocr --volume 4 --pdf <path>
+    python3 tools/read_newberry_index.py --parse   --volume 4
+
+Each page is rendered by `pdftoppm` and cropped into the **same four column windows** the
+pdftotext path uses — the boxes the section above measured and kept — each strip is read
+by tesseract at `--psm 6`, and the four column texts go to the same card assembly. The
+two readers differ only in where the characters come from, and the grade does not move:
+`transcription_mediated` was already the right grade for a machine reading a photostat,
+and a second machine reading it does not make it stronger.
+
+**It is resumable because it has to be.** `--pages A-B` reads a range and commits a shard
+under `text/ocr/vol_04/`; `--extract --ocr` with no range stitches every committed shard
+in page order and assembles. A shard records the engine, dpi, psm and crop boxes it was
+made with, and stitching **refuses** a set that disagrees, or a set with a gap — two
+ranges read at different settings are two readings of one volume, and a volume assembled
+over a gap is a partial read wearing a finished volume's file name. `--check` then holds
+the shards to the sha256 MANIFEST recorded for them, in both directions: named and
+missing, committed and unnamed.
+
+**The 3.8 hours the section above quotes is not what it costs.** That figure is 300 dpi,
+one page at a time. Two changes bring it to about **84 minutes**: 200 dpi, which loses
+nothing at this card size, and `OMP_THREAD_LIMIT=1`. The second is not a detail —
+tesseract parallelises a single image across the cores by itself, so four page workers on
+a four-core runner oversubscribe it three times over and the machine thrashes. Measured
+here: four workers at tesseract's default threading did not finish eight pages in ten
+minutes, and the same four workers with the limit set did four pages in 21.7 s. 5.5 s a
+page against 17.5 s sequential. Page-level parallelism only pays when the engine
+underneath it is single-threaded.
+
+Eighty-four minutes is still more than one run's foreground, which is why T-0613's
+remaining pieces cut the volume into three page bands (T-0619, T-0620, T-0621) that commit
+shards one at a time. **Volume 4's committed reading stays the 308-card text-layer one
+until all three are in** — a partial OCR read would be a third state of the volume and
+worse than either.
+
 ## The reading order, over all four volumes
 
 Ranked on Chicago and Cook County cards standing on a surname this project already holds:

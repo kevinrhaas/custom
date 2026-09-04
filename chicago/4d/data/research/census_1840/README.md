@@ -492,6 +492,52 @@ On 215, free white females 30 under 40 reads 17 against a printed 19. Those colu
 omitted from `cells` and kept in `cells_first_pass`, which is read but unreconciled and is
 not data anything downstream may use.
 
+## Printed 219, read to the cell (T-0585)
+
+The last of the three left sheets T-0531 named is read, and image group 1 now has
+eight left sheets carrying names and cells.
+
+| printed page | image | lines with an entry | columns balanced | not committed |
+|---|---|---|---|---|
+| 219 | `33S7-9YYJ-9K3` | 31 (inventory's figure stands) | 37 of 38 | free colored males 24 under 36 (29) |
+
+**The column template was checked against the printed heading before a cell was read**,
+because that is the check T-0584 learned the hard way, and the pitch it settled on —
+x = 662.5 + 79.35 n — is the same 79.35 px pitch printed 215 carries, which is what a
+shared plate should give. Rendered over the heading it reads column 1 `Under 5` under
+MALES, column 13 `100 and upwards`, column 14 `Under 5` under FEMALES and column 26
+`100 and upwards`.
+
+**A footing settled a blot.** Line 16 carries a thick mark in free white males 20 under
+30 that a row-band view reads as a tally. Montaged against its own 31 cells it has no
+stroke form at all, and the column's printed footing of 62 balances the other eighteen
+lines exactly and refuses it. It is recorded as a blot and not as a person.
+
+**What this sheet is: boarding houses.** Printed 219 is neither 210's large families nor
+215's single men. 195 free white persons stand on 31 lines and FOUR lines carry 104 of
+them — line 18 (S. M. Osterhoudt) 33, line 29 (G. W. Cook) 27, line 10 (Wm R. Miller) 22,
+line 17 (Lyman Butterfield) 22 — each one a stack in the young bands: free white males
+20 under 30 alone carries 62 of the page's 126 men, and free white females 20 under 30
+carries 30 of its 69 women. Against those four, twelve households hold two persons or
+fewer and ten of those hold one or none. Line 25 (Oliver Henson) is the only household on
+the page with no free white person in it: as read, a boy under 10, a man 24 under 36 and
+a woman 24 under 36.
+
+**One residual column is left standing rather than forced.** Free colored males 24 under
+36 reads 4 — a 2 on line 18, a 1 on line 25, a 1 on line 29, and the montage of the whole
+column holds nothing else — against a footing of two identical hooked diagonals, which is
+the form this hand foots column 1 with (where the body confirms 11). A 4 would balance and
+the glyphs do not support one. The column is omitted from `cells` and kept in
+`cells_first_pass`, which is read but unreconciled and is not data anything downstream may
+use.
+
+**The letters are open and are recorded as open.** No name on this sheet is graded `high`:
+9 are `medium` and 22 are `low`, each with its alternates in the record's note. Two lines
+may be women heading households (line 15 `Susan McCord`, line 28 `Mad Sara L. Hoare`) and
+both forenames are among the `low` readings, so neither is asserted. Nothing here mints or
+regrades an 1835 resident: the 1840 census is later evidence and the ratified ladder is
+explicit that 1839/1840 alone is never a 1835 resident.
+
 ## Every named head has an outcome now (T-0505)
 
 The 498 names read off the 19 left sheets in this repo were in no state at all: three of

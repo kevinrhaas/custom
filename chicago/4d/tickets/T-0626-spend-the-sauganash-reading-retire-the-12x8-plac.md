@@ -1,5 +1,5 @@
 ---
-id: T-0618
+id: T-0626
 title: Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 state: open
 epic: META

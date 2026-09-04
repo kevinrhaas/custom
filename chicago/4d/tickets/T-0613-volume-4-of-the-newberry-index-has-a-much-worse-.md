@@ -1,7 +1,7 @@
 ---
 id: T-0613
 title: Volume 4 of the Newberry index has a much worse text layer than volumes 1-3, and a tesseract re-OCR reads the cards it loses
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: L
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T02:03:01.820Z
 claimed_run: null
 ---
 

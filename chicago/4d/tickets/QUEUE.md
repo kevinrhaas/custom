@@ -194,10 +194,11 @@
 # --- the windows, the roof, etc." He deposited four views at
 # --- chicago/reference/images/chicago/sauganash-hotel/ and supplied a plan sketch (transcribed
 # --- in T-0616). VISIBLE work on the town's most-looked-at corner: T-0617 reads the plates,
-# --- T-0618 spends the reading. Split from T-0616 because reading four plates and rebuilding
-# --- the massing are two demonstrations.
+# --- T-0626 spends the reading. Split from T-0616 because reading four plates and rebuilding
+# --- the massing are two demonstrations. (T-0626 was filed as T-0618 and restamped: dev's own
+# --- #749 had minted a T-0618 of its own for the Newberry volume-4 OCR reader.)
 T-0617 — The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded
-T-0618 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
+T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
@@ -211,7 +212,6 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
 
-T-0585 — The 1840 census images 1-25: names and cells of the left sheet printed 219
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
 T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
@@ -462,4 +462,6 @@ T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves 
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
 T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
-T-0613 — Volume 4 of the Newberry index has a much worse text layer than volumes 1-3, and a tesseract re-OCR reads the cards it loses
+T-0619 — Volume 4 read by OCR, pages 1-306: the shards
+T-0620 — Volume 4 read by OCR, pages 307-612: the shards
+T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
