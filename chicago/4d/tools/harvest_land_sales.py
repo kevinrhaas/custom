@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fetch the Illinois State Archives land tract sales and write the committed deposit.
 
-    tools/harvest_land_sales.py --sweep [--township 39 --township 40]
+    tools/harvest_land_sales.py --sweep [--township 39 --township 40] [--range 14]
 
 THIS REACHES THE NETWORK, so it is run deliberately by a research pass and never by
 `tools/check.sh`. Its output — `data/research/land_sales/text/*.tsv` — is committed,
@@ -18,7 +18,12 @@ TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
    rows is reported as TRUNCATED rather than read. The `name` field belongs to a
    different search form and does NOT narrow a legal-description query — it replaces
    it, returning that name from every township in Illinois, so it cannot be used to
-   break a section into smaller pieces.
+   break a section into smaller pieces. T-0677 went back over the form and confirmed
+   there is no fourth axis: the page offers section/township/range/meridian,
+   township/range/meridian, and county — which it says "cannot be used in combination
+   with any other search criteria" — and the result page carries no paging, offset or
+   sort parameter. SECTION IS THE FINEST GRAIN THE SOURCE OFFERS, so a truncated
+   section needs a different source, not a cleverer query. T-0678 holds that.
 
 2. THE SITE REFUSES DATACENTRE ADDRESSES. Every user agent from this runner's Azure
    address gets a bare 403 from the WAF. The sweep therefore fetches through the
@@ -30,6 +35,8 @@ TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import os
 import re
 import subprocess
 import sys
@@ -64,7 +71,26 @@ def clean(s: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s)).strip()
 
 
+# A sweep is 36 section queries plus one detail page per sale, and the reader proxy
+# drops a page now and then for reasons that have nothing to do with the register. The
+# cache is what stops a dropped page costing the whole sweep its work again: it is a
+# scratch directory outside the repo (`--cache`, default $LAND_SALES_CACHE or none),
+# never committed, and it holds only pages that came back whole.
+CACHE = os.environ.get("LAND_SALES_CACHE") or ""
+
+
+def _ok(html: str) -> bool:
+    return len(html) > 2000 and ("Search Criteria" in html or "landSalesSearch" in html)
+
+
 def fetch(url: str, direct: bool, tries: int = 4) -> str:
+    slot = None
+    if CACHE:
+        slot = Path(CACHE) / (hashlib.sha1(url.encode()).hexdigest() + ".html")
+        if slot.exists():
+            cached = slot.read_text(encoding="utf-8", errors="replace")
+            if _ok(cached):
+                return cached
     target = url if direct else READER + url
     out = ""
     for attempt in range(tries):
@@ -72,7 +98,10 @@ def fetch(url: str, direct: bool, tries: int = 4) -> str:
                             "-H", "X-Return-Format: html", target],
                            capture_output=True, text=True)
         out = r.stdout or ""
-        if len(out) > 2000 and ("Search Criteria" in out or "landSalesSearch" in out):
+        if _ok(out):
+            if slot is not None:
+                slot.parent.mkdir(parents=True, exist_ok=True)
+                slot.write_text(out, encoding="utf-8")
             return out
         time.sleep(3 + 4 * attempt)
     return out
@@ -105,13 +134,13 @@ def detail(html: str) -> dict:
     return out
 
 
-def sweep(townships, through_year: int, direct: bool, workers: int) -> int:
+def sweep(townships, rng: int, through_year: int, direct: bool, workers: int) -> int:
     urls, meta = [], []
     for tw in townships:
         for s in range(1, 37):
             sn = "%02d" % s
-            urls.append("%s?township=%d&norS=N&range=14&eorW=E&meridian=3&county=&name=&sectionNum=%s"
-                        % (BASE, tw, sn))
+            urls.append("%s?township=%d&norS=N&range=%d&eorW=E&meridian=3&county=&name=&sectionNum=%s"
+                        % (BASE, tw, rng, sn))
             meta.append((tw, sn))
     with ThreadPoolExecutor(workers) as ex:
         pages = list(ex.map(lambda u: fetch(u, direct), urls))
@@ -119,25 +148,40 @@ def sweep(townships, through_year: int, direct: bool, workers: int) -> int:
     for (tw, sn), html in zip(meta, pages):
         found = rows_of(html)
         if len(found) >= CEILING:
-            truncated.append("T%dN R14E sec %s" % (tw, sn))
+            truncated.append("T%dN R%dE sec %s" % (tw, rng, sn))
         for row in found:
             year = row["date_purchased"][-4:]
             if year.isdigit() and int(year) <= through_year:
                 wanted.append(row["purchase_no"])
     wanted = sorted(set(wanted))
+    def detail_page(pno: str) -> str:
+        return fetch("%s?purchaseNo=%s" % (BASE, pno), direct)
+
     with ThreadPoolExecutor(workers) as ex:
-        pages = list(ex.map(lambda p: fetch("%s?purchaseNo=%s" % (BASE, p), direct), wanted))
+        pages = dict(zip(wanted, ex.map(detail_page, wanted)))
+    # A page the proxy dropped is not a page the register does not have, so a miss is
+    # retried on its own before the sweep gives up on it. It gives up loudly: a sweep
+    # that wrote a deposit missing a sale it had already seen in a summary row would be
+    # a hole that looks like a complete read.
+    for _ in range(3):
+        missing = [p for p in wanted if not detail(pages[p]).get("purchaser")]
+        if not missing:
+            break
+        print("  … re-fetching %d detail page(s) the reader dropped" % len(missing))
+        time.sleep(10)
+        with ThreadPoolExecutor(max(1, workers // 2)) as ex:
+            pages.update(zip(missing, ex.map(detail_page, missing)))
     records = []
-    for pno, html in zip(wanted, pages):
-        d = detail(html)
+    for pno in wanted:
+        d = detail(pages[pno])
         if not d.get("purchaser"):
-            print("  ✗ %s: no detail page" % pno)
+            print("  ✗ %s: no detail page after four attempts — nothing written" % pno)
             return 1
         records.append(dict(d, purchase_no=pno))
     records.sort(key=lambda r: (r["township"], r["section"], r["purchaser"], r["purchase_no"]))
     OUT.mkdir(parents=True, exist_ok=True)
-    name = "isa_land_tract_sales_t%s_r14e_through_%d.tsv" % (
-        "_t".join("%dn" % t for t in townships), through_year)
+    name = "isa_land_tract_sales_t%s_r%de_through_%d.tsv" % (
+        "_t".join("%dn" % t for t in townships), rng, through_year)
     lines = ["\t".join(COLS)]
     for r in records:
         lines.append("\t".join(r[c].replace("\t", " ") for c in COLS))
@@ -150,18 +194,25 @@ def sweep(townships, through_year: int, direct: bool, workers: int) -> int:
 
 
 def main(argv=None) -> int:
+    global CACHE
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--sweep", action="store_true")
     ap.add_argument("--township", action="append", type=int, default=None)
+    ap.add_argument("--range", dest="rng", type=int, default=14,
+                    help="range east of the third principal meridian (default 14)")
     ap.add_argument("--through-year", type=int, default=1836)
     ap.add_argument("--direct", action="store_true",
                     help="fetch the origin rather than the r.jina.ai reader")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--cache", default=CACHE,
+                    help="scratch directory for fetched pages, outside the repo")
     args = ap.parse_args(argv)
+    CACHE = args.cache
     if not args.sweep:
         ap.print_help()
         return 2
-    return sweep(args.township or [39, 40], args.through_year, args.direct, args.workers)
+    return sweep(args.township or [39, 40], args.rng, args.through_year, args.direct,
+                 args.workers)
 
 
 if __name__ == "__main__":
