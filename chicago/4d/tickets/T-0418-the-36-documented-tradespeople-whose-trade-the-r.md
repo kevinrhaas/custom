@@ -1,7 +1,7 @@
 ---
 id: T-0418
 title: The 36 documented tradespeople whose trade the residents vocabulary has no word for
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: T-0373
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 6:23:03 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33867108004
 ---
 
 `data/residents/` speaks a CLOSED occupation vocabulary and
