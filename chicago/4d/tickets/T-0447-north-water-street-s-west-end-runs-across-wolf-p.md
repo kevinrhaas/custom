@@ -10,7 +10,7 @@ legacy_id: null
 parent: T-0443
 opened: 2026-08-31
 closed: null
-pr: null
+pr: 801
 claimed_by: run 9/4/2026, 2:25:19 PM CT
 blocked_on: null
 needs_bake: false
@@ -66,3 +66,21 @@ touches but does not own:
 3. If the line moves, every record seated off it is re-derived and the count of
    changed records reported.
 4. `tools/check.sh` green.
+
+---
+
+## STATUS 2026-09-04 — the work is done and PARKED on `hold` in PR #801
+
+All four acceptance items are met and `tools/check.sh` is green. Three of the four
+`--for-diff` smoke legs are green (desktop 1: 78/0; desktop 7-8: 29/0; mobile 11-13:
+150/0). The fourth, desktop 2-3, is 149/1.
+
+The one red is `the town's wagons vary in type and in the way they stand`, which requires
+8 distinct 5-degree wagon headings. dev reads 9; this branch reads 7, because both of the
+buckets carrying dev's margin were single wagons standing on the **hand-drawn east tail
+this ticket removed**. Re-cutting that gate inside the PR the gate refused is not a
+steward run's call, so it is filed as **T-0688** with the measurements and both defensible
+options, and this PR waits on it.
+
+Also raised on the way: **T-0684** — `steamboat_hotel`'s placement note reads Kinzie
+Street at local N +276 where the committed `kinzie` record is at N +252.8.
