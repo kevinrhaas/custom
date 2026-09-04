@@ -1,16 +1,6 @@
 # QUEUE — top is next. Everything after the ticket id on a line is a label, not data.
-# The owner owns this order. Reordered by an agent on 2026-09-03 on his explicit
-# instruction: "Create several tickets as needed in the queue file on dev and add these to
-# the top of the queue file, since other tickets below are dependent and will help."
-# Same day, later: T-0524 moved into the top band on his ruling "Fix the prompt and move
-# T-0524 up" — the renderer smoke asserts a resident layer that no longer exists, so no
-# full smoke can be green until it is repaired.
-# Same afternoon: four more source tickets (T-0554..T-0557) placed at the top of that band on
-# his instruction "Keep all of these tickets to queue near the top in the section where we are
-# working the resident and household data expansion".
-# Then T-0562 (the Newberry Genealogical Index, now on the Internet Archive) placed with them on
-# his ask of the same afternoon.
-# Before that, on 2026-08-30: "lots of nothing happened in the city which is bad. any decisions
+# The owner owns this order. Reordered by an agent on 2026-08-30 on his explicit
+# instruction: "lots of nothing happened in the city which is bad. any decisions
 # needed, update and improve the tickets to make progress." Earlier instructions:
 # 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
 # 2026-08-28, 2026-08-27, 2026-08-23. Absent such an instruction, agents only APPEND
@@ -48,169 +38,6 @@
 # newspaper reads and street work). The BANDS, not the epic, say where a ticket
 # belongs. Correcting the field is worth a run of its own.
 
-# --- THE RESIDENT SOURCE SWEEP → CONSOLIDATION → RESIDENTS/HOUSEHOLDS UPDATE — OWNER REQUEST,
-# --- 2026-09-03, placed at the top on his instruction. His ask, verbatim: "create tickets to do
-# --- more resident research transcription and analysis or extract find public sources or APIs to
-# --- read and find data from the following reference materials, you should see them all in
-# --- GitHub — Voter Roll; Census 1830 and 1840; Fergus; Swift walker; Hh porter. And then create a
-# --- final ticket that does a review and consolidation of that research. Once complete i would
-# --- like to begin to do and update of the resident and household data based on all of your deep
-# --- research ... identifying as many residents of chicago circa 1835 ... then i would like a
-# --- summary of what the residents and households look like ... Create several tickets as needed
-# --- in the queue file on dev and add these to the top of the queue file, since other tickets
-# --- below are dependent and will help. I am concerned that there are only adjudicated mappings
-# --- through v4 and none other and we did at least 11 slices of residents to get to households
-# --- but most of your census work needs to be published, I think." And: "these
-# --- Chicago_1835_Best_Resident_Set_Research_v2.xlsx v3 and v4 should be somewhere" — ruled the same
-# --- day: "They are lost; rebuild." His other three rulings of 2026-09-03 (publish = reference
-# --- packages + the final audit; the 31 inf_ roofs stay as anonymous stock; the grading ladder is
-# --- ratified) are quoted in the tickets they bind.
-# ---
-# --- ORDER = DEPENDENCY. T-0491 first because dev's gate is RED and every branch inherits it.
-# --- T-0492 gives the six new source domains one schema and one gate before ten runs invent ten.
-# --- Then the sweeps, which may run in parallel (one source each; the 1840 images, the Fergus
-# --- volume and the unresearched 237 are pre-split so no ticket needs two runs). Then the second
-# --- wave that consumes them (serial mapping, the 1840 crosswalk, the directory, the calibration,
-# --- cohorts 13-15, the two publish halves). T-0513 consolidates ALL of it under the ratified
-# --- ladder — do not take it while any sweep ticket is open. T-0514/T-0515 write the people;
-# --- T-0516 finishes the reconstructed-roof half of the retirement; T-0517/T-0518 close with the
-# --- summary and the index. A ticket whose inputs are open says so in its body: work the input.
-# ---   wave 0  T-0491 T-0492
-# ---   wave 1  T-0493 .. T-0503   (parallel)
-# ---   wave 1  also T-0554 .. T-0557, T-0562  (added 2026-09-03 pm — the owner's five further sources)
-# ---   wave 2  T-0504 .. T-0512   (parallel)
-# ---   wave 3  T-0513
-# ---   wave 4  T-0514 T-0515 T-0516
-# ---   wave 5  T-0517 T-0518
-
-# --- T-0524 sat here on the owner's ruling of 2026-09-03 — the smoke assertions that still
-# --- described the reconstructed residents T-0489 retired, which made every full smoke on
-# --- dev red. CLOSED in PR #696: parts 3 and 13 are green in both viewports. The band is
-# --- kept as the record of why it was ranked here, not as a slot for anything else.
-
-# --- FOUR MORE SOURCES — OWNER REQUEST, 2026-09-03 (afternoon), placed here on his instruction:
-# --- "Keep all of these tickets to queue near the top in the section where we are working the
-# --- resident and household data expansion, this is overall expansion because while you are
-# --- parsing for residents and household people you might as well improve the business and
-# --- structure and occupation and other surrounding data and attributes that will help us
-# --- render the most complete reconstruction possible of chicago 1835". His four sources: the
-# --- Old Settlers' receptions (chicagology 063), Norris's 1844 directory (HathiTrust), the
-# --- Genealogy Trails Cook County site, and the Illinois land-sales database. They are wave-1
-# --- sweeps: parallel with the others, and T-0513 (consolidation) waits on them like the rest.
-# --- T-0562 joined them the same afternoon on his ask "make sure you have a resident household business
-# --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
-# --- if you do not already i am starting to move the research corpus to the internet archive".
-# --- SPEND WHAT IS ALREADY READ — OWNER REQUEST, 2026-09-03 (evening). He asked, of the
-# --- 1840 census reading tickets: "i see lots of research being done and some apparent findings
-# --- from parsing but there are not outputs or updates to the household and resident data it
-# --- seems, should i be concerned?" He was right. Measured that evening by the new
-# --- tools/measure_research_spend.py: census_1840 held 562 names read off the sheets and a
-# --- crosswalk of `passes: [], merges: [], refusals: []`. Four of 828 household records carried
-# --- an 1840 link. Every reading ticket had been green; nothing had crossed into the town.
-# ---
-# --- THE MECHANISM, because it will recur otherwise. The wave order below is right and was
-# --- never abandoned: wave 1 reads, wave 2 consumes. But wave 1 IS OPEN-ENDED — every new
-# --- source the owner adds lands at the TOP of it (T-0554..T-0557 and T-0562 on 2026-09-03 am,
-# --- then T-0566..T-0588) — so wave 2 was pushed down by every addition and never came up.
-# --- Ten more 1840 reading tickets sat above T-0504/T-0505, which would have roughly doubled
-# --- the unread-and-unruled pile before anything was ruled on.
-# ---
-# --- So the two wave-2 tickets that spend the 1840 names come up here, ahead of reading more.
-# --- This is exemption-free under the visible-progress rule: T-0505 puts named people on cards.
-# --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
-# --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
-# --- be taken while any sweep ticket is open. The rest of the wave order below stands.
-# --- CONSOLIDATION RUNS ALONGSIDE THE READS, NOT AFTER THEM — owner, 2026-09-03 (evening):
-# --- "dont land those tickets at the very end maybe every few you should do that consolidation".
-# ---
-# --- THE RULE THIS BAND EXISTS TO ENFORCE: after every few source tickets close, the next run is a
-# --- consolidation pass, not another source. Not at the end — there is no end. Wave 1 is open-ended
-# --- by design (the owner adds sources as he finds them), so anything sequenced AFTER 'all sweeps'
-# --- is sequenced after never. T-0513 carried exactly that bar and stood 31 tickets deep while the
-# --- queue grew above it; T-0514/T-0515, which write the people, sat behind it.
-# ---
-# --- The scale, counted across the layer: 742 of 825 household records cite exactly ONE source, 70
-# --- cite two, 13 cite three, and nothing cites more. Ninety per cent of the town rests on a single
-# --- source while the crosswalks hold rulings nobody has spent. hh_carpenter_philo.json is the
-# --- worked example, not the scope: it cites andreas_1884_v1 alone while the crosswalks have ruled
-# --- six for the same man — poll 1833, tax 1833, poll 1834, the newspaper person, and two bridge
-# --- tiers at VERY LIKELY 1835. The slot exists, the evidence is adjudicated, never introduced.
-# ---
-# --- T-0513 is now INCREMENTAL: it consolidates what is CLOSED and runs again. A pass that finds
-# --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
-# --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
-# --- reaching a town person and 0 reaching their card; this band is what moves that number.
-# --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
-# --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
-# --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
-# --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
-# --- which is the manual step this whole programme exists to stop relying on.
-
-# --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
-# --- items in the queue you think will yield the best research results, those ones at the top".
-# ---
-# --- This band is not a hunch. Every closed crosswalk on dev was counted, and the match rate
-# --- differs by more than an order of magnitude by WHAT KIND of source it is:
-# ---
-# ---   source                       era                    ruled  matched   match %
-# ---   civic poll/tax/voter lists    1833-1835              345      99      28.7%
-# ---   1840 census heads             1840 (later)           498       5       1.0%
-# ---   St Cyr church register        1834-1839              531       0       0.0%
-# ---   Newberry index vol 1          index to later works   319       0       0.0%
-# ---
-# --- THE CATEGORY THAT WINS IS NARROWER THAN 'CONTEMPORARY', and the church row is why this was
-# --- measured rather than guessed: the first draft of this band led with St Mary's baptismal
-# --- register on the reasoning that 1833-35 beats 1840. St Cyr's register IS 1834-39, was read in
-# --- full, and matched NOBODY — 434 of its 531 entries are unmatched. What actually predicts yield
-# --- is a LIST THE TOWN MADE OF ITS OWN NAMED INHABITANTS, dated 1833-1836. Poll books, tax lists
-# --- and land purchases name householders under their own names; a register names the Catholic
-# --- families of a parish, and an index names works.
-# ---
-# --- So the promotions, in order, and each says which clause of the ratified ladder it feeds:
-# ---   T-0557  land sales through 1836 — a government list of NAMED PURCHASERS at Chicago; the
-# ---           closest thing in the queue to the civic lists that scored 28.7%.
-# ---   T-0498  the 1830 named schedule — the only pre-1835 enumeration of the settlement, and
-# ---           still unread; the repo holds county aggregates and no names.
-# ---   T-0501  Hubbard — a resident naming his contemporaries with trade or address, which the
-# ---   T-0499  ratified ladder admits as `inferred` in as many words. Fergus 26-29 is the same
-# ---   T-0500  clause and is already deposited as 1.24 MB of unread OCR.
-# ---   T-0506  the 1839 directory — later evidence, but nearer 1835 than the 1843/44 volumes.
-# ---   T-0503  St Mary's baptismal register — on the ladder (baptism 1833-35) and deposited, so
-# ---           it is here and not at the top: the measured church yield says it will not lead.
-# ---
-# --- WHAT MOVED DOWN, and it is a real call rather than a tidy-up. Eleven more 1840 census sheet
-# --- reads and Newberry volumes 2-4 now sit below this band. Together they are ~8,000 more cards
-# --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
-# --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
-# --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
-
-
-
-# --- The Newberry index SPEND, created 2026-09-03 (evening) on the owner's "and yes create a
-# --- newberry spend ticket". Placed immediately above the three volume reads it depends on the
-# --- absence of: volume 1 offered 319 leads and made 0 merges, and T-0578/T-0579/T-0580 would add
-# --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
-# --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
-
-
-T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
-T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
-T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
-
-T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
-T-0508 — 237 named residents have no research row: cohort 13 of 79
-T-0509 — 237 named residents have no research row: cohort 14 of 79
-T-0510 — 237 named residents have no research row: cohort 15 of 79
-T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
-T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
-
-
-T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
-T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
-
-T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
-T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
-
 # --- DEV'S OWN SMOKE IS RED, AND EVERY PR INHERITS IT — 2026-08-31.
 # --- 2,693 of 18,893 drawn flower heads stand over nothing at desktop width. The
 # --- same count, pose and worst offender appear on dev at 54921610 and on PR #560
@@ -219,11 +46,13 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 
-# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. BOTH HAVE LANDED and
-# --- the band is kept only to say so: T-0460, the plank walk's sawtooth against the
-# --- dirt road, on 2026-09-03 (#676); T-0459, twenty signs mounted flat over doors
-# --- and windows, on 2026-09-03 (#678). This band was the answer to the queue's own
-# --- complaint that 41 merges added nothing a visitor could see, and it is answered.
+# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
+# --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:
+# --- the plank walk's sawtooth against the dirt road is among the first things in
+# --- view. T-0459 is 20 signs mounted flat on facades by a generator that mentions
+# --- doors sixteen times and never once as geometry. Both are cheap beside the
+# --- ground work below, and this band is the answer to the queue's own complaint
+# --- that 41 merges added nothing a visitor could see.
 # --- T-0426 IS RULED AND T-0461 IS WHAT THE RULING LEFT — 2026-08-31. The fence
 # --- stays where the lot fronts (L160 read literally); the post follows the door,
 # --- and that half has landed. What is left is that the Tremont House's goods sit
@@ -323,28 +152,6 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- on, the ordinances the papers yielded, the fort, what grows, and the cards a
 # --- visitor opens. T-0219 is parked on PR #432.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
-
-# --- SOUTH THROUGH TIME — OWNER EPIC, 2026-09-01. Continue T-0219's ground south
-# --- through the 1812 Fort Dearborn battle corridor and the 1880s Prairie Avenue
-# --- district. Shared geographic infrastructure comes first, then the 1812 natural
-# --- landscape/first fort/route, then the later urban terrain, grid and mansion district.
-# --- The 1812 work follows AGENTS.md's Indigenous-history review constraint: terrain,
-# --- structures and documentary geography may proceed, but human depiction is not inferred.
-T-0464 — Extend the shared south terrain from Madison through Cermak
-T-0465 — Trace the South Branch and early lakefront through the expanded field
-T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
-T-0467 — Add south-scene camera anchors, navigation and map extents
-T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
-T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
-T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
-T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
-T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-0473 — Create an 1880s South Side terrain and urban-ground epoch
-T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
-T-0475 — Build the Prairie Avenue landmark mansion core
-T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
-T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
@@ -382,7 +189,6 @@ T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were nev
 
 # --- THE SMOKE AND ITS RUNNER — the evidence every ticket above owes. T-0346 cut the
 # --- costliest desktop part into three so a run can take it; these are what remains.
-T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 
 # --- THE PIPELINE AND ITS RUNNERS — invisible; the loop's own health
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
@@ -407,8 +213,39 @@ T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is n
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0464 — Extend the shared south terrain from Madison through Cermak
+T-0465 — Trace the South Branch and early lakefront through the expanded field
+T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
+T-0467 — Add south-scene camera anchors, navigation and map extents
+T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
+T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
+T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
+T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
+T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
+T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
+T-0475 — Build the Prairie Avenue landmark mansion core
+T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
+T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
+T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
+T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
+T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
+T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
+T-0508 — 237 named residents have no research row: cohort 13 of 79
+T-0509 — 237 named residents have no research row: cohort 14 of 79
+T-0510 — 237 named residents have no research row: cohort 15 of 79
+T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
+T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
+T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
+T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
+T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
+T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
+T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
@@ -427,9 +264,6 @@ T-0600 — The Newberry index reads a state banner as a card body, and a wrecked
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
 T-0612 — dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0619 — Volume 4 read by OCR, pages 1-306: the shards
 T-0620 — Volume 4 read by OCR, pages 307-612: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
@@ -455,12 +289,5 @@ T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, s
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
-
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
