@@ -69,7 +69,8 @@
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
 # --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
 # --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
-T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
+T-0701 — Apply the 158 grading proposals to the people who already exist: regrade, attach the evidence, and record every refusal
+T-0702 — The five 1840 heads T-0505 matched carry a proposed later_census block and no IPUMS serial, and the bridge CSV refuses a row without one
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
