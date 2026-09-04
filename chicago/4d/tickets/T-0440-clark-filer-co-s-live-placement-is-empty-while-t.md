@@ -1,7 +1,7 @@
 ---
 id: T-0440
 title: Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-30
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 5:43:52 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926203781
 ---
 
 Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five
