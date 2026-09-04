@@ -179,6 +179,48 @@ to be matched against the printed age-band totals at the foot of each candidate 
 those have not been read. T-0539 does that for all eleven at once. Until then every one of them
 is recorded as `unpaired` — never guessed.
 
+## A line index for a sheet that has no lines (T-0565, `33S7-9YYJ-5V`)
+
+`33S7-9YYJ-5V` is the sheet that stopped two passes. Its industry columns close against the
+enumerator's own footings; its TOTAL column would not, and the reason recorded each time was
+that **the leaf carries no horizontal ruled lines** — a row-darkness profile through the empty
+slaves block finds exactly two rules on the whole leaf, under the heading and above the footer,
+and nothing between them stands more than 4 grey levels over its background. With no grid to
+count against, every row assignment was an opinion, and the page file would commit no line
+number at all.
+
+**The printed form is still ruled at a fixed pitch whether or not the rules survived the
+exposure — and that pitch is measurable off columns that have nothing to do with the one in
+question.** Twenty-two lines on this leaf are fixed by an entry in the mining, agriculture,
+commerce, manufactures or learned-professions column. Fitted to those twenty-two anchors alone,
+with the TOTAL column contributing nothing, the grid is
+
+    y(k) = 670.29 + 75.856 k,   k = 0..29
+
+with an rms of 5.8 px — 8 per cent of a line — and a worst residual of 15.5 px. Applied to the
+TOTAL cell it puts all 44 of its ink components inside `k = 0..29`, none outside the range and
+none unassigned. A 29-consecutive-line model with no empty slot was tested against the same
+anchors and is worse by a factor of three; it is rejected. **The leaf carries 30 line slots and
+29 of them carry a family.** That supersedes an inventory pass's 28 and the page file's own
+"29 to 31, favouring 31" — the 31 was a count of glyph GROUPS, and two of those groups are the
+two halves of one number.
+
+Two things fall out of it that are worth carrying to the other ten sheets:
+
+- **The anchor-offset test.** On the 21 lines where an industry entry and a TOTAL number both
+  stand, the TOTAL number's y centre sits `+6.0 ± 6.3` px from the industry entry's. That is a
+  measurement of two boxes on one line — no grid, no threshold — and it is decisive where the
+  grid is not: at `k = 27` it accepts two groups 50 px apart as ONE number (`+1.0 sd`) and
+  rejects either of them alone (`-3.5 sd`, `+4.5 sd`).
+- **This sheet's `4` is not two strokes.** The section above records, from an earlier reading,
+  that "this hand writes `4` as two strokes that read as `11`". On `5V` that is not so, and it
+  matters, because three of the column's largest readings are paired slashes. The sheet's own
+  `4` — in the commerce column at y834, on a column the footer calibrates at 27 — is a closed
+  glyph with a bowl, a crossbar and a descender, and shares nothing with a pair of slashes.
+  Each stroke of the paired groups is instead the identical tapered form of the single `1`s at
+  `k = 14`, `k = 17` and `k = 21`. The `11`s are `11`. Whether that holds on the other ten
+  sheets is a question for whoever reads them; it is stated here per sheet, not per deposit.
+
 ## The cells, and the rule that decides whether a column is committed (T-0532)
 
 The age-band cells were read for the first time on printed pages **221, 222 and 226**.

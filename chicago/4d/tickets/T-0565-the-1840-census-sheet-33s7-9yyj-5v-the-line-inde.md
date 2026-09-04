@@ -1,7 +1,7 @@
 ---
 id: T-0565
 title: The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: T-0547
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 8:00:53 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33823924853
 ---
 
 The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread.
