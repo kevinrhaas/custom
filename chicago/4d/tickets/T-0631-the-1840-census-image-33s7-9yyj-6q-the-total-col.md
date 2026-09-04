@@ -1,7 +1,7 @@
 ---
 id: T-0631
 title: The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0549
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 12:15:25 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33839199857
 ---
 
 The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid and closed against its printed 198.
