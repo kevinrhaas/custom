@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 4:28 AM",
+  "generated_ct": "Sep 4, 2026, 4:38 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8702,7 +8702,7 @@
     {
       "id": "T-0529",
       "title": "The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8712,9 +8712,11 @@
       "opened": "2026-09-03",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 4:38:47 AM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855115057",
       "queue_rank": 7
     },
     {
