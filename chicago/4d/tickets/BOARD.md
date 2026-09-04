@@ -10,7 +10,6 @@
 
 - **T-0496** The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75 · **OWNER**
 - **T-0497** Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it · **OWNER**
-- **T-0500** Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index · **OWNER**
 - **T-0502** H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all · **OWNER**
 - **T-0507** 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction · **OWNER**
 - **T-0508** 237 named residents have no research row: cohort 13 of 79 · **OWNER**
@@ -135,6 +134,7 @@
 - **T-0600** The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 - **T-0601** A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 - **T-0605** The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
+- **T-0612** dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
 - **T-0619** Volume 4 read by OCR, pages 1-306: the shards
 - **T-0620** Volume 4 read by OCR, pages 307-612: the shards
 - **T-0621** Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
@@ -240,7 +240,7 @@
 - **T-0640** The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals · **OWNER** — T-0643, T-0644
 - **T-0641** The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals · **OWNER** — T-0653, T-0654, T-0655
 
-## Finished, newest first — 100 of 382; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 383; the older ones are in the ticket files (100)
 
 - **T-0675** The land sales database DOES page: read T39N R14E sections 16, 21 and 29 whole · Sep 4, 2026, 1:12 PM · [PR #798](https://github.com/kevinrhaas/custom/pull/798)
 - **T-0577** The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu) · Sep 4, 2026, 12:45 PM · [PR #795](https://github.com/kevinrhaas/custom/pull/795)
@@ -283,6 +283,7 @@
 - **T-0565** The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread · **OWNER** · Sep 3, 2026, 8:49 PM · [PR #747](https://github.com/kevinrhaas/custom/pull/747)
 - **T-0580** The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at · **OWNER** · Sep 3, 2026, 8:33 PM · [PR #745](https://github.com/kevinrhaas/custom/pull/745)
 - **T-0606** Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up) · **OWNER** · Sep 3, 2026, 7:50 PM · [PR #735](https://github.com/kevinrhaas/custom/pull/735)
+- **T-0500** Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index · **OWNER** · Sep 3, 2026, 7:36 PM · [PR #743](https://github.com/kevinrhaas/custom/pull/743)
 - **T-0506** The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked · **OWNER** · Sep 3, 2026, 6:53 PM · [PR #741](https://github.com/kevinrhaas/custom/pull/741)
 - **T-0579** The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at · **OWNER** · Sep 3, 2026, 6:52 PM · [PR #740](https://github.com/kevinrhaas/custom/pull/740)
 - **T-0499** Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index · **OWNER** · Sep 3, 2026, 6:50 PM · [PR #739](https://github.com/kevinrhaas/custom/pull/739)
@@ -341,5 +342,4 @@
 - **T-0487** Adjudicate the complete resident research corpus against newspaper and census evidence · **OWNER** · SEEN · 2026-09-02 · [PR #668](https://github.com/kevinrhaas/custom/pull/668)
 - **T-0483** Research ninth 75-person real-resident cohort · **OWNER** · SEEN · 2026-09-02 · [PR #666](https://github.com/kevinrhaas/custom/pull/666)
 - **T-0486** Research twelfth 11-person real-resident cohort · **OWNER** · SEEN · 2026-09-02 · [PR #663](https://github.com/kevinrhaas/custom/pull/663)
-- **T-0485** Research eleventh 75-person real-resident cohort · **OWNER** · SEEN · 2026-09-02 · [PR #662](https://github.com/kevinrhaas/custom/pull/662)
 
