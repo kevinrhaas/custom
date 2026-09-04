@@ -1475,6 +1475,18 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
+# T-0589. The CIVIC ACCOUNT above that directory, on the same page: the officers and
+# courts, the churches and societies with their memberships, the newspapers, the mails,
+# the fire and military companies, the schools, the ward population count of 1 August
+# 1843 and the port's trade. Three shapes on one range — a wrapped line, a heading that
+# is not a claim, and three tables the transcription runs down the page one cell to a
+# line — so the same guard as the directory's: the reading is REBUILT from the committed
+# text and compared, and the count is held to what coverage.json declares. A segmenter
+# that quietly rejoins the population table's rows off by one would be invisible to
+# every other gate here.
+step "Fergus's 1843 civic account rebuilds from its committed text, at the declared count" \
+  python3 tools/read_fergus_1843_civic.py --check
+
 # T-0506. Fergus's 1839 directory — the closest address list to 1835 this project can
 # reach, and until now cited only through somebody else's web transcription. Same three
 # gates as 1843's, for the same reason: a segmenter that quietly loses forty entries is
