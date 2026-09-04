@@ -290,3 +290,5 @@ T-0660 — The letter-list pass minted the same man twice when the paper printed
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
+T-0667 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
+T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card

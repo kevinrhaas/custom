@@ -10,7 +10,7 @@
   "books": 126,
   "directories": 6128,
   "newberry_index": 4914,
-  "land_sales": 359
+  "land_sales": 361
  },
  "witness": {
   "civic": {
@@ -43,7 +43,7 @@
   },
   "land_sales": {
    "read": 375,
-   "spent": 16
+   "spent": 14
   }
  },
  "raised": [
@@ -155,6 +155,14 @@
    "to": 0,
    "date": "2026-09-04",
    "why": "T-0632 opened this hop for the directories domain and closed it in the same pass. tools/spend_directories.py rules on the 235 single-entry matches the four directory crosswalks already held, and writes each one onto the household record it names — the later trade, the later address and the source id, as graded values that describe 1839, 1843 or 1844 and touch no 1835 claim. So the ceiling is recorded at ZERO, which is what the domain now stands at: every ruling that reaches a person reaches that person's card. It is written down rather than left absent because the gate faults on an unrecorded ceiling, and because a zero somebody chose is a ratchet while an absence is a hole. Nothing here may drift back up: a later directory reading that rules on a person and does not reach their card raises this number and the gate says so."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 359,
+   "to": 361,
+   "date": "2026-09-04",
+   "why": "T-0514 seated 531 new residents and the land-sales resident crosswalk re-derived against the larger town. Its rule matches a purchaser only where the residents layer holds EXACTLY ONE person of the surname and the forename agrees, so a bigger town makes that rule fire less: nine matches became ambiguous (Carpenter, Dole, Fullerton, Haddock x2, Heacock, Sweet, Burdick, Wooley) and six became possible for the first time (Bronson, Hale, Hartzell, Ludby, Price, Wolcott), a net loss of three rulings with nothing new read. The ceiling moves by that difference rather than the domain being re-read. T-0667 carries the matcher's surname-uniqueness weakness and T-0609 is the ticket that spends this domain properly."
   }
  ],
  "lowered": [

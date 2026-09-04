@@ -10160,3 +10160,93 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **T-0616** (the owner's brief).
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
+
+
+### L218 — 531 people join the town on the town's own lists, and a household is written round each of them
+
+**Scope:** `residents.persons[civic_mint]` — 531 people
+**Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
+quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
+spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
+clusters them into identities and writes `grading_proposal.json`, which says per identity
+what the ladder makes of it. That file was a proposal and nothing in it had been written
+onto a card. Measured on `dev` before this pass, only 37 of the 85 men on the 1835 poll
+list had even a surname in the residents layer. `tools/mint_civic_residents.py` writes the
+rest: every identity the ladder grades `attested` or `inferred` that the town did not
+already carry, on the evidence of the civic lists, the parish register, the contemporary
+press, the two printed directories with the old settlers' death notices, and the 1840
+census. 531 of them, in 531 households of one.
+
+**Why this is a liberty and not a dataset growing.** Nothing here is invented and no
+confidence was upgraded to allow it: every one of the 531 is named in a record this project
+has transcribed, and the person carries that reading AS READ, with its locator, its record
+id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_evidence[]`,
+`press_evidence[]`, `book_evidence[]` or `census_evidence[]`. The liberty is the same one
+L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
+**that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
+`works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
+figure drawn (L1). A reader who counts this town's households is counting 531 containers
+that were written to hold a name, and no single record says so, because no single record
+is wrong.
+
+**What the arrival claims, and what it refuses to.** `arrival` is a BOUND, written
+`not_later_than` the earliest record inside the scene year that names the person, at that
+record's own precision — a full date where a paper gives one, the year's end where a list
+gives only a year. For 99 of the 531 that bound falls after 1 July 1835, because the
+earliest source naming them is later than the day this scene models; the validator warns
+that the bound straddles the scene date, the note says so in words, and
+`present_on_scene_date` is `uncertain` for exactly those people. `present` is written only
+where the record BRACKETS the day — the person is named at Chicago at or before 1 July 1835
+and named again at or after it.
+
+**What the refusals take, and they are what stands between a transcription and this town's
+population.** 6,155 of the 6,686 identities the proposal offers are refused, in order: 4,256
+the ladder does not reach at all (an 1839 directory or an 1840 census appearance alone is
+never an 1835 resident), 949 whose only scene-year source is a post-office letter list —
+the pool of the pass beside this one, `tools/mint_letter_list_residents.py`, which the
+owner's ruling of 2026-08-30 already settled — 828 the town already carries, 110 resting on
+the 1832 Black Hawk War enrollment alone, 7 whose id is a person's already, 3 the project
+has researched and left OUT in `index.json`'s `researched_not_resident`, and 2 firms. The
+counts move with the corpus; `--report` re-derives them on any tree.
+
+**The 1832 muster refusal, and why it is written down here.** The enrollment record states
+its own ladder — *"An 1832 enrollment is EARLIER evidence and never an 1835 residence on its
+own: it places the man in this town in 1832, which is why it dates and corroborates rather
+than mints"* — and this pass does not overturn a reading the project has already made from a
+rung the consolidation assigns generically. It also keeps the pass away from the 94 rows the
+index prints in the INDIAN company with no surname comma at all: those names cannot be read
+in a surname-first model without inventing an order for them, and any record touching the
+removal is subject to AGENTS.md's standing constraint rather than to a mint tool's judgement.
+
+**The tension with L213, stated rather than buried.** `tools/mint_placed_residents.py` put
+the register's tradeless people through a residency test derived from the corpus and refused
+382 of them, on the reasoning that *a name printed in a Chicago paper is not a Chicago
+resident*. The owner's ladder, ratified a fortnight later, reads the same evidence
+differently at rung G1b, and 315 of the 531 minted here are minted on it. This pass applies
+the ladder because the ladder is the ratified rule and T-0514 is the instruction to spend
+it; the disagreement is not resolved by this entry, it is recorded by it, and the two tests
+are both still in the tree and both still gated.
+
+**What the new anchors cost downstream, measured.** The directory crosswalks match a later
+entry to a resident on surname plus the FIRST INITIAL of the given name — their own
+documented rule, which refuses a surname-only agreement and states its reasoning on every
+match. 531 new surnames give that rule more to bind to: it declared 35 merges onto people minted
+here, and 23 of those agree on the initial while the full forenames behind it differ — some a
+spelling (Absalom against Absolom), some plainly two people (Thomas L. Abbott onto Titus H.
+Abbott; Michael onto Mary Hogan). Nothing is hidden by that —
+each card shows the entry AS READ, so the discrepancy is on the page rather than under it —
+but the rule is looser than it was worth being when the town held 848 names, and T-0667
+carries the finding.
+
+**Consequence:** the town goes from 848 households and 872 people to 1,380 and 1,404;
+`attested` from 141 to 482 and `inferred` from 731 to 922 — the extra four beyond this pass's
+own 531 are what the passes beside it reach once the register is recompiled against a larger
+town. `data/residents/` grows from 7.2 MB to 13 MB on disk (2.7 MB of new records over 531 new
+files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is added,
+and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
+which is the ruling's own condition, measured.
+
+Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
+**L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
+(this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
+**Recorded:** 2026-09-04.

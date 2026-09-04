@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 8:05 AM",
+  "generated_ct": "Sep 4, 2026, 8:46 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11052,6 +11052,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 152
+    },
+    {
+      "id": "T-0667",
+      "title": "The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0668",
+      "title": "The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     }
   ]
 }

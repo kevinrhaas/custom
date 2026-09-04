@@ -14,12 +14,12 @@
  "only_merges_are_written": "The enrichment pass writes a citation onto a resident record for an OS1 or OS2A merge and for nothing else. Probable, candidate, refused and unmatched rows touch no record.",
  "merges": [
   {
-   "id": "os1882g001",
-   "as_read": "Adams, William H.",
+   "id": "os1882g002",
+   "as_read": "Allen, Edward R.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "person_id": "adams_william_h",
-   "household_id": "hh_adams_william_h",
-   "resident_name": "William Hanford Adams",
+   "person_id": "allen_edward_richards",
+   "household_id": "hh_allen_edward_richards",
+   "resident_name": "Edward Richards Allen",
    "rule": "OS1",
    "evidence": "surname and spelled-out forename agree, one bearer"
   },
@@ -30,6 +30,26 @@
    "person_id": "bates_john_jr",
    "household_id": "hh_bates_john_jr",
    "resident_name": "John Bates Jr.",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
+   "id": "os1882g010",
+   "as_read": "Beaubien, Medore B.",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "person_id": "beaubien_medore_b",
+   "household_id": "hh_beaubien_medore_b",
+   "resident_name": "Medore B Beaubien",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
+   "id": "os1882g018",
+   "as_read": "Campbell, James",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "person_id": "campbell_james_b",
+   "household_id": "hh_campbell_james_b",
+   "resident_name": "James B Campbell",
    "rule": "OS1",
    "evidence": "surname and spelled-out forename agree, one bearer"
   },
@@ -74,6 +94,36 @@
    "evidence": "surname and spelled-out forename agree, one bearer"
   },
   {
+   "id": "os1882g085",
+   "as_read": "Peacock, Elijah",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "person_id": "peacock_elijah",
+   "household_id": "hh_peacock_elijah",
+   "resident_name": "Elijah Peacock",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
+   "id": "os1882g093",
+   "as_read": "Rue, John C.",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "person_id": "rue_john_c",
+   "household_id": "hh_rue_john_c",
+   "resident_name": "John C Rue",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
+   "id": "os1882g126",
+   "as_read": "Wolcott, Alexander",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "person_id": "wolcott_alexander",
+   "household_id": "hh_wolcott_alexander",
+   "resident_name": "Alexander Wolcott",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
    "id": "os1882d001",
    "as_read": "Bennett Bailey",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
@@ -94,12 +144,12 @@
    "evidence": "surname and spelled-out forename agree, one bearer"
   },
   {
-   "id": "os1882d012",
-   "as_read": "Edward H. Haddock",
+   "id": "os1882d017",
+   "as_read": "Lathrop Johnson",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "person_id": "haddock_edward",
-   "household_id": "hh_haddock_edward",
-   "resident_name": "Edward H. Haddock",
+   "person_id": "johnson_lathrop",
+   "household_id": "hh_johnson_lathrop",
+   "resident_name": "Lathrop Johnson",
    "rule": "OS1",
    "evidence": "surname and spelled-out forename agree, one bearer"
   },
@@ -132,6 +182,16 @@
    "resident_name": "William H. Stow",
    "rule": "OS1",
    "evidence": "surname and spelled-out forename agree, one bearer"
+  },
+  {
+   "id": "os1882d039",
+   "as_read": "Eli B. Williams",
+   "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
+   "person_id": "williams_eli_b",
+   "household_id": "hh_williams_eli_b",
+   "resident_name": "Eli B Williams",
+   "rule": "OS1",
+   "evidence": "surname and spelled-out forename agree, one bearer"
   }
  ],
  "probable": [
@@ -156,12 +216,12 @@
    "why": "one bearer of the surname in the whole residents layer and the forename initial agrees, but neither side spells the forename out and nothing discriminates. PROBABLE, NOT MERGED: no record is written on it"
   },
   {
-   "id": "os1882g023",
-   "as_read": "Clarke, Henry",
+   "id": "os1882g036",
+   "as_read": "Ellis, Joel",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "probable_person_id": "clarke_h_b",
-   "household_id": "hh_clarke_h_b",
-   "resident_name": "H. B. Clarke",
+   "probable_person_id": "ellis_j",
+   "household_id": "hh_ellis_j",
+   "resident_name": "J Ellis",
    "rule": "OS2",
    "why": "one bearer of the surname in the whole residents layer and the forename initial agrees, but neither side spells the forename out and nothing discriminates. PROBABLE, NOT MERGED: no record is written on it"
   },
@@ -178,12 +238,16 @@
  ],
  "refusals": [
   {
-   "id": "os1882g002",
-   "as_read": "Allen, Edward R.",
+   "id": "os1882g001",
+   "as_read": "Adams, William H.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'allen', none with the forename initial 'e'; same surname, different forename initial never merges"
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "2 bearers of 'adams' share the forename initial 'w'; the roster does not discriminate between them",
+   "candidates": [
+    "adams_william",
+    "adams_william_h"
+   ]
   },
   {
    "id": "os1882g003",
@@ -191,7 +255,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
+   "why": "the residents layer has 6 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g005",
@@ -226,18 +290,6 @@
    "why": "no bearer of the surname 'batcheier' in the residents layer"
   },
   {
-   "id": "os1882g010",
-   "as_read": "Beaubien, Medore B.",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS4",
-   "outcome": "candidate",
-   "why": "2 bearers of 'beaubien' share the forename initial 'm'; the roster does not discriminate between them",
-   "candidates": [
-    "beaubien_madore",
-    "beaubien_mark"
-   ]
-  },
-  {
    "id": "os1882g011",
    "as_read": "BerRs, Rev. Stephen R.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
@@ -265,9 +317,9 @@
    "id": "os1882g015",
    "as_read": "Bradley, David",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'bradley' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'bradley', none with the forename initial 'd'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g016",
@@ -275,7 +327,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'brown', none with the forename initial 'n'; same surname, different forename initial never merges"
+   "why": "the residents layer has 7 bearer(s) of 'brown', none with the forename initial 'n'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g017",
@@ -284,14 +336,6 @@
    "rule": "OS5",
    "outcome": "unmatched",
    "why": "no bearer of the surname 'buel' in the residents layer"
-  },
-  {
-   "id": "os1882g018",
-   "as_read": "Campbell, James",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'campbell' in the residents layer"
   },
   {
    "id": "os1882g020",
@@ -310,12 +354,23 @@
    "why": "no bearer of the surname 'chacksfield' in the residents layer"
   },
   {
+   "id": "os1882g023",
+   "as_read": "Clarke, Henry",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "1 bearers of 'clarke' share the forename initial 'h'; the roster does not discriminate between them",
+   "candidates": [
+    "clarke_h_b"
+   ]
+  },
+  {
    "id": "os1882g024",
    "as_read": "Clift, James",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'clift' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'clift', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g025",
@@ -323,7 +378,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'cook', none with the forename initial 'i'; same surname, different forename initial never merges"
+   "why": "the residents layer has 5 bearer(s) of 'cook', none with the forename initial 'i'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g026",
@@ -406,14 +461,6 @@
    "why": "the residents layer has 2 bearer(s) of 'egan', none with the forename initial 'w'; same surname, different forename initial never merges"
   },
   {
-   "id": "os1882g036",
-   "as_read": "Ellis, Joel",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'ellis' in the residents layer"
-  },
-  {
    "id": "os1882g037",
    "as_read": "Ewins, John A.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
@@ -473,9 +520,9 @@
    "id": "os1882g044",
    "as_read": "Goodrich, T. W.. Milwaukee",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'goodrich' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 3 bearer(s) of 'goodrich', none with the forename initial 't'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g045",
@@ -563,7 +610,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
+   "why": "the residents layer has 4 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g056",
@@ -587,7 +634,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
+   "why": "the residents layer has 6 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g059",
@@ -651,7 +698,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'jones', none with the forename initial 'f'; same surname, different forename initial never merges"
+   "why": "the residents layer has 5 bearer(s) of 'jones', none with the forename initial 'f'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g067",
@@ -774,20 +821,12 @@
    "why": "the residents layer has 1 bearer(s) of 'parker', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
-   "id": "os1882g085",
-   "as_read": "Peacock, Elijah",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'peacock' in the residents layer"
-  },
-  {
    "id": "os1882g086",
    "as_read": "Peacock, Joseph",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'peacock' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'peacock', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g087",
@@ -795,7 +834,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'peck', none with the forename initial 'c'; same surname, different forename initial never merges"
+   "why": "the residents layer has 3 bearer(s) of 'peck', none with the forename initial 'c'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g088",
@@ -811,15 +850,15 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'porter', none with the forename initial 'a'; same surname, different forename initial never merges"
+   "why": "the residents layer has 3 bearer(s) of 'porter', none with the forename initial 'a'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g090",
    "as_read": "Price, Cornelius",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'price' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'price', none with the forename initial 'c'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g091",
@@ -836,14 +875,6 @@
    "rule": "OS5",
    "outcome": "unmatched",
    "why": "no bearer of the surname 'reader' in the residents layer"
-  },
-  {
-   "id": "os1882g093",
-   "as_read": "Rue, John C.",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'rue' in the residents layer"
   },
   {
    "id": "os1882g094",
@@ -897,17 +928,24 @@
    "id": "os1882g100",
    "as_read": "Smith, Dr. David S.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "1 bearers of 'smith' share the forename initial 'd'; the roster does not discriminate between them",
+   "candidates": [
+    "smith_d_a"
+   ]
   },
   {
    "id": "os1882g101",
    "as_read": "Smith, Joseph F.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'smith', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "2 bearers of 'smith' share the forename initial 'j'; the roster does not discriminate between them",
+   "candidates": [
+    "smith_james",
+    "smith_jeremiah"
+   ]
   },
   {
    "id": "os1882g102",
@@ -939,7 +977,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'stewart', none with the forename initial 'a'; same surname, different forename initial never merges"
+   "why": "the residents layer has 2 bearer(s) of 'stewart', none with the forename initial 'a'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g106",
@@ -955,7 +993,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'taylor', none with the forename initial 'l'; same surname, different forename initial never merges"
+   "why": "the residents layer has 9 bearer(s) of 'taylor', none with the forename initial 'l'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g108",
@@ -971,9 +1009,11 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS4",
    "outcome": "candidate",
-   "why": "2 bearers of 'taylor' share the forename initial 'a'; the roster does not discriminate between them",
+   "why": "4 bearers of 'taylor' share the forename initial 'a'; the roster does not discriminate between them",
    "candidates": [
     "taylor_anson_h",
+    "taylor_anson_n",
+    "taylor_anson_w",
     "taylor_augustine"
    ]
   },
@@ -981,9 +1021,13 @@
    "id": "os1882g110",
    "as_read": "Taylor, E. D.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'taylor', none with the forename initial 'e'; same surname, different forename initial never merges"
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "2 bearers of 'taylor' share the forename initial 'e'; the roster does not discriminate between them",
+   "candidates": [
+    "taylor_e_d",
+    "taylor_edmund_d"
+   ]
   },
   {
    "id": "os1882g111",
@@ -991,7 +1035,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'taylor', none with the forename initial 'f'; same surname, different forename initial never merges"
+   "why": "the residents layer has 9 bearer(s) of 'taylor', none with the forename initial 'f'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g112",
@@ -1079,7 +1123,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "why": "the residents layer has 3 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g123",
@@ -1104,14 +1148,6 @@
    "rule": "OS5",
    "outcome": "unmatched",
    "why": "no bearer of the surname 'wicker' in the residents layer"
-  },
-  {
-   "id": "os1882g126",
-   "as_read": "Wolcott, Alexander",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'wolcott' in the residents layer"
   },
   {
    "id": "os1882g127",
@@ -1173,9 +1209,12 @@
    "id": "os1882d008",
    "as_read": "Dennis S. Dewey",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'dewey' in the residents layer"
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "1 bearers of 'dewey' share the forename initial 'd'; the roster does not discriminate between them",
+   "candidates": [
+    "dewey_d_s"
+   ]
   },
   {
    "id": "os1882d009",
@@ -1197,9 +1236,23 @@
    "id": "os1882d011",
    "as_read": "Thomas Q. Gage",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'gage' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'gage', none with the forename initial 't'; same surname, different forename initial never merges"
+  },
+  {
+   "id": "os1882d012",
+   "as_read": "Edward H. Haddock",
+   "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
+   "rule": "OS4",
+   "outcome": "candidate",
+   "why": "4 bearers of 'haddock' share the forename initial 'e'; the roster does not discriminate between them",
+   "candidates": [
+    "haddock_e",
+    "haddock_e_w",
+    "haddock_edward",
+    "haddock_edward_e"
+   ]
   },
   {
    "id": "os1882d013",
@@ -1234,14 +1287,6 @@
    "why": "no bearer of the surname 'huntington' in the residents layer"
   },
   {
-   "id": "os1882d017",
-   "as_read": "Lathrop Johnson",
-   "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'johnson', none with the forename initial 'l'; same surname, different forename initial never merges"
-  },
-  {
    "id": "os1882d019",
    "as_read": "Harlow Kimball",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
@@ -1263,7 +1308,7 @@
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'merrill', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "why": "the residents layer has 2 bearer(s) of 'merrill', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d023",
@@ -1311,7 +1356,7 @@
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'peck', none with the forename initial 'e'; same surname, different forename initial never merges"
+   "why": "the residents layer has 3 bearer(s) of 'peck', none with the forename initial 'e'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d029",
@@ -1343,7 +1388,7 @@
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
+   "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d033",
@@ -1359,7 +1404,7 @@
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'rose', none with the forename initial 'c'; same surname, different forename initial never merges"
+   "why": "the residents layer has 2 bearer(s) of 'rose', none with the forename initial 'c'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d036",
@@ -1373,25 +1418,17 @@
    "id": "os1882d037",
    "as_read": "Benjamin Waters",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'waters' in the residents layer"
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'waters', none with the forename initial 'b'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d038",
    "as_read": "Sextus N. Wilcox",
    "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
-   "rule": "OS5",
-   "outcome": "unmatched",
-   "why": "no bearer of the surname 'wilcox' in the residents layer"
-  },
-  {
-   "id": "os1882d039",
-   "as_read": "Eli B. Williams",
-   "source_id": "chicago_tribune_1882_04_25_old_settler_deaths",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'williams', none with the forename initial 'e'; same surname, different forename initial never merges"
+   "why": "the residents layer has 1 bearer(s) of 'wilcox', none with the forename initial 's'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882d040",
@@ -1403,8 +1440,8 @@
   }
  ],
  "counts": {
-  "merges": 12,
+  "merges": 18,
   "probable": 4,
-  "refusals": 152
+  "refusals": 146
  }
 }

@@ -213,6 +213,21 @@ def _letter_list_person_count() -> int:
     return n
 
 
+def _civic_mint_person_count() -> int:
+    """People the town holds because its own civic, church, press, book and census
+    records name them, minted by tools/mint_civic_residents.py (T-0514).
+
+    Counted off the household RECORDS for the reason the letter-list scope above
+    gives at length: reading `index.json`'s denormalised `counts` block would be
+    agreeing with a second opinion rather than measuring.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        n += sum(1 for p in doc.get("persons") or [] if p.get("civic_mint"))
+    return n
+
+
 # enumeration -> (how many it reaches now, where that number is derived from).
 #
 # A scope may only name an enumeration written down HERE. The alternative — an
@@ -227,6 +242,10 @@ SCOPE_SOURCES = {
         _letter_list_person_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/mint_letter_list_residents.py --check"),
+    "residents.persons[civic_mint]": (
+        _civic_mint_person_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/mint_civic_residents.py --check"),
 }
 
 SECTION_KEY = {
