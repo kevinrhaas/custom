@@ -91,9 +91,10 @@ and is not a licence to guess.
 | 8 | **The annex is a LOG wall and the block is not.** The annex's courses run **22 px = 0.258 m** against the block's 15 px, on three patches autocorrelating +0.48, +0.30 and +0.20. A log course half again the siding's course is the difference the plate is actually asserting. | `annex.median_px`, `annex.autocorr` | `inferred` |
 | 9 | **Two chimneys stand clear of the roof**, at drawn x 652–705 (rising 69 px) and x 1358–1403 (rising 61 px). A third stack visible against the block's south-west wall behind the annex roof does NOT clear the roof line and is not counted here. | `chimneys.count = 2` | `inferred` — and it agrees with `docs/RESEARCH/sauganash_hotel.md` § 4, which read two chimneys off the same descent by eye |
 | 10 | **The near gable's apex is at (648, 350)**; its left rake is drawn at slope **−0.318** and the RIDGE runs away to the right at **+0.095**. The right-hand line out of the apex is the ridge, not a rake — which is what puts the gable end at the left-front and the long eaves face to the right. | `roof.apex`, `left_rake_slope`, `right_rake_slope` | `inferred` for the arrangement |
-| 11 | **The roof PITCH is not read here.** Turning a drawn rake into a pitch needs the true width of the gable — the depth of the building — and one plate cannot give a depth. Row 4 means it *is* recoverable from this sheet, by rectifying the gable-end plane with the horizon and the focal length the two vanishing points give; that work belongs to **T-0626**, which is where the plan is decided, and it is named rather than guessed. | — | **`unresolved`** |
+| 11 | **The roof PITCH is not read here, and T-0626 found there is nothing on this apex to read it FROM.** This row expected the pitch to fall out of the left line by rectifying the gable-end plane. It does not, because that line is not a rake. Projected onto the vertical through the end face's own vanishing point, at the focal length row 4 recovered, it stands at **1.35 deg** in the world — and the right-hand line at **0.11 deg** — where a 38 deg rake in the same plane would have been DRAWN at image slope −1.99 against the −0.318 measured. **Both lines out of the apex are world-horizontals, so they are two RIDGES at one height meeting at a point, and the pitch is still unread.** `tools/sauganash_apex_lines.py` is the arithmetic, it needs no image library, and `tools/check.sh` gates on it. | `sauganash_apex_lines.py` → `left.world_deg`, `right.world_deg` | **`unresolved` for the pitch, and `inferred` for what the sum found instead** — see row 14 |
 | 12 | **The sash heights are not read here.** Sash extents are taken by differencing a window against the same number of columns of blank wall beside it; four of the ground-storey bays have a doorway or a corner board where that blank wall should be, and the storey's five heights disagree by **1.44 of their own mean**. Widths are steady and are reported (upper 0.795 m, ground 0.912 m); heights are not. | `windows.lower.height_resolved = false` | **`unresolved`** |
 | 13 | **Two storeys, 2.87 m head to head**, upper window heads to ground window heads. | `storeys.storey_pitch_m` | `inferred`, lower bound |
+| 14 | **The second mass is on the sheet, and row 11 is how it was found.** Two ridges at one height meeting at one apex, the main block's running toward the five-bay face's vanishing point and the other away at right angles. Two gable ridges of one wall height and one pitch reach the same height only if they SPAN the same width, so the wing's span is the main block's own depth — which is what `data/structures/sauganash_hotel.json` carries and what the archetype refuses to build otherwise. The wing's LENGTH is not here and cannot be: it is behind the block from this station. | `sauganash_apex_lines.py`; `roof.apex`, `end_vanishing`, `se_vanishing`, `perspective_test.focal_px` | `inferred` — one plate, tier 5, and it may drive a PROPORTION and never a coordinate |
 
 ## 4. The fifth view is NOT spent here
 
@@ -123,6 +124,34 @@ its own ticket, **T-0649**, rather than smuggled into this one.
 * **No confidence was promoted.** Everything above is `inferred` or `unresolved`. A
   tier-5 retrospective that passes the perspective test earns the right to be read for
   PROPORTION; it does not earn a coordinate, a footprint outline, or a `documented`.
+
+## 6. What T-0626 then spent, on 2026-09-04
+
+Recorded here because this file is where the reading lives, and a reading nobody can
+follow to a record is a reading nobody can check.
+
+* **Row 11 was answered by refusing it**, which is the finding above: the left apex line
+  is a ridge and not a rake, so the pitch remains unread and `roof_pitch_deg` keeps its
+  typological 38°. Nothing was fitted to make a number appear.
+* **The frontage.** Five equal bays at the 1.984 m the scale datum gives are 9.92 m, and
+  the 12 × 8 m placeholder is retired for 9.92 × 8. The datum's stated bias was BOUNDED
+  rather than left as "a lower bound": the plate's own focal length puts the two men
+  43.0 m from the station, so standing a pace forward of the wall makes them under 3 %
+  large, and 12 m is refuted rather than merely unsupported. **The depth is untouched and
+  still a reconstruction** — nothing here measured it.
+* **The second mass** (row 14) is built, its span forced by the shared apex and its length
+  admitted as an invention at `docs/LIBERTIES.md` **L217**.
+* **The log annex left this record.** `drloih_beaubien` captions the same engraving "The
+  log cabin on the left was Chicago's first drugstore", which is
+  `data/structures/philo_carpenter_log_shop.json` — already standing at that end of the
+  hotel. The hotel's `log_wing` was drawing a second copy of it in front of its own
+  street face; it is `false` from that date.
+* **What was NOT spent.** The sash widths of row 12 (upper 0.795 m, ground 0.912 m) are
+  measured and are still not in the record: the heights they belong with are `unresolved`,
+  and a width without a height would let the archetype's own sash proportion pass as a
+  reading. The clapboard exposure of row 7 stays out for the reason row 7 gives — it is a
+  fact about the engraver. Row 5's doorcase and row 6's transom are readings of the door
+  and no record carries them yet.
 
 **Links:** T-0616 (the brief) · T-0626 (where the reading is spent) · T-0197 (the rule
 this file is written under) · T-0185 (a plate coarser than the thing it draws) ·

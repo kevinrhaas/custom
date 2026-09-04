@@ -789,6 +789,15 @@ step "Braunhold's Sauganash still says what the research note says it says" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_sauganash_plate.py --self-test
 
+# T-0626. The plan the record now carries rests on ONE arithmetic result taken off
+# that banked reading: both lines out of the drawn apex are world-horizontals, so
+# they are two RIDGES meeting at a point, and two ridges of one wall height and one
+# pitch meet only when they span the same width. That is what forces the cross
+# wing's span in generators/archetypes/frame_tavern.py, so it is gated rather than
+# quoted — if the finding ever flips, the record's derivation is stale.
+step "both lines out of the Sauganash's drawn apex are still ridges, not rakes" \
+  python3 tools/sauganash_apex_lines.py --gate --quiet
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

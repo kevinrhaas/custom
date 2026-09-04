@@ -2403,7 +2403,7 @@ for (const [label, viewport, touch] of [
         .filter((st) => st.record === 'sauganash_yard_trees')
         .map((st) => ({
           ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          inYard: st.e > 101.4 && st.e < 117.42 && st.n < -130.6 && st.n > -151.07,
           clear: onRun(st.e, st.n),
         }));
       return {
@@ -4403,7 +4403,19 @@ for (const [label, viewport, touch] of [
       // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 20 && frontage.census?.fences === 32
+        // T-0626 takes it back to NINETEEN, and it is the first time this count
+        // has gone DOWN. Nothing was refused for being badly placed: the log
+        // cabin beside the Sauganash stopped being a drug store. Its record was
+        // titled Philo Carpenter's Log Drug Store and carried `drug_store` as
+        // its function, three years after Carpenter moved out of it, and the
+        // hitching rule stands a post at a frontage whose TRADE it accepts. With
+        // the trade gone — the record now states three former uses and no
+        // current one — the frontage has no trade to take custom from a stranger
+        // off the street, so the post retires with the signboard that lettered
+        // the same man's name over the same door. Walks, crossings, fences and
+        // refusals do not move: the building is still there and still the street
+        // wall on that face.
+        && frontage.census?.posts === 19 && frontage.census?.fences === 32
         && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4654,11 +4666,19 @@ for (const [label, viewport, touch] of [
     // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
     // finds. The street-edge population is seventeen; the two on a record's own
     // ground do not move, because those come from the Sauganash's own plates.
-    check(`${label}: the nineteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 19
-        && frontage.census?.hitching === 19
+    // T-0626 makes it EIGHTEEN, the first fall in this line, and it is a trade
+    // leaving rather than a building. `philo_carpenter_log_shop` — Mark
+    // Beaubien's own cabin, let to Philo Carpenter in 1832, to John S. Wright,
+    // then to Eliza Chappel's school until 1834 — stopped carrying `drug_store`
+    // as its function, because on 1 July 1835 it is neither a drug store nor a
+    // school and no source reached says what it was. The hitching rule accepts a
+    // frontage by its TRADE, so the post retires with it. The street-edge
+    // population is sixteen; the two on a record's own ground do not move.
+    check(`${label}: the eighteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 18
+        && frontage.census?.hitching === 18
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 17
+        && frontage.hitching.filter((h) => h.street).length === 16
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -6353,7 +6373,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18', 'L217'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -7296,6 +7316,31 @@ for (const [label, viewport, touch] of [
       absurd.length
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
+
+    // --- the Sauganash is two masses, not one box (T-0626) ------------------
+    //
+    // The owner reported this building from the walk: a mass missing at the back
+    // and a log hut standing in front of its street door. Both were record faults
+    // and both are fixed, so the fix is asserted where a regression would show —
+    // in the RENDERED bounds, not in the JSON, because a record that grew a
+    // `cross_wing` attribute nothing built would read as fixed everywhere else.
+    //
+    // Orientation-agnostic on purpose. The plan is a 9.92 m frontage on Lake
+    // Street with an 8 m block behind it and an 8 m wing behind THAT, so one
+    // horizontal extent is about 16.5 m with the roof overhangs and the other
+    // about 10.4 m; which of the two is x and which is z is the placement's
+    // business and not this assertion's. The box it replaces was 12 x 8, whose
+    // long side is 12.5 m — well under the floor here, so a revert fails.
+    const saugBox = scale.perStructure.find((st) => st.id === 'sauganash_hotel');
+    const saugPlan = saugBox ? [saugBox.size[0], saugBox.size[2]].sort((a, b) => b - a) : null;
+    check(`${label}: the Sauganash is rendered as its two-mass plan`,
+      !!saugPlan && saugPlan[0] >= 15.0 && saugPlan[0] <= 18.0
+      && saugPlan[1] >= 9.5 && saugPlan[1] <= 11.5,
+      saugPlan
+        ? `plan ${saugPlan[0].toFixed(2)} x ${saugPlan[1].toFixed(2)} m `
+          + `(want the long axis 15-18 m for block + cross wing, the short 9.5-11.5 m `
+          + `for the measured five-bay frontage; the retired placeholder was 12 x 8)`
+        : 'sauganash_hotel is not in the instance bounds at all');
 
     // --- nothing hovers -----------------------------------------------------
     //

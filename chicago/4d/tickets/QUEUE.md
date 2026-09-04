@@ -197,7 +197,6 @@
 # --- T-0626 spends the reading. Split from T-0616 because reading four plates and rebuilding
 # --- the massing are two demonstrations. (T-0626 was filed as T-0618 and restamped: dev's own
 # --- #749 had minted a T-0618 of its own for the Newberry volume-4 OCR reader.)
-T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
 
@@ -210,7 +209,6 @@ T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with n
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
 
-T-0644 — The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
 T-0654 — The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals
 T-0655 — The 1840 census image 33S7-9YYJ-BF read line by line and closed against its own printed column totals
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
