@@ -1,5 +1,5 @@
 ---
-id: T-0628
+id: T-0641
 title: The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals
 state: open
 epic: META

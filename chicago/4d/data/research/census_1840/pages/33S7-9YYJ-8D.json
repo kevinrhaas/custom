@@ -84,7 +84,7 @@
  "pairing": {
   "paired_to_printed_page": null,
   "state": "unpaired",
-  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading: the page population below has to be matched against the printed age-band totals at the foot of each candidate left sheet, and those have not been read yet. T-0629 does that for all eleven at once. Recorded as unpaired rather than guessed.",
+  "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading: the page population below has to be matched against the printed age-band totals at the foot of each candidate left sheet, and those have not been read yet. T-0642 does that for all eleven at once. Recorded as unpaired rather than guessed.",
   "page_population_key": 106,
   "page_population_key_note": "the printed footer figure, which is what a left sheet's age-band sums are to be matched against. The line-by-line reading of the same column is 121; both are published because the pairing test has to know they differ on this sheet.",
   "line_count_key": 32

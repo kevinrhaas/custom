@@ -1,5 +1,5 @@
 ---
-id: T-0632
+id: T-0643
 title: The 1840 census image 33S7-9YYJ-8D read line by line and closed against its own printed column totals
 state: done
 epic: META
@@ -7,7 +7,7 @@ requested_by: owner
 seen: false
 effort: S
 legacy_id: null
-parent: T-0627
+parent: T-0640
 opened: 2026-09-03
 closed: 2026-09-03
 pr: 756
@@ -20,7 +20,7 @@ claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/3383166
 
 The 1840 census image 33S7-9YYJ-8D read line by line and closed against its own printed column totals.
 
-Piece 1 of 2 of **T-0627 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+Piece 1 of 2 of **T-0640 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
@@ -32,7 +32,7 @@ Piece 1 of 2 of **T-0627 — The 1840 census images 1-25: continuation sheets 33
   to make a total come out.
 - The exact count of ruled lines carrying an entry is restated off the sheet, against
   `coverage.json`'s inventory figure "to the nearest line".
-- No pairing is asserted. The sheet publishes its page population as the key T-0629's
+- No pairing is asserted. The sheet publishes its page population as the key T-0642's
   pairing test will read, and is recorded as unpaired until then.
 - Coverage group 1's `read_state` and `page_file` updated for this image.
 

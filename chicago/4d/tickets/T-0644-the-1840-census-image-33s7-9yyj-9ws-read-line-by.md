@@ -1,5 +1,5 @@
 ---
-id: T-0633
+id: T-0644
 title: The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals
 state: open
 epic: META
@@ -7,7 +7,7 @@ requested_by: owner
 seen: false
 effort: S
 legacy_id: null
-parent: T-0627
+parent: T-0640
 opened: 2026-09-03
 closed: null
 pr: null
@@ -20,7 +20,7 @@ claimed_run: null
 
 The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals.
 
-Piece 2 of 2 of **T-0627 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+Piece 2 of 2 of **T-0640 — The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
@@ -35,7 +35,7 @@ Piece 2 of 2 of **T-0627 — The 1840 census images 1-25: continuation sheets 33
   say so either way), mining, agriculture and both navigation columns blank. `coverage.json`
   also records that this sheet's schools columns carry 1 and 25, and those are the two
   figures the schools block has to be checked against.
-- The sheet publishes its page population as the key T-0629's pairing test reads, and is
+- The sheet publishes its page population as the key T-0642's pairing test reads, and is
   recorded as unpaired until then.
 
 **What the run that split this off measured, so the next one does not pay for it twice.**
