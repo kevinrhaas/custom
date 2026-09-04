@@ -1293,6 +1293,21 @@ step "…and all four directories' findings re-derive onto the cards they reach"
 step "…and that pass's four carry rules hold over everything it derives" \
   python3 tools/spend_directories.py --self-test
 
+# T-0633. And what is DONE with the 87 later addresses that pass leaves on the record:
+# the fourth address grammar, docs/ADDRESS-BACK-PROJECTION.md, which reads a street
+# printed four to nine years after the scene backwards and carries it as the business's
+# street FACE. All 87 are adjudicated and the refusals are committed beside the
+# placements, so the gate re-derives the whole ledger and every `back_projection` block
+# byte for byte. The failure it guards is the same one, one step further on: a face read
+# back out of an 1844 directory quietly becoming a position of 1835, or — worse, because
+# nothing else would catch it — a refusal disappearing from the record and reading to the
+# next run as an address nobody had looked at.
+step "…and the later addresses re-derive through the back-projection clauses" \
+  python3 tools/back_project_addresses.py --check
+
+step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
+  python3 tools/back_project_addresses.py --self-test
+
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
 # the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
