@@ -160,6 +160,7 @@
   ],
   "arrival_precision": [
    "day",
+   "either_of_two_days",
    "month",
    "season",
    "year",
