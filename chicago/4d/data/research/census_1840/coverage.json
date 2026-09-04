@@ -440,11 +440,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-JM.jpg",
      "sheet_side": "left",
      "printed_page": 224,
-     "lines_with_an_entry": 33,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-JM.json",
+     "lines_ruled": 30,
+     "line_count_corrected_from": 33,
+     "note": "read by T-0553 (piece 2 of T-0526): all 30 lines, names and every one of the 38 age-band columns, on a column grid fitted band by band and anchored on header boxes read at magnification. ALL FIFTEEN FOOTED COLUMNS CLOSE EXACTLY - seven of seven male, eight of eight female, 175 people. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 30, counted twice. Four marks were refused and are named on the page file."
     },
     {
      "index": 29,
@@ -489,11 +492,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-PC.jpg",
      "sheet_side": "left",
      "printed_page": 218,
-     "lines_with_an_entry": 33,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-PC.json",
+     "lines_ruled": 30,
+     "line_count_corrected_from": 33,
+     "note": "read by T-0553 (piece 2 of T-0526): all 30 lines, names and every one of the 38 age-band columns, on a column grid fitted band by band down the page rather than off the header. ALL SIXTEEN FOOTED COLUMNS CLOSE EXACTLY - seven of seven male, nine of nine female, 113 people. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 30, counted twice. One mark was refused and is named on the page file."
     },
     {
      "index": 33,
@@ -743,16 +749,16 @@
      239,
      241
     ],
-    "names_transcribed_pages": 2,
-    "names_transcribed_lines": 62,
-    "inventoried_only": 17,
-    "cells_transcribed_pages": 2,
-    "cells_transcribed_lines": 62,
+    "names_transcribed_pages": 4,
+    "names_transcribed_lines": 122,
+    "inventoried_only": 15,
+    "cells_transcribed_pages": 4,
+    "cells_transcribed_lines": 122,
     "names_and_cells_transcribed_pages": 6,
     "names_and_cells_transcribed_lines": 183,
-    "counts_note": "recomputed from the images array by T-0546 rather than incremented. The block had drifted: it still said two names-and-cells pages when six had been read (230, 232, 207, 208 before this ticket, 209 and 211 in it), because each transcribing pass updated its own image and left the group tally alone."
+    "counts_note": "recomputed from the images array by T-0546 rather than incremented, and recomputed again when this branch merged the passes that landed beside it (T-0552, T-0553). The block had drifted because each transcribing pass updated its own image and left the group tally alone; ten of this group's twenty-five images now carry a page file."
    },
-   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. SIX pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). The remaining 17 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Eight pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high), printed 217 (33 declared, 31 read, T-0552), printed 218 and 224 (both declared 33 'to the nearest line' and both carrying 30, T-0553), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). SIX of the eight counted left sheets had an inventory figure that was HIGH and none had one that was low, so the contact-sheet pass reads long by one to four lines and a transcribing pass should expect to remove lines rather than find them. The rest are stated to the nearest line and a transcribing pass restates them exactly."
   }
  ],
  "negative_and_inaccessible": [
