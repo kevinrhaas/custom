@@ -1,4 +1,14 @@
 export const CHANGELOG = [ // newest first
+  { v: 527, title: 'Why this town believes 531 of its people were here', kind: 'change', ts: '2026-09-04T21:39:21.631Z', date: 'Sep 4, 2026, 4:39 PM CT',
+    items: [
+      'Open any resident in the Evidence panel and you can now read the case for them \u2014 not just the verdict. Until today, more than half the people in this town carried a grade, and the reasoning behind that grade was written down in a file nobody opens.',
+      'Where those people came from: earlier this month, seven kinds of source were read together \u2014 the town\u2019s own newspapers, its poll and tax and muster lists, the parish register, the later Chicago directories, a census, and two more \u2014 and every name in them was matched against every other. Names that turned out to be one person were joined; names that could not be safely joined were left apart with a written reason. That pass put 531 people into this town.',
+      'Each of them was then graded on a ladder of eleven rungs, agreed in advance. One rung says \u201cnamed by a contemporary record in Chicago\u201d, another says \u201cnamed on the 1835 poll list and nothing else\u201d, another says \u201cone appearance and nothing more\u201d. Which rung a person fired decides whether their card reads attested or inferred.',
+      'All of that is now on the card. It names the rung, prints what that rung says in full, and lists every appearance the grading spent: the name exactly as somebody wrote it down, the list it stands in, where on the page, and \u2014 on every single line \u2014 the date that line describes. There are 829 such appearances across the five kinds of record, and they are shown quoted, so you can disagree with a reading rather than take it.',
+      'The dates are on every line on purpose. A newspaper of 1834 naming a man in Chicago and a directory of 1844 naming him there are not the same claim about 1835, and this project grades them differently. A block that showed the readings without their dates would hide the one distinction the whole exercise rests on.',
+      'The rung texts themselves are not retyped for the screen. They are copied from the file where the ladder was ratified, and a check that runs on every commit refuses to pass if the two ever say different things \u2014 so the sentence you read on a card cannot quietly drift from the rule that was agreed.',
+      'Two people also gain a birth year and an age on the day this scene is set, each shown as a range, because a birth year with no month cannot say which side of the first of July somebody had their birthday.',
+    ] },
   { v: 526, title: 'Three voters who were never in the book to lose', kind: 'change', ts: '2026-09-04T21:27:35.069Z', date: 'Sep 4, 2026, 4:27 PM CT',
     items: [
       'Nothing in the town moved today. This is about three names, and whether this project had dropped them.',
