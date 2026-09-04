@@ -290,3 +290,4 @@ T-0662 — check.sh runs synthesize_resident_research.py for three mint steps wh
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
+T-0670 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images

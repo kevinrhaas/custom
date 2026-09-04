@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 10:03 AM",
+  "generated_ct": "Sep 4, 2026, 10:17 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11152,6 +11152,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 152
+    },
+    {
+      "id": "T-0670",
+      "title": "Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
     }
   ]
 }

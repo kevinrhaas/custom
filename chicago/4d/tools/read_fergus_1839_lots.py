@@ -17,7 +17,8 @@ are two different objects on the same sheets:
   tools/read_fergus_1839_lots.py --map      RE-DERIVE the row map from the scan (NETWORK)
   tools/read_fergus_1839_lots.py --build    write the two claims files
   tools/read_fergus_1839_lots.py --check    rebuild in memory and diff (the gate)
-  tools/read_fergus_1839_lots.py --report   the reading counted, and what it could not read
+  tools/read_fergus_1839_lots.py --report    the reading counted, and what it could not read
+  tools/read_fergus_1839_lots.py --self-test  the three judging rules, fired against breakage
 
 WHY THERE IS A ROW MAP. Both objects are set in columns, and archive.org's OCR reads a
 columned page in the order the scanner met the ink, not the order the printer set it.
@@ -58,11 +59,11 @@ reading cannot show that it is, so it is graded as everything else in the volume
 
 WHAT IT REFUSES TO READ. A great many of the numerals in this table are destroyed in
 the scan — lot 33 prints as `'l ">` over two lines, $303 as `3°3` and `jjj`, $511 as
-`51 1`, and the whole lot column of printed page 49's left half is a smear of rotated
-type (`<J\\Ui`, `00^1`, `In)`). Every such cell is committed with its value NULL and
+`51 1`, and printed page 49's left-hand lot column collapses after two lines into a
+smear of rotated type (`<J\\Ui`, `00^1`, `In)`). Every such cell is committed with its value NULL and
 its ink kept verbatim in `as_printed`, never guessed from the run it sits in. The
 sequence would usually give it away, and a number recovered from its neighbours is an
-inference wearing a reading's clothes; T-0668 is the ticket for settling them off the
+inference wearing a reading's clothes; T-0670 is the ticket for settling them off the
 page images, where they can be READ.
 """
 import json, os, re, statistics, sys, urllib.request
@@ -293,6 +294,41 @@ def as_int(text):
         return None
 
 
+def reads_as_ditto(bidder_ink: str, amount_ink: str) -> bool:
+    """A MARK IN THE BIDDER COLUMN IS A DITTO ONLY WHERE A PRICE IS PRINTED.
+
+    The printer's brace, which gathers the reserved lots of a block, breaks into the
+    same one- and two-character wreckage the ditto does — a paren, a semicolon, a
+    `J`, a backslash, a `1`, an `II` — and reading a brace as a ditto hands the man
+    above somebody else's lot. A
+    lot that sold has an amount printed against it and a lot held back has none, so
+    INK in the amount column is what separates them. Ink, not a readable number:
+    twenty-two of these prices are wreckage too, and `45o` is still a price.
+    """
+    if not bidder_ink.strip() or RESERVED.search(bidder_ink) or NAME.search(bidder_ink):
+        return False
+    return bool(amount_ink.strip())
+
+
+def carry_block(block, lot, last_block, last_lot):
+    """THE BLOCK IS CARRIED, AND SAYS SO. Returns (block, carried, last_block, last_lot).
+
+    A block number is printed once, against the first lot of its run, and governs
+    until the next one. Carrying it is an inference and it is flagged on every row
+    that takes it. It is carried only while the lot numbers keep RISING: a lot that
+    restarts is a new block whose number the scan lost, and the run stops there
+    rather than lending block 10 to blocks 11 and 12 the way printed page 49's ruined
+    lot column would invite.
+    """
+    if block is not None:
+        return block, False, block, lot if lot is not None else 0
+    if last_block is not None and (lot is None or lot > last_lot):
+        return last_block, True, last_block, lot if lot is not None else last_lot
+    if lot is not None:
+        return None, False, None, None
+    return None, False, last_block, last_lot
+
+
 def build():
     texts = {leaf: leaf_text(leaf) for leaf in LOT_LEAVES + (POP_LEAF,)}
     rowmap = json.loads(open(MAP, encoding="utf-8").read())
@@ -336,16 +372,7 @@ def build():
         amount = as_int(cell["amount"])
         withheld = RESERVED.search(cell["bidder"])
         named = bool(NAME.search(cell["bidder"])) and not withheld
-        # A MARK IN THE BIDDER COLUMN IS A DITTO ONLY WHERE A PRICE IS PRINTED. The
-        # printer's brace, which gathers the reserved lots of a block, breaks into the
-        # same one- and two-character wreckage the ditto does — `)`, `;`, `J`, `\`,
-        # `1`, `II` — and reading a brace as a ditto hands the man above somebody
-        # else's lot. A lot that sold has an amount printed against it and a lot held
-        # back has none, so INK in the amount column is what separates them — ink, not
-        # a readable number, because half of these prices are wreckage — and a mark
-        # with nothing beside it is read as no bidder rather than guessed either way.
-        ditto = bool(cell["bidder"].strip()) and not named and not withheld \
-            and bool(cell["amount"].strip())
+        ditto = reads_as_ditto(cell["bidder"], cell["amount"])
         if named:
             last_bidder = re.sub(r"\s+[.,]$", "",
                                  flat(cell["bidder"].replace("\n", " "))).rstrip(",")
@@ -355,21 +382,7 @@ def build():
             illegible["lot"] += 1
         if cell["amount"].strip() and amount is None:
             illegible["amount"] += 1
-        # THE BLOCK IS CARRIED, AND SAYS SO. A block number is printed once, against
-        # the first lot of its run, and governs until the next one. Carrying it is an
-        # inference and it is flagged on every row that takes it. It is carried only
-        # while the lot numbers keep RISING: a lot that restarts is a new block whose
-        # number the scan lost, and the run stops there rather than lending block 10 to
-        # blocks 11 and 12 the way printed page 49's ruined lot column would invite.
-        carried = False
-        if block is not None:
-            last_block, last_lot = block, lot if lot is not None else 0
-        elif last_block is not None and (lot is None or lot > last_lot):
-            block, carried = last_block, True
-            if lot is not None:
-                last_lot = lot
-        elif lot is not None:
-            last_block, last_lot = None, None
+        block, carried, last_block, last_lot = carry_block(block, lot, last_block, last_lot)
         n += 1
         bidder = last_bidder if (named or ditto) else None
         lots.append({
@@ -476,7 +489,7 @@ def build():
                         "word coordinates by --map and every cell carries the spans of the "
                         "committed text it is made of. A numeral the scan destroyed is NULL "
                         "and its ink is kept in as_printed; it is never recovered from the "
-                        "run it sits in. T-0668 owns settling those off the page images.",
+                        "run it sits in. T-0670 owns settling those off the page images.",
         "date_note": "1839, NOT 1835. The sale ran 10-24 June 1839 and every claim carries "
                      "describes_date 1839-06. This ground is the Fort Dearborn reservation, "
                      "which in July 1835 was the garrison's and was not lots at all, so no "
@@ -556,7 +569,88 @@ def write(path, doc):
         fh.write("\n")
 
 
+def self_test() -> int:
+    """The three rules that do this reading's judging, fired against cases that break them.
+
+    Every one of them is a rule about what NOT to write down, which is the kind that
+    fails silently: a brace read as a ditto, a block lent to its neighbour and a
+    numeral recovered from its run all produce a fuller-looking file, and nothing else
+    in check.sh would notice.
+    """
+    bad = []
+
+    def want(got, expect, what):
+        if got != expect:
+            bad.append("%s: expected %r, got %r" % (what, expect, got))
+
+    # 1. the ditto, and the brace that looks exactly like one
+    want(reads_as_ditto("II", "211"), True, "a ditto with a price is a ditto")
+    want(reads_as_ditto("II", "45o"), True, "a ditto with a RUINED price is still a ditto")
+    want(reads_as_ditto(")", ""), False, "a brace with no price is not a ditto")
+    want(reads_as_ditto("J", ""), False, "a brace leg with no price is not a ditto")
+    want(reads_as_ditto("A. Bronson,", "303"), False, "a name is not a ditto")
+    want(reads_as_ditto("' Reserved.", ""), False, "a withheld lot is not a ditto")
+    want(reads_as_ditto("", "211"), False, "a price with no mark at all invents no bidder")
+
+    # 2. the block, carried only while the lots rise
+    want(carry_block(4, 1, None, None), (4, False, 4, 1), "a printed block is not carried")
+    want(carry_block(None, 2, 4, 1), (4, True, 4, 2), "a rising lot carries its block")
+    want(carry_block(None, 1, 4, 22), (None, False, None, None),
+         "a lot that restarts ends the run rather than lending block 4 to block 5")
+    want(carry_block(None, None, 4, 3), (4, True, 4, 3),
+         "a row whose lot the scan destroyed stays inside the run it sits in")
+    want(carry_block(None, 3, None, None), (None, False, None, None),
+         "no run, no block")
+
+    # 3. the numerals, refused rather than repaired
+    want(as_int("3\u00b03"), None, "$303 printed as 3\u00b03 is not read as 33")
+    want(as_int("jjj"), None, "a destroyed price is not read")
+    want(as_int("51 1"), 511, "a price the OCR broke into two words rejoins — the "
+         "CELL is the unit of a reading here, and both halves are its own ink")
+    want(as_int("$2657"), 2657, "a clean price is read")
+    want(as_int("1,557"), 1557, "a clean price with a comma is read")
+
+    # 4. and the three of them, on the committed reading itself
+    lots, pop = build()
+    by_id = {c["id"]: c for c in lots["claims"]}
+    block4 = [c for c in lots["claims"] if c["normalized"]["block"] == 4
+              and c["locator"]["printed_page"] == 47]
+    braced = [c for c in block4 if (c["normalized"]["lot"] or 99) <= 6]
+    want(bool(braced), True, "printed page 47 still has block 4's braced lots")
+    want([c["normalized"]["bidder"] for c in braced], [None] * len(braced),
+         "the brace over block 4's first six lots gives nobody a lot")
+    p49 = [c for c in lots["claims"] if c["locator"]["printed_page"] == 49
+           and c["locator"]["column"] == "L"]
+    want(bool(p49), True, "printed page 49's left half is still read")
+    smeared = [c for c in p49 if (c["normalized"]["as_printed"]["lot"] or "") in
+               ("<J\\Ui", "00^1", "'O", "In)", "Oo", "4-", "Qn^i")]
+    want(len(smeared) >= 6, True,
+         "printed page 49's rotated lot column is still in the reading, as ink")
+    want({c["normalized"]["lot"] for c in smeared}, {None},
+         "and not one of those numerals is recovered from the run it sits in")
+    want({c["normalized"]["block"] for c in smeared}, {None},
+         "nor is a block lent to them off the page before")
+    want(any(c["normalized"]["bidder_ditto"] for c in lots["claims"]), True,
+         "the dittoed rows are still read")
+    want(1835 in [c["normalized"]["year"] for c in pop["claims"]], True,
+         "the population table still opens on 1835")
+    want([c["normalized"]["population"] for c in pop["claims"]
+          if c["normalized"]["year"] == 1835], [3265],
+         "and Fergus still prints 3,265 against it")
+    want([c["normalized"]["year"] for c in pop["claims"] if c["normalized"]["year"] == 1840],
+         [], "the 1840 line, whose year and figure are both destroyed, is not invented")
+    del by_id
+
+    if bad:
+        print("fergus 1839 lots self-test: " + "; ".join(bad), file=sys.stderr)
+        return 1
+    print("fergus 1839 lots: the ditto, the carried block and the refused numeral all fire")
+    return 0
+
+
 def main() -> int:
+    if "--self-test" in sys.argv:
+        return self_test()
     if "--map" in sys.argv:
         local = next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--from=")), None)
         doc = build_map(local)

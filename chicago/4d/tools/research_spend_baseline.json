@@ -8,7 +8,7 @@
   "census_1840": 229,
   "church": 0,
   "books": 126,
-  "directories": 6893,
+  "directories": 7201,
   "newberry_index": 4914,
   "land_sales": 359
  },
@@ -34,7 +34,7 @@
    "spent": 26
   },
   "directories": {
-   "read": 7449,
+   "read": 7757,
    "spent": 556
   },
   "newberry_index": {
@@ -163,6 +163,14 @@
    "to": 6893,
    "date": "2026-09-04",
    "why": "T-0664 read the 1837 charter election and its list of voters for mayor out of Fergus 1839, printed pages 40-46: 765 claims, of which 706 are voters. It is a POLL, not a directory of names to be ruled on one by one — its whole yield is the crosswalk it feeds, and that is committed in the same PR: 190 letter-list persons, 82 entries off the 1833-1835 poll and tax lists and 53 residents of the town are now met by a second independent book, which is the second source the ratified ladder asks for. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to the reading; the consolidation series T-0634/T-0635 measures it."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 6893,
+   "to": 7201,
+   "date": "2026-09-04",
+   "why": "T-0666 read the last four appendix pages of Fergus 1839, printed 47-50: the Fort Dearborn Addition sale of 10-24 June 1839 (267 rows, 100 named bidders) and the volume's own population table (41 years). It is a SALE ABSTRACT and a TABLE, not a directory of names to be ruled on one by one — its whole yield is the crosswalk committed in the same PR, which meets 51 letter-list persons, 20 entries off the 1833-1835 poll and tax lists, 20 of the 1840 heads and 9 residents of the town with a second independent book, and files 7 contested and 297 surname-only refusals rather than guessing past them. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to a reading; the consolidation series T-0635/T-0636 measures it. Nothing in the reading may be spent as an 1835 location: the Addition is the Beaubien reservation, which in July 1835 was the garrison's ground and was not platted into lots at all."
   }
  ],
  "lowered": [
