@@ -448,8 +448,6 @@ function residenceBackProjectionHtml(rp, citationsById) {
       ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
-function personHtml(person, citationsById, researchByPerson, directoryByPerson, directoriesOnRecord) {
-
 /**
  * THE CONSOLIDATION'S OWN READING, WHICH NOTHING SHOWED (T-0668).
  *
