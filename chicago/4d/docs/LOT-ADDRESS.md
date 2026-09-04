@@ -79,7 +79,7 @@ Four refusals, each an assertion in `--self-test` rather than a promise:
   family is dealt by the schedule and the band it carries is sampled by
   `tools/family_bands.py`, so the roof is still a count-unit drawn from a band and not a
   building somebody sized. (Until 2026-09-04 this refusal was absolute, and the ledger read
-  "the house the notice calls LARGE is not made large". T-0593 ruled the other way; **L221**
+  "the house the notice calls LARGE is not made large". T-0593 ruled the other way; **L222**
   is the ruling and the paragraph below is the rule.)
 - **It may not promote the roof.**
 - **It may not seat a person.** The advertiser is the man to apply to for terms and nothing
@@ -96,7 +96,7 @@ for a year this policy spent the address and let the adjective fall on the floor
 address landed on was a 5.36 × 6.38 m one-room cottage, the smallest dwelling family the
 665-roof programme deals, and the card printed the source's own word LARGE over it. That is a
 documented statement about a building on the lot contradicted by an invented one standing on
-it, and between a source and an invention the source wins. **T-0593 ruled it, L221 records it,
+it, and between a source and an invention the source wins. **T-0593 ruled it, L222 records it,
 and this is the rule the next lot-and-block address inherits.**
 
 **A documented address MAY re-deal the family of the count-unit it seats on, and may do nothing

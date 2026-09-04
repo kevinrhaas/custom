@@ -5151,7 +5151,7 @@ line, which is what the 665-roof programme's substitution clause exists for.
 named above under a new id.** `..._dearborn_d3_03` is now `..._dearborn_h1_03`: the same slot, on
 the same lot, at the same 5.5 m setback and −2.0 m lateral offset, re-dealt out of the D3
 one-room cottage band into H1 because a documented notice calls the house on that lot LARGE
-(**L221**). The position this entry admits is unchanged and invented on the same reasoning, so
+(**L222**). The position this entry admits is unchanged and invented on the same reasoning, so
 the Covers token follows the id rather than being dropped — unlike the two T-0102 retired in the
 paragraph above, which stopped naming a building at all.
 **Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`.
@@ -8572,7 +8572,7 @@ dwelling is still at the west end of the South Water run and the roof that took 
 still on the Lake lot, at the cabin's own 5.5 m setback and −2.0 m offset. What changed is the
 family under it — `..._dearborn_d3_03` is now `..._dearborn_h1_03`, out of the D3 one-room
 cottage band and into H1, because a documented notice calls the house on that lot LARGE
-(**L221**). Read "the D3 one-room cottage" above as the roof this entry moved, not as the band it
+(**L222**). Read "the D3 one-room cottage" above as the roof this entry moved, not as the band it
 now carries; the position claim is unchanged and the Covers token follows the id.
 **Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`
 **Recorded:** 2026-08-27.
@@ -10413,7 +10413,125 @@ Related: **L214** (the pass beside this one) · **L213** (the test this disagree
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
 **Recorded:** 2026-09-04.
 
-### L221 — A documented address re-deals the family under it: the one lot-and-block notice says LARGE, and the town's first H1 answers the word
+### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
+**Decision:** the American Fur Company's own list of the goods it furnished "for trade of the
+Chicago country" — filed verbatim as `bk_afc_018` in
+`data/research/books/claims/american_fur_company_hurlbut.json`, roughly 130 named articles from
+arm bands and blankets through northwest guns and scalping knives to vermillion, wampum and
+whiskey — **licenses nothing to be added to this town**. It may CORROBORATE a word that already
+stands on some other ground. It may not WARRANT a new object, a new letter or a new signboard.
+Nothing in `data/` was added, moved or relettered on the strength of it, and the audit below is
+the whole of what it did change: five commodity words that stood on a generator's feel now stand
+on a citation.
+
+**Why the restraint, in three counts, and the third is the one that decides it.**
+1. **It is about 1828, not 1835.** Hurlbut printed the catalogue in 1881 and called it
+   "fifty-three years ago"; the arithmetic is this project's and he may have drafted the essay
+   earlier. Between that year and the scene date lie the 1833 Treaty of Chicago and a removal
+   that ran through the summer the scene is set in. A stock list is the most perishable kind of
+   evidence a trade leaves — it is what was in the store that season.
+2. **It is a district, not a shop.** "The Chicago country" is the outfit's whole ground of
+   distribution, supplied through Chicago rather than sold across a counter on South Water
+   Street. Nothing in the list is placed at an address, and this project's rule for goods is that
+   the FACT is one question and WHICH FRONTAGE is another (`data/yard/town_trade_goods.json` §
+   `existence`). The catalogue answers neither half here: it does not say a Chicago shop held
+   these things in 1835, and it names no shop at all.
+3. **The company was gone and the trade was small.** `bk_afc_005`: in 1828 Gurdon S. Hubbard
+   bought the American Fur Company's entire Illinois interest, seven years before the scene, so
+   whatever trade apparatus stands here in 1835 is a private business and not an outpost of a New
+   York corporation. `bk_afc_013`: Astor sold out in 1834. And the size argument arrives twice
+   from two mouths — `bk_afc_003`, Hurlbut: Chicago was "the port and point of a very limited
+   district of distribution"; `bk_afc_012`, **Hubbard himself**, the man best placed to overstate
+   it: "this place never had been preeminent as a trading-post, as this was not the Indian
+   hunting-ground." The best-informed witness this project holds says the thing was never much.
+
+**The three tests, and they are cumulative.** Before any object, mark or board in this town may
+name, depict or imply the Indian trade it must pass all three:
+- **AT CHICAGO.** A source that puts the goods in this town, at an address or at a named
+  business. "The Chicago country" does not pass. A district-wide outfit list does not pass.
+- **AT THE SCENE DATE.** A source that reaches 1835, or a documented business standing on
+  1 July 1835 whose own attested description carries the trade. 1828 does not pass on its own.
+- **NO PERSON, NAMED OR DRAWN.** AGENTS.md § *Standing constraint — 1835 and Indigenous history*
+  governs, and it is not relaxed by a barrel or a signboard. The removal of the Potawatomi is
+  the most historically significant event of the target year and requires consultation, not
+  inference. **L1** already refuses every human figure; this refuses the trade's iconography as
+  well — nothing in this town letters, models or pictures the people the trade was with.
+
+**Does the town show LESS after this? The audit says there is nothing to take away, and that is
+the honest answer rather than a comfortable one.** Every asset that could carry the trade was
+listed and checked. What was found:
+
+- **34 business signboards** (`data/signage/town_business_signboards.json`, 8 further frontages
+  refused a board in writing). **Not one board in this town letters the Indian trade, a fur, a
+  pelt or the American Fur Company.** The one that could have — `robert_kinzie_store`, whose
+  keeper Andreas lists under "Indian Traders" and whose storehouse chicagology has "dealing in
+  groceries and Indian goods" — reads **R. A. KINZIE / Dry Goods & Groceries**, and its own
+  `sign_text_from` states the reason in as many words: the record "will not stand behind" the
+  Indian trade at the scene date. That decision was taken before this ruling existed and it is
+  what this ruling would have required. It stands, sourced.
+- **155 marked casks and cases at 27 trading frontages** (`data/yard/town_trade_goods.json`, 106
+  barrels and 49 crates, 102 commodity stencils, 26 house brands, 27 shipping marks — L166 is the
+  fence the words live inside). **Six of the 155 stand at the town's one trading house**,
+  `jb_beaubien_homestead`, and they carry FLOUR, SALT, POWDER, TOBACCO, the case word HARDWARE
+  and the house's own brand. **POWDER, TOBACCO and HARDWARE appear nowhere else in the town.**
+- **Nothing else exists to audit, and the absence is the finding.** No pack, bale, peltry, fur
+  press, canoe cargo, trade blanket, capote, wampum, gorget, arm band, ear bob, looking glass,
+  vermillion pot, northwest gun, scalping knife or tomahawk is drawn, lettered or recorded
+  anywhere in `data/` outside the research corpus. No warehouse frontage is attributed to the fur
+  trade. `robert_kinzie_store`'s own record says it "models a standing store and makes no claim
+  about what was on its shelves." **The town shows no Indian-trade apparatus at all**, so the
+  answer to *should it show less* is that it already shows none, and the size argument at
+  `bk_afc_003` and `bk_afc_012` is satisfied by a town that never built the thing.
+
+**The one thing the catalogue did change, and it is evidence rather than geometry.** The trading
+class's four stencil words were chosen by feel. `tools/generate_yard_goods.py` said so:
+*"Kept to the provisions and the two dry stores every frontier counter held"* — a period
+plausibility argument with no source under it, which L166's own fence (*"a commodity word out of
+the trade's OWN attested description"*) could not actually meet for this one frontage, because
+Beaubien's trading house has no attested description of its stock. It has one now. **All five
+words are in the company's own book for this country**: *flour*, *barrel salt*, *gunpowder*,
+*tobacco*, and for HARDWARE the *half axes*, *covered copper kettles*, *nails*, *fine steels*,
+*gun flints*, *kettle chains*, *pen knives* and *stirrup irons* the list itemises. So the words do
+not move; the reason under them does, from a guess about frontier counters to a citation of
+`bk_afc_018`, and both the generator and the record now say which. **This is corroboration
+working in the only direction it is allowed to work** — it justified nothing new and it improved
+the standing of something already there.
+
+**What is still invented, plainly, and this ruling does not launder it.** That Beaubien's
+trading house had anything at all standing outside its door on 1 July 1835; that any of those six
+objects was marked; which of the five words landed on which cask; and that the trade class is
+`inferred` at all — Andreas has Beaubien building a new residence and a small trading post
+alongside the old factory building, which is where `dwelling_and_trading_house` comes from. The
+catalogue is 1828 evidence for a WORD, never for a BARREL. The whole layer is still taken away at
+`reconstructed` in the confidence view.
+
+**One appearance of the company's name, audited and kept.** `bk_afc_005`'s note argues that "the
+words 'American Fur Company' should not appear anywhere in the 1835 scene". They appear once: as
+an `aka` on `jb_beaubien_homestead`, *"the American Fur Company factory building"*, which the
+popup prints under the building's name as **also**. It is kept, and here is the distinction that
+keeps it. Andreas documents it as the building's ORIGIN — the factory building erected by Capt.
+Bradley and bought by Jean Baptiste Beaubien in 1817 — so it is a sourced statement about a
+structure's past standing in a research card, not a lettered claim that a New York corporation
+traded on that ground in 1835. **What is refused is the name on a board, a cask, a card's trade
+line or a label.** An origin a source states may be read; a business the sources deny may not be
+implied.
+
+**What would move any of this.** The Michilimackinac or Illinois outfit's own books for a year
+near 1835 rather than 1828; Hubbard's accounts after he bought the Illinois interest; a Chicago
+merchant's day-book, invoice or insurance description naming stock at an address; the Chicago
+Democrat's advertising columns read for a trader's own advertisement; or an Indian Department
+licence or annuity account naming goods delivered at Chicago in 1834–1835. Any of those would
+pass tests one and two. **Test three is not a research gap and does not move on evidence** — it
+moves on consultation, per AGENTS.md.
+
+**Ticket:** T-0596, out of the chapter read at T-0575. Related: **L166** (the marks and their
+fence, which this supplies the missing citation for), **L159** (the boards' lettering), **L131**
+(where the no-marks restraint started), **L1** (no people, anywhere), **L180** (Robert
+Kinzie's store and its landing on the west bank). Sources: `bk_afc_018`, `bk_afc_005`, `bk_afc_012`, `bk_afc_003`,
+`bk_afc_013`.
+**Recorded:** 2026-09-04.
+
+### L222 — A documented address re-deals the family under it: the one lot-and-block notice says LARGE, and the town's first H1 answers the word
 **Decision:** the anonymous count-unit seated by the town's one lot-and-block address is
 **re-dealt out of the D3 one-room cottage band and into H1, "Larger one-and-a-half-story
 house"**, because the source that fixes the address also describes the building on the lot and

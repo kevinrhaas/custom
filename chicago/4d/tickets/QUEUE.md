@@ -91,7 +91,6 @@ T-0635 — Consolidation pass 2: write every ruling closed since consolidation p
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
-T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
@@ -313,3 +312,4 @@ T-0692 — 18 residents graded inferred on two or more sources carry no ladder_r
 T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 T-0699 — Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
 T-0701 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+
