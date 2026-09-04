@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 3:39 PM",
+  "generated_ct": "Sep 4, 2026, 4:03 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11186,7 +11186,7 @@
     {
       "id": "T-0667",
       "title": "Fergus's own first-ward total is three names more than the names he printed: settle it off the page images",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11196,11 +11196,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 4:03:40 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33918597543",
       "queue_rank": 8
     },
     {
