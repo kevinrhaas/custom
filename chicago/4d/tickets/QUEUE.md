@@ -211,7 +211,9 @@ T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with n
 
 T-0655 — The 1840 census image 33S7-9YYJ-BF read line by line and closed against its own printed column totals
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
-T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page
+T-0657 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line
+T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
+T-0659 — The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
 T-0529 — The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
