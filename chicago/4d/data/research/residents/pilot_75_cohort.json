@@ -612,9 +612,9 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_w_oakley_benjamin",
-      "person_id": "w_oakley_benjamin",
-      "name": "Oakley Benjamin W.",
+      "household_id": "hh_oakley_benjamin_w",
+      "person_id": "oakley_benjamin_w",
+      "name": "Benjamin W. Oakley",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -660,9 +660,9 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_ii_preston_stephen",
-      "person_id": "ii_preston_stephen",
-      "name": "Preston Stephen II.",
+      "household_id": "hh_preston_stephen_ii",
+      "person_id": "preston_stephen_ii",
+      "name": "Stephen II. Preston",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -676,8 +676,8 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_starkweather_rob_t",
-      "person_id": "starkweather_rob_t",
+      "household_id": "hh_starkweather_robt",
+      "person_id": "starkweather_robt",
       "name": "Rob't. Starkweather",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -788,8 +788,8 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_m_vaughton_angus",
-      "person_id": "m_vaughton_angus",
+      "household_id": "hh_mvaughton_angus",
+      "person_id": "mvaughton_angus",
       "name": "Angus M'Vaughton",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",

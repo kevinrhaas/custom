@@ -6,6 +6,32 @@
     python3 tools/rename_household_ids.py --verify    did every rename stay reproducible?
     python3 tools/rename_household_ids.py --self-test the mechanics, on fixtures
 
+    python3 tools/rename_household_ids.py --propose-t0638            regenerate the map
+    python3 tools/rename_household_ids.py --map FILE [--check]       apply a reviewed map
+
+THE SECOND JOB (T-0638). The legacy-prefix migration above is one-shot and finished.
+A CORRECTED READING OF A PRINTED NAME moves ids too, and the same mechanics apply:
+`--map` takes an explicit, committed, reviewed {old_id -> new_id} file and lands it —
+household file, its filename, its household name, its head person's id and display
+name, the manifest row, AND every other reference in the tree. It is not free-hand:
+before it writes a byte it re-derives every target id from the OWNING mint pass's own
+`plain_fragment()` and refuses the whole map if one disagrees, so a map can never send
+a household somewhere its own tool would not follow. `--propose-t0638` regenerates the
+map from the letter-list pass's corrected `surname()`/`slug()`, which is where
+data/residents/rename_map_t0638.json came from.
+
+THE REFERENCE SWEEP is the part the legacy migration deliberately left undone, and the
+part its own `report()` warned about: the crosswalks, the frozen selector scripts, the
+resident-research findings ledgers and cohort files, the identity master and the
+newspaper register all carry these ids by hardcoded value, and a rename that skips them
+does not fail — it silently unhooks a person from everything that ever ruled on them.
+So `--map` rewrites the whole tree, matching on WORD BOUNDARIES (a person
+id never matches inside the household id that contains it, which is why the longest key
+is always replaced first)
+and never touching the map itself, the ticket that ordered it, or the `.log` transcripts
+of runs that have already happened — a past run's printed output is a record of what it
+said, not a live reference.
+
 WHAT THIS IS FOR. T-0599 stopped the three mint tools (mint_documented_residents.py,
 mint_placed_residents.py, mint_letter_list_residents.py) from minting any NEW
 household under a legacy hh_doc_/hh_placed_/hh_ll_ prefix — a household minted from
@@ -85,6 +111,7 @@ import argparse
 import copy
 import json
 import pathlib
+import re
 import sys
 import tempfile
 
@@ -430,18 +457,251 @@ def verify() -> int:
     return 0
 
 
+
+# ---------------------------------------------------------------------------
+# T-0638: applying a reviewed rename map, references and all
+# ---------------------------------------------------------------------------
+
+# Swept, because these carry household and person ids by hardcoded value.
+SWEEP_ROOTS = ("data", "docs", "tools", "renderers")
+# Never swept. The map states the OLD ids on purpose; the ticket is the evidence
+# that filed them; a .log is a transcript of a run that already happened and saying
+# it printed something it did not is a lie about the record.
+SWEEP_SKIP_SUFFIXES = (".log", ".glb", ".bin", ".png", ".jpg", ".jpeg", ".webp",
+                       ".pdf", ".zip", ".tif", ".tiff")
+SWEEP_SKIP_NAMES = ("rename_map_t0638.json",)
+
+
+def load_map(path: pathlib.Path) -> list[dict]:
+    doc = load(path)
+    return doc["renames"] if isinstance(doc, dict) else doc
+
+
+def check_map(renames: list[dict], docs: dict[pathlib.Path, dict]) -> list[str]:
+    """Every reason to refuse this map, before anything is written. The important
+    one is the last: the target id has to be what the owning mint pass would mint
+    for the corrected name, not whatever the map's author typed."""
+    import importlib
+
+    problems: list[str] = []
+    by_id = {doc["id"]: doc for doc in docs.values()}
+    targets: list[str] = []
+    for row in renames:
+        old_id, new_id = row["old_id"], row["new_id"]
+        doc = by_id.get(old_id)
+        if doc is None:
+            problems.append(f"{old_id}: no such household on disk")
+            continue
+        if new_id in by_id and new_id != old_id:
+            problems.append(f"{old_id} -> {new_id}: that id is already held")
+        if old_id == new_id:
+            problems.append(f"{old_id}: maps to itself")
+        targets.append(new_id)
+        head = head_person(doc)
+        if head is None:
+            problems.append(f"{old_id}: its head person cannot be found")
+            continue
+        if head["name"] != row["person_name"]["from"]:
+            problems.append(f"{old_id}: head reads {head['name']!r}, map expected "
+                            f"{row['person_name']['from']!r}")
+        if doc["name"] != row["household_name"]["from"]:
+            problems.append(f"{old_id}: household name is not what the map expected")
+        pass_name = doc.get("source_pass")
+        module = dict(PASS_MODULES).get(pass_name)
+        if module is None:
+            problems.append(f"{old_id}: source_pass {pass_name!r} has no mint module, so "
+                            f"nothing can confirm the target id")
+            continue
+        m = importlib.import_module(module)
+        wanted = "hh_" + m.plain_fragment(row["printed"])
+        if wanted != new_id:
+            problems.append(f"{old_id} -> {new_id}: {module} derives {wanted} from "
+                            f"{row['printed']!r}; refusing a target its own pass "
+                            f"would not mint")
+        if m.display(row["printed"]) != row["person_name"]["to"]:
+            problems.append(f"{old_id}: {module}.display({row['printed']!r}) is not the "
+                            f"display name the map asks for")
+    for t in sorted(set(targets)):
+        if targets.count(t) > 1:
+            problems.append(f"{t}: two rows rename onto the same id")
+    return problems
+
+
+def rename_for_map(doc: dict, row: dict) -> dict:
+    """The household, with its id-shaped fields, its household name and its head
+    person's display name moved to what the corrected reading says — and every
+    other key, and every other key's value, carried over untouched and in order."""
+    old_pid, new_pid = doc["head"], row["new_head"]
+    out: dict = {}
+    for key, value in doc.items():
+        if key == "id":
+            out["id"] = row["new_id"]
+        elif key == "name":
+            out["name"] = row["household_name"]["to"]
+        elif key == "head":
+            out["head"] = new_pid
+        elif key == "persons":
+            out["persons"] = [
+                (dict(p, id=new_pid, name=row["person_name"]["to"])
+                 if p.get("id") == old_pid else p)
+                for p in value
+            ]
+        else:
+            out[key] = value
+    return out
+
+
+def sweep_files(root: pathlib.Path = ROOT) -> list[pathlib.Path]:
+    out = []
+    for sub in SWEEP_ROOTS:
+        for path in sorted((root / sub).rglob("*")):
+            if not path.is_file():
+                continue
+            if path.suffix.lower() in SWEEP_SKIP_SUFFIXES:
+                continue
+            if path.name in SWEEP_SKIP_NAMES:
+                continue
+            out.append(path)
+    return out
+
+
+def sweep_text(text: str, pairs: list[tuple[str, str]]) -> str:
+    """Every old id replaced by its new one, on word boundaries, longest first so a
+    person id can never eat the household id that contains it."""
+    if not pairs:
+        return text
+    ordered = sorted(pairs, key=lambda kv: -len(kv[0]))
+    lookup = dict(ordered)
+    pattern = re.compile(r"(?<![0-9A-Za-z_])(" +
+                         "|".join(re.escape(k) for k, _ in ordered) +
+                         r")(?![0-9A-Za-z_])")
+    return pattern.sub(lambda m: lookup[m.group(1)], text)
+
+
+def apply_map(renames: list[dict], docs: dict[pathlib.Path, dict], write: bool) -> int:
+    by_id = {doc["id"]: (path, doc) for path, doc in docs.items()}
+    pairs = [(r["old_id"], r["new_id"]) for r in renames]
+    pairs += [(r["old_head"], r["new_head"]) for r in renames]
+    pairs += [(f"households/{r['old_id']}.json", f"households/{r['new_id']}.json")
+              for r in renames]
+
+    if not write:
+        for r in renames:
+            print(f"   {r['old_id']:30s} -> {r['new_id']:30s} "
+                  f"[{r['fault']}] {r['person_name']['from']!r} -> "
+                  f"{r['person_name']['to']!r}")
+
+    # 1. the household files themselves, renamed on disk
+    renamed_paths: dict[pathlib.Path, pathlib.Path] = {}
+    for r in renames:
+        path, doc = by_id[r["old_id"]]
+        new_doc = rename_for_map(doc, r)
+        target = path.with_name(f"{r['new_id']}.json")
+        renamed_paths[path] = target
+        if write:
+            path.write_text(dumps(new_doc), encoding="utf-8")
+            path.rename(target)
+
+    # 2. every reference anywhere else, including the manifest
+    touched = 0
+    for path in sweep_files():
+        if write and path in renamed_paths:
+            path = renamed_paths[path]
+        if not path.exists():
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        swept = sweep_text(text, pairs)
+        if swept == text:
+            continue
+        touched += 1
+        if write:
+            path.write_text(swept, encoding="utf-8")
+        else:
+            print(f"   would rewrite {path.relative_to(ROOT)}")
+
+    # 3. the manifest re-sorts by id, which the sweep alone cannot do
+    if write:
+        index = load(INDEX)
+        index["households"].sort(key=lambda r: r["id"])
+        INDEX.write_text(dumps(index), encoding="utf-8")
+
+    print(f"\n   {len(renames)} household(s) renamed, {touched} other file(s) "
+          f"{'rewritten' if write else 'would be rewritten'}")
+    return 0
+
+
+def propose_t0638() -> int:
+    """Regenerate data/residents/rename_map_t0638.json from the letter-list pass's
+    corrected reading, so the map is a derivation and not a hand list."""
+    import mint_letter_list_residents as ll
+
+    register = ll.load(ll.REGISTER)
+    printed_by_display: dict[str, str] = {}
+    for person in register["persons"]:
+        printed_by_display.setdefault(ll.display(person["name"]), person["name"])
+    docs = read_households()
+    rows = []
+    for _path, doc in sorted(docs.items()):
+        if doc.get("source_pass") != "letter_list":
+            continue
+        head = head_person(doc)
+        if head is None:
+            continue
+        stored = head["name"]
+        printed = printed_by_display.get(stored, stored)
+        new_id = "hh_" + ll.plain_fragment(printed)
+        if new_id == doc["id"]:
+            continue
+        family = ll.surname(printed).title()
+        rows.append({
+            "old_id": doc["id"], "new_id": new_id,
+            "old_head": doc["head"], "new_head": new_id.removeprefix("hh_"),
+            "printed": printed,
+            "household_name": {
+                "from": doc["name"],
+                "to": re.sub(r"^The .*? household", f"The {family} household", doc["name"]),
+            },
+            "person_name": {"from": stored, "to": ll.display(printed)},
+        })
+    for row in rows:
+        print(f"   {row['old_id']:30s} -> {row['new_id']}")
+    print(f"\n   {len(rows)} household(s) the corrected reading moves. This is the "
+          f"derivation behind data/residents/rename_map_t0638.json; the fault letter "
+          f"and the prose in that file are the author's, and are not regenerated here.")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="print the full map, write nothing")
     ap.add_argument("--verify", action="store_true",
                      help="did every already-renamed household stay reproducible?")
     ap.add_argument("--self-test", action="store_true", help="the mechanics, on fixtures")
+    ap.add_argument("--map", metavar="FILE",
+                    help="apply a reviewed {old_id -> new_id} map and sweep every "
+                         "reference to it in the tree (T-0638)")
+    ap.add_argument("--propose-t0638", action="store_true",
+                    help="re-derive the T-0638 map from the letter-list pass, write nothing")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
     if args.verify:
         return verify()
+    if args.propose_t0638:
+        return propose_t0638()
+    if args.map:
+        renames = load_map(pathlib.Path(args.map))
+        docs = read_households()
+        problems = check_map(renames, docs)
+        if problems:
+            for p in problems:
+                print(f"   REFUSED: {p}")
+            return 2
+        return apply_map(renames, docs, write=not args.check)
 
     docs = read_households()
     id_map, problems = build_map(docs)

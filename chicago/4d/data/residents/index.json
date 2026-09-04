@@ -163,38 +163,6 @@
  },
  "households": [
   {
-   "id": "hh_8_perry_a",
-   "file": "households/hh_8_perry_a.json",
-   "letter_list_only": true,
-   "head": "8_perry_a",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_a_mason_sabrina",
-   "file": "households/hh_a_mason_sabrina.json",
-   "letter_list_only": true,
-   "head": "a_mason_sabrina",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_abbot_8_g",
    "file": "households/hh_abbot_8_g.json",
    "letter_list_only": true,
@@ -464,10 +432,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_allison_tho_s",
-   "file": "households/hh_allison_tho_s.json",
+   "id": "hh_allison_thos",
+   "file": "households/hh_allison_thos.json",
    "letter_list_only": true,
-   "head": "allison_tho_s",
+   "head": "allison_thos",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -752,22 +720,6 @@
    "file": "households/hh_ayres_levi.json",
    "letter_list_only": true,
    "head": "ayres_levi",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_b_merrich_j",
-   "file": "households/hh_b_merrich_j.json",
-   "letter_list_only": true,
-   "head": "b_merrich_j",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -1331,10 +1283,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_behan_tho_s",
-   "file": "households/hh_behan_tho_s.json",
+   "id": "hh_behan_thos",
+   "file": "households/hh_behan_thos.json",
    "letter_list_only": true,
-   "head": "behan_tho_s",
+   "head": "behan_thos",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -1742,6 +1694,22 @@
    "file": "households/hh_boardwell_gideo.json",
    "letter_list_only": true,
    "head": "boardwell_gideo",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_bobinson_george_is",
+   "file": "households/hh_bobinson_george_is.json",
+   "letter_list_only": true,
+   "head": "bobinson_george_is",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -2342,22 +2310,6 @@
    "file": "households/hh_byam_seth.json",
    "letter_list_only": true,
    "head": "byam_seth",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_c_mills_joel",
-   "file": "households/hh_c_mills_joel.json",
-   "letter_list_only": true,
-   "head": "c_mills_joel",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -2978,6 +2930,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_clapp_a_p",
+   "file": "households/hh_clapp_a_p.json",
+   "letter_list_only": true,
+   "head": "clapp_a_p",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_clark_erastus",
    "file": "households/hh_clark_erastus.json",
    "letter_list_only": true,
@@ -3522,10 +3490,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_curtenius_fred_k",
-   "file": "households/hh_curtenius_fred_k.json",
+   "id": "hh_curtenius_fredk",
+   "file": "households/hh_curtenius_fredk.json",
    "letter_list_only": true,
-   "head": "curtenius_fred_k",
+   "head": "curtenius_fredk",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -4312,22 +4280,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_e_hhelps_theodore",
-   "file": "households/hh_e_hhelps_theodore.json",
-   "letter_list_only": true,
-   "head": "e_hhelps_theodore",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_eager_hiram",
    "file": "households/hh_eager_hiram.json",
    "letter_list_only": true,
@@ -4500,22 +4452,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_es_jones_high",
-   "file": "households/hh_es_jones_high.json",
-   "letter_list_only": true,
-   "head": "es_jones_high",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_evans_sciota",
    "file": "households/hh_evans_sciota.json",
    "letter_list_only": true,
@@ -4559,22 +4495,6 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_f_mabbet_benjamin",
-   "file": "households/hh_f_mabbet_benjamin.json",
-   "letter_list_only": true,
-   "head": "f_mabbet_benjamin",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -5177,22 +5097,6 @@
    "review_required": false
   },
   {
-   "id": "hh_g_willinm",
-   "file": "households/hh_g_willinm.json",
-   "letter_list_only": true,
-   "head": "g_willinm",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_gabbs_james_i1",
    "file": "households/hh_gabbs_james_i1.json",
    "letter_list_only": true,
@@ -5739,22 +5643,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_h_norton_wm",
-   "file": "households/hh_h_norton_wm.json",
-   "letter_list_only": true,
-   "head": "h_norton_wm",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_haddock_edward",
    "file": "households/hh_haddock_edward.json",
    "head": "haddock_edward",
@@ -6131,6 +6019,22 @@
    "file": "households/hh_hezekiah_park.json",
    "letter_list_only": true,
    "head": "hezekiah_park",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_hhelps_theodore_e",
+   "file": "households/hh_hhelps_theodore_e.json",
+   "letter_list_only": true,
+   "head": "hhelps_theodore_e",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -6707,38 +6611,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_i_mcloud",
-   "file": "households/hh_i_mcloud.json",
-   "letter_list_only": true,
-   "head": "i_mcloud",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_ii_preston_stephen",
-   "file": "households/hh_ii_preston_stephen.json",
-   "letter_list_only": true,
-   "head": "ii_preston_stephen",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_indebrand_jacob",
    "file": "households/hh_indebrand_jacob.json",
    "letter_list_only": true,
@@ -6891,22 +6763,6 @@
    "file": "households/hh_ira_paddock.json",
    "letter_list_only": true,
    "head": "ira_paddock",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_is_bobinson_george",
-   "file": "households/hh_is_bobinson_george.json",
-   "letter_list_only": true,
-   "head": "is_bobinson_george",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -7188,6 +7044,22 @@
    "review_required": false
   },
   {
+   "id": "hh_jones_es_high",
+   "file": "households/hh_jones_es_high.json",
+   "letter_list_only": true,
+   "head": "jones_es_high",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_jordan_j_b",
    "file": "households/hh_jordan_j_b.json",
    "letter_list_only": true,
@@ -7250,21 +7122,6 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_k_pugsley_john",
-   "file": "households/hh_k_pugsley_john.json",
-   "letter_list_only": true,
-   "head": "k_pugsley_john",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
   },
   {
    "id": "hh_keeney_g_w",
@@ -7656,22 +7513,6 @@
    "file": "households/hh_kooken_james.json",
    "letter_list_only": true,
    "head": "kooken_james",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_l_pixley_john",
-   "file": "households/hh_l_pixley_john.json",
-   "letter_list_only": true,
-   "head": "l_pixley_john",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -8257,10 +8098,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_m_clintock_thomas",
-   "file": "households/hh_m_clintock_thomas.json",
+   "id": "hh_mabbet_benjamin_f",
+   "file": "households/hh_mabbet_benjamin_f.json",
    "letter_list_only": true,
-   "head": "m_clintock_thomas",
+   "head": "mabbet_benjamin_f",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -8268,119 +8109,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_dolold_james",
-   "file": "households/hh_m_dolold_james.json",
-   "letter_list_only": true,
-   "head": "m_dolold_james",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_ewen_wm_b",
-   "file": "households/hh_m_ewen_wm_b.json",
-   "letter_list_only": true,
-   "head": "m_ewen_wm_b",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_fadin_james",
-   "file": "households/hh_m_fadin_james.json",
-   "letter_list_only": true,
-   "head": "m_fadin_james",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_grigg_a_a",
-   "file": "households/hh_m_grigg_a_a.json",
-   "letter_list_only": true,
-   "head": "m_grigg_a_a",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_kean_joseph",
-   "file": "households/hh_m_kean_joseph.json",
-   "letter_list_only": true,
-   "head": "m_kean_joseph",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_lean_john_y",
-   "file": "households/hh_m_lean_john_y.json",
-   "letter_list_only": true,
-   "head": "m_lean_john_y",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_m_vaughton_angus",
-   "file": "households/hh_m_vaughton_angus.json",
-   "letter_list_only": true,
-   "head": "m_vaughton_angus",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -8539,6 +8268,22 @@
    "review_required": false
   },
   {
+   "id": "hh_mason_sabrina_a",
+   "file": "households/hh_mason_sabrina_a.json",
+   "letter_list_only": true,
+   "head": "mason_sabrina_a",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_matthews_james_g",
    "file": "households/hh_matthews_james_g.json",
    "letter_list_only": true,
@@ -8679,6 +8424,54 @@
    "review_required": true
   },
   {
+   "id": "hh_mclintock_thomas",
+   "file": "households/hh_mclintock_thomas.json",
+   "letter_list_only": true,
+   "head": "mclintock_thomas",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mcloud_i",
+   "file": "households/hh_mcloud_i.json",
+   "letter_list_only": true,
+   "head": "mcloud_i",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mdolold_james",
+   "file": "households/hh_mdolold_james.json",
+   "letter_list_only": true,
+   "head": "mdolold_james",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_meacham_mary",
    "file": "households/hh_meacham_mary.json",
    "letter_list_only": true,
@@ -8709,10 +8502,74 @@
    "review_required": false
   },
   {
+   "id": "hh_merrich_j_b",
+   "file": "households/hh_merrich_j_b.json",
+   "letter_list_only": true,
+   "head": "merrich_j_b",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_merrill_winthrop",
    "file": "households/hh_merrill_winthrop.json",
    "letter_list_only": true,
    "head": "merrill_winthrop",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mewen_wm_b",
+   "file": "households/hh_mewen_wm_b.json",
+   "letter_list_only": true,
+   "head": "mewen_wm_b",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mfadin_james",
+   "file": "households/hh_mfadin_james.json",
+   "letter_list_only": true,
+   "head": "mfadin_james",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mgrigg_a_a",
+   "file": "households/hh_mgrigg_a_a.json",
+   "letter_list_only": true,
+   "head": "mgrigg_a_a",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -8770,6 +8627,22 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "census_1840_linked": 1
+  },
+  {
+   "id": "hh_mills_joel_c",
+   "file": "households/hh_mills_joel_c.json",
+   "letter_list_only": true,
+   "head": "mills_joel_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
   },
   {
    "id": "hh_mills_philo_c",
@@ -8883,6 +8756,22 @@
    "review_required": false
   },
   {
+   "id": "hh_mkean_joseph",
+   "file": "households/hh_mkean_joseph.json",
+   "letter_list_only": true,
+   "head": "mkean_joseph",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_mkelly_wilham",
    "file": "households/hh_mkelly_wilham.json",
    "letter_list_only": true,
@@ -8895,6 +8784,22 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_mlean_john_y",
+   "file": "households/hh_mlean_john_y.json",
+   "letter_list_only": true,
+   "head": "mlean_john_y",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
   },
@@ -9179,6 +9084,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_mvaughton_angus",
+   "file": "households/hh_mvaughton_angus.json",
+   "letter_list_only": true,
+   "head": "mvaughton_angus",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_myers_frederick",
    "file": "households/hh_myers_frederick.json",
    "letter_list_only": true,
@@ -9274,6 +9195,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_nelts_wm",
+   "file": "households/hh_nelts_wm.json",
+   "letter_list_only": true,
+   "head": "nelts_wm",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_newton_daniel",
    "file": "households/hh_newton_daniel.json",
    "letter_list_only": true,
@@ -9322,6 +9259,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_norton_n_r",
+   "file": "households/hh_norton_n_r.json",
+   "letter_list_only": true,
+   "head": "norton_n_r",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_norton_nelson_r",
    "file": "households/hh_norton_nelson_r.json",
    "head": "norton_nelson_r",
@@ -9334,6 +9287,22 @@
    "works_at": "dearborn_street_drawbridge",
    "present_on_scene_date": "present",
    "review_required": false
+  },
+  {
+   "id": "hh_norton_wm_h",
+   "file": "households/hh_norton_wm_h.json",
+   "letter_list_only": true,
+   "head": "norton_wm_h",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
   },
   {
    "id": "hh_nowland_michael",
@@ -9352,10 +9321,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_o_ranwin",
-   "file": "households/hh_o_ranwin.json",
+   "id": "hh_oakley_benjamin_w",
+   "file": "households/hh_oakley_benjamin_w.json",
    "letter_list_only": true,
-   "head": "o_ranwin",
+   "head": "oakley_benjamin_w",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -9396,6 +9365,22 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_orinsbey_martin_t",
+   "file": "households/hh_orinsbey_martin_t.json",
+   "letter_list_only": true,
+   "head": "orinsbey_martin_t",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -9478,38 +9463,6 @@
    "review_required": true
   },
   {
-   "id": "hh_p_aylor_john_o",
-   "file": "households/hh_p_aylor_john_o.json",
-   "letter_list_only": true,
-   "head": "p_aylor_john_o",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_p_clapp_a",
-   "file": "households/hh_p_clapp_a.json",
-   "letter_list_only": true,
-   "head": "p_clapp_a",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_paddock_jane",
    "file": "households/hh_paddock_jane.json",
    "letter_list_only": true,
@@ -9522,6 +9475,22 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_page_elisha_s",
+   "file": "households/hh_page_elisha_s.json",
+   "letter_list_only": true,
+   "head": "page_elisha_s",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -9702,6 +9671,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_paylor_john_o",
+   "file": "households/hh_paylor_john_o.json",
+   "letter_list_only": true,
+   "head": "paylor_john_o",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_paylor_margnret_g",
    "file": "households/hh_paylor_margnret_g.json",
    "letter_list_only": true,
@@ -9810,6 +9795,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_perry_a_8",
+   "file": "households/hh_perry_a_8.json",
+   "letter_list_only": true,
+   "head": "perry_a_8",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_perry_francis",
    "file": "households/hh_perry_francis.json",
    "letter_list_only": true,
@@ -9908,6 +9909,22 @@
    "file": "households/hh_pinedale_john_w.json",
    "letter_list_only": true,
    "head": "pinedale_john_w",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_pixley_john_l",
+   "file": "households/hh_pixley_john_l.json",
+   "letter_list_only": true,
+   "head": "pixley_john_l",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -10124,6 +10141,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_preston_stephen_ii",
+   "file": "households/hh_preston_stephen_ii.json",
+   "letter_list_only": true,
+   "head": "preston_stephen_ii",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_provis_joshua",
    "file": "households/hh_provis_joshua.json",
    "letter_list_only": true,
@@ -10150,6 +10183,21 @@
    },
    "lives_at": null,
    "works_at": "pruyne_kimball_drugstore",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_pugsley_john_k",
+   "file": "households/hh_pugsley_john_k.json",
+   "letter_list_only": true,
+   "head": "pugsley_john_k",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
   },
@@ -10186,10 +10234,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_r_norton_n",
-   "file": "households/hh_r_norton_n.json",
+   "id": "hh_ranwin_o",
+   "file": "households/hh_ranwin_o.json",
    "letter_list_only": true,
-   "head": "r_norton_n",
+   "head": "ranwin_o",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -10262,6 +10310,22 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
+   "id": "hh_regera_john_v",
+   "file": "households/hh_regera_john_v.json",
+   "letter_list_only": true,
+   "head": "regera_john_v",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
   },
@@ -10615,22 +10679,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_s_page_elisha",
-   "file": "households/hh_s_page_elisha.json",
-   "letter_list_only": true,
-   "head": "s_page_elisha",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_sabine_wm",
    "file": "households/hh_sabine_wm.json",
    "head": "sabine_wm",
@@ -10931,10 +10979,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_selden_sam_l_l",
-   "file": "households/hh_selden_sam_l_l.json",
+   "id": "hh_selden_saml_l",
+   "file": "households/hh_selden_saml_l.json",
    "letter_list_only": true,
-   "head": "selden_sam_l_l",
+   "head": "selden_saml_l",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -11607,10 +11655,10 @@
    "projected_resident": true
   },
   {
-   "id": "hh_starkweather_rob_t",
-   "file": "households/hh_starkweather_rob_t.json",
+   "id": "hh_starkweather_robt",
+   "file": "households/hh_starkweather_robt.json",
    "letter_list_only": true,
-   "head": "starkweather_rob_t",
+   "head": "starkweather_robt",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -12063,22 +12111,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_t_orinsbey_martin",
-   "file": "households/hh_t_orinsbey_martin.json",
-   "letter_list_only": true,
-   "head": "t_orinsbey_martin",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_taylor_anson",
    "file": "households/hh_taylor_anson.json",
    "head": "taylor_anson_h",
@@ -12468,22 +12500,6 @@
    "review_required": false
   },
   {
-   "id": "hh_v_regera_john",
-   "file": "households/hh_v_regera_john.json",
-   "letter_list_only": true,
-   "head": "v_regera_john",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_vanderbogart_h",
    "file": "households/hh_vanderbogart_h.json",
    "letter_list_only": true,
@@ -12743,22 +12759,6 @@
    "file": "households/hh_vyekoff_henry_s.json",
    "letter_list_only": true,
    "head": "vyekoff_henry_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_w_oakley_benjamin",
-   "file": "households/hh_w_oakley_benjamin.json",
-   "letter_list_only": true,
-   "head": "w_oakley_benjamin",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -13163,6 +13163,22 @@
    "projected_resident": true
   },
   {
+   "id": "hh_willinm_g",
+   "file": "households/hh_willinm_g.json",
+   "letter_list_only": true,
+   "head": "willinm_g",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_wilson_john",
    "file": "households/hh_wilson_john.json",
    "letter_list_only": true,
@@ -13295,22 +13311,6 @@
    "file": "households/hh_winthrop_merrill.json",
    "letter_list_only": true,
    "head": "winthrop_merrill",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_wm_nelts",
-   "file": "households/hh_wm_nelts.json",
-   "letter_list_only": true,
-   "head": "wm_nelts",
    "division": "unplaced",
    "persons": 1,
    "grades": {

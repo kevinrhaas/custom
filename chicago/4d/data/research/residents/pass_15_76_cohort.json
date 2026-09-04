@@ -589,8 +589,8 @@
       ]
     },
     {
-      "household_id": "hh_m_vaughton_angus",
-      "person_id": "m_vaughton_angus",
+      "household_id": "hh_mvaughton_angus",
+      "person_id": "mvaughton_angus",
       "name": "Angus M'Vaughton",
       "stratum": "letter_list_only_uncertain",
       "starting_grade": "inferred",
@@ -655,9 +655,9 @@
       ]
     },
     {
-      "household_id": "hh_w_oakley_benjamin",
-      "person_id": "w_oakley_benjamin",
-      "name": "Oakley Benjamin W.",
+      "household_id": "hh_oakley_benjamin_w",
+      "person_id": "oakley_benjamin_w",
+      "name": "Benjamin W. Oakley",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -776,9 +776,9 @@
       ]
     },
     {
-      "household_id": "hh_ii_preston_stephen",
-      "person_id": "ii_preston_stephen",
-      "name": "Preston Stephen II.",
+      "household_id": "hh_preston_stephen_ii",
+      "person_id": "preston_stephen_ii",
+      "name": "Stephen II. Preston",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -896,8 +896,8 @@
       ]
     },
     {
-      "household_id": "hh_starkweather_rob_t",
-      "person_id": "starkweather_rob_t",
+      "household_id": "hh_starkweather_robt",
+      "person_id": "starkweather_robt",
       "name": "Rob't. Starkweather",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",

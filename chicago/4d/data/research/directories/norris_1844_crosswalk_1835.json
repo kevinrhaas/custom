@@ -6,14 +6,39 @@
  "rule": "so it reads back without the code:\n  SURNAME must match after both are folded (case, punctuation and the scanner's\n  usual confusions removed), AND the first initial of the given name must match.\n  A surname-only agreement is a REFUSAL, however good it looks — Norris lists\n  eleven Smiths. Where one 1835 person meets more than one 1844 entry on that\n  rule the match is AMBIGUOUS and is filed as such, not resolved.",
  "counts": {
   "residents_considered": 870,
-  "matched_one_1844_entry": 52,
+  "matched_one_1844_entry": 53,
   "matched_more_than_one_ambiguous": 17,
   "one_1844_entry_contested_by_two_residents": 4,
-  "surname_present_initial_absent_refused": 181,
-  "could_carry_occupation": 21,
-  "could_carry_address": 42
+  "surname_present_initial_absent_refused": 186,
+  "could_carry_occupation": 22,
+  "could_carry_address": 43
  },
  "matches": [
+  {
+   "resident": "A. 8. Perry",
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Perry' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1425",
+     "as_printed": "Perry, A. S. barber, house reservation",
+     "printed_page": 51,
+     "occupation_1844": "barber",
+     "address_1844": "house reservation"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": true
+  },
   {
    "resident": "A. B. Gould",
    "person_id": "gould_a_b",
@@ -2334,6 +2359,13 @@
    "rule": "The surname 'Maynard' is in Norris 1844 and no entry under it carries the initial 'E' of 'Elias Maynard'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Elisha S. Page",
+   "person_id": "page_elisha_s",
+   "surname_in_1844": "Page",
+   "candidates": 3,
+   "rule": "The surname 'Page' is in Norris 1844 and no entry under it carries the initial 'E' of 'Elisha S. Page'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Eliza Chappel Porter",
    "person_id": "porter_eliza_chappel",
    "surname_in_1844": "Porter",
@@ -2691,6 +2723,13 @@
    "rule": "The surname 'Dougherty' is in Norris 1844 and no entry under it carries the initial 'J' of 'Joan Dougherty'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Joel C. Mills",
+   "person_id": "mills_joel_c",
+   "surname_in_1844": "Mills",
+   "candidates": 1,
+   "rule": "The surname 'Mills' is in Norris 1844 and no entry under it carries the initial 'J' of 'Joel C. Mills'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "John Calhoun",
    "person_id": "calhoun_john",
    "surname_in_1844": "Calhoun",
@@ -2873,6 +2912,13 @@
    "rule": "The surname 'Palmer' is in Norris 1844 and no entry under it carries the initial 'N' of 'N. H. Palmer'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "N. R. Norton",
+   "person_id": "norton_n_r",
+   "surname_in_1844": "Norton",
+   "candidates": 6,
+   "rule": "The surname 'Norton' is in Norris 1844 and no entry under it carries the initial 'N' of 'N. R. Norton'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Nehemiah Case",
    "person_id": "case_nehemiah",
    "surname_in_1844": "Case",
@@ -3021,7 +3067,7 @@
   },
   {
    "resident": "Rob't. Starkweather",
-   "person_id": "starkweather_rob_t",
+   "person_id": "starkweather_robt",
    "surname_in_1844": "Starkweather",
    "candidates": 1,
    "rule": "The surname 'Starkweather' is in Norris 1844 and no entry under it carries the initial 'R' of \"Rob't. Starkweather\". A surname-only agreement is a refusal."
@@ -3074,6 +3120,13 @@
    "surname_in_1844": "Forbes",
    "candidates": 2,
    "rule": "The surname 'Forbes' is in Norris 1844 and no entry under it carries the initial 'S' of 'Stephen Forbes'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Stephen II. Preston",
+   "person_id": "preston_stephen_ii",
+   "surname_in_1844": "Preston",
+   "candidates": 1,
+   "rule": "The surname 'Preston' is in Norris 1844 and no entry under it carries the initial 'S' of 'Stephen II. Preston'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Stephen M. Salisbury",
@@ -3158,6 +3211,13 @@
    "surname_in_1844": "Merrill",
    "candidates": 1,
    "rule": "The surname 'Merrill' is in Norris 1844 and no entry under it carries the initial 'W' of 'Winthrop Merrill'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Wm. H. Norton",
+   "person_id": "norton_wm_h",
+   "surname_in_1844": "Norton",
+   "candidates": 6,
+   "rule": "The surname 'Norton' is in Norris 1844 and no entry under it carries the initial 'W' of 'Wm. H. Norton'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Wm. Loring",

@@ -1,7 +1,7 @@
 ---
 id: T-0638
 title: A trailing middle initial took the surname slot, so 19 letter-list households are named 'The C household' and can never match a directory
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 778
+claimed_by: run 9/4/2026, 6:19:12 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T11:58:27.587Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33867101519
 ---
 
 A trailing middle initial took the surname slot, so 19 letter-list households are named

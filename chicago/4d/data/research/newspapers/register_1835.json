@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1034,
-        "new_resident": 1506,
+        "enrich": 1011,
+        "new_resident": 1529,
         "replace_invented": 90
       },
       "letter_list_only": 1936
@@ -8933,8 +8933,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "allison_tho_s",
-      "action_note": "data/residents/ already holds this person as allison_tho_s (hh_allison_tho_s, inferred). The papers add mentions and dates."
+      "action_target": "allison_thos",
+      "action_note": "data/residents/ already holds this person as allison_thos (hh_allison_thos, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_allon_nattiah",
@@ -10341,8 +10341,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "behan_tho_s",
-      "action_note": "data/residents/ already holds this person as behan_tho_s (hh_behan_tho_s, inferred). The papers add mentions and dates."
+      "action_target": "behan_thos",
+      "action_note": "data/residents/ already holds this person as behan_thos (hh_behan_thos, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_bemis_samuel_c",
@@ -10791,9 +10791,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "is_bobinson_george",
-      "action_note": "data/residents/ already holds this person as is_bobinson_george (hh_is_bobinson_george, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_boles_george",
@@ -12452,9 +12452,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "p_clapp_a",
-      "action_note": "data/residents/ already holds this person as p_clapp_a (hh_p_clapp_a, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_clark_alcion_2",
@@ -13179,8 +13179,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "curtenius_fred_k",
-      "action_note": "data/residents/ already holds this person as curtenius_fred_k (hh_curtenius_fred_k, inferred). The papers add mentions and dates."
+      "action_target": "curtenius_fredk",
+      "action_note": "data/residents/ already holds this person as curtenius_fredk (hh_curtenius_fredk, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_curtis_liman",
@@ -18272,8 +18272,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "es_jones_high",
-      "action_note": "data/residents/ already holds this person as es_jones_high (hh_es_jones_high, inferred). The papers add mentions and dates."
+      "action_target": "jones_es_high",
+      "action_note": "data/residents/ already holds this person as jones_es_high (hh_jones_es_high, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_henry_k",
@@ -18436,9 +18436,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "e_hhelps_theodore",
-      "action_note": "data/residents/ already holds this person as e_hhelps_theodore (hh_e_hhelps_theodore, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_hi_gley_w_s",
@@ -20714,8 +20714,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "m_fadin_james",
-      "action_note": "data/residents/ already holds this person as m_fadin_james (hh_m_fadin_james, inferred). The papers add mentions and dates."
+      "action_target": "mfadin_james",
+      "action_note": "data/residents/ already holds this person as mfadin_james (hh_mfadin_james, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_james_mackie",
@@ -22133,8 +22133,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "m_lean_john_y",
-      "action_note": "data/residents/ already holds this person as m_lean_john_y (hh_m_lean_john_y, inferred). The papers add mentions and dates."
+      "action_target": "mlean_john_y",
+      "action_note": "data/residents/ already holds this person as mlean_john_y (hh_mlean_john_y, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_johnaon_8_capt",
@@ -22375,8 +22375,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "es_jones_high",
-      "action_note": "data/residents/ already holds this person as es_jones_high (hh_es_jones_high, inferred). The papers add mentions and dates."
+      "action_target": "jones_es_high",
+      "action_note": "data/residents/ already holds this person as jones_es_high (hh_jones_es_high, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_jones_john_j",
@@ -22661,8 +22661,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "m_kean_joseph",
-      "action_note": "data/residents/ already holds this person as m_kean_joseph (hh_m_kean_joseph, inferred). The papers add mentions and dates."
+      "action_target": "mkean_joseph",
+      "action_note": "data/residents/ already holds this person as mkean_joseph (hh_mkean_joseph, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_joseph_meeker",
@@ -24575,8 +24575,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "m_clintock_thomas",
-      "action_note": "data/residents/ already holds this person as m_clintock_thomas (hh_m_clintock_thomas, inferred). The papers add mentions and dates."
+      "action_target": "mclintock_thomas",
+      "action_note": "data/residents/ already holds this person as mclintock_thomas (hh_mclintock_thomas, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_m_clintock_wilson",
@@ -24619,8 +24619,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "m_dolold_james",
-      "action_note": "data/residents/ already holds this person as m_dolold_james (hh_m_dolold_james, inferred). The papers add mentions and dates."
+      "action_target": "mdolold_james",
+      "action_note": "data/residents/ already holds this person as mdolold_james (hh_mdolold_james, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_m_donald_j_a_mes",
@@ -24663,8 +24663,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "m_grigg_a_a",
-      "action_note": "data/residents/ already holds this person as m_grigg_a_a (hh_m_grigg_a_a, inferred). The papers add mentions and dates."
+      "action_target": "mgrigg_a_a",
+      "action_note": "data/residents/ already holds this person as mgrigg_a_a (hh_mgrigg_a_a, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_m_h_kennicott",
@@ -24806,8 +24806,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "m_vaughton_angus",
-      "action_note": "data/residents/ already holds this person as m_vaughton_angus (hh_m_vaughton_angus, inferred). The papers add mentions and dates."
+      "action_target": "mvaughton_angus",
+      "action_note": "data/residents/ already holds this person as mvaughton_angus (hh_mvaughton_angus, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_mabbet_benjamin_f",
@@ -24816,9 +24816,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "f_mabbet_benjamin",
-      "action_note": "data/residents/ already holds this person as f_mabbet_benjamin (hh_f_mabbet_benjamin, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_maccoy_lorenzo",
@@ -25234,9 +25234,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "a_mason_sabrina",
-      "action_note": "data/residents/ already holds this person as a_mason_sabrina (hh_a_mason_sabrina, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_mathews_james_g",
@@ -25432,9 +25432,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "i_mcloud",
-      "action_note": "data/residents/ already holds this person as i_mcloud (hh_i_mcloud, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_me_donolds_george",
@@ -25553,9 +25553,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "b_merrich_j",
-      "action_note": "data/residents/ already holds this person as b_merrich_j (hh_b_merrich_j, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_merrill_winthrop",
@@ -25652,9 +25652,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "f_mabbet_benjamin",
-      "action_note": "data/residents/ already holds this person as f_mabbet_benjamin (hh_f_mabbet_benjamin, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_miller_jesse_f",
@@ -25707,9 +25707,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "c_mills_joel",
-      "action_note": "data/residents/ already holds this person as c_mills_joel (hh_c_mills_joel, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_milstged_john",
@@ -26653,9 +26653,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "wm_nelts",
-      "action_note": "data/residents/ already holds this person as wm_nelts (hh_wm_nelts, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_nett_robert_a",
@@ -26840,9 +26840,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "r_norton_n",
-      "action_note": "data/residents/ already holds this person as r_norton_n (hh_r_norton_n, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_norton_wm_h",
@@ -26851,9 +26851,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "h_norton_wm",
-      "action_note": "data/residents/ already holds this person as h_norton_wm (hh_h_norton_wm, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_nottage_henry",
@@ -26906,9 +26906,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "w_oakley_benjamin",
-      "action_note": "data/residents/ already holds this person as w_oakley_benjamin (hh_w_oakley_benjamin, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_ogan_josepit",
@@ -27038,9 +27038,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "t_orinsbey_martin",
-      "action_note": "data/residents/ already holds this person as t_orinsbey_martin (hh_t_orinsbey_martin, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_orisbee_edgar_i",
@@ -27149,8 +27149,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "p_aylor_john_o",
-      "action_note": "data/residents/ already holds this person as p_aylor_john_o (hh_p_aylor_john_o, inferred). The papers add mentions and dates."
+      "action_target": "paylor_john_o",
+      "action_note": "data/residents/ already holds this person as paylor_john_o (hh_paylor_john_o, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_p_b_f_cable",
@@ -27335,9 +27335,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "s_page_elisha",
-      "action_note": "data/residents/ already holds this person as s_page_elisha (hh_s_page_elisha, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_page_john",
@@ -27764,9 +27764,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "8_perry_a",
-      "action_note": "data/residents/ already holds this person as 8_perry_a (hh_8_perry_a, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_person_read",
@@ -28237,9 +28237,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "l_pixley_john",
-      "action_note": "data/residents/ already holds this person as l_pixley_john (hh_l_pixley_john, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_poke_edward",
@@ -28402,9 +28402,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "ii_preston_stephen",
-      "action_note": "data/residents/ already holds this person as ii_preston_stephen (hh_ii_preston_stephen, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_pruyne_peter",
@@ -28424,9 +28424,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "k_pugsley_john",
-      "action_note": "data/residents/ already holds this person as k_pugsley_john (hh_k_pugsley_john, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_purner_john_m",
@@ -28699,9 +28699,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "o_ranwin",
-      "action_note": "data/residents/ already holds this person as o_ranwin (hh_o_ranwin, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_ray_thomas",
@@ -28765,9 +28765,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "v_regera_john",
-      "action_note": "data/residents/ already holds this person as v_regera_john (hh_v_regera_john, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_reid_lewis",
@@ -30581,8 +30581,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "selden_sam_l_l",
-      "action_note": "data/residents/ already holds this person as selden_sam_l_l (hh_selden_sam_l_l, inferred). The papers add mentions and dates."
+      "action_target": "selden_saml_l",
+      "action_note": "data/residents/ already holds this person as selden_saml_l (hh_selden_saml_l, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_seston_charles",
@@ -31417,8 +31417,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "starkweather_rob_t",
-      "action_note": "data/residents/ already holds this person as starkweather_rob_t (hh_starkweather_rob_t, inferred). The papers add mentions and dates."
+      "action_target": "starkweather_robt",
+      "action_note": "data/residents/ already holds this person as starkweather_robt (hh_starkweather_robt, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_stater_asa_p",
@@ -36223,9 +36223,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "g_willinm",
-      "action_note": "data/residents/ already holds this person as g_willinm (hh_g_willinm, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_willioms_john",
@@ -36367,8 +36367,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "m_ewen_wm_b",
-      "action_note": "data/residents/ already holds this person as m_ewen_wm_b (hh_m_ewen_wm_b, inferred). The papers add mentions and dates."
+      "action_target": "mewen_wm_b",
+      "action_note": "data/residents/ already holds this person as mewen_wm_b (hh_mewen_wm_b, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_wm_band_l_e",
@@ -36927,9 +36927,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "g_willinm",
-      "action_note": "data/residents/ already holds this person as g_willinm (hh_g_willinm, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_wright_john",
