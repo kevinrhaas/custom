@@ -10397,3 +10397,42 @@ Related: **L214** (the pass beside this one) · **L213** (the test this disagree
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
 **Recorded:** 2026-09-04.
+
+### L221 — Seven houses stand on a street a directory printed eight years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 7 households
+**Decision:** where no source of the scene year says where a person's house stood, a
+**street** printed as that person's residence — the volume's own `res` or `bds` — in
+Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
+household's street **face**. The placement is graded `reconstructed`, the note says how
+many years it was carried, and the policy is `docs/RESIDENCE-BACK-PROJECTION.md`.
+**Why:** this is L218's mechanism aimed at the other question, and `docs/ADDRESS-BACK-
+PROJECTION.md` clause 2 refused it by name so that it would be argued rather than
+absorbed. The argument is that a home is not a shop in two places. A residence needs **no
+attested trade**, where a business does — everybody the town holds lived somewhere in it,
+so an absent occupation says nothing about whether a man had a house — and that departure
+is most of the yield: 44 of the 48 residence addresses on the layer belong to people the
+1835 papers give no trade, and five of these seven placements are such people. Against
+that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
+into one street's trade and a lodging is a month's rent.
+**Consequence:** seven households stand on a face on the authority of a volume printed
+four or eight years after the scene. Twenty of 825 households carried a real `lives_at`
+before this pass and twenty carry one after — the faces are text on a card and not a
+placement of anybody in the town.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even where the
+volume prints a corner. Every residence entry that prints one prints it against a street
+NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
+its reader which of two hundred Clark Street doors it means, and reading it back would be
+reading a finding aid as a survey. The 41 refusals are on the record beside the seven, so
+the arithmetic is visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer.
+**How to resolve:** a source inside the scene year that says where somebody slept. The
+1835 poll and tax lists are closer to 1835 than a directory is, and any one of them that
+houses one of these seven supersedes this entry under the policy's clause R3 without an
+argument.
+
+Related: **L218** (the business half, and the clause that refused this one) · **L212**
+(a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
+**T-0633**, **T-0632**.
+**Recorded:** 2026-09-04 (T-0669).

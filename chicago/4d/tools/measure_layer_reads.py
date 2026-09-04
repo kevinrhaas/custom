@@ -529,6 +529,31 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "directories.people[].back_projection.read_back_years": (
         "shown", "escapeHtml(String(bp.read_back_years))"),
     "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
+    # T-0669, the residence half of the same grammar, on its own row of the same
+    # card. `residenceBackProjectionHtml` has no branch that drops one either, so
+    # all 48 render — the 7 placements and the 41 refusals — and `kind` is the one
+    # leaf the business row has no counterpart for: whether the volume printed
+    # `res` or `bds` is the difference between a household and a month's rent.
+    "directories.people[].residence_back_projection.outcome": (
+        "shown", "rp.outcome === 'placed'"),
+    "directories.people[].residence_back_projection.clause": (
+        "shown", "escapeHtml(String(rp.clause))"),
+    "directories.people[].residence_back_projection.kind": (
+        "shown", "rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence'"),
+    "directories.people[].residence_back_projection.value": (
+        "shown", "`${rp.value} — the ${words(rp.placement)}, and nothing narrower`"),
+    "directories.people[].residence_back_projection.confidence": (
+        "shown", "swatch(rp.confidence)"),
+    "directories.people[].residence_back_projection.placement": (
+        "shown", "words(rp.placement)"),
+    "directories.people[].residence_back_projection.describes_date": (
+        "shown", "escapeHtml(String(rp.describes_date))"),
+    "directories.people[].residence_back_projection.read_back_years": (
+        "shown", "escapeHtml(String(rp.read_back_years))"),
+    "directories.people[].residence_back_projection.note": (
+        "shown", "escapeHtml(rp.note)"),
+    "directories.people[].residence_back_projection.sources": (
+        "shown", "(rp.sources || []).map((id) => citationsById.get(id))"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),

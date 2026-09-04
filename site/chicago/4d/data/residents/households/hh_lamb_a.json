@@ -108,6 +108,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]

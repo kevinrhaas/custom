@@ -100,6 +100,20 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 2)."
+    },
+    "residence_back_projection": {
+     "outcome": "placed",
+     "clause": "R4 and R5",
+     "kind": "resides",
+     "value": "Market Street",
+     "confidence": "reconstructed",
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": "face",
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS. The street is not an 1835 reading: Fergus's Chicago directory of 1843 printed where this man lived in 1843, and this pass carries it back to the scene date because nothing in the 1835 corpus says where his house stood. What is claimed is the street FACE and nothing narrower — no lot, no roof, no door count, and no corner even where the volume prints one — and the grade is `reconstructed`, this dataset's word for a figure the reconstruction supplies rather than a source. Market Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt. A home is carried back on a weaker argument than a shop is: a shopfront is capital sunk into one street's trade and a lodging is a month's rent, which is why this policy claims less than docs/ADDRESS-BACK-PROJECTION.md does from the same volume. The rule is docs/RESIDENCE-BACK-PROJECTION.md and the liberty is L221; a reader who thinks 8 years is too far to carry a house should read the grade as the disagreement being invited."
     }
    }
   ]
