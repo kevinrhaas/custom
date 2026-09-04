@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 5:21 PM",
+  "generated_ct": "Sep 4, 2026, 5:38 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8522,7 +8522,7 @@
     {
       "id": "T-0515",
       "title": "727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": false,
@@ -8532,9 +8532,11 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 5:38:07 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33926169512",
       "queue_rank": 0
     },
     {
