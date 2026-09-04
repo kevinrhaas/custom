@@ -74,7 +74,6 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
 T-0665 — Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs
 T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
-T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
 T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
 T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
