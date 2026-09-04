@@ -1762,6 +1762,21 @@ step "the 1840 census line-to-serial crosswalk re-derives from the page readings
 
 step "…and its own assertions still fire when broken" \
   python3 tools/census_1840_fingerprint.py --self-test
+
+# T-0507. The 1840 composition summary, and it is gated for a reason that is not staleness.
+# The figures are cheap to re-derive and would matter little if they drifted a person or two;
+# what matters is the LINE the file stands on. It is built from an extract that carries 55
+# transcribed head-of-household names and 964 household serials, and the whole value of the
+# summary is that it is counts and nothing else — 1840 household members are never minted
+# into 1835 from census counts, which is the owner's own rule. --self-test refuses the build
+# if a single one of those names or serials reaches the output, and --check refuses a
+# committed file that no longer re-derives from the extract and from T-0504's column_map. A
+# hand-edited count in there would be a fact about this town that nobody counted.
+step "the 1840 household composition re-derives, and no name or serial reaches it" \
+  python3 tools/census_1840_composition.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/census_1840_composition.py --self-test
 # T-0513. The consolidation, and the reason it is gated rather than reported: it is the
 # only file that says, for one identity, everything the project knows — and it is DERIVED
 # from seven domains that each move on their own ticket. A source read on Tuesday that
