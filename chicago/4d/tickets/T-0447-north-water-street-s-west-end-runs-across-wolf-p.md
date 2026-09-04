@@ -1,7 +1,7 @@
 ---
 id: T-0447
 title: North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,9 +11,11 @@ parent: T-0443
 opened: 2026-08-31
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 2:25:19 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737
 ---
 
 **Reopened and widened on 2026-08-31** after the owner marked up the dev preview
