@@ -89,7 +89,6 @@ T-0635 — Consolidation pass 2: write every ruling closed since consolidation p
 # --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
 # --- dwelling held more than one household, so one family per roof undercounts.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
@@ -308,3 +307,4 @@ T-0695 — A garbled printed forename refuses a match the reader can still make:
 T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
 T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
+T-0704 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
