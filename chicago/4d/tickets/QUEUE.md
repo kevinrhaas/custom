@@ -152,10 +152,10 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- the whole grid sits one street west — is `canal` really Clinton — is unmeasured, and every
 # --- building west of the river turns on it. T-0685/T-0686/T-0687 are the bank measurements
 # --- T-0453 left behind when it closed.
-T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
+T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
@@ -175,7 +175,6 @@ T-0415 — John Wright's two buildings to let are named (east) and (west) and st
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
 # --- they decide whether the ones above land on the right names and corners.
-T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
@@ -252,7 +251,6 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- it still reads `claimed` with no pr. Same for T-0426 (#675) and T-0444 (#681, which says
 # --- in its own words that acceptance 1 is answered but not done). Verify each against its
 # --- acceptance and close or release it; do not re-do work that is already on dev.
-T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible; nothing here blocks anything above.
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
@@ -297,4 +295,7 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
