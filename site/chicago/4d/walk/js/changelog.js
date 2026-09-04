@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 517, title: 'The rebuild button now rebuilds the town it was pointed at', kind: 'fix', ts: '2026-09-04T18:22:37.465Z', date: 'Sep 4, 2026, 1:22 PM CT',
+    items: [
+      'Nothing you can see changed today. This is about the machine that rebuilds this town\u2019s buildings, and about a fault that could have left a building standing in the scene while its own written record said something else.',
+      'Every building here is generated from a record \u2014 its size, its siding, the pitch of its roof. A check that runs on every change re-reads those records and refuses any building whose shape has stopped matching what its record says, and the remedy it prints is: rebuild that building.',
+      'On 31 August the check named two buildings on a piece of work in progress as out of date. The rebuild was run against that exact work, spent twelve minutes generating, and reported that it had rebuilt nothing. Both were telling the truth, about different things: the rebuild was quietly ignoring which version of the town it had been pointed at and building the shared one instead \u2014 which was already up to date, so there was indeed nothing to do.',
+      'It now builds the version it was handed, and the changes it produces go back to that same version. The nightly rebuild behaves exactly as before: it still builds the shared town, because the shared town is the only thing it is ever pointed at.',
+      'The fault was four lines of a build script that no test could reach, so the decision is now a small program with its own assertions \u2014 including two that fail if the build script ever stops asking it. A right answer nobody asks for is the same fault wearing a different hat.',
+    ] },
   { v: 516, title: 'The More button nobody pressed, and the 191 land sales behind it', kind: 'fix', ts: '2026-09-04T18:12:42.351Z', date: 'Sep 4, 2026, 1:12 PM CT',
     items: [
       'The federal land register that says who bought the ground around Chicago was read into this project a day ago, and three of its seventy-two sections came back declared unread. The Archives\u2019 search shows a hundred and fifty rows at a time, those three filled that page, and the pass that read them recorded the ceiling as a wall: the school section and two of the West Division sections were carried as \u201cnot read\u201d, with a note that the database offers no way to see past the first hundred and fifty.',

@@ -1029,6 +1029,20 @@ step "stamping the changelog leaves both mirrors fresh, and a stale one still fa
 step "the bake's content test refuses the stamp and nothing else" \
   python3 tools/bake_content_changed.py --self-test
 
+# T-0454, and the sibling of the check above: that one asks whether the bake
+# produced anything, this one asks WHICH TREE it was asked about. The workflow
+# used to check out `origin/dev` unconditionally, so a bake dispatched against a
+# branch silently rebuilt dev — and dev was fresh, so the honest answer to the
+# question above was "no content" while the branch's asset stayed stale and this
+# gate went on calling it stale. Two tools right about two different trees, and
+# the remedy this file's own error message prints ("re-bake it — tools/bake.sh,
+# or the chicago-4d-bake workflow") true of the first and false of the second.
+# The decision is a script so it can be asserted, and the last four assertions
+# are drift guards on the workflow itself: a rule nothing calls any more is the
+# same bug wearing a different hat.
+step "the bake builds the ref it was given, and the nightly still builds dev" \
+  python3 tools/bake_ref.py --self-test
+
 # The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
 # used to find the ticket by FILE (its own comment explains that with two files
 # sharing an id, nothing else can tell them apart) and then edit the queue by ID,
