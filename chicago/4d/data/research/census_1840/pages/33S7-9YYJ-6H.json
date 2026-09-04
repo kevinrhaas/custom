@@ -986,11 +986,23 @@
   "pairing": {
     "paired_to_printed_page": null,
     "state": "unpaired",
-    "why": "a continuation sheet carries no name and no printed page number of its own, so the pairing to its left sheet is a separate reading. T-0539 pairs all eleven at once. Recorded as unpaired rather than guessed.",
+    "why": "RESOLVED by T-0642 where this says paired, and recorded as unpaired with its rule where it does not. The earlier text of this field said the left sheets had not been footed yet; they have now.",
     "page_population_key": null,
     "page_population_key_note": "three glyphs, read '1', a low loop, then two strokes. Same refusal as 33S7-9YYJ-5V: the middle glyph is not legible enough to commit, and the last pair is the form this hand uses for both 4 and 11. Recorded as unread rather than guessed.",
     "line_count_key": 31,
-    "line_count_key_note": "COMMITTED at 31 this pass from line_index, and this is the key T-0642 needs: a continuation sheet carries no name and no page number, so its line count is one of the few numbers that can be matched against a left sheet's."
+    "line_count_key_note": "COMMITTED at 31 this pass from line_index, and this is the key T-0642 needs: a continuation sheet carries no name and no page number, so its line count is one of the few numbers that can be matched against a left sheet's.",
+    "tested_by": "T-0642",
+    "test": "both keys — the count of ruled lines carrying an entry, and the page population — against the twelve filled left sheets of image group 1, whose printed footings T-0642 read and published.",
+    "result": "No 31-entry left sheet foots 144. 33S7-9YYJ-2T (printed 221) foots 146 and its own 31 lines hold 143, which brackets 144 without matching it either way; two persons is a residual, not an identification.",
+    "refusals": [
+      {
+        "printed_page": 221,
+        "familysearch_id": "33S7-9YYJ-2T",
+        "rule": "line count right, population 2 away",
+        "why": "footed 146 and 143 by its own lines against this sheet's 144. Named as the nearest candidate and refused: the test asks for a match, and a sheet that brackets a number is not a sheet that meets it."
+      }
+    ],
+    "published_in": "data/research/census_1840/left_sheet_population_key.json"
   },
   "ticket": "T-0628",
   "column_geometry": {

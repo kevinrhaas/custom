@@ -35,14 +35,14 @@
   "OS1": 11,
   "OS2A": 1,
   "OS2": 4,
-  "OS3": 48,
+  "OS3": 49,
   "OS4": 2,
-  "OS5": 102,
+  "OS5": 101,
   "merged": 12,
   "probable": 4,
   "candidate": 2,
-  "refused": 48,
-  "unmatched": 102
+  "refused": 49,
+  "unmatched": 101
  },
  "people": [
   {
@@ -97,7 +97,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'allen', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'allen', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -125,7 +125,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -766,7 +766,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'cook', none with the forename initial 'i'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'cook', none with the forename initial 'i'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -1830,7 +1830,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'hugunin', none with the forename initial 'j'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'hugunin', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2876,7 +2876,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2904,7 +2904,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'smith', none with the forename initial 'j'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'smith', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -3269,10 +3269,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'tuttle' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'tuttle', none with the forename initial 'f'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

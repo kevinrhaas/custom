@@ -87,7 +87,7 @@ this means for T-0504 and T-0505 is that the 210 rows cannot be used as ground t
 a serial fingerprint or an identity bridge until they have been re-read against the
 images, and that a bridge built on #670's row NUMBERS is unsafe on at least page 231.
 
-## Two pages in this deposit are not household pages
+## Three pages in this deposit are not household pages
 
 `33S7-9YYJ-95F`, printed page **206**, is a printed left sheet used as the enumeration's
 **certificate and recapitulation**: no household lines, and a manuscript note that names
@@ -102,6 +102,39 @@ extrapolated back to 1835.
 `33S7-9YYJ-C8`, printed page **238**, is printed, numbered and wholly unfilled. A
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
+
+`33S7-9YYJ-V2`, printed page **237**, is the other recapitulation — **the sheet the
+certificate page was pointing at**. It sat in the inventory as "a continuation sheet whose
+TOTAL column carries three-figure numbers", and the three-figure numbers were the evidence:
+it enumerates nobody. Thirty ruled lines each carry a **division total** of 70 to 201
+persons, gathered into six blocks, each block closed by a ruled footing that adds it, and
+the foot of the leaf carries **4,470** — the certificate's own *"4470 — City of Chicago"*.
+Four of the six footings close exactly on the lines above them (1164, 1320, 294, 1137), on
+figures nobody typed in; the fifth is illegible under two crossing rules and the sixth block
+is a lone line with no footing of its own. The six blocks sum to 4,466 against the 4,470
+written at the foot, and **that residual of 4 is left open** rather than closed by adjusting
+a digit.
+
+The same row gives the city's employment in 1840: agriculture 25, commerce 182,
+manufactures and trades 744, navigation of the ocean 1, navigation of canals, lakes and
+rivers 44, learned professions and engineers 73, mining none — with 11 primary and common
+schools and 397 scholars. It is transcribed in `pages/33S7-9YYJ-V2.json` and claimed in
+`claims.json`, and like page 206 it is LATER EVIDENCE that may not be carried back to 1835.
+
+**Why the sheet is not a continuation sheet, measured rather than judged.**
+`tools/read_census_continuation.py` records that a household continuation leaf carries
+exactly two strong horizontal rules — under the printed heading and above the enumerator's
+footer — with the largest excess over local background anywhere between them at 4 grey
+levels. The same measurement on this leaf finds **twelve rules inside the body**, at depths
+of 23 to 117 grey levels. They are the block footings; and it is why that tool's own body
+finder mis-reports this sheet's body as one block of six.
+
+**No serial may be hung on any line of it.** A serial identifies an IPUMS *household*, and
+no line here is a household, so there is nothing for `tools/census_1840_fingerprint.py` to
+fingerprint and no head to name. The tool now says exactly that in the sheet's own row of
+`serial_crosswalk.json`, instead of the generic continuation-sheet reason, which would have
+been wrong twice: this is not a continuation sheet, and pairing it to a left sheet would not
+help — a recapitulation's left sheet carries aggregates too, not age bands. (T-0529)
 
 ## The cells, and what the sheet's own footings say about them
 
@@ -172,12 +205,15 @@ sheet that closes takes something like ten passes at magnification, not one: thi
 `4` as two strokes that read as `11`, its `7` and `9` differ by a loop, and its two-digit family
 totals sit hard against the column rule. Three sheets is a run.
 
-**No continuation sheet here is paired to a left sheet yet.** A right sheet has neither a name
-nor a printed page number on its exposure, so the pairing has to be earned: each page's
-population (the TOTAL footer, published on each page file as `pairing.page_population_key`) has
-to be matched against the printed age-band totals at the foot of each candidate left sheet, and
-those have not been read. T-0539 does that for all eleven at once. Until then every one of them
-is recorded as `unpaired` — never guessed.
+**One continuation sheet here is paired to a left sheet, and ten are not.** A right sheet has
+neither a name nor a printed page number on its exposure, so the pairing has to be earned: each
+page's population (the TOTAL footer, published on each page file as `pairing.page_population_key`)
+has to be matched against the printed age-band totals at the foot of each candidate left sheet.
+T-0642 read those footings for all twelve filled left sheets of the group and ran the test on all
+eleven continuations — see the section below and
+`data/research/census_1840/left_sheet_population_key.json`. Everything it did not pair stays
+recorded as `unpaired`, with the candidate it came nearest to and the rule that refused it —
+never guessed.
 
 ## The cells, and the rule that decides whether a column is committed (T-0532)
 
@@ -713,3 +749,74 @@ residuals are on the page file.
 **What this means for pairing.** Neither sheet is paired to its continuation — that is
 T-0539's work. Each publishes its page population as the key that pairing will read: 113 for
 page 218, 175 for page 224, on 30 lines each.
+
+## The left-sheet population key, and what pairs to what (T-0642, 2026-09-04)
+
+A continuation sheet has no name and no printed page number, so it can only be joined to its
+left half by numbers. Two are available. The **line count** — ruled lines carrying an entry —
+must be the same on both halves of one opening. The **page population** is given twice: on the
+left sheet as the sum of the enumerator's 38 printed age-band footings, and on the right sheet
+as the printed footing of the TOTAL column. `left_sheet_population_key.json` publishes both for
+every sheet in image group 1 and states the outcome of the test for all eleven continuations.
+
+**The rule: a pair must match on BOTH keys.** A match on one key alone is recorded as a
+candidate with the rule that refused it, so a later pass can retry it rather than rediscover it.
+The right key is always the enumerator's own TOTAL footing and never a pass's line-by-line sum
+of that column — the two differ on four of the seven sheets that have both.
+
+| printed page | image | entries | page population |
+|---|---|---|---|
+| 210 | `33S7-9YYJ-9RG` | 30 | 187 |
+| 215 | `33S7-9YYJ-9WF` | 31 | 103 |
+| 219 | `33S7-9YYJ-9K3` | 31 | **208 as footed, 201 by its own lines** |
+| 221 | `33S7-9YYJ-2T` | 31 | 146 |
+| 222 | `33S7-9YYJ-98M` | 30 | 123 or 124 |
+| 225 | `33S7-9YYJ-9HY` | 23 | 115 |
+| 226 | `33S7-9YYJ-B3` | 29 | **184** |
+| 228 | `33S7-9YYJ-6J` | 17 | 71 |
+| 229 | `33S7-9YYJ-9M5` | 30 | 137 |
+| 231 | `33S7-9YYJ-38` | 31 | 160 |
+| 234 | `33S7-9YYJ-99F` | 31 | 182 |
+| unknown | `33S7-9YYJ-9MX` | 31 | 152 |
+
+**Two footings were read off the page this pass**, because two sheets had columns their
+cell-reading passes recorded as `not_read`. On `33S7-9YYJ-B3` twenty of the twenty-one are blank
+and the twenty-first — column 29, free coloured males 24 under 36 — carries a cursive **2** that
+balances the 2 its cells hold; that figure moves the sheet's key from 182 to 184. On
+`33S7-9YYJ-98M` all seventeen are blank, which fixes its key rather than leaving it open — and
+the same reading disagrees with one figure already committed: column 27 is a single diagonal
+stroke where T-0532 read 2. The disagreement is recorded, not spent: the sheet is keyed **123 or
+124**, and neither value pairs with anything, so nothing in this pass turns on it.
+
+**One of the eleven pairs.** `33S7-9YYJ-24` — the calibration sheet of the whole continuation
+reading, which closes on all five of its own footed columns — carries 31 entries and foots 201
+persons. Printed page **219** (`33S7-9YYJ-9K3`) carries 31 entries and its own 31 lines hold
+exactly **201**. Nothing else in the group comes within eleven of that number by either measure.
+
+**And that pairing settles a glyph the sheet alone could not.** 9K3's column 29 is footed with
+two hooked diagonals, which T-0585 read as **11** against **4** in the column's own 31 cells; it
+committed neither and recorded the residual of 7. If the footing were 11 the page would hold 208
+persons and the facing continuation foots 201; read as 4, the two sheets agree to the person.
+That is a second and independent witness for 4 — and it is the same two-stroke 4/11 form that
+T-0627 and T-0645 settled toward 4 on `33S7-9YYJ-6H`. The page file is not rewritten: the
+residual stays where T-0585 put it, with this pairing named beside it.
+
+**One is shown outright to have no partner here.** `33S7-9YYJ-8D` carries **32** entries, read
+line by line by T-0643 and anchored on a thirty-second line the inventory had missed. No left
+sheet in images 1-25 carries more than 31, so 8D's left half is not in this image group at all.
+That is a fact about the deposit, and it is the frame for the rest: the deposit is ordered by
+sorted filename, not by the book, so an opening is only whole inside one group by accident.
+
+**Five have a committed key that matches nothing here**, and each is recorded with its nearest
+candidate: `33S7-9YYJ-5D` (125) against printed 222 at 123–124, refused on 31 entries against 30;
+`33S7-9YYJ-5S` (189, 29 entries) against printed 226, the group's **only** 29-entry left sheet,
+refused because B3 keys 184 and its own lines hold 185; `33S7-9YYJ-6H` (144) against printed 221,
+which brackets it at 146 footed and 143 read; `33S7-9YYJ-6Q` (198) and `33S7-9YYJ-5V` (165
+favoured, uncommitted) against no 30-entry sheet within eleven. **Four have no key at all yet** —
+`33S7-9YYJ-9WS`, `-B1`, `-B2` and `-BF` have unread TOTAL footings and belong to T-0644 and
+T-0641.
+
+**What the ten unpaired sheets are actually blocked on** is not more reading of this group. It is
+the left-sheet footings of image groups 2 and 3: nine of those sheets are read for names and none
+of them for cells, so none of them has a population key to be tested against.
+

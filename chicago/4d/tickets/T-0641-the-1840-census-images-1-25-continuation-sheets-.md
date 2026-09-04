@@ -1,7 +1,7 @@
 ---
 id: T-0641
 title: The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0539
 opened: 2026-09-03
-closed: null
+closed: 2026-09-04
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 2:02:23 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T07:18:34.893Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33846649199
 ---
 
 The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals.

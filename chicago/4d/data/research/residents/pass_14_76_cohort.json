@@ -195,7 +195,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -503,7 +504,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -665,7 +667,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -745,7 +748,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -826,7 +830,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -867,7 +872,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -989,7 +995,8 @@
       "starting_presence": "present",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
@@ -1030,12 +1037,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ]
     },
     {
-      "household_id": "hh_curtenius_fred_k",
-      "person_id": "curtenius_fred_k",
+      "household_id": "hh_curtenius_fredk",
+      "person_id": "curtenius_fredk",
       "name": "Fred'k. Curtenius",
       "stratum": "letter_list_only_present",
       "starting_grade": "inferred",

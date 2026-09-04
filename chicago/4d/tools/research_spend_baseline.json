@@ -5,12 +5,12 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 206,
+  "census_1840": 229,
   "church": 0,
   "books": 126,
-  "directories": 6396,
-  "newberry_index": 5078,
-  "land_sales": 375
+  "directories": 7004,
+  "newberry_index": 4914,
+  "land_sales": 359
  },
  "witness": {
   "civic": {
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 714,
+   "read": 737,
    "spent": 508
   },
   "church": {
@@ -34,16 +34,16 @@
    "spent": 26
   },
   "directories": {
-   "read": 6684,
-   "spent": 288
+   "read": 7560,
+   "spent": 556
   },
   "newberry_index": {
-   "read": 7165,
-   "spent": 2087
+   "read": 7005,
+   "spent": 2091
   },
   "land_sales": {
    "read": 375,
-   "spent": 0
+   "spent": 16
   }
  },
  "raised": [
@@ -131,6 +131,46 @@
    "to": 206,
    "date": "2026-09-04",
    "why": "T-0643 read 32 more lines of 33S7-9YYJ-8D and rules on none of them: the ticket forbids it, because the 1840 bridge to an 1835 resident is a separate adjudication (T-0505, T-0514, T-0515) and 1839/1840 alone is never a resident. Reading ahead of that bridge is the method working. This raise also absorbs the reading the other three census slices of this hour landed on dev — the ceiling was already blown at 5acb2977 before this branch merged, and it is one shared per-domain number. It is deliberately a ceiling to be TAKEN BACK: --tighten is free, and the moment the bridge tickets spend these names the ceiling should come down to what the domain has earned."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 206,
+   "to": 207,
+   "date": "2026-09-04",
+   "why": "T-0529 read 33S7-9YYJ-V2, printed 237, and found it is the enumeration's RECAPITULATION sheet: thirty division totals, six footings and a grand total of 4,470 for the city. Its one claim names NOBODY and cannot be spent, now or ever — no line of it is a household, so there is no head to rule on, no serial to attach and nothing to cross into the town. The ceiling moves by one for a claim that is structurally unspendable, not for a name left unadjudicated."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 207,
+   "to": 290,
+   "date": "2026-09-04",
+   "why": "T-0527 read the three remaining filled left sheets of images 26-50 (printed 227, 239 and 241) line by line: 83 more named heads. T-0495 forbids this ticket minting or regrading anybody - T-0505 crosswalks these readings and T-0514/T-0515 rule on the names - so the reading is deliberately ahead of its adjudication and the ceiling moves once, on purpose, rather than the gate being routed around."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-04",
+   "why": "T-0632 opened this hop for the directories domain and closed it in the same pass. tools/spend_directories.py rules on the 235 single-entry matches the four directory crosswalks already held, and writes each one onto the household record it names — the later trade, the later address and the source id, as graded values that describe 1839, 1843 or 1844 and touch no 1835 claim. So the ceiling is recorded at ZERO, which is what the domain now stands at: every ruling that reaches a person reaches that person's card. It is written down rather than left absent because the gate faults on an unrecorded ceiling, and because a zero somebody chose is a ratchet while an absence is a hole. Nothing here may drift back up: a later directory reading that rules on a person and does not reach their card raises this number and the gate says so."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 6128,
+   "to": 6893,
+   "date": "2026-09-04",
+   "why": "T-0664 read the 1837 charter election and its list of voters for mayor out of Fergus 1839, printed pages 40-46: 765 claims, of which 706 are voters. It is a POLL, not a directory of names to be ruled on one by one — its whole yield is the crosswalk it feeds, and that is committed in the same PR: 190 letter-list persons, 82 entries off the 1833-1835 poll and tax lists and 53 residents of the town are now met by a second independent book, which is the second source the ratified ladder asks for. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to the reading; the consolidation series T-0634/T-0635 measures it."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 6893,
+   "to": 7004,
+   "date": "2026-09-04",
+   "why": "T-0665 read Fergus 1839 printed pages 38-39 — the city register of 1839 and the printed tables of mayors and sheriffs — for 111 new claims. They are UNSPENDABLE by design, not unspent by neglect: Chicago was not a city until March 1837, so every office on printed page 38 postdates the scene date and nothing in the register may be written onto an 1835 record. The crosswalk in fergus_1839_register_crosswalk_1835.json rules on all 105 indexable names against the four pools and files 10 resident matches, 8 ambiguous, 25 surname-only refusals and 3 entries the rule cannot test; T-0514 and T-0515 are the passes allowed to carry any of it onto a card. The one row that reaches 1835 — Silas W. Sherman, sheriff of Cook County under the term the 1834 row opens — is filed as a derivation with its refusal and writes nothing to the town."
   }
  ],
  "lowered": [
@@ -143,7 +183,9 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 6,
-  "civic": 99
- }
+  "census_1840": 0,
+  "civic": 0,
+  "directories": 0
+ },
+ "unsourced_ceiling": {}
 }

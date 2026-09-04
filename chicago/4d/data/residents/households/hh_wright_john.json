@@ -106,5 +106,20 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "A FATHER-AND-SON HOUSEHOLD ASSEMBLED FROM TWO SEPARATE ROSTER ENTRIES, and one of only three multi-generation households in this parcel. THE ADVERTISEMENT IS WORTH MORE THAN THE PEOPLE HERE: 'Two Buildings to Let' until 1 June 1834 documents a rental market in a town of perhaps a thousand people, and this project holds a trap about that same advertisement - it carries an engraving of a three-storey building which is a jobbing printer's stock cut and NOT a picture of anything in Chicago."
+ "research_note": "A FATHER-AND-SON HOUSEHOLD ASSEMBLED FROM TWO SEPARATE ROSTER ENTRIES, and one of only three multi-generation households in this parcel. THE ADVERTISEMENT IS WORTH MORE THAN THE PEOPLE HERE: 'Two Buildings to Let' until 1 June 1834 documents a rental market in a town of perhaps a thousand people, and this project holds a trap about that same advertisement - it carries an engraving of a three-storey building which is a jobbing printer's stock cut and NOT a picture of anything in Chicago.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "wright_john"
+   },
+   {
+    "person_id": "wright_john_s"
+   }
+  ]
+ }
 }

@@ -163,6 +163,40 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
+### L218 — Fifteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 15 businesses
+**Decision:** where the 1835 record attests a trade and no source of the scene year says
+where it stood, a **street** printed against that person in Fergus's Chicago directory of
+1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
+street **face**. The placement is graded `reconstructed`, the note says how many years it
+was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
+**Why:** the town prints trades far more often than it prints doors. Twenty of 825
+households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
+later addresses sitting on the record with nothing reading them. The volumes that print
+doors are all later than the scene, so the choice was a stated back-projection or no
+position at all — the same choice L60 records for the estray pen, decided the same way:
+an absent placement is invisible while a graded one is legible and correctable.
+**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
+frontage and numbered its streets for the first time. Fifteen businesses therefore stand
+on a face on the authority of a volume printed four to nine years after the scene, and
+nine of those years are the widest gap in the set. Two are anchored on a crossing the
+directory names and thirteen have no point at all. A reader who thinks that is too far to
+carry a shop is reading the `reconstructed` chip exactly as intended.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
+dealing a business to one roof on a face is an allocation and not a reading; stacking
+that allocation on an address already read back would be two inventions under one chip.
+The 87 refusals and stand-offs are on the record beside the fifteen, so the arithmetic is
+visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer, and made in the same words
+rather than overstating "rendered".
+**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and
+tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are
+all closer to 1835 than a directory is, and any one of them that places one of these
+businesses supersedes this entry under the policy's clause 2 without an argument.
+**Recorded:** 2026-09-04 (T-0633).
+
 ---
 
 ## Resolved
@@ -634,13 +668,27 @@ two images are not independent, and neither is a period record.
 geometry requirement that came out of the evidence rather than the plan.
 **Recorded:** 2026-08-09.
 
-### L5 — Sauganash Hotel: both footprints are invented
-**Decision:** placeholder rectangles (7×6 m log, 12×8 m frame), tagged `conjectural`.
-**Why:** no dimensions are attested in any source reached. The rectangles are plausible for the
-type and carry no evidence whatsoever.
+### L5 — Sauganash Hotel: the frame block's DEPTH is invented, and now it is the only half that is
+**Decision:** the frame block's footprint is 9.92 × 8 m and the 8 m is a placeholder. The
+frontage is measured (see below); the depth is a plausible figure for the type carrying no
+evidence at all, and the two are graded together at the weaker.
+**Why:** no source reached states a dimension of this building, and one drawn view cannot give a
+depth — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 — so a sheet that fixes the frontage
+leaves the depth exactly where it was. It is held at the old placeholder's own number rather
+than re-guessed, because the placement derivation offsets this origin by the footprint's depth
+to stand the north face on Lake Street, and moving a number with nothing behind it would move
+the building.
+**Resolved in part, 2026-09-04 (T-0626):** two of the three rectangles this entry used to
+admit are no longer inventions. The 12 m frontage was retired for a measured 9.92 m — five bays
+that rectify to equal against the plate's own vanishing point, at a scale datum whose bias the
+same pass bounded at 2.7 %, which refutes 12 m rather than merely failing to support it. And
+the `log_1829` cabin's 7 × 6 m placeholder was retired for Andreas' attested 16 × 20 ft, once
+`drloih_beaubien` identified that cabin with the log building Andreas measures; that value is
+`inferred` on the identification and is out of this entry's Covers.
 **How to resolve:** Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building
-rectangle once the datum is verified.
-**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`.
+rectangle once the datum is verified. A second view of this building from a DIFFERENT station
+would give the depth directly — every view held is the same composition.
+**Covers:** `sauganash_hotel.frame_1831.footprint`.
 **Recorded:** 2026-08-09.
 
 ### L6 — Sauganash Hotel: the pre-1830 position is not represented
@@ -5328,6 +5376,16 @@ by any 1835 witness, whose one vivid sentence gives the white paint and the brig
 shutters — and cannot read a single size off the mesh as evidence. The Evidence panel's
 grades say what each claim rests on; the geometry carries each claim's own confidence (the
 louvre slats are graded weaker than the leaves they sit in); this entry admits the numbers.
+**Superseded in part, 2026-09-04 (T-0626):** the log wing this entry dressed is not the
+hotel's to draw. `drloih_beaubien` captions the very engraving cited here — "The log cabin on
+the left was Chicago's first drugstore" — so the annex in all three views is
+`philo_carpenter_log_shop`, a record this dataset already held and already stood at the same
+corner; the hotel was drawing it a second time, in front of its own street face, which the
+owner reported. `log_wing`, `log_wing_door` and `log_wing_porch_hood` are `false` on the
+record from that date, so the leaf, the hood and their two posts are no longer built. Nothing
+else in this entry moves: the frontispiece, the brick, the moss roof and the louvre pitch are
+the main block's and are unchanged, and the door and hood are not withdrawn as READINGS —
+they belong to the cabin's own record. **L217** carries what replaced the wing.
 **How to resolve:** T-0075's identifications would raise the citations from committed README
 paths to source records; a better scan of any of the three views could correct the sizes; a
 photograph does not exist — the hotel burned in 1851 — so the dimensions stay this entry's
@@ -10091,3 +10149,48 @@ a position, and no lot) · **L92** (the anonymous roofs' own conjecture) · **L1
 this title stops asserting) · tickets **T-0423** (this), **T-0358** (the block numbering it
 spends), **T-0324**, **T-0412** (the vendor trap).
 **Recorded:** 2026-09-03.
+
+### L217 — The Sauganash's second mass: the plate fixes its height and its span, and this fixes how far it runs back
+
+**Decision:** the Sauganash Hotel (`sauganash_hotel`, frame_1831) gains a second two-storey
+mass — a cross wing standing back off its own rear wall at the east end, clapboard like the
+block, its ridge running away at right angles at the block's own ridge height, two lights in
+its far gable and one in the attic above them, and no stack. **One number in that is invented
+and it is the only one:** `cross_wing_depth_m`, how far the wing runs back, set at 8.0 m. The
+gable lights, their sills and the attic light are the archetype's, as every opening on this
+building's wings has been since **L154**.
+**Why:** everything else about the wing is measured, and the measurement is arithmetic on a
+banked reading rather than a look at a picture. T-0617 put the near apex of Braunhold's plate
+at (648, 350) with one line out of it at image slope −0.318 and one at +0.095.
+`tools/sauganash_apex_lines.py` projects each onto the vertical through the vanishing point of
+the plane it lies in — the plate gives both horizontal vanishing points and, from their
+orthogonality, its own focal length — and both come out **horizontal in the world**, 1.35° and
+0.11°, where a 38° rake in the same plane would have been drawn at slope −1.99 against the
+−0.318 measured. Two ridges, not a ridge and a rake. Two gable ridges of one wall height and
+one pitch stand at one height only if they span the same width, so the wing's SPAN is the main
+block's own depth and the archetype refuses to build it at any other; `tools/check.sh` gates
+on the finding. What no single sheet can give is a DEPTH — `docs/RESEARCH/sauganash_image_accuracy.md`
+row 11 says so, and from the plate's station this wing is behind the main block with only its
+ridge showing. So 8.0 m is the owner's own reading of the views, *"almost the same size"*,
+taken as the block's 8 m depth, which makes the wing square in plan. It was also chosen to
+leave the fenced rear yard its Market Street gateway and its three kept trees: nothing about
+that yard is attested either, and a wing sized to fill it would be one guess crowding another.
+**Consequence:** a visitor at Lake and Market sees the three-part building all three views
+draw — the five-bay block on the street, a second mass of the same ridge height running back
+behind its east end, and the log cabin at that same end on the street line — where until now
+they saw one 12 × 8 m box with a log wing wrongly stood in front of its face. The wing's ridge
+height and its span are readings and carry the record's `inferred`; its length is this entry's
+and carries `reconstructed`, so the Evidence panel grades the two apart. Nobody can read the
+wing's depth off the mesh as evidence. The rear yard's drawn ground is notched around it and
+its east elm moved 2.1 m to keep its stated 2.5 m off a fence that also moved.
+**How to resolve:** the individual building rectangles on Hathaway 1834 or Wright 1834 at the
+Lake and Market corner would give the whole plan at once and end both this entry and the
+frontage measurement it stands beside; Andreas vol. 1 p. 106 ("Eagle Exchange"), unread at
+page-image level, is the other standing lead; a second view of this building **from a
+different station** — every one held is the same composition — would give the depth directly.
+Related: **L154** (the fabric this entry stands beside, and the log wing it supersedes) ·
+**L136** (the front of this building, from the same three plates) · **L139** (the yard trees
+this wing was sized around) · tickets **T-0626** (this), **T-0617** (the reading it spends),
+**T-0616** (the owner's brief).
+**Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
+**Recorded:** 2026-09-04.

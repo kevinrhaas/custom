@@ -1812,7 +1812,7 @@
   }
  ],
  "cells_read_by": "T-0530",
- "cells_method": "Read off the deposited page image at full resolution, one column strip at a time, with the sheet's own ruling used to fix the column boundaries: the vertical rules were located by their darkness profile per line, which is what makes the reading safe on a sheet whose rules lean about 36 px across the page — a fixed grid taken from the middle of the sheet puts the top and bottom lines a quarter of a column out. Every column that carries a mark was then re-read a second time as a montage of its own 31 cells, which is the pass that caught four arithmetic slips in the first reading. No image, crop or render is committed; the deposit stays read-only.",
+ "cells_method": "Read off the deposited page image at full resolution, one column strip at a time, with the sheet's own ruling used to fix the column boundaries: the vertical rules were located by their darkness profile per line, which is what makes the reading safe on a sheet whose rules lean about 36 px across the page \u2014 a fixed grid taken from the middle of the sheet puts the top and bottom lines a quarter of a column out. Every column that carries a mark was then re-read a second time as a montage of its own 31 cells, which is the pass that caught four arithmetic slips in the first reading. No image, crop or render is committed; the deposit stays read-only.",
  "cell_bands": {
   "free_white_male": [
    "under_5",
@@ -1861,7 +1861,7 @@
    "100_and_upwards"
   ]
  },
- "cells_are": "Per line, one integer per column of the printed schedule, in the sheet's own order. A blank cell on the sheet is a 0 here — the schedule's blank IS a zero, and every one of the 62 lines was looked at rather than skipped. `printed_on_the_sheet: null` in the column totals means the footing cell is blank, which the enumerator used for none.",
+ "cells_are": "Per line, one integer per column of the printed schedule, in the sheet's own order. A blank cell on the sheet is a 0 here \u2014 the schedule's blank IS a zero, and every one of the 62 lines was looked at rather than skipped. `printed_on_the_sheet: null` in the column totals means the footing cell is blank, which the enumerator used for none.",
  "column_totals": {
   "free_white_male": {
    "columns": [
@@ -2125,5 +2125,13 @@
  "column_totals_are": "The sheet foots its own columns, and that footing is the only check this reading has. It is stated per column, agreeing or not; a column that does not reconcile is named with both figures rather than smoothed, and no cell was changed to make a footing come out.",
  "reconciliation_summary": "2 of 38 columns do not reconcile with the sheet's own footings: free_white_female 5_to_9: read 15, footing 13; free_white_female 15_to_19: read 3, footing 5",
  "free_population_read": 151,
- "free_population_by_the_sheets_footings": 151
+ "free_population_by_the_sheets_footings": 151,
+ "pairing": {
+  "paired_to_continuation_sheet": "33S7-9YYJ-K2",
+  "state": "paired",
+  "paired_by": "T-0656",
+  "why": "this leaf holds 31 lines and foots 151 across all 38 columns; 33S7-9YYJ-K2 holds 31 entries and foots 151 under TOTAL, and the two sequences of family totals agree position for position with no insertion anywhere. The evidence, the candidates considered and the sequence screen are in pairing_key_26_50.json. Not one cell of this reading was changed by the pairing.",
+  "page_population_key": 151,
+  "line_count_key": 31
+ }
 }

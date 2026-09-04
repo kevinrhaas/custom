@@ -4,7 +4,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pilot.py",
   "population_frame": {
-    "eligible_real_named_people": 849,
+    "eligible_real_named_people": 872,
     "sample_size": 75,
     "strata": {
       "established_profile": 5,
@@ -26,7 +26,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -41,7 +42,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_tribune_1882_05_19_fourth_reception"
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -56,7 +58,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -70,7 +73,8 @@
       "starting_occupation": "physician",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -84,7 +88,8 @@
       "starting_occupation": "packer",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -268,7 +273,8 @@
       "starting_occupation": "attorney",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
@@ -353,7 +359,8 @@
       "starting_occupation": "none_recorded",
       "letter_list_returns": [],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad"
       ],
       "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
@@ -612,9 +619,9 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_w_oakley_benjamin",
-      "person_id": "w_oakley_benjamin",
-      "name": "Oakley Benjamin W.",
+      "household_id": "hh_oakley_benjamin_w",
+      "person_id": "oakley_benjamin_w",
+      "name": "Benjamin W. Oakley",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -660,9 +667,9 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_ii_preston_stephen",
-      "person_id": "ii_preston_stephen",
-      "name": "Preston Stephen II.",
+      "household_id": "hh_preston_stephen_ii",
+      "person_id": "preston_stephen_ii",
+      "name": "Stephen II. Preston",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
@@ -676,8 +683,8 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_starkweather_rob_t",
-      "person_id": "starkweather_rob_t",
+      "household_id": "hh_starkweather_robt",
+      "person_id": "starkweather_robt",
       "name": "Rob't. Starkweather",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
@@ -788,8 +795,8 @@
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
     {
-      "household_id": "hh_m_vaughton_angus",
-      "person_id": "m_vaughton_angus",
+      "household_id": "hh_mvaughton_angus",
+      "person_id": "mvaughton_angus",
       "name": "Angus M'Vaughton",
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",

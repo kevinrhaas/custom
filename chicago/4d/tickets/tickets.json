@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 2:12 AM",
+  "generated_ct": "Sep 4, 2026, 10:58 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 100
+      "queue_rank": 125
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 99
+      "queue_rank": 124
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 98
+      "queue_rank": 123
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 97
+      "queue_rank": 122
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 96
+      "queue_rank": 121
     },
     {
       "id": "T-0137",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 103
+      "queue_rank": 128
     },
     {
       "id": "T-0182",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 90
+      "queue_rank": 115
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 110
+      "queue_rank": 135
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 111
+      "queue_rank": 136
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 61
+      "queue_rank": 86
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 94
+      "queue_rank": 119
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 109
+      "queue_rank": 134
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 106
+      "queue_rank": 131
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 132
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 104
+      "queue_rank": 129
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 86
+      "queue_rank": 111
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 105
+      "queue_rank": 130
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 93
+      "queue_rank": 118
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 91
+      "queue_rank": 116
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 92
+      "queue_rank": 117
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 101
+      "queue_rank": 126
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 90
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 85
+      "queue_rank": 96
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 112
+      "queue_rank": 137
     },
     {
       "id": "T-0272",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 81
+      "queue_rank": 92
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 82
+      "queue_rank": 93
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 83
+      "queue_rank": 94
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": 112
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 113
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 133
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 84
+      "queue_rank": 95
     },
     {
       "id": "T-0304",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 80
     },
     {
       "id": "T-0321",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 80
+      "queue_rank": 91
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 88
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 89
+      "queue_rank": 114
     },
     {
       "id": "T-0365",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 95
+      "queue_rank": 120
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 113
+      "queue_rank": 138
     },
     {
       "id": "T-0378",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 36
+      "queue_rank": 59
     },
     {
       "id": "T-0386",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 114
+      "queue_rank": 139
     },
     {
       "id": "T-0389",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 67
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 74
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 66
     },
     {
       "id": "T-0397",
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 73
     },
     {
       "id": "T-0399",
@@ -6603,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 65
     },
     {
       "id": "T-0404",
@@ -6621,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 75
     },
     {
       "id": "T-0405",
@@ -6639,7 +6639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 76
     },
     {
       "id": "T-0406",
@@ -6657,7 +6657,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 64
     },
     {
       "id": "T-0407",
@@ -6675,7 +6675,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 68
     },
     {
       "id": "T-0408",
@@ -6693,7 +6693,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 69
     },
     {
       "id": "T-0409",
@@ -6729,7 +6729,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 70
     },
     {
       "id": "T-0411",
@@ -6747,7 +6747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 71
     },
     {
       "id": "T-0412",
@@ -6765,7 +6765,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 61
     },
     {
       "id": "T-0413",
@@ -6783,7 +6783,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 72
     },
     {
       "id": "T-0414",
@@ -6801,7 +6801,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 60
     },
     {
       "id": "T-0415",
@@ -6819,7 +6819,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 62
     },
     {
       "id": "T-0416",
@@ -6860,7 +6860,7 @@
     {
       "id": "T-0418",
       "title": "The 36 documented tradespeople whose trade the residents vocabulary has no word for",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6868,12 +6868,14 @@
       "legacy_id": null,
       "parent": "T-0373",
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "780",
+      "claimed_by": "run 9/4/2026, 6:23:03 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "closed_at": "2026-09-04T12:06:01.466Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33867108004",
+      "queue_rank": null
     },
     {
       "id": "T-0419",
@@ -6891,7 +6893,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 81
     },
     {
       "id": "T-0420",
@@ -6927,7 +6929,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 82
     },
     {
       "id": "T-0422",
@@ -6945,7 +6947,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 83
     },
     {
       "id": "T-0423",
@@ -6983,7 +6985,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 78
     },
     {
       "id": "T-0425",
@@ -7001,7 +7003,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 77
     },
     {
       "id": "T-0426",
@@ -7019,7 +7021,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 63
     },
     {
       "id": "T-0427",
@@ -7055,7 +7057,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 79
     },
     {
       "id": "T-0429",
@@ -7073,7 +7075,7 @@
       "claimed_by": "run 8/30/2026, 1:51:13 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 33
+      "queue_rank": 56
     },
     {
       "id": "T-0430",
@@ -7109,7 +7111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 34
+      "queue_rank": 57
     },
     {
       "id": "T-0432",
@@ -7127,7 +7129,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 35
+      "queue_rank": 58
     },
     {
       "id": "T-0433",
@@ -7145,7 +7147,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 102
+      "queue_rank": 127
     },
     {
       "id": "T-0435",
@@ -7163,7 +7165,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 76
+      "queue_rank": 87
     },
     {
       "id": "T-0436",
@@ -7181,7 +7183,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 89
     },
     {
       "id": "T-0438",
@@ -7199,7 +7201,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 115
+      "queue_rank": 141
     },
     {
       "id": "T-0439",
@@ -7217,7 +7219,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 116
+      "queue_rank": 142
     },
     {
       "id": "T-0440",
@@ -7235,7 +7237,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 117
+      "queue_rank": 13
     },
     {
       "id": "T-0442",
@@ -7289,7 +7291,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 49
     },
     {
       "id": "T-0445",
@@ -7307,7 +7309,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 50
     },
     {
       "id": "T-0446",
@@ -7325,7 +7327,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 51
     },
     {
       "id": "T-0447",
@@ -7343,7 +7345,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 52
     },
     {
       "id": "T-0448",
@@ -7379,7 +7381,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 118
+      "queue_rank": 143
     },
     {
       "id": "T-0450",
@@ -7397,7 +7399,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 84
     },
     {
       "id": "T-0451",
@@ -7415,7 +7417,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 54
     },
     {
       "id": "T-0452",
@@ -7433,7 +7435,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 55
     },
     {
       "id": "T-0453",
@@ -7451,7 +7453,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 53
     },
     {
       "id": "T-0454",
@@ -7469,7 +7471,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 85
     },
     {
       "id": "T-0459",
@@ -7576,7 +7578,7 @@
       "claimed_by": null,
       "blocked_on": "T-0219",
       "needs_bake": true,
-      "queue_rank": 62
+      "queue_rank": 97
     },
     {
       "id": "T-0465",
@@ -7593,7 +7595,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": true,
-      "queue_rank": 63
+      "queue_rank": 98
     },
     {
       "id": "T-0466",
@@ -7610,7 +7612,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 99
     },
     {
       "id": "T-0467",
@@ -7627,7 +7629,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 100
     },
     {
       "id": "T-0468",
@@ -7644,7 +7646,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 66
+      "queue_rank": 101
     },
     {
       "id": "T-0469",
@@ -7661,7 +7663,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 67
+      "queue_rank": 102
     },
     {
       "id": "T-0470",
@@ -7678,7 +7680,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 103
     },
     {
       "id": "T-0471",
@@ -7695,7 +7697,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 69
+      "queue_rank": 104
     },
     {
       "id": "T-0472",
@@ -7712,7 +7714,7 @@
       "claimed_by": null,
       "blocked_on": "T-0470",
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 105
     },
     {
       "id": "T-0473",
@@ -7729,7 +7731,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 71
+      "queue_rank": 106
     },
     {
       "id": "T-0474",
@@ -7746,7 +7748,7 @@
       "claimed_by": null,
       "blocked_on": "T-0473",
       "needs_bake": true,
-      "queue_rank": 72
+      "queue_rank": 107
     },
     {
       "id": "T-0475",
@@ -7763,7 +7765,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 73
+      "queue_rank": 108
     },
     {
       "id": "T-0476",
@@ -7780,7 +7782,7 @@
       "claimed_by": null,
       "blocked_on": "T-0475",
       "needs_bake": true,
-      "queue_rank": 74
+      "queue_rank": 109
     },
     {
       "id": "T-0477",
@@ -7797,7 +7799,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 75
+      "queue_rank": 110
     },
     {
       "id": "T-0478",
@@ -8139,7 +8141,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 35
     },
     {
       "id": "T-0497",
@@ -8157,7 +8159,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 36
     },
     {
       "id": "T-0498",
@@ -8215,7 +8217,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": 28
     },
     {
       "id": "T-0501",
@@ -8253,7 +8255,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 29
     },
     {
       "id": "T-0503",
@@ -8351,7 +8353,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 8
     },
     {
       "id": "T-0508",
@@ -8369,7 +8371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 19
     },
     {
       "id": "T-0509",
@@ -8387,7 +8389,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 20
     },
     {
       "id": "T-0510",
@@ -8405,7 +8407,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 21
     },
     {
       "id": "T-0511",
@@ -8423,7 +8425,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 23
     },
     {
       "id": "T-0512",
@@ -8441,7 +8443,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 24
     },
     {
       "id": "T-0513",
@@ -8479,7 +8481,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 0
     },
     {
       "id": "T-0515",
@@ -8497,7 +8499,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 1
     },
     {
       "id": "T-0516",
@@ -8515,7 +8517,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 22
     },
     {
       "id": "T-0517",
@@ -8533,7 +8535,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 25
     },
     {
       "id": "T-0518",
@@ -8551,7 +8553,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 26
     },
     {
       "id": "T-0520",
@@ -8569,7 +8571,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 120
+      "queue_rank": 144
     },
     {
       "id": "T-0522",
@@ -8587,7 +8589,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 119
+      "queue_rank": 140
     },
     {
       "id": "T-0523",
@@ -8664,7 +8666,7 @@
     {
       "id": "T-0527",
       "title": "The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8672,17 +8674,19 @@
       "legacy_id": null,
       "parent": "T-0495",
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "775",
+      "claimed_by": "run 9/4/2026, 3:53:40 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "closed_at": "2026-09-04T10:30:06.757Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855134088",
+      "queue_rank": null
     },
     {
       "id": "T-0528",
       "title": "The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8690,17 +8694,19 @@
       "legacy_id": null,
       "parent": "T-0495",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-04",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "closed_at": "2026-09-04T08:53:15.828Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0529",
       "title": "The 1840 census image 33S7-9YYJ-V2, printed 237, is a continuation sheet whose TOTAL column carries three-figure numbers and is not a household page",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8708,12 +8714,14 @@
       "legacy_id": null,
       "parent": "T-0495",
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "774",
+      "claimed_by": "run 9/4/2026, 4:38:47 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "closed_at": "2026-09-04T09:56:23.842Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855115057",
+      "queue_rank": null
     },
     {
       "id": "T-0530",
@@ -8839,7 +8847,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 121
+      "queue_rank": 37
     },
     {
       "id": "T-0537",
@@ -8857,7 +8865,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 122
+      "queue_rank": 145
     },
     {
       "id": "T-0538",
@@ -8936,7 +8944,7 @@
     {
       "id": "T-0542",
       "title": "Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -8944,12 +8952,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "786",
+      "claimed_by": "run 9/4/2026, 8:05:33 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 123
+      "closed_at": "2026-09-04T14:35:01.901Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875911797",
+      "queue_rank": null
     },
     {
       "id": "T-0543",
@@ -8967,7 +8977,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 124
+      "queue_rank": 34
     },
     {
       "id": "T-0544",
@@ -9265,7 +9275,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 125
+      "queue_rank": 33
     },
     {
       "id": "T-0562",
@@ -9551,7 +9561,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 126
+      "queue_rank": 5
     },
     {
       "id": "T-0578",
@@ -9629,7 +9639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 127
+      "queue_rank": 30
     },
     {
       "id": "T-0582",
@@ -9647,7 +9657,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 128
+      "queue_rank": 31
     },
     {
       "id": "T-0583",
@@ -9665,7 +9675,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 129
+      "queue_rank": 32
     },
     {
       "id": "T-0584",
@@ -9781,7 +9791,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 130
+      "queue_rank": 7
     },
     {
       "id": "T-0590",
@@ -9821,7 +9831,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 131
+      "queue_rank": 15
     },
     {
       "id": "T-0593",
@@ -9841,7 +9851,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 132
+      "queue_rank": 12
     },
     {
       "id": "T-0594",
@@ -9861,7 +9871,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 133
+      "queue_rank": 10
     },
     {
       "id": "T-0595",
@@ -9881,7 +9891,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 134
+      "queue_rank": 11
     },
     {
       "id": "T-0596",
@@ -9901,7 +9911,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 135
+      "queue_rank": 14
     },
     {
       "id": "T-0597",
@@ -9921,7 +9931,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 136
+      "queue_rank": 9
     },
     {
       "id": "T-0598",
@@ -9981,7 +9991,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 137
+      "queue_rank": 47
     },
     {
       "id": "T-0601",
@@ -10001,12 +10011,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 138
+      "queue_rank": 48
     },
     {
       "id": "T-0602",
       "title": "The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10014,14 +10024,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "776",
+      "claimed_by": "run 9/4/2026, 6:19:38 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 139
+      "closed_at": "2026-09-04T11:43:00.912Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33867094965",
+      "queue_rank": null
     },
     {
       "id": "T-0603",
@@ -10081,7 +10091,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 27
     },
     {
       "id": "T-0606",
@@ -10121,7 +10131,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 3
     },
     {
       "id": "T-0610",
@@ -10141,12 +10151,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 142
+      "queue_rank": 4
     },
     {
       "id": "T-0611",
       "title": "Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10154,14 +10164,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-04",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 8:05:55 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 143
+      "closed_at": "2026-09-04T13:08:36.571Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875897472",
+      "queue_rank": null
     },
     {
       "id": "T-0613",
@@ -10261,7 +10271,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 44
     },
     {
       "id": "T-0620",
@@ -10281,7 +10291,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": 45
     },
     {
       "id": "T-0621",
@@ -10301,7 +10311,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 46
     },
     {
       "id": "T-0625",
@@ -10326,7 +10336,7 @@
     {
       "id": "T-0626",
       "title": "Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10334,14 +10344,14 @@
       "legacy_id": null,
       "parent": "T-0616",
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "770",
+      "claimed_by": "run 9/4/2026, 2:01:09 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 0
+      "closed_at": "2026-09-04T08:13:52.429Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846627075",
+      "queue_rank": null
     },
     {
       "id": "T-0627",
@@ -10401,7 +10411,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 38
     },
     {
       "id": "T-0630",
@@ -10444,6 +10454,146 @@
       "queue_rank": null
     },
     {
+      "id": "T-0632",
+      "title": "Spend the directory crosswalks onto the people: 130 adjudicated matches carry a later trade or address, and 111 of 849 persons have an occupation",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-04",
+      "pr": "781",
+      "claimed_by": "run 9/4/2026, 7:43:28 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T12:47:44.253Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33867114819",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0633",
+      "title": "Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-04",
+      "pr": "784",
+      "claimed_by": "run 9/4/2026, 8:57:02 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T14:04:19.441Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875882469",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0634",
+      "title": "Consolidation pass 1: write every ruling closed since T-0513 onto the card it names, and report the delta on both hops",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-04",
+      "pr": "783",
+      "claimed_by": "run 9/4/2026, 8:05:32 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T13:42:39.842Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875904640",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0635",
+      "title": "Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 6
+    },
+    {
+      "id": "T-0636",
+      "title": "Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 18
+    },
+    {
+      "id": "T-0637",
+      "title": "289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 17
+    },
+    {
+      "id": "T-0638",
+      "title": "A trailing middle initial took the surname slot, so 19 letter-list households are named 'The C household' and can never match a directory",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-04",
+      "pr": "778",
+      "claimed_by": "run 9/4/2026, 6:19:12 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T11:58:27.587Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33867101519",
+      "queue_rank": null
+    },
+    {
       "id": "T-0640",
       "title": "The 1840 census images 1-25: continuation sheets 33S7-9YYJ-8D and -9WS read line by line and closed against their own printed column totals",
       "state": "split",
@@ -10466,7 +10616,7 @@
     {
       "id": "T-0641",
       "title": "The 1840 census images 1-25: continuation sheets 33S7-9YYJ-B1, -B2 and -BF read line by line and closed against their own printed column totals",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10474,19 +10624,19 @@
       "legacy_id": null,
       "parent": "T-0539",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-04",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 2:02:23 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 4
+      "closed_at": "2026-09-04T07:18:34.893Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846649199",
+      "queue_rank": null
     },
     {
       "id": "T-0642",
       "title": "The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10494,14 +10644,14 @@
       "legacy_id": null,
       "parent": "T-0539",
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "766",
+      "claimed_by": "run 9/4/2026, 2:17:07 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 5
+      "closed_at": "2026-09-04T07:32:19.142Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846632682",
+      "queue_rank": null
     },
     {
       "id": "T-0643",
@@ -10526,7 +10676,7 @@
     {
       "id": "T-0644",
       "title": "The 1840 census image 33S7-9YYJ-9WS read line by line and closed against its own printed column totals",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10534,14 +10684,14 @@
       "legacy_id": null,
       "parent": "T-0640",
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "769",
+      "claimed_by": "run 9/4/2026, 2:52:40 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 3
+      "closed_at": "2026-09-04T08:10:47.650Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846643856",
+      "queue_rank": null
     },
     {
       "id": "T-0645",
@@ -10566,7 +10716,7 @@
     {
       "id": "T-0646",
       "title": "The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10574,14 +10724,14 @@
       "legacy_id": null,
       "parent": "T-0631",
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "767",
+      "claimed_by": "run 9/4/2026, 2:01:37 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 2
+      "closed_at": "2026-09-04T07:47:24.647Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846638378",
+      "queue_rank": null
     },
     {
       "id": "T-0647",
@@ -10601,7 +10751,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 39
     },
     {
       "id": "T-0648",
@@ -10626,7 +10776,7 @@
     {
       "id": "T-0649",
       "title": "Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10634,14 +10784,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "777",
+      "claimed_by": "run 9/4/2026, 6:19:06 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 149
+      "closed_at": "2026-09-04T11:57:49.646Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33867088988",
+      "queue_rank": null
     },
     {
       "id": "T-0650",
@@ -10661,7 +10811,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 16
     },
     {
       "id": "T-0652",
@@ -10681,10 +10831,330 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 40
     },
     {
       "id": "T-0653",
+      "title": "The 1840 census image 33S7-9YYJ-B1 read line by line and closed against its own printed column totals",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0641",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "768",
+      "claimed_by": "run 9/4/2026, 2:18:59 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T07:47:27.639Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33846649199",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0654",
+      "title": "The 1840 census image 33S7-9YYJ-B2 read line by line and closed against its own printed column totals",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0641",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "772",
+      "claimed_by": "run 9/4/2026, 3:49:33 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T10:36:41.196Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855121248",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0655",
+      "title": "The 1840 census image 33S7-9YYJ-BF read line by line and closed against its own printed column totals",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0641",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "773",
+      "claimed_by": "run 9/4/2026, 3:50:23 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T10:07:15.403Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855127716",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0656",
+      "title": "The 1840 census images 26-50: the population key of the filled left sheets and the pairing of the group's nine continuation sheets",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0528",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "771",
+      "claimed_by": "run 9/4/2026, 3:53:18 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T09:28:30.642Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33855139434",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0657",
+      "title": "The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0528",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 41
+    },
+    {
+      "id": "T-0658",
+      "title": "The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0528",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 42
+    },
+    {
+      "id": "T-0659",
+      "title": "The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0528",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 43
+    },
+    {
+      "id": "T-0660",
+      "title": "The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 146
+    },
+    {
+      "id": "T-0661",
+      "title": "The other 95 printed trades the residents vocabulary still cannot say",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 147
+    },
+    {
+      "id": "T-0662",
+      "title": "check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 148
+    },
+    {
+      "id": "T-0663",
+      "title": "Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 149
+    },
+    {
+      "id": "T-0664",
+      "title": "Fergus 1839, printed pages 40-46: the charter election of 2 May 1837 and its list of voters for mayor",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0611",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "782",
+      "claimed_by": "run 9/4/2026, 8:08:40 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T13:38:11.448Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875897472",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0665",
+      "title": "Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0611",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "787",
+      "claimed_by": "run 9/4/2026, 10:03:19 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T15:29:43.574Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33887002417",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0666",
+      "title": "Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0611",
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0667",
+      "title": "Fergus's own first-ward total is three names more than the names he printed: settle it off the page images",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 150
+    },
+    {
+      "id": "T-0669",
+      "title": "Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 151
+    },
+    {
+      "id": "T-0672",
       "title": "The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down",
       "state": "open",
       "epic": "META",
@@ -10701,10 +11171,10 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
     },
     {
-      "id": "T-0654",
+      "id": "T-0673",
       "title": "The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured",
       "state": "open",
       "epic": "META",
@@ -10721,7 +11191,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 153
     }
   ]
 }

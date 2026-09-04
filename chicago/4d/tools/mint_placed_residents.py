@@ -525,6 +525,31 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
     return doc
 
 
+# T-0634. What the civic spend writes onto a person, named here so this mint can carry it
+# over without importing the pass: the source id it cites and the first words of the
+# paragraph it appends. Both are checked against the pass's own constants by
+# `tools/spend_civic_voter_lists.py --self-test`'s sibling assertion in check.sh, and a
+# drift in either shows up immediately as this mint deleting a citation.
+CIVIC_ROLLS_SOURCE = "chicago_voter_lists_1833_1835_irad"
+CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
+
+
+def carry_civic_rolls(doc: dict, existing: dict) -> None:
+    """Re-attach the 1833-1835 rolls' citation to a record this mint has just rebuilt."""
+    was = {p.get("id"): p for p in existing.get("persons") or []}
+    for person in doc.get("persons") or []:
+        before = was.get(person.get("id"))
+        if not before:
+            continue
+        if CIVIC_ROLLS_SOURCE in (before.get("sources") or []):
+            if CIVIC_ROLLS_SOURCE not in (person.get("sources") or []):
+                person["sources"] = (person.get("sources") or []) + [CIVIC_ROLLS_SOURCE]
+        note = before.get("note") or ""
+        if CIVIC_ROLLS_MARKER in note and CIVIC_ROLLS_MARKER not in (person.get("note") or ""):
+            tail = note[note.index(CIVIC_ROLLS_MARKER):].strip()
+            person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
+
+
 def build(preload: dict | None = None):
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
@@ -540,6 +565,25 @@ def build(preload: dict | None = None):
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
         doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
+        # THE LATER-EVIDENCE BLOCK IS NOT THIS PASS'S AND IS CARRIED OVER (T-0632).
+        # `tools/spend_directories.py` writes a `directories` key onto the households a
+        # Chicago directory of 1839, 1843 or 1844 meets, holding what those volumes
+        # print beside the person and citing the source. It states nothing about 1835
+        # and this mint derives nothing about it, so re-deriving the record must not
+        # silently delete it — which is what this byte-for-byte gate would otherwise
+        # turn into: the spend pass writes the block, this pass rebuilds without it,
+        # and whichever ran last wins.
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        if existing.get("directories"):
+            doc["directories"] = existing["directories"]
+        # AND THE TOWN'S OWN ROLLS, CARRIED THE SAME WAY AND FOR THE SAME REASON
+        # (T-0634). `tools/spend_civic_voter_lists.py` writes the 1833-1835 poll and tax
+        # lists onto the people its crosswalk matched, as a citation and a paragraph on
+        # the PERSON rather than as a block on the household. This mint derives a person's
+        # sources and note from the newspaper register alone, so rebuilding a record the
+        # rolls have reached would delete the citation and leave two byte-for-byte gates
+        # fighting over the same file — whichever ran last winning, which is not a gate.
+        carry_civic_rolls(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

@@ -134,30 +134,41 @@ which is a person this reconstruction would get wrong. Rewriting a generated cla
 second source is a pass of its own, with its own rule to write down, and it has not been done
 here for the same reason T-0568 did not regrade the 65 businesses.
 
-### What T-0569 spent it on — `data/residents/directory_1844.json`
+### What T-0632 spends them on — the layer, the ledger and the cards
 
-The crosswalk above is a PROPOSAL and stops at the edge of the residents layer. **T-0587**
-(the residents piece of T-0569) is the pass that spends it, and what it produces is a layer
-BESIDE the household records rather than a key inside them:
-`tools/spend_norris_1844.py` reads the crosswalk and writes
-`data/residents/directory_1844.json`, which `renderers/web/js/residents.js` joins on
-`person_id` and renders on the person's own card.
+The crosswalks above are PROPOSALS and stop at the edge of the residents layer. T-0569
+spent one of the four (`tools/spend_norris_1844.py`, retired 2026-09-04);
+**`tools/spend_directories.py`** subsumes it and spends all four, in three places:
 
-**Why beside and not inside.** Most of the people this reaches live in records a mint
-regenerates byte for byte — `mint_letter_list_residents.py --check` and its four siblings diff
-the whole file — so a block written into them is drift by the next gate that runs. It is also
-the argument T-0442 already made for candidate identities, and the shape
-`residents/research_pilot.json` already has: an 1844 listing is EVIDENCE ABOUT 1844 offered
-beside a person of 1835, not a fact of theirs, and keeping it beside the record is what stops
-it reading as one.
+| file | what it holds |
+|---|---|
+| `data/residents/directories.json` | the layer the panel renders — 150 people, every volume that meets them, every entry as printed, and the graded later trade and later address |
+| `data/research/directories/spend_crosswalk_1835.json` | the ledger — 329 rulings, one per (person, volume), saying what was CARRIED to the card and what was REFUSED, with the claims and the source each rests on |
+| `data/residents/households/*.json` | a `directories` block on the 141 households those rulings name, citing the volume |
 
-**67 people, and all three statuses are shown.** 48 meet exactly one entry no other person in
-this town meets, 15 meet several and the project does not choose between them, 4 share their
-one entry with another 1835 person so no match is made. A section that showed only the first
-would be reporting the crosswalk's successes and hiding its arithmetic. Of the 48, **21** have
-no trade in the 1835 layer and a trade printed against their name in 1844, and **39** have no
-1835 street and a street printed in 1844 — stated on the card as what the line HOLDS, carried
-into no 1835 claim, and moving nobody's grade.
+**Beside the record AND on it, which is not the same as inside it.** The layer keeps the
+printed lines, the match rules and the crosswalks' arithmetic where a card has no room for
+them; the block on the record carries the later trade and street as graded values that
+describe 1839, 1843 or 1844 and cite the volume. Neither touches an 1835 claim. T-0569's
+argument for keeping this beside the record was that a mint regenerates most of these
+files byte for byte — `mint_placed_residents.py --check` is the one that actually does so,
+and it now carries an existing `directories` block over rather than deleting it, which is
+the mechanism that makes the block safe.
+
+**Four rules, all of them refusals.** Nothing is carried that a match's own `could_carry`
+does not declare; nothing is carried off an ambiguous or contested match; Norris's
+alphabetical split does not cross at all, because that volume sets a partnership where the
+trade goes and the split yields "of Horace Norton & Co" and twice simply "of"; and no 1835
+grade moves, ever — the count of grades changed is zero and `--self-test` holds it there.
+The Fergus volumes set the trade first and its qualifiers after, so their split crosses
+with a caution printed beside every value it produces.
+
+**150 people, and all three statuses are shown.** 235 single-entry matches, 73 ambiguous
+and 21 contested; 106 people are met by more than one volume. 35 gain a trade the 1835
+record never had and 87 an address; 6 hold only a line whose parse this project will not
+cross. `tools/measure_research_spend.py` reads the ledger: the domain's spend rose from
+311 to 556, and its second hop — rulings that reach a person, and whether that person's
+CARD learned them — stands at 235 reached, 235 written, 0 unwritten.
 
 **The 171 refusals reach no card.** A refusal on this rule — the surname is in the book under
 no entry carrying the person's initial — is a statement about eleven Smiths rather than about
@@ -570,3 +581,35 @@ reader's entity index but never this project's gloss (the gloss says "Norris's s
 of the beginning", which would otherwise date the author's own 1844 firm to 1832), that
 a one-surname firm needs an agreeing initial on both sides, and that a founding year
 has to be carried by founding language rather than by a street number.
+
+---
+
+## What is done with the addresses — `address_back_projection.json` (T-0633)
+
+T-0632 left **87 addresses** on the people of 1835, and an address on a record that
+nothing reads is a fact nobody has decided anything about.
+`tools/back_project_addresses.py` decides. It is the fourth grammar for placing a
+building in this project — `docs/ADDRESS-BACK-PROJECTION.md` is the policy, **L218**
+the liberty, and the other three are `docs/STREET-FACE-ADOPTION.md`,
+`docs/CORNER-ORDINAL.md` and `docs/LOT-ADDRESS.md` — and the only one whose source is
+written *after* the year it places.
+
+Every one of the 87 is put through four clauses, in order, and the record says which
+one decided it: the 1835 record has to attest a **business** to position (39 refused
+there); nothing better may already place it (23 stand off, 6 more are the directory's
+own `res`/`bds` and belong to T-0669); the address has to resolve onto the **1835**
+street grid under that name and in that place (4 refused, including `Michigan ave`,
+which is not the 1835 layer's Michigan Street, and `Clark st cor. Monroe`, which puts a
+grocer three blocks outside the platted town); and what survives is graded
+`reconstructed` and says how many years it was carried.
+
+**Fifteen businesses gain a face.** Not a lot, not a roof, and not a `works_at` — the
+allocation of one roof on a face is `STREET-FACE-ADOPTION.md`'s to make about a source
+of the scene year, and stacking it on an address read back four to nine years would put
+two inventions under one chip. `lives_at` stayed at 20 and `works_at` at 50 across the
+pass, on purpose and by assertion.
+
+**The refusals are committed beside the placements**, in the ledger and on the card
+both, and `tools/check.sh` re-derives all of it byte for byte. That is not tidiness: a
+refusal that vanishes from the record reads to the next run as an address nobody had
+looked at, and the next run does the work again.

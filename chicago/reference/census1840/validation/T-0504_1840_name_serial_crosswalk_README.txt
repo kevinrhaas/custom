@@ -52,13 +52,13 @@ COUNTS as of this build
 
   households in the extract          964
   distinct fingerprints among them   622
-  pages held                         31
-  pages carrying committed cells     18
-  lines read on those pages          553
-    unique                           209
-    ambiguous                        233
+  pages held                         39
+  pages carrying committed cells     21
+  lines read on those pages          636
+    unique                           254
+    ambiguous                        271
     none                             111
-  serials attached                   209
+  serials attached                   254
   contested and withdrawn            1
 
   printed  image           cols   lines  uniq   ambig  none
@@ -74,8 +74,11 @@ COUNTS as of this build
       215  33S7-9YYJ-9WF  25/26   31     2     15    14
       216  33S7-9YYJ-DD   20/26   31     9     22     0
       230  33S7-9YYJ-NY   26/26   31     0      0    31
+      241  33S7-9YYJ-Q1   26/26   21    15      6     0
       217  33S7-9YYJ-RC   23/26   31    11     20     0
       232  33S7-9YYJ-W6   26/26   31     0      0    31
+      239  33S7-9YYN-3CDH 26/26   31    16     15     0
+      227  33SQ-GYYJ-6V   26/26   31    14     17     0
       207  33SQ-GYYJ-93G  26/26   30    18     12     0
       209  33SQ-GYYJ-93Y  26/26   31    24      7     0
       211  33SQ-GYYJ-97P  26/26   30    13     17     0

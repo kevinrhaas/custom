@@ -792,8 +792,8 @@
       "identity_rule": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
     },
     {
-      "person_id": "w_oakley_benjamin",
-      "household_id": "hh_w_oakley_benjamin",
+      "person_id": "oakley_benjamin_w",
+      "household_id": "hh_oakley_benjamin_w",
       "name_as_recorded": "Oakley Benjamin W.",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-08-31",
@@ -840,8 +840,8 @@
       "identity_rule": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
     },
     {
-      "person_id": "ii_preston_stephen",
-      "household_id": "hh_ii_preston_stephen",
+      "person_id": "preston_stephen_ii",
+      "household_id": "hh_preston_stephen_ii",
       "name_as_recorded": "Preston Stephen II.",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-08-31",
@@ -856,8 +856,8 @@
       "identity_rule": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
     },
     {
-      "person_id": "starkweather_rob_t",
-      "household_id": "hh_starkweather_rob_t",
+      "person_id": "starkweather_robt",
+      "household_id": "hh_starkweather_robt",
       "name_as_recorded": "Rob't. Starkweather",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-08-31",
@@ -983,8 +983,8 @@
       "identity_rule": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
     },
     {
-      "person_id": "m_vaughton_angus",
-      "household_id": "hh_m_vaughton_angus",
+      "person_id": "mvaughton_angus",
+      "household_id": "hh_mvaughton_angus",
       "name_as_recorded": "Angus M'Vaughton",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-08-31",
@@ -1945,8 +1945,8 @@
       "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
     },
     {
-      "person_id": "curtenius_fred_k",
-      "household_id": "hh_curtenius_fred_k",
+      "person_id": "curtenius_fredk",
+      "household_id": "hh_curtenius_fredk",
       "name_as_recorded": "Fred'k. Curtenius",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-09-01",

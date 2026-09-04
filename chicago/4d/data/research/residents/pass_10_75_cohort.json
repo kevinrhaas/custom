@@ -18,8 +18,8 @@
   "selection_policy": "After the pilot and passes 2–5, filter to real named letter_list_only residents; exclude reconstructed/inf_* and unnamed/count placeholders; sort person_id within present and uncertain strata, interleave present then uncertain, and take this fixed chunk in sequence. The manifest is frozen to prevent duplicate research.",
   "people": [
     {
-      "household_id": "hh_o_ranwin",
-      "person_id": "o_ranwin",
+      "household_id": "hh_ranwin_o",
+      "person_id": "ranwin_o",
       "name": "Ranwin O.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -54,8 +54,8 @@
       ]
     },
     {
-      "household_id": "hh_m_clintock_thomas",
-      "person_id": "m_clintock_thomas",
+      "household_id": "hh_mclintock_thomas",
+      "person_id": "mclintock_thomas",
       "name": "Thomas M'Clintock",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -66,8 +66,8 @@
       ]
     },
     {
-      "household_id": "hh_v_regera_john",
-      "person_id": "v_regera_john",
+      "household_id": "hh_regera_john_v",
+      "person_id": "regera_john_v",
       "name": "Regera John V.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -78,8 +78,8 @@
       ]
     },
     {
-      "household_id": "hh_m_dolold_james",
-      "person_id": "m_dolold_james",
+      "household_id": "hh_mdolold_james",
+      "person_id": "mdolold_james",
       "name": "James M'Dolold",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "household_id": "hh_m_grigg_a_a",
-      "person_id": "m_grigg_a_a",
+      "household_id": "hh_mgrigg_a_a",
+      "person_id": "mgrigg_a_a",
       "name": "A. A. M'Grigg",
       "stratum": "letter_list_only_uncertain",
       "letter_list_returns": [
@@ -403,8 +403,8 @@
       ]
     },
     {
-      "household_id": "hh_selden_sam_l_l",
-      "person_id": "selden_sam_l_l",
+      "household_id": "hh_selden_saml_l",
+      "person_id": "selden_saml_l",
       "name": "Sam'l. L. Selden",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
@@ -716,8 +716,8 @@
       ]
     },
     {
-      "household_id": "hh_g_willinm",
-      "person_id": "g_willinm",
+      "household_id": "hh_willinm_g",
+      "person_id": "willinm_g",
       "name": "Willinm G.",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
