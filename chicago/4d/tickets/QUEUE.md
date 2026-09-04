@@ -93,7 +93,8 @@ T-0447 — North Water Street's west end runs across Wolf Point, which the Thomp
 # --- street stands north of the river where the plat carries a whole division.
 # --- T-0452 is the sloughs: the plat draws three, this holds one, as a bare
 # --- centreline with no banks — and they cross the ground T-0451 wants to plat.
-T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0684 — The South Branch bank spike, resolved against Wright's own ink line, and the departure scan run over every water feature
+T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
 

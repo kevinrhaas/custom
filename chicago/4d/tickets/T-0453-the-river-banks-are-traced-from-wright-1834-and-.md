@@ -1,7 +1,7 @@
 ---
 id: T-0453
 title: The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
-state: open
+state: split
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
+closed: 2026-09-04
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T19:24:25.650Z
+claimed_run: null
 ---
 
 **Take this before T-0447 and T-0451.** Both measure streets against the bank,
