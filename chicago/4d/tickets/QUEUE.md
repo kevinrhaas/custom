@@ -238,7 +238,6 @@ T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and c
 # --- T-0454 is beside T-0450 for the same reason: it makes a gate's own instruction
 # --- untrue. The gate says re-bake a stale asset; the bake, run on that exact tree,
 # --- rebuilds nothing. PR #597 is blocked on this and nothing else.
-T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
 
 # --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
 # --- Reported from the dev preview against the Thompson plat sheet. Three of its
@@ -464,3 +463,4 @@ T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number a
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
+
