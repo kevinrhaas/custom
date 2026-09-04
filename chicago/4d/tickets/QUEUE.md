@@ -75,7 +75,6 @@
 # --- yield is a list the town made of its own named inhabitants. The land sales are the
 # --- largest untouched source of POSITION in the project, and T-0676/T-0679 are what T-0610
 # --- and T-0666 left unfinished.
-T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
 # --- T-0589 is the town's civic account; T-0507 the household composition calibration;
@@ -327,3 +326,8 @@ T-0773 — Seven houses hold a printed address that a later printing outranks, a
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0778 — Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
+T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
