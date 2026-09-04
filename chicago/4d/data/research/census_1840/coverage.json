@@ -439,11 +439,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-JM.jpg",
      "sheet_side": "left",
      "printed_page": 224,
-     "lines_with_an_entry": 33,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-JM.json",
+     "lines_ruled": 30,
+     "line_count_corrected_from": 33,
+     "note": "read by T-0553 (piece 2 of T-0526): all 30 lines, names and every one of the 38 age-band columns, on a column grid fitted band by band and anchored on header boxes read at magnification. ALL FIFTEEN FOOTED COLUMNS CLOSE EXACTLY - seven of seven male, eight of eight female, 175 people. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 30, counted twice. Four marks were refused and are named on the page file."
     },
     {
      "index": 29,
@@ -751,7 +754,7 @@
     "names_and_cells_transcribed_pages": 2,
     "names_and_cells_transcribed_lines": 60
    },
-   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0545 \u2014 the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0545 \u2014 the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly. Printed 218 and 224 are now counted rather than estimated and BOTH were declared at 33 'to the nearest line' and carry 30 (T-0553); with printed 217 (33 declared, 31 read, T-0552) that is three of this group's four counted left sheets whose inventory figure was high."
   }
  ],
  "negative_and_inaccessible": [
