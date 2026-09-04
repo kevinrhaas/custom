@@ -211,7 +211,6 @@ T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were nev
 
 # --- THE SMOKE AND ITS RUNNER — the evidence every ticket above owes. T-0346 cut the
 # --- costliest desktop part into three so a run can take it; these are what remains.
-T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 
 # --- THE PIPELINE AND ITS RUNNERS — invisible; the loop's own health
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
@@ -305,3 +304,7 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
 T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
