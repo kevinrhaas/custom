@@ -58,6 +58,47 @@ def anchors_from_page(page, same_line):
     return [round(sum(g) / len(g)) for g in merged]
 
 
+def ink_lines_from_page(page, same_line, thresh):
+    """Re-measure each committed entry from the image instead of trusting its box.
+
+    A box is the bounding box of a connected component, and on a creased leaf the
+    closing that makes a glyph one component also welds the crease to it: on
+    33S7-9YYJ-6H the learned-professions zero at y2839 is a box 87 px tall around
+    a loop 38 px tall, and its box centre stands 20 px above the loop's own centre.
+    T-0627 recorded that and asked this pass to fit to the ink rather than the box.
+
+    So for every entry box, take the row-ink profile inside it, keep the rows
+    carrying at least `thresh` of the profile's peak, and call the midpoint of that
+    dense span the entry's writing line. On the 27 entries of 6H it moves 25 of
+    them by 3.5 px or less and the two crease-welded ones by 13 and 20 px, which
+    is the correction working and not a re-reading of the column.
+    """
+    import numpy as np
+    from PIL import Image, ImageFilter
+    root = os.path.dirname(os.path.dirname(HERE))   # HERE is chicago/4d
+    im = Image.open(os.path.join(root, page['image'])).convert('L')
+    a = np.asarray(im).astype(np.float32)
+    bgd = np.asarray(im.filter(ImageFilter.GaussianBlur(25))).astype(np.float32)
+    ink = (bgd - a) > 45
+    ys = []
+    for col in page.get('column_closure', {}).values():
+        for box in col.get('entry_boxes') or []:
+            x0, y0, x1, y1 = box
+            prof = ink[y0:y1 + 1, x0:x1 + 1].sum(axis=1).astype(float)
+            if prof.max() <= 0:
+                continue
+            nz = np.nonzero(prof >= thresh * prof.max())[0]
+            ys.append(round(y0 + (nz[0] + nz[-1]) / 2.0, 1))
+    ys.sort()
+    merged = []
+    for y in ys:
+        if merged and y - merged[-1][-1] <= same_line:
+            merged[-1].append(y)
+        else:
+            merged.append([y])
+    return [round(sum(g) / len(g), 1) for g in merged]
+
+
 def fit(anchors, lo, hi):
     best = {}
     for bi in range(int(lo * 100), int(hi * 100) + 1):
@@ -86,6 +127,12 @@ def main():
     ap.add_argument('--pitch-min', type=float, default=60.0)
     ap.add_argument('--pitch-max', type=float, default=90.0)
     ap.add_argument('--json', action='store_true')
+    ap.add_argument('--ink-line', action='store_true',
+                    help="fit to each entry's own ink rather than to its bounding "
+                         'box centre, which a welded crease can drag off the line')
+    ap.add_argument('--ink-thresh', type=float, default=0.50,
+                    help='rows carrying this fraction of an entry\'s peak row-ink '
+                         'are its body; the midpoint of that span is its line')
     ap.add_argument('--jackknife', action='store_true',
                     help='refit with each anchor dropped in turn; a line count that '
                          'survives every drop is not resting on one entry')
@@ -93,10 +140,19 @@ def main():
 
     path = os.path.join(HERE, 'data/research/census_1840/pages/%s.json' % a.image_id)
     page = json.load(open(path))
-    anchors = anchors_from_page(page, a.same_line)
+    if a.ink_line:
+        anchors = ink_lines_from_page(page, a.same_line, a.ink_thresh)
+    else:
+        anchors = anchors_from_page(page, a.same_line)
     if len(anchors) < 6:
-        sys.exit('%s: only %d anchors in column_closure — not enough to fit a grid'
-                 % (a.image_id, len(anchors)))
+        why = ''
+        if a.ink_line and not any(c.get('entry_boxes')
+                                  for c in page.get('column_closure', {}).values()):
+            why = (" — its column_closure carries entry_y but no entry_boxes, and "
+                   '--ink-line needs the boxes to re-measure inside. Drop the flag '
+                   'to fit to the committed y values.')
+        sys.exit('%s: only %d anchors in column_closure%s'
+                 % (a.image_id, len(anchors), why or ' — not enough to fit a grid'))
     best = fit(anchors, a.pitch_min, a.pitch_max)
     if not best:
         sys.exit('%s: no fit assigns every anchor its own line' % a.image_id)
@@ -124,7 +180,8 @@ def main():
                               for L in sorted(best)},
         }, indent=1))
         return
-    print('%s: %d anchors from column_closure' % (a.image_id, len(anchors)))
+    print('%s: %d anchors from column_closure%s'
+          % (a.image_id, len(anchors), ' (ink lines)' if a.ink_line else ''))
     for L in sorted(best):
         rms, b, a0, _ = best[L]
         print('lines=%2d  rms %6.2f  pitch %5.2f  origin %7.1f%s'
