@@ -115,11 +115,96 @@ finds a reason they cannot — but the run must SAY which reading it took, and w
 in the record. The sketch is the owner's intent about the relationship (main +
 rear wing + a small end block); the images are the authority on where they sit.
 
-The Carpenter question is real and is part of this ticket: is the log annex in
-these views Philo Carpenter's drug store — which the preview labels on a log
-building at this corner — or Mark Beaubien's retained 1829 cabin? They cannot both
-be the same logs. Whatever the answer, it is a claim with a source, not a
-convenience.
+## The Carpenter question is ANSWERED, and the answer changes what the sign says
+
+I filed this ticket with "is the log annex Carpenter's drug store or Beaubien's
+retained 1829 cabin?" as an open question. The owner supplied the source that
+closes it, on 2026-09-03:
+
+> https://drloihjournal.blogspot.com/2018/06/the-history-of-chicagoan-mark-beaubien-hospitality-guru.html
+
+Verbatim: *"In the late summer of 1832, he rented his original log cabin, adjacent
+to his 'Sauganash Tavern,' to the newly arrived Philo Carpenter for use as -
+Chicago's 1st - drugstore."* And: *"An ardent enemy of alcohol, Carpenter soon
+moved out. Mark next rented the space to John S. Wright, and in 1833, the cabin
+became a school under Eliza Chappel's direction."*
+
+**They are the same logs.** The annex is Beaubien's own original cabin, standing
+and let to tenants — which is why every view of the 1831–1851 hotel still shows a
+log building at its end. The tenancy runs:
+
+| from | who | what |
+|---|---|---|
+| 1829 | Mark Beaubien | the tavern itself, before the frame block |
+| late summer 1832 | Philo Carpenter | Chicago's first drug store |
+| soon after | John S. Wright | "Mark next rented the space to" him |
+| Sept 1833 | Eliza Chappell | a school |
+| **1834** | **— moved out —** | **the school goes to the First Presbyterian Church** |
+| **1 July 1835** | **unattested** | **no source reached names a use** |
+
+**AND THE SCHOOL HAD ALREADY GONE BY THE SCENE DATE.** The owner was right to
+doubt it — *"not fully sure it was a school by then so do research on its function
+and update that structure accordingly"* — and the second source he gave settles it:
+
+> https://drloihjournal.blogspot.com/2018/01/eliza-chappell-the-first-chicago-teacher-paid-by-public-funds-in-1833.html
+
+Verbatim: *"Chappell arrived in Chicago in June 1833 with the prospects of opening
+a school by September. The school was established in a small log house formerly
+used as a store."* — the same cabin, named by its former use. Then: *"**In 1834,
+the school was moved into the First Presbyterian Church** in Fort Dearborn, on the
+southwest corner of Lake and Clark Streets. The school was rented from the church
+for nine dollars a month."* And she *"married Rev. Jeremiah Porter … on June 15,
+1835"*, after which *"the Porters … left Chicago for Farmington, Illinois."*
+
+**So on 1 July 1835 the log annex is neither a drug store nor a school.** It is a
+building with three documented former uses and no attested current one. That is
+the answer this record should carry: a `function` of the shape the project already
+uses for exactly this case — vacant/unattested at the scene date, with the tenancy
+chain in the note — not a fourth guess. What must NOT survive is a 1835 label
+naming a druggist who left in 1832 or a school that moved in 1834.
+
+Three consequences, each a deliverable:
+
+- **`data/structures/philo_carpenter_log_shop.json` is misnamed for 1835.** Its
+  `occupants` block is already honest — *"NO SOURCE REACHED NAMES ANYONE IN THIS
+  BUILDING IN 1835 … rather than carrying Carpenter forward into a building he had
+  demonstrably moved out of"* — but its `name` is still "Philo Carpenter's Log Drug
+  Store" and its `function` still `drug_store`. Both now have a better-sourced
+  answer to carry: former drug store, latterly Chappel's school.
+- **A signboard may be lettering an anachronism.** `data/signage/town_business_signboards.json`
+  carries TWO boards reading `PHILO CARPENTER / Druggist`; one belongs to his South
+  Water Street store, which is correct for 1835 and stays. Establish what the other
+  one is on. A board on the Lake Street log shop in July 1835 letters a man who
+  left two years earlier and a trade that had become a schoolroom.
+- **The double-record.** If the annex is Beaubien's own cabin, then this building
+  is plausibly recorded TWICE — once as `philo_carpenter_log_shop` and once as the
+  Sauganash's `log_1829` phase, whose range ends 1831-12-31 on the reasoning that
+  the frame block superseded it. The source says the cabin kept standing and was
+  let. Reconcile the two records, or state why they are two buildings.
+
+**Check the blog against what this project already holds, and prefer ours where
+they differ.** `hh_chappel_eliza_mir` and `hh_porter_jeremiah` both exist in the
+residents layer, and the Porter record is already sharper than the blog: it has him
+at Pittsburgh in the spring of 1835, **married at Rochester, New York on 15 June
+1835** — not in Chicago, as the blog's phrasing invites — and it carries
+`present_on_scene_date: uncertain` graded `attested` on exactly that reasoning. The
+Chappell household is a letter-list reading (`unplaced`, no occupation, present
+`inferred` from a letter still waiting at the Democrat of 1 July 1835), and the
+resident-research findings already carry "Eliza Chappel Porter" as a strong but
+UNASSERTED candidate for it. So:
+
+- the school claim links to the person this project already holds, rather than
+  minting a new one; and
+- if the schoolmistress is that letter-list name, the two records should stop
+  disagreeing about whether she was in town on 1 July 1835. That reconciliation is
+  in scope for whoever takes this; it is a finding either way.
+
+Both of the owner's links are **new sources** — `data/sources/drloih_hotels.json`
+is a different page (the 2022 hotels chronology). File the 2018 Beaubien article
+and the 2018 Chappell article as their own source records before citing them, at
+the tier the rest of that blog carries (`drloih_hotels` is tier 4), and note that
+neither is a primary document: they are a secondary retelling, and the tenancy
+chain they give is the kind of claim a directory or a deed would upgrade.
 
 ## The axes to read, each graded on its own
 
