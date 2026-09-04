@@ -197,7 +197,6 @@
 # --- T-0626 spends the reading. Split from T-0616 because reading four plates and rebuilding
 # --- the massing are two demonstrations. (T-0626 was filed as T-0618 and restamped: dev's own
 # --- #749 had minted a T-0618 of its own for the Newberry volume-4 OCR reader.)
-T-0617 — The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded
 T-0626 — Spend the Sauganash reading: retire the 12x8 placeholder for the two-mass plan, site the log annex where the views put it, and bake the door, sash, shutters and roof the reading resolved
 
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
@@ -467,3 +466,4 @@ T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-pars
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
 T-0645 — Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
+T-0649 — Settle whether the Eliza Chappel shore drawing is a fifth view of the Sauganash's log annex, by reading its lighthouse

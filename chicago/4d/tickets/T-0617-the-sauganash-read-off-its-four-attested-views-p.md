@@ -1,7 +1,7 @@
 ---
 id: T-0617
 title: The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0616
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 763
+claimed_by: run 9/4/2026, 1:08:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T06:08:18.462Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33839188720
 ---
 
 The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded.
