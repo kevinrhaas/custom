@@ -236,7 +236,7 @@
    "ticket": "T-0506",
    "source_id": "fergus_chicago_directory_1839",
    "unit": "page",
-   "what": "The same volume, printed page 37 (leaf 49): the churches, the hotels, the public offices and rooms, the two named rows, the Dutch Settlement and the footnote recording the Tremont House fire of 27 October 1839. Town findings, in claims/fergus_1839_town_findings.json. NOT DECLARED by THIS reading, and read elsewhere or not at all: leaves 52-58 (printed 40-46), the 1837 charter election and its list of voters for mayor, READ by T-0664 and declared below; leaves 50-51 (printed 38-39), the city register and the lists of mayors and sheriffs, committed as text by T-0664 and owned by T-0665; leaves 59-62 (printed 47-50), the lots sold in the Fort Dearborn Addition and the population table, READ by T-0666 and declared below; and leaves 63-80, the 1843 preface and Fergus's historical sketch, which have no ticket. T-0611 was the appendices ticket and was split into those three on 2026-09-04.",
+   "what": "The same volume, printed page 37 (leaf 49): the churches, the hotels, the public offices and rooms, the two named rows, the Dutch Settlement and the footnote recording the Tremont House fire of 27 October 1839. Town findings, in claims/fergus_1839_town_findings.json. NOT DECLARED by THIS reading, and read elsewhere or not at all: leaves 52-58 (printed 40-46), the 1837 charter election and its list of voters for mayor, READ by T-0664 and declared below; leaves 50-51 (printed 38-39), the city register and the lists of mayors and sheriffs, READ by T-0665 and declared below; leaves 59-62 (printed 47-50), the lots sold in the Fort Dearborn Addition and the population table, READ by T-0666 and declared below; and leaves 63-80, the 1843 preface and Fergus's historical sketch, which have no ticket. T-0611 was the appendices ticket and was split into those three on 2026-09-04.",
    "items": [
     "fergus_1839_leaf_049"
    ]
@@ -266,9 +266,29 @@
    },
    "counts_note": "Claims per leaf, and read_fergus_1839_election.py --check holds the reading to them: a segmenter that quietly loses a column of a poll list is invisible to every other gate here.",
    "not_read_and_why": {
-    "leaves 50-51 (printed 38-39)": "the city register of 1839 and the printed lists of mayors and sheriffs. Committed as text by T-0664 and NOT read out. T-0665 owns it.",
+    "leaves 50-51 (printed 38-39)": "the city register of 1839 and the printed lists of mayors and sheriffs. Committed as text by T-0664 and READ OUT by T-0665 on 2026-09-04, which declares them below.",
     "leaves 59-62 (printed 47-50)": "the lots sold in the Fort Dearborn Addition, 10-24 June 1839, and the volume's own population table. READ by T-0666 — see the declaration below, claims/fergus_1839_ft_dearborn_lots.json and claims/fergus_1839_population.json.",
     "printed page 46, the arithmetic": "Fergus's ward totals ARE read, as two tally claims. They do not agree with the names he printed: five wards match exactly and the FIRST WARD is three names short of its own total, 167 read against 170 printed. Neither number is corrected to the other; T-0667 is the ticket for settling it off the page images."
+   }
+  },
+  {
+   "ticket": "T-0665",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed pages 38-39, which are leaves 50-51 of the Internet Archive scan fergusdirectoryo00ferg: THE CITY REGISTER OF 1839 AND THE PRINTED LISTS OF MAYORS AND SHERIFFS. Printed page 38 is the officers of the city of Chicago in 1839 — the mayor, twelve aldermen by ward, the corporation newspaper, the high constable, six assessors, the chief engineer and his two assistants, eight single-holder offices, seven school inspectors, four police constables, six fire wardens and a board of health of three. Printed page 39 is the mayors of Chicago 1837-1873 and the sheriffs of Cook County 1831-1874, each an election-year table, with the two coroners who served ex officio between sheriffs and the two headnotes the tables print above themselves. All of it is in claims/fergus_1839_city_register.json. Every claim carries describes_date 1839 or the year of its own table row, and NONE carries 1835: Chicago was not a city until March 1837, so no office on printed page 38 existed in the town of 1835.",
+   "items": [
+    "fergus_1839_leaf_050",
+    "fergus_1839_leaf_051"
+   ],
+   "counts": {
+    "fergus_1839_leaf_050": 52,
+    "fergus_1839_leaf_051": 59
+   },
+   "counts_note": "Claims per leaf, and read_fergus_1839_register.py --check holds the reading to them. The register sets all six wards of an office in one semicolon-separated run wrapped over three printed lines and breaks a surname across a line end, so a segmenter that loses a ward loses a man without changing any other number here.",
+   "not_read_and_why": {
+    "the town's officers in 1835": "These two pages do not print them. The mayors' table begins in 1837 because the city was incorporated in March 1837, and the town's board of trustees under the 1833 incorporation is nowhere on printed pages 38-39. That absence is filed as a derivation in the claims file, and this reading does not go looking for the trustees elsewhere.",
+    "leaves 59-62 (printed 47-50)": "the lots sold in the Fort Dearborn Addition, 10-24 June 1839, and the volume's own population table. READ by T-0666 — see the declaration below, claims/fergus_1839_ft_dearborn_lots.json and claims/fergus_1839_population.json.",
+    "leaves 63-80": "the 1843 preface and Fergus's historical sketch. No ticket owns them."
    }
   },
   {

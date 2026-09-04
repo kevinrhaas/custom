@@ -8,7 +8,7 @@
   "census_1840": 229,
   "church": 0,
   "books": 126,
-  "directories": 7201,
+  "directories": 7312,
   "newberry_index": 4914,
   "land_sales": 359
  },
@@ -34,7 +34,7 @@
    "spent": 26
   },
   "directories": {
-   "read": 7757,
+   "read": 7868,
    "spent": 556
   },
   "newberry_index": {
@@ -168,9 +168,17 @@
    "domain": "directories",
    "hop": "read",
    "from": 6893,
-   "to": 7201,
+   "to": 7004,
    "date": "2026-09-04",
-   "why": "T-0666 read the last four appendix pages of Fergus 1839, printed 47-50: the Fort Dearborn Addition sale of 10-24 June 1839 (267 rows, 100 named bidders) and the volume's own population table (41 years). It is a SALE ABSTRACT and a TABLE, not a directory of names to be ruled on one by one — its whole yield is the crosswalk committed in the same PR, which meets 51 letter-list persons, 20 entries off the 1833-1835 poll and tax lists, 20 of the 1840 heads and 9 residents of the town with a second independent book, and files 7 contested and 297 surname-only refusals rather than guessing past them. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to a reading; the consolidation series T-0635/T-0636 measures it. Nothing in the reading may be spent as an 1835 location: the Addition is the Beaubien reservation, which in July 1835 was the garrison's ground and was not platted into lots at all."
+   "why": "T-0665 read Fergus 1839 printed pages 38-39 — the city register of 1839 and the printed tables of mayors and sheriffs — for 111 new claims. They are UNSPENDABLE by design, not unspent by neglect: Chicago was not a city until March 1837, so every office on printed page 38 postdates the scene date and nothing in the register may be written onto an 1835 record. The crosswalk in fergus_1839_register_crosswalk_1835.json rules on all 105 indexable names against the four pools and files 10 resident matches, 8 ambiguous, 25 surname-only refusals and 3 entries the rule cannot test; T-0514 and T-0515 are the passes allowed to carry any of it onto a card. The one row that reaches 1835 — Silas W. Sherman, sheriff of Cook County under the term the 1834 row opens — is filed as a derivation with its refusal and writes nothing to the town."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7004,
+   "to": 7312,
+   "date": "2026-09-04",
+   "why": "T-0666 read the last four appendix pages of Fergus 1839, printed 47-50: the Fort Dearborn Addition sale of 10-24 June 1839 (267 rows, 100 named bidders) and the volume's own population table (41 years). It is a SALE ABSTRACT and a TABLE, not a directory of names to be ruled on one by one — its whole yield is the crosswalk committed in the same PR, which meets 51 letter-list persons, 20 entries off the 1833-1835 poll and tax lists, 20 of the 1840 heads and 9 residents of the town with a second independent book, and files 7 contested and 297 surname-only refusals rather than guessing past them. Ruling those onto cards is T-0514's and T-0515's to do and is forbidden to a reading; the consolidation series T-0635/T-0636 measures it. Nothing in the reading may be spent as an 1835 location: the Addition is the Beaubien reservation, which in July 1835 was the garrison's ground and was not platted into lots at all. (This raise is re-recorded after merging dev, which carried T-0665's raise of the same ceiling; the figure covers both readings.)"
   }
  ],
  "lowered": [
