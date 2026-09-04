@@ -6494,7 +6494,7 @@
       "image": "chicago/reference/census1840/33S7-9YYJ-6Q.jpg",
       "printed_page": null,
       "sheet_side": "right",
-      "read_pass": "the seven industry columns read entry by entry against the enumerator's own printed footings and the sheet's LINE COUNT settled from those columns' ink alone (T-0630); then the TOTAL column read digit by digit against that committed grid (T-0631). The TOTAL column's digits are committed below. THE COLUMN DOES NOT CLOSE: it reads 173 against the enumerator's printed 198, and the residual of -25 is recorded rather than spent - see total_column.closure_argument.",
+      "read_pass": "the seven industry columns read entry by entry against the enumerator's own printed footings and the sheet's LINE COUNT settled from those columns' ink alone (T-0630); then the TOTAL column read digit by digit against that committed grid (T-0631); then read a SECOND time, against a digit key labelled by arithmetic on a sheet that closes, with the twelve slave columns demonstrated empty and the body's last line recovered (T-0646). The TOTAL column's digits are committed below. THE COLUMN STILL DOES NOT CLOSE: it reads 177 against the enumerator's printed 198, and the residual of -21 is recorded rather than spent - see total_column.closure_argument and total_column.second_reading.",
       "fingerprintable": false,
       "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
