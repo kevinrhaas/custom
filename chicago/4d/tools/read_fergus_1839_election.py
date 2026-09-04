@@ -306,7 +306,10 @@ def build():
         n += 1
         claims.append({
             "id": "f1839_v%04d" % n,
-            "kind": "event" if category == "absence" else "town",
+            # The closed research vocabulary has no word for "the town said this"; a
+            # tally, a ward boundary and a recorded absence are all acts of the
+            # corporation, and `civic` is the word it does have for those.
+            "kind": "event" if category == "absence" else "civic",
             "reading": "transcription_mediated",
             "quote": raw,
             "normalized": {"as_printed": flat(raw), "name": what, "role": category},

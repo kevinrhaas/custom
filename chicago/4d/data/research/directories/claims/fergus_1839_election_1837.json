@@ -24190,7 +24190,7 @@
   },
   {
    "id": "f1839_v0758",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Total  votes  in  Chicago  in  1837  by  wards:\nFirst . 170\nSecond . 238\nThird .  38\nFourth .  59\nFifth .  60\nSixth . 144\n  709",
    "normalized": {
@@ -24214,7 +24214,7 @@
   },
   {
    "id": "f1839_v0759",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Total  votes  in  Chicago  in  1837  by  divisions:\nSouth . 408\nWest .  97\nNorth . 204\n  709",
    "normalized": {
@@ -24238,7 +24238,7 @@
   },
   {
    "id": "f1839_v0760",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "First — South  side  east  of  Clark  street.  •",
    "normalized": {
@@ -24262,7 +24262,7 @@
   },
   {
    "id": "f1839_v0761",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Second — South  side  west  of  Clark  street  to  the  River.",
    "normalized": {
@@ -24286,7 +24286,7 @@
   },
   {
    "id": "f1839_v0762",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Third — South  of  West  Randolph  street,  west  of  the  River.",
    "normalized": {
@@ -24310,7 +24310,7 @@
   },
   {
    "id": "f1839_v0763",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Fourth — West  of  the  River,  north  of  West  Randolph  street.",
    "normalized": {
@@ -24334,7 +24334,7 @@
   },
   {
    "id": "f1839_v0764",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Fifth— North  of  the  River,  west  of  North  Clark  street.",
    "normalized": {
@@ -24358,7 +24358,7 @@
   },
   {
    "id": "f1839_v0765",
-   "kind": "town",
+   "kind": "civic",
    "reading": "transcription_mediated",
    "quote": "Sixth — North  of  the  River,  east  of  North  Clark  street.",
    "normalized": {
