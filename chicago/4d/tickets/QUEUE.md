@@ -184,7 +184,6 @@
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
-T-0506 — The 1839 Chicago directory is cited from a web transcription and never extracted: every entry structured and crosswalked
 T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread
 
 
@@ -449,3 +448,4 @@ T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves 
 T-0606 — Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
+T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table

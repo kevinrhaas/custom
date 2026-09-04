@@ -191,6 +191,55 @@
    "result": "2,065 of T-0566's 2,073 entries matched (99.61%), of Kim Torp's 2,070 (99.76%). 1,190 identical, 808 agreeing at a ratio of 0.90 or better, 67 differing below it, 8 in the archive reading alone and 5 in hers. The addenda count agrees exactly at 117 in both. Every disagreement is held with BOTH readings verbatim and neither is preferred; nothing in claims/ was deleted, rewritten or regraded.",
    "the_addenda": "Both readings separate the addenda from the directory proper and both hold 117 entries in it, and no matched pair crosses the boundary. They are reached differently: T-0566 reads the addenda off printed pages 62-65 of the scan, and the Genealogy Trails page sets them after a heading and six lines of Norris's own prose introducing them, at lines 854-973 of 1844dir2.txt. Those six prose lines are named in the comparison's lines_not_entries and are the only place the two sources' segmentation of the section could have differed.",
    "what_it_found_that_is_not_yet_fixed": "The archive reading runs two printed entries into one claim at n1844_e1332 — Peter Myers of Chicago avenue and Andrew Nelson of North Water street — and reads Hiram where Kim Torp reads A. J. for the Woodbury clerking at T. W. Salisbury's. Both stand as recorded disagreements. Repairing a generated claims file out of a second source is a pass of its own with its own rule to write down; see second_readings/README.md."
+  },
+  {
+   "ticket": "T-0506",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "Fergus' Directory of the City of Chicago, 1839 (Fergus Printing Company, 1876), the ALPHABETICAL DIRECTORY: printed pages 5-36, which are leaves 17-48 of the Internet Archive scan fergusdirectoryo00ferg. Every entry on every one of those pages is a claim in claims/fergus_1839_directory_entries.json.",
+   "items": [
+    "fergus_1839_leaf_017",
+    "fergus_1839_leaf_018",
+    "fergus_1839_leaf_019",
+    "fergus_1839_leaf_020",
+    "fergus_1839_leaf_021",
+    "fergus_1839_leaf_022",
+    "fergus_1839_leaf_023",
+    "fergus_1839_leaf_024",
+    "fergus_1839_leaf_025",
+    "fergus_1839_leaf_026",
+    "fergus_1839_leaf_027",
+    "fergus_1839_leaf_028",
+    "fergus_1839_leaf_029",
+    "fergus_1839_leaf_030",
+    "fergus_1839_leaf_031",
+    "fergus_1839_leaf_032",
+    "fergus_1839_leaf_033",
+    "fergus_1839_leaf_034",
+    "fergus_1839_leaf_035",
+    "fergus_1839_leaf_036",
+    "fergus_1839_leaf_037",
+    "fergus_1839_leaf_038",
+    "fergus_1839_leaf_039",
+    "fergus_1839_leaf_040",
+    "fergus_1839_leaf_041",
+    "fergus_1839_leaf_042",
+    "fergus_1839_leaf_043",
+    "fergus_1839_leaf_044",
+    "fergus_1839_leaf_045",
+    "fergus_1839_leaf_046",
+    "fergus_1839_leaf_047",
+    "fergus_1839_leaf_048"
+   ]
+  },
+  {
+   "ticket": "T-0506",
+   "source_id": "fergus_chicago_directory_1839",
+   "unit": "page",
+   "what": "The same volume, printed page 37 (leaf 49): the churches, the hotels, the public offices and rooms, the two named rows, the Dutch Settlement and the footnote recording the Tremont House fire of 27 October 1839. Town findings, in claims/fergus_1839_town_findings.json. NOT DECLARED, and therefore not read: leaves 50-64 (printed 38-52) — the city register, the mayors, the 1837 charter election and its LIST OF VOTERS FOR MAYOR, the lots sold in the Fort Dearborn Addition and the population table — and leaves 65-80, Fergus's historical sketch. T-0611 is the ticket for the appendices; the sketch has none yet.",
+   "items": [
+    "fergus_1839_leaf_049"
+   ]
   }
  ]
 }

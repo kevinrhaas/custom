@@ -1295,6 +1295,23 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
+# T-0506. Fergus's 1839 directory — the closest address list to 1835 this project can
+# reach, and until now cited only through somebody else's web transcription. Same three
+# gates as 1843's, for the same reason: a segmenter that quietly loses forty entries is
+# invisible to every other check here, a hand-edited proposal is how a proposal becomes a
+# fact nobody decided, and the street face compiled off it is what the street tickets will
+# read. The third one also guards the compiler's own warning — that every address number
+# in the volume off Lake street is an 1876 number — which is carried per row and would
+# otherwise be a sentence in a README that nothing enforces.
+step "Fergus's 1839 directory rebuilds from its committed text" \
+  python3 tools/read_fergus_1839.py --check
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839.py --check
+
+step "…and the 1839 street face compiled off it rebuilds too" \
+  python3 tools/fergus_1839_street_faces.py --check
+
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
 # was written to the businesses layer. A negative result is the easiest artefact in the
