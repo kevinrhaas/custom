@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 7:14 PM",
+  "generated_ct": "Sep 3, 2026, 8:01 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9672,7 +9672,7 @@
     {
       "id": "T-0585",
       "title": "The 1840 census images 1-25: names and cells of the left sheet printed 219",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -9682,9 +9682,11 @@
       "opened": "2026-09-03",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 8:01:09 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33823910077",
       "queue_rank": 3
     },
     {
