@@ -655,3 +655,61 @@ measurement alone.
 y2743-2772, sitting dead centre between two numbers that are each where the grid puts them —
 is recorded as unassigned rather than folded into either. A row index that cannot be wrong
 about the count is still allowed to be silent about one mark.
+
+## Printed pages 218 and 224, read to the cell (T-0553)
+
+`33S7-9YYJ-PC` (printed **218**) and `33S7-9YYJ-JM` (printed **224**) finish T-0526's four
+left sheets, after T-0552 read 216 and 217. Sixty households, every one of the 38 age-band
+columns on each line, and the enumerator's own footings transcribed beside them.
+
+**Both sheets close.** Every column either sheet's enumerator footed reproduces from the
+cells exactly — sixteen of sixteen on page 218 (113 people), fifteen of fifteen on page 224
+(175 people). That is thirty-one footed columns closing at a residual of zero, and it is a
+check on the grid as much as on the reading.
+
+| sheet | block | footings that close | that do not |
+|---|---|---|---|
+| 218 `33S7-9YYJ-PC` | free white males | **7 of 7** | — |
+| 218 | free white females | **9 of 9** | — |
+| 218 | free coloured | unfooted; body empty | — |
+| 224 `33S7-9YYJ-JM` | free white males | **7 of 7** | — |
+| 224 | free white females | **8 of 8** | — |
+| 224 | free coloured | unfooted; body empty | — |
+
+**The column grid has to be measured twice, and the second measurement is the one that
+matters.** T-0552 already found that a grid taken off the printed header is a quarter of a
+column out in the middle of the page. These two sheets add the other half of the lesson.
+Fitting an evenly spaced comb to the whole leaf finds the pitch correctly — 79.8 px on page
+218 — but it cannot tell you WHICH rule the block starts at, and on page 218 its strongest
+fit for the free-white-female block was one entire column to the right of the truth. Read
+that way, every woman on the sheet is one age band too young and nothing announces it. What
+settled it was the printed header read at magnification: the box lettered `Under / 5` for
+the female block occupies x=1799–1878 on that leaf, and the male `100 / and up- / wards.`
+box ends at 1799. Both sheets' block edges are fixed that way and the comb is used only for
+the pitch and the drift. The drift is real and it is why the fit is banded: page 218's male
+block starts at x=768.5 near the top of the body and at x=798.5 near the foot.
+
+**A line count corrected, twice.** The inventory declared page 218 at 33 lines "to the
+nearest line" and page 224 at 33. Each carries **30**, counted twice — once down the names
+column at magnification and once on the drawn grid — with no blank ruled line between
+entries. With page 217 (33 declared, 31 read) that is three of this group's four counted
+left sheets whose inventory figure was high, and the pattern is worth stating for the sheets
+still uncounted: the "to the nearest line" figures in `coverage.json` run about 8% long.
+
+**Five marks refused, all of them named.** Four on page 224 and one on page 218 are recorded
+as no entry rather than as a person, and each refusal is written on the page file with the
+reason and with what the column would have footed had the mark been read. Four of the five
+lie on the path of the flourished tail this hand gives the name to their left; the fifth is
+a descender from the line above, which a gridded re-read at 2.2x made plain. None of the
+five was refused because a total wanted it: the cells were read and fixed before the footer
+was looked at.
+
+**One footer glyph is doubtful and says so.** Page 224's male 20–30 footing is two figures,
+`3` and a small bowl above a right-turning curl. The same second glyph stands in the 30–40
+footing beside it, where the column reads 17 from the cells; so the glyph is a 7 and the
+20–30 footing is 37, which is what the cells give. The alternatives (2, 9) and their
+residuals are on the page file.
+
+**What this means for pairing.** Neither sheet is paired to its continuation — that is
+T-0539's work. Each publishes its page population as the key that pairing will read: 113 for
+page 218, 175 for page 224, on 30 lines each.
