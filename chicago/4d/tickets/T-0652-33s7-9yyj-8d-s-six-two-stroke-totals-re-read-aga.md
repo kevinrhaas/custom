@@ -55,3 +55,12 @@ rather than choosing whichever reading closes it.
 
 **Links:** T-0643 (the 8D reading) · T-0645 (the 6H footing) · T-0628 (the 6H line index) ·
 `data/research/census_1840/pages/33S7-9YYJ-8D.json`
+
+**T-0653 (33S7-9YYJ-B1, 2026-09-04) is a second, independent confirmation, and it is the
+stronger one.** B1 carries five matched pairs. Read as 11 its family totals come to 149
+against a printed 165; read as 4, on 33S7-9YYJ-6Q's labelled key, they come to 164 — one
+person short of the enumerator's own footing, the tightest close in the deposit. Its
+line 27 settles the form again from the other side: a 5 and a matched pair standing
+together in the tens-and-units band read 54, and 54 is what the page needs. So the pair
+is a 4 in this hand on at least two sheets besides 6Q's exemplar, and 8D's six of them
+are almost certainly the same. B1's `digit_key_used` block records the check.
