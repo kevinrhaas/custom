@@ -1,0 +1,25 @@
+---
+id: T-0664
+title: Fergus 1839, printed pages 40-46: the charter election of 2 May 1837 and its list of voters for mayor
+state: claimed
+epic: META
+requested_by: loop
+seen: false
+effort: S
+legacy_id: null
+parent: T-0611
+opened: 2026-09-04
+closed: null
+pr: null
+claimed_by: run 9/4/2026, 8:08:40 AM CT
+blocked_on: null
+needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875897472
+---
+
+Fergus 1839, printed pages 40-46: the charter election of 2 May 1837 and its list of voters for mayor.
+
+Piece 1 of 3 of **T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+
+**Acceptance:** (state it before working — one demonstration, never weakened to pass)

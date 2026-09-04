@@ -75,7 +75,9 @@ T-0634 — Consolidation pass 1: write every ruling closed since T-0513 onto the
 # --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
-T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
+T-0664 — Fergus 1839, printed pages 40-46: the charter election of 2 May 1837 and its list of voters for mayor
+T-0665 — Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs
+T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
 T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
