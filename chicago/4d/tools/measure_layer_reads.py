@@ -192,6 +192,12 @@ STATED_SHARED = frozenset({
     # These leaves also occur in the separately rendered research_pilot payload;
     # a bare-name text scan cannot attribute those accesses to the embedded block.
     "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
+    # `source` is the volume each row of a T-0514 evidence block resolves to
+    # (civic_evidence[].source and the four beside it). The only `.source` in the
+    # renderers is main.js:1808 — `asked.source === 'key'`, a keyboard event's own
+    # origin, nothing to do with a resident. The blocks reach no visitor yet and
+    # stay in the unread bank; T-0668 is the ticket that puts them on the card.
+    "source",
 })
 
 # ---------------------------------------------------------------------------

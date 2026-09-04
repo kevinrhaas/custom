@@ -281,8 +281,18 @@ MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
 # minted by that pass BEFORE this field existed, in the same precedence order as
 # `MINTED_PREFIXES` above. `minted_by()` is the union test — a household counts
 # as this pass's whether it still carries the legacy prefix or the field.
+# `("civic", "hh_civic_")` is the fourth pass (T-0514,
+# tools/mint_civic_residents.py) and it is here for a reason its own docstring
+# argues at length: it sits BESIDE the letter-list pass on a pool its refusal 5
+# makes disjoint, not above it, so none of the three passes here should read its
+# households as "the town already names a <Surname>". That test is a proxy for
+# identity resolution over evidence that is a bare name, and the civic pass does
+# not need the proxy — its identities come from the consolidation, which resolves
+# on surname AND forename signature. Letting these three see it would retire
+# hundreds of committed letter-list records on a surname collision alone, which is
+# the opposite of the ruling of 2026-08-30.
 MINTED_PASSES = (("documented", "hh_doc_"), ("placed", "hh_placed_"),
-                 ("letter_list", "hh_ll_"))
+                 ("letter_list", "hh_ll_"), ("civic", "hh_civic_"))
 
 
 def minted_by(path, doc: dict, pass_name: str, legacy_prefix: str) -> bool:

@@ -142,11 +142,15 @@ from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
 
 PREFIX = "hh_placed_"
 LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
+CIVIC_PREFIX = "hh_civic_"      # tools/mint_civic_residents.py (T-0514); beside, not above
 # T-0599: the pass-name/legacy-prefix pairs `town_family_names` skips for THIS
 # pass — itself and the letter-list pass below it, never the documented pass
 # above it. Kept as pairs (not the bare prefixes `_ORDER_SKIP` used to be) so a
 # household minted plain, after T-0599, by either pass is still recognized.
-_ORDER_SKIP = (("placed", PREFIX), ("letter_list", LETTER_LIST_PREFIX))
+# ("civic", "hh_civic_") joins them for the reason MINTED_PASSES states: the civic
+# pass (T-0514) is beside the letter-list pass on a disjoint pool, not above this one.
+_ORDER_SKIP = (("placed", PREFIX), ("letter_list", LETTER_LIST_PREFIX),
+               ("civic", CIVIC_PREFIX))
 PERSON_PREFIX = "placed_"
 DIVISION = "unplaced"
 ARTICLE = re.compile(r"^the\b", re.I)
@@ -707,11 +711,18 @@ def self_test() -> int:
     from mint_documented_residents import MINTED_PASSES, MINTED_PREFIXES, minted_by
     want("T-0376 skips all three minted prefixes",
          set(MINTED_PREFIXES) == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX}, True)
-    want("T-0599's pairs name the same three passes",
-         {prefix for _, prefix in MINTED_PASSES} == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX},
-         True)
-    want("this pass skips its own and the letter-list pass's, and not T-0376's",
-         {prefix for _, prefix in _ORDER_SKIP} == {PREFIX, LETTER_LIST_PREFIX}, True)
+    # T-0514 added a FOURTH pass, tools/mint_civic_residents.py. It is not a fourth
+    # rung of this precedence: it sits BESIDE the letter-list pass on a pool its own
+    # refusal 5 makes disjoint, and the three passes here skip it so that a civic
+    # household never reads as "the town already names a <Surname>". Its own docstring
+    # argues why, and MINTED_PASSES carries the same note.
+    want("T-0599's pairs name the three passes and the civic pass beside them",
+         {prefix for _, prefix in MINTED_PASSES}
+         == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX, CIVIC_PREFIX}, True)
+    want("this pass skips its own, the letter-list pass's and the civic pass's, "
+         "and not T-0376's",
+         {prefix for _, prefix in _ORDER_SKIP}
+         == {PREFIX, LETTER_LIST_PREFIX, CIVIC_PREFIX}, True)
     # minted_by recognizes a household by either shape — the legacy prefix every
     # household minted before T-0599 still carries, or the field a fresh mint
     # carries instead. A household with neither is nobody's.
