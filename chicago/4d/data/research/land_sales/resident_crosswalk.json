@@ -408,16 +408,16 @@
     },
     {
       "a": "SMITH JEDUTHOM",
-      "b": "Elded Smith",
-      "rule": "SMITH JEDUTHOM is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH JEDUTHOM is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEDUTHON",
-      "b": "Elded Smith",
-      "rule": "SMITH JEDUTHON is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH JEDUTHON is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -552,24 +552,24 @@
     },
     {
       "a": "BLANCHARD F G",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD F G is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "W. G. Blanchard",
+      "rule": "BLANCHARD F G is refused against W. G. Blanchard: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BLANCHARD F G AS",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD F G AS is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "W. G. Blanchard",
+      "rule": "BLANCHARD F G AS is refused against W. G. Blanchard: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "BLANCHARD GURTREY",
-      "b": "0 residents named Blanchard",
-      "rule": "BLANCHARD GURTREY is refused against 0 residents named Blanchard: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "W. G. Blanchard",
+      "rule": "BLANCHARD GURTREY is refused against W. G. Blanchard: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -592,8 +592,8 @@
     },
     {
       "a": "BOTSFORD JABEZ K",
-      "b": "0 residents named Botsford",
-      "rule": "BOTSFORD JABEZ K is refused against 0 residents named Botsford: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "J. K. Botsford",
+      "rule": "BOTSFORD JABEZ K is refused against J. K. Botsford: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -664,16 +664,16 @@
     },
     {
       "a": "COOK JOSIAH P",
-      "b": "Rowland I!. Cook",
-      "rule": "COOK JOSIAH P is refused against Rowland I!. Cook: the surname agrees and the forename does not.",
+      "b": "2 residents named Cook",
+      "rule": "COOK JOSIAH P is refused against 2 residents named Cook: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "COOK THOMAS",
-      "b": "Rowland I!. Cook",
-      "rule": "COOK THOMAS is refused against Rowland I!. Cook: the surname agrees and the forename does not.",
+      "b": "2 residents named Cook",
+      "rule": "COOK THOMAS is refused against 2 residents named Cook: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -712,16 +712,16 @@
     },
     {
       "a": "FOOT JOHN",
-      "b": "0 residents named Foot",
-      "rule": "FOOT JOHN is refused against 0 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "S. Foot",
+      "rule": "FOOT JOHN is refused against S. Foot: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "FOOT STAN",
-      "b": "0 residents named Foot",
-      "rule": "FOOT STAN is refused against 0 residents named Foot: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "S. Foot",
+      "rule": "FOOT STAN is refused against S. Foot: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1136,8 +1136,8 @@
     },
     {
       "a": "MONTGOMERY JOHN",
-      "b": "0 residents named Montgomery",
-      "rule": "MONTGOMERY JOHN is refused against 0 residents named Montgomery: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "L. W. Montgomery",
+      "rule": "MONTGOMERY JOHN is refused against L. W. Montgomery: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1248,24 +1248,24 @@
     },
     {
       "a": "SMITH J",
-      "b": "Elded Smith",
-      "rule": "SMITH J is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH J is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEBUTHOM",
-      "b": "Elded Smith",
-      "rule": "SMITH JEBUTHOM is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH JEBUTHOM is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
     },
     {
       "a": "SMITH JEREMIAH",
-      "b": "Elded Smith",
-      "rule": "SMITH JEREMIAH is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH JEREMIAH is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1328,8 +1328,8 @@
     },
     {
       "a": "SMITH GEORGE",
-      "b": "Elded Smith",
-      "rule": "SMITH GEORGE is refused against Elded Smith: the surname agrees and the forename does not.",
+      "b": "2 residents named Smith",
+      "rule": "SMITH GEORGE is refused against 2 residents named Smith: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "evidence": [
         "data/residents/index.json"
       ]
@@ -1456,8 +1456,8 @@
     },
     {
       "a": "RUSSELL JACOB",
-      "b": "0 residents named Russell",
-      "rule": "RUSSELL JACOB is refused against 0 residents named Russell: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
+      "b": "Aaron Russell",
+      "rule": "RUSSELL JACOB is refused against Aaron Russell: the surname agrees and the forename does not.",
       "evidence": [
         "data/residents/index.json"
       ]

@@ -18,32 +18,32 @@
   "civic": {
    "names_read": 460,
    "identities": 386,
-   "appearances_on_an_identity_the_town_already_carries": 116,
-   "unmatched": 344
+   "appearances_on_an_identity_the_town_already_carries": 121,
+   "unmatched": 339
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2916,
-   "appearances_on_an_identity_the_town_already_carries": 179,
-   "unmatched": 4167
+   "identities": 2917,
+   "appearances_on_an_identity_the_town_already_carries": 192,
+   "unmatched": 4154
   },
   "newspapers": {
    "names_read": 2274,
    "identities": 2101,
-   "appearances_on_an_identity_the_town_already_carries": 867,
-   "unmatched": 1407
+   "appearances_on_an_identity_the_town_already_carries": 900,
+   "unmatched": 1374
   },
   "old_settlers": {
    "names_read": 743,
    "identities": 735,
-   "appearances_on_an_identity_the_town_already_carries": 25,
-   "unmatched": 718
+   "appearances_on_an_identity_the_town_already_carries": 29,
+   "unmatched": 714
   },
   "residents": {
-   "names_read": 842,
-   "identities": 840,
+   "names_read": 865,
+   "identities": 863,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 842
+   "unmatched": 865
   },
   "books": {
    "names_read": 0,
@@ -96,21 +96,21 @@
   "civic|directories": 74,
   "civic|newspapers": 92,
   "civic|old_settlers": 27,
-  "civic|residents": 67,
-  "directories|directories": 2916,
-  "directories|newspapers": 151,
+  "civic|residents": 71,
+  "directories|directories": 2917,
+  "directories|newspapers": 153,
   "directories|old_settlers": 30,
-  "directories|residents": 100,
+  "directories|residents": 107,
   "newspapers|newspapers": 2101,
   "newspapers|old_settlers": 47,
-  "newspapers|residents": 782,
+  "newspapers|residents": 805,
   "old_settlers|old_settlers": 735,
-  "old_settlers|residents": 25,
-  "residents|residents": 840
+  "old_settlers|residents": 29,
+  "residents|residents": 863
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 849,
-  "persons_this_tool_placed_on_an_identity": 842,
+  "persons_in_the_layer": 872,
+  "persons_this_tool_placed_on_an_identity": 865,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {

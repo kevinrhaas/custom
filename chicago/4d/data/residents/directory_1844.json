@@ -8,16 +8,16 @@
   "norris_directory_1844"
  ],
  "standard": "An 1844 directory entry corroborates and enriches; under the ratified ladder it never makes an 1835 resident. Every person here keeps the grade, the occupation, the residence and the dates their 1835 evidence gave them.",
- "refusals_not_shown": "The 171 people whose surname is in the volume under no entry carrying their initial are refused in the crosswalk and reach no card.",
+ "refusals_not_shown": "The 181 people whose surname is in the volume under no entry carrying their initial are refused in the crosswalk and reach no card.",
  "counts": {
-  "residents_considered": 847,
-  "people_shown": 67,
-  "single_entry": 48,
-  "ambiguous": 15,
+  "residents_considered": 870,
+  "people_shown": 73,
+  "single_entry": 52,
+  "ambiguous": 17,
   "contested": 4,
-  "refused_in_crosswalk": 171,
+  "refused_in_crosswalk": 181,
   "carrying_a_trade": 21,
-  "carrying_a_street": 39
+  "carrying_a_street": 42
  },
  "people": [
   {
@@ -168,6 +168,30 @@
    ],
    "contested_with": [],
    "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no trade and no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "botsford_j_k",
+   "household_id": "hh_botsford_j_k",
+   "resident": "J. K. Botsford",
+   "year": 1844,
+   "match_status": "single_entry",
+   "match_rule": "Surname 'Botsford' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e0164",
+     "printed_page": 25,
+     "as_printed": "Botsford, J. K. of B. & Beers, 109 Lake st. house Wabash street"
+    }
+   ],
+   "carries": [
+    "address"
+   ],
+   "contested_with": [],
+   "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
    "sources": [
     "norris_directory_1844"
    ]
@@ -548,6 +572,33 @@
    ]
   },
   {
+   "person_id": "cook_j_b",
+   "household_id": "hh_cook_j_b",
+   "resident": "J. B. Cook",
+   "year": 1844,
+   "match_status": "ambiguous",
+   "match_rule": "Surname 'Cook' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e0404",
+     "printed_page": 30,
+     "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts"
+    },
+    {
+     "claim_id": "n1844_e0405",
+     "printed_page": 30,
+     "as_printed": "Cook, Josiah P. baker, res Michigan avenue"
+    }
+   ],
+   "carries": [],
+   "contested_with": [],
+   "note": "2 entries in the volume meet this person on the rule below and this record does not choose between them. All of them are printed here. Nothing is carried from an entry this record does not claim as this person's. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "couch_ira",
    "household_id": "hh_couch_ira",
    "resident": "Ira Couch",
@@ -782,6 +833,28 @@
    ],
    "contested_with": [],
    "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no trade and no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "foot_s",
+   "household_id": "hh_foot_s",
+   "resident": "S. Foot",
+   "year": 1844,
+   "match_status": "single_entry",
+   "match_rule": "Surname 'Foot' folds to the same string as the 1844 entry's, and the given name of both begins S.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e0621",
+     "printed_page": 35,
+     "as_printed": "Foot, S. teamster, corner of Clark and Monroe sts"
+    }
+   ],
+   "carries": [],
+   "contested_with": [],
+   "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record already states what this line could have supplied, so the entry is corroboration and nothing else. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
    "sources": [
     "norris_directory_1844"
    ]
@@ -1155,6 +1228,30 @@
    ]
   },
   {
+   "person_id": "marsh_silvester",
+   "household_id": "hh_marsh_silvester",
+   "resident": "Silvester Marsh",
+   "year": 1844,
+   "match_status": "single_entry",
+   "match_rule": "Surname 'Marsh' folds to the same string as the 1844 entry's, and the given name of both begins S.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e1232",
+     "printed_page": 47,
+     "as_printed": "Marsh, Sylvester, 98 Lake st. packing house N Water st (See card"
+    }
+   ],
+   "carries": [
+    "address"
+   ],
+   "contested_with": [],
+   "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "marshall_j_a",
    "household_id": "hh_marshall_j_a",
    "resident": "J. A. Marshall",
@@ -1235,6 +1332,30 @@
      "claim_id": "n1844_e1277",
      "printed_page": 48,
      "as_printed": "Miller, Jacob, blacksmith, house Indiana st. b Dearb. and Wolcott"
+    }
+   ],
+   "carries": [
+    "address"
+   ],
+   "contested_with": [],
+   "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "montgomery_l_w",
+   "household_id": "hh_montgomery_l_w",
+   "resident": "L. W. Montgomery",
+   "year": 1844,
+   "match_status": "single_entry",
+   "match_rule": "Surname 'Montgomery' folds to the same string as the 1844 entry's, and the given name of both begins L.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e1293",
+     "printed_page": 48,
+     "as_printed": "Montgomery, L. W. shoemaker, at Beecher's house Market st"
     }
    ],
    "carries": [
@@ -1491,6 +1612,33 @@
    ],
    "contested_with": [],
    "note": "One entry in the volume meets this person on the rule below, and no other person in this town meets that entry. The 1835 record has no trade and no street, and the 1844 line prints one. That is 1844 evidence, shown here and written into no 1835 claim. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
+   "sources": [
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "smith_george",
+   "household_id": "hh_smith_george",
+   "resident": "George Smith",
+   "year": 1844,
+   "match_status": "ambiguous",
+   "match_rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "reading": "transcription_mediated",
+   "entries": [
+    {
+     "claim_id": "n1844_e1646",
+     "printed_page": 56,
+     "as_printed": "Smith, George, of'G. S. & Co. res City Hotel"
+    },
+    {
+     "claim_id": "n1844_e1647",
+     "printed_page": 56,
+     "as_printed": "Smith, George & Co. private banker* and exchange brokers, Bank Buildings (See card)"
+    }
+   ],
+   "carries": [],
+   "contested_with": [],
+   "note": "2 entries in the volume meet this person on the rule below and this record does not choose between them. All of them are printed here. Nothing is carried from an entry this record does not claim as this person's. Norris's directory is of 1844, nine years after the day this town is built for. It can corroborate that a person attested here in 1835 was still in Chicago, and it can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's record was regraded, moved, dated or given an occupation by this entry. The line is archive.org's OCR of the printed page, not checked against the image by eye, and its damage is left in the quote on purpose — a tidied quote cannot be found again.",
    "sources": [
     "norris_directory_1844"
    ]
