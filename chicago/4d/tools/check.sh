@@ -54,6 +54,25 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
+# ours' order, theirs' closes and theirs' new tickets — because a text merge of
+# a re-ranked queue against a branch that closed tickets conflicts on every hunk,
+# and `union` would hand back both orderings with every ticket twice. Landing one
+# re-rank on 2026-09-04 cost four merges of dev and four hand reconciliations.
+step "the QUEUE.md merge driver still does what .gitattributes promises" \
+  node tools/merge-queue-selftest.mjs
+
+# ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
+# say what `queue` runs — git keeps a driver command out of tracked content on
+# purpose. So each clone registers it once, and a clone that has not is NOT
+# broken: git falls back to the ordinary text merge, which is what this repo did
+# before the driver existed. Say so and move on.
+if [ -z "$(git config merge.queue.driver || true)" ]; then
+  printf '\033[33m   note: the QUEUE.md merge driver is not registered in this clone.\033[0m\n'
+  printf '\033[33m         QUEUE.md merges will conflict the old way until you run:\033[0m\n'
+  printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
+fi
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.

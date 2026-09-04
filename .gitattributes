@@ -39,3 +39,29 @@
 #
 # See polecat-platform docs/SHELL-API.md § the fleet changelog contract. The
 # fleet's other apps carry the same `merge=union` line and the same exposure.
+
+# QUEUE.md IS MERGED BY A QUEUE-AWARE DRIVER, AND NOT BY `union`.
+#
+# The lesson above applies here and points the other way. Union is a LINE union;
+# it wrecked the changelog because a changelog ENTRY is many lines. A queue entry
+# IS exactly one line, so union would not corrupt this file silently — and
+# `ticket.mjs check` catches every union failure mode loudly (`lists X twice`,
+# `is not an open ticket`, `missing from QUEUE.md`).
+#
+# But loud is not resolved. On the case that actually hurts — one side re-ranks
+# the file on the owner's instruction while the other closes and files tickets —
+# union concatenates BOTH orderings and hands back every ticket twice. Measured
+# 2026-09-04: landing one re-rank took four merges of `dev` and four hand
+# reconciliations, every one of them the same three-line rule.
+#
+# So that rule is a driver instead:
+#     result = OURS, minus what THEIRS closed, plus what THEIRS filed.
+# Ours keeps the ORDER (order is the owner's, and the branch being merged into is
+# the one holding his instruction); theirs decides MEMBERSHIP (a closed ticket is
+# closed, a filed one is real). It REFUSES rather than guesses if the result would
+# carry an id twice.
+#
+# Register it once per clone:  bash chicago/4d/tools/setup-merge-drivers.sh
+# Not registered? git falls back to the ordinary text merge and you get conflict
+# markers — the old behaviour, never something worse. `check.sh` says so.
+chicago/4d/tickets/QUEUE.md merge=queue
