@@ -51,7 +51,7 @@
    "id": "crawford_james",
    "name": "James Crawford",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -75,9 +75,41 @@
     "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1a"
    },
-   "resident_subtype": "projected_resident"
+   "civic_evidence": [
+    {
+     "list": "poll_1835",
+     "as_read": "Crawford, James",
+     "locator": "poll_1835",
+     "record_id": "poll_1835_017",
+     "describes_date": "1835",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Jas. or Robt. Crawford",
+     "locator": "chicago_democrat_1834_04_01#c001",
+     "record_id": "person_jas_or_robt_crawford",
+     "describes_date": "1834-04-01",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Crawford, James",
+     "locator": "chicago_democrat_1835_07_01#c004",
+     "record_id": "person_crawford_james",
+     "describes_date": "1835-07-01",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    }
+   ]
   }
  ],
  "touches_removal": false,

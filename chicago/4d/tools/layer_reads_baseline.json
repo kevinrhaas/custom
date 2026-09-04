@@ -82,88 +82,88 @@
       "records": 2
     },
     "residents/household:persons[].book_evidence[].as_read": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].describes_date": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].list": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].locator": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].record_id": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].rule": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].book_evidence[].source": {
-      "records": 167
+      "records": 215
     },
     "residents/household:persons[].census_evidence[].as_read": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].describes_date": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].list": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].locator": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].record_id": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].rule": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].census_evidence[].source": {
-      "records": 20
+      "records": 27
     },
     "residents/household:persons[].church_evidence[].as_read": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].describes_date": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].list": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].locator": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].record_id": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].rule": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].church_evidence[].source": {
-      "records": 37
+      "records": 39
     },
     "residents/household:persons[].civic_evidence[].as_read": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].describes_date": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].list": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].locator": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].record_id": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].rule": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_evidence[].source": {
-      "records": 221
+      "records": 241
     },
     "residents/household:persons[].civic_mint": {
       "records": 531
@@ -172,25 +172,25 @@
       "records": 531
     },
     "residents/household:persons[].press_evidence[].as_read": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].describes_date": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].list": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].locator": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].record_id": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].rule": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].press_evidence[].source": {
-      "records": 384
+      "records": 496
     },
     "residents/household:persons[].resident_research.asserted_identity": {
       "records": 611
@@ -231,8 +231,26 @@
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
     },
+    "residents/household:persons[].resident_research.refusals[].reason": {
+      "records": 45
+    },
+    "residents/household:persons[].resident_research.refusals[].regraded_on": {
+      "records": 45
+    },
+    "residents/household:persons[].resident_research.refusals[].rule": {
+      "records": 45
+    },
+    "residents/household:persons[].resident_research.refusals[].withheld": {
+      "records": 45
+    },
+    "residents/household:persons[].resident_research.regraded_on": {
+      "records": 73
+    },
     "residents/household:persons[].resident_research.reviewed_on": {
       "records": 611
+    },
+    "residents/household:persons[].resident_research.rule": {
+      "records": 73
     },
     "residents/household:persons[].resident_research.source_ids": {
       "records": 370
@@ -244,7 +262,7 @@
       "records": 611
     },
     "residents/household:persons[].resident_subtype": {
-      "records": 790
+      "records": 726
     },
     "residents/household:source_pass": {
       "records": 1302,

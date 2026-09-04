@@ -554,6 +554,15 @@ def carry_civic_rolls(doc: dict, existing: dict) -> None:
             person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
 
 
+def carry_research(doc: dict, existing: dict) -> None:
+    """Keep a `resident_research` block another pass wrote onto one of these people."""
+    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
+    for person in doc.get("persons") or []:
+        prior = by_id.get(person.get("id")) or {}
+        if prior.get("resident_research") and "resident_research" not in person:
+            person["resident_research"] = prior["resident_research"]
+
+
 def build(preload: dict | None = None):
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
@@ -588,6 +597,17 @@ def build(preload: dict | None = None):
         # rolls have reached would delete the citation and leave two byte-for-byte gates
         # fighting over the same file — whichever ran last winning, which is not a gate.
         carry_civic_rolls(doc, existing)
+        # AND THE RESEARCH BLOCK, FOR THE THIRD TIME AND THE SAME REASON (T-0515).
+        # `tools/synthesize_resident_research.py` writes an adjudicated research
+        # outcome onto a person, and the regrade mode of `mint_civic_residents.py`
+        # writes into the same block the rule and date of a grade the ladder moved —
+        # or, on this pass's cards, the REFUSAL that kept a grade where it was. Both
+        # are findings about the person and neither is derived here, so rebuilding
+        # the record must not delete them. Mark Nobles is the one that found this:
+        # his card is the single downgrade the ladder proposes on a residency-tested
+        # person, refused in writing because the card rests on a dated Democrat issue
+        # the consolidation never read, and the refusal is the whole point of it.
+        carry_research(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

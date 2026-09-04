@@ -152,12 +152,12 @@
   "households": 1380,
   "persons": 1404,
   "by_grade": {
-   "attested": 482,
-   "inferred": 922,
+   "attested": 501,
+   "inferred": 903,
    "reconstructed": 0
   },
   "letter_list_only": 727,
-  "projected_residents": 790,
+  "projected_residents": 726,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
   "civic_mint": 531
@@ -632,7 +632,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2877,7 +2877,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -4253,7 +4253,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5436,7 +5436,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -7465,7 +7465,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -8504,7 +8504,8 @@
    "division": "west",
    "persons": 2,
    "grades": {
-    "inferred": 2
+    "attested": 1,
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": "goss_cobb_saddlery",
@@ -8802,7 +8803,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": "mansion_house",
    "works_at": "mansion_house",
@@ -10618,7 +10619,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10632,7 +10633,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10646,7 +10647,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10660,7 +10661,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10674,7 +10675,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13413,7 +13414,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "mason_blacksmith_shop",
@@ -13460,7 +13461,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14628,7 +14629,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14771,7 +14772,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -17087,7 +17088,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18247,7 +18248,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -19712,8 +19713,8 @@
    "division": "south",
    "persons": 4,
    "grades": {
-    "attested": 1,
-    "inferred": 3
+    "attested": 2,
+    "inferred": 2
    },
    "lives_at": null,
    "works_at": "temple_building",

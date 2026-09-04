@@ -1205,6 +1205,16 @@ step "…and that gate's own assertions still fire when broken" \
 step "the civic, church, press and book residents re-derive from the ladder" \
   python3 tools/mint_civic_residents.py --check
 
+# T-0515, the second mode of the same pass. `--build` above mints the identities
+# the town does NOT hold; this applies the ladder to the 162 it proposes for people
+# already on a card, and its whole value is that the decision is DERIVED — the
+# regrade, the eight it refuses on the forename the volume prints, and the forty-five
+# downgrades it declines because the card rests on Andreas or on an adjudicated
+# research outcome the ladder never read. A hand-edit to any one of those grades
+# would otherwise stand as a reading.
+step "the regraded residents re-derive from the ladder too" \
+  python3 tools/mint_civic_residents.py --regrade --check
+
 step "…and none of them claims more than a person and a reading" \
   python3 tools/mint_civic_residents.py --gate
 
