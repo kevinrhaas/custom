@@ -61,9 +61,10 @@
     "note": "'The first lawyer in Chicago to make a living by his profession alone was Giles Spring', one of the six Andreas counts at the close of 1833, having 'put out his sign' that year."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad"
    ],
-   "note": "HIS FIRST OFFICE WAS A BARREL-HEAD AND HIS SECOND WAS DESK-ROOM IN CATON'S. The two of them opposed each other in the first larceny case heard before a justice of the peace in July 1833, and Caton's account of hiring out to carry the chain for a surveyor on the North Side that same month - because clients were few, fees small and board bills maturing - is the only description in this dataset of what an educated newcomer actually did for money in the town's first summer."
+   "note": "HIS FIRST OFFICE WAS A BARREL-HEAD AND HIS SECOND WAS DESK-ROOM IN CATON'S. The two of them opposed each other in the first larceny case heard before a justice of the peace in July 1833, and Caton's account of hiring out to carry the chain for a surveyor on the North Side that same month - because clients were few, fees small and board bills maturing - is the only description in this dataset of what an educated newcomer actually did for money in the town's first summer. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Election returns — poll list of 1834, filed 11 August 1834 — “Spring, Giles” (poll_1834_103, line 272); Poll list of 1835 — “Spring, G.” (poll_1835_075, line 362). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Spring' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json)."
   }
  ],
  "touches_removal": false,
@@ -86,6 +87,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Spring, Giles (S. & Goodrich), res 62 Adams near State [died May 14, 1851, aged 41¾.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "refused",
+     "clause": "2",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 2)."
     }
    }
   ]

@@ -510,6 +510,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
         "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
     "directories.people[].address_later.sources": (
         "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    # T-0633. What was DONE with the later address, which is the half a reader
+    # cannot check from the address alone: the outcome, the clause that decided
+    # it, the face it earned and the years it was carried. All 87 render,
+    # refusals included — `backProjectionHtml` has no branch that drops one.
+    "directories.people[].back_projection.outcome": (
+        "shown", "bp.outcome === 'placed'"),
+    "directories.people[].back_projection.clause": (
+        "shown", "escapeHtml(String(bp.clause))"),
+    "directories.people[].back_projection.value": ("shown", "escapeHtml(where)"),
+    "directories.people[].back_projection.confidence": ("shown", "swatch(bp.confidence)"),
+    "directories.people[].back_projection.placement": (
+        "shown", "words(bp.placement)"),
+    "directories.people[].back_projection.position_local_enu_m": (
+        "shown", "(bp.position_local_enu_m || []).join(', ')"),
+    "directories.people[].back_projection.describes_date": (
+        "shown", "escapeHtml(String(bp.describes_date))"),
+    "directories.people[].back_projection.read_back_years": (
+        "shown", "escapeHtml(String(bp.read_back_years))"),
+    "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),

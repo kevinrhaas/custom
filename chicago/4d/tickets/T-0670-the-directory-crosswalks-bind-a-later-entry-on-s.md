@@ -1,5 +1,5 @@
 ---
-id: T-0667
+id: T-0670
 title: The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
 state: open
 epic: META
@@ -49,7 +49,7 @@ that differ do not), re-derive both crosswalks, and report which of the 35 survi
 whether the same rule wants a second discriminator — a trade, an address or a year — where the town
 now holds more than one candidate under a surname.
 
-**Links:** T-0514 (the mint that surfaced it) · docs/LIBERTIES.md L218 · T-0633.
+**Links:** T-0514 (the mint that surfaced it) · docs/LIBERTIES.md L219 · T-0633.
 
 **And the same weakness in the other direction, found the same day.** `tools/read_land_sales.py`'s
 resident crosswalk matches a purchaser only where the residents layer holds EXACTLY ONE person of

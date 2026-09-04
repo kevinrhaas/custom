@@ -163,6 +163,51 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
+### L218 — Fourteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 14 businesses
+**Decision:** where the 1835 record attests a trade and no source of the scene year says
+where it stood, a **street** printed against that person in Fergus's Chicago directory of
+1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
+street **face**. The placement is graded `reconstructed`, the note says how many years it
+was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
+**Why:** the town prints trades far more often than it prints doors. Twenty of 825
+households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
+later addresses sitting on the record with nothing reading them. The volumes that print
+doors are all later than the scene, so the choice was a stated back-projection or no
+position at all — the same choice L60 records for the estray pen, decided the same way:
+an absent placement is invisible while a graded one is legible and correctable.
+**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
+frontage and numbered its streets for the first time. Fourteen businesses therefore stand
+on a face on the authority of a volume printed four to nine years after the scene, and
+nine of those years are the widest gap in the set. Two are anchored on a crossing the
+directory names and twelve have no point at all. A reader who thinks that is too far to
+carry a shop is reading the `reconstructed` chip exactly as intended.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
+dealing a business to one roof on a face is an allocation and not a reading; stacking
+that allocation on an address already read back would be two inventions under one chip.
+The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic
+is visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer, and made in the same words
+rather than overstating "rendered".
+**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and
+tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are
+all closer to 1835 than a directory is, and any one of them that places one of these
+businesses supersedes this entry under the policy's clause 2 without an argument.
+**Recorded:** 2026-09-04 (T-0633).
+**Restated:** 2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather
+than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass
+binds a later entry to a resident only where the surname reaches one person. A bigger town made
+`Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer
+carries the later address this pass reads, and his North Water Street face is withdrawn — the
+one street in the town no other rule can seat a shop on, which is what makes the withdrawal
+worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because
+the same larger town let the directory spend reach more people; 105 of the new refusals are
+clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was
+invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that
+caused it.
+
 ---
 
 ## Resolved
@@ -10162,7 +10207,7 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Recorded:** 2026-09-04.
 
 
-### L218 — 531 people join the town on the town's own lists, and a household is written round each of them
+### L219 — 531 people join the town on the town's own lists, and a household is written round each of them
 
 **Scope:** `residents.persons[civic_mint]` — 531 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,

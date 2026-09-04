@@ -348,7 +348,57 @@ function laterClaimHtml(block, citationsById) {
         ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
   };
   return one(block.occupation_later, 'A trade printed against this name')
-    + one(block.address_later, 'An address printed against this name');
+    + one(block.address_later, 'An address printed against this name')
+    + backProjectionHtml(block.back_projection);
+}
+
+/**
+ * And what was done with the later address (T-0633), which is the half a reader
+ * cannot check from the address alone.
+ *
+ * `docs/ADDRESS-BACK-PROJECTION.md` is the fourth grammar for placing a business:
+ * a street printed four to nine years after the scene, read backwards, carried as
+ * the business's street FACE and nothing narrower. Fifteen of the eighty-seven
+ * addresses on this layer earn one; the other seventy-two do not.
+ *
+ * ALL EIGHTY-SEVEN ARE SHOWN, and that is the section rather than a caveat on it.
+ * An address the pass declines is a reading it made — the 1835 record prints no
+ * trade to position, or the directory prints a home and not a shop, or the street
+ * is `Michigan ave` where 1835 has Michigan Street, or `cor. Monroe` puts a grocer
+ * three blocks outside the platted town. A card showing only the placements would
+ * be reporting this pass's successes and hiding its arithmetic, which is exactly
+ * what the crosswalks' three match statuses above already refuse to do.
+ *
+ * NOTHING IS DRAWN. The face has no geometry, on purpose: dealing a roof to a
+ * back-projected address would be two inventions under one chip (L218, and
+ * `STREET-FACE-ADOPTION.md` limit 3). This row is where the placement reaches a
+ * visitor, the same way the fauna layer reaches one under L2.
+ */
+function backProjectionHtml(bp) {
+  if (!bp) return '';
+  const placed = bp.outcome === 'placed';
+  const label = {
+    placed: 'Positioned by reading that address backwards',
+    already_better_placed: 'Not read backwards — something better already places it',
+  }[bp.outcome] || 'That address was refused, and here is why';
+  const where = placed
+    ? `${bp.value} — ${bp.placement === 'face'
+      ? 'the street face, and nothing narrower'
+      : `${words(bp.placement)} on a crossing at ${
+        (bp.position_local_enu_m || []).join(', ')} m in the scene's local frame`}`
+    : 'no position taken';
+  const carried = bp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(bp.read_back_years))} years back, from ${
+      escapeHtml(String(bp.describes_date))}</span>` : '';
+  const clause = bp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(bp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade. A refusal is not a figure held
+  // at low confidence; it is the absence of a figure, and the record carries no
+  // `confidence` on one for exactly that reason.
+  const chip = placed ? swatch(bp.confidence) : '';
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
 }
 
 function personHtml(person, citationsById, researchByPerson, directoryByPerson, directoriesOnRecord) {

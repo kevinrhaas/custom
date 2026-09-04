@@ -1315,6 +1315,34 @@ step "…and all four directories' findings re-derive onto the cards they reach"
 step "…and that pass's four carry rules hold over everything it derives" \
   python3 tools/spend_directories.py --self-test
 
+# T-0633. And what is DONE with the 87 later addresses that pass leaves on the record:
+# the fourth address grammar, docs/ADDRESS-BACK-PROJECTION.md, which reads a street
+# printed four to nine years after the scene backwards and carries it as the business's
+# street FACE. All 87 are adjudicated and the refusals are committed beside the
+# placements, so the gate re-derives the whole ledger and every `back_projection` block
+# byte for byte. The failure it guards is the same one, one step further on: a face read
+# back out of an 1844 directory quietly becoming a position of 1835, or — worse, because
+# nothing else would catch it — a refusal disappearing from the record and reading to the
+# next run as an address nobody had looked at.
+step "…and the later addresses re-derive through the back-projection clauses" \
+  python3 tools/back_project_addresses.py --check
+
+step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
+  python3 tools/back_project_addresses.py --self-test
+
+# T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
+# four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
+# the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
+# had put a source on the record it named. This pass writes them. It is gated in the same
+# two directions as the directories pass because the failures are the same two: a ruling
+# that stops reaching its card, and a card that carries the paragraph for a ruling the
+# crosswalk never made.
+step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
+  python3 tools/spend_civic_voter_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_civic_voter_lists.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
@@ -1376,6 +1404,21 @@ step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
 
 step "…and the 1839 street face compiled off it rebuilds too" \
   python3 tools/fergus_1839_street_faces.py --check
+
+# T-0664. The next seven pages of the same volume, printed 40-46: the charter election of
+# 2 May 1837 and its list of voters for mayor. A poll list is the easiest source in this
+# repository to lose a column of — the page is set in four columns, the OCR does not read
+# them in printed order, and a segmenter that drops one loses forty men without changing
+# any other number here. So the reading is rebuilt from the committed text AND held to the
+# per-leaf counts coverage.json declares, which is the guard T-0571 put on the 1843
+# directory for the same reason. The crosswalk is rebuilt the same way: it is a proposal
+# that changes no resident record, and a hand-edit of a proposal is how one becomes a fact
+# nobody decided.
+step "the 1837 charter election rebuilds from its committed text, at the declared counts" \
+  python3 tools/read_fergus_1839_election.py --check
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_election.py --check
 
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing

@@ -228,6 +228,25 @@ def _civic_mint_person_count() -> int:
     return n
 
 
+def _back_projected_position_count() -> int:
+    """Businesses standing on a face read back out of a later directory (T-0633).
+
+    Counted off the household RECORDS, for the same reason the letter-list scope
+    is: `address_back_projection.json` carries its own `counts` block, and a
+    scope that reads a number the pass wrote about itself is agreeing rather than
+    measuring. The record is what a reader opens, so the record is what is
+    counted.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        for person in (doc.get("directories") or {}).get("people") or []:
+            bp = person.get("back_projection") or {}
+            if bp.get("outcome") == "placed":
+                n += 1
+    return n
+
+
 # enumeration -> (how many it reaches now, where that number is derived from).
 #
 # A scope may only name an enumeration written down HERE. The alternative — an
@@ -246,6 +265,10 @@ SCOPE_SOURCES = {
         _civic_mint_person_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/mint_civic_residents.py --check"),
+    "address_back_projection.positions[placed]": (
+        _back_projected_position_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/back_project_addresses.py --check"),
 }
 
 SECTION_KEY = {

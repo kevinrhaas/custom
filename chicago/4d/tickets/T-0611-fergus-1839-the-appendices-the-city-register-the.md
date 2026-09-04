@@ -1,7 +1,7 @@
 ---
 id: T-0611
 title: Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-04
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 8:05:55 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T13:08:36.571Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875897472
 ---
 
 Fergus 1839, the appendices: the city register, the 1837 charter election and its list of

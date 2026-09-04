@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 218,
+  "count": 219,
   "liberties": [
     {
       "id": "L1",
@@ -91,6 +91,57 @@
         {
           "label": "Recorded",
           "text": "2026-08-09."
+        }
+      ]
+    },
+    {
+      "id": "L218",
+      "title": "Fourteen businesses stand on a street a directory printed after 1835",
+      "section": "standing",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "address_back_projection.positions[placed]",
+        "count": 14
+      },
+      "recorded": "2026-09-04",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`address_back_projection.positions[placed]` — 14 businesses"
+        },
+        {
+          "label": "Decision",
+          "text": "where the 1835 record attests a trade and no source of the scene year says where it stood, a **street** printed against that person in Fergus's Chicago directory of 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's street **face**. The placement is graded `reconstructed`, the note says how many years it was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`."
+        },
+        {
+          "label": "Why",
+          "text": "the town prints trades far more often than it prints doors. Twenty of 825 households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87 later addresses sitting on the record with nothing reading them. The volumes that print doors are all later than the scene, so the choice was a stated back-projection or no position at all — the same choice L60 records for the estray pen, decided the same way: an absent placement is invisible while a graded one is legible and correctable."
+        },
+        {
+          "label": "Consequence",
+          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Fourteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names and twelve have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
+        },
+        {
+          "label": "What is NOT claimed, and this is the load-bearing half",
+          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic is visible and not just the successes."
+        },
+        {
+          "label": "Where it reaches a reader",
+          "text": "the Evidence panel's household card, as text. Nothing is drawn — the same admission **L2** makes for the fauna layer, and made in the same words rather than overstating \"rendered\"."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source inside the scene year that prints a door. The 1835 poll and tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are all closer to 1835 than a directory is, and any one of them that places one of these businesses supersedes this entry under the policy's clause 2 without an argument."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-04 (T-0633)."
+        },
+        {
+          "label": "Restated",
+          "text": "2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass binds a later entry to a resident only where the surname reaches one person. A bigger town made `Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer carries the later address this pass reads, and his North Water Street face is withdrawn — the one street in the town no other rule can seat a shop on, which is what makes the withdrawal worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because the same larger town let the directory spend reach more people; 105 of the new refusals are clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that caused it."
         }
       ]
     },
@@ -13707,7 +13758,7 @@
       ]
     },
     {
-      "id": "L218",
+      "id": "L219",
       "title": "531 people join the town on the town's own lists, and a household is written round each of them",
       "section": "per_subject",
       "subjects": [],

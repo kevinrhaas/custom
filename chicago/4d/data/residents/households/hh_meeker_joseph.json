@@ -99,6 +99,20 @@
       "fergus_chicago_directory_1839"
      ],
      "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Meeker, Joseph, carpenter and builder, 165 Clark st'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. The street NUMBER printed against it is a number in the 1839 grid, a numbering this town's year does not have, so the street name crosses and the number does not. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "placed",
+     "clause": "3 and 4",
+     "value": "Clark Street",
+     "confidence": "reconstructed",
+     "describes_date": 1839,
+     "read_back_years": 4,
+     "placement": "face",
+     "position_local_enu_m": null,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Clark Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited."
     }
    }
   ]
