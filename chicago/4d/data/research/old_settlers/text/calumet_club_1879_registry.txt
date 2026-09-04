@@ -74,3 +74,54 @@ Fergus, Robert, | 1839, July 1, | Glasgow, Scotland. | 64 | Chicago.
 Follansbee, Charles, | 1836, May 9, | Massachusetts. | 68 | Chicago.
 Freeman, Robert, | 1833, | Pennsylvania. | 70 | Napierville.
 Freer, L. C. Paine, | 1836, May, | Auburn, N.Y. | 65 | Chicago.
+
+# page 86
+Gale, Abram, | 1835, May 22, | Warwick, Mass. | 82 | Galewood.
+Gale, Stephen F. | 1835, May, | Exeter, N. H. | 67 | Chicago.
+Gates, Philetus W. | 1837, June, | Madison Co., N.Y. | 62 | Chicago.
+Germain, George H. | 1839, | New York. | 63 | Chicago.
+Gilbert, Samuel H. | 1836, June, | Bristol, England. | 76 | 333 Walnut St., Chicago.
+Goodrich, Grant, | 1834, | New York. | 67 | Chicago.
+Goodrich, T. W. | 1832, | Benson, N.Y. | 58 | Milwaukee.
+Graff, Peter, | 1836, Sept. 10, | Albany, N.Y. | 64 | Chicago.
+Granger, Elihu, | 1836, | New Hampshire. | 76 | Kaneville.
+Grannis, Amos, | 1836, | New York. | 54 | Chicago.
+Grant, James, | 1834, April 23, | Enfield, North Carolina. | 66 | Davenport, Iowa.
+Gray, Franklin D. | 1839, Sep. | Sharon, Conn. | 61 | Chicago.
+Gray, George M. | 1834, June, | Sherborn, N.Y. | 60 | Chicago.
+Gray, John, | 1837, | New York. | 68 | Jefferson.
+Gray, Joseph H. | 1836, July, | Boston, Mass. | 67 | Hyde Park.
+Gray, William B. H. | 1837, Sept. | Boston, Mass. | 58 | Chicago.
+Hadduck, Edward H. | 1833, May, | Salisbury, N.H. | 68 | Chicago.
+Hall, Philip A. | 1836, June 4, | New York. | 60 | Chicago.
+Hamilton, Polemus D. | 1834, | New York. | 65 | Chicago.
+Hanchett, John L. | 1835, June, | New York. | 73 | Chicago.
+Harmon, Isaac N. | 1833, Aug. 3, | Fredonia, N.Y. | 52 | Chicago.
+Hawley, John S. | 1837, May, | Ridgefield, Conn. | 59 | Aurora, Ill.
+Hickling, William, | 1835, March, | England. | 65 | Chicago.
+
+# page 87
+Higgins, Van H. | 1837, | New York. | 58 | Kenwood.
+Hilliard, Lorin P. | 1836, May, | Unadilla Forks, N.Y. | 64 | Chicago.
+Hoard, Samuel, | 1836, Oct. 13, | Westminster, Mass. | 80 | 205 Morgan St., Chicago.
+Holden, Charles N. | 1837, | New York. | 63 | Chicago.
+Horton, Dennison, | 1836, August, | Conn. | 63 | Chicago.
+Howe, Frederick A. | 1834, July, | Buffalo, N.Y. | 50 | Chicago.
+Huntington, Alonzo, | 1835, | Vermont. | 70 | Chicago.
+Hoyne, Thomas, | 1837, Sept. 1, | New York. | 61 | Chicago.
+Hubbard, Gurdon S. | 1818, Oct. 1, | Windsor, Vt. | 76 | 243 White St., Chicago.
+Jones, Nathaniel A. | 1838, Sept. | Rutland, Vt. | 77 | Chicago.
+Kehoe, Michael, | 1839, May, | Ireland. | 73 | 390 W. 12th St., Chicago.
+Kennicott, Jonathan A. | 1832, May, | Albion, N.Y. | 55 | Kenwood, Ill.
+Kimball, Mark, | 1839, Sept. | Genesee Co., N.Y. | 58 | Chicago.
+Kimball, Martin N. | 1836, Oct. | Saratoga, N.Y. | 68 | Chicago.
+Kimball, Walter, | 1833, Sept. | Rome, N.Y. | 69 | Chicago.
+King, Tuthill, | 1835, April, | New York. | 75 | Chicago.
+Knickerbocker, H. W. | 1833, Oct. | New York. | 66 | Naperville.
+Lane, Elisha B. | 1836, | N. H. | 64 | Chicago.
+Lane, James | 1836, | Ireland. | 75 | Chicago.
+Lock, William, | 1839, | Philadelphia. | 66 | Chicago.
+Loomis, Horatio G. | 1834, May 3, | Burlington, Vt. | 64 | Naperville.
+Manierre, Edward, | 1835, Aug. 4, | New London, Conn. | 66 | Prairie Ave., Chicago.
+Marshall, James A. | 1832, | London, Eng. | 70 | Chicago.
+McDaniels, Alexander, | 1836, May 27, | Bath, N.Y. | 64 | Willmette.
