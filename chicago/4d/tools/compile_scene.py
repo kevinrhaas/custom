@@ -72,10 +72,17 @@ def load(p: Path):
     return json.loads(p.read_text())
 
 
-def emit(path: Path, doc) -> None:
+def emit(path: Path, doc, *, compact: bool = False) -> None:
     """Write a derived file — or, under `--check`, prove the committed one is
-    exactly what this compiler would write."""
-    text = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
+    exactly what this compiler would write.
+
+    `compact` drops the indentation. Every sidecar is read by a machine, but a
+    building's sidecar is also read by a person with a diff in front of them, and
+    the indentation is for that reader. `people.json` has 1,400 rows and no
+    reader of that kind — it is a directory the browser filters — and indented it
+    is 1.6 MB against 0.7 MB compact, so it is the one file written this way."""
+    text = (json.dumps(doc, separators=(",", ":"), ensure_ascii=False) if compact
+            else json.dumps(doc, indent=2, ensure_ascii=False)) + "\n"
     if not CHECK:
         path.write_text(text)
         return
@@ -555,6 +562,259 @@ def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int
         "citations": {c["source_id"]: c for c in citations},
     })
     return len(citations)
+
+
+#: Honorifics and suffixes a name may END in, which are not the surname. "John
+#: Bates Jr." is a Bates; "Reynolds John Hon." is a Reynolds. The letter-list
+#: transcriptions carry these in the order the paper printed them, which is not
+#: always forename-first.
+_NOT_A_SURNAME = {
+    "jr", "sr", "sen", "jun", "miss", "mrs", "mr", "hon", "esq", "rev", "dr",
+    "col", "capt", "maj", "gen", "win", "wm", "jas", "jno", "chas", "thos",
+    "unnamed",
+}
+#: Words a placeholder entry ends in: "Mark Beaubien's family, unnamed", "The four
+#: Temple children". Sorting those under F and C would scatter a household's
+#: admissions away from the household; the id's leading token names it.
+_PLACEHOLDER_WORDS = {"family", "household", "children", "wife", "rest", "member"}
+#: A particle that travels with the surname: "St Cyr", "Van Horne", "De Vries".
+_PARTICLES = {"st", "st.", "van", "von", "de", "du", "le", "la", "mc", "mac", "o'"}
+
+
+def surname_of(name: str, person_id: str) -> str:
+    """The word a directory sorts this person under, lower-cased and diacritics
+    folded — derived from the name, never typed.
+
+    Last word after stripping a parenthetical ("Billy Caldwell (Sauganash)"), a
+    trailing comma clause ("Leonard, C. Hugunin" keeps its first clause) and
+    trailing honorifics; a particle before it is kept ("St Cyr"). A placeholder
+    entry — "the rest of the Robinson household" — falls back to the record id's
+    leading token, which the mint writes as the surname.
+    """
+    import re
+    import unicodedata
+
+    def fold(s: str) -> str:
+        s = unicodedata.normalize("NFD", s)
+        return "".join(ch for ch in s if unicodedata.category(ch) != "Mn").lower()
+
+    s = re.sub(r"\([^)]*\)", "", str(name or ""))
+    s = s.split(",")[0].strip()
+    tokens = [t for t in s.split() if t]
+    while tokens and fold(tokens[-1]).rstrip(".") in _NOT_A_SURNAME:
+        tokens.pop()
+    last = fold(tokens[-1]).strip(".") if tokens else ""
+    id_token = fold(str(person_id or "").split("_")[0])
+    if not last or last in _PLACEHOLDER_WORDS or not re.search(r"[a-z]", last):
+        return id_token or last
+    if len(tokens) >= 2 and fold(tokens[-2]) in _PARTICLES:
+        return f"{fold(tokens[-2]).rstrip('.')} {last}"
+    return last
+
+
+def arrival_year(value) -> int | None:
+    """`1826`, `1835-07-01` → the year; anything else → None. The household's
+    `arrival.value` is a string in two shapes (a bare year, an ISO date), and the
+    directory's year pills need one integer per row."""
+    m = __import__("re").match(r"^\s*(\d{4})", str(value or ""))
+    return int(m.group(1)) if m else None
+
+
+#: The person-level evidence arrays, in the order `residents.js` shows them, plus
+#: the biographical block. The row carries only WHICH kinds a person has: the
+#: appearances themselves stay on the household record, which the card fetches.
+PERSON_EVIDENCE_KINDS = (
+    ("press_evidence", "press"),
+    ("civic_evidence", "civic"),
+    ("book_evidence", "book"),
+    ("church_evidence", "church"),
+    ("census_evidence", "census"),
+    ("biographical_evidence", "biographical"),
+)
+
+#: How a person came to be in this town, as ONE word a row can be marked by. The
+#: flags are not exclusive — 85 civic-mint people also carry the projected
+#: subtype — so this is a precedence, weakest evidence first, and the filter in
+#: `people.js` reads the underlying flags rather than this word.
+HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected")
+
+
+def how_known(person: dict) -> str:
+    if person.get("letter_list_only"):
+        return "letter_list"
+    if person.get("civic_mint"):
+        return "civic_mint"
+    if person.get("resident_subtype") == "projected_resident":
+        return "projected"
+    return "documented"
+
+
+def compile_people(scene_id: str, outdir: Path) -> int:
+    """One row per PERSON, flattened from the 1,380 household records, so the
+    drawer's People section and its Go-to list can search a town of 1,404 without
+    a fetch each.
+
+    `data/residents/index.json` is a manifest of HOUSEHOLDS: it summarises a
+    record for the household browser and says nothing about the people in it
+    beyond a grade tally. A directory is the other axis — a visitor looks for a
+    surname, a trade, a division, a year — and every one of those figures lives
+    on the person or on the household record around them, which the browser
+    only fetches when a row is opened. Fetching 1,380 files to build a search
+    index in the browser is not a design; compiling the flat view here, beside
+    every other join this project does, is.
+
+    THE ROW IS A POINTER, NOT A COPY OF THE RECORD. It carries what a list needs
+    to sort, filter and label — name, surname, household, grade, trade, division,
+    the arrival bound and its precision, the flags that say how the person is
+    known, which building they lived or worked at — and the household `file`, so
+    the card fetches the record itself and renders it with the same code the
+    household browser uses. The notes, the appearances and the citations stay on
+    the record: a figure quoted twice is a figure that drifts, and the census in
+    `tools/measure_layer_reads.py` reads the record's own text.
+
+    `occupation` is `null` where the record says `none_recorded` (1,270 of them).
+    That is the same fact — the ABSENCE of a record, which the occupation note
+    on the card explains — in the shape a filter can test, and the row keeps the
+    attribute's confidence beside it so the absence is still graded.
+
+    Sorted by surname then name, with the surname derived (`surname_of`) rather
+    than typed. Emitted through `emit()` so `--check` holds it to the dataset
+    like every sidecar.
+    """
+    import unicodedata
+
+    index_path = DATA / "residents" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    vocab = index.get("vocabulary", {}) or {}
+    manifest_counts = index.get("counts", {}) or {}
+
+    def fold(s) -> str:
+        s = unicodedata.normalize("NFD", str(s or ""))
+        return "".join(ch for ch in s if unicodedata.category(ch) != "Mn").lower()
+
+    def value_of(block):
+        return block.get("value") if isinstance(block, dict) else block
+
+    rows: list[dict] = []
+    households = 0
+    for entry in index.get("households", []):
+        rel = entry.get("file", "")
+        path = DATA / "residents" / rel
+        if not path.exists():
+            continue
+        hh = load(path)
+        households += 1
+        arrival = hh.get("arrival") or {}
+        lives = hh.get("lives_at") or {}
+        works = hh.get("works_at") or {}
+        for person in hh.get("persons", []) or []:
+            occ = person.get("occupation") or {}
+            occ_value = occ.get("value")
+            returns = sorted(str(d) for d in (person.get("letter_list_returns") or []))
+            age = person.get("age_on_scene_date") or {}
+            born = person.get("birth_year") or {}
+            rows.append({
+                "id": person.get("id"),
+                "name": person.get("name"),
+                "surname": surname_of(person.get("name"), person.get("id")),
+                "household": hh.get("id"),
+                "household_name": hh.get("name"),
+                "file": rel,
+                "relationship": person.get("relationship"),
+                "grade": person.get("grade"),
+                "occupation": None if occ_value in (None, "", "none_recorded") else occ_value,
+                "occupation_confidence": occ.get("confidence"),
+                "sex": person.get("sex"),
+                "age": value_of(age) if age else None,
+                "birth_year": value_of(born) if born else None,
+                "letter_list_only": bool(person.get("letter_list_only")),
+                "letter_list_returns": len(returns),
+                "letter_list_first": returns[0] if returns else None,
+                "letter_list_last": returns[-1] if returns else None,
+                "civic_mint": bool(person.get("civic_mint")),
+                "ladder_rule": person.get("ladder_rule"),
+                "resident_subtype": person.get("resident_subtype"),
+                "how_known": how_known(person),
+                "division": hh.get("division"),
+                "arrival": arrival.get("value"),
+                "arrival_year": arrival_year(arrival.get("value")),
+                "arrival_precision": arrival.get("precision"),
+                "arrival_confidence": arrival.get("confidence"),
+                "origin": (hh.get("origin") or {}).get("value"),
+                "present": (hh.get("present_on_scene_date") or {}).get("value"),
+                "lives_at": lives.get("value"),
+                "works_at": works.get("value"),
+                "review_required": bool(hh.get("review_required")),
+                "touches_removal": bool(hh.get("touches_removal")),
+                "evidence_kinds": [label for key, label in PERSON_EVIDENCE_KINDS
+                                   if person.get(key)],
+            })
+
+    rows.sort(key=lambda r: (r["surname"], fold(r["name"]), str(r["id"])))
+
+    def tally(key):
+        counts: dict = {}
+        for r in rows:
+            v = r.get(key)
+            if v is None:
+                continue
+            counts[v] = counts.get(v, 0) + 1
+        return dict(sorted(counts.items(), key=lambda kv: str(kv[0])))
+
+    occupations = tally("occupation")
+    by_grade = {g: sum(1 for r in rows if r["grade"] == g)
+                for g in (vocab.get("grades") or ["attested", "inferred", "reconstructed"])}
+    divisions = {d: sum(1 for r in rows if r["division"] == d)
+                 for d in (vocab.get("divisions") or sorted(tally("division")))}
+    presence = {p: sum(1 for r in rows if r["present"] == p)
+                for p in (vocab.get("presence") or sorted(tally("present")))}
+    known = {
+        "documented": sum(1 for r in rows if not r["letter_list_only"] and not r["civic_mint"]
+                          and r["resident_subtype"] != "projected_resident"),
+        "letter_list": sum(1 for r in rows if r["letter_list_only"]),
+        "civic_mint": sum(1 for r in rows if r["civic_mint"]),
+        "projected": sum(1 for r in rows if r["resident_subtype"] == "projected_resident"),
+    }
+    with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
+
+    emit(outdir / "people.json", {
+        "scene": scene_id,
+        "standard": "One row per person in data/residents/, flattened from the household "
+                    "records so the People section and the Go-to list can search the town "
+                    "without a fetch each; the row points at its household file, and the "
+                    "record itself is what a card renders.",
+        "counts": {
+            "people": len(rows),
+            "households": households,
+            "manifest_persons": manifest_counts.get("persons"),
+            "letter_list_only": known["letter_list"],
+            "civic_mint": known["civic_mint"],
+            "projected_residents": known["projected"],
+            "documented": known["documented"],
+            "by_grade": by_grade,
+            "by_division": divisions,
+            "by_presence": presence,
+            "by_arrival_year": {str(k): v for k, v in sorted(tally("arrival_year").items())},
+            "with_address": with_address,
+            "with_lives_at": sum(1 for r in rows if r["lives_at"]),
+            "with_works_at": sum(1 for r in rows if r["works_at"]),
+            "with_occupation": sum(1 for r in rows if r["occupation"]),
+        },
+        "vocabulary": {
+            "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
+            "divisions": list(vocab.get("divisions") or divisions.keys()),
+            "grades": list(vocab.get("grades") or by_grade.keys()),
+            "presence": list(vocab.get("presence") or presence.keys()),
+            "relationships": list(vocab.get("relationships") or sorted(tally("relationship"))),
+            "arrival_precision": list(vocab.get("arrival_precision") or sorted(tally("arrival_precision"))),
+            "how_known": list(HOW_KNOWN),
+            "evidence_kinds": [label for _, label in PERSON_EVIDENCE_KINDS],
+        },
+        "people": rows,
+    }, compact=True)
+    return len(rows)
 
 
 def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
@@ -1346,6 +1606,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     flora_cites = compile_flora_sources(scene_id, sources, outdir)
     flora_clamped = compile_flora_clamp(scene_id, outdir)
     resident_cites = compile_residents_sources(scene_id, sources, outdir)
+    people = compile_people(scene_id, outdir)
 
     # A SIDECAR WHOSE STRUCTURE HAS GONE IS NOT INERT, which is why this sweeps
     # rather than leaves them. The compiler only ever wrote sidecars, so a record
@@ -1356,7 +1617,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     # ghost. Found 2026-08-22 in T-0105's own merge, which left three of them.
     keep = {entry["id"] for entry in index} | set(skipped) | {
         "index", "exclusions", "terrain", "fauna_sources", "flora_sources",
-        "flora_clamp", "residents_sources"}
+        "flora_clamp", "residents_sources", "people"}
     for stale in sorted(outdir.glob("*.json")):
         if stale.stem in keep:
             continue
@@ -1369,7 +1630,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
           f"{ground} ground claim(s), {fauna_cites} fauna source(s), "
           f"{flora_cites} flora source(s), {flora_clamped} clamped plant layer(s), "
-          f"{resident_cites} resident source(s)"
+          f"{resident_cites} resident source(s), {people} people in the directory"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 

@@ -15,6 +15,8 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-04  THE MENU, GOING PLACES, PEOPLE, THE CARD — the owner, in session: "build all four now",
+#               "top of the queue". T-0701..T-0713 head the file; T-0713 (the street lines) stays for the loop.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -31,6 +33,26 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- OWNER ASKS 2026-09-04 — THE MENU, GOING PLACES, PEOPLE, THE CARD. Verbatim: "one of the
+# --- things with custom that i need to improve is the right menu panel … we want it to be
+# --- delightful and fun to use" · "make it world class elegant and easy to use" · "resident
+# --- directory, we have people now and they should be able to be searched and found" · "that
+# --- evidence panel is entirely unwieldy". T-0701..T-0712 are claimed together in one PR into
+# --- dev; T-0713 (street lines attested from the Thompson plat) is the loop's, and stays here.
+T-0701 — The menu becomes a right-hand drawer with an icon rail, a bottom sheet on a phone
+T-0702 — Go to hides reconstructed roofs by default and filters by kind: taverns, stores, trades, homes, fort, waterfront
+T-0703 — Every Go to row says how far and which way; arrow keys walk the list
+T-0704 — Travel: instantly, walk, wagon, horse, fly — the pace and seated eye height apply to free movement
+T-0705 — Horse gait moves the rider's eye; off under reduced motion and by a setting
+T-0706 — Choosing a place walks or rides you there along the streets, with a Stop banner and the card on arrival
+T-0707 — Fly travel rises to a cruise height, glides, and lands in front of the building
+T-0708 — A people directory: every resident searchable by name, occupation, arrival, division, age and how they are known
+T-0709 — People appear in Go to; choosing one takes you to where they lived or worked
+T-0710 — The Evidence panel becomes a hub of browsable topics with search, instead of one scroll
+T-0711 — The building card opens on a narrative lead and a key-facts grid with quiet grade dots
+T-0712 — The card's evidence, liberties and record move under three tabs at its foot
+T-0713 — The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".

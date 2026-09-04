@@ -518,22 +518,9 @@ body.is-touch .gate-touch { display: block; }
    habitat with its animals nested inside it, and a second set of rules saying
    the same thing is a second place for the two to drift apart. Only what is
    genuinely new to this section is named here. */
-/* THE GRID COLUMN HAS TO BE TOLD IT MAY BE NARROW, and this is the one rule here
-   that is not cosmetic. `.lib-body` is a one-column grid with the default
-   `auto` track, and an `auto` track resolves toward MAX-CONTENT — so a `dd`
-   holding a long unbroken run widens the whole card instead of wrapping inside
-   it. The liberties, the wildlife and the people never showed it because their
-   longest line is short enough to fit anyway; this section's vocabulary lists
-   are not (`inflorescence_shapes` alone is thirty words), and at 390 px the
-   first render pushed the panel's content to 419 px against a 338 px box and
-   clipped every line of reasoning at the right edge. `minmax(0, 1fr)` is the
-   column saying it may shrink below its content, which is what makes the text
-   wrap. Scoped to this section deliberately: the same latent fault sits under
-   every other card here and correcting it globally is a layout change to four
-   sections this ticket did not measure. */
-.plant-vocab .lib-body, .plant-zone > .lib-body, .plant-sp .lib-body {
-  grid-template-columns: minmax(0, 1fr);
-}
+/* T-0281's scoped `minmax(0, 1fr)` column for the plant cards was retired into the
+   global rule in css/evidence.css when T-0302 measured the same overflow under every
+   other Evidence section; one rule now covers all of them. */
 /* A community's summary carries FOUR things where a habitat's carries three —
    the id, the name, the species count and, on eight of the ten, the chip saying
    the sward lattice cannot draw what this community's records ask for. `.lib
@@ -699,40 +686,10 @@ body.is-touch .crosshair { display: none; }
 }
 .popup[hidden] { display: none; }
 
-.pop-head { display: flex; align-items: flex-start; gap: 10px; }
-.pop-head h2 { margin: 0; font-size: 18px; font-weight: 620; letter-spacing: -0.01em; }
-.pop-aka { margin: 3px 0 0; font-size: 12px; color: var(--ink-dim); }
-/* The production identity, demoted under the title it used to BE (T-0076): small,
-   dimmed and still selectable, because a reference line nobody can copy is decoration. */
-.pop-spec { margin: 3px 0 0; font-size: 11px; color: var(--ink-dim); }
-.pop-spec code { font-size: 11px; }
-.pop-close {
-  margin-left: auto;
-  width: 30px; height: 30px;
-  flex: 0 0 30px;
-  font: inherit; font-size: 16px; line-height: 1;
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--edge);
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.pop-meta {
-  margin: 12px 0 0;
-  padding: 9px 11px;
-  border-radius: 9px;
-  background: rgba(127, 127, 127, 0.1);
-  font-size: 12.5px;
-  color: var(--ink-dim);
-}
-.pop-meta strong { color: var(--ink); font-weight: 600; }
-.pop-flag {
-  display: block;
-  margin-top: 6px;
-  color: var(--accent);
-  font-size: 11.5px;
-}
+/* The head (title row, aka, kind line, where line, flags, close button), the lead
+   and the facts grid live in css/card.css, which also carries the tab strip and
+   the panes. What stays here is what the evidence panes still use: sections,
+   tables, chips, residents, notes, citations, liberties, the research fold. */
 
 .pop-sec { margin: 16px 0 0; }
 .pop-sec > h3 {
@@ -741,17 +698,6 @@ body.is-touch .crosshair { display: none; }
   letter-spacing: .15em;
   text-transform: uppercase;
   color: var(--accent);
-}
-
-/* The phase's own account of itself, in the record's words. Prose rather than a
-   table row because it is an argument, not a value — it is where a record says a
-   building that held the post office for three years is not the post office on
-   the scene date, which no confidence chip can express. */
-.pop-account {
-  margin: 0 0 9px;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--ink-dim);
 }
 
 table.attrs { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -978,26 +924,10 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
 
 /* ---- controls / settings panel ---------------------------------------- */
 /* Replaces the old bare legend. Run already existed on Shift and nobody could
-   discover it; a walkthrough that does not say how to walk is not finished. */
-
-.hud-panel {
-  pointer-events: auto;
-  align-self: flex-end;
-  /* 380, not 360: with a fifth tab the strip fits 360 exactly, and a layout
-     with no slack in it is one font-metric difference away from wrapping on
-     somebody else's machine. The extra twenty pixels are also twenty pixels of
-     place name in the Go to list. */
-  width: min(380px, calc(100% - 4px));
-  margin-top: 8px;
-  max-height: min(70vh, 560px);
-  overflow-y: auto;
-  background: var(--panel);
-  border: 1px solid var(--edge);
-  border-radius: var(--r);
-  box-shadow: var(--shadow);
-  font-size: 12.5px;
-}
-.hud-panel[hidden] { display: none; }
+   discover it; a walkthrough that does not say how to walk is not finished.
+   The drawer itself — its frame, rail, head and scroll column — lives in
+   css/drawer.css; this file keeps the base pieces the sections share
+   (.field, .check-field, kbd, .keys, .legend-*). */
 
 .control-help {
   pointer-events: auto;
@@ -1042,55 +972,10 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
   .control-help-grid { grid-template-columns: auto 1fr; }
 }
 
-.panel-tabs {
-  display: flex;
-  align-items: center;
-  gap: 1px;
-  padding: 8px 6px 0;
-  border-bottom: 1px solid var(--edge);
-}
-
-.panel-tab {
-  flex: 0 1 auto;
-  /* 6px of side padding, not 9. Five tabs and a close button want 348 px of a
-     342 px strip at the old figure, and flex-shrink pays the difference out of
-     the labels rather than out of the row — which the release gate reads,
-     correctly, as a squeezed tab. Measured rather than guessed: the desktop
-     panel is 358 px wide and the strip now needs 334. */
-  padding: 7px 6px;
-  /* Five tabs plus the close button do not fit 360px if any of them may wrap;
-     "What's new" broke onto a second line and made the whole strip two rows
-     tall. Let the labels shrink instead — they are short enough to stay
-     legible, and a ragged one-line strip beats a lumpy two-line one. The
-     narrow-viewport block below buys the room the fifth tab needs. */
-  white-space: nowrap;
-  min-width: 0;
-  border: 0;
-  border-radius: 9px 9px 0 0;
-  background: transparent;
-  color: var(--ink-dim);
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-}
-.panel-tab:hover { color: var(--ink); }
-.panel-tab.is-on { color: var(--ink); background: rgb(255 255 255 / 7%); }
-
-.panel-close {
-  margin-left: auto;
-  width: 26px; height: 26px;
-  border: 0; border-radius: 8px;
-  background: transparent; color: var(--ink-dim);
-  font-size: 17px; line-height: 1; cursor: pointer;
-}
-.panel-close:hover { color: var(--ink); background: rgb(255 255 255 / 8%); }
-
-.panel-body { padding: 13px 15px 15px; }
-
 .keys { display: grid; grid-template-columns: auto 1fr; gap: 7px 13px; margin: 0; }
 /* [hidden] is display:none at UA-stylesheet strength; any display rule on the
    element itself beats it. Both control lists rendered at once without this. */
-.keys[hidden], .panel-body[hidden] { display: none; }
+.keys[hidden] { display: none; }
 .keys dt { color: var(--ink-dim); font-size: 12px; white-space: nowrap; }
 .keys dd { margin: 0; font-size: 12.5px; color: var(--ink); }
 
@@ -1187,16 +1072,6 @@ kbd {
 
 /* ---- What's new -------------------------------------------------------- */
 
-.panel-tab { position: relative; }
-.tab-dot {
-  display: inline-block;
-  width: 6px; height: 6px;
-  margin-left: 5px;
-  vertical-align: 1px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-.tab-dot[hidden] { display: none; }
 
 .wn-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
 .wn-entry { display: grid; gap: 5px; }
@@ -1226,7 +1101,6 @@ kbd {
 .wn-items li { font-size: 12px; color: var(--ink); line-height: 1.5; }
 
 @media (max-width: 560px) {
-  .hud-panel { width: 100%; max-height: 58vh; }
   /* Chips go icon-only. Four labelled chips overflow 390 px by about forty
      pixels and the help button drops to a second row, which reads as broken
      rather than as a wrap. The tri-colour dot and the triangle carry the
@@ -1237,11 +1111,6 @@ kbd {
   /* And when an altitude is showing, it says more than a date that never
      changes — so the date yields rather than the badge growing. */
   .badge.has-alt .badge-sub { display: none; }
-  /* The narrow panel cannot grow the way the desktop one just did, so the fifth
-     tab's room comes out of the type instead. The release gate measures the
-     result at 390×780 — one row, nothing squeezed — which is where a sixth tab
-     would be caught. */
-  .panel-tab { font-size: 11.5px; }
   .navigation-stack { top: calc(55px + var(--safe-t)); }
   .street-readout { width: 188px; }
   /* The mobile panel spans the same left edge as the navigation readouts. Hide

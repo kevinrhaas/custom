@@ -123,9 +123,6 @@
     "residents/household:persons[].resident_research.ticket": {
       "records": 611
     },
-    "residents/household:persons[].resident_subtype": {
-      "records": 790
-    },
     "residents/household:source_pass": {
       "records": 1302,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
