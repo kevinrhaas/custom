@@ -5,12 +5,12 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 290,
+  "census_1840": 229,
   "church": 0,
   "books": 126,
   "directories": 6396,
-  "newberry_index": 5078,
-  "land_sales": 375
+  "newberry_index": 4914,
+  "land_sales": 359
  },
  "witness": {
   "civic": {
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 798,
+   "read": 737,
    "spent": 508
   },
   "church": {
@@ -38,12 +38,12 @@
    "spent": 288
   },
   "newberry_index": {
-   "read": 7165,
-   "spent": 2087
+   "read": 7005,
+   "spent": 2091
   },
   "land_sales": {
    "read": 375,
-   "spent": 0
+   "spent": 16
   }
  },
  "raised": [
@@ -161,5 +161,6 @@
  "unwritten_ceiling": {
   "census_1840": 6,
   "civic": 99
- }
+ },
+ "unsourced_ceiling": {}
 }

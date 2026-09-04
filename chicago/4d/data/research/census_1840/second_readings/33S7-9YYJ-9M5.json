@@ -2,6 +2,7 @@
  "schema": 2,
  "schema_note": "schema 2 adds the cells: the column vocabulary, the per-column check against the printed totals, and per record `cells` (committed) beside `cells_first_pass` (read, unreconciled). Schema 1 records carried `cells: null` and no check.",
  "familysearch_id": "33S7-9YYJ-9M5",
+ "not_a_reading": "a SECOND, independent reading of a sheet already read into ../pages/ and already counted there. The names on it are the same names; keeping the two readings apart is how a disagreement stays examinable, and it must not make the domain look as though it read the sheet twice over. T-0602: tools/measure_research_spend.py withholds these from the read count and prints this sentence when it does.",
  "image": "chicago/reference/census1840/33S7-9YYJ-9M5.jpg",
  "printed_page": 229,
  "sheet_side": "left",
