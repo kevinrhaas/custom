@@ -1398,6 +1398,31 @@ step "the 1837 charter election rebuilds from its committed text, at the declare
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839_election.py --check
 
+# T-0665. The two leaves BETWEEN the directory and the poll, printed 38-39: the city
+# register of 1839 and the printed tables of mayors and sheriffs. Three things need
+# holding here that the poll pages did not need. The SEGMENTING, because the register
+# sets all six wards of an office in one semicolon-separated run wrapped over three
+# printed lines and breaks a surname across a line end, so a rule that loses a ward
+# loses a man and changes no other number in this repository — the per-leaf counts
+# coverage.json declares are the second opinion. The YEAR COLUMN, because seven of its
+# rows are OCR damage repaired from an explicit map, and a year quietly guessed would
+# move a man's office by a term; the tables' own ascending order is what checks the
+# repairs, and the ex-officio coroners are held to the gap they are printed in. And the
+# DERIVATIONS, because the only two statements these pages make about 1 July 1835 are
+# not printed on them — who the sheriff was, and that the town had no mayor at all —
+# and a derivation that lost its refusal would be this project's inference wearing a
+# citation. The crosswalk is rebuilt the same way, for the reason the poll's is: it is
+# a proposal that changes no resident record, and a hand-edited proposal is how one
+# becomes a fact nobody decided.
+step "the 1839 city register and the mayor and sheriff tables rebuild from their committed text" \
+  python3 tools/read_fergus_1839_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_fergus_1839_register.py --self-test
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_register.py --check
+
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
 # was written to the businesses layer. A negative result is the easiest artefact in the
