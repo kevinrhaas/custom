@@ -68,7 +68,6 @@
 T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
-T-0634 — Consolidation pass 1: write every ruling closed since T-0513 onto the card it names, and report the delta on both hops
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts

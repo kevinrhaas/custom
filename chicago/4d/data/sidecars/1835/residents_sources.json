@@ -264,6 +264,52 @@
         "an 1835 address: every address printed is of 1882"
       ]
     },
+    "chicago_voter_lists_1833_1835_irad": {
+      "source_id": "chicago_voter_lists_1833_1835_irad",
+      "citation": "\"Early Chicago Voter Lists\" — the poll list of the first election of the Board of Trustees of the Town of Chicago (10 August 1833), the tax list of the Town of Chicago, 1833, the election returns and poll list of 1834 filed 11 August 1834, and the 1835 poll list. Transcribed from the Illinois Regional Archives Depository originals by Ingrid Latimer Schulz, published in Chicago Genealogist XXV/4 (Summer 1993), and republished by the Genealogy Trails Transcription Team.",
+      "url": "https://genealogytrails.com/ill/cook/polllist.html",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "transcribes": [
+        {
+          "work": "Poll list for the first election of Board of Trustees of the Town of Chicago (10 August 1833)",
+          "date": "1833-08-10",
+          "tier": 1,
+          "note": "30 entries. Andreas says twenty-eight men voted at this election; the list prints thirty names, and the discrepancy is recorded rather than repaired (claims/town_findings_andreas_v1.json c002)."
+        },
+        {
+          "work": "Tax List of the Town of Chicago - 1833",
+          "date": "1833",
+          "tier": 1,
+          "note": "115 entries. Names only — as published it carries no valuation, no lot and no figure, so it is not a ranked property roll (claims/town_findings_voter_lists.json v001)."
+        },
+        {
+          "work": "Election Returns - Poll List of 1834, filed 11 August 1834",
+          "date": "1834-08-11",
+          "tier": 1,
+          "note": "115 entries. Andreas independently dates the second town election to 11 August 1834, which corroborates the list's own heading."
+        },
+        {
+          "work": "1835 Poll List",
+          "date": "1835",
+          "tier": 1,
+          "note": "85 entries. THE LIST PRINTS NO DATE. Andreas contradicts himself on which election it was: 'The third election was held in July, 1835' in the town chapter, and 'the third election of town oHicers, which occurred August 5, 1835' in the police chapter. The scene date is 1835-07-01, so the poll falls either within days of it or 35 days after; nothing seen decides which, and T-0513 inherits the question."
+        }
+      ],
+      "what_it_supplies": [
+        "345 names of men who voted at, or were taxed by, the Town of Chicago in 1833, 1834 and 1835, as printed",
+        "which of the four lists each name stands on, and its position in that list",
+        "the courtesy and rank titles the lists print in front of a name (Col., Lt., Major, Dr.)",
+        "for the 1835 poll list: presence in Chicago during 1835, which is the strongest residence evidence this project holds short of a newspaper naming the man"
+      ],
+      "what_it_does_not_supply": [
+        "any address, street, lot or dwelling",
+        "any age, trade, household or family member",
+        "any date more precise than a list's own heading — and the 1835 list has no heading date at all",
+        "any woman, and any man who neither voted nor was taxed"
+      ]
+    },
     "chicagology_chicago_brick": {
       "source_id": "chicagology_chicago_brick",
       "citation": "Chicagology, “Chicago Brick,” historical compilation of early Chicago brickmaking.",
