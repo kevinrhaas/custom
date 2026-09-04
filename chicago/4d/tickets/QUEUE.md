@@ -451,3 +451,5 @@ T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United S
 T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0599 — A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it
+T-0604 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0605 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down

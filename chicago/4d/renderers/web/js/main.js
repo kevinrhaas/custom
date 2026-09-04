@@ -389,7 +389,74 @@ const DETAIL = {
   // FIVE RE-BASINGS OF THESE CEILINGS ARE RECORDED ABOVE THIS LINE AND THIS IS
   // THE FIRST ONE EVER GIVEN BACK. That is the count a sixth raise has to argue
   // against, and it is now a count of five raises and one return.
-  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
+  // ── SIXTH RE-BASING, 2026-09-03, ON THE OWNER'S EXPLICIT RULING ──────────────
+  // The count above was "five raises and one return", and said a sixth "has to
+  // argue against" it. This is the argument, and the ruling that authorises it.
+  //
+  // THE RULING, verbatim: "i answered raise with stated headroom and a named
+  // retirement from before but it may have been lost." It had been: PR #599
+  // named T-0441 as the ticket holding the fork, and T-0441 WAS NEVER FILED —
+  // a clean id gap between T-0440 and T-0442 — so four PRs sat parked for four
+  // days on a question the ledger had never been asked. T-0604 is that receipt.
+  // Told the raise would have to touch `light` as well, he ruled again, in as
+  // many words: "raise all 3".
+  //
+  // WHERE IT IS NOT SPENT, and this is the first thing measured rather than the
+  // last. `tools/measure_detail_ceilings.mjs --only desktop`, dev, 2026-09-03:
+  //
+  //   full      1,385,925 of 1,400,000   14,075 clear
+  //   balanced  1,211,986 of 1,225,000   13,014 clear
+  //   light       769,379 of   785,000   15,621 clear
+  //
+  // PR #599 (T-0432, four roofs, +2,174) and PR #601 (T-0431) had been parked as
+  // breaches against a `balanced` of 1,210,000 — a figure this table left behind
+  // on 2026-08-24 — and against a dev with 1,566 of room. They fit today with
+  // ~10,840 to spare. THE RAISE IS NOT TAKEN FOR THEM. A ceiling raised to carry
+  // a record that already fits is the exact fault the entries above forbid.
+  //
+  // WHAT IT IS SPENT ON. PR #432 (T-0219, the heightfield south to Madison) is
+  // the one parcel that genuinely does not fit. Its tree was re-measured today
+  // and reproduces its own PR's figures to the triangle, so the parcel cost is
+  // isolated against the dev it was cut from and applied to the dev it would
+  // land on:
+  //
+  //   tier      dev now    + parcel   would read   old ceiling   over by
+  //   full     1,385,925    56,016     1,441,941    1,400,000     41,941
+  //   balanced 1,211,986    51,208     1,263,194    1,225,000     38,194
+  //   light      769,379    39,830       809,209      785,000     24,209
+  //
+  // WHERE THE NEW NUMBERS COME FROM, so they are a principle and not "enough for
+  // me": each tier keeps AT LEAST THE ABSOLUTE HEADROOM IT CARRIES TODAY over
+  // the measured worst stand with #432 in, rounded up to the nearest 5,000. The
+  // ladder therefore keeps its shape; no tier is given proportionally more room
+  // than it has now, and nothing was chosen to fit one record.
+  //
+  //   full      1,400,000 -> 1,460,000   18,059 clear (1.24 %)
+  //   balanced  1,225,000 -> 1,280,000   16,806 clear (1.31 %)
+  //   light       785,000 ->   825,000   15,791 clear (1.91 %)
+  //
+  // `light` IS RAISED, AND THAT BREAKS A STANDING CONSTRAINT THIS TABLE HAS KEPT
+  // THROUGH EVERY PREVIOUS RE-BUDGET — "the floor a weak machine boots into is
+  // not spent here". It is broken deliberately and only on the owner's second,
+  // specific answer after being told that is what it would cost. A weak machine
+  // now boots into a tier that draws 809,209 where it drew 769,379. Whoever
+  // takes the retirement below should take `light` back FIRST.
+  //
+  // THE RETIREMENT IS T-0605, and it is written to be one that can actually fall
+  // due. T-0229's expiry was blocked behind a flora ticket and would never have
+  // come due (T-0231 records exactly that), so T-0605 depends on nothing: it
+  // re-measures after #432 lands and lowers each tier back to the measured worst
+  // plus the headroom carried here. `tools/measure_research_spend.py --tighten`
+  // is the same shape one layer over — reclaiming slack is free and needs no
+  // argument, only spending it does.
+  //
+  // NOT YET VERIFIED ON THE MERGED TREE, and this is the one weakness in the
+  // numbers. #432 has been conflicted since 2026-08-28 and its re-derive needs
+  // Blender, which the session that took this ruling did not have. The parcel
+  // cost above is a measured 2026-08-28 delta applied to today's dev, not a
+  // reading of the merged tree. T-0605 re-measures the moment #432 is green, and
+  // if the merged tree reads under these numbers they come DOWN to it.
+  full:     { triangles: 1460000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -476,7 +543,7 @@ const DETAIL = {
   // holds — this gives `balanced` about the 1 % headroom `full` carries, and buys
   // no room for the parcel after these; T-0149 and T-0147 still own the trim
   // that would win the rung back.
-  balanced: { triangles: 1225000, shadowReachM: 240, furnitureCastsShadow: true,
+  balanced: { triangles: 1280000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: FURNITURE_REACH_BALANCED_M },
   // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
   //
@@ -530,7 +597,7 @@ const DETAIL = {
   // moves -- no geometry, no reach, no shadow tier, no cull. This is only the
   // ceiling following a trim DOWN, which T-0149 named as the strongest evidence
   // that a trim worked.
-  light:    { triangles: 785000, shadowReachM: 120, furnitureCastsShadow: false,
+  light:    { triangles: 825000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
