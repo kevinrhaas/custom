@@ -52,24 +52,25 @@ SOURCE_ID = "isa_public_domain_land_tract_sales"
 DEPOSITS = (
     ("isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv", "T-0557",
      (("39N", "14E"), ("40N", "14E"))),
-    ("isa_land_tract_sales_t39n_r13e_through_1836.tsv", "T-0677", (("39N", "13E"),)),
-    ("isa_land_tract_sales_t38n_r14e_through_1836.tsv", "T-0677", (("38N", "14E"),)),
-    ("isa_land_tract_sales_t38n_r15e_through_1836.tsv", "T-0677", (("38N", "15E"),)),
-    ("isa_land_tract_sales_t40n_r13e_through_1836.tsv", "T-0677", (("40N", "13E"),)),
-    ("isa_land_tract_sales_t41n_r14e_through_1836.tsv", "T-0677", (("41N", "14E"),)),
+    ("isa_land_tract_sales_t39n_r13e_through_1836.tsv", "T-0676", (("39N", "13E"),)),
+    ("isa_land_tract_sales_t38n_r14e_through_1836.tsv", "T-0676", (("38N", "14E"),)),
+    ("isa_land_tract_sales_t38n_r15e_through_1836.tsv", "T-0676", (("38N", "15E"),)),
+    ("isa_land_tract_sales_t40n_r13e_through_1836.tsv", "T-0676", (("40N", "13E"),)),
+    ("isa_land_tract_sales_t41n_r14e_through_1836.tsv", "T-0676", (("41N", "14E"),)),
 )
 TSV = DEPOSITS[0][0]
 
-# The sections whose query returned exactly 150 rows — the database's per-query ceiling,
-# and it offers no paging. Their rows below are the first 150 the search returned and NOT
-# the section; they are carried, and the section is not declared read. Naming them here is
-# what stops a later pass reading the truncation as completeness. Three are the school
-# section and two West Division sections of the town itself (T-0557); the fourth is the
-# school section of the township immediately west (T-0677). T-0678 holds the problem of
-# reading past the ceiling — section is the finest grain this source's search offers, so
-# it needs a different source and not a cleverer query.
-TRUNCATED = {("39N", "14E", "16"), ("39N", "14E", "21"), ("39N", "14E", "29"),
-             ("39N", "13E", "16")}
+# THE SEARCH PAGES, and this file may not say otherwise. T-0557 read three sections of
+# T39N R14E as truncated because their query returned exactly 150 rows — the database's
+# per-PAGE ceiling — and took that for the end of what could be asked. It is not: the
+# results page carries a More button whose keyset cursor returns the rows after the last
+# one shown, `harvest_land_sales.py` follows it, and T-0675 walked all three whole.
+#
+# T-0676's ring sweep ran before that was known and stopped at the first page, so
+# T39N R13E section 16 — the school section of the township immediately west — is the
+# one section this domain still holds a first page of rather than a section. It is named
+# here, and NOT declared read, on the rule T-0557 set. T-0682 walks it with the cursor.
+TRUNCATED = {("39N", "13E", "16")}
 
 # The database's own abbreviations, expanded only where the expansion is the Archives'
 # own and not this project's guess. Anything absent stays as the register wrote it.
@@ -270,19 +271,21 @@ def build_coverage(rows: list) -> dict:
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
-        "note": "The reading is BY SECTION because the database returns at most 150 rows "
-                "per query and offers no paging. Two hundred and fifty-two section "
-                "queries were run — seven townships of the third principal meridian, "
-                "sections 01-36 each: T39N R14E and T40N R14E, the two the town stands "
-                "on (T-0557), and the five that ring them, T39N R13E, T38N R14E, "
-                "T38N R15E, T40N R13E and T41N R14E (T-0677). A section that returned "
-                "fewer than 150 rows was read whole. The four that returned exactly 150 "
-                "are NOT declared here: what this project holds for them is the first 150 "
-                "rows the search would give, and declaring that as coverage would record a "
-                "ceiling as a completed read. A declaration promises that a record reaches "
-                "the item, so a section that was queried and held no sale through 1836 is "
-                "listed under `queried_no_sales_through_1836` instead — read, empty, and "
-                "not a hole.",
+        "note": "The reading is BY SECTION because a whole-township query stops at the "
+                "database's 150-row page and looks complete. Two hundred and fifty-two "
+                "section queries were run — seven townships of the third principal "
+                "meridian, sections 01-36 each: T39N R14E and T40N R14E, the two the town "
+                "stands on (T-0557), and the five that ring them, T39N R13E, T38N R14E, "
+                "T38N R15E, T40N R13E and T41N R14E (T-0676). The two central townships "
+                "were then walked to the end of every section through the results page's "
+                "own More button, whose keyset cursor returns the rows after the last one "
+                "shown (T-0675), so every section of them is read whole. The ring sweep "
+                "ran before that was known and stopped at the first page; only one ring "
+                "section reached it, T39N R13E sec 16, and that one is NOT declared here — "
+                "what this project holds for it is a first page and not a section "
+                "(T-0682). A declaration promises that a record reaches the item, so a "
+                "section that was read and held no sale through 1836 is listed under "
+                "`queried_no_sales_through_1836` instead — read, empty, and not a hole.",
         "declarations": [{
             "unit": "list",
             "ticket": ticket,
@@ -292,22 +295,21 @@ def build_coverage(rows: list) -> dict:
             "items": sorted(items),
         } for ticket, items in sorted(by_ticket.items())],
         "queried_no_sales_through_1836": {
-            "ticket": "T-0557, T-0677",
+            "ticket": "T-0557, T-0676",
             "note": "Queried section by section and read whole; the section holds no sale "
                     "dated on or before 31 December 1836. Read, empty, and not a hole.",
             "items": sorted(empty),
         },
         "not_read": {
-            "ticket": "T-0678",
+            "ticket": "T-0682",
             "truncated_at_the_150_row_ceiling": truncated,
             "townships_not_read": [],
             "note": "An undeclared item is not read yet and is not a fault. The ring "
-                    "townships T-0557 left unread were swept by T-0677 and none is left. "
-                    "What remains is the ceiling itself: the search offers "
-                    "section/township/range/meridian and county and nothing finer, and the "
-                    "result page has no paging, offset or sort, so these four sections "
-                    "need a different source rather than a narrower query. T-0678 holds "
-                    "it.",
+                    "townships T-0557 left unread were swept by T-0676 and none is left. "
+                    "One section is: T39N R13E sec 16, whose first page filled the "
+                    "150-row ceiling. The ceiling is a page and not an end — the results "
+                    "page's More button walks past it (T-0675) — so this is a sweep to "
+                    "re-run and not a source to go looking for. T-0682 holds it.",
         },
     }
 

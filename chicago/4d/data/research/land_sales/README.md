@@ -3,11 +3,18 @@
 **What lives here.** The Illinois State Archives' *Illinois Public Domain Land Tract
 Sales* database, read for **seven townships** of the third principal meridian for every
 sale dated on or before **31 December 1836**: the two the town of Chicago and its north
-side stand on — **T39N R14E** and **T40N R14E** — and the five that ring them,
-**T39N R13E**, **T38N R14E**, **T38N R15E**, **T40N R13E** and **T41N R14E**.
-**762 sales, 381 distinct purchasers as the register spelled them, 56,642 acres and
-$98,368.92 of ground**, over 252 section queries. The two central townships are T-0557
-(375 sales); the ring is T-0677 (387).
+side stand on — **T39N R14E** and **T40N R14E** (T-0557, finished by T-0675) — and the
+five that ring them, **T39N R13E**, **T38N R14E**, **T38N R15E**, **T40N R13E** and
+**T41N R14E** (T-0676). **953 sales, 431 distinct purchasers as the register spelled
+them, 57,172 acres and $125,223.35 of ground**, over 252 section queries.
+
+**All seventy-two sections of the two central townships are read whole**: the three
+T-0557 had to leave truncated at the search's 150-row page were walked to their end
+through the results page's own More button, which is a cursor and not a dead end. That is
+the second section below, and it is the correction that matters most here. The ring sweep
+ran before the cursor was known and stopped at the first page of each section; only one
+ring section reached the ceiling, T39N R13E sec 16, and it is named as short rather than
+declared (T-0682).
 
 **This is not a list of people, and that is the whole discipline of the domain.** The
 register records a TRANSACTION. A man who entered eighty acres in T40N R14E in 1835
@@ -17,15 +24,20 @@ purchase says only that he bought. The one column that speaks to where he lived 
 
 | Residence as the register wrote it | sales | of which the ring |
 |---|---|---|
-| UNKNOWN | 651 | 355 |
+| UNKNOWN | 840 | 355 |
 | COOK | 58 | 22 |
 | MACON | 18 | 2 |
 | VERMILION | 13 | 2 |
 | ILLINOIS | 9 | — |
 | MCLEAN | 8 | 4 |
-| CHAMPAIGN | 2 | 2 |
 | LASALLE | 2 | — |
+| CHAMPAIGN | 2 | 2 |
 | IROQUOIS | 1 | — |
+| VIRGINIA | 1 | — |
+| ST. LOUIS | 1 | — |
+
+The last two are the register's own words and are carried as it wrote them: neither
+is an Illinois county, and this project does not correct a clerk.
 
 So a row whose Residence reads COOK is graded `documented` — for residence in **Cook
 County on the date of sale**, which in 1835 reaches far beyond the town — and every
@@ -33,33 +45,35 @@ other row is graded `inferred`, with the reasoning written on the record. Nothin
 mints a resident or regrades one. `resident_crosswalk.json` proposes correspondences
 and states the rule that made each; T-0514 and T-0515 are what spend them.
 
-**What the reading found.** Sales by year: 1830 · 13, 1831 · 8, 1832 · 3, 1833 · 151,
+**What the reading found.** Sales by year: 1830 · 17, 1831 · 8, 1832 · 3, 1833 · 338,
 1834 · 133, 1835 · 419, 1836 · 34, and one row the register dates 1810, carried verbatim
-because it is what the page says. By type: 592 federal cash entries (`FD`), 150 school
-section sales (`SC`), 20 canal sales (`CN`). By what the tract resolves to: 423 half
-quarter-sections, 162 quarter-sections, 113 town lots, 2 quarter-quarters and 62 the
+because it is what the page says. By type: 592 federal cash entries (`FD`), 337 school
+section sales (`SC`), 24 canal sales (`CN`). By what the tract resolves to: 427 half
+quarter-sections, 217 town lots, 162 quarter-sections, 2 quarter-quarters and 145 the
 parser leaves `unparsed` rather than guess at.
 
-**And what the ring adds, which is a different shape of thing entirely.** All 387 ring
-sales are federal cash entries — no school section, no canal land — and **318 of them
-fall in 1835 alone**, against 101 in the two central townships that year. 260 are half
-quarter-sections and 112 are whole quarter-sections: 36,937 acres for $54,738, at the
-$1.25 minimum almost throughout. That is not the town buying its own lots. It is the
-country around the town going under the hammer in the year the canal was surveyed, in
-eighty- and hundred-and-sixty-acre bites, and this domain now holds both halves of that
-picture rather than the town half alone. T38N R14E (152 sales) and T39N R13E (145) carry
-most of it; T41N R14E, twelve miles north, carries fifteen.
+**The ring is a different shape of record from the town, which is why it was worth
+reading.** All 387 ring sales are federal cash entries — no school-section lot, no canal
+land — and **318 of them fall in 1835 alone**, against 101 in the two central townships
+that year. 260 are half quarter-sections and 112 whole quarter-sections: 36,937 acres for
+$54,738, at the $1.25 minimum almost throughout. That is not a town buying its own lots.
+It is the prairie and timber around it going under the hammer in eighty- and
+hundred-and-sixty-acre bites in the year the canal was surveyed, and the domain now holds
+both halves of the picture. T38N R14E (152 sales) and T39N R13E (145) carry most of it;
+T41N R14E, twelve miles north, carries fifteen. Nine purchasers meet a person the town
+holds and appear ONLY in the ring — Walter Loomis Newberry, William Spencer, James
+Whitlock, James B Campbell, John Wilson and four more — and nineteen more state a
+residence of COOK on the day they bought, among them Joseph Kettlestrings, who gave his
+name to Oak Park, and both Bickerdikes.
 
-**Twenty-seven purchasers meet a person the town already holds**, thirteen of whom
-appear only in the ring — Walter Loomis Newberry, Peter Pruyne, Chester Ingersoll,
-Frank Dill, James B Campbell, John Wilson, Henry C. West and six more. Nineteen ring
-purchasers carry a stated residence of COOK, among them Joseph Kettlestrings (who gave
-his name to Oak Park), both Bickerdikes, Elijah Wentworth Sen and Zebiah W Wentworth;
-matching those to people is work T-0514 and T-0515 spend, not work this pass did. The
-match set is DERIVED against the residents layer as it stands today — the rule needs
-exactly one person of the surname in the town — so it moves when the town does, and it
-has: names T-0557 matched are refused now that the layer holds more than one of their
-surname, which is the rule working and not a regression.
+**Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
+Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
+Elston, John Hale, Thomas Hartzell, Chester Ingersoll, Paul Kingston, Alexander Lloyd,
+Ira Minard, Walter Loomis Newberry, Hiram Pearsons, Jeremiah Price, Peter Pruyne (on
+three rows, one of them `PRUYNE P AND CO`), James C Spence, Ashbel Steele, Henry
+Vanderbogert, Charles Wessencraft, Henry C. West, Alexander Wolcott, John Ludby — 26
+matched purchaser spellings against 234 refused. None carries a stated residence: the
+thirty-six COOK rows are other names, and matching them is work this pass did not do.
 
 **Shape: `records`.** A sale is a row on a page, so it takes the records shape — the
 purchaser `as_read` exactly as the register spelled him, `normalized` only far enough
@@ -72,7 +86,7 @@ the shape and `tools/read_land_sales.py --check` holds the reading.
 made by a rule that is written out beside it.
 
 **Generated, and re-derived by the gate:** `entries.json`, one
-`records/entries_<township>_through_1836.json` per deposit, `coverage.json`,
+`records/entries_<townships>_through_1836.json` per deposit, `coverage.json`,
 `crosswalk.json` and `resident_crosswalk.json` — all written by
 `tools/read_land_sales.py --build` from the committed deposits under `text/`, and all
 re-derived by `--check`, which refuses a committed file that has drifted. The deposits
@@ -80,55 +94,32 @@ themselves are written by `tools/harvest_land_sales.py --sweep --township N --ra
 which reaches the network and is therefore run deliberately by a research pass and never
 by the gate.
 
-**One deposit per sweep, and the list of them is APPEND-ONLY.** A record's `ls####` id is
-its position in `DEPOSITS` in `tools/read_land_sales.py`, and those ids are cited from
-`ground.json` and from the `land_owner` block on 63 structures — so a new deposit goes on
-the END of that list and an existing one never moves. Reordering would silently repoint
-every one of those citations at a different sale. A deposit committed under `text/` that
-the list does not name is a gate failure, not a warning: it would be committed evidence
-that nothing reads.
+## Two things about the source, both learned the hard way
 
-## Three things about the source, all learned the hard way
-
-**The search returns at most 150 rows and offers no paging.** A whole-township query
-stops at 150 and looks complete — the first attempt at this read came back with exactly
+**The search shows at most 150 rows at a time — and it pages.** A whole-township query
+stops at 150 and looks complete: the first attempt at this read came back with exactly
 150 rows for each township and would have recorded a ceiling as a town. So the reading
-is BY SECTION, thirty-six queries per township, 252 in all. Two hundred and forty-eight
-sections came back under the ceiling and were read whole; `coverage.json` declares the
-ones that hold a sale through 1836 and lists the rest as queried and empty, which is read
-rather than a hole. **Four sections did not come back under the ceiling** — T39N R14E
-sections 16, 21 and 29 (the town's school section and two West Division sections) and
-T39N R13E section 16 (the school section of the township immediately west). What this
-repo holds for those four is the first 150 rows the search would give, and they are
-deliberately **not declared read**.
+is BY SECTION, thirty-six queries per township. That much T-0557 got right. What it got
+wrong is the ceiling itself. **The results page carries a `More` button**, and that
+button is a keyset cursor — `hiddenPurchaseNo` + `hiddenPurchaser` + `hiddenSectionNo`,
+replayed against the same search, return the rows after the last one shown. Results are
+ordered by purchaser, so replaying the cursor walks a section to its end.
+`harvest_land_sales.py --sweep` follows it and prints how many pages each section took.
 
-**And section is as fine as the search goes.** T-0677 went back over the form to look
-for a way past the ceiling and there is not one. `pubdomsrch.jsp` offers exactly three
-searches and says so: section/township/range/meridian, township/range/meridian, and
-county — and of county, "the name of county cannot be used in combination with any other
-search criteria". The result page carries no paging control, no offset and no sort; the
-only other inputs on either form are the hidden `srchType=domain` and
-`fromPage=pubDomSrch`. The `name` field belongs to the other search form and does not
-narrow a legal-description query, it REPLACES it, returning that name from every township
-in Illinois — and it hits the same ceiling itself (`name=HALE` returns 150 rows). The
-rows come back ordered by purchaser, so the ceiling cuts the alphabet: section 16 returns
-BARCKENBILE CHRISTIA through HALE JOHN and stops, and every one of those 150 is October
-1833, so the unread remainder is 1833 town lots and not the later city sales. **Reading
-past the ceiling therefore needs a different SOURCE — the BLM GLO patents, or the
-commissioners' own ledger of the October 1833 sale — and not a cleverer query.** T-0678
-holds that, with the two dead ends written out.
+T-0557 read the three sections that filled their first page — T39N R14E 16, 21 and 29,
+the school section and two of the West Division sections — as truncated, and declared
+them unread. T-0675 walked them: **section 16 is 3 pages and 337 sales, all of them the
+October 1833 school-section auction; section 21 is 6 pages and 781 rows, 4 of them
+through 1836; section 29 is 2 pages and 217 rows, again 4 through 1836.** So the hole
+was 191 sales wide and it is closed, and every section of both townships is now declared
+read. The lesson is worth keeping over the numbers: **a page that fills is a page, not a
+limit** — look for the cursor before recording a refusal.
 
-**A page the reader proxy drops looks exactly like a section with no sales.** `rows_of`
-finds no rows in an error body, and the first ring sweep quietly wrote 51 sections off as
-empty that had never been fetched at all — 66 sales missing, and a section 16 whose
-truncation nobody would have noticed. The sweep now checks every section page for a body
-that is actually the search's own, retries the misses on their own, and REFUSES TO WRITE
-A DEPOSIT while one is still missing; the same retry runs on detail pages. Both are worth
-knowing about: a research gate that goes red for the network's reasons is bad, but a
-sweep that silently records a dropped page as an empty section is much worse, because it
-declares coverage over ground nobody looked at. As a check on the older read, every one
-of the 252 section pages was re-fetched and the pre-1837 row counts compared section by
-section against all six deposits: **they agree exactly, T-0557's included.**
+The `name` field still cannot be used to break a section up: it belongs to the
+database's other search form and does not narrow a legal-description query, it replaces
+it, returning that name from every township in Illinois. It DOES combine with the county
+select, which is a different way through the same ceiling and was not needed once the
+cursor was found.
 
 **The site refuses datacentre addresses.** Every user agent tried from this project's
 runner gets a bare 403 from the WAF — the session that filed T-0557 hit the same wall
@@ -136,25 +127,33 @@ through its proxy. The pages were therefore fetched through the public `r.jina.a
 reader, which returns the origin's own HTML unchanged; `harvest_land_sales.py --direct`
 asks the origin instead, for anyone running it from a machine the site will talk to.
 The route is recorded in the source record. It changes nothing about what the page says,
-and the reading cross-checks itself: for all 762 sales the summary row and the detail
+and the reading cross-checks itself: for all 953 sales the summary row and the detail
 page agree, field for field, on purchaser, tract, section, township, range, meridian,
 county and date.
 
 ## What is NOT read, and is not a fault
 
-- **T39N R14E sections 16, 21 and 29, and T39N R13E section 16** — truncated at the
-  ceiling, as above. T-0678.
+- **T39N R13E section 16** — the school section of the township immediately west. Its
+  first page filled the 150-row ceiling and the ring sweep, which ran before the cursor
+  was known, stopped there. A sweep to re-run and not a source to go looking for: T-0682.
+- **The second ring.** T38N R13E, T39N R15E, T41N R13E and T41N R15E were never on the
+  list T-0557 drew and are not read; three of the four are largely lake or prairie twelve
+  miles out. Naming them is not a promise to read them.
 - **Sales to purchasers whose stated residence is Chicago or Cook County outside these
   seven townships.** The database's name search cannot be filtered by residence, so this
   needs a different shape of query.
-- **The second ring.** T38N R13E, T39N R15E, T41N R13E and T41N R15E were never on the
-  list T-0557 drew and are not read; three of the four are largely lake or prairie
-  twelve miles out. Naming them is not a promise to read them.
 - **The canal sections.** They were sold by the canal commissioners, not the land
   office, and are not in this database at all — their absence is not a hole.
 
-**Done, 2026-09-04 (T-0677):** the five ring townships T-0557 left unread. 387 more
-sales, and `coverage.json` now carries an empty `townships_not_read`.
+**Done, 2026-09-04 (T-0676):** the five ring townships T-0557 left unread. 387 more
+sales, and `coverage.json`'s `townships_not_read` is empty.
+
+**One deposit per sweep, and the list of them is APPEND-ONLY.** A record's `ls####` id is
+its position in `DEPOSITS` in `tools/read_land_sales.py`, and those ids are cited from
+`ground.json` and from the `land_owner` block on 63 structures — so a new deposit goes on
+the END of that list and an existing one never moves. A deposit committed under `text/`
+that the list does not name is a gate failure, not a warning: it would be committed
+evidence that nothing reads.
 
 **Done, 2026-09-04 (T-0609):** the join from a tract to a standing structure.
 `tools/resolve_land_tracts.py` puts every sale on the ground or says why it cannot,
@@ -189,8 +188,8 @@ register prints and nothing about its outcome.
 **The two silences, and both are the source's rather than the tool's.** 254 of the
 structures stand in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get
 nothing, because the canal commissioners sold those lots and this database does not hold
-them. And **150 rows, every town-lot and block-only sale in the register, are in section
-16, the school section**, sold at the October 1833 auction; that subdivision's plat is
-not traced by this project, so a block and lot number in it names ground this repo cannot
-point at. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
+them. And **337 rows — every one of them in section 16, the school section**, sold at the
+October 1833 auction, are refused: 336 because that subdivision's plat is not traced by
+this project, so a block and lot number in it names ground this repo cannot point at, and
+one because the register prints its lot as `06126` and the parser will not guess. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
 the only committed structure standing in section 16.

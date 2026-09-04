@@ -10,7 +10,7 @@
   "books": 126,
   "directories": 7004,
   "newberry_index": 4914,
-  "land_sales": 736
+  "land_sales": 922
  },
  "witness": {
   "civic": {
@@ -42,8 +42,8 @@
    "spent": 2091
   },
   "land_sales": {
-   "read": 762,
-   "spent": 26
+   "read": 953,
+   "spent": 31
   }
  },
  "raised": [
@@ -184,9 +184,17 @@
    "domain": "land_sales",
    "hop": "read",
    "from": 361,
-   "to": 736,
+   "to": 542,
    "date": "2026-09-04",
-   "why": "T-0677 finished the ring-township sweep T-0557 named as unread — T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E, 180 section queries, 387 more sales through 1836 — and the deposit is now the whole register around the town rather than two townships of it. The reading is deliberately ahead of the adjudication: a purchase is a transaction and never a residence, so nothing here mints or regrades a person, and resident_crosswalk.json already proposes what the new rows reach (27 matches against 17 before, every other name refused with its rule). T-0514 and T-0515 are the tickets that spend this domain onto cards, and this number should come back down as they run. Raised to admit a finished read, not to excuse an unspent one."
+   "why": "T-0675 walked T39N R14E sections 16, 21 and 29 to their end through the results page's own More cursor, which T-0557 had taken for a dead end. The reading grows from 375 sales to 566 — 191 of them the 1833 school-section auction the ceiling had hidden — and this ticket reads the register, it does not rule on it. Spending them is the standing work of T-0514 and T-0515, which is where a purchaser meets a person; nothing here mints or regrades anybody."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 542,
+   "to": 922,
+   "date": "2026-09-04",
+   "why": "T-0676 finished the ring-township sweep T-0557 named as unread — T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E, 180 section queries, 387 more sales through 1836 — landing on top of T-0675's 191, so the deposit is now the register around the town rather than two townships of its middle. The reading is deliberately ahead of the adjudication: a purchase is a transaction and never a residence, so nothing here mints or regrades a person, and resident_crosswalk.json already rules on every purchaser it reads (35 matches, 396 refusals, each with its rule). T-0514 and T-0515 spend this domain onto cards, and T-0680 is filed on why this meter cannot see the 396 refusals as the adjudication they are — fix that and this number should fall a long way. Raised to admit a finished read, not to excuse an unspent one."
   }
  ],
  "lowered": [

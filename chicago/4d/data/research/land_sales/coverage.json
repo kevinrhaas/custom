@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "land_sales",
   "generated_by": "tools/read_land_sales.py --build",
-  "note": "The reading is BY SECTION because the database returns at most 150 rows per query and offers no paging. Two hundred and fifty-two section queries were run — seven townships of the third principal meridian, sections 01-36 each: T39N R14E and T40N R14E, the two the town stands on (T-0557), and the five that ring them, T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E (T-0677). A section that returned fewer than 150 rows was read whole. The four that returned exactly 150 are NOT declared here: what this project holds for them is the first 150 rows the search would give, and declaring that as coverage would record a ceiling as a completed read. A declaration promises that a record reaches the item, so a section that was queried and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole.",
+  "note": "The reading is BY SECTION because a whole-township query stops at the database's 150-row page and looks complete. Two hundred and fifty-two section queries were run — seven townships of the third principal meridian, sections 01-36 each: T39N R14E and T40N R14E, the two the town stands on (T-0557), and the five that ring them, T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E (T-0676). The two central townships were then walked to the end of every section through the results page's own More button, whose keyset cursor returns the rows after the last one shown (T-0675), so every section of them is read whole. The ring sweep ran before that was known and stopped at the first page; only one ring section reached it, T39N R13E sec 16, and that one is NOT declared here — what this project holds for it is a first page and not a section (T-0682). A declaration promises that a record reaches the item, so a section that was read and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole.",
   "declarations": [
     {
       "unit": "list",
@@ -16,12 +16,15 @@
         "T39N R14E sec 09",
         "T39N R14E sec 10",
         "T39N R14E sec 15",
+        "T39N R14E sec 16",
         "T39N R14E sec 17",
         "T39N R14E sec 18",
         "T39N R14E sec 20",
+        "T39N R14E sec 21",
         "T39N R14E sec 22",
         "T39N R14E sec 27",
         "T39N R14E sec 28",
+        "T39N R14E sec 29",
         "T39N R14E sec 30",
         "T39N R14E sec 31",
         "T39N R14E sec 32",
@@ -41,7 +44,7 @@
     },
     {
       "unit": "list",
-      "ticket": "T-0677",
+      "ticket": "T-0676",
       "note": "Read in full: the section query returned fewer than the database's 150-row ceiling, so every sale it holds through 1836 is in the deposit.",
       "items": [
         "T38N R14E sec 02",
@@ -112,7 +115,7 @@
     }
   ],
   "queried_no_sales_through_1836": {
-    "ticket": "T-0557, T-0677",
+    "ticket": "T-0557, T-0676",
     "note": "Queried section by section and read whole; the section holds no sale dated on or before 31 December 1836. Read, empty, and not a hole.",
     "items": [
       "T38N R14E sec 01",
@@ -274,14 +277,11 @@
     ]
   },
   "not_read": {
-    "ticket": "T-0678",
+    "ticket": "T-0682",
     "truncated_at_the_150_row_ceiling": [
-      "T39N R13E sec 16",
-      "T39N R14E sec 16",
-      "T39N R14E sec 21",
-      "T39N R14E sec 29"
+      "T39N R13E sec 16"
     ],
     "townships_not_read": [],
-    "note": "An undeclared item is not read yet and is not a fault. The ring townships T-0557 left unread were swept by T-0677 and none is left. What remains is the ceiling itself: the search offers section/township/range/meridian and county and nothing finer, and the result page has no paging, offset or sort, so these four sections need a different source rather than a narrower query. T-0678 holds it."
+    "note": "An undeclared item is not read yet and is not a fault. The ring townships T-0557 left unread were swept by T-0676 and none is left. One section is: T39N R13E sec 16, whose first page filled the 150-row ceiling. The ceiling is a page and not an end — the results page's More button walks past it (T-0675) — so this is a sweep to re-run and not a source to go looking for. T-0682 holds it."
   }
 }

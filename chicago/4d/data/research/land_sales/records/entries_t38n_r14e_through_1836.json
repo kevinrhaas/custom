@@ -4,11 +4,11 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "generated_by": "tools/read_land_sales.py --build",
   "deposit": "text/isa_land_tract_sales_t38n_r14e_through_1836.tsv",
-  "ticket": "T-0677",
+  "ticket": "T-0676",
   "note": "Every field is the database's own. `normalized` reads the register's SURNAME FORENAME back as a name and corrects no spelling. `confidence` is documented only where the register itself states a residence of COOK.",
   "records": [
     {
-      "id": "ls0521",
+      "id": "ls0712",
       "as_read": "HUNTER EDWARD E",
       "normalized": "Edward E Hunter",
       "locator": {
@@ -51,7 +51,7 @@
       }
     },
     {
-      "id": "ls0522",
+      "id": "ls0713",
       "as_read": "HUNTER EDWARD E",
       "normalized": "Edward E Hunter",
       "locator": {
@@ -94,7 +94,7 @@
       }
     },
     {
-      "id": "ls0523",
+      "id": "ls0714",
       "as_read": "KING JEREMIAH",
       "normalized": "Jeremiah King",
       "locator": {
@@ -137,7 +137,7 @@
       }
     },
     {
-      "id": "ls0524",
+      "id": "ls0715",
       "as_read": "KING JOHN R",
       "normalized": "John R King",
       "locator": {
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "ls0525",
+      "id": "ls0716",
       "as_read": "LATHAM PHILIP C",
       "normalized": "Philip C Latham",
       "locator": {
@@ -223,7 +223,7 @@
       }
     },
     {
-      "id": "ls0526",
+      "id": "ls0717",
       "as_read": "SMITH LIMAN",
       "normalized": "Liman Smith",
       "locator": {
@@ -266,7 +266,7 @@
       }
     },
     {
-      "id": "ls0527",
+      "id": "ls0718",
       "as_read": "SMITH SIMAN",
       "normalized": "Siman Smith",
       "locator": {
@@ -309,7 +309,7 @@
       }
     },
     {
-      "id": "ls0528",
+      "id": "ls0719",
       "as_read": "WENTWORTH ELIJAH",
       "normalized": "Elijah Wentworth",
       "locator": {
@@ -352,7 +352,7 @@
       }
     },
     {
-      "id": "ls0529",
+      "id": "ls0720",
       "as_read": "CARNEY MICHAEL",
       "normalized": "Michael Carney",
       "locator": {
@@ -395,7 +395,7 @@
       }
     },
     {
-      "id": "ls0530",
+      "id": "ls0721",
       "as_read": "DAVIS THOMAS R",
       "normalized": "Thomas R Davis",
       "locator": {
@@ -438,7 +438,7 @@
       }
     },
     {
-      "id": "ls0531",
+      "id": "ls0722",
       "as_read": "DAVIS THOMAS R",
       "normalized": "Thomas R Davis",
       "locator": {
@@ -481,7 +481,7 @@
       }
     },
     {
-      "id": "ls0532",
+      "id": "ls0723",
       "as_read": "DEVINPORT HUGHEA L",
       "normalized": "Hughea L Devinport",
       "locator": {
@@ -524,7 +524,7 @@
       }
     },
     {
-      "id": "ls0533",
+      "id": "ls0724",
       "as_read": "DEVINPORT HUGHEA L",
       "normalized": "Hughea L Devinport",
       "locator": {
@@ -567,7 +567,7 @@
       }
     },
     {
-      "id": "ls0534",
+      "id": "ls0725",
       "as_read": "LEWIS LUDLOW F",
       "normalized": "Ludlow F Lewis",
       "locator": {
@@ -610,7 +610,7 @@
       }
     },
     {
-      "id": "ls0535",
+      "id": "ls0726",
       "as_read": "MURPHY JOHN",
       "normalized": "John Murphy",
       "locator": {
@@ -653,7 +653,7 @@
       }
     },
     {
-      "id": "ls0536",
+      "id": "ls0727",
       "as_read": "OSTRANDER CATHRINE",
       "normalized": "Cathrine Ostrander",
       "locator": {
@@ -696,7 +696,7 @@
       }
     },
     {
-      "id": "ls0537",
+      "id": "ls0728",
       "as_read": "REED ROBERT",
       "normalized": "Robert Reed",
       "locator": {
@@ -739,7 +739,7 @@
       }
     },
     {
-      "id": "ls0538",
+      "id": "ls0729",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
@@ -782,7 +782,7 @@
       }
     },
     {
-      "id": "ls0539",
+      "id": "ls0730",
       "as_read": "SPENCER WILLIAM G",
       "normalized": "William G Spencer",
       "locator": {
@@ -825,7 +825,7 @@
       }
     },
     {
-      "id": "ls0540",
+      "id": "ls0731",
       "as_read": "SPENCER WILLIAM G",
       "normalized": "William G Spencer",
       "locator": {
@@ -868,7 +868,7 @@
       }
     },
     {
-      "id": "ls0541",
+      "id": "ls0732",
       "as_read": "TALCOTT ASAHELL",
       "normalized": "Asahell Talcott",
       "locator": {
@@ -911,7 +911,7 @@
       }
     },
     {
-      "id": "ls0542",
+      "id": "ls0733",
       "as_read": "TALCOTT ASAHELL",
       "normalized": "Asahell Talcott",
       "locator": {
@@ -954,7 +954,7 @@
       }
     },
     {
-      "id": "ls0543",
+      "id": "ls0734",
       "as_read": "THOMPSON JOHN L",
       "normalized": "John L Thompson",
       "locator": {
@@ -997,7 +997,7 @@
       }
     },
     {
-      "id": "ls0544",
+      "id": "ls0735",
       "as_read": "THOMPSON JOHN L",
       "normalized": "John L Thompson",
       "locator": {
@@ -1040,7 +1040,7 @@
       }
     },
     {
-      "id": "ls0545",
+      "id": "ls0736",
       "as_read": "TRADER TEGAL",
       "normalized": "Tegal Trader",
       "locator": {
@@ -1083,7 +1083,7 @@
       }
     },
     {
-      "id": "ls0546",
+      "id": "ls0737",
       "as_read": "HITCHCOCK SYLVESTER",
       "normalized": "Sylvester Hitchcock",
       "locator": {
@@ -1126,7 +1126,7 @@
       }
     },
     {
-      "id": "ls0547",
+      "id": "ls0738",
       "as_read": "HUBBARD THOMAS R",
       "normalized": "Thomas R Hubbard",
       "locator": {
@@ -1169,7 +1169,7 @@
       }
     },
     {
-      "id": "ls0548",
+      "id": "ls0739",
       "as_read": "LEWIS LUDLOW F",
       "normalized": "Ludlow F Lewis",
       "locator": {
@@ -1212,7 +1212,7 @@
       }
     },
     {
-      "id": "ls0549",
+      "id": "ls0740",
       "as_read": "LOOMIS HORATIO G",
       "normalized": "Horatio G Loomis",
       "locator": {
@@ -1255,7 +1255,7 @@
       }
     },
     {
-      "id": "ls0550",
+      "id": "ls0741",
       "as_read": "NEWBERRY WALTER L",
       "normalized": "Walter L Newberry",
       "locator": {
@@ -1298,7 +1298,7 @@
       }
     },
     {
-      "id": "ls0551",
+      "id": "ls0742",
       "as_read": "TALCOTT EDWARD B",
       "normalized": "Edward B Talcott",
       "locator": {
@@ -1341,7 +1341,7 @@
       }
     },
     {
-      "id": "ls0552",
+      "id": "ls0743",
       "as_read": "WILLCOX SYLVESTER",
       "normalized": "Sylvester Willcox",
       "locator": {
@@ -1384,7 +1384,7 @@
       }
     },
     {
-      "id": "ls0553",
+      "id": "ls0744",
       "as_read": "ARNOLD JOHN M",
       "normalized": "John M Arnold",
       "locator": {
@@ -1427,7 +1427,7 @@
       }
     },
     {
-      "id": "ls0554",
+      "id": "ls0745",
       "as_read": "COOK CHARLES W",
       "normalized": "Charles W Cook",
       "locator": {
@@ -1470,7 +1470,7 @@
       }
     },
     {
-      "id": "ls0555",
+      "id": "ls0746",
       "as_read": "MARSH SYLVESTER",
       "normalized": "Sylvester Marsh",
       "locator": {
@@ -1513,7 +1513,7 @@
       }
     },
     {
-      "id": "ls0556",
+      "id": "ls0747",
       "as_read": "STEVENS EDWARD",
       "normalized": "Edward Stevens",
       "locator": {
@@ -1556,7 +1556,7 @@
       }
     },
     {
-      "id": "ls0557",
+      "id": "ls0748",
       "as_read": "BROCK SOLOMON",
       "normalized": "Solomon Brock",
       "locator": {
@@ -1599,7 +1599,7 @@
       }
     },
     {
-      "id": "ls0558",
+      "id": "ls0749",
       "as_read": "PENOYER HENRY",
       "normalized": "Henry Penoyer",
       "locator": {
@@ -1642,7 +1642,7 @@
       }
     },
     {
-      "id": "ls0559",
+      "id": "ls0750",
       "as_read": "KING NEHEMIAH",
       "normalized": "Nehemiah King",
       "locator": {
@@ -1685,7 +1685,7 @@
       }
     },
     {
-      "id": "ls0560",
+      "id": "ls0751",
       "as_read": "KING NEHEMIAH",
       "normalized": "Nehemiah King",
       "locator": {
@@ -1728,7 +1728,7 @@
       }
     },
     {
-      "id": "ls0561",
+      "id": "ls0752",
       "as_read": "KING NEHEMIAH",
       "normalized": "Nehemiah King",
       "locator": {
@@ -1771,7 +1771,7 @@
       }
     },
     {
-      "id": "ls0562",
+      "id": "ls0753",
       "as_read": "SMITH JEDUTHAN",
       "normalized": "Jeduthan Smith",
       "locator": {
@@ -1814,7 +1814,7 @@
       }
     },
     {
-      "id": "ls0563",
+      "id": "ls0754",
       "as_read": "ALLEN WILLIAM",
       "normalized": "William Allen",
       "locator": {
@@ -1857,7 +1857,7 @@
       }
     },
     {
-      "id": "ls0564",
+      "id": "ls0755",
       "as_read": "BOYER JOHN K",
       "normalized": "John K Boyer",
       "locator": {
@@ -1900,7 +1900,7 @@
       }
     },
     {
-      "id": "ls0565",
+      "id": "ls0756",
       "as_read": "HANDY HENRY S",
       "normalized": "Henry S Handy",
       "locator": {
@@ -1943,7 +1943,7 @@
       }
     },
     {
-      "id": "ls0566",
+      "id": "ls0757",
       "as_read": "HOOPER OBADIAH",
       "normalized": "Obadiah Hooper",
       "locator": {
@@ -1986,7 +1986,7 @@
       }
     },
     {
-      "id": "ls0567",
+      "id": "ls0758",
       "as_read": "HOOPER OBODIA",
       "normalized": "Obodia Hooper",
       "locator": {
@@ -2029,7 +2029,7 @@
       }
     },
     {
-      "id": "ls0568",
+      "id": "ls0759",
       "as_read": "SMITH JEREMIAH",
       "normalized": "Jeremiah Smith",
       "locator": {
@@ -2072,7 +2072,7 @@
       }
     },
     {
-      "id": "ls0569",
+      "id": "ls0760",
       "as_read": "WRIGHT JOHN",
       "normalized": "John Wright",
       "locator": {
@@ -2115,7 +2115,7 @@
       }
     },
     {
-      "id": "ls0570",
+      "id": "ls0761",
       "as_read": "COOKE THOMAS",
       "normalized": "Thomas Cooke",
       "locator": {
@@ -2158,7 +2158,7 @@
       }
     },
     {
-      "id": "ls0571",
+      "id": "ls0762",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -2201,7 +2201,7 @@
       }
     },
     {
-      "id": "ls0572",
+      "id": "ls0763",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -2244,7 +2244,7 @@
       }
     },
     {
-      "id": "ls0573",
+      "id": "ls0764",
       "as_read": "HUBBARD THOMAS R",
       "normalized": "Thomas R Hubbard",
       "locator": {
@@ -2287,7 +2287,7 @@
       }
     },
     {
-      "id": "ls0574",
+      "id": "ls0765",
       "as_read": "HUBBARD THOMAS R",
       "normalized": "Thomas R Hubbard",
       "locator": {
@@ -2330,7 +2330,7 @@
       }
     },
     {
-      "id": "ls0575",
+      "id": "ls0766",
       "as_read": "HUBBARD THOMAS R",
       "normalized": "Thomas R Hubbard",
       "locator": {
@@ -2373,7 +2373,7 @@
       }
     },
     {
-      "id": "ls0576",
+      "id": "ls0767",
       "as_read": "LEWIS LUDLOW F",
       "normalized": "Ludlow F Lewis",
       "locator": {
@@ -2416,7 +2416,7 @@
       }
     },
     {
-      "id": "ls0577",
+      "id": "ls0768",
       "as_read": "BASTWICK WILLIAM C",
       "normalized": "William C Bastwick",
       "locator": {
@@ -2459,7 +2459,7 @@
       }
     },
     {
-      "id": "ls0578",
+      "id": "ls0769",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -2502,7 +2502,7 @@
       }
     },
     {
-      "id": "ls0579",
+      "id": "ls0770",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -2545,7 +2545,7 @@
       }
     },
     {
-      "id": "ls0580",
+      "id": "ls0771",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -2588,7 +2588,7 @@
       }
     },
     {
-      "id": "ls0581",
+      "id": "ls0772",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -2631,7 +2631,7 @@
       }
     },
     {
-      "id": "ls0582",
+      "id": "ls0773",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -2674,7 +2674,7 @@
       }
     },
     {
-      "id": "ls0583",
+      "id": "ls0774",
       "as_read": "BARNUM TRUMAN",
       "normalized": "Truman Barnum",
       "locator": {
@@ -2717,7 +2717,7 @@
       }
     },
     {
-      "id": "ls0584",
+      "id": "ls0775",
       "as_read": "BREESE JOIAH S",
       "normalized": "Joiah S Breese",
       "locator": {
@@ -2760,7 +2760,7 @@
       }
     },
     {
-      "id": "ls0585",
+      "id": "ls0776",
       "as_read": "BREESE JOSIAH S",
       "normalized": "Josiah S Breese",
       "locator": {
@@ -2803,7 +2803,7 @@
       }
     },
     {
-      "id": "ls0586",
+      "id": "ls0777",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -2846,7 +2846,7 @@
       }
     },
     {
-      "id": "ls0587",
+      "id": "ls0778",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -2889,7 +2889,7 @@
       }
     },
     {
-      "id": "ls0588",
+      "id": "ls0779",
       "as_read": "TAYLOR EDMUND D",
       "normalized": "Edmund D Taylor",
       "locator": {
@@ -2932,7 +2932,7 @@
       }
     },
     {
-      "id": "ls0589",
+      "id": "ls0780",
       "as_read": "WHITLOCK JAMES",
       "normalized": "James Whitlock",
       "locator": {
@@ -2975,7 +2975,7 @@
       }
     },
     {
-      "id": "ls0590",
+      "id": "ls0781",
       "as_read": "HANDY HENRY S",
       "normalized": "Henry S Handy",
       "locator": {
@@ -3018,7 +3018,7 @@
       }
     },
     {
-      "id": "ls0591",
+      "id": "ls0782",
       "as_read": "HARTWELL OLIVER",
       "normalized": "Oliver Hartwell",
       "locator": {
@@ -3061,7 +3061,7 @@
       }
     },
     {
-      "id": "ls0592",
+      "id": "ls0783",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -3104,7 +3104,7 @@
       }
     },
     {
-      "id": "ls0593",
+      "id": "ls0784",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -3147,7 +3147,7 @@
       }
     },
     {
-      "id": "ls0594",
+      "id": "ls0785",
       "as_read": "MONTGOMERY LOTON WM",
       "normalized": "Loton Wm Montgomery",
       "locator": {
@@ -3190,7 +3190,7 @@
       }
     },
     {
-      "id": "ls0595",
+      "id": "ls0786",
       "as_read": "OAKS NOYES",
       "normalized": "Noyes Oaks",
       "locator": {
@@ -3233,7 +3233,7 @@
       }
     },
     {
-      "id": "ls0596",
+      "id": "ls0787",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
@@ -3276,7 +3276,7 @@
       }
     },
     {
-      "id": "ls0597",
+      "id": "ls0788",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
@@ -3319,7 +3319,7 @@
       }
     },
     {
-      "id": "ls0598",
+      "id": "ls0789",
       "as_read": "BREESE JOSIAH S",
       "normalized": "Josiah S Breese",
       "locator": {
@@ -3362,7 +3362,7 @@
       }
     },
     {
-      "id": "ls0599",
+      "id": "ls0790",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -3405,7 +3405,7 @@
       }
     },
     {
-      "id": "ls0600",
+      "id": "ls0791",
       "as_read": "MONTGOMERY LOTON W",
       "normalized": "Loton W Montgomery",
       "locator": {
@@ -3448,7 +3448,7 @@
       }
     },
     {
-      "id": "ls0601",
+      "id": "ls0792",
       "as_read": "SMITH WILLIAM",
       "normalized": "William Smith",
       "locator": {
@@ -3491,7 +3491,7 @@
       }
     },
     {
-      "id": "ls0602",
+      "id": "ls0793",
       "as_read": "SMITH WILLIAM",
       "normalized": "William Smith",
       "locator": {
@@ -3534,7 +3534,7 @@
       }
     },
     {
-      "id": "ls0603",
+      "id": "ls0794",
       "as_read": "SPENCE JAMES",
       "normalized": "James Spence",
       "locator": {
@@ -3577,7 +3577,7 @@
       }
     },
     {
-      "id": "ls0604",
+      "id": "ls0795",
       "as_read": "BLAISDELL BENJAMIN",
       "normalized": "Benjamin Blaisdell",
       "locator": {
@@ -3620,7 +3620,7 @@
       }
     },
     {
-      "id": "ls0605",
+      "id": "ls0796",
       "as_read": "BREESE SIDNEY",
       "normalized": "Sidney Breese",
       "locator": {
@@ -3663,7 +3663,7 @@
       }
     },
     {
-      "id": "ls0606",
+      "id": "ls0797",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -3706,7 +3706,7 @@
       }
     },
     {
-      "id": "ls0607",
+      "id": "ls0798",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -3749,7 +3749,7 @@
       }
     },
     {
-      "id": "ls0608",
+      "id": "ls0799",
       "as_read": "RUSSELL JOHN",
       "normalized": "John Russell",
       "locator": {
@@ -3792,7 +3792,7 @@
       }
     },
     {
-      "id": "ls0609",
+      "id": "ls0800",
       "as_read": "WOOD CATHRINE A",
       "normalized": "Cathrine A Wood",
       "locator": {
@@ -3835,7 +3835,7 @@
       }
     },
     {
-      "id": "ls0610",
+      "id": "ls0801",
       "as_read": "BOND HARVEY",
       "normalized": "Harvey Bond",
       "locator": {
@@ -3878,7 +3878,7 @@
       }
     },
     {
-      "id": "ls0611",
+      "id": "ls0802",
       "as_read": "CAMPBELL JAMES B",
       "normalized": "James B Campbell",
       "locator": {
@@ -3921,7 +3921,7 @@
       }
     },
     {
-      "id": "ls0612",
+      "id": "ls0803",
       "as_read": "COOK THOMAS",
       "normalized": "Thomas Cook",
       "locator": {
@@ -3964,7 +3964,7 @@
       }
     },
     {
-      "id": "ls0613",
+      "id": "ls0804",
       "as_read": "DICKENSON AUGUSTUS",
       "normalized": "Augustus Dickenson",
       "locator": {
@@ -4007,7 +4007,7 @@
       }
     },
     {
-      "id": "ls0614",
+      "id": "ls0805",
       "as_read": "HURD DENNIS S",
       "normalized": "Dennis S Hurd",
       "locator": {
@@ -4050,7 +4050,7 @@
       }
     },
     {
-      "id": "ls0615",
+      "id": "ls0806",
       "as_read": "BLAKE LEVI",
       "normalized": "Levi Blake",
       "locator": {
@@ -4093,7 +4093,7 @@
       }
     },
     {
-      "id": "ls0616",
+      "id": "ls0807",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -4136,7 +4136,7 @@
       }
     },
     {
-      "id": "ls0617",
+      "id": "ls0808",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -4179,7 +4179,7 @@
       }
     },
     {
-      "id": "ls0618",
+      "id": "ls0809",
       "as_read": "PEARSONS HIRAM",
       "normalized": "Hiram Pearsons",
       "locator": {
@@ -4222,7 +4222,7 @@
       }
     },
     {
-      "id": "ls0619",
+      "id": "ls0810",
       "as_read": "PEARSONS HIRAM",
       "normalized": "Hiram Pearsons",
       "locator": {
@@ -4265,7 +4265,7 @@
       }
     },
     {
-      "id": "ls0620",
+      "id": "ls0811",
       "as_read": "PEARSONS HIRAM",
       "normalized": "Hiram Pearsons",
       "locator": {
@@ -4308,7 +4308,7 @@
       }
     },
     {
-      "id": "ls0621",
+      "id": "ls0812",
       "as_read": "BOND HEMAN",
       "normalized": "Heman Bond",
       "locator": {
@@ -4351,7 +4351,7 @@
       }
     },
     {
-      "id": "ls0622",
+      "id": "ls0813",
       "as_read": "BOND HEMAN",
       "normalized": "Heman Bond",
       "locator": {
@@ -4394,7 +4394,7 @@
       }
     },
     {
-      "id": "ls0623",
+      "id": "ls0814",
       "as_read": "HADDOCK EDWARD H",
       "normalized": "Edward H Haddock",
       "locator": {
@@ -4437,7 +4437,7 @@
       }
     },
     {
-      "id": "ls0624",
+      "id": "ls0815",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -4480,7 +4480,7 @@
       }
     },
     {
-      "id": "ls0625",
+      "id": "ls0816",
       "as_read": "PEARSONS HIRAM",
       "normalized": "Hiram Pearsons",
       "locator": {
@@ -4523,7 +4523,7 @@
       }
     },
     {
-      "id": "ls0626",
+      "id": "ls0817",
       "as_read": "UPDIKE PETER L",
       "normalized": "Peter L Updike",
       "locator": {
@@ -4566,7 +4566,7 @@
       }
     },
     {
-      "id": "ls0627",
+      "id": "ls0818",
       "as_read": "BREESE JOSIAH S",
       "normalized": "Josiah S Breese",
       "locator": {
@@ -4609,7 +4609,7 @@
       }
     },
     {
-      "id": "ls0628",
+      "id": "ls0819",
       "as_read": "BREESE JOSIAH S",
       "normalized": "Josiah S Breese",
       "locator": {
@@ -4652,7 +4652,7 @@
       }
     },
     {
-      "id": "ls0629",
+      "id": "ls0820",
       "as_read": "GOODRICH GRANT",
       "normalized": "Grant Goodrich",
       "locator": {
@@ -4695,7 +4695,7 @@
       }
     },
     {
-      "id": "ls0630",
+      "id": "ls0821",
       "as_read": "GOODRICH GRANT",
       "normalized": "Grant Goodrich",
       "locator": {
@@ -4738,7 +4738,7 @@
       }
     },
     {
-      "id": "ls0631",
+      "id": "ls0822",
       "as_read": "GOODRICH GRANT",
       "normalized": "Grant Goodrich",
       "locator": {
@@ -4781,7 +4781,7 @@
       }
     },
     {
-      "id": "ls0632",
+      "id": "ls0823",
       "as_read": "GOODRICH GRANT",
       "normalized": "Grant Goodrich",
       "locator": {
@@ -4824,7 +4824,7 @@
       }
     },
     {
-      "id": "ls0633",
+      "id": "ls0824",
       "as_read": "HATCH JUNIUS H",
       "normalized": "Junius H Hatch",
       "locator": {
@@ -4867,7 +4867,7 @@
       }
     },
     {
-      "id": "ls0634",
+      "id": "ls0825",
       "as_read": "SHEPARD ALBERT",
       "normalized": "Albert Shepard",
       "locator": {
@@ -4910,7 +4910,7 @@
       }
     },
     {
-      "id": "ls0635",
+      "id": "ls0826",
       "as_read": "RUSSELL JOHN B F",
       "normalized": "John B F Russell",
       "locator": {
@@ -4953,7 +4953,7 @@
       }
     },
     {
-      "id": "ls0636",
+      "id": "ls0827",
       "as_read": "BROWN WM",
       "normalized": "Wm Brown",
       "locator": {
@@ -4996,7 +4996,7 @@
       }
     },
     {
-      "id": "ls0637",
+      "id": "ls0828",
       "as_read": "HUNTER MARIA",
       "normalized": "Maria Hunter",
       "locator": {
@@ -5039,7 +5039,7 @@
       }
     },
     {
-      "id": "ls0638",
+      "id": "ls0829",
       "as_read": "KENZIE ROBERT A",
       "normalized": "Robert A Kenzie",
       "locator": {
@@ -5082,7 +5082,7 @@
       }
     },
     {
-      "id": "ls0639",
+      "id": "ls0830",
       "as_read": "PECK EBENEZER",
       "normalized": "Ebenezer Peck",
       "locator": {
@@ -5125,7 +5125,7 @@
       }
     },
     {
-      "id": "ls0640",
+      "id": "ls0831",
       "as_read": "BROWN WM",
       "normalized": "Wm Brown",
       "locator": {
@@ -5168,7 +5168,7 @@
       }
     },
     {
-      "id": "ls0641",
+      "id": "ls0832",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -5211,7 +5211,7 @@
       }
     },
     {
-      "id": "ls0642",
+      "id": "ls0833",
       "as_read": "LANE ABNER",
       "normalized": "Abner Lane",
       "locator": {
@@ -5254,7 +5254,7 @@
       }
     },
     {
-      "id": "ls0643",
+      "id": "ls0834",
       "as_read": "MERRILL GEO W",
       "normalized": "Geo W Merrill",
       "locator": {
@@ -5297,7 +5297,7 @@
       }
     },
     {
-      "id": "ls0644",
+      "id": "ls0835",
       "as_read": "SHEPHERD ALBERT",
       "normalized": "Albert Shepherd",
       "locator": {
@@ -5340,7 +5340,7 @@
       }
     },
     {
-      "id": "ls0645",
+      "id": "ls0836",
       "as_read": "WILCOX DE LA FAYETTE",
       "normalized": "De La Fayette Wilcox",
       "locator": {
@@ -5383,7 +5383,7 @@
       }
     },
     {
-      "id": "ls0646",
+      "id": "ls0837",
       "as_read": "BRITAURCLAY HIRAM Z",
       "normalized": "Hiram Z Britaurclay",
       "locator": {
@@ -5426,7 +5426,7 @@
       }
     },
     {
-      "id": "ls0647",
+      "id": "ls0838",
       "as_read": "GARRETT A ET CO",
       "normalized": "A Et Co Garrett",
       "locator": {
@@ -5469,7 +5469,7 @@
       }
     },
     {
-      "id": "ls0648",
+      "id": "ls0839",
       "as_read": "HALL GEORGE",
       "normalized": "George Hall",
       "locator": {
@@ -5512,7 +5512,7 @@
       }
     },
     {
-      "id": "ls0649",
+      "id": "ls0840",
       "as_read": "HALL GEORGE",
       "normalized": "George Hall",
       "locator": {
@@ -5555,7 +5555,7 @@
       }
     },
     {
-      "id": "ls0650",
+      "id": "ls0841",
       "as_read": "LATTERLEE RICHARD L",
       "normalized": "Richard L Latterlee",
       "locator": {
@@ -5598,7 +5598,7 @@
       }
     },
     {
-      "id": "ls0651",
+      "id": "ls0842",
       "as_read": "MERRILL GEORGE W",
       "normalized": "George W Merrill",
       "locator": {
@@ -5641,7 +5641,7 @@
       }
     },
     {
-      "id": "ls0652",
+      "id": "ls0843",
       "as_read": "PHILLIPS H",
       "normalized": "H Phillips",
       "locator": {
@@ -5684,7 +5684,7 @@
       }
     },
     {
-      "id": "ls0653",
+      "id": "ls0844",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
@@ -5727,7 +5727,7 @@
       }
     },
     {
-      "id": "ls0654",
+      "id": "ls0845",
       "as_read": "WILCOX DE LA FAYETTE",
       "normalized": "De La Fayette Wilcox",
       "locator": {
@@ -5770,7 +5770,7 @@
       }
     },
     {
-      "id": "ls0655",
+      "id": "ls0846",
       "as_read": "BOND WILLIAM",
       "normalized": "William Bond",
       "locator": {
@@ -5813,7 +5813,7 @@
       }
     },
     {
-      "id": "ls0656",
+      "id": "ls0847",
       "as_read": "HAMMOND WM P",
       "normalized": "Wm P Hammond",
       "locator": {
@@ -5856,7 +5856,7 @@
       }
     },
     {
-      "id": "ls0657",
+      "id": "ls0848",
       "as_read": "MCCLURE CHARLES",
       "normalized": "Charles Mcclure",
       "locator": {
@@ -5899,7 +5899,7 @@
       }
     },
     {
-      "id": "ls0658",
+      "id": "ls0849",
       "as_read": "PALMER ISAAC K",
       "normalized": "Isaac K Palmer",
       "locator": {
@@ -5942,7 +5942,7 @@
       }
     },
     {
-      "id": "ls0659",
+      "id": "ls0850",
       "as_read": "UPDIKE PETER S",
       "normalized": "Peter S Updike",
       "locator": {
@@ -5985,7 +5985,7 @@
       }
     },
     {
-      "id": "ls0660",
+      "id": "ls0851",
       "as_read": "WILCOX DE LA FAYETTE",
       "normalized": "De La Fayette Wilcox",
       "locator": {
@@ -6028,7 +6028,7 @@
       }
     },
     {
-      "id": "ls0661",
+      "id": "ls0852",
       "as_read": "WILSON JOHN L",
       "normalized": "John L Wilson",
       "locator": {
@@ -6071,7 +6071,7 @@
       }
     },
     {
-      "id": "ls0662",
+      "id": "ls0853",
       "as_read": "WILSON JOHN L",
       "normalized": "John L Wilson",
       "locator": {
@@ -6114,7 +6114,7 @@
       }
     },
     {
-      "id": "ls0663",
+      "id": "ls0854",
       "as_read": "FAULKNER JOSEPH M",
       "normalized": "Joseph M Faulkner",
       "locator": {
@@ -6157,7 +6157,7 @@
       }
     },
     {
-      "id": "ls0664",
+      "id": "ls0855",
       "as_read": "FAULKNER JOSEPH M",
       "normalized": "Joseph M Faulkner",
       "locator": {
@@ -6200,7 +6200,7 @@
       }
     },
     {
-      "id": "ls0665",
+      "id": "ls0856",
       "as_read": "MARSH SYLVESTER",
       "normalized": "Sylvester Marsh",
       "locator": {
@@ -6243,7 +6243,7 @@
       }
     },
     {
-      "id": "ls0666",
+      "id": "ls0857",
       "as_read": "MARSH SYLVESTER",
       "normalized": "Sylvester Marsh",
       "locator": {
@@ -6286,7 +6286,7 @@
       }
     },
     {
-      "id": "ls0667",
+      "id": "ls0858",
       "as_read": "PEYTON LUCIEN",
       "normalized": "Lucien Peyton",
       "locator": {
@@ -6329,7 +6329,7 @@
       }
     },
     {
-      "id": "ls0668",
+      "id": "ls0859",
       "as_read": "WILSON JOHN L",
       "normalized": "John L Wilson",
       "locator": {
@@ -6372,7 +6372,7 @@
       }
     },
     {
-      "id": "ls0669",
+      "id": "ls0860",
       "as_read": "BLANCHARD FRANCIS G",
       "normalized": "Francis G Blanchard",
       "locator": {
@@ -6415,7 +6415,7 @@
       }
     },
     {
-      "id": "ls0670",
+      "id": "ls0861",
       "as_read": "EGAN WILLIAM B",
       "normalized": "William B Egan",
       "locator": {
@@ -6458,7 +6458,7 @@
       }
     },
     {
-      "id": "ls0671",
+      "id": "ls0862",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -6501,7 +6501,7 @@
       }
     },
     {
-      "id": "ls0672",
+      "id": "ls0863",
       "as_read": "ROBINSON RICHARD P",
       "normalized": "Richard P Robinson",
       "locator": {

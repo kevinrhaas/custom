@@ -4,11 +4,11 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "generated_by": "tools/read_land_sales.py --build",
   "deposit": "text/isa_land_tract_sales_t41n_r14e_through_1836.tsv",
-  "ticket": "T-0677",
+  "ticket": "T-0676",
   "note": "Every field is the database's own. `normalized` reads the register's SURNAME FORENAME back as a name and corrects no spelling. `confidence` is documented only where the register itself states a residence of COOK.",
   "records": [
     {
-      "id": "ls0748",
+      "id": "ls0939",
       "as_read": "BRONSON FREDERICK",
       "normalized": "Frederick Bronson",
       "locator": {
@@ -51,7 +51,7 @@
       }
     },
     {
-      "id": "ls0749",
+      "id": "ls0940",
       "as_read": "BRONSON FREDERICK",
       "normalized": "Frederick Bronson",
       "locator": {
@@ -94,7 +94,7 @@
       }
     },
     {
-      "id": "ls0750",
+      "id": "ls0941",
       "as_read": "JACKSON SAMUEL",
       "normalized": "Samuel Jackson",
       "locator": {
@@ -137,7 +137,7 @@
       }
     },
     {
-      "id": "ls0751",
+      "id": "ls0942",
       "as_read": "ROSE RUSSEL",
       "normalized": "Russel Rose",
       "locator": {
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "ls0752",
+      "id": "ls0943",
       "as_read": "TRADER TEGAL",
       "normalized": "Tegal Trader",
       "locator": {
@@ -223,7 +223,7 @@
       }
     },
     {
-      "id": "ls0753",
+      "id": "ls0944",
       "as_read": "WEST HENRY C",
       "normalized": "Henry C West",
       "locator": {
@@ -266,7 +266,7 @@
       }
     },
     {
-      "id": "ls0754",
+      "id": "ls0945",
       "as_read": "WEST HENRY C",
       "normalized": "Henry C West",
       "locator": {
@@ -309,7 +309,7 @@
       }
     },
     {
-      "id": "ls0755",
+      "id": "ls0946",
       "as_read": "WOODS ALONZO C",
       "normalized": "Alonzo C Woods",
       "locator": {
@@ -352,7 +352,7 @@
       }
     },
     {
-      "id": "ls0756",
+      "id": "ls0947",
       "as_read": "WOODS ALONZO C",
       "normalized": "Alonzo C Woods",
       "locator": {
@@ -395,7 +395,7 @@
       }
     },
     {
-      "id": "ls0757",
+      "id": "ls0948",
       "as_read": "BARNES WHEELER",
       "normalized": "Wheeler Barnes",
       "locator": {
@@ -438,7 +438,7 @@
       }
     },
     {
-      "id": "ls0758",
+      "id": "ls0949",
       "as_read": "BRONSON FREDERICK",
       "normalized": "Frederick Bronson",
       "locator": {
@@ -481,7 +481,7 @@
       }
     },
     {
-      "id": "ls0759",
+      "id": "ls0950",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -524,7 +524,7 @@
       }
     },
     {
-      "id": "ls0760",
+      "id": "ls0951",
       "as_read": "HUBBARD ELIJAH K",
       "normalized": "Elijah K Hubbard",
       "locator": {
@@ -567,7 +567,7 @@
       }
     },
     {
-      "id": "ls0761",
+      "id": "ls0952",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
@@ -610,7 +610,7 @@
       }
     },
     {
-      "id": "ls0762",
+      "id": "ls0953",
       "as_read": "SEYMOUR HENRY",
       "normalized": "Henry Seymour",
       "locator": {
