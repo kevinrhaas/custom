@@ -3,6 +3,8 @@
   "domain": "land_sales",
   "source_id": "isa_public_domain_land_tract_sales",
   "generated_by": "tools/read_land_sales.py --build",
+  "deposit": "text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv",
+  "ticket": "T-0557",
   "note": "Every field is the database's own. `normalized` reads the register's SURNAME FORENAME back as a name and corrects no spelling. `confidence` is documented only where the register itself states a residence of COOK.",
   "records": [
     {

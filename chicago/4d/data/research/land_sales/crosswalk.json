@@ -8,11 +8,43 @@
       "ticket": "T-0557",
       "what": "Every pair of differently-spelled purchasers entering the same tract in T39N R14E and T40N R14E through 1836.",
       "merges": 0,
-      "refusals": 41
+      "refusals": 64
     }
   ],
   "merges": [],
   "refusals": [
+    {
+      "a": "SMITH LIMAN",
+      "b": "SMITH SIMAN",
+      "rule": "SMITH LIMAN and SMITH SIMAN entered the same tract (T38N R14E sec 02, NW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "KING JEREMIAH",
+      "b": "KING JOHN R",
+      "rule": "KING JEREMIAH and KING JOHN R entered the same tract (T38N R14E sec 02, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HOOPER OBADIAH",
+      "b": "HOOPER OBODIA",
+      "rule": "HOOPER OBADIAH and HOOPER OBODIA entered the same tract (T38N R14E sec 14, W2NE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "KETTLESTRAIGS JOSEPH",
+      "b": "KETTLESTRINGS JOSEPH",
+      "rule": "KETTLESTRAIGS JOSEPH and KETTLESTRINGS JOSEPH entered the same tract (T39N R13E sec 07, NW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
     {
       "a": "CHIPMAN ANSEL",
       "b": "CHIPMON ANSEL",
@@ -289,6 +321,158 @@
       "a": "SMITH JEBUTHOM",
       "b": "SMITH JEREMIAH",
       "rule": "SMITH JEBUTHOM and SMITH JEREMIAH entered the same tract (T39N R14E sec 34, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WENTWORTH ELIJAH W",
+      "b": "WENTWORTH ZEBIAH W",
+      "rule": "WENTWORTH ELIJAH W and WENTWORTH ZEBIAH W entered the same tract (T40N R13E sec 10, NE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WENTWORTH ELIJAH SEN",
+      "b": "WENTWORTH ELIJAM SEN",
+      "rule": "WENTWORTH ELIJAH SEN and WENTWORTH ELIJAM SEN entered the same tract (T40N R13E sec 10, NW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT BETSY",
+      "b": "OTHERT JANE",
+      "rule": "OTHERT BETSY and OTHERT JANE entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT BETSY",
+      "b": "OTHERT JOHN",
+      "rule": "OTHERT BETSY and OTHERT JOHN entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT BETSY",
+      "b": "OTHERT THOMAS",
+      "rule": "OTHERT BETSY and OTHERT THOMAS entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT JANE",
+      "b": "OTHERT JOHN",
+      "rule": "OTHERT JANE and OTHERT JOHN entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT JANE",
+      "b": "OTHERT THOMAS",
+      "rule": "OTHERT JANE and OTHERT THOMAS entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OTHERT JOHN",
+      "b": "OTHERT THOMAS",
+      "rule": "OTHERT JOHN and OTHERT THOMAS entered the same tract (T40N R13E sec 10, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "OSBOND DAVID",
+      "b": "OSBORN DAVID",
+      "rule": "OSBOND DAVID and OSBORN DAVID entered the same tract (T40N R13E sec 11, E2NW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "FAY H R",
+      "b": "FAY HARRISON K",
+      "rule": "FAY H R and FAY HARRISON K entered the same tract (T40N R13E sec 11, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "KINGSTON J T",
+      "b": "KINGSTON JOHN T",
+      "rule": "KINGSTON J T and KINGSTON JOHN T entered the same tract (T40N R13E sec 11, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BROWN JEREMIAH",
+      "b": "BROWNEL JEREMIAH",
+      "rule": "BROWN JEREMIAH and BROWNEL JEREMIAH entered the same tract (T40N R13E sec 11, SW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "CLARK JOHN K",
+      "b": "CLARK JOHN R",
+      "rule": "CLARK JOHN K and CLARK JOHN R entered the same tract (T40N R13E sec 11, SW) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "HUNTER E E",
+      "b": "HUNTER EDWARD E",
+      "rule": "HUNTER E E and HUNTER EDWARD E entered the same tract (T40N R13E sec 13, NE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "LEEG RACHEL",
+      "b": "LEGG RACHEL",
+      "rule": "LEEG RACHEL and LEGG RACHEL entered the same tract (T40N R13E sec 13, NE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "NOBLE MARK JR",
+      "b": "NOBLE MARK SEN",
+      "rule": "NOBLE MARK JR and NOBLE MARK SEN entered the same tract (T40N R13E sec 24, NE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BICKERDIKE RICHARD",
+      "b": "BICKERDIKE RICHARD J",
+      "rule": "BICKERDIKE RICHARD and BICKERDIKE RICHARD J entered the same tract (T40N R13E sec 24, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BICKERDIKE RICHARD",
+      "b": "BICKERDIKE RICHARD S",
+      "rule": "BICKERDIKE RICHARD and BICKERDIKE RICHARD S entered the same tract (T40N R13E sec 24, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BICKERDIKE RICHARD J",
+      "b": "BICKERDIKE RICHARD S",
+      "rule": "BICKERDIKE RICHARD J and BICKERDIKE RICHARD S entered the same tract (T40N R13E sec 24, SE) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
       "evidence": [
         "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
       ]

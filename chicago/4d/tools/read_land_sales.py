@@ -5,8 +5,9 @@
     tools/read_land_sales.py --check       the gate: re-derive and refuse any drift
     tools/read_land_sales.py --self-test   the gate's assertions still fire when broken
 
-WHAT THIS READS. `data/research/land_sales/text/*.tsv` is the committed deposit: one
-row per sale, every field exactly as the database printed it, harvested by
+WHAT THIS READS. `data/research/land_sales/text/*.tsv` are the committed deposits —
+one per township sweep, one row per sale, every field exactly as the database printed
+it, harvested by
 `tools/harvest_land_sales.py --sweep` (which reaches the network and is therefore run
 deliberately, never by the gate). Everything else under `data/research/land_sales/`
 is derived from that file by --build and re-derived by --check, so a hand-edit to a
@@ -41,14 +42,34 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "land_sales"
 RESIDENTS = ROOT / "data" / "residents"
 SOURCE_ID = "isa_public_domain_land_tract_sales"
-TSV = "isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
 
-# The three sections of T39N R14E whose section query returned exactly 150 rows — the
-# database's per-query ceiling, and it offers no paging. Their rows below are the first
-# 150 the search returned and NOT the section; they are carried, and the section is not
-# declared read. Naming them here is what stops a later pass reading the truncation as
-# completeness.
-TRUNCATED = {("39N", "14E", "16"), ("39N", "14E", "21"), ("39N", "14E", "29")}
+# THE DEPOSITS, AND WHY THIS LIST IS APPEND-ONLY. One sweep writes one deposit, and a
+# record's `ls####` id is its position in this order. Those ids are cited from
+# `ground.json` and from the `land_owner` block on 63 structures, so a deposit is added
+# at the END of the list and an existing one never moves: reordering would silently
+# repoint every one of those citations at a different sale.
+#   (file, the ticket that swept it, the townships it covers)
+DEPOSITS = (
+    ("isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv", "T-0557",
+     (("39N", "14E"), ("40N", "14E"))),
+    ("isa_land_tract_sales_t39n_r13e_through_1836.tsv", "T-0677", (("39N", "13E"),)),
+    ("isa_land_tract_sales_t38n_r14e_through_1836.tsv", "T-0677", (("38N", "14E"),)),
+    ("isa_land_tract_sales_t38n_r15e_through_1836.tsv", "T-0677", (("38N", "15E"),)),
+    ("isa_land_tract_sales_t40n_r13e_through_1836.tsv", "T-0677", (("40N", "13E"),)),
+    ("isa_land_tract_sales_t41n_r14e_through_1836.tsv", "T-0677", (("41N", "14E"),)),
+)
+TSV = DEPOSITS[0][0]
+
+# The sections whose query returned exactly 150 rows — the database's per-query ceiling,
+# and it offers no paging. Their rows below are the first 150 the search returned and NOT
+# the section; they are carried, and the section is not declared read. Naming them here is
+# what stops a later pass reading the truncation as completeness. Three are the school
+# section and two West Division sections of the town itself (T-0557); the fourth is the
+# school section of the township immediately west (T-0677). T-0678 holds the problem of
+# reading past the ceiling — section is the finest grain this source's search offers, so
+# it needs a different source and not a cleverer query.
+TRUNCATED = {("39N", "14E", "16"), ("39N", "14E", "21"), ("39N", "14E", "29"),
+             ("39N", "13E", "16")}
 
 # The database's own abbreviations, expanded only where the expansion is the Archives'
 # own and not this project's guess. Anything absent stays as the register wrote it.
@@ -79,21 +100,36 @@ def dump(p: Path, doc) -> None:
     p.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def read_tsv(domain: Path) -> list:
-    lines = (domain / "text" / TSV).read_text(encoding="utf-8").splitlines()
+def stem_of(tsv: str) -> str:
+    """`isa_land_tract_sales_t39n_r13e_through_1836.tsv` -> `t39n_r13e_through_1836`."""
+    return tsv[len("isa_land_tract_sales_"):-len(".tsv")]
+
+
+def read_deposit(domain: Path, tsv: str, ticket: str) -> list:
+    lines = (domain / "text" / tsv).read_text(encoding="utf-8").splitlines()
     head = lines[0].split("\t")
     if head != COLS:
-        raise SystemExit("land_sales: the deposit's header is not the harvest's header")
+        raise SystemExit("land_sales: %s's header is not the harvest's header" % tsv)
     rows = []
     for n, line in enumerate(lines[1:], start=2):
         if not line.strip():
             continue
         cells = line.split("\t")
         if len(cells) != len(COLS):
-            raise SystemExit("land_sales: line %d has %d cells, not %d" % (n, len(cells), len(COLS)))
+            raise SystemExit("land_sales: %s line %d has %d cells, not %d"
+                             % (tsv, n, len(cells), len(COLS)))
         row = dict(zip(COLS, cells))
-        row["_line"] = n
+        row["_line"], row["_file"], row["_ticket"] = n, tsv, ticket
         rows.append(row)
+    return rows
+
+
+def read_tsv(domain: Path) -> list:
+    """Every committed deposit, in DEPOSITS order — which is what fixes the record ids."""
+    rows = []
+    for tsv, ticket, _ in DEPOSITS:
+        if (domain / "text" / tsv).exists():
+            rows += read_deposit(domain, tsv, ticket)
     return rows
 
 
@@ -166,7 +202,7 @@ def build_records(rows: list) -> dict:
             "locator": {"list": list_name(row), "line": row["_line"],
                         "purchase_no": row["purchase_no"],
                         "volume": row["volume"], "page": row["page"],
-                        "text_file": TSV},
+                        "text_file": row["_file"]},
             "reading": "transcription_mediated",
             "confidence": "documented" if cook else "inferred",
             "notes": ("The register's Residence column reads COOK: contemporary evidence "
@@ -196,11 +232,17 @@ def build_records(rows: list) -> dict:
             },
             "tract": tract(row),
         })
+    return records
+
+
+def records_doc(tsv: str, ticket: str, records: list) -> dict:
     return {
         "schema": 1,
         "domain": "land_sales",
         "source_id": SOURCE_ID,
         "generated_by": "tools/read_land_sales.py --build",
+        "deposit": "text/" + tsv,
+        "ticket": ticket,
         "note": "Every field is the database's own. `normalized` reads the register's "
                 "SURNAME FORENAME back as a name and corrects no spelling. `confidence` "
                 "is documented only where the register itself states a residence of COOK.",
@@ -210,52 +252,62 @@ def build_records(rows: list) -> dict:
 
 def build_coverage(rows: list) -> dict:
     # A DECLARATION is a promise that something in the domain reaches the item, and the
-    # gate is right to call a declared item nothing reaches a hole. Sixty-nine sections
-    # were queried; only the ones that returned a sale through 1836 can be declared. The
-    # rest were read and were empty, which is a fact worth keeping and is not coverage —
-    # so it is kept beside the declaration rather than inside it.
-    reached = sorted({list_name(r) for r in rows})
-    queried = ["T%sN R14E sec %02d" % (t, s) for t in (39, 40) for s in range(1, 37)]
+    # gate is right to call a declared item nothing reaches a hole. Every section of every
+    # swept township was queried; only the ones that returned a sale through 1836 can be
+    # declared. The rest were read and were empty, which is a fact worth keeping and is
+    # not coverage — so it is kept beside the declaration rather than inside it. Each
+    # sweep declares under its own ticket, because a declaration that cannot be traced to
+    # the pass that made it cannot be audited.
     truncated = ["T%s R%s sec %s" % tr for tr in sorted(TRUNCATED)]
-    declared = [n for n in reached if n not in truncated]
-    empty = [n for n in queried if n not in reached and n not in truncated]
+    by_ticket, empty = {}, []
+    for tsv, ticket, townships in DEPOSITS:
+        reached = sorted({list_name(r) for r in rows if r["_file"] == tsv})
+        queried = ["T%s R%s sec %02d" % (tw, rg, s)
+                   for tw, rg in townships for s in range(1, 37)]
+        by_ticket.setdefault(ticket, []).extend(n for n in reached if n not in truncated)
+        empty.extend(n for n in queried if n not in reached and n not in truncated)
     return {
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
         "note": "The reading is BY SECTION because the database returns at most 150 rows "
-                "per query and offers no paging. Seventy-two section queries were run "
-                "(T39N and T40N, R14E, third principal meridian, sections 01-36); a "
-                "section that returned fewer than 150 rows was read whole. The three "
-                "sections that returned exactly 150 are NOT declared here: what this "
-                "project holds for them is the first 150 rows the search would give, and "
-                "declaring that as coverage would record a ceiling as a completed read. "
-                "A declaration promises that a record reaches the item, so a section that "
-                "was queried and held no sale through 1836 is listed under "
-                "`queried_no_sales_through_1836` instead — read, empty, and not a hole. "
-                "The ring townships T39N R13E, T38N R14E, T38N R15E, T40N R13E and "
-                "T41N R14E are not read at all and are not declared.",
+                "per query and offers no paging. Two hundred and fifty-two section "
+                "queries were run — seven townships of the third principal meridian, "
+                "sections 01-36 each: T39N R14E and T40N R14E, the two the town stands "
+                "on (T-0557), and the five that ring them, T39N R13E, T38N R14E, "
+                "T38N R15E, T40N R13E and T41N R14E (T-0677). A section that returned "
+                "fewer than 150 rows was read whole. The four that returned exactly 150 "
+                "are NOT declared here: what this project holds for them is the first 150 "
+                "rows the search would give, and declaring that as coverage would record a "
+                "ceiling as a completed read. A declaration promises that a record reaches "
+                "the item, so a section that was queried and held no sale through 1836 is "
+                "listed under `queried_no_sales_through_1836` instead — read, empty, and "
+                "not a hole.",
         "declarations": [{
             "unit": "list",
-            "ticket": "T-0557",
+            "ticket": ticket,
             "note": "Read in full: the section query returned fewer than the database's "
                     "150-row ceiling, so every sale it holds through 1836 is in the "
                     "deposit.",
-            "items": declared,
-        }],
+            "items": sorted(items),
+        } for ticket, items in sorted(by_ticket.items())],
         "queried_no_sales_through_1836": {
-            "ticket": "T-0557",
+            "ticket": "T-0557, T-0677",
             "note": "Queried section by section and read whole; the section holds no sale "
                     "dated on or before 31 December 1836. Read, empty, and not a hole.",
-            "items": empty,
+            "items": sorted(empty),
         },
         "not_read": {
-            "ticket": "T-0557",
+            "ticket": "T-0678",
             "truncated_at_the_150_row_ceiling": truncated,
-            "townships_not_read": ["T39N R13E", "T38N R14E", "T38N R15E", "T40N R13E",
-                                   "T41N R14E"],
-            "note": "An undeclared item is not read yet and is not a fault. These are "
-                    "named so that the next pass knows exactly what is left.",
+            "townships_not_read": [],
+            "note": "An undeclared item is not read yet and is not a fault. The ring "
+                    "townships T-0557 left unread were swept by T-0677 and none is left. "
+                    "What remains is the ceiling itself: the search offers "
+                    "section/township/range/meridian and county and nothing finer, and the "
+                    "result page has no paging, offset or sort, so these four sections "
+                    "need a different source rather than a narrower query. T-0678 holds "
+                    "it.",
         },
     }
 
@@ -414,15 +466,17 @@ def build_crosswalk(rows: list) -> dict:
     }
 
 
-def build_entries(rows: list, records: dict) -> dict:
+def build_entries(rows: list, records: list) -> dict:
     """`entries.json` — the flat, verbatim list T-0557 asked for, one object per sale."""
     return {
         "schema": 1,
         "domain": "land_sales",
         "source_id": SOURCE_ID,
         "generated_by": "tools/read_land_sales.py --build",
-        "scope": "Third principal meridian, T39N R14E and T40N R14E, every sale dated "
-                 "on or before 31 December 1836.",
+        "scope": "Third principal meridian, seven townships — T39N and T40N R14E, the "
+                 "two the town stands on, and the five that ring them: T39N R13E, "
+                 "T38N R14E, T38N R15E, T40N R13E and T41N R14E — every sale dated on or "
+                 "before 31 December 1836.",
         "note": "Fields are the database's own, unsummarised. `tract` is derived and is "
                 "the only computed field here.",
         "count": len(rows),
@@ -442,24 +496,28 @@ def build_entries(rows: list, records: dict) -> dict:
             "date_purchased_as_read": row["date_purchased"],
             "volume": row["volume"], "page": row["page"],
             "tract": rec["tract"],
-        } for row, rec in zip(rows, records["records"])],
+        } for row, rec in zip(rows, records)],
     }
 
 
-GENERATED = ("records/entries_t39n_t40n_r14e_through_1836.json", "entries.json",
-             "coverage.json", "crosswalk.json", "resident_crosswalk.json")
+GENERATED = tuple("records/entries_%s.json" % stem_of(d[0]) for d in DEPOSITS) + (
+    "entries.json", "coverage.json", "crosswalk.json", "resident_crosswalk.json")
 
 
 def derive(domain: Path) -> dict:
     rows = read_tsv(domain)
     records = build_records(rows)
-    return {
-        "records/entries_t39n_t40n_r14e_through_1836.json": records,
-        "entries.json": build_entries(rows, records),
-        "coverage.json": build_coverage(rows),
-        "crosswalk.json": build_crosswalk(rows),
-        "resident_crosswalk.json": build_resident_crosswalk(rows),
-    }
+    out = {}
+    for tsv, ticket, _ in DEPOSITS:
+        if not (domain / "text" / tsv).exists():
+            continue
+        out["records/entries_%s.json" % stem_of(tsv)] = records_doc(
+            tsv, ticket, [rec for rec, row in zip(records, rows) if row["_file"] == tsv])
+    out["entries.json"] = build_entries(rows, records)
+    out["coverage.json"] = build_coverage(rows)
+    out["crosswalk.json"] = build_crosswalk(rows)
+    out["resident_crosswalk.json"] = build_resident_crosswalk(rows)
+    return out
 
 
 def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
@@ -477,6 +535,14 @@ def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
     bad = []
     if not (domain / "text" / TSV).exists():
         return ["land_sales: the deposit %s is not committed" % TSV]
+    # A deposit the harvest wrote and this file does not list would be committed evidence
+    # that nothing reads — the quietest way a research domain goes wrong. It is a gate
+    # failure, not a warning.
+    listed = {d[0] for d in DEPOSITS}
+    for f in sorted((domain / "text").glob("*.tsv")):
+        if f.name not in listed:
+            bad.append("land_sales: the deposit %s is committed and is not in DEPOSITS — "
+                       "nothing reads it. Append it to tools/read_land_sales.py." % f.name)
     out = derive(domain)
     for rel, doc in out.items():
         path = domain / rel
@@ -514,7 +580,7 @@ def self_test() -> int:
         if check(d, quiet=True):
             print("SELF-TEST: the fixture is not green to begin with"); return 1
 
-        recs = load(d / "records/entries_t39n_t40n_r14e_through_1836.json")
+        recs = load(d / ("records/entries_%s.json" % stem_of(TSV)))
         if recs["records"][0]["confidence"] != "documented":
             print("SELF-TEST: a COOK residence must grade documented"); return 1
         fired.append("a COOK residence grades documented")
@@ -539,7 +605,7 @@ def self_test() -> int:
             ("coverage.json", lambda doc: doc["declarations"][0]["items"].append("T99N R99E sec 01")),
             ("crosswalk.json", lambda doc: doc["merges"].append({"into": "x", "from": "y"})),
             ("resident_crosswalk.json", lambda doc: doc["refusals"].clear()),
-            ("records/entries_t39n_t40n_r14e_through_1836.json",
+            ("records/entries_%s.json" % stem_of(TSV),
              lambda doc: doc["records"][0].update({"as_read": "CHIPMAN ANCEL"})),
         ):
             doc = load(d / rel)
@@ -549,6 +615,13 @@ def self_test() -> int:
                 print("SELF-TEST: a hand-edit to %s did not fail the gate" % rel); return 1
             fired.append("a hand-edit to %s fails the gate" % rel)
             build(d, quiet=True)
+
+        stray = d / "text" / "isa_land_tract_sales_t99n_r99e_through_1836.tsv"
+        stray.write_text("\t".join(COLS) + "\n", encoding="utf-8")
+        if not any("is committed and is not in DEPOSITS" in b for b in check(d, quiet=True)):
+            print("SELF-TEST: a deposit nothing reads did not fail the gate"); return 1
+        fired.append("a committed deposit no DEPOSITS entry reads fails the gate")
+        stray.unlink()
 
         line = (d / "text" / TSV).read_text(encoding="utf-8").replace("E2NE", "E2NW")
         (d / "text" / TSV).write_text(line, encoding="utf-8")

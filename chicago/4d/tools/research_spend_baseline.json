@@ -10,7 +10,7 @@
   "books": 126,
   "directories": 7004,
   "newberry_index": 4914,
-  "land_sales": 361
+  "land_sales": 736
  },
  "witness": {
   "civic": {
@@ -42,8 +42,8 @@
    "spent": 2091
   },
   "land_sales": {
-   "read": 375,
-   "spent": 16
+   "read": 762,
+   "spent": 26
   }
  },
  "raised": [
@@ -179,6 +179,14 @@
    "to": 361,
    "date": "2026-09-04",
    "why": "T-0514 seated 531 new residents and the land-sales resident crosswalk re-derived against the larger town. Its rule matches a purchaser only where the residents layer holds EXACTLY ONE person of the surname and the forename agrees, so a bigger town makes that rule fire less: nine matches became ambiguous (Carpenter, Dole, Fullerton, Haddock x2, Heacock, Sweet, Burdick, Wooley) and six became possible for the first time (Bronson, Hale, Hartzell, Ludby, Price, Wolcott), a net loss of three rulings with nothing new read. The ceiling moves by that difference rather than the domain being re-read. T-0670 carries the matcher's surname-uniqueness weakness and T-0609 is the ticket that spends this domain properly."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 361,
+   "to": 736,
+   "date": "2026-09-04",
+   "why": "T-0677 finished the ring-township sweep T-0557 named as unread — T39N R13E, T38N R14E, T38N R15E, T40N R13E and T41N R14E, 180 section queries, 387 more sales through 1836 — and the deposit is now the whole register around the town rather than two townships of it. The reading is deliberately ahead of the adjudication: a purchase is a transaction and never a residence, so nothing here mints or regrades a person, and resident_crosswalk.json already proposes what the new rows reach (27 matches against 17 before, every other name refused with its rule). T-0514 and T-0515 are the tickets that spend this domain onto cards, and this number should come back down as they run. Raised to admit a finished read, not to excuse an unspent one."
   }
  ],
  "lowered": [
