@@ -1,7 +1,7 @@
 ---
 id: T-0633
 title: Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 784
+claimed_by: run 9/4/2026, 8:57:02 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T14:04:19.441Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875882469
 ---
 
 Position a business from its later documented address: the back-projection rule, the grade

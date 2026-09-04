@@ -65,7 +65,6 @@
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
-T-0633 — Position a business from its later documented address: the back-projection rule, the grade it earns, and the businesses it places
 T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
 
@@ -291,3 +290,4 @@ T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
+T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop

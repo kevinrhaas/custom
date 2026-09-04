@@ -581,3 +581,35 @@ reader's entity index but never this project's gloss (the gloss says "Norris's s
 of the beginning", which would otherwise date the author's own 1844 firm to 1832), that
 a one-surname firm needs an agreeing initial on both sides, and that a founding year
 has to be carried by founding language rather than by a street number.
+
+---
+
+## What is done with the addresses — `address_back_projection.json` (T-0633)
+
+T-0632 left **87 addresses** on the people of 1835, and an address on a record that
+nothing reads is a fact nobody has decided anything about.
+`tools/back_project_addresses.py` decides. It is the fourth grammar for placing a
+building in this project — `docs/ADDRESS-BACK-PROJECTION.md` is the policy, **L218**
+the liberty, and the other three are `docs/STREET-FACE-ADOPTION.md`,
+`docs/CORNER-ORDINAL.md` and `docs/LOT-ADDRESS.md` — and the only one whose source is
+written *after* the year it places.
+
+Every one of the 87 is put through four clauses, in order, and the record says which
+one decided it: the 1835 record has to attest a **business** to position (39 refused
+there); nothing better may already place it (23 stand off, 6 more are the directory's
+own `res`/`bds` and belong to T-0669); the address has to resolve onto the **1835**
+street grid under that name and in that place (4 refused, including `Michigan ave`,
+which is not the 1835 layer's Michigan Street, and `Clark st cor. Monroe`, which puts a
+grocer three blocks outside the platted town); and what survives is graded
+`reconstructed` and says how many years it was carried.
+
+**Fifteen businesses gain a face.** Not a lot, not a roof, and not a `works_at` — the
+allocation of one roof on a face is `STREET-FACE-ADOPTION.md`'s to make about a source
+of the scene year, and stacking it on an address read back four to nine years would put
+two inventions under one chip. `lives_at` stayed at 20 and `works_at` at 50 across the
+pass, on purpose and by assertion.
+
+**The refusals are committed beside the placements**, in the ledger and on the card
+both, and `tools/check.sh` re-derives all of it byte for byte. That is not tidiness: a
+refusal that vanishes from the record reads to the next run as an address nobody had
+looked at, and the next run does the work again.

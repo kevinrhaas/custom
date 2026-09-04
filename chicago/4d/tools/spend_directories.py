@@ -508,9 +508,27 @@ def dumps(doc) -> str:
 
 
 def household_text(hid: str, block: dict | None) -> str:
+    """The record with this pass's `directories` block on it, and nobody else's.
+
+    T-0633 CARRIES OVER. A later pass — `tools/back_project_addresses.py` — writes
+    a `back_projection` onto each person INSIDE this block, saying what was done
+    with the address this one carried there. Rebuilding the block from the
+    crosswalks would delete it, and the two gates would then take it in turns to
+    call the other's output drift. So the existing key is lifted off the record
+    and put back on the person it belongs to, which is the same narrowing T-0632
+    made in `mint_placed_residents.py` for the block as a whole: this pass owns
+    what it derives and nothing else.
+    """
     doc = read_json(HOUSEHOLDS / f"{hid}.json")
+    carried = {p["person_id"]: p["back_projection"]
+               for p in (doc.get("directories") or {}).get("people") or []
+               if "back_projection" in p}
     doc.pop("directories", None)
     if block:
+        block = json.loads(json.dumps(block))
+        for person in block["people"]:
+            if person["person_id"] in carried:
+                person["back_projection"] = carried[person["person_id"]]
         doc["directories"] = block
     return dumps(doc)
 

@@ -163,6 +163,40 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
+### L218 — Fifteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 15 businesses
+**Decision:** where the 1835 record attests a trade and no source of the scene year says
+where it stood, a **street** printed against that person in Fergus's Chicago directory of
+1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
+street **face**. The placement is graded `reconstructed`, the note says how many years it
+was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
+**Why:** the town prints trades far more often than it prints doors. Twenty of 825
+households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
+later addresses sitting on the record with nothing reading them. The volumes that print
+doors are all later than the scene, so the choice was a stated back-projection or no
+position at all — the same choice L60 records for the estray pen, decided the same way:
+an absent placement is invisible while a graded one is legible and correctable.
+**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
+frontage and numbered its streets for the first time. Fifteen businesses therefore stand
+on a face on the authority of a volume printed four to nine years after the scene, and
+nine of those years are the widest gap in the set. Two are anchored on a crossing the
+directory names and thirteen have no point at all. A reader who thinks that is too far to
+carry a shop is reading the `reconstructed` chip exactly as intended.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
+dealing a business to one roof on a face is an allocation and not a reading; stacking
+that allocation on an address already read back would be two inventions under one chip.
+The 87 refusals and stand-offs are on the record beside the fifteen, so the arithmetic is
+visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer, and made in the same words
+rather than overstating "rendered".
+**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and
+tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are
+all closer to 1835 than a directory is, and any one of them that places one of these
+businesses supersedes this entry under the policy's clause 2 without an argument.
+**Recorded:** 2026-09-04 (T-0633).
+
 ---
 
 ## Resolved
