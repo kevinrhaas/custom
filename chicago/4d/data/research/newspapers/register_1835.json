@@ -63,14 +63,14 @@
         "hotel_keeper": 1,
         "joiner": 1,
         "merchant": 1,
-        "none_recorded": 903,
+        "none_recorded": 905,
         "physician": 1,
         "printer": 1,
         "saddler": 1,
         "tailor": 1,
         "tavern_keeper": 4
       },
-      "households_total": 918,
+      "households_total": 920,
       "retirable_by_trade": {
         "blacksmith": 1,
         "dentist": 1,
@@ -31230,7 +31230,7 @@
       "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "spence_james_c",
-      "action_note": "data/residents/ already holds this person as spence_james_c (hh_spence_james_c, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as spence_james_c (hh_spence_james_c, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_spencer_edgar_h",

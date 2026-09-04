@@ -12,9 +12,15 @@ The rule, written out so it reads back without the code:
   SURNAME must match after both are folded (case, punctuation and the
   transcriber's usual confusions removed), AND the first initial of the given
   name must match. A surname-only agreement is a REFUSAL, however good it looks —
-  Fergus lists thirty-one Smiths. Where one 1835 person meets more than one 1843
-  entry on that rule the match is AMBIGUOUS and is filed as such, not resolved;
-  where two 1835 people meet one 1843 entry it is CONTESTED and no match is made.
+  Fergus lists thirty-one Smiths. AND, since T-0670, where BOTH readings print a
+  full forename and the two full forenames DISAGREE the match is refused as well:
+  the initial rule was written for a town of 848 names and it declared
+  `Abbott, Thomas L.` onto Titus H. Abbott once T-0514 minted 532 more. An
+  initial standing against a full name is untouched and stays a match. The
+  forename rule lives in tools/name_agreement.py, which carries its own
+  self-test. Where one 1835 person meets more than one 1843 entry on that rule
+  the match is AMBIGUOUS and is filed as such, not resolved; where two 1835
+  people meet one 1843 entry it is CONTESTED and no match is made.
 
 WHAT THIS DIRECTORY CARRIES THAT NORRIS'S DOES NOT is a date of death. Fergus
 compiled the volume in 1896 and set each man's death in brackets after his entry —
@@ -24,6 +30,9 @@ ticket that reads them as birth years. They are not spent here.
 """
 import json, os, re, sys
 from collections import defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import name_agreement as na  # the forename rule, imported rather than restated
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1843_directory_entries.json")
@@ -119,7 +128,7 @@ def main():
         if i:
             by_key[(f, i)].append(c)
 
-    matches, ambiguous, refusals = [], [], []
+    matches, ambiguous, refusals, forename_refusals = [], [], [], []
     people = residents()
     for r in people:
         f, i = fold(r["surname"]), initial(r["given"])
@@ -135,7 +144,20 @@ def main():
                             % (r["surname"], i.upper() or "-", r["name"]),
                 })
             continue
-        rows = [row_of(h) for h in hits]
+        kept, refused = [], []
+        for h in hits:
+            note = na.refusal(r["given"], h["normalized"]["given"])
+            (refused if note else kept).append((h, note))
+        for h, note in refused:
+            row = row_of(h)
+            row.update(note)
+            forename_refusals.append({
+                "resident": r["name"], "person_id": r["person_id"],
+                "grade_1835": r["grade"], "entry_1843": row,
+            })
+        if not kept:
+            continue
+        rows = [row_of(h) for h, _ in kept]
         rec = {
             "resident": r["name"], "person_id": r["person_id"],
             "household_id": r["household_id"], "grade_1835": r["grade"],
@@ -193,6 +215,12 @@ def main():
             "matched_more_than_one_ambiguous": len(ambiguous),
             "one_1843_entry_contested_by_two_residents": len(contested),
             "surname_present_initial_absent_refused": len(refusals),
+            "initial_agreed_forenames_disagreed_refused": len(forename_refusals),
+            "of_those_a_garbled_printed_forename": sum(
+                1 for f in forename_refusals if f["entry_1843"]["garbled_reading"]),
+            "residents_left_with_no_1843_entry_by_that_refusal": len(
+                {f["person_id"] for f in forename_refusals}
+                - {m["person_id"] for m in matches + ambiguous + contested}),
             "could_carry_occupation": sum(1 for m in matches if "occupation" in m["could_carry"]),
             "could_carry_address": sum(1 for m in matches if "address" in m["could_carry"]),
             "could_carry_death_note": sum(1 for m in matches
@@ -202,6 +230,8 @@ def main():
         "contested": sorted(contested, key=lambda m: m["resident"]),
         "ambiguous": sorted(ambiguous, key=lambda m: m["resident"]),
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
+        "forename_refusals": sorted(forename_refusals,
+                                    key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
     }
     if "--check" in sys.argv:
         if json.load(open(OUT, encoding="utf-8")) != doc:
