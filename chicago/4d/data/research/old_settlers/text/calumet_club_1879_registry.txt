@@ -25,7 +25,7 @@
 # and forty-nine registered their names out of the large number invited" (page 71).
 # What this transcription actually carries is counted by tools/old_settlers.py --check.
 
-# page 84
+[page 84]
 Adams, William H. | 1837, Sept. | Westport, Conn. | 64 | Chicago.
 Adsit, James M. | 1838, April 2. | Spencertown, N.Y. | 70 | Chicago.
 Arnold, Isaac N. | 1836, Oct. | Hartwick, N.Y. | 64 | 104 Pine Street, Chicago.
@@ -49,7 +49,7 @@ Burley, Arthur G. | 1835, May 11, | Exeter, N. H. | 66 | Chicago.
 Burley, Augustus H. | 1837, May 25, | Exeter, N. H. | 60 | Chicago.
 Campbell, James, | 1836, May, | Northumberland Co., Penn. | 70 | Chicago.
 
-# page 85
+[page 85]
 Carter, Thomas B. | 1838, Sept. | New Jersey. | 62 | Chicago.
 Carpenter, Abel E. | 1833, June, | Savoy, Mass. | 65 | Aurora, Ill.
 Carpenter, Philo, | 1832, | Mass. | 74 | Chicago.
@@ -75,7 +75,7 @@ Follansbee, Charles, | 1836, May 9, | Massachusetts. | 68 | Chicago.
 Freeman, Robert, | 1833, | Pennsylvania. | 70 | Napierville.
 Freer, L. C. Paine, | 1836, May, | Auburn, N.Y. | 65 | Chicago.
 
-# page 86
+[page 86]
 Gale, Abram, | 1835, May 22, | Warwick, Mass. | 82 | Galewood.
 Gale, Stephen F. | 1835, May, | Exeter, N. H. | 67 | Chicago.
 Gates, Philetus W. | 1837, June, | Madison Co., N.Y. | 62 | Chicago.
@@ -100,7 +100,7 @@ Harmon, Isaac N. | 1833, Aug. 3, | Fredonia, N.Y. | 52 | Chicago.
 Hawley, John S. | 1837, May, | Ridgefield, Conn. | 59 | Aurora, Ill.
 Hickling, William, | 1835, March, | England. | 65 | Chicago.
 
-# page 87
+[page 87]
 Higgins, Van H. | 1837, | New York. | 58 | Kenwood.
 Hilliard, Lorin P. | 1836, May, | Unadilla Forks, N.Y. | 64 | Chicago.
 Hoard, Samuel, | 1836, Oct. 13, | Westminster, Mass. | 80 | 205 Morgan St., Chicago.
@@ -126,7 +126,7 @@ Manierre, Edward, | 1835, Aug. 4, | New London, Conn. | 66 | Prairie Ave., Chica
 Marshall, James A. | 1832, | London, Eng. | 70 | Chicago.
 McDaniels, Alexander, | 1836, May 27, | Bath, N.Y. | 64 | Willmette.
 
-# page 88
+[page 88]
 Mills, John R. | 1839, | Connecticut. | 65 | Chicago.
 Milliken, Isaac L. | 1837, June 17, | Saco, Maine. | 63 | Chicago.
 Miltimore, Ira, | 1836, | Vermont.   [Died June 10, '79.] | 66 | Janesville, Wis.
@@ -151,7 +151,7 @@ Price, Cornelius, | 1836, Sept. | New York City. | 59 | Chicago.
 Prindiville, John, | 1836, | Ireland. | 54 | Chicago.
 Prindiville, Redmond, | 1836, Aug. 23, | Ireland. | 53 | Chicago.
 
-# page 89
+[page 89]
 Raymond, Benj. W. | 1836, June 5, | Rome, Oneida Co., N.Y. | 77 | Calumet Ave., Chicago.
 Rees, James H. | 1834, Aug. 11, | Stroudsburg, Penn. | 66 | Chicago.
 Rexford, Stephen, | 1833, June 27, | Charlotte, Vt. | 75 | Blue Island, Ill.
@@ -177,7 +177,7 @@ Steele, James W. | 1836, Nov. 7, | New York. | 71 | Chicago.
 Stewart, Hart L. | 1832, | New York. | 76 | Chicago.
 Stubbs, S. A. | 1835, | State of New Jersey. | 71 | Chicago.
 
-# page 90
+[page 90]
 Sturtevant, Austin D. | 1838, July, | Thetford, Vt. | 63 | Chicago.
 Surdam, Samuel J. | 1839, May, | Troy, N.Y. | 62 | Chicago.
 Taylor, Edmund D. | 1835, April, | Virginia. | 76 | Chicago.
@@ -197,3 +197,68 @@ Williams, Eli B. | 1833, April, | Tolland, Conn. | 80 | Chicago.
 Wilson, John L. | 1834, May, | New York City. | 65 | Chicago.
 Winship, James, | 1836, Nov. | Palmyra, N.Y. | 53 | Chicago.
 Yates, Horace H. | 1838, March 14, | New York. | 64 | Chicago.
+
+# THE AGGREGATE TABLES, printed page 72, of "those who signed the registry during the
+# evening". Read off the SAME page image. The item's OCR keeps the PLACES OF BIRTH table
+# and destroys the other two; all three are legible on the plate. Grammar: a line opening
+# with "@" is an aggregate cell — "@ <table> | <label> | <count>" — and not a registrant.
+@ places_of_birth | Connecticut | 16
+@ places_of_birth | England | 10
+@ places_of_birth | Ireland | 6
+@ places_of_birth | Kentucky | 1
+@ places_of_birth | Michigan | 1
+@ places_of_birth | Maine | 3
+@ places_of_birth | Massachusetts | 10
+@ places_of_birth | Maryland | 1
+@ places_of_birth | New York | 63
+@ places_of_birth | N. Hampshire | 5
+@ places_of_birth | New Jersey | 3
+@ places_of_birth | N. Carolina | 1
+@ places_of_birth | Pennsylvania | 6
+@ places_of_birth | Vermont | 21
+@ places_of_birth | Virginia | 2
+@ years_of_arrival | 1818 | 1
+@ years_of_arrival | 1826 | 3
+@ years_of_arrival | 1831 | 4
+@ years_of_arrival | 1832 | 5
+@ years_of_arrival | 1833 | 16
+@ years_of_arrival | 1834 | 15
+@ years_of_arrival | 1835 | 22
+@ years_of_arrival | 1836 | 40
+@ years_of_arrival | 1837 | 20
+@ years_of_arrival | 1838 | 11
+@ years_of_arrival | 1839 | 12
+@ years_of_arrival | Total | 149
+@ ages | 50 | 1
+@ ages | 51 | 2
+@ ages | 52 | 1
+@ ages | 53 | 3
+@ ages | 54 | 4
+@ ages | 55 | 3
+@ ages | 56 | 2
+@ ages | 57 | 6
+@ ages | 58 | 5
+@ ages | 59 | 7
+@ ages | 60 | 5
+@ ages | 61 | 3
+@ ages | 62 | 6
+@ ages | 63 | 8
+@ ages | 64 | 19
+@ ages | 65 | 10
+@ ages | 66 | 14
+@ ages | 67 | 7
+@ ages | 68 | 6
+@ ages | 69 | 6
+@ ages | 70 | 6
+@ ages | 71 | 1
+@ ages | 72 | 1
+@ ages | 73 | 2
+@ ages | 74 | 2
+@ ages | 75 | 4
+@ ages | 76 | 7
+@ ages | 77 | 3
+@ ages | 78 | 1
+@ ages | 79 | 1
+@ ages | 80 | 2
+@ ages | 81 | 0
+@ ages | 82 | 1
