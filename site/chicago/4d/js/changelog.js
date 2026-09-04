@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 523, title: 'The 1830 plat, read for its water at last', kind: 'change', ts: '2026-09-04T20:11:13.500Z', date: 'Sep 4, 2026, 3:11 PM CT',
+    items: [
+      'Nothing in the town moved today. This is about a sentence that sat inside this project\u2019s own water file, crediting the 1830 plat of Chicago with three streams it does not draw.',
+      'The plat is the founding sheet of this town \u2014 James Thompson\u2019s, August 1830, the one that laid out the blocks and the eighty-foot streets. A copy sits in this repository, and it had been read for its measurements and never for its rivers. So it was read: the whole sheet, at up to five times magnification, north side, west side and south side, with the lines found by scanning columns of pixels rather than by squinting.',
+      'It draws one watercourse, not three. A single channel runs north out of the main river across one block of the north side \u2014 and Thompson drew it with two banks, about as wide as he drew a street, flaring open where it meets the river. Everywhere else on the sheet there is no water at all except the river itself and the north branch.',
+      'The three streams were never his. They come from a 1933 pictorial reconstruction, which this project has said in a research memo since August \u2014 but the correction never reached the data file a reader opens first, so the file went on citing the wrong sheet. It no longer does.',
+      'The one channel he did draw turns out to sit in the same block as the stream this project already carries, traced from a different 1834 survey by a different hand. Two sheets, drawn four years apart, agree on the block and disagree by about half a block on where inside it \u2014 which is exactly as much as a schematic redrawing is worth, and it is recorded as that and nothing more.',
+      'One more thing the sheet settles: Thompson platted building lots straight across his own water, lot lines drawn through the channel and lot numbers lettered on both banks. So when this town lays that grid, it is being faithful, not careless \u2014 and now it can say so.',
+    ] },
   { v: 522, title: 'The river\u2019s bump sits three corners from where it was seen', kind: 'fix', ts: '2026-09-04T19:44:09.870Z', date: 'Sep 4, 2026, 2:44 PM CT',
     items: [
       'Nothing in the town moved today. The owner walked the South Branch and marked a bump on the east bank that sticks out and should not be there. It was measured. Something is wrong there, and roughly where he said \u2014 but the corner he pointed at is the one part of that stretch that is correct.',

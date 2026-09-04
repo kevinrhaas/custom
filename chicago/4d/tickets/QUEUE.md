@@ -160,7 +160,6 @@ T-0689 — The West Division's lot dimensions and lot-counts are still unread of
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
-T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
@@ -297,3 +296,4 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
+
