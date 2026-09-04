@@ -1368,6 +1368,21 @@ step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
 step "…and the 1839 street face compiled off it rebuilds too" \
   python3 tools/fergus_1839_street_faces.py --check
 
+# T-0664. The next seven pages of the same volume, printed 40-46: the charter election of
+# 2 May 1837 and its list of voters for mayor. A poll list is the easiest source in this
+# repository to lose a column of — the page is set in four columns, the OCR does not read
+# them in printed order, and a segmenter that drops one loses forty men without changing
+# any other number here. So the reading is rebuilt from the committed text AND held to the
+# per-leaf counts coverage.json declares, which is the guard T-0571 put on the 1843
+# directory for the same reason. The crosswalk is rebuilt the same way: it is a proposal
+# that changes no resident record, and a hand-edit of a proposal is how one becomes a fact
+# nobody decided.
+step "the 1837 charter election rebuilds from its committed text, at the declared counts" \
+  python3 tools/read_fergus_1839_election.py --check
+
+step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
+  python3 tools/crosswalk_fergus_1839_election.py --check
+
 # T-0588. The dating pass over Norris's 1844 firms is a measurement whose ANSWER IS NO —
 # no printing this project holds dates any of the 207 firms at or before 1835, so nothing
 # was written to the businesses layer. A negative result is the easiest artefact in the

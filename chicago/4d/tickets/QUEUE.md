@@ -74,7 +74,8 @@ T-0515 — 727 projected residents rest on a letter list alone: regrade every on
 # --- yield is a list the town made of its own named inhabitants. T-0609 is the largest
 # --- untouched source of POSITION in the project: 375 records, 226 id pairs, zero spent.
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
-T-0611 — Fergus 1839, the appendices: the city register, the 1837 charter election and its list of voters for mayor, the Fort Dearborn Addition lot sales and the population table
+T-0665 — Fergus 1839, printed pages 38-39: the city register of 1839 and the printed lists of mayors and sheriffs
+T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
 T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago
 T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
@@ -289,3 +290,4 @@ T-0660 — The letter-list pass minted the same man twice when the paper printed
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
+T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images

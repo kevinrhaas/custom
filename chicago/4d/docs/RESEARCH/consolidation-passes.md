@@ -62,8 +62,11 @@ card.** The `unwritten_ceiling` for civic and census_1840 is tightened to 0 in
 ### Hop 1 — read vs ruled
 
 Unmoved, and unmoved on purpose: this pass reads nothing and adjudicates nothing, so it
-cannot spend a unit. Both before and after read `16,322 read · 4,553 spent · 11,769
-unspent · 502 id pairs`. Hop 1 is what T-0514, T-0515, T-0609, T-0610 and T-0633 move.
+cannot spend a unit. Measured either side of it the totals read `16,322 read · 4,553 spent
+· 11,769 unspent · 502 id pairs`, unchanged. (T-0664 merged into dev while this pass was
+in flight and added 765 directory claims of its own, so the totals a later reader measures
+will be larger; the figure this entry holds is the pass's own delta, which is zero.) Hop 1
+is what T-0514, T-0515, T-0609, T-0610 and T-0633 move.
 
 ### What the layer looks like after it
 
