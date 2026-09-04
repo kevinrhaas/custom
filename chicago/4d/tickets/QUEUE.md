@@ -96,6 +96,16 @@
 # --- letter list places someone as likely there, AND there are voter records". ~20 people move,
 # --- not the ~1,500 a letter-list-as-G1b reading would have moved.
 # ---
+# --- AND A THIRD PIECE, on his follow-up "so what will this fix them going forward and the existing
+# --- ones?" — GOING FORWARD ONLY, until something spends it. consolidate_resident_evidence.py
+# --- writes NO household file ("It writes NO household file", its own docstring); mint_civic_
+# --- residents.py only mints identities "the town does not already carry"; and NOTHING applies a
+# --- regrade to a card that exists. So fixing grade() would leave Willard Jones on G2a for ever.
+# --- The policy doc already records 159 standing changes (19 up, 63 down, 77 subtype) unspent since
+# --- 2026-09-03 — the same shape measure_research_spend.py found one layer up, where 109 rulings
+# --- reached a person and 0 reached a card. T-0691 now carries the spend as part (c): upgrades
+# --- apply, the 63 DOWNGRADES go to a conflict list for the owner and are never auto-applied.
+# ---
 # --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
 # --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
 # --- whatever the pass that wrote it meant and nothing can be argued with. An ungraded person
@@ -105,7 +115,7 @@
 # --- a druggist but that is not in his person record". The file quotes the trade three times and
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
-T-0691 — The ladder is a max over single classes and cannot see corroboration, so six men on the 1835 poll AND other lists are graded "the 1835 poll alone": add the convergence rung
+T-0691 — Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
 T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
 T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 

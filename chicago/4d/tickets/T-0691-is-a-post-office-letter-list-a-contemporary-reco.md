@@ -1,6 +1,6 @@
 ---
 id: T-0691
-title: The ladder is a max over single classes and cannot see corroboration, so six men on the 1835 poll AND other lists are graded "the 1835 poll alone": add the convergence rung
+title: Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
 state: open
 epic: META
 requested_by: owner
@@ -127,6 +127,58 @@ what makes it safe.
    without writing household files; the regrade is a separate PR with before/after counts and the
    twenty names listed, each checkable by hand. At this size they should be checked by hand.
 
+## FINDING 3 — nothing applies a regrade to a card that already exists
+
+**Found by asking the owner's own follow-up: "so what will this fix them going forward and the
+existing ones?" The honest answer is going forward only, and that makes findings 1 and 2 invisible
+until this third piece is built.**
+
+The write path, traced:
+
+| tool | what it does |
+|---|---|
+| `consolidate_resident_evidence.py` | computes the grade, writes `grading_proposal.json`. Its own docstring: ***"It writes NO household file."*** |
+| `mint_civic_residents.py` | reads the proposal and mints a person **"for every identity … that the town does not already carry"** |
+| anything that applies the proposal to an EXISTING card | **does not exist** |
+
+Those two tools are the only readers of `grading_proposal.json` in the repo. So a card, once written,
+is never revisited. **Fixing `grade()` corrects what is PROPOSED; Willard Jones stays `G2a` for ever.**
+
+**And there is already a backlog proving the gap is real, independent of this ticket.**
+`docs/RESEARCH/resident-grading-policy.md` records that the ratified ladder
+***"moves 159 of 849 people — 19 up, 63 down, 77 subtype only"***, and then, in the same section:
+***"It is a proposal. No household file was changed by this pass."*** Those 159 have been unspent
+since 2026-09-03. The ~20 this ticket finds would land on top of them.
+
+This is the same shape as the hop `tools/measure_research_spend.py` measures one layer up — research
+RULED but never ON A CARD, which read 109 reached and 0 written on 2026-09-03. The computation gets
+done; the spend never happens. It is the owner's original complaint of this session, one layer down.
+
+## The ask — part (c), and it is the half that a visitor can see
+
+6. **Build the regrade pass.** A tool that reads `grading_proposal.json` and applies it to the
+   household records that already exist — the piece between the proposal and the card. It carries
+   the same shape every other pass here has: `--build`, `--check`, `--report`, `--gate`,
+   `--self-test`.
+7. **UPGRADES APPLY. DOWNGRADES DO NOT.** The standing proposal holds **63 downgrades**, and demoting
+   sixty-three residents unattended is not a thing a run may do. A downgrade goes to a conflict list
+   with its reason and its evidence, for the owner, exactly as `consolidate_resident_evidence.py`
+   already lists its 77 conflicts rather than resolving them. An upgrade is safe because it is the
+   ladder finding MORE evidence, never less.
+8. **Reconcile the 159 first, and separately.** They predate this ticket and are not its work; the
+   ~20 found here must not be smuggled in beside them. Land the 159 as its own pass with its own
+   before/after counts, then this ticket's twenty on top, so each set can be read on its own.
+9. **A regrade must show its working on the card.** When a person moves rung, the record says which
+   rung it came from, which it went to, what evidence moved it and on what date — the same way
+   `directories…occupation_later` already carries its provenance. A grade that changes silently is
+   how the layer got into a state where 742 of 825 households cite one source and nobody noticed.
+10. **The gate that keeps it honest.** Extend `measure_research_spend.py`, or write its sibling, so
+    the distance between *what the ladder proposes* and *what the cards carry* is a reported number
+    with a ratchet — the same instrument that caught the research-to-card gap. Without it this
+    backlog silently rebuilds the moment the next pass runs.
+
 **Done when** no person record is described by a rung that contradicts its own evidence blocks,
-`G1c` exists with its independence rule written down, the twenty are regraded or individually
-explained, and `docs/RESEARCH/resident-grading-policy.md` carries the owner's words and the date.
+`G1c` exists with its independence rule written down, **the twenty are regraded ON THEIR CARDS and
+not merely in a proposal**, the 159 standing changes are reconciled or listed, every downgrade is a
+conflict for the owner rather than an applied demotion, and
+`docs/RESEARCH/resident-grading-policy.md` carries the owner's words and the date.
