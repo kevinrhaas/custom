@@ -45,12 +45,12 @@
       "id": "sauganash_yard_elm_east",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        117.0,
+        114.9,
         -141.6
       ],
       "height_m": 16.5,
       "confidence": "reconstructed",
-      "note": "INVENTED POSITION. It stands 2.5 m inside the yard's east fence line and 14.1 m south of Philo Carpenter's log shop, so it is the crown that shows over the fence to anyone on Lake Street east of the hotel — which is where image 8's viewer stands. 16.5 m is the bottom of the recorded band, for the same reason as its neighbour."
+      "note": "INVENTED POSITION. It stands 2.5 m inside the yard's east fence line and 14.1 m south of the log cabin on the Lake Street frontage, so it is the crown that shows over the fence to anyone on Lake Street east of the hotel — which is where image 8's viewer stands. 16.5 m is the bottom of the recorded band, for the same reason as its neighbour. MOVED 2.1 M WEST ON 2026-09-04 (T-0626) TO KEEP THAT 2.5 M. The fence's east leg follows the cabin's east wall, the cabin came west when the Sauganash's placeholder footprint was measured and narrowed, and a stem left where it was would have stood 0.4 m off the boards — inside its own bole of a fence it is supposed to show over. The rule that placed it is unchanged; only the line it is measured from moved."
     }
   ],
   "research_note": "THREE STEMS, AND THE COUNT IS THE PLATE'S ONLY IN THE LOOSEST SENSE. Image 8 shows a group of crowns behind the fence and resolves neither a number nor a species; three is what fills this yard at the spacing a kept tree takes without becoming a wood, and it is invented. So is every coordinate here and every height, all graded reconstructed and claimed in docs/LIBERTIES.md L139. What is NOT invented is the species list, the height bands, the July foliage colour and the crown widths: all four come from data/flora/zones/z10_settled_town.json, whose relict trees this project already draws elsewhere in the town, and the renderer refuses any stem whose stated height falls outside its own species' recorded band rather than drawing it. WHAT WOULD UPGRADE IT: T-0075, which would hold the three plates as source records and let a stem cite one; or the general dooryard planting pass (T-0074), which will ask the same question for every house in the town and should read this record's shape rather than inventing a second one."
