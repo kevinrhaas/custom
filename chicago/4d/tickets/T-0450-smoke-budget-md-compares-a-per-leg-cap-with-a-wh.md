@@ -1,7 +1,7 @@
 ---
 id: T-0450
 title: SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: owner
 seen: true
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 674
 claimed_by: run 9/2/2026, 11:56:49 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T20:21:32.586Z
+claimed_run: null
 ---
 
 Measured on the branch of **PR #589**, which is being closed as stale (its part

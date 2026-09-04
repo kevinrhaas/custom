@@ -401,7 +401,107 @@ function backProjectionHtml(bp) {
       <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
 }
 
-function personHtml(person, citationsById, researchByPerson, directoryByPerson, directoriesOnRecord) {
+/**
+ * THE CONSOLIDATION'S OWN READING, WHICH NOTHING SHOWED (T-0668).
+ *
+ * `tools/consolidate_resident_evidence.py` reads seven source domains, decides who
+ * is who, and grades each person on a ratified ladder. It writes the whole of that
+ * work onto the person: the rung it fired (`ladder_rule`), the fact that the person
+ * exists in this layer because that consolidation minted them (`civic_mint`), and
+ * every appearance it spent — a quoted reading of the name, the list it stands in,
+ * where on the page, the record id, the date the line describes and the source.
+ *
+ * FORTY-FOUR FIGURES ACROSS 531 PEOPLE, and `tools/measure_layer_reads.py` had
+ * every one of them banked as reaching nothing. That is the defect T-0491 named on
+ * the 1840 bridge, at twenty times the scale: a grade is a VERDICT, the appearances
+ * are the argument that produced it, and a verdict shipped without its argument is
+ * an assertion. A reader cannot disagree with `attested` unless they can see the
+ * rung that awarded it and the lines it was awarded on.
+ *
+ * THE RUNG'S TEXT COMES FROM THE DATA, not from here. `GRADE_RULES` in the
+ * consolidation tool is the ratified ladder and it is Python; this section reads
+ * `vocabulary.ladder_rules` out of `data/residents/index.json`, which that tool
+ * writes and its gated `--check` holds equal to the constant. Restating a rung in
+ * JavaScript would have been two answers to one question, and the one on the card
+ * would be the one that drifted.
+ *
+ * EVERY LINE CARRIES THE DATE IT DESCRIBES, and that is the section rather than a
+ * caveat on it. The domains are not contemporaries of each other: the 1833-1835
+ * press names a person in this town, the 1844 directory names them nine years
+ * after this scene, and the ladder grades those differently on purpose. A block
+ * that showed the readings without their dates would flatten the one distinction
+ * the whole consolidation is built on.
+ */
+const EVIDENCE_DOMAINS = [
+  ['press_evidence', 'Named by the town\u2019s own newspapers'],
+  ['civic_evidence', 'Named on a civic list \u2014 poll, tax or muster'],
+  ['church_evidence', 'Named in the parish register'],
+  ['book_evidence', 'Named in a directory or a recollection'],
+  ['census_evidence', 'Named in a census'],
+];
+
+function evidenceLineHtml(entry, citationsById) {
+  const cite = citationsById.get(entry.source);
+  return `<li><q>${escapeHtml(String(entry.as_read ?? ''))}</q>
+    <br><span class="res-why">In <b>${escapeHtml(words(entry.list))}</b>, describing ${
+      escapeHtml(printedOn(entry.describes_date))}${
+      entry.locator ? `, at ${escapeHtml(String(entry.locator))}` : ''}. Record ${
+      escapeHtml(String(entry.record_id))}, accepted by rung ${
+      escapeHtml(String(entry.rule))}.</span>
+    ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+}
+
+function evidenceLadderHtml(person, citationsById, ladderRules) {
+  const domains = EVIDENCE_DOMAINS
+    .map(([key, label]) => [label, (person[key] || []).filter(Boolean)])
+    .filter(([, list]) => list.length);
+  const bio = person.biographical_evidence || null;
+  if (!domains.length && !person.ladder_rule && !bio) return '';
+
+  const rung = person.ladder_rule
+    ? (ladderRules || []).find((r) => r.rung === person.ladder_rule) : null;
+  const rungRow = person.ladder_rule
+    ? `<dt>The rung this person is graded on</dt>
+      <dd>${swatch(rung && rung.grade)}<span class="res-chip res-research">${
+        escapeHtml(String(person.ladder_rule))}</span>${
+        rung ? escapeHtml(rung.rule) : 'The manifest carries no text for this rung.'}
+        <br><span class="res-why">The ladder was ratified on 3 September 2026 and every
+          person it reaches is graded by ONE of its rungs, named here. ${
+        person.civic_mint
+          ? 'This person is in the town because that consolidation minted them: they were '
+            + 'read out of the lists below and matched to nobody the project already carried.'
+          : 'This person was already in the town; the consolidation graded them rather than '
+            + 'minted them.'}</span></dd>`
+    : '';
+
+  const evidence = domains.map(([label, list]) => `<dt>${escapeHtml(label)}</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${list.length} ${
+      list.length === 1 ? 'appearance' : 'appearances'}</span>
+      <ul class="res-candidates">${
+        list.map((e) => evidenceLineHtml(e, citationsById)).join('')}</ul></dd>`).join('');
+
+  const age = bio && bio.age_on_1835_07_01;
+  const ageValue = age && age.value && Number.isFinite(age.value.min)
+    ? (age.value.min === age.value.max
+      ? `${age.value.min}`
+      : `between ${age.value.min} and ${age.value.max}`)
+    : null;
+  const biography = bio
+    ? claimRow('Born', bio.birth_year && bio.birth_year.value, bio.birth_year, citationsById)
+      + claimRow('Age on 1 July 1835', ageValue, age, citationsById)
+    : '';
+
+  return `${rungRow}${evidence}${biography}${
+    evidence
+      ? `<dd><span class="res-why">Each line above is an APPEARANCE — somebody wrote this
+        name down, on that date, in that place. It is evidence about this person and it is
+        not an 1835 fact: a directory line of 1844 says the person was in Chicago in 1844,
+        and the rung above says what this project was willing to conclude from the set of
+        them together.</span></dd>` : ''}`;
+}
+
+function personHtml(person, citationsById, researchByPerson, directoryByPerson,
+  directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -432,6 +532,7 @@ function personHtml(person, citationsById, researchByPerson, directoryByPerson, 
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}
       ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
@@ -468,6 +569,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
       <span class="res-role">${escapeHtml(words(entry.division))} division · ${
         entry.persons} ${entry.persons === 1 ? 'person' : 'people'}</span>
       <span class="res-chips">${gradeChips(entry.grades)}${
+        entry.civic_mint
+          ? '<span class="res-chip res-research">minted by the evidence consolidation</span>' : ''}${
         entry.census_1840_linked
           ? `<span class="res-chip res-research">${entry.census_1840_linked} bridged to an 1840 census household</span>` : ''}${
         reaches || !orphanChip
@@ -477,7 +580,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
+function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -503,7 +606,7 @@ function householdHtml(hh, citationsById, researchByPerson, directoryByPerson) {
     </dl>
     ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people)).join('')}</div>`;
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules)).join('')}</div>`;
 }
 
 /**
@@ -759,6 +862,19 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
         ? `${counts.census_1840_linked} of these people are bridged to a named household `
           + `in the 1840 census, five years after this scene — later evidence, shown with `
           + `its reasoning and never read back onto 1835. ` : '')
+      + (counts.civic_mint
+        // T-0668. The consolidation of 3 September 2026 read seven source domains and
+        // minted this many of the people below — they are here because a list the town
+        // made of its own inhabitants names them, and nothing the project already
+        // carried matched. The number is here so a reader can see how much of this
+        // town is that one pass before opening a single card.
+        ? `${counts.civic_mint} of these people were minted by the evidence `
+          + `consolidation, which graded every one of them on a named rung of a ratified `
+          + `ladder and wrote the appearances it spent onto their cards — the quoted `
+          + `reading, the list, the page and the date each line describes. `
+          + `That is ${Math.round((counts.civic_mint / persons) * 100)} per cent of the `
+          + `people here, and the rung and its lines are on each of their cards so that `
+          + `the grade can be disagreed with rather than taken. ` : '')
       + (researchByPerson.size
         ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
           + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `
@@ -801,7 +917,8 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       const body = el.querySelector('.res-hh-body');
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
-        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson);
+        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
+          vocab.ladder_rules);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
