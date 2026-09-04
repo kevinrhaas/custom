@@ -1145,9 +1145,11 @@ def build(root: Path = ROOT, write: bool = True):
                          "and the death and burial page (11 entries, 13 named readings), "
                          "in full, including the article's prose and every footnote.",
         "what_was_not_read": "THE BAPTISMS. The same article tallies 282 baptisms by the "
-                             "same three priests and this page prints none of them; that "
-                             "is T-0503's object and it is undeclared here rather than "
-                             "declared and empty.",
+                             "same three priests and this page prints none of them. They "
+                             "are NOT undeclared any more: T-0503 read them off the "
+                             "register's own eleven page images and declared all eleven "
+                             "under its own ticket in this file. What this page did not "
+                             "carry, the scans did.",
     }]
 
     gt = load(root / GT_CLAIMS)
