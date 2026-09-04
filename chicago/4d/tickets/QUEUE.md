@@ -160,7 +160,6 @@ T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
-T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
