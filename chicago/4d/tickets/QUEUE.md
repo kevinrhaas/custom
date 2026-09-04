@@ -91,7 +91,6 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
-T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
@@ -326,3 +325,4 @@ T-0699 — Six men on the 1835 poll AND other lists are graded "the 1835 poll al
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0702 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
 T-0703 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
+

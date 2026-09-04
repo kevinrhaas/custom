@@ -1,7 +1,7 @@
 ---
 id: T-0592
 title: The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 820
 claimed_by: run 9/4/2026, 5:49:45 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T23:34:53.339Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926189060
 ---
 
