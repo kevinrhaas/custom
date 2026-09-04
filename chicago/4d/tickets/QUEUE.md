@@ -449,7 +449,6 @@ T-0660 — The letter-list pass minted the same man twice when the paper printed
 T-0661 — The other 95 printed trades the residents vocabulary still cannot say
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
-T-0666 — Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table
 T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
@@ -458,3 +457,7 @@ T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, s
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images

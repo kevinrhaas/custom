@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 1:01 PM",
+  "generated_ct": "Sep 4, 2026, 1:15 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11122,7 +11122,7 @@
     {
       "id": "T-0666",
       "title": "Fergus 1839, printed pages 47-50: the lots sold in the Fort Dearborn Addition, June 1839, and the volume's own population table",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11130,14 +11130,14 @@
       "legacy_id": null,
       "parent": "T-0611",
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "791",
+      "claimed_by": "run 9/4/2026, 10:03:41 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 146
+      "closed_at": "2026-09-04T15:52:14.789Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33887011653",
+      "queue_rank": null
     },
     {
       "id": "T-0667",
@@ -11157,7 +11157,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 146
     },
     {
       "id": "T-0668",
@@ -11177,7 +11177,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 147
     },
     {
       "id": "T-0669",
@@ -11197,7 +11197,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0670",
@@ -11217,7 +11217,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0671",
@@ -11237,7 +11237,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0672",
@@ -11257,7 +11257,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0673",
@@ -11277,7 +11277,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
     },
     {
       "id": "T-0674",
@@ -11285,6 +11285,26 @@
       "state": "open",
       "epic": "META",
       "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0679",
+      "title": "Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": null,
