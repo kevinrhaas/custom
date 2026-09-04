@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 5:38 PM",
+  "generated_ct": "Sep 4, 2026, 5:43 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11690,6 +11690,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 148
+    },
+    {
+      "id": "T-0701",
+      "title": "Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
     }
   ]
 }
