@@ -288,6 +288,23 @@ def build_pages(ipums: list[dict]) -> list[dict]:
             "read_pass": page.get("read_pass"),
         }
         records = page.get("records") or []
+        if page.get("page_kind") == "recapitulation":
+            # A recapitulation is not a page of families at all, and the generic
+            # continuation-sheet reason below would be wrong about it twice: it is
+            # not a continuation sheet, and it can never be paired to a left sheet
+            # that would make it readable. T-0529 read 33S7-9YYJ-V2 and found that
+            # every one of its lines is a DIVISION total of 70 to 201 persons.
+            entry["fingerprintable"] = False
+            entry["why_not"] = ("a RECAPITULATION sheet: every ruled line is a division total of "
+                                "the enumeration, not a household, so there is no family whose "
+                                "age-band fingerprint could be compared and no head to name. No "
+                                "serial may be hung on any line of it, and pairing it to a left "
+                                "sheet would not help - a recapitulation's left sheet carries "
+                                "aggregates too, not the twenty-six free-white age bands this "
+                                "tool matches on.")
+            entry["lines"] = []
+            out.append(entry)
+            continue
         if page.get("sheet_side") != "left":
             entry["fingerprintable"] = False
             entry["why_not"] = ("a right (continuation) sheet: it carries the slave, industry and "
