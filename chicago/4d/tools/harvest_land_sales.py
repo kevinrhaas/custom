@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Fetch the Illinois State Archives land tract sales and write the committed deposit.
 
-    tools/harvest_land_sales.py --sweep [--township 39 --township 40]
+    tools/harvest_land_sales.py --sweep [--tr 39:14 --tr 40:14]
+
+A TOWNSHIP IS A TOWNSHIP AND A RANGE (T-0676). The sweep asks for the pairs given to
+`--tr`, defaulting to the two the town stands on; `--township 39` is the older spelling
+and still means T39N R14E. Each set of pairs writes its own deposit, named after them.
 
 THIS REACHES THE NETWORK, so it is run deliberately by a research pass and never by
 `tools/check.sh`. Its output — `data/research/land_sales/text/*.tsv` — is committed,
@@ -165,9 +169,9 @@ def detail(html: str) -> dict:
     return out
 
 
-def section_url(tw: int, sn: str, cursor=None) -> str:
+def section_url(tw: int, rg: int, sn: str, cursor=None) -> str:
     """The section query, or its continuation from the More button's cursor."""
-    q = {"township": tw, "norS": "N", "range": 14, "eorW": "E", "meridian": 3,
+    q = {"township": tw, "norS": "N", "range": rg, "eorW": "E", "meridian": 3,
          "county": "", "name": "", "sectionNum": sn}
     if cursor:
         q.update({"purchaseNo": "", "hiddenPurchaseNo": cursor[0],
@@ -183,7 +187,7 @@ def cursor_of(html: str):
     return (no.group(1).strip(), who.group(1).strip())
 
 
-def walk_section(tw: int, sn: str, direct: bool) -> tuple:
+def walk_section(tw: int, rg: int, sn: str, direct: bool) -> tuple:
     """Every row of one section, following the More cursor to the end.
 
     Returns (rows, pages walked, hit_cap). A page under the ceiling is the last one.
@@ -191,7 +195,7 @@ def walk_section(tw: int, sn: str, direct: bool) -> tuple:
     """
     rows, seen, pages, cursor = [], set(), 0, None
     while pages < MAX_PAGES:
-        html = fetch(section_url(tw, sn, cursor), direct)
+        html = fetch(section_url(tw, rg, sn, cursor), direct)
         pages += 1
         found = rows_of(html)
         fresh = [r for r in found if r["purchase_no"] not in seen]
@@ -206,12 +210,22 @@ def walk_section(tw: int, sn: str, direct: bool) -> tuple:
     return rows, pages, True
 
 
-def deposit_name(townships, through_year: int) -> str:
-    return "isa_land_tract_sales_t%s_r14e_through_%d.tsv" % (
-        "_t".join("%dn" % t for t in townships), through_year)
+def deposit_name(pairs, through_year: int) -> str:
+    """The file the pairs write, named after them: townships grouped under their range.
+
+    The two townships the town stands on still name the file they always named — the
+    grouping was chosen so that [(39, 14), (40, 14)] spells `t39n_t40n_r14e` exactly as
+    the R14E-only harvest did, and the committed deposit did not have to move.
+    """
+    by_range = {}
+    for tw, rg in sorted(pairs, key=lambda p: (p[1], p[0])):
+        by_range.setdefault(rg, []).append(tw)
+    return "isa_land_tract_sales_%s_through_%d.tsv" % (
+        "_".join("%s_r%de" % ("_".join("t%dn" % t for t in tws), rg)
+                 for rg, tws in by_range.items()), through_year)
 
 
-def held_rows(townships, through_year: int) -> dict:
+def held_rows(name: str) -> dict:
     """Rows already in the committed deposit, by purchase number.
 
     A detail page says the same thing every time it is asked, and the reader that
@@ -221,7 +235,7 @@ def held_rows(townships, through_year: int) -> dict:
     forward and fetches only what is new; `--refetch` reads every page again from
     scratch, which is what to run when the source itself may have changed.
     """
-    path = OUT / deposit_name(townships, through_year)
+    path = OUT / name
     if not path.exists():
         return {}
     lines = path.read_text(encoding="utf-8").splitlines()
@@ -238,18 +252,19 @@ def held_rows(townships, through_year: int) -> dict:
     return out
 
 
-def sweep(townships, through_year: int, direct: bool, workers: int,
+def sweep(pairs, through_year: int, direct: bool, workers: int,
           refetch: bool = False) -> int:
-    meta = [(tw, "%02d" % s) for tw in townships for s in range(1, 37)]
+    name = deposit_name(pairs, through_year)
+    meta = [(tw, rg, "%02d" % s) for tw, rg in pairs for s in range(1, 37)]
     print("  walking %d section queries" % len(meta), flush=True)
     with ThreadPoolExecutor(workers) as ex:
-        walks = list(ex.map(lambda m: walk_section(m[0], m[1], direct), meta))
+        walks = list(ex.map(lambda m: walk_section(m[0], m[1], m[2], direct), meta))
     wanted, truncated, deep = [], [], []
-    for (tw, sn), (found, pages, hit_cap) in zip(meta, walks):
+    for (tw, rg, sn), (found, pages, hit_cap) in zip(meta, walks):
         if hit_cap:
-            truncated.append("T%dN R14E sec %s" % (tw, sn))
+            truncated.append("T%dN R%dE sec %s" % (tw, rg, sn))
         elif pages > 1:
-            deep.append("T%dN R14E sec %s: %d pages, %d rows" % (tw, sn, pages, len(found)))
+            deep.append("T%dN R%dE sec %s: %d pages, %d rows" % (tw, rg, sn, pages, len(found)))
         for row in found:
             year = row["date_purchased"][-4:]
             if year.isdigit() and int(year) <= through_year:
@@ -257,7 +272,7 @@ def sweep(townships, through_year: int, direct: bool, workers: int,
     for line in deep:
         print("  walked %s" % line)
     wanted = sorted(set(wanted))
-    held = {} if refetch else held_rows(townships, through_year)
+    held = {} if refetch else held_rows(name)
     todo = [p for p in wanted if p not in held]
     print("  %d sales through %d across %d sections; %d already in the deposit, "
           "%d detail pages to fetch" % (len(wanted), through_year, len(meta),
@@ -274,9 +289,9 @@ def sweep(townships, through_year: int, direct: bool, workers: int,
                 return 1
             records.append(dict(d, purchase_no=pno))
         print("    %d/%d" % (len(records), len(wanted)), flush=True)
-    records.sort(key=lambda r: (r["township"], r["section"], r["purchaser"], r["purchase_no"]))
+    records.sort(key=lambda r: (r["township"], r["range"], r["section"],
+                                r["purchaser"], r["purchase_no"]))
     OUT.mkdir(parents=True, exist_ok=True)
-    name = deposit_name(townships, through_year)
     lines = ["\t".join(COLS)]
     for r in records:
         lines.append("\t".join(r[c].replace("\t", " ") for c in COLS))
@@ -291,7 +306,10 @@ def sweep(townships, through_year: int, direct: bool, workers: int,
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--sweep", action="store_true")
-    ap.add_argument("--township", action="append", type=int, default=None)
+    ap.add_argument("--township", action="append", type=int, default=None,
+                    help="the older spelling of --tr N:14")
+    ap.add_argument("--tr", action="append", default=None,
+                    help="a township and its range, T:R — repeat it, e.g. --tr 39:13")
     ap.add_argument("--through-year", type=int, default=1836)
     ap.add_argument("--direct", action="store_true",
                     help="fetch the origin rather than the r.jina.ai reader")
@@ -307,7 +325,9 @@ def main(argv=None) -> int:
     global CACHE
     if args.cache:
         CACHE = Path(args.cache)
-    return sweep(args.township or [39, 40], args.through_year, args.direct,
+    pairs = [tuple(int(x) for x in tr.split(":", 1)) for tr in (args.tr or [])]
+    pairs += [(tw, 14) for tw in (args.township or [])]
+    return sweep(pairs or [(39, 14), (40, 14)], args.through_year, args.direct,
                  args.workers, args.refetch)
 
 

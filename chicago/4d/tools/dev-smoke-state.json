@@ -12,25 +12,25 @@
       "passed": 109,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 328,
-      "takenAt": "2026-09-04T21:54:46.676Z",
-      "ref": "steward/t-0589-fergus-1843-civic-account",
-      "commit": "09c8178fb43a",
-      "devCommit": "bd3e6f7a3f94",
-      "treeHash": "sha256:6e4caa32bd476f43",
-      "treeDirty": false,
-      "changelogHash": "sha256:4278bf91c1bf5bcb",
+      "wallSeconds": 228,
+      "takenAt": "2026-09-04T21:57:07.514Z",
+      "ref": "steward/t-0676-ring-townships",
+      "commit": "316101db6fd5",
+      "devCommit": "be2748b4abaf",
+      "treeHash": "sha256:05ff731bcef9a8d9",
+      "treeDirty": true,
+      "changelogHash": "sha256:9d598e250699e21a",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          4.2,
-          3.4
+          1,
+          2.7,
+          1.9
         ]
       },
-      "source": "/tmp/s2-d13.log"
+      "source": "/tmp/smoke_d13.log"
     },
     {
       "viewport": "desktop",
@@ -43,25 +43,25 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 171,
-      "takenAt": "2026-09-04T21:54:46.581Z",
-      "ref": "steward/t-0589-fergus-1843-civic-account",
-      "commit": "09c8178fb43a",
-      "devCommit": "bd3e6f7a3f94",
-      "treeHash": "sha256:6e4caa32bd476f43",
-      "treeDirty": false,
-      "changelogHash": "sha256:4278bf91c1bf5bcb",
+      "wallSeconds": 123,
+      "takenAt": "2026-09-04T21:57:07.424Z",
+      "ref": "steward/t-0676-ring-townships",
+      "commit": "316101db6fd5",
+      "devCommit": "be2748b4abaf",
+      "treeHash": "sha256:05ff731bcef9a8d9",
+      "treeDirty": true,
+      "changelogHash": "sha256:9d598e250699e21a",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          4.2,
-          3.4
+          1,
+          2.7,
+          1.9
         ]
       },
-      "source": "/tmp/s2-d12.log"
+      "source": "/tmp/smoke_d12.log"
     },
     {
       "viewport": "mobile",
@@ -75,25 +75,25 @@
       "passed": 137,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 256,
-      "takenAt": "2026-09-04T21:54:46.487Z",
-      "ref": "steward/t-0589-fergus-1843-civic-account",
-      "commit": "09c8178fb43a",
-      "devCommit": "bd3e6f7a3f94",
-      "treeHash": "sha256:6e4caa32bd476f43",
-      "treeDirty": false,
-      "changelogHash": "sha256:4278bf91c1bf5bcb",
+      "wallSeconds": 177,
+      "takenAt": "2026-09-04T21:57:07.338Z",
+      "ref": "steward/t-0676-ring-townships",
+      "commit": "316101db6fd5",
+      "devCommit": "be2748b4abaf",
+      "treeHash": "sha256:05ff731bcef9a8d9",
+      "treeDirty": true,
+      "changelogHash": "sha256:9d598e250699e21a",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          4.2,
-          3.4
+          1,
+          2.7,
+          1.9
         ]
       },
-      "source": "/tmp/s2-m.log"
+      "source": "/tmp/smoke_m1213.log"
     },
     {
       "viewport": "mobile",

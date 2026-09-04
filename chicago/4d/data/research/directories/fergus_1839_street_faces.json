@@ -10,8 +10,8 @@
   "entries_with_an_address": 976,
   "distinct_streets": 102,
   "distinct_trades": 945,
-  "trades_the_vocabulary_cannot_say": 525,
-  "entries_under_a_trade_the_vocabulary_cannot_say": 815,
+  "trades_the_vocabulary_cannot_say": 468,
+  "entries_under_a_trade_the_vocabulary_cannot_say": 736,
   "firms_with_an_address": 59
  },
  "streets": [
@@ -7718,10 +7718,6 @@
     "n": 20
    },
    {
-    "trade": "farmer",
-    "n": 15
-   },
-   {
     "trade": "boarding-house",
     "n": 12
    },
@@ -7898,15 +7894,7 @@
     "n": 2
    },
    {
-    "trade": "carriage-driver, Graves’ livery stable",
-    "n": 2
-   },
-   {
     "trade": "lime burner",
-    "n": 2
-   },
-   {
-    "trade": "law student, Spring & Goodrich",
     "n": 2
    },
    {
@@ -7934,19 +7922,7 @@
     "n": 2
    },
    {
-    "trade": "hatter",
-    "n": 2
-   },
-   {
-    "trade": "livery stable",
-    "n": 2
-   },
-   {
     "trade": "& Matteson",
-    "n": 2
-   },
-   {
-    "trade": "brewer, cor",
     "n": 2
    },
    {
@@ -7970,15 +7946,7 @@
     "n": 2
    },
    {
-    "trade": "tinner, Wm. Wheeler & Co",
-    "n": 2
-   },
-   {
     "trade": "boarding-",
-    "n": 2
-   },
-   {
-    "trade": "confectioner",
     "n": 2
    },
    {
@@ -8018,19 +7986,11 @@
     "n": 2
    },
    {
-    "trade": "farmer, South Branch, north of 22d street",
-    "n": 2
-   },
-   {
     "trade": "office",
     "n": 1
    },
    {
     "trade": "st. sub-contractor",
-    "n": 1
-   },
-   {
-    "trade": "surveying, mapping, etc",
     "n": 1
    },
    {
@@ -8067,10 +8027,6 @@
    },
    {
     "trade": "street, near North State",
-    "n": 1
-   },
-   {
-    "trade": "County Clerk’s office",
     "n": 1
    },
    {
@@ -8194,19 +8150,11 @@
     "n": 1
    },
    {
-    "trade": "carriage and wagon makers",
-    "n": 1
-   },
-   {
     "trade": "wagon-maker, Briggs & Humphrey",
     "n": 1
    },
    {
     "trade": "clerk, John *Parker",
-    "n": 1
-   },
-   {
-    "trade": "ex-justice of peace, cor. Madison and Clark",
     "n": 1
    },
    {
@@ -8239,18 +8187,6 @@
    },
    {
     "trade": "tender South Branch bridge",
-    "n": 1
-   },
-   {
-    "trade": "crockery, stone, and earthenware, 1 6 1 Lake",
-    "n": 1
-   },
-   {
-    "trade": "tinner",
-    "n": 1
-   },
-   {
-    "trade": "Justin, law student, Butterfield & Collins",
     "n": 1
    },
    {
@@ -8326,10 +8262,6 @@
     "n": 1
    },
    {
-    "trade": "farmer and cattle-dealer",
-    "n": 1
-   },
-   {
     "trade": "foreman, Daniel Taylor",
     "n": 1
    },
@@ -8347,14 +8279,6 @@
    },
    {
     "trade": "House",
-    "n": 1
-   },
-   {
-    "trade": "- , farmer",
-    "n": 1
-   },
-   {
-    "trade": "topographical engineer, Garrison",
     "n": 1
    },
    {
@@ -8390,15 +8314,7 @@
     "n": 1
    },
    {
-    "trade": "county clerk",
-    "n": 1
-   },
-   {
     "trade": "match maker, cor. Division and",
-    "n": 1
-   },
-   {
-    "trade": "milkman, Wm. Dili’s brewery",
     "n": 1
    },
    {
@@ -8442,10 +8358,6 @@
     "n": 1
    },
    {
-    "trade": "tinner, Ira 15. Eddy & Bro",
-    "n": 1
-   },
-   {
     "trade": "with John Fennerty",
     "n": 1
    },
@@ -8455,10 +8367,6 @@
    },
    {
     "trade": "schooner Huron",
-    "n": 1
-   },
-   {
-    "trade": "tinner, Botsford & Beers",
     "n": 1
    },
    {
@@ -8506,10 +8414,6 @@
     "n": 1
    },
    {
-    "trade": "tinner, S. J. Surdam",
-    "n": 1
-   },
-   {
     "trade": "hats, caps, umbrellas, etc., 1 5",
     "n": 1
    },
@@ -8531,10 +8435,6 @@
    },
    {
     "trade": "clerk, J. L. Hanson",
-    "n": 1
-   },
-   {
-    "trade": "livery stable, Kent & Gilson",
     "n": 1
    },
    {
@@ -8579,10 +8479,6 @@
    },
    {
     "trade": "clerk, J. M. Underwood",
-    "n": 1
-   },
-   {
-    "trade": "farmer, Hardscrabble, 12th st. near Throop",
     "n": 1
    },
    {
@@ -8667,14 +8563,6 @@
    },
    {
     "trade": "medical student, Dr. C. V. Dyer",
-    "n": 1
-   },
-   {
-    "trade": "att’y, justice of peace, Adams cur. Clark",
-    "n": 1
-   },
-   {
-    "trade": "civil engineer, on the canal",
     "n": 1
    },
    {
@@ -8786,15 +8674,7 @@
     "n": 1
    },
    {
-    "trade": "ship chandler, Hugunin & Pierce",
-    "n": 1
-   },
-   {
     "trade": "clerk, L. W. Holmes",
-    "n": 1
-   },
-   {
-    "trade": "ship chandlers, North Water cor. Dearborn",
     "n": 1
    },
    {
@@ -8894,14 +8774,6 @@
     "n": 1
    },
    {
-    "trade": "livery stable, State st. (Tremont",
-    "n": 1
-   },
-   {
-    "trade": "livery stables, Kent & Gilson",
-    "n": 1
-   },
-   {
     "trade": "(Methodist)",
     "n": 1
    },
@@ -8923,10 +8795,6 @@
    },
    {
     "trade": "clerk, 1",
-    "n": 1
-   },
-   {
-    "trade": "farmer and hay dealer",
     "n": 1
    },
    {
@@ -8970,10 +8838,6 @@
     "n": 1
    },
    {
-    "trade": "carriage maker, etc",
-    "n": 1
-   },
-   {
     "trade": "clerk, Osborn & Strail",
     "n": 1
    },
@@ -8986,15 +8850,7 @@
     "n": 1
    },
    {
-    "trade": "real estate dealer, 6th ward, near Lill’s brewery",
-    "n": 1
-   },
-   {
     "trade": "locksmith",
-    "n": 1
-   },
-   {
-    "trade": "brewer",
     "n": 1
    },
    {
@@ -9023,14 +8879,6 @@
    },
    {
     "trade": "sash, door, and blind factory",
-    "n": 1
-   },
-   {
-    "trade": "engineer, steamer Geo. W. Dole",
-    "n": 1
-   },
-   {
-    "trade": "engineer, steamer James Allen",
     "n": 1
    },
    {
@@ -9142,19 +8990,7 @@
     "n": 1
    },
    {
-    "trade": "livery stable keeper",
-    "n": 1
-   },
-   {
     "trade": "Unitarian Society, Saloon",
-    "n": 1
-   },
-   {
-    "trade": "farmer, at now called Irving Park",
-    "n": 1
-   },
-   {
-    "trade": "farmer, Dutchman’s Point",
     "n": 1
    },
    {
@@ -9182,10 +9018,6 @@
     "n": 1
    },
    {
-    "trade": "farmer, cor 22d",
-    "n": 1
-   },
-   {
     "trade": "bank porter, Murray & Brand",
     "n": 1
    },
@@ -9199,14 +9031,6 @@
    },
    {
     "trade": "steward, Illinois Exchange",
-    "n": 1
-   },
-   {
-    "trade": "farmer, Holstein",
-    "n": 1
-   },
-   {
-    "trade": "farmer, city limits, western",
     "n": 1
    },
    {
@@ -9234,15 +9058,7 @@
     "n": 1
    },
    {
-    "trade": "tinner, William Wheeler & Co",
-    "n": 1
-   },
-   {
     "trade": "plow and wagon maker",
-    "n": 1
-   },
-   {
-    "trade": "Smith D., ship chandler",
     "n": 1
    },
    {
@@ -9255,14 +9071,6 @@
    },
    {
     "trade": "receiver^ United States Land Office, 175 Lake",
-    "n": 1
-   },
-   {
-    "trade": "civil engineer",
-    "n": 1
-   },
-   {
-    "trade": "fire warden",
     "n": 1
    },
    {
@@ -9322,10 +9130,6 @@
     "n": 1
    },
    {
-    "trade": "farmer, Maine",
-    "n": 1
-   },
-   {
     "trade": "bookbinder and paper ruler",
     "n": 1
    },
@@ -9347,10 +9151,6 @@
    },
    {
     "trade": "farrier",
-    "n": 1
-   },
-   {
-    "trade": "horse-dealer, Graves’ livery stable",
     "n": 1
    },
    {
@@ -9431,10 +9231,6 @@
    },
    {
     "trade": "clerk, Francis C. Sherman",
-    "n": 1
-   },
-   {
-    "trade": "farmer, Northfield",
     "n": 1
    },
    {
@@ -9634,23 +9430,11 @@
     "n": 1
    },
    {
-    "trade": "mail contractor",
-    "n": 1
-   },
-   {
     "trade": "house-mover",
     "n": 1
    },
    {
     "trade": "hostler, John and Leighton Turner",
-    "n": 1
-   },
-   {
-    "trade": "and Leighton, livery stables, cor. North State",
-    "n": 1
-   },
-   {
-    "trade": "mail contractor, Michigan City and Chicago",
     "n": 1
    },
    {
@@ -9679,10 +9463,6 @@
    },
    {
     "trade": "(Charles Walker & Co.)",
-    "n": 1
-   },
-   {
-    "trade": "mail contractor, (Frink & Walker) 123 Lake",
     "n": 1
    },
    {
@@ -9726,10 +9506,6 @@
     "n": 1
    },
    {
-    "trade": "wholesale liquor dealers",
-    "n": 1
-   },
-   {
     "trade": "clerk, Wm. L. Whiting",
     "n": 1
    },
@@ -9763,10 +9539,6 @@
    },
    {
     "trade": "- John L., on the canal",
-    "n": 1
-   },
-   {
-    "trade": "farmer, Arch. Clybourn",
     "n": 1
    },
    {

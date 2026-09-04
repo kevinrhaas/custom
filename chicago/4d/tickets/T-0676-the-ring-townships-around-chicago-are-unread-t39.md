@@ -1,7 +1,7 @@
 ---
 id: T-0676
 title: The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0610
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 816
+claimed_by: run 9/4/2026, 3:59:08 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T21:56:18.678Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918584044
 ---
 
 The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E.
