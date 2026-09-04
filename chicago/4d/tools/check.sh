@@ -54,6 +54,32 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
+# ours' order, theirs' closes and theirs' new tickets — because a text merge of
+# a re-ranked queue against a branch that closed tickets conflicts on every hunk,
+# and `union` would hand back both orderings with every ticket twice. Landing one
+# re-rank on 2026-09-04 cost four merges of dev and four hand reconciliations.
+step "the QUEUE.md merge driver still does what .gitattributes promises" \
+  node tools/merge-queue-selftest.mjs
+
+# THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
+# is seven repairs long, five of them in one day when `union` spliced one entry
+# into another and left valid JavaScript nobody noticed. The driver never works
+# below entry granularity, and REFUSES if both sides edited one shipped entry.
+step "the changelog merge driver still does what .gitattributes promises" \
+  node tools/merge-changelog-selftest.mjs
+
+# ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
+# say what `queue` runs — git keeps a driver command out of tracked content on
+# purpose. So each clone registers it once, and a clone that has not is NOT
+# broken: git falls back to the ordinary text merge, which is what this repo did
+# before the driver existed. Say so and move on.
+if [ -z "$(git config merge.queue.driver || true)" ] || [ -z "$(git config merge.changelog.driver || true)" ]; then
+  printf '\033[33m   note: this clone has not registered the custom merge drivers.\033[0m\n'
+  printf '\033[33m         QUEUE.md and changelog.js will conflict the old way until you run:\033[0m\n'
+  printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
+fi
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -1188,6 +1214,28 @@ step "the letter-list cohort is what the owner's ruling permits" \
 
 step "…and that gate's own assertions still fire when broken" \
   python3 tools/mint_letter_list_residents.py --self-test
+
+# And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
+# owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
+# into a proposal; nothing in that proposal had ever been written onto a card, and only 37
+# of the 85 men on the 1835 poll list had even a surname in the residents layer. This pass
+# writes the people the ladder reaches out of the civic lists, the parish register, the
+# contemporary papers, the printed directories and the 1840 census — everything except the
+# post office's letter lists, which the pass above owns and whose pool refusal 5 keeps this
+# one out of. Gated three ways because the failure modes are all silent: a derivation that
+# stopped re-deriving would let a hand-edit stand as a reading, a refusal that stopped
+# firing would mint a Potawatomi enrollee of 1832 as an 1835 householder with an invented
+# surname order, and a gate that stopped looking would let one of these 532 quietly gain a
+# roof, a trade or a family that no source gives it. `--report` prints all 6,148 refusals
+# with their reasons; docs/LIBERTIES.md L218 carries the scale.
+step "the civic, church, press and book residents re-derive from the ladder" \
+  python3 tools/mint_civic_residents.py --check
+
+step "…and none of them claims more than a person and a reading" \
+  python3 tools/mint_civic_residents.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/mint_civic_residents.py --self-test
 
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict

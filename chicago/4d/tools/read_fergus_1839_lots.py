@@ -63,7 +63,7 @@ the scan — lot 33 prints as `'l ">` over two lines, $303 as `3°3` and `jjj`, 
 smear of rotated type (`<J\\Ui`, `00^1`, `In)`). Every such cell is committed with its value NULL and
 its ink kept verbatim in `as_printed`, never guessed from the run it sits in. The
 sequence would usually give it away, and a number recovered from its neighbours is an
-inference wearing a reading's clothes; T-0670 is the ticket for settling them off the
+inference wearing a reading's clothes; T-0679 is the ticket for settling them off the
 page images, where they can be READ.
 """
 import json, os, re, statistics, sys, urllib.request
@@ -489,7 +489,7 @@ def build():
                         "word coordinates by --map and every cell carries the spans of the "
                         "committed text it is made of. A numeral the scan destroyed is NULL "
                         "and its ink is kept in as_printed; it is never recovered from the "
-                        "run it sits in. T-0670 owns settling those off the page images.",
+                        "run it sits in. T-0679 owns settling those off the page images.",
         "date_note": "1839, NOT 1835. The sale ran 10-24 June 1839 and every claim carries "
                      "describes_date 1839-06. This ground is the Fort Dearborn reservation, "
                      "which in July 1835 was the garrison's and was not lots at all, so no "

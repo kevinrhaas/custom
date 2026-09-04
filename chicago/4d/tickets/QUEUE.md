@@ -65,7 +65,6 @@
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
 # --- middle initial cannot fold to a directory surname however often they are read.
-T-0514 — About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
 T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
@@ -288,4 +287,12 @@ T-0662 — check.sh runs synthesize_resident_research.py for three mint steps wh
 T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0667 — Fergus's own first-ward total is three names more than the names he printed: settle it off the page images
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
-T-0670 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0668 — The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card
+T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
+T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
+T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev

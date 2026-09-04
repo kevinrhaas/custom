@@ -1,7 +1,7 @@
 ---
 id: T-0514
 title: About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 785
+claimed_by: run 9/4/2026, 8:05:50 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-04T15:10:47.692Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33875889978
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "Once complete i would like to begin to do and update of the
