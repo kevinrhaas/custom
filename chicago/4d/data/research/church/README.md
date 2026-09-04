@@ -4,7 +4,27 @@
 the scene window. St Mary's baptismal register 1833-1835 comes first, because
 eleven images of it are already in the deposit and unread (T-0503).
 
-**What is here now (T-0573).** Father St. Cyr's MARRIAGE register and his death
+**What is here now — THE BAPTISMS (T-0503).** All eleven deposited page images of
+St Mary's baptismal register have been read off the scans, entry by entry:
+`records/st_marys_baptisms_1833_1835.json` holds 57 entries and 267 named readings,
+`claims/st_marys_baptisms_town_findings.json` holds the eight things the book says
+about the PLACE rather than about a family, `st_marys_baptisms_crosswalk.json` is
+the pass against `data/residents/`, and `search_log.json` records the second-reading
+search that came back empty. `tools/read_st_marys_baptisms.py` builds and gates all
+four: the reading lives in that file as a table and `--check` proves the JSON is
+still exactly what the table says, so a hand-edit of the artifacts is a gate failure.
+
+**Three things that reading cost, and a later run should not pay again.**
+First, THE BOOK CHECKS ITSELF. A pencil hand wrote a tally under each year's last
+entry — 1833: 19, 1834: 24, 1835: 14 — and the reading meets all three exactly. A
+fourth number, 'total 20' in the margin of page 6, is not a contradiction: 1833
+entry 9 baptised two children in one entry. Second, THE ELEVEN IMAGES ARE
+CONTIGUOUS and the deposit's filenames say nothing about their order; the order is
+the title page, then pages 1-19 of the book, then one stray later leaf, and it was
+established by reading the entry numbers across the openings. Third, IT IS NOT ALL
+CHICAGO — see below.
+
+**What is here from the marriages and deaths (T-0573).** Father St. Cyr's MARRIAGE register and his death
 and burial page, both read out of the *Illinois Catholic Historical Review* vol. 4
 by way of the Genealogy Trails transcription: `records/st_cyr_marriages_1834_1839.json`
 (128 entries, 513 named readings) and `records/st_cyr_deaths_1834_1837.json`
@@ -36,8 +56,21 @@ on a date. Where the register places them in the town, that is a separate claim
 with its own reasoning, and it belongs in `crosswalk.json` or in the resident
 record's own note — not in this row.
 
-**Hand-authored:** `records/`, `coverage.json`, `crosswalk.json`.
-**Generated:** nothing here yet; `data/research/domains.json` is, and is gated.
+**Hand-authored:** `records/st_cyr_*`, `coverage.json`, `crosswalk.json`, `search_log.json`.
+**Generated:** `records/st_marys_baptisms_1833_1835.json`, `claims/st_marys_baptisms_town_findings.json` and `st_marys_baptisms_crosswalk.json`, all three by `tools/read_st_marys_baptisms.py` out of the reading table inside it; `data/research/domains.json`, which is gated too.
+
+**AND IT IS NOT ALL CHICAGO — the same trap the marriage page set.** Entries 1 to
+11 of 1834 were written at Bear Creek, at the South Fork of the Sangamon and at
+Springfield, in Sangamon County, on Father St. Cyr's journey back from St. Louis:
+the Durbins, Logdsons, Alveys and Potts are Sangamon households and not Chicago
+ones. Those rows carry `at_chicago: false` themselves. A reader who takes this book
+as a Chicago roll plants eleven households in the wrong county.
+
+**What the baptisms reach that nothing else does.** Kinship — a child, two parents
+and two godparents on one dated line, 44 times over — and the town the poll books
+cannot see, because a poll book recorded men who voted. Of the 107 distinct adults
+the register names in its Chicago entries, 85 reach no surname in the residents
+layer at all. Eight of them SIGN, in their own hands, under the priest's.
 
 **Coverage.** Declare the IMAGES read, by image id. Eleven is the deposit's size
 for St Mary's; a twelfth image found later is an undeclared item, which is not a
