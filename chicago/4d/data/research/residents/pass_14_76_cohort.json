@@ -191,7 +191,7 @@
       "person_id": "brooks_gardner",
       "name": "Gardner Brooks",
       "stratum": "letter_list_only_present",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "present",
       "letter_list_returns": [
         "1835-07-01"
@@ -811,7 +811,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "norris_directory_1844"
       ]
     },
     {

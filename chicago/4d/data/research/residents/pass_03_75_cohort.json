@@ -779,7 +779,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "norris_directory_1844"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return selected for identity and duplicate testing."
     },
