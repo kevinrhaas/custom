@@ -214,8 +214,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-9K3.json",
+     "lines_ruled": 31,
+     "note": "read by T-0585: every ruled line recorded, the cells read at a column grid fitted to the sheet and checked against the enumerator's own printed column totals — 37 of 38 columns balance and are committed; free colored males 24 under 36 (column 29) reads 4 against a footing that reads 11 and is left unreconciled with its residual. The inventory's figure of 31 lines with an entry stands unchanged. A page of boarding houses: four lines carry 104 of the 195 free white persons on it."
     },
     {
      "index": 16,
