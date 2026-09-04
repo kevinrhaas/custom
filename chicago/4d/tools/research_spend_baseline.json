@@ -5,7 +5,7 @@
  "unspent_ceiling": {
   "civic": 13,
   "census_1830": 0,
-  "census_1840": 206,
+  "census_1840": 289,
   "church": 0,
   "books": 126,
   "directories": 6396,
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 714,
+   "read": 797,
    "spent": 508
   },
   "church": {
@@ -131,6 +131,14 @@
    "to": 206,
    "date": "2026-09-04",
    "why": "T-0643 read 32 more lines of 33S7-9YYJ-8D and rules on none of them: the ticket forbids it, because the 1840 bridge to an 1835 resident is a separate adjudication (T-0505, T-0514, T-0515) and 1839/1840 alone is never a resident. Reading ahead of that bridge is the method working. This raise also absorbs the reading the other three census slices of this hour landed on dev — the ceiling was already blown at 5acb2977 before this branch merged, and it is one shared per-domain number. It is deliberately a ceiling to be TAKEN BACK: --tighten is free, and the moment the bridge tickets spend these names the ceiling should come down to what the domain has earned."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 206,
+   "to": 289,
+   "date": "2026-09-04",
+   "why": "T-0527 read the three remaining filled left sheets of images 26-50 (printed 227, 239 and 241) line by line: 83 more named heads. The parent ticket T-0495 forbids this ticket minting or regrading anybody - T-0505 crosswalks these readings and T-0514/T-0515 rule on the names - so the reading is deliberately ahead of its adjudication and the ceiling moves once, on purpose, rather than the gate being routed around."
   }
  ],
  "lowered": [
