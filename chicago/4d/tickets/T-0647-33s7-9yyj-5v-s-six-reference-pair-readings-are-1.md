@@ -22,7 +22,7 @@ claimed_run: null
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
-**The finding, from T-0645.** `33S7-9YYJ-5V` reads a matched pair of parallel slashes as **11** on its
+**The finding, from T-0648.** `33S7-9YYJ-5V` reads a matched pair of parallel slashes as **11** on its
 lines 2, 3, 4, 6, 9 and 24, and calls line 2 "the sheet's reference pair". Its TOTAL column does not
 close, and nothing checked it: 5V's printed footing is illegible.
 
@@ -36,7 +36,7 @@ it is now written into `pages/33S7-9YYJ-6Q.json` under `total_column.digit_key`.
 **What this ticket does.** Re-read 5V's lines 2, 3, 4, 6, 9 and 24 against that key and either correct
 them to 4 or state, from the ink, why 5V's pairs are a different construction from 24's. If they
 correct, 5V's committed sum moves from 126 to 84 and its `records[]`, `total_column` and the
-changelog's account of it all have to move with it. T-0645 deliberately did not touch 5V: it is
+changelog's account of it all have to move with it. T-0648 deliberately did not touch 5V: it is
 another sheet and another demonstration.
 
 **Check the division before extending this.** The key is measured on S. W. Sherman's hand. `33S7-9YYJ-8D`

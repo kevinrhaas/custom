@@ -1,5 +1,5 @@
 ---
-id: T-0645
+id: T-0648
 title: The 1840 census image 33S7-9YYJ-6Q: the TOTAL column read digit by digit against the committed line grid, and the digit key for this enumerator's hand taken from a sheet that closes
 state: done
 epic: META

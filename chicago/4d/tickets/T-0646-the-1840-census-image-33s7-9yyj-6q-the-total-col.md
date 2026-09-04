@@ -24,7 +24,7 @@ Piece 2 of 2 of **T-0631 — The 1840 census image 33S7-9YYJ-6Q: the TOTAL colum
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-**Where this stands after T-0645.** All thirty lines of the TOTAL column are read and committed in
+**Where this stands after T-0648.** All thirty lines of the TOTAL column are read and committed in
 `data/research/census_1840/pages/33S7-9YYJ-6Q.json` `records[]`, each with a confidence and the glyph
 note it rests on. They sum to **173** against the enumerator's own printed **198**. The residual of 25
 is recorded and was not spent: nothing was moved to make the total come out.

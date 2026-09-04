@@ -1,7 +1,7 @@
 ---
 id: T-0628
 title: 33S7-9YYJ-6H: the line index fitted to the industry ink, and the TOTAL column read against it
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0548
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 760
+claimed_by: run 9/4/2026, 12:08:58 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T05:45:36.116Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33839211009
 ---
 
 33S7-9YYJ-6H: the line index fitted to the industry ink, and the TOTAL column read against it.
