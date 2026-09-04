@@ -8,7 +8,7 @@
   "census_1840": 229,
   "church": 0,
   "books": 173,
-  "directories": 7004,
+  "directories": 7210,
   "newberry_index": 4914,
   "land_sales": 542
  },
@@ -34,8 +34,8 @@
    "spent": 37
   },
   "directories": {
-   "read": 7560,
-   "spent": 556
+   "read": 8256,
+   "spent": 1046
   },
   "newberry_index": {
    "read": 7005,
@@ -195,6 +195,22 @@
    "to": 173,
    "date": "2026-09-04",
    "why": "T-0500 read the second half of Fergus' Historical Series Nos. 26-29 — 58 claims and 45 town findings — completing the volume T-0499 began. The reading is deliberately wider than its rulings for the reason the first half already recorded: most of what these numbers carry is landscape, buildings, streets, civic institutions and port statistics, which the resident crosswalk has nothing to rule on. The names that DO fall in the 1830-1836 window are ruled on in the same pass; what this ceiling holds open is town findings waiting on the structure and terrain tickets that will spend them. Re-measured against the merged tree rather than carried over from this branch's earlier raise, because the baseline has moved several times since."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7004,
+   "to": 7199,
+   "date": "2026-09-04",
+   "why": "T-0589 read the civic account of Fergus's 1843 directory, page 1 lines 37-750: 388 claims, of which 264 are the town's own account of itself — the ward population count of 1 August 1843, the port's trade tables, the churches and their memberships, the offices and companies — and not names awaiting a crosswalk. 124 office-holder rows name 215 Chicagoans and are what the next crosswalk pass has to rule on. The ceiling moves by the reading; the spend it owes is T-0635's consolidation and the 1843 crosswalk, not this ticket."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7199,
+   "to": 7210,
+   "date": "2026-09-04",
+   "why": "T-0670 tightened the directory crosswalks to refuse a match where both readings print a full forename and the two disagree (Thomas L. Abbott was being merged onto Titus H. Abbott). 147 joins across Fergus 1843 and Norris 1844 are refused and 11 net rulings go with them: a resident whose only route to a printed claim was a bad initial-match no longer rules on it at all. The reading did not shrink; the town stopped claiming to have adjudicated eleven entries it had adjudicated wrongly. T-0696 is where the second discriminator that would win some of them back is decided."
   }
  ],
  "lowered": [
