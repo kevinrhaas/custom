@@ -1,7 +1,7 @@
 ---
 id: T-0423
 title: G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 720
+claimed_by: run 9/3/2026, 1:24:39 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T19:07:11.209Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33789733566
 ---
 
 T-0358 committed the Thompson plat's block numbering for the South Water tier, which resolves the

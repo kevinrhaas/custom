@@ -126,6 +126,14 @@
         "drloih_hotels"
       ],
       "note": "Both sources name Davis as the keeper in 1835, and Andreas's list of the Chicago American's advertising patrons carries 'John Davis, Steamboat Hotel' in the paper's first year. THE GRAIN IS THE YEAR, NOT THE DAY: DRLOIH has J. Dorsey and J. Force taking over the management on 9 November 1835, so Davis's tenure covers the scene date if the house was open at all. Note the coincidence this project should not resolve by assumption: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is the same John Davis is unattested."
+    },
+    "land_owner": {
+      "value": "The ground was entered by Robert A Kenzie, 7 May 1831",
+      "confidence": "inferred",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "KINZIE'S ADDITION. The north fraction of section 10 is the section north of the river, which is why the register prints 102.29 acres and not a quarter's 160. It is resolved as the section's own grid box clipped to the committed north bank of the main stem (`e1834_harbor_cut/shoreline.geojson`), so no boundary here is authored. The two rows the register carries for it — one plain, one with the school-section marker — are the same entry printed twice. THE REGISTER SPELLS THE PURCHASER MORE THAN ONE WAY for this same tract — Robert A Kenzie; Robert A Kinzie — and the spellings are carried rather than merged, which is the land_sales crosswalk's standing rule: tract agreement is where two spellings MIGHT be one man and is never proof that they are. THE MARGIN IS 63 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
     }
   },
   "residents": [
@@ -146,7 +154,7 @@
           "relationship": "head",
           "grade": "attested",
           "occupation": "hotel_keeper",
-          "note": "DOCUMENTED IN THE SCENE YEAR ITSELF: the American began in June 1835 and he is advertising in it. The hotel chronology has J. Dorsey and J. Force taking over the management on 9 November 1835, so his tenure covers 1 July. A COINCIDENCE THIS PROJECT DELIBERATELY DOES NOT RESOLVE: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is this man is unknown. If it is, one household kept two houses; if it is not, there is a second Davis in the town. Nothing reached settles it and neither reading is asserted here."
+          "note": "DOCUMENTED IN THE SCENE YEAR ITSELF: the American began in June 1835 and he is advertising in it. The hotel chronology has J. Dorsey and J. Force taking over the management on 9 November 1835, so his tenure covers 1 July. A COINCIDENCE THIS PROJECT DELIBERATELY DOES NOT RESOLVE: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is this man is unknown. If it is, one household kept two houses; if it is not, there is a second Davis in the town. Nothing reached settles it and neither reading is asserted here. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Tax list of the Town of Chicago, 1833 — “Davis, John” (tax_1833_024, line 76); Election returns — poll list of 1834, filed 11 August 1834 — “Davis, John” (poll_1834_032, line 201). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Davis' agrees with the entry's forenames; 2 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json)."
         }
       ],
       "research_note": "A HOUSEHOLD WHOSE ONLY DOCUMENTED FACT IS THE ONE THAT MATTERS - that a man of this name was keeping this house in the scene year. Everything else about him is blank, and four of the five household fields are conjectural as a result. THE SAUGANASH QUESTION IS LEFT OPEN ON PURPOSE. data/structures/sauganash_hotel.json records 'a Mr. Davis, proprietor' for 1835 and flags the possibility that he is this man; merging the two would create a documented claim out of a shared surname, and splitting them would create a second household out of the same. Neither is done."
@@ -168,6 +176,14 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
     },
     {
       "source_id": "osm_streets_2026",

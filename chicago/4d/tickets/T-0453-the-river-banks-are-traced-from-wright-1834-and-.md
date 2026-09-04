@@ -95,3 +95,15 @@ that agree with each other.
    departing its own neighbours by more than the drafting tolerance is listed,
    so this one is not fixed while its siblings survive.
 
+## A shore view deposited 2026-09-03 (owner)
+
+`chicago/reference/images/chicago/eliza-chappel-school/21617595_10203558686525015_5452300313452439832_n.jpg`
+— *"a great pic of the shore along there"*. Shows the bank in profile with canoes
+afloat and drawn up on the beach, a white lighthouse tower on a low point in the
+middle distance, and a scatter of small gabled buildings across a flat horizon.
+Useful here for the BANK: how the ground meets the water, how far the beach runs
+out, and where the light stands relative to it. Provenance is unestablished (a
+social-media filename, no artist, title or date), so it corroborates a traced bank
+rather than driving one, and needs a source record before it is cited. The building
+at its right is read in T-0617, which is adjudicating whether it is the Sauganash's
+log annex.

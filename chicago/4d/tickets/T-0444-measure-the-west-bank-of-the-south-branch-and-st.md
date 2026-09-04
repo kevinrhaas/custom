@@ -1,7 +1,7 @@
 ---
 id: T-0444
 title: Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0443
 opened: 2026-08-31
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 1:49:53 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -93,3 +93,35 @@ questions, so **it is an illustration and not a proposal**.
    **written down in plain words with its numbers** — including if the answer is
    that `canal` is where it should be. Both outcomes pass. Silence does not.
 4. Nothing moves in this ticket. Moving lines is T-0445.
+
+## THE OWNER'S RULING ON THE PLAT SHEET, 2026-09-03
+
+PR #681 carried out clauses 2–4 and parked on `hold` because clause 1 asks for the West Division's
+lot dimensions and block lot-counts "read off the plat sheet", no plat survey was found in the
+deposit, and `docs/RESEARCH/thompson_plat_grid.md` refuses to trace the 1834 sheets. Asked whether a
+plat sheet could go into the deposit given that rule, the owner answered with a path, recorded
+verbatim:
+
+> `https://github.com/kevinrhaas/custom/blob/dev/chicago/pre_fire_v1/maps/images/1830_thompson_plat.png`
+
+**What it means.** The Thompson plat of 1830 is ALREADY in the repository, at
+`chicago/pre_fire_v1/maps/images/1830_thompson_plat.png` (7.3 MB, committed to `dev`), and the
+run that finishes this ticket reads the West Division's lot dimensions and block lot-counts off
+THAT file. `data/sources/thompson_plat_1830.json` now names the path in its `locator`.
+
+**Its limits, stated so the ruling is not stretched:** the sheet is READ, as a period document
+(tier 1), for the figures written on it — lot dimensions, lot counts, street and alley widths,
+block numbers. It is not warped and not traced for geometry: the source record's rule that the
+grid is generated analytically from the plat's stated module rather than from pixels stands, and
+`docs/RESEARCH/thompson_plat_grid.md` § 1 still governs how lines are placed. A reading is
+recorded with the crop it was taken from (page region, in pixels) so a later reader can check it,
+and `verified` on the source record flips to `true` in the commit that reads it.
+
+**Acceptance, restated with the ruling in it:**
+
+1. The West Division's lot dimensions and block lot-counts are read off
+   `chicago/pre_fire_v1/maps/images/1830_thompson_plat.png` and committed as data, each reading
+   with the region of the sheet it was taken from — not inferred from the South Division.
+2. Unchanged.
+3. Unchanged; the memo in PR #681 is re-read against the figures the sheet actually gives.
+4. Unchanged: nothing moves here. Moving lines is T-0445.

@@ -4399,6 +4399,28 @@ RESIDENTS = DATA / "residents"
 
 RESIDENT_GRADES = ("attested", "inferred", "reconstructed")
 
+# Which of the three mint tools produced this record, recorded now that a
+# plain id no longer says so on its own (T-0599: mint_documented_residents.py /
+# mint_placed_residents.py / mint_letter_list_residents.py used to encode this
+# as an hh_doc_/hh_placed_/hh_ll_ filename prefix; a household minted from here
+# on carries this field instead and gets a plain hh_<surname>_<given> id). This
+# is provenance for the mint tools' own idempotency, not a finding about the
+# person, so it stays optional and off the manifest's public vocabulary block:
+# the ~70-odd hand-authored households were never minted by any pass and never
+# carry the key at all.
+RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list", "civic")
+
+# The per-domain evidence blocks tools/mint_civic_residents.py writes onto a person
+# (T-0514). Each row is a READING: the list it came from, the transcription as read,
+# the locator, the record id, the source it resolves to and the ladder rule that fired
+# for the identity. They are what makes a minted person auditable back to a page, so
+# the shape is checked rather than trusted — a row that loses its `as_read` or its
+# `rule` is a person whose card asserts a grade it can no longer show the working for.
+RESIDENT_EVIDENCE_BLOCKS = ("civic_evidence", "census_evidence", "church_evidence",
+                            "book_evidence", "press_evidence")
+RESIDENT_EVIDENCE_ROW_KEYS = ("list", "as_read", "locator", "record_id",
+                              "describes_date", "source", "rule")
+
 # The term this programme was renamed away from. Anything mapping to a grade
 # gets a message naming the rename rather than a generic "unknown value", so the
 # next person to reach for it learns why.
@@ -4605,6 +4627,11 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         if h.get("division") not in divisions:
             rep.error(where, f"division '{h.get('division')}' is not declared in the manifest "
                              f"vocabulary")
+        source_pass = h.get("source_pass")
+        if source_pass is not None and source_pass not in RESIDENT_SOURCE_PASSES:
+            rep.error(where, f"source_pass '{source_pass}' is not one of "
+                             f"{RESIDENT_SOURCE_PASSES} - omit the key on a hand-authored "
+                             f"household, or match one of the three mint tools' pass names")
 
         # --- persons -------------------------------------------------------
         persons = h.get("persons") or []
@@ -4654,6 +4681,39 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             for k in ("lives_at", "works_at"):
                 if k in p:
                     check_resident_link(pwhere, k, p.get(k), structure_ids, rep)
+
+            # --- the evidence blocks a minted person shows its working in ----
+            for key in RESIDENT_EVIDENCE_BLOCKS:
+                if key not in p:
+                    continue
+                rows_ = p.get(key)
+                if not isinstance(rows_, list) or not rows_:
+                    rep.error(pwhere, f"{key} is present and is not a non-empty list. An "
+                                      f"empty evidence block claims a reading that is not "
+                                      f"there; omit the key instead")
+                    continue
+                for i, row_ in enumerate(rows_):
+                    rwhere = f"{pwhere}/{key}[{i}]"
+                    if not isinstance(row_, dict):
+                        rep.error(rwhere, "an evidence row must be an object")
+                        continue
+                    for k in RESIDENT_EVIDENCE_ROW_KEYS:
+                        if not str(row_.get(k) or "").strip():
+                            rep.error(rwhere, f"'{k}' is empty. A reading that cannot name "
+                                              f"its list, its transcription, its locator, "
+                                              f"its record, its source and the rule that "
+                                              f"fired is not evidence, it is a claim")
+                    sid_ = row_.get("source")
+                    if sid_ and sid_ not in source_ids:
+                        rep.error(rwhere, f"source '{sid_}' does not resolve in data/sources/")
+                    if sid_ and sid_ not in (p.get("sources") or []):
+                        rep.error(rwhere, f"source '{sid_}' is cited by this reading and not "
+                                          f"by the person; the card would show a grade "
+                                          f"resting on a source it does not list")
+            if p.get("civic_mint") and not any(p.get(k) for k in RESIDENT_EVIDENCE_BLOCKS):
+                rep.error(pwhere, "civic_mint is set and the person carries no evidence "
+                                  "block - that cohort is minted FROM a reading and has "
+                                  "to show it (tools/mint_civic_residents.py)")
 
         if heads != 1:
             rep.error(where, f"{heads} person(s) carry relationship 'head'; a household record "

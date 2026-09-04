@@ -792,7 +792,7 @@ You are picking up ONE phase. The generic entry checklist:
    collide. Check `git log` and open PRs first; a phase someone claimed and shipped half of
    is theirs to finish unless the claim expired.
 3. **Baseline**: on a fresh `steward/<topic>` branch off `main`, run both gates BEFORE
-   changing anything — `./tools/check.sh` (needs `pip install jsonschema pyproj`) and
+   changing anything — `./tools/check.sh` (needs `pip install jsonschema pyproj openpyxl pypdf`) and
    `node tools/smoke_renderer.mjs` — so you know green means your green.
 4. **Work inside the phase's file list.** A unit that needs new geometry ships the
    data/archetype half and says so — the nightly `chicago-4d-bake.yml` bakes and PRs the

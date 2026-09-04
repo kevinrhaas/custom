@@ -47,7 +47,7 @@ July 1835. Those biographies therefore remain unasserted candidates.
 
 Three duplicate tests are retained rather than silently resolved:
 
-- `ll_chappel_eliza_mir` is probably Eliza Chappel Porter, with “Mir” likely a bad
+- `chappel_eliza_mir` is probably Eliza Chappel Porter, with “Mir” likely a bad
   reading of “Miss,” but the original 1 July column must be inspected before merge.
 - Aaron Parcel/Aron Parcell and Alonzo Murray/Murry are reciprocal spelling-variant
   candidates without an external bridge.

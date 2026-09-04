@@ -130,6 +130,8 @@ def build(params: FrameTavernParams, name: str):
         _log_wing(b, params, d)
     if params.rear_ell:
         _rear_ell(b, params, w)
+    if params.cross_wing:
+        _cross_wing(b, params, w, d, wall_z, ridge_z)
 
     # chimneys — as many stacks as the record counts. "frontage" spaces them
     # across the frontage at the depth midline (the original arrangement, kept
@@ -323,6 +325,72 @@ def _fenestration_gable_front(b: MeshBuilder, params: FrameTavernParams, w: floa
                     (w / 2 - order * aw / 2, yy2, z0),
                     (w / 2 - order * aw / 2, yy2, z0 + ah),
                     (w / 2 + order * aw / 2, yy2, z0 + ah)], conf, M_GLASS)
+
+
+def _cross_wing(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
+                wall_z: float, main_ridge_z: float) -> None:
+    """The second two-storey mass — the Sauganash's rear wing, off one gable end,
+    its ridge running BACK at right angles and meeting the main ridge at a shared
+    apex.
+
+    THE APEX IS WHY THIS FUNCTION TAKES NO SPAN. Braunhold's plate draws two lines
+    out of one apex; `tools/sauganash_apex_lines.py` puts both of them at world
+    horizontal (1.35 deg and 0.11 deg, against the 1.99 image slope a 38 deg rake
+    would have been drawn at), so they are two RIDGES. Two gable ridges of one wall
+    height and one pitch meet at a point only when they span the same width, so the
+    wing's span is the main block's own depth and nothing here may choose it. What
+    the plate cannot give is how far the wing runs back — one sheet gives no depth —
+    and that single number is the record's, claimed at docs/LIBERTIES.md.
+
+    Everything the wing is CLAD and PIERCED with is the archetype's: the same
+    clapboard exposure as the block it grows out of, two lights in the far gable and
+    one in the attic above them. No stack: T-0617 counted the stacks that clear the
+    roof line and found two, both on the main block, and a third invented here would
+    be this archetype adding a claim the plate was asked for and did not make.
+    """
+    c = params.worst_conf("cross_wing", "stories", "construction", "cladding")
+    c_roof = params.worst_conf("cross_wing", "roof_type", "roof_pitch_deg")
+    c_clad = params.worst_conf("cross_wing", "cladding", "paint")
+    p = params.cross_wing_depth_m
+    x0 = w - d if params.cross_wing_end == "x_max" else 0.0
+    x1 = x0 + d
+
+    # walls. y = 0 is the main block's own rear wall, so its face is skipped.
+    b.add_box(x0, -p, 0, x1, 0, wall_z, c, M_WALL, skip=("bottom", "back"))
+
+    # clapboard on the three exposed walls, the block's own stock
+    course = params.siding_exposure_m
+    lip = 0.018
+    for i in range(1, int(wall_z / course)):
+        z = i * course
+        b.add_poly([(x1, -p, z), (x0, -p, z),
+                    (x0, -p - lip, z - 0.02), (x1, -p - lip, z - 0.02)], c_clad, M_WALL)
+        b.add_poly([(x0, 0, z), (x0, -p, z),
+                    (x0 - lip, -p, z - 0.02), (x0 - lip, 0, z - 0.02)], c_clad, M_WALL)
+        b.add_poly([(x1, -p, z), (x1, 0, z),
+                    (x1 + lip, 0, z - 0.02), (x1 + lip, -p, z - 0.02)], c_clad, M_WALL)
+
+    # its own gable, ridge along the deep axis. The span is d, so this returns the
+    # main block's own ridge height and the two meet at the apex the plate draws.
+    ridge_z = b.add_gable_roof(x0, -p, x1, 0, wall_z, params.roof_pitch_deg,
+                               c_roof, M_ROOF, ridge_along_x=False)
+    if abs(ridge_z - main_ridge_z) > 0.01:
+        raise ValueError(
+            f"the cross wing's ridge came out at {ridge_z:.3f} m against the main "
+            f"block's {main_ridge_z:.3f} m — the shared apex the plate draws is the "
+            f"whole reason this wing is built, and it has stopped being shared")
+
+    # the far gable: two lights at first-floor level and one in the attic above
+    cx = (x0 + x1) / 2
+    yy = -p - 0.06
+    for sgn in (-1.0, 1.0):
+        gx = cx + sgn * d / 5.0
+        b.add_poly([(gx - 0.45, yy, 3.05), (gx + 0.45, yy, 3.05),
+                    (gx + 0.45, yy, 4.45), (gx - 0.45, yy, 4.45)], c, M_GLASS)
+    yg = -p - ROOF_OVERHANG - 0.06
+    b.add_poly([(cx - 0.40, yg, ridge_z - 2.05), (cx + 0.40, yg, ridge_z - 2.05),
+                (cx + 0.40, yg, ridge_z - 1.15), (cx - 0.40, yg, ridge_z - 1.15)],
+               c, M_GLASS)
 
 
 def _rear_ell(b: MeshBuilder, params: FrameTavernParams, w: float) -> None:

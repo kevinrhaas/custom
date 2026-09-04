@@ -193,6 +193,7 @@ const COVERAGE = [
   ['site/chicago/4d/walk/js/changelog.js', [12], "the mirrored entries What's-new reads"],
   ['site/chicago/4d/tickets.json', NONE, 'the backlog mirror — the renderer never loads it'],
   ['site/chicago/4d/build.json', NONE, 'the publish stamp; the gate screen that shows it is boot scaffolding, taken in every invocation'],
+  ['site/chicago/4d/walk/index.html', NONE, 'the publish stamp again — publish.sh rewrites the build sha and Central date into it on EVERY run, so every publishing PR touches it; the gate screen that shows it is boot scaffolding, taken in every invocation. Run #1464 (2026-09-03) ran seven legs because this row was missing and the mirror catch-all above sent the stamp to all 13 parts'],
 
   // --- PART 1: the enclosure layer, the plantings inside it, and the signs
   ['renderers/web/js/enclosures.js', [1], 'the enclosure layer (T-0038)'],
@@ -575,6 +576,15 @@ function selfTest() {
     if (!fs.existsSync(target)) fails.push(`${pat}: no such path in the tree — the map has rotted`);
   }
   for (const p of ALL) if (!seen.has(p)) fails.push(`part ${p} is covered by no row of the map`);
+
+  // The publish stamp is NONE, and a real mirror file is still the whole gate:
+  // publish.sh rewrites site/chicago/4d/walk/index.html on every run, and before
+  // this row existed the mirror catch-all priced every publishing PR at all 13
+  // parts (run #1464, 2026-09-03, seven legs for two census page files).
+  const stamp = partsFor(['site/chicago/4d/walk/index.html']);
+  if (stamp.want.length !== 0) fails.push(`the publish stamp site/chicago/4d/walk/index.html must map to NONE, not ${key(stamp.want)}`);
+  const mirrorJs = partsFor(['site/chicago/4d/walk/js/main.js']);
+  if (mirrorJs.want.length !== PARTS) fails.push('a mirrored renderer module must still map to the whole gate');
 
   // The map may only ever ADD parts: an unknown path is the whole gate.
   const unknown = partsFor(['renderers/web/js/no-such-module-at-all.js']);
