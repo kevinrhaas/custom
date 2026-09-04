@@ -344,6 +344,77 @@
         }
       }
     },
+    "land_owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Who entered the patent for the ground this structure stands on, joined from the Illinois State Archives land-sale register (T-0609). GENERATED — tools/resolve_land_tracts.py --build writes every one of these and --check re-derives them, so a hand-edit is a gate failure. The block claims the tract the register describes contains this record's committed position and NOTHING MORE: not that the purchaser still held the ground on the scene date, not that he lived here, not that the entry held. The section lines it rests on are constructed from the single PLSS corner at State & Madison, not traced (L219).",
+      "required": [
+        "value",
+        "confidence",
+        "sources",
+        "note",
+        "tract",
+        "entries",
+        "date_purchased",
+        "type_of_sale",
+        "margin_m",
+        "generated_by"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The sentence the walkthrough's card shows — who entered the ground, and when."
+        },
+        "confidence": {
+          "enum": [
+            "inferred",
+            "reconstructed"
+          ],
+          "description": "Never `attested`: the tract description is read off the register, but the line it lands on is constructed. `inferred` when the footprint stands more than 40 m inside the tract, `reconstructed` when it stands nearer a tract boundary than twice the georeference's working uncertainty."
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The reasoning: which tract, how it was put on the ground, the margin, and the three things the row does not claim."
+        },
+        "tract": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The tract as the resolver names it, e.g. `E2NE of section 09, T39N R14E`."
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "The land_sales record ids this ground resolves through. More than one when the register prints the same entry twice."
+        },
+        "date_purchased": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type_of_sale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "margin_m": {
+          "type": "number",
+          "description": "How far inside the tract's nearest boundary the footprint stands. The grade follows from it."
+        },
+        "generated_by": {
+          "const": "tools/resolve_land_tracts.py --build"
+        }
+      }
+    },
     "xref": {
       "type": "object",
       "additionalProperties": false,
