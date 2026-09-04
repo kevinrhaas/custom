@@ -73,11 +73,14 @@ name.
 
 Four refusals, each an assertion in `--self-test` rather than a promise:
 
-- **It may not move, resize or re-form the roof.** The house the notice calls LARGE is not
-  made large. The fabric under the address is the 665-roof programme's D3 count-unit, a
-  5.36 × 6.38 m one-room cottage, and the ledger says so in as many words. Whether a
-  documented "large dwelling-house" should be re-dealt a larger family is a second
-  demonstration and has its own ticket.
+- **It may not move, resize or re-form the roof.** No coordinate, no polygon and no form
+  value is authored, adjusted or nudged by an address. It may re-deal the count-unit's
+  FAMILY, and only that, and only under the rule below — which is a different act: the
+  family is dealt by the schedule and the band it carries is sampled by
+  `tools/family_bands.py`, so the roof is still a count-unit drawn from a band and not a
+  building somebody sized. (Until 2026-09-04 this refusal was absolute, and the ledger read
+  "the house the notice calls LARGE is not made large". T-0593 ruled the other way; **L221**
+  is the ruling and the paragraph below is the rule.)
 - **It may not promote the roof.**
 - **It may not seat a person.** The advertiser is the man to apply to for terms and nothing
   else, and the ledger's `is_the_occupant` and `is_the_owner` are `false` and refused if
@@ -85,6 +88,51 @@ Four refusals, each an assertion in `--self-test` rather than a promise:
   papers put second door west of Franklin and South Water, and T-0412 is the same trap read
   from the other side — a building offered FOR SALE must not mint a placement on its vendor.
 - **It may not seat two addresses on one roof, or one address on two roofs.**
+
+## When the notice describes the building
+
+A placement notice often says more than where. Spring's says **"a large Dwelling-House"**, and
+for a year this policy spent the address and let the adjective fall on the floor: the roof the
+address landed on was a 5.36 × 6.38 m one-room cottage, the smallest dwelling family the
+665-roof programme deals, and the card printed the source's own word LARGE over it. That is a
+documented statement about a building on the lot contradicted by an invented one standing on
+it, and between a source and an invention the source wins. **T-0593 ruled it, L221 records it,
+and this is the rule the next lot-and-block address inherits.**
+
+**A documented address MAY re-deal the family of the count-unit it seats on, and may do nothing
+else.** Five clauses, and an address that cannot satisfy all five does not re-deal:
+
+1. **The source must describe the building, not the lot.** A size, a kind or a construction
+   stated of the thing standing there — "a large Dwelling-House", "a two-story frame store".
+   A price, a vendor, a neighbour or a street is about the parcel and reaches nothing.
+2. **The band must actually contradict the word.** If the count-unit already answers the
+   description, there is nothing to repair and nothing is touched.
+3. **The lowest rung that answers the word, and not one above it.** The families are ranked by
+   `data/reconstruction/1835_family_archetype_crosswalk.json`'s own labels, and the label is
+   the test: D6 and below are *cottages*, D7 is a *Small* two-storey house, H1 is the first the
+   crosswalk calls **larger** and calls a **house**. "Large" reaches H1 and stops there. An
+   adjective is not evidence of storeys, paint, trade or wealth, and reading the best house a
+   word will bear out of one word is the failure this clause exists to refuse.
+4. **The district's remainder pays for it, so no total moves.** The family mix is an
+   apportionment of a district's remainder and not a claim about any block, so the new family
+   comes out of that remainder and the displaced one goes back into it. The block's roof
+   count, its principal/ancillary split, its headroom and its open lot are all unchanged.
+   `tools/reconcile_665.py` re-derives the result and `tools/check.sh` runs it. If the
+   district's remainder holds none of the family the word reaches, the re-deal is refused and
+   said so — growing the town's total to buy a roof the programme does not own is not
+   available to an address.
+5. **The grade does not move and nothing else about the record does.** `confidence` stays
+   `reconstructed`, the position keeps its setback and offset, the household keeps its house,
+   the advertiser is still not seated, and the record's `function` follows the family the
+   schedule dealt rather than anything the notice says the building was for.
+
+**Two mechanical consequences worth stating, because they cost a run to discover.** The record
+id carries the family (`..._d3_03` becomes `..._h1_03`), so a re-deal RENAMES the structure:
+every derived layer regenerates, and any append-only liberty whose `Covers:` names the old id
+takes an appended paragraph and a re-pointed token, never a rewritten ruling. And the mesh is
+stale the moment the band changes — `tools/validate.py --stale` hard-fails until
+`tools/bake.sh --only <new id>` has run in the same commit.
+
 
 ## What it does not draw
 

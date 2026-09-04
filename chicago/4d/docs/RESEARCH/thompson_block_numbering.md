@@ -136,7 +136,7 @@ The Lake Street row of block 16 as this dataset stands today:
 |---:|---|---|
 | 5 | `mansion_house` | E +718.2, N −96.1 |
 | 6 | `recon_1835_blk_south_water_dearborn_d2_04` — an anonymous reconstructed roof | E +750.9, N −94.9 |
-| 7 | `recon_1835_blk_south_water_dearborn_d3_03` — an anonymous reconstructed roof | E +773.3, N −95.1 |
+| 7 | `recon_1835_blk_south_water_dearborn_h1_03` — an anonymous reconstructed roof | E +773.3, N −93.3 |
 
 So the address resolves, and it resolves onto two consequences this ticket does not act on:
 

@@ -3433,10 +3433,10 @@
       "asset": "gltf/recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb"
     },
     {
-      "id": "recon_1835_blk_south_water_dearborn_d3_03",
-      "name": "Reconstructed D3 one-room frame cottage #03",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d3_03.json",
-      "asset": "gltf/recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb"
+      "id": "recon_1835_blk_south_water_dearborn_h1_03",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_h1_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_h1_03__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_franklin_a1_06",
