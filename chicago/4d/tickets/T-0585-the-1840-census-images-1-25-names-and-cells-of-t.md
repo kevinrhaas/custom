@@ -1,7 +1,7 @@
 ---
 id: T-0585
 title: The 1840 census images 1-25: names and cells of the left sheet printed 219
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0531
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 748
 claimed_by: run 9/3/2026, 8:01:09 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-04T01:51:00.515Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33823910077
 ---
 
