@@ -152,8 +152,8 @@
   "households": 1380,
   "persons": 1404,
   "by_grade": {
-   "attested": 482,
-   "inferred": 922,
+   "attested": 499,
+   "inferred": 905,
    "reconstructed": 0
   },
   "letter_list_only": 727,
@@ -474,7 +474,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2657,7 +2657,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -4269,7 +4269,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5229,7 +5229,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -6544,7 +6544,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -7577,7 +7577,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -8265,7 +8265,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9053,7 +9053,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11102,7 +11102,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11244,7 +11244,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11670,7 +11670,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11686,7 +11686,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -16401,7 +16401,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18295,7 +18295,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18327,7 +18327,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -20681,7 +20681,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -21934,7 +21934,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,

@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 714,
+  "rulings": 735,
   "carried": 186,
-  "matched": 373,
-  "refused": 341,
+  "matched": 375,
+  "refused": 360,
   "distinct_people": 333,
-  "distinct_claims": 734
+  "distinct_claims": 744
  },
  "rulings": [
   {
@@ -149,6 +149,26 @@
   },
   {
    "outcome": "refused",
+   "person_id": "adams_william",
+   "household_id": "hh_adams_william",
+   "resident": "William Adams",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0024",
+   "claim_ids": [
+    "n1844_ad0024"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "adams_william_h",
    "household_id": "hh_adams_william_h",
    "resident": "William Hanford Adams",
@@ -210,7 +230,7 @@
    "why_refused": null
   },
   {
-   "outcome": "matched",
+   "outcome": "refused",
    "person_id": "adams_william_h",
    "household_id": "hh_adams_william_h",
    "resident": "William Hanford Adams",
@@ -223,11 +243,9 @@
    "claim_ids": [
     "n1844_ad0024"
    ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W.",
-   "carried": [
-    "address"
-   ],
+   "match_status": "contested",
+   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -1369,7 +1387,7 @@
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
-   "outcome": "matched",
+   "outcome": "refused",
    "person_id": "blakesley_harvey_a",
    "household_id": "hh_blakesley_harvey_a",
    "resident": "Harvey A. Blakesley",
@@ -1382,12 +1400,10 @@
    "claim_ids": [
     "n1844_ad0046"
    ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H.",
+   "match_status": "contested",
+   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "carried": [],
-   "refused_to_carry": [
-    "address"
-   ],
+   "refused_to_carry": [],
    "why_refused": null
   },
   {
@@ -1629,6 +1645,28 @@
     "address"
    ],
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
+   "outcome": "matched",
+   "person_id": "botsford_j_k",
+   "household_id": "hh_botsford_j_k",
+   "resident": "J. K. Botsford",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0088",
+   "claim_ids": [
+    "n1844_ad0088"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Botsford' folds to the same string as the card's, and the given name of both begins J.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -2004,6 +2042,28 @@
     "occupation"
    ],
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
+   "outcome": "matched",
+   "person_id": "brown_hanna_e",
+   "household_id": "hh_brown_hanna_e",
+   "resident": "Hanna E Brown",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0002",
+   "claim_ids": [
+    "n1844_ad0002"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Brown' folds to the same string as the card's, and the given name of both begins H.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -3372,6 +3432,26 @@
   },
   {
    "outcome": "refused",
+   "person_id": "clark_john_a",
+   "household_id": "hh_clark_john_a",
+   "resident": "John A Clark",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0020",
+   "claim_ids": [
+    "n1844_ad0020"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "clark_john_k",
    "household_id": "hh_clark_john_k",
    "resident": "John K Clark",
@@ -3428,6 +3508,26 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Clark' folds to the same string as the 1844 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "clark_john_k",
+   "household_id": "hh_clark_john_k",
+   "resident": "John K Clark",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0020",
+   "claim_ids": [
+    "n1844_ad0020"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -3718,6 +3818,26 @@
   },
   {
    "outcome": "refused",
+   "person_id": "cobb_s_b",
+   "household_id": "hh_cobb_s_b",
+   "resident": "S B Cobb",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0139",
+   "claim_ids": [
+    "n1844_ad0139"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "cobb_silas_b",
    "household_id": "hh_goss_cobb",
    "resident": "Silas B. Cobb",
@@ -3778,7 +3898,7 @@
    "why_refused": null
   },
   {
-   "outcome": "matched",
+   "outcome": "refused",
    "person_id": "cobb_silas_b",
    "household_id": "hh_goss_cobb",
    "resident": "Silas B. Cobb",
@@ -3791,8 +3911,8 @@
    "claim_ids": [
     "n1844_ad0139"
    ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S.",
+   "match_status": "contested",
+   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -5008,6 +5128,28 @@
   },
   {
    "outcome": "matched",
+   "person_id": "eldridge_john_w",
+   "household_id": "hh_eldridge_john_w",
+   "resident": "John W Eldridge",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0135",
+   "claim_ids": [
+    "n1844_ad0135"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Eldridge' folds to the same string as the card's, and the given name of both begins J.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": null
+  },
+  {
+   "outcome": "matched",
    "person_id": "ellis_j",
    "household_id": "hh_ellis_j",
    "resident": "J Ellis",
@@ -5797,6 +5939,28 @@
     "occupation"
    ],
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
+   "outcome": "matched",
+   "person_id": "funk_absolom",
+   "household_id": "hh_funk_absolom",
+   "resident": "Absolom Funk",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0123",
+   "claim_ids": [
+    "n1844_ad0123"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Funk' folds to the same string as the card's, and the given name of both begins A.",
+   "carried": [
+    "address"
+   ],
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7333,6 +7497,27 @@
   },
   {
    "outcome": "refused",
+   "person_id": "hubbard_g",
+   "household_id": "hh_hubbard_g",
+   "resident": "G Hubbard",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0072",
+    "n1844_ad0108"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "hubbard_g_s",
    "household_id": "hh_hubbard_g_s",
    "resident": "G S Hubbard",
@@ -7369,6 +7554,27 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "hubbard_g_s",
+   "household_id": "hh_hubbard_g_s",
+   "resident": "G S Hubbard",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0072",
+    "n1844_ad0108"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7417,6 +7623,27 @@
   },
   {
    "outcome": "refused",
+   "person_id": "hubbard_g_t",
+   "household_id": "hh_hubbard_g_t",
+   "resident": "G T Hubbard",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0072",
+    "n1844_ad0108"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "hubbard_gordon_s",
    "household_id": "hh_hubbard_gordon_s",
    "resident": "Gordon S Hubbard",
@@ -7453,6 +7680,27 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "hubbard_gordon_s",
+   "household_id": "hh_hubbard_gordon_s",
+   "resident": "Gordon S Hubbard",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0072",
+    "n1844_ad0108"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7558,6 +7806,27 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "hubbard_gurdon_s",
+   "household_id": "hh_hubbard_gurdon_s",
+   "resident": "Gurdon S Hubbard",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0072",
+    "n1844_ad0108"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -8232,6 +8501,28 @@
   },
   {
    "outcome": "matched",
+   "person_id": "jones_d_e",
+   "household_id": "hh_jones_d_e",
+   "resident": "D E Jones",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0036",
+   "claim_ids": [
+    "n1844_ad0036"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins D.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": null
+  },
+  {
+   "outcome": "matched",
    "person_id": "jones_es_high",
    "household_id": "hh_jones_es_high",
    "resident": "Jones, High Es",
@@ -8316,6 +8607,26 @@
   },
   {
    "outcome": "refused",
+   "person_id": "jones_willard",
+   "household_id": "hh_jones_willard",
+   "resident": "Willard Jones",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0116",
+   "claim_ids": [
+    "n1844_ad0116"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "jones_william",
    "household_id": "hh_jones_william",
    "resident": "William Jones",
@@ -8372,6 +8683,26 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "jones_william",
+   "household_id": "hh_jones_william",
+   "resident": "William Jones",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0116",
+   "claim_ids": [
+    "n1844_ad0116"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -9728,6 +10059,26 @@
    "refused_to_carry": [
     "address"
    ],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "loyd_alexander",
+   "household_id": "hh_loyd_alexander",
+   "resident": "Alexander Loyd",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0046",
+   "claim_ids": [
+    "n1844_ad0046"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
    "why_refused": null
   },
   {
@@ -11136,6 +11487,26 @@
     "occupation"
    ],
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
+   "outcome": "refused",
+   "person_id": "ogden_w_b",
+   "household_id": "hh_ogden_w_b",
+   "resident": "W B Ogden",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0116",
+   "claim_ids": [
+    "n1844_ad0116"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -12889,127 +13260,169 @@
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
-   "outcome": "refused",
-   "person_id": "smith_e_kirby",
-   "household_id": "hh_smith_e_kirby",
-   "resident": "E Kirby Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1360",
-   "claim_ids": [
-    "f1839_e1360"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_e_kirby",
-   "household_id": "hh_smith_e_kirby",
-   "resident": "E Kirby Smith",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e2290",
-   "claim_ids": [
-    "f1843_e2290"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_e_kirby",
-   "household_id": "hh_smith_e_kirby",
-   "resident": "E Kirby Smith",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1645",
-   "claim_ids": [
-    "n1844_e1645"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_elded",
-   "household_id": "hh_smith_elded",
-   "resident": "Elded Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1360",
-   "claim_ids": [
-    "f1839_e1360"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_elded",
-   "household_id": "hh_smith_elded",
-   "resident": "Elded Smith",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e2290",
-   "claim_ids": [
-    "f1843_e2290"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_elded",
-   "household_id": "hh_smith_elded",
-   "resident": "Elded Smith",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1645",
-   "claim_ids": [
-    "n1844_e1645"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
    "outcome": "matched",
+   "person_id": "smith_d_a",
+   "household_id": "hh_smith_d_a",
+   "resident": "D A Smith",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0138",
+   "claim_ids": [
+    "n1844_ad0138"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins D.",
+   "carried": [
+    "address"
+   ],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_e_kirby",
+   "household_id": "hh_smith_e_kirby",
+   "resident": "E Kirby Smith",
+   "volume": "fergus_1839",
+   "source_id": "fergus_chicago_directory_1839",
+   "source_ids": [
+    "fergus_chicago_directory_1839"
+   ],
+   "claim_id": "f1839_e1360",
+   "claim_ids": [
+    "f1839_e1360"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_e_kirby",
+   "household_id": "hh_smith_e_kirby",
+   "resident": "E Kirby Smith",
+   "volume": "fergus_1843",
+   "source_id": "fergus_chicago_directory_1843",
+   "source_ids": [
+    "fergus_chicago_directory_1843"
+   ],
+   "claim_id": "f1843_e2290",
+   "claim_ids": [
+    "f1843_e2290"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_e_kirby",
+   "household_id": "hh_smith_e_kirby",
+   "resident": "E Kirby Smith",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e1645",
+   "claim_ids": [
+    "n1844_e1645"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_e_kirby",
+   "household_id": "hh_smith_e_kirby",
+   "resident": "E Kirby Smith",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_ad0060",
+   "claim_ids": [
+    "n1844_ad0060"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
+   "resident": "Elded Smith",
+   "volume": "fergus_1839",
+   "source_id": "fergus_chicago_directory_1839",
+   "source_ids": [
+    "fergus_chicago_directory_1839"
+   ],
+   "claim_id": "f1839_e1360",
+   "claim_ids": [
+    "f1839_e1360"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
+   "resident": "Elded Smith",
+   "volume": "fergus_1843",
+   "source_id": "fergus_chicago_directory_1843",
+   "source_ids": [
+    "fergus_chicago_directory_1843"
+   ],
+   "claim_id": "f1843_e2290",
+   "claim_ids": [
+    "f1843_e2290"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
+   "resident": "Elded Smith",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e1645",
+   "claim_ids": [
+    "n1844_e1645"
+   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
    "person_id": "smith_elded",
    "household_id": "hh_smith_elded",
    "resident": "Elded Smith",
@@ -13022,11 +13435,9 @@
    "claim_ids": [
     "n1844_ad0060"
    ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E.",
-   "carried": [
-    "address"
-   ],
+   "match_status": "contested",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -13091,6 +13502,27 @@
    ],
    "match_status": "ambiguous",
    "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "smith_george",
+   "household_id": "hh_smith_george",
+   "resident": "George Smith",
+   "volume": "norris_1844_advertiser",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_ad0022",
+    "n1844_ad0109"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null

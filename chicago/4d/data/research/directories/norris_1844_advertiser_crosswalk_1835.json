@@ -10,15 +10,39 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 847,
-  "matched_one_card": 14,
-  "matched_more_than_one_ambiguous": 2,
-  "one_card_contested_by_two_residents": 0,
-  "surname_present_initial_absent_refused": 52,
+  "residents_considered": 1402,
+  "matched_one_card": 16,
+  "matched_more_than_one_ambiguous": 8,
+  "one_card_contested_by_two_residents": 13,
+  "surname_present_initial_absent_refused": 140,
   "could_carry_trade": 0,
-  "could_carry_place_of_business": 9
+  "could_carry_place_of_business": 12
  },
  "matches": [
+  {
+   "resident": "Absolom Funk",
+   "person_id": "funk_absolom",
+   "household_id": "hh_funk_absolom",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Funk' folds to the same string as the card's, and the given name of both begins A.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0123",
+     "proprietor_as_printed": "A. Funk",
+     "firm": "A. Funk",
+     "trade_1844": "butcher",
+     "address_1844": "Fulton and Boston markets, on Dearborn and Randolph streets",
+     "printed_page": 109
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
   {
    "resident": "B. S. Morris",
    "person_id": "morris_b_s",
@@ -110,6 +134,54 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
+   "resident": "D A Smith",
+   "person_id": "smith_d_a",
+   "household_id": "hh_smith_d_a",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins D.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0138",
+     "proprietor_as_printed": "D. S. Smith",
+     "firm": "Doctor D. S. Smith",
+     "trade_1844": "physician",
+     "address_1844": "office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
+     "printed_page": 112
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "D E Jones",
+   "person_id": "jones_d_e",
+   "household_id": "hh_jones_d_e",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins D.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0036",
+     "proprietor_as_printed": "D. A. Jones",
+     "firm": "D. A. & E. M. Jones",
+     "trade_1844": "cabinet and chair manufacturers",
+     "address_1844": "Dearborn street, three doors north of Tremont Buildings",
+     "printed_page": 86
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
    "resident": "Edward A. Rogers",
    "person_id": "rogers_edward_a",
    "household_id": "hh_rogers_edward_a",
@@ -126,30 +198,6 @@
      "trade_1844": "storage, forwarding and commission merchants; dealers in produce, iron and coal",
      "address_1844": "Chicago, Illinois",
      "printed_page": 95
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "Elded Smith",
-   "person_id": "smith_elded",
-   "household_id": "hh_smith_elded",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0060",
-     "proprietor_as_printed": "E. Smith",
-     "firm": "H. & E. Smith",
-     "trade_1844": "wholesale and retail dealers in merchant tailors' goods, clothing, dry goods, groceries and hardware; clothing made to order",
-     "address_1844": "No. 146 Lake street",
-     "printed_page": 91
     }
    ],
    "could_carry": [
@@ -182,22 +230,22 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
-   "resident": "Harvey A. Blakesley",
-   "person_id": "blakesley_harvey_a",
-   "household_id": "hh_blakesley_harvey_a",
+   "resident": "Hanna E Brown",
+   "person_id": "brown_hanna_e",
+   "household_id": "hh_brown_hanna_e",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H.",
+   "rule": "Surname 'Brown' folds to the same string as the card's, and the given name of both begins H.",
    "cards_1844": [
     {
-     "claim": "n1844_ad0046",
-     "proprietor_as_printed": "H. A. Blakesley",
-     "firm": "Loyd, Blakesley & Co.",
-     "trade_1844": "wholesale and retail dealers in groceries, nails, glass, shoes and leather; cash paid for wheat",
-     "address_1844": "101 Lake street",
-     "printed_page": 88
+     "claim": "n1844_ad0002",
+     "proprietor_as_printed": "Henry Brown",
+     "firm": "Henry Brown",
+     "trade_1844": "attorney and counselor at law",
+     "address_1844": "office corner of Lake and Dearborn streets, over the General Stage Office",
+     "printed_page": 79
     }
    ],
    "could_carry": [
@@ -254,6 +302,30 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
+   "resident": "J. K. Botsford",
+   "person_id": "botsford_j_k",
+   "household_id": "hh_botsford_j_k",
+   "grade_1835": "attested",
+   "occupation_1835": "tinsmith",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Botsford' folds to the same string as the card's, and the given name of both begins J.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0088",
+     "proprietor_as_printed": "J. K. Botsford",
+     "firm": "Botsford & Beeks",
+     "trade_1844": "wholesale and retail dealers in stoves, iron, tin plate, sheet iron and copper, hollow ware, hardware, cutlery, nails, spikes, sash, glass and tools",
+     "address_1844": "109 Lake street",
+     "printed_page": 99
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
    "resident": "John Murphy",
    "person_id": "murphy_john",
    "household_id": "hh_murphy_john",
@@ -273,6 +345,30 @@
     }
    ],
    "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "John W Eldridge",
+   "person_id": "eldridge_john_w",
+   "household_id": "hh_eldridge_john_w",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Eldridge' folds to the same string as the card's, and the given name of both begins J.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0135",
+     "proprietor_as_printed": "John W. Eldridge",
+     "firm": "Doctor John W. Eldridge",
+     "trade_1844": "physician",
+     "address_1844": "office and residence on Randolph street, first door west of City Hotel",
+     "printed_page": 111
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
@@ -298,6 +394,197 @@
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  }
+ ],
+ "contested": [
+  {
+   "resident": "Alexander Loyd",
+   "person_id": "loyd_alexander",
+   "household_id": "hh_loyd_alexander",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0046",
+     "proprietor_as_printed": "A. Loyd",
+     "firm": "Loyd, Blakesley & Co.",
+     "trade_1844": "wholesale and retail dealers in groceries, nails, glass, shoes and leather; cash paid for wheat",
+     "address_1844": "101 Lake street",
+     "printed_page": 88
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Harvey A. Blakesley"
+   ]
+  },
+  {
+   "resident": "E Kirby Smith",
+   "person_id": "smith_e_kirby",
+   "household_id": "hh_smith_e_kirby",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0060",
+     "proprietor_as_printed": "E. Smith",
+     "firm": "H. & E. Smith",
+     "trade_1844": "wholesale and retail dealers in merchant tailors' goods, clothing, dry goods, groceries and hardware; clothing made to order",
+     "address_1844": "No. 146 Lake street",
+     "printed_page": 91
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Elded Smith"
+   ]
+  },
+  {
+   "resident": "Elded Smith",
+   "person_id": "smith_elded",
+   "household_id": "hh_smith_elded",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0060",
+     "proprietor_as_printed": "E. Smith",
+     "firm": "H. & E. Smith",
+     "trade_1844": "wholesale and retail dealers in merchant tailors' goods, clothing, dry goods, groceries and hardware; clothing made to order",
+     "address_1844": "No. 146 Lake street",
+     "printed_page": 91
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "E Kirby Smith"
+   ]
+  },
+  {
+   "resident": "Harvey A. Blakesley",
+   "person_id": "blakesley_harvey_a",
+   "household_id": "hh_blakesley_harvey_a",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0046",
+     "proprietor_as_printed": "H. A. Blakesley",
+     "firm": "Loyd, Blakesley & Co.",
+     "trade_1844": "wholesale and retail dealers in groceries, nails, glass, shoes and leather; cash paid for wheat",
+     "address_1844": "101 Lake street",
+     "printed_page": 88
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Alexander Loyd"
+   ]
+  },
+  {
+   "resident": "John A Clark",
+   "person_id": "clark_john_a",
+   "household_id": "hh_clark_john_a",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0020",
+     "proprietor_as_printed": "J. Coe Clark",
+     "firm": "J. Coe Clark",
+     "trade_1844": "exchange broker",
+     "address_1844": "Clark street, 2 doors north of Lake, east side",
+     "printed_page": 82
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "John K Clark"
+   ]
+  },
+  {
+   "resident": "John K Clark",
+   "person_id": "clark_john_k",
+   "household_id": "hh_clark_john_k",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0020",
+     "proprietor_as_printed": "J. Coe Clark",
+     "firm": "J. Coe Clark",
+     "trade_1844": "exchange broker",
+     "address_1844": "Clark street, 2 doors north of Lake, east side",
+     "printed_page": 82
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "John A Clark"
+   ]
+  },
+  {
+   "resident": "S B Cobb",
+   "person_id": "cobb_s_b",
+   "household_id": "hh_cobb_s_b",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0139",
+     "proprietor_as_printed": "Silas B. Cobb",
+     "firm": "Silas B. Cobb",
+     "trade_1844": "general dealer in saddles, harnesses, trunks, valises, collars, whips and carpet bags",
+     "address_1844": "No. 171 Lake street",
+     "printed_page": 112
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Silas B. Cobb"
+   ]
   },
   {
    "resident": "Silas B. Cobb",
@@ -307,7 +594,7 @@
    "occupation_1835": "saddler",
    "lives_at_1835": null,
    "works_at_1835": "goss_cobb_saddlery",
-   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S.",
+   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "cards_1844": [
     {
      "claim": "n1844_ad0139",
@@ -319,17 +606,76 @@
     }
    ],
    "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "S B Cobb"
+   ]
   },
   {
-   "resident": "William Hanford Adams",
-   "person_id": "adams_william_h",
-   "household_id": "hh_adams_william_h",
+   "resident": "W B Ogden",
+   "person_id": "ogden_w_b",
+   "household_id": "hh_ogden_w_b",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W.",
+   "rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0116",
+     "proprietor_as_printed": "William B. Ogden",
+     "firm": "North-Western Land Agency",
+     "trade_1844": "general land agents for the north-western states and territories",
+     "address_1844": "office on Kinzie street, east of Dearborn",
+     "printed_page": 107
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Willard Jones",
+    "William Jones"
+   ]
+  },
+  {
+   "resident": "Willard Jones",
+   "person_id": "jones_willard",
+   "household_id": "hh_jones_willard",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0116",
+     "proprietor_as_printed": "William E. Jones",
+     "firm": "North-Western Land Agency",
+     "trade_1844": "general land agents for the north-western states and territories",
+     "address_1844": "office on Kinzie street, east of Dearborn",
+     "printed_page": 107
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "William Jones",
+    "W B Ogden"
+   ]
+  },
+  {
+   "resident": "William Adams",
+   "person_id": "adams_william",
+   "household_id": "hh_adams_william",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "cards_1844": [
     {
      "claim": "n1844_ad0024",
@@ -343,10 +689,67 @@
    "could_carry": [
     "place_of_business"
    ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "William Hanford Adams"
+   ]
+  },
+  {
+   "resident": "William Hanford Adams",
+   "person_id": "adams_william_h",
+   "household_id": "hh_adams_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0024",
+     "proprietor_as_printed": "W. H. Adams",
+     "firm": "W. H. Adams & Co.",
+     "trade_1844": "manufacturers and wholesale and retail dealers in boots, shoes, leather and findings",
+     "address_1844": "138 Lake street",
+     "printed_page": 83
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "William Adams"
+   ]
+  },
+  {
+   "resident": "William Jones",
+   "person_id": "jones_william",
+   "household_id": "hh_jones_william",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0116",
+     "proprietor_as_printed": "William E. Jones",
+     "firm": "North-Western Land Agency",
+     "trade_1844": "general land agents for the north-western states and territories",
+     "address_1844": "office on Kinzie street, east of Dearborn",
+     "printed_page": 107
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Willard Jones",
+    "W B Ogden"
+   ]
   }
  ],
- "contested": [],
  "ambiguous": [
   {
    "resident": "A. Garrett",
@@ -389,6 +792,198 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
+   "resident": "G Hubbard",
+   "person_id": "hubbard_g",
+   "household_id": "hh_hubbard_g",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0072",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "G. S. Hubbard",
+     "trade_1844": "forwarding merchant and dealer in produce and provisions",
+     "address_1844": "South Water street, between Clark and La Salle streets",
+     "printed_page": 94
+    },
+    {
+     "claim": "n1844_ad0108",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
+     "trade_1844": "fire insurance agency",
+     "address_1844": "Chicago",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "G S Hubbard",
+   "person_id": "hubbard_g_s",
+   "household_id": "hh_hubbard_g_s",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0072",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "G. S. Hubbard",
+     "trade_1844": "forwarding merchant and dealer in produce and provisions",
+     "address_1844": "South Water street, between Clark and La Salle streets",
+     "printed_page": 94
+    },
+    {
+     "claim": "n1844_ad0108",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
+     "trade_1844": "fire insurance agency",
+     "address_1844": "Chicago",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "G T Hubbard",
+   "person_id": "hubbard_g_t",
+   "household_id": "hh_hubbard_g_t",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0072",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "G. S. Hubbard",
+     "trade_1844": "forwarding merchant and dealer in produce and provisions",
+     "address_1844": "South Water street, between Clark and La Salle streets",
+     "printed_page": 94
+    },
+    {
+     "claim": "n1844_ad0108",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
+     "trade_1844": "fire insurance agency",
+     "address_1844": "Chicago",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "George Smith",
+   "person_id": "smith_george",
+   "household_id": "hh_smith_george",
+   "grade_1835": "attested",
+   "occupation_1835": "coffee_house_keeper",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0022",
+     "proprietor_as_printed": "George Smith",
+     "firm": "George Smith & Co.",
+     "trade_1844": "bankers and insurance brokers",
+     "address_1844": "Bank Building, La Salle street",
+     "printed_page": 82
+    },
+    {
+     "claim": "n1844_ad0109",
+     "proprietor_as_printed": "George Smith",
+     "firm": "George Smith & Co.",
+     "trade_1844": "insurance brokers",
+     "address_1844": "Bank Building, La Salle street",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "Gordon S Hubbard",
+   "person_id": "hubbard_gordon_s",
+   "household_id": "hh_hubbard_gordon_s",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0072",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "G. S. Hubbard",
+     "trade_1844": "forwarding merchant and dealer in produce and provisions",
+     "address_1844": "South Water street, between Clark and La Salle streets",
+     "printed_page": 94
+    },
+    {
+     "claim": "n1844_ad0108",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
+     "trade_1844": "fire insurance agency",
+     "address_1844": "Chicago",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "Gurdon S Hubbard",
+   "person_id": "hubbard_gurdon_s",
+   "household_id": "hh_hubbard_gurdon_s",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0072",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "G. S. Hubbard",
+     "trade_1844": "forwarding merchant and dealer in produce and provisions",
+     "address_1844": "South Water street, between Clark and La Salle streets",
+     "printed_page": 94
+    },
+    {
+     "claim": "n1844_ad0108",
+     "proprietor_as_printed": "G. S. Hubbard",
+     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
+     "trade_1844": "fire insurance agency",
+     "address_1844": "Chicago",
+     "printed_page": 104
+    }
+   ],
+   "could_carry": [
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
    "resident": "Gurdon Saltonstall Hubbard",
    "person_id": "hubbard_gurdon",
    "household_id": "hh_hubbard_gurdon",
@@ -421,11 +1016,46 @@
  ],
  "refusals": [
   {
+   "resident": "Aaron Russell",
+   "person_id": "russell_aaron",
+   "surname_on_a_card": "Russell",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Russell' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Aaron Russell'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Abel B Carpenter",
+   "person_id": "carpenter_abel_b",
+   "surname_on_a_card": "Carpenter",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Carpenter' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Abel B Carpenter'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Ahira Hubbard",
+   "person_id": "hubbard_ahira",
+   "surname_on_a_card": "Hubbard",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Ahira Hubbard'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Albert F. Dow",
    "person_id": "dow_albert_f",
    "surname_on_a_card": "Dow",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Dow' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Albert F. Dow'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Amos C Hamilton",
+   "person_id": "hamilton_amos_c",
+   "surname_on_a_card": "Hamilton",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hamilton' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Amos C Hamilton'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Amos Foster",
+   "person_id": "foster_amos",
+   "surname_on_a_card": "Foster",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Foster' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Amos Foster'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Anson H. Taylor",
@@ -435,11 +1065,46 @@
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Anson N Taylor",
+   "person_id": "taylor_anson_n",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson N Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Anson W Taylor",
+   "person_id": "taylor_anson_w",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson W Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Archibald Clybourn",
+   "person_id": "clybourn_archibald",
+   "surname_on_a_card": "Clybourn",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Clybourn' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Archibald Clybourn'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Augustine Deodat Taylor",
    "person_id": "taylor_augustine",
    "surname_on_a_card": "Taylor",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Augustine Deodat Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "B Hubbard",
+   "person_id": "hubbard_b",
+   "surname_on_a_card": "Hubbard",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'B Hubbard'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "B S Knapp",
+   "person_id": "knapp_b_s",
+   "surname_on_a_card": "Knapp",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Knapp' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'B S Knapp'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ben Butterfield",
@@ -449,6 +1114,20 @@
    "rule": "The surname 'Butterfield' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Bridget Rogers",
+   "person_id": "rogers_bridget",
+   "surname_on_a_card": "Rogers",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Rogers' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'Bridget Rogers'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "C Goodrich",
+   "person_id": "goodrich_c",
+   "surname_on_a_card": "Goodrich",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Goodrich' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'C Goodrich'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Caleb Foster",
    "person_id": "foster_caleb",
    "surname_on_a_card": "Foster",
@@ -456,11 +1135,39 @@
    "rule": "The surname 'Foster' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Charles L Bristol",
+   "person_id": "bristol_charles_l",
+   "surname_on_a_card": "Bristol",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Bristol' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'Charles L Bristol'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Charles Wells",
    "person_id": "wells_charles",
    "surname_on_a_card": "Wells",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Wells' stands on an 1844 advertising card and no proprietor under it carries the initial 'C' of 'Charles Wells'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "D H Butterfield",
+   "person_id": "butterfield_d_h",
+   "surname_on_a_card": "Butterfield",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Butterfield' stands on an 1844 advertising card and no proprietor under it carries the initial 'D' of 'D H Butterfield'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "D Harmon",
+   "person_id": "harmon_d",
+   "surname_on_a_card": "Harmon",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'D' of 'D Harmon'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Diana Hamilton",
+   "person_id": "hamilton_diana",
+   "surname_on_a_card": "Hamilton",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hamilton' stands on an 1844 advertising card and no proprietor under it carries the initial 'D' of 'Diana Hamilton'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Dr Elijah Dewey Harmon",
@@ -475,6 +1182,41 @@
    "surname_on_a_card": "Egan",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Egan' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Dr William Bradshaw Egan'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "E D Taylor",
+   "person_id": "taylor_e_d",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'E D Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "E F Skinner",
+   "person_id": "skinner_e_f",
+   "surname_on_a_card": "Skinner",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Skinner' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'E F Skinner'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Ebenezer Goodrich",
+   "person_id": "goodrich_ebenezer",
+   "surname_on_a_card": "Goodrich",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Goodrich' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Ebenezer Goodrich'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Edmund D Taylor",
+   "person_id": "taylor_edmund_d",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Edmund D Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Edmund Roberts",
+   "person_id": "roberts_edmund",
+   "surname_on_a_card": "Roberts",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Roberts' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Edmund Roberts'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Edson White",
@@ -498,11 +1240,25 @@
    "rule": "The surname 'Anderson' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Eli F Anderson'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Elijah Kent Hubbard",
+   "person_id": "hubbard_elijah_kent",
+   "surname_on_a_card": "Hubbard",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Elijah Kent Hubbard'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Eliza Chappel Porter",
    "person_id": "porter_eliza_chappel",
    "surname_on_a_card": "Porter",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Porter' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Eliza Chappel Porter'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Elizabeth Adams",
+   "person_id": "adams_elizabeth",
+   "surname_on_a_card": "Adams",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Adams' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Elizabeth Adams'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Emeline Egan",
@@ -519,11 +1275,39 @@
    "rule": "The surname 'Clark' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Francis Walter",
+   "person_id": "walter_francis",
+   "surname_on_a_card": "Walter",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Walter' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Francis Walter'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Fred Miller",
+   "person_id": "miller_fred",
+   "surname_on_a_card": "Miller",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Miller' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Frederick Thomas",
    "person_id": "thomas_frederick",
    "surname_on_a_card": "Thomas",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Thomas' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Frederick Thomas'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "G W Dole",
+   "person_id": "dole_g_w",
+   "surname_on_a_card": "Dole",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Dole' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'G W Dole'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "George Dyer",
+   "person_id": "dyer_george",
+   "surname_on_a_card": "Dyer",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Dyer' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Dyer'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George E. Walker",
@@ -533,11 +1317,25 @@
    "rule": "The surname 'Walker' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George E. Walker'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "George H Walker",
+   "person_id": "walker_george_h",
+   "surname_on_a_card": "Walker",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Walker' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George H Walker'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "George Knapp",
    "person_id": "knapp_george",
    "surname_on_a_card": "Knapp",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Knapp' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Knapp'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "George Miller",
+   "person_id": "miller_george",
+   "surname_on_a_card": "Miller",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Miller' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Miller'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George Washington Dole",
@@ -547,6 +1345,13 @@
    "rule": "The surname 'Dole' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Washington Dole'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "George Wells",
+   "person_id": "wells_george",
+   "surname_on_a_card": "Wells",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Wells' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'George Wells'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Giles Spring",
    "person_id": "spring_giles",
    "surname_on_a_card": "Spring",
@@ -554,11 +1359,32 @@
    "rule": "The surname 'Spring' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'Giles Spring'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "H C Swift",
+   "person_id": "swift_h_c",
+   "surname_on_a_card": "Swift",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Swift' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'H C Swift'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "H. H. Comstock",
    "person_id": "comstock_h_h",
    "surname_on_a_card": "Comstock",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Comstock' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Harriet E Bates",
+   "person_id": "bates_harriet_e",
+   "surname_on_a_card": "Bates",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Bates' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Harriet E Bates'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Harriet Ellen Bates",
+   "person_id": "bates_harriet_ellen",
+   "surname_on_a_card": "Bates",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Bates' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Harriet Ellen Bates'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Harriet Gridley",
@@ -573,6 +1399,13 @@
    "surname_on_a_card": "Murphy",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Harriet Murphy'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Henry G Hubbard",
+   "person_id": "hubbard_henry_g",
+   "surname_on_a_card": "Hubbard",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Henry G Hubbard'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Henry Mitchell",
@@ -596,6 +1429,20 @@
    "rule": "The surname 'Skinner' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Heury C. Skinner'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Hibbard Porter",
+   "person_id": "porter_hibbard",
+   "surname_on_a_card": "Porter",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Porter' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Hibbard Porter'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Hiram A Adams",
+   "person_id": "adams_hiram_a",
+   "surname_on_a_card": "Adams",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Adams' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Hiram A Adams'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Hiram Hovey",
    "person_id": "hovey_hiram",
    "surname_on_a_card": "Hovey",
@@ -610,11 +1457,32 @@
    "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Isaac Dewey Harmon'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Isaac Harmon",
+   "person_id": "harmon_isaac",
+   "surname_on_a_card": "Harmon",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Isaac Harmon'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Issac Stevens",
    "person_id": "stevens_issac",
    "surname_on_a_card": "Stevens",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Stevens' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "J. B. Cook",
+   "person_id": "cook_j_b",
+   "surname_on_a_card": "Cook",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'J. B. Cook'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "J. B. Tuttle",
+   "person_id": "tuttle_j_b",
+   "surname_on_a_card": "Tuttle",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Tuttle' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'J. B. Tuttle'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. H. Collins",
@@ -631,11 +1499,60 @@
    "rule": "The surname 'Boyer' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'J. K. Boyer'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "James Adams",
+   "person_id": "adams_james",
+   "surname_on_a_card": "Adams",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Adams' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Adams'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "James H. Phelps",
    "person_id": "phelps_james_h",
    "surname_on_a_card": "Phelps",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Phelps' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James H. Phelps'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "James Sheldon",
+   "person_id": "sheldon_james",
+   "surname_on_a_card": "Sheldon",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Sheldon' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Sheldon'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "James Smith",
+   "person_id": "smith_james",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Smith'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "James Walker",
+   "person_id": "walker_james",
+   "surname_on_a_card": "Walker",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Walker' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Walker'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Jeremiah Smith",
+   "person_id": "smith_jeremiah",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Jeremiah Smith'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Jeremiah Walker",
+   "person_id": "walker_jeremiah",
+   "surname_on_a_card": "Walker",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Walker' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Jeremiah Walker'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Jesse B Brown",
+   "person_id": "brown_jesse_b",
+   "surname_on_a_card": "Brown",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Brown' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Jesse B Brown'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Jesse Morgan",
@@ -645,6 +1562,27 @@
    "rule": "The surname 'Morgan' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Jesse Morgan'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "John Cook",
+   "person_id": "cook_john",
+   "surname_on_a_card": "Cook",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'John Cook'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "John Goodrich",
+   "person_id": "goodrich_john",
+   "surname_on_a_card": "Goodrich",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Goodrich' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'John Goodrich'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "John Hale",
+   "person_id": "hale_john",
+   "surname_on_a_card": "Hale",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Hale' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'John Hale'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "John Miller",
    "person_id": "miller_john",
    "surname_on_a_card": "Miller",
@@ -652,11 +1590,74 @@
    "rule": "The surname 'Miller' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'John Miller'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "John N Foster",
+   "person_id": "foster_john_n",
+   "surname_on_a_card": "Foster",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Foster' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'John N Foster'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Joseph Meeker",
    "person_id": "meeker_joseph",
    "surname_on_a_card": "Meeker",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Meeker' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Joseph Meeker'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Joseph Reynolds",
+   "person_id": "reynolds_joseph",
+   "surname_on_a_card": "Reynolds",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Reynolds' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Joseph Reynolds'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Joseph Skinner",
+   "person_id": "skinner_joseph",
+   "surname_on_a_card": "Skinner",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Skinner' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Joseph Skinner'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Josiah P Cook",
+   "person_id": "cook_josiah_p",
+   "surname_on_a_card": "Cook",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'Josiah P Cook'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "L B Cobb",
+   "person_id": "cobb_l_b",
+   "surname_on_a_card": "Cobb",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Cobb' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "L G Curtiss",
+   "person_id": "curtiss_l_g",
+   "surname_on_a_card": "Curtiss",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Curtiss' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L G Curtiss'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "L Stevens",
+   "person_id": "stevens_l",
+   "surname_on_a_card": "Stevens",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Stevens' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L Stevens'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "L W Smith",
+   "person_id": "smith_l_w",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L W Smith'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Lawrence Smith",
+   "person_id": "smith_lawrence",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'Lawrence Smith'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lemuel Brown",
@@ -673,6 +1674,20 @@
    "rule": "The surname 'Cady' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'Levi Cady'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "M D Harmon",
+   "person_id": "harmon_m_d",
+   "surname_on_a_card": "Harmon",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'M D Harmon'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "M Jones",
+   "person_id": "jones_m",
+   "surname_on_a_card": "Jones",
+   "cards_under_that_surname": 5,
+   "rule": "The surname 'Jones' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'M Jones'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Manson Parker",
    "person_id": "parker_manson",
    "surname_on_a_card": "Parker",
@@ -685,6 +1700,13 @@
    "surname_on_a_card": "Barrows",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Barrows' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'Mary Barrows'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Matthias Smith",
+   "person_id": "smith_matthias",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'M' of 'Matthias Smith'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Mrs Rufus Brown",
@@ -701,6 +1723,27 @@
    "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "N Murphy",
+   "person_id": "murphy_n",
+   "surname_on_a_card": "Murphy",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'N Murphy'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "N. R. Norton",
+   "person_id": "norton_n_r",
+   "surname_on_a_card": "Norton",
+   "cards_under_that_surname": 5,
+   "rule": "The surname 'Norton' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'N. R. Norton'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Nathaniel Carpenter",
+   "person_id": "carpenter_nathaniel",
+   "surname_on_a_card": "Carpenter",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Carpenter' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'Nathaniel Carpenter'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Nelson R. Norton",
    "person_id": "norton_nelson_r",
    "surname_on_a_card": "Norton",
@@ -713,6 +1756,34 @@
    "surname_on_a_card": "Wheeler",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Wheeler' stands on an 1844 advertising card and no proprietor under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Otis Hubbard",
+   "person_id": "hubbard_otis",
+   "surname_on_a_card": "Hubbard",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'O' of 'Otis Hubbard'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "P F Peck",
+   "person_id": "peck_p_f",
+   "surname_on_a_card": "Peck",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Peck' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'P F Peck'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "P F W Peck",
+   "person_id": "peck_p_f_w",
+   "surname_on_a_card": "Peck",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Peck' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'P F W Peck'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "P T Russell",
+   "person_id": "russell_p_t",
+   "surname_on_a_card": "Russell",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Russell' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'P T Russell'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Philip F. W. Peck",
@@ -729,11 +1800,32 @@
    "rule": "The surname 'Carpenter' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'Philo Carpenter'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Potily Morris",
+   "person_id": "morris_potily",
+   "surname_on_a_card": "Morris",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Morris' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'Potily Morris'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "R J Hamilton",
+   "person_id": "hamilton_r_j",
+   "surname_on_a_card": "Hamilton",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hamilton' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'R J Hamilton'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "R. C. Bristol",
    "person_id": "bristol_r_c",
    "surname_on_a_card": "Bristol",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Bristol' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'R. C. Bristol'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Rebecca Sherman",
+   "person_id": "sherman_rebecca",
+   "surname_on_a_card": "Sherman",
+   "cards_under_that_surname": 4,
+   "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'Rebecca Sherman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Rev. Jeremiah Porter",
@@ -764,6 +1856,27 @@
    "rule": "The surname 'Brown' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'Rufus Brown'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "S Clybourn",
+   "person_id": "clybourn_s",
+   "surname_on_a_card": "Clybourn",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Clybourn' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'S Clybourn'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Samuel Miller",
+   "person_id": "miller_samuel",
+   "surname_on_a_card": "Miller",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Miller' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Samuel Miller'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Samuel Russell",
+   "person_id": "russell_samuel",
+   "surname_on_a_card": "Russell",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Russell' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Samuel Russell'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Seth Paine",
    "person_id": "paine_seth",
    "surname_on_a_card": "Paine",
@@ -778,11 +1891,109 @@
    "rule": "The surname 'Dyer' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Sidney Dyer'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Silas W Sherman",
+   "person_id": "sherman_silas_w",
+   "surname_on_a_card": "Sherman",
+   "cards_under_that_surname": 4,
+   "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Silas W Sherman'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Stephen E Dow",
+   "person_id": "dow_stephen_e",
+   "surname_on_a_card": "Dow",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Dow' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Stephen E Dow'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Thomas Cook",
+   "person_id": "cook_thomas",
+   "surname_on_a_card": "Cook",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'T' of 'Thomas Cook'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Timothy J Clark",
+   "person_id": "clark_timothy_j",
+   "surname_on_a_card": "Clark",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Clark' stands on an 1844 advertising card and no proprietor under it carries the initial 'T' of 'Timothy J Clark'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "W B Clarke",
+   "person_id": "clarke_w_b",
+   "surname_on_a_card": "Clarke",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Clarke' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'W B Clarke'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "W H Brown",
+   "person_id": "brown_w_h",
+   "surname_on_a_card": "Brown",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Brown' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'W H Brown'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Walter Loomis Newberry",
+   "person_id": "newberry_walter_loomis",
+   "surname_on_a_card": "Newberry",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Newberry' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Walter Loomis Newberry'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "surname_on_a_card": "Brown",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Brown' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William H Brown'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William H Taylor",
+   "person_id": "taylor_william_h",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William H Taylor'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "William H. Stow",
    "person_id": "stow_william_h",
    "surname_on_a_card": "Stow",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Stow' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William H. Stow'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William Paine",
+   "person_id": "paine_william",
+   "surname_on_a_card": "Paine",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Paine' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William Paine'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William Smith",
+   "person_id": "smith_william",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William Smith'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William Taylor",
+   "person_id": "taylor_william",
+   "surname_on_a_card": "Taylor",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William Taylor'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William V Smith",
+   "person_id": "smith_william_v",
+   "surname_on_a_card": "Smith",
+   "cards_under_that_surname": 7,
+   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William V Smith'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Wm. H. Norton",
+   "person_id": "norton_wm_h",
+   "surname_on_a_card": "Norton",
+   "cards_under_that_surname": 5,
+   "rule": "The surname 'Norton' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Wm. H. Norton'. A surname-only agreement is a refusal."
   }
  ]
 }

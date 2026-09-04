@@ -71,10 +71,10 @@
     "contested": 43
    },
    "norris_1844_advertiser": {
-    "people": 16,
-    "single_entry": 14,
-    "ambiguous": 2,
-    "contested": 0
+    "people": 37,
+    "single_entry": 16,
+    "ambiguous": 8,
+    "contested": 13
    }
   }
  },
@@ -289,6 +289,28 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0024",
+       "printed_page": 83,
+       "as_printed": "W. H. Adams",
+       "firm": "W. H. Adams & Co."
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -387,8 +409,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -398,9 +420,7 @@
        "firm": "W. H. Adams & Co."
       }
      ],
-     "holds": [
-      "address"
-     ],
+     "holds": [],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -408,19 +428,7 @@
     }
    ],
    "occupation_later": null,
-   "address_later": {
-    "value": "138 Lake street",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_ad0024",
-    "as_printed": "W. H. Adams",
-    "printed_fields": "n1844_ad0024 | W. H. Adams | W. H. Adams & Co. | manufacturers and wholesale and retail dealers in boots, shoes, leather and findings | 138 Lake street",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "The advertising cards in Norris's directory of 1844 prints this address against this person, in the entry quoted on the card: 'W. H. Adams'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -520,7 +528,7 @@
    "person_id": "allen_edward_richards",
    "household_id": "hh_allen_edward_richards",
    "resident": "Edward Richards Allen",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -2438,8 +2446,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -2449,9 +2457,7 @@
        "firm": "Loyd, Blakesley & Co."
       }
      ],
-     "holds": [
-      "address"
-     ],
+     "holds": [],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -2887,6 +2893,30 @@
       "address"
      ],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Botsford' folds to the same string as the card's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0088",
+       "printed_page": 99,
+       "as_printed": "J. K. Botsford",
+       "firm": "Botsford & Beeks"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -3548,6 +3578,30 @@
       "occupation"
      ],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Brown' folds to the same string as the card's, and the given name of both begins H.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0002",
+       "printed_page": 79,
+       "as_printed": "Henry Brown",
+       "firm": "Henry Brown"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -5305,7 +5359,7 @@
    "person_id": "chapman_george",
    "household_id": "hh_chapman_george",
    "resident": "George Chapman",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -5842,6 +5896,28 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0020",
+       "printed_page": 82,
+       "as_printed": "J. Coe Clark",
+       "firm": "J. Coe Clark"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -5931,6 +6007,28 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0020",
+       "printed_page": 82,
+       "as_printed": "J. Coe Clark",
+       "firm": "J. Coe Clark"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -6432,6 +6530,28 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0139",
+       "printed_page": 112,
+       "as_printed": "Silas B. Cobb",
+       "firm": "Silas B. Cobb"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -6525,8 +6645,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -6938,7 +7058,7 @@
    "person_id": "cook_john",
    "household_id": "hh_cook_john",
    "resident": "John Cook",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -8493,6 +8613,30 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Eldridge' folds to the same string as the card's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0135",
+       "printed_page": 111,
+       "as_printed": "John W. Eldridge",
+       "firm": "Doctor John W. Eldridge"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -8512,7 +8656,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -8967,7 +9112,7 @@
    "person_id": "foot_john",
    "household_id": "hh_foot_john",
    "resident": "John Foot",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -9778,6 +9923,30 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Funk' folds to the same string as the card's, and the given name of both begins A.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0123",
+       "printed_page": 109,
+       "as_printed": "A. Funk",
+       "firm": "A. Funk"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -9793,7 +9962,19 @@
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Funk, Absalom, Funk & Doyle, butchers'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
-   "address_later": null,
+   "address_later": {
+    "value": "Fulton and Boston markets, on Dearborn and Randolph streets",
+    "confidence": "attested",
+    "describes_date": 1844,
+    "sources": [
+     "norris_directory_1844"
+    ],
+    "claim_id": "n1844_ad0123",
+    "as_printed": "A. Funk",
+    "printed_fields": "n1844_ad0123 | A. Funk | A. Funk | butcher | Fulton and Boston markets, on Dearborn and Randolph streets",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "The advertising cards in Norris's directory of 1844 prints this address against this person, in the entry quoted on the card: 'A. Funk'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -12419,6 +12600,34 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0072",
+       "printed_page": 94,
+       "as_printed": "G. S. Hubbard",
+       "firm": "G. S. Hubbard"
+      },
+      {
+       "claim_id": "n1844_ad0108",
+       "printed_page": 104,
+       "as_printed": "G. S. Hubbard",
+       "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -12486,6 +12695,34 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0072",
+       "printed_page": 94,
+       "as_printed": "G. S. Hubbard",
+       "firm": "G. S. Hubbard"
+      },
+      {
+       "claim_id": "n1844_ad0108",
+       "printed_page": 104,
+       "as_printed": "G. S. Hubbard",
+       "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -12559,6 +12796,34 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0072",
+       "printed_page": 94,
+       "as_printed": "G. S. Hubbard",
+       "firm": "G. S. Hubbard"
+      },
+      {
+       "claim_id": "n1844_ad0108",
+       "printed_page": 104,
+       "as_printed": "G. S. Hubbard",
+       "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -12626,6 +12891,34 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0072",
+       "printed_page": 94,
+       "as_printed": "G. S. Hubbard",
+       "firm": "G. S. Hubbard"
+      },
+      {
+       "claim_id": "n1844_ad0108",
+       "printed_page": 104,
+       "as_printed": "G. S. Hubbard",
+       "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -12794,6 +13087,34 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0072",
+       "printed_page": 94,
+       "as_printed": "G. S. Hubbard",
+       "firm": "G. S. Hubbard"
+      },
+      {
+       "claim_id": "n1844_ad0108",
+       "printed_page": 104,
+       "as_printed": "G. S. Hubbard",
+       "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -13733,7 +14054,7 @@
    "person_id": "johnson_seth",
    "household_id": "hh_johnson_seth",
    "resident": "Seth Johnson",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -13994,6 +14315,30 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins D.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0036",
+       "printed_page": 86,
+       "as_printed": "D. A. Jones",
+       "firm": "D. A. & E. M. Jones"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -14085,7 +14430,7 @@
    "person_id": "jones_willard",
    "household_id": "hh_jones_willard",
    "resident": "Willard Jones",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -14159,6 +14504,28 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0116",
+       "printed_page": 107,
+       "as_printed": "William E. Jones",
+       "firm": "North-Western Land Agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -14251,6 +14618,28 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0116",
+       "printed_page": 107,
+       "as_printed": "William E. Jones",
+       "firm": "North-Western Land Agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -14731,7 +15120,7 @@
    "person_id": "kimberly_edmund_l",
    "household_id": "hh_kimberly_edmund_l",
    "resident": "Edmund L Kimberly",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -16561,6 +16950,28 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0046",
+       "printed_page": 88,
+       "as_printed": "A. Loyd",
+       "firm": "Loyd, Blakesley & Co."
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -16592,7 +17003,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -18912,6 +19324,28 @@
       "occupation"
      ],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0116",
+       "printed_page": 107,
+       "as_printed": "William B. Ogden",
+       "firm": "North-Western Land Agency"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -21948,6 +22382,30 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins D.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0138",
+       "printed_page": 112,
+       "as_printed": "D. S. Smith",
+       "firm": "Doctor D. S. Smith"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": true,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -21963,7 +22421,19 @@
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: \"Smith, Dr. D. S., over Clark’s drug store, coi'. Lake and Clark\". It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
-   "address_later": null,
+   "address_later": {
+    "value": "office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
+    "confidence": "attested",
+    "describes_date": 1844,
+    "sources": [
+     "norris_directory_1844"
+    ],
+    "claim_id": "n1844_ad0138",
+    "as_printed": "D. S. Smith",
+    "printed_fields": "n1844_ad0138 | D. S. Smith | Doctor D. S. Smith | physician | office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "The advertising cards in Norris's directory of 1844 prints this address against this person, in the entry quoted on the card: 'D. S. Smith'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -22039,6 +22509,28 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0060",
+       "printed_page": 91,
+       "as_printed": "E. Smith",
+       "firm": "H. & E. Smith"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -22130,8 +22622,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -22141,9 +22633,7 @@
        "firm": "H. & E. Smith"
       }
      ],
-     "holds": [
-      "address"
-     ],
+     "holds": [],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -22151,19 +22641,7 @@
     }
    ],
    "occupation_later": null,
-   "address_later": {
-    "value": "No. 146 Lake street",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_ad0060",
-    "as_printed": "E. Smith",
-    "printed_fields": "n1844_ad0060 | E. Smith | H. & E. Smith | wholesale and retail dealers in merchant tailors' goods, clothing, dry goods, groceries and hardware; clothing made to order | No. 146 Lake street",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "The advertising cards in Norris's directory of 1844 prints this address against this person, in the entry quoted on the card: 'E. Smith'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -22248,6 +22726,34 @@
      ],
      "holds": [],
      "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0022",
+       "printed_page": 82,
+       "as_printed": "George Smith",
+       "firm": "George Smith & Co."
+      },
+      {
+       "claim_id": "n1844_ad0109",
+       "printed_page": 104,
+       "as_printed": "George Smith",
+       "firm": "George Smith & Co."
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
      "sources": [
       "norris_directory_1844"
      ]
@@ -25901,7 +26407,7 @@
    "person_id": "wright_truman_g",
    "household_id": "hh_wright_truman_g",
    "resident": "Truman G Wright",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,

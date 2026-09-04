@@ -53,7 +53,7 @@
    "relationship": "head",
    "grade": "inferred",
    "civic_mint": true,
-   "ladder_rule": "G4",
+   "ladder_rule": "G2b",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -62,7 +62,7 @@
    "sources": [
     "chicago_voter_lists_1833_1835_irad"
    ],
-   "note": "PROJECTED RESIDENT. Documented once and corroborated by nothing else, so the weakest rung of `inferred` the owner's ladder defines. TWO OR MORE APPEARANCES, NONE OF A CLASS A HIGHER RUNG ACCEPTS. Read from poll_1833, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G4), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from poll_1833, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1833 names this person at Chicago by 31 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "poll_1833",
@@ -71,7 +71,7 @@
      "record_id": "poll_1833_022",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G4"
+     "rule": "G2b"
     },
     {
      "list": "tax_1833",
@@ -80,7 +80,7 @@
      "record_id": "tax_1833_082",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G4"
+     "rule": "G2b"
     }
    ],
    "resident_subtype": "projected_resident"

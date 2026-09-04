@@ -72,27 +72,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_adams_william_h",
-   "person_id": "adams_william_h",
-   "person": "William Hanford Adams",
-   "address_as_printed": "138 Lake street",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_albee_clark_b",
    "person_id": "albee_clark_b",
    "person": "Clark B. Albee",
@@ -1238,6 +1217,27 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_funk_absolom",
+   "person_id": "funk_absolom",
+   "person": "Absolom Funk",
+   "address_as_printed": "Fulton and Boston markets, on Dearborn and Randolph streets",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2703,10 +2703,10 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_smith_elded",
-   "person_id": "smith_elded",
-   "person": "Elded Smith",
-   "address_as_printed": "No. 146 Lake street",
+   "household_id": "hh_smith_d_a",
+   "person_id": "smith_d_a",
+   "person": "D A Smith",
+   "address_as_printed": "office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
    "describes_date": 1844,
    "read_back_years": 9,
    "sources": [
