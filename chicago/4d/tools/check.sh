@@ -1373,6 +1373,22 @@ step "the land tract sales re-derive from their committed deposit" \
 step "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-0609. The register describes a tract; the structures carry a footprint; the join
+# between them is a CONSTRUCTION, not a trace — the PLSS grid is carried from the single
+# committed corner at State & Madison on the plat's own bearing (L219). Two things can go
+# wrong silently and both are held here. A hand-edited `land_owner` block would be a
+# statement about who owned ground that no longer follows from the register, and a
+# structure that MOVES would keep an owner it no longer stands under; --check re-derives
+# every block from the entries and the committed positions and refuses either. The
+# self-test holds the grid itself: that the four sections still meet at G1, that a
+# quarter still measures 160 acres, that a void entry confers nothing, and that the 150
+# school-section rows still refuse for the plat this repo does not hold.
+step "the land tracts still resolve to the same ground, and the same roofs stand on them" \
+  python3 tools/resolve_land_tracts.py --check
+
+step "…and the section grid's own assertions still fire when broken" \
+  python3 tools/resolve_land_tracts.py --self-test
+
 # T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
 # can reach, and its two halves are segmented by two different rules — the shouted head of
 # a trade card on page 1, the current letter section on pages 2-4 — because the printer set
