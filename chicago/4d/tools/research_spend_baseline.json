@@ -7,10 +7,10 @@
   "census_1830": 0,
   "census_1840": 229,
   "church": 0,
-  "books": 126,
-  "directories": 7004,
+  "books": 173,
+  "directories": 7210,
   "newberry_index": 4914,
-  "land_sales": 361
+  "land_sales": 542
  },
  "witness": {
   "civic": {
@@ -30,20 +30,20 @@
    "spent": 0
   },
   "books": {
-   "read": 152,
-   "spent": 26
+   "read": 210,
+   "spent": 37
   },
   "directories": {
-   "read": 7560,
-   "spent": 556
+   "read": 8256,
+   "spent": 1046
   },
   "newberry_index": {
    "read": 7005,
    "spent": 2091
   },
   "land_sales": {
-   "read": 375,
-   "spent": 16
+   "read": 566,
+   "spent": 24
   }
  },
  "raised": [
@@ -179,6 +179,38 @@
    "to": 361,
    "date": "2026-09-04",
    "why": "T-0514 seated 531 new residents and the land-sales resident crosswalk re-derived against the larger town. Its rule matches a purchaser only where the residents layer holds EXACTLY ONE person of the surname and the forename agrees, so a bigger town makes that rule fire less: nine matches became ambiguous (Carpenter, Dole, Fullerton, Haddock x2, Heacock, Sweet, Burdick, Wooley) and six became possible for the first time (Bronson, Hale, Hartzell, Ludby, Price, Wolcott), a net loss of three rulings with nothing new read. The ceiling moves by that difference rather than the domain being re-read. T-0670 carries the matcher's surname-uniqueness weakness and T-0609 is the ticket that spends this domain properly."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 361,
+   "to": 542,
+   "date": "2026-09-04",
+   "why": "T-0675 walked T39N R14E sections 16, 21 and 29 to their end through the results page's own More cursor, which T-0557 had taken for a dead end. The reading grows from 375 sales to 566 — 191 of them the 1833 school-section auction the ceiling had hidden — and this ticket reads the register, it does not rule on it. Spending them is the standing work of T-0514 and T-0515, which is where a purchaser meets a person; nothing here mints or regrades anybody."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 126,
+   "to": 173,
+   "date": "2026-09-04",
+   "why": "T-0500 read the second half of Fergus' Historical Series Nos. 26-29 — 58 claims and 45 town findings — completing the volume T-0499 began. The reading is deliberately wider than its rulings for the reason the first half already recorded: most of what these numbers carry is landscape, buildings, streets, civic institutions and port statistics, which the resident crosswalk has nothing to rule on. The names that DO fall in the 1830-1836 window are ruled on in the same pass; what this ceiling holds open is town findings waiting on the structure and terrain tickets that will spend them. Re-measured against the merged tree rather than carried over from this branch's earlier raise, because the baseline has moved several times since."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7004,
+   "to": 7199,
+   "date": "2026-09-04",
+   "why": "T-0589 read the civic account of Fergus's 1843 directory, page 1 lines 37-750: 388 claims, of which 264 are the town's own account of itself — the ward population count of 1 August 1843, the port's trade tables, the churches and their memberships, the offices and companies — and not names awaiting a crosswalk. 124 office-holder rows name 215 Chicagoans and are what the next crosswalk pass has to rule on. The ceiling moves by the reading; the spend it owes is T-0635's consolidation and the 1843 crosswalk, not this ticket."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7199,
+   "to": 7210,
+   "date": "2026-09-04",
+   "why": "T-0670 tightened the directory crosswalks to refuse a match where both readings print a full forename and the two disagree (Thomas L. Abbott was being merged onto Titus H. Abbott). 147 joins across Fergus 1843 and Norris 1844 are refused and 11 net rulings go with them: a resident whose only route to a printed claim was a bad initial-match no longer rules on it at all. The reading did not shrink; the town stopped claiming to have adjudicated eleven entries it had adjudicated wrongly. T-0696 is where the second discriminator that would win some of them back is decided."
   }
  ],
  "lowered": [

@@ -51,7 +51,7 @@
    "id": "mack_stephen",
    "name": "Stephen Mack",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-01",
@@ -76,7 +76,7 @@
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "regraded_on": "2026-09-04",
-    "rule": "G2b"
+    "rule": "G1c"
    },
    "civic_evidence": [
     {
@@ -86,7 +86,7 @@
      "record_id": "tax_1833_070",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -97,7 +97,7 @@
      "record_id": "person_stephen_mack",
      "describes_date": "1834-04-01",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

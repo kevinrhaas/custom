@@ -134,6 +134,48 @@ one would stand on the single lot whose address happens to resolve (**T-0592**).
 the record in the notice's own words. A documented feature that is absent is stated, not
 omitted.
 
+## Shipped 2026-09-03 — T-0450: three caps, and the one a leg's margin is taken against
+
+**`docs/SMOKE-BUDGET.md` opened by telling three tickets that the 30-minute cap their
+margins are taken against "is not this machine's". It was wrong, and it has ranked those
+tickets against the wrong bound since 2026-08-30.** The page compared a **per-leg**
+timeout with a **whole-body** reading. They do not bound each other:
+
+| cap | what it bounds | where it is written |
+|---|---|---|
+| 600 s | ONE foreground command in a steward run | the harness |
+| 30 min | ONE LEG of the nightly gate — one viewport, one stage range, eight legs in parallel | `chicago-4d-bake.yml` § `smoke` |
+| 90 min | the WHOLE body in one process, no per-leg cap at all | `chicago-4d-smoke.yml` § `smoke` |
+
+The 55 m 10 s figure offered as proof is a reading of the third row and sits comfortably
+inside its own cap. **T-0170, T-0173 and T-0181 were reasoning about the leg cap
+correctly**, and the page now says so.
+
+**The same-machine half is settled from committed files rather than from a timing.** The
+nightly gate's legs, the full-body run, the dev gate and the steward improve runner are
+all `runs-on: ubuntu-latest`; the two smoke workflows install the same `playwright@1.56.1`
+and chromium alone; `smoke_renderer.mjs` passes `--enable-unsafe-swiftshader` wherever it
+runs. T-0450's own pair of readings — 4 m 40 s on the gate runner, 4 m 44 s on the improve
+runner, four seconds apart — is recorded with its provenance, **and with its unverified
+half named**: the ticket gives `dev` at `415909cf` for both, while run 33290607360's head
+commit is `fc10c83d`, so "the same bytes" is not a checked fact and is not claimed as one.
+
+**The leg table is a tool, not prose, because four re-cuts in 2026 rotted every prose copy
+of it.** `node tools/smoke_budget.mjs --legs` reads the stage ranges and the cap out of the
+workflow and prices each leg from `tools/dev-smoke-state.json`. Today: the worst fully
+measured margin is **desktop `10-13` at 12 m 09 s**, and a leg whose only readings straddle
+its boundary is priced with the neighbour included and says so — cost an upper bound, margin
+a lower one. `--self-test`, which `check.sh` runs, now fails if the ranges ever stop tiling
+parts 1..13 exactly once; the workflow's own comment has asserted that since T-0171 and
+nothing held it.
+
+**Nothing a visitor can see changed, and T-0181 is not closed by this.** Its acceptance —
+the worst desktop leg measured on three separate runs, the spread recorded, the cap or the
+cut set from the spread — stands unchanged, because the 17 m 51 s above is summed from
+per-part readings that each paid their own boot, which is the very prediction-from-parts
+move that ticket was opened to object to. What is removed is only the claim that it was
+arguing against the wrong bound. The re-read is written into T-0181 itself.
+
 ## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
 
 **Resident identity research now covers 150 of 848 eligible real named people

@@ -51,7 +51,7 @@
    "id": "lee_george",
    "name": "George Lee",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -77,7 +77,7 @@
      "chicago_democrat_1833_1835"
     ],
     "regraded_on": "2026-09-04",
-    "rule": "G2c"
+    "rule": "G1c"
    },
    "church_evidence": [
     {
@@ -87,7 +87,7 @@
      "record_id": "st_cyr_marriage_009_3",
      "describes_date": "1835-10-01",
      "source": "st_cyr_register_ichr_v4",
-     "rule": "G2c"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -98,7 +98,7 @@
      "record_id": "person_george_lee",
      "describes_date": "1835-05-20",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2c"
+     "rule": "G1c"
     }
    ]
   }

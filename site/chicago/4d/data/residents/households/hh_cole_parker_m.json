@@ -51,7 +51,7 @@
    "id": "cole_parker_m",
    "name": "Parker M. Cole",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-07-09"
@@ -79,7 +79,7 @@
      "chicago_democrat_1833_1835"
     ],
     "regraded_on": "2026-09-04",
-    "rule": "G2b"
+    "rule": "G1c"
    },
    "civic_evidence": [
     {
@@ -89,7 +89,7 @@
      "record_id": "tax_1833_020",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     },
     {
      "list": "poll_1834",
@@ -98,7 +98,7 @@
      "record_id": "poll_1834_027",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "book_evidence": [
@@ -109,7 +109,7 @@
      "record_id": "f1843_e0667",
      "describes_date": "1843",
      "source": "fergus_chicago_directory_1843",
-     "rule": "G2b"
+     "rule": "G1c"
     },
     {
      "list": "directory_1844",
@@ -118,7 +118,7 @@
      "record_id": "n1844_e0383",
      "describes_date": "1844",
      "source": "norris_directory_1844",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -129,7 +129,7 @@
      "record_id": "person_parker_m_cole",
      "describes_date": "1834-07-09",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

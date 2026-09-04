@@ -30,6 +30,17 @@ transcription is `transcription_mediated` either way; a reading made off the pag
 committed in `claims/`, kept whole so a disagreement between two readings of one printed book
 survives the merge. Nothing downstream reads it; see `second_readings/README.md`.
 
+**Scan verifications.** Where a committed reading is doubted, the doubt is settled off the
+pixels and the measurement is kept. `fergus_1839_first_ward_scan.json` (T-0667) is the first:
+Fergus's table on printed page 46 counts three more first-ward votes in 1837 than the names
+he printed, and `tools/verify_fergus_1839_first_ward.py` counts the LINES OF TYPE on printed
+pages 41-42 rather than the words in anybody's OCR — a name archive.org lost leaves no trace
+in the text and a double gap in the row grid. It found none: 34+34+34 and 22+22+21, on a
+leading of 54 px that never doubles. So the 167 is the printer's and the three are missing
+from the list, not from this project's reading of it. The tool needs Pillow and the network,
+so `check.sh` runs only its `--offline` leg, which is the part that catches drift between the
+record and `claims/fergus_1839_election_1837.json`.
+
 **Hand-authored:** `text/`, `coverage.json`, `crosswalk.json`,
 `claims/norris_1844_town_findings.json`, and the READING of a source that is not a
 list — `norris_1844_advertiser_index.json`, which says where each advertising card
@@ -38,7 +49,8 @@ begins and ends.
 `claims/norris_1844_advertiser.json`, `norris_1844_crosswalk_1835.json`,
 `norris_1844_advertiser_crosswalk_1835.json`, `claims/fergus_1839_directory_entries.json`,
 `claims/fergus_1839_town_findings.json`, `fergus_1839_crosswalk_1835.json` and
-`fergus_1839_street_faces.json`, each by the tool named in its own `generated_by`, each
+`fergus_1839_street_faces.json` and `fergus_1839_first_ward_scan.json`, each by the tool
+named in its own `generated_by`, each
 with a `--check` that `tools/check.sh` runs; and `data/research/domains.json`, which is
 gated.
 
@@ -100,12 +112,15 @@ from a second source is a pass of its own.
 claim carries `describes_date: "1844"`. Nothing here is an 1835 fact. The one place
 a name in this volume touches a person standing in the scene of 1 July 1835 is
 `norris_1844_crosswalk_1835.json`, and it touches them as corroboration and as a
-CANDIDATE enrichment: **48** of the 847 people in the residents layer meet exactly
-one 1844 entry on the rule, **15** meet more than one and are left ambiguous, **4**
+CANDIDATE enrichment: **90** of the 1,402 people in the residents layer meet exactly
+one 1844 entry on the rule, **28** meet more than one and are left ambiguous, **39**
 are contested — two 1835 people meeting the same 1844 line, at most one of whom is
-the man printed — and **171** have their surname in the book under a different
+the man printed — **340** have their surname in the book under a different
 initial and are refused outright, because a surname-only agreement is always a
-refusal and Norris lists eleven Smiths. That file **changes no resident record**:
+refusal and Norris lists eleven Smiths, and **50** more are refused on the
+forename (T-0670: two full forenames that disagree are not a match, however well
+the initial agrees — see the Fergus 1843 section for the rule, which both
+crosswalks import from `tools/name_agreement.py`). That file **changes no resident record**:
 under the ratified ladder an 1844 listing alone never makes an 1835 resident, and
 T-0569 is the ticket that spends the reading on the layers.
 
@@ -416,11 +431,28 @@ occupation, and that is the reading being honest rather than guessing. What the
 split is FOR is the crosswalk, which needs a surname and an initial and nothing
 else to be safe.
 
-**The crosswalk: 68 matches, 33 ambiguous, 8 contested, 174 refusals** out of the
-847 people in the 1835 layer, on surname-fold plus first initial. 46 of the 68
-could carry a 1843 address the 1835 person lacks and 43 could carry a death
-notice. None of it has been spent — T-0569 is the pass that spends the matches
-and T-0574 the one that spends the notices.
+**The crosswalk: 110 matches, 51 ambiguous, 43 contested, 354 refusals on the
+surname and 97 more on the forename**, out of the 1,402 people in the 1835 layer,
+on surname-fold plus first initial. 78 of the 110 could carry an 1843 address the
+1835 person lacks and 72 could carry a death notice. None of it has been spent —
+T-0569 is the pass that spends the matches and T-0574 the one that spends the
+notices.
+
+**The forename refusals are T-0670's**, and they are the reason the counts above
+are not the counts a reader of an earlier draft of this file will remember. The
+initial rule was written when the layer held 848 names, where a surname plus an
+initial was very nearly unique; T-0514 minted 532 more and it began declaring
+`Abbott, Thomas L.` onto Titus H. Abbott, `Hogan, Michael` onto Mary Hogan and
+`Bristol, Calvin D.` onto Charles L. Bristol. Since T-0670 a match is refused
+where BOTH readings print a full forename and the two disagree — an initial
+standing against a full name is untouched, and a contraction (`Wm.`, `Chas.`,
+`Alex.`) or a one-letter spelling (Absalom/Absolom, Shubal/Shubael) still agrees.
+The rule is `tools/name_agreement.py`, it carries its own self-test, and both this
+crosswalk and Norris's import it rather than restate it. Every refusal is FILED
+under `forename_refusals` with the entry as printed and both forenames, and where
+the printed forename is garbled — the scanner's `C!;as.` for Chas., `J>ctij` for
+John — the record says so, because that is a transcription defect and not a
+disagreement between two people.
 
 **Page 1's civic account is NOT read here.** Lines 37-750 — the officers and
 courts, twenty-odd churches and societies with their ministers and memberships,

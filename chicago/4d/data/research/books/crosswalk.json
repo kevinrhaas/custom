@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "books",
   "source_id": "chicago_antiquities_american_fur_co",
-  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins.",
+  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins. T-0500 adds a pass over the same volume's SECOND half, whose rulings rest on the same data/sources/fergus_historical_series_26_29.json and say so on themselves.",
   "note": "The ONLY place two differently-spelled names in this domain may become one person, in data/research/newspapers/identity.json's shape and under its rules: a merge needs a rule, the rule names BOTH spellings verbatim, and a surname-only merge is always a refusal. A refusal is declared as explicitly as a merge — the absence of one reads like a pair nobody has looked at yet.",
   "passes": [
     {
@@ -37,6 +37,118 @@
       "refusals": 3,
       "outside_the_window": "Robert Fergus (a resident from 1 July 1839, four years after the scene, and the compiler rather than a subject); James W. Norris (canvassed in 1843); William Ellis (printing in 1843-44); Sidney Abell (postmaster from 1837); William Stuart (postmaster in 1843); Alson S. Sherman, Mark Skinner, William Jones, Silas Meacham, George W. Meeker and John B. Weir and the rest of the 1843 society and company officers; Capt. John Whistler (built the first fort in 1803); To-pen-ne-bec, Oseemit, Five Medals, White Loon, Little Turtle, Me-te-a and William Wells (1811-1812); Major Daniel W. Beckwith (surveying on the Kankakee in May 1834 - inside the window by date and outside it by place, and he is not claimed as a Chicago man here); Henry R. Schoolcraft (at Chicago in August 1821). NONE OF THESE WAS CROSSWALKED AND NONE IS A HOLE: a name outside the window is not a candidate, and saying so here is what keeps the next sweep from doing the work again.",
       "note": "Two of the five inside the window are the same men this project already holds, and one of the two - Hogan - is corroborated in a way the resident record did not carry: it says Chicago's mail began in his store, and Fergus dates his postmastership and names the man before him."
+    },
+    {
+      "pass": "T-0500",
+      "what": "Every person named in the SECOND HALF of Fergus' Historical Series Nos. 26-29 (scan leaves 430-858) whose naming falls in the 1830-1836 window, put against the residents, voters and letter-list names this project already holds. TWENTY-FIVE PEOPLE ARE SO NAMED and they are listed by name in `window_1830_1836` below with the outcome of each, because a crosswalk that reports only its merges cannot be audited.",
+      "readings_examined": 58,
+      "residents_examined": 1745,
+      "merges": 6,
+      "refusals": 7,
+      "detail": "In this file. The pass is small because the half is mostly 1843 and mostly Jacksonville: Fergus No. 28 is a directory of a town eight years past the scene, and Fergus No. 29 is a Morgan County family memoir. Only the Obituary and Robert Fergus's bracketed annotations name anybody inside the window at all.",
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Every merge below is an identity statement inside the research layer, and no merge here places anybody anywhere: a directory of 1843 gives 1843 addresses, and this pass carries none of them into the scene.",
+      "window_1830_1836": [
+        {
+          "name": "Thomas J. V. Owen",
+          "outcome": "merged into Thomas Jefferson Vance Owen"
+        },
+        {
+          "name": "G. S. Hubbard",
+          "outcome": "merged into Gurdon Saltonstall Hubbard"
+        },
+        {
+          "name": "Gen. Jean Baptiste Beaubien",
+          "outcome": "merged into Col. Jean Baptiste Beaubien"
+        },
+        {
+          "name": "A. Garrett",
+          "outcome": "merged into Augustus Garrett"
+        },
+        {
+          "name": "John Calhoun",
+          "outcome": "merged — the same spelling, and the merge is recorded rather than assumed"
+        },
+        {
+          "name": "William B. Ogden",
+          "outcome": "merged — the same spelling, and the merge is recorded rather than assumed"
+        },
+        {
+          "name": "Dr Spring",
+          "outcome": "REFUSED against Giles Spring — surname only"
+        },
+        {
+          "name": "Robert C. Bristol / Richard Clark Bristol",
+          "outcome": "REFUSED — the volume disagrees with itself on the expansion of R. C. Bristol"
+        },
+        {
+          "name": "O. Newberry",
+          "outcome": "REFUSED against Oliver Newberry — T-0396 is open and an 1843 agent list cannot settle an 1835 partnership"
+        },
+        {
+          "name": "Newberry & Dole",
+          "outcome": "REFUSED against George Washington Dole — a firm's style is not a person"
+        },
+        {
+          "name": "John Kinzie",
+          "outcome": "REFUSED against John Harris Kinzie — the obituary's man died in 1828 and is the father"
+        },
+        {
+          "name": "Rev. Jesse Walker",
+          "outcome": "REFUSED against George E. Walker — surname only"
+        },
+        {
+          "name": "John Wentworth",
+          "outcome": "REFUSED against Elijah Wentworth sen. — surname only"
+        },
+        {
+          "name": "Silas Wooster Sherman",
+          "outcome": "no candidate — the project holds Mrs. H. Sherman only, and a surname is not a candidate"
+        },
+        {
+          "name": "Hollis Newton",
+          "outcome": "no candidate in data/residents/"
+        },
+        {
+          "name": "Joseph Bailly",
+          "outcome": "no candidate — he died in Indiana and this project holds nobody of the name"
+        },
+        {
+          "name": "Dr Henry Van der Bogart",
+          "outcome": "no candidate — Naperville, and this project holds nobody of the name"
+        },
+        {
+          "name": "Rev. Allen B. Freeman",
+          "outcome": "no candidate in data/residents/"
+        },
+        {
+          "name": "Dr Alexander Wolcott",
+          "outcome": "no candidate — he died in 1830 and this project's records begin at 1835"
+        },
+        {
+          "name": "David Hood",
+          "outcome": "no candidate; and the date printed beside him is refused as unreadable (bk_fer2_045)"
+        },
+        {
+          "name": "Joseph Duncan",
+          "outcome": "out of scope — governor at Vandalia and Jacksonville, never a resident of the town"
+        },
+        {
+          "name": "William Kinney",
+          "outcome": "out of scope — state politics"
+        },
+        {
+          "name": "Elizabeth C. Duncan",
+          "outcome": "out of scope — Jacksonville"
+        },
+        {
+          "name": "Joseph Duncan Jr",
+          "outcome": "out of scope — born at Jacksonville, October 1835"
+        },
+        {
+          "name": "Robert Fergus",
+          "outcome": "out of window — his own entry dates his arrival to 1 July 1839"
+        }
+      ]
     }
   ],
   "merges": [
@@ -202,6 +314,72 @@
         "data/sources/fergus_historical_series_26_29.json"
       ],
       "what_it_adds": "The expansion of the initials, the man who held the office BEFORE him (Jonathan Nash Bailey, 1832), and the mail's service level year by year across the scene date - which is what the resident record's 'where Chicago's mail began' was missing."
+    },
+    {
+      "into": "Thomas Jefferson Vance Owen",
+      "from": "Thomas J. V. Owen",
+      "rule": "Fergus' Obituary prints the Indian agent as 'Thomas J. Y. Owen', which this project reads as Thomas J. V. Owen — the OCR's Y for V is the commonest single-glyph failure in this whole text and the printed initials are J. V. everywhere else in the corpus. Thomas Jefferson Vance Owen is this project's resident record, and Thomas J. V. Owen is that name initial for initial: J for Jefferson, V for Vance, the same surname, the same office of Indian agent, and the same town. Four things agree and the surname is the least of them. The merge carries a DEATH DATE and nothing else: 15 October 1835.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_048",
+        "data/residents/households/hh_owen_thomas_jv.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_048"
+    },
+    {
+      "into": "Gurdon Saltonstall Hubbard",
+      "from": "G. S. Hubbard",
+      "rule": "The 1843 Business Directory advertises 'G. S. Hubbard, forwarding merchant and dealer in produce and provisions' on South Water Street. Gurdon Saltonstall Hubbard is this project's resident record and G. S. Hubbard is that name initial for initial, in the same town, in the forwarding trade the resident record already carries. The merge is of the MAN and not of the address: the 1843 frontage is not carried into 1835.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_020",
+        "data/residents/households/hh_hubbard_gurdon.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_020"
+    },
+    {
+      "into": "Col. Jean Baptiste Beaubien",
+      "from": "Gen. Jean Baptiste Beaubien",
+      "rule": "The 1843 alphabetical directory enters 'Gen. Jean Baptiste Beaubien'; this project's resident is Col. Jean Baptiste Beaubien. Three given names and a surname agree exactly and only the militia rank differs, which is what ranks do over eight years. THE RANK IS NOT MERGED WITH THE MAN: this project does not restyle its resident on a directory's authority, and the difference is recorded here rather than smoothed away.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_046",
+        "data/residents/households/hh_beaubien_jean_baptiste.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_046"
+    },
+    {
+      "into": "Augustus Garrett",
+      "from": "A. Garrett",
+      "rule": "The 1843 Business Directory advertises 'A. Garrett, agent' for two New York insurance companies at Chicago. This project holds Augustus Garrett, a documented auctioneer, and A. Garrett is the same initial and surname in the same town in an agency trade. The merge rests on the initial, the surname, the town and the trade together; the resident record already carries the spelling A. Garrett beside Augustus Garrett, which is the same identification made once before and not a new one.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_039",
+        "data/residents/households/hh_doc_a_garrett.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_039"
+    },
+    {
+      "into": "John Calhoun",
+      "from": "John Calhoun",
+      "rule": "The 1843 directory's entry for the Chicago Democrat states that its first number was issued on 20 November 1833 by John Calhoun. This project holds a resident John Calhoun, the printer. The spelling is identical, and the merge is RECORDED RATHER THAN ASSUMED so that the next sweep does not have to make it again; what it carries is a founding date for the paper and not an address for the man.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_041",
+        "data/residents/households/hh_calhoun_john.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_041"
+    },
+    {
+      "into": "William B. Ogden",
+      "from": "William B. Ogden",
+      "rule": "The 1843 Business Directory names the partners of the north-western land agency as William B. Ogden and William E. Jones. This project holds William B. Ogden. The spelling is identical and the merge is recorded rather than assumed; it carries an 1843 office on Kinzie Street and NOTHING about where Ogden was in 1835.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_025",
+        "data/residents/index.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_025"
     }
   ],
   "refusals": [
@@ -473,6 +651,83 @@
         "data/residents/households/hh_kinzie_john_h.json"
       ],
       "note": "A refusal that costs nothing: nothing in this reading depends on it, because Wau-Bun is already a graded source in this project and Beckwith's footnote adds nothing to it."
+    },
+    {
+      "a": "Dr Spring",
+      "b": "Giles Spring",
+      "rule": "Fergus' Obituary prints 'Spring, Dr., died November 10, 1835' with no given name and no age. This project holds Giles Spring, and T-0423 would put G. Spring's large dwelling-house and fine well on lot 7 of block 16. Dr Spring is a surname and a title, and a surname-only merge is always a refusal here however good the rule; worse, the title disagrees — Giles Spring was a lawyer and this man is a doctor. Reading Dr Spring as Giles Spring would kill off a household inside the scene year on the strength of one surname. Refused, and recorded as a LEAD: if a given name for the doctor is ever found, the date is worth having.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_049",
+        "data/residents/households/hh_spring_giles.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_049"
+    },
+    {
+      "a": "Robert C. Bristol",
+      "b": "Richard Clark Bristol",
+      "rule": "THE VOLUME DISAGREES WITH ITSELF. Its Business Directory names the partners of Bristol & Porter as Robert C. Bristol and Hibbard Porter; its own alphabetical directory, sixty leaves later, enters the same partner as Richard Clark Bristol. Both expand the R. C. Bristol this project holds from the post office's letter lists, and they expand it differently. No reading of one page can settle the other, so neither expansion is adopted and the resident keeps its initials. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_022",
+        "data/residents/households/hh_ll_r_c_bristol.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_022"
+    },
+    {
+      "a": "O. Newberry",
+      "b": "Oliver Newberry",
+      "rule": "The 1843 Newberry & Dole advertisement lists 'O. Newberry, Detroit' among the transportation line's agents. This project holds Oliver Newberry, and Oliver Newberry of Detroit is who O. Newberry most likely is. IT IS STILL REFUSED, and deliberately: T-0396 is open on which Newberry stood in the firm at Chicago in 1834-35, the corpus reads the partner as Oliver in one year and Walter L. in another, and an 1843 list of a shipping line's out-of-town agents cannot settle an 1835 partnership. Adopting this merge would look like an answer to T-0396 and would not be one.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_021",
+        "data/residents/index.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_021"
+    },
+    {
+      "a": "Newberry & Dole",
+      "b": "George Washington Dole",
+      "rule": "Newberry & Dole is a firm's own style and George Washington Dole is a man. A style stands for a partnership and names no one member of it; T-0398 records the same fault arriving from the other direction, where a firm's signature was read where a person was wanted. The firm is held as a business and is not merged into either partner. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_021",
+        "data/residents/households/hh_dole_george_w.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_021"
+    },
+    {
+      "a": "John Kinzie",
+      "b": "John Harris Kinzie",
+      "rule": "The Obituary enters John Kinzie, called Sha-ne-au-kee, Indian agent and trader, dead on 6 January 1828 aged 65. John Harris Kinzie is this project's resident and is the son, alive through the scene year. A death in 1828 at sixty-five cannot be the man the project places in 1835, and the shared given name is exactly the trap a father-and-son pair sets. Refused, against John Harris Kinzie and against James Kinzie and Robert Allen Kinzie with him.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_056",
+        "data/residents/households/hh_kinzie_john_h.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_056"
+    },
+    {
+      "a": "Rev. Jesse Walker",
+      "b": "George E. Walker",
+      "rule": "The Obituary has Rev. Jesse Walker dead twelve miles west of Chicago on 5 October 1835; this project holds George E. Walker, a name from the post office's letter lists. The given names disagree outright and only the surname is shared, which is always a refusal here. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_050",
+        "data/residents/households/hh_ll_george_e_walker.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_050"
+    },
+    {
+      "a": "John Wentworth",
+      "b": "Elijah Wentworth sen.",
+      "rule": "The 1843 directory makes John Wentworth editor and proprietor of the Chicago Democrat; this project holds Elijah Wentworth sen. The given names disagree and only the surname is shared. The refusal matters beyond the surname rule: John Wentworth did not reach Chicago until after the scene year, so no merge on this name may put him in it. Refused.",
+      "evidence": [
+        "data/research/books/claims/fergus_26_29_second_half.json bk_fer2_041",
+        "data/residents/households/hh_ll_elijah_wentworth_sen.json"
+      ],
+      "pass": "T-0500",
+      "claim_id": "bk_fer2_041"
     }
   ]
 }

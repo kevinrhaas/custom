@@ -35,7 +35,7 @@ a queue with nobody in it.
 | `.github/chicago-4d-dev-preview.mjs` | assembles that preview — copy, `noindex`, banner, dev build stamp, `build.json`, robots disallow. |
 | `.github/workflows/chicago-4d-check.yml` | **the dev gate.** Runs on PRs into `dev` and pushes to `dev` (no branch filter, deliberately). |
 | `.github/workflows/chicago-4d-promote-to-prod.yml` | **dispatch-only.** Back-merges `main`→`dev`, merges `dev`→`main` `--no-ff`, tags `release-vNNN`, then dispatches the deploy. |
-| `.github/workflows/chicago-4d-bake.yml` | the nightly content bake. Branches off `dev` and PRs **into `dev`**. |
+| `.github/workflows/chicago-4d-bake.yml` | the content bake. **Builds the ref it was started on, and PRs into that same ref** — `tools/bake_ref.py` decides, and `check.sh` asserts it. The nightly and any run whose ref is `main` build `dev` and PR into `dev`, because the schedule has no tree of its own to speak for and nothing may PR into production. A bake dispatched against a branch builds THAT branch: until T-0454 it silently rebuilt `dev` instead, which is how the staleness gate and the bake came to disagree about one asset while both were right. |
 | `.github/pipeline.json` | the manifest. Declares the shape — tiers, publish paths, workflow names — to anything that reads it. A **data file**: editing it is a sanctioned direct commit to `main`, same as the pilot's. |
 
 `pipeline.json` earns its keep on the fleet console. Manager's Pipeline view

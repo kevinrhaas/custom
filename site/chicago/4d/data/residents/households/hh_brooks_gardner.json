@@ -51,7 +51,7 @@
    "id": "brooks_gardner",
    "name": "Gardner Brooks",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -74,7 +74,7 @@
      "record_id": "poll_1834_019",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -85,12 +85,12 @@
      "record_id": "person_brooks_gardner",
      "describes_date": "1835-07-01",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "resident_research": {
     "regraded_on": "2026-09-04",
-    "rule": "G2b"
+    "rule": "G1c"
    }
   }
  ],

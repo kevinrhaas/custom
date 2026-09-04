@@ -558,8 +558,12 @@ def main() -> int:
                         "because the bank wash survives only in "
                         f"{slough_frags} fragments — the pink Kinzie ward band and the lot "
                         "lines it crosses erase the rest — so a traced boundary would be a "
-                        "fiction. Probably one of the three sloughs off the Main Branch shown "
-                        "on the 1830 Thompson plat. Depth is conjectural: no source gives one.",
+                        "fiction. The 1830 Thompson plat draws ONE watercourse, not three, "
+                        "and draws it across North Division block 6 \u2014 the same block this "
+                        "centreline crosses, so the plat corroborates it at block resolution "
+                        "and at no finer (T-0452, docs/RESEARCH/thompson_plat_sloughs.md). The "
+                        "\"three sloughs\" count is Conley/Stelzer 1933's, never Thompson's. "
+                        "Depth is conjectural: no source gives one.",
                 "drafted_width_m": slough_w,
                 "width_confidence": "reconstructed",
                 "assumed_depth_ft_below_datum": 1.0,
