@@ -1189,6 +1189,28 @@ step "the letter-list cohort is what the owner's ruling permits" \
 step "…and that gate's own assertions still fire when broken" \
   python3 tools/mint_letter_list_residents.py --self-test
 
+# And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
+# owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
+# into a proposal; nothing in that proposal had ever been written onto a card, and only 37
+# of the 85 men on the 1835 poll list had even a surname in the residents layer. This pass
+# writes the people the ladder reaches out of the civic lists, the parish register, the
+# contemporary papers, the printed directories and the 1840 census — everything except the
+# post office's letter lists, which the pass above owns and whose pool refusal 5 keeps this
+# one out of. Gated three ways because the failure modes are all silent: a derivation that
+# stopped re-deriving would let a hand-edit stand as a reading, a refusal that stopped
+# firing would mint a Potawatomi enrollee of 1832 as an 1835 householder with an invented
+# surname order, and a gate that stopped looking would let one of these 532 quietly gain a
+# roof, a trade or a family that no source gives it. `--report` prints all 6,148 refusals
+# with their reasons; docs/LIBERTIES.md L218 carries the scale.
+step "the civic, church, press and book residents re-derive from the ladder" \
+  python3 tools/mint_civic_residents.py --check
+
+step "…and none of them claims more than a person and a reading" \
+  python3 tools/mint_civic_residents.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/mint_civic_residents.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

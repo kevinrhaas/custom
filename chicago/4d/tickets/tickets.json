@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 11:10 AM",
+  "generated_ct": "Sep 4, 2026, 11:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7237,7 +7237,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 11
     },
     {
       "id": "T-0442",
@@ -8141,7 +8141,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 33
     },
     {
       "id": "T-0497",
@@ -8159,7 +8159,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 34
     },
     {
       "id": "T-0498",
@@ -8217,7 +8217,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 26
     },
     {
       "id": "T-0501",
@@ -8255,7 +8255,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 27
     },
     {
       "id": "T-0503",
@@ -8353,7 +8353,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 6
     },
     {
       "id": "T-0508",
@@ -8371,7 +8371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 17
     },
     {
       "id": "T-0509",
@@ -8389,7 +8389,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 18
     },
     {
       "id": "T-0510",
@@ -8407,7 +8407,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 19
     },
     {
       "id": "T-0511",
@@ -8425,7 +8425,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 21
     },
     {
       "id": "T-0512",
@@ -8443,7 +8443,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 22
     },
     {
       "id": "T-0513",
@@ -8468,7 +8468,7 @@
     {
       "id": "T-0514",
       "title": "About half the voter-list men are in no resident record: mint residents from the consolidated civic, census, church and book evidence",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": false,
@@ -8476,12 +8476,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "785",
+      "claimed_by": "run 9/4/2026, 8:05:50 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "closed_at": "2026-09-04T15:10:47.692Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33875889978",
+      "queue_rank": null
     },
     {
       "id": "T-0515",
@@ -8499,7 +8501,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": 0
     },
     {
       "id": "T-0516",
@@ -8517,7 +8519,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 20
     },
     {
       "id": "T-0517",
@@ -8535,7 +8537,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 23
     },
     {
       "id": "T-0518",
@@ -8553,7 +8555,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 24
     },
     {
       "id": "T-0520",
@@ -8847,7 +8849,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 35
     },
     {
       "id": "T-0537",
@@ -8977,7 +8979,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 32
     },
     {
       "id": "T-0544",
@@ -9275,7 +9277,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 31
     },
     {
       "id": "T-0562",
@@ -9561,7 +9563,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 3
     },
     {
       "id": "T-0578",
@@ -9639,7 +9641,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 28
     },
     {
       "id": "T-0582",
@@ -9657,7 +9659,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 29
     },
     {
       "id": "T-0583",
@@ -9675,7 +9677,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 30
     },
     {
       "id": "T-0584",
@@ -9791,7 +9793,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 6
+      "queue_rank": 5
     },
     {
       "id": "T-0590",
@@ -9831,7 +9833,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 14
+      "queue_rank": 13
     },
     {
       "id": "T-0593",
@@ -9851,7 +9853,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 11
+      "queue_rank": 10
     },
     {
       "id": "T-0594",
@@ -9871,7 +9873,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 9
+      "queue_rank": 8
     },
     {
       "id": "T-0595",
@@ -9891,7 +9893,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 10
+      "queue_rank": 9
     },
     {
       "id": "T-0596",
@@ -9911,7 +9913,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 13
+      "queue_rank": 12
     },
     {
       "id": "T-0597",
@@ -9931,7 +9933,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 8
+      "queue_rank": 7
     },
     {
       "id": "T-0598",
@@ -10091,7 +10093,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 26
+      "queue_rank": 25
     },
     {
       "id": "T-0606",
@@ -10151,7 +10153,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 3
+      "queue_rank": 2
     },
     {
       "id": "T-0611",
@@ -10531,7 +10533,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 5
+      "queue_rank": 4
     },
     {
       "id": "T-0636",
@@ -10551,7 +10553,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 17
+      "queue_rank": 16
     },
     {
       "id": "T-0637",
@@ -10571,7 +10573,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 16
+      "queue_rank": 15
     },
     {
       "id": "T-0638",
@@ -10811,7 +10813,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 15
+      "queue_rank": 14
     },
     {
       "id": "T-0652",
@@ -11111,7 +11113,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 2
+      "queue_rank": 1
     },
     {
       "id": "T-0667",
@@ -11134,6 +11136,26 @@
       "queue_rank": 149
     },
     {
+      "id": "T-0668",
+      "title": "The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 151
+    },
+    {
       "id": "T-0669",
       "title": "Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop",
       "state": "open",
@@ -11154,6 +11176,46 @@
       "queue_rank": 150
     },
     {
+      "id": "T-0670",
+      "title": "The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 152
+    },
+    {
+      "id": "T-0671",
+      "title": "The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 36
+    },
+    {
       "id": "T-0672",
       "title": "The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down",
       "state": "open",
@@ -11171,7 +11233,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 153
     },
     {
       "id": "T-0673",
@@ -11191,7 +11253,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 154
     }
   ]
 }
