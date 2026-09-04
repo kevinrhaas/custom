@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 1:22 AM",
+  "generated_ct": "Sep 4, 2026, 1:52 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10546,7 +10546,7 @@
     {
       "id": "T-0645",
       "title": "Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10554,14 +10554,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "764",
+      "claimed_by": "run 9/4/2026, 1:12:58 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 148
+      "closed_at": "2026-09-04T06:34:33.713Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33839193831",
+      "queue_rank": null
     },
     {
       "id": "T-0646",
@@ -10601,7 +10601,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0648",
@@ -10641,11 +10641,31 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0650",
       "title": "The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 150
+    },
+    {
+      "id": "T-0652",
+      "title": "33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15",
       "state": "open",
       "epic": "META",
       "requested_by": "loop",
