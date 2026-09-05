@@ -282,7 +282,7 @@ T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel sho
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
-T-0770 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 
@@ -333,3 +333,4 @@ T-0727 — The published tree is 936 bytes under the 32 MiB budget, so no PR tha
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
+T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
