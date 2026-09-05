@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:06 PM",
+  "generated_ct": "Sep 5, 2026, 3:32 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14198,6 +14198,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 187
+    },
+    {
+      "id": "T-0836",
+      "title": "The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 188
     }
   ]
 }
