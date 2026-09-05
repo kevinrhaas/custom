@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:10 AM",
+  "generated_ct": "Sep 5, 2026, 4:23 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8414,7 +8414,7 @@
     {
       "id": "T-0509",
       "title": "237 named residents have no research row: cohort 14 of 79",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8424,9 +8424,11 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 4:23:45 AM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33957717384",
       "queue_rank": 5
     },
     {
