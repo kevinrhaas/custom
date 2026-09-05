@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 2:55 PM",
+  "generated_ct": "Sep 5, 2026, 2:58 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 176
+      "queue_rank": 175
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 175
+      "queue_rank": 174
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 174
+      "queue_rank": 173
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 173
+      "queue_rank": 172
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 172
+      "queue_rank": 171
     },
     {
       "id": "T-0137",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 157
+      "queue_rank": 156
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 158
+      "queue_rank": 157
     },
     {
       "id": "T-0219",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 170
+      "queue_rank": 169
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 147
+      "queue_rank": 146
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 148
+      "queue_rank": 147
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 143
+      "queue_rank": 142
     },
     {
       "id": "T-0237",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 144
+      "queue_rank": 143
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 169
+      "queue_rank": 168
     },
     {
       "id": "T-0240",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 177
+      "queue_rank": 176
     },
     {
       "id": "T-0256",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 159
+      "queue_rank": 158
     },
     {
       "id": "T-0272",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0302",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 171
+      "queue_rank": 170
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 160
+      "queue_rank": 159
     },
     {
       "id": "T-0378",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 161
+      "queue_rank": 160
     },
     {
       "id": "T-0389",
@@ -7157,7 +7157,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 178
+      "queue_rank": 177
     },
     {
       "id": "T-0435",
@@ -7211,7 +7211,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 145
+      "queue_rank": 144
     },
     {
       "id": "T-0438",
@@ -7229,7 +7229,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 180
+      "queue_rank": 179
     },
     {
       "id": "T-0439",
@@ -7247,7 +7247,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 181
+      "queue_rank": 180
     },
     {
       "id": "T-0440",
@@ -7419,7 +7419,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 182
+      "queue_rank": 181
     },
     {
       "id": "T-0450",
@@ -8645,7 +8645,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 183
+      "queue_rank": 182
     },
     {
       "id": "T-0521",
@@ -8683,7 +8683,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 162
+      "queue_rank": 161
     },
     {
       "id": "T-0523",
@@ -8961,7 +8961,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 184
+      "queue_rank": 183
     },
     {
       "id": "T-0538",
@@ -10295,7 +10295,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 163
+      "queue_rank": 162
     },
     {
       "id": "T-0613",
@@ -11155,7 +11155,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 179
+      "queue_rank": 178
     },
     {
       "id": "T-0663",
@@ -11395,7 +11395,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 145
     },
     {
       "id": "T-0675",
@@ -11535,7 +11535,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 164
+      "queue_rank": 163
     },
     {
       "id": "T-0684",
@@ -11635,7 +11635,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 165
+      "queue_rank": 164
     },
     {
       "id": "T-0689",
@@ -11675,7 +11675,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 185
+      "queue_rank": 184
     },
     {
       "id": "T-0691",
@@ -12295,7 +12295,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941748580",
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0723",
@@ -12355,7 +12355,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0727",
@@ -12375,7 +12375,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 139
     },
     {
       "id": "T-0728",
@@ -12435,7 +12435,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
     },
     {
       "id": "T-0732",
@@ -13155,7 +13155,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 153
     },
     {
       "id": "T-0775",
@@ -13195,7 +13195,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 166
+      "queue_rank": 165
     },
     {
       "id": "T-0777",
@@ -13215,7 +13215,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 167
+      "queue_rank": 166
     },
     {
       "id": "T-0778",
@@ -13695,7 +13695,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 140
     },
     {
       "id": "T-0803",
@@ -13715,7 +13715,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 155
+      "queue_rank": 154
     },
     {
       "id": "T-0804",
@@ -13735,7 +13735,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 156
+      "queue_rank": 155
     },
     {
       "id": "T-0805",
@@ -13775,7 +13775,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 137
+      "queue_rank": 136
     },
     {
       "id": "T-0807",
@@ -13795,7 +13795,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 138
+      "queue_rank": 137
     },
     {
       "id": "T-0808",
@@ -13815,7 +13815,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 138
     },
     {
       "id": "T-0809",
@@ -13835,7 +13835,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 136
+      "queue_rank": 135
     },
     {
       "id": "T-0810",
@@ -13900,7 +13900,7 @@
     {
       "id": "T-0813",
       "title": "Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13908,14 +13908,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T19:46:19.386Z",
       "claimed_run": null,
-      "queue_rank": 135
+      "queue_rank": null
     },
     {
       "id": "T-0814",
@@ -13995,7 +13995,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 142
+      "queue_rank": 141
     },
     {
       "id": "T-0818",
@@ -14195,7 +14195,67 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 168
+      "queue_rank": 167
+    },
+    {
+      "id": "T-0831",
+      "title": "Six generated files conflict on every merge in this repo and always resolve by regenerating, so the conflict costs a hand resolution and buys nothing",
+      "state": "withdrawn",
+      "epic": "PIPELINE",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "910",
+      "claimed_by": "run 9/5/2026, 2:35:04 PM CT",
+      "blocked_on": "Duplicates T-0813 (owner-requested), split into T-0832 + T-0833; the work landed as T-0832 via PR #910",
+      "needs_bake": false,
+      "closed_at": "2026-09-05T19:46:22.713Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0832",
+      "title": "The six generated artifacts get merge treatment, registered and self-tested",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0813",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "910",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T19:46:22.853Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0833",
+      "title": "Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0813",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 185
     }
   ]
 }

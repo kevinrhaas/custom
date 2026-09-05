@@ -260,7 +260,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- tree off the 32 MB wall and dev's gate went green. 21 open at 16:00Z, 6 by 19:15Z. The
 # --- constraint was never "nobody is merging" — it was two stop-the-world faults and a janitor blind
 # --- to both, which is why T-0809 outranks the remaining laps.
-T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
 T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
@@ -321,3 +320,7 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
