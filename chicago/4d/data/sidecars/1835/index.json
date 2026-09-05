@@ -2180,6 +2180,600 @@
       ]
     },
     {
+      "id": "market_north",
+      "name_1835": "Market Street",
+      "name_2026": null,
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          90.47,
+          49.25
+        ],
+        [
+          92.14,
+          259.82
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 7 and 6. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes MARKET in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `market` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -9.08 m from this line at the tier's own northing, and the corridor's centre north of the river stands -7.34 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. MARKET IS THE ONE OF THE SIX GRADED NO BETTER THAN `inferred`, and the number is why: the plat's corridor stands 9.08 m WEST of this line, four times the worst of the other five, and the committed market->franklin pitch of 118.5 m is already the one South Division pitch off the plat's 400 ft module. The suspect is the parent line, not the North Division: `market` is fitted to modern N Wacker Drive, which stands on ground made after the river was walled. Choosing between the two lines needs a re-fit of `market` off the plat rather than off Wacker Drive, and that is T-0820, not this record. `name_2026` is null here for the same reason: N Wacker Drive north of the river is the east-west riverside drive and is not this line, and no modern name was established for it. THE SOUTH END is also the least settled of the six: it lands on `north_water`'s committed centreline at the reach T-0447 has open, where the plat does not give North Water Street the ground it runs on. If that ticket moves the street's west end, this line's south end moves with it. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "franklin_north",
+      "name_1835": "Franklin Street",
+      "name_2026": "N Franklin Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          209.37,
+          151.61
+        ],
+        [
+          210,
+          258.88
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 6 and 5. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes FRANKLIN in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `franklin` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -2.29 m from this line at the tier's own northing, and the corridor's centre north of the river stands -1.94 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. The south end is where `north_water` swings north around the slough mouth, so this line is the shortest of the six at 107 m. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wells_north",
+      "name_1835": "Wells Street",
+      "name_2026": "N Wells Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          331.2,
+          126.06
+        ],
+        [
+          331.98,
+          257.91
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 5 and 4. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes WELLS in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `wells` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -2.01 m from this line at the tier's own northing, and the corridor's centre north of the river stands -1.00 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lasalle_north",
+      "name_1835": "La Salle Street",
+      "name_2026": "N LaSalle Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          453.09,
+          108.57
+        ],
+        [
+          453.96,
+          256.94
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 4 and 3. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes LA SALLE in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `lasalle` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -0.26 m from this line at the tier's own northing, and the corridor's centre north of the river stands +1.50 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clark_north",
+      "name_1835": "Clark Street",
+      "name_2026": "N Clark Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          576.64,
+          109.11
+        ],
+        [
+          577.57,
+          255.96
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 3 and 2. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes CLARKE in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `clark` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -1.97 m from this line at the tier's own northing, and the corridor's centre north of the river stands +0.00 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dearborn_north",
+      "name_1835": "Dearborn Street",
+      "name_2026": "N Dearborn Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          699.56,
+          108.63
+        ],
+        [
+          700.47,
+          254.98
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "READ OFF THE THOMPSON PLAT FOR T-0451, 2026-09-05, and seated on the committed line it continues. The sheet held at chicago/pre_fire_v1/maps/images/1830_thompson_plat.png draws ONE tier of blocks in the North Division, numbered 1 at the Due North line and 7 at the North Branch, with six 80 ft corridors between them; this record is the corridor between blocks 2 and 1. THE PLAT LETTERS NO NAME IN ANY OF THEM — each carries the figure 80 at its head on the Kinzie line and a vertical ST. between the lot rows, and nothing else. The name here is the sheet's own lettering on the SAME LINE south of the river, where it writes DEARBORN in the Randolph-Washington tier, carried north because the sheet draws one line and not two. That is a carry and not a North Division reading, and `wolcott` — the one North Division line this project already held — is the standing proof that a name on this side of the river could differ. THE LINE ITSELF is the committed `dearborn` centreline extended north from North Water Street to Kinzie Street, unbent: no vertex is invented and the bearing is the parent's. What the plat independently says about it is the check, not the source — measured by tools/measure_north_division_streets.py off data/traces/thompson_north_division_streets.json, the corridor's centre on the sheet stands -0.49 m from this line at the tier's own northing, and the corridor's centre north of the river stands +1.50 px from the same street's corridor south of it. The whole tier's block pitch is the South Division's own to 0.6 m in the mean. Every metre of the run stands on modelled ground the heightfield holds above water. The 5 m sampling of e1834_harbor_cut from North Water Street to Kinzie Street returns no wet and no off-grid station on this line. THE WEAR IS CARRIED, NOT MEASURED: 5.8 m of light worn earth is what `wolcott` and `michigan_north` — the two North Division lines already committed — carry, and nothing read here says how this corridor was worn. `surface_confidence` and `wear_confidence` say so. WHAT THE 17.5 m FIGURE IS: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY and it bounds how precisely this line is PLACED, not whether the street was there.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
       "id": "michigan_north",
       "name_1835": "Michigan Street",
       "name_2026": "E/W Hubbard Street",

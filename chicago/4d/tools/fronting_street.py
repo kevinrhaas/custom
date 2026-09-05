@@ -184,9 +184,17 @@ def _by_flat_name() -> dict[str, str]:
     if "names" not in _cache:
         # 'The fort road' and 'The bank track' are not '<Name> Street' and the
         # corpus never prints them as an address.
-        _cache["names"] = {_flat(street["name_1835"]): street["id"]
-                           for street in streets()
-                           if (street.get("name_1835") or "").lower().endswith("street")}
+        # Sorted southernmost-first and claimed with setdefault, because two records can
+        # carry one name: T-0451's North Division lines are the committed South Division
+        # streets continued across the river, and the plat letters no name in any of them.
+        # An address printed as "Dearborn Street" is the South Division line — the reach
+        # the corpus advertises on — so the record reaching furthest south takes the name.
+        names: dict[str, str] = {}
+        for street in sorted(streets(),
+                             key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
+            if (street.get("name_1835") or "").lower().endswith("street"):
+                names.setdefault(_flat(street["name_1835"]), street["id"])
+        _cache["names"] = names
     return _cache["names"]
 
 
