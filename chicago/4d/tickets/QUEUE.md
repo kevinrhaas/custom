@@ -178,7 +178,6 @@ T-0385 — The New York Clothing Store stands three doors north of the Tremont H
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
 # --- they decide whether the ones above land on the right names and corners.
-T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
