@@ -65,13 +65,14 @@ FROM = "directories.people[].occupation_later"
 
 NOTE = (
     "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR {year}. This is a POINTER at "
-    "the `directories` block on this same record, not a claim about the scene date. The "
-    "1835 occupation above still reads `none_recorded`, its grade has not moved, and no "
-    "premises has been sought on the strength of this: a directory of {year} is evidence "
-    "about {year}. It is written here because the field a reader consults was asserting "
-    "an absence this file contradicts three lines further down, and \"no trade anywhere\" "
-    "and \"no trade in the scene window, one printed {year}\" are not the same fact "
-    "({ticket})."
+    "`{origin}` on this same record, derived by `{generator}` and holding nothing that "
+    "block does not already say. It is not a claim about the scene date: the 1835 "
+    "occupation above still reads `none_recorded`, its grade has not moved, and no "
+    "premises has been sought on the strength of it, because a directory of {year} is "
+    "evidence about {year}. It is written because the field a reader consults was "
+    "asserting an absence this file contradicts three lines further down, and \"no trade "
+    "anywhere\" and \"no trade in the scene window, one printed {year}\" are not the same "
+    "fact ({ticket})."
 )
 
 
@@ -98,9 +99,7 @@ def pointer_for(later: dict) -> dict:
         "describes_date": year,
         "confidence": later.get("confidence"),
         "sources": list(later.get("sources") or []),
-        "from": FROM,
-        "derived_by": GENERATOR,
-        "note": NOTE.format(year=year, ticket=TICKET),
+        "note": NOTE.format(year=year, ticket=TICKET, origin=FROM, generator=GENERATOR),
     }
 
 
@@ -224,7 +223,11 @@ def self_test() -> int:
     want("rule 1 sources", a["occupation"][POINTER]["sources"], later["sources"])
     want("rule 1 does not copy the block's note",
          later["note"] in a["occupation"][POINTER]["note"], False)
-    want("rule 1 names where it came from", a["occupation"][POINTER]["from"], FROM)
+    want("rule 1 names where it came from",
+         FROM in a["occupation"][POINTER]["note"], True)
+    want("rule 1 carries no figure the renderer does not read",
+         list(a["occupation"][POINTER]),
+         ["value", "describes_date", "confidence", "sources", "note"])
 
     # RULE 2 — only an absence is qualified; a recorded trade and a person the block
     # does not name are both left exactly as they were.
@@ -255,7 +258,7 @@ def self_test() -> int:
 
     for line in failures:
         print("FAIL " + line)
-    print("%s: %d rule check(s), %d failure(s)" % (GENERATOR, 13, len(failures)))
+    print("%s: %d rule check(s), %d failure(s)" % (GENERATOR, 14, len(failures)))
     return 1 if failures else 0
 
 

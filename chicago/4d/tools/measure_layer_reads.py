@@ -569,6 +569,22 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
+    # T-0693. `none_recorded` was carrying two facts — "no trade anywhere" and "no
+    # trade for 1835, and a dated one for 1839" — and a reader could not tell them
+    # apart from the field the card reads out. The pointer that separates them is
+    # derived from the `directories` block above, so every figure on it is that
+    # block's, dated to the year it describes; `laterOccupationHtml` renders all five
+    # beside the 1835 value and never in place of it. The year is read twice on
+    # purpose: once in the summary line, so the two states differ before the card is
+    # even opened, which was the whole complaint.
+    "persons[].occupation.later_occupation.value": ("shown", "escapeHtml(later.value)"),
+    "persons[].occupation.later_occupation.describes_date": (
+        "shown", "escapeHtml(String(later.describes_date))"),
+    "persons[].occupation.later_occupation.confidence": (
+        "shown", "swatch(later.confidence)"),
+    "persons[].occupation.later_occupation.note": ("shown", "escapeHtml(later.note || '')"),
+    "persons[].occupation.later_occupation.sources": (
+        "shown", "(later.sources || []).map((id) => citationsById.get(id))"),
     # The three that were reaching the card as `[object Object]` until the commit
     # this map arrived in. See the module docstring: they are graded claim blocks
     # like the household's own, and they go through `claimRow` now.
