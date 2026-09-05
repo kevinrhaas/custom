@@ -82,7 +82,6 @@ T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number a
 # --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
 # --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
@@ -103,7 +102,7 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
-T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
+T-0775 — Volume 4's OCR reading stitched, re-parsed and re-sampled, now that every band is in
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
@@ -115,7 +114,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
-T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
@@ -282,8 +280,8 @@ T-0715 — data/residents/index.json rows go stale for any household no minting 
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
-T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
-T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+T-0727 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
+T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 
@@ -326,3 +324,7 @@ T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the m
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
+T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
+T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
+T-0773 — Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them
+T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
