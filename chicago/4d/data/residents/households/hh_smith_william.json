@@ -125,6 +125,20 @@
      "source": "norris_directory_1844",
      "rule": "G1a"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R4",
+     "cluster": "smith-william",
+     "weighed_against": [
+      "smith_william_v"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Both are graded G1a on five and two sources respectively, and 'William V' is 'William' with a middle initial the other card does not print.",
+     "against_merge": "Neither card documents the man beyond lists — no trade, no dwelling, no household. William Smith is the least distinctive name in the town and there is no anchor for the bare forename to attach to. T-0696 again. Refused by rule."
+    }
    ]
   }
  ],

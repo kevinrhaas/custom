@@ -62,9 +62,84 @@
     "note": "THE TRADE IS THE PAPER'S. The corpus reads it as army officer, engineer, at the Democrat of 13 August 1834, column 2. The residents vocabulary's nearest period-correct word for it is `army_officer`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take."
    },
    "sources": [
-    "chicago_democrat_1833_1835"
+    "chicago_american_1835",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839"
    ],
-   "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'cient superintendent, Lieu' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 13 August 1834, column 2. The corpus associates the name with Chicago; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `army_officer` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry."
+   "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'cient superintendent, Lieu' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 13 August 1834, column 2. The corpus associates the name with Chicago; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `army_officer` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
+   "civic_evidence": [
+    {
+     "list": "tax_1833",
+     "as_read": "Allen, Lt. James",
+     "locator": "tax_1833",
+     "record_id": "tax_1833_001",
+     "describes_date": "1833",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1b"
+    },
+    {
+     "list": "poll_1834",
+     "as_read": "Allen, James",
+     "locator": "poll_1834",
+     "record_id": "poll_1834_005",
+     "describes_date": "1834",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1b"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "J. Allen",
+     "locator": "chicago_democrat_1834_03_04#c002",
+     "record_id": "person_j_allen",
+     "describes_date": "1834-03-04",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Lieut. Allen",
+     "locator": "chicago_democrat_1834_03_25#c002",
+     "record_id": "person_lieut_allen",
+     "describes_date": "1834-03-25",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Lieut. J. Allen",
+     "locator": "chicago_american_1835_07_18#c001",
+     "record_id": "person_lieut_j_allen",
+     "describes_date": "1835-07-18",
+     "source": "chicago_american_1835",
+     "rule": "G1b"
+    }
+   ],
+   "book_evidence": [
+    {
+     "list": "death_notice",
+     "as_read": "Allen, Col. James",
+     "locator": "A",
+     "record_id": "fdn0006",
+     "describes_date": "August 23, 1846",
+     "source": "fergus_1843_old_settler_death_notices",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C0",
+    "cluster": "allen",
+    "cards": [
+     "allen_james",
+     "allen_lieut",
+     "allen_lieut_j"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+   }
   }
  ],
  "touches_removal": false,
