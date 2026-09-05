@@ -1960,19 +1960,34 @@ for (const [label, viewport, touch] of [
     // and compares figure for figure cannot. The residents manifest is fetched here
     // rather than taken off the harness handle because `census.js` reads it directly and
     // nothing puts it on `window`.
+    //
+    // T-0782 rebuilt the card as TWO rows — buildings, then people — and demoted `people
+    // housed` from a headline figure to a placement note under the people row, because
+    // set against the town total it read as population coverage and is nothing of the
+    // kind. So the headline figures are now the two numerators, and the housed count is
+    // asserted where it moved to rather than dropped: it is the number this whole check
+    // exists to keep honest. The two strings the owner asked be struck are asserted
+    // ABSENT, because either of them coming back is a silent regression of the reading.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
       const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      const seg = (sel) => [...(host?.querySelectorAll(sel) || [])].map((el) => el.style.width);
       return {
         visible,
         figures,
         text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        aria: host ? (host.getAttribute('aria-label') || '') : '',
+        note: host ? [...host.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()) : [],
+        bars: host ? host.querySelectorAll('.gc-bar').length : 0,
+        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
+        keys: host ? [...host.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()) : [],
+        gateSub: (document.getElementById('gate-sub')?.textContent || '').trim(),
         box: host ? host.getBoundingClientRect().width : 0,
         data: window.__chicago4d.census,
       };
     });
-    // The third row's figure is not on the harness handle, so it is read off the
+    // The people row's figure is not on the harness handle, so it is read off the
     // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
     // this run is serving, which is the same file the page fetched.
     let residentCounts = null;
@@ -1981,19 +1996,44 @@ for (const [label, viewport, touch] of [
         fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
       ).counts || null;
     } catch { residentCounts = null; }
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
-      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
+    const want = [gateCensus.data?.buildings?.standing, residentCounts?.persons]
+      .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
       `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
       want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Each numerator carries a bar it is a portion of, and the people bar carries the
+    // three grades as segments of the town total — a key alone would let the bar rot.
+    const housed = Number(gateCensus.data?.people?.housed);
+    const byGrade = residentCounts?.by_grade || {};
+    const gradeWant = ['attested', 'inferred', 'reconstructed']
+      .filter((g) => Number.isFinite(Number(byGrade[g])));
+    check(`${label}: both rows carry a completeness bar, the people bar graded`,
+      gateCensus.bars === want.length && gateCensus.grades.length === gradeWant.length
+      && gateCensus.keys.length === gradeWant.length
+      && gradeWant.every((g, i) => gateCensus.keys[i]
+        === `${grouped(Number(byGrade[g]))} ${g}`),
+      `bars=${gateCensus.bars} segments=${JSON.stringify(gateCensus.grades)} keys=${JSON.stringify(gateCensus.keys)}`);
+    // The placement figure survives as a note under the people row, in the committed
+    // data's own number, and never again as a share of the town.
+    check(`${label}: people housed reads as placement, under the people row`,
+      Number.isFinite(housed) && gateCensus.note.length === 1
+      && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
+      && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
+      `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-0782's two strikes, asserted as absences. `structures` was the ready line's
+    // record count, which contradicted the buildings figure below it.
+    check(`${label}: the card drops the projected count and the structures line`,
+      !/projected/i.test(gateCensus.text) && !/projected/i.test(gateCensus.aria)
+      && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
+      `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
     // against the town's own recorded size, both quoted out of the same file.
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     check(`${label}: the gate names both denominators`,
       Number.isFinite(gateCensus.data?.buildings?.target)
       && Number.isFinite(gateCensus.data?.people?.town_total)

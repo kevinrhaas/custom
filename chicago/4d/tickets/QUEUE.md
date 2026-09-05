@@ -380,4 +380,4 @@ T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes,
 T-0778 — Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
 T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
 T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
-T-0782 — The opening card drops the projected count and the 371-structures line and reads as two parallel completeness ladders — buildings and people
+
