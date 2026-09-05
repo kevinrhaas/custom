@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:28 PM",
+  "generated_ct": "Sep 5, 2026, 4:50 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12244,7 +12244,7 @@
     {
       "id": "T-0720",
       "title": "864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12254,11 +12254,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 4:50:43 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33994095741",
       "queue_rank": 6
     },
     {
