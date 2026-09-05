@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 605, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '2026-09-05T23:26:53.824Z', date: 'Sep 5, 2026, 6:26 PM CT',
+  { v: null, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '',
     items: [
       'Nothing you can see in the town changed today. This is about the record cards behind the people who live here, and a way one of them could quietly come to say the same thing twice over.',
       'Thirty-one townspeople bought federal land around Chicago, and each of their cards carries a paragraph about it \u2014 which tracts, on what dates, for how much, and the standing warning that buying ground is not living on it. A tool writes those paragraphs from the register. That tool was rewritten last month, and the earlier version is still sitting on an old working branch.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'Every check passed. The card check asked whether the paragraph was there, and whether any card carried one it had no right to \u2014 both true. Neither question can see a card that answers correctly and then answers again.',
       'A card now says the register once, and the check refuses two ways of breaking that: the paragraph written twice over, or a superseded version left standing beside the current one. Proved by staging the fault \u2014 thirty-one refusals where there had been none \u2014 before fixing it.',
       'The four other passes that write onto cards this way are open to the same thing, and that is written down as work rather than fixed here.',
+    ] },
+  { v: 605, title: 'Two readings of the same census sheet, settled against the sheet', kind: 'change', ts: '2026-09-05T23:10:34.830Z', date: 'Sep 5, 2026, 6:10 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. Two pages of the 1840 census were read to the cell twice on the same day last week, by two runs that did not know about each other, and the record has said ever since that the readings disagreed on 20 of the 30 lines on one sheet and 25 of the 31 on the other. They did not. Compared on what each pass actually read off the paper, they disagree on ONE line each.',
+      'The 20 and the 25 were an artefact of the comparison. Each reading was measured through its own set of closed columns, so most of what was counted as disagreement was the two filters differing rather than the two readers. From those figures the record had inferred that the two passes fitted their column grids differently and put the same pencil strokes in different columns \u2014 an alarming thing to believe about a census reading, and not true of either sheet.',
+      'What they really disagreed about was the enumerator\u2019s own handwriting at the foot of his sheet. Both sheets were re-read at four to twelve times magnification, on a grid re-fitted to each sheet\u2019s own rules and checked against the printed heading before a single cell was read, and all six disputed footings were decided by comparing the glyph with the same hand\u2019s other numerals on the same two pages.',
+      'Two cells moved with them. Line 28 of printed page 229 loses a boy under five: the ink inside the first column is the terminal flourish of Patrick Sanderken\u2019s own surname, one continuous tapering movement out of the last letter, where a real tally on the line above stands clear of the name. Line 13 of printed page 231 keeps its four girls aged five to ten: that mark is a written numeral, not a stroke.',
+      'The cost is honest and it is paid. Page 229\u2019s first column had been committed as balanced at ten marks against a footing of ten; it reads nine against a footing of fourteen, so it is withdrawn, and eight households across the whole deposit lose the census serial that had been attached to them. No stroke was invented to close it: all six lines whose ink was in question were examined, and every one is a name terminal.',
+      'The lesson the two readings were kept apart to prove now has its demonstration. A column that adds up to the number at the foot of the page is not, on its own, a column read right \u2014 both passes balanced that first column, at ten and at nine, and each had read the footing to suit.',
     ] },
   { v: 604, title: 'Eighty-one unresolved doubts, and what each is worth', kind: 'fix', ts: '2026-09-05T22:55:28.664Z', date: 'Sep 5, 2026, 5:55 PM CT',
     items: [
