@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A book nobody here had opened, and the names it held', kind: 'change', ts: '',
+  { v: 593, title: 'A book nobody here had opened, and the names it held', kind: 'change', ts: '2026-09-05T19:02:17.630Z', date: 'Sep 5, 2026, 2:02 PM CT',
     items: [
       'Nothing in the town moved today. A seven-hundred-page history of Chicago printed in 1895 \u2014 Moses and Kirkland, the largest Chicago work this project knew of and did not hold \u2014 is now read, and twenty passages out of it are written down.',
       'It was opened for a list. A card index at the Newberry Library points at this book from two hundred and ninety-nine of its cards, and forty-nine of the surnames on those cards belong to people this town already holds. All forty-nine were looked up, not just the promising ones: thirteen earned something, eight turned up early and said nothing usable, twenty-one never reach 1835, and two are simply not in the book. Every answer is written down, because the point of looking a name up is that nobody has to look it up again.',
