@@ -69,7 +69,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "One of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and a signatory of the 1832 militia agreement submitting to Gholson Kercheval as captain 'until all apprehension of danger from the Indians may have subsided'."
+   "note": "One of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and a signatory of the 1832 militia agreement submitting to Gholson Kercheval as captain 'until all apprehension of danger from the Indians may have subsided'.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "The First Presbyterian history describes Rufus Brown's log boarding house as full during the church's earliest period. It corroborates the exact-name lodging role; it does not name Mrs Brown or resolve a street address.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "first_presbyterian_chicago_1833_1913"
+    ]
+   }
   },
   {
    "id": "brown_mrs_rufus",
@@ -88,7 +100,16 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A WOMAN NAMED ONLY BY HER HUSBAND'S NAME AND DOCUMENTED AS THE PROPRIETOR OF A BUSINESS, which is a combination this literature produces constantly and this schema has to be able to carry. Two women named Brown are among the nine village citizens founding the First Presbyterian Church in June 1833 - 'Mrs. Elizabeth Brown' and 'Mrs. Cynthia Brown' - and one of them may be this woman. The record does not choose: identifying her with either would manufacture a forename out of a surname."
+   "note": "A WOMAN NAMED ONLY BY HER HUSBAND'S NAME AND DOCUMENTED AS THE PROPRIETOR OF A BUSINESS, which is a combination this literature produces constantly and this schema has to be able to carry. Two women named Brown are among the nine village citizens founding the First Presbyterian Church in June 1833 - 'Mrs. Elizabeth Brown' and 'Mrs. Cynthia Brown' - and one of them may be this woman. The record does not choose: identifying her with either would manufacture a forename out of a surname.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+   }
   }
  ],
  "touches_removal": false,

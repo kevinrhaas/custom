@@ -152,6 +152,15 @@ step "the dooryard garden pickets re-derive from the rule that chose their lots"
 step "the lot-line yard fences re-derive from the rule that chose their lots and types" \
   python3 tools/generate_lot_line_fences.py --check
 
+# And every one of those runs can now say WHOSE ground it stands on (T-0637). The join is a
+# derivation off the committed lots, the committed footprints and the committed household
+# index, so it is worth nothing unless it stays derivable and stays truthful about what it
+# could not answer: this asks that every run on the whole layer names an owner or records a
+# refusal, that no belongs_to names a structure or a household this repository does not
+# hold, and that the two hand-authored yards keep the owners somebody read out of a source.
+step "every enclosure run says whose ground it stands on, or records why it cannot" \
+  python3 tools/check_enclosure_owners.py
+
 # The dooryard plantings are the same shape one layer greener: the owner's brief and its
 # image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
 # source counts or places any particular house's stems. So which house keeps what is a
@@ -1008,6 +1017,13 @@ step "…and its own assertions still fire when broken" \
 if [ -d ../../site/chicago/4d ]; then
   step "published mirror matches its source" \
     node tools/check_published.mjs
+
+  # …and the one layer in it publish.sh transforms rather than copies. The residents
+  # records ship minified for the size budget, so the byte comparison above cannot see
+  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+  # files, nothing dropped.
+  step "the published residents layer carries its source's value" \
+    node tools/check_published_residents.mjs
 fi
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
@@ -1233,6 +1249,18 @@ step "the fifteenth research cohort is fixed" \
 step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
+# T-0511. The reference README's completion rule says a cohort ticket is not complete
+# "while its XLSX/CSV/README package exists only locally", and on 2026-09-04 the folders
+# existed for T-0478..T-0486 only: the first three slices — 225 people — had findings JSON
+# and a dossier and nothing a reader could open. The packages are now DERIVED from the
+# frozen manifests and the committed review payload, so this step is what keeps them from
+# quietly stopping being true, and the index in the README with them.
+step "every completed research cohort has a durable package, and it still matches its records" \
+  python3 tools/export_resident_research_package.py --check
+
+step "…and that gate's own assertions still fire when broken" \
+  python3 tools/export_resident_research_package.py --self-test
+
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
 # are what the pass derives; this proves the DERIVATION is what the owner permitted —
 # every minted person carrying `letter_list_only` and the dated return behind it, and not
@@ -1275,6 +1303,16 @@ step "…and its two readings of a printed name are still two" \
 # with their reasons; docs/LIBERTIES.md L218 carries the scale.
 step "the civic, church, press and book residents re-derive from the ladder" \
   python3 tools/mint_civic_residents.py --check
+
+# T-0515, the second mode of the same pass. `--build` above mints the identities
+# the town does NOT hold; this applies the ladder to the 162 it proposes for people
+# already on a card, and its whole value is that the decision is DERIVED — the
+# regrade, the eight it refuses on the forename the volume prints, and the forty-five
+# downgrades it declines because the card rests on Andreas or on an adjudicated
+# research outcome the ladder never read. A hand-edit to any one of those grades
+# would otherwise stand as a reading.
+step "the regraded residents re-derive from the ladder too" \
+  python3 tools/mint_civic_residents.py --regrade --check
 
 step "…and none of them claims more than a person and a reading" \
   python3 tools/mint_civic_residents.py --gate
@@ -1401,6 +1439,19 @@ step "…and the later addresses re-derive through the back-projection clauses" 
 step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
   python3 tools/back_project_addresses.py --self-test
 
+# T-0669, the residence half of the same grammar: docs/RESIDENCE-BACK-PROJECTION.md, which
+# reads a street the volume prints as a HOME — its own `res` or `bds` — and carries it as
+# the household's street FACE and never as a point. All 48 residence addresses are
+# adjudicated and the 41 refusals are committed beside the 7 placements, for the same
+# reason the business pass's are: a refusal that disappears from the record reads to the
+# next run as an address nobody looked at. The self-test additionally holds the invariant
+# the two policies share — no printed address is PLACED by both of them.
+step "…and the later HOME addresses re-derive through the residence clauses" \
+  python3 tools/back_project_residences.py --check
+
+step "…and no back-projected home has grown a point, a roof or an 1835 link" \
+  python3 tools/back_project_residences.py --self-test
+
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
 # the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
@@ -1413,6 +1464,32 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
+
+# T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
+# Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
+# had matched 101 entries to people this town holds, and the second hop could not even see
+# them, because both crosswalks group their rulings under the pool each was matched against
+# rather than at the top of the file. This pass writes them, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made.
+step "…and Fergus 1839's later lists are on the 97 cards they name" \
+  python3 tools/spend_fergus_1839_later_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_later_lists.py --self-test
+
+# T-0636, consolidation pass 3. The Illinois State Archives' land tract sales matched 35
+# purchasers to people this town holds a card for, and not one of those cards cited the
+# register — the largest unwritten block the second hop could see. This pass writes them,
+# and it is gated in the same two directions as its three predecessors: a ruling that stops
+# reaching its card, and a card that carries the paragraph for a ruling the crosswalk never
+# made. The paragraph says PURCHASE and never residence, because the register's own
+# Residence column reads COOK, ILLINOIS or UNKNOWN on every one of these rows.
+step "…and the land tract sales are on the 31 cards they name" \
+  python3 tools/spend_land_sales.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_land_sales.py --self-test
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
@@ -1676,6 +1753,20 @@ step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+
 step "…and its own assertions still fire when broken" \
   python3 tools/read_st_cyr_register.py --self-test
 
+# T-0583. The 1842-1892 roll of the Second Presbyterian Church of Chicago — the work
+# fifty-four Newberry index cards cite and this project did not hold. Two things are
+# gated. First, the COLUMNS: archive.org reads a four-column table in the order the
+# scanner met the ink, so the reading is rebuilt from the committed row map's spans into
+# the committed text, and a span that points at the wrong ink fails here. Second, the
+# LADDER: the roll opens in June 1842, seven years after the scene date, so no line on it
+# can be an 1835 fact — the self-test asserts every record says so and that nothing dated
+# on or before 1835-07-01 has reached one.
+step "the Second Presbyterian roll rebuilds, and no line of it is an 1835 fact" \
+  python3 tools/read_second_presbyterian.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_second_presbyterian.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test
 
@@ -1840,6 +1931,19 @@ step "…and its own assertions still fire when broken" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
+
+# T-0512, the second half of the owner's publish ask. The final audit is the one file that
+# says, for every person in the town, what they rest on — which ticket reviewed them, which
+# source ids stand behind them by category, and what is still open. It is DERIVED from the
+# residents layer, so it is exactly the kind of artifact that reads as current long after
+# it has stopped being true: a cohort lands, the layer moves, and a stale CSV keeps telling
+# the owner the programme reached 611 people. Gated in both directions — the committed
+# package must re-derive, and a hand edit to it is refused.
+step "the final resident audit still re-derives from the residents layer" \
+  python3 tools/export_resident_audit.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/export_resident_audit.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

@@ -75,6 +75,26 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Henry Hopkins",
+     "locator": "chicago_democrat_1834_07_09#c010",
+     "record_id": "person_henry_hopkins",
+     "describes_date": "1834-07-09",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Hopkins, Henry",
+     "locator": "chicago_democrat_1835_07_01#c005",
+     "record_id": "person_hopkins_henry",
+     "describes_date": "1835-07-01",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ],
    "resident_subtype": "projected_resident"
   }
  ],

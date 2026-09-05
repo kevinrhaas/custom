@@ -67,7 +67,7 @@
 import { citationItems, escapeHtml } from './citations.js';
 
 /** A closed-set token as a reader should see it: `tavern_keeper`. */
-function words(token) {
+export function words(token) {
   return String(token ?? '').replace(/_/g, ' ');
 }
 
@@ -84,7 +84,7 @@ function rank(list, value) {
  * they share the three words, so they share the chip rather than inventing a
  * second one that means the same thing.
  */
-function swatch(level) {
+export function swatch(level) {
   const cls = { attested: 'sw-doc', inferred: 'sw-inf' }[level] || 'sw-rec';
   return `<i class="sw ${cls}" title="${escapeHtml(level || 'reconstructed')}"></i>`;
 }
@@ -95,7 +95,7 @@ function swatch(level) {
  * is not a database, and a visitor reading which day the post office was holding
  * a letter should not have to parse one.
  */
-function printedOn(iso) {
+export function printedOn(iso) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ''));
   if (!m) return String(iso ?? '');
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -349,7 +349,8 @@ function laterClaimHtml(block, citationsById) {
   };
   return one(block.occupation_later, 'A trade printed against this name')
     + one(block.address_later, 'An address printed against this name')
-    + backProjectionHtml(block.back_projection);
+    + backProjectionHtml(block.back_projection)
+    + residenceBackProjectionHtml(block.residence_back_projection, citationsById);
 }
 
 /**
@@ -399,6 +400,52 @@ function backProjectionHtml(bp) {
   return `<dt>${escapeHtml(label)}</dt>
     <dd>${chip}${escapeHtml(where)}${carried}${clause}
       <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
+}
+
+/**
+ * And the same question asked about a HOME (T-0669), which is a different question and
+ * so gets a different row rather than a wider one.
+ *
+ * `docs/RESIDENCE-BACK-PROJECTION.md` is L218's mechanism aimed at where a man slept:
+ * a street the volume prints as `res` or `bds`, read backwards and carried as the
+ * household's street FACE. It departs from the business rule in two places, and both
+ * are visible here. A home needs no attested trade — everybody the town holds lived
+ * somewhere in it — which is why forty-four of these forty-eight belong to people the
+ * 1835 papers give no trade and the business pass refused before it ever asked about
+ * their houses. And a home never reaches a POINT, not even where the volume prints a
+ * corner: that corner hangs off a street number from a grid 1835 did not have.
+ *
+ * BOTH ROWS CAN APPEAR ON ONE CARD, and that is deliberate. One printed address can
+ * carry two rulings because two policies asked two questions of it, and a card showing
+ * only the second would leave a reader wondering what became of the first.
+ */
+function residenceBackProjectionHtml(rp, citationsById) {
+  if (!rp) return '';
+  const placed = rp.outcome === 'placed';
+  const label = {
+    placed: 'That home address was read backwards, and here is what it reaches',
+    already_better_placed: 'Not read backwards — something better already houses him',
+  }[rp.outcome] || 'That home address was refused, and here is why';
+  // `rp.placement` is always `face` and is read rather than assumed: the day this
+  // policy grows a second unit, the row says so instead of the prose lying.
+  const where = placed
+    ? `${rp.value} — the ${words(rp.placement)}, and nothing narrower`
+    : 'no position taken';
+  const kind = rp.kind
+    ? `<span class="res-chip res-research">${escapeHtml(
+      rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence')}</span>` : '';
+  const carried = rp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(rp.read_back_years))} years back, from ${
+      escapeHtml(String(rp.describes_date))}</span>` : '';
+  const clause = rp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(rp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade, for the reason the row above gives.
+  const chip = placed ? swatch(rp.confidence) : '';
+  const cites = (rp.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${kind}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(rp.note)}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
 /**
@@ -500,7 +547,7 @@ function evidenceLadderHtml(person, citationsById, ladderRules) {
         them together.</span></dd>` : ''}`;
 }
 
-function personHtml(person, citationsById, researchByPerson, directoryByPerson,
+export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -580,7 +627,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules) {
+export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -947,4 +994,71 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     researchCounts,
     error: null,
   };
+}
+
+/**
+ * The joins a household card needs, loaded once for a caller that is not this
+ * section (the People directory, `people.js`).
+ *
+ * `mountResidents` above fetches the citation join, the identity reviews and the
+ * directory crosswalks and keeps them in its own closure, because until the
+ * directory existed it was the only thing that rendered a household record. The
+ * directory renders the same record with the same `householdHtml`, and a card
+ * that quoted a bare source id because its caller skipped the join would be the
+ * defect `compile_residents_sources` exists to prevent. So the four reads are
+ * repeated here as ONE function returning the shapes `householdHtml` takes, and
+ * cached per scene so the two sections opening the same town cost one set of
+ * fetches between them. `mountResidents` is left as it was — the read census in
+ * `tools/measure_layer_reads.py` scans this file's text — and a failure here
+ * degrades exactly the way it does there: a missing join is reported and the
+ * card renders without that block, never not at all.
+ *
+ * @param {URL} dataBase   where data/ lives
+ * @param {string} sceneId which scene's citation join to read
+ * @param {string[]} [problems] the shared collector
+ * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
+ *   ladderRules: object[], getJson: (rel: string) => Promise<any>}>}
+ */
+const residentJoinCache = new Map();
+export function loadResidentJoins(dataBase, sceneId, problems = []) {
+  const key = `${sceneId}@${String(dataBase)}`;
+  if (residentJoinCache.has(key)) return residentJoinCache.get(key);
+  const getJson = async (rel) => {
+    const res = await fetch(new URL(rel, dataBase), { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`${rel}: ${res.status} ${res.statusText}`);
+    return res.json();
+  };
+  const promise = (async () => {
+    const citationsById = new Map();
+    const researchByPerson = new Map();
+    const directoryByPerson = new Map();
+    let ladderRules = [];
+    const [joined, pilot, found, index] = await Promise.all([
+      getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
+        problems.push(`people: ${err.message} — person cards are shown without their citations`);
+        return null;
+      }),
+      getJson('residents/research_pilot.json').catch((err) => {
+        problems.push(`people: ${err.message} — resident research reviews are not shown on person cards`);
+        return null;
+      }),
+      getJson('residents/directories.json').catch((err) => {
+        problems.push(`people: ${err.message} — the directory findings are not shown on person cards`);
+        return null;
+      }),
+      getJson('residents/index.json').catch((err) => {
+        problems.push(`people: ${err.message} — the grading ladder's text is not shown on person cards`);
+        return null;
+      }),
+    ]);
+    for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
+    for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
+    for (const row of found?.people || []) {
+      directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
+    }
+    ladderRules = index?.vocabulary?.ladder_rules || [];
+    return { citationsById, researchByPerson, directoryByPerson, ladderRules, getJson };
+  })();
+  residentJoinCache.set(key, promise);
+  return promise;
 }

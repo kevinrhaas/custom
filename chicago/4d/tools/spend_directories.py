@@ -507,28 +507,34 @@ def dumps(doc) -> str:
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
 
 
+# The keys later passes own on a person inside this block, in the order they are
+# written. `household_text` lifts them off the record and puts them back rather
+# than rebuilding them, because this pass does not derive them.
+CARRIED_KEYS = ("back_projection", "residence_back_projection")
+
+
 def household_text(hid: str, block: dict | None) -> str:
     """The record with this pass's `directories` block on it, and nobody else's.
 
-    T-0633 CARRIES OVER. A later pass — `tools/back_project_addresses.py` — writes
-    a `back_projection` onto each person INSIDE this block, saying what was done
-    with the address this one carried there. Rebuilding the block from the
-    crosswalks would delete it, and the two gates would then take it in turns to
-    call the other's output drift. So the existing key is lifted off the record
-    and put back on the person it belongs to, which is the same narrowing T-0632
-    made in `mint_placed_residents.py` for the block as a whole: this pass owns
-    what it derives and nothing else.
+    T-0633 AND T-0669 CARRY OVER. Two later passes —
+    `tools/back_project_addresses.py` and `tools/back_project_residences.py` —
+    write a `back_projection` and a `residence_back_projection` onto each person
+    INSIDE this block, saying what each did with the address this one carried
+    there. Rebuilding the block from the crosswalks would delete them, and the
+    gates would then take it in turns to call each other's output drift. So the
+    existing keys are lifted off the record and put back on the person they
+    belong to, which is the same narrowing T-0632 made in
+    `mint_placed_residents.py` for the block as a whole: this pass owns what it
+    derives and nothing else.
     """
     doc = read_json(HOUSEHOLDS / f"{hid}.json")
-    carried = {p["person_id"]: p["back_projection"]
-               for p in (doc.get("directories") or {}).get("people") or []
-               if "back_projection" in p}
+    carried = {p["person_id"]: {k: p[k] for k in CARRIED_KEYS if k in p}
+               for p in (doc.get("directories") or {}).get("people") or []}
     doc.pop("directories", None)
     if block:
         block = json.loads(json.dumps(block))
         for person in block["people"]:
-            if person["person_id"] in carried:
-                person["back_projection"] = carried[person["person_id"]]
+            person.update(carried.get(person["person_id"]) or {})
         doc["directories"] = block
     return dumps(doc)
 

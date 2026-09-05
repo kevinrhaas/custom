@@ -47,7 +47,7 @@
    "id": "inf_joiner_north_02",
    "name": "J. W. Reed",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "occupation": {
     "value": "joiner",
     "confidence": "attested",
@@ -60,7 +60,58 @@
    "sources": [
     "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad"
-   ]
+   ],
+   "civic_evidence": [
+    {
+     "list": "poll_1834",
+     "as_read": "Reed, James W.",
+     "locator": "poll_1834",
+     "record_id": "poll_1834_092",
+     "describes_date": "1834",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    },
+    {
+     "list": "poll_1835",
+     "as_read": "Reed, J.W.",
+     "locator": "poll_1835",
+     "record_id": "poll_1835_062",
+     "describes_date": "1835",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "J. W. Reed",
+     "locator": "chicago_democrat_1833_12_31#c002",
+     "record_id": "person_j_w_reed",
+     "describes_date": "1833-12-31",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "James W. Reed",
+     "locator": "chicago_democrat_1834_08_13#c005",
+     "record_id": "person_james_w_reed",
+     "describes_date": "1834-08-13",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    }
+   ],
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0493",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "forenames agree initial for initial: entry 'J.W. Reed' against resident 'J. W. Reed'",
+    "source_ids": [
+     "chicago_voter_lists_1833_1835_irad"
+    ]
+   }
   }
  ],
  "touches_removal": false,

@@ -76,6 +76,35 @@
      "chicago_democrat_1833_1835"
     ]
    },
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "T. H. Moreland",
+     "locator": "chicago_democrat_1834_07_02#c029",
+     "record_id": "person_t_h_moreland",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Thomas [H]. Moreland",
+     "locator": "chicago_democrat_1834_07_02#c030",
+     "record_id": "person_thomas_h_moreland",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Thomas U. Moreland",
+     "locator": "chicago_democrat_1834_07_09#c003",
+     "record_id": "person_thomas_u_moreland",
+     "describes_date": "1834-07-09",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ],
    "resident_subtype": "projected_resident"
   }
  ],

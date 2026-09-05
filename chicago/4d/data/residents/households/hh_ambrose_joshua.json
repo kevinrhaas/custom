@@ -79,6 +79,26 @@
      "chicago_democrat_1833_1835"
     ]
    },
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Joshua Ambrose",
+     "locator": "chicago_democrat_1835_05_20#c013",
+     "record_id": "person_joshua_ambrose",
+     "describes_date": "1835-05-20",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Ambrose, J. E.",
+     "locator": "chicago_democrat_1835_08_19#c008",
+     "record_id": "person_ambrose_j_e",
+     "describes_date": "1835-08-19",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
    "resident_subtype": "projected_resident"
   }
  ],

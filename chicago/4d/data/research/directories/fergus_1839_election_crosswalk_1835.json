@@ -2300,7 +2300,7 @@
     ],
     "person_id": "haddock_edward",
     "household_id": "hh_haddock_edward",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "E Haddock",
      "E W Haddock",
@@ -3311,7 +3311,7 @@
     ],
     "person_id": "inf_physician_south_01",
     "household_id": "hh_inf_physician_south_01",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "E S Kimberly",
@@ -3743,7 +3743,7 @@
     ],
     "person_id": "inf_tavern_keeper_north_01",
     "household_id": "hh_inf_tavern_keeper_north_01",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "James Kinzie",
