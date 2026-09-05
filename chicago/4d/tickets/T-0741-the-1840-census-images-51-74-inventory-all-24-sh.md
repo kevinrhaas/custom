@@ -40,7 +40,7 @@ Piece 1 of 2 of **T-0496 — The 1840 census deposit is 75 page images and 210 h
 - A printed page number that the scan does not carry legibly is `null` with the reason on
   the image entry. A number recovered from the run of its neighbours is an inference
   wearing a reading's clothes and is not written.
-- No names, no cells, no serials, no residents minted — those are T-0742's and T-0504's.
+- No names, no cells, no serials, no residents minted — those are T-0746's and T-0504's.
 - `tools/check.sh` green and `research_domains.py --check` green on the domain.
 
 **Why this piece first.** Group 3 is the only one of the three the deposit declaration

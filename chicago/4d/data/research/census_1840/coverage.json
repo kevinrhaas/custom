@@ -492,7 +492,7 @@
   },
   {
    "range": "images 26-50 of 74",
-   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings. T-0526 (names and cells of printed 216, 217, 218 and 224) was split on measurement into T-0552 (printed 216 and 217, read here) and T-0553 (printed 218 and 224): one left sheet is 31 to 33 lines across 38 hand-written columns, and two of them is a run's demonstration, not four. T-0528 was split on measurement into T-0656 (this key and the pairing) and T-0657/T-0658/T-0659 (the nine continuation sheets read line by line, three, three and two of them). T-0656 published pairing_key_26_50.json: the population and line-count keys of the ten left sheets of this group that have a committed reading, the printed TOTAL footing of eight of the nine filled continuations read off the leaf, and the two-key test applied to all eight. 33S7-9YYJ-K2 pairs to printed 230 and 33SQ-GYYJ-9CZ to printed 209, both on both keys and both corroborated line by line; 33S7-9YYJ-FJ against printed 207 is carried by the line count and the sequence and refused by the population; the other five have no partner among the sixteen left sheets read anywhere in the deposit. 33S7-9YYJ-V2 was left to T-0529. Five of this group's line counts are corrected against the contact-sheet pass.",
+   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings. T-0526 (names and cells of printed 216, 217, 218 and 224) was split on measurement into T-0552 (printed 216 and 217, read here) and T-0553 (printed 218 and 224): one left sheet is 31 to 33 lines across 38 hand-written columns, and two of them is a run's demonstration, not four. T-0528 was split on measurement into T-0656 (this key and the pairing) and T-0657/T-0658/T-0659 (the nine continuation sheets read line by line, three, three and two of them). T-0656 published pairing_key_26_50.json: the population and line-count keys of the ten left sheets of this group that have a committed reading, the printed TOTAL footing of eight of the nine filled continuations read off the leaf, and the two-key test applied to all eight. 33S7-9YYJ-K2 pairs to printed 230 and 33SQ-GYYJ-9CZ to printed 209, both on both keys and both corroborated line by line; 33S7-9YYJ-FJ against printed 207 is carried by the line count and the sequence and refused by the population; the other five have no partner among the sixteen left sheets read anywhere in the deposit. 33S7-9YYJ-V2 was left to T-0529. Five of this group's line counts are corrected against the contact-sheet pass. T-0657 was split again on measurement into T-0742/T-0743/T-0744, one continuation sheet each: reading one of these leaves is a run's demonstration, not three. T-0742 read 33S7-9YYJ-K2 line by line and replaced T-0656's uncommitted strip screen with a committed reading; the printed-230 pairing survives it at 20 of 26.",
    "images": [
     {
      "index": 26,
@@ -544,11 +544,15 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
+     "read_state": "read_line_by_line",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-K2.json",
      "lines_with_an_entry_note": "restated by T-0656 off a magnified strip of this leaf's TOTAL column; the contact-sheet pass carried 33 'to the nearest line'. See pairing_key_26_50.json for the measurement beside it.",
      "paired_to_printed_page": 230,
-     "paired_by": "T-0656; the evidence is in pairing_key_26_50.json"
+     "paired_by": "T-0656; the evidence is in pairing_key_26_50.json",
+     "read_by": "T-0742 (piece 1 of the split of T-0657)",
+     "what_was_read": "the row index (31 lines, committed from the sequence of the TOTAL column's own groups and corroborated by the fifteen lines the written industry columns anchor), the TOTAL column line by line (26 lines committed, 5 recorded unread), the three written industry columns line by line - all three of which close exactly on the enumerator's own printed footings - and the footer row. The slaves, pensioners, deaf/dumb/blind/insane and schools blocks carry no ink on this leaf and are recorded as not written rather than as zeros.",
+     "what_was_not_read": "lines 2, 24, 29, 30 and 31 of the TOTAL column. Lines 2 and 24 are two-figure numbers this pass would not settle; the last group of the column stands over lines 30 and 31 and was not divided. The 26 committed lines sum to 115 against a printed footing of 151 and the 36-person residual is left standing.",
+     "pairing_tested": "printed 230 (33S7-9YYJ-NY), confirmed line by line: 20 of 26 committed lines agree at offset 0 against a best neighbouring offset of 4, and every disagreement is a cell this reading had already committed low or medium."
     },
     {
      "index": 30,
@@ -859,13 +863,15 @@
     "cells_transcribed_lines": 122,
     "names_and_cells_transcribed_pages": 9,
     "names_and_cells_transcribed_lines": 266,
-    "counts_note": "recomputed from the images array by T-0527 rather than incremented, as T-0546 and T-0552/T-0553 did before it, and recomputed again as this branch merged the passes that landed beside it (T-0529, T-0654, T-0655, T-0656). T-0527 also CORRECTED TWO INVENTORY LINE COUNTS by reading them: 33S7-9YYN-3CDH from 33 to 31 and 33S7-9YYJ-Q1 from 22 to 21. The inventory's figures were taken `to the nearest line` and are superseded where a sheet has been read line by line; both corrections are argued on their page files."
+    "counts_note": "recomputed from the images array by T-0527 rather than incremented, as T-0546 and T-0552/T-0553 did before it, and recomputed again as this branch merged the passes that landed beside it (T-0529, T-0654, T-0655, T-0656). T-0527 also CORRECTED TWO INVENTORY LINE COUNTS by reading them: 33S7-9YYN-3CDH from 33 to 31 and 33S7-9YYJ-Q1 from 22 to 21. The inventory's figures were taken `to the nearest line` and are superseded where a sheet has been read line by line; both corrections are argued on their page files.",
+    "continuation_sheets_read_line_by_line": 1,
+    "continuation_sheets_read_line_by_line_note": "33S7-9YYJ-K2, by T-0742. The other eight filled continuations of this group are still unread; T-0743, T-0744, T-0658 and T-0659 hold them."
    },
    "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Eight pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high), printed 217 (33 declared, 31 read, T-0552), printed 218 and 224 (both declared 33 'to the nearest line' and both carrying 30, T-0553), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). SIX of the eight counted left sheets had an inventory figure that was HIGH and none had one that was low, so the contact-sheet pass reads long by one to four lines and a transcribing pass should expect to remove lines rather than find them. The rest are stated to the nearest line and a transcribing pass restates them exactly."
   },
   {
    "range": "images 51-74 of 74",
-   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0742 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail.",
+   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail.",
    "images": [
     {
      "index": 51,
@@ -878,7 +884,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 52,
@@ -891,7 +897,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 53,
@@ -904,7 +910,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 54,
@@ -917,7 +923,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 55,
@@ -942,7 +948,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 57,
@@ -967,7 +973,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 59,
@@ -980,7 +986,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 60,
@@ -993,7 +999,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 61,
@@ -1006,7 +1012,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 62,
@@ -1019,7 +1025,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 63,
@@ -1044,7 +1050,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 65,
@@ -1057,7 +1063,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 66,
@@ -1131,7 +1137,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 72,
@@ -1152,11 +1158,11 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 24,
-     "what_it_is": "continuation sheet - filled for 24 lines and blank below them; foots 125. Its 24 filled lines match the 24 names on printed 235 (image 72), which is a pairing hint and not a pairing: T-0742 settles it.",
+     "what_it_is": "continuation sheet - filled for 24 lines and blank below them; foots 125. Its 24 filled lines match the 24 names on printed 235 (image 72), which is a pairing hint and not a pairing: T-0746 settles it.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 74,
@@ -1169,7 +1175,7 @@
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     }
    ],
    "counts": {
@@ -1200,7 +1206,7 @@
     "lines_with_an_entry_total": 655,
     "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72."
    },
-   "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0742 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
+   "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0746 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
    "findings": [
     {
      "image": "33SQ-GYYJ-PW",

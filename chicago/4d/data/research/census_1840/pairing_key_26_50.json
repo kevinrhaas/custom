@@ -394,7 +394,8 @@
      "share": 0.161
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "tested_by_a_committed_reading": "T-0742 read this leaf line by line and the pairing holds. The sequence screen this file used was taken off an uncommitted strip and said so; it is now superseded by pages/33S7-9YYJ-K2.json, which agrees with 33S7-9YYJ-NY on 20 of the 26 lines it commits at offset 0, against 4 at the best neighbouring offset. The line count of 31 stands, reached a third way - from the sequence of the TOTAL column's groups, corroborated by fifteen industry anchors. The strip reading's sum of 171 does not survive: the committed 26 lines sum to 115 and five lines are left unread, so this leaf no longer carries a figure that overshoots its own footing."
   },
   {
    "familysearch_id": "33S7-9YYJ-L3",

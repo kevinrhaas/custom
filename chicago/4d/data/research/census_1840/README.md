@@ -871,7 +871,7 @@ last **24 images of the deposit — 51 to 74 in the sorted filename order — we
 nothing described**. A hole there could not fail. They are now declared, one entry each: what
 the sheet is, which side it is, the printed page number where it carries one, and how many
 ruled lines carry an entry. Nothing else was read from them — no name, no cell, no serial, no
-resident. That is T-0742's, and this inventory is what lets it be parcelled by printed page.
+resident. That is T-0746's, and this inventory is what lets it be parcelled by printed page.
 
 **Nine left sheets, fifteen continuations, one of them blank.** The eight printed page numbers
 this group carries are **212, 213, 214, 220, 223, 233, 235 and 240** — a set that does not run
