@@ -73,6 +73,20 @@
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G2a"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "kennicott",
+     "weighed_against": [
+      "kennicott_william_h"
+     ],
+     "referred_to": "owner",
+     "for_merge": "Kennicott is an uncommon surname and the town holds no third bearer.",
+     "against_merge": "The middle initials L and H disagree, and neither card documents the man — one is a poll-list line graded G2a, the other is the Democrat and Norris 1844. No anchor, so C4 does not fire. His call."
+    }
    ]
   }
  ],

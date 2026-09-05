@@ -66,6 +66,15 @@
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",
+     "as_read": "Bates, Harriet E.",
+     "locator": "chicago_democrat_1835_08_26#c002",
+     "record_id": "person_bates_harriet_e",
+     "describes_date": "1835-08-26",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
      "as_read": "Bates, Harriet Ellen",
      "locator": "chicago_democrat_1835_08_26#c002",
      "record_id": "person_bates_harriet_ellen",

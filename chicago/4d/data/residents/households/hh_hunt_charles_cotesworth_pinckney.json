@@ -87,6 +87,20 @@
      "source": "chicago_american_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "hunt-c",
+     "weighed_against": [
+      "hunt_c_s"
+     ],
+     "referred_to": "owner",
+     "for_merge": "Both are printed in Chicago papers within seventeen days of each other in August 1835 — the Democrat on the 12th, the American on the 29th — and Charles Cotesworth Pinckney Hunt is the only Hunt forename in the town's cards beginning with C.",
+     "against_merge": "The middle initial S contradicts C, and neither card is an anchor: neither carries a trade, a dwelling or a source beyond a list and a death notice. C4 needs a documented bearer and there is none. His call."
+    }
    ]
   }
  ],

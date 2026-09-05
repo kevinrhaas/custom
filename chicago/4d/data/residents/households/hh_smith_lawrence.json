@@ -73,6 +73,20 @@
      "source": "st_cyr_register_ichr_v4",
      "rule": "G2c"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R4",
+     "cluster": "smith-lawrence",
+     "weighed_against": [
+      "smith_l_w"
+     ],
+     "referred_to": "rule",
+     "for_merge": "L expands to Lawrence and no other Smith forename in the cluster begins with L.",
+     "against_merge": "Neither card documents the man: one is a poll-list line graded G3, the other a groom in the St Cyr marriage register graded G2c, in different domains eleven months apart with no shared source, no trade and no address. Smith is the commonest surname in the dataset and a bare expansion on it is exactly what T-0696 was opened to give a second discriminator for. Refused by rule."
+    }
    ]
   }
  ],
