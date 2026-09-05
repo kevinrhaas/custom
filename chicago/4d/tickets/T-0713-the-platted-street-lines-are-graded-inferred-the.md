@@ -1,7 +1,7 @@
 ---
 id: T-0713
 title: The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 10:26:22 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941742113
 ---
 
 The owner, 2026-09-04: make the street lines show as **attested** — they are on the Thompson plat. Today the sixteen platted streets in `data/streets/1835.json` are `geometry_confidence: inferred` and none cites `thompson_plat_1830`. Left in the queue for the loop; not built in the drawer PR.
