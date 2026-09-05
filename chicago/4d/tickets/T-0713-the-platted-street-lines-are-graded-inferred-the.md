@@ -1,7 +1,7 @@
 ---
 id: T-0713
 title: The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 840
 claimed_by: run 9/4/2026, 10:26:22 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T13:05:44.888Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941742113
 ---
 
