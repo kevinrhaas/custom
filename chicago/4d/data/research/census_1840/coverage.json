@@ -644,12 +644,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-V4.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 20,
+     "lines_with_an_entry": 21,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
-     "lines_with_an_entry_note": "restated by T-0656 off a magnified strip of this leaf's TOTAL column; the contact-sheet pass carried 31 'to the nearest line'. See pairing_key_26_50.json for the measurement beside it."
+     "read_state": "read_partly_reconciled",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-V4.json",
+     "lines_with_an_entry_note": "21, read glyph by glyph off the TOTAL column at magnification and confirmed by that column closing on the enumerator's own footing of 100. This corrects BOTH earlier figures: the contact-sheet pass's 31 'to the nearest line' and T-0656's strip count of 20, which missed line 19 - a pale 5 written low between a 7 and a 2.",
+     "read_note": "TOTAL closes exactly (100 over 21 lines) and is committed. Agriculture reads 34 against a footed 33 and is NOT committed; its reading is kept as cells_first_pass with the three cells that could carry the one-person residual named. Every other column is blank on all 21 lines and unfooted, apart from one V-shaped tick in the schools block that is not a numeral."
     },
     {
      "index": 37,
@@ -712,9 +713,10 @@
      "lines_with_an_entry": 27,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
-     "lines_with_an_entry_note": "restated by T-0656 off a magnified strip of this leaf's TOTAL column; the contact-sheet pass carried 31 'to the nearest line'. See pairing_key_26_50.json for the measurement beside it."
+     "read_state": "read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYN-3CF6.json",
+     "lines_with_an_entry_note": "27, and now measured twice. T-0656 counted 27 off a magnified strip of this leaf's TOTAL column against the contact-sheet pass's 31 'to the nearest line'; T-0658 fitted a line grid to the column's own ink and read 27 entries whose centres lie on a 76.2 px pitch. The reading closes at 116 persons on the enumerator's own footing over exactly those 27 lines.",
+     "read_note": "TOTAL and navigation of canals, lakes and rivers both close EXACTLY on the enumerator's footings (116 and 31). Agriculture reads 23 over 26 legible lines against a footing of 25, with line 5 illegible under a crease; it is uncommitted with its residual located. Every other column of the leaf is blank on all 27 lines and unfooted."
     },
     {
      "index": 42,
