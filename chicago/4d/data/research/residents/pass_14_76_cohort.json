@@ -712,7 +712,8 @@
         "1834-01-28"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "isa_public_domain_land_tract_sales"
       ]
     },
     {
@@ -808,7 +809,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "fergus_chicago_directory_1839"
+        "fergus_chicago_directory_1839",
+        "isa_public_domain_land_tract_sales"
       ]
     },
     {

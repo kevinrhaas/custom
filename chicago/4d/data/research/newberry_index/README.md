@@ -76,24 +76,35 @@ drawn on one volume is not a measurement of another.
 | volume | sampled | locality correct | precision | Chicago/Cook stratum | Illinois-only stratum |
 |---|---|---|---|---|---|
 | 1 (A-C) | 40 | 39 | **0.975** | 20/20 | 19/20 |
-| 2 (C-H) | 40 | 35 | **0.875** | 20/20 | 15/20 |
-| 3 (H-P) | 40 | 36 | **0.900** | 20/20 | 16/20 |
-| 4 (P-Z) | 40 | 19 | **0.475** | 9/10 | 10/30 |
+| 2 (C-H) | 40 | 39 | **0.975** | 20/20 | 19/20 |
+| 3 (H-P) | 40 | 37 | **0.925** | 20/20 | 17/20 |
+| 4 (P-Z) | 39 | 20 | **0.513** | 8/9 | 12/30 |
 
-**The Chicago and Cook stratum held for three volumes and then missed once** — 69 of 70
+Those are the figures **after T-0600**, which struck 443 stanzas that name a locality and
+no work. The draw is not re-thrown when a rule strikes cards: the struck rows leave this
+sample and are replaced, in the same stratum, from the cards that remain, and every
+replacement was adjudicated against the page image the same way the rest were. Before the
+rules the four volumes read 0.975, 0.875, 0.900 and 0.475. `precision_sample.json`'s
+per-volume `draw.maintained` names exactly which rows were replaced by which.
+
+**The Chicago and Cook stratum held for three volumes and then missed once** — 68 of 69
 across four — and all but one bad keep in any draw is in the Illinois-only stratum. That
 matters because the Chicago and Cook County cards are the ones `follow_up.json` ranks the
 reading order on. Volumes 1-3 are stratified 20/20 and the volumes are not, so weighted by
-the population volume 2's estimate is 0.813 and volume 3's is 0.849; the figures in the
+the population volume 2's estimate is 0.962 and volume 3's is 0.906; the figures in the
 table are the ones comparable with each other. **Volume 4's row is not comparable with the
 other three and must not be read as if it were**: that volume holds only ten Chicago-or-Cook
 cards in all, so its first stratum is a census of them rather than a draw of twenty, and its
 second was drawn to thirty. Read its two stratum figures, not its flat one — and read the
 section on the volume below before spending anything it produced.
 
-Volume 1's one bad keep is `nbi_v01_2226`, whose entire line is `I II.`: three strokes
-and a stop is the shape of the abbreviation and on that card it is the only thing there.
-Volume 2's five are **two classes, and both are new**:
+Volume 1's one bad keep used to be `nbi_v01_2226`, whose entire line is `I II.`; the
+T-0600 rules struck it, and the row that replaced it is a bad keep of a different shape —
+`nbi_v01_2418`, an English card, 'Ferne family. — Eng. (Misc. geneal. gleanings. (Waters,
+H. F.) 1901: 2', whose reading opens `i ii. gleanings.` because 'Eng.' broke into three
+strokes and a stop at the head of the line. A start-of-line stroke followed by a citation
+is the one shape the new rules deliberately leave alone: a wrapped locality looks exactly
+like it. Volume 2's five were **two classes, both since struck**:
 
 - **The state banner absorbed as a card body** (four of the five). The index divides one
   family's run of cards by state with a printed rule, `ILLINOIS.`; when that rule falls
@@ -105,8 +116,8 @@ Volume 2's five are **two classes, and both are new**:
   Hapgood fam. (Hapgood, W.) 1898. See index. E. 7. H 21', naming no locality; the
   `, III,` the pattern matched on is the wreck of a Newberry call number.
 
-Volume 3's four are **one old class and three new ones, and every one of them is text
-that is not on the card**:
+Volume 3's four were **one old class and three new ones, and every one of them is text
+that is not on the card** (the sliver, `nbi_v03_0913`, is the one T-0600 struck):
 
 - **A volume number in roman** — `nbi_v03_1443`, 'Pierce family. — John Dwight. (Dwight,
   B. W.) 1874. See Index III.' *See index III.* is a standing formula on these cards and
@@ -137,9 +148,16 @@ letters — `nbi_v03_0849` is filed under `rtenoan` for a Mortensen card whose C
 citation is read correctly. The crop comment already records that page widths run 689 to
 733 points; that is what the widest of them cost.
 
-Both are left in the records with their verdicts — a card struck where nobody can see it
-is a precision figure nobody can check — and **T-0600** carries the rules that would
-refuse them. The same draw found a third thing that is not a precision error: a column
+**T-0600 wrote the rules and re-read all four volumes under them** (2026-09-05). Two
+refusals sit beside `REGNAL` in `tools/read_newberry_index.py`, both testing what a
+stanza is MISSING rather than how a locality is spelled: `names_only_the_place` refuses a
+body that carries the locality and no work at all — no word, no date — which is the state
+banner and the wreck of a call-number column, and `call_number_slot` refuses a
+start-of-line stroke with the next card's family heading behind it, which is
+`nbi_v02_1106`. 443 stanzas left the four volumes: 154, 101, 127 and 61, of which 46 named
+Chicago or Cook County. The rows they took out of this sample were replaced from the same
+stratum and adjudicated fresh, and the classes the rules do NOT catch are named above —
+they are what the four volumes' remaining bad keeps are made of. The same draw found a third thing that is not a precision error: a column
 sliver is kept as a second, truncated copy of a card the neighbouring pass read in full
 (`nbi_v02_1775` is `nbi_v02_1779` again), because the passes deduplicate on (page,
 heading, body) and a truncated sliver never matches its full sibling. **T-0601** measures
@@ -171,10 +189,13 @@ counted rather than hidden: `follow_up.json` reports it in
 
 ## Volume 1 (A-C), read 2026-09-03 under T-0570
 
-987 pages cropped and walked · **58,488 cards** assembled · **2,579 kept** for naming
-Chicago, Cook County or Illinois · of those **581 name Chicago or Cook County** ·
-1,671 distinct surname keys · **319 leads** across four layers (residents 156, census
-1840 81, voters 64, structures 18) · **0 merges**.
+987 pages cropped and walked · **58,488 cards** assembled · **2,425 kept** for naming
+Chicago, Cook County or Illinois · of those **562 name Chicago or Cook County** ·
+1,615 distinct surname keys · **399 leads** across four layers (residents 196, census
+1840 123, voters 62, structures 18) · **0 merges**. (Kept and Chicago/Cook are the
+post-T-0600 figures — 2,579 and 581 before the rules. The lead count rose because the
+re-parse ran against the project's people layers as they now stand, not because of the
+rules.)
 
 The reading order it produces, ranked on Chicago and Cook County cards standing on a
 surname this project already holds:
@@ -198,29 +219,29 @@ volumes are on the Internet Archive (`historyofchicago01mose`, `historyofchicago
 
 ## Volume 2 (C-H), read 2026-09-03 under T-0578
 
-1,016 pages cropped and walked · **58,589 cards** assembled · **1,987 kept** for naming
-Chicago, Cook County or Illinois · of those **501 name Chicago or Cook County** ·
-1,302 distinct surname keys · **215 leads** across four layers (residents 109, census
-1840 61, voters 38, structures 7) · **0 merges**.
+1,016 pages cropped and walked · **58,589 cards** assembled · **1,886 kept** for naming
+Chicago, Cook County or Illinois · of those **492 name Chicago or Cook County** ·
+1,258 distinct surname keys · **241 leads** across four layers (residents 129, census
+1840 68, voters 37, structures 7) · **0 merges**. (1,987 and 501 before T-0600.)
 
-Fewer kept cards than volume 1 (1,987 against 2,579) on more pages, and the reason is the
+Fewer kept cards than volume 1 (1,886 against 2,425) on more pages, and the reason is the
 alphabet, not the reading: C-H carries the great English and New England surname runs —
 Clark, Davis, Hall, Hall's compounds — whose cards are overwhelmingly eastern, while A-C
 carried Andrews, Bailey, Brown, Burns and Butler, which the Chicago works cite heavily.
-The Chicago-and-Cook share is nearly identical: 25.2 per cent of volume 2's kept cards
-against 22.5 per cent of volume 1's.
+The Chicago-and-Cook share is nearly identical: 26.1 per cent of volume 2's kept cards
+against 23.2 per cent of volume 1's.
 
 ## Volume 3 (H-P), read 2026-09-03 under T-0579
 
-1,003 pages cropped and walked · **68,552 cards** assembled · **2,131 kept** for naming
-Chicago, Cook County or Illinois · of those **520 name Chicago or Cook County** ·
-1,475 distinct surname keys · **201 leads** across four layers (residents 89, census
-1840 60, voters 44, structures 8) · **0 merges**.
+1,003 pages cropped and walked · **68,552 cards** assembled · **2,004 kept** for naming
+Chicago, Cook County or Illinois · of those **503 name Chicago or Cook County** ·
+1,411 distinct surname keys · **238 leads** across four layers (residents 115, census
+1840 72, voters 43, structures 8) · **0 merges**. (2,131 and 520 before T-0600.)
 
 The most cards assembled of any volume so far (68,552 against 58,488 and 58,589) on
 1,003 pages, and the fewest kept per card: H-P is the densest stretch of the alphabet
-and it is also the least Illinois one. The Chicago-and-Cook share, **24.4 per cent** of
-the kept cards, sits between volume 1's 22.5 and volume 2's 25.2 — three volumes now
+and it is also the least Illinois one. The Chicago-and-Cook share, **25.1 per cent** of
+the kept cards, sits between volume 1's 23.2 and volume 2's 26.1 — three volumes now
 agree that about a quarter of what this index files under Illinois is filed under
 Chicago or Cook County.
 
@@ -231,19 +252,23 @@ T-0506 is extracting.
 
 ## Volume 4 (P-Z), read 2026-09-03 under T-0580
 
-918 pages cropped and walked · **6,548 cards** assembled · **308 kept** for naming
-Chicago, Cook County or Illinois · of those **10 name Chicago or Cook County** ·
-258 distinct surname keys · **55 leads** across four layers (residents 28, census
-1840 12, voters 11, structures 4) · **0 merges**.
+918 pages cropped and walked · **6,548 cards** assembled · **247 kept** for naming
+Chicago, Cook County or Illinois · of those **9 name Chicago or Cook County** ·
+212 distinct surname keys · **51 leads** across four layers (residents 27, census
+1840 10, voters 11, structures 3) · **0 merges**. (308 and 10 before T-0600, which took
+this volume's tenth Chicago card with the rest: `nbi_v04_0094` really is 'Steen family. —
+Chicago, Ill. (Andreas, A. T.) 1884-6', and its READING is `*5 ._.ChicAgo, m.
+<.-...«..-.5.` — a locality and no work. A recall loss, named here because the sample
+could see it.)
 
 **Read those numbers against the other three volumes before using anything in them.**
 
 | volume | pages | cards assembled | per page | kept | Chicago/Cook | precision |
 |---|---|---|---|---|---|---|
-| 1 (A-C) | 987 | 58,488 | 59 | 2,579 | 581 | 0.975 |
-| 2 (C-H) | 1,016 | 58,589 | 58 | 1,987 | 501 | 0.875 |
-| 3 (H-P) | 1,003 | 68,552 | 68 | 2,131 | 520 | 0.900 |
-| **4 (P-Z)** | **918** | **6,548** | **7** | **308** | **10** | **0.475** |
+| 1 (A-C) | 987 | 58,488 | 59 | 2,425 | 562 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,886 | 492 | 0.975 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 2,004 | 503 | 0.925 |
+| **4 (P-Z)** | **918** | **6,548** | **7** | **247** | **9** | **0.513** |
 
 A rendered page of this volume carries about a hundred cards, so volumes 1-3 assemble
 roughly 60 per cent of what is printed and volume 4 assembles seven. **The cause is the

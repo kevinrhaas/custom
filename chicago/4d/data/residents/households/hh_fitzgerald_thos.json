@@ -51,7 +51,7 @@
    "id": "fitzgerald_thos",
    "name": "Thos. Fitzgerald",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-08"
@@ -87,7 +87,9 @@
        "Michigan geography and common name; no Chicago bridge."
       ]
      }
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
    },
    "church_evidence": [
     {
@@ -139,8 +141,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,
@@ -176,6 +177,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. West Water Street is the west-bank riverfront street; the 1835 layer carries Market as the west-division street nearest the South Branch and no West Water. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]

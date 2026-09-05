@@ -78,6 +78,7 @@ secondary). A source id no rule reaches stops the build.
 | `census_1830_peoria_county_chicago_precinct` | book | manuscript |
 | `census_1840_chicago_name_crosswalk` | secondary | dataset |
 | `chicago_american_1835` | newspaper | newspaper |
+| `chicago_antiquities_american_fur_co` | book | book |
 | `chicago_democrat_1833_11_26` | newspaper | newspaper |
 | `chicago_democrat_1833_1835` | newspaper | newspaper |
 | `chicago_newspapers_mulford_1835` | newspaper | newspaper |

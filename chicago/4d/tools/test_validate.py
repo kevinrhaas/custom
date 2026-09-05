@@ -2679,7 +2679,8 @@ def _resident_index(households: list, **kw) -> dict:
             "sexes": ["male", "female"],
             "presence": ["present", "absent", "uncertain"],
             "divisions": ["south", "north", "west", "fort", "outside_town"],
-            "arrival_precision": ["day", "month", "season", "year", "not_later_than"],
+            "arrival_precision": ["day", "either_of_two_days", "month", "season",
+                                   "year", "not_later_than"],
         },
         "counts": {"households": len(households),
                    "persons": sum(len(h["persons"]) for h in households),
@@ -2743,6 +2744,39 @@ def test_a_resident_who_arrived_after_the_scene_date_is_not_in_the_scene() -> No
     # And an arrival comfortably before it passes.
     rep = _run_residents([_resident_household()])
     check("an arrival before the scene date passes", not rep.errors, rep.errors)
+
+    # `either_of_two_days` is the precision for a source that gives two adjacent
+    # days and declines to pick between them (Hurlbut on Hubbard: "the last day of
+    # October or first day of November"). The value is the EARLIER day and the
+    # bound runs to the day after it - so the gate sees both days the source
+    # offered, and neither more nor fewer.
+    check("either_of_two_days bounds the value and the day after it",
+          V.arrival_bounds("1818-10-31", "either_of_two_days")
+          == (dt.date(1818, 10, 31), dt.date(1818, 11, 1)),
+          V.arrival_bounds("1818-10-31", "either_of_two_days"))
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1818-10-31", "precision": "either_of_two_days",
+                 "confidence": "inferred",
+                 "note": "the page gives 31 October or 1 November and will not choose"})])
+    check("an either_of_two_days arrival before the scene date passes",
+          not rep.errors, rep.errors)
+
+    # The gate has to bite on the LATER of the two as well: a source that offers
+    # 30 June or 1 July straddles the scene date and may not be read as the day
+    # that suits the scene.
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1835-06-30", "precision": "either_of_two_days",
+                 "confidence": "inferred",
+                 "note": "the page gives 30 June or 1 July and will not choose"})])
+    check("an either_of_two_days arrival whose later day is the scene date passes",
+          not rep.errors, rep.errors)
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1835-07-01", "precision": "either_of_two_days",
+                 "confidence": "inferred",
+                 "note": "the page gives 1 July or 2 July and will not choose"})])
+    check("an either_of_two_days arrival straddling the scene date warns",
+          not rep.errors and any("straddles the scene date" in w for w in rep.warnings),
+          f"{rep.errors} / {rep.warnings}")
 
 
 def test_the_accuracy_grade_is_a_closed_vocabulary_and_recommended_is_gone() -> None:

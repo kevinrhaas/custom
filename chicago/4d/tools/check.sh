@@ -1439,6 +1439,19 @@ step "…and the later addresses re-derive through the back-projection clauses" 
 step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
   python3 tools/back_project_addresses.py --self-test
 
+# T-0669, the residence half of the same grammar: docs/RESIDENCE-BACK-PROJECTION.md, which
+# reads a street the volume prints as a HOME — its own `res` or `bds` — and carries it as
+# the household's street FACE and never as a point. All 48 residence addresses are
+# adjudicated and the 41 refusals are committed beside the 7 placements, for the same
+# reason the business pass's are: a refusal that disappears from the record reads to the
+# next run as an address nobody looked at. The self-test additionally holds the invariant
+# the two policies share — no printed address is PLACED by both of them.
+step "…and the later HOME addresses re-derive through the residence clauses" \
+  python3 tools/back_project_residences.py --check
+
+step "…and no back-projected home has grown a point, a roof or an 1835 link" \
+  python3 tools/back_project_residences.py --self-test
+
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
 # the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
@@ -1739,6 +1752,20 @@ step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_st_cyr_register.py --self-test
+
+# T-0583. The 1842-1892 roll of the Second Presbyterian Church of Chicago — the work
+# fifty-four Newberry index cards cite and this project did not hold. Two things are
+# gated. First, the COLUMNS: archive.org reads a four-column table in the order the
+# scanner met the ink, so the reading is rebuilt from the committed row map's spans into
+# the committed text, and a span that points at the wrong ink fails here. Second, the
+# LADDER: the roll opens in June 1842, seven years after the scene date, so no line on it
+# can be an 1835 fact — the self-test asserts every record says so and that nothing dated
+# on or before 1835-07-01 has reached one.
+step "the Second Presbyterian roll rebuilds, and no line of it is an 1835 fact" \
+  python3 tools/read_second_presbyterian.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_second_presbyterian.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test

@@ -1074,6 +1074,282 @@
    ]
   },
   {
+   "familysearch_id": "33SQ-GYYJ-RJ",
+   "printed_page": 233,
+   "lines_compared": 31,
+   "scan_lines": 31,
+   "pr_670_rows": 31,
+   "pr_670_rows_with_no_ruled_line_on_the_scan": [],
+   "agreement": {
+    "agrees": 2,
+    "surname_only": 5,
+    "given_only": 10,
+    "disagrees": 10,
+    "not_comparable": 4
+   },
+   "agreement_rate_full_name": 0.065,
+   "row_offset_test": {
+    "what": "how many of this page's scan lines find ANY name-part agreement with the #670 row that many places away. A peak away from 0 is a row drift in #670, not a bad reading.",
+    "partial_or_better_hits_by_offset": {
+     "-2": 1,
+     "-1": 2,
+     "0": 17,
+     "1": 4,
+     "2": 1
+    }
+   },
+   "lines": [
+    {
+     "line": 1,
+     "scan_reading": "Eliza Haight",
+     "pr_670_reading": "William W. Brackett",
+     "pr_670_name_confidence": "High",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 2,
+     "scan_reading": "William H. Larrabee",
+     "pr_670_reading": "William H. [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 3,
+     "scan_reading": "Nancy Greenwood",
+     "pr_670_reading": "William Henry [Greenwood?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 4,
+     "scan_reading": "William Pearson",
+     "pr_670_reading": "William Harris?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 5,
+     "scan_reading": "M. W. Brackett",
+     "pr_670_reading": "W. M. Brackett?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 6,
+     "scan_reading": "Henry Smith",
+     "pr_670_reading": "Henry Smith",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 7,
+     "scan_reading": "Robert Shepard",
+     "pr_670_reading": "Robert Simpson",
+     "pr_670_name_confidence": "High",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 8,
+     "scan_reading": "Alanson C. Wood",
+     "pr_670_reading": "Alexander O. Wood?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 9,
+     "scan_reading": "Edward H. Rogers",
+     "pr_670_reading": "George H. Rogers?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 10,
+     "scan_reading": "Henry Ha[?]son",
+     "pr_670_reading": "Henry Morrison",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 11,
+     "scan_reading": "William W. Saltonstall",
+     "pr_670_reading": "William H. [Blackman?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 12,
+     "scan_reading": "George W. Dole",
+     "pr_670_reading": "William M. Cole",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 13,
+     "scan_reading": "[?] Rathb[?]",
+     "pr_670_reading": "Daniel [Rathfield?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "not_comparable",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 14,
+     "scan_reading": "[?] L. Goodrich",
+     "pr_670_reading": "James F. [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "not_comparable",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 15,
+     "scan_reading": "William Foreman",
+     "pr_670_reading": "William Freeman",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 16,
+     "scan_reading": "Anthony Co[?]a[?]",
+     "pr_670_reading": "William Henry Gunn?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 17,
+     "scan_reading": "David Kennison",
+     "pr_670_reading": "David H. Hunt?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 18,
+     "scan_reading": "[?] W. Brown",
+     "pr_670_reading": "William Hubbard Brown (likely)",
+     "pr_670_name_confidence": "High name / Medium-High identity",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 19,
+     "scan_reading": "Edward H. Rudd",
+     "pr_670_reading": "Edward H. Bell",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 20,
+     "scan_reading": "Stephen Ca[?]hi[?]",
+     "pr_670_reading": "Edwin B. Colvin",
+     "pr_670_name_confidence": "High",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 21,
+     "scan_reading": "Samuel M[?]",
+     "pr_670_reading": "James [McKinley?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 22,
+     "scan_reading": "C. Ann Chase",
+     "pr_670_reading": "John C. [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "not_comparable",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 23,
+     "scan_reading": "William S. Whiting",
+     "pr_670_reading": "William [McVicker?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 24,
+     "scan_reading": "Phillip Marshall",
+     "pr_670_reading": "Robert M. [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 25,
+     "scan_reading": "Moses Milton",
+     "pr_670_reading": "George W. [surname unresolved]",
+     "pr_670_name_confidence": "Low-Medium",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 26,
+     "scan_reading": "John Russ",
+     "pr_670_reading": "John [Morris?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 27,
+     "scan_reading": "Noah [?]",
+     "pr_670_reading": "John C. [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 28,
+     "scan_reading": "[?] Barkenhill",
+     "pr_670_reading": "James [Bradstreet?]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "not_comparable",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 29,
+     "scan_reading": "Warner L. [?]",
+     "pr_670_reading": "William [surname unclear]",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 30,
+     "scan_reading": "John Murphy",
+     "pr_670_reading": "John Murphy",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 31,
+     "scan_reading": "[?] Johnson",
+     "pr_670_reading": "Samuel Johnson?",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    }
+   ]
+  },
+  {
    "familysearch_id": "33S7-9YYJ-99F",
    "printed_page": 234,
    "lines_compared": 31,
@@ -1348,6 +1624,226 @@
      "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
     }
    ]
+  },
+  {
+   "familysearch_id": "33SQ-GYYJ-ZQ",
+   "printed_page": 235,
+   "lines_compared": 24,
+   "scan_lines": 24,
+   "pr_670_rows": 24,
+   "pr_670_rows_with_no_ruled_line_on_the_scan": [],
+   "agreement": {
+    "agrees": 6,
+    "surname_only": 4,
+    "given_only": 6,
+    "disagrees": 8,
+    "not_comparable": 0
+   },
+   "agreement_rate_full_name": 0.25,
+   "row_offset_test": {
+    "what": "how many of this page's scan lines find ANY name-part agreement with the #670 row that many places away. A peak away from 0 is a row drift in #670, not a bad reading.",
+    "partial_or_better_hits_by_offset": {
+     "-2": 0,
+     "-1": 0,
+     "0": 16,
+     "1": 0,
+     "2": 0
+    }
+   },
+   "lines": [
+    {
+     "line": 1,
+     "scan_reading": "[?] S. Wheeler",
+     "pr_670_reading": "Thomas J. Wheeler",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 2,
+     "scan_reading": "Andrew Anderson",
+     "pr_670_reading": "Andrew Larson",
+     "pr_670_name_confidence": "High",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 3,
+     "scan_reading": "L. Oberhard",
+     "pr_670_reading": "J. Oberland",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 4,
+     "scan_reading": "Charles MacKeen",
+     "pr_670_reading": "C. Markeson",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 5,
+     "scan_reading": "William Wilhelmson",
+     "pr_670_reading": "William Nicholson",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 6,
+     "scan_reading": "Nicholas Neudorf",
+     "pr_670_reading": "Nicholas Neudorf",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 7,
+     "scan_reading": "[?] Larson",
+     "pr_670_reading": "Frederick Larson",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 8,
+     "scan_reading": "Henry Kneist",
+     "pr_670_reading": "George Knerr",
+     "pr_670_name_confidence": "High",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 9,
+     "scan_reading": "William Luebke",
+     "pr_670_reading": "William Tuttle",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 10,
+     "scan_reading": "Gerhard Finke",
+     "pr_670_reading": "Richard Frink",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 11,
+     "scan_reading": "Gerhard Shenkle",
+     "pr_670_reading": "Richard Shunk",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 12,
+     "scan_reading": "Joseph L. Willemin",
+     "pr_670_reading": "Joseph Willemin",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 13,
+     "scan_reading": "Michael Diversey",
+     "pr_670_reading": "Michael Diversey",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 14,
+     "scan_reading": "Henry Grosken",
+     "pr_670_reading": "Henry Gucken",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 15,
+     "scan_reading": "[?] Langer",
+     "pr_670_reading": "Howard George",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 16,
+     "scan_reading": "James Vassard",
+     "pr_670_reading": "James Warner",
+     "pr_670_name_confidence": "Low",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 17,
+     "scan_reading": "Mathias Miller",
+     "pr_670_reading": "Nathan Miller",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 18,
+     "scan_reading": "Andrew Shomer",
+     "pr_670_reading": "Andrew Turner",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "given_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 19,
+     "scan_reading": "William Lill",
+     "pr_670_reading": "William Lill",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 20,
+     "scan_reading": "John McHale",
+     "pr_670_reading": "John McHale",
+     "pr_670_name_confidence": "High",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 21,
+     "scan_reading": "Hugh Morrice",
+     "pr_670_reading": "P. G. Merried",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 22,
+     "scan_reading": "Robert Smith",
+     "pr_670_reading": "P. H. Smith",
+     "pr_670_name_confidence": "Low",
+     "verdict": "surname_only",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 23,
+     "scan_reading": "J. Griswold",
+     "pr_670_reading": "P. G. Greenall",
+     "pr_670_name_confidence": "Low",
+     "verdict": "disagrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    },
+    {
+     "line": 24,
+     "scan_reading": "Henry Hall",
+     "pr_670_reading": "Henry Hall",
+     "pr_670_name_confidence": "Medium",
+     "verdict": "agrees",
+     "decided_by": "the scan is senior: #670's rows are a recovery from a workbook the owner has ruled lost, and cite no line-level image evidence. Neither reading is deleted."
+    }
+   ]
   }
  ],
  "pages_compared": [
@@ -1355,13 +1851,15 @@
   230,
   231,
   232,
-  234
+  233,
+  234,
+  235
  ],
  "totals_across_compared_pages": {
-  "agrees": 16,
-  "surname_only": 11,
-  "given_only": 34,
-  "disagrees": 73,
-  "not_comparable": 20
+  "agrees": 24,
+  "surname_only": 20,
+  "given_only": 50,
+  "disagrees": 91,
+  "not_comparable": 24
  }
 }

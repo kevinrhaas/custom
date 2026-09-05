@@ -170,8 +170,11 @@ WORKS = [
         "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
         "pattern": re.compile(r"18[68]8\s*[-\u2013]\s*9[23]", re.I),
         "fuzzy": ("moses", 0.6),
-        "held": None,
-        "reachable": "Internet Archive: illinoishistoric01inmose, cu31924092214752",
+        "held": "moses_illinois_historical_and_statistical",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "illinoishistoric01inmose (vol. 1) and illinoishistoricv2mose "
+                     "(vol. 2). Reachable and thin: 169 Chicago or Cook cards stand on "
+                     "a STATE history whose 1835 sentences are population and revenue",
     },
     {
         "key": "sons_of_the_american_revolution_illinois_1896",
@@ -230,19 +233,59 @@ WORKS = [
         "date": "1881",
         "pattern": re.compile(r"h[uv]r[il1]b[uv]t", re.I),
         "fuzzy": ("antiquities", 0.55),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "hurlbut_chicago_antiquities",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoantiquiti00hurl. TWO cards, and the densest 1830s Chicago "
+                     "text of any work in this table: the index is the wrong instrument "
+                     "for ranking it",
     },
     {
         "key": "la_salle_book_co_cook_county",
         "title": "The biographical and portrait volumes of Cook County published by "
                  "the La Salle Book Co.",
         "author": "La Salle Book Co.",
-        "date": "1900, 1909",
+        # The cards print 1900 fifty-three times and 1909 once, beside a 1903 and an
+        # 1854 that are as likely to be OCR of 1900. T-0582 opened the work: it is the
+        # Album of Genealogy and Biography, Cook County, eleventh edition 1899 and
+        # thirteenth 1900, and no 1909 Cook County volume of this publisher was found.
+        "date": "1899 (11th ed.) and 1900 (13th ed.)",
         "pattern": re.compile(r"la\s*sa[il1]le", re.I),
         "fuzzy": ("salle", 0.7),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "la_salle_album_of_genealogy_cook_county",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "albumofgenealogy1900chic and albumofgenealogy1899lasa. The "
+                     "lowest-yield work in this table: about a dozen pre-1840 Chicago "
+                     "arrival sentences per edition, under 91 Chicago or Cook cards",
+    },
+    {
+        "key": "wood_1881_chicago_and_its_distinguished_citizens",
+        "title": "Chicago and its distinguished citizens; or, The progress of forty "
+                 "years",
+        "author": "David Ward Wood",
+        "date": "1881",
+        # The author's surname and initials as the card prints them — 'Wood, D. W.',
+        # and the OCR's 'Wood, D. V/.', 'Wood, D, W.' and 'Wood, D. W J'. The YEAR is
+        # unusable as a key here: the same eight cards carry it as 1881, I88li, I88I1,
+        # 1381 and loWi. Keyed on the initials for the reason Andreas is — the letters
+        # survive the photostat and the spelled-out name does not — but tighter, since
+        # this needs the surname AND both initials where Andreas needs two letters.
+        # No `fuzzy`: 'wood' is four letters and would take Good, Hood, Ward and
+        # Woods with it, and `works_of` reads `.get("fuzzy")` for exactly this case.
+        "pattern": re.compile(r"w[o0]{2}d\s*[.,;:'\u00b4]?\s*[dbo]\s*[.,;:'\u00b4]?\s*[wv]",
+                              re.I),
+        "held": "wood_1881_chicago_and_its_distinguished_citizens",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoitsdistin00wood. Its printed pages 23-25 are a continuous "
+                     "account of the year 1835 in Chicago",
+        # NOT YET IN THE COMMITTED CARDS. T-0582 ran the re-parse and measured it — 8
+        # cards, 5 of them Chicago or Cook, 1 on a lead surname (carpenter), and the
+        # unmatched residue falling 4,175 -> 4,167 and its Chicago half 375 -> 370 —
+        # and did not commit the output, because a plain `--parse` on dev rewrites
+        # leads.json by 6,039 lines for a reason that has nothing to do with this
+        # table: the residents, voter and census_1840 layers have grown since the
+        # committed leads were generated, and five of the new leads are unruled, which
+        # is a separate unit of work. T-0740 carries it. Until then follow_up.json does
+        # not list this work and this comment is where its count lives.
     },
 ]
 
@@ -331,15 +374,89 @@ REGNAL = re.compile(r"(?:hen|edw|ric|[gc]eo|jas|el[il1]z|wm|w[il1]ll|chas|vol)\s
                     re.I)
 
 
+# The second and third systematic false positives, both found by T-0578's forty-card
+# draw on volume 2 and both absent from volume 1's draw (T-0600). They sit here, beside
+# REGNAL, because they are the same kind of thing: a locality pattern matching something
+# that is not a locality, and a written reason for telling them apart.
+
+# ONE — THE STATE BANNER, AND ANY OTHER BODY THAT NAMES ONLY THE PLACE. The printed
+# index divides a family's run of cards by state with a rule on its own line,
+# 'ILLINOIS.'. `assemble` opens a card at a heading and hangs the lines under it on
+# that card, so a banner falling directly beneath a heading becomes that card's whole
+# body and the stanza is kept for a locality no card of that family claims —
+# nbi_v02_1675 is the proof: its heading is 'Kinge or King family.', whose one card is
+# an English parish register, and the surname run that opens under the banner is
+# KINGERY. The same shape catches the wreck of the call-number column, '111. P 85132.8'.
+#
+# The test is not the spelling of the banner but what is missing: a card body is a
+# CITATION — an author, a date, a title — and this domain's whole product is a list of
+# books to open. Strip the locality the patterns matched and a real card still has
+# words left; a banner has nothing. So a stanza whose body is the locality and no more
+# names no work, can never become a lead, and is refused.
+
+# TWO — THE STROKE STANDING WHERE THE CALL NUMBER STANDS. `illinois_abbreviated` is
+# anchored to a comma or to the start of the line, and the start-of-line branch is
+# there for a locality that wrapped: '..., Cook Co.,' on one line and 'Ill. (Andreas,
+# A. T.) 1884-6' on the next. The left of a card also carries its call number, though
+# ('543.7 LaSalle Co., Ill.'), and three strokes of a wrecked one read as 'III,' —
+# nbi_v02_1106, whose card is 'Holden family. — Hapgood fam. (Hapgood, W.) 1898. See
+# index. E. 7. H 21' and names no locality at all.
+#
+# What tells the two apart is what FOLLOWS. A wrapped locality is followed by its
+# citation; a stroke in the call-number slot is followed by the next card's own family
+# heading, because the crop has caught the head of a stanza and not the tail of one. So
+# a start-of-line stroke with a family word behind it, before any citation opens, is
+# refused. (The ticket proposed testing what PRECEDES the stroke instead. On the page
+# there is nothing before it — the stroke IS the call number — so the test is the other
+# way round; the measurement is written up in the PR.)
+FAMILY_AFTER = re.compile(r"\b(?:f\s*a\s*m\s*[il1][il1]?\s*[yv]|fam|faml|famly)\b\s*[.,]?",
+                          re.I)
+
+
+def call_number_slot(body: str, m) -> bool:
+    """True when a start-of-line stroke is a call number and not a wrapped locality."""
+    if m.start() != 0:
+        return False
+    rest = body[m.end():]
+    cut = rest.find("(")
+    return bool(FAMILY_AFTER.search(rest if cut < 0 else rest[:cut]))
+
+
+CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
+
+
+def names_only_the_place(body: str, spans: list) -> bool:
+    """True when nothing but the locality is left of the body — no work is cited.
+
+    A citation is an author, a title and a date, and a stanza that has none of them
+    points at no book. What survives the locality is tested for both: any word, and
+    any four-digit year. The year matters because the OCR loses authors wholesale —
+    'Murry f t | Chicago,\'I;....\' . .\' 1895:' is a wrecked reading of a real card,
+    and the date is the part of the citation that came through.
+    """
+    keep, last = [], 0
+    for start, end in sorted(spans):
+        keep.append(body[last:start])
+        last = max(last, end)
+    keep.append(body[last:])
+    rest = "".join(keep)
+    return len(alpha(rest)) <= 1 and not CITATION_YEAR.search(rest)
+
+
 def buckets_of(body: str):
-    out = []
+    out, spans = [], []
     for name, pat in LOCALITY_BUCKETS:
         m = pat.search(body)
         if not m:
             continue
         if name == "illinois_abbreviated" and REGNAL.search(body[:m.start() + 1]):
             continue
+        if name == "illinois_abbreviated" and call_number_slot(body, m):
+            continue
         out.append(name)
+        spans.append((m.start(), m.end()))
+    if out and names_only_the_place(body, spans):
+        return []
     return out
 
 
@@ -1511,6 +1628,34 @@ def self_test() -> int:
     ok &= run("an OCR shard committed that MANIFEST does not name",
               lambda d: ocr_manifest(d, lambda dom, root, path: shard(
                   root, 1, 9, 9, {"9": BLANK})))
+
+    # The reading rules themselves, on the cards that bought each one (T-0600, and
+    # REGNAL before it). These are not gate assertions — they are what the extractor
+    # keeps and refuses — so they are asserted directly on `buckets_of` and named by
+    # the record whose adjudication is the evidence.
+    for label, body, want in (
+        ("the state banner absorbed as a card body (nbi_v02_1675)", "Illinois.", []),
+        ("the banner in the OCR's own spelling (nbi_v02_1027)", "IlllNOiS.", []),
+        ("a call-number column wrecked down to the stroke", "111. P 85132.8", []),
+        ("a call number standing where the locality would (nbi_v02_1106)",
+         "III, Hepgoed fam. (He'agaod. W.l 1898. See lad", []),
+        ("the regnal Calendarium, which REGNAL already refused",
+         "England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I. 1865.)", []),
+        ("a wrapped locality, which the call-number rule must not touch",
+         "III. f(Moses, J, j n d Kirkland, J.) I89J,", ["illinois_abbreviated"]),
+        ("a wrecked reading that still carries its date (nbi_v01_1796's class)",
+         "Chicago,'I;....' . .' 1895:", ["chicago"]),
+        ("an ordinary Cook County card", "Cook Co.. I l l (La Sa'le Bock Co., Pub.l I9CB,",
+         ["cook_county"]),
+    ):
+        got = buckets_of(body)
+        if got != want:
+            print("  DID NOT HOLD: %s — buckets_of(%r) = %r, wanted %r"
+                  % (label, body, got, want))
+            ok = False
+        else:
+            print("  holds: %s" % label)
+            fired.append(label)
 
     if not ok:
         print("SELF-TEST FAIL")
