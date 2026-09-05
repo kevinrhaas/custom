@@ -1,7 +1,7 @@
 ---
 id: T-0677
 title: Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 833
 claimed_by: run 9/5/2026, 6:07:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T23:53:02.942Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33997685934
 ---
 
@@ -60,3 +60,13 @@ self-test assertions — written against dev at `36d1dde2` and green there on al
 over 31 cards. It was built by the run that landed T-0635 and held back rather than bundled
 into that PR, because this is its own ticket. Read it, re-derive it against whatever dev
 looks like by then, and gate it; do not start from nothing.
+
+**CLOSED AS ALREADY DELIVERED, 2026-09-05, by the run that took T-0681.** T-0636
+(consolidation pass 3, PR #833) landed exactly this ticket's acceptance while it sat
+`open` at the top of the workable queue: `tools/spend_land_sales.py` writes all 35
+rulings onto the 31 cards they name, `check.sh` gates it in both directions and in
+both modes, and `research_spend_baseline.json` lowered the land_sales write-hop
+ceiling from 35 to 0 rather than raising it. Re-verified before closing —
+`measure_research_spend.py --gate` reads land_sales at 35 reached, 35 judgeable, 35 on
+a card, 0 unwritten. No code was written for it here; it is closed against #833, the
+PR that did the work, so the next run does not rebuild it.
