@@ -1,0 +1,567 @@
+{
+ "_doc": "Ground control for the 1830 Thompson plat, in the shape of wright_1834_gcps.json. Pixel coordinates are in the space of the copy of the sheet held in this repository (2728 x 1944). They are NOT picked by eye: each junction is found by following the block-face lines and reading where their ink fails, which is where a street crosses them \u2014 see tools/trace_thompson_forks.py. THIS FILE DOES NOT REVOKE THE SOURCE RULE. thompson_plat_1830 stays a parameter source whose geometry is never traced into the model; the fit exists so the plat's drawn banks can be MEASURED against the committed Wright 1834 planform (T-0685), and its output is a measurement.",
+ "raster": {
+  "path": "chicago/pre_fire_v1/maps/images/1830_thompson_plat.png",
+  "width": 2728,
+  "height": 1944,
+  "sha256": "c0a6403979e628268d6f0e89ab0a8cd0cddfbb255f13487722a886d5e401e701",
+  "note": "The Canal Commissioners' working copy, via the repository's own copy of the sheet. No open high-resolution archival scan has been located; the original burned in 1871."
+ },
+ "control_source": "Modern control from OpenStreetMap via the Overpass API, fetched 2026-09-05. Surface roadways only; footways, cycleways and depressed carriageways excluded; multi-node crossings averaged (max spread 9.2 m). OSM data is (c) OpenStreetMap contributors, ODbL \u2014 see data/sources/osm_streets_2026.json.",
+ "generated_by": "tools/trace_thompson_forks.py",
+ "ticket": "T-0685",
+ "gcps": [
+  {
+   "id": "T01",
+   "map_feature": "Fulton St & Canal St (1830 plat names)",
+   "pixel": [
+    783.17,
+    835.0
+   ],
+   "modern": {
+    "lat": 41.8868193,
+    "lon": -87.6399045,
+    "osm_node_ids": [
+     258020617
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446910.7,
+    "utm_n": 4637407.97,
+    "osm_ways": [
+     "West Fulton Street",
+     "North Canal Street"
+    ]
+   },
+   "residual_m": 4.4
+  },
+  {
+   "id": "T02",
+   "map_feature": "Fulton St & Clinton St (1830 plat names)",
+   "pixel": [
+    565.69,
+    828.0
+   ],
+   "modern": {
+    "lat": 41.8868082,
+    "lon": -87.641353,
+    "osm_node_ids": [
+     258966840
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446790.52,
+    "utm_n": 4637407.63,
+    "osm_ways": [
+     "West Fulton Street",
+     "North Clinton Street"
+    ]
+   },
+   "residual_m": 4.6
+  },
+  {
+   "id": "T03",
+   "map_feature": "Lake St & Canal St (1830 plat names)",
+   "pixel": [
+    789.07,
+    1074.0
+   ],
+   "modern": {
+    "lat": 41.8857338,
+    "lon": -87.6398656,
+    "osm_node_ids": [
+     258020603
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446913.03,
+    "utm_n": 4637287.42,
+    "osm_ways": [
+     "West Lake Street",
+     "North Canal Street"
+    ]
+   },
+   "residual_m": 5.3
+  },
+  {
+   "id": "T04",
+   "map_feature": "Lake St & Clark St (1830 plat names)",
+   "pixel": [
+    2197.0,
+    1100.93
+   ],
+   "modern": {
+    "lat": 41.885747,
+    "lon": -87.6309862,
+    "osm_node_ids": [
+     258957339
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447649.73,
+    "utm_n": 4637283.43,
+    "osm_ways": [
+     "West Lake Street",
+     "North Clark Street"
+    ]
+   },
+   "residual_m": 2.3
+  },
+  {
+   "id": "T05",
+   "map_feature": "Lake St & Clinton St (1830 plat names)",
+   "pixel": [
+    570.17,
+    1062.0
+   ],
+   "modern": {
+    "lat": 41.8857228,
+    "lon": -87.6413416,
+    "osm_node_ids": [
+     258956212
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446790.56,
+    "utm_n": 4637287.11,
+    "osm_ways": [
+     "West Lake Street",
+     "North Clinton Street"
+    ]
+   },
+   "residual_m": 3.9
+  },
+  {
+   "id": "T06",
+   "map_feature": "Lake St & Dearborn St (1830 plat names)",
+   "pixel": [
+    2428.0,
+    1106.32
+   ],
+   "modern": {
+    "lat": 41.8857516,
+    "lon": -87.6295039,
+    "osm_node_ids": [
+     27477597
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447772.72,
+    "utm_n": 4637283.04,
+    "osm_ways": [
+     "West Lake Street",
+     "North Dearborn Street"
+    ]
+   },
+   "residual_m": 3.8
+  },
+  {
+   "id": "T07",
+   "map_feature": "Lake St & Lasalle St (1830 plat names)",
+   "pixel": [
+    1966.0,
+    1094.99
+   ],
+   "modern": {
+    "lat": 41.8857419,
+    "lon": -87.6324743,
+    "osm_node_ids": [
+     258957340,
+     6991303059
+    ],
+    "nodes_averaged": 2,
+    "node_spread_m": 7.3,
+    "utm_e": 447526.27,
+    "utm_n": 4637283.78,
+    "osm_ways": [
+     "West Lake Street",
+     "North LaSalle Street"
+    ]
+   },
+   "residual_m": 1.6
+  },
+  {
+   "id": "T08",
+   "map_feature": "Lake St & Wells St (1830 plat names)",
+   "pixel": [
+    1737.0,
+    1089.2
+   ],
+   "modern": {
+    "lat": 41.8857353,
+    "lon": -87.6339477,
+    "osm_node_ids": [
+     258957316
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447404.02,
+    "utm_n": 4637283.94,
+    "osm_ways": [
+     "West Lake Street",
+     "North Wells Street"
+    ]
+   },
+   "residual_m": 3.1
+  },
+  {
+   "id": "T09",
+   "map_feature": "Randolph St & Canal St (1830 plat names)",
+   "pixel": [
+    792.79,
+    1344.0
+   ],
+   "modern": {
+    "lat": 41.8844479,
+    "lon": -87.6397994,
+    "osm_node_ids": [
+     7015619031
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446917.46,
+    "utm_n": 4637144.61,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Canal Street"
+    ]
+   },
+   "residual_m": 7.8
+  },
+  {
+   "id": "T10",
+   "map_feature": "Randolph St & Clark St (1830 plat names)",
+   "pixel": [
+    2202.0,
+    1363.03
+   ],
+   "modern": {
+    "lat": 41.8844774,
+    "lon": -87.6309528,
+    "osm_node_ids": [
+     28290286
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447651.47,
+    "utm_n": 4637142.45,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Clark Street"
+    ]
+   },
+   "residual_m": 1.0
+  },
+  {
+   "id": "T11",
+   "map_feature": "Randolph St & Clinton St (1830 plat names)",
+   "pixel": [
+    575.54,
+    1331.0
+   ],
+   "modern": {
+    "lat": 41.8844447,
+    "lon": -87.6413076,
+    "osm_node_ids": [
+     258020220
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446792.33,
+    "utm_n": 4637145.19,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Clinton Street"
+    ]
+   },
+   "residual_m": 4.2
+  },
+  {
+   "id": "T12",
+   "map_feature": "Randolph St & Dearborn St (1830 plat names)",
+   "pixel": [
+    2432.0,
+    1365.84
+   ],
+   "modern": {
+    "lat": 41.8844831,
+    "lon": -87.6294681,
+    "osm_node_ids": [
+     28290271
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447774.65,
+    "utm_n": 4637142.18,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Dearborn Street"
+    ]
+   },
+   "residual_m": 3.5
+  },
+  {
+   "id": "T13",
+   "map_feature": "Randolph St & Franklin St (1830 plat names)",
+   "pixel": [
+    1511.0,
+    1351.71
+   ],
+   "modern": {
+    "lat": 41.8844649,
+    "lon": -87.6354008,
+    "osm_node_ids": [
+     258021251
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447282.42,
+    "utm_n": 4637143.79,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Franklin Street"
+    ]
+   },
+   "residual_m": 5.3
+  },
+  {
+   "id": "T14",
+   "map_feature": "Randolph St & Lasalle St (1830 plat names)",
+   "pixel": [
+    1971.0,
+    1357.5
+   ],
+   "modern": {
+    "lat": 41.8844738,
+    "lon": -87.6324644,
+    "osm_node_ids": [
+     10923165759,
+     10923165760
+    ],
+    "nodes_averaged": 2,
+    "node_spread_m": 5.2,
+    "utm_e": 447526.05,
+    "utm_n": 4637142.98,
+    "osm_ways": [
+     "West Randolph Street",
+     "North LaSalle Street"
+    ]
+   },
+   "residual_m": 3.3
+  },
+  {
+   "id": "T15",
+   "map_feature": "Randolph St & Wells St (1830 plat names)",
+   "pixel": [
+    1741.0,
+    1353.46
+   ],
+   "modern": {
+    "lat": 41.884468,
+    "lon": -87.6339164,
+    "osm_node_ids": [
+     27477592
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447405.58,
+    "utm_n": 4637143.22,
+    "osm_ways": [
+     "West Randolph Street",
+     "North Wells Street"
+    ]
+   },
+   "residual_m": 3.0
+  },
+  {
+   "id": "T16",
+   "map_feature": "Washington St & Canal St (1830 plat names)",
+   "pixel": [
+    794.68,
+    1605.0
+   ],
+   "modern": {
+    "lat": 41.8831847,
+    "lon": -87.6397453,
+    "osm_node_ids": [
+     258020660
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446920.9,
+    "utm_n": 4637004.33,
+    "osm_ways": [
+     "West Washington Street",
+     "North Canal Street"
+    ]
+   },
+   "residual_m": 10.1
+  },
+  {
+   "id": "T17",
+   "map_feature": "Washington St & Clark St (1830 plat names)",
+   "pixel": [
+    2205.0,
+    1620.81
+   ],
+   "modern": {
+    "lat": 41.8832472,
+    "lon": -87.6309343,
+    "osm_node_ids": [
+     28290281
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447652.0,
+    "utm_n": 4637005.85,
+    "osm_ways": [
+     "West Washington Street",
+     "North Clark Street"
+    ]
+   },
+   "residual_m": 1.0
+  },
+  {
+   "id": "T18",
+   "map_feature": "Washington St & Clinton St (1830 plat names)",
+   "pixel": [
+    577.12,
+    1595.0
+   ],
+   "modern": {
+    "lat": 41.8831852,
+    "lon": -87.6412675,
+    "osm_node_ids": [
+     258020219
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 446794.61,
+    "utm_n": 4637005.33,
+    "osm_ways": [
+     "West Washington Street",
+     "North Clinton Street"
+    ]
+   },
+   "residual_m": 2.3
+  },
+  {
+   "id": "T19",
+   "map_feature": "Washington St & Dearborn St (1830 plat names)",
+   "pixel": [
+    2436.0,
+    1623.71
+   ],
+   "modern": {
+    "lat": 41.8832349,
+    "lon": -87.6294313,
+    "osm_node_ids": [
+     28290277
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447776.69,
+    "utm_n": 4637003.57,
+    "osm_ways": [
+     "West Washington Street",
+     "North Dearborn Street"
+    ]
+   },
+   "residual_m": 5.3
+  },
+  {
+   "id": "T20",
+   "map_feature": "Washington St & Franklin St (1830 plat names)",
+   "pixel": [
+    1515.0,
+    1611.64
+   ],
+   "modern": {
+    "lat": 41.8832393,
+    "lon": -87.635376,
+    "osm_node_ids": [
+     258021250
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447283.47,
+    "utm_n": 4637007.7,
+    "osm_ways": [
+     "West Washington Street",
+     "North Franklin Street"
+    ]
+   },
+   "residual_m": 6.0
+  },
+  {
+   "id": "T21",
+   "map_feature": "Washington St & Lasalle St (1830 plat names)",
+   "pixel": [
+    1974.0,
+    1616.1
+   ],
+   "modern": {
+    "lat": 41.883243,
+    "lon": -87.6324167,
+    "osm_node_ids": [
+     28290296
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447529.0,
+    "utm_n": 4637006.29,
+    "osm_ways": [
+     "West Washington Street",
+     "North LaSalle Street"
+    ]
+   },
+   "residual_m": 1.5
+  },
+  {
+   "id": "T22",
+   "map_feature": "Washington St & Wells St (1830 plat names)",
+   "pixel": [
+    1746.0,
+    1612.25
+   ],
+   "modern": {
+    "lat": 41.8832423,
+    "lon": -87.6338816,
+    "osm_node_ids": [
+     27477591
+    ],
+    "nodes_averaged": 1,
+    "node_spread_m": 0.0,
+    "utm_e": 447407.46,
+    "utm_n": 4637007.11,
+    "osm_ways": [
+     "West Washington Street",
+     "North Wells Street"
+    ]
+   },
+   "residual_m": 3.0
+  }
+ ],
+ "fit": {
+  "type": "affine, least squares, pixel -> EPSG:26916",
+  "coefficients": {
+   "a": 0.525171077284188,
+   "b": -0.0025867341725529513,
+   "c": 446497.65570559655,
+   "d": 0.008496342005413961,
+   "e": -0.5285641169020892,
+   "f": 4637844.62032842
+  },
+  "rms_m": 4.48,
+  "max_residual_m": 10.14,
+  "min_residual_m": 0.96,
+  "n_gcps": 22,
+  "scale_m_per_px": {
+   "x": 0.5252,
+   "y": 0.5286
+  },
+  "rotation_deg": 0.927,
+  "axis_scale_difference_pct": 0.63,
+  "note": "For comparison: the Wright 1834 fit is RMS 17.5 m over 8 GCPs with a 32.7 m worst point and 3.7% anisotropy, and the Hathaway 1834 fit is RMS 17.7 m. This sheet fits better than either. That is a statement about the DRAUGHTING, not about the survey: a plat is a ruled grid, and a ruled grid matched to the modern grid it became will fit closely wherever the modern street kept the platted line. It says nothing about the freehand water on the same sheet, which is why the bank comparison is reported with the fit's residual beside it."
+ }
+}
