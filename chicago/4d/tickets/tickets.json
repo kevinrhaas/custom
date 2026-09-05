@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 9:03 AM",
+  "generated_ct": "Sep 5, 2026, 9:16 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13036,6 +13036,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 155
+    },
+    {
+      "id": "T-0781",
+      "title": "tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
