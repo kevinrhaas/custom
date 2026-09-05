@@ -53,6 +53,41 @@ T-0509, opened 17:02Z against #865's 09:58Z, and its own title says it is *"the 
 same reading, #865 closes with a comment naming it; if it does not, #865 is the one to land
 and #901 is the duplicate. Closing the loser is part of this lap, not a follow-up.
 
+---
+
+## HOW THIS LAP PICKS ITS PRs — the rule, because the list goes stale in under an hour
+
+**Do not trust the table below. Re-derive it.** This ticket was written at 16:00Z against
+21 open PRs; by 17:30Z the lane had merged eight of them unaided and replaced two more with
+fresh PRs on the same tickets (#865 → #901, #835 → #902). A hard-coded list is a snapshot,
+and a snapshot of this backlog is wrong within the hour.
+
+The lap's membership is a MEASUREMENT, and it takes about a minute:
+
+```
+# 1. what is open, and against what
+#    (the open PR list, base dev, minus drafts and minus `hold` you have not cleared)
+# 2. for each one, how far behind and what actually conflicts:
+git fetch origin dev <branch>
+MB=$(git merge-base origin/dev origin/<branch>)
+git rev-list --count $MB..origin/dev                      # behind
+git merge-tree --write-tree --name-only origin/dev origin/<branch> \
+  | grep -vE 'BOARD\.md|tickets\.json|build\.json|walk/index\.html|dev-smoke-state\.json|QUEUE\.md|changelog\.js'
+```
+
+**That last grep is the whole classifier.** What it strips is build products — regenerate
+them, never merge them. What survives is the real work, and the lap is sorted by how much
+of it there is:
+
+| band | survives the grep | lap |
+|---|---|---|
+| nothing | pure build products | **this one, T-0814** |
+| a short named tail | a coverage note, a README, a built index | T-0806 |
+| a hundred-odd records | mostly the published mirror | T-0807 |
+
+**A PR that has been superseded by a fresher PR on the same ticket is closed, not merged**
+— check the ticket id in the title before adding anything to a lap.
+
 **Acceptance:** #898, #894, #886 and #901 merged into `dev` in that order (squash);
 `thompson_plat_1830.json` corrected in #886's own PR; #865 or #901 closed as the duplicate
 with the comparison written into the comment. Every build product REGENERATED from its
