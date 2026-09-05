@@ -1,7 +1,7 @@
 ---
 id: T-0502
 title: H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 849
 claimed_by: run 9/4/2026, 11:59:08 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T05:45:51.415Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945828328
 ---
 
