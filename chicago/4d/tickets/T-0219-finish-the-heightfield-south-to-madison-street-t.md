@@ -59,3 +59,18 @@ balance's `waiting_on` moves off terrain of its own accord; `tools/check.sh` gre
 South Branch's extended banks are traced and sourced like every other trace — **or** the
 reason they cannot be is recorded and this ticket closes with it, in which case the South's
 120 roofs are gated permanently and the programme should say so.
+
+**Prior attempt: PR [#432](https://github.com/kevinrhaas/custom/pull/432), closed unmerged 2026-09-05 under T-0803.**
+Opened 2026-08-28; by the time it was read it stood **672 commits behind `dev`** with 54
+changed files, re-tracing the river and rebuilding the heightfield and the terrain/water
+GLBs on top of a `dev` that has since moved the South Branch's east bank (T-0686, #882)
+and re-derived north_water twice (T-0780, #889). **Read its PR body before starting** — it
+is the reasoning archive for this ticket and it is not thrown away. In particular it
+records four faults the extension exposed and fixed, each of which will recur: the raster
+cache ignored `REGION`; `upsample` measured the block grid against the image rather than
+the block size; a sheet stain read as riverbank and fused a 190 m false lobe across four
+platted blocks; and `open_lake` would have built 465 m of invented coastline where no
+traced water reaches the guard. It also filed **T-0253** for a 5.1 m regression on
+`blk_south_water_franklin`'s north face.
+
+Its branch could NOT be deleted from the session that closed it — this environment's proxy refuses a ref delete over both git and the REST API (HTTP 403) — so `ticket.mjs claim` **will see it as a rival branch and refuse**. That refusal is a false stop: the PR is closed and the branch is abandoned. `claim T-0219 --force` is correct here. `ticket.mjs inflight` reads it as COLD, which is the honest signal.

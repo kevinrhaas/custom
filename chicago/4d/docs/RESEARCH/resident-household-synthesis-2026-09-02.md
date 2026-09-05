@@ -19,15 +19,18 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 
 ## Research adjudication
 
-The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 90, corroborated: 46, corroborated_enrichment: 29, no_corroboration: 221, no_corroboration_yet: 482.
+The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 122, corroborated: 54, corroborated_enrichment: 43, no_corroboration: 243, no_corroboration_yet: 406.
 
 A post-office letter now documents a real named person considered reachable through Chicago; it is not automatic proof of Chicago residence. Independently corroborated letter-list identities are `attested`; other qualifying letter-list names are `inferred` + `projected_resident`. Candidate identities remain explicitly unasserted with evidence for/against retained.
 
 ## Profile enrichment
 
-Structured promotion changed **2 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
+Structured promotion changed **5 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
 
+- `bailey_bennet` (T-0509): occupation=carpenter
+- `chapman_chas_h` (T-0509): occupation=printer
 - `hathaway_joshua` (T-0483): birth_year=1810
+- `tuller_elam` (T-0509): occupation=farmer
 - `woodworth_james_h` (T-0486): birth_year=1804
 
 ## 1840 census evidence

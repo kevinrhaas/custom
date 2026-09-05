@@ -219,7 +219,7 @@ secondary). A source id no rule reaches stops the build.
 | --- | ---: |
 | T-0442 | 21 |
 | T-0462 | 23 |
-| T-0463 | 24 |
+| T-0463 | 23 |
 | T-0478 | 64 |
 | T-0479 | 73 |
 | T-0480 | 75 |
@@ -231,14 +231,15 @@ secondary). A source id no rule reaches stops the build.
 | T-0486 | 11 |
 | T-0493 | 28 |
 | T-0508 | 76 |
+| T-0509 | 1 |
 | T-0510 | 76 |
 | **reviewed** | **842** |
 | **not yet reviewed** | **562** |
 
 | research outcome | people |
 | --- | ---: |
-| `no_corroboration_yet` | 464 |
-| `no_corroboration` | 210 |
+| `no_corroboration_yet` | 463 |
+| `no_corroboration` | 211 |
 | `candidate_identity` | 88 |
 | `corroborated` | 46 |
 | `corroborated_enrichment` | 29 |
@@ -257,8 +258,8 @@ defect in this export.
 | rests on one source | 952 | one source id on the card and no second category to check it against |
 | no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
-| conflicting evidence | 98 | the ledger records a conflict against a candidate, or the household is flagged for review |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
+| conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 
 ## Reading the table
