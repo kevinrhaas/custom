@@ -584,7 +584,7 @@
         "John H. Kinzie"
       ],
       "town_finding": true,
-      "notes": "HURLBUT'S OWN IDENTIFICATION, and it is what carries 'Jamie Kinzie' in the invoice book to a man. It also states a relationship between two people this project models as separate residents - hh_kinzie_james and hh_kinzie_john_h - and the relationship is HALF brother, which is the correct and easily-lost form: they had the same father and different mothers. Nothing in data/residents/ is edited by this reading. The merge of the invoice spelling to the named man is written in the crosswalk; the kinship is recorded here and is not written into either household record on this ticket."
+      "notes": "HURLBUT'S OWN IDENTIFICATION, and it is what carries 'Jamie Kinzie' in the invoice book to a man. It also states a relationship between two people this project models as separate residents - hh_kinzie_james and hh_kinzie_john_h - and the relationship is HALF brother, which is the correct and easily-lost form: they had the same father and different mothers. The merge of the invoice spelling to the named man is written in the crosswalk. Nothing in data/residents/ was edited by this reading ON T-0575; T-0597 then spent it, writing the half-brother relationship onto kinzie_james and kinzie_john_h as a cited book_evidence row quoting this claim, at rung G5 — no grade, arrival, placement or membership moved. The relationship is prose beside a reading rather than a queryable link because the household schema has no field for a kinship between two households."
     },
     {
       "id": "bk_afc_016",
