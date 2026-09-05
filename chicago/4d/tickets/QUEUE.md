@@ -88,7 +88,6 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 # --- on purpose: it should describe a town whose cards are current.
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
-T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
