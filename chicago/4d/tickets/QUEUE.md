@@ -207,7 +207,6 @@ T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through H
 # --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
 # --- T-0451 left open: the committed market line is fitted to N Wacker Drive and stands 9.1 m off
 # --- the plat's own module, so the suspect is the parent line rather than the North Division.
-T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
@@ -262,7 +261,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- to both, which is why T-0809 outranks the remaining laps.
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
@@ -280,11 +278,9 @@ T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings
 # --- WITH THE EVIDENCE. T-0722, T-0725, T-0731, T-0774, T-0803 and T-0804 are six reports of ONE
 # --- 32 MB ceiling, each filed by a different run inside a day, and #836 has since fixed it
 # --- (31.999 -> 30.4 MB). The eight below them were already banded this way.
-T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
 T-0725 — The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate
 T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
-T-0803 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
 T-0804 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports

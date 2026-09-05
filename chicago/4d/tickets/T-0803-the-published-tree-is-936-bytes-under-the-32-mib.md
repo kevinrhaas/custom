@@ -1,7 +1,7 @@
 ---
 id: T-0803
 title: The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 823
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:59:09.129Z
 claimed_run: null
 ---
 
@@ -63,3 +63,32 @@ met by writing less provenance has inverted what this project is for.
 **Acceptance:** `python3 tools/validate.py --all` green on a tree that has just published, with
 enough headroom stated as a number that the next PR is not this ticket again; the decision and
 its reasoning recorded in a STATUS section; T-0713's PR unblocked or explicitly re-parked.
+
+---
+
+## CLOSED 2026-09-05 by T-0807 — the duplicate of T-0722, and answered with it
+
+Filed four hours after T-0722 against the same wall, from a fresher measurement (944 bytes
+of headroom at `06a0a9ec`, where T-0722 had read 32.1 MB over). Both numbers are true and
+neither is rewritten; this is one stop with two ids, and T-0807's acceptance called for
+exactly this reconciliation.
+
+Its own acceptance, item by item:
+
+- **"the decision and its reasoning recorded in a STATUS section"** — recorded better than
+  asked, in the code the decision binds: the note above `SITE_BUDGET_MB` in
+  `tools/validate.py` states 32 -> 36 as the third conscious re-budget (#823, T-0593), what
+  exhausted 32 measured on dev, what supports 36, and what will exhaust it again named
+  rather than discovered — the duplicated changelog (T-0364) and the letter-list cohort
+  (T-0438).
+- **"enough headroom stated as a number"** — 31,889,319 bytes = 30.41 MiB of 36 MB,
+  **5.59 MiB free**, and `SITE_WARN_FRACTION = 0.90` now warns before the next PR
+  discovers the wall the way this ticket did.
+- **"T-0713's PR unblocked or explicitly re-parked"** — unblocked; it merged as #840.
+- **"validate.py --all green on a tree that has just published"** — `./tools/check.sh`
+  green on this branch.
+
+The ticket's third option, "stop publishing something", is what actually bought the room:
+#836 found the mirror shipping the changelog twice. Its first option, raising the number,
+was taken on top of that and on purpose. Its forbidden option, shrinking a note to fit,
+was not taken.
