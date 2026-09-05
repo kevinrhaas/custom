@@ -21,8 +21,6 @@ p0007 c1  Fielding
 p0007 c2  Fielde family , I
         iii. New York geneal. blog. rec. ^22.. ,
 p0008 c1  ee Index
-        I ll.O
-p0008 c1  ee Index
         — Bureau Co,, III, (Kett & Co., Pub.) 1877: ,
 p0009 c0  FUe
         I Ü ! Fulfon'Co", III. (Chapman, C. C. i Co.) 1879:
@@ -94,8 +92,6 @@ p0026 c0  Fitch
         -—Chicago, l»^»ises,y, n j J J Kirkland, I)
 p0026 c0  Fitch
         . * ' * , ^ . i ) i g ' | Co,, III, (Kelt, H. F., k Co., P_u
-p0028 c2  aao Fltte
-        111. Fltte family.
 p0028 c3  'its
         J. - — Fulton Co , III, (Chapman, C, C. i i Co.) 1879:
 p0029 c1  e e r a
@@ -104,8 +100,6 @@ p0029 c1  e e r a
         Chicago, JlUMcjat J, J«d KHla.1, J.) 18?5i I
 p0031 c3  Fitxolmrma
         Chicago, III, (Andreas, a. 1.1 ***
-p0032 c3  W rr,
-        ILLINOIS.
 p0032 c3  Flagg
         _ M * m t Co., ill. (MtitraY. WITIi.mgMi & Phelpt, Pujtt.) rørøi
 p0032 c3  Flam
@@ -148,8 +142,6 @@ p0041 c2  noury
         Fulton Co, lil. liliapman, C. C. i Co.) 1879»
 p0042 c1  Fllnn
         riko Co., III. lOiapnao, C. C. 4Co.,P»J»J tailJ:
-p0042 c2  Flint
-        Illinois
 p0042 c2  Flint-
         Chicago, III. (Andreas, A. T,) 1884-6i 2 ± -
 p0044 c3  Flood
@@ -180,8 +172,6 @@ p0053 c0  Polnor
         . Ogle Co., III. (Kelt, H. F, 4 Co.) 1878: '-
 p0053 c0  Folaom
         i l i . : m, Kast. Hist, afthatmm. 1833« _ _
-p0055 c3  t orFoote
-        Illinois.
 p0055 c3  oot
         Cf.li.sio, lil. Woed, D. WJ I6?!l 390.
 p0055 c3  oot
@@ -208,8 +198,6 @@ p0058 c2  Forbo'a
         Rockford and Winnebago Co.,111.
 p0060 c0  Forbual, T
         Illinois, Soc Sons Am. Rev, 1896: 207.
-p0061 c0  Ford
-        l1 i . Ford family.
 p0061 c1  Ford
         Chicago, 1:1. (Andreas, A, T.) 1884-61 1-3. ïord fma
 p0061 c1  Ford
@@ -407,8 +395,6 @@ p0120 c3  Fryer
 p0121 c3  ulkorson
         — StoDonoufh C o . , 1 1 1 . ( C l a r k e , S . J . ) »978:
 p0122 c3  Fuller
-        Illinois.
-p0122 c3  Fuller
         Illinois. En-,--'- of biog.'Century Co., Pub.)
 p0122 c3  Fuller
         5• ——Illinois, (Moses, J.) 1888-92. 2v. See Indox
@@ -489,8 +475,6 @@ p0136 c0  Galnee
 p0136 c0  Gainea
         Sangamon Co., III. (Power, J. C.) 1876.
 p0137 c2  f a l
-        ILLINOIS
-p0137 c2  f a l
         — Illinois. (MoaeS, J.i lado-t)4. 2v. Sro idiU 1
 p0137 c2  f Gale
         Chicago, III. (Moses, J. and Ki.-klar.d, J.) loD5i
@@ -516,8 +500,6 @@ p0143 c0  Gait
         Sangamon Co., III. (Power, J, C.) 16/6.
 p0143 c1  Galaaha r
         DuPtatc Co., III. (Bbncr-ard, R.) I882i M-2i
-p0143 c1  Galvir f
-        Chicago,
 p0144 c0  Gamble r
         Chicago, III. (Andreas, A, T.) 1334-6. 1-3.
 p0144 c1  Gambral
@@ -526,16 +508,12 @@ p0145 c3  Gano
         , Illinois. See. Sons Am, Rev. 1896U58.
 p0147 c3  Gardhoiifie
         Ogle Co., III. pit, « , F . , 4 W 1 » »
-p0148 c1  Gardiner
-        ILLINOIS.
 p0148 c1  Ford Gardiner
         329.309 It Chicago, 111. (Mesas, I . and Kirkland, J.) 1895:
 p0148 c1  Ford Gardiner
         8324.11 . Fuhen Co , III. (Chapman, C. C. c. Co.) 1873i
 p0150 c0  f iirtlnor
         Adama Co., III. (Moaay, Wllll.msoo A Phelpa. Piiba.l IB79,
-p0150 c0  f iirtlnor
-        ILLINOIS.
 p0150 c0  Gardner
         .Chicago, III. (Moses, 1 , ± _ Kirkland, J.) IB95i
 p0150 c0  Gardner
@@ -550,8 +528,6 @@ p0150 c0  Gardner
         Sangamon Co., I l l , (Power, J. C.) 1876.
 p0152 c3  I Garland
         : ——Cook C o , III. (Andreas, A, T.) 1 8 8 4 ' ' - ' , ,
-p0152 c3  I Garland
-        ILLINOIS.
 p0152 c3  Garland
         : Sangamon Co., III. (Power, J. C.) 1876.
 p0154 c0  I Garnor
@@ -596,16 +572,12 @@ p0162 c0  Gates
         _ Pike Co., 111. ICkwein, C. C, t, Co, i y j a j 188m
 p0165 c1  Guult r
         i CMergo, III. .«seea, h i r - i Wetland, IJ IÍ95I
-p0167 c0  Gay
-        Illinois
 p0167 c0  Oay
         naaal Co., 111. (Mwray, Wiir.arrrmn & Phelra, Puh,. I I879|
 p0167 c0  Gay
         Film Co., III. (Ctxpmia, C. C. 4 Co., Pnba) 1680,
 p0167 c3  Gay
         111. E 7. H 259
-p0169 c0  Gaylord
-        ILLINOIS.
 p0169 c0  Gaylord
         ^ " w i n n e b a g e - ' C e . , I I I . (Kelt, H. F„ dt Co.. P_ub.)
 p0170 c0  Gearhart
@@ -728,8 +700,6 @@ p0207 c1  Gllmore
         Chicago, lil. (Andreas, A. T.) 84 g j j - ^ Ollm
 p0207 c1  Gilmoro
         ,st. 'mag. a ,111,17-8.Soe l ^ e x ^ u j
-p0209 c0  Glloon
-        ILLINOIS
 p0209 c3  Gymurr ee r
         •mm— leahed. (Hob««, C, l i . Caleadtdvm. Hea, III. „ j
 p0209 c3  Gingorlch
@@ -768,8 +738,6 @@ p0217 c1  Glann
         __Sd»rtwni BmwaCo'., III. (Brink, W.8. 4C..Pobe.)
 p0217 c3  leyre
         —Madison Co, III. (Brink, W. R. dt Co, Pubs,)
-p0217 c3  Glldden or Gildon
-        ILLINOIS.
 p0217 c3  Glldden
         — Illinois, Enr,ytn of biog.'Cenlurv Co,,' Pub,)
 p0218 c3  Glotfelty
@@ -880,16 +848,12 @@ p0253 c0  , - orlu
         ! . DuPage Co., III. (Blan-.l-:-d, H-> 1882: pt.2s
 p0253 c0  , - orlu
         Rookford and Winnebago Co.,111.
-p0254 c0  Searatan
-        Illinois.
 p0254 c3  Gorton
         . Chicago, ill. (Andreas, A. T.) I884-6| 3. See
 p0255 c1  Goea
         C l A C o , I I I . (Aiuiica., A. l . l 1334 ,50,7.
 p0255 c3  Bona
         Chlcfts«, ill. M t w , '•• TJ 4St
-p0256 c2  , Goaa
-        i 1 1 . K 419 .-,
 p0256 c3  Grasp
         Bureau Co., III. (Kelt t Co., Pub.) 1877: 189.
 p0257 c2  Gotttehalk
@@ -904,8 +868,6 @@ p0258 c0  Goudy,
         Christian Co., III. (Brink, U D M a j n , & Co.,
 p0258 c0  Goudy,
         — Cook Co., Id, (La Salle Book Co., Pub.) 1903.
-p0259 c1  Oould, or Gold
-        1 li.28,63. F 84647.". —
 p0259 c1  Gould
         Bureau Co., III. (Keil k Co,, Pub.) 18771 •
 p0259 c1  Gould
@@ -944,12 +906,8 @@ p0271 c3  Grammar
         , Co., III. (Murray, WiUUmton & Phelp,, Puk,.| BJÍB,
 p0271 c3  OVanacher
         Ad.ma Co., III. (Monty, WHIlaaxo, t nmm_&}
-p0273 c3  Grannie
-        111.0
 p0273 c3  Grannla
         -Clilaeo, III. (Weod.iO. W.) l8uTl>»*'
-p0273 c3  Grannla
-        ILLINOIS
 p0274 c2  Crane
         Illinois. (Moset, J,) 1888-9?. Jv. See Index
 p0274 c2  Orant
@@ -1006,8 +964,6 @@ p0282 c2  jCray
         i Iningiton Co., III. (LeB-on, W„ k 4 Co., r k - 1878,
 p0282 c2  Cray r
         _ _ Uariu tMi U M « , CO., III. IBriak, UcOonough 6 Co., PuhJ Gray fa
-p0285 c1  Gray
-        III,
 p0286 c1  Oraybael
         _ _ f « e Co., III. (Oapman, C, C. a) Co., f } * a j 1880, <•
 p0286 c1  Graybeal l
@@ -1030,8 +986,6 @@ p0297 c0  Greeno
         Chicago, iii. (Andreas, A. T.) 1804-01 2-3.
 p0297 c3  Greanhow
         Sangamon Co., III. (Power, J, C.) 1876,
-p0297 c3  Oreenlaw
-        111.» ,
 p0298 c1  Groonleaf
         8 3 3 . 07 • f » » e n Co , l i l . (Chapman, C. : Co.) i 3 / 3 l
 p0299 c1  Greonleare r
@@ -1072,16 +1026,12 @@ p0309 c2  Orlffln
         Pike Co., III. (Oopnon, C, C. A Co.. J5*iJ Orl
 p0310 c1  Grirrin
         1COOt^l46,43,06,111,816,647.E 87,63
-p0311 c3  Crirfin
-        ILLINOIS.
 p0312 c1  prlfflth,oi Griffithe
         ' Chicago, Éi (Andreas, A. T.) 1884.61 1&
 p0312 c1  prlfflth,oi Griffithe
         -—Fulten Co , III. (Chapman, C. C. 6 Co.) IB79i
 p0312 c1  prlfflth,oi Griffithe
         Blureau Co., III. (Kelt 4 Co., Pub,) I877l 190.
-p0312 c1  prlfflth,oi Griffithe
-        Illinois
 p0314 c2  P ga
         Boone Co., Ill, (Kelt et Co., Pub.) I877i 393.
 p0314 c2  P ga
@@ -1092,8 +1042,6 @@ p0315 c2  x Orin
         Gene Co., III. (kan, H. F, A Co., Pob..) IB7B, •
 p0317 c2  ' Grinneli
         7 . Boone Co., III. (Kelt 4 Co., Pub.) 1877: 3M
-p0319 c0  Griawold
-        ILLINOIS.
 p0319 c0  Grlawold
         Curcsu Co,, III, (Kett 4 Co., Pub.) 1877) 217.
 p0319 c0  Orlawold
@@ -1102,8 +1050,6 @@ p0319 c0  Orlawold
         Chicago, III. (Moses, 1, ond k.rkland, 1.) IUSJI
 p0319 c0  Orlawold
         Chicege, 111, (Andreas, A. TJ Ioo4-0l
-p0319 c0  Gordon
-        « Illinois,
 p0320 c2  Crlxxel
         Utkioo Co., III. (Brink, McOaneosh & Co., PwVl.J info 115. •
 p0320 c3  Grooliowakl
@@ -1114,8 +1060,6 @@ p0321 c1  Groh
         eHor. Cook Co., III. (Andreas, A. T.) 1084 ,730.
 p0321 c2  Groo
         LaSalle Co., III. (Mdwln, E.) 1877s 351.
-p0322 c1  Oroee
-        111.83 C
 p0322 c1  Groan
         4? Bureau Ce,, III. (Kett di Co., Pub.) 1877: 239.
 p0322 c1  Groan
@@ -1124,8 +1068,6 @@ p0322 c1  Groan
         — Illinois. Soc. Som Am, Rey, 1B96|138. O
 p0322 c1  Oroee
         — S Chltage, III. (hios't, J, and Kirtland, 1,1 18931 .
-p0324 c3  Grout
-        ILLINOIS
 p0324 c3  Orove
         j E>aJltV, III. (KM, H. r, g Ca.Pih.llWgi 190,
 p0324 c3  Grove
@@ -1150,8 +1092,6 @@ p0329 c1  g Ojokaon
         Í ^ L w & ' , III. (Itett 4 Ce., Pub.) 18771 215,
 p0329 c2  Guenon,Ganong,Ganoung or Genung
         • Cook Co., ill. (Andreas, A. T,! 1384 if..v,. - frnftc
-p0331 c2  Guild
-        Illinois.
 p0331 c2  Guild
         Cock Co., III. . •.'34 i973. *'
 p0332 c2  Guilford
@@ -1204,8 +1144,6 @@ p0344 c3  Haddock
         Chicago, li., j . j v , , , K,rslandi J.) IMS,
 p0345 c0  KaJdnck
         Chicago, HI. t> . cas, '.-rSl j . .Ve
-p0347 c1  Hapnn
-        ILLINOIS.
 p0347 c2  Hartan
         — Illinois. Soc. Sons Am. Ret. 1896: 142-
 p0348 c0  Har,borno,Hugburnn, QJ Marl-timo f
@@ -1297,8 +1235,6 @@ p0369 c1  Halloek
 p0370 c1  Hallowoll
         J. New W i , 111,1..) Cattedlf of mt:. tel. I , the Rev. 1863. Ha
 p0370 c3  Halaey
-        ILLINOIS
-p0370 c3  Halaey
         Cook Co.. Iff, aa Salle Book Co., Pub.' !9C"V
 p0370 c3  Halaey
         ta-Madlton Co., III. (Brink, W. R. É'Ce.. Puhi.)
@@ -1362,8 +1298,6 @@ p0382 c0  latnmorai r
         — lleDonoofh C o . , 1 1 1 . ( C l a r k o . S . J . ) 1 9 7 8 :
 p0382 c0  Hanmond
         _ Sangamon Co., I l l , (Power, J. C.) 1876.
-p0383 c0  Hammond
-        401,111. ' "
 p0384 c2  Hammone
         • Co., iii. (Owpman, C. C. 6 Co., Pot,.I IS8O, L,
 p0385 c1  Hampton
@@ -1388,8 +1322,6 @@ p0390 c2  Hanowortr
         Fulion Co , lil. (Chapman, C. C. t Co.) 1879:
 p0390 c3  llanford
         Chicago, l i l . (Andreu, A. T.) ',834-6i 3 . Sea
-p0390 c3  llanford
-        Illinois
 p0391 c1  Hank
         dex. Kenan and'tlinloe Co., III. (Brink, a1c9encn;h 6 Co.. P j £ l
 p0391 c2  n Hanka
@@ -1402,8 +1334,6 @@ p0392 c1  Harna
         , Co., III. (LeBacoo, W., *., 4 Co„ i l l - »79,
 p0392 c1  tHonna
         4. i-lavnajttaaCa., 111. *•• » - * « ' a a j j E ,
-p0393 c0  Hannah
-        Illinois '
 p0393 c0  Hannah
         ' Ihaamlrn Ca., III. (Drink. licOentBjh 4 Ch, _ 1811,
 p0393 c1  in l ie Hannah
@@ -1438,16 +1368,12 @@ p0400 c2  Hardin
         Chfistian Co,, III. (Brink, McDonough 4 Co..
 p0400 c2  Hardin
         Illinois, Pioneer hist. of. (Reynolds, J.) 1887
-p0401 c0  fardirg
-        Illinois
 p0401 c0  Harding
         Chletge, lil. (Andreae, A. T.) 1984* __ 3
 p0401 c0  Harding
         LMnclka, Co., III. (leOaron, W.. »., & Co.. Maul 1419,
 p0401 c0  Harding
         Laoalle Co., I l l , lüsldwin, E.j lo77i 4 0 2 .
-p0403 c1  Har ty
-        ILLINOIS.
 p0406 c0  Herrie f e
         Sangamon Co., Ill, (Power,J, f>J 76, I8
 p0406 c1  Barg-ravaa
@@ -1558,8 +1484,6 @@ p0435 c0  Hartwell
         Boone Co., lil. (Kett It Co,, Pub.) 18771 35?.
 p0435 c0  Hartwell
         Chicago, 1,1. (Andrea. , 7 ) !334>Gi I A
-p0435 c0  Hartwell
-        ILLINOIS
 p0436 c3  Harvey
         , Illinois. (Moses, I.) 1886-92. 2v. See index
 p0436 c3  Harvey
@@ -1570,8 +1494,6 @@ p0436 c3  florvoy
         • Chicago, III. (Mesas, J, aad Kirtland, J.) 1:05,
 p0436 c3  Harvey
         Sangamon Co., III. (Power, J. C) 1876.
-p0439 c1  Horwood
-        Illinois.
 p0439 c1  Harwood
         CkaWtvdgp Co., lil. I3,ink, IttlleaRlgh L Co., iC.T,
 p0439 c1  Harwood
@@ -1602,8 +1524,6 @@ p0451 c1  Hatfield,
         Chicago, III, (Andreas, A. f.) 188*>6i 2-3.
 p0451 c1  Hatfield,
         Chlcigc, III. . • _ ; • „ bød Í.) 1395
-p0451 c1  Hatfield,
-        Illinois. '
 p0452 c0  Hathaway
         • Illinois, Soc. Sons Am. Re», I896|1 T.
 p0452 c0  Hathaway
@@ -1639,15 +1559,11 @@ p0460 c3  Howken
 p0461 c0  Hewkee
         Cook Co., III. (Andreas, '., T.) 1884 i 506,
 p0461 c0  Hewkee
-        ILLINOIS.
-p0461 c0  Hewkee
         a—-. Chicago, III. (Andreas, A. T.) 1884-6| _ • _ _
 p0462 c0  'Ine
         ' M a g e , 111. (Andreat, A. T.) I » 5 4 - 6 | . l l 3
 p0464 c0  Bawke
         •—Ogle Co., III. (Kett, H. F„ dt Co.) 18761 686.
-p0465 c0  Hawley
-        Illinois.
 p0465 c0  Hawley
         Illinois. (Moses, J.) IRfJrl-(V>. ?v See '-de
 p0465 c0  Itawley
@@ -1683,8 +1599,6 @@ p0468 c1  Hay
 p0469 c0  I'aydon
         Chicago, III. .b'.utu:, J . _ _ l iii.-hl-r.J, l . l 189
 p0469 c0  I'aydon
-        Illinois.
-p0469 c0  I'aydon
         _ _ Chicago, lil. (Andreas, A. T.) 1864-61 2-3.
 p0469 c0  Haydep
         • Feiten Ce , III. (Chapman, C. f , ft t a ) I879
@@ -1708,8 +1622,6 @@ p0471 c1  ' Hayee
         See ladet. Li-aiie Co., III. (Baldwin, l i ) 1877: 345. •
 p0474 c0  Haynes cjr Haine
         ««g0, III. ((-'cs,'. i . • .
-p0475 c3  Haye
-        Illinois.
 p0475 c3  Havs
         . P * . C , III. (Oxe-n, C. C . * C . . , f n 4 > J
 p0475 c3  Havs
@@ -1724,8 +1636,6 @@ p0477 c0  Hayward
         LaSalle Co., ill. (Baldwin, E.) 1877: 253.
 p0478 c2  Haywood
         5I w^ Boone Co., III. fltett 4 Co., fob.) I877i353.
-p0478 c2  Haywood
-        ILLINOIS
 p0479 c0  Haywood
         — U g a r Co,, III. (leBarao, W„ A,, 4 Co., Poba) IBÍ9,
 p0480 c2  Hazeltine
@@ -1748,8 +1658,6 @@ p0483 c3  I'oalri
         Chicago, lit. C.:atc;' J.tnd KirLi-c), J.) I*»
 p0483 c3  I'oalri
         — Illinois, Soc, Sons Am. Rev. W> } ^ M L
-p0485 c0  Healy
-        ILLINOIS.
 p0485 c0  Ilooly r
         , — _ Chicago, I I I . (Motes, J, and Kirkland, J.l 18
 p0485 c0  Ilooly r
@@ -1778,8 +1686,6 @@ p0491 c2  ouj-j bi Heoklefiold
         . _AdaawCo., III. (Money. Williamson 4 Phetpa. Pota.11979,
 p0492 c0  Heddeeeh
         Fulton Co, III. (Chapman, C. C. L Co.) 1379:
-p0492 c0  Heddeeeh
-        ILLINOIS.
 p0492 c3  x I'edgoa
         6 Cool Co., I I I . <a ,„, r
 p0492 c3  ''odgoa
@@ -1914,8 +1820,6 @@ p0513 c2  J Harmon
         _ _ Sangamon Co., III. (Power, J. C.) 1876.
 p0513 c3  Harndon
         8 (3 Sangamon Co., Ill, (Power, J, C.) 1876,
-p0513 c3  Harndon
-        ILLINOIS.
 p0514 c1  Kerpln
         i a _ Fulton C o , I I I . (Chapman, C. C. d Co.) 1879:
 p0514 c2  g jg jlerron
@@ -2042,8 +1946,6 @@ p0540 c3  H l Hill
         O^I Cicago, III. Second Pretb. Cb., 1842-92. (Craol,
 p0540 c3  Hill
         . l —Madlton Co., III. (Brink, W. R. & Co., Pubt)
-p0546 c2  Hillard,or, llilyard
-        Illinois.
 p0547 c3  Hilliard
         6 Cook Co., III. (Andreas, A, T.) 1884 ,r,s . 2
 p0547 c3  Hilliard
@@ -2056,8 +1958,6 @@ p0548 c3  Hlllman
         Fulton Ce , III. (Chapman, C, C. it Co.) 1879s
 p0549 c0  HUla
         Chicago, III. (Andreas, A. T.) I884-6| 2-3.
-p0549 c0  HUla
-        IlllNOiS.
 p0549 c0  Kiil
         _ Cook Co., III. (Andrett, T.) 1384 , 7 U
 p0549 c0  i illa
@@ -2076,8 +1976,6 @@ p0554 c0  Hlnda
         —Pike Co., III. (Oattntn, C C. 4 Co., Poh.) inn,,,
 p0554 c3  Hlne
         t r x ,111.9. 1804-Sil
-p0555 c0  niBoe
-        Illinois
 p0555 c0  llinea
         Cilcige, III. (ilosaj, j , „nd Klrktød, J ) jn
 p0555 c3  Rinkhouoe
@@ -2105,11 +2003,7 @@ p0558 c3  Hipeon
 p0559 c0  , i Hlrone
         Chicago, l i l . t t n d r e a s , A. T.) 18o4-6i 2-3.
 p0559 c0  Hiret
-        Illinois
-p0559 c0  Hiret
         _ _ OeWitt Co., i l l . (Brink, W. R, cVCo., Pub.) 1
-p0560 c2  Hitchcock
-        1 . Chicago,
 p0560 c2  Hitchcock
         J Chicagc, l i l . (Andreas, 7. T.) l " 4 - G : ,
 p0560 c2  Hitchcock
@@ -2126,12 +2020,8 @@ p0562 c2  fitof
         • Illinois. {Moses, ],
 p0565 c2  Hoard
         7...-~S3° Chicago, III. (Andreas, A. T.) 1804-6| 1-2.
-p0567 c2  Hobba
-        ILLINOIS.
 p0567 c3  Hobba
         6f.r n t t Co., 111. (Cktpnno, C. C. 4 Co., Pubi.) ISBOi " .
-p0568 c1  Hobbe
-        111,343,417. • | f 642805.411
 p0569 c2  - j Hobla
         Fulton Co , 111. C i ; « , C. C. Í. Co.) 187*1
 p0569 c3  Bobaon
@@ -2188,8 +2078,6 @@ p0582 c1  Holbrook
         —-.Illinois, Soc, Sons Am, Rev, I896t 152.
 p0582 c1  Holbrook
         Chicago, lil, (Andreas, A. T.) '.C:4.6| 1-3.
-p0582 c2  Holbrook
-        111.4
 p0584 c1  m Holcon h r
         "— Bureau Co., III. (Kelt 4: Ce;, Pub.) 18771 191.
 p0584 c1  m Holcon h r
@@ -2200,8 +2088,6 @@ p0584 c1  Holeonb
         Cook Co., til. (Andrccs, /. T.) 7884 1715.
 p0584 c1  Holeonb
         Pike Co., III. (Oupmin, C. C i G ^ P o U J 1880:
-p0585 c2  Holden
-        ILLINOIS.
 p0585 c2  Holden
         Illinois. Soc. Sons Am. Rev. 1896s 153.
 p0585 c2  Holden
@@ -2214,8 +2100,6 @@ p0585 c2  Holden
         LaSVle Co., Ill, (Baldwin, E.) I877t •
 p0585 c2  Holden
         • ^ . Chicago, III, (Andreas, A.T.) If34-6| izl-
-p0586 c3  Holden
-        III, Hepgoed fam. (He'agaod. W.l 1898. See lad
 p0587 c2  Holdarby
         543.7 LaSalle Co., III. (Baldwin, _ ) I877i •
 p0587 c3  t'oldridr o or Holdred
@@ -2266,22 +2150,16 @@ p0597 c3  Holmea T
         . Fulton Co , III. (Chapman, C. C. i Co.) I879i
 p0597 c3  Holmea T
         Cook Co., Ill, (Andreas, A, T.) 1884 '
-p0599 c1  Holmen
-        111.
 p0601 c3  Holo' my
         B63-M ______ Bureau to,, lil, iKcrt dt Co., Pub.) m; ;. ^
 p0602 c2  t -my, Holt
         1 ; Chicago", III, (Andrea:, A T I 1884-6! 2-3.
-p0602 c2  t -my, Holt
-        Illinois
 p0602 c2  Holt
         E at.n — Wtnnebrago Co., III. (g,H, H. F., 4 Co., Pjb.)
 p0602 c2  Holt
         — C.n:a;o, III. Second Presh. Ci., 181^-?;. tSrant
 p0604 c3  'Iolton
         Illinois, Soc. Sons Am. Rev. 1896: 154.
-p0604 c3  'Iolton
-        Illinois.
 p0605 c1  HolU
         Madlton Co., I l l , (Brink, W. B. at Co,, Pubs.)
 p0608 c0  Honoyeett
@@ -2386,8 +2264,6 @@ p0634 c0  Hough
         • Oitago, lil. (Andreas, A, T.) 1884-ii 2-3.
 p0635 c0  Houghtellng
         Chicago, III, (Andreas, A. T.) 1884-ÍI.3. Soo
-p0635 c1  Houiehton
-        Illinois
 p0635 c1  Houghton
         ÍI.3. Soo . Bureau Co., III. (Kett dt Co., Pub.) 1877: 336,
 p0635 c1  Houghton
@@ -2396,8 +2272,6 @@ p0635 c1  Houghton
         index Winnebage Co., III. (KeH( H. F„ dt Co., Pub.)
 p0638 c1  See index tiountholder
         fcfcfc»45 Ogle Co., III. (Kelt, H.T., * Ce.) I87lt 820.
-p0639 c0  Houston
-        ILLINOIS
 p0639 c0  Houston
         Pike Co., III. iCtiaoman, C. C. & Co., Poba.)
 p0639 c0  Houston
@@ -2420,8 +2294,6 @@ p0643 c0  Howard
         > — Chiear.0, 111., Create and conte of
 p0643 c0  Howard r
         I Fulton C o , I I I . (Chapman, C. C. Í Co.) 1879
-p0644 c1  Howard
-        ill.
 p0645 c0  Howard
         6,lil. Roe iniloa. e a , v , _ le-Bayr.
 p0647 c2  Howarth
@@ -2498,10 +2370,6 @@ p0661 c3  Hubbard
         tlirioo aad Clinlo. tm., III. IBrinb, llcOeno^b A Co., h_
 p0661 c3  Hubbard
         —PBr. Co., III. (Chajrmm, C C A Co., Pvba.) |880,
-p0663 c1  Hubbard
-        1 8 0 0 : 1 1 1 0 7 , 1 1 1 , 3 3 1 , 5 5 1 . E 67.63
-p0665 c3  Ktfbbell f
-        ILLINOIS.
 p0665 c3  Ktfbbell f
         öoi Illinois. Soc. Sons Am. Rev, 1096: 157.
 p0666 c2  See Index - Rubor
@@ -2522,8 +2390,6 @@ p0668 c2  rSrboi Hudson
         Sangamon Co., III. (Po , J, c.) 1876, wer
 p0670 c1  Hudson
         i'i- ' Sjj Indus,,,, 111,1
-p0670 c2  Husmn xin
-        s,,,, 111,1«
 p0671 c0  Huay
         Cook Co. HJ. (L. Sill, Book Co., Pub.) 1"-n
 p0671 c0  Hurr
@@ -2648,8 +2514,6 @@ p0694 c1  Hunter
         Sec index. — England. (Rebecta, C, ^d. ________ Hea, iii. and Edw. I.
 p0694 c3  Huntinpdon
         43, — — legland. (Rotvrta, C. 74.' Calendarium. Hep, iii. and Cdw. I.
-p0695 c0  Huntington
-        I 11.1
 p0695 c1  Huntirr ton
         I 11.1 — r t o r w l o l i . t t . f r i l n x u i . n . C . ) 1(159. See
 p0695 c1  'Pontingten
@@ -2662,8 +2526,6 @@ p0695 c1  'Pontingten
         £ 6921.15 I Cook Co., IJL (la Salle Book Co., Pub.) 19C0.
 p0696 c3  Huntley
         -Pika Co., III. ICtwixrwo, C C. 4 C_,___) IO8O1
-p0697 c0  Huntley
-        I II. E.7. 0 7463
 p0697 c2  Huntoon
         Cook Co., fit. vArti;-'. ... tu l««« 1447.
 p0698 c3  Kurd
@@ -2676,8 +2538,6 @@ p0698 c3  Kurd
         Ogle Ce., III. (Xett, H, F., 4 Co.) I878i 3, i 6 f i
 p0700 c2  Hurlhurt
         Chicago, III. (Andreas, A. T.) 1884* 3. Soe
-p0701 c0  Hurlburt
-        111,183,213. K 69987.
 p0701 c1  M-jrliut
         1,91 ,olao Chicago, III. (Andreas, A. T.) 1834-61 2-3.
 p0701 c1  M-jrliut
@@ -2722,8 +2582,6 @@ p0709 c0  Hurchinaon
         Cook Co., I«, (hi:: 1.. T.» 1234 1550.
 p0709 c0  Hutehineon
         Cook Co.. HL ( l i Salle Book Co,, Pub.l I " " * .
-p0709 c1  Hutehinaon
-        111.4 • F 844123.6
 p0711 c3  Hutchison
         Cook Co., IJL (La Salle Book Ce., Pub.) I«8f),
 p0712 c1  Hutton r
@@ -2788,12 +2646,8 @@ p0727 c3  Irby
         — - C o o k Co., III. (Andre«, A. T.) 1884 »447.
 p0728 c3  Irieh
         Chicago, III. (Motes, J, .and Kirkland, I.) 1805:
-p0728 c3  Irieh
-        ILLINOIS.
 p0728 c3  Irlah
         _Mtdison Cp., III. (Brink, W. R, 4 Co., Pubs.l
-p0730 c0  Irvine
-        Illinois.
 p0730 c0  Irvine
         • Cook Co., III. (Andreas, K T.) 1884 :733.
 p0730 c3  Inrln
@@ -2806,8 +2660,6 @@ p0731 c0  Irwin
         „••„ .«, 0., l i i , . : r t . : l „ 402, aliolodatt. F 851.0c
 p0732 c1  Indoll
         — . Bureau Co., III. (Kett 4 Co., Pub.) I877i 192.
-p0732 c1  Ieelln
-        Iii. and Edw. i Iselln family.
 p0732 c2  o I lahem
         76 I Illinois, E ' . - , : ' of bio.:.'Century Co.. Pub.)
 p0732 c2  o I lahem
@@ -2960,8 +2812,6 @@ p0770 c0  'eroine
         Illinois. Soc. Sons Am. Boy, 1896: 266.
 p0771 c3  Jewell
         OuPage Co., Ill, :;•
-p0773 c0  Jewett
-        I 11.8?
 p0774 c3  Jewett
         III. E 7.fl18
 p0775 c0  J l l
@@ -2982,8 +2832,6 @@ p0777 c0  Johruio
         — Cook Co,. TH (Li Sill* Book Co,, Pub.) I SCO.
 p0777 c0  Johna
         i Cs., III. tbaeas, W..A., t t v , Pnbi.)ujr9i
-p0778 c2  Jonneon T
-        Illinois
 p0778 c2  Johneon
         65 Illlnolt, Sec, Son, Am. Rev. IB96U64.
 p0778 c3  Johnson
@@ -3004,8 +2852,6 @@ p0783 c0  Johneton
         Cook Co., Hf. (La Salle Book Co., Pub.) 1900.
 p0784 c3  Johnetone
         ' Cook Co., Ill, (Andreas, A. T.) 1884 ,599.
-p0784 c3  Johnetone
-        1 ILLINOIS.
 p0787 c1  'ones f
         4148.1, —— Illinois. Soc. Sona Am. Rett. 1696: 1 6 5 - 6 .
 p0787 c1  SieVtxl Jonee
@@ -3110,8 +2956,6 @@ p0812 c0  Kaoffmann f
         • Cook Co., til. (Anditas, A. T.) 1884 ,44
 p0813 c0  K agle
         Sangarnun Co., Ill, (Power, J. C.) 1876.
-p0813 c0  Keen,Keane,Koen,Kenne, or Kone
-        ILLINOIS
 p0813 c0  Keen l
         Cook Co., HI, (Andreas, A. T.) 1884 :448.
 p0813 c3  Kearnlneham
@@ -3134,8 +2978,6 @@ p0817 c2  Koenen
         Cook Co., III. (Andreas, A, T.) 1884 "S"'- .
 p0818 c1  See Indet I Keenoy
         8. I «tnnebogo Co., III. (Kelt, H, F„ 4 Co., Peb.) I
-p0818 c2  Koop
-        , i 11.62
 p0818 c2  Keap
         613 Chicago ,a. (And,,.,, A. TJ 1884-6, 3. Sao I ;
 p0819 c0  Koes,o Keyes
@@ -3164,8 +3006,6 @@ p0822 c3  I Keller
         — « - « C . , III. (Andrea:,/„ r.) gg« ,733.^
 p0824 c0  Kelloy
         . — Ckieate, lil, (Andrett, A. T.) 1884-Si 1-3.
-p0824 c0  Kelloy
-        i—Chicago, III,
 p0824 c0  Kelloy
         j Fulton Co, lil, (íínap,,,., C. C. 4 Co
 p0826 c1  Kellorr
@@ -3208,8 +3048,6 @@ p0836 c3  Kendle
         R395 Ogle Co,, III. (Kett, H. F., 4 Ce.) 1878: 7 4 S
 p0836 c3  Kendel
         —_Cook Co,, III. (Andreas, A. T.) 1864 ., „ , t r
-p0838 c2  Konnard
-        I 11.6 422
 p0839 c0  Kennodv T
         Chicago, III. (Andrea,, A. T.) 1384-6i i r - -
 p0839 c0  Kennodv T
@@ -3222,8 +3060,6 @@ p0839 c0  Kannody
         Cook Co., HI. (Andreas, A. TO 1884 ,733.
 p0839 c0  Kannody
         OuPage Co, III. (BL-.ncherd, R.l I882t . , p t 2
-p0840 c2  Kennedy
-        lll.
 p0841 c1  Kon,, v
         Chicago, Id. (Andreas, A. T.) ISCV61 __t_..
 p0841 c1  Kon,, v
@@ -3317,8 +3153,6 @@ p0863 c3  Kiaball
 p0865 c3  Ksmball
         Dudleyftm,(Dudley, .) 1886-94. Se, inde, III.
 p0866 c3  Kimbark
-        734 — Chicago,,,. , .... £ .
-p0866 c3  Kimbark
         794 Cook Co., III. (Andreas, A. T.) 1884 , 7GC.
 p0866 c3  Kimbark
         Chicago, III. (V/oeJ, D. W.) 1881: 17,.
@@ -3352,8 +3186,6 @@ p0874 c0  King
         Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.
 p0874 c1  Klnrdpn
         ut, ill. atngdon f n r . l l y .
-p0874 c1  Kinge or Kinr r
-        Illinois.
 p0875 c2  Kingabury
         . Boon. C , III. (Krtt « Ce„ M j „„, 3 9 5 ,
 p0875 c2  Kingabury
@@ -3362,8 +3194,6 @@ p0875 c2  Kinenbury r
         «ook Co., III. (Andreas, A. T.) 1084 i715. N.Br
 p0875 c2  nsn
         kVinnebag-o Co., III. (Kell, I!, f (. I L , Hort
-p0876 c3  Kingeeod
-        Illinois,
 p0876 c3  Klnralnr d
         — Chicago, III, (Andre«, A. TJ 1804^1 „ 3 3
 p0877 c0  ' Kingeley
@@ -3402,8 +3232,6 @@ p0882 c2  Kirk
         Chicago, III, (Andreas, A. T.) I834-6| 2-3.
 p0882 c2  Kirk
         i — Sangamon Co,, III. (Peer, J, CJ 1876. v
-p0883 c2  Kirkham
-        1 1 1,1
 p0883 c3  Klrkland, j Kirtland
         a, Chielgo, III. ÜüeuSj J. ad "iiMlnd, t.)
 p0883 c3  Klrkland, j Kirtland
@@ -3424,8 +3252,6 @@ p0887 c1  Kiltere
         Bureau Co,, III, (Kelt « Ce,, { . _ ) H77, 2 S 3 .
 p0888 c1  K i t
         Seelndex. Christian Co., Ill.fiPrlrk, fePop-ur;h 4 Co.,
-p0888 c1  Tj r-B Kleet
-        lii.l
 p0888 c2  I Klar nor
         8. " " a Ce., 111. (Xanay, WSIIamra « Phelp., Pob.. 11679,
 p0888 c2  I Klar nor
@@ -3480,10 +3306,6 @@ p0894 c1  ,O H Knlett rbaoker
         E 65. 78 » . h g Co., lil. IBhiil-ard, 0.M382: p t . 2 .
 p0894 c1  Knickerbocker
         - _ - , lil, (Andrea,,
-p0894 c1  Knickerbocker
-        Chicago,
-p0894 c1  Knickerbocker
-        Illinois. -
 p0895 c0  Knl-ht
         i Chicago, nl, (Andreas, A. i.i tJ-4-Si 2-3. Kn
 p0895 c0  Knli ht r
@@ -3552,8 +3374,6 @@ p0909 c0  Kreeaer
         Cook Co., III./(Andrtos, /., T.) 1884 «***•,' Kr.ut
 p0909 c1  Kroragnr
         Cook Co., ID. (Andreas, A. T.) 1884 ,550. St
-p0909 c2  Krlog
-        Cook Co..
 p0909 c2  rlegahauaer
         • Chicago, in.
 p0909 c3  rinr-
@@ -3566,8 +3386,6 @@ p0909 c3  hnka
         Chicago, in. (Andreas, A, T.) !3C4-6i 3. Bo. 1
 p0910 c0  Kroll
         Chicago, lil. (Andrea,, A. T.) 1834-61 1,3.
-p0910 c1  Uropp
-        f 8 9 5 6 7 4 " Cook Co.,
 p0910 c1  Krout
         S8542.I , Cat* Co,, III, Andreas, A, TO 1884
 p0911 c3  mmmr
@@ -3580,8 +3398,6 @@ p0912 c1  Kup r
         H.) 1886, Chiearo, lil, (Andrea,, A. T.) I884-6| 3. a..
 p0912 c2  I Ku el
         ^-Cook Co.. ill. (t, Salle Book C, Pub.) 1900, l
-p0913 c0  Kyle
-        Illinois,
 p0913 c0  Kvie
         . Cook Co., III. (Andreas, K i . ) it.04 3 Ky
 p0913 c1  Kyn lny
@@ -3596,8 +3412,6 @@ p0915 c1  laokoy
         lil,II
 p0915 c2  A Lacre
         IMngttn Co., Ill, (leBamn, W„ >., 4 Co., Poe,.l t 8 7 s , ""• 5
-p0915 c2  Clair
-        Illinoie.
 p0915 c3  rolx
         Illinoie.Karly,Chiearo and. (Chiearo
 p0916 c0  aey
@@ -3614,8 +3428,6 @@ p0919 c2  La Pranoo
         Chicago, HI., Directory, 1039. (Fergus hist ta >- .
 p0920 c3  Laird
         ' ""Pkit Co., III. («|o„ cfcardi , B B 2 , 9 t g i
-p0921 c2  ftXt i Q Lake
-        „ Illinois.
 p0921 c2  Lake
         t Boone Co,, III. (KoH 4 Co., Pub.) 1877, 356. — Top.f i
 p0921 c2  Lake
@@ -3651,8 +3463,6 @@ p0926 c0  Lambart
 p0926 c1  Umborr,x n r
         69. 9981 M ' t a g e , i l l , (A
 p0926 c2  lambart
-        ILLINOIS.
-p0926 c2  lambart
         I Fulton Co , ill, (Chapman, C, C. 4 Ce.) I879i : I
 p0932 c2  Und
         C , III. (Uetron, W.,X., 4 Co., Poba ) 18(9,
@@ -3680,8 +3490,6 @@ p0939 c1  inntmiT , g Langd
         ,| - — G l o u c e s t e p , Mass,'(Babson, J. J.) 1876-91. 2v. — « « • • C , Ill ,
 p0939 c2  don
         « • • C , Ill , m m j , Wmiunan S Ptelp,. P „ . , M I 8 , ,
-p0940 c2  Lang,
-        I , Chicago,
 p0940 c2  Lang,
         lil, (Andreas, A. T.) 1834-6i 3, So.
 p0940 c2  Uftgon
@@ -3739,8 +3547,6 @@ p0949 c1  Laewen
 p0949 c2  tham
         Cook Co., III. (Andrea;, A, T.) 1884 , 4 S o ' -^"ara W
 p0949 c2  tham
-        ILLINOIS
-p0949 c2  tham
         Sangamon Co., Ill, (Power, J. C.) 1876. » l
 p0949 c2  tham
         Wlnnobego Co., Ill, (Kelt, H. F„ et to, Pub) — Rhode Island, V
@@ -3795,8 +3601,6 @@ p0964 c0  Law on
 p0964 c0  Lawnon
         Fulton Co , III. (Chapman, C. C. & Co.) 1879
 p0964 c0  Lawnon
-        111. F 89666.4
-p0964 c0  Lawnon
         Sangamon Co., Ill, (Power, J, C.) 1876.
 p0964 c0  Lawnon
         • — Ogle Co., III. (Krtt, H. F., £ Ce.) I878t 609
@@ -3824,8 +3628,6 @@ p0977 c0  tiedoror
         Uarlon ted Clinton Lo., 111. IBtiol, iekllonoogh * Co., Rot.)
 p0978 c2  Loe
         64626.8 I Illinois. (Moses, JJ ,fl88-92. 2,. See Inder
-p0978 c2  Lee
-        Chicago, III,
 p0978 c2  Lee
         III. (Andjees, A. T.) I834-S| 1-3.
 p0978 c2  Lee
@@ -3870,8 +3672,6 @@ p0990 c3  Ulpold
         I —Adam, Ce., lil. (Heem,, Waaaaaa*
 p0991 c1  t-eit r
         • Chicago, III. ( i . i . J , s j j <±ltr.t, 11 IMSi
-p0991 c2  Uland
-        ILLINOIS.
 p0991 c2  aaily Uland
         alle Co, III. (Baldwin, t . l 1877, 235. eUotauqua Co.,K.
 p0992 c2  lWierTtro
@@ -3880,8 +3680,6 @@ p0992 c3  l-rBimn
         USilifl Ca., Ill, Ualuk.ni, L.Í IS?7 ,2B. :
 p0992 c3  Lomastera
         Edgar Co., 111. (laxltron, W„ »., 4 Co., PA, 1 ,879:
-p0993 c0  ' L u t
-        f 894.018 «— Illinol.,
 p0993 c0  ' L u t
         mm- Illinois. (Moses, JJ 1888-9?. 7v. See Indaa
 p0993 c0  Lomon

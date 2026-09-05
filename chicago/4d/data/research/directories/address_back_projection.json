@@ -14,9 +14,9 @@
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 14,
   "refused": 110,
-  "refused_clause_1_no_1835_business": 100,
+  "refused_clause_1_no_1835_business": 99,
   "refused_clause_2_a_residence_not_a_shop": 5,
-  "refused_clause_3_not_on_the_1835_grid": 5,
+  "refused_clause_3_not_on_the_1835_grid": 6,
   "faces_reached": [
    "Clark Street",
    "Dearborn Street",
@@ -1767,11 +1767,11 @@
    "sources": [
     "fergus_chicago_directory_1839"
    ],
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "priest",
    "works_at_1835": null,
    "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "clause": "3",
+   "reason": "'grand' is not a street this pass's 1835 table knows, and a name it cannot rule on is refused rather than guessed.",
    "street_id": null,
    "face": null,
    "placement": null,

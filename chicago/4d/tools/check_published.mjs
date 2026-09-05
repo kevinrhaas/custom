@@ -76,9 +76,29 @@ const TRANSFORMED = [
     gate: 'tools/test_dev_preview.mjs reads it. Until 2026-08-15 it was written ONCE by hand and never '
         + 'again — this gate found it two days stale, claiming a version the mirror beside it did not '
         + 'have. That is the exact fault class this file exists for, found on its first run.' },
+  { re: /^walk\/js\/changelog\.js$/,
+    what: 'a nine-line re-export of js/changelog.js, written by tools/stamp-changelog.mjs (which '
+        + 'owns the shim text) and installed by publish.sh\'s `--write-mirrors` call',
+    gate: 'T-0722. Both published paths carried the changelog verbatim until 2026-09-05, so the site '
+        + 'shipped the same 1.31 MB twice — 4.1 % of its 32 MB budget on a byte-for-byte copy, growing '
+        + 'at double the rate of the record, which is what put dev at 31.999 MB with no room for any '
+        + 'PR to add a changelog entry. The shipped form is gated three ways: tools/validate.py refuses '
+        + 'any two published files over 64 KB with identical bytes (so the duplicate cannot return the '
+        + 'way it arrived); tools/test_changelog_mirror.mjs asserts the shim is what lands here and '
+        + 'that it names the file it re-exports; and the smoke\'s What\'s-new leg loads the tab out of '
+        + 'the published tree, which is the shim resolving or not.' },
   { re: /^walk\/index\.html$/,
     what: 'publish.sh stamps the build commit and its Central-time date into the gate overlay',
     gate: 'tools/test_dev_preview.mjs asserts the stamp on the PUBLISHED form' },
+  { re: /^data\/residents\/.*\.json$/,
+    what: 'publish.sh writes the residents layer minified — the same JSON value on one line',
+    gate: 'tools/check_published_residents.mjs asserts the SHIPPED file parses to a value '
+        + 'deep-equal to its source, file for file, with none missing and none extra. The '
+        + 'transform exists because the layer is 1,380 hand-annotated household records whose '
+        + 'notes run to paragraphs: at indent=1 it was 8.8 MB of the 32 MB budget, the tree '
+        + 'measured 31.999 MB on 2026-09-05, and the next resident pass could not land. '
+        + 'Whitespace is the one thing in it a visitor never reads — the renderer fetches '
+        + 'these with response.json().' },
   { re: /^data\/gltf\/.*\.glb$/,
     what: 'gltf-transform meshopt derivative built by bake.sh from assets/gltf masters',
     gate: 'R-BUG3c-b: check.sh asserts the committed master against the heightfield and REPORTS the '

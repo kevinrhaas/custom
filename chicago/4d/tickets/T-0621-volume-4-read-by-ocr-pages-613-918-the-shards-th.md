@@ -1,7 +1,7 @@
 ---
 id: T-0621
 title: Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0613
 opened: 2026-09-03
-closed: null
+closed: 2026-09-05
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 6:35:29 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T12:05:51.348Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963528564
 ---
 
 Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume.

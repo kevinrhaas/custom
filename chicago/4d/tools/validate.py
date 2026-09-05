@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import math
 import re
@@ -109,7 +110,54 @@ WIDE_RANGE_YEARS = 12
 # and the two largest items in the tree are now named and ticketed rather than
 # discovered: the letter-list cohort at 2.54 MiB (T-0379, this) and the duplicated
 # changelog at 2.07 MiB, 7.3 % of the tree, which is T-0364 and is still unanswered.
-SITE_BUDGET_MB = 32
+#
+# 32 -> 36 ON 2026-09-05 (T-0593), AND IT IS THE THIRD CONSCIOUS RE-BUDGET RATHER THAN
+# A WEAKENED ASSERTION. Saying which one, as the note above requires: this is a
+# re-budget. Nothing was made cheaper to pass, nothing was moved out of the tree to duck
+# the number, and no reasoning was deleted to fit under it.
+#
+# WHAT EXHAUSTED 32, MEASURED ON `dev` AT 06a0a9ec. The published tree stands at
+# 33,553,488 bytes against a ceiling of 33,554,432 — 944 BYTES of headroom, which is
+# 0.003 % of the budget. That is not a margin; it is a wall that the next merge of any
+# kind walks into. A release entry alone costs about 5.4 KB, because the changelog is
+# published twice (below, and T-0364), so the budget was already spent for every ticket
+# in the queue before this one. T-0593 is simply the run that hit the wall, exactly as
+# T-0317 was at 25 and T-0379 at 28.
+#
+# WHAT THIS UNIT ADDS, AND WHY IT CANNOT BE TRIMMED INTO 944 BYTES. Re-dealing lot 7 of
+# block 16 from a D3 cottage to an H1 house publishes 22,285 bytes net: the new roof and
+# its sidecar in place of the old (+13,761), the yard fences and dooryard stems the
+# larger footprint re-derives (+911), the ruling L222 in liberties.json (+7,655), the
+# release entry in its two published copies (+5,414), and 7,404 bytes of sidecars that
+# were STALE ON DEV and that any PR touching compile_scene.py has to carry. Everything
+# in that list is either derived geometry or reasoning. The two prose items together are
+# 13,069 bytes against an overflow of 21,341, so deleting BOTH of them entirely — the
+# liberty that records the invention and the note that tells a visitor what changed —
+# would still leave the tree 8,272 bytes over. Going further would have meant deleting
+# reasoning rather than de-duplicating it, which is what the 28 -> 32 note refused, for
+# the same reason, and it is refused again here.
+#
+# WHAT SUPPORTS 36. The LFS clause at the top is still the real constraint and it is
+# about FORMAT: the tree holds plain binaries at 36 MiB exactly as it did at 25. Pages
+# allows 1 GB a site, so this is under 4 % of what the host permits, and
+# docs/RENDERING.md § the gate table has recorded a sanctioned raise to ~100 MB at H2
+# since the rendering plan was written. It restores 3.98 MiB of headroom — more than
+# either previous raise bought, 2.85 then 3.52 — which is the first raise in the three
+# to leave room for a year of releases rather than a season of them.
+#
+# WHAT WILL EXHAUST IT AGAIN, NAMED RATHER THAN DISCOVERED. The same two items the last
+# raise named, both still open and both now larger: the duplicated changelog is
+# 2,753,794 bytes, 8.2 % of the tree and the fastest-growing item in it because it grows
+# on every release rather than on every building (T-0364), and the letter-list cohort is
+# 2.54 MiB (T-0438). Answering T-0364 alone would return more than two thirds of what
+# this raise buys. Neither is answered here: a re-budget buys the time to answer them
+# and is not an answer, and folding either into a ticket about a dwelling on Lake Street
+# would be two units in one revert.
+SITE_BUDGET_MB = 36
+# Warn at 90 % of it. See run_site_check for why this band exists (T-0722).
+SITE_WARN_FRACTION = 0.90
+# Identical files smaller than this are not worth a merge refusal (T-0722).
+SITE_DUPE_FLOOR = 64 * 1024
 
 CONFIDENCE = ("attested", "inferred", "reconstructed")
 SLUG = re.compile(r"^[a-z0-9_]+$")
@@ -4389,7 +4437,9 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 # arrived in September 1835 is not in a scene set on 1 July 1835, and the
 # failure mode is silent: nothing about a household record looks wrong when its
 # subject was still in Vermont. Arrival values carry a `precision` because the
-# sources give years far more often than days, and the rule is asymmetric on
+# sources give years far more often than days - and one of those precisions,
+# `either_of_two_days`, exists for a source that gives two and declines to pick.
+# The rule is asymmetric on
 # purpose - the EARLIEST day a value permits must not be after the scene date
 # (an error), and a value whose LATEST day is after it earns a warning rather
 # than a failure, because "1835" with no month is a real state of the evidence
@@ -4426,7 +4476,17 @@ RESIDENT_EVIDENCE_ROW_KEYS = ("list", "as_read", "locator", "record_id",
 # next person to reach for it learns why.
 RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
 
-RESIDENT_PRECISION = ("day", "month", "season", "year", "not_later_than")
+RESIDENT_PRECISION = ("day", "either_of_two_days", "month", "season", "year",
+                      "not_later_than")
+
+# `either_of_two_days` is what a source looks like when it will not choose. Hurlbut
+# prints Hubbard as arriving at Chicago "on the last day of October or first day of
+# November" of 1818 - two adjacent days, offered as alternatives, and neither of them
+# preferred. Every coarser precision here is a LIE about that sentence in one of two
+# directions: `day` picks one of the two on the reader's behalf, and `month`, `season`
+# or `year` widen a claim that is already exact to within a day in order to contain
+# both. The value is the EARLIER of the two days and the bound runs to the day after
+# it, so the record keeps the source's own precision AND its own refusal.
 
 # A season, in days, for bounding a "spring of 1833" arrival. Deliberately
 # generous: the point is to bound the claim, not to date it.
@@ -4504,6 +4564,8 @@ def arrival_bounds(value, precision: str):
         return None
     if precision == "day":
         return d, d
+    if precision == "either_of_two_days":
+        return d, d + dt.timedelta(days=1)
     if precision == "month":
         if d.month == 12:
             last = dt.date(d.year, 12, 31)
@@ -5524,12 +5586,50 @@ def run_site_check(rep: Report) -> None:
     if not site.exists():
         rep.note("site check: nothing published yet")
         return
-    total = sum(p.stat().st_size for p in site.rglob("*") if p.is_file())
+    files = [p for p in site.rglob("*") if p.is_file()]
+    total = sum(p.stat().st_size for p in files)
     mb = total / (1024 * 1024)
     if mb > SITE_BUDGET_MB:
         rep.error("site", f"published tree is {mb:.1f} MB, over the {SITE_BUDGET_MB} MB budget — "
-                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean")
-    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget")
+                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean. "
+                          f"`python3 tools/site_budget.py` says where the bytes are (T-0722)")
+    elif mb > SITE_BUDGET_MB * SITE_WARN_FRACTION:
+        # A budget with no slack fails the NEXT PR either way, and until T-0722
+        # nothing said so until it was already too late: dev reached 31.999 MB of
+        # 32 in silence, and the run that discovered it was a run whose finished
+        # work could not merge. This band is the warning that was missing — it
+        # cannot stop a merge, and it is not meant to; it is meant to reach the
+        # queue while there is still room to answer it.
+        rep.warn("site", f"published tree is {mb:.2f} MB — {100 * mb / SITE_BUDGET_MB:.0f} % of the "
+                         f"{SITE_BUDGET_MB} MB budget, {SITE_BUDGET_MB - mb:.2f} MB left. Print "
+                         f"`python3 tools/site_budget.py` and open a ticket before it is a wall")
+    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget "
+             f"({SITE_BUDGET_MB - mb:.2f} MB headroom)")
+
+    # THE SAME BYTES, SHIPPED TWICE — T-0722. The mirror carried the 1.31 MB
+    # changelog under two URLs for as long as both paths existed, which is 4.1 % of
+    # the budget spent on a copy, growing at twice the rate of the record. Nothing
+    # noticed, because the only question ever asked of this tree was its total.
+    #
+    # A duplicate is not a judgement call the way a large file is: one of the two is
+    # the file and the other is waste, and the answer is always a re-export, a
+    # redirect or a deletion. So this refuses rather than warns. The floor keeps it
+    # about payload rather than about tidiness — small identical files (an empty
+    # index, a shared stub) are not what this is for.
+    by_hash: dict[str, list[Path]] = {}
+    for f in files:
+        if f.stat().st_size < SITE_DUPE_FLOOR:
+            continue
+        by_hash.setdefault(hashlib.sha256(f.read_bytes()).hexdigest(), []).append(f)
+    for paths in by_hash.values():
+        if len(paths) < 2:
+            continue
+        size = paths[0].stat().st_size
+        names = ", ".join(sorted(p.relative_to(site).as_posix() for p in paths))
+        rep.error("site", f"{len(paths)} files in the published tree are byte-identical at "
+                          f"{size / 1024:.0f} KB each — {names}. That is "
+                          f"{size * (len(paths) - 1) / 1048576:.2f} MB of the budget spent on a "
+                          f"copy. Publish one and re-export or redirect the others (T-0722)")
     # Only page directories need an index.html; asset and data directories are
     # fetched by explicit path and are never a bare URL a visitor lands on.
     def is_page_dir(d: Path) -> bool:

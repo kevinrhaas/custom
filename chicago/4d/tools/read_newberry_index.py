@@ -170,8 +170,11 @@ WORKS = [
         "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
         "pattern": re.compile(r"18[68]8\s*[-\u2013]\s*9[23]", re.I),
         "fuzzy": ("moses", 0.6),
-        "held": None,
-        "reachable": "Internet Archive: illinoishistoric01inmose, cu31924092214752",
+        "held": "moses_illinois_historical_and_statistical",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "illinoishistoric01inmose (vol. 1) and illinoishistoricv2mose "
+                     "(vol. 2). Reachable and thin: 169 Chicago or Cook cards stand on "
+                     "a STATE history whose 1835 sentences are population and revenue",
     },
     {
         "key": "sons_of_the_american_revolution_illinois_1896",
@@ -230,19 +233,50 @@ WORKS = [
         "date": "1881",
         "pattern": re.compile(r"h[uv]r[il1]b[uv]t", re.I),
         "fuzzy": ("antiquities", 0.55),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "hurlbut_chicago_antiquities",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoantiquiti00hurl. TWO cards, and the densest 1830s Chicago "
+                     "text of any work in this table: the index is the wrong instrument "
+                     "for ranking it",
     },
     {
         "key": "la_salle_book_co_cook_county",
         "title": "The biographical and portrait volumes of Cook County published by "
                  "the La Salle Book Co.",
         "author": "La Salle Book Co.",
-        "date": "1900, 1909",
+        # The cards print 1900 fifty-three times and 1909 once, beside a 1903 and an
+        # 1854 that are as likely to be OCR of 1900. T-0582 opened the work: it is the
+        # Album of Genealogy and Biography, Cook County, eleventh edition 1899 and
+        # thirteenth 1900, and no 1909 Cook County volume of this publisher was found.
+        "date": "1899 (11th ed.) and 1900 (13th ed.)",
         "pattern": re.compile(r"la\s*sa[il1]le", re.I),
         "fuzzy": ("salle", 0.7),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "la_salle_album_of_genealogy_cook_county",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "albumofgenealogy1900chic and albumofgenealogy1899lasa. The "
+                     "lowest-yield work in this table: about a dozen pre-1840 Chicago "
+                     "arrival sentences per edition, under 91 Chicago or Cook cards",
+    },
+    {
+        "key": "wood_1881_chicago_and_its_distinguished_citizens",
+        "title": "Chicago and its distinguished citizens; or, The progress of forty "
+                 "years",
+        "author": "David Ward Wood",
+        "date": "1881",
+        # The author's surname and initials as the card prints them — 'Wood, D. W.',
+        # and the OCR's 'Wood, D. V/.', 'Wood, D, W.' and 'Wood, D. W J'. The YEAR is
+        # unusable as a key here: the same eight cards carry it as 1881, I88li, I88I1,
+        # 1381 and loWi. Keyed on the initials for the reason Andreas is — the letters
+        # survive the photostat and the spelled-out name does not — but tighter, since
+        # this needs the surname AND both initials where Andreas needs two letters.
+        # No `fuzzy`: 'wood' is four letters and would take Good, Hood, Ward and
+        # Woods with it, and `works_of` reads `.get("fuzzy")` for exactly this case.
+        "pattern": re.compile(r"w[o0]{2}d\s*[.,;:'\u00b4]?\s*[dbo]\s*[.,;:'\u00b4]?\s*[wv]",
+                              re.I),
+        "held": "wood_1881_chicago_and_its_distinguished_citizens",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoitsdistin00wood. Its printed pages 23-25 are a continuous "
+                     "account of the year 1835 in Chicago",
     },
 ]
 
@@ -331,15 +365,89 @@ REGNAL = re.compile(r"(?:hen|edw|ric|[gc]eo|jas|el[il1]z|wm|w[il1]ll|chas|vol)\s
                     re.I)
 
 
+# The second and third systematic false positives, both found by T-0578's forty-card
+# draw on volume 2 and both absent from volume 1's draw (T-0600). They sit here, beside
+# REGNAL, because they are the same kind of thing: a locality pattern matching something
+# that is not a locality, and a written reason for telling them apart.
+
+# ONE — THE STATE BANNER, AND ANY OTHER BODY THAT NAMES ONLY THE PLACE. The printed
+# index divides a family's run of cards by state with a rule on its own line,
+# 'ILLINOIS.'. `assemble` opens a card at a heading and hangs the lines under it on
+# that card, so a banner falling directly beneath a heading becomes that card's whole
+# body and the stanza is kept for a locality no card of that family claims —
+# nbi_v02_1675 is the proof: its heading is 'Kinge or King family.', whose one card is
+# an English parish register, and the surname run that opens under the banner is
+# KINGERY. The same shape catches the wreck of the call-number column, '111. P 85132.8'.
+#
+# The test is not the spelling of the banner but what is missing: a card body is a
+# CITATION — an author, a date, a title — and this domain's whole product is a list of
+# books to open. Strip the locality the patterns matched and a real card still has
+# words left; a banner has nothing. So a stanza whose body is the locality and no more
+# names no work, can never become a lead, and is refused.
+
+# TWO — THE STROKE STANDING WHERE THE CALL NUMBER STANDS. `illinois_abbreviated` is
+# anchored to a comma or to the start of the line, and the start-of-line branch is
+# there for a locality that wrapped: '..., Cook Co.,' on one line and 'Ill. (Andreas,
+# A. T.) 1884-6' on the next. The left of a card also carries its call number, though
+# ('543.7 LaSalle Co., Ill.'), and three strokes of a wrecked one read as 'III,' —
+# nbi_v02_1106, whose card is 'Holden family. — Hapgood fam. (Hapgood, W.) 1898. See
+# index. E. 7. H 21' and names no locality at all.
+#
+# What tells the two apart is what FOLLOWS. A wrapped locality is followed by its
+# citation; a stroke in the call-number slot is followed by the next card's own family
+# heading, because the crop has caught the head of a stanza and not the tail of one. So
+# a start-of-line stroke with a family word behind it, before any citation opens, is
+# refused. (The ticket proposed testing what PRECEDES the stroke instead. On the page
+# there is nothing before it — the stroke IS the call number — so the test is the other
+# way round; the measurement is written up in the PR.)
+FAMILY_AFTER = re.compile(r"\b(?:f\s*a\s*m\s*[il1][il1]?\s*[yv]|fam|faml|famly)\b\s*[.,]?",
+                          re.I)
+
+
+def call_number_slot(body: str, m) -> bool:
+    """True when a start-of-line stroke is a call number and not a wrapped locality."""
+    if m.start() != 0:
+        return False
+    rest = body[m.end():]
+    cut = rest.find("(")
+    return bool(FAMILY_AFTER.search(rest if cut < 0 else rest[:cut]))
+
+
+CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
+
+
+def names_only_the_place(body: str, spans: list) -> bool:
+    """True when nothing but the locality is left of the body — no work is cited.
+
+    A citation is an author, a title and a date, and a stanza that has none of them
+    points at no book. What survives the locality is tested for both: any word, and
+    any four-digit year. The year matters because the OCR loses authors wholesale —
+    'Murry f t | Chicago,\'I;....\' . .\' 1895:' is a wrecked reading of a real card,
+    and the date is the part of the citation that came through.
+    """
+    keep, last = [], 0
+    for start, end in sorted(spans):
+        keep.append(body[last:start])
+        last = max(last, end)
+    keep.append(body[last:])
+    rest = "".join(keep)
+    return len(alpha(rest)) <= 1 and not CITATION_YEAR.search(rest)
+
+
 def buckets_of(body: str):
-    out = []
+    out, spans = [], []
     for name, pat in LOCALITY_BUCKETS:
         m = pat.search(body)
         if not m:
             continue
         if name == "illinois_abbreviated" and REGNAL.search(body[:m.start() + 1]):
             continue
+        if name == "illinois_abbreviated" and call_number_slot(body, m):
+            continue
         out.append(name)
+        spans.append((m.start(), m.end()))
+    if out and names_only_the_place(body, spans):
+        return []
     return out
 
 
@@ -1007,6 +1115,40 @@ def leads_and_follow(records, layers, lead_id):
     return leads, follow, unmatched, unmatched_chi, by_key
 
 
+# ------------------------------------------------- the re-derivation fingerprint
+
+# T-0740. `--parse` is deterministic over TWO inputs: the committed card text, and the
+# layers the leads are looked up in — the households, the 1833-1835 voter lists, the
+# 1840 census pages and the named structures. The card text is gated already (its
+# sha256 is in MANIFEST). The LAYERS are not, and they are the ones that move: a
+# cohort lands, a census page is read, a household is renamed, and the committed
+# leads quietly stop being what a fresh parse produces. Nothing was wrong in the
+# files; they were just old, and the gate could not see it because it re-derived the
+# crosswalk from the COMMITTED leads rather than from the inputs.
+#
+# Re-parsing inside the gate would cost four minutes (64 s a volume, measured), which
+# is four minutes on every commit to catch a drift that happens weekly. So the gate
+# hashes the inputs instead. A fingerprint that still matches means a re-parse is a
+# no-op; one that does not means the leads are stale and must be regenerated AND
+# re-ruled (tools/rule_newberry_leads.py --write), because new leads arrive unruled.
+def parse_fingerprint(domain: Path = None, volumes: list = None) -> str:
+    domain = domain or DOMAIN
+    h = hashlib.sha256()
+    layers = layer_names()
+    h.update(json.dumps(layers, sort_keys=True, ensure_ascii=False).encode("utf-8"))
+    # The WORKS table lives in this file, not in data/, so an edit to it changes the
+    # parse without changing any committed input. T-0582 added a pattern and could
+    # not commit the re-parse; that is the case this line covers.
+    h.update(json.dumps([[w["key"], w["pattern"].pattern, w.get("fuzzy")]
+                         for w in WORKS], sort_keys=True,
+                        ensure_ascii=False).encode("utf-8"))
+    for vol in sorted(volumes if volumes is not None else VOLUMES):
+        path = domain / "text" / ("vol_%02d_locality_cards.txt" % vol)
+        h.update(("vol_%02d:" % vol).encode("utf-8"))
+        h.update(sha256_file(path).encode("utf-8") if path.exists() else b"absent")
+    return h.hexdigest()
+
+
 def parse(volume: int) -> dict:
     text_name, _lines, cards = read_committed_cards(volume)
     layers = layer_names()
@@ -1122,6 +1264,17 @@ def parse(volume: int) -> dict:
                 "merge: see crosswalk.json, which holds none and says why.",
         "generated_by": "tools/read_newberry_index.py --parse",
         "volumes": parsed,
+        # What this file re-derives from. --check recomputes it and fails when it has
+        # moved, so a stale leads.json is found by the gate rather than by the next
+        # run that happens to touch the works table (T-0740).
+        "derives_from": {
+            "fingerprint": parse_fingerprint(volumes=parsed),
+            "_doc": "sha256 over the layers the leads are looked up in, the WORKS "
+                    "table, and the committed card text of every parsed volume. "
+                    "Recomputed by --check; a mismatch means --parse is no longer a "
+                    "no-op and the leads must be regenerated and re-ruled.",
+            "layer_counts": {name: len(rows) for name, rows in sorted(layers.items())},
+        },
         "counts": {
             "cards": len(all_records),
             "distinct_surname_keys": len(by_key_all),
@@ -1261,7 +1414,22 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
 
     leads_path = domain / "leads.json"
     if leads_path.exists():
-        for lead in load(leads_path).get("leads") or []:
+        leads_doc = load(leads_path)
+        # T-0740: the committed leads must still be what a fresh --parse produces.
+        want = parse_fingerprint(domain=domain,
+                                 volumes=leads_doc.get("volumes") or None)
+        got = (leads_doc.get("derives_from") or {}).get("fingerprint")
+        if not got:
+            bad.append("leads.json carries no derives_from.fingerprint — it was "
+                       "written before the re-derivation gate; re-run "
+                       "tools/read_newberry_index.py --parse --volume 1..4")
+        elif got != want:
+            bad.append("leads.json does not re-derive from its inputs: the layers, "
+                       "the WORKS table or the committed card text have moved under "
+                       "it. Re-run --parse over every volume in leads.json's "
+                       "`volumes`, then tools/rule_newberry_leads.py --write — new "
+                       "leads arrive unruled")
+        for lead in leads_doc.get("leads") or []:
             if not lead.get("candidates"):
                 bad.append("leads.json %s: a lead with no candidate" % lead.get("id"))
             for cand in lead.get("candidates") or []:
@@ -1377,6 +1545,20 @@ def self_test() -> int:
               lambda d: dump(d / "crosswalk.json",
                              dict(load(d / "crosswalk.json"),
                                   merges=[{"into": "Adams", "from": "Adams"}])))
+
+    def stale_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.setdefault("derives_from", {})["fingerprint"] = "0" * 64
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads that no longer re-derive from their inputs",
+              stale_fingerprint)
+
+    def no_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.pop("derives_from", None)
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads with no re-derivation fingerprint at all",
+              no_fingerprint)
 
     def drop_rule(dom):
         doc = load(dom / "leads.json")
@@ -1511,6 +1693,34 @@ def self_test() -> int:
     ok &= run("an OCR shard committed that MANIFEST does not name",
               lambda d: ocr_manifest(d, lambda dom, root, path: shard(
                   root, 1, 9, 9, {"9": BLANK})))
+
+    # The reading rules themselves, on the cards that bought each one (T-0600, and
+    # REGNAL before it). These are not gate assertions — they are what the extractor
+    # keeps and refuses — so they are asserted directly on `buckets_of` and named by
+    # the record whose adjudication is the evidence.
+    for label, body, want in (
+        ("the state banner absorbed as a card body (nbi_v02_1675)", "Illinois.", []),
+        ("the banner in the OCR's own spelling (nbi_v02_1027)", "IlllNOiS.", []),
+        ("a call-number column wrecked down to the stroke", "111. P 85132.8", []),
+        ("a call number standing where the locality would (nbi_v02_1106)",
+         "III, Hepgoed fam. (He'agaod. W.l 1898. See lad", []),
+        ("the regnal Calendarium, which REGNAL already refused",
+         "England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I. 1865.)", []),
+        ("a wrapped locality, which the call-number rule must not touch",
+         "III. f(Moses, J, j n d Kirkland, J.) I89J,", ["illinois_abbreviated"]),
+        ("a wrecked reading that still carries its date (nbi_v01_1796's class)",
+         "Chicago,'I;....' . .' 1895:", ["chicago"]),
+        ("an ordinary Cook County card", "Cook Co.. I l l (La Sa'le Bock Co., Pub.l I9CB,",
+         ["cook_county"]),
+    ):
+        got = buckets_of(body)
+        if got != want:
+            print("  DID NOT HOLD: %s — buckets_of(%r) = %r, wanted %r"
+                  % (label, body, got, want))
+            ok = False
+        else:
+            print("  holds: %s" % label)
+            fired.append(label)
 
     if not ok:
         print("SELF-TEST FAIL")

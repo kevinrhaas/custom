@@ -42,6 +42,40 @@ false` themselves. Second, the article prints its own tally — 22 St. Cyr marri
 check a reading of this page can have without the book. T-0573 was written against
 "87 marriages", which is O'Meara's subtotal.
 
+**What is here from the Second Presbyterian roll (T-0583).** The register fifty-four
+Chicago cards of the Newberry genealogical index cite — `Chicago, Ill. Second Presb.
+Ch., 1842-92. (Grant)` — located, and read. It is the congregation's semi-centennial
+volume, *The Second Presbyterian Church of Chicago, June 1st, 1842, to June 1st, 1892*
+(Knight, Leonard & Co., 1892), John C. Grant editor, and its printed pages 154-206 are A
+LIST OF MEMBERS OF THE CHURCH, 1842-1892 in three rolls: absent members, present members,
+and members dismissed, deceased or ordained. All 2,255 lines are read.
+`records/second_presbyterian_members_1842_1892.json` holds the 938 of them whose surname
+this project already holds from the 1835 town, `second_presbyterian_crosswalk.json` is
+the pass against `data/residents/`, `text/second_presbyterian_roll_1892.txt` is the
+committed reading and `second_presbyterian_rowmap.json` the map that puts its four
+columns back in printed order. `tools/read_second_presbyterian.py` builds and gates all
+of it, and `search_log_second_presbyterian.json` is the search that found the book.
+
+**Three things that reading cost, and a later run should not pay again.** First, THE FLAT
+OCR IS UNUSABLE HERE. archive.org reads a four-column table in the order the scanner met
+the ink: on printed page 192 it runs `King, Edward / Letter. / October 31, 1855. /
+Dismissed. / W. / Profession. / Dismissed. / King, Henry / September i, 1858.`, which is
+two printed rows inside one another, and only 672 of 1,361 `Profession.`/`Letter.` lines
+stand in printed order. The rows are rebuilt from the word coordinates instead. Second,
+THE COLUMN BANDS MOVE WITH THE LEAF — recto and verso differ by about seventy pixels — so
+each leaf's bands are taken from its own ink, and from the MEDIAN left edge of the anchor
+words rather than the leftmost: a single stray `May` out in the names column of printed
+page 171 was enough, read as a minimum, to put every `Letter.` on that page into the date
+cell. Third, THE ROLL NAMES A WIFE UNDER HER HUSBAND'S NAME — `Fullerton, Mrs. A. N.` —
+so a line that meets a man in the 1835 layer has met his name and not him. Every matched
+line carries `a_married_womans_entry` for that reason.
+
+**And what it can never do.** The roll opens on 1 June 1842, seven years after the scene
+date. Every record carries `beyond_ticket_window: true`, the crosswalk mints nobody and
+regrades nobody, and the gate asserts that nothing dated on or before 1835-07-01 has
+reached a record. What a match IS: the same surname and first initial, in Chicago, within
+seven years — a lead for a pass that is allowed to write people, which this is not.
+
 **Shape: `records`.** A register is a LIST: one entry is one record. `as_read`
 keeps the clerk's Latin, his abbreviations and his spelling exactly as they stand;
 `normalized` is this project's spelling of the same person. The two are never

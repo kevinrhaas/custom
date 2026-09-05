@@ -60,10 +60,10 @@
     },
     "not_joined_on_the_occupants_prose": {
       "_doc": "THE JOIN DOES NOT READ `occupants`, and this is the count of what it passed over. A structure record's occupants block is prose that often names a household id; most of those ids belong to households the 2026-09-02 synthesis removed and the index no longer holds (T-0516), and a mention is not an occupancy — philo_carpenter_log_shop names hh_chappel_eliza_mir in a sentence whose own value says no occupant is attested there. Joining on it would hand ground to the wrong household while looking like evidence, so the refusals above stand and this is what they cost.",
-      "structures_naming_a_household_in_prose": 72,
-      "household_ids_so_named": 59,
-      "of_those_the_index_still_holds": 6,
-      "of_those_naming_a_household_that_no_longer_exists": 53
+      "structures_naming_a_household_in_prose": 5,
+      "household_ids_so_named": 5,
+      "of_those_the_index_still_holds": 5,
+      "of_those_naming_a_household_that_no_longer_exists": 0
     },
     "refusals": "`refused: no_household_names_this_ground` IS THE REFUSAL, and here is the reason it stands for, stated once because it is the same reason every time. A run with no household is not blank and is not guessed at: it names the structures whose ground it bounds and carries a `refused` line giving the reason, which is the same reason for every one of them — the household layer holds a real `lives_at` for 20 of its 1,380 households and a real `works_at` for 50, all of them at named landmarks, so most improved lots in this town have buildings no household record names. That is a gap in the address work (T-0514), not in this join, and the join picks up whatever the sweep lands without a line of the rule changing.",
     "record_belongs_to": "The record-level `belongs_to` above stays empty ON PURPOSE. It is the field the hand-authored yards use to say which ONE building a whole enclosure record is the yard of — the Sauganash's, the Western's — and these records are town-wide: they hold the fences of scores of lots and belong to no single structure. The ownership this ticket asked for is on the runs, where it can be right."
@@ -360,13 +360,13 @@
         {
           "lot": "blk_south_water_dearborn_lot5",
           "structures": [
-            "recon_1835_blk_south_water_dearborn_d3_03"
+            "recon_1835_blk_south_water_dearborn_h1_03"
           ],
           "households": [],
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_south_water_dearborn_lot5, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_south_water_dearborn_d3_03 — and the yard behind those buildings is 12.19 m deep by 25.92 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_south_water_dearborn_lot5, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_south_water_dearborn_h1_03 — and the yard behind those buildings is 12.19 m deep by 25.92 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_south_water_dearborn_lot4",
@@ -497,7 +497,7 @@
         {
           "lot": "blk_south_water_dearborn_lot5",
           "structures": [
-            "recon_1835_blk_south_water_dearborn_d3_03"
+            "recon_1835_blk_south_water_dearborn_h1_03"
           ],
           "households": [],
           "side": "south-east",
@@ -522,7 +522,7 @@
         {
           "lot": "blk_south_water_dearborn_lot5",
           "structures": [
-            "recon_1835_blk_south_water_dearborn_d3_03"
+            "recon_1835_blk_south_water_dearborn_h1_03"
           ],
           "households": [],
           "refused": "no_household_names_this_ground"

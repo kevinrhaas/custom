@@ -50,7 +50,7 @@
           "vertices_appended": 55,
           "joined_at": "tail"
         },
-        "vertices": 80,
+        "vertices": 82,
         "length_m": 2416.8,
         "local_e_range_m": [
           -128.8,
@@ -94,8 +94,8 @@
           "vertices_appended": 91,
           "joined_at": "head"
         },
-        "vertices": 111,
-        "length_m": 2944.5,
+        "vertices": 108,
+        "length_m": 2929.0,
         "local_e_range_m": [
           35.9,
           1257.4

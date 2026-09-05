@@ -1812,7 +1812,7 @@
   }
  ],
  "cells_read_by": "T-0530",
- "cells_method": "Read off the deposited page image at full resolution, one column strip at a time, with the sheet's own ruling used to fix the column boundaries: the vertical rules were located by their darkness profile per line, which is what makes the reading safe on a sheet whose rules lean about 36 px across the page — a fixed grid taken from the middle of the sheet puts the top and bottom lines a quarter of a column out. Every column that carries a mark was then re-read a second time as a montage of its own 31 cells, which is the pass that caught four arithmetic slips in the first reading. No image, crop or render is committed; the deposit stays read-only.",
+ "cells_method": "Read off the deposited page image at full resolution, one column strip at a time, with the sheet's own ruling used to fix the column boundaries: the vertical rules were located by their darkness profile per line, which is what makes the reading safe on a sheet whose rules lean about 36 px across the page \u2014 a fixed grid taken from the middle of the sheet puts the top and bottom lines a quarter of a column out. Every column that carries a mark was then re-read a second time as a montage of its own 31 cells, which is the pass that caught four arithmetic slips in the first reading. No image, crop or render is committed; the deposit stays read-only.",
  "cell_bands": {
   "free_white_male": [
    "under_5",
@@ -1861,7 +1861,7 @@
    "100_and_upwards"
   ]
  },
- "cells_are": "Per line, one integer per column of the printed schedule, in the sheet's own order. A blank cell on the sheet is a 0 here — the schedule's blank IS a zero, and every one of the 62 lines was looked at rather than skipped. `printed_on_the_sheet: null` in the column totals means the footing cell is blank, which the enumerator used for none.",
+ "cells_are": "Per line, one integer per column of the printed schedule, in the sheet's own order. A blank cell on the sheet is a 0 here \u2014 the schedule's blank IS a zero, and every one of the 62 lines was looked at rather than skipped. `printed_on_the_sheet: null` in the column totals means the footing cell is blank, which the enumerator used for none.",
  "column_totals": {
   "free_white_male": {
    "columns": [
@@ -2124,5 +2124,16 @@
  "column_totals_are": "The sheet foots its own columns, and that footing is the only check this reading has. It is stated per column, agreeing or not; a column that does not reconcile is named with both figures rather than smoothed, and no cell was changed to make a footing come out.",
  "reconciliation_summary": "1 of 38 columns do not reconcile with the sheet's own footings: free_white_male 20_to_29: read 33, footing 35",
  "free_population_read": 193,
- "free_population_by_the_sheets_footings": 195
+ "free_population_by_the_sheets_footings": 195,
+ "pairing": {
+  "paired_to_continuation_sheet": null,
+  "state": "unpaired_search_exhausted",
+  "paired_by": "T-0543",
+  "why": "this leaf holds 31 lines and its free population is 193 by its own marks and 195 by its own footings, and NOT ONE of the 33 household continuation sheets in this deposit foots either figure. Every right sheet of all three image groups was looked at, image by image, with its TOTAL footing and the reason it is not the pair; 17 of those footings were read for the first time in that pass. The one sheet that matches this page on the line count, 33SQ-GYYJ-9J5 at 31 entries, foots 179 and its TOTAL column opens 5, 6, 25, 11, 8 against this page's 5, 7, 5, 9, 6 \u2014 refused on the population key and again on the sequence. The evidence is in continuation_search_page_232.json.",
+  "page_population_key": 193,
+  "page_population_key_alternate": 195,
+  "line_count_key": 31,
+  "what_this_costs_the_page": "the family TOTAL, the six industry columns, pensioners, the deaf/dumb/blind/insane block and the schools and illiteracy columns of these 31 households are not readable from what this project holds. They are ABSENT rather than unread, and nothing should be filled into them from this sheet's own cells.",
+  "not_one_cell_of_this_reading_was_changed_by_the_search": true
+ }
 }
