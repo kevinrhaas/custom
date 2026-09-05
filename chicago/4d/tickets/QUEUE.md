@@ -106,7 +106,6 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
 T-0619 — Volume 4 read by OCR, pages 1-306: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
-T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton

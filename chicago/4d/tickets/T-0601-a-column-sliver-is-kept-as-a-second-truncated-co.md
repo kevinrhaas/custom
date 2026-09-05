@@ -1,7 +1,7 @@
 ---
 id: T-0601
 title: A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 876
 claimed_by: run 9/5/2026, 6:35:51 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T12:25:20.002Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963535650
 ---
 
