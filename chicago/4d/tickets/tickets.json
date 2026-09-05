@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:52 PM",
+  "generated_ct": "Sep 5, 2026, 3:53 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14323,26 +14323,6 @@
     },
     {
       "id": "T-0836",
-      "title": "Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them",
-      "state": "done",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "S",
-      "legacy_id": null,
-      "parent": "T-0814",
-      "opened": "2026-09-05",
-      "closed": "2026-09-05",
-      "pr": "917",
-      "claimed_by": "run 9/5/2026, 3:25:53 PM CT",
-      "blocked_on": null,
-      "needs_bake": false,
-      "closed_at": "2026-09-05T20:38:58.596Z",
-      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
-      "queue_rank": null
-    },
-    {
-      "id": "T-0836",
       "title": "The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched",
       "state": "open",
       "epic": "META",
@@ -14380,6 +14360,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0838",
+      "title": "Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0814",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "917",
+      "claimed_by": "run 9/5/2026, 3:25:53 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T20:38:58.596Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
+      "queue_rank": null
     }
   ]
 }

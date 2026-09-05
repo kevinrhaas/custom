@@ -164,7 +164,7 @@ step "platted block parcels match their recipe and the committed lots" \
 step "inferred households, adoptions and their buildings match the programme" \
   python3 tools/synthesize_resident_research.py --check
 
-# T-0836 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
+# T-0838 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
 # it never asks whether that derivation matches the cards on disk, and on 2026-09-05 it
 # reported `OK: 1404 people` while the writer stood 132 household files from the tree,
 # with T-0509's eight corroborations sitting in the gap. This is the missing half — the

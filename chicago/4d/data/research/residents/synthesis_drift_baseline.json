@@ -1,5 +1,5 @@
 {
-  "ticket": "T-0836",
+  "ticket": "T-0838",
   "note": "The files the committed tree and a fresh run of this writer disagree on. The gate is a ratchet: a file that drifts and is not listed here fails, and a listed file that stops drifting fails too, so a spend has to shrink this list in its own commit. Regenerate with --write-baseline, never by hand. T-0837 owns spending what is standing.",
   "count": 271,
   "paths": [

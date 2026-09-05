@@ -19,7 +19,7 @@ import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 
-# T-0836.  `--drift` runs this writer against a throwaway copy of the tree and compares,
+# T-0838.  `--drift` runs this writer against a throwaway copy of the tree and compares,
 # so the copy needs to be able to tell the tool where its data lives.  Set by `--drift`
 # on the subprocess it spawns and by nothing else; a bare run resolves as it always did.
 ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_ROOT") \
@@ -457,7 +457,7 @@ def summary(before,after,ledger,stats):
     return "\n".join(lines)
 
 
-# T-0836 (of T-0814) — THE DRIFT GATE.
+# T-0838 (of T-0814) — THE DRIFT GATE.
 #
 # Every other generated artefact here is held to its generator by re-derivation:
 # `data/datum.json` is re-derived by check.sh, baked geometry by `validate.py --stale`.
@@ -523,7 +523,7 @@ def drift(write_baseline=False):
     paths = drift_paths()
     if write_baseline:
         dump(DRIFT_BASELINE, {
-            "ticket": "T-0836",
+            "ticket": "T-0838",
             "note": ("The files the committed tree and a fresh run of this writer disagree on. "
                      "The gate is a ratchet: a file that drifts and is not listed here fails, and "
                      "a listed file that stops drifting fails too, so a spend has to shrink this "
@@ -539,7 +539,7 @@ def drift(write_baseline=False):
     now = set(paths)
     new, healed = sorted(now - allowed), sorted(allowed - now)
     for path in new[:10]:
-        print(f"  FAIL {path} has drifted from the writer and is not on the T-0836 baseline")
+        print(f"  FAIL {path} has drifted from the writer and is not on the T-0838 baseline")
     if len(new) > 10:
         print(f"  FAIL …and {len(new) - 10} more")
     if new:
@@ -552,7 +552,7 @@ def drift(write_baseline=False):
     if new or healed:
         return 1
     print(f"  ok    the writer stands {len(now)} known file(s) from the tree, "
-          "every one of them on the T-0836 baseline")
+          "every one of them on the T-0838 baseline")
     return 0
 
 

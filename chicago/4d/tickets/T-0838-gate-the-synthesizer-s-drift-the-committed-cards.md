@@ -1,5 +1,5 @@
 ---
-id: T-0836
+id: T-0838
 title: Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them
 state: done
 epic: META

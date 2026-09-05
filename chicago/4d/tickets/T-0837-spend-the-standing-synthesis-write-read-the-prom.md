@@ -28,9 +28,9 @@ The 271 files the writer stands from the tree are landed or refused, each promot
 and drawn from a source that says it, and `synthesis_drift_baseline.json` shrinks by
 exactly what lands, in the same commit.
 
-## The reading T-0836 did, and why it did not land the spend
+## The reading T-0838 did, and why it did not land the spend
 
-T-0836 built the gate and then read what the standing write proposes. **It should not be
+T-0838 built the gate and then read what the standing write proposes. **It should not be
 run and committed as it stands.** Three findings, all measured on `dev` at 4ab5b39cf:
 
 **1. A promotion contradicts its own cited source.** The ledger row for `chapman_chas_h`
@@ -71,5 +71,5 @@ Everything else in the 271 is `resident_research` block content — `summary`, `
 `resident_subtype`, `reviewed_on`, and the note prefixes — which is the cohort work that
 is genuinely standing and genuinely wants landing, once 1–3 are settled.
 
-**Links:** T-0814 (parent) · T-0836 (the gate) · T-0822 (the demotions) · T-0693 (the
+**Links:** T-0814 (parent) · T-0838 (the gate) · T-0822 (the demotions) · T-0693 (the
 later-trade pointer this would delete) · T-0509 · T-0513 · T-0515 · T-0699.
