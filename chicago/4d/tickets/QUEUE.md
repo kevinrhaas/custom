@@ -101,7 +101,6 @@ T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
-T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
@@ -312,9 +311,8 @@ T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the h
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0748 — The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
+T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0758 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
 T-0759 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
 
