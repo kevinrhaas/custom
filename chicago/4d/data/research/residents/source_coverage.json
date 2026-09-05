@@ -75,7 +75,7 @@
    "appearances_on_an_identity_the_town_already_carries": 0,
    "unmatched": 0,
    "holds": "finding_aid",
-   "why": "6,697 cards, every one of them a SURNAME heading a locality with no forename. R1 refuses all of them by construction: a finding aid names a book, not a man. Counted as refusals, never as appearances."
+   "why": "6,728 cards, every one of them a SURNAME heading a locality with no forename. R1 refuses all of them by construction: a finding aid names a book, not a man. Counted as refusals, never as appearances."
   }
  },
  "overlap": {
@@ -120,6 +120,6 @@
    "R3": 181,
    "R4": 80
   },
-  "declared_refusals": 1629
+  "declared_refusals": 1670
  }
 }

@@ -142,43 +142,124 @@
       "download_url": "https://archive.org/download/chicago1835-newberry-genealogical-index/130151_04.pdf",
       "bytes": 199557770,
       "sha256": "c1d8a6575fa3c0c3b2f9bf3831aa4e681af1c1cd17b69bcfeeb2c798c7309c81",
-      "pdf_pages": 919,
+      "pdf_pages": 918,
       "crop_height": 1100,
-      "read_by": "text_layer",
-      "passes": [
+      "read_by": "ocr",
+      "ocr": {
+        "crop_height": 1100,
+        "crops": [
+          [
+            0,
+            200
+          ],
+          [
+            173,
+            200
+          ],
+          [
+            346,
+            200
+          ],
+          [
+            519,
+            200
+          ]
+        ],
+        "dpi": 200,
+        "engine": "tesseract 5.3.4",
+        "psm": "6",
+        "render": "pdftoppm -gray -png"
+      },
+      "ocr_shards": [
         {
-          "column": 0,
-          "x": 0,
-          "width": 200,
-          "sha256": "48da7cc9e8908bf1559995749c5eac4a15f31e0bea9beba28ab7062a246bea37",
-          "bytes": 11433359
+          "shard": "pages_0001-0082.json.gz",
+          "first": 1,
+          "last": 82,
+          "pages": 82,
+          "sha256": "a70d3bd9b046d8b2d4959bb483a77b442a1cf46d86120c177b25eb3355b0fae7"
         },
         {
-          "column": 1,
-          "x": 173,
-          "width": 200,
-          "sha256": "37664b3e372b795abd7e3f673b3a73359d1e3f4ac33f761882cc39a8330e384c",
-          "bytes": 16358648
+          "shard": "pages_0083-0164.json.gz",
+          "first": 83,
+          "last": 164,
+          "pages": 82,
+          "sha256": "4e892a7f4485a1c9ef545bb2fa7e7364e29dde751dbb6f522f141aa269803a30"
         },
         {
-          "column": 2,
-          "x": 346,
-          "width": 200,
-          "sha256": "f8538edbc46cc2fc5841224af8d80789fb99755afd393e72f7bbd6b3156db268",
-          "bytes": 16276373
+          "shard": "pages_0165-0246.json.gz",
+          "first": 165,
+          "last": 246,
+          "pages": 82,
+          "sha256": "7fc846cac7b84c02a56b353f57ca8f8fe0f3c75264d8ccce1ee38c61e4b41369"
         },
         {
-          "column": 3,
-          "x": 519,
-          "width": 200,
-          "sha256": "26069683471c4077ce526d0d1d1df8d70e9b215fce1f8d1996847ad848933153",
-          "bytes": 10620995
+          "shard": "pages_0247-0306.json.gz",
+          "first": 247,
+          "last": 306,
+          "pages": 60,
+          "sha256": "cee67a99f6f11ddcb0d702589d7414d2a44855c3472332ede7e5252490f62b4a"
+        },
+        {
+          "shard": "pages_0307-0366.json.gz",
+          "first": 307,
+          "last": 366,
+          "pages": 60,
+          "sha256": "d4f9110af16ca07c7f942f99972820f53e1726b7e0107c0a7ee7195fa9109dd9"
+        },
+        {
+          "shard": "pages_0367-0448.json.gz",
+          "first": 367,
+          "last": 448,
+          "pages": 82,
+          "sha256": "0f37a68afc17f6589e8f07701bd95f7191ab044b18018b9cecfb24c21b58e592"
+        },
+        {
+          "shard": "pages_0449-0530.json.gz",
+          "first": 449,
+          "last": 530,
+          "pages": 82,
+          "sha256": "f18eb08c77bc00d8fc21ff7a6f211da7dcff16c9c080e3d753438083ff6ae085"
+        },
+        {
+          "shard": "pages_0531-0612.json.gz",
+          "first": 531,
+          "last": 612,
+          "pages": 82,
+          "sha256": "0ef8122f16daf91c40c01611bf3cf78c6103bbb9b1c28cf7bc689b3248710ab5"
+        },
+        {
+          "shard": "pages_0613-0694.json.gz",
+          "first": 613,
+          "last": 694,
+          "pages": 82,
+          "sha256": "22d795537ad4adcba86ae0138a9fb514d067ba4986b66b627ceb0786ac47aa08"
+        },
+        {
+          "shard": "pages_0695-0770.json.gz",
+          "first": 695,
+          "last": 770,
+          "pages": 76,
+          "sha256": "c876f98a85c62fe1c4a9f676662bab1eb5b95b95b87e096bd039da1b0d66fcb0"
+        },
+        {
+          "shard": "pages_0771-0846.json.gz",
+          "first": 771,
+          "last": 846,
+          "pages": 76,
+          "sha256": "2fcfc81f2465f532c800a3151d93e1565fbb21ac706bce2686abcdc9717ddd3d"
+        },
+        {
+          "shard": "pages_0847-0918.json.gz",
+          "first": 847,
+          "last": 918,
+          "pages": 72,
+          "sha256": "cc026923ebc52f08944cc13f163067aaa0a7cefa27024445e746aee65fc5d085"
         }
       ],
-      "cards_assembled": 6548,
-      "locality_cards_kept": 247,
+      "cards_assembled": 33357,
+      "locality_cards_kept": 413,
       "text_file": "vol_04_locality_cards.txt",
-      "text_sha256": "540aea9f08565a6bbc69f6991950244fd408cf4e1b72d3811bfe4ce7bf5ec158"
+      "text_sha256": "8b8d4f012567fb86c04d2b5c886ab154231f30d1a0806f30866cf2766bcc6505"
     }
   }
 }

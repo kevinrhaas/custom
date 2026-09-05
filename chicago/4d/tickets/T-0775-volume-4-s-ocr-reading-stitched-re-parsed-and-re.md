@@ -1,7 +1,7 @@
 ---
 id: T-0775
 title: Volume 4's OCR reading stitched, re-parsed and re-sampled, now that every band is in
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0621
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 888
+claimed_by: run 9/5/2026, 8:45:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T14:42:21.123Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33969615940
 ---
 
 Volume 4's OCR reading stitched, re-parsed and re-sampled, now that every band is in.
