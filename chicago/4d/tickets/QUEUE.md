@@ -412,5 +412,14 @@ T-0769 — A card body can OPEN with the TAIL of the card in the column to its l
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
 T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
-T-0815 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
-T-0813 — T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way
+T-0821 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
+T-0820 — T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
+T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
+T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
+T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
+T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
+T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool

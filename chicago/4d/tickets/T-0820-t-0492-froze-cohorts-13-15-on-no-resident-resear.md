@@ -1,5 +1,5 @@
 ---
-id: T-0813
+id: T-0820
 title: T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way
 state: open
 epic: META

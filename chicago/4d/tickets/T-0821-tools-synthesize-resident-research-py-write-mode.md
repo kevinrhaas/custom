@@ -1,5 +1,5 @@
 ---
-id: T-0815
+id: T-0821
 title: tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
 state: open
 epic: META
