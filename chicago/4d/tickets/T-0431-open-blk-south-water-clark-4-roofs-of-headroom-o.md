@@ -1,7 +1,7 @@
 ---
 id: T-0431
 title: Open blk_south_water_clark: 4 roofs of headroom on two free lots
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: T-0420
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 2:35:29 PM CT
 blocked_on: null
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33987396245
 ---
 
 Open `blk_south_water_clark` — 4 roof(s) of headroom, 2 free lot(s) — under the anonymous-block
