@@ -110,14 +110,31 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "evidence_for": "A same-name lead, unasserted: cand_j_e_bishop_1839_illinois_st.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "regraded_on": "2026-09-04",
-    "rule": "G2e"
+    "rule": "G2e",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "source_ids": [
+     "fergus_chicago_directory_1839"
+    ],
+    "candidate_ids": [
+     "cand_j_e_bishop_1839_illinois_st"
+    ],
+    "candidates": [
+     {
+      "id": "cand_j_e_bishop_1839_illinois_st",
+      "asserted": false,
+      "basis": "Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J.",
+      "conflicts": [
+       "Illinois Street is not in the 1835 layer, so the entry cannot be placed in the town at all, and the 1837 poll refuses the surname."
+      ]
+     }
+    ]
    }
   }
  ],

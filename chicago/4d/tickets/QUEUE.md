@@ -142,7 +142,6 @@ T-0693 — Edward Richards Allen's card says occupation none_recorded while the 
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
-T-0508 — 237 named residents have no research row: cohort 13 of 79
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
@@ -425,3 +424,7 @@ T-0813 — Six generated artifacts conflict on every branch: merge them by regen
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0823 — The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
 T-0824 — A repeated string in a provenance or coverage list is the same merge artefact as a repeated id, and nothing asserts it
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699

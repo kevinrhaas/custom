@@ -17,11 +17,11 @@
     "reviewed_people": 873,
     "outcome_counts": {
       "candidate": 5,
-      "candidate_identity": 74,
-      "corroborated": 20,
-      "corroborated_enrichment": 29,
-      "no_corroboration": 187,
-      "no_corroboration_yet": 558
+      "candidate_identity": 122,
+      "corroborated": 54,
+      "corroborated_enrichment": 43,
+      "no_corroboration": 243,
+      "no_corroboration_yet": 406
     },
     "unmatched_research_person_ids": [
       {
@@ -183,6 +183,27 @@
     "letter_list_missing_research_row": [],
     "promoted_facts": [
       {
+        "person_id": "bailey_bennet",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=carpenter"
+        ],
+        "source_ids": [
+          "fergus_chicago_directory_1839",
+          "norris_chicago_directory_1843"
+        ]
+      },
+      {
+        "person_id": "chapman_chas_h",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=printer"
+        ],
+        "source_ids": [
+          "fergus_chicago_directory_1839"
+        ]
+      },
+      {
         "person_id": "hathaway_joshua",
         "ticket": "T-0483",
         "changes": [
@@ -190,6 +211,16 @@
         ],
         "source_ids": [
           "hathaway_1834"
+        ]
+      },
+      {
+        "person_id": "tuller_elam",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=farmer"
+        ],
+        "source_ids": [
+          "whiteside_elam_tuller"
         ]
       },
       {
@@ -836,11 +867,11 @@
   "after": {
     "households": 1380,
     "persons": 1404,
-    "attested": 509,
-    "inferred": 895,
+    "attested": 526,
+    "inferred": 878,
     "reconstructed": 0,
     "letter_list_only": 727,
-    "projected_residents": 784,
+    "projected_residents": 719,
     "census_1840_linked": 3
   },
   "retirement": {
