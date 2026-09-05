@@ -1,7 +1,7 @@
 ---
 id: T-0677
 title: Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 935
 claimed_by: run 9/5/2026, 6:12:07 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T23:36:07.540Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33997872177
 ---
 
