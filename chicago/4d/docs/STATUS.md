@@ -41,6 +41,56 @@ this repository does not hold, and a generated run with no `belongs_to` and no r
 
 **Nothing in the scene moved.** No coordinate, no fence, no bake: this ticket adds a relation.
 
+## Shipped 2026-09-04 — T-0701…T-0712: the drawer, Go to, Travel, People, the Evidence hub, the card
+
+**Every screen a visitor sees changed; the PR names the twelve tickets.** The owner's asks:
+the menu "is so small" (a sixth tab did not fit); Go to with "reconstructed roofs hidden by
+default" and "filters like taverns, shops, etc."; travel "instantly, by walking, by wagon
+(fast), by horse (faster)", "go as fast as a horse through the city", "maybe a gallop
+up-and-down view", "open the card on landing" or "fly … and open the card"; the card should
+not lead with "what we made up"; "the citizens should show there"; Evidence "is entirely
+unwieldy". Ruled in session: one PR into `dev`; menu and card **share one right-hand slot**;
+the card's top half uses **quiet coloured grade dots**.
+
+### Decisions
+- **One slot**: opening the drawer tucks the card (`#popup[data-tucked]`, never `hidden`);
+  closing untucks; a Go-to arrival closes the drawer and opens the card.
+- **Hidden roofs** follow the presence grade, `documented_range.confidence ||
+  placement.position_confidence || 'reconstructed'` — 276 of 358 hidden until the toggle.
+  Privies, stables and sheds file under Homes & yards.
+- **Default travel mode `instantly`**, so first-run behaviour and every arrival assertion stand.
+- **Router**: grid A* on 2 m cells, streets cheap, footprints and undecked water blocked; a
+  null route falls back to instant travel and says so.
+- **Paces are interface choices, not claims about 1835** — 3.6 m/s says nothing about any
+  1835 wagon — so **no LIBERTIES entry**; the Travel note says so instead.
+- **`people.json`** is a compiled sidecar (`compile_people()`, drift-checked under `--check`);
+  `residents.js` still reads the manifest and household files.
+
+### Smoke restatements — restated, never weakened (unverified until the gate runs)
+- Tab order → exactly `goto,travel,people,evidence,settings,controls,whatsnew` (same exactness).
+- "Five tabs fit one row" → every rail item unsqueezed, one column desktop / one row mobile (same fit test).
+- "Every loaded structure" → default `=== count(presenceGrade ≠ reconstructed)`, toggle `=== registry.size` (full count kept, behind the owner's toggle).
+- Position grade per row → chip `=== presenceGrade` and `data-jump-position ===` position grade (both grades read).
+- Chip colours distinct and `≠ .jump-name` → same, reconstructed read after the toggle.
+- `.jump-result span` → `.jump-result .jump-name` (the same element, by its own class).
+- Intersection arrival → precondition `api.setTravelMode('instantly')` stated (the default it already relied on).
+- `checkVisibility` in card panes → activate the pane's `[data-pop-tab]` first (a collapsed read passing would be dishonest).
+- `.pop-account` → `#popup .pop-lead.pop-account`, plus a composed lead without `change_note` (stricter).
+- `.pop-meta [data-note]` → `#popup .pop-where [data-note]`; chip coverage adds `.fact-dot ≥ 3`, `.pop-facts .conf === 0` (additions).
+- Card not collateral when the panel opens → unchanged; tucking keeps `hidden` off `#popup`.
+
+**Verified 2026-09-05 on the integrated tree** (`tools/check.sh` CHECK PASS; smoke to files,
+zero page errors in every leg): desktop parts 12, 3 and 13 and mobile 10-13 and 3-6 all
+pass — 66, 80, 110, 203 and 123 checks. The mobile 3-6 leg found one real defect on the way
+and it is fixed in the same PR: the new pace chip had pushed the confidence chip group to the
+left of a 390 px top bar, and its 280 px level menu, hung off the group's right edge, opened
+70 px past the screen; on a phone the menu now anchors to the viewport's own edges. One plan
+clause was corrected rather than the code: the Go to list starts with no row active, as a
+combobox does, so two ArrowDowns reach the SECOND row, and the gate asserts that.
+
+New assertions live in T-0701…T-0712's acceptance clauses. T-0713 (street lines attested from
+the Thompson plat) is written for the loop and stays in the queue.
+
 ## Shipped 2026-09-04 — T-0542: the third town election was Friday 10 July 1835, and the 85-name poll list is not its poll book
 
 **Nothing a visitor can see changed, and this is the exemption named in the PR: the finding

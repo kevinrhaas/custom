@@ -6,12 +6,20 @@
  * sidecar record, so they cannot drift apart. If the shader says amber, the
  * table says `reconstructed`, and the note underneath says why.
  *
- * The card shows, in order: what it is, where it stands and how sure we are of
- * that, whether it was here at all on the day you are standing in, whether it
- * was this shape, whether any of that is a tracked open question, every attribute
- * with its own confidence chip and reasoning, the liberties taken with THIS
- * building, the citations with links to both the source and its archived copy,
- * and a link out to the full research dossier where the disagreements are argued.
+ * The card reads top-down like a label and bottom-up like a catalogue. First
+ * what the building IS: title, other names, its kind, where it stood, the flags
+ * that qualify the whole record, the phase's own account (or a lead composed
+ * strictly from record fields when none was written), and a facts grid —
+ * standing, use, fabric, roof, address, ground, who was here, keepers — each
+ * with a quiet dot for its grade. Then the households the residents layer
+ * places here. Then, behind three tabs: EVIDENCE (what we included and where
+ * it came from, where it stood, whether it was here, whether it was this shape,
+ * every attribute with its chip and reasoning, the citations), WHAT WE MADE UP
+ * (the liberties taken with THIS building and any tracked open question) and
+ * RECORD (the record's own account, the production reference, the dossier
+ * link). The dots and the chips grade the same claims: the dot is the label's
+ * summary, the chip in the table is the claim itself, and the smoke counts only
+ * the chips (`css/card.css` § facts explains why there is never a chip up top).
  *
  * The open question is the newest section and it qualifies the two claims above
  * it rather than adding a third. A chip says how sure we are; it cannot say that
@@ -72,7 +80,7 @@
  * same claim as none having been taken.
  */
 
-import { citationItems } from './citations.js';
+import { citationItems, escapeHtml } from './citations.js';
 import { libertiesFor, libertyEntryHtml } from './liberties.js';
 // The Evidence panel's own open-question entry, rendered here for the building
 // being inspected. Shared for the liberties' reason: the panel's entry for the
@@ -92,11 +100,6 @@ import { geometryMark } from './geometry.js';
 import { displayName } from './display-name.js';
 
 const CONF_ORDER = { attested: 0, inferred: 1, reconstructed: 2 };
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => (
-    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
 
 function prettyName(key) {
   return key.replace(/_/g, ' ').replace(/\bm\b/, '(m)');
@@ -396,12 +399,11 @@ function presenceSection(s) {
   if (!range || !(range.from || range.to)) return '';
 
   const span = `${range.from || '?'} → ${range.to || '?'}`;
-  const account = s.change_note
-    ? `<p class="pop-account">${escapeHtml(s.change_note)}</p>` : '';
-
+  // The phase's own account used to open this section. It now opens the CARD
+  // (`leadHtml`), because it is the sentence a visitor reads first and it was
+  // buried under a summary of grades; the table keeps the claim it qualified.
   return `<section class="pop-sec">
     <h3>Was it here?</h3>
-    ${account}
     <table class="attrs"><tbody>
       ${claimRow('recorded standing', span, range)}
     </tbody></table>
@@ -546,6 +548,392 @@ function researchSection(s) {
   </section>`;
 }
 
+/* ------------------------------------------------------------------------ */
+/* THE TOP HALF OF THE CARD — what it was, where, since when, who was there.  */
+/*                                                                            */
+/* The owner's brief for the drawer redesign asked for the card to lead with  */
+/* what the building IS and its key facts, with the provenance underneath     */
+/* behind tabs. Everything above this comment is provenance and is unchanged; */
+/* what follows is the label a visitor reads FIRST, composed strictly from    */
+/* record fields the sections below already qualify one claim at a time. The  */
+/* grade on each fact is a quiet dot, never a chip: the chips belong to the   */
+/* evidence tables, and `smoke_renderer.mjs` counts them as the card's graded */
+/* claims, so a second chip over the same claim would double the tally.       */
+/* ------------------------------------------------------------------------ */
+
+const GRADES = new Set(LEVELS);
+
+/** The weaker of two grades, on the three-step scale. A composite fact ("braced
+ *  frame · 2 storeys") is only as sure as its least-sure half. */
+function weaker(a, b) {
+  if (!GRADES.has(a)) return GRADES.has(b) ? b : undefined;
+  if (!GRADES.has(b)) return a;
+  return CONF_ORDER[a] >= CONF_ORDER[b] ? a : b;
+}
+
+/** A 7 px dot for a grade. Renders NOTHING for a grade off the scale — an
+ *  ungraded fact gets no dot rather than a guessed one. `what` names the claim
+ *  in the tooltip ("position: inferred"), because a dot with no words is a
+ *  colour a visitor has to remember the meaning of. */
+function factDot(grade, what) {
+  if (!GRADES.has(grade)) return '';
+  const gloss = {
+    attested: 'a source states it',
+    inferred: 'reasoned from evidence about this building',
+    reconstructed: 'invented to fill a demonstrable need of the town',
+  }[grade];
+  const title = `${what ? `${what}: ` : ''}${grade} — ${gloss}`;
+  return `<i class="fact-dot fact-${escapeHtml(grade)}" title="${escapeHtml(title)}"></i>`;
+}
+
+/** A value with its dot bound to its last word. A no-break space is not enough:
+ *  CSS Text keeps a soft-wrap opportunity before an atomic inline even after
+ *  U+00A0, so a dot alone on a wrapped line — a bullet for nothing — needs a
+ *  `white-space: nowrap` span around the word it belongs to. */
+function withDot(text, dot) {
+  const words = String(text).split(' ');
+  const last = words.pop();
+  const head = words.length ? `${escapeHtml(words.join(' '))} ` : '';
+  return `${head}<span class="fact-tail">${escapeHtml(last)}${dot}</span>`;
+}
+
+/** The `function` values that do not read once `_` becomes a space. Everything
+ *  else goes through the generic rule below; this is for the tokens where a bare
+ *  space misreads ("tavern inn"). Nothing here adds a word the record does not
+ *  carry — it only punctuates the record's own compound. */
+const FUNCTION_WORDS = {
+  tavern_inn: 'tavern & inn',
+  store_residence: 'store & residence',
+  'store-residence': 'store & residence',
+  dwelling_to_let: 'dwelling, to let',
+  hotel_under_construction: 'hotel, under construction',
+  slaughterhouse_packing: 'slaughterhouse & packing house',
+  forwarding_commission_warehouse: 'forwarding & commission warehouse',
+  meeting_house_school: 'meeting house & school',
+  soap_candle_manufactory: 'soap & candle manufactory',
+  dwelling_farmstead: 'farmstead dwelling',
+  physicians_office: "physician's office",
+  agency_house_residence: 'agency house & residence',
+};
+
+/** The record's `function`, in words. Already-prose values ("one-room frame
+ *  cottage") pass through untouched; tokens lose their underscores and `_and_`
+ *  becomes an ampersand. */
+function functionWords(value) {
+  if (value === null || value === undefined) return '';
+  const raw = String(value).trim();
+  if (!raw) return '';
+  if (FUNCTION_WORDS[raw]) return FUNCTION_WORDS[raw];
+  if (!raw.includes('_')) return raw;
+  return raw.replace(/_and_/g, ' & ').replace(/_/g, ' ');
+}
+
+/** The kind line's short form: a `function` that runs to a clause about the
+ *  building's history ("log cabin; Chicago's first drug store 1832, …") is cut
+ *  at its first semicolon HERE ONLY. The Use row and the attribute table carry
+ *  the whole value; this line is a label, and a label is one phrase. */
+function kindWords(value) {
+  return functionWords(value).split(';')[0].trim();
+}
+
+/** The archetype the generators built from, in words. `bridge_timber` and
+ *  `pier_crib` are the schema's noun-first order and read wrongly reversed. */
+const ARCHETYPE_WORDS = { bridge_timber: 'timber bridge', pier_crib: 'crib pier' };
+function archetypeWords(archetype) {
+  if (!archetype) return '';
+  return ARCHETYPE_WORDS[archetype] ?? String(archetype).replace(/_/g, ' ');
+}
+
+const ISO_DATE = /^(\d{4})-\d{2}-\d{2}$/;
+
+/** The standing span as years, when — and only when — both ends are ISO dates.
+ *  `1831-01-01 → 1851-03-04` reads as "1831 – 1851"; a bound that is the end of a
+ *  continuity argument (`1835-12-31`) reads as the year it bounds, which is what a
+ *  year means. Anything odd is shown raw, because a renderer that tidies an odd
+ *  date is guessing what it meant. The "Was it here" row keeps the raw pair. */
+function standingWords(range) {
+  if (!range || !(range.from || range.to)) return '';
+  const f = ISO_DATE.exec(range.from ?? '');
+  const t = ISO_DATE.exec(range.to ?? '');
+  if (f && t) return f[1] === t[1] ? f[1] : `${f[1]} – ${t[1]}`;
+  return `${range.from || '?'} → ${range.to || '?'}`;
+}
+
+/** Heads of the households the residents layer places here, by name. */
+function headsOf(s) {
+  const households = Array.isArray(s.residents) ? s.residents : [];
+  const heads = [];
+  for (const h of households) {
+    for (const person of h.persons ?? []) {
+      if (person.relationship === 'head' && person.name) heads.push(person.name);
+    }
+  }
+  return heads;
+}
+
+/** "braced frame · 2 storeys" — the fabric in one phrase, or as much of it as
+ *  the record has. */
+function builtWords(attrs) {
+  const parts = [];
+  const cons = attrs.construction?.value;
+  if (cons !== null && cons !== undefined && cons !== '') parts.push(prettyValue(cons));
+  const st = attrs.stories?.value;
+  if (typeof st === 'number') parts.push(`${st} ${st === 1 ? 'storey' : 'storeys'}`);
+  else if (st) parts.push(`${prettyValue(st)} storeys`);
+  return parts.join(' · ');
+}
+
+function roofWords(attrs) {
+  const type = attrs.roof_type?.value;
+  if (type === null || type === undefined || type === '') return '';
+  const pitch = attrs.roof_pitch_deg?.value;
+  const words = prettyValue(type);
+  return typeof pitch === 'number' && type !== 'none' ? `${words}, ${pitch}°` : words;
+}
+
+/**
+ * The head: title, other names, what kind of thing it is, where it stood, and the
+ * flags that qualify the whole card. The flags are the same five sentences the
+ * old `.pop-meta` block carried (provisional position, anonymous reconstruction,
+ * no recorded household, placeholder mesh) plus one that had no surface at all:
+ * `review_required` (T-0268). Nine records are held under AGENTS.md's standing
+ * constraint and until now the flag reached a browser once, as a console line
+ * about the scene. The sentence is standing text keyed on the boolean — the
+ * record's own reasoning is in its notes below, verbatim, as the ticket says —
+ * and it names what the record is held for, because "held" alone tells a reader
+ * that a decision was made and nothing about what it rests on.
+ */
+function headHtml(s, record, called, p, place) {
+  const aka = Array.isArray(s.aka) && s.aka.length
+    ? `<p class="pop-aka">also ${s.aka.map(escapeHtml).join(' · ')}</p>` : '';
+
+  const kind = kindWords(s.attributes?.function?.value);
+  const arche = archetypeWords(s.archetype);
+  // "dwelling · frame dwelling" says one thing twice. When one phrase contains
+  // the other, the longer one carries both and stands alone; otherwise the
+  // function and the archetype are two facts and both are shown.
+  const k = kind.toLowerCase(); const a = arche.toLowerCase();
+  const kindParts = kind && arche
+    ? (a.includes(k) ? [arche] : k.includes(a) ? [kind] : [kind, arche])
+    : [kind || arche].filter(Boolean);
+  const kindLine = kindParts.length
+    ? `<p class="pop-kind">${kindParts.map(escapeHtml).join(' · ')}</p>` : '';
+
+  const whereLine = `<p class="pop-where-line"><strong>${
+    withDot(p.symbolic_location ?? 'Location not recorded', factDot(place.confidence, 'position'))
+  }</strong></p>`;
+
+  const flags = [];
+  if (p.placement_provisional) {
+    flags.push(`<span class="pop-flag">Position is provisional — the coordinates are a stand-in,
+      not a survey. Georeferencing from the 1834 sheets is not better than about
+      ±${escapeHtml(p.uncertainty_m ?? 20)} m even once traced.</span>`);
+  }
+  // `inferred_anonymous` is the machine value and is never printed; the words a
+  // visitor reads say `reconstructed`, which is the tier every attribute of these
+  // roofs carries. The history of this line losing its flag is in the git log
+  // of the old `show()` and in STATUS § 28.
+  if (s.reconstruction?.status === 'inferred_anonymous') {
+    flags.push(`<span class="pop-flag"><strong>Reconstructed — anonymous ${
+      escapeHtml(s.reconstruction.family)} roof.</strong>
+      Its family and district come from the modern production specification;
+      this is not an attested named building or a recovered parcel.</span>`);
+  }
+  // A title that says "vacant" or "to let" asserts an ABSENCE, and an absence is
+  // not a finding. The residents layer reaches 104 of the anonymous roofs; the
+  // rest are unmodelled, not attested empty.
+  if (called.vacant) {
+    flags.push(`<span class="pop-flag">No household is recorded here, which is not evidence
+      that it stood empty. The residents layer models the households this town's
+      trades demand and reaches 104 of the anonymous roofs; this is one of the
+      others, so the title describes the building rather than its occupancy.</span>`);
+  }
+  // A fact about the MESH, not the record: it arrives on the registry entry from
+  // the loader that opened the file (the compiler cannot know it).
+  if (record.assetIsPlaceholder) {
+    flags.push('<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>');
+  }
+  if (s.review_required === true) {
+    flags.push(`<span class="pop-flag pop-flag-held">Held pending consultation — this record
+      touches the standing constraint on depicting Indigenous history in 1835; see
+      AGENTS.md. The record's own account below says what it is held for.</span>`);
+  }
+  const flagBlock = flags.length ? `<div class="pop-flags">${flags.join('')}</div>` : '';
+
+  return `<div class="pop-head">
+    <div class="pop-title-row">
+      <h2>${escapeHtml(called.title)}</h2>
+      <button class="pop-close" type="button" data-close aria-label="Close">×</button>
+    </div>
+    ${aka}
+    ${kindLine}
+    ${whereLine}
+    ${flagBlock}
+  </div>`;
+}
+
+/**
+ * The lead: the phase's own account, verbatim, when the record wrote one.
+ *
+ * Fourteen records (the Fort Dearborn buildings and the lighthouse) carry no
+ * `change_note`. For those the lead is COMPOSED, and the rule is strict so that
+ * the smoke can hold it: title, function words and symbolic location joined by
+ * "was a … at …", then the first household's own `name` and `relation` as the
+ * record wrote them ("The Murphy household lived and worked here."). No
+ * adjective is added and no field is paraphrased; a record with neither
+ * function nor location gets "{Title} stood here." and nothing more, because the
+ * alternative is prose about a building the record says nothing about.
+ */
+/** A location that already opens with its own preposition ("Inside the south-west
+ *  of Fort Dearborn…", "At the south-west angle…") is joined as it stands, with
+ *  its capital lowered; anything else is introduced with "at". */
+const LEADING_PREPOSITION = /^(at|on|in|inside|near|by|between|behind|beside|along|under|within|across|opposite|off|outside|over|astride|facing)\b/i;
+function whereClause(where) {
+  const w = String(where).trim().replace(/\.$/, '');
+  if (LEADING_PREPOSITION.test(w)) return w.charAt(0).toLowerCase() + w.slice(1);
+  // "at The open court" — an article keeps its capital only at a sentence start.
+  const lowered = /^(The|An?)\b/.test(w) ? w.charAt(0).toLowerCase() + w.slice(1) : w;
+  return `at ${lowered}`;
+}
+
+function composedLead(s, called, p) {
+  const title = called.title;
+  const fn = kindWords(s.attributes?.function?.value);
+  const where = p.symbolic_location;
+  // "Fort Dearborn — block-house was a block-house" says the noun twice; when the
+  // title already carries the function's words the sentence only needs the place.
+  const titled = fn && title.toLowerCase().includes(fn.toLowerCase());
+  const article = /^[aeiou]/i.test(fn) ? 'an' : 'a';
+  let text;
+  if (fn && !titled && where) text = `${title} was ${article} ${fn} ${whereClause(where)}.`;
+  else if (fn && !titled) text = `${title} was ${article} ${fn}.`;
+  else if (where) text = `${title} stood ${whereClause(where)}.`;
+  else text = `${title} stood here.`;
+  const h = Array.isArray(s.residents) ? s.residents[0] : null;
+  if (h?.name && h?.relation) text += ` ${String(h.name).trim()} ${String(h.relation).trim().replace(/\.$/, '')}.`;
+  return text;
+}
+
+function leadHtml(s, called, p) {
+  const text = s.change_note ? String(s.change_note) : composedLead(s, called, p);
+  const composed = s.change_note ? '' : ' data-composed';
+  return `<p class="pop-lead pop-account"${composed}>${escapeHtml(text)}</p>`;
+}
+
+/**
+ * The facts: a two-column definition list of the record's key values, each with
+ * a grade dot. Every value here is ALSO a row in the evidence tables below with
+ * its chip, sources and reasoning — this is the label, that is the catalogue.
+ * A row with no value is omitted rather than shown as "—", because a museum
+ * label does not list what it does not know; the tables do that job.
+ */
+function factsHtml(s) {
+  const attrs = s.attributes ?? {};
+  const rows = [];
+  // A value that will not fit half a column — the address, the ground's entry,
+  // a long keepers line — takes the whole row rather than wrapping to a sliver.
+  const row = (dt, dd, grade, what) => {
+    if (!dd) return;
+    const wide = String(dd).length > 28 ? ' fact-wide' : '';
+    rows.push(`<div class="fact${wide}"><dt>${escapeHtml(dt)}</dt><dd>${
+      withDot(dd, factDot(grade, what ?? dt.toLowerCase()))}</dd></div>`);
+  };
+
+  row('Standing', standingWords(s.documented_range), s.documented_range?.confidence, 'standing');
+  row('Use', functionWords(attrs.function?.value), attrs.function?.confidence, 'use');
+  row('Built', builtWords(attrs),
+    weaker(attrs.construction?.confidence, attrs.stories?.confidence), 'fabric');
+  row('Roof', roofWords(attrs),
+    attrs.roof_pitch_deg && attrs.roof_type?.value !== 'none'
+      ? weaker(attrs.roof_type?.confidence, attrs.roof_pitch_deg?.confidence)
+      : attrs.roof_type?.confidence, 'roof');
+  if (attrs.lot_address?.value) {
+    row('Address', prettyValue(attrs.lot_address.value), attrs.lot_address.confidence, 'address');
+  }
+  if (attrs.land_owner?.value) {
+    row('Owner of the ground', prettyValue(attrs.land_owner.value),
+      attrs.land_owner.confidence, 'ground');
+  }
+  // Heads of households carry a GRADE per person, not a confidence — a different
+  // axis, shown on their own rows in "Who was here". No dot here, deliberately.
+  const heads = headsOf(s);
+  if (heads.length) {
+    const joined = heads.join(' · ');
+    rows.push(`<div class="fact${joined.length > 28 ? ' fact-wide' : ''}"><dt>Lived here</dt><dd>${
+      escapeHtml(joined)}</dd></div>`);
+  }
+  if (attrs.occupants?.value) {
+    row('Keepers', prettyValue(attrs.occupants.value), attrs.occupants.confidence, 'keepers');
+  }
+  if (!rows.length) return '';
+  return `<dl class="pop-facts">${rows.join('')}</dl>`;
+}
+
+/**
+ * Where did it stand? The position's argument, on its own row in the evidence
+ * pane. It used to sit in the head as a chip beside the location; the head now
+ * carries a dot, and the chip — which the smoke counts as one of the card's
+ * graded claims — moves into a `table.attrs` row so it is qualified exactly the
+ * way every other claim is. The `why` here is often the longest argument in the
+ * record (three of the eight named placements are derived from bank geometry
+ * because no corner survives).
+ */
+function whereSection(p, place) {
+  if (!place.confidence && !p.symbolic_location) return '';
+  return `<section class="pop-sec pop-where">
+    <h3>Where did it stand?</h3>
+    <table class="attrs"><tbody>
+      ${claimRow('recorded position', p.symbolic_location ?? 'Location not recorded', place)}
+    </tbody></table>
+  </section>`;
+}
+
+/** The three panes under the facts, and the strip that switches them. The last
+ *  tab a visitor chose is remembered for the session — module scope, not
+ *  storage — so walking from one building to the next keeps the reader where
+ *  they were reading. All three panes stay in the DOM: a pane hidden by
+ *  `[hidden]` is still the record, and the smoke reads it after activating its
+ *  tab rather than trusting a collapsed read. */
+const TABS = [
+  { id: 'evidence', label: 'Evidence' },
+  { id: 'liberties', label: 'What we made up' },
+  { id: 'record', label: 'Record' },
+];
+let lastTab = 'evidence';
+
+function tabsHtml(counts) {
+  const buttons = TABS.map((t) => {
+    const n = counts[t.id];
+    const count = n ? ` <span class="pop-count">${n}</span>` : '';
+    const on = t.id === lastTab;
+    return `<button class="pop-tab" type="button" role="tab" data-pop-tab="${t.id}"
+      aria-selected="${on}" aria-controls="pop-pane-${t.id}" tabindex="${on ? 0 : -1}">${
+      escapeHtml(t.label)}${count}</button>`;
+  }).join('');
+  return `<nav class="pop-tabs" role="tablist" aria-label="About this record">${buttons}</nav>`;
+}
+
+function paneHtml(id, inner) {
+  const on = id === lastTab;
+  return `<div class="pop-pane" id="pop-pane-${id}" role="tabpanel" data-pop-pane="${id}"${
+    on ? '' : ' hidden'}>${inner}</div>`;
+}
+
+/** Switch panes inside one card. Called from the click handler and from `show()`
+ *  (which renders the remembered tab directly, so this is the click path). */
+function selectPopTab(root, id) {
+  if (!TABS.some((t) => t.id === id)) return;
+  lastTab = id;
+  for (const b of root.querySelectorAll('.pop-tab[data-pop-tab]')) {
+    const on = b.dataset.popTab === id;
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+  }
+  for (const pane of root.querySelectorAll('.pop-pane[data-pop-pane]')) {
+    pane.toggleAttribute('hidden', pane.dataset.popPane !== id);
+  }
+}
+
 /**
  * Where a dossier is READ, which is not where it lives in this repository.
  *
@@ -588,6 +976,8 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
 
   root.addEventListener('click', (e) => {
     if (e.target.closest('[data-close]')) { close(); return; }
+    const tab = e.target.closest('[data-pop-tab]');
+    if (tab) { selectPopTab(root, tab.dataset.popTab); return; }
     const toggle = e.target.closest('[data-toggle-note]');
     if (toggle) {
       const note = toggle.parentElement.querySelector('[data-note]');
@@ -635,139 +1025,79 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       currentRecord = record;
 
       const p = s.placement ?? {};
-      const provisional = p.placement_provisional
-        ? `<span class="pop-flag">Position is provisional — the coordinates are a stand-in,
-             not a survey. Georeferencing from the 1834 sheets is not better than about
-             ±${escapeHtml(p.uncertainty_m ?? 20)} m even once traced.</span>`
-        : '';
-      // Whether the shape is a stand-in is a fact about the MESH, not about the
-      // record, so it arrives on the registry entry from the loader that opened
-      // the file. This line read `s.asset_is_placeholder` off the sidecar until
-      // 2026-08-10 — a field the compiler has never written and, reading only
-      // `data/`, could not write — so the flag never once rendered. Same failure
-      // as the presence line before it (STATUS § 28), and the sidecar-contract
-      // gate is what found the second one.
-      const placeholderAsset = record.assetIsPlaceholder
-        ? '<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>'
-        : '';
-      // `inferred_anonymous`, not `recommended_anonymous`. The dataset's word for
-      // these roofs changed with the merge of 2026-08-13 ("recommended" becomes
-      // "reconstructed", which is the vocabulary docs/PROVENANCE.md already uses) —
-      // both generators, all 108 records and the GLB filenames moved, and this
-      // line did not. The test on a value nothing carries is always false, so
-      // every one of the 108 anonymous roofs was rendering with NO reconstruction
-      // flag at all: the card stopped saying the building was not a recovered
-      // one. That is the third time a card has silently lost a flag by reading a
-      // key the data does not write (STATUS § 28, and the placeholder line
-      // directly above). The release gate caught it; nothing else would have.
-      //
-      // The FLAG's own wording moved with K23a, and the KEY deliberately did not.
-      // `inferred_anonymous` is a machine value — it is never printed, it names
-      // the GLB files, and the last time a rename of it went through this line
-      // the flag silently vanished for 108 roofs. The words a visitor reads are
-      // what claimed the wrong tier: this said "Inferred reconstruction" over a
-      // record graded `reconstructed` at every attribute, and `inferred` is now
-      // the MIDDLE tier — reasoned from evidence about this particular thing,
-      // which an anonymous count-unit is exactly not.
-      const reconstruction = s.reconstruction?.status === 'inferred_anonymous'
-        ? `<span class="pop-flag"><strong>Reconstructed — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
-             Its family and district come from the modern production specification;
-             this is not an attested named building or a recovered parcel.</span>`
-        : '';
-
-      // The position's own reasoning, on the line that shows the position. Every
-      // placement here is an argument — three of the eight are derived from bank
-      // geometry because no corner survives — and the card showed the conclusion
-      // with a chip over it and no way to read the argument.
+      // The position's own reasoning, on the row that shows the position. Every
+      // placement here is an argument — three of the eight named ones are derived
+      // from bank geometry because no corner survives.
       const place = {
         confidence: p.position_confidence,
         sources: p.position_sources,
         note: p.position_note,
       };
 
-      const aka = Array.isArray(s.aka) && s.aka.length
-        ? `<p class="pop-aka">also ${s.aka.map(escapeHtml).join(' · ')}</p>` : '';
-
       // WHAT THIS BUILDING IS CALLED (T-0076, the owner on 2026-08-18: "give the
       // locations useful names not technical D3 #03 names, you can have that somewhere
       // on the card for reference identity purposes but dont make it the title"). The
-      // rule and its reasoning are in display-name.js; what belongs here is the other
-      // half of his sentence — the production identity keeps a line on the card, because
-      // `Reconstructed D3 one-room frame cottage #017` is what the parcel re-derives,
-      // what the GLB is named for, and what somebody reading the dataset has in hand.
+      // rule and its reasoning are in display-name.js; the production identity keeps
+      // a line on the Record pane, because `Reconstructed D3 one-room frame cottage
+      // #017` is what the parcel re-derives, what the GLB is named for, and what
+      // somebody reading the dataset has in hand.
       const called = displayName(s, record.id);
       const spec = called.spec
         ? `<p class="pop-spec">Reconstruction reference
              <code>${escapeHtml(called.spec)}</code></p>`
         : '';
-      // A title that says "vacant" or "to let" is asserting an ABSENCE, and this project
-      // does not let an absence pass as a finding. The residents layer places the
-      // households the town's trades demand — 104 of the 222 anonymous roofs — and stops
-      // there; the rest are unmodelled, not attested empty. The distinction is one
-      // sentence and the alternative is a card that quietly upgrades silence to evidence.
-      const unoccupied = called.vacant
-        ? `<span class="pop-flag">No household is recorded here, which is not evidence
-             that it stood empty. The residents layer models the households this town's
-             trades demand and reaches 104 of the anonymous roofs; this is one of the
-             others, so the title describes the building rather than its occupancy.</span>`
-        : '';
 
       // Empty when no dossier has been WRITTEN for this record — the compiler
       // resolves the path against the repository rather than naming one by
-      // convention and hoping (ROADMAP K26). Thirty documented buildings are in
-      // that state, and offering them a link that breaks taught a visitor to
-      // distrust the 302 that do not. The sentence says which of the two it is.
+      // convention and hoping (ROADMAP K26). Offering a link that breaks taught a
+      // visitor to distrust the ones that do not, so the sentence says which it is.
       const doc = s.research_doc
         ? `<a href="${escapeHtml(docBase + s.research_doc)}" target="_blank" rel="noopener">
              ${escapeHtml(s.research_doc)}</a>`
         : 'no dossier written for this building yet';
 
-      root.innerHTML = `
-        <div class="pop-head">
-          <div>
-            <h2>${escapeHtml(called.title)}</h2>
-            ${aka}
-            ${spec}
-          </div>
-          <button class="pop-close" type="button" data-close aria-label="Close">×</button>
-        </div>
+      // The liberties count on its tab, so a visitor can see there is something
+      // to read before opening it. Null lists (not loaded) count as nothing, which
+      // is the same "claim nothing" rule `libertySection` applies.
+      const libertyCount = Array.isArray(liberties)
+        ? libertiesFor(liberties, record.id).length : 0;
+      const questionCount = Array.isArray(openQuestions)
+        ? openQuestionsFor(openQuestions, record.id).length : 0;
 
-        <div class="pop-meta">
-          <div><strong>${escapeHtml(p.symbolic_location ?? 'Location not recorded')}</strong>
-            ${evidence(place)}</div>
-          ${provisional}
-          ${reconstruction}
-          ${unoccupied}
-          ${placeholderAsset}
-        </div>
-
+      const evidencePane = `
         ${basisSection(s, place)}
-
+        ${whereSection(p, place)}
         ${presenceSection(s)}
-
         ${shapeSection(s)}
-
-        ${residentsSection(s)}
-
-        ${openQuestionSection(openQuestions, record.id)}
-
         <section class="pop-sec">
           <h3>Attributes and evidence</h3>
           <table class="attrs"><tbody>${attributeRows(s.attributes)}</tbody></table>
         </section>
-
-        ${libertySection(liberties, record.id)}
-
-        ${researchSection(s)}
-
         <section class="pop-sec">
           <h3>Citations</h3>
           <ol class="cites">${citationItems(s.citations)}</ol>
-        </section>
+        </section>`;
 
+      const libertiesPane = `
+        ${libertySection(liberties, record.id)}
+        ${openQuestionSection(openQuestions, record.id)}`;
+
+      const recordPane = `
+        ${researchSection(s)}
+        ${spec}
         <p class="pop-foot">Full dossier: ${doc}<br>
           Phase <code>${escapeHtml(s.phase ?? '—')}</code> ·
-          record <code>${escapeHtml(record.id)}</code></p>
+          record <code>${escapeHtml(record.id)}</code></p>`;
+
+      root.innerHTML = `
+        ${headHtml(s, record, called, p, place)}
+        ${leadHtml(s, called, p)}
+        ${factsHtml(s)}
+        ${residentsSection(s)}
+        ${tabsHtml({ liberties: libertyCount + questionCount })}
+        ${paneHtml('evidence', evidencePane)}
+        ${paneHtml('liberties', libertiesPane)}
+        ${paneHtml('record', recordPane)}
       `;
       root.removeAttribute('hidden');
       root.scrollTop = 0;

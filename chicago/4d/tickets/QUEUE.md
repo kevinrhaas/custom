@@ -15,6 +15,8 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-04  THE MENU, GOING PLACES, PEOPLE, THE CARD — the owner, in session: "build all four now",
+#               "top of the queue". T-0701..T-0713 head the file; T-0713 (the street lines) stays for the loop.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -31,6 +33,14 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- OWNER ASKS 2026-09-04 — THE MENU, GOING PLACES, PEOPLE, THE CARD. Verbatim: "one of the
+# --- things with custom that i need to improve is the right menu panel … we want it to be
+# --- delightful and fun to use" · "make it world class elegant and easy to use" · "resident
+# --- directory, we have people now and they should be able to be searched and found" · "that
+# --- evidence panel is entirely unwieldy". T-0701..T-0712 are claimed together in one PR into
+# --- dev; T-0713 (street lines attested from the Thompson plat) is the loop's, and stays here.
+T-0713 — The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
@@ -366,7 +376,7 @@ T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents 
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0701 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 
@@ -374,4 +384,3 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
-
