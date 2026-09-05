@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: run 9/4/2026, 11:58:17 PM CT
+claimed_by: run 9/5/2026, 6:36:26 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945832037
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963518050
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "then i would like a summary of what the residents and

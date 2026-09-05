@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 6:06 AM",
+  "generated_ct": "Sep 5, 2026, 6:46 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8572,7 +8572,7 @@
     {
       "id": "T-0517",
       "title": "What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8582,9 +8582,11 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 6:36:26 AM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33963518050",
       "queue_rank": 5
     },
     {
@@ -12768,6 +12770,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 148
+    },
+    {
+      "id": "T-0767",
+      "title": "dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }

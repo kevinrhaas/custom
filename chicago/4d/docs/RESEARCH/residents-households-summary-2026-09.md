@@ -39,14 +39,14 @@ repeated.
 |--------------------|-----:|--------------:|-------:|
 | households         | 1380 |           824 |   +556 |
 | person entries     | 1404 |           848 |   +556 |
-| attested           |  509 |           117 |   +392 |
-| inferred           |  895 |           731 |   +164 |
+| attested           |  526 |           117 |   +409 |
+| inferred           |  878 |           731 |   +147 |
 | reconstructed      |    0 |             0 |     +0 |
-| projected_resident |  784 |           706 |    +78 |
+| projected_resident |  719 |           706 |    +13 |
 
 The baseline is the state of the layer after the 2026-09-02 synthesis (PR #668), as printed
 in `docs/RESEARCH/resident-household-synthesis-2026-09-02.md`. **The layer has grown by two
-thirds and its centre of gravity has moved.** The +392 on `attested` is the consolidation
+thirds and its centre of gravity has moved.** The +409 on `attested` is the consolidation
 and the resident-research cohorts spending evidence that was already adjudicated, not new
 reading: a person the town already carried, corroborated by a second body of record, moves
 up a rung without anybody being minted.
@@ -61,8 +61,8 @@ later explicit reconstruction pass can use it without a schema change.
 
 | grade         | persons | share | subtype                            |
 |---------------|--------:|------:|------------------------------------|
-| attested      |     509 | 36.3% | (none) 509                         |
-| inferred      |     895 | 63.7% | (none) 111, projected_resident 784 |
+| attested      |     526 | 37.5% | (none) 526                         |
+| inferred      |     878 | 62.5% | (none) 159, projected_resident 719 |
 | reconstructed |       0 |  0.0% | -                                  |
 
 | ladder rung      | persons | share |
@@ -237,29 +237,29 @@ it has and found nothing. Neither is evidence that the person did not exist.
 
 | identity_master                            | count |
 |--------------------------------------------|------:|
-| identities                                 |  6707 |
-| appearances                                | 10399 |
+| identities                                 |  6742 |
+| appearances                                | 10448 |
 | identities on a card                       |  1395 |
-| identities in two or more domains          |  1589 |
-| derived refusals                           |  1881 |
+| identities in two or more domains          |  1600 |
+| derived refusals                           |  1888 |
 | declared merges                            |   304 |
 | appearances moved by a landed adjudication |    82 |
-| declared refusals                          |  1578 |
+| declared refusals                          |  1617 |
 
 | domain       | identities appearing in it |
 |--------------|---------------------------:|
-| directories  |                       2920 |
+| directories  |                       2921 |
 | newspapers   |                       2101 |
 | residents    |                       1395 |
 | old_settlers |                        735 |
-| census_1840  |                        650 |
+| census_1840  |                        697 |
 | church       |                        480 |
 | civic        |                        386 |
 
-**1,395 of 6,707 consolidated identities are on a household card. 5,312 are not** — and most
+**1,395 of 6,742 consolidated identities are on a household card. 5,347 are not** — and most
 of them should not be, because they are 1839 directory entries and 1840 census heads whose
 only dated appearance is after the scene year, which rung G0 refuses outright. The number to
-watch is not 5,312 but the 1,589 identities that appear in two or more domains: convergence
+watch is not 5,347 but the 1,600 identities that appear in two or more domains: convergence
 across bodies of record that did not copy each other is what rung G1c promotes on.
 
 ## 10. Where the people meet the buildings
@@ -328,7 +328,7 @@ document also counts what those records overlap.
 **The town's people are now a large, honest and very thin dataset.** 1,380 households and
 1,404 person entries stand where 824 and 848 stood after the September synthesis — a two-
 thirds gain bought almost entirely by *spending* evidence that had already been adjudicated
-rather than by reading anything new. 509 people are `attested`, up from 117; the
+rather than by reading anything new. 526 people are `attested`, up from 117; the
 `reconstructed` grade is empty and stays that way until an explicit reconstruction pass wants
 it. Every person is a real name from a real record. Not one was invented.
 
@@ -343,7 +343,7 @@ comparison: the sources this project holds name individuals, and a town is made 
 directories print a trade beside nearly every name and this layer has read one off them.
 99 later addresses stand adjudicated — the figure the queue's own measurement of
 2026-09-04 puts against the 20 households that carry any address at all. And
-1,589 consolidated identities appear in two or more domains — convergence that rung G1c
+1,600 consolidated identities appear in two or more domains — convergence that rung G1c
 promotes on — against 531 people who carry a rung at all. None of those three needs a new
 source fetched, an image read or a page turned.
 
