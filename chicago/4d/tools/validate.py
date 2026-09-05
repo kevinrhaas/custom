@@ -4501,6 +4501,55 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
                            "lives_at", "works_at", "present_on_scene_date", "persons",
                            "touches_removal", "review_required", "research_note")
 
+# --------------------------------------------------------------------------
+# kin: a relationship BETWEEN two households (T-0597)
+#
+# Until this existed the dataset could say everything about a person except who
+# they were related to, because `persons[].relationship` is a person's place
+# INSIDE one household and stops at its edge. So a kinship that crosses two
+# household records had nowhere to live but a free-text note, which is to say
+# nowhere a query can reach it — and the households this project most needs to
+# keep apart are exactly the ones a shared surname makes mergeable. Six
+# households in this dataset are Kinzies; `data/research/books/crosswalk.json`
+# already has to refuse "Mr. John Kinzie" the elder against John Harris Kinzie
+# his son, and a household set recording no Kinzie relationship at all offers
+# that refusal no support.
+#
+# A `kin` row is an ordinary graded claim block — `value` names the OTHER
+# person, so walk_attested checks its confidence, sources and note exactly as
+# it checks an arrival — plus three fields that make it a link: `person` (whose
+# relative this is, in THIS household), `household` (where the other person
+# lives) and `relation` (the term, from the closed set below).
+#
+# TWO RULES, AND BOTH EXIST BECAUSE HALF IS THE POINT. Hurlbut's note says HALF
+# brother — same father, different mothers — and that is the specific form a
+# summary flattens to "brother" the first time nobody is watching. So the
+# vocabulary keeps the degrees apart, and:
+#
+#   * a relation is only legal against its declared inverses, which for a
+#     sibling link is a sibling link OF THE SAME DEGREE. A half brother whose
+#     mirror row says plain brother is the flattening, caught.
+#   * every row is RECIPROCAL. A kinship written on one record and not the
+#     other is half a fact: the household you read second still says the two
+#     men were unrelated, which is the defect T-0597 was opened about.
+#
+# Asymmetric relations (father/son, uncle/nephew) are deliberately NOT declared.
+# They need an inverse that depends on the other person, and declaring the term
+# without the inverse would let a one-way claim through. Add the pair together
+# or not at all.
+RESIDENT_KIN_KEYS = ("person", "relation", "household", "value", "confidence")
+
+# relation -> the relations its mirror row may carry. Sibling terms differ by the
+# SEX of the person named, not by the degree of the tie, so each degree accepts
+# both of its own terms and neither of the other's.
+RESIDENT_KIN_INVERSES = {
+    "brother": ("brother", "sister"),
+    "sister": ("brother", "sister"),
+    "half_brother": ("half_brother", "half_sister"),
+    "half_sister": ("half_brother", "half_sister"),
+}
+RESIDENT_KIN_RELATIONS = tuple(sorted(RESIDENT_KIN_INVERSES))
+
 
 def arrival_bounds(value, precision: str):
     """The earliest and latest day an arrival value permits, or None."""
@@ -4638,7 +4687,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     vocab = index.get("vocabulary") or {}
     for key in ("grades", "relationships", "occupations", "sexes", "presence", "divisions",
-                "arrival_precision"):
+                "arrival_precision", "kin_relations"):
         if not vocab.get(key):
             rep.error("residents index", f"vocabulary.{key} is missing - a renderer and the "
                                          f"evidence panel read this block to know the closed "
@@ -4647,6 +4696,13 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         rep.error("residents index", f"vocabulary.grades must be exactly {list(RESIDENT_GRADES)} "
                                      f"and is {vocab.get('grades')!r}. The accuracy vocabulary "
                                      f"is a contract, not a preference")
+    if list(vocab.get("kin_relations") or []) != list(RESIDENT_KIN_RELATIONS):
+        rep.error("residents index", f"vocabulary.kin_relations must be exactly "
+                                     f"{list(RESIDENT_KIN_RELATIONS)} and is "
+                                     f"{vocab.get('kin_relations')!r}. A relation with no "
+                                     f"declared inverse cannot be checked for reciprocity, so "
+                                     f"the set a record may use is the set validate.py can "
+                                     f"mirror")
     if list(vocab.get("arrival_precision") or []) != list(RESIDENT_PRECISION):
         rep.error("residents index", f"vocabulary.arrival_precision must be exactly "
                                      f"{list(RESIDENT_PRECISION)} and is "
@@ -4660,6 +4716,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     divisions = set(vocab.get("divisions") or [])
 
     households: dict = {}
+    kin_rows: list = []
     person_ids: dict = {}
     grade_totals: dict = {g: 0 for g in RESIDENT_GRADES}
     n_persons = 0
@@ -4834,6 +4891,39 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         for k in ("lives_at", "works_at"):
             check_resident_link(where, k, h.get(k), structure_ids, rep)
 
+        # --- kin: the link out of this record -------------------------------
+        # Shape and local resolution here; the other end is checked after the
+        # loop, because a kinship may name a household this pass has not loaded
+        # yet and a forward reference is not an error.
+        kin = h.get("kin")
+        if kin is not None and not isinstance(kin, list):
+            rep.error(where, "kin must be a list of relationship rows")
+        elif kin:
+            own_person_ids = {p.get("id") for p in persons}
+            for i, k in enumerate(kin):
+                kwhere = f"{where}/kin[{i}]"
+                if not isinstance(k, dict):
+                    rep.error(kwhere, "a kin row must be an object")
+                    continue
+                for key in RESIDENT_KIN_KEYS:
+                    if key not in k:
+                        rep.error(kwhere, f"missing required key '{key}'")
+                rel = k.get("relation")
+                if rel not in RESIDENT_KIN_RELATIONS:
+                    rep.error(kwhere, f"relation '{rel}' is not one of "
+                                      f"{list(RESIDENT_KIN_RELATIONS)} - the declared set is "
+                                      f"the set whose inverse this file knows, and a relation "
+                                      f"whose inverse is unknown cannot be checked for "
+                                      f"reciprocity")
+                if k.get("person") not in own_person_ids:
+                    rep.error(kwhere, f"person '{k.get('person')}' is not a person in this "
+                                      f"household; a kin row says who in HERE the relative "
+                                      f"belongs to")
+                if k.get("household") == hid:
+                    rep.error(kwhere, "a kin row links two households; a relationship inside "
+                                      "one household is persons[].relationship")
+                kin_rows.append((hid, k, kwhere))
+
         if h.get("touches_removal") and not h.get("review_required"):
             rep.error(where, "touches_removal is true but review_required is false. AGENTS.md's "
                              "standing constraint: the final removal of the Potawatomi is the "
@@ -4869,6 +4959,36 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
                                          f"disagrees with the record's {local_grades!r}")
         households[hid] = h
+
+    # --- kin: the far end, and the reciprocity rule -------------------------
+    # Every household is loaded by now, so a row can be resolved and, more to
+    # the point, its mirror can be demanded. A kinship written on one record
+    # only leaves the other record still saying the two people were unrelated,
+    # which is exactly the state T-0597 was opened about.
+    written = {(hid, k.get("person"), k.get("household"), k.get("value")): k.get("relation")
+               for hid, k, _ in kin_rows}
+    for hid, k, kwhere in kin_rows:
+        other_hid, other_pid = k.get("household"), k.get("value")
+        other = households.get(other_hid)
+        if other is None:
+            rep.error(kwhere, f"household '{other_hid}' does not resolve in "
+                              f"data/residents/households/")
+            continue
+        if other_pid not in {p.get("id") for p in other.get("persons") or []}:
+            rep.error(kwhere, f"'{other_pid}' is not a person in household '{other_hid}'")
+            continue
+        mirror = written.get((other_hid, other_pid, hid, k.get("person")))
+        if mirror is None:
+            rep.error(kwhere, f"household '{other_hid}' does not carry the matching row. A kin "
+                              f"claim is reciprocal: write it on both records or on neither, "
+                              f"because the record that omits it still reads as no "
+                              f"relationship at all")
+        elif mirror not in RESIDENT_KIN_INVERSES.get(k.get("relation"), ()):
+            rep.error(kwhere, f"this row says '{k.get('relation')}' and the matching row in "
+                              f"'{other_hid}' says '{mirror}'. The degree of a tie is not a "
+                              f"matter of which end you read it from - a HALF brother whose "
+                              f"mirror says brother is the flattening this check exists to "
+                              f"catch")
 
     counts = index.get("counts") or {}
     if counts.get("households") != len(households):
