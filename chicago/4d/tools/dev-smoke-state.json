@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 150,
+      "takenAt": "2026-09-05T14:19:48.245Z",
+      "ref": "steward/t-0414-two-houses-collapse",
+      "commit": "38b11d1dd292",
+      "devCommit": "f98d0c650f7d",
+      "treeHash": "sha256:2f233010e887bac9",
+      "treeDirty": false,
+      "changelogHash": "sha256:389f103245a48a74",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          2.2,
+          1.1
+        ]
+      },
+      "source": "/tmp/smoke1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1519,37 +1550,6 @@
         ]
       },
       "source": "/tmp/s4_d12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 66,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 271,
-      "takenAt": "2026-09-05T06:25:15.182Z",
-      "ref": "steward/t-0605-1830-leaves-584-on",
-      "commit": "31b03e95c95d",
-      "devCommit": "ab33c44dac2a",
-      "treeHash": "sha256:ae5227c9d84278b5",
-      "treeDirty": false,
-      "changelogHash": "sha256:fa941a9a39184406",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          3.7,
-          3.3
-        ]
-      },
-      "source": "/tmp/s3_d12.log"
     },
     {
       "viewport": "mobile",

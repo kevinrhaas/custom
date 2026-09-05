@@ -1,7 +1,7 @@
 ---
 id: T-0414
 title: The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 885
 claimed_by: run 9/5/2026, 9:03:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T14:19:54.030Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33968829758
 ---
 
