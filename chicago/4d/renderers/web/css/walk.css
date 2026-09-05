@@ -1179,5 +1179,13 @@ kbd {
 /* On a phone the panel is nearly as wide as the screen, so it anchors to the
    viewport rather than to a 26 px caret hanging off the right edge. */
 @media (max-width: 520px) {
-  .confidence-menu { width: min(280px, calc(100vw - 24px)); right: -8px; }
+  /* Anchored to the VIEWPORT on a phone, not to the chip group. The group sits
+     at the left of a 390 px top bar now that a pace chip stands beside it
+     (T-0704), and a 280 px menu hung off its right edge opened 70 px past the
+     left edge of the screen — the checkbox column a visitor taps was off-screen.
+     Found by the mobile smoke (T-0108's real clicks), 2026-09-05. */
+  .confidence-menu {
+    position: fixed; left: 12px; right: 12px; width: auto;
+    top: calc(58px + var(--safe-t));
+  }
 }
