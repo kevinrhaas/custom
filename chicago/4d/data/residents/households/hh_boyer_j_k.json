@@ -55,6 +55,17 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "later_occupation": {
+     "value": "coroner",
+     "describes_date": 1839,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "from": "directories.people[].occupation_later",
+     "derived_by": "tools/qualify_later_trades.py",
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at the `directories` block on this same record, not a claim about the scene date. The 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of this: a directory of 1839 is evidence about 1839. It is written here because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+    },
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work: the papers name them in a proceedings column, a public card or an advertisement and simply do not say what they did for a living, and `data/research/newspapers/register_1835.json` reads no trade for them. Reasoning a trade out of the company they keep would be inventing one, so the vocabulary's own word for an absent record is what stands here."
    },
    "sources": [

@@ -500,6 +500,26 @@ function evidenceLadderHtml(person, citationsById, ladderRules) {
         them together.</span></dd>` : ''}`;
 }
 
+/**
+ * WHEN a trade is unrecorded, on the cards that hold one for a later year (T-0693).
+ *
+ * `none_recorded` was carrying two different states. "This project holds no trade for
+ * this person anywhere" and "it holds none for 1835 and a dated one for 1839" are not
+ * the same fact, and a reader could not tell them apart from the field the card reads
+ * out. `tools/qualify_later_trades.py` writes a `later_occupation` pointer on the second
+ * kind, derived wholly from the `directories` block already on the record; this renders
+ * it BESIDE the 1835 value and never in place of it. The 1835 claim is still
+ * `none_recorded`, still `reconstructed`, and still says nothing about the scene date.
+ */
+function laterOccupationHtml(later, citationsById) {
+  if (!later || !later.value) return '';
+  const cites = (later.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<br><span class="res-why">Recorded for ${escapeHtml(String(later.describes_date))},
+    and not for 1835: ${swatch(later.confidence)}${escapeHtml(later.value)}.
+    ${escapeHtml(later.note || '')}</span>
+    ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}`;
+}
+
 function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
@@ -511,14 +531,18 @@ function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
       <span class="res-role">${escapeHtml(words(person.relationship))}${
-        occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}</span></summary>
+        occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}${
+        occ.later_occupation ? ` for 1835 · a trade is printed for ${
+          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', born && born.value, born, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(occ.confidence)}${escapeHtml(words(occ.value))}${
+        occ.later_occupation ? ' for 1835' : ''}${
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
+        laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.letter_list_only
