@@ -132,6 +132,137 @@
     },
     {
       "viewport": "desktop",
+      "stage": "2",
+      "parts": [
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 84,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 182,
+      "takenAt": "2026-09-05T18:46:42.177Z",
+      "ref": "steward/t-0693-occupation-none-recorded",
+      "commit": "5fecbde901b8",
+      "devCommit": "2078f85dc7ab",
+      "treeHash": "sha256:070bffd158524164",
+      "treeDirty": false,
+      "changelogHash": "sha256:ecb80743ea710773",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_dev_s2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 180,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 299,
+      "takenAt": "2026-09-05T18:46:42.100Z",
+      "ref": "steward/t-0693-occupation-none-recorded",
+      "commit": "5fecbde901b8",
+      "devCommit": "2078f85dc7ab",
+      "treeHash": "sha256:070bffd158524164",
+      "treeDirty": false,
+      "changelogHash": "sha256:ecb80743ea710773",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_m1113.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 250,
+      "takenAt": "2026-09-05T18:46:42.021Z",
+      "ref": "steward/t-0693-occupation-none-recorded",
+      "commit": "5fecbde901b8",
+      "devCommit": "2078f85dc7ab",
+      "treeHash": "sha256:070bffd158524164",
+      "treeDirty": false,
+      "changelogHash": "sha256:ecb80743ea710773",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 155,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 267,
+      "takenAt": "2026-09-05T18:46:41.942Z",
+      "ref": "steward/t-0693-occupation-none-recorded",
+      "commit": "5fecbde901b8",
+      "devCommit": "2078f85dc7ab",
+      "treeHash": "sha256:070bffd158524164",
+      "treeDirty": false,
+      "changelogHash": "sha256:ecb80743ea710773",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
