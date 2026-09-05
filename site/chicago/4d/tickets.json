@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 2:51 PM",
+  "generated_ct": "Sep 5, 2026, 2:59 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13980,7 +13980,7 @@
     {
       "id": "T-0817",
       "title": "QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13988,14 +13988,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "913",
       "claimed_by": "run 9/5/2026, 2:51:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T19:59:51.886Z",
       "claimed_run": null,
-      "queue_rank": 179
+      "queue_rank": null
     },
     {
       "id": "T-0818",
@@ -14035,7 +14035,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 181
+      "queue_rank": 180
     },
     {
       "id": "T-0820",
@@ -14075,7 +14075,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 180
+      "queue_rank": 179
     },
     {
       "id": "T-0823",
@@ -14135,7 +14135,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 182
+      "queue_rank": 181
     },
     {
       "id": "T-0827",
@@ -14155,7 +14155,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 185
+      "queue_rank": 184
     },
     {
       "id": "T-0828",
@@ -14175,7 +14175,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 183
+      "queue_rank": 182
     },
     {
       "id": "T-0829",
@@ -14195,7 +14195,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 184
+      "queue_rank": 183
     }
   ]
 }

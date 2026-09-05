@@ -471,7 +471,6 @@ T-0769 — A card body can OPEN with the TAIL of the card in the column to its l
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
-T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
