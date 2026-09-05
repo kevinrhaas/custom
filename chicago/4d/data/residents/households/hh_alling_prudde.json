@@ -68,16 +68,17 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Prudden Alling is a plausible normalization of the unusual printed Prudde Alling, but the indexed genealogy result supplies no Chicago chronology. The spelling remains unmerged pending an original scan or dated record.",
-    "evidence_against": "No Chicago, Illinois or scene-date discriminator was found.",
+    "evidence_against": "Not reached outside the post-office lists.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
      "cand_prudden_alling__alling_prudde"
-    ]
+    ],
+    "summary": "No independent bridge; see the ledger."
    }
   }
  ],

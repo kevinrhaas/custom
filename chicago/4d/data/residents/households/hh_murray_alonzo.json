@@ -87,32 +87,21 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "Alonzo Murray and Alonzo Murry are strong duplicate candidates from one-letter variants in consecutive-year Chicago returns; no independent identity record resolves them.",
-    "evidence_against": "No external bridge.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
-    "candidate_ids": [
-     "cand_alonzo_murry_letter_list_record__murray_alonzo"
-    ],
-    "regraded_on": "2026-09-04",
-    "rule": "G1b",
-    "programme": "resident-research-2026",
     "ticket": "T-0508",
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_murray_murry_same_hand.",
     "evidence_against": "Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
     "notes": "candidate retained unasserted; no grade or placement moves",
-    "source_ids": [
-     "chicago_democrat_1833_1835"
-    ],
     "candidate_ids": [
      "cand_murray_murry_same_hand"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1b",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
     ],
     "candidates": [
      {

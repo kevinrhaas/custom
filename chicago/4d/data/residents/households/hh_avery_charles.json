@@ -90,23 +90,16 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
-    "regraded_on": "2026-09-04",
-    "rule": "G2e",
-    "programme": "resident-research-2026",
     "ticket": "T-0508",
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_charles_e_avery_lumber.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
+    "regraded_on": "2026-09-04",
+    "rule": "G2e",
     "evidence_against": "The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk.",
     "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "fergus_chicago_directory_1839"
     ],
@@ -123,7 +116,8 @@
       ]
      }
     ]
-   }
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,
