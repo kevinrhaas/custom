@@ -100,13 +100,11 @@ T-0559 — The 1840 census printed pages 229 and 231: two independent cell readi
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
-T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
 T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
 T-0619 — Volume 4 read by OCR, pages 1-306: the shards
-T-0620 — Volume 4 read by OCR, pages 307-612: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
 T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
@@ -321,3 +319,4 @@ T-0748 — The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, of
 T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
 T-0758 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
 T-0759 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
+
