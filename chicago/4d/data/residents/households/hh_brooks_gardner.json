@@ -51,7 +51,7 @@
    "id": "brooks_gardner",
    "name": "Gardner Brooks",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -97,9 +97,10 @@
     "evidence_for": "forenames agree initial for initial: entry 'Gardner Brooks' against resident 'Gardner Brooks'",
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1c"
+   }
   }
  ],
  "touches_removal": false,

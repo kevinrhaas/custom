@@ -105,9 +105,10 @@
     ],
     "candidate_ids": [
      "cand_bennet_bailey_of_the_chicago_mechanics_institute__bailey_bennet"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,
