@@ -138,7 +138,20 @@
       ]
      }
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D1",
+     "cluster": "allen",
+     "weighed_against": [
+      "allen_edward_richards"
+     ],
+     "for_merge": "Nothing but the surname.",
+     "against_merge": "Edward Richards Allen and William Allen are full forenames, and neither is James. They are in this candidate cluster only because a title-only card — 'Lieut Allen' — is compatible with every Allen in the town, which is what R1 exists to say."
+    }
+   ]
   }
  ],
  "touches_removal": false,

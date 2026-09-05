@@ -57,6 +57,7 @@
    "name": "Grenville Temple Sproat",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",
@@ -69,7 +70,8 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "chicago_democrat_1833_1835"
    ],
    "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date.",
    "resident_research": {
@@ -83,6 +85,36 @@
     "source_ids": [
      "goodman_history_cook_county_early"
     ]
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "G. T. Sproat",
+     "locator": "chicago_democrat_1833_12_03#c015",
+     "record_id": "person_g_t_sproat",
+     "describes_date": "1833-12-03",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "G. N. Sproat",
+     "locator": "chicago_democrat_1834_01_21#c002",
+     "record_id": "person_g_n_sproat",
+     "describes_date": "1834-01-21",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C4",
+    "cluster": "sproat",
+    "cards": [
+     "sproat_g_n",
+     "sproat_g_t"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   }
  ],

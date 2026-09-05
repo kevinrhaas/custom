@@ -98,6 +98,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R4",
+     "cluster": "thompson",
+     "weighed_against": [
+      "thompson_lieut_j_l"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Both are Thompsons in the Democrat in the first quarter of 1834, and J expands to John.",
+     "against_merge": "One card carries a military rank and the middle initial L; the other is letter-list only and prints no middle initial. Neither documents the man. A rank is a strong discriminator in the wrong direction — an army lieutenant and a name on a post office list are not the same claim — and there is no anchor. Refused by R4."
+    }
    ]
   }
  ],

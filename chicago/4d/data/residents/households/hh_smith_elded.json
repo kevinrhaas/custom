@@ -75,7 +75,21 @@
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R5",
+     "cluster": "smith-e-kirby",
+     "weighed_against": [
+      "smith_e_kirby"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Both are Smiths in the Democrat, and 'Elded' begins with the E that 'E Kirby' prints.",
+     "against_merge": "'Elded' is not a name — it is a garbled printed forename off the post office's letter list, and T-0695 is the open ticket that reads that class of wreck. A merge cannot be tested against a word nobody has read yet. Refused by rule until T-0695 lands."
+    }
+   ]
   }
  ],
  "touches_removal": false,

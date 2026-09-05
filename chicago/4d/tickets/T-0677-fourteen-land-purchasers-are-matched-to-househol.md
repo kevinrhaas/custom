@@ -10,12 +10,12 @@ legacy_id: null
 parent: null
 opened: 2026-09-04
 closed: 2026-09-05
-pr: 833
-claimed_by: run 9/5/2026, 6:07:27 PM CT
+pr: 935
+claimed_by: run 9/5/2026, 6:12:07 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-05T23:53:02.942Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33997685934
+closed_at: 2026-09-05T23:36:07.540Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33997872177
 ---
 
 Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price.
@@ -61,12 +61,40 @@ over 31 cards. It was built by the run that landed T-0635 and held back rather t
 into that PR, because this is its own ticket. Read it, re-derive it against whatever dev
 looks like by then, and gate it; do not start from nothing.
 
-**CLOSED AS ALREADY DELIVERED, 2026-09-05, by the run that took T-0681.** T-0636
-(consolidation pass 3, PR #833) landed exactly this ticket's acceptance while it sat
-`open` at the top of the workable queue: `tools/spend_land_sales.py` writes all 35
-rulings onto the 31 cards they name, `check.sh` gates it in both directions and in
-both modes, and `research_spend_baseline.json` lowered the land_sales write-hop
-ceiling from 35 to 0 rather than raising it. Re-verified before closing —
-`measure_research_spend.py --gate` reads land_sales at 35 reached, 35 judgeable, 35 on
-a card, 0 unwritten. No code was written for it here; it is closed against #833, the
-PR that did the work, so the next run does not rebuild it.
+---
+
+**CLOSED BY WHAT ALREADY LANDED — read this before the paragraph above (T-0677's own run,
+2026-09-05).** Every acceptance clause was already met on `dev` when this run opened the
+ticket, and not by this run: **T-0636, consolidation pass 3, PR #833** wrote the federal
+tract sales onto the thirty-one cards the thirty-five rulings name. The ticket was filed
+2026-09-04 against the state of that morning; pass 3 landed after it and did the work.
+Verified here against `dev` at `a0a23acc7`, per clause and not by summary counter:
+
+1. All 35 rulings are on the card they name — each named person carries
+   `isa_public_domain_land_tract_sales` in `sources`, and every one of the entry record
+   ids the ruling rests on is quoted in the note. Checked ruling by ruling: 35 of 35, none
+   defective.
+2. `tools/measure_research_spend.py --gate` reads land_sales at `35 reached, 35 judgeable,
+   35 on a card, 0 unwritten`, and `unwritten_ceiling.land_sales` in
+   `tools/research_spend_baseline.json` stands at **0** — lowered from the 35 this ticket
+   was opened to pay down, never raised.
+3. No grade moved and no placement was written; `tools/spend_land_sales.py --self-test`
+   holds it.
+
+**THE POINTER IN THE PARAGRAPH ABOVE IS A TRAP — DO NOT FOLLOW IT.** The tool on
+`steward/salvage-t0635-mine` is the version written for pass 2, and
+`tools/spend_land_sales.py` on `dev` SUPERSEDES it. They write different paragraphs about
+the same register under different markers, so the older one does not overwrite the newer —
+it appends beside it, and all thirty-one cards end up saying the tract sales twice in two
+voices. This run did exactly that by following the pointer, and **`tools/check.sh` was
+GREEN on the doubled tree**: `gaps()` asked only whether the paragraph was present and
+`strays()` only whether an unruled card carried one, so neither could see a card that said
+it twice.
+
+That hole is what this ticket ships, and it is all it ships: `doubles()` in
+`tools/spend_land_sales.py`, wired into `--check` and held by three new `--self-test`
+assertions. It fires on both ways a card comes to say the register twice — this pass's own
+paragraph written twice over, and a superseded pass's paragraph left standing beside it.
+Demonstrated red on the doubled tree (31 faults, exit 1) and green on `dev` as it stands.
+The other four spend passes carry no such rule; that is filed separately rather than
+bundled here.

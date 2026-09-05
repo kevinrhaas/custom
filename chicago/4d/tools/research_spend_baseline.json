@@ -6,9 +6,9 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 458,
+  "church": 488,
   "books": 176,
-  "directories": 7211,
+  "directories": 7228,
   "newberry_index": 4914,
   "land_sales": 442
  },
@@ -27,7 +27,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1286
+   "spent": 1256
   },
   "books": {
    "read": 226,
@@ -35,7 +35,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1046
+   "spent": 1029
   },
   "newberry_index": {
    "read": 7005,
@@ -267,6 +267,22 @@
    "to": 7211,
    "date": "2026-09-05",
    "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 458,
+   "to": 488,
+   "date": "2026-09-05",
+   "why": "T-0839 folded 42 duplicate town cards onto the people they name, and the spend measure dedupes a spend by its anchor: two crosswalk rows that pointed at two cards for one man now point at one, so the church domain's spent count fell by 30 without a single reading going unruled. The Second Presbyterian roll matched 92 residents and now matches 82 for exactly that reason — William Adams and William Hanford Adams were one man on two cards and are one row now. Nothing was un-read and nothing was un-ruled; the town simply stopped counting some people twice."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7211,
+   "to": 7228,
+   "date": "2026-09-05",
+   "why": "T-0839, the same cause as the church raise beside it: 42 duplicate town cards were folded onto the people they name and the spend measure dedupes by anchor, so directory rulings that reached two cards for one man now reach one. The four directories' spend re-derived to 294 people met and 587 rulings — up on trade and address reach, down on distinct anchors — and no reading was lost."
   }
  ],
  "lowered": [

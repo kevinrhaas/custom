@@ -113,6 +113,21 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R2",
+     "cluster": "cook",
+     "weighed_against": [
+      "cook_j_b",
+      "cook_josiah_p"
+     ],
+     "referred_to": "rule",
+     "for_merge": "'J. B. Cook', a documented baker from the Democrat of 5 November 1834, shares a surname with both.",
+     "against_merge": "The initial J has two rivals in this cluster — John and Josiah — and R2 refuses both. Josiah's middle initial P contradicts B outright; John's is unrecorded, so nothing decides. Refused by a ratified rule rather than referred: the next pass will refuse it identically and needs no ballot."
+    }
    ]
   }
  ],

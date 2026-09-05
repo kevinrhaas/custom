@@ -73,6 +73,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "kinzie-john",
+     "weighed_against": [
+      "kinzie_john_h"
+     ],
+     "referred_to": "owner",
+     "for_merge": "'John S. Kinzie', printed once by the Democrat on 10 December 1833, is the forename of the documented John Harris Kinzie and the town holds no other John Kinzie in 1835.",
+     "against_merge": "The middle initial S contradicts H, and the Kinzie surname is precisely the one T-0839 warns about: four Kinzie men stand on the town's cards and this project has already mis-folded a Kinzie once (T-0732). C4 would fire here on a surname with one documented bearer of the forename; it is withheld because the owner named this family as the trap. His call."
+    }
    ]
   }
  ],
