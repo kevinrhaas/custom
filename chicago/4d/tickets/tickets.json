@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:25 PM",
+  "generated_ct": "Sep 5, 2026, 6:35 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14342,26 +14342,6 @@
       "queue_rank": 182
     },
     {
-      "id": "T-0839",
-      "title": "The honorific strip merges Mrs Rufus Brown onto her husband: hold a wife-form reading apart from a man the town records, by rule and self-test",
-      "state": "claimed",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "S",
-      "legacy_id": null,
-      "parent": "T-0723",
-      "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": "run 9/5/2026, 4:23:30 PM CT",
-      "blocked_on": null,
-      "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33990992662",
-      "queue_rank": 3
-    },
-    {
       "id": "T-0840",
       "title": "N. R. Norton and Nelson R. Norton are one bridge-builder carried twice: retire the duplicate card and rebuild the sixteen crosswalks that re-derive against the layer",
       "state": "open",
@@ -14380,6 +14360,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 4
+    },
+    {
+      "id": "T-0847",
+      "title": "The honorific strip merges Mrs Rufus Brown onto her husband: hold a wife-form reading apart from a man the town records, by rule and self-test",
+      "state": "claimed",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0723",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 9/5/2026, 4:23:30 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33990992662",
+      "queue_rank": 3
     }
   ]
 }

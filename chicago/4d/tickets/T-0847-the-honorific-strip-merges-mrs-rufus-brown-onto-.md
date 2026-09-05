@@ -1,5 +1,5 @@
 ---
-id: T-0839
+id: T-0847
 title: The honorific strip merges Mrs Rufus Brown onto her husband: hold a wife-form reading apart from a man the town records, by rule and self-test
 state: claimed
 epic: META

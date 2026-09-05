@@ -142,7 +142,7 @@ and read as *"the consolidation never reached them"*. It had reached all but nin
 | what the ladder can say | people |
 |---|---|
 | **a rung already ruled, never written onto the card** | **865** — G3 650, G1b 76, G2e 56, G5 37, G1a 20, G2b 16, G1c 10 |
-| the person's row sits on an identity that names ANOTHER card as canonical | 1 — was 2 until T-0839 |
+| the person's row sits on an identity that names ANOTHER card as canonical | 1 — was 2 until T-0847 |
 | the splitter built no identity from the name, and says which guard refused it | 7 — R5 5, R1 2 |
 
 **So the bottleneck is the SPEND, not the reading.** For 865 of 873 people the rung exists
@@ -229,7 +229,7 @@ page is barely better than no refusal at all. **The guards did not change and no
 moved** — `grading_proposal.json` is byte-identical across the split. What changed is that
 each refusal now says which guard fired.
 
-**The wife form, and why a rule was needed rather than a correction (T-0839).** *Mrs. Rufus
+**The wife form, and why a rule was needed rather than a correction (T-0847).** *Mrs. Rufus
 Brown* kept one of Chicago's first-class boarding houses — the source attributes the trade to
 her in terms — and her only printed name is her husband's. `Mrs` is stripped as an honorific,
 which leaves *Rufus Brown* on both readings, so M1 merged her onto him letter for letter; the
