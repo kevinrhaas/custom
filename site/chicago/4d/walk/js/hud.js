@@ -11,8 +11,9 @@
 
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
 import { isTyping } from './controls/pointerlock.js';
-import { formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
-import { displayName, searchTerms } from './display-name.js';
+import { formatDistance, formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
+import { createGoTo } from './goto.js';
+import { PACES } from './travel.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
@@ -37,6 +38,12 @@ const DEFAULT_SETTINGS = {
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
   // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
   detail: '',
+  // The drawer's own choices. `pace` is how YOU move (walk, wagon, horse) and
+  // `travelMode` is how Go to takes you somewhere (instantly, or at a pace, or
+  // flying); they are two questions, so they are two keys. `gotoReconstructed`
+  // is whether the Go to list shows the reconstructed roofs (off by default —
+  // the owner's ruling). `headBob`: the rider's eye moves with the horse's gait.
+  pace: 'walk', travelMode: 'instantly', headBob: true, gotoReconstructed: false,
 };
 
 function readSettings() {
@@ -54,8 +61,9 @@ function store(key, value) {
 }
 
 export function createHud({
-  root, scene, registry, intersections = [], onConfidence, onFly, onHelp,
-  onSetting, onGoTo, onHideLevel, isTouch, resolvedDetail = 'full',
+  root, scene, registry, intersections = [], people = null, positionOf = null, visitor = null,
+  onConfidence, onFly, onHelp, onSetting, onGoTo, onHideLevel, onTravelStop,
+  isTouch, resolvedDetail = 'full',
 }) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
@@ -250,9 +258,18 @@ export function createHud({
 
   function setPanel(open) {
     if (!panel) return;
+    // Leaving focus on a control inside a drawer that has slid off-screen
+    // strands the keyboard: the next Tab goes somewhere invisible.
+    if (!open && panel.contains(document.activeElement)) document.activeElement.blur?.();
     panel.toggleAttribute('hidden', !open);
+    // `.panel-open` on the HUD is what drawer.css keys the rest off: the card
+    // TUCKS aside (never closes — its `hidden` is the state the gate reads),
+    // and on a phone the navigation readouts hide under the sheet.
     root.classList.toggle('panel-open', !!open);
     btnHelp?.setAttribute('aria-pressed', String(!!open));
+    // The navigation guide and the drawer share the right-hand slot; the guide
+    // steps aside without being marked read, so it returns on the next boot.
+    if (open && controlHelp && !controlHelp.hasAttribute('hidden')) dismissControlHelp({ remember: false });
     // Release the pointer lock on open. While the cursor is captured for
     // looking around, every click goes to the canvas and none of these controls
     // can be operated at all — the panel would look fine and do nothing.
@@ -313,15 +330,55 @@ export function createHud({
     paintUnseen();
   }
 
+  const panelTitle = $('panel-title');
+  const panelBack = $('panel-back');
+  let currentTab = 'goto';
+  /** What the head row says. A section may push a sub-view (the Evidence hub
+   *  opening a topic) and hand back a title and a back action; `setTitle(null)`
+   *  restores the section's own name. */
+  let backAction = null;
+  function setTitle(text, onBack = null) {
+    const tab = root.querySelector(`.panel-tab[data-tab="${currentTab}"] .tab-label`);
+    if (panelTitle) panelTitle.textContent = text ?? tab?.textContent ?? '';
+    backAction = onBack;
+    panelBack?.toggleAttribute('hidden', !onBack);
+  }
+  panelBack?.addEventListener('click', () => backAction?.());
+
+  const panelScroll = $('panel-scroll');
   function selectTab(want) {
+    currentTab = want;
     root.querySelectorAll('.panel-tab').forEach((x) => {
-      x.classList.toggle('is-on', x.dataset.tab === want);
+      const on = x.dataset.tab === want;
+      x.classList.toggle('is-on', on);
+      x.setAttribute('aria-selected', String(on));
     });
     root.querySelectorAll('.panel-body').forEach((s) => {
       s.toggleAttribute('hidden', s.dataset.panel !== want);
     });
+    setTitle(null);
+    // A new section starts at its top: the scroll column is shared, and the
+    // Evidence list's depth must not carry over into Settings.
+    if (panelScroll) panelScroll.scrollTop = 0;
     if (want === 'whatsnew') openWhatsNew();
+    onTab?.(want);
   }
+  /** A section can ask to be told when it is shown (the hub repaints, the
+   *  Go to list refreshes its distances). */
+  let onTab = null;
+
+  // The rail is a list of sections: the arrow keys walk it when one has focus.
+  root.querySelector('.panel-tabs')?.addEventListener('keydown', (e) => {
+    const tabs = [...root.querySelectorAll('.panel-tab')];
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (!step) return;
+    e.preventDefault();
+    const next = tabs[(i + step + tabs.length) % tabs.length];
+    next.focus();
+    selectTab(next.dataset.tab);
+  });
 
   root.querySelectorAll('.panel-tab').forEach((tab) => {
     tab.addEventListener('click', () => selectTab(tab.dataset.tab));
@@ -388,6 +445,8 @@ export function createHud({
       units.value = settings.units;
       paintSpeed?.();
       paintEye?.();
+      paintTravelMode?.();
+      goTo?.refreshDistances?.();
       setAltitude(lastAltitudeM);
       onSetting?.('units', settings.units);
       store(SET_KEY, JSON.stringify(settings));
@@ -434,137 +493,124 @@ export function createHud({
   wireToggle('s-overview-map', 'overviewMap');
   wireToggle('s-street-names', 'streetNames');
 
-  // Every authored viewpoint, every verified street-control intersection and
-  // every structure in the compiled scene — one list, in the Go to tab.  It is
-  // complete by construction: the scene, the index and the registry are the
-  // same three collections the renderer loaded, rather than a hand-maintained
-  // menu that becomes stale when the town grows.  The viewpoints used to be a
-  // second, shorter list of the same ground a few rows below this one; a
-  // visitor had no way to know which of the two to reach for.
-  const jumpTargets = [];
-  for (const a of scene?.anchors ?? []) {
-    jumpTargets.push({
-      kind: 'anchor', id: a.id, label: a.label || a.id,
-      search: [a.id, a.label].filter(Boolean).join(' '),
-    });
-  }
-  for (const i of intersections) {
-    jumpTargets.push({
-      kind: 'intersection', id: i.id, label: i.label || i.id,
-      local_e: i.local_e, local_n: i.local_n,
-      search: [i.id, i.label, ...(i.search_terms ?? [])].filter(Boolean).join(' '),
-    });
-  }
-  for (const [id, record] of registry?.entries?.() ?? []) {
-    const structureSidecar = record.sidecar ?? {};
-    // The name a visitor would use, not the one the parcel numbers a roof by (T-0076).
-    // The menu takes the card's own title from the shared rule so the two surfaces
-    // cannot drift, and the search below still takes the production identity, because
-    // the whole point of keeping it is that somebody reading the dataset can find the
-    // building it names.
-    jumpTargets.push({
-      kind: 'structure', id, label: displayName(structureSidecar, id).title,
-      // How well the POSITION is attested, straight off the record the popup
-      // reads when the visitor arrives.  Not a summary of the building: most
-      // of this town is documented in character and placed by argument, and a
-      // menu that hid that difference would be the more flattering of the two
-      // available lies.
-      confidence: structureSidecar.placement?.position_confidence || null,
-      search: searchTerms(structureSidecar, id),
-    });
-  }
-  const KIND_ORDER = { anchor: 0, intersection: 1, structure: 2 };
-  const KIND_GROUP = {
-    anchor: 'Viewpoints', intersection: 'Intersections', structure: 'Structures',
+  // ---- Travel: how Go to takes you there, and the pace you move at -------------
+  //
+  // Two questions, two controls. The segmented control in the Travel tab answers
+  // "how do I get to a place I chose"; the pace chip in the top bar (mirrored by
+  // the second control in the tab) answers "how fast do I move on my own". The
+  // numbers behind both live in js/travel.js PACES; this only paints them.
+  const btnPace = $('btn-pace');
+  const paceLabel = $('pace-label');
+  const PACE_CYCLE = ['walk', 'wagon', 'horse'];
+  // Single-colour stroke glyphs, the rail's icon family at chip size. A walker,
+  // a cart, a horseshoe: the horseshoe rather than a horse because a horse's
+  // head does not survive sixteen pixels of stroke and a shoe does.
+  const svg = (body) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" `
+    + `stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+  const PACE_GLYPH = {
+    walk: svg('<circle cx="13.5" cy="4.5" r="1.9"/><path d="M12.6 8.2 11 13.4 8.2 20.5"/>'
+      + '<path d="M11 13.4l3.2 2.6.3 4.5"/><path d="M12.6 8.2l3.4 2.6"/><path d="M12.6 8.2 9.6 10.6 7.4 9.6"/>'),
+    wagon: svg('<path d="M3.5 9.5h11.5v6H4.5"/><path d="M15 12.5h3.2l2.3 3"/><circle cx="7.5" cy="18" r="2"/>'
+      + '<circle cx="16.5" cy="18" r="2"/><path d="M9.5 18h5"/><path d="M5.5 9.5V6.5h7.5v3"/>'),
+    horse: svg('<path d="M6.5 19.5v-8a5.5 5.5 0 0 1 11 0v8"/><path d="M4.5 19.5h4M15.5 19.5h4"/>'
+      + '<path d="M8.5 9h.01M15.5 9h.01M7 13h.01M17 13h.01M7 16.5h.01M17 16.5h.01"/>'),
   };
-  jumpTargets.sort((a, b) => (KIND_ORDER[a.kind] ?? 9) - (KIND_ORDER[b.kind] ?? 9)
-    || a.label.localeCompare(b.label));
-
-  const jumpSearch = $('jump-search');
-  const jumpResults = $('jump-results');
-  const jumpCount = $('jump-count');
-  const normal = (value) => String(value ?? '').toLocaleLowerCase().normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-
-  function paintJumpResults(query = '') {
-    if (!jumpResults) return;
-    const terms = normal(query).trim().split(/\s+/).filter(Boolean);
-    const matched = jumpTargets.filter((t) => terms.every((word) => normal(t.search).includes(word)));
-    jumpResults.replaceChildren();
-    if (jumpCount) jumpCount.textContent = terms.length
-      ? `${matched.length} of ${jumpTargets.length}` : `${jumpTargets.length} places`;
-    if (!matched.length) {
-      const empty = document.createElement('p');
-      empty.className = 'jump-empty';
-      empty.textContent = 'No matching structure or intersection.';
-      jumpResults.appendChild(empty);
-      return;
+  function paintPace() {
+    const pace = PACE_CYCLE.includes(settings.pace) ? settings.pace : 'walk';
+    if (paceLabel) paceLabel.textContent = PACES[pace]?.label ?? pace;
+    if (btnPace) {
+      btnPace.dataset.pace = pace;
+      const glyph = btnPace.querySelector('.pace-glyph');
+      if (glyph) glyph.innerHTML = PACE_GLYPH[pace] ?? '';
+      btnPace.title = `Your pace — ${PACES[pace]?.label ?? pace}. Tap for ${
+        PACES[PACE_CYCLE[(PACE_CYCLE.indexOf(pace) + 1) % PACE_CYCLE.length]]?.label} (P)`;
     }
-    let lastKind = '';
-    for (const target of matched) {
-      if (target.kind !== lastKind) {
-        const heading = document.createElement('p');
-        heading.className = 'jump-group';
-        heading.textContent = KIND_GROUP[target.kind] ?? target.kind;
-        jumpResults.appendChild(heading);
-        lastKind = target.kind;
-      }
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'jump-result';
-      button.dataset.jumpKind = target.kind;
-      button.dataset.jumpId = target.id;
-      button.setAttribute('role', 'option');
-      const name = document.createElement('span');
-      name.textContent = target.label;
-      button.append(name);
-      // Structures carry their position grade into the menu; a viewpoint and a
-      // survey junction are not claims about the town and get no chip, because
-      // an empty chip would read as a missing grade rather than as a category
-      // that has none.
-      if (target.kind === 'structure') {
-        const grade = target.confidence || 'reconstructed';
-        button.dataset.jumpConfidence = grade;
-        const conf = document.createElement('small');
-        conf.className = `conf conf-${grade}`;
-        conf.textContent = grade;
-        button.append(conf);
-      }
-      button.addEventListener('click', () => { onGoTo?.(target); setPanel(false); });
-      jumpResults.appendChild(button);
-    }
+    root.querySelectorAll('#s-pace .seg-btn').forEach((b) => {
+      b.setAttribute('aria-checked', String(b.dataset.pace === pace));
+      b.classList.toggle('is-on', b.dataset.pace === pace);
+    });
   }
-
-  // What the chips add up to, counted from the same list they are painted from
-  // rather than typed into the prose beside them. It is not a flattering line
-  // and it is the honest summary of where this town stands: not one structure
-  // position in it is documented.
-  function paintJumpNote() {
-    const note = $('jump-note');
-    if (!note) return;
-    const tally = { attested: 0, inferred: 0, reconstructed: 0 };
-    let structures = 0;
-    for (const target of jumpTargets) {
-      if (target.kind !== 'structure') continue;
-      structures++;
-      const grade = target.confidence || 'reconstructed';
-      if (grade in tally) tally[grade]++;
-    }
-    const viewpoints = jumpTargets.filter((t) => t.kind === 'anchor').length;
-    const junctions = jumpTargets.filter((t) => t.kind === 'intersection').length;
-    note.textContent = `${viewpoints} viewpoints, ${junctions} verified junctions and `
-      + `${structures} structures. Of the structure positions, ${tally.attested} are `
-      + `attested, ${tally.inferred} inferred and ${tally.reconstructed} reconstructed.`;
+  function setPace(pace, { announce = true } = {}) {
+    if (!PACE_CYCLE.includes(pace)) return settings.pace;
+    settings.pace = pace;
+    store(SET_KEY, JSON.stringify(settings));
+    paintPace();
+    onSetting?.('pace', pace);
+    if (announce) say(`${PACES[pace]?.label ?? pace} — ${PACES[pace]?.hint ?? ''}`.replace(/ — $/, ''));
+    return pace;
   }
-  paintJumpNote();
-  jumpSearch?.addEventListener('input', () => paintJumpResults(jumpSearch.value));
-  jumpSearch?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const first = jumpResults?.querySelector('.jump-result');
-      if (first) { e.preventDefault(); first.click(); }
-    }
+  btnPace?.addEventListener('click', () => {
+    setPace(PACE_CYCLE[(PACE_CYCLE.indexOf(settings.pace) + 1) % PACE_CYCLE.length]);
   });
-  paintJumpResults();
+  root.querySelectorAll('#s-pace .seg-btn').forEach((b) => {
+    b.addEventListener('click', () => setPace(b.dataset.pace));
+  });
+
+  function paintTravelMode() {
+    const mode = settings.travelMode in PACES ? settings.travelMode : 'instantly';
+    root.querySelectorAll('#s-travel .seg-btn').forEach((b) => {
+      b.setAttribute('aria-checked', String(b.dataset.mode === mode));
+      b.classList.toggle('is-on', b.dataset.mode === mode);
+    });
+    const note = $('travel-note');
+    if (note) {
+      const line = (id) => {
+        const p = PACES[id];
+        if (!p?.speed) return null;
+        return `${p.label} ${formatSpeed(p.speed, settings.units)}${p.sprint && p.sprint !== p.speed
+          ? ` (${formatSpeed(p.sprint, settings.units)} on Shift)` : ''}`;
+      };
+      note.textContent = [
+        `Walk ${formatSpeed(settings.speed, settings.units)} — the slider under Settings.`,
+        line('wagon'), line('horse'),
+      ].filter(Boolean).join(' · ');
+    }
+  }
+  function setTravelMode(mode) {
+    if (!(mode in PACES)) return settings.travelMode;
+    settings.travelMode = mode;
+    store(SET_KEY, JSON.stringify(settings));
+    paintTravelMode();
+    onSetting?.('travelMode', mode);
+    return mode;
+  }
+  root.querySelectorAll('#s-travel .seg-btn').forEach((b) => {
+    b.addEventListener('click', () => setTravelMode(b.dataset.mode));
+  });
+  wireToggle('s-head-bob', 'headBob');
+  paintPace();
+  paintTravelMode();
+
+  // The ride in progress: where to, how far is left, and the one way to stop it
+  // that is not simply moving. Painted by travel.js through this, at most a few
+  // times a second.
+  const banner = $('travel-banner');
+  function travelBanner(state) {
+    if (!banner) return;
+    if (!state) { banner.setAttribute('hidden', ''); return; }
+    const verb = $('travel-verb'); const dest = $('travel-dest'); const dist = $('travel-dist');
+    if (verb) verb.textContent = state.verb ?? 'Going to';
+    if (dest) dest.textContent = state.dest ?? '';
+    if (dist) dist.textContent = Number.isFinite(state.dist_m) ? formatDistance(state.dist_m, settings.units) : '';
+    banner.removeAttribute('hidden');
+  }
+  $('travel-stop')?.addEventListener('click', () => onTravelStop?.());
+
+  // ---- Go to ---------------------------------------------------------------
+  //
+  // Everywhere you can stand and everyone who stood there, in one searchable
+  // list. The list, its filters, its distances and its keyboard live in
+  // js/goto.js; the HUD only hands it the section, the collections the renderer
+  // loaded, and the visitor's position, and tells it when to go.
+  const goTo = createGoTo({
+    root: root.querySelector('[data-panel="goto"]'),
+    scene, registry, intersections, people,
+    positionOf, visitor, isTouch, settings,
+    units: () => settings.units,
+    onGoTo: (target) => { onGoTo?.(target); setPanel(false); },
+    onPersist: (key, value) => { settings[key] = value; store(SET_KEY, JSON.stringify(settings)); },
+  });
+
 
   window.addEventListener('keydown', (e) => {
     // One shared test, so the panel's shortcuts and the walker's movement keys
@@ -580,6 +626,7 @@ export function createHud({
     else if (k === 'n') { e.preventDefault(); setPanel(true); selectTab('whatsnew'); }
     else if (k === 'g') { e.preventDefault(); openGoTo(); }
     else if (k === 'f') { e.preventDefault(); setFly(!flying); }
+    else if (k === 'p') { e.preventDefault(); setPace(PACE_CYCLE[(PACE_CYCLE.indexOf(settings.pace) + 1) % PACE_CYCLE.length]); }
     else if (e.key === 'Escape' && panelOpen()) setPanel(false);
   });
 
@@ -587,6 +634,17 @@ export function createHud({
     say,
     settings,
     setPanel,
+    selectTab,
+    setTitle,
+    /** Let one listener know which section is showing. */
+    onTabChange(fn) { onTab = fn; },
+    get tab() { return currentTab; },
+    panelOpen,
+    goTo,
+    travelBanner,
+    setPace,
+    setTravelMode,
+    paintTravelMode,
     showControlHelp,
     dismissControlHelp,
     get confidenceOn() { return confidenceOn; },

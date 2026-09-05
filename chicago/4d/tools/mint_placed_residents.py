@@ -537,21 +537,41 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
 CIVIC_ROLLS_SOURCE = "chicago_voter_lists_1833_1835_irad"
 CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
 
+# T-0635, consolidation pass 2, and the same arrangement one pass later. The list is what
+# grew: a second spend now writes onto these records, so the carry is a loop over the
+# (source id, marker) pairs rather than one hard-wired pair, and adding a third pass means
+# adding a row here and an assertion in that pass's --self-test.
+FERGUS_1839_SOURCE = "fergus_chicago_directory_1839"
+FERGUS_1839_MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
+
+CARRIED_SPENDS = ((CIVIC_ROLLS_SOURCE, CIVIC_ROLLS_MARKER),
+                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER))
+
 
 def carry_civic_rolls(doc: dict, existing: dict) -> None:
-    """Re-attach the 1833-1835 rolls' citation to a record this mint has just rebuilt."""
+    """Re-attach every consolidation pass's citation to a record this mint has rebuilt."""
     was = {p.get("id"): p for p in existing.get("persons") or []}
     for person in doc.get("persons") or []:
         before = was.get(person.get("id"))
         if not before:
             continue
-        if CIVIC_ROLLS_SOURCE in (before.get("sources") or []):
-            if CIVIC_ROLLS_SOURCE not in (person.get("sources") or []):
-                person["sources"] = (person.get("sources") or []) + [CIVIC_ROLLS_SOURCE]
-        note = before.get("note") or ""
-        if CIVIC_ROLLS_MARKER in note and CIVIC_ROLLS_MARKER not in (person.get("note") or ""):
-            tail = note[note.index(CIVIC_ROLLS_MARKER):].strip()
-            person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
+        for source, marker in CARRIED_SPENDS:
+            if source in (before.get("sources") or []):
+                if source not in (person.get("sources") or []):
+                    person["sources"] = (person.get("sources") or []) + [source]
+            note = before.get("note") or ""
+            if marker in note and marker not in (person.get("note") or ""):
+                tail = note[note.index(marker):].strip()
+                person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
+
+
+def carry_research(doc: dict, existing: dict) -> None:
+    """Keep a `resident_research` block another pass wrote onto one of these people."""
+    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
+    for person in doc.get("persons") or []:
+        prior = by_id.get(person.get("id")) or {}
+        if prior.get("resident_research") and "resident_research" not in person:
+            person["resident_research"] = prior["resident_research"]
 
 
 def build(preload: dict | None = None):
@@ -588,6 +608,17 @@ def build(preload: dict | None = None):
         # rolls have reached would delete the citation and leave two byte-for-byte gates
         # fighting over the same file — whichever ran last winning, which is not a gate.
         carry_civic_rolls(doc, existing)
+        # AND THE RESEARCH BLOCK, FOR THE THIRD TIME AND THE SAME REASON (T-0515).
+        # `tools/synthesize_resident_research.py` writes an adjudicated research
+        # outcome onto a person, and the regrade mode of `mint_civic_residents.py`
+        # writes into the same block the rule and date of a grade the ladder moved —
+        # or, on this pass's cards, the REFUSAL that kept a grade where it was. Both
+        # are findings about the person and neither is derived here, so rebuilding
+        # the record must not delete them. Mark Nobles is the one that found this:
+        # his card is the single downgrade the ladder proposes on a residency-tested
+        # person, refused in writing because the card rests on a dated Democrat issue
+        # the consolidation never read, and the refusal is the whole point of it.
+        carry_research(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

@@ -91,7 +91,17 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street."
+   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street.",
+   "resident_research": {
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

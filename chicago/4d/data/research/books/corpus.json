@@ -88,6 +88,25 @@
       "claims": "chicago/4d/data/research/books/claims/fergus_26_29_first_half.json - 41 claims, 20 of them town findings, T-0499 (leaves 1-429); chicago/4d/data/research/books/claims/fergus_26_29_second_half.json - 58 claims, 45 of them town findings, T-0500 (leaves 430-858). The volume is read whole between the two.",
       "read": "ALL 858 LEAVES, between two tickets. T-0499 read leaves 1-429 - the front matter (1-14), No. 26 entire (15-206), No. 27 entire (207-398) and No. 28 through its port statistics (399-429) - as four `list` items in coverage.json. T-0500 read leaves 430-858 as five more: No. 28's Business Directory (430-457) and Obituary (606-644) and the whole of No. 29 (658-850) read in full; the publisher's advertisement leaves (645-657, 851-858) read for Chicago titles only; and No. 28's alphabetical name directory (458-605) SWEPT BY MACHINE and NOT read continuously, which its own declaration states in as many words.",
       "note": "THE FILENAME SAYS 26-29 AND UNTIL THIS PASS NOTHING SAID WHAT THAT MEANT. The four numbers are Harrison's Discourse on the Aborigines of the Ohio Valley (26), Beckwith's Illinois and Indiana Indians (27), the Directory of the City of Chicago for 1843 (28) and Kirby's Biographical Sketch of Joseph Duncan (29); the contents table with leaf ranges is in README.md. Two of the four touch Chicago, one of them fourteen years too early and the other eight years too late, and No. 28 - the directory 'for 1843' - was compiled in 1896. T-0500 adds what the second half holds: eight thousand 1843 directory entries whose only pre-1837 statements are Robert Fergus's own bracketed annotations, an Obituary carrying six deaths inside 1830-1836, and No. 29's canal thread - Duncan's 1829 diary of getting the route located, the legislature of 1834-35 adjourning without acting on it, and the special session of December 1835 that authorised the loan the canal was finally built with."
+    },
+    {
+      "id": "ichr_v4_1921_22",
+      "title": "Illinois Catholic Historical Review, volume 4 (July 1921 - April 1922)",
+      "imprint": "Chicago: Illinois Catholic Historical Society, 1921-1922 - the society's quarterly, four numbers bound in one volume",
+      "source_id": "ichr_v4_thompson_illinois_vincennes",
+      "archive_item": "illinoiscatholic04unse_1",
+      "deposit": null,
+      "text": {
+        "path": "chicago/4d/data/research/books/text/ichr_v4_1921_22.txt",
+        "path_kind": "derived",
+        "sha256": "d7dcf68530d6872d2c8def2a66053171b32cbf2ed1d294c38dd6e4cafd6e5c02",
+        "how": "curl -L https://archive.org/download/illinoiscatholic04unse_1/illinoiscatholic04unse_1_djvu.txt on 2026-09-05, committed byte for byte. 290,298 bytes, which is the byte count T-0503 recorded for the same file when it fetched it on 2026-09-04 for a different question - so the file has not moved under this project between the two fetches.",
+        "corroborated_by": null
+      },
+      "page_index": null,
+      "claims": "chicago/4d/data/research/books/claims/ichr_v4_thompson_vincennes.json - 8 claims, all of them town findings, T-0650 (printed pages 256-259).",
+      "read": "Pages 256-259 of Joseph J. Thompson's article 'The Illinois Part of the Diocese of Vincennes' (pages 253-265), declared in coverage.json as ONE `list` item. THE VOLUME IS COMMITTED AND FOUR PAGES OF IT ARE READ; everything else in the 290 KB is unread and undeclared, which is not a fault.",
+      "note": "THERE IS NO DEPOSIT COPY AND NO PAGE INDEX, and both absences are on purpose. No PDF of this volume was downloaded: the reading needed four pages and the djvu OCR carries them, so a 60-plus MB scan would be a deposit nothing checks. Without a second extraction there is nothing to corroborate the OCR against, so `corroborated_by` is null and every claim taken from it is graded transcription_mediated - a reading off the page image would outrank it and none was made. The page boundaries were read off the volume's own RUNNING HEADS, which this OCR prints ('258 JOSEPH J. THOMPSON', 'ILLINOIS PART OF THE DIOCESE OF VINCENNES 259'), so no alignment was needed and tools/build_book_page_index.py is not involved; the four boundaries are written into the source record's locator instead. NOTE THE OVERLAP THAT IS NOT A DUPLICATION: data/sources/st_cyr_register_ichr_v4.json also reads this volume, through a Genealogy Trails transcription of two of its register pages rather than through this scan. Two records of one volume, exactly as chicago_antiquities_pratt and chicago_antiquities_american_fur_co are two records of one book."
     }
   ]
 }

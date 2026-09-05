@@ -69,7 +69,17 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "One of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and a signatory of the 1832 militia agreement submitting to Gholson Kercheval as captain 'until all apprehension of danger from the Indians may have subsided'."
+   "note": "One of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and a signatory of the 1832 militia agreement submitting to Gholson Kercheval as captain 'until all apprehension of danger from the Indians may have subsided'.",
+   "resident_research": {
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
+   }
   },
   {
    "id": "brown_mrs_rufus",

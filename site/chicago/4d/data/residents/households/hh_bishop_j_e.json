@@ -62,10 +62,56 @@
     "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
    },
    "sources": [
-    "chicago_democrat_1833_1835"
+    "chicago_democrat_1833_1835",
+    "chicago_tribune_1882_05_19_fourth_reception",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Bishop, J. E.' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 July 1835, column 4 — dated 1835-07-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
-   "resident_subtype": "projected_resident"
+   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Bishop, J. E.' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 July 1835, column 4 — dated 1835-07-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1). OLD SETTLERS, 1882 — CORROBORATION, NOT A NEW FACT ABOUT 1835. The Calumet Club's fourth annual reception to the settlers of Chicago prior to 1840, held 18 May 1882, printed this man among the guests present as “Bishop, James E., Denver, Colo.” (Chicago Tribune, 19 May 1882). The club's criterion was residence in Chicago before 1 January 1840 and majority by then: the roster therefore corroborates a pre-1840 Chicago residence and says he was alive in 1882. It gives NO year of arrival, and the address it prints is where he lived in 1882, forty-seven years after the scene date — it is not an 1835 residence and is not read as one. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS2A — one bearer of the surname, the forename initial agrees, and the resident's own record spells the roster's forename 'james' — the discriminator the roster's initials do not supply (data/research/old_settlers/crosswalk.json).",
+   "book_evidence": [
+    {
+     "list": "directory_1843",
+     "as_read": "JAMES E. BISHOP, general dealer in dry goods, groceries, hardware, etc., 131 Lake Street, Chicago. N. B.- All kinds of c…",
+     "locator": "business directory",
+     "record_id": "f1843_e0044",
+     "describes_date": "1843",
+     "source": "fergus_chicago_directory_1843",
+     "rule": "G2e"
+    },
+    {
+     "list": "directory_1843",
+     "as_read": "Bishop, Jas. E., dry goods and groceries, 131 Lake, bds T. Greenwood [died. Omaha, Neb.. February 27, 1895, aged 86.]",
+     "locator": "bds T. Greenwood",
+     "record_id": "f1843_e0355",
+     "describes_date": "1843",
+     "source": "fergus_chicago_directory_1843",
+     "rule": "G2e"
+    },
+    {
+     "list": "directory_1844",
+     "as_read": "Bishop, James E. dry goods, groceries, and hardv/are, 131 Lake st, residence Theophilus G. Greenwood (See card)",
+     "locator": "residence Theophilus G. Greenwood (See card)",
+     "record_id": "n1844_e0141",
+     "describes_date": "1844",
+     "source": "norris_directory_1844",
+     "rule": "G2e"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Bishop, J. E.",
+     "locator": "chicago_democrat_1835_07_01#c004",
+     "record_id": "person_bishop_j_e",
+     "describes_date": "1835-07-01",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ],
+   "resident_research": {
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,

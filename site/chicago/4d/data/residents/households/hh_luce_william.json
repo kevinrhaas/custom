@@ -85,9 +85,30 @@
        "Documented at Racine before the May 1835 Chicago letter list."
       ]
      }
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
-   "resident_subtype": "projected_resident"
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "William Luce",
+     "locator": "chicago_democrat_1834_07_02#c029",
+     "record_id": "person_william_luce",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Luce, William",
+     "locator": "chicago_democrat_1835_08_19#c020",
+     "record_id": "person_luce_william",
+     "describes_date": "1835-08-19",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -292,6 +292,43 @@ def people_named(ruling: dict) -> list:
     return out
 
 
+# HOW A RULING SAYS IT IS A MATCH (T-0635). `outcome: "matched"` is one way and the way
+# this instrument was built around; the other, used by every crosswalk generated as pools,
+# is the NAME OF THE LIST THE RULING IS FILED IN. A row under `matches` or `merges` in a
+# file whose own counts call it a match is a match, and reading it as nothing because it
+# spells its verdict in the container rather than in a field is the instrument mistaking
+# its own vocabulary for the project's. `refusals`, `ambiguous`, `contested`, `probable`
+# and `passes` are NOT here and must never be: a rival still standing is not a ruling to
+# spend, which is the same line tools/spend_civic_voter_lists.py draws at its rule 1.
+MATCH_CONTAINERS = ("matches", "merges")
+
+# WHERE A RULING MAY LIVE IN A CROSSWALK (T-0635, consolidation pass 2). The second hop
+# used to read only lists that were DIRECT values of the document, and two of this
+# project's crosswalks do not put them there: fergus_1839_election_crosswalk_1835.json and
+# fergus_1839_register_crosswalk_1835.json group their rulings by the POOL each was matched
+# against — `residents.matches`, `voters.matches`, `letter_list.matches` — one level down.
+# So 101 rulings that name a person this town holds a card for were invisible, and the hop
+# reported the directories domain at 0 unwritten while not one of the 101 had reached a
+# card. A clean bill of health that is an artefact of the instrument is the exact failure
+# the docstring below calls a smear, so the walk descends. It descends through DICTS only:
+# a list inside a list is a matrix or a quote block, never a ruling table, and following it
+# would start counting rows of transcription as adjudications. ONE level of grouping is all
+# that is followed: a pool is a pool, and a table three dicts deep is a structure this
+# instrument has no business reading as a list of rulings.
+RULING_DEPTH = 1
+
+
+def ruling_lists(doc, depth: int = RULING_DEPTH):
+    """(container key, rulings) for every ruling list, at the top level or under a pool."""
+    if depth < 0 or not isinstance(doc, dict):
+        return
+    for key, value in doc.items():
+        if isinstance(value, list):
+            yield key, value
+        elif isinstance(value, dict):
+            yield from ruling_lists(value, depth - 1)
+
+
 def count_written(domain_dir: Path, records: dict) -> tuple:
     """(reached, judgeable, wrote) for rulings that name a person in the town.
 
@@ -317,13 +354,12 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
         if not isinstance(doc, dict):
             continue
         from_file = doc_rests_on(doc)
-        for rulings in doc.values():
-            if not isinstance(rulings, list):
-                continue
+        for key, rulings in ruling_lists(doc):
+            declared = key in MATCH_CONTAINERS
             for ruling in rulings:
                 if not isinstance(ruling, dict):
                     continue
-                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES:
+                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES and not declared:
                     continue
                 named = [p for p in people_named(ruling) if p in records]
                 if not named:
@@ -959,6 +995,34 @@ def self_test() -> int:
               judgeable == 2)
         fires("a card citing the ruling's own source has learned it", wrote == 1)
         fires("…and a card citing something else has not", judgeable - wrote == 1)
+
+    # --- T-0635, consolidation pass 2. The two ways a crosswalk can hide a ruling from
+    # this hop, both found on dev with the hop reporting a clean 0 unwritten: a ruling
+    # grouped one level down under the POOL it was matched against, and a ruling that
+    # spells its verdict in the name of the list it is filed in rather than in `outcome`.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["fergus_1839"]}]},
+                 "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        (d / "pooled_crosswalk.json").write_text(json.dumps({
+            "source_id": "fergus_1839",
+            "residents": {
+                "matches": [{"household_id": "hh_a"}, {"household_id": "hh_b"}],
+                "refusals": [{"household_id": "hh_a"}],
+                "ambiguous": [{"household_id": "hh_b"}],
+                "contested": [{"household_id": "hh_a"}],
+            },
+            "voters": {"matches": [{"name": "a name in another reading"}]},
+        }))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("a ruling grouped under a pool is reached, not invisible", reached == 2)
+        fires("…a refusal in the same pool is still not a ruling to spend", reached == 2)
+        fires("…nor is an ambiguous or contested rival still standing", reached == 2)
+        fires("…nor a match naming no person this town holds", reached == 2)
+        fires("the file's own source makes a pooled ruling judgeable", judgeable == 2)
+        fires("…and only the card citing it has learned it", wrote == 1)
+        fires("a list nested deeper than a pool is still not followed as a matrix",
+              [k for k, _ in ruling_lists({"a": {"b": {"c": {"d": [1]}}}})] == [])
 
         fires("same_name_support counts as what a ruling rests on",
               rests_on({"same_name_support": [{"source_id": "s1"}]}) == {"s1"})
