@@ -75,7 +75,9 @@
     "summary": "Possible identity: Robert Lucas, an early Palos settler, reportedly settled there about 1834.",
     "source_ids": [
      "resident_research_cook_palos_lucas_russel"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
    "press_evidence": [
     {
@@ -96,8 +98,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

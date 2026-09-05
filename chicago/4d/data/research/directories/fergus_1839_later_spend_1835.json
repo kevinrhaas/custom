@@ -238,7 +238,7 @@
    "person_id": "chapman_chas_h",
    "name": "Chas. H. Chapman",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Chapman' folds to the same string as the 1837 entry's, and the given name of both begins C."
    ],
@@ -456,7 +456,7 @@
    "person_id": "simons_e",
    "name": "E. Simons",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Simons' folds to the same string as the 1837 entry's, and the given name of both begins E."
    ],
@@ -985,7 +985,7 @@
    "person_id": "crawford_james",
    "name": "James Crawford",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Crawford' folds to the same string as the 1837 entry's, and the given name of both begins J."
    ],
@@ -1467,7 +1467,7 @@
    "person_id": "cole_parker_m",
    "name": "Parker M. Cole",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Cole' folds to the same string as the 1837 entry's, and the given name of both begins P."
    ],

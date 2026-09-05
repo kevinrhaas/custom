@@ -51,7 +51,7 @@
    "id": "matthews_james_g",
    "name": "James G. Matthews",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -75,7 +75,9 @@
     "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1a"
    },
    "civic_evidence": [
     {
@@ -98,8 +100,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1a"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,
