@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 592, title: 'Set your own pace, and arrive with the whole building in view', kind: 'feature', ts: '2026-09-05T18:36:15.876Z', date: 'Sep 5, 2026, 1:36 PM CT',
+    items: [
+      'Under Travel there are now three speed sliders — walking, wagon and horse — and each names the gait as you move it: a stroll, a brisk walk, a jog, a run; a wagon at a walking pace, a steady roll, rattling along; a horse at a walk, a trot, a canter, a gallop. The tops are deliberately far past the possible, 20 mph on foot, 30 by wagon and 60 in the saddle, and the readout says plainly when a figure is beyond any man or any horse.',
+      'Shift still hurries you: a run on foot, a gallop on horseback, nothing on a wagon — and never past the slider\u2019s top. The horse\u2019s gait in your eye beats faster the faster you have set it.',
+      'Arriving anywhere — an instant Go to, the end of a ride, the end of a flight — now stands you on the building\u2019s front at the distance that fits the whole of it in view, aimed at its middle, with its card open. The distance comes from the building\u2019s own footprint and height and the camera\u2019s field of view, so a privy is framed as closely as a long store is framed wide.',
+    ] },
   { v: 591, title: 'Seventy-six people the research programme had reserved and never read', kind: 'feat', ts: '2026-09-05T17:52:04.387Z', date: 'Sep 5, 2026, 12:52 PM CT',
     items: [
       'Two hundred and thirty-seven of this town\u2019s named people had no research row \u2014 nobody had ever sat down with the sources and written what can and cannot be shown about them \u2014 and two hundred and twenty-five of those had been RESERVED by an earlier pass and then never read. Seventy-six are read now, the thirteenth of fifteen cohorts, and the number of people whose card carries a reviewed research row rises from eight hundred and forty-two to nine hundred and eighteen.',
