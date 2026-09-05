@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nothing you can see: the residents list kept its own count', kind: 'fix', ts: '',
+  { v: 603, title: 'Nothing you can see: the residents list kept its own count', kind: 'fix', ts: '2026-09-05T22:35:18.715Z', date: 'Sep 5, 2026, 5:35 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the summary this project keeps of everybody who lives here \u2014 1,380 households, 1,404 people \u2014 and how it was being kept.',
       'Every household has a record card of its own, and the card is the truth: who is in it, how strongly each person is evidenced, where they live and work. Beside the cards sits a single list that repeats a few of those facts for all of them at once, because a visitor\u2019s browser has to be able to read the whole population without opening 1,380 files. That list is a summary and is meant to follow the cards exactly.',
