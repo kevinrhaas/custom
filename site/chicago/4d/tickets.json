@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 9:23 PM",
+  "generated_ct": "Sep 4, 2026, 10:28 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9686,7 +9686,7 @@
     {
       "id": "T-0581",
       "title": "Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -9696,9 +9696,11 @@
       "opened": "2026-09-03",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 10:28:26 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941774635",
       "queue_rank": 20
     },
     {
