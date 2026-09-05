@@ -1,7 +1,7 @@
 ---
 id: T-0518
 title: The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 11:59:06 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945847348
 ---
 
 **The owner's concern, 2026-09-03, verbatim:** "I am concerned that there are only adjudicated mappings
