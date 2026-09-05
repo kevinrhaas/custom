@@ -68,29 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0462",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_murray_murry_same_hand.",
-    "evidence_against": "The Murray surname is common in this corpus (James H, Patrick, John are all separately held) and no source equates the two Alonzos.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
-    "source_ids": [
-     "chicago_democrat_1833_1835"
-    ],
+    "evidence_for": "Alonzo Murry and Alonzo Murray are strong duplicate candidates but remain separate until a record or scan links the spellings.",
+    "evidence_against": "No external bridge.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
-     "cand_murray_murry_same_hand"
-    ],
-    "candidates": [
-     {
-      "id": "cand_murray_murry_same_hand",
-      "asserted": false,
-      "basis": "One letter apart in the same list family; St Cyr's 1837 'S. Murry' is refused on the forename.",
-      "conflicts": [
-       "The surname is common here — James H, Patrick and John are separately held — and no source equates the two Alonzos."
-      ]
-     }
+     "cand_alonzo_murray_letter_list_record__murry_alonzo"
     ]
    }
   }

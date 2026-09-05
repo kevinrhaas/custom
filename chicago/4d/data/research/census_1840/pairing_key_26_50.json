@@ -394,7 +394,8 @@
      "share": 0.161
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "tested_by_a_committed_reading": "T-0742 read this leaf line by line and the pairing holds. The sequence screen this file used was taken off an uncommitted strip and said so; it is now superseded by pages/33S7-9YYJ-K2.json, which agrees with 33S7-9YYJ-NY on 20 of the 26 lines it commits at offset 0, against 4 at the best neighbouring offset. The line count of 31 stands, reached a third way - from the sequence of the TOTAL column's groups, corroborated by fifteen industry anchors. The strip reading's sum of 171 does not survive: the committed 26 lines sum to 115 and five lines are left unread, so this leaf no longer carries a figure that overshoots its own footing."
   },
   {
    "familysearch_id": "33S7-9YYJ-L3",
@@ -505,9 +506,9 @@
    "page_population_key": 100,
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-0-0, the last 0 written across the TOTAL cell's right rule and standing in the mining cell. This hand's 0 is a filled oval and both are unambiguous.",
-   "line_count_key": 20,
-   "line_count_key_state": "counted_this_pass",
-   "line_count_key_note": "20 counted off the magnified strip in two halves, and the entries stop about three fifths of the way down the leaf with the remaining ruled lines blank - which is why coverage.json's 31 'to the nearest line' is wrong by more than a line here. tools/census_total_column.py measures 28 groups on this window and its boxes are not usable: this is a pale, creased exposure and the ink mask reports six components between 70 and 230 px tall in the blank third of the leaf, which are creases and not writing. The measurement is recorded and refused, with the reason.",
+   "line_count_key": 21,
+   "line_count_key_state": "corrected_by_the_reading",
+   "line_count_key_note": "CORRECTED from 20 to 21 by T-0658, which read the TOTAL column glyph by glyph instead of off a strip. The 21 figures sum to 100, the enumerator's own footing, and at 20 lines no subset of the reading reaches it - so the count is settled by the sheet's arithmetic rather than by a second look. The line the strip pass missed is line 19, the palest figure in the column. The original note, kept because it is why the count was soft: '20 counted off the magnified strip in two halves, and the entries stop about three fifths of the way down the leaf with the remaining ruled lines blank - which is why coverage.json's 31 to the nearest line is wrong by more than a line here. tools/census_total_column.py measures 28 groups on this window and its boxes are not usable: this is a pale, creased exposure and the ink mask reports six components between 70 and 230 px tall in the blank third of the leaf, which are creases and not writing.'",
    "state": "unpaired",
    "paired_to_printed_page": null,
    "evidence": "No left sheet read anywhere in the deposit holds 20 lines - the sixteen read run 29 to 33 - and none foots 100. The sequence screen puts its best match at 0.17, which is the noise floor. Its partner is one of the leaves nobody has read: within this group that is printed 227, 239 or 241, and 241 is the only short left sheet the inventory knows of anywhere (22 lines).",
@@ -606,7 +607,8 @@
      "share": 0.161
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "verdict_after_the_reading": "UNCHANGED. The refusal never turned on 20 against 21: the sixteen left sheets read anywhere in the deposit run 29 to 33 lines and none foots 100, so this leaf is refused at either count. What the correction does change is the key a future pairing will be tested on. Printed 241, named here as the only short left sheet the inventory knows of at 22 lines, is now ONE line away rather than two; T-0527's reading of that leaf is what can settle it."
   },
   {
    "familysearch_id": "33S7-9YYJ-VJ",
@@ -725,7 +727,7 @@
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-1-6, the 6 a small closed loop with its ascender.",
    "line_count_key": 27,
-   "line_count_key_state": "counted_this_pass",
+   "line_count_key_state": "confirmed_by_the_reading",
    "line_count_key_note": "27 counted off the magnified strip, and tools/census_total_column.py --x0 0.265 --x1 0.325 --y0 0.175 --y1 0.918 measures 28 groups at every grouping distance from 35 to 65 px - the 28th being the footer figure, which that window includes. So the two methods agree at 27 entries. coverage.json carried 31.",
    "state": "unpaired",
    "paired_to_printed_page": null,
@@ -825,7 +827,8 @@
      "share": 0.167
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "verdict_after_the_reading": "UNCHANGED, and both keys are now committed readings rather than strip measurements. T-0658 read this leaf cell by cell: 27 entries, whose TOTAL column sums to 116 - the same count and the same population this file measured off a strip, arrived at independently. The refusal stands on the same evidence it always did."
   },
   {
    "familysearch_id": "33SQ-GYYJ-5H",

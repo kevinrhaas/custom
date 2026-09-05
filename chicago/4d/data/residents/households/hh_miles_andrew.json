@@ -68,29 +68,18 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_andrew_miles_geneva.",
-    "evidence_against": "The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_for": "Kane County history places an Andrew Miles or Mills on a Fox River claim in 1834. Exact or near-exact name and date are strong, while the spelling conflict and hinterland location remain unresolved.",
+    "evidence_against": "Miles/Mills source conflict; no direct link to the Chicago letter.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "kane_geneva_andrew_miles"
     ],
     "candidate_ids": [
-     "cand_andrew_miles_geneva"
-    ],
-    "candidates": [
-     {
-      "id": "cand_andrew_miles_geneva",
-      "asserted": false,
-      "basis": "A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834.",
-      "conflicts": [
-       "The passage carries a Miles/Mills spelling conflict, and two directories refuse the surname on the initial."
-      ]
-     }
+     "cand_andrew_miles_or_mills_of_kane_county__miles_andrew"
     ]
    }
   }

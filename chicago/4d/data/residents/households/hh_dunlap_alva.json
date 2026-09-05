@@ -68,29 +68,18 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_alva_dunlap_peoria.",
-    "evidence_against": "Peoria is not Chicago and the account names no Chicago residence; the surname stands in Fergus 1839, Fergus 1843 and Norris 1844 with no entry carrying the initial A.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_for": "Local history says Alva Dunlap first traveled to Illinois in 1834 and later settled near Peoria. Exact uncommon name and date make a strong traveler candidate, not evidence of Chicago residence.",
+    "evidence_against": "Later Peoria-area settlement and no direct letter bridge.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "dunlap_alva_dunlap_history"
     ],
     "candidate_ids": [
-     "cand_alva_dunlap_peoria"
-    ],
-    "candidates": [
-     {
-      "id": "cand_alva_dunlap_peoria",
-      "asserted": false,
-      "basis": "A community history dates Alva Dunlap's first Illinois journey to 1834 and his settlement near Peoria.",
-      "conflicts": [
-       "Peoria is not Chicago and the account names no Chicago residence; three directories refuse the surname on the initial."
-      ]
-     }
+     "cand_alva_dunlap_of_peoria_county__dunlap_alva"
     ]
    }
   }

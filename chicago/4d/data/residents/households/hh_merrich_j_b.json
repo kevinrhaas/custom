@@ -68,7 +68,7 @@
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0482",
-    "outcome": "no_corroboration",
+    "outcome": "no_corroboration_yet",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },

@@ -68,29 +68,18 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0462",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_amanda_miner_kaneville.",
-    "evidence_against": "Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_for": "Kaneville history names Amos and Amanda Miner as first permanent settlers in 1836. Exact name, adjacent county and chronology support a candidate, but spouse and New York origin are not imported.",
+    "evidence_against": "No direct bridge to the Chicago letter; printed 2 counts letters, not people.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "kaneville_amanda_miner"
     ],
     "candidate_ids": [
-     "cand_amanda_miner_kaneville"
-    ],
-    "candidates": [
-     {
-      "id": "cand_amanda_miner_kaneville",
-      "asserted": false,
-      "basis": "Kaneville Township's history names Amos and Amanda Miner among its settlers.",
-      "conflicts": [
-       "Kane County, and nothing ties the pair to the Chicago post office; the Newberry card is a 'Milner' heading."
-      ]
-     }
+     "cand_amanda_miner_of_kaneville__miner_amanda"
     ]
    }
   }

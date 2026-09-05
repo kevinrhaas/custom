@@ -99,6 +99,20 @@
     }
    ],
    "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "A county history lists William G. Blair among early Winnebago County settlers. Matching initials and region make a lead, but the common name and absent Chicago-letter bridge prevent identification.",
+    "evidence_against": "No direct Chicago post-office link; common name.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "rockford_first_settlers_1835"
+    ],
+    "candidate_ids": [
+     "cand_william_g_blair_of_winnebago_county__blair_william_g"
+    ],
     "regraded_on": "2026-09-04",
     "rule": "G2e",
     "programme": "resident-research-2026",

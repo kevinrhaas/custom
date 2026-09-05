@@ -69,7 +69,26 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833."
+   "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "The book prints 'Russell E. Heacock' as one of two American families occupying the old log officers' quarters inside the pickets of the ungarrisoned fort in July 1827. This project's resident record is Russel E. Heacock, graded attested, an attorney and justice of the peace who Andreas says 'had come in 1827'. The two spellings differ by one letter in the surname and agree in given name, middle in Surname and given name both agree between the 1830 reading 'Russel E Heacock' and the town person 'Russel E. Heacock' in household hh_heacock_russel_e. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own. Surname 'Heacock' folds to the same string as the 1844 entry's, and the given name of both begins R.",
+    "evidence_against": "'R. E. Heacock' at printed page 216 line 13 (33S7-9YYJ-DD) is NOT 'Russel E. Heacock': The head is written 'R. E. Heacock' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity. L4 initial_only Surname 'Heacock' folds to the same string as the 1839 entry's, and the given name of both begins R.",
+    "summary": "Independently corroborated. Russel E. Heacock agrees, forename for forename or initial for initial, with a record outside the post-office lists in the held book corpus, the 1830 census of the Chicago precinct, the Fergus 1839/1843 and Norris 1844 directories. The book prints 'Russell E. Heacock' as one of two American families occupying the old log officers' quarters inside the pickets of the ungarrisoned fort in July 1827. This project's resident record is Russel E. Heacock, graded attested, an attorney and justice of the peace who Andreas says 'had come in 1827'. The two spellings differ by one letter in the surname and agree in given name, middle in",
+    "notes": "FERGUS 26-29, AS PRINTED: \"Heacock, Russel Easton (Old Shallow-Cut, Chicago's first attorney at law), res 129 Adams [died, Summit, Ill., June 20, 1849, aged 70]\". The 1843 directory gives the middle name Easton, the trade the 1835 record carries, and a death date and age that put birth about 1779. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "census_1830_peoria_county_chicago_precinct",
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "fergus_historical_series_26_29",
+     "norris_directory_1844"
+    ]
+   }
   },
   {
    "id": "heacock_household_unnamed",

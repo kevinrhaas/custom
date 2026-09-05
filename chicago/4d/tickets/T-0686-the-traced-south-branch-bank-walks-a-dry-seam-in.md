@@ -1,7 +1,7 @@
 ---
 id: T-0686
 title: The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
-state: open
+state: done
 epic: GROUND
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 882
+claimed_by: run 9/5/2026, 6:38:19 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T12:48:53.818Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963521943
 ---
 
 The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline.

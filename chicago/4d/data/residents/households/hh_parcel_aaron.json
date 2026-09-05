@@ -68,29 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0462",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_parcel_parcell_same_hand.",
-    "evidence_against": "Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
-    "source_ids": [
-     "chicago_democrat_1833_1835"
-    ],
+    "evidence_for": "Aaron Parcel and Aron Parcell are reciprocal duplicate candidates: one-letter spelling variants occur in returns ten months apart, but no external discriminator was found.",
+    "evidence_against": "Different return dates and no linking record.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
-     "cand_parcel_parcell_same_hand"
-    ],
-    "candidates": [
-     {
-      "id": "cand_parcel_parcell_same_hand",
-      "asserted": false,
-      "basis": "Two post-office readings one letter apart in the same list family; the 1830 schedule's 'William Parcel' shares only the surname.",
-      "conflicts": [
-       "Nothing outside the letter lists names either spelling, so collapsing the pair would invent the man they collapse into."
-      ]
-     }
+     "cand_aron_parcell_letter_list_record__parcel_aaron"
     ]
    }
   }

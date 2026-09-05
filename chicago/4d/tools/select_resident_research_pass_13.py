@@ -218,7 +218,7 @@ def researched_ids(people: dict) -> set:
             if (p.get("resident_research") or {}).get("outcome")}
 
 
-def derive(pass_no: int) -> dict:
+def derive(pass_no: int, minting: bool = False) -> dict:
     if len(FRAME) != 228 or len(set(FRAME)) != 228:
         raise SystemExit("the frozen frame is not 228 unique people: %d/%d"
                          % (len(FRAME), len(set(FRAME))))
@@ -240,15 +240,22 @@ def derive(pass_no: int) -> dict:
     # non-overlap that means something; see the module docstring for why "zero
     # overlap with passes 1-12" is not the same claim and is not made.
     #
-    # A COHORT'S OWN OUTCOMES DO NOT MAKE IT STALE (T-0508). The frame is frozen and
-    # hard-coded above, so what this clause guards is a manifest claiming somebody
-    # ANOTHER pass has already ruled on. Read without the exclusion it also fired the
-    # moment its own cohort was researched — the first run to complete cohort 13 turned
-    # this gate red for cohort 13 — which is a freeze that cannot survive being used.
-    own = set(TICKETS.values())
-    already = {pid for pid in researched_ids(people)
-               if ((people[pid][1].get("resident_research") or {}).get("ticket")) not in own}
-    if overlap := already.intersection(ids):
+    # IT IS A SELECTION CHECK, SO IT ONLY RUNS WHILE SELECTING. The module docstring
+    # has always said this — "a person who acquires a research row after this — which
+    # is what T-0508 to T-0510 are for — does NOT make the manifest stale" — and the
+    # committed manifest repeats it in `selection_policy`. The code did not: `derive`
+    # ran the assertion on every call, including `--gate`, so the three cohorts began
+    # failing the build the moment their own tickets did the work they were selected
+    # for. dev went red on 2026-09-05 when T-0510 landed and cohort 15 tripped it;
+    # 13 and 14 followed as T-0508 and T-0509 landed rows of their own.
+    #
+    # Nothing is weakened by scoping it. FRAME is a hardcoded 228-name literal frozen
+    # on 2026-09-03, so membership cannot drift between a selection and a gate — a
+    # regeneration re-reads today's records for each member's `starting_*` fields and
+    # cannot reshuffle who is in the cohort. `member()` still refuses a member who
+    # left the town, turned into a placeholder or went `reconstructed`, on every call
+    # including the gate, which is the staleness the docstring says DOES matter.
+    if minting and (overlap := researched_ids(people).intersection(ids)):
         raise SystemExit("cohort %d claims people who already carry a research row: %s"
                          % (pass_no, sorted(overlap)))
 
@@ -301,8 +308,11 @@ def run(pass_no: int, argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args(argv)
-    doc = derive(pass_no)
     path = out_path(pass_no)
+    # Minting is the first write only. A later regeneration refreshes each member's
+    # `starting_*` snapshot against today's records; it re-selects nobody, because
+    # FRAME is frozen.
+    doc = derive(pass_no, minting=not args.gate and not path.exists())
     if args.gate:
         # The committed manifest is the frozen thing; formatting is not evidence.
         if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != doc:

@@ -68,29 +68,18 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0442",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_alanson_b_vaughan_mower.",
-    "evidence_against": "Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_for": "Later Minnesota county histories contain the same unusual name, Alanson B. Vaughan. No reviewed source bridges that later settler to Chicago's letter return, so the lead remains possible only.",
+    "evidence_against": "No migration or household record connects him to the Chicago letter-list entry.",
+    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity.",
     "source_ids": [
      "mower_history_alanson_vaughan"
     ],
     "candidate_ids": [
-     "cand_alanson_b_vaughan_mower"
-    ],
-    "candidates": [
-     {
-      "id": "cand_alanson_b_vaughan_mower",
-      "asserted": false,
-      "basis": "A history of Mower County, Minnesota carries an exact Alanson B. Vaughan.",
-      "conflicts": [
-       "Later, and a thousand miles north-west; St Cyr's 1837 'Ann Vaughan' and the directories both refuse on the forename."
-      ]
-     }
+     "cand_alanson_b_vaughan_of_mower_county__vaughan_alanson_b"
     ]
    }
   }

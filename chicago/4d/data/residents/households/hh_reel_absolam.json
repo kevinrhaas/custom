@@ -68,13 +68,19 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "no_corroboration",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_against": "Not reached outside the post-office lists.",
-    "summary": "No independent bridge; see the ledger.",
-    "notes": "negative≠absence; no edit"
+    "evidence_for": "A contemporary Indiana court notice names Absalom Reel in March 1834. The near-exact spelling is notable, but Indiana geography and no post-office bridge make this a competing candidate only.",
+    "evidence_against": "Indiana record and no Chicago link; Absolam/Absalom spelling differs.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "indiana_absalom_reel_1834"
+    ],
+    "candidate_ids": [
+     "cand_absalom_reel_of_indiana__reel_absolam"
+    ]
    }
   }
  ],

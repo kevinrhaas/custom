@@ -148,3 +148,86 @@ actually off by is three vertices north of where it was reported.
     pip install numpy scipy Pillow pyproj
     python3 tools/trace_river.py --check          # fetches the region; reproduces river.geojson
     python3 tools/measure_water_outliers.py --vs-ink --bank-profile --lobe-map
+
+---
+
+## 8. The repair — T-0686, 2026-09-05
+
+Section 6 said the repair was its own unit of work with its own count of changed records.
+This is that unit, and the count is at the end.
+
+**What changed, in `tools/trace_river.py`.** A new step, `bank_wash()`, runs between the wash
+threshold and the channel morphology. It speckle-filters the wash exactly as before, and then
+puts a dropped fragment back when all three of these hold:
+
+| test | parameter | why |
+|---|---|---|
+| the fragment is at least this big | `bank_frag_px` 160 | laid with a brush, not paper grain or a scan artefact |
+| it lies this close to the channel the surviving wash gives | `bank_seam_px` 3 | it is across a *seam* from the river, not somewhere else on the sheet |
+| it comes this close to the inked bank | `bank_ink_px` 1.5 | tint scatters along every traced edge; wash that abuts the line Wright drew is the bank's own |
+
+The ink is `ink_mask()`, luminance < `ink_lum` 110 — the same threshold
+`measure_water_outliers.py --vs-ink` measures against, so the trace and the measurement mean
+the same thing by "the ink". That third test is the whole of it: it is what makes this read
+the ink as well as the wash, and without it the rule restores a thousand edge specks and makes
+the median *worse*.
+
+Nothing was hand-edited. `python3 tools/trace_river.py --check` reproduces the committed
+`river.geojson`, as it did before.
+
+**Two fragments qualify on the whole 1120 × 1120 sheet**, and no others:
+
+    205 px  region rows 629-685, cols 693-725   the South Branch seam strip — this defect
+    180 px  region rows 398-407, cols 911-973   a strip on the north bank of the main stem
+
+**The measurement, `--vs-ink`, before → after:**
+
+    median   0.70 →  0.70 m      (unchanged — this is the check that nothing else moved)
+    p90      4.56 →  3.41 m
+    max     14.73 →  6.88 m
+    vertices >= 5 m from ink: 5 → 2
+
+The three South Division vertices are gone. The two that remain are the two that were already
+there and are unchanged in value — `north_division_shore` 18 at 6.88 m and
+`west_division_shore` 21 at 5.04 m. **No bank vertex is made worse.** The 9.37 m "spike" at
+`south_division_shore` 11 is gone with the excursion that caused it; the reach's largest
+departure from its own neighbours is now 6.92 m over a 101 m chord, which is a bend.
+
+**Downstream, every derivation the waterline feeds:**
+
+| derivation | delta |
+|---|---|
+| `heightfield.json` / `.bin`, `terrain__` and `water__` GLBs | rebuilt — land elevation and channel depth are both functions of distance from the waterline |
+| `data/wharves/river_landings.json` | **7 landings, 1 refusal — unchanged.** Only the bank runs' vertex counts (80→82, 111→108) and one length (2944.5→2929.0 m) moved |
+| `generate_plat_lots.py` headroom, `generate_frontage_works.py`, the wet-sample refusals, `measure_block_gating.py` | no change. The reach the seam runs along carries no frontage |
+| `measure_planting_reach.py` | 189 526 → 189 410 nodes above the dry floor, and 192 670 → 192 554 in the field. **The gate refuses a shrink**, and is right to; it is re-banked with the reason, which is that 116 nodes — 725 m², at the 2.5 m grid — that the trace had called land is water on the sheet. Bounds, east limits and `outside_planter` are unchanged |
+
+## 9. Does it generalise to the Clark Street bulge?
+
+**No, and they should stay separate tools.** Section 5 called the two the same family of
+fault, and they are — *where the wash is interrupted, the wash wins over the ink* — but the
+interruptions are not the same shape and neither repair sees the other's.
+
+`clark_reach_bulge_1834.md` § 5: there the obstruction is a 60 m outline capital G and a
+foxing stain, and the dry region they make is **continuous with the drawn bank**. What lets a
+rule see through it is that the river runs west–east across that window, so a dry span there
+has *channel at both ends of its own row* — "water to my left and water to my right" — and
+`trace_shoreline.py` reads it as a gap in the drawing inside a hand-declared `LETTERING` box.
+
+The South Branch seam has neither property. It is three to six pixels wide, it does not touch
+the bank, and the wash it strands is a **separate connected component** with dry paper and
+then ink to its east — there is no water on the far side to bracket it, so the row rule cannot
+fire. In the other direction, `bank_wash()` cannot help Clark: what is stranded there is 7 606
+px of *dry region*, not a marooned wash fragment, and there is no sub-speckle component to
+put back.
+
+The safety models differ too, deliberately. Clark's box is **declared, one place, and must
+recover pixels or the run dies** — it names a location, so it cannot rot silently.
+`bank_wash()` names a *shape* and is therefore sheet-wide, which is why its three tests are
+tight enough that only two fragments on the whole region pass them, and why the median is the
+gate on it: a rule that moved the median would be reading something other than the bank.
+
+What generalises is the principle, not the code: **the ink is the arbiter, and a trace that
+reads only the wash is reading the cheaper half of the drawing.** If the two tools are ever
+merged, that sentence is the thing to implement once — each tool then meets its own
+obstruction with its own rule, as they do now.

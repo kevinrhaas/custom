@@ -69,30 +69,12 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0508",
-    "outcome": "candidate_identity",
-    "reviewed_on": "2026-09-05",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
     "asserted_identity": false,
-    "evidence_for": "A same-name lead, unasserted: cand_simon_akers_1837_poll.",
-    "evidence_against": "Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict.",
-    "summary": "A same-name lead, recorded and NOT asserted.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
-    "source_ids": [
-     "fergus_chicago_directory_1839"
-    ],
-    "candidate_ids": [
-     "cand_simon_akers_1837_poll"
-    ],
-    "candidates": [
-     {
-      "id": "cand_simon_akers_1837_poll",
-      "asserted": false,
-      "basis": "The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial.",
-      "conflicts": [
-       "Two years after the scene and on an initial agreement only; the crosswalk hands on evidence, not a verdict."
-      ]
-     }
-    ]
+    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
    }
   }
  ],

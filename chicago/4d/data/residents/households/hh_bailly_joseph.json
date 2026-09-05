@@ -89,6 +89,20 @@
     }
    ],
    "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0462",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Honoré Gratien Joseph Bailly de Messein is a strong regional candidate, but lived at his Porter County homestead and died there in December 1835. A Chicago letter may reflect transit, not residence.",
+    "evidence_against": "Documented Porter County residence; no source links him to this letter.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "nps_bailly_homestead"
+    ],
+    "candidate_ids": [
+     "cand_honor_gratien_joseph_bailly_de_messein__bailly_joseph"
+    ],
     "regraded_on": "2026-09-04",
     "rule": "G2e",
     "programme": "resident-research-2026",
