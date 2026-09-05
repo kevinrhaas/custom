@@ -109,7 +109,8 @@
       "letter_list_returns": [],
       "sources": [
         "chicago_american_1835",
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "isa_public_domain_land_tract_sales"
       ],
       "selection_reason": "Every richer, real named resident still lacking a dwelling on the day this cohort was fixed was included, not sampled; the twenty ids are frozen, so a resident minted later is not retro-claimed as researched."
     },
@@ -476,14 +477,15 @@
       "person_id": "doolittle_ehjah",
       "name": "Ehjah Doolittle",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ],
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },
@@ -908,14 +910,15 @@
       "person_id": "vanderbogart_h",
       "name": "H. Vanderbogart",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
         "1835-05-20"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ],
       "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
     },

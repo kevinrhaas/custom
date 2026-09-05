@@ -82,7 +82,9 @@
     "candidate_ids": [
      "Levi Blake",
      "Racine County pioneer who passed through Chicago 10 February 1835"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
    "press_evidence": [
     {
@@ -103,8 +105,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

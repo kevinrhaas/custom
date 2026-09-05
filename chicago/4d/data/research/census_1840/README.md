@@ -57,8 +57,9 @@ live on two different images.
 
 PR #670 recovered 210 named household heads from the owner's v4 workbook, which he has
 since ruled lost — "They are lost; rebuild". Those 210 rows are the calibration set any
-new reading must reproduce before it extends. **Five of the seven pages they cover have
-now been read off the sheets, and they do not reproduce.**
+new reading must reproduce before it extends. **All seven of the pages they cover have now been read off the sheets, and they do not
+reproduce.** Printed 233 and 235, the last two, were read to the name off `33SQ-GYYJ-RJ` and
+`33SQ-GYYJ-ZQ` against T-0741's inventory of the group.
 
 | printed page | image | scan lines | #670 rows | agree on both names |
 |---|---|---|---|---|
@@ -66,7 +67,9 @@ now been read off the sheets, and they do not reproduce.**
 | 230 | `33S7-9YYJ-NY` | 31 | 31 | see `crosswalk_670.json` |
 | 231 | `33S7-9YYJ-38` | 31 | 31 | 0 |
 | 232 | `33S7-9YYJ-W6` | 31 | 31 | see `crosswalk_670.json` |
+| 233 | `33SQ-GYYJ-RJ` | 31 | 31 | 2 |
 | 234 | `33S7-9YYJ-99F` | 31 | 31 | 4 |
+| 235 | `33SQ-GYYJ-ZQ` | 24 | 24 | 6 |
 
 Some of the disagreements are large: page 232 line 17 reads *Gurdon S. Hubbard* on the
 sheet against *Saml. J. McCord?* in #670, and line 25 reads *John H. Kinzie* against

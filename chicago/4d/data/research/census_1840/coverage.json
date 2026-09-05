@@ -14,7 +14,7 @@
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image \u2014 a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full \u2014 names and cells \u2014 and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full \u2014 names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet. T-0584 then read printed 210 and 215 in full - names AND the age-band cells, each column checked against the printed footing at the foot of its own sheet; 36 of 38 columns close on 210 and 37 of 38 on 215, and the residual columns are recorded rather than forced. T-0585 holds printed 219, the third sheet of the T-0531 group, which was split on measurement: two left sheets to the cell is a run's demonstration, not three. T-0643 then read the continuation sheet 33S7-9YYJ-8D line by line and closed it against the enumerator's own footer row: the three industry columns that carry figures all close exactly (commerce 6, manufactures and trades 17, the learned professions 5) and the family totals do not \u2014 they read 121 against a printed 106. T-0644 holds 9WS and T-0641 holds B1, B2 and BF, all still unread; T-0642 holds the twelve left-sheet population key and the pairing of all eleven continuations.",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image \u2014 a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full \u2014 names and cells \u2014 and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full \u2014 names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet. T-0584 then read printed 210 and 215 in full - names AND the age-band cells, each column checked against the printed footing at the foot of its own sheet; 36 of 38 columns close on 210 and 37 of 38 on 215, and the residual columns are recorded rather than forced. T-0585 holds printed 219, the third sheet of the T-0531 group, which was split on measurement: two left sheets to the cell is a run's demonstration, not three. T-0643 then read the continuation sheet 33S7-9YYJ-8D line by line and closed it against the enumerator's own footer row: the three industry columns that carry figures all close exactly (commerce 6, manufactures and trades 17, the learned professions 5) and the family totals do not \u2014 T-0643 read them 121 against a printed 106 with the six matched pairs as 11, and T-0652 re-read those six as 4 against 33S7-9YYJ-24's labelled key and gets 79 against the same 106. Neither closes and no reading of the six can: the other twenty-six lines sum to 55 and 4a + 11(6-a) = 51 has no integer solution. The -27 is published and open. T-0644 holds 9WS and T-0641 holds B1, B2 and BF, all still unread; T-0642 holds the twelve left-sheet population key and the pairing of all eleven continuations.",
    "images": [
     {
      "index": 1,
@@ -874,7 +874,7 @@
   },
   {
    "range": "images 51-74 of 74",
-   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail.",
+   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail. Printed 233 (33SQ-GYYJ-RJ) and 235 (33SQ-GYYJ-ZQ) were then read to the NAME against this inventory, which closes PR #670's seven-page calibration set: all seven now stand on the sheets rather than on the lost workbook, and none of them reproduces.",
    "images": [
     {
      "index": 51,
@@ -1102,8 +1102,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-RJ.json",
+     "note": "NAMES read line by line off this leaf: 31 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 31 is confirmed by the reading."
     },
     {
      "index": 69,
@@ -1151,8 +1152,9 @@
      "lines_with_an_entry": 24,
      "what_it_is": "names + free-white age bands, filled for 24 lines and blank below them. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-ZQ.json",
+     "note": "NAMES read line by line off this leaf: 24 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 24 is confirmed by the reading."
     },
     {
      "index": 73,
@@ -1201,13 +1203,13 @@
      233,
      235
     ],
-    "names_transcribed_pages": 0,
-    "names_transcribed_lines": 0,
+    "names_transcribed_pages": 2,
+    "names_transcribed_lines": 55,
     "cells_transcribed_pages": 0,
     "cells_transcribed_lines": 0,
-    "inventoried_only": 24,
+    "inventoried_only": 22,
     "lines_with_an_entry_total": 655,
-    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72."
+    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72. Two of the 24 have since been read to the NAME - printed 233 and 235, the group's two PR #670 calibration pages - so names_transcribed_pages is 2 and inventoried_only is 22."
    },
    "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0746 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
    "findings": [
