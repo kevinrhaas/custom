@@ -2280,8 +2280,12 @@ async function boot() {
   api.ready = true;
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
   if (gateSub) {
-    const n = loaded.registry.size;
-    gateSub.textContent = `${n} structure${n === 1 ? '' : 's'} · ${world.describe()}`;
+    // T-0782: the count that used to open this line was `registry.size` — every
+    // RECORD in the scene, bridges and the pier and the palisade and the parade
+    // ground included — so it read as a building count and contradicted the 359
+    // on the card three lines below it. The card counts the town; this line says
+    // when the town is.
+    gateSub.textContent = world.describe();
   }
 
   if (DEBUG) {

@@ -397,7 +397,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
-    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
     # T-0491. Three of these people are bridged to a named head of household in the
     # 1840 census, and PR #670 attached that bridge without giving the panel any way
     # to say so. Both copies are read now: the total in the count sentence, so a
@@ -776,6 +775,16 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/manifest:counts.projected_residents": (
+        "T-0782, the owner's ruling on the opening card: the aggregate is struck. It "
+        "reached a visitor in one place — a parenthesis inside the gate card's inferred "
+        "count — where it read as a fourth grade beside attested/inferred/reconstructed "
+        "and was in fact a subtype OF the inferred, counted on a different axis. The "
+        "claim itself still reaches the visitor, and better: `people.js` filters and "
+        "chips `resident_subtype === 'projected_resident'` on the person's own row, "
+        "where the evidence that made them projected is beside the label. A bare total "
+        "with nothing beside it was the poorer of the two copies. The field stays in the "
+        "manifest because the mint tools derive it and validate.py holds it."),
     "residents/household:source_pass": (
         "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
         "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "

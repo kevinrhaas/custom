@@ -37,7 +37,6 @@
 # --- be the 1404 named residents ... and the balance will be reconstructed to get to the 3265, can
 # --- you improve the way that is presented" · "at the top it says 371 structures, just remove that".
 # --- Small and visible; placed here by the owner so a run picks it up ahead of the research band.
-T-0782 — The opening card drops the projected count and the 371-structures line and reads as two parallel completeness ladders — buildings and people
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
