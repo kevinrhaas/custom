@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 5:56 AM",
+  "generated_ct": "Sep 5, 2026, 6:01 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12272,7 +12272,7 @@
     {
       "id": "T-0735",
       "title": "check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12280,14 +12280,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "867",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T10:27:17.209Z",
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": null
     },
     {
       "id": "T-0736",
@@ -12307,7 +12307,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 139
     },
     {
       "id": "T-0739",
@@ -12347,7 +12347,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 140
     },
     {
       "id": "T-0741",
@@ -12407,7 +12407,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 143
     },
     {
       "id": "T-0744",
@@ -12427,12 +12427,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": 144
     },
     {
       "id": "T-0745",
       "title": "dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12440,14 +12440,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "867",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T10:27:17.078Z",
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": null
     },
     {
       "id": "T-0746",
@@ -12467,7 +12467,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 145
     },
     {
       "id": "T-0747",
@@ -12507,7 +12507,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 147
     },
     {
       "id": "T-0753",
@@ -12527,7 +12527,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 146
     },
     {
       "id": "T-0754",
@@ -12547,7 +12547,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 142
+      "queue_rank": 141
     },
     {
       "id": "T-0755",
@@ -12567,7 +12567,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 143
+      "queue_rank": 142
     },
     {
       "id": "T-0756",
@@ -12607,7 +12607,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 152
     },
     {
       "id": "T-0758",
@@ -12627,7 +12627,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 150
     },
     {
       "id": "T-0759",
@@ -12647,7 +12647,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 151
     },
     {
       "id": "T-0761",
@@ -12667,7 +12667,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 148
     },
     {
       "id": "T-0762",
@@ -12687,7 +12687,47 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 149
+    },
+    {
+      "id": "T-0763",
+      "title": "check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0764",
+      "title": "A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     }
   ]
 }
