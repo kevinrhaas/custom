@@ -66,8 +66,8 @@
     "chicago_american_office__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 53836,
-      "inputs_sha256": "1022d1f7ac675d58dd2eecbb5b7922b257a1632212fcc6ca3d459e07ee67c968",
+      "bytes": 51652,
+      "inputs_sha256": "ecf8238c4e6e9b42c0897293dbce4ccbfe562829679828b7f42fa4dab3155063",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "chicago_american_office"
@@ -300,8 +300,8 @@
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 45516,
-      "inputs_sha256": "85420783e87cd5618f5cf30c8b64d6044031a9277e8aea8353acd9173df8c97e",
+      "bytes": 42552,
+      "inputs_sha256": "0375834989fbb9fbd00f0f7f7a399f20345782dad495766b1a2eacc6c9de2704",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "frederick_thomas_shop"
