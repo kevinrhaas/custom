@@ -8357,53 +8357,6 @@
       ]
     },
     {
-      "id": "L94",
-      "title": "Two of ten roofs given an occupant, and the rule that left the other eight anonymous",
-      "section": "per_subject",
-      "subjects": [
-        "recon_1835_blk_randolph_wells_d1_06",
-        "recon_1835_blk_randolph_wells_d3_05"
-      ],
-      "covers": [
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_randolph_wells_d1_06",
-          "phase": null,
-          "aspect": "occupants"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_randolph_wells_d3_05",
-          "phase": null,
-          "aspect": "occupants"
-        }
-      ],
-      "recorded": "2026-08-14",
-      "revised": null,
-      "fields": [
-        {
-          "label": "Decision",
-          "text": "of the ten anonymous roofs `blk_randolph_wells` put on the plat, **two are adopted by the inferred-household layer** — the D1 log cabin becomes the dwelling of a thirteenth labouring household and the D3 one-room frame cottage the dwelling of an eleventh carpenter's — and **eight stay anonymous count-units**. Nothing is built, moved or regraded by the adoption. The roofs' presence, position and footprint were invented before it and are invented after it; what the two gain is an argued occupant instead of a blank, and what the town gains is two households it did not have. **The rule is the point of this entry, because the temptation it refuses is structural.** A block parcel can put ten dwellings on the plat in the time it takes to append a recipe entry, and the occupation census cannot move at that speed without becoming a function of what has been drawn. The town's trade mix is a claim about the town — 3,265 people in 398 dwellings, calibrated against Andreas's 1833 roster — and a census that grows every time somebody draws a cottage is fitting the evidence to the model. So a block roof may be adopted only where **both** of two independent tests pass, and the rule is now written into the programme's `method` list where the next parcel will read it: 1. the trade's own committed argument states, in its own text, that its count is a **floor rather than a bound**; and 2. the roof's family is one this layer **already houses that trade in**. Exactly two of the twenty-nine trades in the census pass the first test: the carpenter (*\"the shop count is a floor under the trade, not a measure of it\"*) and the labourer (*\"still a small fraction of what 3,265 people implies\"*). Every other entry either states a ceiling — the plasterer's and the drover's say *\"and no more\"* outright — or is bounded by a workshop or store family's roof target under the programme's own method rule 2. And the two trades that pass the first test are housed by this layer in exactly the two families this block deals them: **all eight** of the layer's adopted labouring households live in a D1, and **nine of ten** carpenters in a D3. The tests were derived independently and agreed on the first block they were applied to, which is the only reason to trust either of them. **What that leaves unoccupied, and why each refusal is a different kind.** The three yard buildings — a stable, a privy, a woodshed — have no occupant to argue about: a yard building serves the lot it stands behind, and a household living in a privy is not a modest claim but a nonsensical one. The generator now refuses an ancillary adoption by name. The D2 plank shanty, the D4 two-room and the D5 deep-plan cottages are refused by the rule above: this layer houses laundresses, boatmen, masons, clerks and shoemakers in those families, and every one of those trades is bounded by a count somebody argued to a number. **The H1 and H2 houses are refused for the strongest reason of the three.** They are the town's larger house and its merchant or professional house, of which the schedule allows 18 and 14 in the whole town; the people who lived in the best fourteen houses in Chicago are the most likely of anyone here to be nameable, and inventing an anonymous merchant into one of them would break the programme's own rule never to infer a person where a documented one is available. Those two want the treatment the civic roofs are getting under T-I3 — a reading of the record, not a household drawn from a census."
-        },
-        {
-          "label": "Consequence",
-          "text": "85 anonymous roofs now carry an argued occupant rather than 83, and the town holds 154 households and 190 persons — 94 of them reconstructed, none of them a figure anybody will see, because no human is drawn (L1). Standing roofs are unchanged at 251: this parcel added no building. A visitor clicking either of the two adopted roofs is told who the layer supposes lived there, that the supposition is a hypothesis and not a person, and that the roof itself is still an invention."
-        },
-        {
-          "label": "How to resolve",
-          "text": "the same evidence the block itself wants — parcel-level tax, deed or assessment records naming who held and occupied these lots in July 1835. A named occupant replaces an inferred one; it never adds a household to the census."
-        },
-        {
-          "label": "Covers",
-          "text": "`recon_1835_blk_randolph_wells_d1_06.occupants`, `recon_1835_blk_randolph_wells_d3_05.occupants`"
-        },
-        {
-          "label": "Recorded",
-          "text": "2026-08-14."
-        }
-      ]
-    },
-    {
       "id": "L95",
       "title": "A West Division block that was already partly built, and four lots taken as read",
       "section": "per_subject",
@@ -8984,53 +8937,6 @@
         {
           "label": "How to resolve",
           "text": "a survey plat of the reservation, or the Book of Original Entry, would move the boundary from `inferred` toward the acreage it is 13.2 % short of and would say where the meander line ran. A source stating in terms what the reservation permitted would settle the permission list. The refusal itself is unlikely to move; the boundary is what wants better evidence."
-        },
-        {
-          "label": "Recorded",
-          "text": "2026-08-15."
-        }
-      ]
-    },
-    {
-      "id": "L109",
-      "title": "Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place",
-      "section": "per_subject",
-      "subjects": [
-        "recon_1835_blk_randolph_dearborn_d1_04",
-        "recon_1835_blk_randolph_dearborn_d3_01"
-      ],
-      "covers": [
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_randolph_dearborn_d1_04",
-          "phase": null,
-          "aspect": "occupants"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_randolph_dearborn_d3_01",
-          "phase": null,
-          "aspect": "occupants"
-        }
-      ],
-      "recorded": "2026-08-15",
-      "revised": null,
-      "fields": [
-        {
-          "label": "Decision",
-          "text": "two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or regraded.** The roofs' presence, position and footprint were invented before the adoption and are invented after it; what each gains is an argued occupant instead of a blank. This is the backfill the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the last block of this parcel shape to be asked the question. **The block was measured rather than remembered, which is the only reason the next paragraph exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5, and — as at eight blocks before this one — a \"second roof\" for each of the two trades: the D4 on lot 6 for the carpenters and the D2 on lot 5 for the labourers. **WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already houses the trade in, and its third whether the roof's division is. The layer houses trades in (family, division) PAIRS, and the rule states in its own text that *the three tests are independent* — so the two tests read the two projections of that table, and a roof can pass on a family taken out of one division and a division taken out of another family. Both second roofs are exactly that: - one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen carpenters this layer houses in the **South** Division live in a D3; - four labouring households live in a D2, and all four stand in the **North** or the **West**; all eleven labourers this layer houses in the **South** Division live in a D1. `tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family, division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1 narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28 has been collecting evidence on since T-A9. **The liberty admitted here is that this project has been refusing something it never measured.** Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not one of them checked that the layer had ever housed that trade in that family in that division, and none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the conservative reading gave the same answer either way, which is luck rather than method. **AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports and gates nothing; K28 decides, with both facts committed."
-        },
-        {
-          "label": "Consequence",
-          "text": "104 anonymous roofs now carry an argued occupant rather than 102, and the town holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn (L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition is a hypothesis and not a person, and that the roof itself is still an invention. **The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110 at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every `name_basis` kept its pool citation, and `check.sh` re-derives all 113."
-        },
-        {
-          "label": "How to resolve",
-          "text": "the same evidence the block itself wants — parcel-level tax, deed or assessment records naming who held and occupied these lots on Randolph or Washington between Dearborn and State in July 1835. A named occupant replaces an inferred one; it never adds a household to the census."
-        },
-        {
-          "label": "Covers",
-          "text": "`recon_1835_blk_randolph_dearborn_d1_04.occupants`, `recon_1835_blk_randolph_dearborn_d3_01.occupants`"
         },
         {
           "label": "Recorded",
@@ -14719,6 +14625,108 @@
         {
           "label": "Resolved",
           "text": "2026-08-18 (T-0051). The enclosure layer arrived and the pen was the second record on it. `data/enclosures/estray_pen.json` walks the same 30 × 20 ft rectangle, on the same corner, as a **roofless post-and-rail perimeter with a gateway**, drawn by `renderers/web/js/enclosures.js` at load and needing no bake. The five invented values this entry claimed — `construction`, `roof_type`, `roof_pitch_deg`, `wall_height_m` and `door` — are **retired from the record rather than re-graded**, the GLB and its manifest entry are deleted, and the phase carries a `drawn_by` block that `tools/validate.py` holds to all of that. Andreas is now quoted for the thing he actually says: *\"the 'pen' was a small wooden enclosure and quite roofless\"*. What this entry still covers, and what keeps it worth reading, is the **footprint** — the rectangle, its size and its corner-of-a-block placement are as invented as they ever were, and the fence that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that wants the pen baked with the rest of the town still needs one."
+        }
+      ]
+    },
+    {
+      "id": "L94",
+      "title": "Two of ten roofs given an occupant, and the rule that left the other eight anonymous",
+      "section": "resolved",
+      "subjects": [
+        "recon_1835_blk_randolph_wells_d1_06",
+        "recon_1835_blk_randolph_wells_d3_05"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_wells_d1_06",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_wells_d3_05",
+          "phase": null,
+          "aspect": "occupants"
+        }
+      ],
+      "recorded": "2026-08-14",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "of the ten anonymous roofs `blk_randolph_wells` put on the plat, **two are adopted by the inferred-household layer** — the D1 log cabin becomes the dwelling of a thirteenth labouring household and the D3 one-room frame cottage the dwelling of an eleventh carpenter's — and **eight stay anonymous count-units**. Nothing is built, moved or regraded by the adoption. The roofs' presence, position and footprint were invented before it and are invented after it; what the two gain is an argued occupant instead of a blank, and what the town gains is two households it did not have. **The rule is the point of this entry, because the temptation it refuses is structural.** A block parcel can put ten dwellings on the plat in the time it takes to append a recipe entry, and the occupation census cannot move at that speed without becoming a function of what has been drawn. The town's trade mix is a claim about the town — 3,265 people in 398 dwellings, calibrated against Andreas's 1833 roster — and a census that grows every time somebody draws a cottage is fitting the evidence to the model. So a block roof may be adopted only where **both** of two independent tests pass, and the rule is now written into the programme's `method` list where the next parcel will read it: 1. the trade's own committed argument states, in its own text, that its count is a **floor rather than a bound**; and 2. the roof's family is one this layer **already houses that trade in**. Exactly two of the twenty-nine trades in the census pass the first test: the carpenter (*\"the shop count is a floor under the trade, not a measure of it\"*) and the labourer (*\"still a small fraction of what 3,265 people implies\"*). Every other entry either states a ceiling — the plasterer's and the drover's say *\"and no more\"* outright — or is bounded by a workshop or store family's roof target under the programme's own method rule 2. And the two trades that pass the first test are housed by this layer in exactly the two families this block deals them: **all eight** of the layer's adopted labouring households live in a D1, and **nine of ten** carpenters in a D3. The tests were derived independently and agreed on the first block they were applied to, which is the only reason to trust either of them. **What that leaves unoccupied, and why each refusal is a different kind.** The three yard buildings — a stable, a privy, a woodshed — have no occupant to argue about: a yard building serves the lot it stands behind, and a household living in a privy is not a modest claim but a nonsensical one. The generator now refuses an ancillary adoption by name. The D2 plank shanty, the D4 two-room and the D5 deep-plan cottages are refused by the rule above: this layer houses laundresses, boatmen, masons, clerks and shoemakers in those families, and every one of those trades is bounded by a count somebody argued to a number. **The H1 and H2 houses are refused for the strongest reason of the three.** They are the town's larger house and its merchant or professional house, of which the schedule allows 18 and 14 in the whole town; the people who lived in the best fourteen houses in Chicago are the most likely of anyone here to be nameable, and inventing an anonymous merchant into one of them would break the programme's own rule never to infer a person where a documented one is available. Those two want the treatment the civic roofs are getting under T-I3 — a reading of the record, not a household drawn from a census."
+        },
+        {
+          "label": "Consequence",
+          "text": "85 anonymous roofs now carry an argued occupant rather than 83, and the town holds 154 households and 190 persons — 94 of them reconstructed, none of them a figure anybody will see, because no human is drawn (L1). Standing roofs are unchanged at 251: this parcel added no building. A visitor clicking either of the two adopted roofs is told who the layer supposes lived there, that the supposition is a hypothesis and not a person, and that the roof itself is still an invention."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same evidence the block itself wants — parcel-level tax, deed or assessment records naming who held and occupied these lots in July 1835. A named occupant replaces an inferred one; it never adds a household to the census."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_wells_d1_06.occupants`, `recon_1835_blk_randolph_wells_d3_05.occupants`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-14."
+        },
+        {
+          "label": "Resolved",
+          "text": "2026-09-02, by the owner's ruling that retired the reconstructed resident population — \"remove any pre-existing reconstructed people from the resident list and household\" — and, asked whether the roofs they occupied should be abandoned or kept, \"Keep as anonymous stock.\" The adoption this entry records was WITHDRAWN rather than corrected: the households that made it no longer exist, so the two roofs went back to being the anonymous count-units the other eight always were, and the `occupants` block this entry covers is gone from both records. Nothing was built, moved or regraded on the way out either — the roofs stand exactly where this entry put them, unassigned until the placement sweep the same ruling asks for. T-0516 carried the withdrawal to the records (2026-09-05); the argument that raised the households is kept as history in `data/reconstruction/1835_inferred_household_programme.json`."
+        }
+      ]
+    },
+    {
+      "id": "L109",
+      "title": "Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place",
+      "section": "resolved",
+      "subjects": [
+        "recon_1835_blk_randolph_dearborn_d1_04",
+        "recon_1835_blk_randolph_dearborn_d3_01"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_dearborn_d1_04",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_dearborn_d3_01",
+          "phase": null,
+          "aspect": "occupants"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or regraded.** The roofs' presence, position and footprint were invented before the adoption and are invented after it; what each gains is an argued occupant instead of a blank. This is the backfill the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the last block of this parcel shape to be asked the question. **The block was measured rather than remembered, which is the only reason the next paragraph exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5, and — as at eight blocks before this one — a \"second roof\" for each of the two trades: the D4 on lot 6 for the carpenters and the D2 on lot 5 for the labourers. **WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already houses the trade in, and its third whether the roof's division is. The layer houses trades in (family, division) PAIRS, and the rule states in its own text that *the three tests are independent* — so the two tests read the two projections of that table, and a roof can pass on a family taken out of one division and a division taken out of another family. Both second roofs are exactly that: - one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen carpenters this layer houses in the **South** Division live in a D3; - four labouring households live in a D2, and all four stand in the **North** or the **West**; all eleven labourers this layer houses in the **South** Division live in a D1. `tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family, division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1 narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28 has been collecting evidence on since T-A9. **The liberty admitted here is that this project has been refusing something it never measured.** Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not one of them checked that the layer had ever housed that trade in that family in that division, and none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the conservative reading gave the same answer either way, which is luck rather than method. **AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports and gates nothing; K28 decides, with both facts committed."
+        },
+        {
+          "label": "Consequence",
+          "text": "104 anonymous roofs now carry an argued occupant rather than 102, and the town holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn (L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition is a hypothesis and not a person, and that the roof itself is still an invention. **The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110 at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every `name_basis` kept its pool citation, and `check.sh` re-derives all 113."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same evidence the block itself wants — parcel-level tax, deed or assessment records naming who held and occupied these lots on Randolph or Washington between Dearborn and State in July 1835. A named occupant replaces an inferred one; it never adds a household to the census."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_dearborn_d1_04.occupants`, `recon_1835_blk_randolph_dearborn_d3_01.occupants`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        },
+        {
+          "label": "Resolved",
+          "text": "2026-09-02, by the owner's ruling that retired the reconstructed resident population — \"remove any pre-existing reconstructed people from the resident list and household\" — and, asked whether the roofs they occupied should be abandoned or kept, \"Keep as anonymous stock.\" The adoption this entry records was WITHDRAWN rather than corrected: the households that made it no longer exist, so the two roofs went back to being the anonymous count-units the other eight always were, and the `occupants` block this entry covers is gone from both records. Nothing was built, moved or regraded on the way out either — the roofs stand exactly where this entry put them, unassigned until the placement sweep the same ruling asks for. T-0516 carried the withdrawal to the records (2026-09-05); the argument that raised the households is kept as history in `data/reconstruction/1835_inferred_household_programme.json`."
         }
       ]
     }

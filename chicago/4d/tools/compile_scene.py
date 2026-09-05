@@ -46,6 +46,17 @@ RESEARCH_DOSSIER = {
     "inferred_household": "docs/RESEARCH/residents_1835_inferred.md",
 }
 
+# T-0516. The dossier follows the programme that RAISED the roof, and after the
+# retirement of 2026-09-02 that is no longer the same question as the status. The
+# owner retired the reconstructed resident population and ruled its 31 roofs kept
+# as anonymous stock, so they now read `inferred_anonymous` — but they were never
+# dealt by an anonymous parcel, and sending them to the infill programme's write-up
+# would put a visitor in front of a document about a deal that never dealt them.
+# The phase is the durable answer, so the phase is what this keys on.
+PROGRAMME_DOSSIER = {
+    "phase2_inferred_households": "docs/RESEARCH/residents_1835_inferred.md",
+}
+
 
 def research_doc(structure: dict) -> str:
     """The dossier that covers this record, or `""` where none has been written.
@@ -62,9 +73,11 @@ def research_doc(structure: dict) -> str:
     Emitting `""` rather than dropping the key keeps the sidecar one shape
     everywhere, which is the same rule `residents` follows.
     """
-    path = RESEARCH_DOSSIER.get(
-        (structure.get("reconstruction") or {}).get("status"),
-        f"docs/RESEARCH/{structure['id']}.md")
+    block = structure.get("reconstruction") or {}
+    path = PROGRAMME_DOSSIER.get(
+        block.get("programme_phase"),
+        RESEARCH_DOSSIER.get(block.get("status"),
+                             f"docs/RESEARCH/{structure['id']}.md"))
     return path if (ROOT / path).exists() else ""
 
 

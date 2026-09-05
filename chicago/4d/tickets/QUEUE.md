@@ -95,7 +95,6 @@ T-0592 — The fine well on lot 7 of block 16 is documented and the town has no 
 # --- on purpose: it should describe a town whose cards are current.
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
-T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
 T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
 
@@ -319,4 +318,8 @@ T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien move
 T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire

@@ -2198,19 +2198,41 @@ for (const [label, viewport, touch] of [
     // fence — the layer knew only posts and horizontal rails until today, and a
     // picket drawn as three rails would pass every count in this file. And a
     // fence at the back of a lot can be invisible from anywhere a visitor stands.
+    //
+    // T-0516: THIRTEEN PLOTS BECAME ONE, and the floor here moved with them because
+    // the twelve were never the town's to keep. Clause 4 of the rule admits a lot on
+    // "a household recorded as living in it", read off the structure record's
+    // `occupants` PROSE — and on 2026-09-02 the owner retired the reconstructed
+    // resident population, so twelve of the thirteen were resting on the prose of
+    // households that no longer exist. A garden behind a house nobody lives in claims
+    // a gardener who does not exist. `generate_dooryard_pickets.py` said so itself,
+    // in a comment naming T-0516 as the cause before T-0516 was worked.
+    //
+    // A floor of ten would now be an assertion about retired people, so it is
+    // replaced rather than lowered — and by something STRONGER than a count. The one
+    // plot that survives is the one lot in this town where the committed household
+    // index carries a real `lives_at`: Elijah Harmon's, on Randolph, which is also the
+    // garden the checks below walk into. Naming it asserts that the rule kept the
+    // EVIDENCED plot and dropped the inferred ones, which a floor of ten never could.
+    // Whether a garden should follow the HOUSE instead of the household is a claim
+    // about the town rather than a bug, and it is the owner's: T-0727 asks him. If he
+    // rules that way this floor rises again, and it should.
     const pickets = await page.evaluate(() => {
       const e = window.__chicago4d.enclosures;
       const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
       return {
         found: !!rec,
         runs: rec?.runs?.length ?? 0,
+        ids: (rec?.runs ?? []).map((r) => r.id),
         type: rec?.form?.fence_type?.value ?? null,
         pales: e?.census?.pales ?? 0,
       };
     });
     check(`${label}: the town's house lots carry generated picket gardens`,
-      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
-      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
+      pickets.found && pickets.runs >= 1 && pickets.type === 'picket'
+      && pickets.ids.includes('blk_randolph_franklin_lot2'),
+      `record ${pickets.found}, ${pickets.runs} plot(s) [${pickets.ids.join(', ')}], `
+      + `fence type ${pickets.type}`);
     // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
     // fence; the floor is deliberately far under the count so it asserts the
     // BRANCH ran, not a number that will drift with the rule's output.
@@ -2590,9 +2612,15 @@ for (const [label, viewport, touch] of [
         sampledArea: inside * STEP * STEP,
       };
     });
+    // T-0516 moved the interior floor from 18 to 8 for the same reason the picket
+    // floor above moved: twelve of the eighteen interiors were the dooryard gardens
+    // of households retired on 2026-09-02. What the check is FOR is untouched — every
+    // record that declares a treatment still has to have got an interior, which is the
+    // failure this layer would most quietly make, and all three treatments still have
+    // to reach the ground.
     check(`${label}: every fenced interior in the town carries a ground treatment`,
       fenced.declared.length >= 4 && fenced.declared.every((d) => d.interiors >= 1)
-      && fenced.census?.interiors >= 18 && fenced.meshes >= 3 && fenced.tris > 0
+      && fenced.census?.interiors >= 8 && fenced.meshes >= 3 && fenced.tris > 0
       && Object.keys(fenced.census?.byTreatment ?? {}).length === 3,
       `${fenced.declared.length} record(s) declare a treatment `
       + `[${fenced.declared.map((d) => `${d.id} ${d.treatment} x${d.interiors}`).join(', ')}]; `

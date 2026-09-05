@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 11:49 PM",
+  "generated_ct": "Sep 4, 2026, 11:26 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8428,7 +8428,7 @@
     {
       "id": "T-0510",
       "title": "237 named residents have no research row: cohort 15 of 79",
-      "state": "done",
+      "state": "open",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8436,14 +8436,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": "2026-09-04",
-      "pr": "844",
-      "claimed_by": "run 9/4/2026, 10:26:51 PM CT",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": "2026-09-05T04:49:08.278Z",
-      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941745252",
-      "queue_rank": null
+      "queue_rank": 8
     },
     {
       "id": "T-0511",
@@ -8548,7 +8546,7 @@
     {
       "id": "T-0516",
       "title": "31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": false,
@@ -8556,12 +8554,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "843",
+      "claimed_by": "run 9/4/2026, 10:27:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "closed_at": "2026-09-05T04:26:18.353Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941752969",
+      "queue_rank": null
     },
     {
       "id": "T-0517",
@@ -12176,6 +12176,26 @@
       "queue_rank": 151
     },
     {
+      "id": "T-0727",
+      "title": "Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 155
+    },
+    {
       "id": "T-0728",
       "title": "The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice",
       "state": "open",
@@ -12234,26 +12254,6 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 154
-    },
-    {
-      "id": "T-0735",
-      "title": "check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire",
-      "state": "open",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "M",
-      "legacy_id": null,
-      "parent": null,
-      "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
-      "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 155
     }
   ]
 }
