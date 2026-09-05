@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two Kinzies were half brothers, and neither record said so', kind: 'change', ts: '',
+  { v: 584, title: 'Two Kinzies were half brothers, and neither record said so', kind: 'change', ts: '2026-09-05T16:09:23.359Z', date: 'Sep 5, 2026, 11:09 AM CT',
     items: [
       'Six of this town\u2019s households are Kinzies, and until today not one of them said it was related to any of the others. James Kinzie, who built the Green Tree Tavern, and John Harris Kinzie, who was the town\u2019s president the year before this scene, were half brothers \u2014 the same father and different mothers \u2014 and both cards read as though the two men had never met.',
       'The reason was not a missing fact. It was a missing question: a person\u2019s record could say where they stood in their own household \u2014 head, wife, son, boarder \u2014 and there it stopped. A tie between two households had nowhere to live but a sentence in a note, which a reader may stumble on and a search will never find. Both cards now carry a Related to line that says who, in what degree, in which household, on what evidence, with the same coloured dot for its grade that every other claim on the card carries.',
