@@ -13720,14 +13720,14 @@
       "covers": [],
       "scope": {
         "enumeration": "residents.persons[civic_mint]",
-        "count": 531
+        "count": 532
       },
       "recorded": "2026-09-04",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`residents.persons[civic_mint]` — 531 people"
+          "text": "`residents.persons[civic_mint]` — 532 people"
         },
         {
           "label": "Decision",

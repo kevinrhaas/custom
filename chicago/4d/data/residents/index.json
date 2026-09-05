@@ -239,10 +239,10 @@
   ]
  },
  "counts": {
-  "households": 1380,
-  "persons": 1404,
+  "households": 1381,
+  "persons": 1405,
   "by_grade": {
-   "attested": 526,
+   "attested": 527,
    "inferred": 878,
    "reconstructed": 0
   },
@@ -250,7 +250,7 @@
   "projected_residents": 719,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
-  "civic_mint": 531
+  "civic_mint": 532
  },
  "households": [
   {
@@ -19623,6 +19623,22 @@
    "works_at": "st_marys_church",
    "present_on_scene_date": "present",
    "review_required": false
+  },
+  {
+   "id": "hh_taylor_c",
+   "file": "households/hh_taylor_c.json",
+   "civic_mint": true,
+   "head": "taylor_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": false
   },
   {
    "id": "hh_taylor_e_d",

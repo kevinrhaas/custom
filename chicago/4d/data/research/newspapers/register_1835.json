@@ -12,7 +12,7 @@
     "structures": 374,
     "structures_sharing_a_name": 36,
     "streets": 28,
-    "resident_persons": 1404
+    "resident_persons": 1405
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1386,
-        "new_resident": 1222,
+        "enrich": 1387,
+        "new_resident": 1221,
         "replace_invented": 22
       },
       "letter_list_only": 1936
@@ -32286,9 +32286,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "taylor_c",
+      "action_note": "data/residents/ already holds this person as taylor_c (hh_taylor_c, attested). The papers add mentions and dates."
     },
     {
       "id": "person_taylor_t_or_anderson_samuel",
