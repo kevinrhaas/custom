@@ -1,24 +1,41 @@
 #!/usr/bin/env node
 /**
- * T-0100 — a street's geometry confidence reaches the picture.
+ * T-0100 / T-0713 — a street's grades reach the picture, and each grades the
+ * thing it is a claim about.
  *
- * `streets.js` grades a ribbon by the WEAKEST grade on anything that decides
- * what it is or where it runs. Until T-0100 it read only `surface_confidence`
- * and `wear_confidence`, and never `geometry_confidence` — the field that says
- * whether the LINE was traced, inferred or invented. A street whose route was
- * invented but whose surface and wear were attested would have drawn at full
- * confidence, and turning `reconstructed` off would have left the invention
- * standing.
+ * T-0100. `streets.js` used to grade a ribbon by `surface_confidence` and
+ * `wear_confidence` alone and never by `geometry_confidence` — the field that
+ * says whether the LINE was traced, inferred or invented. A street whose route
+ * was invented but whose surface and wear were attested drew at full
+ * confidence, and turning `reconstructed` off left the invention standing.
+ * T-0100 fixed that by taking the weakest of all three.
+ *
+ * T-0713 splits the one grade back into the two claims it had flattened:
+ *
+ *   `_confidence`, the contract's channel and the one the confidence view
+ *   reads, carries the LINE's grade alone — presence, dither, and which level
+ *   hides the ribbon. That is the claim "a street ran here".
+ *
+ *   `_trackConfidence`, a second channel read only inside the street material,
+ *   carries the weakest of surface and wear and fades the WORN TEXTURE while
+ *   the view is on. That is the claim "and it looked like this".
+ *
+ * The guard T-0100 bought is not weakened by the split and this file is what
+ * proves it: an invented line under an attested surface still dithers out, and
+ * a record with no geometry grade still reads as invented rather than as
+ * attested. What the split adds is the converse — an ATTESTED line under an
+ * invented wear no longer dithers away, because "we do not know how worn it
+ * was" is not a reason to tell the visitor the street was not there.
  *
  * WHY THIS TEST SLICES THE SOURCE INSTEAD OF IMPORTING IT. `addRecord` is not
  * exported and `streets.js` pulls in three, which will not load headless. The
- * alternative — copying the expression into the test — would let the shipped
- * one drift away from the tested one silently, which is the failure mode this
- * ticket is about in the first place. So the expression is EXTRACTED from
- * `renderers/web/js/streets.js` and evaluated, the same way
+ * alternative — copying the expressions into the test — would let the shipped
+ * ones drift away from the tested ones silently, which is the failure mode
+ * these tickets are about in the first place. So both expressions are
+ * EXTRACTED from `renderers/web/js/streets.js` and evaluated, the same way
  * `tools/measure_rank_bias.mjs` takes its primitives out of `flora.js`. Every
- * extraction is guarded: if the shape moves, this file fails loudly rather than
- * testing a stale copy of itself.
+ * extraction is guarded: if the shape moves, this file fails loudly rather
+ * than testing a stale copy of itself.
  *
  *   node tools/test_street_confidence.mjs
  *
@@ -56,45 +73,64 @@ for (const k of ['attested', 'inferred', 'reconstructed']) {
   if (typeof LEVEL[k] !== 'number') drift(`LEVEL is missing the grade \`${k}\``);
 }
 
-/* ---- the shipped confidence expression --------------------------------- */
+/* ---- the two shipped expressions --------------------------------------- */
 
-// Deliberately anchored on `const confidence = Math.max(` inside addRecord and
-// closed on the first `);` — the expression is a single call and nothing else
-// in this file opens one that way.
-const confMatch = /const confidence = Math\.max\(\s*([\s\S]*?)\s*\);/.exec(src);
-if (!confMatch) drift('cannot find `const confidence = Math.max( ... );`');
+// The RIBBON's grade — one expression, terminated by the first `;`. Anchored on
+// the declaration inside addRecord; nothing else in the file declares it.
+const confMatch = /const confidence = ([^;]*);/.exec(src);
+if (!confMatch) drift('cannot find `const confidence = ...;`');
+const confExpr = confMatch[1].trim();
 
-const terms = confMatch[1]
+// The point of T-0100, still: the ribbon's grade must consult the LINE.
+if (!confExpr.includes('geometry_confidence')) {
+  drift('the ribbon expression does not read `geometry_confidence` — T-0100 is not fixed');
+}
+// The point of T-0713: and it must consult NOTHING ELSE, or the split has been
+// quietly undone and the platted town is dithering as invention again.
+for (const field of ['surface_confidence', 'wear_confidence']) {
+  if (confExpr.includes(field)) {
+    drift(`the ribbon expression still reads \`${field}\` — T-0713's split is undone. `
+      + 'The line decides whether the ribbon stands; surface and wear grade the track.');
+  }
+}
+
+// The TRACK's grade, which is where surface and wear went.
+const trackMatch = /const trackConfidence = Math\.max\(\s*([\s\S]*?)\s*\);/.exec(src);
+if (!trackMatch) drift('cannot find `const trackConfidence = Math.max( ... );`');
+const trackTerms = trackMatch[1]
   .split('\n')
   .map((s) => s.trim().replace(/,$/, ''))
   .filter(Boolean);
-if (!terms.length) drift('the confidence expression has no terms');
-
-// The point of the ticket: the expression must actually consult the line's own
-// grade. Without this guard the test would happily pass on the old two-term
-// version and report the bug fixed.
-if (!confMatch[1].includes('geometry_confidence')) {
-  drift('the confidence expression does not read `geometry_confidence` — T-0100 is not fixed');
+if (trackTerms.length !== 2) {
+  drift(`expected two terms in the track expression, found ${trackTerms.length}`);
+}
+for (const field of ['surface_confidence', 'wear_confidence']) {
+  if (!trackMatch[1].includes(field)) {
+    drift(`the track expression does not read \`${field}\` — the grade has been dropped, `
+      + 'not moved. T-0713 relocated these two; it did not retire them.');
+  }
 }
 
-function evalTerms(termList, record) {
-  return Math.max(
-    ...termList.map((t) =>
-      Function('LEVEL', 'record', `"use strict"; return (${t});`)(LEVEL, record),
-    ),
-  );
+// The shader must actually spend the track grade, or the channel is carried and
+// then thrown away — which would look exactly like a passing test.
+if (!/_trackConfidence/.test(src)) {
+  drift('`_trackConfidence` is not set as a geometry attribute — the track grade never '
+    + 'reaches the shader');
+}
+if (!/vTrackConfidence \* uConfMode/.test(src)) {
+  drift('the fragment block does not fade by `vTrackConfidence * uConfMode` — the track '
+    + 'grade reaches the shader and is not spent, or it is spent with the view switched off');
 }
 
-const shipped = (record) => evalTerms(terms, record);
+const ev = (expr, record) => Function('LEVEL', 'record', `"use strict"; return (${expr});`)(LEVEL, record);
+const shipped = (record) => ev(confExpr, record);
+const track = (record) => Math.max(...trackTerms.map((t) => ev(t, record)));
 
-// The pre-T-0100 expression, rebuilt from the shipped terms by dropping the
-// geometry one. This is the positive control: every case below is also run
-// through it, and the case the ticket describes MUST come out differently.
-const oldTerms = terms.filter((t) => !t.includes('geometry_confidence'));
-if (oldTerms.length !== terms.length - 1) {
-  drift(`expected exactly one geometry term, found ${terms.length - oldTerms.length}`);
-}
-const before = (record) => evalTerms(oldTerms, record);
+// The pre-T-0100 expression: surface and wear only. This is the positive
+// control — the case T-0100 describes MUST come out differently under it — and
+// it is now exactly the TRACK expression, which is the tidiest possible
+// statement of what T-0713 did with those two grades.
+const before = track;
 
 /* ---- the checks -------------------------------------------------------- */
 
@@ -113,44 +149,50 @@ const rec = (geometry, surface, wear) => ({
 const INVENTED = LEVEL.reconstructed;
 const ATTESTED = LEVEL.attested;
 
-console.log('\n[1m== a street\'s geometry confidence reaches the picture (T-0100)[0m');
+console.log('\n\x1b[1m== the line decides the ribbon, surface and wear decide the track '
+  + '(T-0100, T-0713)\x1b[0m');
 
-// The ticket's case, stated as the ticket states it.
+// T-0100's case, stated as the ticket states it, and it must still hold.
 const inventedLine = rec('reconstructed', 'attested', 'attested');
 ok(shipped(inventedLine) === INVENTED,
   `an invented LINE under an attested surface dithers out — ${shipped(inventedLine)} of ${INVENTED}`);
 ok(before(inventedLine) === ATTESTED,
   `  ...and drew at FULL confidence before T-0100 — the bug, reproduced — ${before(inventedLine)}`);
 ok(shipped(inventedLine) !== before(inventedLine),
-  '  ...so this test distinguishes the fix from the fault');
+  '  ...so this test still distinguishes the fix from the fault');
 
 // An inferred line grades as inferred, not rounded to either end.
 const inferredLine = rec('inferred', 'attested', 'attested');
 ok(shipped(inferredLine) === LEVEL.inferred,
   `an inferred line grades inferred, not attested — ${shipped(inferredLine)}`);
 
-// Fully attested stays fully attested: the new term must not darken a street
-// that earned its confidence.
+// Fully attested stays fully attested.
 ok(shipped(rec('attested', 'attested', 'attested')) === ATTESTED,
   'a wholly attested street still draws at full confidence');
 
-// The weakest grade wins wherever it sits, which is the rule the layer states.
-ok(shipped(rec('attested', 'attested', 'reconstructed')) === INVENTED,
-  'an invented WEAR still dominates an attested line — the old behaviour is kept');
-ok(shipped(rec('reconstructed', 'reconstructed', 'reconstructed')) === INVENTED,
-  'all three invented is invented');
+// T-0713's case — the one the old max() could not express. An attested line
+// under an invented wear STANDS, and the invention is carried by the track.
+const wornAttested = rec('attested', 'inferred', 'reconstructed');
+ok(shipped(wornAttested) === ATTESTED,
+  'an attested LINE under an invented wear still stands — the ribbon is the line\'s claim');
+ok(before(wornAttested) === INVENTED,
+  '  ...and dithered away as invention before T-0713 — the fault, reproduced');
+ok(track(wornAttested) === INVENTED,
+  '  ...while the TRACK on it grades invented, so the invention is shown, not dropped');
+
+// The track grade is the weakest of the two, not the first of them.
+ok(track(rec('attested', 'reconstructed', 'attested')) === INVENTED,
+  'an invented SURFACE grades the track invented even under attested wear');
 
 // A record with no geometry grade must fall to the conservative end rather than
-// silently reading as attested.
+// silently reading as attested. This is the guard that must never be weakened.
 ok(shipped({ surface_confidence: 'attested', wear_confidence: 'attested' }) === INVENTED,
   'a record with NO geometry grade is treated as invented, not as attested');
+ok(track({ geometry_confidence: 'attested' }) === INVENTED,
+  'a record with NO surface or wear grade grades its track invented, not attested');
 
-/* ---- and the shipped town does not move -------------------------------- */
+/* ---- and what the shipped town does ------------------------------------ */
 
-// The comment in streets.js claims this change moves no pixel today. That is a
-// claim about the data, so it is measured here rather than asserted, and it
-// will start failing the day the data makes it false — which is the day the
-// fix begins to matter.
 const index = JSON.parse(readFileSync(INDEX, 'utf8'));
 const streets = index.streets ?? [];
 ok(streets.length > 0, `the shipped index carries street records — ${streets.length}`);
@@ -159,30 +201,29 @@ const missing = streets.filter((r) => !('geometry_confidence' in r));
 ok(missing.length === 0,
   `every shipped street record carries a geometry grade — ${streets.length - missing.length} of ${streets.length}`);
 
+// T-0713 is the commit that made this layer stop being degenerate, and the
+// measurement is the deliverable rather than a footnote: before the split every
+// record was pinned at `reconstructed` by its wear grade, so no street could
+// draw at any other level whatever its line said.
+const stands = streets.filter((r) => shipped(r) === ATTESTED);
 const moved = streets.filter((r) => shipped(r) !== before(r));
-ok(moved.length === 0,
-  `no shipped street changes grade under the fix — ${moved.length} moved of ${streets.length}`
-  + (moved.length ? ` (${moved.slice(0, 3).map((r) => r.id).join(', ')})` : ''));
-if (moved.length) {
-  // This one is a TRIPWIRE, not a regression. It fires the day a street's
-  // surface and wear are graded better than its line — which is the day T-0100
-  // stops being theoretical and starts changing the picture. Nothing here is
-  // broken: the claim in streets.js that this term "moves no pixel today" has
-  // simply expired, and the right repair is to update that comment in the same
-  // commit as the data, the way a banked baseline is dropped by the commit that
-  // repaired it. Do not revert the geometry term to silence this.
-  console.log('  note  this is the tripwire, not a regression — the fix has begun to matter.');
-  console.log('        Update the "degenerate in the present dataset" note in streets.js');
-  console.log('        in the same commit as the data change, then re-run.');
-  for (const r of moved) {
-    console.log(`        ${r.id}: geometry ${r.geometry_confidence}, surface ${r.surface_confidence},`
-      + ` wear ${r.wear_confidence} — ${before(r)} → ${shipped(r)}`);
-  }
+ok(stands.length >= 17,
+  `the platted streets stand at full confidence — ${stands.length} attested of ${streets.length}`);
+ok(moved.length === stands.length + streets.filter((r) => shipped(r) === LEVEL.inferred).length,
+  `every street whose line outgrades its track moved — ${moved.length} of ${streets.length}`);
+ok(streets.every((r) => before(r) === INVENTED),
+  'every shipped street still carries an invented WEAR — which is why the split was needed');
+ok(streets.filter((r) => shipped(r) === INVENTED).every((r) => r.geometry_confidence === 'reconstructed'),
+  'and the only ribbons still graded invented are the ones whose LINE is invented');
+
+const byLevel = { attested: 0, inferred: 0, reconstructed: 0 };
+for (const r of streets) {
+  byLevel[shipped(r) === ATTESTED ? 'attested' : shipped(r) === LEVEL.inferred ? 'inferred' : 'reconstructed']++;
 }
+console.log(`  note  ribbons by level — attested ${byLevel.attested}, inferred ${byLevel.inferred},`
+  + ` reconstructed ${byLevel.reconstructed}.`);
+console.log('        Hiding `inferred` drops ' + streets.filter((r) => shipped(r) === LEVEL.inferred)
+  .map((r) => r.id).join(', ') + ' and leaves the platted town standing.');
 
-const pinned = streets.filter((r) => before(r) === INVENTED).length;
-console.log(`  note  ${pinned} of ${streets.length} are already pinned at ${INVENTED} by surface or wear,`);
-console.log('        which is WHY nothing moves — a coincidence of the data, not of the layer.');
-
-console.log(failed ? `\n[31mSTREET CONFIDENCE FAIL[0m — ${failed} check(s)` : '\n[32mSTREET CONFIDENCE PASS[0m');
+console.log(failed ? `\n\x1b[31mSTREET CONFIDENCE FAIL\x1b[0m — ${failed} check(s)` : '\n\x1b[32mSTREET CONFIDENCE PASS\x1b[0m');
 process.exit(failed ? 1 : 0);
