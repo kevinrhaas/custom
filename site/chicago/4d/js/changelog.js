@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A census index that turns out to be one family', kind: 'change', ts: '',
+  { v: 599, title: 'A census index that turns out to be one family', kind: 'change', ts: '2026-09-05T20:02:02.427Z', date: 'Sep 5, 2026, 3:02 PM CT',
     items: [
       'This project has cited a free online index of the 1840 census for exactly one man since early September \u2014 Edward Dalton, a name known only from a list of letters waiting uncalled-for at the Chicago post office in July 1835 \u2014 and had never opened the rest of it. The plan was to read it as a cheap second opinion on the whole city\u2019s 1840 households. It cannot be one: the Dalton Data Bank indexes a single surname, and its entire 1840 Illinois block is twenty rows.',
       'All twenty are now read and written down, counties and all, so that the Chicago ones are a selection from a declared whole rather than a search that stopped the moment it found something. Three of the twenty stand in a Chicago ward: an Edward Dalton in the First, a Michael Dalton in the Second, and a \u201CMr. Dalton\u201D in the First with no given name at all.',
