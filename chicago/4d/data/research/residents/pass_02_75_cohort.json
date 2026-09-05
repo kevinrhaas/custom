@@ -405,7 +405,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
@@ -469,6 +470,7 @@
         "1835-07-01"
       ],
       "sources": [
+        "census_1840_chicago_familysearch_images",
         "chicago_democrat_1833_1835"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
@@ -558,7 +560,7 @@
       "person_id": "brooks_gardner",
       "name": "Gardner Brooks",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -831,7 +833,7 @@
       "person_id": "murray_alonzo",
       "name": "Alonzo Murray",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [

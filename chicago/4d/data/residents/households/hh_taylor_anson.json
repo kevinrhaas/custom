@@ -77,7 +77,15 @@
     "reviewed_on": "",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2e",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
    }
   },
   {

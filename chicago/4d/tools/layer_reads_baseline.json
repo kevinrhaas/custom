@@ -111,8 +111,26 @@
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
     },
+    "residents/household:persons[].resident_research.refusals[].reason": {
+      "records": 47
+    },
+    "residents/household:persons[].resident_research.refusals[].regraded_on": {
+      "records": 47
+    },
+    "residents/household:persons[].resident_research.refusals[].rule": {
+      "records": 47
+    },
+    "residents/household:persons[].resident_research.refusals[].withheld": {
+      "records": 47
+    },
+    "residents/household:persons[].resident_research.regraded_on": {
+      "records": 78
+    },
     "residents/household:persons[].resident_research.reviewed_on": {
       "records": 611
+    },
+    "residents/household:persons[].resident_research.rule": {
+      "records": 78
     },
     "residents/household:persons[].resident_research.source_ids": {
       "records": 370
@@ -124,7 +142,7 @@
       "records": 611
     },
     "residents/household:persons[].resident_subtype": {
-      "records": 790
+      "records": 722
     },
     "residents/household:source_pass": {
       "records": 1302,

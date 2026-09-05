@@ -204,7 +204,18 @@ def member(people: dict, person_id: str) -> dict:
 
 
 def researched_ids(people: dict) -> set:
-    return {pid for pid, (_h, p) in people.items() if p.get("resident_research")}
+    """The people a RESEARCH pass has ruled on — an adjudicated OUTCOME, not merely
+    the presence of a `resident_research` key.
+
+    T-0515's regrade writes the rule and date of a grade change into that same block
+    on people no research pass has looked at. A grade moving under the owner's ladder
+    is not a research row: it says nothing about who the person was, which is the
+    whole of what these cohorts are selected to find out. Reading the key rather than
+    the outcome would have emptied a third of the frozen frame the moment a ladder
+    rung fired, which is the opposite of what freezing it was for.
+    """
+    return {pid for pid, (_h, p) in people.items()
+            if (p.get("resident_research") or {}).get("outcome")}
 
 
 def derive(pass_no: int) -> dict:

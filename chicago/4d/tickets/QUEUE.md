@@ -69,7 +69,76 @@
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
 # --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
 # --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
-T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
+# --- THE GRADES THE OWNER QUESTIONED — 2026-09-04, opening hh_allen_edward_richards.json: "we have
+# --- people now who have been identified in multiple sources, but they are still being marked as
+# --- inferred? they should be attested if you have seen them like this in multiple sources."
+# ---
+# --- REVIEWED, AND THE ANSWER IS THREE THINGS, NOT ONE.
+# ---
+# --- T-0699. THE FIRST REVIEW OF HIS QUESTION PUSHED BACK AND WAS WRONG, and the ticket says so.
+# --- The objection was "the ladder grades by CLASS not COUNT, and a count rule would make a man
+# --- attested on two 1843 directory entries". That conflated the NUMBER OF APPEARANCES with the
+# --- CONVERGENCE OF INDEPENDENT CLASSES. Two 1843 directory entries are one class, one era, maybe
+# --- one lineage; the town's poll list and the town's newspaper are two different bodies recording
+# --- the same man in the same window. He named the pair himself: chicago_democrat_1833_1835 and
+# --- chicago_voter_lists_1833_1835_irad. 17 inferred people carry both.
+# ---
+# --- AND MEASURING IT FOUND A PLAIN DEFECT UNDERNEATH. G1a fires on
+# --- `POLL_1835 in classes and len(sources) > 1`, where `sources` counts archival source_ids —
+# --- and every poll, tax and muster list in this project carries the single IRAD id. So a man on
+# --- the 1833 tax list, the 1834 poll AND the 1835 poll has len(sources)==1, misses G1a, and is
+# --- graded G2a: "The 1835 poll list alone", which is FALSE OF HIS OWN EVIDENCE BLOCKS. Six men
+# --- read that way today (Willard Jones, Peter Pryne, Ira Kimberly, John Foot, Dexter Hapgood,
+# --- Edmund L Kimberly). That half is a bug fix under the ladder AS RATIFIED, not a policy change.
+# ---
+# --- THE GUARD THAT STAYS: G0. Later evidence never attests on its own — a letter list is still
+# --- not promoted alone, it only COUNTS TOWARD convergence, which is exactly his reading: "the
+# --- letter list places someone as likely there, AND there are voter records". ~20 people move,
+# --- not the ~1,500 a letter-list-as-G1b reading would have moved.
+# ---
+# --- AND A THIRD PIECE, on his follow-up "so what will this fix them going forward and the existing
+# --- ones?" — AND A CORRECTION TO THIS BAND'S FIRST ANSWER. It said "NOTHING applies a regrade to
+# --- a card that exists". That was too strong and is wrong: consolidate_resident_evidence.py
+# --- indeed writes no household file, but mint_civic_residents.py --build RE-WRITES every one of
+# --- the 531 civic-minted cards from the proposal, grade and ladder_rule included, and --check
+# --- gates them. T-0699 landed on that route: the new rung was spent onto 16 existing cards by
+# --- --build, and the directory spend, which is grade-gated, then carried those men's 1839/1843/
+# --- 1844 lines onto the same cards. What is NOT covered is the ~870 cards the civic mint does not
+# --- own, and the 63 standing DOWNGRADES, which must go to a conflict list for the owner and are
+# --- never auto-applied. PR #797 already builds exactly that (mint_civic_residents.py --regrade,
+# --- 73 applied / 89 refused, refusals written onto the person, plus a --regrade --check ratchet)
+# --- and is parked on `hold` only because dev outran its gate — land it rather than rebuild it.
+# ---
+# --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
+# --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
+# --- whatever the pass that wrote it meant and nothing can be argued with. An ungraded person
+# --- cannot be regraded whichever way T-0699 goes.
+# ---
+# --- T-0693 is the owner's second observation on the same card: "there is evidence in there he is
+# --- a druggist but that is not in his person record". The file quotes the trade three times and
+# --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
+# --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
+T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
+T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
+
+# --- AND THE TWO GAPS LANDING THAT RULING EXPOSED, 2026-09-04. Both are the owner's original
+# --- question — "you do a lot of work and not a lot of updates happen" — found one layer down,
+# --- and both are the same shape: a derivation that stopped being re-run, with nothing to say so.
+# --- T-0714 is the sharper one. On a clean dev the 1840 census crosswalk adjudicates 498 named
+# --- heads while 733 have been READ off the page images. The reading happened; the adjudication
+# --- never re-ran; and check.sh does not gate this crosswalk although it gates every sibling.
+# --- 235 heads of finished reading are sitting unspent, which is exactly T-0584's complaint.
+# --- T-0715 is the cheaper one and was diagnosed by hand while landing #797: neither pass that
+# --- writes data/residents/index.json refreshes a row it does not own, so a stale row survives
+# --- indefinitely and then surfaces as 19 validator errors plus six unrelated-looking failures
+# --- in other steps. One rebuild, one gate, one message naming the cause.
+T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
+T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+
+# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
+# --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
+# --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
+# --- middle initial cannot fold to a directory surname however often they are read.
 T-0669 — Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
@@ -92,7 +161,6 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
-T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
 T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
 T-0636 — Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
 
@@ -314,15 +382,9 @@ T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0701 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
-T-0699 — Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
+T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0702 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
 T-0703 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
-
