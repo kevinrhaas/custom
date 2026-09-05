@@ -163,6 +163,27 @@ That is refusal 4 doing its job, and **T-0375** is where more Dearborn frontage 
    surname with a sole trader is the same house is **T-0338's** open question over
    thirty-one such groups, and a placement pass must not answer it by seating or refusing.
    Variant spellings escape it too, which **T-0408** measures.
+
+   **And where the corpus HAS already ruled, the collapse obeys the ruling instead of
+   re-deciding it (T-0414, 2026-09-05).** `data/research/newspapers/identity.json`
+   § `refused_firm_merges` is where this project writes down that two headings are not one
+   business, and a refusal of kind `two_houses` says exactly what the surname collapse
+   would otherwise assume away. Inside a surname set carrying such a ruling the collapse
+   keys on **(surname set, occupation)** rather than on the surname set alone — because
+   the trade is the axis the ruling itself used. `identity.json` on W. Montgomery: *"a
+   different trade, a different stand and eighteen months later."* Before this, refusal 3
+   answered that identity question by refusing, and answered it *against* the corpus's own
+   written ruling: L. W. Montgomery the bootmaker took the roof and W. Montgomery the
+   auctioneer was refused for being called Montgomery.
+
+   The rule is narrow in three ways on purpose. It admits a `two_houses` refusal **only
+   when both headings' surname sets are equal**, because a refusal between "New York
+   Clothing Store" and "Peter Cohen's store" is not about anything this collapse does.
+   It reaches **five** surname groups in the register today — Curtiss, Kinzie, Montgomery,
+   Mulford and Taylor — and every other surname is still keyed on the surname alone. And
+   two headings of the **same** trade inside a ruled group still collide and one is still
+   refused: whether the three surplus Montgomery auction headings are one house is the
+   gazetteer's question, and this pass still does not answer it.
 4. **`every roof on the face is spoken for`** — the supply ran out. This is a count, not a
    failure, and it is the number this policy exists to produce.
 5. **the roof is a household's dwelling — under EITHER layer** — a refusal of a ROOF
@@ -309,6 +330,31 @@ Nothing here writes a SIGNBOARD or a frontage, and that is not an oversight:
 one of these roofs would be a change to the signage rule and needs its own argument. The
 frontages are **T-0263's** and the seeding tickets'.
 
+## Two more houses reached the policy on 2026-09-04 (T-0440)
+
+The population this policy works on is the register's `street_only` businesses, and that
+population is set by what the gazetteer holds as a house's LIVE placement. Until T-0440
+that was whatever the earliest printing the corpus carries happened to say, so a firm whose
+opening notice gave no address stood at `{"class": "none"}` for good and never reached this
+table at all. Thirteen houses were repaired; two of them name South Water Street and take a
+face here.
+
+| | before | after |
+|---|---:|---:|
+| `street_only` in the register | 58 | **60** |
+| adopted a street face | 35 | **37** |
+| refused, all four reasons | 23 | 23 |
+| `unplaceable` at the scene date | 76 | **73** |
+
+**Clark, Filer & Co.**'s cabinet warehouse and **Rockwell's cabinet furniture warehouse**
+are the two, both on South Water Street, and the face absorbed them without evicting
+anybody: the businesses naming that street went 22 to 24, the adoptions on it 15 to 17, and
+no refusal count moved. What DID move is which roof each business on that face holds,
+because the allocation is an ordering and two new entrants shift the ones below them —
+eleven roofs carry a different name and two that were anonymous now carry one. That is the allocation working as documented (limit 3: the order
+on a face is not a claim), and it is recorded here because a reader diffing the roofs will
+see eleven changes for two additions and should not have to guess why.
+
 A future pass that spends an adoption some other way reads `street_face_adoptions.json`,
 takes `structure_id` and `cites`, and carries limits 2, 3 and 4 into whatever it writes: the
 roof stays reconstructed, the along-street position is not evidence, and the order on a face
@@ -317,5 +363,6 @@ is not a claim.
 **Related:** T-0354 (this) · T-0416 (the corner-side ruling of 2026-08-30, and refusal 5's
 second layer) · T-0417 (spent into the roofs, and refusal 6) · T-0262 (the
 register) · T-0263, T-0384–T-0387 (the seeding) ·
-T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
+T-0375 (South Water's roofs) · T-0440 (the live placement that decides who reaches this
+policy) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

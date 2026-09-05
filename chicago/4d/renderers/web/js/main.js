@@ -13,6 +13,11 @@
 
 import * as THREE from 'three';
 
+/** The horizontal field of view the walk holds (Hor+ — the vertical follows the
+ *  aspect, see resize()). Named because the framing rule reads it too. */
+const H_FOV_DEG = 76;
+const DEG = Math.PI / 180;
+
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
 import { createTerrain, enuToWorld } from './terrain.js';
@@ -1444,6 +1449,33 @@ async function boot() {
   let travel = null;
   api.router = router;
 
+  /**
+   * Where the last arrival stood (T-0824). While its card is up the building is
+   * framed into the free part of the screen; when the card closes and the
+   * visitor has not moved, the look swings back to centre the building, so the
+   * crosshair is on it and the view is the plain one.
+   */
+  let lastArrival = null;
+  function reaimAfterCard() {
+    if (!lastArrival) return;
+    const st = walker.state;
+    const moved = Math.hypot(st.e - lastArrival.e, st.n - lastArrival.n) > 0.5;
+    const id = lastArrival.id;
+    lastArrival = null;
+    if (moved || st.flying) return;
+    const aim = focusPoint(id);
+    if (!aim) return;
+    const de = aim.x - st.e, dn = -aim.z - st.n;
+    walker.teleport({
+      local_e: st.e, local_n: st.n,
+      yaw_deg: ((Math.atan2(de, dn) / DEG) + 360) % 360,
+      pitch_deg: Math.atan2(aim.y - st.eyeY, Math.max(Math.hypot(de, dn), 0.1)) / DEG,
+    });
+  }
+  new MutationObserver(() => {
+    if (document.getElementById('popup')?.hasAttribute('hidden')) reaimAfterCard();
+  }).observe(document.getElementById('popup'), { attributes: true, attributeFilter: ['hidden'] });
+
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
@@ -1461,7 +1493,7 @@ async function boot() {
     // Hiding a level removes it from the view outright — see confidence.setHidden.
     onHideLevel: (level, hide) => confidence.setHidden(level, hide),
     onSetting: (key, value) => {
-      if (key === 'speed' || key === 'eyeHeight' || key === 'pace') {
+      if (key === 'speed' || key === 'wagonSpeed' || key === 'horseSpeed' || key === 'eyeHeight' || key === 'pace') {
         // The slider values and the pace compose into WALK in one place —
         // travel.applyPace() — so a wagon seat and a raised eye-height slider
         // add rather than overwrite each other. Applied to the standing eye
@@ -1641,13 +1673,15 @@ async function boot() {
   travel = createTravel({
     walker, intent, hud, settings: hud.settings, router, terrain, footprints,
     focusPoint, structurePosition,
+    // Where a ride or a flight ends: the framed stand-off, the same one Go to uses.
+    standFor: (id) => framing(id, { card: true }),
     registry: loaded.registry,
-    frame: (id) => frame(id),
+    frame: (id) => frame(id, { card: true }),
     teleport: (where) => walker.teleport(where),
     goToAnchor: (id) => api.goTo(id),
     setFly: (on) => hud.setFly(on, { announce: false }),
     // Arriving is what opens the card: the menu closes, the building's card opens.
-    onArrive: (id) => { hud.setPanel(false); pick(id); },
+    onArrive: (id) => { hud.setPanel(false); pick(id); lastArrival = { id, e: walker.state.e, n: walker.state.n }; },
   });
   api.travel = travel;
   // The stored pace and travel mode, through the one function that writes WALK
@@ -1812,10 +1846,103 @@ async function boot() {
   }
 
   /** Stand back and look at a structure — used by anchors and by the harness. */
-  function frame(id, distance = 26) {
-    const point = focusPoint(id);
-    if (!point) return false;
-    walker.lookAt(point, distance);
+  /**
+   * THE ONE FRAMING RULE (T-0824). Where you stand when you arrive at a building
+   * — by an instant Go to, at the end of a ride, or at the end of a flight — so
+   * that the whole of it is in view: from its front, at the distance that fits
+   * its width across the horizontal field of view and its height within the
+   * vertical one, aimed at its middle. Derived from the footprint and the wall
+   * height the record carries and from the camera's live field of view, never
+   * from a fixed number, so a privy and a long store are each framed to fit.
+   */
+  function framing(id, { card = popup.openId !== null } = {}) {
+    const centre = structurePosition(id);
+    const aim = focusPoint(id);
+    if (!centre || !aim) return null;
+    const fp = footprints.find((f) => f.id === id);
+    let r = 6;
+    if (fp?.pts?.length) {
+      let e0 = Infinity, n0 = Infinity, e1 = -Infinity, n1 = -Infinity;
+      for (const [e, n] of fp.pts) { e0 = Math.min(e0, e); e1 = Math.max(e1, e); n0 = Math.min(n0, n); n1 = Math.max(n1, n); }
+      r = Math.max(2, Math.hypot(e1 - e0, n1 - n0) / 2);
+    }
+    const record = loaded.registry.get(id);
+    const wallH = record?.sidecar?.attributes?.wall_height_m?.value ?? 5;
+    // A gabled roof adds roughly half a wall above the eaves.
+    const h = record?.sidecar?.drawn_by ? (aim.y - terrain.surfaceHeight(centre.e, centre.n)) / 0.55 : wallH * 1.55;
+    // The sphere that holds the whole building — centred at half its height,
+    // reaching its furthest footprint corner — has to fit inside the NARROWER of
+    // the two fields of view, with a margin of air around it. `sin`, not `tan`:
+    // the near side of the sphere is closer than its centre, and a footprint
+    // corner turned toward the eye is what a tangent rule cuts off (measured on
+    // Hogan's store: corners at ±1.11 of the frame under the first draft).
+    const R = Math.hypot(r, h / 2);
+    // THE CARD IS PART OF THE FRAME. Arriving opens the building's card — 440 px
+    // down the right of a desktop, a sheet over the lower 62 % of a phone — so
+    // "centred in view" means centred in what the card leaves free: the sphere
+    // fits inside THAT region's half-angles, and the look is turned so the
+    // building sits at the free region's centre rather than the screen's.
+    const free = freeRegion(card);
+    // In ANGLE space, not screen space: a perspective frame is linear in the
+    // tangent, so a strip at the edge of the screen is angularly narrow, and a
+    // fit done on screen fractions leaves a corner out (measured: −1.05 on the
+    // Sauganash under the first draft). Each axis: the free strip's angular
+    // bounds, its middle as the look offset, its half-width as the largest
+    // half-angle the building's sphere may subtend.
+    const axis = (tanHalf, lo, hi) => {
+      const aLo = Math.atan(lo * tanHalf);
+      const aHi = Math.atan(hi * tanHalf);
+      return { centre: (aLo + aHi) / 2, half: Math.max((aHi - aLo) / 2, 2 * DEG) };
+    };
+    const ax = axis(Math.tan(H_FOV_DEG * DEG / 2), free.x[0], free.x[1]);
+    const ay = axis(Math.tan(camera.fov * DEG / 2), free.y[0], free.y[1]);
+    const fit = (a) => (R * 1.25) / Math.sin(Math.min(a.half, 89 * DEG));
+    const distance = THREE.MathUtils.clamp(Math.max(fit(ax), fit(ay), 10), 10, 90);
+    // Turning RIGHT (a larger compass bearing) moves the building LEFT in frame;
+    // pitching DOWN (a smaller pitch) moves it UP.
+    const yawOffsetDeg = -ax.centre / DEG;
+    const pitchOffsetDeg = -ay.centre / DEG;
+    const stand = router.standOff(id, centre, r, { distance }) ?? centre;
+    const bearingDeg = ((Math.atan2(stand.e - centre.e, stand.n - centre.n) / DEG) + 360) % 360;
+    return { e: stand.e, n: stand.n, distance, bearingDeg, aim, radius: r, height: h,
+      yawOffsetDeg, pitchOffsetDeg, free };
+  }
+
+  /**
+   * The part of the screen the open card leaves free, as NDC ranges per axis. Mirrors card.css — 440 px on the right above 620 px wide, else
+   * a sheet of min(62vh, vh − 120px) from the bottom. Read live, so a resized
+   * window frames for the window it is.
+   */
+  function freeRegion(card = true) {
+    if (!card) return { x: [-1, 1], y: [-1, 1] };
+    const w = Math.max(1, window.innerWidth);
+    const hgt = Math.max(1, window.innerHeight);
+    if (w > 620) {
+      const cardFrac = Math.min(0.9, Math.min(440, w - 24) / w);
+      return { x: [-1, 1 - 2 * cardFrac], y: [-1, 1] };
+    }
+    const sheetFrac = Math.min(0.62, Math.max(0.3, (hgt - 120) / hgt));
+    return { x: [-1, 1], y: [-1 + 2 * sheetFrac, 1] };
+  }
+
+  /** Stand back and look at a structure, framed whole — used by Go to, the rides and the harness. */
+  function frame(id, { card = false } = {}) {
+    // `card`: the arrival will open the building's card, so frame into the part
+    // of the screen it leaves free. The harness's bare frame() aims straight, so
+    // the crosshair lands on the building it was pointed at.
+    const f = framing(id, { card });
+    if (!f) return false;
+    // lookAt places the eye `distance` from the AIM along `bearingDeg` — which is
+    // the stand-off point framing() already probed for free ground — then the
+    // look is turned so the building sits in the part of the screen the card
+    // leaves free.
+    walker.lookAt(f.aim, f.distance, f.bearingDeg);
+    const st = walker.state;
+    walker.teleport({
+      local_e: st.e, local_n: st.n,
+      yaw_deg: walker.bearingDeg + f.yawOffsetDeg,
+      pitch_deg: st.pitch / DEG + f.pitchOffsetDeg,
+    });
     return true;
   }
 
@@ -1898,7 +2025,7 @@ async function boot() {
     camera.aspect = w / h;
     // Hor+ : hold the horizontal field of view and let the vertical follow, so a
     // portrait phone does not end up looking down a drinking straw.
-    const hFov = 76 * Math.PI / 180;
+    const hFov = H_FOV_DEG * DEG;
     const vFov = 2 * Math.atan(Math.tan(hFov / 2) / camera.aspect);
     camera.fov = THREE.MathUtils.clamp(vFov * 180 / Math.PI, 55, 94);
     camera.updateProjectionMatrix();
@@ -2061,6 +2188,14 @@ async function boot() {
     get altitude() { return walker.state.altitude; },
     pick,
     frame,
+    framing,
+    /** A local ENU point (metres, y above datum) through the live camera, as NDC
+     *  — the harness's way of asking "is this corner of the building in frame". */
+    project(e, n, y) {
+      camera.updateMatrixWorld();
+      const v = new THREE.Vector3().copy(enuToWorld(e, n, y)).project(camera);
+      return { x: v.x, y: v.y, z: v.z };
+    },
     goToTarget,
     structurePosition,
     setTravelMode(mode) { return hud.setTravelMode(mode); },
@@ -2280,8 +2415,12 @@ async function boot() {
   api.ready = true;
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
   if (gateSub) {
-    const n = loaded.registry.size;
-    gateSub.textContent = `${n} structure${n === 1 ? '' : 's'} · ${world.describe()}`;
+    // T-0782: the count that used to open this line was `registry.size` — every
+    // RECORD in the scene, bridges and the pier and the palisade and the parade
+    // ground included — so it read as a building count and contradicted the 359
+    // on the card three lines below it. The card counts the town; this line says
+    // when the town is.
+    gateSub.textContent = world.describe();
   }
 
   if (DEBUG) {

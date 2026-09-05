@@ -100,21 +100,33 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A county history lists William G. Blair among early Winnebago County settlers. Matching initials and region make a lead, but the common name and absent Chicago-letter bridge prevent identification.",
+    "evidence_for": "A same-name lead, unasserted: cand_william_g_blair_winnebago.",
     "evidence_against": "No direct Chicago post-office link; common name.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "rockford_first_settlers_1835"
     ],
     "candidate_ids": [
-     "cand_william_g_blair_of_winnebago_county__blair_william_g"
+     "cand_william_g_blair_winnebago"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "candidates": [
+     {
+      "id": "cand_william_g_blair_winnebago",
+      "asserted": false,
+      "basis": "A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36.",
+      "conflicts": [
+       "Fergus 1843's Chicago hardware Blair carries no middle initial and a later arrival; Winnebago is another county. Neither bridges the postal entry."
+      ]
+     }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,

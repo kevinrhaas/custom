@@ -1822,6 +1822,47 @@ for (const [label, viewport, touch] of [
           mitredJoints: a.streets.stats?.mitredJoints ?? null,
           fannedJoints: a.streets.stats?.fannedJoints ?? null,
           jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
+          // T-0713. THE TWO CHANNELS, censused off the geometry the browser
+          // actually built. `_confidence` is the contract's channel and now
+          // carries the LINE's grade alone, so it decides whether a ribbon
+          // stands; `_trackConfidence` carries the weakest of surface and wear
+          // and is spent only on the worn texture. A vertex census is the only
+          // reading that can tell the two apart from out here, and it is what
+          // would have caught the split being quietly reverted — the whole
+          // platted town going back to dithering as invention while every
+          // node-side test still passed.
+          streetChannels: (() => {
+            const band = (v) => (v >= 0.75 ? 'reconstructed' : v >= 0.25 ? 'inferred' : 'attested');
+            const out = {
+              ribbon: { attested: 0, inferred: 0, reconstructed: 0 },
+              track: { attested: 0, inferred: 0, reconstructed: 0 },
+              meshes: 0, missingTrack: 0, unequal: 0,
+            };
+            a.streets.group.traverse((o) => {
+              const g = o.geometry;
+              const conf = g?.getAttribute?.('_confidence');
+              if (!conf) return;
+              out.meshes += 1;
+              const trk = g.getAttribute('_trackConfidence');
+              if (!trk) { out.missingTrack += 1; return; }
+              if (trk.count !== conf.count) out.unequal += 1;
+              for (let i = 0; i < conf.count; i += 1) out.ribbon[band(conf.getX(i))] += 1;
+              for (let i = 0; i < trk.count; i += 1) out.track[band(trk.getX(i))] += 1;
+            });
+            return out;
+          })(),
+          // ...and the records those channels were built from, so a census that
+          // disagrees with the dataset is reported as the disagreement it is
+          // rather than as a bare count nobody can check.
+          streetGrades: (() => {
+            const out = { attested: [], inferred: [], reconstructed: [], wornInvented: 0 };
+            for (const rec of a.streets.records) {
+              (out[rec.geometry_confidence] ?? out.reconstructed).push(rec.id);
+              if (rec.wear_confidence === 'reconstructed'
+                || rec.surface_confidence === 'reconstructed') out.wornInvented += 1;
+            }
+            return out;
+          })(),
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -1919,19 +1960,34 @@ for (const [label, viewport, touch] of [
     // and compares figure for figure cannot. The residents manifest is fetched here
     // rather than taken off the harness handle because `census.js` reads it directly and
     // nothing puts it on `window`.
+    //
+    // T-0782 rebuilt the card as TWO rows — buildings, then people — and demoted `people
+    // housed` from a headline figure to a placement note under the people row, because
+    // set against the town total it read as population coverage and is nothing of the
+    // kind. So the headline figures are now the two numerators, and the housed count is
+    // asserted where it moved to rather than dropped: it is the number this whole check
+    // exists to keep honest. The two strings the owner asked be struck are asserted
+    // ABSENT, because either of them coming back is a silent regression of the reading.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
       const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      const seg = (sel) => [...(host?.querySelectorAll(sel) || [])].map((el) => el.style.width);
       return {
         visible,
         figures,
         text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        aria: host ? (host.getAttribute('aria-label') || '') : '',
+        note: host ? [...host.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()) : [],
+        bars: host ? host.querySelectorAll('.gc-bar').length : 0,
+        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
+        keys: host ? [...host.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()) : [],
+        gateSub: (document.getElementById('gate-sub')?.textContent || '').trim(),
         box: host ? host.getBoundingClientRect().width : 0,
         data: window.__chicago4d.census,
       };
     });
-    // The third row's figure is not on the harness handle, so it is read off the
+    // The people row's figure is not on the harness handle, so it is read off the
     // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
     // this run is serving, which is the same file the page fetched.
     let residentCounts = null;
@@ -1940,19 +1996,44 @@ for (const [label, viewport, touch] of [
         fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
       ).counts || null;
     } catch { residentCounts = null; }
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
-      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
+    const want = [gateCensus.data?.buildings?.standing, residentCounts?.persons]
+      .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
       `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
       want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Each numerator carries a bar it is a portion of, and the people bar carries the
+    // three grades as segments of the town total — a key alone would let the bar rot.
+    const housed = Number(gateCensus.data?.people?.housed);
+    const byGrade = residentCounts?.by_grade || {};
+    const gradeWant = ['attested', 'inferred', 'reconstructed']
+      .filter((g) => Number.isFinite(Number(byGrade[g])));
+    check(`${label}: both rows carry a completeness bar, the people bar graded`,
+      gateCensus.bars === want.length && gateCensus.grades.length === gradeWant.length
+      && gateCensus.keys.length === gradeWant.length
+      && gradeWant.every((g, i) => gateCensus.keys[i]
+        === `${grouped(Number(byGrade[g]))} ${g}`),
+      `bars=${gateCensus.bars} segments=${JSON.stringify(gateCensus.grades)} keys=${JSON.stringify(gateCensus.keys)}`);
+    // The placement figure survives as a note under the people row, in the committed
+    // data's own number, and never again as a share of the town.
+    check(`${label}: people housed reads as placement, under the people row`,
+      Number.isFinite(housed) && gateCensus.note.length === 1
+      && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
+      && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
+      `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-0782's two strikes, asserted as absences. `structures` was the ready line's
+    // record count, which contradicted the buildings figure below it.
+    check(`${label}: the card drops the projected count and the structures line`,
+      !/projected/i.test(gateCensus.text) && !/projected/i.test(gateCensus.aria)
+      && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
+      `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
     // against the town's own recorded size, both quoted out of the same file.
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     check(`${label}: the gate names both denominators`,
       Number.isFinite(gateCensus.data?.buildings?.target)
       && Number.isFinite(gateCensus.data?.people?.town_total)
@@ -8177,6 +8258,40 @@ for (const [label, viewport, touch] of [
       `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
       + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
       + `${streetLayer.slivers} dropped as narrower than a metre`);
+    // T-0713. The platted streets are `attested` from the Thompson plat and
+    // every record in the file still grades its wear `reconstructed`, so under
+    // the old Math.max() composition the whole platted town drew as invention.
+    // This asserts the split reached the geometry the browser built: the ribbon
+    // channel stands at `attested` for the seventeen platted streets, and the
+    // grade that is NOT about whether the street was there rides its own
+    // channel instead of pulling the road down with it.
+    check(`${label}: the platted streets reach the picture as attested, not as invention`,
+      streetLayer.streetGrades.attested.length >= 17
+      && streetLayer.streetChannels.ribbon.attested > 0
+      && streetLayer.streetChannels.ribbon.attested
+         > streetLayer.streetChannels.ribbon.reconstructed,
+      `${streetLayer.streetGrades.attested.length} attested lines, `
+      + `${streetLayer.streetGrades.inferred.length} inferred `
+      + `(${streetLayer.streetGrades.inferred.join(', ') || 'none'}), `
+      + `${streetLayer.streetGrades.reconstructed.length} reconstructed `
+      + `(${streetLayer.streetGrades.reconstructed.join(', ') || 'none'}) — `
+      + `ribbon vertices ${JSON.stringify(streetLayer.streetChannels.ribbon)}`);
+    // The other half, and it is the half that would fail silently: the track
+    // grade must be CARRIED, on its own channel, on every street mesh and at
+    // the same vertex count as the ribbon's. A missing attribute arrives at the
+    // shader unbound, which is not reliably zero — it can be NaN, and NaN reads
+    // as `attested` after a clamp. So absence is a failure here, not a default.
+    check(`${label}: surface and wear ride their own channel and every street carries it`,
+      streetLayer.streetChannels.meshes > 0
+      && streetLayer.streetChannels.missingTrack === 0
+      && streetLayer.streetChannels.unequal === 0
+      && streetLayer.streetChannels.track.reconstructed > 0
+      && streetLayer.streetChannels.track.attested === 0,
+      `${streetLayer.streetChannels.meshes} street mesh(es), `
+      + `${streetLayer.streetChannels.missingTrack} without a track channel, `
+      + `${streetLayer.streetChannels.unequal} of unequal length — `
+      + `track vertices ${JSON.stringify(streetLayer.streetChannels.track)}, `
+      + `${streetLayer.streetGrades.wornInvented} record(s) grade a surface or wear invented`);
     // T-0110. Vertex drape above says every vertex touches the ground; this
     // says the ground stays UNDER the ribbon between them. The 0.35 bar is
     // documented at the probe: measured worst after refinement is 0.21 m
@@ -10798,6 +10913,22 @@ for (const [label, viewport, touch] of [
           chip: document.getElementById('btn-pace')?.dataset.pace };
       }
       const slider = api.hud.settings.speed;
+      // T-0823: each pace has its own slider, and the walker's WALK follows the
+      // one for the pace in force. Read the three stored values, each slider's
+      // ceiling, and what the readout SAYS as the horse's slider is dragged.
+      const sliders = { walk: api.hud.settings.speed, wagon: api.hud.settings.wagonSpeed, horse: api.hud.settings.horseSpeed };
+      const range = (id) => { const el = document.getElementById(id); return el && { min: Number(el.min), max: Number(el.max), value: Number(el.value) }; };
+      const drag = (id, v) => { const el = document.getElementById(id); el.value = String(v); el.dispatchEvent(new Event('input', { bubbles: true })); return document.getElementById(id.replace('s-', 'v-'))?.textContent.trim() ?? ''; };
+      const ranges = { walk: range('s-speed'), wagon: range('s-wagon-speed'), horse: range('s-horse-speed') };
+      api.setPace('horse');
+      const before = api.hud.settings.horseSpeed;
+      const gaits = { canter: drag('s-horse-speed', 6.5), gallop: drag('s-horse-speed', 10), top: drag('s-horse-speed', 26.82) };
+      const atTop = { speed: WALK.speed, sprint: WALK.sprintSpeed };
+      drag('s-horse-speed', before);
+      const afterDrag = { speed: WALK.speed, sprint: WALK.sprintSpeed };
+      gaits.walkWord = drag('s-speed', api.hud.settings.speed);
+      gaits.wagonWord = drag('s-wagon-speed', api.hud.settings.wagonSpeed);
+      api.setPace('walk');
       const eyeSetting = api.hud.settings.eyeHeight;
       // The gait: horse, own input forward on a street, peak over one second.
       api.setPace('horse');
@@ -10808,7 +10939,7 @@ for (const [label, viewport, touch] of [
       bobBox.click();
       const back = { setting: api.hud.settings.headBob, checked: bobBox.checked };
       api.setPace('walk');
-      return { modes, chosen, restored, paces, slider, eyeSetting, on, off, back };
+      return { modes, chosen, restored, paces, slider, sliders, ranges, gaits, atTop, afterDrag, eyeSetting, on, off, back };
     }, gaitLoop);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     const reduced = await page.evaluate((loop) => {
@@ -10826,16 +10957,32 @@ for (const [label, viewport, touch] of [
       && travelUi.chosen.on === 'horse' && travelUi.chosen.checked === 'horse'
       && travelUi.restored.stored === 'instantly' && travelUi.restored.mode === 'instantly',
       `${JSON.stringify(travelUi.chosen)} -> ${JSON.stringify(travelUi.restored)}`);
-    check(`${label}: horse and wagon set the walker's pace and seat; walk is the slider again`,
-      travelUi.paces.horse.speed === 6.5 && travelUi.paces.horse.sprint === 11
+    // T-0823 RESTATED, NOT WEAKENED. The horse's 6.5/11 and the wagon's 3.6 were
+    // constants; each pace now has its own slider, so the claim is that WALK
+    // follows THAT pace's stored value — sprint = value × factor (2.28 on foot,
+    // 1 by wagon, 1.7 in the saddle) capped at the slider's top — and the seats
+    // are unchanged. The defaults (1.45 / 3.6 / 6.5) are asserted where the store
+    // is fresh, which it is in this run.
+    const near = (a, b) => Math.abs(a - b) < 0.01;
+    const sp = travelUi.sliders;
+    check(`${label}: each pace sets the walker to its own slider, its Shift factor and its seat`,
+      near(travelUi.paces.horse.speed, sp.horse) && near(travelUi.paces.horse.sprint, Math.min(sp.horse * 1.7, 26.82))
       && Math.abs(travelUi.paces.horse.eye - (travelUi.eyeSetting + 0.75)) < 0.01
-      && travelUi.paces.wagon.speed === 3.6 && travelUi.paces.wagon.sprint === 3.6
+      && near(travelUi.paces.wagon.speed, sp.wagon) && near(travelUi.paces.wagon.sprint, sp.wagon)
       && Math.abs(travelUi.paces.wagon.eye - (travelUi.eyeSetting + 0.5)) < 0.01
-      && travelUi.paces.walk.speed === travelUi.slider
-      && Math.abs(travelUi.paces.walk.sprint - travelUi.slider * 2.28) < 0.01
+      && near(travelUi.paces.walk.speed, sp.walk) && near(travelUi.paces.walk.sprint, Math.min(sp.walk * 2.28, 8.94))
       && Math.abs(travelUi.paces.walk.eye - travelUi.eyeSetting) < 0.01
+      && sp.walk === 1.45 && sp.wagon === 3.6 && sp.horse === 6.5
       && travelUi.paces.horse.chip === 'horse' && travelUi.paces.walk.chip === 'walk',
-      JSON.stringify({ ...travelUi.paces, slider: travelUi.slider, eye: travelUi.eyeSetting }));
+      JSON.stringify({ ...travelUi.paces, sliders: sp, eye: travelUi.eyeSetting }));
+    check(`${label}: the three pace sliders top out at 20, 30 and 60 mph and name the gait as they move`,
+      travelUi.ranges.walk?.max === 8.94 && travelUi.ranges.wagon?.max === 13.41 && travelUi.ranges.horse?.max === 26.82
+      && /^canter · /.test(travelUi.gaits.canter) && /^gallop · /.test(travelUi.gaits.gallop)
+      && /^beyond any horse · /.test(travelUi.gaits.top) && /60\.0 mph|96\.5 km\/h/.test(travelUi.gaits.top)
+      && /^walk · /.test(travelUi.gaits.walkWord) && /^steady roll · /.test(travelUi.gaits.wagonWord)
+      && travelUi.atTop.speed === 26.82 && travelUi.atTop.sprint === 26.82
+      && near(travelUi.afterDrag.speed, 6.5) && near(travelUi.afterDrag.sprint, 11.05),
+      JSON.stringify({ ranges: travelUi.ranges, gaits: travelUi.gaits, atTop: travelUi.atTop, afterDrag: travelUi.afterDrag }));
     check(`${label}: the horse's gait moves the rider's eye a few centimetres, and stops when they do`,
       travelUi.on.peak >= 0.03 && travelUi.on.peak <= 0.10 && travelUi.on.after === 0
       && travelUi.on.speed > 1,
@@ -10853,8 +11000,23 @@ for (const [label, viewport, touch] of [
     // on-street share depends on it (REQUESTS-travel §4: south_water 100 %,
     // the forks 47 % — the forks sit off any street). `streets.status()` is
     // null off-street, so the read is guarded.
-    const ride = await page.evaluate(async () => {
+    // T-0824: every arrival — a ride, a flight, an instant Go to — ends at the
+    // framing distance for THAT building and with the whole of it in frame. The
+    // probe projects the footprint's four extreme ground points and the ridge
+    // through the live camera; all five must sit inside NDC ±0.95.
+    const FRAMED = `(id) => {
+      const a = window.__chicago4d; const w = a.walker;
+      const f = a.framing(id); const c = a.structurePosition(id);
+      const ground = a.terrain.surfaceHeight(c.e, c.n); const rr = f.radius;
+      const pts = [[rr, 0], [-rr, 0], [0, rr], [0, -rr]].map(([de, dn]) => [c.e + de, c.n + dn, ground]);
+      pts.push([c.e, c.n, ground + f.height]);
+      const ndc = pts.map(([e, n, y]) => { const v = a.project(e, n, y); return [+v.x.toFixed(2), +v.y.toFixed(2), v.z]; });
+      return { want: +f.distance.toFixed(1), got: +Math.hypot(c.e - w.state.e, c.n - w.state.n).toFixed(1),
+        inFrame: ndc.every(([x, y, z]) => Math.abs(x) <= 0.95 && Math.abs(y) <= 0.95 && z < 1), ndc };
+    }`;
+    const ride = await page.evaluate(async (FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const WALK = api.walkBudget;
       const out = {};
@@ -10888,7 +11050,7 @@ for (const [label, viewport, touch] of [
       }
       out.arrive = { phase: r.phase, seconds: +r.seconds.toFixed(1), budget: +budget.toFixed(0),
         samples: r.samples.length, onStreetPct: +(100 * on / Math.max(1, r.samples.length)).toFixed(0),
-        distToCentre: dist('sauganash_hotel'), card: api.popup.openId,
+        distToCentre: dist('sauganash_hotel'), card: api.popup.openId, framed: framed('sauganash_hotel'),
         bannerHidden: banner.hasAttribute('hidden'), eye: +(w.state.eyeY - w.state.groundY).toFixed(2) };
       // Own input stops a ride — the same call tick() makes, with the visitor's
       // forward set; the intent is theirs and is left as they wrote it.
@@ -10907,7 +11069,7 @@ for (const [label, viewport, touch] of [
       for (let i = 0; i < 10; i++) { api.travel.update(1 / 30, api.intent); w.update(1 / 30, api.intent); api.travel.afterWalk(api.intent, 1 / 30); }
       out.beforeStop = { phase: api.travelState.phase, bannerHidden: banner.hasAttribute('hidden') };
       return out;
-    });
+    }, FRAMED);
     check(`${label}: choosing the Sauganash on foot starts a walk and says so`,
       ride.go.row && ride.go.phase === 'travelling' && ride.go.mode === 'walk'
       && ride.go.dest_id === 'sauganash_hotel' && ride.go.dist_m > 100 && ride.go.points > 1
@@ -10917,7 +11079,8 @@ for (const [label, viewport, touch] of [
       JSON.stringify(ride.go));
     check(`${label}: the walk ends at the Sauganash's door with its card open`,
       ride.arrive.phase === 'idle' && ride.arrive.card === 'sauganash_hotel'
-      && ride.arrive.distToCentre <= 14 && ride.arrive.bannerHidden
+      && ride.arrive.framed.inFrame && Math.abs(ride.arrive.framed.got - ride.arrive.framed.want) <= 2.5
+      && ride.arrive.bannerHidden
       && Math.abs(ride.arrive.eye - 1.68) < 0.05,
       JSON.stringify(ride.arrive));
     check(`${label}: the walk from South Water keeps to the streets`,
@@ -10937,8 +11100,9 @@ for (const [label, viewport, touch] of [
       ride.beforeStop.phase === 'travelling' && !ride.beforeStop.bannerHidden
       && stopped.phase === 'idle' && stopped.bannerHidden,
       `${JSON.stringify(ride.beforeStop)} -> ${JSON.stringify(stopped)}`);
-    const flight = await page.evaluate(() => {
+    const flight = await page.evaluate((FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const dist = (id) => { const p = api.structurePosition(id); return +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(1); };
       api.popup.close();
@@ -10951,7 +11115,7 @@ for (const [label, viewport, touch] of [
       const r = api.travelSimulate(300);
       const fly = { target: far, ok, phase: r.phase, seconds: +r.seconds.toFixed(1),
         maxAltitude: +r.maxAltitude.toFixed(1), flying: w.state.flying, altitude: +w.state.altitude.toFixed(2),
-        distToCentre: dist(far.id), card: api.popup.openId };
+        distToCentre: dist(far.id), card: api.popup.openId, framed: framed(far.id) };
       // And instantly is still instant.
       api.setTravelMode('instantly');
       api.popup.close();
@@ -10960,11 +11124,12 @@ for (const [label, viewport, touch] of [
         dist: dist('sauganash_hotel'), bannerHidden: document.getElementById('travel-banner').hasAttribute('hidden') };
       api.popup.close();
       return { fly, instant };
-    });
+    }, FRAMED);
     check(`${label}: flying to a far building climbs to a cruise height, lands and opens its card`,
       flight.fly.ok && flight.fly.phase === 'idle' && flight.fly.maxAltitude >= 20
       && flight.fly.flying === false && flight.fly.altitude < 0.5
-      && flight.fly.card === flight.fly.target.id && flight.fly.distToCentre <= 40,
+      && flight.fly.card === flight.fly.target.id && flight.fly.framed.inFrame
+      && Math.abs(flight.fly.framed.got - flight.fly.framed.want) <= 2.5,
       JSON.stringify(flight.fly));
     check(`${label}: instantly is still instant`,
       flight.instant.ok && flight.instant.phase === 'idle' && flight.instant.card === 'sauganash_hotel'
@@ -11031,8 +11196,9 @@ for (const [label, viewport, touch] of [
     // Go there, on horseback: the drawer closes, the ride ends at Hogan's with its card.
     await page.evaluate(() => { window.__chicago4d.setTravelMode('horse'); window.__chicago4d.popup.close(); });
     await clickChrome('#people-card .people-go');
-    const goThere = await page.evaluate(() => {
+    const goThere = await page.evaluate((FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const st = api.travelState;
       const start = { phase: st.phase, mode: st.mode, dest_id: st.dest_id, person: st.person,
@@ -11041,17 +11207,18 @@ for (const [label, viewport, touch] of [
       const r = api.travelSimulate(((st.dist_m ?? 300) / 6.5) + 30);
       const p = api.structurePosition('hogan_store');
       const end = { phase: r.phase, seconds: +r.seconds.toFixed(1), card: api.popup.openId,
-        distToCentre: +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2) };
+        distToCentre: +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2), framed: framed('hogan_store') };
       api.setTravelMode('instantly');
       api.popup.close();
       api.people.close();
       return { start, end, cardClosed: document.getElementById('people-card').hasAttribute('hidden') };
-    });
+    }, FRAMED);
     check(`${label}: Go there rides to the person's building and opens its card`,
       goThere.start.phase === 'travelling' && goThere.start.mode === 'horse'
       && goThere.start.dest_id === 'hogan_store' && goThere.start.person === 'hogan_john_s_c'
       && goThere.start.panelHidden && goThere.start.verb === 'Riding to'
-      && goThere.end.phase === 'idle' && goThere.end.card === 'hogan_store' && goThere.end.distToCentre <= 14
+      && goThere.end.phase === 'idle' && goThere.end.card === 'hogan_store' && goThere.end.framed.inFrame
+      && Math.abs(goThere.end.framed.got - goThere.end.framed.want) <= 2.5
       && goThere.cardClosed,
       JSON.stringify(goThere));
 

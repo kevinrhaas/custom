@@ -996,7 +996,7 @@
               -121.58
             ]
           ],
-          "ground_roll_m": 0.0
+          "ground_roll_m": 0.005
         },
         {
           "y": 0.92,
@@ -1191,7 +1191,7 @@
       "run_m": 22.06,
       "footway_decks": [
         {
-          "y": 0.881,
+          "y": 0.88,
           "pts": [
             [
               222.31,
@@ -1210,7 +1210,7 @@
               -243.17
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.003
         },
         {
           "y": 0.885,
@@ -1232,7 +1232,7 @@
               -254.2
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.005
         }
       ],
       "note": "A BOARD CROSSING OVER RANDOLPH STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -1911,7 +1911,7 @@
       "run_m": 24.38,
       "footway_decks": [
         {
-          "y": 0.865,
+          "y": 0.861,
           "pts": [
             [
               195.47,
@@ -1930,10 +1930,10 @@
               -121.38
             ]
           ],
-          "ground_roll_m": 0.009
+          "ground_roll_m": 0.006
         },
         {
-          "y": 0.87,
+          "y": 0.865,
           "pts": [
             [
               207.66,
@@ -2005,7 +2005,7 @@
               -120.69
             ]
           ],
-          "ground_roll_m": 0.005
+          "ground_roll_m": 0.006
         },
         {
           "y": 0.871,
@@ -2052,7 +2052,7 @@
           "ground_roll_m": 0.011
         },
         {
-          "y": 0.894,
+          "y": 0.89,
           "pts": [
             [
               158.82,
@@ -2071,10 +2071,10 @@
               -121.08
             ]
           ],
-          "ground_roll_m": 0.014
+          "ground_roll_m": 0.01
         },
         {
-          "y": 0.905,
+          "y": 0.901,
           "pts": [
             [
               174.53,
@@ -2093,10 +2093,10 @@
               -121.21
             ]
           ],
-          "ground_roll_m": 0.012
+          "ground_roll_m": 0.011
         },
         {
-          "y": 0.908,
+          "y": 0.905,
           "pts": [
             [
               190.24,
@@ -2115,7 +2115,7 @@
               -121.34
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.005
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 10.5 m to 94.3 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
@@ -2297,7 +2297,7 @@
       "verge_to_track_m": 6.62,
       "footway_decks": [
         {
-          "y": 0.866,
+          "y": 0.865,
           "pts": [
             [
               100.27,
@@ -2316,7 +2316,7 @@
               -243.16
             ]
           ],
-          "ground_roll_m": 0.001
+          "ground_roll_m": 0.0
         },
         {
           "y": 0.874,
@@ -2363,7 +2363,7 @@
           "ground_roll_m": 0.01
         },
         {
-          "y": 0.892,
+          "y": 0.891,
           "pts": [
             [
               147.51,
@@ -2382,7 +2382,7 @@
               -243.54
             ]
           ],
-          "ground_roll_m": 0.012
+          "ground_roll_m": 0.011
         },
         {
           "y": 0.9,
@@ -5011,7 +5011,7 @@
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.883,
+          "y": 0.884,
           "pts": [
             [
               115.84,
@@ -5030,7 +5030,7 @@
               -263.52
             ]
           ],
-          "ground_roll_m": 0.013
+          "ground_roll_m": 0.014
         },
         {
           "y": 0.9,
@@ -5052,7 +5052,7 @@
               -263.65
             ]
           ],
-          "ground_roll_m": 0.017
+          "ground_roll_m": 0.016
         },
         {
           "y": 0.905,

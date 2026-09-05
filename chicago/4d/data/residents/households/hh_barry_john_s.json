@@ -51,7 +51,7 @@
    "id": "barry_john_s",
    "name": "John S. Barry",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -71,7 +71,9 @@
     "ticket": "T-0482",
     "outcome": "no_corroboration",
     "reviewed_on": "2026-09-02",
-    "asserted_identity": false
+    "asserted_identity": false,
+    "regraded_on": "2026-09-04",
+    "rule": "G1c"
    },
    "civic_evidence": [
     {
@@ -94,8 +96,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

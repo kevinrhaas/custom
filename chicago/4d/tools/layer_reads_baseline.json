@@ -73,10 +73,10 @@
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:persons[].resident_research.asserted_identity": {
-      "records": 611
+      "records": 842
     },
     "residents/household:persons[].resident_research.candidate_ids": {
-      "records": 58
+      "records": 92
     },
     "residents/household:persons[].resident_research.candidates[].asserted": {
       "records": 48
@@ -94,52 +94,52 @@
       "records": 48
     },
     "residents/household:persons[].resident_research.evidence_against": {
-      "records": 173
+      "records": 240
     },
     "residents/household:persons[].resident_research.evidence_for": {
-      "records": 311
+      "records": 477
     },
     "residents/household:persons[].resident_research.notes": {
-      "records": 311
+      "records": 485
     },
     "residents/household:persons[].resident_research.outcome": {
-      "records": 611
+      "records": 842
     },
     "residents/household:persons[].resident_research.programme": {
-      "records": 611
+      "records": 842
     },
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
     },
     "residents/household:persons[].resident_research.refusals[].reason": {
-      "records": 47
+      "records": 45
     },
     "residents/household:persons[].resident_research.refusals[].regraded_on": {
-      "records": 47
+      "records": 45
     },
     "residents/household:persons[].resident_research.refusals[].rule": {
-      "records": 47
+      "records": 45
     },
     "residents/household:persons[].resident_research.refusals[].withheld": {
-      "records": 47
+      "records": 45
     },
     "residents/household:persons[].resident_research.regraded_on": {
-      "records": 78
+      "records": 71
     },
     "residents/household:persons[].resident_research.reviewed_on": {
-      "records": 611
+      "records": 842
     },
     "residents/household:persons[].resident_research.rule": {
-      "records": 78
+      "records": 71
     },
     "residents/household:persons[].resident_research.source_ids": {
-      "records": 370
+      "records": 498
     },
     "residents/household:persons[].resident_research.summary": {
-      "records": 468
+      "records": 544
     },
     "residents/household:persons[].resident_research.ticket": {
-      "records": 611
+      "records": 842
     },
     "residents/household:source_pass": {
       "records": 1302,
@@ -148,6 +148,10 @@
     "residents/manifest:counts.households": {
       "records": 1,
       "refused_because": "The panel renders one row per household and counts the rows. A tally shown beside a list it might disagree with is worse than no tally; validate.py holds the two equal, which is where a disagreement should surface, not on the card."
+    },
+    "residents/manifest:counts.projected_residents": {
+      "records": 1,
+      "refused_because": "T-0782, the owner's ruling on the opening card: the aggregate is struck. It reached a visitor in one place \u2014 a parenthesis inside the gate card's inferred count \u2014 where it read as a fourth grade beside attested/inferred/reconstructed and was in fact a subtype OF the inferred, counted on a different axis. The claim itself still reaches the visitor, and better: `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected is beside the label. A bare total with nothing beside it was the poorer of the two copies. The field stays in the manifest because the mint tools derive it and validate.py holds it."
     },
     "residents/manifest:counts.reconstructed_removed_in_2026_09_02_synthesis": {
       "records": 1
@@ -161,7 +165,7 @@
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 1237
+      "records": 1169
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1

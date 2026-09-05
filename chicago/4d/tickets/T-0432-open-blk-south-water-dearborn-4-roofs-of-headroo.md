@@ -63,3 +63,24 @@ changed should trust the tool and correct this table):
 **Links:** T-0420 (the parent) · T-0365 (the succession this discharges) · T-0009 (the ruling) ·
 T-0028 (the programme) · T-0143 · T-0188 · T-0317 · T-0183 (the market wedge, not this ground) ·
 `tools/reconcile_665.py` · `tools/measure_block_gating.py`.
+
+**Prior attempt: PR [#599](https://github.com/kevinrhaas/custom/pull/599), closed unmerged 2026-09-05 under T-0803.**
+Opened 2026-08-30; **515 commits behind `dev`** with 73 changed files and a bake when it
+was read. **Read its PR body before starting**, and read this part first, because it is a
+finding about the whole programme rather than about this block:
+
+> the `balanced` scene-detail tier's triangle ceiling, measured on the same runner, same
+> command, both trees: `dev` **1,208,434** of 1,210,000 — PASS by 1,566. That branch
+> **1,210,608** — FAIL by 608. Four roofs cost **2,174** triangles at the worst stand and
+> `dev` had 1,566 to give.
+
+That is T-0098's sentence returning word for word: the bar had not been reached by a parcel
+that overspent it, it had been reached, full stop, and the next VISIBLE parcel of any size
+was going to fail it whatever it was. The block comment at the definition in
+`renderers/web/js/main.js` records five raises and one return and twice declined a sixth.
+The PR filed **T-0441** with the measurement and three shapes an answer could take (raise
+with stated headroom and a named retirement · trim first and name the trim · hold the
+buildings). **T-0441 never reached `dev`** — it lives only in that closed PR, so whoever
+takes this ticket next re-files it or settles it. It also filed T-0438, T-0439, T-0440.
+
+Its branch could NOT be deleted from the session that closed it — this environment's proxy refuses a ref delete over both git and the REST API (HTTP 403) — so `ticket.mjs claim` **will see it as a rival branch and refuse**. That refusal is a false stop: the PR is closed and the branch is abandoned. `claim T-0432 --force` is correct here. `ticket.mjs inflight` reads it as COLD, which is the honest signal.

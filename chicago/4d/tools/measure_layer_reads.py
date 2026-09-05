@@ -397,7 +397,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
-    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
     # T-0491. Three of these people are bridged to a named head of household in the
     # 1840 census, and PR #670 attached that bridge without giving the panel any way
     # to say so. Both copies are read now: the total in the count sentence, so a
@@ -440,6 +439,12 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "vocabulary.divisions": ("shown", "rank(vocab.divisions, a.division)"),
     "vocabulary.arrival_precision": ("shown", "vocab.arrival_precision"),
     "vocabulary.relationships": ("shown", "vocab.relationships"),
+    # T-0597. The second relationship set, and it exists because a place INSIDE a
+    # household and a tie BETWEEN two households are different questions. The
+    # degrees are the whole point of showing it: a reader who cannot see that
+    # `half_brother` and `brother` are both in the closed set cannot see that the
+    # dataset holds them apart.
+    "vocabulary.kin_relations": ("shown", "['Ties between two households', vocab.kin_relations]"),
     # Shown because the value it governs is shown: `persons[].sex` is on every
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
@@ -493,6 +498,18 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0597. The kinship rows, which are the first claim on this layer to point at
+    # ANOTHER record. Each of the four link fields is named at its own call site in
+    # `kinRows` — the person the tie belongs to here, the term, the far household and
+    # the far person — for the same reason the seven graded claims are: a figure dug
+    # out inside a generic accessor is a figure this census cannot see. The three
+    # parts the block shares with every other claim are read in `claimRow`, once.
+    "kin[].person": ("shown", "${words(k.person)} is the"),
+    "kin[].relation": ("shown", "the ${words(k.relation)} of"),
+    "kin[].value": ("shown", "${words(k.value)}, "),
+    "kin[].household": ("shown", "words(String(k.household ?? '').replace(/^hh_/, ''))"),
+    "kin[].confidence": ("shown", "swatch(block.confidence)"),
+    "kin[].note": ("shown", "escapeHtml(block.note)"),
     # T-0632. The later directories, on the record rather than only beside it. The
     # printed lines and the crosswalks' arithmetic stay in
     # `data/residents/directories.json`, which the panel opens once for the town; what
@@ -776,6 +793,16 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/manifest:counts.projected_residents": (
+        "T-0782, the owner's ruling on the opening card: the aggregate is struck. It "
+        "reached a visitor in one place — a parenthesis inside the gate card's inferred "
+        "count — where it read as a fourth grade beside attested/inferred/reconstructed "
+        "and was in fact a subtype OF the inferred, counted on a different axis. The "
+        "claim itself still reaches the visitor, and better: `people.js` filters and "
+        "chips `resident_subtype === 'projected_resident'` on the person's own row, "
+        "where the evidence that made them projected is beside the label. A bare total "
+        "with nothing beside it was the poorer of the two copies. The field stays in the "
+        "manifest because the mint tools derive it and validate.py holds it."),
     "residents/household:source_pass": (
         "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
         "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "

@@ -68,12 +68,29 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    "evidence_for": "A same-name lead, unasserted: cand_vaughan_vaughn_same_hand.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ],
+    "candidate_ids": [
+     "cand_vaughan_vaughn_same_hand"
+    ],
+    "candidates": [
+     {
+      "id": "cand_vaughan_vaughn_same_hand",
+      "asserted": false,
+      "basis": "One forename and middle initial under two spellings of one surname, in the same list family.",
+      "conflicts": [
+       "No independent record carries either spelling in Chicago, so the pair stays two rows rather than one man."
+      ]
+     }
+    ]
    }
   }
  ],
