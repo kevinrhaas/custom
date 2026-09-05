@@ -15,6 +15,8 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  pace sliders + framed arrival — the owner, in session: "issue this as a ticket … and then
+#               work it directly"; two owner tickets, claimed and closed together in one PR (#907).
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -412,8 +414,6 @@ T-0769 — A card body can OPEN with the TAIL of the card in the column to its l
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
 T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
-T-0820 — A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
-T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
@@ -424,4 +424,9 @@ T-0809 — The janitor gates the branch un-merged and drops a conflict in silenc
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
+T-0820 — A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
+T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
