@@ -323,3 +323,4 @@ T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the ki
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire
+T-0738 — check.sh is RED on dev: nine steps fail before any branch is cut — the residents mints, six research cohorts and the people sidecar all stopped re-deriving
