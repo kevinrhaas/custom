@@ -51,7 +51,7 @@
    "id": "neff_r_a",
    "name": "R. A. Neff",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-10-22"
@@ -74,7 +74,9 @@
     "evidence_for": "no independent bridge",
     "evidence_against": "no discriminator",
     "summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-    "notes": "negative≠absence; no edit"
+    "notes": "negative≠absence; no edit",
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
    },
    "press_evidence": [
     {
@@ -95,8 +97,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

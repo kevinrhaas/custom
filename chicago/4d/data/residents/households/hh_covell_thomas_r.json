@@ -99,9 +99,10 @@
     ],
     "candidate_ids": [
      "cand_thomas_r_covell_of_salt_creek__covell_thomas_r"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,
