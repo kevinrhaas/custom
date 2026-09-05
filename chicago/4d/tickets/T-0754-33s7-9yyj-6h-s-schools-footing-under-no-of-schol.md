@@ -1,5 +1,5 @@
 ---
-id: T-0742
+id: T-0754
 title: 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
 state: open
 epic: META

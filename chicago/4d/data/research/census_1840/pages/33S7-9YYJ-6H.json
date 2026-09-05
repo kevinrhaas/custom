@@ -1679,7 +1679,7 @@
     3602
    ]
   },
-  "seventh_schools_column_not_bounded": "No. of Scholars at public charge is bounded on the left at x3602 and has no right-hand rule at any threshold down to 0.30: the leaf curls into the binding at about x3640 and the gutter takes both the rule and the cell. It is NOT swept and NOT read, and it is not recorded as blank. That is T-0743.",
+  "seventh_schools_column_not_bounded": "No. of Scholars at public charge is bounded on the left at x3602 and has no right-hand rule at any threshold down to 0.30: the leaf curls into the binding at about x3640 and the gutter takes both the rule and the cell. It is NOT swept and NOT read, and it is not recorded as blank. That is T-0755.",
   "the_sheet_rises_to_the_right": {
    "measured": "the y of the darkest row of the upper body horizontal rule, in 80 px windows",
    "samples": {
@@ -1758,7 +1758,7 @@
    "primary_and_common_schools": 1,
    "primary_and_common_schools_note": "x3493-3523 y2972-3008, 30x36 — a single bold slanted slash of exactly the body figure's form and 20 per cent larger. Read 1. THE COLUMN CLOSES: one entry of 1 in the body, 1 at the foot. It is the first column on this leaf outside the industry run to close on its own footing.",
    "no_of_scholars_primary": null,
-   "no_of_scholars_primary_note": "WRITTEN AND NOT READ. Three components at x3550-3588 y2967-3009 — a long diagonal, a second below and parallel to it, and a shorter hooked stroke to their right — spanning 38 px against the body 40's 48. It is a two-glyph figure by extent and it is where a 40 would stand, but it does NOT read: the bowl test returns 0 px enclosed against the body 40's 25, so the second glyph does not close, and the first does not repeat the body 4's near-horizontal crossbar. The ink is about half the body figure's depth (mask 582 px against 979) — a drier pen at the foot of the leaf, where the paper is also curling into the gutter. It is NOT assumed to be 40 to make the column close, and the column therefore does not close. That is T-0742.",
+   "no_of_scholars_primary_note": "WRITTEN AND NOT READ. Three components at x3550-3588 y2967-3009 — a long diagonal, a second below and parallel to it, and a shorter hooked stroke to their right — spanning 38 px against the body 40's 48. It is a two-glyph figure by extent and it is where a 40 would stand, but it does NOT read: the bowl test returns 0 px enclosed against the body 40's 25, so the second glyph does not close, and the first does not repeat the body 4's near-horizontal crossbar. The ink is about half the body figure's depth (mask 582 px against 979) — a drier pen at the foot of the leaf, where the paper is also curling into the gutter. It is NOT assumed to be 40 to make the column close, and the column therefore does not close. That is T-0754.",
    "the_other_five_schools_columns": "no footing ink, consistent with their being empty in the body.",
    "slaves_pensioners_ddbi": "no footing ink either — measured this pass, and it extends footer_blank_columns_note, which had not covered the slaves block."
   },

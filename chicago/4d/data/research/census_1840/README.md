@@ -864,6 +864,61 @@ does not have to open them again to find the names. One of the nine is unlike an
 `33SQ-GYYJ-PW` is the densest leaf in the deposit and writes STREET NAMES down its left margin
 beside the households. It is the leaf T-0496 should open first.
 
+## Images 51-74 inventoried, and the sheet that names the wards (T-0741, 2026-09-05)
+
+`coverage.json` carried two image groups while its own `schema_note` promised three, so the
+last **24 images of the deposit — 51 to 74 in the sorted filename order — were the only ones
+nothing described**. A hole there could not fail. They are now declared, one entry each: what
+the sheet is, which side it is, the printed page number where it carries one, and how many
+ruled lines carry an entry. Nothing else was read from them — no name, no cell, no serial, no
+resident. That is T-0746's, and this inventory is what lets it be parcelled by printed page.
+
+**Nine left sheets, fifteen continuations, one of them blank.** The eight printed page numbers
+this group carries are **212, 213, 214, 220, 223, 233, 235 and 240** — a set that does not run
+consecutively, so the deposit's filename order is not the printed order and an opening is whole
+inside one group only by accident. `33SQ-GYYJ-BH` is printed, ruled and wholly unfilled, which
+is declared rather than omitted for the same reason printed 238 is. Two of PR #670's seven
+calibration pages fall here exactly as the corrected deposit note predicted: **233** on
+`33SQ-GYYJ-RJ` and **235** on `33SQ-GYYJ-ZQ`.
+
+**Where the printed page number lives.** On a left sheet it is printed at the TOP RIGHT, past
+the marshal's signature. A continuation sheet carries none of its own; what shows through at
+its top left is the number printed on the other side of the leaf, read backwards. That
+show-through is legible on some of these sheets and is deliberately NOT recorded as a reading —
+it is not this sheet's number, and pairing is a fingerprint job, not a bleed-through job.
+
+**The find is `33SQ-GYYJ-PW`.** It is a left-sheet form used as a recapitulation, and it is the
+third non-household sheet in this deposit. Instead of names its first column runs **1 to 30**
+under the heading *Page*; each numbered page carries its own totals across the free-white age
+bands; and a brace in the left margin gathers the thirty pages into **First, Second, Third,
+Fourth, Fifth and Sixth Ward**, each closed by a subtotal rule, with a grand total at the foot.
+The margin heading reads *"Recapitulation of [?] (Chicago City) preceding pages"*, one word
+struck through before the parenthesis.
+
+That shape is the shape of printed **237** — the recapitulation this README already describes,
+whose thirty ruled lines carry division totals gathered into six blocks. 237 gives the division
+totals and no more; `33SQ-GYYJ-PW` gives the same thirty rows broken out by age band and **names
+the six groups as the city's wards**. So it is a second, independent statement of the same
+recapitulation, and it is worth three things this pass does not attempt: it can be added against
+237's blocks, it may bear on the residual of **4** that 237 leaves open against the 4,470 at its
+foot, and it attributes every one of the thirty enumerating pages to a ward. Thirty pages at the
+~31 ruled lines these sheets carry is about 930 households against the **964** the IPUMS extract
+holds, which makes it a completeness test for the whole reading programme. None of that is done
+here. This pass records that the sheet exists and what it is.
+
+**One sheet is agricultural throughout.** `33SQ-GYYN-38YY` carries a figure in the AGRICULTURE
+column on every one of its 31 lines, footing 53. Chicago's own sheets foot agriculture at or
+near zero and carry their families under commerce and under manufactures and trades, so this is
+evidence about which enumeration district the sheet belongs to. The question is left open rather
+than answered.
+
+**What the line counts are worth.** They are read off a rendering of each image at 820 px across
+the left half of the sheet — the NAMES column on a left sheet, the TOTAL column on a continuation
+— and are stated to the nearest line, exactly as groups 1 and 2 state theirs. Both of those
+groups found the estimate reads LONG by one to four lines and never short, so a transcribing pass
+should expect to remove lines rather than find them. Two counts here have an independent check:
+`33SQ-GYYJ-NV`'s seventeen TOTAL figures sum to **exactly** its printed footing of 70, and
+`33SQ-GYYJ-9ZK`'s twenty-three sum to 118 against a footing of 119.
 
 ## The thirty columns a continuation sheet's reader never names, swept (T-0629, 2026-09-05)
 
@@ -921,10 +976,10 @@ Under No. of Scholars the footing is **written and does not read**. Three compon
 38 px where the body's 40 spans 48; the bowl test returns 0 against the body's 25, the first glyph
 carries no crossbar, and the ink is half the body figure's depth — a drier pen at the foot of a
 leaf already curling into the binding. It is where a 40 would stand and it is not recorded as one,
-because assuming it is exactly how a column is made to close. **T-0742** carries it.
+because assuming it is exactly how a column is made to close. **T-0754** carries it.
 
 The seventh schools column, *No. of Scholars at public charge*, has no right-hand rule at any
 threshold down to 0.30: the gutter takes it at about x3640. It is recorded **unread, not blank** —
-a blank here would mint a nought nobody read. **T-0743** carries it.
+a blank here would mint a nought nobody read. **T-0755** carries it.
 
 None of this closes the sheet. The TOTAL column still stands 7 short of its 144 footing.
