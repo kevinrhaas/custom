@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 1:05 PM",
+  "generated_ct": "Sep 5, 2026, 1:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11716,7 +11716,7 @@
     {
       "id": "T-0693",
       "title": "Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -11726,9 +11726,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 1:25:32 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33983763641",
       "queue_rank": 0
     },
     {
