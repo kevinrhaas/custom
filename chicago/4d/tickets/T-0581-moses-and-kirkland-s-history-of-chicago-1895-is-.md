@@ -1,7 +1,7 @@
 ---
 id: T-0581
 title: Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 841
 claimed_by: run 9/4/2026, 10:28:26 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T18:52:42.012Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941774635
 ---
 
