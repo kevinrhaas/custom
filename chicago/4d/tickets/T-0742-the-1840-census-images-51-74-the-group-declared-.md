@@ -1,7 +1,7 @@
 ---
 id: T-0742
 title: The 1840 census images 51-74: the group declared image by image, and printed 233 and 235 - PR #670's last two calibration pages - read to the name
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0496
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 860
 claimed_by: run 9/5/2026, 1:50:12 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T07:24:42.040Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950196510
 ---
 

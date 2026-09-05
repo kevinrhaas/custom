@@ -99,7 +99,6 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
-T-0742 — The 1840 census images 51-74: the group declared image by image, and printed 233 and 235 - PR #670's last two calibration pages - read to the name
 T-0743 — The 1840 census recapitulation 33SQ-GYYJ-PW read in full: the six wards, its 30 numbered page rows and its grand total, tested against printed 237
 T-0744 — The 1840 census left sheets printed 212 and 213 (33SQ-GYYJ-RY and -RK) read to the name and the cell
 T-0745 — The 1840 census left sheets printed 214 and 220 (33SQ-GYYJ-BP and -P5) read to the name and the cell
