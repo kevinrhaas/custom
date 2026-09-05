@@ -139,7 +139,6 @@ T-0693 — Edward Richards Allen's card says occupation none_recorded while the 
 # --- counted, and the one figure that moves the rest is that the 1835 town census gives
 # --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
 # --- dwelling held more than one household, so one family per roof undercounts.
-T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
@@ -414,3 +413,4 @@ T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing c
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
 T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
+

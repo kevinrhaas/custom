@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:49 AM",
+  "generated_ct": "Sep 5, 2026, 11:53 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8201,7 +8201,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 5
     },
     {
       "id": "T-0498",
@@ -8419,7 +8419,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": 1
     },
     {
       "id": "T-0509",
@@ -8437,7 +8437,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 2
     },
     {
       "id": "T-0510",
@@ -8931,7 +8931,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 6
     },
     {
       "id": "T-0537",
@@ -9361,7 +9361,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": 4
     },
     {
       "id": "T-0562",
@@ -9727,7 +9727,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 3
     },
     {
       "id": "T-0582",
@@ -10008,7 +10008,7 @@
     {
       "id": "T-0597",
       "title": "James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10016,14 +10016,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "899",
+      "claimed_by": "run 9/5/2026, 10:14:50 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 1
+      "closed_at": "2026-09-05T16:53:46.252Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33973909129",
+      "queue_rank": null
     },
     {
       "id": "T-0598",
@@ -10848,7 +10848,7 @@
     {
       "id": "T-0647",
       "title": "33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4",
-      "state": "done",
+      "state": "open",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10856,14 +10856,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": "2026-09-05",
-      "pr": "868",
-      "claimed_by": "run 9/5/2026, 4:23:17 AM CT",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": "2026-09-05T10:20:36.055Z",
-      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33957730780",
-      "queue_rank": null
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 7
     },
     {
       "id": "T-0648",
@@ -13662,6 +13662,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 124
+    },
+    {
+      "id": "T-0805",
+      "title": "The residents schema has no field for a kinship BETWEEN two households, so every cross-household relationship the sources print lands as prose",
+      "state": "withdrawn",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Should this reconstruction model kinship across households at all, and if so in what shape — a kin[] block on the person (PR #839 is a worked, validated demonstration), a separate edge file, or nothing and the prose stands by design? Nothing gets invented before the answer.",
+      "needs_bake": false,
+      "closed_at": "2026-09-05T16:23:17.424Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0810",
