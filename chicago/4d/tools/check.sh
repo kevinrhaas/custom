@@ -1614,6 +1614,23 @@ step "…and the land tract sales are on the 31 cards they name" \
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_land_sales.py --self-test
 
+# T-0681, consolidation pass 4. T-0666 read the Fort Dearborn Addition lot sale of 10-24
+# June 1839 off printed pages 47-50 and its crosswalk matched 11 of the 100 bidders to
+# people this town holds a card for; not one of those cards said so. The second hop could
+# only see three of the eleven, because it reads a card's citations at the HOUSEHOLD level
+# and eight of these households already cited the volume on the strength of pass 2's later
+# lists — a clean bill of health that was an artefact of the instrument's altitude. So this
+# pass writes all eleven and is gated in the same two directions as its three predecessors:
+# a ruling that stops reaching its card, and a card that carries the paragraph for a ruling
+# the crosswalk never made. The paragraph says BID and never residence, and it says out
+# loud that the block and lot place nobody in the town of 1835 — that ground was the
+# garrison's reservation in July 1835 and was not platted into lots at all.
+step "…and the Fort Dearborn lot sale is on the 11 cards it names" \
+  python3 tools/spend_fergus_1839_lots.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_lots.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
