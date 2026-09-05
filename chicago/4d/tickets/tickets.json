@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 1:52 PM",
+  "generated_ct": "Sep 5, 2026, 1:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13751,7 +13751,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 180
+      "queue_rank": 178
     },
     {
       "id": "T-0807",
@@ -13771,7 +13771,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 181
+      "queue_rank": 179
     },
     {
       "id": "T-0808",
@@ -13791,7 +13791,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 182
+      "queue_rank": 180
     },
     {
       "id": "T-0809",
@@ -13811,7 +13811,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 183
+      "queue_rank": 181
     },
     {
       "id": "T-0810",
@@ -13891,7 +13891,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 184
+      "queue_rank": 182
     },
     {
       "id": "T-0814",
@@ -13991,7 +13991,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 185
+      "queue_rank": 183
     },
     {
       "id": "T-0819",
@@ -14011,7 +14011,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 179
+      "queue_rank": 186
     },
     {
       "id": "T-0820",
@@ -14031,7 +14031,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 178
+      "queue_rank": 185
     },
     {
       "id": "T-0822",
@@ -14051,7 +14051,47 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 186
+      "queue_rank": 184
+    },
+    {
+      "id": "T-0823",
+      "title": "Walk, wagon and horse each get a speed slider with a named gait, up to 20, 30 and 60 mph",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "907",
+      "claimed_by": "run 9/5/2026, 12:57:32 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T18:22:54.548Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0824",
+      "title": "Arriving anywhere frames the whole building from its front and opens its card",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "907",
+      "claimed_by": "run 9/5/2026, 12:57:33 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T18:22:54.696Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0825",
@@ -14071,7 +14111,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 188
+      "queue_rank": 187
     },
     {
       "id": "T-0826",
@@ -14091,7 +14131,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 187
+      "queue_rank": 188
     }
   ]
 }
