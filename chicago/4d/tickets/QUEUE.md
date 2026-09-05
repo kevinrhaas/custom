@@ -108,6 +108,62 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 
+
+# --- ==========================================================================
+# --- THE WRIGHT 1834 SHEET, WHOLE — OWNER, 2026-09-05. Placed BELOW the research groups
+# --- and above everything else, on his instruction: "move these into the queue below the
+# --- research items but near the top because its foundational."
+# --- ==========================================================================
+# --- The owner added a second copy of Wright's 1834 manuscript survey — the National Archives
+# --- original via Historic Urban Plans, 5050 x 6628 px at 600 dpi — at
+# --- chicago/pre_fire_v1/maps/images/1834-wright-map.jpg. Verbatim: "several items from this
+# --- map should be incorporated including the streets, there are streets documented here that
+# --- are missing, including the blocks, where the public square is, where the various sloughs
+# --- are, things like 'the kinzie block' ... look at all of the streets and block numbers";
+# --- "the lakeshore edge and that whole area, you currently dont have that whole edge where the
+# --- river comes out and ends correct"; "the whole path of the river going south"; "note the
+# --- sections as labeled in the legend"; on the School Section, "no alleys and no street names
+# --- but still a grid that should have some wilderness trees" and "a reserved school section on
+# --- the south"; on the north-west, "kain, owen, hubbard, right or hight, sailors st, trade st";
+# --- and "that michigan street area north of the river, that has some alleys and small parcels,
+# --- so that must be special."
+# ---
+# --- WHAT THE REVIEW FOUND, measured against dev at e28de4c1. The town already traces this
+# --- drawing from the BPL scan: five GCPs at +/-20 m, the forks, the harbour reach, three
+# --- sloughs. What it has NOT read is nearly everything the sheet LETTERS. Streets: 22 ids,
+# --- none of Kinzie's Addition's eleven, none of Wabansia's eight, none of the School Section's
+# --- four named or eight unnamed tiers. Blocks: 6 numbered of the Original Town's 58, and 0 of
+# --- Kinzie's 54, Wabansia's 79, the School Section's 142. Tracts: the legend's nine coloured
+# --- surveys, dated and owned, have no layer at all. Water: the shoreline trace's own
+# --- provenance says its east edge is "the traced window, not a shore", the old channel stops
+# --- at N -580 instead of closing, the piers are not modelled and the bar's height is "chosen,
+# --- not found" — the owner's reading of the mouth is correct. AND THE YIELD IS ALREADY
+# --- COUNTED: 125 rows of data/research/land_sales/ name a School Section block and lot and are
+# --- marked "read, and not put on the ground" because no block exists south of Madison; the
+# --- G. Spring notice ("lot 7, block 16, on Lake street") has waited since T-0324 for a number.
+# ---
+# --- ORDER IS DEPENDENCY. T-0787 registers the new scan so anything can cite it. T-0788 reads
+# --- the Original Town's numerals — the cheapest, and it lands the first address. T-0792 is the
+# --- tract layer every other tract ticket closes on. T-0793 and T-0794 are the water the
+# --- tracts and blocks close against (both needs_bake). Then the three tracts by yield —
+# --- School Section first (125 rows waiting), Kinzie's Addition, Wabansia — the unidentified
+# --- Michigan St tract, and the slough audit last because it is a check on the two water
+# --- tickets rather than a thing of its own. T-0219/T-0464/T-0465 (the ground south) are the
+# --- consumers of the southern half of this and stay where they are.
+T-0787 — The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check
+T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
+T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
+T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
+T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
+T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
+T-0797 — The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
+T-0798 — Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
+T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
+T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
+T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
+T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
+
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton
 # --- exist nowhere; west-side spacing is 112.1 m against a South Division 119.2-123.4 m. Whether
