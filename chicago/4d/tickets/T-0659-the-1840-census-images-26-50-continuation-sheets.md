@@ -1,7 +1,7 @@
 ---
 id: T-0659
 title: The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0528
 opened: 2026-09-04
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: run 9/5/2026, 1:40:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T07:00:50.636Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950213967
 ---
 

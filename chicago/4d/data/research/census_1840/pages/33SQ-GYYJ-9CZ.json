@@ -9,7 +9,7 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "T-0659. The whole leaf read: the line index measured off the TOTAL column's own ink, all 30 TOTAL figures read at 3.2x, the seven industry columns read entry by entry, and the slaves, pensioners, deaf/dumb/blind/insane and schools blocks each examined and recorded as carrying no entry on any line. Every one of the five printed footings this leaf carries closes exactly on the lines above it.",
+ "read_pass": "T-0742 (piece 1 of T-0659). The whole leaf read: the line index measured off the TOTAL column's own ink, all 30 TOTAL figures read at 3.2x, the seven industry columns read entry by entry, and the slaves, pensioners, deaf/dumb/blind/insane and schools blocks each examined and recorded as carrying no entry on any line. Every one of the five printed footings this leaf carries closes exactly on the lines above it.",
  "lines_ruled_with_an_entry": 30,
  "lines_note": "30, COMMITTED THIS PASS. tools/census_total_column.py --x0 0.3060 --x1 0.3380 --y0 0.1723 --y1 0.9318 measures 31 glyph groups at dy 55 over the body band; two of those pairs are the two digits of one number ('11' at y2596 and the '2' at y2978, each a pair whose y centres stand under 5 px apart) and one group holds TWO lines (y2121-2240, the 9 and the 8 of lines 17 and 18, which the grouping rule joins because the hand did not step back to the left of the cell between them). 31 - 2 + 1 = 30. coverage.json carried 24 from an inventory pass and pairing_key_26_50.json carried 30 off a magnified strip; this reading confirms the 30 and is the first pass to name each line's figure.",
  "no_horizontal_rules": "MEASURED ON THIS IMAGE: a row-darkness profile taken across the empty slaves block (x 0.07-0.28) finds two strong rules on the leaf and nothing between them - y594 under the printed heading at 86 grey levels of excess, and y3213 above the enumerator's footer at 59. The body band is y594-3213, 2619 px, and it is unruled. Every row assignment here comes from the enumerator's own ink.",
@@ -1870,5 +1870,5 @@
    "reading": "scan_verified"
   }
  ],
- "ticket": "T-0659 (piece 4 of 4 of T-0528; the ask is T-0495's and before it T-0494's)"
+ "ticket": "T-0742 (piece 1 of T-0659, itself piece 4 of T-0528; the ask is T-0495's and before it T-0494's)"
 }
