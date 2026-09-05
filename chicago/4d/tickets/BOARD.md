@@ -250,8 +250,9 @@
 - **T-0657** The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line · **OWNER** — T-0742, T-0743, T-0744
 - **T-0659** The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line · **OWNER** — T-0747, T-0748
 
-## Finished, newest first — 100 of 450; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 451; the older ones are in the ticket files (100)
 
+- **T-0687** hydrology.geojson's two confidence strings no longer match the generator that says it is generated · Sep 5, 2026, 7:46 AM · [PR #874](https://github.com/kevinrhaas/custom/pull/874)
 - **T-0769** Volume 4 read by OCR, pages 613-918: the shards · Sep 5, 2026, 7:31 AM · [PR #881](https://github.com/kevinrhaas/custom/pull/881)
 - **T-0767** dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives · Sep 5, 2026, 7:27 AM · [PR #878](https://github.com/kevinrhaas/custom/pull/878)
 - **T-0740** The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled · Sep 5, 2026, 7:27 AM · [PR #878](https://github.com/kevinrhaas/custom/pull/878)
@@ -351,5 +352,4 @@
 - **T-0546** The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211 · **OWNER** · Sep 3, 2026, 11:16 PM · [PR #758](https://github.com/kevinrhaas/custom/pull/758)
 - **T-0553** The 1840 census images 26-50: names and cells of the left sheets printed 218 and 224 · **OWNER** · Sep 3, 2026, 11:08 PM · [PR #757](https://github.com/kevinrhaas/custom/pull/757)
 - **T-0643** The 1840 census image 33S7-9YYJ-8D read line by line and closed against its own printed column totals · **OWNER** · Sep 3, 2026, 10:58 PM · [PR #756](https://github.com/kevinrhaas/custom/pull/756)
-- **T-0630** The 1840 census image 33S7-9YYJ-6Q: the seven industry columns closed against their printed footings, and the sheet's line count settled · **OWNER** · Sep 3, 2026, 10:51 PM · [PR #755](https://github.com/kevinrhaas/custom/pull/755)
 
