@@ -15,6 +15,11 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  "Rank T-0727" — the owner, in session, re-issuing the site-budget ruling's own
+#               instruction after #836 landed on its own and nothing placed the line. T-0727 sits
+#               directly under the drain band. THE DRAIN BAND ITSELF WAS RESTORED in the same
+#               pass: merge-queue.mjs had stripped it for the third time and left its six tickets
+#               at line 416. Nothing of dev's ranking was moved.
 #   2026-09-05  pace sliders + framed arrival — the owner, in session: "issue this as a ticket … and then
 #               work it directly"; two owner tickets, claimed and closed together in one PR (#907).
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
@@ -33,6 +38,64 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- ==========================================================================
+# --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05
+# --- ==========================================================================
+# --- Verbatim: "we have a whole lot of PRs that get left open on dev, and while we are
+# --- working them there are so many, can you add a ticket or tickets to queue in the
+# --- correct order to work and close and merge correctly open PRs?"
+# ---
+# --- THIS BAND HAS NOW BEEN STRIPPED FROM THE QUEUE THREE TIMES, and that is not a
+# --- clerical note — it is the clearest evidence T-0813 has. tools/merge-queue.mjs
+# --- resolves on "the side that RE-ORDERED relative to the merge base wins", and a branch
+# --- that adds a band at the TOP re-orders by construction, so every lap it loses to dev
+# --- and its tickets sink to the bottom. Twice during the session that wrote it; once
+# --- more after it had merged, which is how the six lines below came to be sitting at
+# --- line 416 of a file the owner had put them at the top of. A driver that silently
+# --- discards the owner's ranking is worse than one that refuses.
+# ---
+# --- MEASURED 16:00Z on dev at 8cd39ed3: 21 PRs open, 21 of 21 CONFLICTING, and the
+# --- conflict the same six GENERATED files every time — site walk/index.html, both
+# --- tickets.json, build.json, tickets/BOARD.md (21 of 21) and dev-smoke-state.json
+# --- (15 of 21). changelog.js, which HAS a driver, conflicted on 0 of 21.
+# ---
+# --- WHAT ACTUALLY DRAINED IT, because the first diagnosis was half wrong. T-0815 closed
+# --- five PRs dev had outrun. Then THE LANE DRAINED ITSELF — #892, #836, #839, #876,
+# --- #899, #868, #898, #801, #901, #834 and more — the moment #836 took the published
+# --- tree off the 32 MB wall and dev's gate went green. The binding constraint was never
+# --- "nobody is merging": it was two stop-the-world faults plus a janitor that can see
+# --- neither. 21 open at 16:00Z, 6 by 19:15Z.
+# ---
+# --- WHAT A LAP COSTS TODAY, from T-0818's four of them: the same five build-product
+# --- conflicts every time and NO content disagreement at all · four changelog rebuilds,
+# --- because the driver renumbers dev's published entries when a feature branch is merged
+# --- INTO a dev-based branch · nine id restamps of ONE ticket (T-0783, T-0805, T-0820,
+# --- T-0823, T-0825, T-0827) · and a required `gate` that fires twice per push, both runs
+# --- ~6-7 minutes, inside which the lane lands another PR. Repository auto-merge is off,
+# --- so none of that wait can leave the critical path.
+# ---
+# --- OWNER RULINGS TAKEN IN THE SAME SESSION (all three written up in T-0808):
+# ---   the stale four: "close them, re-queue the tickets" — done, T-0815, PR #900
+# ---   the lane rate: custom 5 -> 2 slices, merged as polecat-platform#157
+# ---   the site budget: "keep 32, land #836, RANK T-0727 NEXT" — #836 landed on its own,
+# ---     so nothing placed that line; the owner said "Rank T-0727" again on 2026-09-05
+# ---     and it is placed below, directly under this band, which is what next means
+# ---   kinship: YES, the household-level kin[] block #839 built (landed)
+# ---   the forks: WRIGHT 1834 STAYS the planform of record, nothing moves (landed, #905)
+
+T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
+T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
+T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
+T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
+T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
+
+# --- T-0727 — RANKED HERE ON THE OWNER'S INSTRUCTION, 2026-09-05. It is the number worth
+# --- defending: 30.4 MB of repository is not what hurts a visitor, the boot payload is,
+# --- and GitHub's documented Pages limit is 1 GB while 32 is this project's own figure.
+# --- The 32 MB budget stays (it is what found #836's 1.31 MB duplicate changelog); this
+# --- is the measurement that should replace it as the thing the gate defends.
+T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
@@ -392,7 +455,6 @@ T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago b
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
 T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
-T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
@@ -413,12 +475,6 @@ T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second ti
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
-T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
-T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
-T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
-T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
 
@@ -434,4 +490,3 @@ T-0829 — A repeated string in a provenance or coverage list is the same merge 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-

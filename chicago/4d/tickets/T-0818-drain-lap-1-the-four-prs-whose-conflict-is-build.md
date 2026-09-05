@@ -1,7 +1,7 @@
 ---
 id: T-0818
 title: Drain lap 1: the four PRs whose conflict is build products and nothing else
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 905
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:35:25.594Z
 claimed_run: null
 ---
 
