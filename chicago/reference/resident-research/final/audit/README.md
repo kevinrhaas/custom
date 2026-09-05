@@ -38,8 +38,8 @@ Each line is *how many of the 1404 people carry at least one record of that kind
 | audit result | people | % |
 | --- | ---: | ---: |
 | `corroborated_across_categories` | 428 | 30.5% |
-| `two_or_more_sources_one_category` | 19 | 1.4% |
-| `one_source` | 392 | 27.9% |
+| `two_or_more_sources_one_category` | 21 | 1.5% |
+| `one_source` | 390 | 27.8% |
 | `the_letter_lists_alone` | 562 | 40.0% |
 | `no_source` | 3 | 0.2% |
 
@@ -54,10 +54,10 @@ record agree; two newspaper notices of the same name are
 | newspaper | 1160 |
 | civic | 288 |
 | census | 30 |
-| church | 47 |
+| church | 46 |
 | book | 192 |
-| directory | 208 |
-| secondary | 69 |
+| directory | 218 |
+| secondary | 75 |
 
 The category of a source id is the audit's one judgement, and it is a written
 table in the tool rather than a heuristic: census, directory, church and civic
@@ -67,6 +67,7 @@ secondary). A source id no rule reaches stops the build.
 
 | source id | category | type |
 | --- | --- | --- |
+| `andreas_1884_chicago_1830_map` | secondary | map |
 | `andreas_1884_v1` | book | book |
 | `andreas_history_chicago_william_p_cleaveland` | book | book |
 | `andreas_seth_paine_1834` | book | book |
@@ -75,10 +76,12 @@ secondary). A source id no rule reaches stops the build.
 | `buck_pioneer_milwaukee_porthier_1835` | book | book |
 | `buffalo_nehemiah_case` | secondary | website |
 | `calumet_club_early_chicago_1879` | book | book |
+| `caton_atlantic_chicago_1893` | secondary | website |
 | `census_1830_peoria_county_chicago_precinct` | book | manuscript |
 | `census_1840_chicago_name_crosswalk` | secondary | dataset |
 | `chicago_american_1835` | newspaper | newspaper |
 | `chicago_antiquities_american_fur_co` | book | book |
+| `chicago_antiquities_pratt` | book | book |
 | `chicago_democrat_1833_11_26` | newspaper | newspaper |
 | `chicago_democrat_1833_1835` | newspaper | newspaper |
 | `chicago_newspapers_mulford_1835` | newspaper | newspaper |
@@ -87,8 +90,11 @@ secondary). A source id no rule reaches stops the build.
 | `chicago_tribune_1882_05_19_fourth_reception` | newspaper | newspaper |
 | `chicagology_chicago_brick` | secondary | website |
 | `chicagology_first_post_office` | secondary | website |
+| `chicagology_lastwardance` | secondary | website |
 | `chicagology_prefire021` | secondary | website |
+| `chicagology_prefire052` | secondary | website |
 | `chicagology_prefire127` | secondary | website |
+| `chicagology_prefire216` | secondary | website |
 | `chicagology_prefire275` | secondary | website |
 | `chicagology_wolf_point_walters` | secondary | website |
 | `chm_bartlett_diaries` | secondary | website |
@@ -98,7 +104,9 @@ secondary). A source id no rule reaches stops the build.
 | `cpl_augustus_garrett_biography` | secondary | website |
 | `cpl_james_curtiss_biography` | secondary | website |
 | `cpl_john_s_wright_papers` | secondary | website |
-| `cpn_beaubien_family` | secondary | website |
+| `cpn_madore_beaubien` | secondary | website |
+| `drloih_beaubien` | secondary | website |
+| `drloih_chappell` | secondary | website |
 | `drloih_fort_dearborn` | secondary | website |
 | `drloih_hotels` | secondary | website |
 | `drloih_wolf_point` | secondary | website |
@@ -108,7 +116,7 @@ secondary). A source id no rule reaches stops the build.
 | `early_illinois_barrows_school` | book | book |
 | `elgin_history_gifford` | secondary | website |
 | `encyclopedia_chicago_frederick_thomas` | secondary | website |
-| `encyclopedia_chicago_potawatomis` | secondary | website |
+| `encyclopedia_chicago_medical_pharmaceutical` | secondary | website |
 | `fergus_1843_old_settler_death_notices` | book | book |
 | `fergus_historical_series_26_29` | book | book |
 | `geneanet_cook_baumgarten_1836` | secondary | website |
@@ -117,8 +125,9 @@ secondary). A source id no rule reaches stops the build.
 | `hathaway_1834` | secondary | map |
 | `history_medicine_chicago_kimberly_maxwell` | book | book |
 | `hmdb_butterfield_trail` | secondary | website |
+| `hubbard_autobiography_1911` | book | book |
+| `illinois_courts_caton_biography` | secondary | website |
 | `indiana_absalom_reel_1834` | secondary | website |
-| `ingale_early_chicago_reminiscence` | secondary | website |
 | `kane_geneva_andrew_miles` | secondary | website |
 | `kane_history_geneva_edward_trimble` | book | book |
 | `kane_history_gideon_young_naperville` | secondary | website |
@@ -138,6 +147,7 @@ secondary). A source id no rule reaches stops the build.
 | `nps_bailly_homestead` | secondary | website |
 | `nwchicago_elijah_wentworth` | secondary | website |
 | `ohio_firelands_rouse_bly` | secondary | website |
+| `old_settlers_bridges_1883` | book | manuscript |
 | `papers_abraham_lincoln_james_h_collins` | secondary | website |
 | `porter_curtis_parkes` | secondary | website |
 | `racine_old_settlers_elisha_raymond_1871` | book | book |
@@ -190,6 +200,7 @@ secondary). A source id no rule reaches stops the build.
 | `rr_porter_ruel_starr_1876` | book | book |
 | `rr_racine_old_settlers_1871` | book | book |
 | `rr_will_county_osborn` | book | book |
+| `st_marys_baptismal_register_1833_1835` | book | manuscript |
 | `talcott_chester_house_1835` | secondary | website |
 | `tsaha_joseph_chadwick` | secondary | website |
 | `uiuc_daniel_elston_papers` | secondary | website |
@@ -206,9 +217,9 @@ secondary). A source id no rule reaches stops the build.
 
 | cohort ticket | people reviewed |
 | --- | ---: |
-| T-0442 | 28 |
-| T-0462 | 40 |
-| T-0463 | 61 |
+| T-0442 | 21 |
+| T-0462 | 23 |
+| T-0463 | 24 |
 | T-0478 | 64 |
 | T-0479 | 73 |
 | T-0480 | 75 |
@@ -218,18 +229,19 @@ secondary). A source id no rule reaches stops the build.
 | T-0484 | 75 |
 | T-0485 | 74 |
 | T-0486 | 11 |
-| T-0493 | 43 |
+| T-0493 | 28 |
+| T-0508 | 76 |
 | T-0510 | 76 |
 | **reviewed** | **842** |
 | **not yet reviewed** | **562** |
 
 | research outcome | people |
 | --- | ---: |
-| `no_corroboration_yet` | 540 |
-| `no_corroboration` | 176 |
-| `candidate_identity` | 72 |
+| `no_corroboration_yet` | 464 |
+| `no_corroboration` | 210 |
+| `candidate_identity` | 88 |
+| `corroborated` | 46 |
 | `corroborated_enrichment` | 29 |
-| `corroborated` | 20 |
 | `candidate` | 5 |
 
 ## The gaps
@@ -242,11 +254,11 @@ defect in this export.
 | no census linkage | 1374 | no 1840 census row is bridged to this person |
 | no address | 1328 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1308 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 954 | one source id on the card and no second category to check it against |
+| rests on one source | 952 | one source id on the card and no second category to check it against |
 | no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
-| conflicting evidence | 97 | the ledger records a conflict against a candidate, or the household is flagged for review |
-| candidate identity open | 77 | a candidate was found and not asserted; the identity is still a question |
+| conflicting evidence | 98 | the ledger records a conflict against a candidate, or the household is flagged for review |
+| candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 
 ## Reading the table

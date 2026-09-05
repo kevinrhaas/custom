@@ -105,8 +105,8 @@
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_william_g_blair_winnebago.",
-    "evidence_against": "Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_against": "No direct Chicago post-office link; common name.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "rockford_first_settlers_1835"
     ],
@@ -126,8 +126,7 @@
       ]
      }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,

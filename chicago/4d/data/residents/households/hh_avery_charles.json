@@ -95,10 +95,9 @@
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_charles_e_avery_lumber.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "regraded_on": "2026-09-04",
     "rule": "G2e",
-    "evidence_against": "The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk.",
     "summary": "A same-name lead, recorded and NOT asserted.",
     "source_ids": [
      "fergus_chicago_directory_1839"
@@ -116,8 +115,7 @@
       ]
      }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,

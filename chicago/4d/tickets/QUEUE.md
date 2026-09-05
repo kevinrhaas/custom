@@ -143,7 +143,6 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
-T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
@@ -411,3 +410,4 @@ T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+T-0810 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699

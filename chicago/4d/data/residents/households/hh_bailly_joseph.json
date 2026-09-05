@@ -95,8 +95,8 @@
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_joseph_bailly_baillytown.",
-    "evidence_against": "Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_against": "Documented Porter County residence; no source links him to this letter.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "nps_bailly_homestead",
      "fergus_historical_series_26_29"
@@ -117,8 +117,7 @@
       ]
      }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,

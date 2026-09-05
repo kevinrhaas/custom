@@ -107,10 +107,9 @@
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_william_allen_1839_saloon.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "regraded_on": "2026-09-04",
     "rule": "G2e",
-    "evidence_against": "William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list.",
     "summary": "A same-name lead, recorded and NOT asserted.",
     "source_ids": [
      "fergus_chicago_directory_1839",
@@ -129,8 +128,7 @@
       ]
      }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,

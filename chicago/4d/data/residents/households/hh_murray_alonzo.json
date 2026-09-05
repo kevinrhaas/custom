@@ -92,8 +92,8 @@
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A same-name lead, unasserted: cand_murray_murry_same_hand.",
-    "evidence_against": "Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal.",
-    "notes": "candidate retained unasserted; no grade or placement moves",
+    "evidence_against": "No external bridge.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
      "cand_murray_murry_same_hand"
     ],
