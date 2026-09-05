@@ -63,8 +63,26 @@ the scan — lot 33 prints as `'l ">` over two lines, $303 as `3°3` and `jjj`, 
 smear of rotated type (`<J\\Ui`, `00^1`, `In)`). Every such cell is committed with its value NULL and
 its ink kept verbatim in `as_printed`, never guessed from the run it sits in. The
 sequence would usually give it away, and a number recovered from its neighbours is an
-inference wearing a reading's clothes; T-0679 is the ticket for settling them off the
-page images, where they can be READ.
+inference wearing a reading's clothes.
+
+WHERE THEY ARE READ INSTEAD (T-0679). The page images are the same scan the OCR is of,
+at the same 2238 x 3640 the row map's coordinates are written in, so every cell the row
+map places can be cropped off the image and read by eye. That reading is committed as
+`data/research/directories/fergus_1839_lots_corrections.json` — the ONE hand-authored
+file in this pass — and `--build` applies it. Two rules keep it from becoming a place to
+put guesses:
+
+  * EVERY ENTRY ASSERTS THE INK IT CORRECTS. A correction names the `as_printed` string
+    the generated cell carries today, and a mismatch is a hard failure rather than a
+    silent write. A re-map that moves a row cannot slide somebody else's lot number
+    under a correction.
+  * A CORRECTED ROW IS REGRADED `scan_verified`, and on these pages that grade covers
+    the NUMERAL columns only — block, lot, amount and whether the lot was withheld. The
+    bidder column is still the OCR's, and the corrections file says so.
+
+What the image settles is the ink, not the sequence: where the page prints nothing —
+a braced run of reserved lots sharing one price, the blank line between two blocks —
+the correction fills nothing and says why.
 """
 import json, os, re, statistics, sys, urllib.request
 import xml.etree.ElementTree as ET
@@ -75,6 +93,7 @@ TEXT = os.path.join(DOMAIN, "text")
 MAP = os.path.join(DOMAIN, "fergus_1839_lots_rowmap.json")
 LOTS_OUT = os.path.join(DOMAIN, "claims/fergus_1839_ft_dearborn_lots.json")
 POP_OUT = os.path.join(DOMAIN, "claims/fergus_1839_population.json")
+CORRECTIONS = os.path.join(DOMAIN, "fergus_1839_lots_corrections.json")
 COVERAGE = os.path.join(DOMAIN, "coverage.json")
 
 ITEM = "fergusdirectoryo00ferg"
@@ -329,9 +348,42 @@ def carry_block(block, lot, last_block, last_lot):
     return None, False, last_block, last_lot
 
 
+def corrections():
+    """The hand-authored page-image reading, keyed the way each half is applied.
+
+    Lot rows are keyed by claim id, population rows by the row map's own
+    (column_first_year, y) — the population correction has to reach a row the reading
+    DROPS, the 1840 line, which never gets an id at all."""
+    doc = json.loads(open(CORRECTIONS, encoding="utf-8").read())
+    pop = {(r["column_first_year"], r["y"]):
+           {k: v for k, v in r.items() if k in ("year", "figure")}
+           for r in doc["population"]}
+    return doc["lots"], pop
+
+
+def apply_fix(fix, field, ink_now, value):
+    """One corrected cell: assert the ink it was written against, then return the reading.
+
+    THE ASSERTION IS THE WHOLE SAFETY OF THIS LAYER. The corrections file is hand-authored
+    against the file --build produced on the day it was read; if a re-map or a re-fetch
+    moves a row, the ink under a correction changes and this raises rather than writing a
+    number onto the wrong lot."""
+    want = fix.get(field)
+    if want is None:
+        return value, False
+    now = flat(ink_now) or None
+    if now != want["was"]:
+        raise SystemExit(
+            "fergus 1839 lots: correction for %s asserts as_printed %r, the reading now "
+            "has %r — re-read the page image rather than editing the assertion"
+            % (field, want["was"], now))
+    return want["read"], True
+
+
 def build():
     texts = {leaf: leaf_text(leaf) for leaf in LOT_LEAVES + (POP_LEAF,)}
     rowmap = json.loads(open(MAP, encoding="utf-8").read())
+    lot_fixes, pop_fixes = corrections()
 
     # PASS 1 — the ink of every mapped row, and the WRAPPED NAMES folded back into the
     # row above. A bidder too long for the column is set on a second line, and the OCR
@@ -362,33 +414,55 @@ def build():
 
     lots, n, last_bidder, last_block, last_lot = [], 0, None, None, None
     illegible = {"lot": 0, "amount": 0, "block": 0}
+    settled = {"lot": 0, "amount": 0, "block": 0, "withheld_from_sale": 0, "rows": 0}
     for cell in raw:
         quote = "\n".join(v for v in (cell["block"], cell["lot"], cell["bidder"],
                                       cell["amount"]) if v)
         spans = cell["_spans"]
+        n += 1
         block, lot = as_int(cell["block"]), as_int(cell["lot"])
         if lot == 0:
             lot = None
         amount = as_int(cell["amount"])
         withheld = RESERVED.search(cell["bidder"])
+        withheld_word = withheld.group(0).lower() if withheld else None
         named = bool(NAME.search(cell["bidder"])) and not withheld
         ditto = reads_as_ditto(cell["bidder"], cell["amount"])
         if named:
             last_bidder = re.sub(r"\s+[.,]$", "",
                                  flat(cell["bidder"].replace("\n", " "))).rstrip(",")
+        # WHAT THE SCAN DESTROYED is counted on the OCR's reading, before the page image
+        # is allowed to speak: the count describes the scan, not what was rescued from it.
         if cell["block"].strip() and block is None:
             illegible["block"] += 1
         if cell["lot"].strip() and lot is None:
             illegible["lot"] += 1
         if cell["amount"].strip() and amount is None:
             illegible["amount"] += 1
+
+        # THE PAGE IMAGE, where it was read. Applied BEFORE the block is carried, so the
+        # carrying re-derives off the settled lot numbers rather than off the ruin —
+        # which is the whole reason printed page 49 lost blocks 11 and 12.
+        fix = lot_fixes.get("f1839_lot%04d" % n, {})
+        block, fixed_block = apply_fix(fix, "block", cell["block"], block)
+        lot, fixed_lot = apply_fix(fix, "lot", cell["lot"], lot)
+        amount, fixed_amount = apply_fix(fix, "amount", cell["amount"], amount)
+        withheld_word, fixed_withheld = apply_fix(fix, "withheld", cell["bidder"],
+                                                  withheld_word)
+        if fixed_withheld and withheld_word:
+            named, ditto = False, False
+        for what, did in (("block", fixed_block), ("lot", fixed_lot),
+                          ("amount", fixed_amount),
+                          ("withheld_from_sale", fixed_withheld)):
+            settled[what] += 1 if did else 0
+        settled["rows"] += 1 if fix else 0
+
         block, carried, last_block, last_lot = carry_block(block, lot, last_block, last_lot)
-        n += 1
         bidder = last_bidder if (named or ditto) else None
         lots.append({
             "id": "f1839_lot%04d" % n,
             "kind": "person" if bidder else "civic",
-            "reading": "transcription_mediated",
+            "reading": "scan_verified" if fix else "transcription_mediated",
             "quote": quote,
             "normalized": {
                 "as_printed": {k: flat(v) or None for k, v in cell.items()
@@ -400,7 +474,7 @@ def build():
                 "block_carried": carried,
                 "lot": lot,
                 "amount_usd": amount,
-                "withheld_from_sale": withheld.group(0).lower() if withheld else None,
+                "withheld_from_sale": withheld_word,
                 "addition": "Fort Dearborn Addition to the Town of Chicago",
             },
             "locator": {
@@ -414,25 +488,32 @@ def build():
             "describes_date": "1839-06",
             "entities": [bidder] if bidder else [],
             "town_finding": False,
-            "notes": None,
+            "notes": "; ".join(v["why"] for v in fix.values() if v.get("why")) or None,
         })
 
-    pop, m, unread = [], 0, []
+    pop, m, unread, pop_settled = [], 0, [], {"year": 0, "figure": 0}
     for row in rowmap["population"]:
         lines = texts[POP_LEAF]
         year_ink, figure_ink = ink(lines, row["year"]), ink(lines, row["figure"])
         year = as_int(re.sub(r"[.\s]+$", "", flat(year_ink)))
+        fix = pop_fixes.get((row["column_first_year"], row["y"]), {})
+        # The year is settled FIRST, because a row whose year will not parse is dropped
+        # here and the 1840 line is exactly that row.
+        year, fixed_year = apply_fix(fix, "year", year_ink, year)
         if year is None or not (1835 <= year <= 1876):
             if year_ink.strip() and figure_ink.strip():
                 unread.append(flat(year_ink + " " + figure_ink))
             continue
         m += 1
         figure = as_int(figure_ink.replace(".", ""))
+        figure, fixed_figure = apply_fix(fix, "figure", figure_ink, figure)
+        pop_settled["year"] += 1 if fixed_year else 0
+        pop_settled["figure"] += 1 if fixed_figure else 0
         spans = row["year"] + row["figure"]
         pop.append({
             "id": "f1839_pop%02d" % m,
             "kind": "civic",
-            "reading": "transcription_mediated",
+            "reading": "scan_verified" if fix else "transcription_mediated",
             "quote": "\n".join(v for v in (year_ink, figure_ink) if v),
             "normalized": {
                 "as_printed": {"year": flat(year_ink) or None,
@@ -452,9 +533,10 @@ def build():
             "describes_date": "%d" % year,
             "entities": [],
             "town_finding": True,
-            "notes": None if figure is not None else
-                     "the figure is destroyed in the scan and is left null rather than "
-                     "recovered from the run it sits in",
+            "notes": "; ".join(v["why"] for v in fix.values() if v.get("why")) or
+                     (None if figure is not None else
+                      "the figure is destroyed in the scan and is left null rather than "
+                      "recovered from the run it sits in"),
         })
 
     corpus = {
@@ -466,7 +548,9 @@ def build():
         "committed": True,
         "how": "tools/fetch_fergus_1839_pages.py commits the page text; "
                "tools/read_fergus_1839_lots.py --map commits the row map that puts the "
-               "columns back in printed order, out of the same scan's word coordinates.",
+               "columns back in printed order, out of the same scan's word coordinates; "
+               "fergus_1839_lots_corrections.json holds the numerals that were read off "
+               "the page images themselves, because the OCR destroyed them.",
     }
     lots_doc = {
         "schema": 1,
@@ -480,16 +564,23 @@ def build():
         "generated_by": "tools/read_fergus_1839_lots.py --build",
         "source_id": SOURCE_ID,
         "corpus": corpus,
-        "reading_note": "transcription_mediated throughout: archive.org's OCR of the printed "
-                        "page, machine-read and not checked against the image by eye. The "
-                        "damage is left in every cell on purpose — a tidied cell cannot be "
-                        "found again on the page. The columns are the hazard here rather "
-                        "than the spelling: the OCR reads a four-column table in the order "
-                        "the scanner met the ink, so the printed rows are put back from the "
-                        "word coordinates by --map and every cell carries the spans of the "
-                        "committed text it is made of. A numeral the scan destroyed is NULL "
-                        "and its ink is kept in as_printed; it is never recovered from the "
-                        "run it sits in. T-0679 owns settling those off the page images.",
+        "reading_note": "TWO GRADES, ROW BY ROW. A row graded transcription_mediated is "
+                        "archive.org's OCR of the printed page, machine-read and not "
+                        "checked against the image by eye. A row graded scan_verified had "
+                        "its NUMERAL columns — block, lot, amount, and whether the lot was "
+                        "withheld — read off the page image by T-0679, and the reading it "
+                        "was made against is committed as "
+                        "fergus_1839_lots_corrections.json. That grade does NOT extend to "
+                        "the bidder column, which is still the OCR's on every row of these "
+                        "three pages. The damage is left in every cell on purpose — the "
+                        "ink stays in as_printed beside the number the image settled, "
+                        "because a tidied cell cannot be found again on the page. The "
+                        "columns are the hazard here rather than the spelling: the OCR "
+                        "reads a four-column table in the order the scanner met the ink, "
+                        "so the printed rows are put back from the word coordinates by "
+                        "--map and every cell carries the spans of the committed text it "
+                        "is made of. A numeral is still never recovered from the RUN it "
+                        "sits in: what the image does not print, no row here invents.",
         "date_note": "1839, NOT 1835. The sale ran 10-24 June 1839 and every claim carries "
                      "describes_date 1839-06. This ground is the Fort Dearborn reservation, "
                      "which in July 1835 was the garrison's and was not lots at all, so no "
@@ -518,6 +609,8 @@ def build():
             "rows_with_an_amount": sum(1 for c in lots
                                        if c["normalized"]["amount_usd"] is not None),
             "cells_the_scan_destroyed": illegible,
+            "cells_settled_off_the_page_image": settled,
+            "rows_scan_verified": sum(1 for c in lots if c["reading"] == "scan_verified"),
             "aggregate_printed_usd": 100000,
         },
         "claims": lots,
@@ -537,13 +630,14 @@ def build():
                         "committed text in reading order. Each row is put back from the word "
                         "coordinates: a year and a figure are one row when their vertical "
                         "centres agree inside 28 px within one pair of columns, and every "
-                        "claim carries column_reconstructed true. Fourteen figures in the "
-                        "1863-1876 column are swallowed by the leader dots and are NULL. ONE ROW IS "
-                        "MISSING ENTIRELY, and it is named in counts rather than left as a "
-                        "silent gap: the 1840 line is printed `1 S40 .... 4,47!*` in this "
-                        "scan and neither its year nor its figure can be read, so there is "
-                        "no 1840 claim here at all. The census of 1840 is held elsewhere in "
-                        "this repo and is not borrowed to fill it.",
+                        "claim carries column_reconstructed true. THE 1840 LINE WAS MISSING "
+                        "ENTIRELY and is not any more: the scan prints it `1 S40 .... "
+                        "4,47!*`, neither half of which parses, so the reading dropped the "
+                        "row — T-0679 read the page image, where it prints 1840 .... 4,479, "
+                        "and that row is now here and graded scan_verified. Five more "
+                        "figures the leader dots had swallowed were read the same way. The "
+                        "census of 1840 is held elsewhere in this repo and was not borrowed "
+                        "for any of it.",
         "date_note": "Each claim's describes_date is the year the FIGURE describes, not the "
                      "year of the volume. The first row is the one this project wants: "
                      "Fergus prints Chicago's 1835 population as 3,265.",
@@ -554,6 +648,7 @@ def build():
                            "the same page.",
         "counts": {"claims": len(pop),
                    "years": [c["normalized"]["year"] for c in pop],
+                   "cells_settled_off_the_page_image": pop_settled,
                    "figures_read": sum(1 for c in pop if c["normalized"]["population"] is not None),
                    "figures_the_scan_destroyed": sum(1 for c in pop
                                                      if c["normalized"]["population"] is None),
@@ -626,10 +721,22 @@ def self_test() -> int:
                ("<J\\Ui", "00^1", "'O", "In)", "Oo", "4-", "Qn^i")]
     want(len(smeared) >= 6, True,
          "printed page 49's rotated lot column is still in the reading, as ink")
-    want({c["normalized"]["lot"] for c in smeared}, {None},
-         "and not one of those numerals is recovered from the run it sits in")
-    want({c["normalized"]["block"] for c in smeared}, {None},
-         "nor is a block lent to them off the page before")
+    want({c["normalized"]["lot"] for c in smeared}, {5, 7, 9, 12, 13, 14, 15, 17},
+         "and those eight are settled off the page image, in printed order")
+    want({c["reading"] for c in smeared}, {"scan_verified"},
+         "which is the grade a cell read off the image carries")
+    want({c["normalized"]["block"] for c in smeared}, {10},
+         "and the block they belong to is carried again, now that their lots rise")
+    want(sorted({c["normalized"]["block"] for c in p49}), [10, 11, 12],
+         "printed page 49's left half is blocks 10, 11 and 12, whose headings "
+         "the ruined column had swallowed")
+    unfixed = [c for c in lots["claims"] if c["reading"] == "transcription_mediated"]
+    want(all(c["normalized"]["as_printed"]["lot"] != "70" for c in unfixed), True,
+         "the one numeral the scan handed over CLEAN AND WRONG — block 9's lot 30, "
+         "scanned as 70 — is not left standing as a reading of its own")
+    want([c["normalized"]["lot"] for c in lots["claims"]
+          if c["normalized"]["as_printed"]["lot"] == "70"], [30],
+         "it is 30, off the page image, with the ruin kept in as_printed")
     want(any(c["normalized"]["bidder_ditto"] for c in lots["claims"]), True,
          "the dittoed rows are still read")
     want(1835 in [c["normalized"]["year"] for c in pop["claims"]], True,
@@ -637,14 +744,33 @@ def self_test() -> int:
     want([c["normalized"]["population"] for c in pop["claims"]
           if c["normalized"]["year"] == 1835], [3265],
          "and Fergus still prints 3,265 against it")
-    want([c["normalized"]["year"] for c in pop["claims"] if c["normalized"]["year"] == 1840],
-         [], "the 1840 line, whose year and figure are both destroyed, is not invented")
+    want([c["normalized"]["population"] for c in pop["claims"]
+          if c["normalized"]["year"] == 1840], [4479],
+         "the 1840 line, which neither half of the OCR would parse, is read off the "
+         "page image rather than left as a silent gap")
+    want([c["reading"] for c in pop["claims"] if c["normalized"]["year"] == 1840],
+         ["scan_verified"], "and it says so in its grade")
+    want([c["normalized"]["year"] for c in pop["claims"]],
+         list(range(1835, 1877)), "so the table runs 1835 to 1876 with no year missing")
     del by_id
+
+    # 5. the corrections layer's own guard: a correction written against ink that is no
+    #    longer there must RAISE, not write its number onto whatever row moved under it.
+    try:
+        apply_fix({"lot": {"was": "In)", "read": 12}}, "lot", "somebody else's ink", None)
+        bad.append("a correction whose as_printed no longer matches was applied anyway")
+    except SystemExit:
+        pass
+    want(apply_fix({"lot": {"was": "In)", "read": 12}}, "lot", "In)", None), (12, True),
+         "and a correction whose ink DOES match is applied, and says it was")
+    want(apply_fix({}, "lot", "In)", None), (None, False),
+         "a cell with no correction is left exactly as the OCR read it")
 
     if bad:
         print("fergus 1839 lots self-test: " + "; ".join(bad), file=sys.stderr)
         return 1
-    print("fergus 1839 lots: the ditto, the carried block and the refused numeral all fire")
+    print("fergus 1839 lots: the ditto, the carried block, the refused numeral and the "
+          "page-image correction all fire")
     return 0
 
 
