@@ -75,8 +75,9 @@
   },
   "by_source": {
    "generated": 249,
-   "inferred_household_programme": 38,
-   "pre_existing": 72
+   "inferred_household_programme": 7,
+   "pre_existing": 72,
+   "retired_household_roofs": 31
   },
   "by_district": {
    "south": 216,

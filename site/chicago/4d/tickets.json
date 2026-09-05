@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 10:27 PM",
+  "generated_ct": "Sep 4, 2026, 10:45 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12170,6 +12170,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 151
+    },
+    {
+      "id": "T-0727",
+      "title": "Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }

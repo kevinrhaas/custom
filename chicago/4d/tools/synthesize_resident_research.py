@@ -47,6 +47,65 @@ NOTE_PREFIXES = re.compile(
 
 RETIREMENT_NOTE = "T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced."
 
+# T-0516 — THE BUILDINGS HALF OF THE SAME RULING, two days late.
+#
+# The owner's ask of 2026-09-03: "when you remove a reconstructed resident, make sure
+# that if there is a structure you already made for them, you can abandon that structure
+# or remove it because we will want to do a sweep later and assign these residents a
+# place to live and work". Asked which, he ruled: "Keep as anonymous stock."
+#
+# T-0489 did the people half and marked the stock `unassigned`, and stopped there. The
+# 31 roofs the inferred-household layer RAISED went on declaring
+# `reconstruction.status: "inferred_household"` — a status the schema defines as "a roof
+# the inferred-household layer raised BECAUSE an argued household needed somewhere to be,
+# and it carries an occupants block naming that household" — while naming households no
+# file has held since 2 September. Every gate that classifies a roof by its layer went on
+# crediting them to a programme with no people in it.
+#
+# So this is where they enrol as anonymous stock, next to the `resident_assignment` the
+# same ruling wrote, because a retirement that leaves half the record behind is the fault
+# it was written to fix. No geometry is touched: the roof is the same roof, at the same
+# point, on the same footprint. What changes is what the record CLAIMS.
+RETIRED_ROOF_PHASE = "phase2_inferred_households"
+RETIRED_ROOF_OCCUPANTS = {
+    "value": "Anonymous stock; no occupant is claimed",
+    "confidence": "reconstructed",
+    "note": ("ANONYMOUS STOCK (T-0516). This roof was raised by the inferred-household "
+             "programme because an argued household needed somewhere to be; the owner "
+             "retired that reconstructed resident population on 2026-09-02 and ruled the "
+             "geometry kept - \"keep as anonymous stock\" - so the household this roof "
+             "was raised for no longer exists and nobody is claimed to be here. It is "
+             "unassigned until the later placement sweep, and it is counted as one of "
+             "the anonymous count-units of the 665-roof programme. THE ROOF'S OWN "
+             "EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by "
+             "the retirement: what was withdrawn is the occupant, not the building. The "
+             "trade it was raised for is kept in `reconstruction.occupation` and in this "
+             "record's own name, because that is what the placement sweep works from; "
+             "the argument that raised it is kept as history in "
+             "data/reconstruction/1835_inferred_household_programme.json."),
+}
+
+
+def retire_roof(doc):
+    """Enrol one raised household roof in the anonymous stock, or leave it alone.
+
+    Returns True when this record was one of the 31. Keyed on the programme phase and
+    not on the status, so it is idempotent: a roof already enrolled is recognised as
+    this layer's and re-asserted rather than skipped by a status test that has already
+    flipped. `inventory_class` and `sequence` are NOT written - an anonymous roof dealt
+    by a parcel carries its place in that deal, and these were authored one at a time
+    against the occupation census, so there is no place to record. Minting one would
+    invent a position in a deal that never dealt them; the schema carries the exception
+    rather than the data carrying a fiction.
+    """
+    block = doc.get("reconstruction") or {}
+    if block.get("programme_phase") != RETIRED_ROOF_PHASE:
+        return False
+    block["status"] = "inferred_anonymous"
+    doc["reconstruction"] = block
+    doc["occupants"] = dict(RETIRED_ROOF_OCCUPANTS)
+    return True
+
 
 def note_once(text, sentence):
     """Append `sentence` to a note exactly once, however many runs have appended it.
@@ -391,10 +450,30 @@ def check():
     for d in docs:
         if str(d.get("id") or "").startswith("hh_inf_") and (value(d.get("lives_at")) is not None or value(d.get("works_at")) is not None):
             problems.append(f"{d.get('id')} survived synthesis but is still placed")
-    for path in STRUCTURES.glob("inf_*.json"):
-        d=load(path); a=d.get("resident_assignment") or {}
+    for path in sorted(STRUCTURES.glob("*.json")):
+        d=load(path)
+        if not (str(d.get("id") or path.stem).startswith("inf_")
+                or (d.get("reconstruction") or {}).get("programme_phase")==RETIRED_ROOF_PHASE):
+            continue
+        a=d.get("resident_assignment") or {}
         if a.get("status") != "unassigned":
             problems.append(f"{path.name} is inferred stock without resident_assignment=unassigned")
+        # T-0516. The three ways a retired roof can go back to claiming an occupant, and
+        # every one of them has already happened once on this dataset: a status that
+        # still names the retired layer, an `occupants` block naming a household no file
+        # holds, and a slot minted to satisfy the anonymous status's required fields.
+        block=d.get("reconstruction") or {}
+        if block.get("programme_phase")==RETIRED_ROOF_PHASE:
+            if block.get("status")!="inferred_anonymous":
+                problems.append(f"{path.name} still stands as {block.get('status')} for a household retired 2026-09-02")
+            if "sequence" in block or "inventory_class" in block:
+                problems.append(f"{path.name} carries a parcel slot it was never dealt")
+            if (d.get("occupants") or {}).get("value")!=RETIRED_ROOF_OCCUPANTS["value"]:
+                problems.append(f"{path.name} claims an occupant the retirement withdrew")
+    dead=sorted({m for p in STRUCTURES.glob("*.json")
+                 for m in re.findall(r"hh_inf_[a-z0-9_]+", p.read_text(encoding="utf-8"))}
+                - {str(d.get("id")) for d in docs})
+    if dead: problems.append(f"{len(dead)} retired household id(s) are still named by a structure record: {', '.join(dead[:3])}")
     if problems:
         print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1
     print(f"OK: {len(people)} people; {actual.get('attested',0)} attested, {actual.get('inferred',0)} inferred, 0 reconstructed; {sum(p.get('resident_subtype')==PROJECTED for p in people)} projected")
@@ -408,7 +487,7 @@ def main():
     prior_ledger=load(LEDGER) if LEDGER.exists() else {}
     before=(prior_ledger.get("before") if current_before.get("reconstructed")==0 and prior_ledger.get("before") else current_before)
     docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()
-    stats={"removed_people":0,"removed_households":0,"retained_hh_inf":0,"structures_unassigned":0}; removed_people=set(); removed_hh=set(); unlink_people=set()
+    stats={"removed_people":0,"removed_households":0,"retained_hh_inf":0,"structures_unassigned":0,"roofs_enrolled_anonymous":0}; removed_people=set(); removed_hh=set(); unlink_people=set()
     for path in list(docs):
         doc=docs[path]; kept=[]
         for p in doc.get("persons") or []:
@@ -468,8 +547,14 @@ def main():
         old=json.dumps(doc,sort_keys=True,ensure_ascii=False); clean=scrub(doc,targets)
         if clean is DROP: continue
         doc=clean
-        if sid.startswith("inf_"):
+        # T-0516: the layer is what decides this, not the id. T-0489 matched on the
+        # `inf_` prefix and the household layer raised 31 roofs of which ONE is not
+        # named that way - `physicians_office`, minted before the prefix convention -
+        # so it alone was never marked unassigned and was still declaring an occupant
+        # a fortnight after the population that occupied it was retired.
+        if sid.startswith("inf_") or (doc.get("reconstruction") or {}).get("programme_phase")==RETIRED_ROOF_PHASE:
             doc["resident_assignment"]={"status":"unassigned","confidence":"reconstructed","note":"T-0489 owner ruling 2026-09-02: reconstructed resident population retired; building retained as anonymous stock for later placement."}; stats["structures_unassigned"]+=1
+            if retire_roof(doc): stats["roofs_enrolled_anonymous"]+=1
         if json.dumps(doc,sort_keys=True,ensure_ascii=False)!=old: dump(path,doc,1); changed.append(path)
     index=rebuild_index(index,docs,stats); dump(INDEX,index,1)
     for path,doc in docs.items(): dump(path,doc,1)
