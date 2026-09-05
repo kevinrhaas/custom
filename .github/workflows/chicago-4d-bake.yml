@@ -113,21 +113,48 @@ jobs:
       branch: ${{ steps.push.outputs.branch }}
       changed: ${{ steps.push.outputs.changed }}
       sha: ${{ steps.baseref.outputs.sha }}
+      base: ${{ steps.baseref.outputs.branch }}
     steps:
-      # Bake from dev when it exists: the PR's base is dev, so branching off
-      # main would put every commit already promoted-past into the diff.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Bake from dev when the pipeline is active
+
+      # WHICH TREE THIS BAKE IS ABOUT — T-0454, and the reason it is a script.
+      #
+      # This step used to be four unconditional lines: if `origin/dev` exists,
+      # `git checkout -B dev origin/dev`. Right for the nightly, which fires on
+      # the default branch and has no tree of its own to speak for. A SILENT
+      # DISCARD for a dispatch: the run is handed a branch, throws it away, and
+      # bakes dev.
+      #
+      # That is how `tools/check.sh` and this workflow came to disagree about
+      # one asset while both were right. On 2026-08-31 the gate called two GLBs
+      # on `steward/t-0429-south-water-lasalle` stale (`siding_exposure_m` 0.152
+      # -> 0.127, a mesh input); this workflow was dispatched against that exact
+      # commit, ran Blender for 12m34s, transformed 360 assets and reported
+      # "bake produced no CONTENT". It had rebuilt a FRESH dev, byte for byte,
+      # and tools/bake_content_changed.py answered honestly about the tree it was
+      # shown. The branch's stale asset was never looked at, and the remedy the
+      # gate's own error message names — "re-bake it (tools/bake.sh, or the
+      # chicago-4d-bake workflow)" — was true of the first and false of the
+      # second. `generators/build.py` never skipped anything; nothing asked it to.
+      #
+      # A shell condition could not be tested, so this is the same trade T-0180
+      # made for the content verdict: a script with a self-test, run by check.sh,
+      # which also asserts THIS FILE still calls it and still takes its PR base
+      # from the result. The rule and its tiers live in tools/bake_ref.py.
+      - name: Which ref does this bake build?
         id: baseref
         run: |
-          if git ls-remote --exit-code --heads origin dev >/dev/null 2>&1; then
-            git checkout -B dev origin/dev
-            echo "baking from dev"
-          else
-            echo "no dev ref — baking from the default branch"
+          set -euo pipefail
+          # stdout is the branch, stderr is the reason, and --github also writes
+          # the step outputs. One invocation, no grepping $GITHUB_OUTPUT back out.
+          BRANCH=$(python3 chicago/4d/tools/bake_ref.py --github)
+          if [ "$BRANCH" != "$(git rev-parse --abbrev-ref HEAD)" ]; then
+            git fetch --no-tags origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+            git checkout -B "$BRANCH" "refs/remotes/origin/$BRANCH"
           fi
+          echo "baking $BRANCH at $(git rev-parse --short HEAD)"
           # The exact commit the mirror was baked from. The smoke and open-pr jobs
           # check this out rather than the workflow ref, so all three jobs read the
           # same tools/ and the same tree — a bake that started before dev moved is
@@ -142,7 +169,7 @@ jobs:
         with:
           node-version: '22'
 
-      - run: pip install --quiet jsonschema pyproj
+      - run: pip install --quiet jsonschema pyproj openpyxl pypdf
 
       # Playwright, because the LAST thing tools/bake.sh does is run the renderer
       # smoke against the mirror it has just published — and that step is the
@@ -303,9 +330,32 @@ jobs:
   # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
   # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
   # 17 m 02 s — less in practice, because a pair boots ONCE where the profile
-  # paid a boot per part. Worst leg keeps better than ten minutes of margin
-  # under the 30-minute cap, and the smoke phase's wall clock drops from over
-  # 40 minutes (fatal) to under 20.
+  # paid a boot per part.
+  #
+  # THAT PARAGRAPH USED TO END "Worst leg keeps better than ten minutes of
+  # margin under the 30-minute cap". IT WAS WRONG, AND T-0181 MEASURED IT
+  # (ROADMAP § THE RUN BUDGET). The four figures above were SUMMED from
+  # T-0167's per-PART profile, never measured as legs. Read from this
+  # workflow's own job history — 104 desktop tail legs, runs #271-#391 —
+  # the leg's smoke command has a median of 17 m 12 s and a WORST of
+  # 21 m 48 s (run #306), so the true margin is about seven minutes, not ten.
+  # T-0181's own restatement of it, 9 m 49 s, came from a single sample and
+  # is wrong the same way.
+  #
+  # AND THE CAP HAS ALREADY FIRED SEVEN TIMES — runs #284, #288, #290, #357,
+  # #358, #360, #364, each killed at 30 m 1x s. NOT ONE was a slow smoke.
+  # Every one of the seven spent 13 m 20 s to 30 m 01 s inside
+  # `actions/checkout`, whose median here is 38 s. In #284 the checkout alone
+  # consumed the whole cap and the smoke never started. The binding constraint
+  # on this job is the checkout's tail, not the suite's body — that is
+  # T-0437, and it is why the cap below is 45 and not a further cut.
+  #
+  # CUTTING THE TAIL LEG FURTHER IS REFUTED, on the same readings. A split
+  # halves a leg's smoke but not its checkout, so each new leg draws again
+  # from the distribution that is actually causing the kills; against the
+  # measured checkouts a two-way split of this leg moves the breach rate from
+  # 7/104 to about 6/104, which is noise. Three of the seven breaching
+  # checkouts are longer than a split leg's entire budget would be.
   #
   # T-0346 CUT PART 4 INTO THREE AND RENUMBERED 5-9 AS 7-11, and the note below
   # is why this list moved in the same commit. The pairing rule is UNCHANGED in
@@ -332,10 +382,20 @@ jobs:
   # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
   # T-0173 everything after 7; T-0170 everything after 10), THIS LIST IS PART OF
   # THAT EDIT.
+  #
+  # THE CAP IS 45 MINUTES, AND T-0181 SIZED IT ON THE SPREAD ABOVE RATHER THAN
+  # ON ONE SAMPLE — which is the whole reason the previous three numbers rotted.
+  # The job is checkout + a ~25 s Playwright install + the smoke. Worst measured
+  # smoke command: 21 m 48 s. 45 minutes therefore absorbs a checkout of some
+  # 22 minutes even on the worst smoke the history holds, which covers five of
+  # the seven breaches above outright and the sixth against a median smoke. The
+  # two ~30-minute checkouts (#284, #288) are NOT covered and no cap fixes them;
+  # they are T-0437. Raise this again only with a fresh reading of the job
+  # history beside it, the way this one was taken.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -390,16 +450,26 @@ jobs:
       - name: Open the PR
         run: |
           BRANCH="${{ needs.bake.outputs.branch }}"
-          # BASE IS dev, NOT main (chicago/4d/docs/PIPELINE.md). Overnight output
-          # lands on the integration branch and reaches production only when the
-          # owner dispatches chicago-4d-promote-to-prod.yml.
+          BASE="${{ needs.bake.outputs.base }}"
+          # BASE IS THE REF THAT WAS BAKED, AND IT IS NEVER main
+          # (chicago/4d/docs/PIPELINE.md). For the nightly that is `dev`, as it
+          # has always been: overnight output lands on the integration branch and
+          # reaches production only when the owner dispatches
+          # chicago-4d-promote-to-prod.yml. For a bake dispatched against a
+          # branch it is THAT branch — T-0454: the whole point of dispatching one
+          # is to heal a stale asset the branch itself caused, and a PR into dev
+          # would carry the branch's unmerged work with it. tools/bake_ref.py
+          # refuses to resolve to the production tier, so this cannot become a PR
+          # into main by any route.
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
-            --base dev \
-            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`dev\`: merging this publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
+            --base "$BASE" \
+            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`$BASE\` — the ref this bake was built from (T-0454). Merging a \`dev\` bake publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
             --head "$BRANCH" 2>&1); then
             # GitHub reports this org/repo policy failure as a GraphQL error string.
             # Match it exactly so other gh failures still stop the workflow.
-            if printf '%s\n' "$pr_output" | grep -Fq "GitHub Actions is not permitted to create or approve pull requests"; then
+            # GitHub varies the exact wording for repo policy blocks; warn for the
+            # known permission-denied cases but still fail for unrelated gh errors.
+            if printf '%s\n' "$pr_output" | grep -Eiq "GitHub Actions.*not permitted.*pull request|pull request creation is disabled for this repository"; then
               echo "::warning::$pr_output"
               echo "::notice::Baked changes were pushed to $BRANCH. Open a PR manually at https://github.com/${GITHUB_REPOSITORY}/compare/${BRANCH}?expand=1"
             else

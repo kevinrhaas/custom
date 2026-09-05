@@ -25,6 +25,15 @@ out of what the corpus itself says about PLACE and about COMPANY, and it has to 
 derived rather than judged — a hand-picked list of the people who "look like"
 residents is exactly the invention this project exists not to make.
 
+  A NOTE ON THE WORD "PLACED", because it reads as a lot/plat position and is not
+  one. Every household this pass mints carries `"division": "unplaced"` — nobody
+  here has been placed on a parcel. "Placed" names PART ONE below: a residency
+  EVIDENCE test (does the corpus put this person inside the town, as opposed to
+  outside it), not a location. Before T-0599 that test's name doubled as this
+  pass's filename prefix (`hh_placed_`); a household minted from here on gets a
+  plain `hh_<surname>_<given>` id instead, with `source_pass: "placed"` recording
+  which test it passed — see `household_id()` / `minted_by()` below.
+
   PART ONE — PLACEMENT. The corpus must put the person inside the town and nowhere
   outside it. `associated_places` is resolved against the committed dataset:
   `in_town_places()` (shared with T-0376's pass) is the bare town, every committed
@@ -126,13 +135,22 @@ EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 sys.path.insert(0, str(ROOT / "tools"))
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     BARE_TOWN, FEMALE_TITLES, FIRM, MALE_TITLES, PAPERS, SCENE_DATE, UNCERTAIN,
-    cited, display, dumps, in_town_places, issue_of, load, paper_for, slug,
-    surname, titles_in, town_family_names, words,
+    cited, display, dumps, household_id, in_town_places, issue_of, load,
+    minted_by, paper_for, plain_fragment, slug, surname, titles_in,
+    town_family_names, words,
 )
 
 PREFIX = "hh_placed_"
 LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
-_ORDER_SKIP = (PREFIX, LETTER_LIST_PREFIX)
+CIVIC_PREFIX = "hh_civic_"      # tools/mint_civic_residents.py (T-0514); beside, not above
+# T-0599: the pass-name/legacy-prefix pairs `town_family_names` skips for THIS
+# pass — itself and the letter-list pass below it, never the documented pass
+# above it. Kept as pairs (not the bare prefixes `_ORDER_SKIP` used to be) so a
+# household minted plain, after T-0599, by either pass is still recognized.
+# ("civic", "hh_civic_") joins them for the reason MINTED_PASSES states: the civic
+# pass (T-0514) is beside the letter-list pass on a disjoint pool, not above this one.
+_ORDER_SKIP = (("placed", PREFIX), ("letter_list", LETTER_LIST_PREFIX),
+               ("civic", CIVIC_PREFIX))
 PERSON_PREFIX = "placed_"
 DIVISION = "unplaced"
 ARTICLE = re.compile(r"^the\b", re.I)
@@ -232,17 +250,18 @@ def business_proprietors(gazetteer: dict) -> dict:
     return out
 
 
-def already_held(register: dict) -> set:
+def already_held(register: dict, is_prior_mint_answer) -> set:
     """The register's own finding of who the committed town already holds.
 
-    `enrich` is 'this printed person IS a person in data/residents/'. Targets under
-    either minted-person prefix are excluded: those are a mint's previous answer, not
-    a resident the town held before the papers were read.
+    `enrich` is 'this printed person IS a person in data/residents/'. A target that
+    is a mint's own previous answer is excluded — `is_prior_mint_answer` says which:
+    the legacy `doc_`/`placed_` prefix still does, for any household not yet
+    migrated to a plain id (T-0599); a migrated one only says so in its own
+    source_pass field, which the caller has already read.
     """
     return {p["id"] for p in register["persons"]
             if p.get("action") == "enrich"
-            and not str(p.get("action_target") or "").startswith(
-                ("doc_", PERSON_PREFIX))}
+            and not is_prior_mint_answer(str(p.get("action_target") or ""))}
 
 
 def claim_company(gazetteer: dict) -> dict:
@@ -264,7 +283,20 @@ def mint(docs: dict, index: dict):
     gazetteer = load(GAZETTEER)
     gaz = {p["id"]: p for p in gazetteer["persons"]}
     proprietors = business_proprietors(gazetteer)
-    held = already_held(register)
+    # T-0599: a plain id no longer says whose previous answer it is on its own —
+    # the legacy `doc_`/`placed_` prefix still does, for any household not yet
+    # migrated, but a migrated one only says so in its own source_pass field.
+    own_placed = {doc["head"] for doc in docs.values() if doc.get("source_pass") == "placed"}
+    prior_mint_answer = {doc["head"] for doc in docs.values()
+                         if doc.get("source_pass") in ("documented", "placed")}
+
+    def is_own_prior_answer(target: str) -> bool:
+        return target.startswith(PERSON_PREFIX) or target in own_placed
+
+    def is_prior_mint_answer(target: str) -> bool:
+        return target.startswith(("doc_", PERSON_PREFIX)) or target in prior_mint_answer
+
+    held = already_held(register, is_prior_mint_answer)
     company = claim_company(gazetteer)
     texts = claim_text()
     # The three-way precedence documented in mint_documented_residents.MINTED_PREFIXES:
@@ -277,8 +309,7 @@ def mint(docs: dict, index: dict):
                   if not p.get("occupation") and not p.get("letter_list_only")
                   and (p.get("action") == "new_resident"
                        or (p.get("action") == "enrich"
-                           and str(p.get("action_target") or "")
-                           .startswith(PERSON_PREFIX)))]
+                           and is_own_prior_answer(str(p.get("action_target") or ""))))]
     candidates.sort(key=lambda p: (-len(gaz[p["id"]]["mentions"]),
                                    p["first_seen"], p["id"]))
 
@@ -359,14 +390,18 @@ def witness(addressed, issues, neighbours) -> str:
             f"in the same claim, which the register records as its `enrich` finding.")
 
 
-def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours) -> dict:
+def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
+          docs: dict, taken_ids: set[str]) -> dict:
     name = display(cand["name"])
     fam = surname(cand["name"]).title()
     sources = paper_for(gaz["mentions"])
     where = cited(gaz["mentions"])
     printed = sorted({v["as_printed"] for v in gaz.get("variants") or []})
     titles = titles_in(cand["name"])
-    pid = PERSON_PREFIX + slug(cand["name"])
+
+    legacy_id = PREFIX + slug(cand["name"])
+    hid = household_id(cand["name"], PREFIX, "placed", docs, taken_ids)
+    pid = (PERSON_PREFIX + slug(cand["name"])) if hid == legacy_id else hid.removeprefix("hh_")
 
     person = {
         "id": pid,
@@ -410,11 +445,17 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours) -> dict
 
     present = "present" if cand["last_seen"] >= SCENE_DATE else "uncertain"
     doc = {
-        "id": PREFIX + slug(cand["name"]),
+        "id": hid,
         "name": f"The {fam} household — documented at Chicago, no trade printed, "
                 f"unplaced in the town",
         "division": DIVISION,
         "head": pid,
+    }
+    if hid != legacy_id:
+        # A genuinely new mint (T-0599): see mint_documented_residents.record()'s
+        # matching comment — a household reusing its legacy id is unchanged.
+        doc["source_pass"] = "placed"
+    doc.update({
         "arrival": {
             "value": cand["first_seen"],
             "confidence": "inferred",
@@ -484,8 +525,53 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours) -> dict
             f"tools/mint_placed_residents.py derives the whole minted set and prints "
             f"every candidate it refused, with the reason."
         ),
-    }
+    })
     return doc
+
+
+# T-0634. What the civic spend writes onto a person, named here so this mint can carry it
+# over without importing the pass: the source id it cites and the first words of the
+# paragraph it appends. Both are checked against the pass's own constants by
+# `tools/spend_civic_voter_lists.py --self-test`'s sibling assertion in check.sh, and a
+# drift in either shows up immediately as this mint deleting a citation.
+CIVIC_ROLLS_SOURCE = "chicago_voter_lists_1833_1835_irad"
+CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
+
+# T-0635, consolidation pass 2, and the same arrangement one pass later. The list is what
+# grew: a second spend now writes onto these records, so the carry is a loop over the
+# (source id, marker) pairs rather than one hard-wired pair, and adding a third pass means
+# adding a row here and an assertion in that pass's --self-test.
+FERGUS_1839_SOURCE = "fergus_chicago_directory_1839"
+FERGUS_1839_MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
+
+CARRIED_SPENDS = ((CIVIC_ROLLS_SOURCE, CIVIC_ROLLS_MARKER),
+                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER))
+
+
+def carry_civic_rolls(doc: dict, existing: dict) -> None:
+    """Re-attach every consolidation pass's citation to a record this mint has rebuilt."""
+    was = {p.get("id"): p for p in existing.get("persons") or []}
+    for person in doc.get("persons") or []:
+        before = was.get(person.get("id"))
+        if not before:
+            continue
+        for source, marker in CARRIED_SPENDS:
+            if source in (before.get("sources") or []):
+                if source not in (person.get("sources") or []):
+                    person["sources"] = (person.get("sources") or []) + [source]
+            note = before.get("note") or ""
+            if marker in note and marker not in (person.get("note") or ""):
+                tail = note[note.index(marker):].strip()
+                person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
+
+
+def carry_research(doc: dict, existing: dict) -> None:
+    """Keep a `resident_research` block another pass wrote onto one of these people."""
+    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
+    for person in doc.get("persons") or []:
+        prior = by_id.get(person.get("id")) or {}
+        if prior.get("resident_research") and "resident_research" not in person:
+            person["resident_research"] = prior["resident_research"]
 
 
 def build(preload: dict | None = None):
@@ -495,13 +581,44 @@ def build(preload: dict | None = None):
     index = (json.loads(preload[INDEX]) if preload is not None and INDEX in preload
              else load(INDEX))
 
+    mine_paths = {p for p, doc in docs.items() if minted_by(p, doc, "placed", PREFIX)}
     accepted, refusals = mint(docs, index)
 
     files = {}
     rows = []
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
-        doc = record(cand, gaz, inside, addressed, issues, neighbours)
+        doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
+        # THE LATER-EVIDENCE BLOCK IS NOT THIS PASS'S AND IS CARRIED OVER (T-0632).
+        # `tools/spend_directories.py` writes a `directories` key onto the households a
+        # Chicago directory of 1839, 1843 or 1844 meets, holding what those volumes
+        # print beside the person and citing the source. It states nothing about 1835
+        # and this mint derives nothing about it, so re-deriving the record must not
+        # silently delete it — which is what this byte-for-byte gate would otherwise
+        # turn into: the spend pass writes the block, this pass rebuilds without it,
+        # and whichever ran last wins.
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        if existing.get("directories"):
+            doc["directories"] = existing["directories"]
+        # AND THE TOWN'S OWN ROLLS, CARRIED THE SAME WAY AND FOR THE SAME REASON
+        # (T-0634). `tools/spend_civic_voter_lists.py` writes the 1833-1835 poll and tax
+        # lists onto the people its crosswalk matched, as a citation and a paragraph on
+        # the PERSON rather than as a block on the household. This mint derives a person's
+        # sources and note from the newspaper register alone, so rebuilding a record the
+        # rolls have reached would delete the citation and leave two byte-for-byte gates
+        # fighting over the same file — whichever ran last winning, which is not a gate.
+        carry_civic_rolls(doc, existing)
+        # AND THE RESEARCH BLOCK, FOR THE THIRD TIME AND THE SAME REASON (T-0515).
+        # `tools/synthesize_resident_research.py` writes an adjudicated research
+        # outcome onto a person, and the regrade mode of `mint_civic_residents.py`
+        # writes into the same block the rule and date of a grade the ladder moved —
+        # or, on this pass's cards, the REFUSAL that kept a grade where it was. Both
+        # are findings about the person and neither is derived here, so rebuilding
+        # the record must not delete them. Mark Nobles is the one that found this:
+        # his card is the single downgrade the ladder proposes on a residency-tested
+        # person, refused in writing because the card rests on a dated Democrat issue
+        # the consolidation never read, and the refusal is the whole point of it.
+        carry_research(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
@@ -522,7 +639,8 @@ def build(preload: dict | None = None):
             "review_required": doc["review_required"],
         })
 
-    keep = [r for r in index["households"] if not r["id"].startswith(PREFIX)]
+    mine_ids = {p.stem for p in mine_paths}
+    keep = [r for r in index["households"] if r["id"] not in mine_ids]
     index["households"] = sorted(keep + rows, key=lambda r: r["id"])
     totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
     persons = 0
@@ -534,16 +652,19 @@ def build(preload: dict | None = None):
     index["counts"]["persons"] = persons
     index["counts"]["by_grade"] = totals
     files[INDEX] = dumps(index, 1)
-    return files, accepted, refusals
+    return files, accepted, refusals, mine_paths
 
 
-def report(accepted, refusals) -> None:
+def report(accepted, refusals, docs: dict) -> None:
     print(f"MINTED — {len(accepted)} documented resident(s), no trade printed")
+    shown: set[str] = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
+        hid = household_id(cand["name"], PREFIX, "placed", docs, shown)
+        shown.add(hid)
         carried = ("an address in the town" if addressed
                    else f"{len(issues)} issues" if len(issues) > 1
                    else f"{len(neighbours)} committed residents beside them")
-        print(f"  {PREFIX + slug(cand['name']):30s} {display(cand['name'])[:24]:26s} "
+        print(f"  {hid:30s} {display(cand['name'])[:24]:26s} "
               f"({len(gaz['mentions'])} mention(s), {cand['first_seen']}.."
               f"{cand['last_seen']}; placed at {', '.join(inside)}; carried by "
               f"{carried})")
@@ -618,11 +739,31 @@ def self_test() -> int:
 
     # the ordering between the three minting passes: this one must SEE T-0376's
     # households and NOT T-0378's; T-0376's must see neither.
-    from mint_documented_residents import MINTED_PREFIXES
+    from mint_documented_residents import MINTED_PASSES, MINTED_PREFIXES, minted_by
     want("T-0376 skips all three minted prefixes",
          set(MINTED_PREFIXES) == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX}, True)
-    want("this pass skips its own and the letter-list pass's, and not T-0376's",
-         set(_ORDER_SKIP) == {PREFIX, LETTER_LIST_PREFIX}, True)
+    # T-0514 added a FOURTH pass, tools/mint_civic_residents.py. It is not a fourth
+    # rung of this precedence: it sits BESIDE the letter-list pass on a pool its own
+    # refusal 5 makes disjoint, and the three passes here skip it so that a civic
+    # household never reads as "the town already names a <Surname>". Its own docstring
+    # argues why, and MINTED_PASSES carries the same note.
+    want("T-0599's pairs name the three passes and the civic pass beside them",
+         {prefix for _, prefix in MINTED_PASSES}
+         == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX, CIVIC_PREFIX}, True)
+    want("this pass skips its own, the letter-list pass's and the civic pass's, "
+         "and not T-0376's",
+         {prefix for _, prefix in _ORDER_SKIP}
+         == {PREFIX, LETTER_LIST_PREFIX, CIVIC_PREFIX}, True)
+    # minted_by recognizes a household by either shape — the legacy prefix every
+    # household minted before T-0599 still carries, or the field a fresh mint
+    # carries instead. A household with neither is nobody's.
+    want("a legacy-prefixed household is recognized by its filename alone",
+         minted_by(pathlib.Path(f"{PREFIX}smith_john.json"), {}, "placed", PREFIX), True)
+    want("a plain household is recognized by source_pass alone",
+         minted_by(pathlib.Path("hh_smith_john.json"), {"source_pass": "placed"},
+                   "placed", PREFIX), True)
+    want("a plain household with no source_pass belongs to nobody",
+         minted_by(pathlib.Path("hh_smith_john.json"), {}, "placed", PREFIX), False)
 
     for line in fails:
         print(f"   FAIL {line}")
@@ -646,15 +787,15 @@ def main() -> int:
     if args.self_test:
         return self_test()
 
-    files, accepted, refusals = build()
+    files, accepted, refusals, mine_paths = build()
     if args.report:
-        report(accepted, refusals)
+        docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+        report(accepted, refusals, docs)
         return 0
     if args.check:
         drift = [p for p, text in files.items()
                  if not p.exists() or p.read_text(encoding="utf-8") != text]
-        stale = [p for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json"))
-                 if p not in files]
+        stale = [p for p in sorted(mine_paths) if p not in files]
         for p in drift + stale:
             print(f"   DRIFT: {p.relative_to(ROOT)}")
         if drift or stale:
@@ -665,7 +806,7 @@ def main() -> int:
               f"{len(refusals)} candidate(s) refused")
         return 0
 
-    for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json")):
+    for p in sorted(mine_paths):
         if p not in files:
             p.unlink()
     for p, text in files.items():

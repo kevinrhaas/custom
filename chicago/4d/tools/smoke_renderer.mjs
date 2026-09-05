@@ -1292,10 +1292,23 @@ for (const [label, viewport, touch] of [
   // ITSELF is the subject: the confidence menu in part 6 is the case, and it says
   // so where it stands.
   const clickChrome = async (sel) => {
-    const why = await page.evaluate((s) => {
+    const why = await page.evaluate(async (s) => {
       const el = document.querySelector(s);
       if (!el) return `nothing matches ${s}`;
       if (el.disabled) return `${s} is disabled`;
+      // T-0701: the drawer SLIDES. `#panel[hidden]` keeps its layout and sits at
+      // translateX(102%), and opening it is a .24 s transform — so for a quarter
+      // of a second after `setPanel(true)` a tab has a real box whose centre is
+      // off the right edge of the viewport, and `elementFromPoint` answers
+      // `null` for it. A visitor clicks a drawer that has arrived; so does this.
+      // Waited for, never assumed: the hit-test below still runs on the settled
+      // box, and a control that is genuinely covered still fails here.
+      const drawer = el.closest('#panel');
+      if (drawer) {
+        for (let i = 0; i < 40 && getComputedStyle(drawer).transform !== 'none'; i++) {
+          await new Promise((r) => setTimeout(r, 50));
+        }
+      }
       // The same scroll `page.click` would do, in the same round trip as the
       // reading — a result row far down the Go-to list is off the panel's
       // viewport until this runs, and `elementFromPoint` would then answer for
@@ -1897,6 +1910,15 @@ for (const [label, viewport, touch] of [
     //
     // The gate is still open at this point in the run (the walk tests click
     // through it much later), which is the only moment the row is on screen.
+    //
+    // T-0491. THE ROW COUNT IS NOT HARDCODED, and it was: this read `shown.length === 2`
+    // and T-0490 added a third row — the evidence population, out of the residents
+    // manifest — so the assertion failed on `dev` from 2 September without a word about
+    // the row it had not been told about. A test that names how many figures there are
+    // rots the next time the row is right; one that reads the same files the page read
+    // and compares figure for figure cannot. The residents manifest is fetched here
+    // rather than taken off the harness handle because `census.js` reads it directly and
+    // nothing puts it on `window`.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
@@ -1909,14 +1931,23 @@ for (const [label, viewport, touch] of [
         data: window.__chicago4d.census,
       };
     });
+    // The third row's figure is not on the harness handle, so it is read off the
+    // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
+    // this run is serving, which is the same file the page fetched.
+    let residentCounts = null;
+    try {
+      residentCounts = JSON.parse(
+        fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
+      ).counts || null;
+    } catch { residentCounts = null; }
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
+    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
+      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
-      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
-      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
+      gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
+      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
-      Number.isFinite(want[0]) && Number.isFinite(want[1])
-      && shown[0] === want[0] && shown[1] === want[1],
+      want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
@@ -2385,7 +2416,7 @@ for (const [label, viewport, touch] of [
         .filter((st) => st.record === 'sauganash_yard_trees')
         .map((st) => ({
           ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          inYard: st.e > 101.4 && st.e < 117.42 && st.n < -130.6 && st.n > -151.07,
           clear: onRun(st.e, st.n),
         }));
       return {
@@ -2956,6 +2987,35 @@ for (const [label, viewport, touch] of [
           if (a.style?.ground === b.style?.ground) sameGround++;
         }
       }
+      // T-0459: NO BOARD OVER AN OPENING, and it is a VISIBLE-QUALITY fault so it
+      // is tested here rather than only in the commit gate. The owner reported
+      // boards sitting over doors and over windows on walls with blank face going
+      // spare, and a sweep found it was all twenty of the flat-mounted ones. The
+      // record now carries, per flat sign, the door and window rectangles of the
+      // wall it hangs on — derived from the same archetype set-out the MESH is
+      // built from — and the one rectangle it is deliberately fixed to, which is
+      // only ever a door a board was shrunk onto. Anything else it covers is the
+      // fault coming back.
+      let flatSigns = 0;
+      const overOpening = [];
+      for (const sg of signs) {
+        const fit = sg.opening_fit;
+        if (!fit) continue;
+        flatSigns++;
+        const [ba, bc] = fit.board_span_local_m;
+        // `arm_height_m` is the board's HEAD; a wall board carries a rain cap over
+        // it, which signage.js stands 0.09 m proud of the same wall.
+        const top = sg.arm_height_m + (sg.mounting === 'wall_board' ? 0.09 : 0);
+        const bot = sg.arm_height_m - sg.board_h_m;
+        const on = fit.fixed_to;
+        for (const o of fit.openings || []) {
+          if (o.u0 >= bc || o.u1 <= ba || o.z0 >= top || o.z1 <= bot) continue;
+          const isFixture = on && o.kind === on.kind && o.u0 === on.u0
+            && o.u1 === on.u1 && o.z0 === on.z0 && o.z1 === on.z1
+            && ba >= on.u0 && bc <= on.u1 && bot >= on.z0 && top <= on.z1;
+          if (!isFixture) overOpening.push(`${sg.structure_id} over ${o.kind}`);
+        }
+      }
       // The South Water row, which is the street the town actually reads as one:
       // every sign whose anchor sits on the frontage line north of the block.
       const row = signs.filter((sg) => sg.anchor_local_enu_m[1] > -10
@@ -2977,6 +3037,8 @@ for (const [label, viewport, touch] of [
         unattributed,
         spans: spans.length,
         signs: signs.length,
+        flatSigns,
+        overOpening,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
         // T-0130: the board and the card have to agree about WHO, over the whole
         // set and not only at the Tremont. Punctuation is dropped because the
@@ -3017,6 +3079,13 @@ for (const [label, viewport, touch] of [
       + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
     check(`${label}: the whole signage layer is one draw call`,
       boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // T-0459. The count is asserted as well as the faults, so the test cannot pass
+    // by finding no flat signs to look at.
+    check(`${label}: no board is fixed over a door or a window`,
+      boards.flatSigns >= 15 && boards.overOpening?.length === 0,
+      `${boards.flatSigns} flat-mounted board(s) tested against their own wall's `
+      + `openings, ${boards.overOpening?.length ?? '?'} over one`
+      + (boards.overOpening?.length ? `: ${boards.overOpening.join(', ')}` : ''));
     // AND ITS SHADOW IS STILL IN THE FRAME. T-0115 dropped the derived furniture
     // out of the shadow map at `light` and put the signboards back in by
     // measurement, because the shadow is most of what a board contributes to the
@@ -4082,7 +4151,145 @@ for (const [label, viewport, touch] of [
                  recorded: q.post_height_m ?? null,
                  clear: q.clear_of_track_m ?? null, text: q.text ?? null };
       });
+      // THE EDGE RULE (T-0460), proved on the drawn geometry rather than on a
+      // number the layer reports about itself.
+      //
+      // A plank walk used to end, at each side, in a row of board ENDS: at a
+      // 0.32 m pitch with a 0.02 m gap between them over a deck standing 0.11 m
+      // proud of the road, the outer edge was ten thousand short end-grain
+      // faces with daylight between them. That is the sawtooth the owner
+      // reported, and the rule that replaces it is: **a walk's side is a
+      // continuous string piece — timber at the walk's own edge line, from the
+      // deck it holds down to the ground it stands on, at EVERY station along
+      // the run.**
+      //
+      // So this marches one named 98 m walk in 0.2 m stations, takes every
+      // vertex in the layer standing within 0.03 m of that walk's edge line on
+      // either side, and asks each station for two things: a vertex up at the
+      // deck, and a vertex down at the ground. A comb of board ends answers the
+      // first and not the second — the old bay stringer that did reach the
+      // ground stood 0.09 m inboard, outside this band, which is exactly why
+      // the edge read as ragged — so this check FAILS on the geometry it was
+      // written against and passes on the string piece that replaced it.
+      const edge = (() => {
+        const walk = (f?.walks ?? []).find((w) => w.id === 'blk_lake_clark_north_walk_1');
+        const line = walk?.centreline_local_enu_m;
+        if (!Array.isArray(line) || line.length !== 2) return null;
+        const half = (walk.width_m ?? 1.83) / 2;
+        const rise = walk.rise_m ?? 0.11;
+        const [a0, b0] = line;
+        const de = b0[0] - a0[0];
+        const dn = b0[1] - a0[1];
+        const len = Math.hypot(de, dn);
+        const ue = de / len;
+        const un = dn / len;
+        const STEP = 0.2;
+        // The run's own ends are skipped: a walk is cut where its face stops and
+        // the last half-metre is the joint, not the edge this rule is about.
+        const from = 0.5;
+        const to = len - 0.5;
+        const cells = Math.max(1, Math.floor((to - from) / STEP));
+        const hi = new Array(cells).fill(-Infinity);
+        const lo = new Array(cells).fill(Infinity);
+        // BY THE FACE, NOT BY THE VERTEX. A string piece is a box 2.08 m long,
+        // so it carries vertices only at its two ends: asked for vertices, 441
+        // of these 487 stations read empty on geometry that is in fact
+        // continuous timber. What a station has to be covered by is a FACE, so
+        // this walks the layer's triangles — the buffers are non-indexed, three
+        // vertices to a triangle — takes those lying wholly in the edge band,
+        // and fills every station the triangle spans with the height range it
+        // covers there.
+        for (const t of timber) {
+          const pos = t.geometry?.getAttribute('position');
+          if (!pos) continue;
+          for (let i = 0; i + 2 < pos.count; i += 3) {
+            let lo3 = Infinity;
+            let hi3 = -Infinity;
+            let a3 = Infinity;
+            let b3 = -Infinity;
+            let inBand = true;
+            for (let k = 0; k < 3; k++) {
+              const e = pos.getX(i + k) - a0[0];
+              const n = -pos.getZ(i + k) - a0[1];
+              if (Math.abs(Math.abs(-e * un + n * ue) - half) > 0.03) { inBand = false; break; }
+              const along = e * ue + n * un;
+              if (along < a3) a3 = along;
+              if (along > b3) b3 = along;
+              const y = pos.getY(i + k);
+              if (y < lo3) lo3 = y;
+              if (y > hi3) hi3 = y;
+            }
+            if (!inBand) continue;
+            const c0 = Math.max(0, Math.ceil((a3 - from) / STEP));
+            const c1 = Math.min(cells - 1, Math.floor((b3 - from) / STEP));
+            for (let c = c0; c <= c1; c++) {
+              if (hi3 > hi[c]) hi[c] = hi3;
+              if (lo3 < lo[c]) lo[c] = lo3;
+            }
+          }
+        }
+        let open = 0;
+        let empty = 0;
+        let worst = 0;
+        for (let c = 0; c < cells; c++) {
+          if (hi[c] === -Infinity) { empty += 1; open += 1; continue; }
+          const t = from + (c + 0.5) * STEP;
+          const g = terrain.surfaceHeight(a0[0] + ue * t, a0[1] + un * t);
+          if (!Number.isFinite(g)) continue;
+          // Up at the deck AND down at the ground: a station that answers only
+          // one of the two is an open edge, and how far the timber falls short
+          // of the ground is what the sawtooth measured.
+          const deep = lo[c] - (g + 0.02);
+          const tall = (g + rise - 0.06) - hi[c];
+          if (deep > 0 || tall > 0) {
+            open += 1;
+            worst = Math.max(worst, deep, tall);
+          }
+        }
+        return { id: walk.id, len: Math.round(len * 10) / 10, cells, open, empty,
+                 worst: Math.round(worst * 1000) / 1000 };
+      })();
+      // THE DECAL ORDER (T-0625), and it is asserted structurally because the
+      // fault it catches is invisible to every count this layer reports about
+      // itself. The street ribbon is a decal — depthWrite off, polygonOffset
+      // -8/-32 so the terrain cannot punch through its drape — and that offset
+      // scales with the polygon's depth slope, which at the grazing angle a road
+      // is seen at is large enough to beat the 0.06 m a board crossing stands
+      // above it. The ribbon then paints over the crossing in hard triangular
+      // patches. frontage.js answers that by drawing the timber AFTER the
+      // ribbon, which requires two things that are easy to separate by accident:
+      // the two must be in the SAME render list (three draws every opaque before
+      // any transparent, and renderOrder cannot reach across the two lists), and
+      // the timber's renderOrder must be the higher. The layer shipped with only
+      // the second for two months and the comment claiming both.
+      const decal = (() => {
+        let root = f?.group;
+        while (root?.parent) root = root.parent;
+        if (!root) return null;
+        const street = [];
+        const timber = [];
+        root.traverse((o) => {
+          const m = o.material;
+          if (!m) return;
+          for (const mm of (Array.isArray(m) ? m : [m])) {
+            const nm = mm?.name || '';
+            if (/^street-/.test(nm)) street.push({ transparent: !!mm.transparent, order: o.renderOrder });
+            else if (nm === 'frontage-timber') timber.push({ transparent: !!mm.transparent, order: o.renderOrder });
+          }
+        });
+        if (!street.length || !timber.length) return null;
+        return {
+          street: street.length,
+          timber: timber.length,
+          sameList: street.every((s) => timber.every((t) => t.transparent === s.transparent)),
+          timberAfter: street.every((s) => timber.every((t) => t.order > s.order)),
+          streetOrder: street[0].order,
+          timberOrder: timber[0].order,
+        };
+      })();
       return {
+        edge,
+        decal,
         hitching,
         recordIds: (f?.records ?? []).map((r) => r.id),
         noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
@@ -4170,10 +4377,59 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
+      // T-0384 stood john_holbrook_store on the South Water face of
+      // blk_south_water_dearborn — a documented STORE, which is a trade the
+      // hitching rule accepts — so ONE more post stands at that frontage: 17 to
+      // 18. This is a building ARRIVING rather than a trade settling, so unlike
+      // T-0263 no refusal retires with it and 83 does not move. Nothing else
+      // moves either: the face's walk was already laid for its whole length so
+      // no run opens and no crossing is added, and the shop stands 1.50 m back
+      // from the frontage line, inside the 3.0 m a street fence needs, which was
+      // already refused on that wall.
+      // T-0461 asked whether a lot is improved by the building STANDING on it or
+      // by where one corner of it landed, and it was the corner: `at` is the
+      // placement origin, which is a footprint VERTEX on 366 of the 367 placed
+      // records and the centroid on none. `_stands_on` now asks whether the
+      // committed footprint and the lot share ground. It can only ADD occupancy
+      // — 28 more across the town's 144 platted lots, none removed, 125 improved
+      // lots to 131 — so every figure here moves in one direction each.
+      // POSTS 18 to 20, and both are buildings whose own door is on the face
+      // they now stand on: tremont_house_1, a documented hotel on the Lake face
+      // of blk_south_water_clark, and exchange_coffee_house on the Lake face of
+      // blk_south_water_franklin. Each had 90% and more of its frontage on the
+      // lot and its origin corner just off it.
+      // FENCES 35 to 32, and every one of the three is the SAME clause T-0028
+      // and T-0380 are already recorded against — a wall inside the 3.0 m a
+      // street fence needs, so the building IS the street wall there. They are
+      // blk_south_water_clark lot 7 (tremont_house_1, 2.40 m),
+      // blk_lake_dearborn lot 2 (mason_blacksmith_shop, 0.55 m) and
+      // blk_south_water_lasalle lot 3 (recon_1835_blk_south_water_lasalle_a1_06,
+      // 1.61 m). The first is what T-0461 was filed for: that fence stood
+      // between the footway and the Tremont House's own goods.
+      // REFUSED 83 to 85 — the two new setback refusals above that were not
+      // already refused as prairie, plus one post refused for want of a walk at
+      // harmon_loomis_store, less one lot (blk_randolph_clinton lot 4) that
+      // stops reading as prairie and takes its fence. Six further refusals do
+      // not move in COUNT but change their WORDING, from "no committed building
+      // stands on this platted lot" to the building that does and how far back
+      // it stands. WALKS and CROSSINGS do not move: this rule reads lots, and a
+      // walk is laid off the block face.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 17 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        // T-0626 takes it back to NINETEEN, and it is the first time this count
+        // has gone DOWN. Nothing was refused for being badly placed: the log
+        // cabin beside the Sauganash stopped being a drug store. Its record was
+        // titled Philo Carpenter's Log Drug Store and carried `drug_store` as
+        // its function, three years after Carpenter moved out of it, and the
+        // hitching rule stands a post at a frontage whose TRADE it accepts. With
+        // the trade gone — the record now states three former uses and no
+        // current one — the frontage has no trade to take custom from a stranger
+        // off the street, so the post retires with the signboard that lettered
+        // the same man's name over the same door. Walks, crossings, fences and
+        // refusals do not move: the building is still there and still the street
+        // wall on that face.
+        && frontage.census?.posts === 19 && frontage.census?.fences === 32
+        && frontage.census?.refused === 85
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4222,6 +4478,41 @@ for (const [label, viewport, touch] of [
       + `vertex ${frontage.deckTop?.toFixed(3)} m above it, ${frontage.bandBreaches} `
       + `vertice(s) past even their own relief allowance (worst by `
       + `${frontage.worstBreach?.toFixed(3)} m)`);
+    // THE WALK'S SIDE IS A MADE EDGE, NOT A ROW OF BOARD ENDS (T-0460). The
+    // owner reported the plank walk meeting the dirt road in a jagged sawtooth
+    // — "it's like the first thing we see" — and the treatment chosen was the
+    // first of the two he would accept: the walk sits consistently OVER the
+    // road, held between two string pieces whose tops are flush with the boards
+    // and whose feet reach the ground. The probe above walks one named 98 m run
+    // in 0.2 m stations and asks every one of them for timber from the deck to
+    // the ground at the walk's own edge line; it is written to fail on the comb
+    // of board ends this replaced.
+    // T-0625. The owner reported the crossing at Lake and South Water still
+    // broken after T-0460 shipped: the road was painting over the plank deck in
+    // triangular patches, which reads as the same sawtooth from the street but
+    // is a render-order fault, not a geometry one. T-0460's probe above cannot
+    // see it — the timber IS there, at the right height, with a continuous edge;
+    // it is simply not the thing on the screen. So this asserts the ordering
+    // contract itself: same render list, timber after the ribbon.
+    check(`${label}: the street decal cannot paint over the timber laid on it`,
+      frontage.decal !== null && frontage.decal.sameList && frontage.decal.timberAfter,
+      frontage.decal === null
+        ? 'no street ribbon or no frontage timber in the scene to compare'
+        : `${frontage.decal.street} street material(s) and ${frontage.decal.timber} timber `
+          + `mesh(es): sameList=${frontage.decal.sameList} (three draws every opaque before `
+          + `any transparent, so renderOrder cannot order across the two lists), `
+          + `timberAfter=${frontage.decal.timberAfter} `
+          + `(street renderOrder ${frontage.decal.streetOrder}, timber ${frontage.decal.timberOrder})`);
+
+    check(`${label}: a plank walk's side is one made edge for its whole length`,
+      frontage.edge !== null && frontage.edge.open === 0 && frontage.edge.cells > 400
+        && frontage.census?.kerb > 3000,
+      `${frontage.edge?.id ?? 'no walk probed'}: ${frontage.edge?.open} of `
+      + `${frontage.edge?.cells} station(s) over ${frontage.edge?.len} m show an open `
+      + `edge (${frontage.edge?.empty} with no timber at all, worst by `
+      + `${frontage.edge?.worst} m); the layer laid ${frontage.census?.kerb} length(s) `
+      + `of string piece, the largest step between two consecutive ones `
+      + `${frontage.census?.kerbStep_m} m`);
     // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
     // height came from a number beside the mesh rather than from a terrain sample
     // floats; a board hung too low is one a visitor walks through.
@@ -4360,7 +4651,10 @@ for (const [label, viewport, touch] of [
     // arriving: frederick_thomas_shop already stood on South Water Street and
     // its frontage was refused a post in writing because its trade was
     // reconstructed, so settling that trade on the Chicago American's own
-    // heading is what qualifies it. The street-edge population is fourteen. The two
+    // heading is what qualifies it. T-0384 makes it seventeen, and that one IS a building
+    // arriving: John Holbrook's clothing store is a documented store on
+    // South Water Street, so the rule stands a post at its frontage and no
+    // refusal retires with it. The street-edge population is fifteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4376,11 +4670,28 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 16
-        && frontage.census?.hitching === 16
+    // T-0461 makes it NINETEEN, and neither is a building arriving or a trade
+    // settling: both already stood, with a documented trade the rule accepts,
+    // on a lot the containment test could not see them on. `_stands_on` asks
+    // whether the footprint and the lot share ground instead of where the
+    // placement origin — a footprint VERTEX, on 366 of 367 records — happened to
+    // fall, and tremont_house_1 (a hotel, 13.76 m of its 15.24 m frontage on
+    // lot 7 of blk_south_water_clark) and exchange_coffee_house are what it
+    // finds. The street-edge population is seventeen; the two on a record's own
+    // ground do not move, because those come from the Sauganash's own plates.
+    // T-0626 makes it EIGHTEEN, the first fall in this line, and it is a trade
+    // leaving rather than a building. `philo_carpenter_log_shop` — Mark
+    // Beaubien's own cabin, let to Philo Carpenter in 1832, to John S. Wright,
+    // then to Eliza Chappel's school until 1834 — stopped carrying `drug_store`
+    // as its function, because on 1 July 1835 it is neither a drug store nor a
+    // school and no source reached says what it was. The hitching rule accepts a
+    // frontage by its TRADE, so the post retires with it. The street-edge
+    // population is sixteen; the two on a record's own ground do not move.
+    check(`${label}: the eighteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 18
+        && frontage.census?.hitching === 18
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 14
+        && frontage.hitching.filter((h) => h.street).length === 16
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -4739,8 +5050,18 @@ for (const [label, viewport, touch] of [
     // has to be exact, and a walk that shrank under a floor would be a march
     // quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
+      // T-0461 LOWERS THE FENCE FLOOR, 34 to 32, and it is the one figure here
+      // this project should expect to fall. The other three are laid ground —
+      // faces, metres of walk, decks — and a rule that shrank those would be
+      // refusing ground it used to lay, which is what a floor is for. Fence
+      // RUNS are not: the street-fence rule refuses by design, and `_stands_on`
+      // finding the building actually standing on a lot is how three lots came
+      // to be refused under the clause that says a wall inside 3.0 m of the
+      // frontage line IS the street wall. The exact count is asserted above in
+      // the frontage census (32), so this stays a floor rather than becoming a
+      // second place to keep the same number.
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 32
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
@@ -5542,47 +5863,83 @@ for (const [label, viewport, touch] of [
     });
     await page.waitForTimeout(250);
 
-    // --- the invented residents have names now (K18) ------------------------
+    // --- the evidence-only households, after the invented names went (T-0524) -
     //
-    // Every reconstructed resident used to be "A baker (inferred resident,
-    // unnamed)". They carry invented names so a reconstructed household reads
-    // as a household — and a name LOOKS like a fact in a way a wall height does
-    // not, so the record has to declare it. What is pinned here is that the
-    // walkthrough SHOWS the declaration: a visitor who reads a name must be able
-    // to see, in the same card, that we made it up.
+    // WHAT THIS BLOCK USED TO ASSERT, AND WHY IT NO LONGER CAN. Until 2 September
+    // 2026 the layer minted a `reconstructed` person for every household the
+    // occupation census argued the town needed, gave each one an invented period
+    // name, and carried a `name_basis` block declaring the invention. K18 pinned
+    // the declaration: a visitor who reads a name must be able to see, in the same
+    // card, that we made it up. The owner's T-0489 ruling retired that population —
+    // `data/residents/index.json` now reads `by_grade.reconstructed: 0` — and the
+    // records that survived it say so in as many words ("The invented name this
+    // record used to carry, and its name_basis block, are retired: an invented name
+    // is not kept beside a documented one").
+    //
+    // So the subject of the first two assertions is gone, and the honest move is
+    // not to delete a passing-shaped check: it is to keep the wire and turn it
+    // round. What the layer now promises is the OPPOSITE promise — that the
+    // invented-name programme left nothing behind — and that is what is asserted,
+    // over the manifest's own tally and over the record this block already fetches.
+    // If a future run mints an invented name again, this trips.
+    //
+    // The `hh_inf_` households the ruling kept are `unplaced` evidence-only
+    // households: one head the papers name, graded `inferred`, on no roof.
     const invented = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const res = await fetch(new URL('residents/index.json', api.dataBase));
       const index = await res.json();
       const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
       const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
-      const person = hh.persons.find((p) => p.grade === 'reconstructed');
+      const head = hh.persons.find((p) => p.relationship === 'head') || hh.persons[0];
       return {
+        id: hh.id,
         household: hh.name,
-        name: person?.name,
-        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
-        basisGrade: person?.name_basis?.confidence,
-        basisNote: (person?.name_basis?.note || '').slice(0, 60),
+        name: head?.name,
+        headGrade: head?.grade,
+        headNote: (head?.note || '').slice(0, 400),
+        // The retirement, read three ways: the layer's own tally, this record's
+        // people, and the block that carried the declaration.
+        reconstructedInLayer: index.counts?.by_grade?.reconstructed,
+        reconstructedHere: hh.persons.filter((p) => p.grade === 'reconstructed').length,
+        anyNameBasis: hh.persons.some((p) => !!p.name_basis),
+        opening: String(hh.name ?? '').trim().split(/\s+/)[0]
+          .replace(/[^A-Za-z]/g, '').toLowerCase(),
         grades: index.vocabulary.grades,
       };
     });
-    check(`${label}: a reconstructed resident has an invented period name`,
-      /^[A-Z][a-z]+ [A-Z]/.test(invented.name ?? '')
-      && !/unnamed|inferred resident/i.test(invented.name ?? ''),
-      `name "${invented.name}"`);
-    check(`${label}: the invented name is graded as invented and says so`,
-      invented.basisGrade === 'reconstructed'
-      && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
-      `name_basis ${invented.basisGrade} — "${invented.basisNote}"`);
-    // The layer-word in this label was `inferred` until K23a, and so was this
-    // assertion — which is how a name claiming a better grade than its own
-    // record survived a release gate. It is pinned to the HEAD'S OWN GRADE now
-    // rather than to a literal, so the label cannot drift from the record again
-    // and cannot be satisfied by whichever word happens to be in fashion.
+    check(`${label}: an evidence-only household's head is a person a source names`,
+      /^[A-Z]/.test(invented.name ?? '')
+      && !/unnamed|inferred resident/i.test(invented.name ?? '')
+      && invented.grades?.includes(invented.headGrade)
+      && invented.headGrade !== 'reconstructed',
+      `head "${invented.name}" graded ${invented.headGrade}`);
+    // The inverse of the retired K18 check, and the reason it is here rather than
+    // deleted: `name_basis` is still rendered by `js/residents.js` (the "How this
+    // person is named" row), so nothing in the renderer stops an invented name
+    // coming back. The DATA is what the ruling changed, so the data is the gate.
+    check(`${label}: the invented-name programme left nothing behind on this layer`,
+      invented.reconstructedInLayer === 0 && invented.reconstructedHere === 0
+      && invented.anyNameBasis === false,
+      `${invented.reconstructedInLayer} reconstructed people in the manifest, `
+      + `${invented.reconstructedHere} on ${invented.id}, `
+      + `name_basis present: ${invented.anyNameBasis}`);
+    // The layer-word in this label was `inferred` until K23a, and this assertion
+    // was pinned to the HEAD'S OWN GRADE — which is how a name claiming a better
+    // grade than its own record survived a release gate. T-0489 renamed these
+    // households again, to "Evidence-only household — <head>", and that phrase is
+    // NOT a grade word, so pinning to the head's grade now asserts a coincidence.
+    // The two things worth keeping are kept instead: the household is named for
+    // the person it is a household of, and its opening word may never be a grade
+    // the record does not hold — the K23a rule, applied to household names too.
     check(`${label}: the household is named for its head and still says which layer it is`,
-      /household/.test(invented.household ?? '')
-      && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
-      `household "${invented.household}" against head grade ${invented.headGrade}`);
+      /household/i.test(invented.household ?? '')
+      && !!invented.name && (invented.household ?? '').includes(invented.name)
+      && /evidence-only/i.test(invented.household ?? '')
+      && !['attested', 'inferred', 'reconstructed', 'documented', 'conjectural',
+        'recommended'].includes(invented.opening),
+      `household "${invented.household}" for head "${invented.name}" `
+      + `graded ${invented.headGrade}`);
 
     // --- the prose may not name a level the record is not (K23a) ------------
     //
@@ -5685,12 +6042,26 @@ for (const [label, viewport, touch] of [
       };
       // And the search has to answer to BOTH names, which is the whole argument for
       // keeping the production identity anywhere.
+      //
+      // T-0524: this used to pick ONE record for both halves — an anonymous roof that
+      // an inferred household had been placed on — and T-0489 emptied `residents` on
+      // every one of the 249 anonymous roofs, so the find returned `undefined` and both
+      // halves read off an empty object. The two halves are two claims and they now
+      // take the subject each one is actually about: the production identity is the
+      // anonymous programme's, so `bySpec` reads an anonymous roof (any of them, since
+      // none is occupied any more); "found by the people in it" is a claim about a
+      // record that HAS people, so `byHousehold` reads one of the 48 that do. Neither
+      // half was weakened — the same two things are asserted, on subjects that exist.
       const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
         ?.reconstruction?.status === 'inferred_anonymous'
-        && (registry.get(id)?.sidecar?.residents ?? []).length);
+        && mod.displayName(registry.get(id).sidecar, id).spec);
       const sidecar = registry.get(anonId)?.sidecar ?? {};
       const terms = mod.searchTerms(sidecar, anonId);
-      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
+      const housedId = [...registry.keys()].find((id) => /^The\s+(.+?)\s+household\b/
+        .test((registry.get(id)?.sidecar?.residents ?? [])[0]?.name ?? ''));
+      const housed = registry.get(housedId)?.sidecar ?? {};
+      const surname = /^The\s+(.+?)\s+household\b/.exec(housed.residents?.[0]?.name ?? '');
+      const housedTerms = mod.searchTerms(housed, housedId);
       // The card itself: opened on that record, reading what a visitor reads.
       window.__chicago4d.popup.show(registry.get(anonId));
       const card = {
@@ -5704,7 +6075,8 @@ for (const [label, viewport, touch] of [
       return { specShaped, anonymous, empty, planted, card,
                searchable: {
                  bySpec: terms.includes(sidecar.name ?? '\u0000'),
-                 byHousehold: !!surname && terms.includes(surname[1]),
+                 byHousehold: !!surname && housedTerms.includes(surname[1]),
+                 housedId, household: surname?.[1] ?? '',
                } };
     });
     check(`${label}: no building titles itself by its part number`,
@@ -5721,9 +6093,11 @@ for (const [label, viewport, touch] of [
       && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
       `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
       + `over reference "${titles.card.reference.trim()}"`);
-    check(`${label}: search still finds it by its part number and by its household`,
+    check(`${label}: search still finds a roof by its part number and a house by its household`,
       titles.searchable.bySpec && titles.searchable.byHousehold,
-      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
+      `by spec ${titles.searchable.bySpec} on ${titles.card.id}, `
+      + `by household ${titles.searchable.byHousehold} `
+      + `("${titles.searchable.household}" on ${titles.searchable.housedId})`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //
@@ -6012,7 +6386,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18', 'L217'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -6029,17 +6403,30 @@ for (const [label, viewport, touch] of [
 
     // Collapsed by default here too — the card must stay skimmable, and a
     // building carrying several liberties would otherwise push the citations off it.
+    // T-0712 RESTATED, NOT WEAKENED. The liberties live in the card's "What we
+    // made up" PANE, hidden by default behind the Evidence pane. A
+    // `checkVisibility()` read of an entry inside a hidden pane is false whether
+    // the entry is collapsed or not, so the old read would have passed its first
+    // half dishonestly; the pane's tab is clicked first, and the read also holds
+    // that the pane itself came into view. The tab is put back to Evidence
+    // afterwards — the card remembers the last pane for the session.
     const popLibOpen = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
+      document.querySelector('#popup [data-pop-tab="liberties"]').click();
+      const pane = document.querySelector('#popup [data-pop-pane="liberties"]');
       const first = document.querySelector('#popup .pop-liberties details.lib');
       const body = first.querySelector('.lib-body');
+      const paneShown = !pane.hasAttribute('hidden') && pane.checkVisibility();
       const before = body.checkVisibility();
       first.open = true;
-      return { before, after: body.checkVisibility() };
+      const after = body.checkVisibility();
+      document.querySelector('#popup [data-pop-tab="evidence"]').click();
+      return { paneShown, before, after, evidenceBack: !document.querySelector('#popup [data-pop-pane="evidence"]').hasAttribute('hidden') };
     });
-    check(`${label}: popup liberties start collapsed and open on demand`,
-      popLibOpen.before === false && popLibOpen.after === true,
-      `${popLibOpen.before} -> ${popLibOpen.after}`);
+    check(`${label}: popup liberties start collapsed on their own pane and open on demand`,
+      popLibOpen.paneShown && popLibOpen.before === false && popLibOpen.after === true
+      && popLibOpen.evidenceBack,
+      `pane shown ${popLibOpen.paneShown}, ${popLibOpen.before} -> ${popLibOpen.after}`);
 
     // --- was it here at all? ----------------------------------------------
     // The claim the whole scene rests on, and the last one to reach the card.
@@ -6063,15 +6450,32 @@ for (const [label, viewport, touch] of [
         if (!sec) return null;
         const row = sec.querySelector('table.attrs tr');
         const note = row?.querySelector('[data-note]');
+        // T-0711 RESTATED: the phase's own account no longer opens this
+        // section — it is the card's LEAD, `#popup .pop-lead.pop-account`, the
+        // first sentence a visitor reads. Same text, read where it now stands.
+        const lead = document.querySelector('#popup .pop-lead.pop-account');
         return {
           span: row?.querySelector('.val')?.textContent.trim() ?? '',
           conf: row?.querySelector('.conf')?.textContent.trim() ?? '',
-          account: sec.querySelector('.pop-account')?.textContent.trim() ?? '',
+          account: lead?.textContent.trim() ?? '',
+          composed: lead ? lead.hasAttribute('data-composed') : null,
           noteText: note?.textContent.trim() ?? '',
           noteHidden: note ? note.hasAttribute('hidden') : null,
         };
       };
-      return { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
+      // And a record with NO change_note — the fort's powder magazine — gets a
+      // lead composed strictly from its fields: its function and its location.
+      window.__chicago4d.pick('fort_dearborn_magazine');
+      const s = window.__chicago4d.registry.get('fort_dearborn_magazine')?.sidecar ?? {};
+      const lead = document.querySelector('#popup .pop-lead.pop-account');
+      const composed = {
+        hasChangeNote: !!s.change_note,
+        composed: lead ? lead.hasAttribute('data-composed') : null,
+        text: lead?.textContent.trim() ?? '',
+        fn: String(s.attributes?.function?.value ?? '').replace(/_/g, ' '),
+        where: String(s.placement?.symbolic_location ?? '').replace(/\.$/, ''),
+      };
+      return { hogan: read('hogan_store'), saug: read('sauganash_hotel'), composed };
     });
     check(`${label}: the card says whether the building was here on the scene date`,
       presence.hogan?.span === '1831-03-31 → 1835-12-31',
@@ -6088,25 +6492,46 @@ for (const [label, viewport, touch] of [
       `hidden ${presence.hogan?.noteHidden}, note "${(presence.hogan?.noteText ?? '').slice(0, 120)}"`);
     // What no chip can express: this building held the post office for three
     // years and is not the post office on the day you are standing in.
-    check(`${label}: the phase's own account of itself reaches the card`,
+    // Was read inside the "Was it here" section; T-0711 made it the card's lead.
+    // The record's words are verbatim (not composed) on both, and each is its own.
+    check(`${label}: the phase's own account of itself leads the card`,
       /post office/i.test(presence.hogan?.account ?? '')
-      && presence.saug?.account !== presence.hogan?.account,
-      `account "${(presence.hogan?.account ?? '').slice(0, 120)}"`);
+      && presence.saug?.account !== presence.hogan?.account
+      && presence.hogan?.composed === false && presence.saug?.composed === false,
+      `account "${(presence.hogan?.account ?? '').slice(0, 120)}", composed ${presence.hogan?.composed}`);
+    // T-0711: a record without a change_note is not left without a first
+    // sentence — the lead is composed from its own function and location, and
+    // says so with `data-composed`, so nothing composed can pass as recorded.
+    check(`${label}: a record without an account gets a lead composed from its function and location, marked as composed`,
+      presence.composed.hasChangeNote === false && presence.composed.composed === true
+      && presence.composed.fn.length > 3
+      && presence.composed.text.toLowerCase().includes(presence.composed.fn.toLowerCase())
+      && presence.composed.text.toLowerCase().includes(presence.composed.where.toLowerCase().slice(0, 40)),
+      `"${presence.composed.text.slice(0, 160)}" — function "${presence.composed.fn}", `
+      + `location "${presence.composed.where.slice(0, 60)}"`);
 
     // The position's argument, on the line that shows the position. Three of the
     // eight placements are derived from bank geometry because no corner survives;
     // the card showed the conclusion and hid the reasoning behind nothing.
+    // T-0712 RESTATED: the position row is a claim row in the "Where did it
+    // stand?" section (`.pop-where`) of the Evidence pane — `.pop-meta` is gone.
+    // The Evidence tab is activated first so the read is of a shown pane.
     const posWhy = await page.evaluate(() => {
       window.__chicago4d.pick('walker_meeting_house');
-      const meta = document.querySelector('#popup .pop-meta [data-note]');
-      const btn = document.querySelector('#popup .pop-meta [data-toggle-note]');
+      document.querySelector('#popup [data-pop-tab="evidence"]').click();
+      const where = document.querySelector('#popup .pop-where');
+      const meta = document.querySelector('#popup .pop-where [data-note]');
+      const btn = document.querySelector('#popup .pop-where [data-toggle-note]');
       const before = meta?.hasAttribute('hidden');
       btn?.click();
-      return { before, after: meta?.hasAttribute('hidden'), text: meta?.textContent ?? '' };
+      return { whereShown: !!where && where.checkVisibility(), before,
+        after: meta?.hasAttribute('hidden'), shown: meta ? meta.checkVisibility() : null,
+        text: meta?.textContent ?? '' };
     });
     check(`${label}: the position's reasoning opens on demand`,
-      posWhy.before === true && posWhy.after === false && posWhy.text.length > 200,
-      `${posWhy.before} -> ${posWhy.after}, ${posWhy.text.length} chars`);
+      posWhy.whereShown && posWhy.before === true && posWhy.after === false && posWhy.shown === true
+      && posWhy.text.length > 200,
+      `where shown ${posWhy.whereShown}, ${posWhy.before} -> ${posWhy.after} (visible ${posWhy.shown}), ${posWhy.text.length} chars`);
 
     // --- was it this shape? -----------------------------------------------
     // The footprint is the largest claim a visitor is standing in front of and
@@ -6188,11 +6613,37 @@ for (const [label, viewport, touch] of [
       return out;
     });
     const uncovered = chipCover.filter((r) => r.graded !== r.chips);
+    // T-0712: the selector above KEEPS ITS MEANING under the new card — `.pop-meta`
+    // no longer exists and the position chip is a `table.attrs` row inside
+    // `.pop-where`, so the union counts exactly the graded claim rows it always
+    // did. Hidden panes are still in the DOM, so a chip count is honest whichever
+    // pane is showing.
     check(`${label}: every graded claim in a record reaches the card as a chip`,
       chipCover.length >= 8 && uncovered.length === 0,
       uncovered.length
         ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
         : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
+    // T-0711: the FACTS above the tabs are labels with grade DOTS, never chips —
+    // a `.conf` chip in the facts would be a second, competing tally of the
+    // claims the chip-coverage gate has just counted. The Sauganash has at least
+    // Standing, Use, Built and Roof graded, so three dots is the floor.
+    const factDots = await page.evaluate(() => {
+      window.__chicago4d.pick('sauganash_hotel');
+      const facts = document.querySelector('#popup .pop-facts');
+      return {
+        facts: !!facts,
+        dots: document.querySelectorAll('#popup .pop-facts .fact-dot').length,
+        chips: document.querySelectorAll('#popup .pop-facts .conf').length,
+        offScale: [...document.querySelectorAll('#popup .fact-dot')].filter((d) =>
+          !/\bfact-(attested|inferred|reconstructed)\b/.test(d.className)).length,
+        untitled: [...document.querySelectorAll('#popup .fact-dot')].filter((d) =>
+          !/(attested|inferred|reconstructed)/.test(d.getAttribute('title') ?? '')).length,
+      };
+    });
+    check(`${label}: the facts carry grade dots, not chips`,
+      factDots.facts && factDots.dots >= 3 && factDots.chips === 0 && factDots.offScale === 0
+      && factDots.untitled === 0,
+      JSON.stringify(factDots));
 
     // --- and the summary of those chips, which is what a visitor reads first -
     // K23b, owner-reported from a card on the dev preview: *"when you say what we
@@ -6434,8 +6885,20 @@ for (const [label, viewport, touch] of [
     // meet the town's people is this card. Before it existed the layer stopped at
     // the repo — the failure mode that looks identical, from the street, to the
     // work never having been done. The discriminating half is the third check: a
-    // building the programme RAISED for a hypothesised household has to say so,
-    // or the card reads as evidence that somebody lived here.
+    // building whose household is there for a REASON has to say what the reason
+    // is, or the card reads as bare evidence that somebody lived here.
+    //
+    // T-0524: that third read was `inf_cooperage_south` — a roof the inferred-
+    // household programme had raised, whose section had to carry
+    // "BECAUSE OF THIS HOUSEHOLD" over `grade-reconstructed` people. T-0489
+    // retired that programme and emptied `residents` on all 31 `inferred_household`
+    // roofs, so the section is not rendered on any of them and the assertion had no
+    // subject; the string it looked for is in no record in the tree any more.
+    // The claim it was making — the card states the BASIS on which this household
+    // is attached to this building — survives on the five records that still carry
+    // one, so it is read there. T-0516 is the open ticket that decides what those
+    // 31 roofs now say; when a roof carries a household again, the reconstructed
+    // half of this check belongs back here alongside the documented half.
     const who = await page.evaluate(() => {
       const read = (id) => {
         window.__chicago4d.pick(id);
@@ -6451,7 +6914,7 @@ for (const [label, viewport, touch] of [
       };
       return {
         brown: read('brown_boarding_house'),
-        inferred: read('inf_cooperage_south'),
+        basis: read('harmon_log_cabin'),
         none: read('log_jail'),
       };
     });
@@ -6463,11 +6926,13 @@ for (const [label, viewport, touch] of [
       who.brown.grades.some((c) => c.includes('grade-inferred'))
       && !who.brown.grades.some((c) => c.includes('conf-')),
       who.brown.grades.join('|'));
-    check(`${label}: a building raised for an inferred household says so`,
-      who.inferred.present
-      && who.inferred.grades.every((c) => c.includes('grade-reconstructed'))
-      && /BECAUSE OF THIS HOUSEHOLD/.test(who.inferred.basis),
-      `basis "${who.inferred.basis.slice(0, 80)}"`);
+    check(`${label}: a building's household says on the card why it is attached there`,
+      who.basis.present && who.basis.grades.length > 0
+      && who.basis.grades.every((c) => /\bgrade-(attested|inferred|reconstructed)\b/.test(c))
+      && !who.basis.grades.some((c) => c.includes('conf-'))
+      && /the household is the one the sources attach to it/.test(who.basis.basis)
+      && who.basis.text !== who.brown.text,
+      `basis "${who.basis.basis.slice(0, 80)}", grades ${who.basis.grades.join('|')}`);
     check(`${label}: a building with no household gets no section at all`,
       !who.none.present && who.none.recorded.length === 0,
       `present ${who.none.present}`);
@@ -6475,17 +6940,99 @@ for (const [label, viewport, touch] of [
     // Collapsed by default, for the same reason the liberties are: these run to
     // several hundred words, and on a phone the panel is 62vh — an open account
     // would push the citations off the card entirely.
+    // T-0712 RESTATED, NOT WEAKENED: the research account lives in the Record
+    // pane, hidden by default. Its tab is clicked first so the collapsed read is
+    // of a shown pane (a hidden pane reads false either way), and Evidence is
+    // put back afterwards.
     const accountOpen = await page.evaluate(() => {
       window.__chicago4d.pick('hogan_store');
+      document.querySelector('#popup [data-pop-tab="record"]').click();
+      const pane = document.querySelector('#popup [data-pop-pane="record"]');
       const d = document.querySelector('#popup .pop-research details.research');
       const body = d.querySelector('.research-body');
+      const paneShown = !pane.hasAttribute('hidden') && pane.checkVisibility();
       const before = body.checkVisibility();
       d.open = true;
-      return { before, after: body.checkVisibility() };
+      const after = body.checkVisibility();
+      document.querySelector('#popup [data-pop-tab="evidence"]').click();
+      return { paneShown, before, after };
     });
-    check(`${label}: the account starts collapsed and opens on demand`,
-      accountOpen.before === false && accountOpen.after === true,
-      `${accountOpen.before} -> ${accountOpen.after}`);
+    check(`${label}: the account starts collapsed on the Record pane and opens on demand`,
+      accountOpen.paneShown && accountOpen.before === false && accountOpen.after === true,
+      `pane shown ${accountOpen.paneShown}, ${accountOpen.before} -> ${accountOpen.after}`);
+
+    // --- the card's order and its panes (T-0711, T-0712) ---------------------
+    // The card reads top-down as a museum label: head, the lead sentence, the
+    // facts, the households when there are any, then the tab strip and one pane
+    // showing. The three sections that moved under tabs are asserted to be in
+    // the pane NAMED for them — a heading rendered in the wrong pane would be
+    // reachable and still wrong. Hogan's is the record with households and the
+    // Standing row's year comes from its sidecar (`documented_range.from`
+    // 1831-03-31), not a literal about the card.
+    const cardShape = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const order = (sel) => {
+        const els = sel.map((s) => document.querySelector(`#popup ${s}`));
+        const missing = sel.filter((s, i) => !els[i]);
+        let ordered = true;
+        for (let i = 1; i < els.length; i++) {
+          if (els[i - 1] && els[i]
+            && !(els[i - 1].compareDocumentPosition(els[i]) & Node.DOCUMENT_POSITION_FOLLOWING)) ordered = false;
+        }
+        return { missing, ordered };
+      };
+      // A heading's OWN words: the liberties h3 carries a `.pop-count` badge
+      // ("What we made up here 6"), which is not part of its name.
+      const ownText = (h) => [...h.childNodes].filter((n) => n.nodeType === Node.TEXT_NODE)
+        .map((n) => n.textContent).join('').trim();
+      const paneOf = (h3text) => {
+        const h3 = [...document.querySelectorAll('#popup .pop-pane h3')]
+          .find((h) => ownText(h) === h3text);
+        return h3?.closest('.pop-pane')?.dataset.popPane ?? null;
+      };
+      document.querySelector('#popup [data-pop-tab="evidence"]')?.click();
+      api.pick('sauganash_hotel');
+      const saug = {
+        order: order(['.pop-head', '.pop-lead', '.pop-facts', '.pop-tabs', '.pop-pane']),
+        residents: !!document.querySelector('#popup .pop-residents'),
+        evidenceShown: (() => { const p = document.querySelector('#popup [data-pop-pane="evidence"]');
+          return !!p && !p.hasAttribute('hidden') && p.checkVisibility(); })(),
+        hiddenPanes: [...document.querySelectorAll('#popup .pop-pane[hidden]')].map((p) => p.dataset.popPane).sort(),
+        tabs: [...document.querySelectorAll('#popup .pop-tab')].map((t) => t.dataset.popTab),
+        homes: { where: paneOf('Where did it stand?'), liberties: paneOf('What we made up here'),
+          record: paneOf("The record's own account") },
+      };
+      api.pick('hogan_store');
+      const from = api.registry.get('hogan_store')?.sidecar?.documented_range?.from ?? '';
+      const facts = [...document.querySelectorAll('#popup .pop-facts .fact')]
+        .map((f) => `${f.querySelector('dt')?.textContent.trim()}: ${f.querySelector('dd')?.textContent.trim()}`);
+      const hogan = {
+        order: order(['.pop-head', '.pop-lead', '.pop-facts', '.pop-residents', '.pop-tabs', '.pop-pane']),
+        residents: !!document.querySelector('#popup .pop-residents'),
+        year: from.slice(0, 4),
+        standing: facts.find((f) => /^Standing:/.test(f)) ?? '',
+        facts,
+      };
+      api.popup.close();
+      return { saug, hogan };
+    });
+    check(`${label}: the card reads head, lead, facts, tabs, pane — in that order`,
+      cardShape.saug.order.ordered && !cardShape.saug.order.missing.length && !cardShape.saug.residents
+      && cardShape.hogan.order.ordered && !cardShape.hogan.order.missing.length && cardShape.hogan.residents,
+      `sauganash missing [${cardShape.saug.order.missing.join(', ')}] ordered ${cardShape.saug.order.ordered}; `
+      + `hogan (with households) missing [${cardShape.hogan.order.missing.join(', ')}] ordered ${cardShape.hogan.order.ordered}`);
+    check(`${label}: the card opens on its Evidence pane with the other two folded`,
+      cardShape.saug.evidenceShown && cardShape.saug.hiddenPanes.join(',') === 'liberties,record'
+      && cardShape.saug.tabs.join(',') === 'evidence,liberties,record',
+      JSON.stringify({ evidenceShown: cardShape.saug.evidenceShown, hidden: cardShape.saug.hiddenPanes, tabs: cardShape.saug.tabs }));
+    check(`${label}: each moved section lives in the pane named for it`,
+      cardShape.saug.homes.where === 'evidence' && cardShape.saug.homes.liberties === 'liberties'
+      && cardShape.saug.homes.record === 'record',
+      JSON.stringify(cardShape.saug.homes));
+    check(`${label}: Hogan's facts say it was standing, from the year its record gives`,
+      cardShape.hogan.year === '1831' && /^Standing: 1831\b/.test(cardShape.hogan.standing)
+      && cardShape.hogan.facts.length >= 3,
+      `"${cardShape.hogan.standing}" from ${cardShape.hogan.year}; ${cardShape.hogan.facts.join(' | ').slice(0, 200)}`);
 
     inStageWork = false;
     } // end PART 3 (T-0060 stage 2a, cut by T-0121)
@@ -6941,6 +7488,31 @@ for (const [label, viewport, touch] of [
       absurd.length
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
+
+    // --- the Sauganash is two masses, not one box (T-0626) ------------------
+    //
+    // The owner reported this building from the walk: a mass missing at the back
+    // and a log hut standing in front of its street door. Both were record faults
+    // and both are fixed, so the fix is asserted where a regression would show —
+    // in the RENDERED bounds, not in the JSON, because a record that grew a
+    // `cross_wing` attribute nothing built would read as fixed everywhere else.
+    //
+    // Orientation-agnostic on purpose. The plan is a 9.92 m frontage on Lake
+    // Street with an 8 m block behind it and an 8 m wing behind THAT, so one
+    // horizontal extent is about 16.5 m with the roof overhangs and the other
+    // about 10.4 m; which of the two is x and which is z is the placement's
+    // business and not this assertion's. The box it replaces was 12 x 8, whose
+    // long side is 12.5 m — well under the floor here, so a revert fails.
+    const saugBox = scale.perStructure.find((st) => st.id === 'sauganash_hotel');
+    const saugPlan = saugBox ? [saugBox.size[0], saugBox.size[2]].sort((a, b) => b - a) : null;
+    check(`${label}: the Sauganash is rendered as its two-mass plan`,
+      !!saugPlan && saugPlan[0] >= 15.0 && saugPlan[0] <= 18.0
+      && saugPlan[1] >= 9.5 && saugPlan[1] <= 11.5,
+      saugPlan
+        ? `plan ${saugPlan[0].toFixed(2)} x ${saugPlan[1].toFixed(2)} m `
+          + `(want the long axis 15-18 m for block + cross wing, the short 9.5-11.5 m `
+          + `for the measured five-bay frontage; the retired placeholder was 12 x 8)`
+        : 'sauganash_hotel is not in the instance bounds at all');
 
     // --- nothing hovers -----------------------------------------------------
     //
@@ -8873,10 +9445,26 @@ for (const [label, viewport, touch] of [
       const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
       const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
         * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
-      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+      /** Sets a head is ever hung from. A MID clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
-       *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
+       *  is a free pass — it is what made a first cut of this read zero.
+       *
+       *  `flora-far` is not that card, and since T-0209 it is not excluded:
+       *  the far band deals the WHOLE community, and a flowering forb's far
+       *  card carries its flower — `rebuildFar` calls `maybeHead` on it. The
+       *  comment this replaces predates that and had gone false. Measured on
+       *  the published mirror 2026-09-01: 2693 of 2693 orphans stood on a far
+       *  card at 0.000 m whose top reached them. `flora-mid` stays out, and
+       *  that is measured too — its scatter deals graminoids and never calls
+       *  `maybeHead`, and no orphan stood on one. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub',
+        'flora-far']);
+      /** A card's `spread` is its billboard HALF-WIDTH — 1.5 m at the near far
+       *  band, not a stem's radius. Counting that as the support's reach would
+       *  pass any head within a card's width of one, which is the free pass the
+       *  note above refuses. A card carries only the head `maybeHead` puts at
+       *  its own `e,n`, so it supports at its foot and nowhere else. */
+      const CARD = new Set(['flora-far']);
       /** Under a twentieth of coverage the screen-door dither is writing one
        *  pixel in twenty of a head that is already only a few across at the
        *  distances its own ring covers. */
@@ -8894,6 +9482,7 @@ for (const [label, viewport, touch] of [
       const nominal = new Map(meshes.map((m) => [m.name, footOf(m.geometry)]));
 
       let drawn = 0; let unsupported = 0; let worst = null;
+      let onCard = 0; const bySet = new Map();
       const anchors = a.scene?.anchors ?? [];
       for (const anchor of anchors) {
         for (const yaw of [0, 90, 180, 270]) {
@@ -8917,11 +9506,35 @@ for (const [label, viewport, touch] of [
               // whole or not at all, so the drawn top and the drawn reach are
               // the record's own numbers and the ramp only says WHETHER.
               if (f <= 0) continue;
-              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]);
+              // `heightAt` is null for a set with no ring of its own, which is
+              // what `flora-far` is — T-0035 draws every visible plant whole,
+              // so the fraction is 1 and the null is "no ramp", not "no height".
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, set: m.name,
+                r: CARD.has(m.name) ? 0 : fl[i * 4 + 1] * h });
+            }
+          }
+          // T-0448 diagnostic, second grid: the meshes ROOTED leaves out, built
+          // the same way and consulted only to explain an orphan. The support
+          // test above does not read it, so the count stays comparable.
+          const cardGrid = new Map();
+          for (const m of meshes) {
+            if (ROOTED.has(m.name) || m.name.startsWith('flora-head-') || !m.count) continue;
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const z = mm[o + 14];
+              if (fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz)) <= 0) continue;
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
+              const key = `${Math.floor(x)},${Math.floor(z)}`;
+              let b = cardGrid.get(key);
+              if (!b) { b = []; cardGrid.set(key, b); }
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
             }
           }
           for (const m of meshes) {
@@ -8945,29 +9558,58 @@ for (const [label, viewport, touch] of [
               const fy = y + mm[o + 5] * s;
               const fz = z + mm[o + 6] * s;
               let best = -Infinity;
+              // T-0448 diagnostic: the nearest rooted plant IGNORING the radius
+              // test, so an orphan can be told from a stem the radius missed.
+              let nearest = null;
               for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
                 for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
                   const b = grid.get(`${kx},${kz}`);
                   if (!b) continue;
                   for (const p of b) {
+                    const d = Math.hypot(p.x - fx, p.z - fz);
+                    if (!nearest || d < nearest.d) nearest = { d, r: p.r, top: p.top, set: p.set };
                     if (p.top > best
-                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                      && d <= Math.max(0.05, p.r) + SLACK) best = p.top;
                   }
                 }
               }
               if (best < fy - SLACK) {
                 unsupported++;
+                // T-0448: does a mesh ROOTED excludes stand where the stem is
+                // missing, and would it have counted? Answers whether these are
+                // far-card heads (T-0209) or geometry over nothing at all.
+                let card = null;
+                for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
+                  for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
+                    const b = cardGrid.get(`${kx},${kz}`);
+                    if (!b) continue;
+                    for (const p of b) {
+                      const d = Math.hypot(p.x - fx, p.z - fz);
+                      if (!card || d < card.d) card = { d, r: p.r, top: p.top, set: p.set };
+                    }
+                  }
+                }
+                if (card && card.d <= Math.max(0.05, card.r) + SLACK && card.top >= fy - SLACK) {
+                  onCard++;
+                  bySet.set(card.set, (bySet.get(card.set) ?? 0) + 1);
+                }
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
                   worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
-                    orphan: best === -Infinity };
+                    orphan: best === -Infinity,
+                    // What was actually there, and why it did not count.
+                    nearest: nearest && { set: nearest.set, d: +nearest.d.toFixed(3),
+                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) },
+                    card: card && { set: card.set, d: +card.d.toFixed(3),
+                      r: +card.r.toFixed(3), reach: +(card.top - fy).toFixed(3) } };
                 }
               }
             }
           }
         }
       }
-      return { drawn, unsupported, worst, poses: anchors.length * 4 };
+      return { drawn, unsupported, worst, poses: anchors.length * 4,
+        onCard, bySet: [...bySet].sort((p, q) => q[1] - p[1]) };
     });
     check(`${label}: every drawn flower head has a plant under its own stalk`,
       headSupport.drawn > 500 && headSupport.unsupported === 0,
@@ -8977,6 +9619,21 @@ for (const [label, viewport, touch] of [
         ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+          // T-0448: name what WAS there. An orphan with a rooted plant 0.2 m away
+          // is the radius test being too tight; one with nothing for metres is the
+          // flora layer placing a head its stem never got.
+          + (headSupport.worst.nearest
+            ? `; nearest rooted ${headSupport.worst.nearest.set} at ${headSupport.worst.nearest.d} m `
+              + `(its own radius ${headSupport.worst.nearest.r} m, top ${headSupport.worst.nearest.reach} m from the foot)`
+            : '; no rooted plant in the nine cells at all')
+          // T-0448: and what a mesh ROOTED excludes had standing there instead.
+          + (headSupport.worst.card
+            ? `; excluded ${headSupport.worst.card.set} at ${headSupport.worst.card.d} m `
+              + `(radius ${headSupport.worst.card.r} m, top ${headSupport.worst.card.reach} m from the foot)`
+            : '; nothing ROOTED excludes was there either')
+          + `; ${headSupport.onCard} of ${headSupport.unsupported} orphans stand on a mesh `
+          + `ROOTED excludes that reaches them [`
+          + headSupport.bySet.map(([k, v]) => `${k} ${v}`).join(', ') + ']'
         : ''));
 
     inStageWork = false;
@@ -9603,33 +10260,56 @@ for (const [label, viewport, touch] of [
     // after Controls. These assertions are what would notice the duplicate
     // coming back, or the tab quietly moving to the end of the strip where
     // nobody opens it.
+    // T-0701 RESTATED, NOT WEAKENED. The strip became a RAIL: seven sections
+    // (Go to, Travel, People, Evidence, Settings, Controls, What's new) in a
+    // 66 px icon column on the desktop drawer and one row across the top of the
+    // phone sheet. The old read measured `offsetTop` alone, which on a column
+    // would report seven "rows" and fail a correct rail — so both axes are read
+    // and the viewport says which one has to collapse to a single value. The
+    // overflow and squeeze reads are kept and widened to both axes: an item
+    // whose scrollHeight exceeds its box is a label pushed out of its button
+    // just as surely as one whose scrollWidth does. Labels are ALLOWED to wrap
+    // onto two lines by design ("What's / new"), which is why the button is
+    // measured and never the label.
     const tabStrip = await page.evaluate(() => {
       const bar = document.querySelector('.panel-tabs');
       const items = [...bar.querySelectorAll('.panel-tab')];
       return {
         order: items.map((el) => el.dataset.tab),
-        // A strip that has silently become two rows tall is the failure mode
-        // this panel has already had once, so measure rows rather than trust
-        // white-space: nowrap to hold. The tabs only: the close button is
-        // shorter than they are and `align-items: center` gives it an offsetTop
-        // of its own, which is not a second row.
+        // A rail that has silently become two columns (desktop) or two rows
+        // (phone) is the failure mode this panel has already had once, so
+        // measure the geometry rather than trust the flex direction to hold.
+        // The tabs only: the close button lives in the head row, not the rail.
         rows: new Set(items.map((el) => Math.round(el.offsetTop))).size,
-        overflow: Math.round(bar.scrollWidth - bar.clientWidth),
-        // The tabs are allowed to shrink, so "one row, no overflow" can also be
-        // reached by squeezing a label out past its own button. Count that too.
-        squeezed: items.filter((el) => el.scrollWidth > el.clientWidth + 1)
-          .map((el) => el.dataset.tab),
+        cols: new Set(items.map((el) => Math.round(el.offsetLeft))).size,
+        overflow: Math.max(Math.round(bar.scrollWidth - bar.clientWidth),
+          Math.round(bar.scrollHeight - bar.clientHeight)),
+        // The tabs are allowed to shrink, so "one line, no overflow" can also be
+        // reached by squeezing a label out past its own button. Count that too,
+        // in both directions.
+        squeezed: items.filter((el) => el.scrollWidth > el.clientWidth + 1
+          || el.scrollHeight > el.clientHeight + 1).map((el) => el.dataset.tab),
+        // Every item has a real box: a rail item collapsed to nothing would
+        // trivially satisfy "one column, unsqueezed".
+        boxless: items.filter((el) => el.getBoundingClientRect().height < 40
+          || el.getBoundingClientRect().width < 40).map((el) => el.dataset.tab),
         strayViewpointList: document.querySelectorAll(
           '[data-panel="settings"] .anchor-btn, #anchors').length,
       };
     });
-    check(`${label}: Go to is a tab of its own, immediately after Controls`,
-      tabStrip.order.join(',') === 'controls,goto,settings,evidence,whatsnew',
+    // Was "Go to is a tab of its own, immediately after Controls" (five tabs).
+    // The claim is the same — the rail's order is exact and Go to leads it —
+    // over the seven sections T-0701 gave the drawer.
+    check(`${label}: the rail lists the seven sections in order, Go to first`,
+      tabStrip.order.join(',') === 'goto,travel,people,evidence,settings,controls,whatsnew',
       tabStrip.order.join(','));
-    check(`${label}: five tabs still fit the panel on one row, unsqueezed`,
-      tabStrip.rows === 1 && tabStrip.overflow <= 1 && !tabStrip.squeezed.length,
-      `${tabStrip.rows} row(s), ${tabStrip.overflow}px of horizontal overflow, `
-      + `squeezed [${tabStrip.squeezed.join(', ')}]`);
+    // Was "five tabs still fit the panel on one row, unsqueezed". Seven items
+    // now, one column on the desktop drawer and one row on the phone sheet.
+    check(`${label}: seven rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
+      (touch ? tabStrip.rows === 1 : tabStrip.cols === 1)
+      && tabStrip.overflow <= 1 && !tabStrip.squeezed.length && !tabStrip.boxless.length,
+      `${tabStrip.rows} row(s) x ${tabStrip.cols} column(s), ${tabStrip.overflow}px of rail `
+      + `overflow, squeezed [${tabStrip.squeezed.join(', ')}], boxless [${tabStrip.boxless.join(', ')}]`);
     check(`${label}: Settings no longer carries a second list of viewpoints`,
       tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
 
@@ -9650,25 +10330,52 @@ for (const [label, viewport, touch] of [
       && (touch ? viaKey.focused !== 'jump-search' : viaKey.focused === 'jump-search'),
       JSON.stringify(viaKey));
 
+    // T-0702 RESTATED, NOT WEAKENED. The list now grades a row by the record's
+    // PRESENCE — did the building stand here — and hides the roofs whose
+    // presence is `reconstructed` until the visitor asks for them, so "every
+    // loaded structure" is read in two halves that together say more than the
+    // old single count did: the default list is exactly the non-reconstructed
+    // records, and the toggle brings the list to exactly the registry. The
+    // position grade did not leave the row — it moved to `data-jump-position`
+    // and is compared record for record as before. The presence rule is
+    // inlined here rather than imported, so the gate cannot agree with the app
+    // by sharing its mistake: `documented_range.confidence`, else the position
+    // grade, else `reconstructed`.
     const jumps = await page.evaluate(() => {
+      const api = window.__chicago4d;
       const input = document.getElementById('jump-search');
-      const registry = window.__chicago4d.registry;
-      const rows = [...document.querySelectorAll('#jump-results .jump-result')];
-      // The chip on a result and the grade on the record it jumps to are the
-      // same claim shown twice. Compare every one of them, the way the popup's
-      // own confidence assertions do — a menu that graded a position more
-      // kindly than the record does would be this project's worst kind of bug.
-      const mismatched = [];
-      let graded = 0;
-      for (const row of rows) {
-        if (row.dataset.jumpKind !== 'structure') continue;
-        const want = registry.get(row.dataset.jumpId)?.sidecar?.placement?.position_confidence
-          || 'reconstructed';
-        const chip = row.querySelector('.conf');
-        const shown = chip?.textContent?.trim();
-        if (shown === want && chip.classList.contains(`conf-${want}`)) graded++;
-        else mismatched.push({ id: row.dataset.jumpId, want, shown: shown ?? null });
+      const registry = api.registry;
+      const presenceOf = (s) => s?.documented_range?.confidence
+        || s?.placement?.position_confidence || 'reconstructed';
+      const positionOf = (s) => s?.placement?.position_confidence || 'reconstructed';
+      const rowsNow = () => [...document.querySelectorAll('#jump-results .jump-result')];
+      const structRows = () => rowsNow().filter((r) => r.dataset.jumpKind === 'structure');
+      // The stated preconditions for everything below, and for the arrival
+      // check that follows: the list on All, no query, reconstructed roofs
+      // hidden (the default), travel mode `instantly` (the default) — a ride
+      // would take minutes to reach Randolph and Canal and the arrival read
+      // would measure a visitor still walking.
+      api.setTravelMode('instantly');
+      api.hud.goTo.setKind('all');
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      const toggle = document.getElementById('jump-reconstructed');
+      const setToggle = (on) => {
+        if (toggle.checked === on) return;
+        toggle.checked = on;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+      setToggle(false);
+      // The registry's own tallies, counted here and not read off the app.
+      const tally = { attested: 0, inferred: 0, reconstructed: 0 };
+      const posTally = { attested: 0, inferred: 0, reconstructed: 0 };
+      for (const [, record] of registry) {
+        const g = presenceOf(record?.sidecar);
+        if (g in tally) tally[g]++;
+        const p = positionOf(record?.sidecar);
+        if (p in posTally) posTally[p]++;
       }
+      const nonReconstructed = registry.size - tally.reconstructed;
       // And the colour has to carry the distinction, which is exactly what a
       // bare `.jump-result small` rule took away from it once: it outranks
       // `.conf-inferred` on specificity and painted all three grades the same
@@ -9678,36 +10385,81 @@ for (const [label, viewport, touch] of [
         const chip = document.querySelector(`.jump-result .conf-${grade}`);
         return chip ? getComputedStyle(chip).color : null;
       };
-      const all = {
-        anchors: document.querySelectorAll('[data-jump-kind="anchor"]').length,
-        structures: document.querySelectorAll('[data-jump-kind="structure"]').length,
-        intersections: document.querySelectorAll('[data-jump-kind="intersection"]').length,
-        loaded: registry.size,
-        sceneAnchors: window.__chicago4d.scene?.anchors?.length ?? 0,
-        sceneIntersections: window.__chicago4d.intersections?.length ?? 0,
+      const rows = rowsNow();
+      const dflt = {
+        structures: structRows().length,
+        anchors: rows.filter((r) => r.dataset.jumpKind === 'anchor').length,
+        intersections: rows.filter((r) => r.dataset.jumpKind === 'intersection').length,
         chippedNonStructures: rows.filter((r) => r.dataset.jumpKind !== 'structure'
           && r.querySelector('.conf')).length,
+        // Only the two grades that stood here should be chipped before the toggle.
+        chipGrades: [...new Set(structRows().map((r) => r.querySelector('.conf')?.textContent.trim()))],
+        note: document.getElementById('jump-note')?.textContent ?? '',
+        colours: {
+          attested: colourOf('attested'),
+          inferred: colourOf('inferred'),
+          reconstructed: colourOf('reconstructed'),
+          plain: getComputedStyle(document.querySelector('.jump-result .jump-name')).color,
+        },
       };
-      const note = document.getElementById('jump-note')?.textContent ?? '';
-      const tally = { attested: 0, inferred: 0, reconstructed: 0 };
-      for (const [, record] of registry) {
-        const grade = record?.sidecar?.placement?.position_confidence || 'reconstructed';
-        if (grade in tally) tally[grade]++;
+      // The toggle on: every roof, and every row compared to its record.
+      setToggle(true);
+      const mismatched = [];
+      let graded = 0;
+      for (const row of structRows()) {
+        const s = registry.get(row.dataset.jumpId)?.sidecar;
+        const wantPresence = presenceOf(s);
+        const wantPosition = positionOf(s);
+        const chip = row.querySelector('.conf');
+        const shown = chip?.textContent?.trim();
+        if (shown === wantPresence && chip.classList.contains(`conf-${wantPresence}`)
+          && row.dataset.jumpConfidence === wantPresence
+          && row.dataset.jumpPosition === wantPosition) graded++;
+        else {
+          mismatched.push({ id: row.dataset.jumpId, wantPresence, shown: shown ?? null,
+            wantPosition, position: row.dataset.jumpPosition ?? null });
+        }
       }
-      const colours = {
-        inferred: colourOf('inferred'),
-        reconstructed: colourOf('reconstructed'),
-        plain: getComputedStyle(document.querySelector('.jump-result span')).color,
+      const on = {
+        structures: structRows().length,
+        note: document.getElementById('jump-note')?.textContent ?? '',
+        colours: { reconstructed: colourOf('reconstructed') },
       };
+      setToggle(false);
+      const all = {
+        anchors: dflt.anchors,
+        structures: dflt.structures,
+        intersections: dflt.intersections,
+        loaded: registry.size,
+        sceneAnchors: api.scene?.anchors?.length ?? 0,
+        sceneIntersections: api.intersections?.length ?? 0,
+        chippedNonStructures: dflt.chippedNonStructures,
+      };
+      // The default colours, with the reconstructed chip's colour read while
+      // the toggle was on (no reconstructed row is on the default list).
+      const colours = { ...dflt.colours, reconstructed: on.colours.reconstructed };
       input.value = 'Randolph Canal';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       const filtered = [...document.querySelectorAll('#jump-results .jump-result')]
         .map((b) => ({ id: b.dataset.jumpId, kind: b.dataset.jumpKind, text: b.textContent }));
-      return { all, filtered, graded, mismatched, note, tally, colours };
+      return { all, filtered, graded, mismatched, tally, posTally, nonReconstructed,
+        dflt: { structures: dflt.structures, chipGrades: dflt.chipGrades, note: dflt.note },
+        on: { structures: on.structures, note: on.note }, colours, stored:
+          JSON.parse(localStorage.getItem('chicago4d.settings') || '{}').gotoReconstructed };
     });
-    check(`${label}: jump menu includes every loaded structure`,
-      jumps.all.structures === jumps.all.loaded && jumps.all.loaded > 70,
-      `${jumps.all.structures} listed of ${jumps.all.loaded} loaded`);
+    // Was "jump menu includes every loaded structure" (=== registry.size). The
+    // list now hides presence-reconstructed roofs by default, so the claim is
+    // taken in both states: exactly the non-reconstructed records by default,
+    // exactly the registry with the toggle on — and the toggle's own state is
+    // persisted where the visitor's settings live.
+    check(`${label}: jump menu lists every structure that stood here, and every roof once asked`,
+      jumps.dflt.structures === jumps.nonReconstructed && jumps.nonReconstructed > 70
+      && jumps.on.structures === jumps.all.loaded && jumps.all.loaded > jumps.nonReconstructed
+      && jumps.dflt.chipGrades.every((g) => g === 'attested' || g === 'inferred')
+      && jumps.stored === false,
+      `${jumps.dflt.structures} listed of ${jumps.nonReconstructed} non-reconstructed by default `
+      + `(chips ${jumps.dflt.chipGrades.join('/')}); ${jumps.on.structures} of ${jumps.all.loaded} `
+      + `loaded with the toggle on; stored gotoReconstructed ${jumps.stored}`);
     // Against the compiled list, NOT against a literal. This assertion read
     // `=== 4` until T-0245 committed a fifth control point on South Water at
     // Franklin and turned a correct menu into a red gate — the same fault the
@@ -9722,37 +10474,616 @@ for (const [label, viewport, touch] of [
     check(`${label}: jump menu includes every viewpoint the scene names`,
       jumps.all.anchors === jumps.all.sceneAnchors && jumps.all.anchors > 3,
       `${jumps.all.anchors} listed of ${jumps.all.sceneAnchors} in the scene`);
-    check(`${label}: every structure result carries its record's position grade`,
-      jumps.graded === jumps.all.structures && !jumps.mismatched.length,
-      `${jumps.graded} graded of ${jumps.all.structures}, `
+    // Was "every structure result carries its record's position grade" (the
+    // chip). T-0702 made the chip the PRESENCE grade and moved the position
+    // grade to `data-jump-position`; both are compared to the record on every
+    // row, with the toggle on so all of them are checked, not the default 80-odd.
+    check(`${label}: every structure result carries its record's presence grade as its chip and its position grade as data`,
+      jumps.graded === jumps.all.loaded && !jumps.mismatched.length,
+      `${jumps.graded} graded of ${jumps.all.loaded}, `
       + `mismatched ${JSON.stringify(jumps.mismatched.slice(0, 3))}`);
     check(`${label}: a viewpoint and a survey junction are not graded like a building`,
       jumps.all.chippedNonStructures === 0,
       `${jumps.all.chippedNonStructures} non-structure result(s) carry a confidence chip`);
-    check(`${label}: the grades are told apart by colour, not only by their words`,
-      jumps.colours.inferred && jumps.colours.reconstructed
-      && jumps.colours.inferred !== jumps.colours.reconstructed
-      && jumps.colours.inferred !== jumps.colours.plain,
+    // Was "inferred vs reconstructed, and inferred vs plain". Attested chips are
+    // on the default list now (the Sauganash stood here), reconstructed ones only
+    // after the toggle — all three pairwise distinct and none the name's colour.
+    check(`${label}: the three grades are told apart by colour, not only by their words`,
+      (() => {
+        const c = jumps.colours;
+        const three = [c.attested, c.inferred, c.reconstructed];
+        return three.every(Boolean) && new Set(three).size === 3
+          && three.every((x) => x !== c.plain);
+      })(),
       JSON.stringify(jumps.colours));
+    // Was "N structures / N are attested / N inferred / N reconstructed" against
+    // the position tally. The note now counts PRESENCE (REPORT-goto wording):
+    // "83 of 371 structures — 288 reconstructed roofs are hidden until you ask
+    // for them. Of all 371, 11 are attested to have stood here, 72 inferred and
+    // 288 reconstructed." — every figure against the registry tally computed
+    // above, in both toggle states.
     check(`${label}: the tab counts its own list rather than quoting a written total`,
-      // All THREE levels, each against the tally counted from the same list the
-      // chips are painted from. This previously checked `inferred` twice and the
-      // top level under a name that no longer existed, so it was asserting two
-      // things about one level and nothing about the other two.
-      jumps.note.includes(`${jumps.all.structures} structures`)
-      && jumps.note.includes(`${jumps.tally.attested} are attested`)
-      && jumps.note.includes(`${jumps.tally.inferred} inferred`)
-      && jumps.note.includes(`${jumps.tally.reconstructed} reconstructed`),
-      `${jumps.note} / ${JSON.stringify(jumps.tally)}`);
+      jumps.dflt.note.includes(`${jumps.nonReconstructed} of ${jumps.all.loaded} structures`)
+      && jumps.dflt.note.includes(`${jumps.tally.reconstructed} reconstructed roofs are hidden`)
+      && jumps.dflt.note.includes(`${jumps.tally.attested} are attested`)
+      && jumps.dflt.note.includes(`${jumps.tally.inferred} inferred`)
+      && jumps.dflt.note.includes(`${jumps.tally.reconstructed} reconstructed`)
+      && jumps.on.note.includes(`${jumps.all.loaded} of ${jumps.all.loaded} structures`)
+      && jumps.on.note.includes(`${jumps.tally.reconstructed} reconstructed roofs are showing`),
+      `${jumps.dflt.note} / ${jumps.on.note} / ${JSON.stringify(jumps.tally)}`);
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
       JSON.stringify(jumps.filtered));
+    // Precondition stated inside `jumps`: `api.setTravelMode('instantly')`, the
+    // default — in a ground mode this click would start a walk, not a jump.
     await clickChrome('[data-jump-id="randolph_canal"]');
     await page.waitForTimeout(80);
-    const arrived = await page.evaluate(() => ({ ...window.__chicago4d.player }));
+    const arrived = await page.evaluate(() => {
+      // Leave the list as the visitor finds it: no query, All.
+      const input = document.getElementById('jump-search');
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      return { ...window.__chicago4d.player, mode: window.__chicago4d.travel.mode,
+        phase: window.__chicago4d.travelState.phase };
+    });
     check(`${label}: an intersection result moves the visitor there`,
-      Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2,
-      `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)})`);
+      Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2
+      && arrived.mode === 'instantly' && arrived.phase === 'idle',
+      `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)}) in mode ${arrived.mode}, ${arrived.phase}`);
+
+    // --- the drawer, and what T-0701…T-0710 put in it ------------------------
+    //
+    // New with the drawer. Each block below leaves the chrome as it found it:
+    // panel CLOSED at the end, travel mode `instantly`, pace `walk`, head bob
+    // on, the Go-to list on All with no query, no person card open, the
+    // Evidence hub showing.
+
+    // T-0701: the drawer and the building card share the right-hand slot. With
+    // a card open, opening the drawer TUCKS the card (a transform + visibility,
+    // never `hidden` — the card must not be collateral, see part 13) and
+    // closing brings it back. The .24 s transition is polled to its end rather
+    // than waited for: under load a fixed wait was not enough (REPORT-shell).
+    // The drawer itself reaches the bottom of the viewport and starts under the
+    // year badge on the desktop.
+    const drawer = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const popup = document.getElementById('popup');
+      const panel = document.getElementById('panel');
+      const badge = document.getElementById('year-badge');
+      const settle = async (pred) => {
+        for (let i = 0; i < 60 && !pred(); i++) await new Promise((r) => setTimeout(r, 100));
+        return pred();
+      };
+      const intersects = (a, b) => !(a.right <= b.left || b.right <= a.left
+        || a.bottom <= b.top || b.bottom <= a.top);
+      api.hud.setPanel(false);
+      api.pick('sauganash_hotel');
+      await settle(() => getComputedStyle(popup).visibility === 'visible');
+      const openHidden = popup.hasAttribute('hidden');
+      api.hud.setPanel(true);
+      const tucked = await settle(() => getComputedStyle(popup).visibility === 'hidden'
+        || !intersects(popup.getBoundingClientRect(), panel.getBoundingClientRect()));
+      const pr = panel.getBoundingClientRect();
+      const br = badge.getBoundingClientRect();
+      const out = {
+        openHidden,
+        tucked,
+        tuckedHidden: popup.hasAttribute('hidden'),
+        tuckedVisibility: getComputedStyle(popup).visibility,
+        tuckedIntersects: intersects(popup.getBoundingClientRect(), pr),
+        panelHidden: panel.hasAttribute('hidden'),
+        panelBottom: Math.round(pr.bottom),
+        panelTop: Math.round(pr.top),
+        badgeBottom: Math.round(br.bottom),
+        innerHeight,
+      };
+      api.hud.setPanel(false);
+      out.back = await settle(() => getComputedStyle(popup).visibility === 'visible'
+        && getComputedStyle(popup).transform === 'none');
+      out.backHidden = popup.hasAttribute('hidden');
+      api.popup.close();
+      return out;
+    });
+    check(`${label}: opening the drawer tucks an open card aside without closing it`,
+      drawer.openHidden === false && drawer.tucked && drawer.tuckedHidden === false
+      && !drawer.tuckedIntersects && !drawer.panelHidden,
+      `card hidden ${drawer.tuckedHidden}, visibility ${drawer.tuckedVisibility}, `
+      + `intersects the drawer ${drawer.tuckedIntersects}`);
+    check(`${label}: closing the drawer brings the tucked card back`,
+      drawer.back && drawer.backHidden === false, `back ${drawer.back}, hidden ${drawer.backHidden}`);
+    check(`${label}: the drawer reaches the bottom of the screen and starts under the year badge`,
+      drawer.panelBottom >= drawer.innerHeight - 1 && (touch || drawer.panelTop >= drawer.badgeBottom),
+      `drawer ${drawer.panelTop}–${drawer.panelBottom} of ${drawer.innerHeight}, badge bottom ${drawer.badgeBottom}`);
+
+    // T-0702/T-0703: the Go-to pills, groups, distances and keyboard.
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="goto"]');
+    const gotoMore = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const registry = api.registry;
+      const rows = () => [...document.querySelectorAll('#jump-results .jump-result')];
+      const KIND_IDS = ['viewpoints', 'corners', 'people', 'taverns', 'stores', 'trades',
+        'homes', 'public', 'waterfront'];
+      const out = {};
+      const pill = document.querySelector('.jump-pill[data-kind="taverns"]');
+      pill.click();
+      const tav = rows();
+      out.taverns = {
+        pressed: pill.getAttribute('aria-pressed'),
+        rows: tav.length,
+        sauganash: tav.some((r) => r.dataset.jumpId === 'sauganash_hotel'),
+        allStructures: tav.every((r) => r.dataset.jumpKind === 'structure'),
+        offKind: tav.filter((r) => {
+          const s = registry.get(r.dataset.jumpId)?.sidecar;
+          const fn = String(s?.attributes?.function?.value ?? '').toLowerCase();
+          return !(/tavern|inn|hotel|boarding|lodging/.test(fn) || s?.archetype === 'frame_tavern');
+        }).map((r) => r.dataset.jumpId),
+        heading: (document.querySelector('.jump-group[data-group="taverns"]')?.textContent ?? '')
+          .replace(/\d+\s*$/, '').trim(),
+        label: pill.querySelector('.jump-pill-label')?.textContent.trim() ?? pill.textContent.trim(),
+        groups: document.querySelectorAll('.jump-group').length,
+      };
+      // Back to All, every roof shown so every structure row is judged.
+      api.hud.goTo.setKind('all');
+      api.hud.goTo.setIncludeReconstructed(true);
+      const all = rows();
+      const headingFor = (row) => {
+        let el = row.previousElementSibling;
+        while (el && !el.classList.contains('jump-group')) el = el.previousElementSibling;
+        return el?.dataset.group ?? null;
+      };
+      out.groups = {
+        rows: all.length,
+        structures: all.filter((r) => r.dataset.jumpKind === 'structure').length,
+        unknownGroup: all.filter((r) => !KIND_IDS.includes(r.dataset.jumpGroup)).map((r) => r.dataset.jumpId),
+        misfiled: all.filter((r) => headingFor(r) !== r.dataset.jumpGroup).map((r) => r.dataset.jumpId),
+      };
+      // Distance and compass on every row.
+      const DIST = /^(\d+(\.\d+)? (ft|m|mi|km)) (N|NNE|NE|ENE|E|ESE|SE|SSE|S|SSW|SW|WSW|W|WNW|NW|NNW)$|^here$/;
+      out.dist = {
+        bad: all.filter((r) => !DIST.test((r.querySelector('.jump-dist')?.textContent ?? '').trim()))
+          .map((r) => `${r.dataset.jumpId} "${(r.querySelector('.jump-dist')?.textContent ?? '').trim()}"`),
+        noMetres: all.filter((r) => !/^\d+$/.test(r.querySelector('.jump-dist')?.dataset.m ?? '')).length,
+      };
+      api.hud.goTo.setIncludeReconstructed(false);
+      // Stand 100 m due east of the Sauganash, then 200 m: the row's metres
+      // follow the visitor by ≈100 and the compass says west both times.
+      const sp = api.structurePosition('sauganash_hotel');
+      const rowM = () => {
+        const d = document.querySelector('[data-jump-id="sauganash_hotel"] .jump-dist');
+        return { m: Number(d?.dataset.m), text: d?.textContent.trim() ?? '' };
+      };
+      api.setFly(false);
+      api.walker.teleport({ local_e: sp.e + 100, local_n: sp.n, yaw_deg: 270 });
+      api.hud.goTo.refreshDistances();
+      const at100 = rowM();
+      api.walker.teleport({ local_e: sp.e + 200, local_n: sp.n, yaw_deg: 270 });
+      api.hud.goTo.refreshDistances();
+      const at200 = rowM();
+      out.follow = { at100, at200, imperial: (api.hud.settings.units ?? 'imperial') !== 'metric' };
+      // The keyboard: the list starts with NO row active (a fresh combobox), so
+      // the first ArrowDown highlights the first row, the second the second —
+      // which is what REPORT-goto measured (`jump-opt-1` after two). Three
+      // presses reach the third row, and Enter goes there, instantly. The plan
+      // wrote "ArrowDown×2 → the third row"; that would need the first row
+      // pre-selected, which this list does not do (SMOKE-FINDINGS notes it).
+      api.setTravelMode('instantly');
+      api.popup.close();
+      const input = document.getElementById('jump-search');
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      const second = rows()[1];
+      const third = rows()[2];
+      const t = { kind: third?.dataset.jumpKind, id: third?.dataset.jumpId };
+      const target = api.hud.goTo.targets.find((x) => x.kind === t.kind && x.id === t.id);
+      input.focus();
+      const activeId = () => document.querySelector('#jump-results .jump-result.is-active')?.dataset.jumpId;
+      for (const key of ['ArrowDown', 'ArrowDown']) {
+        input.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+      }
+      const afterTwo = { active: activeId(), second: second?.dataset.jumpId,
+        described: input.getAttribute('aria-activedescendant') };
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      const active = activeId();
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await new Promise((r) => setTimeout(r, 120));
+      const p = api.player;
+      const dest = t.kind === 'person' ? (target?.lives_at || target?.works_at) : t.id;
+      const pos = (t.kind === 'structure' || t.kind === 'person') ? api.structurePosition(dest)
+        : { e: target?.e, n: target?.n };
+      out.enter = {
+        third: t, afterTwo, active, dest,
+        panelHidden: document.getElementById('panel').hasAttribute('hidden'),
+        card: api.popup.openId,
+        distToTarget: pos ? +Math.hypot(p.e - pos.e, p.n - pos.n).toFixed(1) : null,
+        phase: api.travelState.phase,
+      };
+      return out;
+    });
+    check(`${label}: the Taverns pill narrows the list to taverns, inns and hotels, the Sauganash among them`,
+      gotoMore.taverns.pressed === 'true' && gotoMore.taverns.rows >= 5 && gotoMore.taverns.sauganash
+      && gotoMore.taverns.allStructures && !gotoMore.taverns.offKind.length
+      && gotoMore.taverns.heading === gotoMore.taverns.label && gotoMore.taverns.groups === 1,
+      `${gotoMore.taverns.rows} row(s), off-kind [${gotoMore.taverns.offKind.join(', ')}], heading `
+      + `"${gotoMore.taverns.heading}" vs pill "${gotoMore.taverns.label}", ${gotoMore.taverns.groups} heading(s)`);
+    check(`${label}: every row is filed under one of the nine kinds, beneath that kind's heading`,
+      gotoMore.groups.structures > 300 && !gotoMore.groups.unknownGroup.length
+      && !gotoMore.groups.misfiled.length,
+      `${gotoMore.groups.rows} rows; unknown group [${gotoMore.groups.unknownGroup.slice(0, 3).join(', ')}]; `
+      + `misfiled [${gotoMore.groups.misfiled.slice(0, 3).join(', ')}]`);
+    check(`${label}: every row says how far and which way`,
+      !gotoMore.dist.bad.length && gotoMore.dist.noMetres === 0,
+      `bad [${gotoMore.dist.bad.slice(0, 3).join('; ')}], ${gotoMore.dist.noMetres} without metres`);
+    check(`${label}: the distances follow the visitor — 100 m further east reads 100 m further`,
+      Math.abs(gotoMore.follow.at100.m - 100) <= 2 && Math.abs(gotoMore.follow.at200.m - 200) <= 2
+      && / W$/.test(gotoMore.follow.at100.text) && / W$/.test(gotoMore.follow.at200.text)
+      && new RegExp(`^(${gotoMore.follow.imperial ? '327|328|329|330' : '99|100|101'}) `).test(gotoMore.follow.at100.text),
+      `${JSON.stringify(gotoMore.follow.at100)} -> ${JSON.stringify(gotoMore.follow.at200)}`);
+    check(`${label}: ArrowDown steps the list a row at a time — two reach the second, three the third — and Enter goes there`,
+      gotoMore.enter.afterTwo.active === gotoMore.enter.afterTwo.second && !!gotoMore.enter.afterTwo.described
+      && gotoMore.enter.active === gotoMore.enter.third.id && gotoMore.enter.panelHidden
+      && gotoMore.enter.phase === 'idle'
+      && (gotoMore.enter.third.kind === 'structure' || gotoMore.enter.third.kind === 'person'
+        ? gotoMore.enter.card === gotoMore.enter.dest && gotoMore.enter.distToTarget <= 40
+        : gotoMore.enter.distToTarget <= 0.5),
+      JSON.stringify(gotoMore.enter));
+
+    // T-0704/T-0705: Travel — five modes, persisted; the paces through the
+    // walker's own WALK; the horse's gait; nothing under reduced motion.
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="travel"]');
+    const gaitLoop = `(() => {
+      const a = window.__chicago4d; const w = a.walker; const T = a.travel; const I = a.intent;
+      let peak = 0; let speed = 0;
+      for (let i = 0; i < 30; i++) {
+        I.forward = 1;
+        T.update(1 / 30, I); w.update(1 / 30, I); T.afterWalk(I, 1 / 30);
+        peak = Math.max(peak, Math.abs(w.state.bob));
+        speed = Math.max(speed, w.state.speed);
+      }
+      I.clear();
+      for (let i = 0; i < 15; i++) { T.update(1 / 30, I); w.update(1 / 30, I); T.afterWalk(I, 1 / 30); }
+      // speed is the peak WHILE moving (this text is inside a template string,
+      // so no backticks here) — proof the walker actually walked, not one stuck.
+      return { peak: +peak.toFixed(3), after: +w.state.bob.toFixed(4), speed: +speed.toFixed(2) };
+    })()`;
+    const travelUi = await page.evaluate((loop) => {
+      const api = window.__chicago4d;
+      const WALK = api.walkBudget;
+      const w = api.walker;
+      const stored = () => JSON.parse(localStorage.getItem('chicago4d.settings') || '{}').travelMode;
+      const modes = [...document.querySelectorAll('#s-travel .seg-btn')].map((b) => b.dataset.mode);
+      document.querySelector('#s-travel .seg-btn[data-mode="horse"]').click();
+      const chosen = { stored: stored(), mode: api.travel.mode,
+        on: document.querySelector('#s-travel .seg-btn.is-on')?.dataset.mode,
+        checked: document.querySelector('#s-travel .seg-btn[aria-checked="true"]')?.dataset.mode };
+      document.querySelector('#s-travel .seg-btn[data-mode="instantly"]').click();
+      const restored = { stored: stored(), mode: api.travel.mode };
+      // The paces, read through the walker's WALK and its eye.
+      const eye = () => +(w.state.eyeY - w.state.groundY).toFixed(3);
+      api.setFly(false);
+      api.walker.teleport({ local_e: -155.24, local_n: -251.19, yaw_deg: 0 });
+      const paces = {};
+      for (const pace of ['horse', 'wagon', 'walk']) {
+        api.setPace(pace);
+        paces[pace] = { speed: WALK.speed, sprint: WALK.sprintSpeed, eye: eye(),
+          chip: document.getElementById('btn-pace')?.dataset.pace };
+      }
+      const slider = api.hud.settings.speed;
+      const eyeSetting = api.hud.settings.eyeHeight;
+      // The gait: horse, own input forward on a street, peak over one second.
+      api.setPace('horse');
+      const on = eval(loop);
+      const bobBox = document.getElementById('s-head-bob');
+      bobBox.click();
+      const off = { ...eval(loop), setting: api.hud.settings.headBob, checked: bobBox.checked };
+      bobBox.click();
+      const back = { setting: api.hud.settings.headBob, checked: bobBox.checked };
+      api.setPace('walk');
+      return { modes, chosen, restored, paces, slider, eyeSetting, on, off, back };
+    }, gaitLoop);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    const reduced = await page.evaluate((loop) => {
+      const api = window.__chicago4d;
+      api.setPace('horse');
+      const r = { matches: matchMedia('(prefers-reduced-motion: reduce)').matches, ...eval(loop) };
+      api.setPace('walk');
+      return r;
+    }, gaitLoop);
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    check(`${label}: Travel offers instantly, walk, wagon, horse and fly`,
+      travelUi.modes.join(',') === 'instantly,walk,wagon,horse,fly', travelUi.modes.join(','));
+    check(`${label}: the travel mode chosen is the one the walker rides and the one stored`,
+      travelUi.chosen.stored === 'horse' && travelUi.chosen.mode === 'horse'
+      && travelUi.chosen.on === 'horse' && travelUi.chosen.checked === 'horse'
+      && travelUi.restored.stored === 'instantly' && travelUi.restored.mode === 'instantly',
+      `${JSON.stringify(travelUi.chosen)} -> ${JSON.stringify(travelUi.restored)}`);
+    check(`${label}: horse and wagon set the walker's pace and seat; walk is the slider again`,
+      travelUi.paces.horse.speed === 6.5 && travelUi.paces.horse.sprint === 11
+      && Math.abs(travelUi.paces.horse.eye - (travelUi.eyeSetting + 0.75)) < 0.01
+      && travelUi.paces.wagon.speed === 3.6 && travelUi.paces.wagon.sprint === 3.6
+      && Math.abs(travelUi.paces.wagon.eye - (travelUi.eyeSetting + 0.5)) < 0.01
+      && travelUi.paces.walk.speed === travelUi.slider
+      && Math.abs(travelUi.paces.walk.sprint - travelUi.slider * 2.28) < 0.01
+      && Math.abs(travelUi.paces.walk.eye - travelUi.eyeSetting) < 0.01
+      && travelUi.paces.horse.chip === 'horse' && travelUi.paces.walk.chip === 'walk',
+      JSON.stringify({ ...travelUi.paces, slider: travelUi.slider, eye: travelUi.eyeSetting }));
+    check(`${label}: the horse's gait moves the rider's eye a few centimetres, and stops when they do`,
+      travelUi.on.peak >= 0.03 && travelUi.on.peak <= 0.10 && travelUi.on.after === 0
+      && travelUi.on.speed > 1,
+      JSON.stringify(travelUi.on));
+    check(`${label}: the gait is off with the setting off, and back with it`,
+      travelUi.off.peak === 0 && travelUi.off.setting === false && travelUi.off.checked === false
+      && travelUi.back.setting === true && travelUi.back.checked === true,
+      JSON.stringify({ off: travelUi.off, back: travelUi.back }));
+    check(`${label}: the gait is off under prefers-reduced-motion`,
+      reduced.matches === true && reduced.peak === 0, JSON.stringify(reduced));
+
+    // T-0706/T-0707: a ride. From the South Water viewpoint, on foot, to the
+    // Sauganash: the banner says so, the ride ends at the door with the card
+    // open, and it goes by the streets. The start is stated because the
+    // on-street share depends on it (REQUESTS-travel §4: south_water 100 %,
+    // the forks 47 % — the forks sit off any street). `streets.status()` is
+    // null off-street, so the read is guarded.
+    const ride = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const w = api.walker;
+      const WALK = api.walkBudget;
+      const out = {};
+      const dist = (id) => { const p = api.structurePosition(id); return +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2); };
+      api.popup.close();
+      api.setFly(false);
+      api.goTo('south_water');
+      api.setPace('walk');
+      api.setTravelMode('walk');
+      api.hud.setPanel(true);
+      api.hud.selectTab('goto');
+      api.hud.goTo.open();
+      const row = document.querySelector('[data-jump-id="sauganash_hotel"]');
+      row?.click();
+      const st = api.travelState;
+      const banner = document.getElementById('travel-banner');
+      out.go = {
+        row: !!row, phase: st.phase, mode: st.mode, dest_id: st.dest_id, dist_m: st.dist_m && +st.dist_m.toFixed(1),
+        points: st.remaining_points, panelHidden: document.getElementById('panel').hasAttribute('hidden'),
+        bannerHidden: banner.hasAttribute('hidden'), bannerShown: banner.checkVisibility(),
+        verb: document.getElementById('travel-verb').textContent.trim(),
+        dest: document.getElementById('travel-dest').textContent.trim(),
+        distText: document.getElementById('travel-dist').textContent.trim(),
+      };
+      const budget = (st.dist_m ?? 400) / WALK.speed + 30;
+      const r = api.travelSimulate(budget);
+      let on = 0;
+      for (const [e, n] of r.samples) {
+        const m = api.streets.status(e, n)?.mode;
+        if (m === 'on' || m === 'intersection') on++;
+      }
+      out.arrive = { phase: r.phase, seconds: +r.seconds.toFixed(1), budget: +budget.toFixed(0),
+        samples: r.samples.length, onStreetPct: +(100 * on / Math.max(1, r.samples.length)).toFixed(0),
+        distToCentre: dist('sauganash_hotel'), card: api.popup.openId,
+        bannerHidden: banner.hasAttribute('hidden'), eye: +(w.state.eyeY - w.state.groundY).toFixed(2) };
+      // Own input stops a ride — the same call tick() makes, with the visitor's
+      // forward set; the intent is theirs and is left as they wrote it.
+      api.popup.close();
+      api.goTo('south_water');
+      api.goToTarget({ kind: 'structure', id: 'sauganash_hotel', label: 'Sauganash Hotel' });
+      for (let i = 0; i < 10; i++) { api.travel.update(1 / 30, api.intent); w.update(1 / 30, api.intent); api.travel.afterWalk(api.intent, 1 / 30); }
+      const before = api.travelState.phase;
+      api.intent.forward = 1;
+      api.travel.update(1 / 30, api.intent);
+      out.ownInput = { before, after: api.travelState.phase, forwardKept: api.intent.forward,
+        bannerHidden: banner.hasAttribute('hidden') };
+      api.intent.clear();
+      // A second ride, left running for the Stop button below.
+      api.goToTarget({ kind: 'structure', id: 'sauganash_hotel', label: 'Sauganash Hotel' });
+      for (let i = 0; i < 10; i++) { api.travel.update(1 / 30, api.intent); w.update(1 / 30, api.intent); api.travel.afterWalk(api.intent, 1 / 30); }
+      out.beforeStop = { phase: api.travelState.phase, bannerHidden: banner.hasAttribute('hidden') };
+      return out;
+    });
+    check(`${label}: choosing the Sauganash on foot starts a walk and says so`,
+      ride.go.row && ride.go.phase === 'travelling' && ride.go.mode === 'walk'
+      && ride.go.dest_id === 'sauganash_hotel' && ride.go.dist_m > 100 && ride.go.points > 1
+      && ride.go.panelHidden && !ride.go.bannerHidden && ride.go.bannerShown
+      && ride.go.verb === 'Walking to' && /Sauganash/.test(ride.go.dest)
+      && /^\d+(\.\d+)? (ft|m|mi|km)$/.test(ride.go.distText),
+      JSON.stringify(ride.go));
+    check(`${label}: the walk ends at the Sauganash's door with its card open`,
+      ride.arrive.phase === 'idle' && ride.arrive.card === 'sauganash_hotel'
+      && ride.arrive.distToCentre <= 14 && ride.arrive.bannerHidden
+      && Math.abs(ride.arrive.eye - 1.68) < 0.05,
+      JSON.stringify(ride.arrive));
+    check(`${label}: the walk from South Water keeps to the streets`,
+      ride.arrive.samples >= 20 && ride.arrive.onStreetPct >= 70,
+      `${ride.arrive.onStreetPct}% of ${ride.arrive.samples} samples on a street or at a corner`);
+    check(`${label}: the visitor's own step ends a ride and is not swallowed`,
+      ride.ownInput.before === 'travelling' && ride.ownInput.after === 'idle'
+      && ride.ownInput.forwardKept === 1 && ride.ownInput.bannerHidden,
+      JSON.stringify(ride.ownInput));
+    // The Stop button, as a click on the chrome.
+    await clickChrome('#travel-stop');
+    const stopped = await page.evaluate(() => ({
+      phase: window.__chicago4d.travelState.phase,
+      bannerHidden: document.getElementById('travel-banner').hasAttribute('hidden'),
+    }));
+    check(`${label}: the banner's Stop button ends a ride`,
+      ride.beforeStop.phase === 'travelling' && !ride.beforeStop.bannerHidden
+      && stopped.phase === 'idle' && stopped.bannerHidden,
+      `${JSON.stringify(ride.beforeStop)} -> ${JSON.stringify(stopped)}`);
+    const flight = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const w = api.walker;
+      const dist = (id) => { const p = api.structurePosition(id); return +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(1); };
+      api.popup.close();
+      api.setFly(false);
+      api.goTo('south_water');
+      api.setTravelMode('fly');
+      const far = [...api.registry.keys()].map((id) => ({ id, d: dist(id) }))
+        .filter((x) => x.d > 250).sort((p, q) => p.d - q.d)[0];
+      const ok = api.goToTarget({ kind: 'structure', id: far.id, label: far.id });
+      const r = api.travelSimulate(300);
+      const fly = { target: far, ok, phase: r.phase, seconds: +r.seconds.toFixed(1),
+        maxAltitude: +r.maxAltitude.toFixed(1), flying: w.state.flying, altitude: +w.state.altitude.toFixed(2),
+        distToCentre: dist(far.id), card: api.popup.openId };
+      // And instantly is still instant.
+      api.setTravelMode('instantly');
+      api.popup.close();
+      const okI = api.goToTarget({ kind: 'structure', id: 'sauganash_hotel', label: 'Sauganash Hotel' });
+      const instant = { ok: okI, phase: api.travelState.phase, card: api.popup.openId,
+        dist: dist('sauganash_hotel'), bannerHidden: document.getElementById('travel-banner').hasAttribute('hidden') };
+      api.popup.close();
+      return { fly, instant };
+    });
+    check(`${label}: flying to a far building climbs to a cruise height, lands and opens its card`,
+      flight.fly.ok && flight.fly.phase === 'idle' && flight.fly.maxAltitude >= 20
+      && flight.fly.flying === false && flight.fly.altitude < 0.5
+      && flight.fly.card === flight.fly.target.id && flight.fly.distToCentre <= 40,
+      JSON.stringify(flight.fly));
+    check(`${label}: instantly is still instant`,
+      flight.instant.ok && flight.instant.phase === 'idle' && flight.instant.card === 'sauganash_hotel'
+      && flight.instant.dist <= 40 && flight.instant.bannerHidden,
+      JSON.stringify(flight.instant));
+
+    // T-0708/T-0709: the People directory — every person, searched, narrowed,
+    // opened, and walked to. `open()` is awaited: under swiftshader the record
+    // body settles in seconds, and a fixed wait would measure the machine.
+    await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
+    await clickChrome('.panel-tab[data-tab="people"]');
+    const people = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const dir = api.people;
+      const out = { api: !!dir && typeof dir.search === 'function', error: dir?.error ?? null };
+      const scene = api.scene?.id ?? api.year;
+      const pj = await (await fetch(new URL(`sidecars/${scene}/people.json`, api.dataBase))).json();
+      const manifest = await (await fetch(new URL('residents/index.json', api.dataBase))).json();
+      const rows = () => [...document.querySelectorAll('#people-results .person-row')];
+      out.counts = { rows: rows().length, api: dir.people, file: pj.people?.length, stated: pj.counts?.people,
+        manifest: manifest.counts?.persons,
+        countText: document.getElementById('people-count')?.textContent ?? '' };
+      out.search = { matched: dir.search('Beaubien'),
+        mark: document.querySelector('#people-results [data-person-id="beaubien_mark"] .person-name')?.textContent.trim() ?? null,
+        note: document.getElementById('people-result-note')?.textContent ?? '' };
+      dir.search('');
+      const all = dir.state?.matched;
+      out.pill = { all, matched: dir.filter('occupation', 'tavern_keeper'),
+        pressed: document.querySelector('.pill[data-filter="occupation"][aria-pressed="true"]')?.dataset.value,
+        offTrade: rows().filter((r) => !/^tavern keeper/.test(r.querySelector('.person-sub')?.textContent.trim() ?? ''))
+          .map((r) => r.dataset.personId), rows: rows().length };
+      dir.filter('occupation', '');
+      out.pill.cleared = dir.state?.matched;
+      const opened = await dir.open('hogan_john_s_c');
+      const card = document.getElementById('people-card');
+      const go = card?.querySelector('.people-go');
+      out.card = { opened, hidden: card?.hasAttribute('hidden'), shown: card?.checkVisibility(),
+        name: card?.querySelector('.people-card-name')?.textContent.trim() ?? '',
+        title: document.getElementById('panel-title')?.textContent.trim() ?? '',
+        backShown: !document.getElementById('panel-back')?.hasAttribute('hidden'),
+        go: go?.dataset.structure ?? null, goText: go?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        fields: !!card?.querySelector('.res-fields') };
+      return out;
+    });
+    check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
+      people.api && !people.error && people.counts.rows > 0 && people.counts.api === people.counts.file
+      && people.counts.file === people.counts.stated && people.counts.stated === people.counts.manifest
+      && people.counts.manifest > 1000
+      && new RegExp(`^${String(people.counts.manifest).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
+      JSON.stringify(people.counts));
+    check(`${label}: searching "Beaubien" finds Mark Beaubien`,
+      people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
+      && /Beaubien/.test(people.search.note),
+      JSON.stringify(people.search));
+    check(`${label}: the tavern-keeper pill narrows the list to tavern keepers`,
+      people.pill.matched > 0 && people.pill.matched < people.pill.all && people.pill.rows === people.pill.matched
+      && !people.pill.offTrade.length && people.pill.pressed === 'tavern_keeper' && people.pill.cleared === people.pill.all,
+      JSON.stringify(people.pill));
+    check(`${label}: opening a person shows their card with a way to their building`,
+      people.card.opened && people.card.hidden === false && people.card.shown && /Hogan/.test(people.card.name)
+      && people.card.title === people.card.name && people.card.backShown && people.card.go === 'hogan_store'
+      && /Go to where they/.test(people.card.goText) && people.card.fields,
+      JSON.stringify(people.card));
+    // Go there, on horseback: the drawer closes, the ride ends at Hogan's with its card.
+    await page.evaluate(() => { window.__chicago4d.setTravelMode('horse'); window.__chicago4d.popup.close(); });
+    await clickChrome('#people-card .people-go');
+    const goThere = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const w = api.walker;
+      const st = api.travelState;
+      const start = { phase: st.phase, mode: st.mode, dest_id: st.dest_id, person: st.person,
+        panelHidden: document.getElementById('panel').hasAttribute('hidden'),
+        verb: document.getElementById('travel-verb').textContent.trim() };
+      const r = api.travelSimulate(((st.dist_m ?? 300) / 6.5) + 30);
+      const p = api.structurePosition('hogan_store');
+      const end = { phase: r.phase, seconds: +r.seconds.toFixed(1), card: api.popup.openId,
+        distToCentre: +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2) };
+      api.setTravelMode('instantly');
+      api.popup.close();
+      api.people.close();
+      return { start, end, cardClosed: document.getElementById('people-card').hasAttribute('hidden') };
+    });
+    check(`${label}: Go there rides to the person's building and opens its card`,
+      goThere.start.phase === 'travelling' && goThere.start.mode === 'horse'
+      && goThere.start.dest_id === 'hogan_store' && goThere.start.person === 'hogan_john_s_c'
+      && goThere.start.panelHidden && goThere.start.verb === 'Riding to'
+      && goThere.end.phase === 'idle' && goThere.end.card === 'hogan_store' && goThere.end.distToCentre <= 14
+      && goThere.cardClosed,
+      JSON.stringify(goThere));
+
+    // T-0710: the Evidence hub — seven tiles whose counts are their mounts'
+    // entries, a topic that searches, and a way back.
+    await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
+    await clickChrome('.panel-tab[data-tab="evidence"]');
+    const hub = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const hubEl = document.getElementById('evidence-hub');
+      const tiles = () => [...hubEl.querySelectorAll('.ev-tile')];
+      for (let i = 0; i < 50 && tiles().some((t) => /…/.test(t.querySelector('.ev-count')?.textContent ?? '')); i++) {
+        await new Promise((r) => setTimeout(r, 100));
+      }
+      const mountCount = (id) => (id === 'grades'
+        ? document.querySelectorAll('.ev-topic[data-topic="grades"] .legend-list > li').length
+        : document.querySelectorAll(`#${id} > details`).length);
+      const out = {
+        hubShown: hubEl.checkVisibility(), title: document.getElementById('panel-title').textContent.trim(),
+        tiles: tiles().map((t) => ({ id: t.dataset.topic, count: Number(t.querySelector('.ev-count')?.textContent),
+          mount: mountCount(t.dataset.topic), title: t.querySelector('.ev-tile-title')?.textContent.trim(),
+          h3: document.querySelector(`.ev-topic[data-topic="${t.dataset.topic}"] .ev-topic-title`)?.textContent.trim() })),
+      };
+      api.evidenceHub.showTopic('liberties');
+      const total = document.querySelectorAll('#liberties details.lib').length;
+      const search = document.querySelector('.ev-topic[data-topic="liberties"] .ev-search');
+      search.value = 'roof';
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+      const shown = document.querySelectorAll('#liberties details.lib:not([hidden])').length;
+      const status = document.querySelector('.ev-topic[data-topic="liberties"] .ev-status')?.textContent.trim() ?? '';
+      const m = /^(\d+) of (\d+) shown$/.exec(status);
+      out.topic = { total, shown, status, statusN: m ? Number(m[1]) : null, statusM: m ? Number(m[2]) : null,
+        title: document.getElementById('panel-title').textContent.trim(),
+        backShown: !document.getElementById('panel-back').hasAttribute('hidden'),
+        hubHidden: !hubEl.checkVisibility(), topic: api.evidenceHub.topic,
+        libShown: document.getElementById('liberties').checkVisibility() };
+      search.value = '';
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+      out.cleared = document.querySelectorAll('#liberties details.lib:not([hidden])').length;
+      document.getElementById('panel-back').click();
+      out.back = { hubShown: hubEl.checkVisibility(), title: document.getElementById('panel-title').textContent.trim(),
+        topic: api.evidenceHub.topic, backHidden: document.getElementById('panel-back').hasAttribute('hidden') };
+      return out;
+    });
+    check(`${label}: the Evidence hub shows seven topics, each counting its own entries`,
+      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 7
+      && hub.tiles.every((t) => Number.isFinite(t.count) && t.count > 0 && t.count === t.mount && t.title && t.title === t.h3),
+      JSON.stringify(hub.tiles.map((t) => `${t.id} ${t.count}/${t.mount}`)));
+    check(`${label}: a topic opens with the hub gone, and its search narrows the list and says so`,
+      hub.topic.hubHidden && hub.topic.libShown && hub.topic.topic === 'liberties'
+      && hub.topic.title === 'What we made up' && hub.topic.backShown
+      && hub.topic.total > 17 && hub.topic.shown > 0 && hub.topic.shown < hub.topic.total
+      && hub.topic.statusN === hub.topic.shown && hub.topic.statusM === hub.topic.total
+      && hub.cleared === hub.topic.total,
+      JSON.stringify(hub.topic));
+    check(`${label}: Back returns to the hub`,
+      hub.back.hubShown && hub.back.title === 'Evidence' && hub.back.topic === null && hub.back.backHidden,
+      JSON.stringify(hub.back));
+    // The chrome as the next block expects it: drawer closed.
+    await clickChrome('#panel-close');
 
     await clickChrome('#btn-help');
     await clickChrome('.panel-tab[data-tab="settings"]');
@@ -9921,11 +11252,18 @@ for (const [label, viewport, touch] of [
       // manifest loaded, so one is opened here and read back.
       const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
       const collapsed = rows.length ? rows.every((r) => !r.open) : false;
-      // T-0021. Two more rows, because the three graded claims that were being
-      // printed as objects are not on the Beaubien record: `name_basis` is on
-      // the 113 reconstructed people and `age_on_scene_date`/`birth_year` on the
-      // nine the sources date. A row that carries neither cannot fail for them.
-      const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
+      // T-0021. Two more rows, because the graded claims that were being printed
+      // as objects are not on the Beaubien record: `age_on_scene_date` and
+      // `birth_year` are on the nine the sources date. A row that carries neither
+      // cannot fail for them.
+      // T-0524: the third of those claims was `name_basis`, on the 113
+      // reconstructed people, and this row was `hh_inf_baker_south_01` — one of
+      // them. T-0489 retired that population and every id like it, so the lookup
+      // matched nothing and every read off it was the empty string. The row is
+      // taken from the manifest's own first `hh_inf_` household instead of a
+      // literal id, so the next ruling that renames them does not silently empty
+      // this read again; what it now carries is an evidence-only household.
+      const named = rows.find((r) => String(r.dataset.id ?? '').startsWith('hh_inf_'));
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
       // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
       // people the post office's letter lists minted and on nobody else, so no row
@@ -9935,8 +11273,10 @@ for (const [label, viewport, touch] of [
       const group = mount ? mount.querySelector('details.res-ll-group') : null;
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
-      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      for (const el of [target, named, dated, letter]) {
+      const letter = rows.find((r) => r.dataset.id === 'hh_luce_william');
+      const candidate = rows.find((r) => r.dataset.id === 'hh_garrett_a');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_hail_aifred');
+      for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9948,17 +11288,27 @@ for (const [label, viewport, touch] of [
         namedText: bodyOf(named),
         datedText: bodyOf(dated),
         letterText: bodyOf(letter),
+        candidateText: bodyOf(candidate),
+        noFindText: bodyOf(noFind),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
         notResident: window.__chicago4d.residents?.notResident ?? 0,
-        error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
+        // T-0524: this fell back to a fixed sentence, so the failure detail read
+        // "(no residents on the handle)" even when the handle was there and the
+        // count had simply moved — which is how six correct-shaped reds read as a
+        // missing section for a day. The handle's own message, or nothing.
+        error: window.__chicago4d.residents
+          ? (window.__chicago4d.residents.error ?? '')
+          : 'no residents on the handle',
         rendered: rows.length,
         orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
         // T-0379: the two halves of the list, and the group that holds the second.
         evidenced: window.__chicago4d.residents?.evidenced ?? -1,
         letterList: window.__chicago4d.residents?.letterList ?? -1,
         letterListOffCard: window.__chicago4d.residents?.letterListOffCard ?? -1,
+        researchReviewed: window.__chicago4d.residents?.researchReviewed ?? -1,
+        researchCounts: window.__chicago4d.residents?.researchCounts ?? {},
         groupRows: group ? group.querySelectorAll('details.res-hh').length : -1,
         groupText: group ? group.textContent.replace(/\s+/g, ' ').slice(0, 900) : '',
         // The group must be a DELIBERATE open. A section that renders 727 rows
@@ -9978,24 +11328,74 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // T-0524, and the shape every figure below now takes. These assertions carried
+    // the layer's SIZE as a literal — 920 households, 956 people, 193 evidenced,
+    // 764 off-card, 150 reviews — and a test that hardcodes a count rots the next
+    // time the count is right: T-0489 moved all five on 2 September 2026 and six
+    // assertions went red for being correct about a town that had changed. So the
+    // expectation is READ, independently, out of the two committed files the page
+    // itself fetched, exactly as T-0491 repaired the gate-census assertion (#682).
+    //
+    // The independence matters, or this is a tautology. Nothing here reads the
+    // handle: `residents/index.json` and `residents/research_pilot.json` are
+    // fetched again and the figures recomputed off the raw rows, so what is
+    // asserted is that the SECTION agrees with the DATA. And each check carries a
+    // floor besides, because a manifest that lost its households would otherwise
+    // satisfy "the card shows all of them" with nothing on the card at all.
+    const expected = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const index = await (await fetch(new URL('residents/index.json', api.dataBase))).json();
+      const pilot = await (await fetch(new URL('residents/research_pilot.json', api.dataBase))).json();
+      const rows = Array.isArray(index.households) ? index.households : [];
+      const off = rows.filter((e) => !e.lives_at && !e.works_at);
+      const reviews = Array.isArray(pilot.reviews) ? pilot.reviews : [];
+      return {
+        households: rows.length,
+        statedHouseholds: index.counts?.households,
+        persons: index.counts?.persons,
+        summedPersons: rows.reduce((n, e) => n + (e.persons || 0), 0),
+        reconstructed: index.counts?.by_grade?.reconstructed,
+        letterList: rows.filter((e) => e.letter_list_only).length,
+        evidenced: rows.filter((e) => !e.letter_list_only).length,
+        offCard: off.length,
+        letterListOffCard: off.filter((e) => e.letter_list_only).length,
+        researchReviewed: new Set(reviews.map((r) => r.person_id)).size,
+        researchCounts: pilot.counts || {},
+      };
+    });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 920 && residents.rendered === 920 && !residents.busy,
-      `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 956 person entries are counted`, residents.persons === 956,
-      `${residents.persons}`);
-    // T-0379, and the assertion the ruling itself asked for. 727 of the 920
-    // households are a name on a post-office list and nothing else, and the
-    // ruling's own test of a good implementation is that a visitor can tell which
-    // ones at a glance. So: the town's evidenced households are still 193 rows in
-    // the section proper — the list did not become three-quarters noise — the
-    // cohort is one group holding all 727, and that group is CLOSED when the
-    // section mounts. A regression here does not break the page; it drowns it,
-    // which is why it is a number and not an eyeball.
+      expected.households > 500 && expected.statedHouseholds === expected.households
+      && residents.households === expected.households
+      && residents.rendered === expected.households && !residents.busy,
+      `${residents.households} loaded / ${residents.rendered} rendered of `
+      + `${expected.households} in the manifest`
+      + (residents.error ? ` (${residents.error})` : ''));
+    check(`${label}: every person entry in the manifest is counted`,
+      expected.persons > 500 && expected.persons === expected.summedPersons
+      && residents.persons === expected.persons,
+      `${residents.persons} on the handle, ${expected.persons} stated, `
+      + `${expected.summedPersons} summed off the rows`);
+    // T-0379, and the assertion the ruling itself asked for. Most of the layer is
+    // a name on a post-office list and nothing else, and the ruling's own test of
+    // a good implementation is that a visitor can tell which ones at a glance. So:
+    // the cohort is ONE group holding every letter-list row and no other, the two
+    // halves account for the whole layer, and the group is CLOSED when the section
+    // mounts. A regression here does not break the page; it drowns it, which is
+    // why it is a number and not an eyeball.
+    // T-0524 took the literals out. It read `evidenced === 193`, whose comment
+    // argued "the list did not become three-quarters noise" — after T-0489 removed
+    // 108 reconstructed households the evidenced side is a far smaller share than
+    // that, and the sentence was arguing for a town that no longer exists. What is
+    // worth pinning is the PARTITION, which is true at any size.
     check(`${label}: the letter-list cohort is held apart from the evidenced town`,
-      residents.evidenced === 193 && residents.letterList === 727
-      && residents.groupRows === 727 && residents.groupClosedOnMount === true,
-      `${residents.evidenced} evidenced / ${residents.letterList} letter-list, `
-      + `${residents.groupRows} in the group, closed on mount: `
+      expected.letterList > 100 && expected.evidenced > 20
+      && residents.evidenced === expected.evidenced
+      && residents.letterList === expected.letterList
+      && residents.evidenced + residents.letterList === expected.households
+      && residents.groupRows === expected.letterList
+      && residents.groupClosedOnMount === true,
+      `${residents.evidenced} evidenced / ${residents.letterList} letter-list of `
+      + `${expected.households}, ${residents.groupRows} in the group, closed on mount: `
       + `${residents.groupClosedOnMount}`);
     check(`${label}: the group says what that evidence is worth before it is opened`,
       /post office/.test(residents.groupText)
@@ -10013,18 +11413,29 @@ for (const [label, viewport, touch] of [
     // the papers name with no trade either. In every case the chip is the card
     // telling the truth rather than a regression.
     // T-0379 SPLIT THIS NUMBER IN TWO, and the split is the honest form of it. Of
-    // the 764 households that reach no building card, 727 are the letter-list
-    // cohort and reach none BY DEFINITION — a list of uncalled-for letters gives a
-    // name and no address, so a chip announcing it on every one of those rows is
-    // wallpaper, and the group's own summary says it once instead. The chip stays
-    // where it is a finding: 37 households the rest of the corpus documents and
-    // this project still could not attach to a building. That 37 is the number a
-    // regression would move, so it is the number asserted.
+    // the households that reach no building card, the letter-list cohort reaches
+    // none BY DEFINITION — a list of uncalled-for letters gives a name and no
+    // address, so a chip announcing it on every one of those rows is wallpaper,
+    // and the group's own summary says it once instead. The chip stays where it is
+    // a finding: the households the rest of the corpus documents and this project
+    // still could not attach to a building.
+    // T-0524 took the three literals (764 / 37 / 727) out for the reason above:
+    // T-0489 moved the first two to 770 and 43 and the assertion went red for
+    // being right about the wrong town. All three are derivable from the manifest
+    // rows — off-card is "neither lives_at nor works_at", which is the same
+    // predicate `js/residents.js` applies — and the CHIP COUNT is the one that
+    // carries the finding, so it is asserted as the arithmetic difference rather
+    // than as a number somebody typed. A chip appearing on a letter-list row, or
+    // going missing from a documented one, still fails here.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 764 && residents.orphanChips === 37
-      && residents.letterListOffCard === 727,
+      expected.offCard > 0 && expected.offCard > expected.letterListOffCard
+      && residents.offCard === expected.offCard
+      && residents.letterListOffCard === expected.letterListOffCard
+      && residents.orphanChips === expected.offCard - expected.letterListOffCard,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s) / `
-      + `${residents.letterListOffCard} of them letter-list`);
+      + `${residents.letterListOffCard} of them letter-list — the manifest says `
+      + `${expected.offCard} / ${expected.offCard - expected.letterListOffCard} / `
+      + `${expected.letterListOffCard}`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
     // The lazy read, proved by opening the household that IS the finding: Mark
@@ -10057,14 +11468,27 @@ for (const [label, viewport, touch] of [
     check(`${label}: no figure reaches a person's row as [object Object]`,
       !/\[object Object\]/.test(residents.text),
       residents.text.slice(Math.max(0, residents.text.indexOf('[object Object]') - 80), 200));
-    // And the row the fault was hiding. It matches the VALUE and not the note:
-    // the note under "What the sources say" carries "THE NAME IS INVENTED" on
+    // And the row the fault was hiding. It matched the VALUE and not the note:
+    // the note under "What the sources say" carried "THE NAME IS INVENTED" on
     // these records too and reached the card throughout, so an assertion on that
-    // sentence passes on the broken build — checked, and it did. What was lost
-    // is which pool the name was drawn from, and that is only in `name_basis`.
-    check(`${label}: an invented name says on the card which pool it came from`,
-      /How this person is named/.test(residents.namedText)
-      && /invented from the [A-Za-z ]+ pool/.test(residents.namedText),
+    // sentence passed on the broken build — checked, and it did. What was lost
+    // was which pool the name was drawn from, and that was only in `name_basis`.
+    //
+    // T-0524: there is no invented name on this layer any more. T-0489 retired the
+    // reconstructed population and the `hh_inf_` households that survived it carry
+    // a head the papers name, with the `name_basis` block explicitly struck ("an
+    // invented name is not kept beside a documented one"). So the assertion has no
+    // subject, and deleting it would delete the wire this fault came down: the
+    // [object Object] check above is a NEGATIVE, and it passes on a card that
+    // renders nothing at all, which is exactly the state that check was written
+    // against. The positive it needs is kept, on what that row now carries — the
+    // reasoning that says the roof is not the man's evidence — and the retirement
+    // is asserted alongside it, so a `name_basis` block reappearing on this layer
+    // without a ruling fails here rather than passing quietly.
+    check(`${label}: an evidence-only household's row says what its roof is not`,
+      /What the sources say/.test(residents.namedText)
+      && /THIS ROOF DID NOT COME FROM HIS RECORD/.test(residents.namedText)
+      && !/How this person is named/.test(residents.namedText),
       residents.namedText.slice(0, 200));
     // The nine the sources actually date, with the reasoning that says which of
     // the two figures the source states and which is arithmetic off it.
@@ -10099,6 +11523,39 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
+    // T-0442/T-0462: a candidate biography is useful only if it remains visibly a
+    // candidate. The same public payload also carries negative work so silence
+    // cannot be mistaken for a person who was never researched.
+    // T-0524 took the four literals (150 / 31 / 30 / 89) out. The review layer has
+    // grown to 375 since, and a count that is right is not a regression. The
+    // expectation is read out of `residents/research_pilot.json` — the file the
+    // page fetched — and the three named buckets are cross-footed against the
+    // review list itself, which is the half a hardcoded number never gave: a
+    // `counts` block that stops agreeing with its own `reviews` array now fails,
+    // and so does a card layer that shows fewer reviews than the file holds.
+    check(`${label}: every resident research review reaches a resident card`,
+      expected.researchReviewed > 100
+      && Object.values(expected.researchCounts).reduce((n, v) => n + v, 0)
+        === expected.researchReviewed
+      && residents.researchReviewed === expected.researchReviewed
+      && residents.researchCounts.corroborated_enrichment
+        === expected.researchCounts.corroborated_enrichment
+      && residents.researchCounts.candidate_identity
+        === expected.researchCounts.candidate_identity
+      && residents.researchCounts.no_corroboration
+        === expected.researchCounts.no_corroboration,
+      `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)} — `
+      + `the file holds ${expected.researchReviewed}: `
+      + `${JSON.stringify(expected.researchCounts)}`);
+    check(`${label}: candidate identities are visibly unmerged`,
+      /Augustus Garrett/.test(residents.candidateText)
+      && /candidate identity.{0,20}not merged/i.test(residents.candidateText)
+      && /not an asserted identity/i.test(residents.candidateText),
+      residents.candidateText.slice(0, 260));
+    check(`${label}: a negative search is published without denying existence`,
+      /no safe match found/i.test(residents.noFindText)
+      && /not evidence that the person did not exist/i.test(residents.noFindText),
+      residents.noFindText.slice(0, 260));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.
@@ -10180,6 +11637,10 @@ for (const [label, viewport, touch] of [
     // hold, a fact declared in tools/forb_clamp_baseline.json and docs/STATUS.md
     // and, until this section, nowhere a visitor reads.
     const plants = await page.evaluate(async () => {
+      // T-0710 RESTATED: the plants are a hub topic; `fits` below measures the
+      // mount's own box, which reads 0 <= 0 (a dishonest pass) while the topic is
+      // `display:none`. Shown first, so the measurement is of a laid-out mount.
+      window.__chicago4d.evidenceHub.showTopic('plants');
       const mount = document.getElementById('plants');
       // Open one community and one species inside it: the figures, the reasoning
       // and the citation join are all in the collapsed half, which is exactly the
@@ -10215,7 +11676,8 @@ for (const [label, viewport, touch] of [
         // The section's own box, measured the way T-0281 found it broken: the
         // mount widened past the panel and every line of reasoning was clipped
         // at the right edge, on a grid track that resolves toward max-content.
-        fits: mount ? mount.scrollWidth <= mount.clientWidth : false,
+        // …and it is a LAID-OUT mount being measured (clientWidth 0 is a hidden one).
+        fits: mount ? mount.clientWidth > 0 && mount.scrollWidth <= mount.clientWidth : false,
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
@@ -10273,6 +11735,41 @@ for (const [label, viewport, touch] of [
     check(`${label}: the plants section wraps inside the panel rather than clipping`,
       plants.fits, `mount ${plants.fits ? 'fits' : 'is wider than its box'}`);
     check(`${label}: the plants section does not overflow the panel`, plants.overflow);
+    // T-0302, the second acceptance clause: the same per-mount measure on ALL
+    // SEVEN `.liberties` mounts, each shown first — six are hub topics on the
+    // Evidence tab, the households mount is on the People tab since T-0708. A
+    // document-width check cannot see this fault (the panel clips instead of
+    // overflowing), and a hidden mount reads 0 <= 0, so every mount is asserted
+    // to be laid out when it is measured.
+    const mountFit = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const measure = (id) => {
+        const m = document.getElementById(id);
+        return { id, client: m?.clientWidth ?? 0, scroll: m?.scrollWidth ?? 0,
+          panel: m?.closest('.panel-body')?.clientWidth ?? 0 };
+      };
+      const out = [];
+      api.hud.setPanel(true);
+      api.hud.selectTab('evidence');
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+        api.evidenceHub.showTopic(id);
+        await new Promise((r) => setTimeout(r, 30));
+        out.push(measure(id));
+      }
+      api.hud.selectTab('people');
+      api.people?.close?.();
+      await new Promise((r) => setTimeout(r, 30));
+      out.push(measure('residents'));
+      // Back to where this part's later reads expect the panel: Evidence, hub.
+      api.hud.selectTab('evidence');
+      api.evidenceHub.showHub();
+      return out;
+    });
+    const unfit = mountFit.filter((m) => !(m.client > 0 && m.scroll <= m.client && m.client <= m.panel));
+    check(`${label}: all seven evidence mounts wrap inside their panel rather than clipping`,
+      mountFit.length === 7 && unfit.length === 0,
+      unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
+        : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
@@ -10374,7 +11871,14 @@ for (const [label, viewport, touch] of [
     // box reads the same number open or shut. checkVisibility() is the signal
     // that answers the question actually being asked, and the list's height
     // confirms the panel really grew around it.
+    // T-0710 RESTATED, NOT WEAKENED: the Evidence panel is a HUB now, and the
+    // liberties are a topic shown on demand. A `checkVisibility()` read of an
+    // entry inside a topic that is `display:none` is false open or shut, and the
+    // mount's height reads 0 both times — so the topic is shown first and the
+    // read also holds that the mount itself is in view. Same claim, honestly
+    // taken under the new layout.
     const opened = await page.evaluate(() => {
+      window.__chicago4d.evidenceHub.showTopic('liberties');
       const mount = document.getElementById('liberties');
       const first = mount.querySelector('details.lib');
       const body = first.querySelector('.lib-body');
@@ -10384,12 +11888,16 @@ for (const [label, viewport, touch] of [
       });
       const before = snap();
       first.open = true;
-      return { before, after: snap(), text: first.textContent };
+      const after = snap();
+      first.open = false;
+      return { mountShown: mount.checkVisibility(), before, after, text: first.textContent,
+        topic: window.__chicago4d.evidenceHub.topic };
     });
-    check(`${label}: expanding a liberty reveals its reasoning`,
-      opened.before.shown === false && opened.after.shown === true
+    check(`${label}: expanding a liberty on its topic page reveals its reasoning`,
+      opened.mountShown && opened.topic === 'liberties'
+      && opened.before.shown === false && opened.after.shown === true
       && opened.after.list > opened.before.list + 40 && /Why/i.test(opened.text),
-      `shown ${opened.before.shown} -> ${opened.after.shown}, `
+      `mount shown ${opened.mountShown}, shown ${opened.before.shown} -> ${opened.after.shown}, `
       + `list ${opened.before.list.toFixed(0)} -> ${opened.after.list.toFixed(0)} px`);
 
     // --- what is not here, in the same panel --------------------------------

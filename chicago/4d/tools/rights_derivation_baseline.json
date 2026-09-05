@@ -232,6 +232,14 @@
       "sole_support": true,
       "confidence": "inferred"
     },
+    "sauganash_hotel/log_1829/footprint": {
+      "kind": "structure",
+      "blocked_sources": [
+        "drloih_beaubien"
+      ],
+      "sole_support": false,
+      "confidence": "inferred"
+    },
     "sauganash_hotel/log_1829/form.construction": {
       "kind": "structure",
       "blocked_sources": [

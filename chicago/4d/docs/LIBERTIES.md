@@ -163,6 +163,51 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
+### L218 — Fourteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 14 businesses
+**Decision:** where the 1835 record attests a trade and no source of the scene year says
+where it stood, a **street** printed against that person in Fergus's Chicago directory of
+1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
+street **face**. The placement is graded `reconstructed`, the note says how many years it
+was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
+**Why:** the town prints trades far more often than it prints doors. Twenty of 825
+households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
+later addresses sitting on the record with nothing reading them. The volumes that print
+doors are all later than the scene, so the choice was a stated back-projection or no
+position at all — the same choice L60 records for the estray pen, decided the same way:
+an absent placement is invisible while a graded one is legible and correctable.
+**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
+frontage and numbered its streets for the first time. Fourteen businesses therefore stand
+on a face on the authority of a volume printed four to nine years after the scene, and
+nine of those years are the widest gap in the set. Two are anchored on a crossing the
+directory names and twelve have no point at all. A reader who thinks that is too far to
+carry a shop is reading the `reconstructed` chip exactly as intended.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
+dealing a business to one roof on a face is an allocation and not a reading; stacking
+that allocation on an address already read back would be two inventions under one chip.
+The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic
+is visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer, and made in the same words
+rather than overstating "rendered".
+**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and
+tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are
+all closer to 1835 than a directory is, and any one of them that places one of these
+businesses supersedes this entry under the policy's clause 2 without an argument.
+**Recorded:** 2026-09-04 (T-0633).
+**Restated:** 2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather
+than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass
+binds a later entry to a resident only where the surname reaches one person. A bigger town made
+`Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer
+carries the later address this pass reads, and his North Water Street face is withdrawn — the
+one street in the town no other rule can seat a shop on, which is what makes the withdrawal
+worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because
+the same larger town let the directory spend reach more people; 105 of the new refusals are
+clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was
+invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that
+caused it.
+
 ---
 
 ## Resolved
@@ -634,13 +679,27 @@ two images are not independent, and neither is a period record.
 geometry requirement that came out of the evidence rather than the plan.
 **Recorded:** 2026-08-09.
 
-### L5 — Sauganash Hotel: both footprints are invented
-**Decision:** placeholder rectangles (7×6 m log, 12×8 m frame), tagged `conjectural`.
-**Why:** no dimensions are attested in any source reached. The rectangles are plausible for the
-type and carry no evidence whatsoever.
+### L5 — Sauganash Hotel: the frame block's DEPTH is invented, and now it is the only half that is
+**Decision:** the frame block's footprint is 9.92 × 8 m and the 8 m is a placeholder. The
+frontage is measured (see below); the depth is a plausible figure for the type carrying no
+evidence at all, and the two are graded together at the weaker.
+**Why:** no source reached states a dimension of this building, and one drawn view cannot give a
+depth — `docs/RESEARCH/sauganash_image_accuracy.md` row 11 — so a sheet that fixes the frontage
+leaves the depth exactly where it was. It is held at the old placeholder's own number rather
+than re-guessed, because the placement derivation offsets this origin by the footprint's depth
+to stand the north face on Lake Street, and moving a number with nothing behind it would move
+the building.
+**Resolved in part, 2026-09-04 (T-0626):** two of the three rectangles this entry used to
+admit are no longer inventions. The 12 m frontage was retired for a measured 9.92 m — five bays
+that rectify to equal against the plate's own vanishing point, at a scale datum whose bias the
+same pass bounded at 2.7 %, which refutes 12 m rather than merely failing to support it. And
+the `log_1829` cabin's 7 × 6 m placeholder was retired for Andreas' attested 16 × 20 ft, once
+`drloih_beaubien` identified that cabin with the log building Andreas measures; that value is
+`inferred` on the identification and is out of this entry's Covers.
 **How to resolve:** Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building
-rectangle once the datum is verified.
-**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`.
+rectangle once the datum is verified. A second view of this building from a DIFFERENT station
+would give the depth directly — every view held is the same composition.
+**Covers:** `sauganash_hotel.frame_1831.footprint`.
 **Recorded:** 2026-08-09.
 
 ### L6 — Sauganash Hotel: the pre-1830 position is not represented
@@ -4768,6 +4827,7 @@ stroke; any tax, insurance or sale description naming a walk in front of a lot; 
 Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
 path this entry cites into a `source_id` and the lettering's warrant into a citation.
 **Recorded:** 2026-08-18.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 
 ### L136 — The Sauganash's frontage: two more plank walks, a crossing, and two posts nobody measured
@@ -5327,6 +5387,16 @@ by any 1835 witness, whose one vivid sentence gives the white paint and the brig
 shutters — and cannot read a single size off the mesh as evidence. The Evidence panel's
 grades say what each claim rests on; the geometry carries each claim's own confidence (the
 louvre slats are graded weaker than the leaves they sit in); this entry admits the numbers.
+**Superseded in part, 2026-09-04 (T-0626):** the log wing this entry dressed is not the
+hotel's to draw. `drloih_beaubien` captions the very engraving cited here — "The log cabin on
+the left was Chicago's first drugstore" — so the annex in all three views is
+`philo_carpenter_log_shop`, a record this dataset already held and already stood at the same
+corner; the hotel was drawing it a second time, in front of its own street face, which the
+owner reported. `log_wing`, `log_wing_door` and `log_wing_porch_hood` are `false` on the
+record from that date, so the leaf, the hood and their two posts are no longer built. Nothing
+else in this entry moves: the frontispiece, the brick, the moss roof and the louvre pitch are
+the main block's and are unchanged, and the door and hood are not withdrawn as READINGS —
+they belong to the cabin's own record. **L217** carries what replaced the wing.
 **How to resolve:** T-0075's identifications would raise the citations from committed README
 paths to source records; a better scan of any of the three views could correct the sizes; a
 photograph does not exist — the hotel burned in 1851 — so the dimensions stay this entry's
@@ -5675,6 +5745,98 @@ rung rather than the town. It is filed with its number attached rather than boug
 sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
 **Recorded:** 2026-08-27.
 **Revised:** 2026-08-27.
+**AMENDED 2026-09-03 — THE WALKS GET STRING PIECES, AND ONE MORE INVENTED MEMBER (T-0460).**
+The owner reported the plank walk meeting the dirt road in a **jagged sawtooth**, from a
+close stand, and said it was among the first things a visitor sees. It was: a walk laid as
+boards alone ends, at each side, in a row of board ENDS — at a 0.32 m pitch with a 0.02 m
+gap between them over a deck standing 0.11 m proud of the road, the outer edge of 3.17 km
+of sidewalk was about twenty thousand short end-grain faces with daylight between them, and
+the one member that did reach the ground (the 2.08 m bay stringer) stood 0.09 m inboard,
+in shadow under the overhanging ends. He named the only two treatments he would accept:
+the walk sits **consistently over** the road, or the boards **meet the mud** as boards in
+mud do. **The first was taken.**
+**What is now drawn, and what of it is new invention.** Each walk is held between two
+**string pieces** — 0.09 m stock running ALONG the walk down each side, taking the outermost
+0.09 m of its own 1.83 m width so the walk does not widen, its top flush with the boards it
+holds and its foot reaching the lowest ground under its own length. The boards stop at its
+inner face. This costs no timber the layer did not already draw: the string piece IS the bay
+stringer, moved out to the walk's own edge and brought up flush with the deck instead of
+stopping under it, so the box count does not move. What is NEW invention is exactly one
+thing — **that these walks were built with edge timbers at all**, and its 0.09 m section.
+No source in this repository states it. It is the same class of invention as the width,
+the rise and the plank pitch this entry already claims, and it is claimed on the same
+grounds: a plank sidewalk of ordinary sawn stock is what the plates show, and boards held
+between string pieces is how such a walk is built.
+**And a second thing moved with it, which is a correction rather than an invention.** A
+board used to sample the terrain under its own centre, which put a fresh height on the deck
+every 0.32 m — a walk laid in stringer bays does not do that, because the bay is the timber
+that carries the boards. Every board in a bay now takes THAT BAY's height, which is what
+makes the top of the string piece and the tops of the boards it holds one line to the
+millimetre. Measured over the whole town: the largest height step between two consecutive
+string pieces is **0.026 m**, against the 0.04 m the generator already audits a bay's ground
+flat to. The rises are NOT reduced — the walk standing 0.11 m over the road is the point of
+the treatment the owner chose, and what changed is that the rise now presents as one made
+face instead of a row of end-grain steps.
+**What is NOT treated, stated rather than left to be found.** The **board crossings** keep
+their 0.06 m rise and take no string piece. A crossing lies in the wheel track, its boards
+are laid ALONG the way a foot travels, and its sides are therefore already one continuous
+board face rather than a comb of ends — there is no sawtooth on a crossing to resolve, and
+an edge timber raised across a road is a thing to catch a wheel on.
+**Held by the gate:** `tools/smoke_renderer.mjs` marches one named 98.6 m run in 0.2 m
+stations and asks each of the 487 for timber from the deck down to the ground at the walk's
+own edge line. On the geometry this replaced, **487 of 487** stations read as an open edge;
+on the string piece, **0 of 487**.
+
+
+**AMENDED 2026-09-03 — THE FENCE FOLLOWS THE LOT AND THE POST FOLLOWS THE DOOR (T-0426).**
+Two of this liberty's clauses read the same test — *does a committed building stand inside
+this platted lot* — and on a DEEP lot that test answers a question neither of them asked.
+`blk_south_water_clark` runs two lot tiers, north onto South Water and south onto Lake, and
+**no lot in that block fronts Dearborn Street at all**; a shop addressed in Dearborn
+therefore stands on a lot whose frontage is Lake, 49 m from its own door. Found while
+placing the New York Clothing Store (T-0385), measured on that branch, and it forced the
+question of which street the furniture belongs to. **The two clauses were ruled apart, and
+this liberty now says so.**
+
+**The street fence stays with the LOT.** The owner ruled, 2026-08-31, verbatim: *"a lot that
+fronts a street takes its street-lining board fence at that frontage, whatever way the
+building standing on it faces."* That is `L160` read literally — the first Cook County jail
+engraving shows the fence standing on the lot line, and a house set at the back of a deep lot
+does not make the lot unimproved. **Nothing in the fence rule changes**, and no metre of the
+1,669.0 m already laid moves; what changes is that the clause is now correct BY RULING rather
+than by default, and a later reader meeting the same collision has the answer instead of the
+argument.
+
+**The hitching post follows the DOOR, and that half is a new refusal.** A post is furniture
+for a stranger off the street, so it belongs at the face the trade opens onto.
+`EDGE_HITCH_FACE_TOL_DEG` — **45 deg**, the midpoint of a right-angled grid where a building
+fronting its own lot's street reads within a few degrees of the face and one fronting the
+cross street reads about 90 off, with no population in between to tune to — refuses a post
+whose building faces further than that from the platted face it would stand on, **and the
+refusal is written into the record with both bearings**, exactly as every other refusal here
+is. **Measured across all five frontage records, before the clause and after it: 18 posts
+against 83 stated refusals, unchanged.** Exactly one committed building trips it —
+`bates_auction_room` on `blk_south_water_clark`'s north face, facing 90.0 deg against a face
+that looks 0.9 deg, 89.1 deg apart — and it was already being refused further down the same
+rule for want of a walk to stand outside of. So no post moves; what moves is that its refusal
+now names the reason that is actually true, which is that the lot fronts South Water Street
+and the auction room's door does not. The clause bites for the first time when a shop like
+the New York Clothing Store stands on such a lot with a walk laid in front of it, and landing
+it before that building rather than after it is the whole reason it is here.
+
+**What the record now states.** The generated `rule.note` in
+`data/frontage/town_street_edge.json` carried four hitching clauses and the generator applied
+five; the fifth is now stated there, together with the sentence saying the fence deliberately
+does NOT follow the door. **No source in this repository states that either rule is right** —
+both are the same tier-5 pictorial invention the rest of this liberty rests on, and the ruling
+is an owner's reading of the plate, not a document.
+
+**What is left over is a different fault and is filed as T-0461**: the Tremont House's goods
+are laid on ground inside lot 7 while `tremont_house_1`'s own placement point falls 1.5 m
+outside that lot, so one building's goods sit on another lot's frontage. The fence ruling is
+what exposed it; it is not what caused it.
+**Recorded:** 2026-09-03.
+**Revised:** 2026-09-03.
 
 ### L161 — The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented
 
@@ -7678,6 +7840,7 @@ wharfing order for Water Street east of Dearborn; any view of the slough mouth o
 South Water bank showing the crossing's walking surface or a bank walk; a committed
 crossing at the La Salle mouth would close the one gap in the run.
 **Recorded:** 2026-08-21.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 ### L155 — Terrain: the fort's river frontage is cut steeper than the banks either side of it
 **Decision:** the south division's `face_profile` in
@@ -9920,3 +10083,435 @@ added and no figure is drawn (L1).
 Related: **L207** (the fifteen this ruling scaled up) · **L213** · **L206** · **L205** · **L1**
 (no figure is drawn for any resident) · tickets **T-0379** (this), **T-0378**, **T-0374**.
 **Recorded:** 2026-08-30.
+
+
+### L215 — John Holbrook's store: the count of doors is the paper's, the metres between them are ours
+
+**Decision:** the Chicago Democrat of 10 June 1835 and the Chicago American of 13 June 1835 both
+carry John Holbrook's card — hats, clothing, boots and shoes, wholesale and retail, "on South-Water
+st. one door from Dearborn street" — and neither says one word about the premises. So the ADDRESS is
+read and the BUILDING is invented: a 30 by 25 ft one-storey frame shop, seated one door east of the
+Chicago American's own office on the block face all three of these addresses share. Its footprint,
+its storey count and its clapboard stock are declared here. Two further inventions are declared here
+that a footprint entry would not usually carry, because the ordinal reading is what makes them load
+bearing:
+**THE DOOR-GAP RULE — the metres, which are not evidence.** The owner ruled on 2026-08-30 (T-0384,
+`docs/CORNER-ORDINAL.md`) that "one door from Dearborn street" is an ordinal off the corner, and his
+ruling says in terms that *the door count is evidence and the metres are not*. This entry owns the
+metres. THE RULE: a front placed one door along from a named neighbour is set **3.048 m (10 ft) clear
+of that neighbour's wall**, measured along the face. It is a convention with two reasons and no
+source: "one door from" describes a neighbouring front and not a party wall, so the gap may not be
+zero; and ten feet is the smallest gap that still reads as two buildings rather than one at walking
+distance, which is the scale this reconstruction is looked at from. Applied here it puts Holbrook's
+west wall at local ENU E 726.30, and every other number in `position.note` follows from it.
+**AND THE SIDE OF DEARBORN.** The phrase gives a count and not a direction. East is taken because
+the first premises west is a documented dwelling and the second is off the face entirely, and
+because read eastward the three addresses this face's own papers print — the American's office at
+the corner, Holbrook one door from Dearborn, Frederick Thomas two doors from the American office —
+describe a continuous row with no contradiction, and read westward they describe nothing that
+closes. That is a reading of three sources against each other, which is why the position is graded
+`inferred` rather than `reconstructed`; but the fork is real and it is recorded here as well as on
+the record.
+**Why:** every dimension of the building is borrowed from its own neighbours rather than found. The
+30 ft front is the parcel's small-shop figure and is what fits between the American office's east
+wall and the lot line with both margins kept; the 25 ft depth is `chicago_american_office`'s own
+committed depth on this same face, taken because Holbrook advertises a large stock replenished every
+fifteen or twenty days and a shop taking fortnightly shipments needs a storeroom behind its counter.
+One storey is the smaller claim for premises the advertisements describe only as a counter and a
+stock. The alternative to inventing them was to leave a documented trade standing nowhere, and a
+door the papers themselves say was occupied reading as empty ground.
+**Consequence:** a visitor walking South Water Street east of Dearborn sees three shop fronts in a
+row where the committed data previously had two and a gap. The row is the point: read eastward the
+three printed addresses describe a continuous frontage with no contradiction between them, which is
+evidence about the STREET even where it is weak evidence about any one shop. The Evidence panel
+grades the footprint and the storey count `reconstructed` and says on each value that it is
+borrowed. **No lot is claimed and none is taken**: the record carries a `lot_claim` block declaring
+`claims_lot: false`, `tools/plat_occupancy.py` reads it and leaves the plat's entitlements exactly
+where they were, and `tools/measure_corner_ordinals.py` fails if any of that stops being true.
+**On the clapboard, and on L148, which this does not edit:** the exposed face of this building's
+siding is L148's rule applied to a record written after that entry was — `tools/deal_siding_stock.py`
+dealt it, keyed to the construction season and advanced so no frame building within 60 m shares it,
+and the tool's own note names L148 as the owner of the invention. L148's Decision counts the named
+frame buildings it covers, and with this record standing that count is one higher than the number
+written there. It is recorded here rather than by correcting that entry, because this document is
+append-only and a later count belongs in a later entry.
+**How to resolve:** the page images for either printing would settle whether the advertisements carry
+a side of the street. A canal-commission lot record or an assessment naming Holbrook would replace
+the count of doors with a lot — and would be the thing that lets this record claim one, which today
+it may not. Any measured description of the premises would replace the whole of this entry, and a
+second ordinal placement anywhere in the corpus would turn the door-gap rule from a convention used
+once into a rule that has to be argued.
+Related: **L212** (street-face adoption, the policy this address was read under until the ruling) ·
+**L148** (the clapboard rule this record's siding is dealt by) · **L130** (the fact of a sign on a
+named trade) · tickets **T-0384** (this), **T-0306** (its parent, the American's storefronts),
+**T-0375** (the South Water roofs an adoption would have needed), **T-0261** (the read that found the
+advertisement).
+**Covers:** `john_holbrook_store.frame_1835.footprint`, `john_holbrook_store.frame_1835.form.stories`, `john_holbrook_store.frame_1835.form.siding_exposure_m`.
+**Recorded:** 2026-08-30.
+
+### L216 — The one lot-and-block address in the corpus is seated on a roof nothing says is that house
+**Decision:** where a newspaper prints a LOT AND A BLOCK — the plat's own language, and the
+strongest placement statement this corpus makes — the address is seated on the reconstructed
+roof already standing on that lot, and the roof gains the address and nothing else. There is
+exactly one such address: G. Spring's For-Sale notice, six printings in the *Chicago
+Democrat* between 1834-06-18 and 1834-11-19, "LOT No. 7, in block No. 16, one lot east of
+Haddock's Tavern, on Lake street … a large Dwelling-House and fine well". `docs/LOT-ADDRESS.md`
+is the policy, `data/research/newspapers/lot_addresses.json` the authored address,
+`tools/lot_addresses.py --check` the gate that re-derives it on every commit.
+
+**What is not invented:** the address. Four of the six printings carry "lot 7", "block 16",
+"Lake street", the neighbouring tavern and the house itself unbroken, and the two that do not
+are named in the ledger with what the column edge took from each. Nor is the block number
+invented: T-0358 derived it, and it is the one derived number in that file an independent
+source agrees with — the notice's own "on Lake street" and the tavern one lot west of it land
+on the block the count reaches from the Wright sheet's numeral.
+
+**What is invented, and it is the step from a number to a roof.** Four lots to a block face is
+a reading of ONE block; the lot lines that reading divides a block into are the plat module's
+and are drawn from no sheet; the counter-clockwise numbering was read off block 18's crop and
+applied to every block by counting. So "lot 7" is a conjectural line bearing a documented
+number, and the roof whose centroid falls inside it is an anonymous count-unit the 665-roof
+programme raised to meet an aggregate — dealt to the D3 family long before this address
+resolved to anything. **Nothing says that roof is that house.** Its existence, position,
+footprint and every form value are exactly what they were, still conjectural under **L92**,
+and the seating is graded at the bottom tier for that reason: `confidence` is `const:
+"reconstructed"` in the schema and the gate re-reads the phase and fails if a documented
+address has promoted it.
+
+**The source says LARGE and the fabric does not answer to the word.** The roof under this
+address is a 5.36 × 6.38 m one-room cottage. That is a real contradiction between a documented
+adjective and a reconstructed massing, and it is recorded here rather than repaired, because
+repairing it means re-dealing the block's family mix and re-baking, which is a second
+demonstration. The card carries the notice's own words, so a visitor reads "a large
+Dwelling-House" beside a small one and can see the seam.
+
+**The well is documented and is not drawn.** The notice's second structure is "a fine well".
+The town has no well — no archetype, no committed structure, no yard record — so drawing this
+one would raise a new kind of object for the whole scene rather than place a known one, and it
+would be the only well in Chicago. The absence is stated on the record instead of passed over,
+which is the distinction this document exists for: an omission that says so is not the same
+liberty as one that does not.
+
+**Three things this deliberately does not claim, and each is a field or a gate.** A person:
+the advertiser is who to apply to for terms, `is_the_occupant` and `is_the_owner` are `false`
+in the ledger and refused if they are not, and this house is NOT named for G. Spring — the same
+man is the attorney the papers put second door west of Franklin and South Water, and **T-0412**
+is the same trap read from the other side. A promotion: the phase stays `reconstructed`. And a
+second building: an address landing on two roofs, or two addresses landing on one, are both
+refusals rather than allocations, because an address that names more than one building has
+placed none of them.
+
+**How to resolve:** a canal-commission lot record, a deed or an assessment naming this lot
+would replace the conjectural line with a recovered one and would make the seating a reading
+rather than an allocation. Thompson's own lot numerals for block 16, read off a sheet, would
+do the same for the numbering. A measured description of the house would end the contradiction
+between the word LARGE and the massing under it.
+Related: **L212** (street-face adoption — a face, never a lot) · **L215** (the corner ordinal —
+a position, and no lot) · **L92** (the anonymous roofs' own conjecture) · **L157** (the vacancy
+this title stops asserting) · tickets **T-0423** (this), **T-0358** (the block numbering it
+spends), **T-0324**, **T-0412** (the vendor trap).
+**Recorded:** 2026-09-03.
+
+### L217 — The Sauganash's second mass: the plate fixes its height and its span, and this fixes how far it runs back
+
+**Decision:** the Sauganash Hotel (`sauganash_hotel`, frame_1831) gains a second two-storey
+mass — a cross wing standing back off its own rear wall at the east end, clapboard like the
+block, its ridge running away at right angles at the block's own ridge height, two lights in
+its far gable and one in the attic above them, and no stack. **One number in that is invented
+and it is the only one:** `cross_wing_depth_m`, how far the wing runs back, set at 8.0 m. The
+gable lights, their sills and the attic light are the archetype's, as every opening on this
+building's wings has been since **L154**.
+**Why:** everything else about the wing is measured, and the measurement is arithmetic on a
+banked reading rather than a look at a picture. T-0617 put the near apex of Braunhold's plate
+at (648, 350) with one line out of it at image slope −0.318 and one at +0.095.
+`tools/sauganash_apex_lines.py` projects each onto the vertical through the vanishing point of
+the plane it lies in — the plate gives both horizontal vanishing points and, from their
+orthogonality, its own focal length — and both come out **horizontal in the world**, 1.35° and
+0.11°, where a 38° rake in the same plane would have been drawn at slope −1.99 against the
+−0.318 measured. Two ridges, not a ridge and a rake. Two gable ridges of one wall height and
+one pitch stand at one height only if they span the same width, so the wing's SPAN is the main
+block's own depth and the archetype refuses to build it at any other; `tools/check.sh` gates
+on the finding. What no single sheet can give is a DEPTH — `docs/RESEARCH/sauganash_image_accuracy.md`
+row 11 says so, and from the plate's station this wing is behind the main block with only its
+ridge showing. So 8.0 m is the owner's own reading of the views, *"almost the same size"*,
+taken as the block's 8 m depth, which makes the wing square in plan. It was also chosen to
+leave the fenced rear yard its Market Street gateway and its three kept trees: nothing about
+that yard is attested either, and a wing sized to fill it would be one guess crowding another.
+**Consequence:** a visitor at Lake and Market sees the three-part building all three views
+draw — the five-bay block on the street, a second mass of the same ridge height running back
+behind its east end, and the log cabin at that same end on the street line — where until now
+they saw one 12 × 8 m box with a log wing wrongly stood in front of its face. The wing's ridge
+height and its span are readings and carry the record's `inferred`; its length is this entry's
+and carries `reconstructed`, so the Evidence panel grades the two apart. Nobody can read the
+wing's depth off the mesh as evidence. The rear yard's drawn ground is notched around it and
+its east elm moved 2.1 m to keep its stated 2.5 m off a fence that also moved.
+**How to resolve:** the individual building rectangles on Hathaway 1834 or Wright 1834 at the
+Lake and Market corner would give the whole plan at once and end both this entry and the
+frontage measurement it stands beside; Andreas vol. 1 p. 106 ("Eagle Exchange"), unread at
+page-image level, is the other standing lead; a second view of this building **from a
+different station** — every one held is the same composition — would give the depth directly.
+Related: **L154** (the fabric this entry stands beside, and the log wing it supersedes) ·
+**L136** (the front of this building, from the same three plates) · **L139** (the yard trees
+this wing was sized around) · tickets **T-0626** (this), **T-0617** (the reading it spends),
+**T-0616** (the owner's brief).
+**Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
+**Recorded:** 2026-09-04.
+
+### L219 — Sixty-three roofs are told who entered their ground by a survey grid nobody traced
+**Scope:** `structures.land_owner[constructed_section_grid]` — 63 structures
+**Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
+traced, and 63 structures carry a `land_owner` block that rests on them. The construction is
+one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
+Madison, whose own note has said since the datum work that it is the *PLSS section corner:
+sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
+Randolph and Washington agree on to the sixth decimal, in **nominal one-mile squares**. The
+quarters and half-quarters an entry like `E2NE` names are that square halved and halved
+again. `tools/resolve_land_tracts.py` builds all of it and re-derives it on every
+`tools/check.sh`.
+**Why:** the Illinois State Archives register describes 375 sales by legal description and
+the structures carry footprints, and until T-0609 nothing joined them — so the register could
+say who entered the ground under Fort Dearborn and the walkthrough could not. Putting the
+description on the ground needs a survey grid, and this project holds no traced one: no
+section-line vector, no second corner, no township plat. It holds one corner. Carrying a
+nominal mile from it is the same construction, from the same point and the same bearing, that
+**L108** already declared for the United States Reservation's south and west boundaries and
+**L182** for Madison's centreline — so no new kind of claim is being made about where the
+survey ran, only a wider use of the one already on the books.
+**What bounds it, and this is the half that matters.** A nominal mile is not a surveyed mile:
+a township's north and west tiers absorb its closing error, and with one corner there is
+nothing to measure the drift against. So the grid is carried ONLY across the four sections
+that meet at that corner — 9, 10, 15 and 16 — and **213 of the 375 sales are recorded as read
+and deliberately NOT put on the ground** for being outside them. Inside them each assignment
+is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
+horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
+tract line than that drops to `reconstructed`, and the metres are printed on the row. **49 of
+the 63 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+dealt to a lot, and nothing on an invented structure may outrank the invention that put it
+there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Only 14
+documented buildings carry the middle tier. Two tracts are not grid squares at all
+and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
+reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10
+clipped to the committed north bank of the main stem.
+**Consequence:** a visitor who opens the card on Fort Dearborn's barracks now reads *The
+ground was entered by John Baptist Baubian, 28 May 1835* with an `inferred` or `reconstructed`
+chip beside it and the whole argument behind `why` — including the three things the row does
+not claim (that he still held it, that he lived there, that the entry held). 254 structures in
+the original town read nothing at all, because the canal commissioners sold those lots and
+this register does not hold them, and one house on Monroe Street reads nothing because the
+school section's own subdivision plat is not traced here.
+**How to resolve:** a traced section line — the GLO township plat of T39N R14E, or a second
+committed corner a mile from the first — would replace the nominal mile with a measurement and
+lift the whole population a tier, and would also say by how much the construction was wrong.
+The School Section Addition's 1833 plat would separately unlock the 150 rows this entry
+refuses.
+Related: **L108** (the reservation boundary, from the same corner and the same bearing) ·
+**L182** (Madison's centreline, likewise) · **L216** (the other placement that rests on lot
+lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
+**Recorded:** 2026-09-04.
+
+### L220 — 531 people join the town on the town's own lists, and a household is written round each of them
+
+**Scope:** `residents.persons[civic_mint]` — 531 people
+**Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
+quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
+spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
+clusters them into identities and writes `grading_proposal.json`, which says per identity
+what the ladder makes of it. That file was a proposal and nothing in it had been written
+onto a card. Measured on `dev` before this pass, only 37 of the 85 men on the 1835 poll
+list had even a surname in the residents layer. `tools/mint_civic_residents.py` writes the
+rest: every identity the ladder grades `attested` or `inferred` that the town did not
+already carry, on the evidence of the civic lists, the parish register, the contemporary
+press, the two printed directories with the old settlers' death notices, and the 1840
+census. 531 of them, in 531 households of one.
+
+**Why this is a liberty and not a dataset growing.** Nothing here is invented and no
+confidence was upgraded to allow it: every one of the 531 is named in a record this project
+has transcribed, and the person carries that reading AS READ, with its locator, its record
+id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_evidence[]`,
+`press_evidence[]`, `book_evidence[]` or `census_evidence[]`. The liberty is the same one
+L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
+**that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
+`works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
+figure drawn (L1). A reader who counts this town's households is counting 531 containers
+that were written to hold a name, and no single record says so, because no single record
+is wrong.
+
+**What the arrival claims, and what it refuses to.** `arrival` is a BOUND, written
+`not_later_than` the earliest record inside the scene year that names the person, at that
+record's own precision — a full date where a paper gives one, the year's end where a list
+gives only a year. For 99 of the 531 that bound falls after 1 July 1835, because the
+earliest source naming them is later than the day this scene models; the validator warns
+that the bound straddles the scene date, the note says so in words, and
+`present_on_scene_date` is `uncertain` for exactly those people. `present` is written only
+where the record BRACKETS the day — the person is named at Chicago at or before 1 July 1835
+and named again at or after it.
+
+**What the refusals take, and they are what stands between a transcription and this town's
+population.** 6,155 of the 6,686 identities the proposal offers are refused, in order: 4,256
+the ladder does not reach at all (an 1839 directory or an 1840 census appearance alone is
+never an 1835 resident), 949 whose only scene-year source is a post-office letter list —
+the pool of the pass beside this one, `tools/mint_letter_list_residents.py`, which the
+owner's ruling of 2026-08-30 already settled — 828 the town already carries, 110 resting on
+the 1832 Black Hawk War enrollment alone, 7 whose id is a person's already, 3 the project
+has researched and left OUT in `index.json`'s `researched_not_resident`, and 2 firms. The
+counts move with the corpus; `--report` re-derives them on any tree.
+
+**The 1832 muster refusal, and why it is written down here.** The enrollment record states
+its own ladder — *"An 1832 enrollment is EARLIER evidence and never an 1835 residence on its
+own: it places the man in this town in 1832, which is why it dates and corroborates rather
+than mints"* — and this pass does not overturn a reading the project has already made from a
+rung the consolidation assigns generically. It also keeps the pass away from the 94 rows the
+index prints in the INDIAN company with no surname comma at all: those names cannot be read
+in a surname-first model without inventing an order for them, and any record touching the
+removal is subject to AGENTS.md's standing constraint rather than to a mint tool's judgement.
+
+**The tension with L213, stated rather than buried.** `tools/mint_placed_residents.py` put
+the register's tradeless people through a residency test derived from the corpus and refused
+382 of them, on the reasoning that *a name printed in a Chicago paper is not a Chicago
+resident*. The owner's ladder, ratified a fortnight later, reads the same evidence
+differently at rung G1b, and 315 of the 531 minted here are minted on it. This pass applies
+the ladder because the ladder is the ratified rule and T-0514 is the instruction to spend
+it; the disagreement is not resolved by this entry, it is recorded by it, and the two tests
+are both still in the tree and both still gated.
+
+**What the new anchors cost downstream, measured.** The directory crosswalks match a later
+entry to a resident on surname plus the FIRST INITIAL of the given name — their own
+documented rule, which refuses a surname-only agreement and states its reasoning on every
+match. 531 new surnames give that rule more to bind to: it declared 35 merges onto people minted
+here, and 23 of those agree on the initial while the full forenames behind it differ — some a
+spelling (Absalom against Absolom), some plainly two people (Thomas L. Abbott onto Titus H.
+Abbott; Michael onto Mary Hogan). Nothing is hidden by that —
+each card shows the entry AS READ, so the discrepancy is on the page rather than under it —
+but the rule is looser than it was worth being when the town held 848 names, and T-0667
+carries the finding.
+
+**Consequence:** the town goes from 848 households and 872 people to 1,380 and 1,404;
+`attested` from 141 to 482 and `inferred` from 731 to 922 — the extra four beyond this pass's
+own 531 are what the passes beside it reach once the register is recompiled against a larger
+town. `data/residents/` grows from 7.2 MB to 13 MB on disk (2.7 MB of new records over 531 new
+files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is added,
+and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
+which is the ruling's own condition, measured.
+
+Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
+**L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
+(this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
+**Recorded:** 2026-09-04.
+
+### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
+**Decision:** the American Fur Company's own list of the goods it furnished "for trade of the
+Chicago country" — filed verbatim as `bk_afc_018` in
+`data/research/books/claims/american_fur_company_hurlbut.json`, roughly 130 named articles from
+arm bands and blankets through northwest guns and scalping knives to vermillion, wampum and
+whiskey — **licenses nothing to be added to this town**. It may CORROBORATE a word that already
+stands on some other ground. It may not WARRANT a new object, a new letter or a new signboard.
+Nothing in `data/` was added, moved or relettered on the strength of it, and the audit below is
+the whole of what it did change: five commodity words that stood on a generator's feel now stand
+on a citation.
+
+**Why the restraint, in three counts, and the third is the one that decides it.**
+1. **It is about 1828, not 1835.** Hurlbut printed the catalogue in 1881 and called it
+   "fifty-three years ago"; the arithmetic is this project's and he may have drafted the essay
+   earlier. Between that year and the scene date lie the 1833 Treaty of Chicago and a removal
+   that ran through the summer the scene is set in. A stock list is the most perishable kind of
+   evidence a trade leaves — it is what was in the store that season.
+2. **It is a district, not a shop.** "The Chicago country" is the outfit's whole ground of
+   distribution, supplied through Chicago rather than sold across a counter on South Water
+   Street. Nothing in the list is placed at an address, and this project's rule for goods is that
+   the FACT is one question and WHICH FRONTAGE is another (`data/yard/town_trade_goods.json` §
+   `existence`). The catalogue answers neither half here: it does not say a Chicago shop held
+   these things in 1835, and it names no shop at all.
+3. **The company was gone and the trade was small.** `bk_afc_005`: in 1828 Gurdon S. Hubbard
+   bought the American Fur Company's entire Illinois interest, seven years before the scene, so
+   whatever trade apparatus stands here in 1835 is a private business and not an outpost of a New
+   York corporation. `bk_afc_013`: Astor sold out in 1834. And the size argument arrives twice
+   from two mouths — `bk_afc_003`, Hurlbut: Chicago was "the port and point of a very limited
+   district of distribution"; `bk_afc_012`, **Hubbard himself**, the man best placed to overstate
+   it: "this place never had been preeminent as a trading-post, as this was not the Indian
+   hunting-ground." The best-informed witness this project holds says the thing was never much.
+
+**The three tests, and they are cumulative.** Before any object, mark or board in this town may
+name, depict or imply the Indian trade it must pass all three:
+- **AT CHICAGO.** A source that puts the goods in this town, at an address or at a named
+  business. "The Chicago country" does not pass. A district-wide outfit list does not pass.
+- **AT THE SCENE DATE.** A source that reaches 1835, or a documented business standing on
+  1 July 1835 whose own attested description carries the trade. 1828 does not pass on its own.
+- **NO PERSON, NAMED OR DRAWN.** AGENTS.md § *Standing constraint — 1835 and Indigenous history*
+  governs, and it is not relaxed by a barrel or a signboard. The removal of the Potawatomi is
+  the most historically significant event of the target year and requires consultation, not
+  inference. **L1** already refuses every human figure; this refuses the trade's iconography as
+  well — nothing in this town letters, models or pictures the people the trade was with.
+
+**Does the town show LESS after this? The audit says there is nothing to take away, and that is
+the honest answer rather than a comfortable one.** Every asset that could carry the trade was
+listed and checked. What was found:
+
+- **34 business signboards** (`data/signage/town_business_signboards.json`, 8 further frontages
+  refused a board in writing). **Not one board in this town letters the Indian trade, a fur, a
+  pelt or the American Fur Company.** The one that could have — `robert_kinzie_store`, whose
+  keeper Andreas lists under "Indian Traders" and whose storehouse chicagology has "dealing in
+  groceries and Indian goods" — reads **R. A. KINZIE / Dry Goods & Groceries**, and its own
+  `sign_text_from` states the reason in as many words: the record "will not stand behind" the
+  Indian trade at the scene date. That decision was taken before this ruling existed and it is
+  what this ruling would have required. It stands, sourced.
+- **155 marked casks and cases at 27 trading frontages** (`data/yard/town_trade_goods.json`, 106
+  barrels and 49 crates, 102 commodity stencils, 26 house brands, 27 shipping marks — L166 is the
+  fence the words live inside). **Six of the 155 stand at the town's one trading house**,
+  `jb_beaubien_homestead`, and they carry FLOUR, SALT, POWDER, TOBACCO, the case word HARDWARE
+  and the house's own brand. **POWDER, TOBACCO and HARDWARE appear nowhere else in the town.**
+- **Nothing else exists to audit, and the absence is the finding.** No pack, bale, peltry, fur
+  press, canoe cargo, trade blanket, capote, wampum, gorget, arm band, ear bob, looking glass,
+  vermillion pot, northwest gun, scalping knife or tomahawk is drawn, lettered or recorded
+  anywhere in `data/` outside the research corpus. No warehouse frontage is attributed to the fur
+  trade. `robert_kinzie_store`'s own record says it "models a standing store and makes no claim
+  about what was on its shelves." **The town shows no Indian-trade apparatus at all**, so the
+  answer to *should it show less* is that it already shows none, and the size argument at
+  `bk_afc_003` and `bk_afc_012` is satisfied by a town that never built the thing.
+
+**The one thing the catalogue did change, and it is evidence rather than geometry.** The trading
+class's four stencil words were chosen by feel. `tools/generate_yard_goods.py` said so:
+*"Kept to the provisions and the two dry stores every frontier counter held"* — a period
+plausibility argument with no source under it, which L166's own fence (*"a commodity word out of
+the trade's OWN attested description"*) could not actually meet for this one frontage, because
+Beaubien's trading house has no attested description of its stock. It has one now. **All five
+words are in the company's own book for this country**: *flour*, *barrel salt*, *gunpowder*,
+*tobacco*, and for HARDWARE the *half axes*, *covered copper kettles*, *nails*, *fine steels*,
+*gun flints*, *kettle chains*, *pen knives* and *stirrup irons* the list itemises. So the words do
+not move; the reason under them does, from a guess about frontier counters to a citation of
+`bk_afc_018`, and both the generator and the record now say which. **This is corroboration
+working in the only direction it is allowed to work** — it justified nothing new and it improved
+the standing of something already there.
+
+**What is still invented, plainly, and this ruling does not launder it.** That Beaubien's
+trading house had anything at all standing outside its door on 1 July 1835; that any of those six
+objects was marked; which of the five words landed on which cask; and that the trade class is
+`inferred` at all — Andreas has Beaubien building a new residence and a small trading post
+alongside the old factory building, which is where `dwelling_and_trading_house` comes from. The
+catalogue is 1828 evidence for a WORD, never for a BARREL. The whole layer is still taken away at
+`reconstructed` in the confidence view.
+
+**One appearance of the company's name, audited and kept.** `bk_afc_005`'s note argues that "the
+words 'American Fur Company' should not appear anywhere in the 1835 scene". They appear once: as
+an `aka` on `jb_beaubien_homestead`, *"the American Fur Company factory building"*, which the
+popup prints under the building's name as **also**. It is kept, and here is the distinction that
+keeps it. Andreas documents it as the building's ORIGIN — the factory building erected by Capt.
+Bradley and bought by Jean Baptiste Beaubien in 1817 — so it is a sourced statement about a
+structure's past standing in a research card, not a lettered claim that a New York corporation
+traded on that ground in 1835. **What is refused is the name on a board, a cask, a card's trade
+line or a label.** An origin a source states may be read; a business the sources deny may not be
+implied.
+
+**What would move any of this.** The Michilimackinac or Illinois outfit's own books for a year
+near 1835 rather than 1828; Hubbard's accounts after he bought the Illinois interest; a Chicago
+merchant's day-book, invoice or insurance description naming stock at an address; the Chicago
+Democrat's advertising columns read for a trader's own advertisement; or an Indian Department
+licence or annuity account naming goods delivered at Chicago in 1834–1835. Any of those would
+pass tests one and two. **Test three is not a research gap and does not move on evidence** — it
+moves on consultation, per AGENTS.md.
+
+**Ticket:** T-0596, out of the chapter read at T-0575. Related: **L166** (the marks and their
+fence, which this supplies the missing citation for), **L159** (the boards' lettering), **L131**
+(where the no-marks restraint started), **L1** (no people, anywhere), **L180** (Robert
+Kinzie's store and its landing on the west bank). Sources: `bk_afc_018`, `bk_afc_005`, `bk_afc_012`, `bk_afc_003`,
+`bk_afc_013`.
+**Recorded:** 2026-09-04.

@@ -48,6 +48,7 @@ CONSUMED = frozenset({
     "elevation_scheme", "chimney_placement", "side_entrance", "rear_ell",
     "shutter_type", "entrance_frontispiece", "chimney_material", "roof_colour",
     "log_wing_door", "log_wing_porch_hood",
+    "cross_wing", "cross_wing_depth_m", "cross_wing_end",
 })
 
 # The compass names a record may use for a wall-mounted feature, as bearings.
@@ -177,6 +178,22 @@ class FrameTavernParams:
     log_wing_door: bool = False
     log_wing_porch_hood: bool = False
 
+    # The SECOND TWO-STOREY MASS — the Sauganash's rear wing, off one gable end,
+    # its ridge at right angles to the main block's and meeting it at a shared
+    # apex. T-0626 read that apex off Braunhold's plate and it is what sizes this
+    # wing: `tools/sauganash_apex_lines.py` shows both lines out of the drawn apex
+    # are world-HORIZONTALS (1.35 and 0.11 deg), so they are two ridges and not a
+    # ridge and a rake — and two gable ridges of one wall height and one pitch
+    # meet at a point only if they span the same width.
+    #
+    # So the wing's SPAN IS NOT A PARAMETER: it is `depth_m`, the main block's own
+    # depth, forced by the shared apex. Only how far the wing runs BACK is stated,
+    # and that the plate cannot give (a single sheet gives no depth — T-0617 row
+    # 11). docs/LIBERTIES.md owns that one number.
+    cross_wing: bool = False
+    cross_wing_depth_m: float = 8.0
+    cross_wing_end: str = "x_max"
+
     # The finish the 665-roof programme dealt this building, and how weathered its
     # roof is. NOT form attributes — they live in the record's `reconstruction`
     # block, which is why `from_phase` takes the record — and until T-0007 they were
@@ -290,6 +307,29 @@ class FrameTavernParams:
         if self.log_wing_door and not self.log_wing:
             raise ParamError("log_wing_door without log_wing — a door needs a wing "
                              "to open into")
+        if self.cross_wing:
+            if self.cross_wing_end not in ("x_min", "x_max"):
+                raise ParamError(f"cross_wing_end '{self.cross_wing_end}' not in "
+                                 f"('x_min', 'x_max') — the wing stands at one gable "
+                                 f"end of the block or it is not this wing")
+            if self.roof_type != "gable":
+                raise ParamError("cross_wing carries its own gable and meets the main "
+                                 "ridge at a shared apex, which needs a gable on the "
+                                 f"main block; this one is '{self.roof_type}'")
+            if self.elevation_scheme != "frontage":
+                raise ParamError("cross_wing is read by the frontage scheme only — the "
+                                 "gable_front scheme's ridge already runs on the deep "
+                                 "axis, so a wing at right angles to it would be a "
+                                 "building no view shows")
+            if self.depth_m > self.width_m:
+                raise ParamError(
+                    f"cross_wing spans the main block's own depth ({self.depth_m} m) "
+                    f"across a {self.width_m} m frontage: the wing would be wider than "
+                    f"the block it stands on. The shared apex forces the span, so a "
+                    f"record needing a narrower wing is asking for two ridge heights.")
+            if not 3.0 <= self.cross_wing_depth_m <= 30.0:
+                raise ParamError(f"cross_wing_depth_m {self.cross_wing_depth_m} outside "
+                                 f"3-30 m")
         if self.log_wing_porch_hood and not self.log_wing_door:
             raise ParamError("log_wing_porch_hood without log_wing_door — the hood "
                              "the engraving draws stands over the wing's door, and "
@@ -381,6 +421,9 @@ def from_phase(phase: dict, record: dict | None = None) -> FrameTavernParams:
         chimney_placement=str(val("chimney_placement", "frontage")),
         side_entrance_face=side_face,
         rear_ell=bool(val("rear_ell", False)),
+        cross_wing=bool(val("cross_wing", False)),
+        cross_wing_depth_m=float(val("cross_wing_depth_m", 8.0)),
+        cross_wing_end=str(val("cross_wing_end", "x_max")),
         # The programme's own finish deal, read off the record rather than the
         # phase. `wall_finish` in `common/materials.py` states the order these are
         # applied in and why a stated coating outranks them.

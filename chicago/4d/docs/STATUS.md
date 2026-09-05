@@ -1,5 +1,400 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0637: 302 runs of fence stop belonging to nobody
+
+**What shipped.** `tools/enclosure_owners.py`, a derivation, and the two generators that now
+call it. Every run on the enclosure layer carries a `belongs_to` naming the lot it bounds, the
+committed buildings standing on that lot, and the households `data/residents/index.json` puts
+in those buildings — `lives_at` as a home, `works_at` as a workplace, which is this dataset's
+join to a business because a business here IS a structure with a trade on its `function`.
+Where one line divides two lots it belongs to both and each entry gives the compass bearing
+from the run's midpoint to that owner's ground, so the side is a measurement off the committed
+plat rather than a word. `data/enclosures/town_lot_line_{boards,pickets,rails}.json` and
+`town_dooryard_pickets.json` are regenerated; a new record-level `belongs_to_rule` block on
+each states the rule, its sources and its counts.
+
+**The numbers, on 306 runs.** 51 joined to a household; 24 households now have a fence round
+their ground; 117 lots named. The other 251 name the structures whose ground they bound and
+carry `refused: no_household_names_this_ground`, with the reason stated once per record: 20 of
+this town's 1,380 households hold a real `lives_at` and 50 a real `works_at`, all at named
+landmarks. **That is a gap in the address work (T-0514), not in the join** — a re-generation
+picks up whatever the placement sweep lands without a line of the rule changing.
+
+**What was refused.** A structure's `occupants` block is prose, and 72 of the buildings this
+layer fences name a household id in it — 59 ids, of which **53 belong to households the
+2026-09-02 synthesis removed** and the index no longer holds (T-0516's finding, counted here).
+Worse, a mention is not an occupancy: `philo_carpenter_log_shop` names `hh_chappel_eliza_mir`
+in a sentence whose own `value` says no occupant is attested there at the scene date. Joining
+on that prose would have handed ground to the wrong household while looking like evidence, so
+the count is filed as a finding in each record and the join stays on the two committed links.
+It is also why the dooryard record joins **1 of its 13** plots: clause 4 of that generator's
+own rule admits a lot on the strength of the same prose, and only Elijah Harmon's household is
+on a lot this record reaches with a real address behind it.
+
+**Nothing hand-authored was overwritten.** `tools/check_enclosure_owners.py` (new, wired into
+`tools/check.sh`) re-derives the authored yards anyway and prints the comparison: it agrees
+`sauganash_yard` is the Sauganash's and reports that `philo_carpenter_log_shop` stands on the
+same lot — a second building on the ground, not a second owner of the yard. The Western's
+wagon yard and the estray pen stand on ground the plat never divided into lots, so the
+derivation has nothing to compare and says so. The gate also fails a run that names an owner
+this repository does not hold, and a generated run with no `belongs_to` and no refusal.
+
+**Nothing in the scene moved.** No coordinate, no fence, no bake: this ticket adds a relation.
+
+## Shipped 2026-09-04 — T-0701…T-0712: the drawer, Go to, Travel, People, the Evidence hub, the card
+
+**Every screen a visitor sees changed; the PR names the twelve tickets.** The owner's asks:
+the menu "is so small" (a sixth tab did not fit); Go to with "reconstructed roofs hidden by
+default" and "filters like taverns, shops, etc."; travel "instantly, by walking, by wagon
+(fast), by horse (faster)", "go as fast as a horse through the city", "maybe a gallop
+up-and-down view", "open the card on landing" or "fly … and open the card"; the card should
+not lead with "what we made up"; "the citizens should show there"; Evidence "is entirely
+unwieldy". Ruled in session: one PR into `dev`; menu and card **share one right-hand slot**;
+the card's top half uses **quiet coloured grade dots**.
+
+### Decisions
+- **One slot**: opening the drawer tucks the card (`#popup[data-tucked]`, never `hidden`);
+  closing untucks; a Go-to arrival closes the drawer and opens the card.
+- **Hidden roofs** follow the presence grade, `documented_range.confidence ||
+  placement.position_confidence || 'reconstructed'` — 276 of 358 hidden until the toggle.
+  Privies, stables and sheds file under Homes & yards.
+- **Default travel mode `instantly`**, so first-run behaviour and every arrival assertion stand.
+- **Router**: grid A* on 2 m cells, streets cheap, footprints and undecked water blocked; a
+  null route falls back to instant travel and says so.
+- **Paces are interface choices, not claims about 1835** — 3.6 m/s says nothing about any
+  1835 wagon — so **no LIBERTIES entry**; the Travel note says so instead.
+- **`people.json`** is a compiled sidecar (`compile_people()`, drift-checked under `--check`);
+  `residents.js` still reads the manifest and household files.
+
+### Smoke restatements — restated, never weakened (unverified until the gate runs)
+- Tab order → exactly `goto,travel,people,evidence,settings,controls,whatsnew` (same exactness).
+- "Five tabs fit one row" → every rail item unsqueezed, one column desktop / one row mobile (same fit test).
+- "Every loaded structure" → default `=== count(presenceGrade ≠ reconstructed)`, toggle `=== registry.size` (full count kept, behind the owner's toggle).
+- Position grade per row → chip `=== presenceGrade` and `data-jump-position ===` position grade (both grades read).
+- Chip colours distinct and `≠ .jump-name` → same, reconstructed read after the toggle.
+- `.jump-result span` → `.jump-result .jump-name` (the same element, by its own class).
+- Intersection arrival → precondition `api.setTravelMode('instantly')` stated (the default it already relied on).
+- `checkVisibility` in card panes → activate the pane's `[data-pop-tab]` first (a collapsed read passing would be dishonest).
+- `.pop-account` → `#popup .pop-lead.pop-account`, plus a composed lead without `change_note` (stricter).
+- `.pop-meta [data-note]` → `#popup .pop-where [data-note]`; chip coverage adds `.fact-dot ≥ 3`, `.pop-facts .conf === 0` (additions).
+- Card not collateral when the panel opens → unchanged; tucking keeps `hidden` off `#popup`.
+
+**Verified 2026-09-05 on the integrated tree** (`tools/check.sh` CHECK PASS; smoke to files,
+zero page errors in every leg): desktop parts 12, 3 and 13 and mobile 10-13 and 3-6 all
+pass — 66, 80, 110, 203 and 123 checks. The mobile 3-6 leg found one real defect on the way
+and it is fixed in the same PR: the new pace chip had pushed the confidence chip group to the
+left of a 390 px top bar, and its 280 px level menu, hung off the group's right edge, opened
+70 px past the screen; on a phone the menu now anchors to the viewport's own edges. One plan
+clause was corrected rather than the code: the Go to list starts with no row active, as a
+combobox does, so two ArrowDowns reach the SECOND row, and the gate asserts that.
+
+New assertions live in T-0701…T-0712's acceptance clauses. T-0713 (street lines attested from
+the Thompson plat) is written for the loop and stays in the queue.
+
+## Shipped 2026-09-04 — T-0542: the third town election was Friday 10 July 1835, and the 85-name poll list is not its poll book
+
+**Nothing a visitor can see changed, and this is the exemption named in the PR: the finding
+was blocking T-0514, T-0515 and T-0634, all three of which mint or regrade people whose cards
+a visitor opens.** T-0493 read the four voter lists of 1833-1835 and was asked to date the
+1835 poll. It could not: the list prints no date, and Andreas dates the third town election
+twice, two hundred pages apart and not in agreement — *"The third election was held in July,
+1835"* in the town chapter, *"the third election of town oHicers, which occurred .Au- gust 5,
+1S35"* in the police chapter. The scene date is 1835-07-01, so eighty-five men's presence at
+the moment this town is drawn rested on which reading was right.
+
+### The town's own paper answers it, in two issues a week apart
+
+Nobody had asked the *Chicago Democrat*. It is in the deposit, seventy-three issues of it,
+and it settles the question three times over — `data/research/civic/claims/town_election_1835_democrat.json`:
+
+| issue | what it says | id |
+|---|---|---|
+| 10 Jun 1835 | the election is ordered by a new act, no copy of the act can be had in Chicago, and the poll is *"postponed, or adjourned, some how or other, from time to time"* | d001 |
+| 8 Jul 1835 | *"the election of Trustees under a new Charter takes place Friday of this week"* — a Wednesday paper, so **Friday 10 July 1835** | d002 |
+| 15 Jul 1835 | *"Chicago Charter Election.—This election took place on Friday last"*, with the return | d003 |
+| 15 Jul 1835 | the charter itself, Sec. 4: the annual town election moves to **the first Monday in June** | d005 |
+| 26 Aug 1835 | the new board's ordinance code, *"Passed the [5]th day of August, 183[5]. H. HUGUNIN, Pres't"* | d004 |
+
+The identification rests on the names, not on the dates alone: the men the return puts on the
+two tickets are Andreas's eight — Hugunin, Loyd, Jackson, King, Kimball, Williams, Sherman,
+Dole — which is what makes his passage and this return one event. **The third town election
+was Friday 10 July 1835, nine days AFTER the scene date.** Andreas's town chapter is right;
+his police chapter's 5 August 1835 is the day the elected board sat and passed its code. On
+either reading of that sentence — a conflation, or "election of town officers" meaning the
+board choosing the officers the charter gives it — the popular poll does not move off 10 July.
+d005 also kills the circumstantial argument that had been carried for the August reading: the
+1833 and 1834 polls fell in the second week of August under a law that the 1835 act superseded.
+
+### And the answer to the question asked was "neither"
+
+The 85-name list is **not the poll book of that election** (`town_findings_voter_lists.json`
+v003). Kimball and Dole polled 142 votes each and Hugunin 124; eighty-five men cannot cast a
+hundred and twenty-four votes for one candidate. That alone leaves *different poll* or *short
+printing*, and the membership decides between them: six of the ten men who stood — Kimball,
+Loyd, Jackson, Dole, Kinzie, Davis — are absent, while the list runs unbroken from Adams to
+Wright, so no lost page or dropped column accounts for them. **Which poll it is stays open.**
+The nearest candidate is the county and state general election of Monday 3 August 1835, at
+which Cook County chose a Recorder and at which Peter Pruyne, who stands on this list, was the
+caucus candidate; that is named as a candidate and asserted as nothing. What it means for the
+work downstream is that a name on this list evidences presence in Chicago in 1835 and **not**
+presence on any stated day — a sharper constraint than T-0514 and T-0515 were given, not a
+looser one.
+
+### What was NOT settled, and what was read to fail to settle it
+
+The 1833 discrepancy stands (v004). Andreas says twenty-eight men voted on 10 August 1833;
+the list prints thirty. **No count outside Andreas exists in anything this project holds**:
+the *Democrat*'s first number is 26 November 1833, so the poll has no contemporary report, and
+its whole run to August 1835 carries no retrospective one; the board's own ordinances printed
+31 December 1833 name no judges or clerks of that election. The nearest thing in the corpus is
+a notice in the paper's first issue, over the name of a Judge of Election, for the choice of
+one Constable for the Chicago **Magistrates District** — a district office, not a town one,
+and it is recorded because it is near, not because it bears. The one thing sayable without a
+new source is source criticism and is offered as that: Andreas's sentence is prefaced *"It is
+believed"*, it counts the town's legal voters rather than the enrolments in a poll book, and
+it was written in 1884. The judges-and-clerks hypothesis is the weaker of the two the ticket
+offered — judges and clerks of an Illinois poll were themselves electors and voted, so their
+names belong in a poll book. Neither count is repaired.
+
+### Reading is only half of it, and the meter said so
+
+Seven new units read is seven more units the civic domain had read and not ruled on, and
+`measure_research_spend.py --gate` failed on exactly that: 20 unspent against a ceiling of 13.
+**The ceiling was not raised.** The rulings were written instead, one per unit, each naming
+its unit by id — `data/research/civic/town_election_1835_crosswalk.json` — and every one of
+them is a refusal to carry, because T-0542 was forbidden to mint or regrade and says so. civic
+is back to 13 unspent, 499 read against 486 ruled on. **Nobody was added to the town, nobody
+was removed, and no grade moved.**
+
+
+## Shipped 2026-09-03 — T-0423: the corpus's one lot-and-block address is seated, and stops carding as vacant
+
+**The dwelling-house on lot 7 of block 16 is named on the card a visitor opens, instead of
+"A vacant one-room frame cottage".** G. Spring's For-Sale notice ran in the *Chicago
+Democrat* six times between 1834-06-18 and 1834-11-19 — *"LOT No. 7, in block No. 16, one
+lot east of Haddock's Tavern, on Lake street … There is on said lot a large Dwelling-House
+and fine well"* — and a lot and a block is the plat's own language, which makes it the most
+precise placement statement in the whole newspaper corpus. **This is the visible half of
+T-0358**, which committed the Thompson block numbering so the sentence could reach ground.
+It reached a polygon and stopped: the roof standing on that polygon went on titling itself
+with a claim of absence made over the top of a source saying a house was there.
+
+### The third grammar, and it needed its own policy
+
+A paper of 1834 places a building three ways, and they are three different claims:
+
+| the paper says | it constrains | the policy |
+|---|---|---|
+| a platted street and nothing narrower | a face | `docs/STREET-FACE-ADOPTION.md`, L212 |
+| a count of doors off a named corner | a position, and no lot | `docs/CORNER-ORDINAL.md`, L215 |
+| **a lot and a block** | **the plat's own unit** | **`docs/LOT-ADDRESS.md`, L216** |
+
+`data/research/newspapers/lot_addresses.json` authors the address and nothing else — the
+printed words, the printings, what the notice says stood on the lot, and who the advertiser
+was. Every step from there is derived by `tools/lot_addresses.py`: block number → block
+through the committed numbering (which the ledger may not contradict), lot number → polygon
+through the committed lot grid, polygon → **exactly one** roof by footprint centroid, or the
+address is refused. Both directions are gated in `check.sh`, and nine ways the seating could
+lie are in its `--self-test`.
+
+### The grade does not move, and the chain is why
+
+The words are read. The block number is `inferred` — three blocks counted east of the one
+numeral the Wright sheet carries. The lot number is `conjectural` twice over: four lots to a
+face is a reading of one block, the lines it numbers are drawn from no sheet, and the
+counter-clockwise scheme was read off block 18. So the seating is graded at the **bottom
+tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads the
+phase and fails if a documented address has quietly promoted a reconstructed roof.
+
+The seating writes **one block** and nothing else — no coordinate, no footprint, no form
+value, and not even the record's `function`, which the dooryard, fence, planting and
+signboard generators read to decide what stands in a yard. No mesh changed and nothing was
+re-baked. The town gained an address, not a building.
+
+### Three things it refuses, and two it records rather than draws
+
+It is **not** "G. Spring's house": he is who to apply to for terms, `is_the_occupant` and
+`is_the_owner` are `false` in the ledger and refused if they are not, and the same G. Spring
+is the attorney the papers put near Franklin and South Water. T-0412 is that trap read from
+the other side. It may not seat two addresses on a roof, or one address on two roofs.
+
+Recorded rather than drawn: the notice calls the house **LARGE** and the fabric under the
+address is a 5.36 × 6.38 m D3 count-unit dealt long before the address resolved (**T-0593**);
+and the **fine well** is not drawn, because this town has no well of any kind and the first
+one would stand on the single lot whose address happens to resolve (**T-0592**). Both are on
+the record in the notice's own words. A documented feature that is absent is stated, not
+omitted.
+
+## Shipped 2026-09-03 — T-0450: three caps, and the one a leg's margin is taken against
+
+**`docs/SMOKE-BUDGET.md` opened by telling three tickets that the 30-minute cap their
+margins are taken against "is not this machine's". It was wrong, and it has ranked those
+tickets against the wrong bound since 2026-08-30.** The page compared a **per-leg**
+timeout with a **whole-body** reading. They do not bound each other:
+
+| cap | what it bounds | where it is written |
+|---|---|---|
+| 600 s | ONE foreground command in a steward run | the harness |
+| 30 min | ONE LEG of the nightly gate — one viewport, one stage range, eight legs in parallel | `chicago-4d-bake.yml` § `smoke` |
+| 90 min | the WHOLE body in one process, no per-leg cap at all | `chicago-4d-smoke.yml` § `smoke` |
+
+The 55 m 10 s figure offered as proof is a reading of the third row and sits comfortably
+inside its own cap. **T-0170, T-0173 and T-0181 were reasoning about the leg cap
+correctly**, and the page now says so.
+
+**The same-machine half is settled from committed files rather than from a timing.** The
+nightly gate's legs, the full-body run, the dev gate and the steward improve runner are
+all `runs-on: ubuntu-latest`; the two smoke workflows install the same `playwright@1.56.1`
+and chromium alone; `smoke_renderer.mjs` passes `--enable-unsafe-swiftshader` wherever it
+runs. T-0450's own pair of readings — 4 m 40 s on the gate runner, 4 m 44 s on the improve
+runner, four seconds apart — is recorded with its provenance, **and with its unverified
+half named**: the ticket gives `dev` at `415909cf` for both, while run 33290607360's head
+commit is `fc10c83d`, so "the same bytes" is not a checked fact and is not claimed as one.
+
+**The leg table is a tool, not prose, because four re-cuts in 2026 rotted every prose copy
+of it.** `node tools/smoke_budget.mjs --legs` reads the stage ranges and the cap out of the
+workflow and prices each leg from `tools/dev-smoke-state.json`. Today: the worst fully
+measured margin is **desktop `10-13` at 12 m 09 s**, and a leg whose only readings straddle
+its boundary is priced with the neighbour included and says so — cost an upper bound, margin
+a lower one. `--self-test`, which `check.sh` runs, now fails if the ranges ever stop tiling
+parts 1..13 exactly once; the workflow's own comment has asserted that since T-0171 and
+nothing held it.
+
+**Nothing a visitor can see changed, and T-0181 is not closed by this.** Its acceptance —
+the worst desktop leg measured on three separate runs, the spread recorded, the cap or the
+cut set from the spread — stands unchanged, because the 17 m 51 s above is summed from
+per-part readings that each paid their own boot, which is the very prediction-from-parts
+move that ticket was opened to object to. What is removed is only the claim that it was
+arguing against the wrong bound. The re-read is written into T-0181 itself.
+
+## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
+
+**Resident identity research now covers 150 of 848 eligible real named people
+(17.7%), with no reconstructed person admitted.** The second fixed, non-overlapping
+cohort contributes 27 corroborated enrichments, 23 explicitly unmerged candidates and
+25 documented no-find outcomes. Cumulatively the public layer carries 31 corroborated
+findings, 30 candidates and 89 no-finds.
+
+The pass used six parallel research streams and 47 newly registered sources across
+contemporary statutes, a Supreme Court report, an 1843 directory, institutional
+biographies and finding aids, edited papers, county and church histories and local
+archives. Exact queries, source limits and conflicts are retained. Surname form was a
+search lead only; it produced no heritage, lineage, immigration, kinship or occupation
+claim.
+
+The most important correction is methodological: **a waiting letter demonstrates
+postal reachability, not bodily presence in Chicago**. Strong matches place Ezra
+Galusha at Warrenville, George R. Makepeace near Joliet, Paul Burdick at Milwaukee,
+Thomas R. Covell at Salt Creek and Chester House at House's Grove. Each remains a
+candidate rather than being rewritten as a town resident.
+
+The likely Eliza Chappel duplicate remains merge-pending-scan, as do Aaron
+Parcel/Aron Parcell and Alonzo Murray/Murry spelling pairs. Ebenezer Ford gains a
+strong Fort Dearborn/church candidate and an identified missing May return, but no
+household was silently edited. `docs/RESEARCH/resident_identity_pass_02_75.md` records
+the full assessment and continuation priorities.
+
+## Shipped 2026-08-30 — T-0384: an ordinal off a corner places a store, and claims no lot
+
+**John Holbrook's clothing store stands on South Water Street, one door east of Dearborn**,
+between the Chicago American's office at the corner and Frederick Thomas's shop. Two papers
+print the address — Democrat 1835-06-10 c010 (*"on South-Water st. one door from Dearborn
+street"*) and American 1835-06-13 c012 — and the reading that let him be placed is the
+owner's ruling of 2026-08-30: **a count of doors off a named corner is an ordinal off the
+corner, not a reach of the street**. `docs/CORNER-ORDINAL.md` is the policy.
+
+### What was in the way, and it was not the question the ticket named
+
+T-0384 was written believing the blocker was *"may a business-front lot carry two documented
+storefronts standing at the street?"* — PR #514's question, parked on `hold`. It was not. Under
+the register as committed the advertisement read as `street_only`, so `docs/STREET-FACE-ADOPTION.md`
+owed Holbrook a standing South Water roof and **there is not one free**: nineteen front the
+street, five are a named household's dwelling, five are yard buildings, nine are already
+adopted. He was one of seven South Water advertisements short purely on supply.
+
+### The limit, and it is enforced in fields rather than in prose
+
+An ordinal is **not a lot**. The record carries `lot_claim` — `claims_lot: false`, `lot: null`,
+`placement_rule: corner_ordinal` — the schema permits no other value for either of the first
+two, and `tools/plat_occupancy.no_lot_claim_ids` reads it: such a record is not a HOLDER of the
+lot for the owner's business-front clause of 2026-08-27, so it neither entitles the lot it
+stands on nor exhausts it. That is exactly what PR #514 lacked — standing Holbrook beside the
+American's office switched the clause off, `len(holders) != 1`, and `generate_block_infill.py`
+was refused a roof it had been dealt. Nothing physical is relaxed: separation, lot margins and
+corridor intrusion all still bind, and `occupied_lots` still counts the roof against its
+block's headroom.
+
+The transparency runs **one way on purpose**. A lot held only by no-lot-claim records reads as
+taken and the run is not dealt it — the conservative answer, costing nothing today because no
+such lot exists. Freeing it would be a second ruling, about ground rather than evidence.
+
+### The vocabulary is derived, which is why it does not have to be re-decided
+
+A reading pass writes what it always wrote — `class: relative`, an anchor naming the cross
+street, an `offset_normalized` carrying the phrase — and `compile_register.ordinal_off_a_corner`
+reads the ordinal out of it. Three tests, each refusing a phrase the corpus actually prints:
+the offset must count doors in a word translatable to a number (*"a few doors below"* is
+refused), the reference must resolve to exactly one platted street, and the business's own
+street must be a different one. An ordinal off a BUILDING is untouched — it resolves earlier,
+as a landmark hop.
+
+### The sweep, and what it found that is not this ticket's
+
+`tools/measure_corner_ordinals.py` reports it on every run: over 86 extraction files, **28**
+claims count doors, 5 name a corner of two streets and resolve as one, 20 are landmark hops or
+name no platted street, and **3 are readable as an ordinal off a corner**. Those three are
+Holbrook's Democrat printing and Clark, Filer & Co.'s warehouse *"five [doors east] of the
+corner [of Randolph st.]"*, printed twice. Holbrook's other printing is NOT readable: the
+American's transcription cuts the cross street to *"De[arborn]"* and a bracketed supply is not
+a street name — so the Democrat's printing is what carries the placement, and it also
+corroborates the street word the American's column lost.
+
+**Clark, Filer & Co. is a finding and it is not fixed here.** Three of its printings carry the
+anchor and the gazetteer's LIVE placement for the house is `class: none` with a null street, so
+`resolve_anchor` is handed nothing and the row reads `unplaceable`. That is a gazetteer fault,
+not this policy's; **T-0440** carries it, including the count of other houses in the same
+position, which nobody has taken.
+
+### What is unverified, stated plainly
+
+- **Which side of Dearborn is a reading, not a source.** East is taken because the three
+  addresses this block face's own papers print describe a continuous row when read eastward and
+  nothing that closes when read westward. The position is graded `inferred` for that reason.
+- **The metres are a convention.** L215's door-gap rule — a neighbouring front stands 3.048 m
+  (10 ft) clear of the wall it neighbours — has two reasons and no source. A second ordinal
+  placement anywhere in the corpus turns it from a convention used once into a rule that has to
+  be argued.
+- **Every dimension of the building is borrowed** from `chicago_american_office` and
+  `frederick_thomas_shop` on the same face. Nothing about the premises is attested.
+- **PR #514 is superseded, not merged.** It built the same store against a reading the owner has
+  since ratified, but it claimed the lot and went red on the platted-parcels step; its branch is
+  closed rather than left parked.
+
+## Shipped 2026-08-31 — T-0442: 75 real named residents receive identity reviews
+
+**Seventy-five of 848 eligible attested or inferred named people (8.8%) now have a
+dated, reproducible identity-research outcome.** The fixed sample spans five established
+profiles, every one of the twenty richer unplaced newspaper records, and fifty of the
+post-office-only names split evenly between present and uncertain. No reconstructed
+person is eligible.
+
+The result is deliberately less flattering than 75 new biographies: **4 corroborated
+findings, 7 candidate identities and 64 searches with no safe match**. Candidates are
+published on the resident card with their supporting source, conflict and an explicit
+“not merged” warning. A no-find says what it is too: the reviewed search did not find a
+safe bridge, not that the person did not exist.
+
+The useful near-matches include Augustus Garrett, James Curtiss, Buckner Stith Morris
+and David Brookins. Jesse W. Fell is explicitly rejected as the automatic expansion of
+J. W. Fell because institutional chronologies put Jesse in Vandalia and Clinton in
+1835. J. H. Collins is the strongest resolution: profession and his distinctive Caton
+partnership connect the abbreviation to James H. Collins by more than the name.
+
+No household, marriage, kinship, immigration or heritage field was invented. The
+source hierarchy explicitly forbids surname-based heritage claims. The cohort,
+outcomes, source resolutions and public payload re-derive in the gate; browser checks
+hold both candidate and negative-result warnings on mobile and desktop.
+
 ## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
 
 **Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts

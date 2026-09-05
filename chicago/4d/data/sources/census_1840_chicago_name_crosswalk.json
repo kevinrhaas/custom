@@ -1,0 +1,28 @@
+{
+  "id": "census_1840_chicago_name_crosswalk",
+  "type": "dataset",
+  "citation": "1840 U.S. Census, Chicago, Cook County, Illinois — committed head-of-household transcription/IPUMS serial crosswalk and household variables.",
+  "date": "1840",
+  "describes_date": "1840",
+  "locator": "chicago/reference/census1840/validation/H_1840_chicago_with_names_partial.csv",
+  "repository": "chicago/reference/census1840/validation/",
+  "tier": 1,
+  "rights_status": "public_domain",
+  "asset_use": "text_only",
+  "verified": true,
+  "note": "Name-reading and serial-mapping confidence are retained separately. Later evidence relative to the 1835-07-01 scene; no automatic back-projection. The line-to-serial join is no longer hand-kept: it is derived by tools/census_1840_fingerprint.py from the committed page readings and re-derived by tools/check.sh, so it cannot drift from them. The owner's lost v3/v4 workbooks are superseded by the T-0504 package rather than reconstructed by guess. Coverage as of 2026-09-03 (T-0504): 15 of 75 page images read to the age-band cells, 461 lines, 160 serials named, 194 ambiguous, 107 unmatched; 531 of 964 households have a globally distinct fingerprint; that is the most this method can ever name.",
+  "what_it_supplies": [
+    "Household composition for all 964 Chicago households enumerated in 1840: free-white age bands by sex, free-coloured bands, industry counts and household totals.",
+    "The head's NAME for 160 of those households — every line whose 26-column free-white age-band fingerprint matches exactly one household in the extract.",
+    "A stated refusal for the rest: an ambiguous line carries its candidate serials and no serial, and an unmatched line carries the reason it did not match.",
+    "The join itself, derived and gated rather than hand-kept: chicago/4d/tools/census_1840_fingerprint.py --build writes data/research/census_1840/serial_crosswalk.json from the committed page readings, and --check re-derives it inside tools/check.sh, so a page reading that changes cannot leave a stale crosswalk behind it.",
+    "A reference package for a reader outside the repo: chicago/reference/census1840/validation/T-0504_1840_name_serial_crosswalk.csv (+ .xlsx, + a generated README)."
+  ],
+  "what_it_does_not_supply": [
+    "A name for the other 804 households. 433 of the 964 share their age-band pattern with at least one other household, so no reading of these columns will ever separate them; naming those needs a second axis, not a better read.",
+    "Any 1835 residence. This is a dated 1840 record, five years later than the scene, and the ratified grading ladder holds that 1839/1840 alone is never a 1835 resident. T-0505 does the 1835 crosswalk.",
+    "Ages. The schedule records bands, not birth dates.",
+    "Names for anyone but the head: no other member of a household is named on the 1840 schedule.",
+    "A reading of the whole deposit. 15 of the 75 deposited page images carry a committed age-band reading, covering 461 lines."
+  ]
+}

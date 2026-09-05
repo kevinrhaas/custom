@@ -222,6 +222,272 @@ TRADE_TO_OCCUPATION = (
     ("store", "merchant"),
 )
 
+# T-0418 — sixteen trades the papers print that this vocabulary had no word for, and
+# three it already had a word for and no needle to reach it with. THEY ARE A SECOND
+# TABLE, READ AFTER THE FIRST HAS FAILED, on purpose. First hit wins, so a needle
+# added above would outrank a reading the register already makes, and this ticket is
+# about the people it reads NOTHING for: a new word may fill a null and may never
+# displace a trade the corpus already resolved. (It would otherwise: John Watkins,
+# who kept the town's first school AND sold books, would stop being a schoolteacher,
+# and E. K. Hubbard would stop retiring the merchant household the town invented for
+# want of him.) Within the block the usual ordering rule holds — "house and land
+# agent" above "land agent", the land office's two officers a phrase apart. The nine
+# printed phrases this project REFUSES to translate are in TRADE_NOT_IN_VOCABULARY
+# below, checked before both tables, which is what keeps the Postmaster General of
+# the United States out of the "postmaster" needle.
+TRADE_TO_OCCUPATION_T0418 = (
+    ("register of the land office", "land_office_register"),
+    ("register, united states land office", "land_office_register"),
+    ("house and land agent", "land_agent"),
+    ("house and lot agent", "land_agent"),
+    ("houses and lots", "land_agent"),
+    ("land agent", "land_agent"),
+    ("insurance", "insurance_agent"),
+    ("harbour agent", "harbour_agent"),
+    ("harbor agent", "harbour_agent"),
+    ("master mariner", "master_mariner"),
+    ("justice of the peace", "justice_of_the_peace"),
+    ("militia officer", "militia_officer"),
+    ("army officer", "army_officer"),
+    ("postmaster", "postmaster"),
+    ("sheriff", "sheriff"),
+    ("provision dealer", "provision_dealer"),
+    ("coffee house", "coffee_house_keeper"),
+    ("refectory", "refectory_keeper"),
+    ("restorator", "refectory_keeper"),
+    ("bookseller", "bookseller"),
+    ("stationer", "stationer"),
+    ("tinsmith", "tinsmith"),
+    ("sheet iron", "tinsmith"),
+    ("founder", "founder"),
+    ("stove dealer", "stove_dealer"),
+    ("stove and hollow ware", "stove_dealer"),
+    ("hollow ware", "stove_dealer"),
+)
+
+# T-0661 — the OTHER printed trades this vocabulary could not say. T-0418 adjudicated
+# the 36 phrases the newspaper register itself refused; sweeping the WHOLE gazetteer
+# the same way leaves 128 more printed phrases that no table above reads, across both
+# the persons and the businesses. This is the third table, and it is asked LAST for
+# the same reason the second is asked second: a word added here may fill a null and
+# may never displace a reading the corpus already resolves. Twenty-one new words joined
+# `data/residents/index.json`'s vocabulary with it; the rest are needles onto words
+# that were already there and that nothing ever reached — `soldier`, `farmer`,
+# `minister`, `indian_agent`, `county_clerk`, `packer`, `speculator`.
+# docs/RESEARCH/occupation_vocabulary_1835.md argues every one of them, and the 33
+# phrases this project REFUSES are in TRADE_NOT_IN_VOCABULARY below, checked first.
+#
+# ORDER IS THE RULE HERE TOO. "painting" sits above "carriage" because Brown offers
+# "carriage, sign, ornamental and figure painting, and gilding" and he is a painter,
+# not a carriage maker. The vessel masters take two-word needles because a bare
+# "master" would take the dancing master and the schoolmaster with them.
+TRADE_TO_OCCUPATION_T0661 = (
+    # --- the town's and the county's own offices. T-0418 settled that this vocabulary
+    # carries an office held AT CHICAGO — sheriff, county clerk, postmaster, register
+    # of the land office are all in it already — and the same reasoning admits the
+    # rest of the town's bench and board. An office held at Washington, at Vandalia or
+    # on a circuit is refused below, on T-0418's own ground.
+    ("president of the board of trustees", "town_president"),
+    ("president, board of trustees", "town_president"),
+    ("president of the town trustees", "town_president"),
+    ("clerk of the board of trustees", "town_clerk"),
+    ("secretary, board of trustees", "town_clerk"),
+    ("secretary to the town trustees", "town_clerk"),
+    ("town clerk", "town_clerk"),
+    ("assessor", "town_assessor"),
+    ("fire warden", "fire_warden"),
+    ("public administrator", "public_administrator"),
+    ("clerk of the circuit court", "county_clerk"),
+    ("clerk of the cook circuit court", "county_clerk"),
+    ("clerk of the county commissioners' court", "county_clerk"),
+    ("clerk of court", "county_clerk"),
+    ("county clerk", "county_clerk"),
+    ("justice", "justice_of_the_peace"),
+    ("indian agent", "indian_agent"),
+    ("receiver, united states land office", "land_office_receiver"),
+    ("receiver of public moneys", "land_office_receiver"),
+    # --- the garrison and the militia. `army_officer` and `militia_officer` were both
+    # in the vocabulary and between them reached four commissions; these are the ranks
+    # and staff appointments the papers actually print. The Cook county regiment is
+    # THIS county's militia, mustered at this town, which is why its colonel and its
+    # adjutant take the militia word rather than a refusal.
+    ("commissary of subsistence", "army_officer"),
+    ("post adjutant", "army_officer"),
+    ("commanding the post", "army_officer"),
+    ("u.s. army", "army_officer"),
+    ("colonel of the cook county regiment", "militia_officer"),
+    ("regimental adjutant", "militia_officer"),
+    ("soldier", "soldier"),
+    # --- the lake. `master_mariner` has been a word since T-0418 and no needle ever
+    # reached it; ten schooner masters, three ship masters and one sloop master are
+    # the largest single group in the sweep.
+    ("schooner master", "master_mariner"),
+    ("ship master", "master_mariner"),
+    ("sloop master", "master_mariner"),
+    # --- the pulpit. `minister` was in the vocabulary from the beginning with nothing
+    # to reach it. A Baptist pastor is a minister of that denomination; the vocabulary
+    # keeps `priest` for the Catholic cure and `chaplain` for the garrison's.
+    ("baptist pastor", "minister"),
+    ("clergyman", "minister"),
+    ("minister", "minister"),
+    # --- the law. Ten men are printed "solicitor in chancery" and read nothing.
+    ("solicitor", "attorney"),
+    ("conveyancer", "attorney"),
+    ("law", "attorney"),
+    # --- physic. `physician` and `druggist` both existed; neither reached a botanic
+    # practitioner, a chemist or a notice that offers "medicine and surgery".
+    ("botanic", "physician"),
+    ("medicine and surgery", "physician"),
+    ("patent medicine", "druggist"),
+    ("chemist", "druggist"),
+    # --- the trades the vocabulary had no word for at all.
+    ("painting", "painter"),
+    ("carriage", "carriage_maker"),
+    ("sleigh", "carriage_maker"),
+    ("hat manufactur", "hatter"),
+    ("hatter", "hatter"),
+    ("brew", "brewer"),
+    ("confection", "confectioner"),
+    ("livery", "livery_stable_keeper"),
+    ("pedlar", "pedlar"),
+    ("trunk maker", "trunk_maker"),
+    ("silversmith", "silversmith"),
+    ("jeweller", "jeweller"),
+    ("jewelry", "jeweller"),
+    ("liquor", "liquor_dealer"),
+    ("engineer", "engineer"),
+    ("superintendent of public works", "engineer"),
+    ("mail contractor", "mail_contractor"),
+    ("dancing master", "dancing_master"),
+    ("music teacher", "music_teacher"),
+    ("piano", "music_teacher"),
+    # --- needles onto words the vocabulary already had.
+    # An inn is a tavern, and `tavern_keeper` is this vocabulary's word for the man who
+    # keeps one. The single holder in this corpus, Trowbridge, is named in one notice
+    # for the "EAGLE COFFEE HOUSE (TROWBRIDGE'S)" — an inn under the town's other name
+    # for it — so this needle is the one addition in T-0661 that moves a row of the
+    # register's action ledger, from `new_resident` to `replace_invented` against the
+    # four tavern-keeper households the town invented for want of a documented one.
+    # That is an ADDITION, not a displacement: his occupation was null before it.
+    ("innkeeper", "tavern_keeper"),
+    ("newspaper publisher", "editor"),
+    ("academy", "schoolteacher"),
+    # "ship chandler" ABOVE "chandler": a ship chandler victuals and rigs vessels and
+    # is not a maker of candles. Daniel Elston, the one "chandler" the gazetteer prints,
+    # is a soap and candle maker by his own notice; Fergus 1839 prints four ship
+    # chandlers, and reading them as candle makers would be exactly the class of silent
+    # collision T-0376's milliner-as-miller taught this table to fear.
+    ("ship chandler", "ship_chandler"),
+    ("chandler", "soap_and_candle_maker"),
+    ("pork curer", "packer"),
+    ("tinner", "tinsmith"),
+    ("stove manufacturer", "stove_dealer"),
+    ("castings", "founder"),
+    ("ironmonger", "hardware_merchant"),
+    ("cloak", "dressmaker"),
+    ("habit maker", "dressmaker"),
+    ("surveying", "surveyor"),
+    ("provisions", "provision_dealer"),
+    ("forwarder", "forwarding_and_commission"),
+    ("storage keeper", "forwarding_and_commission"),
+    ("land speculator", "speculator"),
+    ("houses and lands", "land_agent"),
+    ("leasing town lots", "land_agent"),
+    ("letting agent", "land_agent"),
+    ("land dealer", "land_agent"),
+    ("farmer", "farmer"),
+    ("merchandise", "merchant"),
+    ("crockery", "merchant"),
+    ("leather", "merchant"),
+    ("commission dealer", "merchant"),
+    ("shopkeeper", "merchant"),
+)
+
+# T-0418, the other half of the same ruling: printed phrases this project declines to
+# translate, and the reason for each. Matched on the WHOLE printed phrase rather than
+# as a substring, because a refusal is a ruling about one phrase and a substring
+# refusal would silently take the trades that contain it - a bare "agent" would
+# retire the insurance agent, the harbour agent and the land agent in the table above.
+# Checked BEFORE that table, which is what keeps the Postmaster General of the United
+# States out of the "postmaster" needle.
+# docs/RESEARCH/occupation_vocabulary_1835.md argues each one; a printed trade that is
+# neither here nor in the table above is simply unread, and reads back as
+# `occupation: null` exactly as it did before.
+TRADE_NOT_IN_VOCABULARY = {
+    # An office of another government seat. This is the vocabulary of the town's
+    # RESIDENTS, and a word for one of these is an invitation to raise a Chicago
+    # household for a man the same record places at Washington or at Vandalia.
+    "postmaster general": "the Postmaster General of the United States, at Washington",
+    "governor of illinois": "the Governor of Illinois, whose record places him at Vandalia",
+    "judge of the fifth judicial circuit": "a circuit bench, not a Chicago livelihood",
+    # A single act, not a living. Nobody was an appraiser for a living: three men were
+    # named to appraise one estate in one notice in November 1833.
+    "appraiser": "named to appraise one estate in one notice; not a trade",
+    "administratrix": "a probate role in one estate; not a trade",
+    "judge of election": "one day's duty at one poll; not a trade",
+    # Named, but not named as anything.
+    "agent": "an agent of nothing the notice states",
+    "ventriloquist": ("a travelling exhibitor: one notice, one night's entertainment, "
+                      "and no second issue that puts him in the town at all"),
+    "mechanic": "the papers' word for any skilled hand; choosing which would be invention",
+    # A property relation: what he held, not what he did - and a vessel belongs on the
+    # boat's own record rather than in a man's trade.
+    "steamboat owner": "the notice gives the vessel he owned, not the work he did",
+}
+
+# T-0661, the other half of the same ruling, and it follows T-0418's four grounds
+# exactly. Matched on the WHOLE printed phrase, checked before all three tables.
+T0661_NOT_IN_VOCABULARY = {
+    # An office of another government seat. This vocabulary is the town's; a word for
+    # one of these invites the mint to raise a Chicago household for a man the same
+    # record places at Washington, at Vandalia or on a circuit.
+    "secretary of war": "the Secretary of War, at Washington",
+    "secretary of state of illinois": "a state office held at Vandalia",
+    "circuit judge": "a circuit bench, not a Chicago livelihood",
+    # A single act or a temporary duty, not a living.
+    "clerk pro tem": "one meeting's duty at one board; the office itself is town_clerk",
+    "clerk pro tem. of the board of trustees":
+        "one meeting's duty at one board; the office itself is town_clerk",
+    "railroad commissioner": ("a commission to organise the Chicago and Vincennes Rail "
+                              "Road, which never ran; the four Chicago men who held it "
+                              "are read by their own printed trades and the fifth, "
+                              "William B. Archer, promoted it from Clark county"),
+    "price reporter for the chicago democrat":
+        "a duty the paper's price current names; P. F. Peck's living is printed elsewhere",
+    "map publisher": "one map, published once, by a firm whose living is the Indian trade",
+    "judge of election": "one day's duty at one poll; not a trade",
+    # Named as an agent, and the notice does not say the agency is a living. T-0418
+    # refused a bare "agent" on this ground; these are agencies performed BESIDE a
+    # printed trade, at another man's office or another town's wharf.
+    "newspaper agent": ("subscriptions received at his own auction room: an "
+                        "accommodation beside the auctioneer's trade"),
+    "newspaper subscription agent": ("subscriptions received at another man's office; "
+                                     "an accommodation, not a living"),
+    "steamboat agent": ("taking freight and passage for a boat is the forwarding trade, "
+                        "and the two so printed are read by it already (John H. Kinzie) "
+                        "or are a St. Joseph house (J. Griffiths & Co.)"),
+    "manufacturers' agent": ("an agency for manufacturers the notice does not name, "
+                             "held beside Holbrook's own printed trades"),
+    "hat manufacturers and wholesale dealers, detroit":
+        "a Detroit house advertising in Chicago; the notice gives Jefferson Avenue",
+    # A property relation: what he held, not what he did.
+    "land owner": "a holding, not a trade",
+    "property owner": "a holding, not a trade",
+    "landlord": "a holding, not a trade; Temple's living is printed as physician",
+    # A vessel's service. T-0418 put vessel ownership on the boat's own record in
+    # data/boats/ rather than in a man's trade, and a packet run is the same shape.
+    "lake packet": "a vessel's run; it belongs on the boat's record, not in a trade",
+    "packet service for freight and passengers between chicago and the mouth of the st. joseph":
+        "a vessel's run; it belongs on the boat's record, not in a trade",
+    # The notice states no trade at all.
+    "[not stated in the notice]": "the notice states no trade",
+    "unstated — the notice announces only its closing": "the notice states no trade",
+    "unstated — the notice announces only its dissolution": "the notice states no trade",
+    "corn, sold from a barn": ("one lot of corn from a barn on the Dupage, which the "
+                               "gazetteer's own note places outside the plat"),
+}
+TRADE_NOT_IN_VOCABULARY.update(T0661_NOT_IN_VOCABULARY)
+
 
 # --------------------------------------------------------------------------
 # normalising an anchor, a name and a street
@@ -241,10 +507,18 @@ def street_key(name):
     return "_".join(t.split())
 
 
-def occupation_of(text):
-    """The residents vocabulary's word for a printed trade, or None."""
+def occupation_of(text, table=TRADE_TO_OCCUPATION + TRADE_TO_OCCUPATION_T0418
+                                    + TRADE_TO_OCCUPATION_T0661):
+    """The residents vocabulary's word for a printed trade, or None.
+
+    `table` is how a caller reading a person with SEVERAL printed trades keeps the
+    T-0418 additions from displacing an established reading: ask with the first table
+    across all of them, and only then with the second (see the person loop in build).
+    """
     t = (text or "").lower()
-    for needle, occ in TRADE_TO_OCCUPATION:
+    if t.strip().strip(".,;") in TRADE_NOT_IN_VOCABULARY:
+        return None
+    for needle, occ in table:
         if needle in t:
             return occ
     return None
@@ -602,6 +876,21 @@ def outside_the_plat(business, town):
 
 CORNER = re.compile(r"corner of\s+(.{0,40}?)\s+and\s+(.{0,40})", re.I)
 
+# "one door from Dearborn street", "two doors north of Lake street" — a COUNT OF DOORS
+# off a named cross street. The owner ruled on 2026-08-30 (T-0384) that this is an
+# ordinal off the corner and not a street and nothing narrower; `docs/CORNER-ORDINAL.md`
+# is the policy and this regex is the only place the phrase is recognised, so a reading
+# pass writes `class: relative`, an `anchor` naming the cross street and an
+# `offset_normalized` carrying the count, and gets the ordinal reading without deciding
+# anything. THE COUNT IS THE SOURCE'S AND THE METRES ARE NOT (L215).
+ORDINAL_COUNT = {"one": 1, "first": 1, "two": 2, "second": 2, "three": 3, "third": 3,
+                 "four": 4, "fourth": 4, "five": 5, "fifth": 5, "six": 6, "sixth": 6}
+# 'a few doors below' is deliberately NOT here and must not be added: 'few' is not a
+# count, and a placement that cannot say how many doors is a reach of the street.
+ORDINAL_DOOR = re.compile(
+    r"\b(%s)\s+doors?\b\s*(north|south|east|west)?\s+(?:from|of|above|below)\s+(.{0,40})"
+    % "|".join(sorted(ORDINAL_COUNT)), re.I)
+
 
 def streets_in(town, text, require_suffix):
     """Every platted street a phrase names, as street ids.
@@ -629,10 +918,78 @@ def streets_in(town, text, require_suffix):
     return sorted(found)
 
 
+def ordinal_off_a_corner(town, placement):
+    """A count of doors off a named cross street, resolved — or None.
+
+    **The owner's ruling of 2026-08-30 (T-0384), in code.** Asked whether "one door from
+    Dearborn street" places a store or is a street and nothing narrower, he chose: *read
+    it as an ordinal off the corner*. So the phrase is NARROWER than the street it stands
+    on — it counts doors from a crossing, which is a position along a face — and this
+    reading runs BEFORE the `street` fallback and AFTER the landmark ones, which is the
+    whole of its precedence:
+
+    - after `structure` and `business`, so "first door west of Jones, King & Co." stays a
+      landmark hop. An ordinal off a BUILDING is placed by that building and was always
+      read that way; nothing about those claims changes here.
+    - before `street`, because a reach of a street is what this phrase was being read as
+      and is exactly the reading the owner overturned.
+
+    Three things must hold, and each refuses a real phrase rather than a hypothetical one:
+
+    1. the offset counts DOORS, in a word this project will translate to a number.
+       'a few doors below Messrs. Newberry & Dole' names no count and stays unresolved.
+    2. its reference resolves to exactly ONE platted street, suffix required — the same
+       test `street` uses, so a phrase that could not have been read as a street cannot
+       be read as an ordinal off one either.
+    3. the business's OWN street is platted and is a different street. "two doors north
+       of Lake street" said by a house on Lake Street is not an ordinal off a corner;
+       the crossing an ordinal counts from is the crossing of two streets.
+
+    What comes back names the crossing in `streets` (the pair, as `corner` does) and the
+    reading itself in `ordinal`, so a gate can read the count without parsing prose.
+    **The count is the source's; the metres between two doors are this project's** —
+    `docs/CORNER-ORDINAL.md` and L215 own that arithmetic, and no part of it is here.
+    """
+    # The fields are searched in order and the FIRST that carries the phrase supplies it,
+    # rather than concatenating them: `offset_normalized` is the reading after OCR
+    # judgment and `offset_text` is the raw column, and joining the two quotes a phrase
+    # that stands in neither.
+    m = None
+    for field in ("offset_normalized", "offset_text"):
+        m = ORDINAL_DOOR.search(str(placement.get(field) or ""))
+        if m:
+            break
+    if not m:
+        return None
+    reference = streets_in(town, m.group(3), True)
+    if len(reference) != 1:
+        return None
+    # The placement's own `street` is a declared field and not free prose, so the suffix
+    # is not required of it — 'South Water' and 'South Water Street' are one answer.
+    along = streets_in(town, placement.get("street"), False)
+    if len(along) != 1 or along[0] == reference[0]:
+        return None
+    count = ORDINAL_COUNT[m.group(1).lower()]
+    direction = (m.group(2) or "").lower() or None
+    return {
+        "kind": "corner_ordinal", "target": None,
+        "streets": sorted({along[0], reference[0]}), "via": None,
+        "ordinal": {"count": count, "direction": direction,
+                    "along": along[0], "from_street": reference[0],
+                    "phrase": " ".join(m.group(0).split())},
+        "note": "An ordinal off a corner: %d door%s%s the %s crossing, counted along %s. "
+                "The count of doors is the paper's; how far one door is from the corner "
+                "is this project's reconstruction (docs/CORNER-ORDINAL.md, L215)."
+                % (count, "" if count == 1 else "s",
+                   " %s of" % direction if direction else " from",
+                   reference[0], along[0]),
+    }
+
+
 def resolve_anchor(town, business, by_firm):
     """Where the paper's own placement lands in the committed town.
 
-    Six outcomes, and the note on each says which one and why, because the seeding
+    Seven outcomes, and the note on each says which one and why, because the seeding
     tickets have to be able to argue with it:
 
       corner     both streets named are on the committed plat
@@ -641,6 +998,11 @@ def resolve_anchor(town, business, by_firm):
                  one hop and no more. 'One door east of Brewster, Hogan & Co.' is only
                  as placed as Brewster, Hogan & Co. is, and a chain of guesses is not
                  a placement.
+      corner_ordinal
+                 the offset counts DOORS off a named cross street — 'on South-Water st.
+                 one door from Dearborn street'. A position along a face, and the owner
+                 ruled on 2026-08-30 that it places a store; see `ordinal_off_a_corner`
+                 above for the three tests and `docs/CORNER-ORDINAL.md` for the ruling.
       street     the anchor is a REACH of a platted street and nothing narrower — 'the
                  east end of South Water-street'. It is a real resolution and it is not
                  a placement, so it reads as its own kind rather than as a failure.
@@ -651,8 +1013,8 @@ def resolve_anchor(town, business, by_firm):
                  both are named. It never places (T-0386).
       unresolved everything else, stated
 
-    Only the first three put a building on the ground; `street` and `unresolved` do not,
-    which is what the action rules below turn on.
+    Only the first three and `corner_ordinal` put a building on the ground; `street` and
+    `unresolved` do not, which is what the action rules below turn on.
     """
     placement = business.get("placement") or {}
     text = " ".join(str(x) for x in (placement.get("anchor"),
@@ -706,6 +1068,9 @@ def resolve_anchor(town, business, by_firm):
                     "note": "The landmark is another documented business (%s), which "
                             "places this one exactly as well as that one is placed."
                             % others[0]}
+    ordinal = ordinal_off_a_corner(town, placement)
+    if ordinal:
+        return ordinal
     named = streets_in(town, placement.get("anchor"), True)
     if named:
         return {"kind": "street", "target": None, "streets": named, "via": None,
@@ -757,8 +1122,13 @@ def anchor_change(town, business, by_firm):
 # `ambiguous` outranks `unresolved` because it RECOGNISED the name and outranks nothing
 # else, because it places nothing: a reading that resolves to a street beats a reading
 # that resolves to two buildings and cannot choose.
+# `corner_ordinal` ranks WITH `corner` and `structure` rather than above them, although it
+# is the narrower phrase, because this rank chooses between a house's several PRINTINGS
+# and 'corner of Lake and Clark' is not a worse address than 'one door from Clark street'.
+# Where a house prints both, the tie-break below keeps the earlier reading, which is the
+# rule already governing a corner against a landmark.
 ANCHOR_KIND_RANK = {"unresolved": 0, "ambiguous": 1, "street": 2, "business": 3,
-                    "corner": 4, "structure": 4}
+                    "corner": 4, "structure": 4, "corner_ordinal": 4}
 
 
 def dated_anchor(town, business, by_firm, window):
@@ -881,7 +1251,8 @@ def compile_register(gazetteer, town, quiet=True):
                                     "papers add trade, goods and dates to a record that "
                                     "exists." % (committed, tier, ", ".join(sorted(require)),
                                                  (evidence or "")[:160]))
-        elif entry["anchor"]["kind"] in ("corner", "structure", "business"):
+        elif entry["anchor"]["kind"] in ("corner", "structure", "business",
+                                         "corner_ordinal"):
             entry["action"] = "new_building"
             entry["action_target"] = (entry["anchor"]["target"]
                                       or entry["anchor"]["via"]
@@ -966,22 +1337,35 @@ def compile_register(gazetteer, town, quiet=True):
                 return rs[0]
         return None
 
+    # Two tables, asked in order, and the order is the whole of T-0418's promise that
+    # its sixteen new words fill a null rather than displacing a reading: a man printed
+    # as both a schoolteacher and a bookseller is read by the established table first,
+    # across every trade the corpus gives him and the trade of his firm, and only a man
+    # nothing there reaches is offered to the new words.
     trade_of_person = {}
-    for b in gazetteer["businesses"]:
-        occ = occupation_of(b.get("trade"))
-        if not occ:
-            continue
-        for p in b.get("proprietors") or []:
-            trade_of_person.setdefault(slug(p), occ)
+    for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418,
+                  TRADE_TO_OCCUPATION_T0661):
+        d = {}
+        for b in gazetteer["businesses"]:
+            occ = occupation_of(b.get("trade"), table)
+            if not occ:
+                continue
+            for p in b.get("proprietors") or []:
+                d.setdefault(slug(p), occ)
+        trade_of_person[id(table)] = d
 
     persons = []
     for p in sorted(gazetteer["persons"], key=lambda x: x["id"]):
         occ = None
-        for o in p.get("occupations") or []:
-            occ = occupation_of(o)
+        for table in (TRADE_TO_OCCUPATION, TRADE_TO_OCCUPATION_T0418,
+                      TRADE_TO_OCCUPATION_T0661):
+            for o in p.get("occupations") or []:
+                occ = occupation_of(o, table)
+                if occ:
+                    break
+            occ = occ or trade_of_person[id(table)].get(slug(p["name"]))
             if occ:
                 break
-        occ = occ or trade_of_person.get(slug(p["name"]))
         match = resident_match(p["name"])
         entry = {
             "id": p["id"],
@@ -1197,7 +1581,10 @@ def self_test():
              "identity_text": "Reconstructed meeting hall #015",
              "occupation": None, "anonymous": True},
         ],
-        "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake"},
+        # `dearborn` is in the fixture so the ordinal cases below can quote the phrase the
+        # corpus actually prints rather than a stand-in.
+        "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake",
+                    "dearborn": "dearborn"},
         "residents": [{"household": "hh_x", "person": "cohen_peter", "name": "Peter Cohen",
                        "grade": "attested", "occupation": "clothier"},
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
@@ -1429,6 +1816,52 @@ def self_test():
     case("a reach of a platted street resolves as a street, not as a failure",
          gaz([biz("b1", street="South Water Street", placement={
              "class": "relative", "anchor": "the east end of South Water-street"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "street"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
+                                       d["businesses"][0]["action"]))
+
+    # 4b-ii. THE ORDINAL OFF A CORNER (T-0384, the owner's ruling of 2026-08-30). Every
+    # one of these is a phrase this corpus actually prints, so the tests say what the
+    # reading does and does not reach rather than what a hypothetical reader might write.
+    def ordinal(anchor, offset, street="South Water Street"):
+        return gaz([biz("b1", street=street, placement={
+            "class": "relative", "anchor": anchor, "street": street,
+            "offset_normalized": offset})])
+
+    case("a count of doors off a cross street is an ordinal, and it places",
+         ordinal("Dearborn Street",
+                 "on South-Water st. one door from Dearborn street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "corner_ordinal"
+                            and d["businesses"][0]["anchor"]["ordinal"]["count"] == 1
+                            and d["businesses"][0]["anchor"]["ordinal"]["from_street"] == "dearborn"
+                            and d["businesses"][0]["anchor"]["ordinal"]["along"] == "south_water"
+                            and d["businesses"][0]["action"] == "new_building")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and the direction is carried when the paper prints one",
+         ordinal("Lake Street", "two doors north of Lake street",
+                 street="Clark Street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "corner_ordinal"
+                            and d["businesses"][0]["anchor"]["ordinal"]["count"] == 2
+                            and d["businesses"][0]["anchor"]["ordinal"]["direction"] == "north")
+         else "anchor=%r" % (d["businesses"][0]["anchor"],))
+    case("'a few doors below' counts nothing and is refused the ordinal reading",
+         ordinal("Newberry & Dole", "a few doors below Messrs. Newberry & Dole"),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "a phrase with no count was read as an ordinal")
+    case("an ordinal off a LANDMARK stays a landmark hop, not a corner ordinal",
+         ordinal("Brewster, Hogan & Co.",
+                 "one door east of Brewster, Hogan & Co."),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "a building anchor was read as a street crossing")
+    case("doors counted off the house's OWN street name no crossing and are refused",
+         ordinal("South Water Street",
+                 "two doors east of South Water street"),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "one street was read as a crossing of itself")
+    case("a reach of a street with no count is still a street, not an ordinal",
+         ordinal("Lake Street", "on the east end of Lake street"),
          lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "street"
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],

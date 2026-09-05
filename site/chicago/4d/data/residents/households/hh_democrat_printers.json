@@ -69,7 +69,17 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A REAL, NAMED MAN WITH A TRADE AND AN EMPLOYER, and nothing else. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+   "note": "A REAL, NAMED MAN WITH A TRADE AND AN EMPLOYER, and nothing else. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
+    "summary": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
+    "notes": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist."
+   }
   },
   {
    "id": "beckford_printer",

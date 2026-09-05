@@ -87,10 +87,39 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement."
+   "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "evidence_for": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "summary": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "notes": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "source_ids": [
+     "cpl_john_s_wright_papers",
+     "wright_in_memoriam_1885"
+    ]
+   }
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "A FATHER-AND-SON HOUSEHOLD ASSEMBLED FROM TWO SEPARATE ROSTER ENTRIES, and one of only three multi-generation households in this parcel. THE ADVERTISEMENT IS WORTH MORE THAN THE PEOPLE HERE: 'Two Buildings to Let' until 1 June 1834 documents a rental market in a town of perhaps a thousand people, and this project holds a trap about that same advertisement - it carries an engraving of a three-storey building which is a jobbing printer's stock cut and NOT a picture of anything in Chicago."
+ "research_note": "A FATHER-AND-SON HOUSEHOLD ASSEMBLED FROM TWO SEPARATE ROSTER ENTRIES, and one of only three multi-generation households in this parcel. THE ADVERTISEMENT IS WORTH MORE THAN THE PEOPLE HERE: 'Two Buildings to Let' until 1 June 1834 documents a rental market in a town of perhaps a thousand people, and this project holds a trap about that same advertisement - it carries an engraving of a three-storey building which is a jobbing printer's stock cut and NOT a picture of anything in Chicago.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843"
+  ],
+  "people": [
+   {
+    "person_id": "wright_john"
+   },
+   {
+    "person_id": "wright_john_s"
+   }
+  ]
+ }
 }

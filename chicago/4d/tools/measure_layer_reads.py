@@ -168,6 +168,7 @@ MACHINERY_LEAVES = frozenset({
 # removes the need for the rest.
 AMBIGUOUS_LEAVES = frozenset({
     "rgb",        # `diffuseColor.rgb` is a three.js shader field, in four files
+    "min", "max", # generic range/math leaves; require their data parent to match
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
@@ -188,6 +189,15 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
+    # These leaves also occur in the separately rendered research_pilot payload;
+    # a bare-name text scan cannot attribute those accesses to the embedded block.
+    "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
+    # `source` WAS here: the volume each row of a T-0514 evidence block resolves
+    # to, with the only `.source` in the renderers being main.js:1808's keyboard
+    # event. T-0668 put the blocks on the card, so `citationsById.get(entry.source)`
+    # is now a resident read and the five paths are declared shown below. The
+    # exemption is gone rather than kept as a courtesy: a stated share is an
+    # admission the scan cannot attribute an access, and this one it can.
 })
 
 # ---------------------------------------------------------------------------
@@ -387,6 +397,15 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
+    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
+    # T-0491. Three of these people are bridged to a named head of household in the
+    # 1840 census, and PR #670 attached that bridge without giving the panel any way
+    # to say so. Both copies are read now: the total in the count sentence, so a
+    # reader sees how few there are before opening anything, and the per-row tally
+    # as a chip, so which rows they are costs no fetch. The bridge itself is on the
+    # person's card, argument and all — see `persons[].later_census.*` below.
+    "counts.census_1840_linked": ("shown", "counts.census_1840_linked"),
+    "households[].census_1840_linked": ("shown", "entry.census_1840_linked"),
     # T-0379. The owner ruled that every letter-list name the evidence admits joins
     # the town, which made this cohort most of the people in it, so the section is
     # SPLIT on this flag rather than sorted by it: the households the rest of the
@@ -401,7 +420,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
-    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -426,6 +444,19 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
     "vocabulary.occupations": ("shown", "vocab.occupations"),
+    # T-0668. The ratified grading ladder, carried in the manifest because the card
+    # prints a rung id beside a person's grade and the rung's text lived in Python.
+    # `tools/consolidate_resident_evidence.py --check` holds this block equal to its
+    # own `GRADE_RULES`, so the words on 531 cards cannot drift from the ladder.
+    "vocabulary.ladder_rules[].rung": ("shown", "(ladderRules || []).find((r) => r.rung"),
+    "vocabulary.ladder_rules[].grade": ("shown", "swatch(rung && rung.grade)"),
+    "vocabulary.ladder_rules[].rule": ("shown", "rung ? escapeHtml(rung.rule)"),
+    # The consolidation's own mint, on the manifest: the tally in the count
+    # sentence, and the per-household flag as a chip on the closed row. Both were
+    # banked unread, and both collide by leaf name with `persons[].civic_mint`,
+    # which is why they are shown rather than exempted.
+    "counts.civic_mint": ("shown", "${counts.civic_mint} of these people were minted"),
+    "households[].civic_mint": ("shown", "entry.civic_mint"),
 }
 
 RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
@@ -462,6 +493,55 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0632. The later directories, on the record rather than only beside it. The
+    # printed lines and the crosswalks' arithmetic stay in
+    # `data/residents/directories.json`, which the panel opens once for the town; what
+    # the RECORD carries is the claim — a trade or an address a Chicago directory of
+    # 1839, 1843 or 1844 prints against this person, graded, dated to the year it
+    # describes and citing the volume. `note` and `sources` are the household's own
+    # statement of what a later volume is worth and which ones met it.
+    "directories.note": ("shown", "escapeHtml(onRecord.note)"),
+    "directories.sources": ("shown", "escapeHtml((onRecord.sources || []).join(', '))"),
+    "directories.people[].person_id": (
+        "shown", "(directoriesOnRecord || []).find((row) => row.person_id === person.id)"),
+    "directories.people[].occupation_later.value": (
+        "shown", "one(block.occupation_later, 'A trade printed against this name')"),
+    "directories.people[].address_later.value": (
+        "shown", "one(block.address_later, 'An address printed against this name')"),
+    # The three parts every claim block here shares are read once, in `laterClaimHtml`,
+    # so one expression covers each of them for both claims — the same economy the seven
+    # graded claims above are declared with.
+    "directories.people[].occupation_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].address_later.confidence": ("shown", "swatch(claim.confidence)"),
+    "directories.people[].occupation_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].address_later.describes_date": (
+        "shown", "escapeHtml(String(claim.describes_date))"),
+    "directories.people[].occupation_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].address_later.note": ("shown", "escapeHtml(claim.note)"),
+    "directories.people[].occupation_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    "directories.people[].address_later.sources": (
+        "shown", "(claim.sources || []).map((id) => citationsById.get(id))"),
+    # T-0633. What was DONE with the later address, which is the half a reader
+    # cannot check from the address alone: the outcome, the clause that decided
+    # it, the face it earned and the years it was carried. All 87 render,
+    # refusals included — `backProjectionHtml` has no branch that drops one.
+    "directories.people[].back_projection.outcome": (
+        "shown", "bp.outcome === 'placed'"),
+    "directories.people[].back_projection.clause": (
+        "shown", "escapeHtml(String(bp.clause))"),
+    "directories.people[].back_projection.value": ("shown", "escapeHtml(where)"),
+    "directories.people[].back_projection.confidence": ("shown", "swatch(bp.confidence)"),
+    "directories.people[].back_projection.placement": (
+        "shown", "words(bp.placement)"),
+    "directories.people[].back_projection.position_local_enu_m": (
+        "shown", "(bp.position_local_enu_m || []).join(', ')"),
+    "directories.people[].back_projection.describes_date": (
+        "shown", "escapeHtml(String(bp.describes_date))"),
+    "directories.people[].back_projection.read_back_years": (
+        "shown", "escapeHtml(String(bp.read_back_years))"),
+    "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),
@@ -494,13 +574,132 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # like the household's own, and they go through `claimRow` now.
     "persons[].age_on_scene_date.value": ("shown", "claimRow('Age on 1 July 1835', aged && aged.value"),
     "persons[].birth_year.value": ("shown", "claimRow('Born', born && born.value"),
-    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value"),
     "persons[].age_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
     "persons[].birth_year.confidence": ("shown", "swatch(block.confidence)"),
-    "persons[].name_basis.confidence": ("shown", "swatch(block.confidence)"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
     "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
-    "persons[].name_basis.note": ("shown", "escapeHtml(block.note)"),
+    # T-0491. The 1840 identity bridge, on the three people that carry one. PR #670
+    # attached it and declared nothing, so twenty-four figures reached a browser
+    # unread — which is the exact shape this census exists to catch, and the cheap
+    # answer was to bank all of them. NONE is banked. An identity bridge is an
+    # ARGUMENT — a transcribed name, a normalised reading of it, the page, the row,
+    # the serial, and three separate confidences in three separate steps — and each
+    # of those is a thing a reader can disagree with only if they can see it.
+    "persons[].later_census.year": ("shown", "Found again in the ${escapeHtml(String(census.year))} census"),
+    "persons[].later_census.source_id": ("shown", "citationsById.get(census.source_id)"),
+    "persons[].later_census.serial": ("shown", "enumeration serial ${\n        escapeHtml(String(census.serial))}"),
+    "persons[].later_census.census_page": ("shown", "Page ${escapeHtml(String(census.census_page))}"),
+    "persons[].later_census.census_row": ("shown", "escapeHtml(String(census.census_row))"),
+    "persons[].later_census.head_name_transcribed": ("shown", "escapeHtml(census.head_name_transcribed)"),
+    "persons[].later_census.head_name_normalized": ("shown", "escapeHtml(census.head_name_normalized)"),
+    "persons[].later_census.source_image": ("shown", "from image ${escapeHtml(census.source_image)}"),
+    # Which image the row was read off, and whether a paired continuation sheet was
+    # needed to read it — the 1840 schedules run a household across two facing pages,
+    # and a serial fixed from one image alone is a weaker reading than one fixed from
+    # both. It is printed beside the image it qualifies.
+    "persons[].later_census.source_kind": ("shown", "escapeHtml(census.source_kind)"),
+    "persons[].later_census.bridge_basis": ("shown", "escapeHtml(census.bridge_basis)"),
+    "persons[].later_census.bridge_status": ("shown", "escapeHtml(words(census.bridge_status))"),
+    # Three confidences, not one. The papers can be right about the name and wrong
+    # about the man, and the row can be assigned to the wrong serial with both of
+    # those right, so the card prints the three and says they fail independently.
+    "persons[].later_census.name_confidence": ("shown", "escapeHtml(words(census.name_confidence))"),
+    "persons[].later_census.identity_confidence": ("shown", "escapeHtml(words(census.identity_confidence))"),
+    "persons[].later_census.serial_mapping_confidence": ("shown", "escapeHtml(words(census.serial_mapping_confidence))"),
+    # The 1840 household tallies, shown WITH the record's refusal printed under
+    # them. These are the figures most likely to be read back onto 1835 by a
+    # visitor doing the arithmetic themselves, and hiding them does not stop that
+    # — it only removes the sentence that says the arithmetic is wrong.
+    "persons[].later_census.household.persons": ("shown", "['People in the household', hh.persons]"),
+    "persons[].later_census.household.children_under_10": ("shown", "['Children under ten', hh.children_under_10]"),
+    "persons[].later_census.household.male": ("shown", "['Male', hh.male]"),
+    "persons[].later_census.household.female": ("shown", "['Female', hh.female]"),
+    "persons[].later_census.household.agriculture": ("shown", "['Employed in agriculture', hh.agriculture]"),
+    "persons[].later_census.household.commerce": ("shown", "['Employed in commerce', hh.commerce]"),
+    "persons[].later_census.household.manufactures_trades": ("shown", "['Employed in manufactures and trades', hh.manufactures_trades]"),
+    "persons[].later_census.household.inland_navigation": ("shown", "['Employed in inland navigation', hh.inland_navigation]"),
+    "persons[].later_census.household.professions_engineering": ("shown", "['In a learned profession or engineering', hh.professions_engineering]"),
+    "persons[].later_census.household.foreigners_not_naturalized": ("shown", "['Foreigners not naturalized', hh.foreigners_not_naturalized]"),
+    "persons[].later_census.household.illiterate_over_21": ("shown", "['Over twenty-one and unable to read or write', hh.illiterate_over_21]"),
+    # And the same line read off the photograph of the sheet, shown beside the
+    # recovered figures rather than instead of them, with the sentence that says
+    # where the two disagree (T-0530).
+    "persons[].later_census.scan_verified.read_by": ("shown", "read by ${escapeHtml(scan.read_by)}"),
+    "persons[].later_census.scan_verified.sources": ("shown", "(scan.sources || []).map((id) => citationsById.get(id))"),
+    "persons[].later_census.scan_verified.image": ("shown", "From ${escapeHtml(scan.image)}"),
+    "persons[].later_census.scan_verified.line": ("shown", "Line ${escapeHtml(String(scan.line))}"),
+    "persons[].later_census.scan_verified.head_name_as_read": ("shown", "escapeHtml(scan.head_name_as_read)"),
+    "persons[].later_census.scan_verified.free_persons": ("shown", "['People on the line', scan.free_persons]"),
+    "persons[].later_census.scan_verified.males": ("shown", "['Male', scan.males]"),
+    "persons[].later_census.scan_verified.females": ("shown", "['Female', scan.females]"),
+    "persons[].later_census.scan_verified.children_under_10": ("shown", "['Children under ten', scan.children_under_10]"),
+    "persons[].later_census.scan_verified.age_bands": ("shown", "band by band: ${escapeHtml(scan.age_bands)}"),
+    "persons[].later_census.scan_verified.column_totals_check": ("shown", "escapeHtml(scan.column_totals_check)"),
+    "persons[].later_census.scan_disagreement": ("shown", "escapeHtml(census.scan_disagreement)"),
+    # -----------------------------------------------------------------------
+    # T-0668. THE EVIDENCE CONSOLIDATION'S OWN READING, on the card at last.
+    #
+    # `tools/consolidate_resident_evidence.py` reads seven source domains, decides
+    # who is who and grades each person on a ratified ladder. Everything it decided
+    # was written onto the person and NOTHING read it: 44 figures over 531 people,
+    # the largest unread population this census has ever carried on one layer. That
+    # is the T-0491 defect at scale — a grade is a verdict, the appearances are the
+    # argument, and a verdict shipped without its argument is an assertion.
+    #
+    # The five domains share one row shape and one renderer — `evidenceLineHtml` —
+    # so one expression covers each leaf across all five, exactly as `claimRow`
+    # covers the graded claims above. `describes_date` is on every line on purpose:
+    # the domains are not contemporaries of each other and the ladder grades them
+    # differently for that reason.
+    "persons[].ladder_rule": ("shown", "escapeHtml(String(person.ladder_rule))"),
+    "persons[].civic_mint": ("shown", "person.civic_mint"),
+    # T-0708. The People directory's "How known" filter reads the subtype off the
+    # compiled people.json row (a denormalised copy of this figure, made by
+    # compile_scene.py compile_people) and the projected cohort is one of its four
+    # answers, so the figure now reaches a visitor as a filter and a row mark.
+    "persons[].resident_subtype": ("shown", "r.resident_subtype === 'projected_resident'"),
+    "persons[].press_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].press_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].press_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].press_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].press_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].press_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].press_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].civic_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].civic_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].civic_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].civic_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].civic_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].civic_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].civic_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].church_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].church_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].church_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].church_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].church_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].church_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].church_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].book_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].book_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].book_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].book_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].book_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].book_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].book_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].census_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].census_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].census_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].census_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].census_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].census_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].census_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    # The two people the consolidation could date. Both go through `claimRow`, so
+    # each carries its own confidence, its reasoning and its citation like every
+    # other graded claim on this card; the age is a RANGE because a birth year with
+    # no month cannot say which side of 1 July the person turned.
+    "persons[].biographical_evidence.birth_year.value": ("shown", "bio.birth_year && bio.birth_year.value"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.min": ("shown", "between ${age.value.min}"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.max": ("shown", "and ${age.value.max}"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {
@@ -552,6 +751,14 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/household:source_pass": (
+        "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
+        "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "
+        "household I minted' from a plain hand-authored one without an id prefix. Not a "
+        "finding about the person: the evidence the panel already shows — grade, "
+        "letter_list_only, sources — is what a visitor judges the record by, and which "
+        "internal tool produced it is not part of that judgment. See "
+        "data/residents/README.md."),
 }
 
 STATES = ("mesh", "shown", "probe")

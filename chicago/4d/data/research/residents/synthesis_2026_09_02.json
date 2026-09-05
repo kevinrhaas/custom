@@ -1,0 +1,819 @@
+{
+  "date": "2026-09-02",
+  "scene_date": "1835-07-01",
+  "tickets": [
+    "T-0487",
+    "T-0488",
+    "T-0489",
+    "T-0490"
+  ],
+  "owner_ruling": {
+    "attested": "confidently corroborated real named circa-1835 Chicago resident",
+    "inferred": "real named person reasonably believed to belong to circa-1835 Chicago",
+    "projected_resident": "inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile",
+    "reconstructed": "reserved for later explicit reconstruction; zero now"
+  },
+  "research": {
+    "reviewed_people": 611,
+    "outcome_counts": {
+      "candidate": 5,
+      "candidate_identity": 68,
+      "corroborated": 2,
+      "corroborated_enrichment": 23,
+      "no_corroboration": 139,
+      "no_corroboration_yet": 374
+    },
+    "unmatched_research_person_ids": [],
+    "letter_list_missing_research_row": [
+      "parcel_aaron",
+      "reel_absolam",
+      "vandorwerk_adam",
+      "aiker_samuel",
+      "akers_simon",
+      "vaughan_alanson_b",
+      "wilkes_alexander",
+      "tucker_alexr_h",
+      "churchill_alfred",
+      "vaughn_alison_b",
+      "allen_william",
+      "allin_richard",
+      "alling_prudde",
+      "perring_almon",
+      "castle_alonzo",
+      "murray_alonzo",
+      "murry_alonzo",
+      "crandal_alva",
+      "dunlap_alva",
+      "miner_amanda",
+      "rathburn_amos",
+      "wear_amy_c",
+      "anderson_eli_f",
+      "miles_andrew",
+      "vann_angeline",
+      "anstin_al",
+      "heere_anthony",
+      "winsor_aram",
+      "archer_joseph",
+      "knox_archibald",
+      "parcell_aron",
+      "brundage_asa",
+      "doel_asa",
+      "parsalls_austin",
+      "avery_charles",
+      "ayres_levi",
+      "paige_b_r",
+      "bailly_joseph",
+      "bakwith_albert",
+      "bebee_orson",
+      "beddlecome_ash",
+      "beeson_william",
+      "beger_tobias",
+      "bemis_samuel_c",
+      "bailey_bennet",
+      "benton_datas_e",
+      "benubien_charl",
+      "bishop_j_e",
+      "blair_william_g",
+      "bloget_josiah_i",
+      "blood_amos",
+      "bly_rouse",
+      "boardman_elect",
+      "boles_george",
+      "bostwick_e_b",
+      "bradstreet_j_p",
+      "brookins_david",
+      "brooks_gardner",
+      "brush_matthias",
+      "bullen_jeduthnn",
+      "bullock_stephen",
+      "burbee_jonathan",
+      "burdick_paul",
+      "butterfield_ben",
+      "byam_seth",
+      "foster_caleb",
+      "romer_carl",
+      "case_nehemiah",
+      "chadwick_joseph",
+      "chamberlain_l_c",
+      "chambers_john",
+      "chanpagne_batist",
+      "chappel_eliza_mir",
+      "drake_charles_c",
+      "bartlett_charles_h",
+      "richards_charles_t",
+      "chapman_chas_h",
+      "chase_peter",
+      "house_chester",
+      "albee_clark_b",
+      "clark_erastus",
+      "codding_sally",
+      "comstock_h_h",
+      "abbott_constant",
+      "cook_rowland_i",
+      "cooley_edward_v",
+      "covell_thomas_r",
+      "curtenius_fredk",
+      "curtis_liman",
+      "parkes_curtis",
+      "torry_d_v_s",
+      "dunn_dangerfield",
+      "davenport_dennis",
+      "ingersall_david",
+      "frame_david_p",
+      "farren_dean",
+      "demans_j_t",
+      "dement_wm",
+      "dow_albert_f",
+      "griswold_eben",
+      "alden_ebenozer",
+      "doolittle_ehjah",
+      "tuller_elam",
+      "benn_eli",
+      "filer_elihu_d",
+      "sen_elijah_wentworth",
+      "covalt_enos",
+      "fairchilds_ransom",
+      "felch_alaneon",
+      "force_john",
+      "ford_ebenezer",
+      "spalding_franklin",
+      "page_frederick_w",
+      "galusha_ezra",
+      "makepiece_george_r",
+      "gooding_caroline",
+      "legg_gregory_e",
+      "vanderbogart_h",
+      "hail_aifred",
+      "hurlburt_hannah",
+      "eager_hiram",
+      "langer_jacob",
+      "mcfadden_james",
+      "holder_jesse",
+      "musgrave_john",
+      "folliott_jonathan",
+      "kinsey_joshua",
+      "albyn_lucius_b",
+      "mvaughton_angus",
+      "lorenzo_maccoy",
+      "cutler_morris",
+      "mary_nelson",
+      "oakley_benjamin_w",
+      "chauncy_orange",
+      "ostrander_catherine",
+      "harriet_paddock",
+      "win_payne",
+      "howley_pierce",
+      "preston_stephen_ii",
+      "westover_roy_k",
+      "stephens_s",
+      "stuart_samuel",
+      "saunders_william_s",
+      "helen_soren",
+      "starkweather_robt",
+      "sunny_miches",
+      "renwick_theophilus",
+      "vyekoff_henry_s",
+      "conter_willard",
+      "loring_wm"
+    ],
+    "promoted_facts": [
+      {
+        "person_id": "hathaway_joshua",
+        "ticket": "T-0483",
+        "changes": [
+          "birth_year=1810"
+        ],
+        "source_ids": [
+          "hathaway_1834"
+        ]
+      },
+      {
+        "person_id": "woodworth_james_h",
+        "ticket": "T-0486",
+        "changes": [
+          "birth_year=1804"
+        ],
+        "source_ids": [
+          "ushouse_james_h_woodworth"
+        ]
+      }
+    ]
+  },
+  "census_workbook_inventory": [
+    {
+      "file": "Chicago_1835_Best_Resident_Set_Research.xlsx",
+      "sheets": [
+        {
+          "sheet": "README",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Chicago c.1835 Resident Reconstruction — Working Research Set"
+          ]
+        },
+        {
+          "sheet": "Best 1835 Resident Set",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "1835 Tier",
+            "Tier Confidence",
+            "Include Recommendation",
+            "Preferred Name",
+            "1835 Poll",
+            "1834 Poll",
+            "1833 Poll",
+            "1833 Tax",
+            "1840 Census Page",
+            "1840 Row",
+            "IPUMS SERIAL / Candidate Block",
+            "1840 Name Confidence",
+            "Raw Census Reading",
+            "Alternate / Candidate Names",
+            "1839 Directory Match",
+            "Evidence / Reasoning",
+            "Identity / Correction Notes",
+            "Census Source Image",
+            "Early-List Source",
+            "1840 Collection URL",
+            "1839 Directory URL"
+          ]
+        },
+        {
+          "sheet": "1840 Census Detail",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Page",
+            "Row",
+            "SERIAL",
+            "SERIAL Candidate Block",
+            "SERIAL Confidence",
+            "Raw Scan Reading",
+            "Preferred Name",
+            "Alternate Candidates",
+            "Name Confidence",
+            "Correction / Validation Basis",
+            "1833 Poll",
+            "1833 Tax",
+            "1834 Poll",
+            "1835 Poll",
+            "1835 Residence Recommendation",
+            "1835 Confidence",
+            "1835 Basis",
+            "1839 Directory Match",
+            "Include in 1835 Core",
+            "Research Priority",
+            "Household Total",
+            "Persons",
+            "Children <10",
+            "Males",
+            "Females",
+            "Agriculture",
+            "Commerce",
+            "Manufactures/Trades",
+            "Inland Navigation",
+            "Professions/Engineering",
+            "Foreigners not naturalized",
+            "Illiterate >21",
+            "Source Image",
+            "Source Kind",
+            "1840 Collection URL",
+            "1839 Directory URL"
+          ]
+        },
+        {
+          "sheet": "Ambiguities & Review",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Page",
+            "Row",
+            "SERIAL / Block",
+            "Raw Reading",
+            "Preferred Recommendation",
+            "Alternates",
+            "Name Confidence",
+            "SERIAL Confidence",
+            "Correction / Validation Note",
+            "Research Priority",
+            "Source Image"
+          ]
+        },
+        {
+          "sheet": "Early Lists Raw",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Source List",
+            "Name as Transcribed"
+          ]
+        },
+        {
+          "sheet": "Sources",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Source",
+            "Use in workbook",
+            "URL / file"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Chicago_1835_Best_Resident_Set_Research_v2.xlsx",
+      "sheets": [
+        {
+          "sheet": "README",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Chicago c.1835 Resident Reconstruction — Working Research Set"
+          ]
+        },
+        {
+          "sheet": "Best 1835 Resident Set",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "1835 Tier",
+            "Tier Confidence",
+            "Include Recommendation",
+            "Preferred Name",
+            "1835 Poll",
+            "1834 Poll",
+            "1833 Poll",
+            "1833 Tax",
+            "1840 Census Page",
+            "1840 Row",
+            "IPUMS SERIAL / Candidate Block",
+            "1840 Name Confidence",
+            "Raw Census Reading",
+            "Alternate / Candidate Names",
+            "1839 Directory Match",
+            "Evidence / Reasoning",
+            "Identity / Correction Notes",
+            "Census Source Image",
+            "Early-List Source",
+            "1840 Collection URL",
+            "1839 Directory URL"
+          ]
+        },
+        {
+          "sheet": "1840 Census Detail",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Page",
+            "Row",
+            "SERIAL",
+            "SERIAL Candidate Block",
+            "SERIAL Confidence",
+            "Raw Scan Reading",
+            "Preferred Name",
+            "Alternate Candidates",
+            "Name Confidence",
+            "Correction / Validation Basis",
+            "1833 Poll",
+            "1833 Tax",
+            "1834 Poll",
+            "1835 Poll",
+            "1835 Residence Recommendation",
+            "1835 Confidence",
+            "1835 Basis",
+            "1839 Directory Match",
+            "Include in 1835 Core",
+            "Research Priority",
+            "Household Total",
+            "Persons",
+            "Children <10",
+            "Males",
+            "Females",
+            "Agriculture",
+            "Commerce",
+            "Manufactures/Trades",
+            "Inland Navigation",
+            "Professions/Engineering",
+            "Foreigners not naturalized",
+            "Illiterate >21",
+            "Source Image",
+            "Source Kind",
+            "1840 Collection URL",
+            "1839 Directory URL"
+          ]
+        },
+        {
+          "sheet": "Ambiguities & Review",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Page",
+            "Row",
+            "SERIAL / Block",
+            "Raw Reading",
+            "Preferred Recommendation",
+            "Alternates",
+            "Name Confidence",
+            "SERIAL Confidence",
+            "Correction / Validation Note",
+            "Research Priority",
+            "Source Image"
+          ]
+        },
+        {
+          "sheet": "Early Lists Raw",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Source List",
+            "Name as Transcribed"
+          ]
+        },
+        {
+          "sheet": "Sources",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Source",
+            "Use in workbook",
+            "URL / file"
+          ]
+        },
+        {
+          "sheet": "Pages 229-231 Research",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Printed Census Page",
+            "Reading-Order Sequence",
+            "Page-Level IPUMS SERIAL Block",
+            "Exact SERIAL Status",
+            "Raw Scan Reading",
+            "Preferred Recommendation",
+            "Alternate Candidates",
+            "Name Confidence",
+            "Later Corroboration",
+            "Corroboration Type",
+            "1835 Residence Tier",
+            "1835 Confidence",
+            "Core Recommendation",
+            "Research / Caution Note",
+            "Census Source Image",
+            "Evidence Source",
+            "1840 Index / Images"
+          ]
+        },
+        {
+          "sheet": "229-231 Priority Adds",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Priority",
+            "Page",
+            "Approx. Sequence",
+            "Raw Census Reading",
+            "Preferred Identity",
+            "1835 Tier",
+            "1835 Confidence",
+            "Identity Confidence",
+            "Corroborating Evidence",
+            "Research Conclusion",
+            "Evidence URL",
+            "Recommendation"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Chicago_1840_IPUMS_Name_Crosswalk_Working.xlsx",
+      "sheets": [
+        {
+          "sheet": "Read Me",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "Chicago 1840 IPUMS ↔ Census Crosswalk"
+          ]
+        },
+        {
+          "sheet": "Validated Names 55",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "enumeration_sequence_in_available_scans",
+            "serial",
+            "census_page",
+            "census_row",
+            "head_name_transcribed",
+            "head_name_normalized",
+            "name_confidence",
+            "serial_mapping_confidence",
+            "binary_pattern_mismatches",
+            "source_image",
+            "name_validation_note",
+            "serial_mapping_evidence",
+            "ntotal",
+            "numperhh",
+            "nchild",
+            "nmale",
+            "nfemale",
+            "nindagr",
+            "nindcom",
+            "nindmfg",
+            "nindriv",
+            "nindeng",
+            "nforeign",
+            "nlit"
+          ]
+        },
+        {
+          "sheet": "All 964",
+          "rows": null,
+          "columns": null,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "SERIAL",
+            "Head name",
+            "Normalized name",
+            "Status",
+            "Name confidence",
+            "Census page",
+            "Census row",
+            "Mapping confidence",
+            "Household total",
+            "Children <10",
+            "Males",
+            "Females"
+          ]
+        }
+      ]
+    }
+  ],
+  "structure_policy": "Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry.",
+  "census_1840": {
+    "recovery_issue": 669,
+    "named_household_heads_retained": 210,
+    "serial_linked_household_heads_retained": 210,
+    "linked": [
+      {
+        "person_id": "murphy_john",
+        "serial": 5102066,
+        "name": "John Murphy",
+        "page": 233,
+        "row": 30,
+        "bridge_status": "validated",
+        "identity_confidence": "high",
+        "serial_mapping_confidence": "provisional-high"
+      },
+      {
+        "person_id": "adams_william_h",
+        "serial": 5101954,
+        "name": "William Hanford Adams",
+        "page": 229,
+        "row": 9,
+        "bridge_status": "validated",
+        "identity_confidence": "high",
+        "serial_mapping_confidence": "high-provisional"
+      },
+      {
+        "person_id": "miller_john",
+        "serial": 5102035,
+        "name": "John Miller",
+        "page": 232,
+        "row": 3,
+        "bridge_status": "provisional",
+        "identity_confidence": "medium",
+        "serial_mapping_confidence": "medium-high"
+      }
+    ],
+    "validated_identity_bridges": 2,
+    "provisional_identity_bridges": 1,
+    "not_yet_linked_to_canonical_1835_resident": 207,
+    "legacy_partial_matcher": {
+      "eligible_named_rows": 29,
+      "linked": [],
+      "ambiguous": [],
+      "unmatched_named_heads": [
+        {
+          "name": "Andrew Larson",
+          "serial": 5102124,
+          "page": 235,
+          "row": 2
+        },
+        {
+          "name": "Andrew Turner",
+          "serial": 5102116,
+          "page": 235,
+          "row": 18
+        },
+        {
+          "name": "C. P. Bradley",
+          "serial": 5102100,
+          "page": 234,
+          "row": 3
+        },
+        {
+          "name": "Daniel Miller",
+          "serial": 5102086,
+          "page": 234,
+          "row": 20
+        },
+        {
+          "name": "Frederick Larson",
+          "serial": 5102129,
+          "page": 235,
+          "row": 7
+        },
+        {
+          "name": "George Knerr",
+          "serial": 5102130,
+          "page": 235,
+          "row": 8
+        },
+        {
+          "name": "Henry Hall",
+          "serial": 5102122,
+          "page": 235,
+          "row": 24
+        },
+        {
+          "name": "Henry Miller",
+          "serial": 5102083,
+          "page": 234,
+          "row": 17
+        },
+        {
+          "name": "Henry Smith",
+          "serial": 5102093,
+          "page": 234,
+          "row": 27
+        },
+        {
+          "name": "Hiram McLean",
+          "serial": 5102110,
+          "page": 234,
+          "row": 13
+        },
+        {
+          "name": "James Lancaster",
+          "serial": 5102107,
+          "page": 234,
+          "row": 10
+        },
+        {
+          "name": "James McGuyre",
+          "serial": 5102106,
+          "page": 234,
+          "row": 9
+        },
+        {
+          "name": "John Evans",
+          "serial": 5102087,
+          "page": 234,
+          "row": 21
+        },
+        {
+          "name": "John McHale",
+          "serial": 5102118,
+          "page": 235,
+          "row": 20
+        },
+        {
+          "name": "Joseph Willemin",
+          "serial": 5102134,
+          "page": 235,
+          "row": 12
+        },
+        {
+          "name": "Julius Ketchum",
+          "serial": 5102094,
+          "page": 234,
+          "row": 28
+        },
+        {
+          "name": "Michael Diversey",
+          "serial": 5102135,
+          "page": 235,
+          "row": 13
+        },
+        {
+          "name": "Moses Winship",
+          "serial": 5102095,
+          "page": 234,
+          "row": 1
+        },
+        {
+          "name": "Nathan Miller",
+          "serial": 5102115,
+          "page": 235,
+          "row": 17
+        },
+        {
+          "name": "Nicholas Neudorf",
+          "serial": 5102128,
+          "page": 235,
+          "row": 6
+        },
+        {
+          "name": "P. P. Robinson",
+          "serial": 5102084,
+          "page": 234,
+          "row": 18
+        },
+        {
+          "name": "Peter Gabel",
+          "serial": 5102109,
+          "page": 234,
+          "row": 12
+        },
+        {
+          "name": "Richard Frink",
+          "serial": 5102132,
+          "page": 235,
+          "row": 10
+        },
+        {
+          "name": "Thomas Lindsey",
+          "serial": 5102111,
+          "page": 234,
+          "row": 14
+        },
+        {
+          "name": "Veit Dietrich",
+          "serial": 5102098,
+          "page": 234,
+          "row": 31
+        },
+        {
+          "name": "William H. Reed",
+          "serial": 5102085,
+          "page": 234,
+          "row": 19
+        },
+        {
+          "name": "William Lill",
+          "serial": 5102117,
+          "page": 235,
+          "row": 19
+        },
+        {
+          "name": "William Nicholson",
+          "serial": 5102127,
+          "page": 235,
+          "row": 5
+        },
+        {
+          "name": "William Tuttle",
+          "serial": 5102131,
+          "page": 235,
+          "row": 9
+        }
+      ],
+      "rule": "One-to-one normalized-name links only; 1840 household facts remain dated later evidence."
+    },
+    "rule": "All 210 resolved 1840 row-to-SERIAL household records are retained as dated evidence. Canonical 1835 links require an explicit adjudicated person_id bridge and are graded validated or provisional; no fuzzy/common-name promotion."
+  },
+  "before": {
+    "households": 920,
+    "persons": 956,
+    "attested": 823,
+    "inferred": 25,
+    "reconstructed": 108,
+    "letter_list_only": 727,
+    "projected_residents": 0,
+    "census_1840_linked": 0
+  },
+  "after": {
+    "households": 825,
+    "persons": 849,
+    "attested": 118,
+    "inferred": 731,
+    "reconstructed": 0,
+    "letter_list_only": 727,
+    "projected_residents": 706,
+    "census_1840_linked": 3
+  },
+  "retirement": {
+    "removed_people": 108,
+    "removed_households": 96,
+    "retained_hh_inf": 5,
+    "structures_unassigned": 30
+  }
+}

@@ -29,7 +29,26 @@ disposable. The first rendered scene is `1835` (target date 1835-07-01).
 6. **No asset without license provenance.** Every file under `assets/` has an entry in
    `assets/LICENSES.md`. A source whose `rights_status` is `check_required` may be cited in
    text but must not have assets derived from it.
-7. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
+7. **Every crosswalk states what it rests on.** A ruling that names a person in the town
+   and no `source_id` cannot be carried to that person's card by any tool —
+   `persons[].sources` is a list of source ids — so it can only be spent by a human
+   rereading the whole file. State it at the top of the crosswalk where the file
+   adjudicates from one source, or per entry where a ruling rests on something specific.
+   `measure_research_spend.py --gate` holds `no source stated` at 0 and `check.sh` runs it.
+   The fix for an unsourced ruling is to state the source or to WITHDRAW the ruling; rule 1
+   still binds, and a plausible-looking citation that takes this gate green is worse than
+   the missing one.
+8. **A ruling names the units it ruled on, and a re-reading says it is one.** The
+   research-spend ratchet counts named units READ against the ones RULED ON, so both halves
+   have to be sayable. A refusal or a merge names its units by id — `record_id`,
+   `household_id`, or plain ids in `evidence[]` — because a ruling whose evidence points at a
+   prose locator ("poll_1835 line 293") counts as no adjudication at all, and
+   `measure_research_spend.py` will print it as uncounted with that reason. A file that
+   RE-reads what the domain already read — a precision sample, a second reading kept for its
+   disagreement — declares `not_a_reading: "<what it is instead>"` at the top, or measuring
+   your own work reads the meter up and the domain looks further behind for having checked
+   itself. Both are printed by the report; neither is ever a silent zero.
+9. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
 
 ## Standing constraint — 1835 and Indigenous history
 
@@ -204,7 +223,10 @@ is the contract. The short form:
   tools/ticket.mjs list --workable` prints the same order.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
-  only live view of work the merged files cannot show yet.
+  only live view of work the merged files cannot show yet. On the runner, `claim` also
+  records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
+  INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
+  what finished in the order it finished. Neither is ever hand-written.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
   actually see it, not only in a PR body. **Closing after `publish.sh` is fine**: the tool
@@ -292,8 +314,10 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   NEED**: `node tools/smoke_budget.mjs --for-diff` names the parts that cover your own
   diff and prints the commands, each packed under the 600 s foreground ceiling, with the
   measured margin — read out of the same record above, never asserted. With no arguments
-  it prints what the whole gate costs on THIS machine, which is not the 30-minute figure
-  three tickets reason against. `docs/SMOKE-BUDGET.md` is the page (T-0235). And redirect
+  it prints what the whole gate costs on this machine, against the 90-minute whole-body
+  cap; `--legs` prices the nightly gate's eight parallel legs against the 30-minute
+  PER-LEG cap, which is a different bound and the one three tickets correctly reason
+  against (T-0450). `docs/SMOKE-BUDGET.md` is the page (T-0235). And redirect
   a smoke to a FILE, never a pipe: node block-buffers stdout to a pipe, so a piped log
   stays at zero bytes until the process exits, and a run once killed a green smoke one
   minute from its finish for want of a byte to look at.

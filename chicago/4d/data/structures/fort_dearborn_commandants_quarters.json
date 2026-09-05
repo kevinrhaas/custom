@@ -129,5 +129,21 @@
     "note": "Occupied by the commanding officer of the post; on 1835-07-01 that is Maj. John Greene, 5th Infantry (see fort_dearborn_palisade's occupants block). In 1827, with the post ungarrisoned, Dr. Alexander Wolcott the Indian Agent was living in it - which is Hubbard's reason for mentioning it at all."
   },
   "research_note": "THE ONE BUILDING IN FORT DEARBORN WITH A STATED SIZE, and therefore the building the whole complex is measured against. Its footprint note explains why that is both the strength of this record and a risk running through every other record in the fort. Two guards. The '25 x 50 ft' is a caption to an 1855 photograph, not a survey. And the 1855 key's phrase 'occupying the north-west corner of the enclosure' covers this building and the officers' quarters together as a pair seen from across the river; it is not a statement that this range stood in the corner, and Hubbard puts it 'just within the north stockade', which is where the 1830 plan draws it. See docs/RESEARCH/fort_dearborn.md.",
-  "review_required": false
+  "review_required": false,
+  "land_owner": {
+    "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+    "confidence": "reconstructed",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS ONLY 16 m, which is inside the working horizontal uncertainty of the georeference (about 20 m) doubled, so the grade drops a tier: the tract is right if the constructed line is, and nothing here proves the line to better than that. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "the south-west fractional quarter of section 10",
+    "entries": [
+      "ls0057"
+    ],
+    "date_purchased": "1835-05-28",
+    "type_of_sale": "federal land sale (cash entry)",
+    "margin_m": 16.2,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  }
 }

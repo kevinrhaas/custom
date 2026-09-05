@@ -43,6 +43,10 @@ import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
 import { mountGateCensus } from './census.js';
 import { mountLiberties } from './liberties.js';
+import { createRouter } from './route.js';
+import { createTravel } from './travel.js';
+import { mountPeople } from './people.js';
+import { createEvidenceHub } from './evidence.js';
 
 const VERSION = '0.1.0';
 
@@ -389,7 +393,74 @@ const DETAIL = {
   // FIVE RE-BASINGS OF THESE CEILINGS ARE RECORDED ABOVE THIS LINE AND THIS IS
   // THE FIRST ONE EVER GIVEN BACK. That is the count a sixth raise has to argue
   // against, and it is now a count of five raises and one return.
-  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
+  // ── SIXTH RE-BASING, 2026-09-03, ON THE OWNER'S EXPLICIT RULING ──────────────
+  // The count above was "five raises and one return", and said a sixth "has to
+  // argue against" it. This is the argument, and the ruling that authorises it.
+  //
+  // THE RULING, verbatim: "i answered raise with stated headroom and a named
+  // retirement from before but it may have been lost." It had been: PR #599
+  // named T-0441 as the ticket holding the fork, and T-0441 WAS NEVER FILED —
+  // a clean id gap between T-0440 and T-0442 — so four PRs sat parked for four
+  // days on a question the ledger had never been asked. T-0673 is that receipt.
+  // Told the raise would have to touch `light` as well, he ruled again, in as
+  // many words: "raise all 3".
+  //
+  // WHERE IT IS NOT SPENT, and this is the first thing measured rather than the
+  // last. `tools/measure_detail_ceilings.mjs --only desktop`, dev, 2026-09-03:
+  //
+  //   full      1,385,925 of 1,400,000   14,075 clear
+  //   balanced  1,211,986 of 1,225,000   13,014 clear
+  //   light       769,379 of   785,000   15,621 clear
+  //
+  // PR #599 (T-0432, four roofs, +2,174) and PR #601 (T-0431) had been parked as
+  // breaches against a `balanced` of 1,210,000 — a figure this table left behind
+  // on 2026-08-24 — and against a dev with 1,566 of room. They fit today with
+  // ~10,840 to spare. THE RAISE IS NOT TAKEN FOR THEM. A ceiling raised to carry
+  // a record that already fits is the exact fault the entries above forbid.
+  //
+  // WHAT IT IS SPENT ON. PR #432 (T-0219, the heightfield south to Madison) is
+  // the one parcel that genuinely does not fit. Its tree was re-measured today
+  // and reproduces its own PR's figures to the triangle, so the parcel cost is
+  // isolated against the dev it was cut from and applied to the dev it would
+  // land on:
+  //
+  //   tier      dev now    + parcel   would read   old ceiling   over by
+  //   full     1,385,925    56,016     1,441,941    1,400,000     41,941
+  //   balanced 1,211,986    51,208     1,263,194    1,225,000     38,194
+  //   light      769,379    39,830       809,209      785,000     24,209
+  //
+  // WHERE THE NEW NUMBERS COME FROM, so they are a principle and not "enough for
+  // me": each tier keeps AT LEAST THE ABSOLUTE HEADROOM IT CARRIES TODAY over
+  // the measured worst stand with #432 in, rounded up to the nearest 5,000. The
+  // ladder therefore keeps its shape; no tier is given proportionally more room
+  // than it has now, and nothing was chosen to fit one record.
+  //
+  //   full      1,400,000 -> 1,460,000   18,059 clear (1.24 %)
+  //   balanced  1,225,000 -> 1,280,000   16,806 clear (1.31 %)
+  //   light       785,000 ->   825,000   15,791 clear (1.91 %)
+  //
+  // `light` IS RAISED, AND THAT BREAKS A STANDING CONSTRAINT THIS TABLE HAS KEPT
+  // THROUGH EVERY PREVIOUS RE-BUDGET — "the floor a weak machine boots into is
+  // not spent here". It is broken deliberately and only on the owner's second,
+  // specific answer after being told that is what it would cost. A weak machine
+  // now boots into a tier that draws 809,209 where it drew 769,379. Whoever
+  // takes the retirement below should take `light` back FIRST.
+  //
+  // THE RETIREMENT IS T-0672, and it is written to be one that can actually fall
+  // due. T-0229's expiry was blocked behind a flora ticket and would never have
+  // come due (T-0231 records exactly that), so T-0672 depends on nothing: it
+  // re-measures after #432 lands and lowers each tier back to the measured worst
+  // plus the headroom carried here. `tools/measure_research_spend.py --tighten`
+  // is the same shape one layer over — reclaiming slack is free and needs no
+  // argument, only spending it does.
+  //
+  // NOT YET VERIFIED ON THE MERGED TREE, and this is the one weakness in the
+  // numbers. #432 has been conflicted since 2026-08-28 and its re-derive needs
+  // Blender, which the session that took this ruling did not have. The parcel
+  // cost above is a measured 2026-08-28 delta applied to today's dev, not a
+  // reading of the merged tree. T-0672 re-measures the moment #432 is green, and
+  // if the merged tree reads under these numbers they come DOWN to it.
+  full:     { triangles: 1460000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -456,9 +527,27 @@ const DETAIL = {
   // block above `full` rather than written out twice.
   // T-0241 GIVES THIS RUNG A FURNITURE REACH, 800 m — the first trim `balanced`
   // has ever carried, and the whole reading is at `FURNITURE_REACH_BALANCED_M`
-  // above. The ceiling here is UNTOUCHED at 1,210,000; what changed is what the
-  // tier draws, which is the other way round from every entry above it.
-  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+  // above. The ceiling was UNTOUCHED at 1,210,000 by that entry; what changed is
+  // what the tier draws, which is the other way round from every entry above it.
+  //
+  // -- 2026-08-31 -- T-0098's RULING IS APPLIED HERE, SEVEN DAYS LATE --
+  //
+  // The re-budget to 1,225,000 recorded above on 2026-08-24, and repeated in
+  // `docs/LIBERTIES.md`, was written into the comment and into the ledger and
+  // NEVER INTO THE VALUE. `git log -S"triangles: 1225000"` on this file is
+  // empty: the number has read 1,210,000 without interruption since before that
+  // ruling was made. The 1,260,000 in the ledger's table is a different episode
+  // — T-0229 raised it with `full` and returned it with `full` a day later, from
+  // 1,260,000 and not from 1,225,000 — so T-0098's figure was never in force and
+  // was never revoked. It is simply missing, and this applies it unchanged.
+  //
+  // What it unblocks, measured: PR #599 stood at 1,210,608 at the release
+  // smoke's worst stand and failed by 608 against the un-applied number. It is
+  // inside this one by 14,392, and so is #601's block. T-0098's own sizing still
+  // holds — this gives `balanced` about the 1 % headroom `full` carries, and buys
+  // no room for the parcel after these; T-0149 and T-0147 still own the trim
+  // that would win the rung back.
+  balanced: { triangles: 1280000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: FURNITURE_REACH_BALANCED_M },
   // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
   //
@@ -512,7 +601,7 @@ const DETAIL = {
   // moves -- no geometry, no reach, no shadow tier, no cull. This is only the
   // ceiling following a trim DOWN, which T-0149 named as the strongest evidence
   // that a trim worked.
-  light:    { triangles: 785000, shadowReachM: 120, furnitureCastsShadow: false,
+  light:    { triangles: 825000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
@@ -1313,11 +1402,57 @@ async function boot() {
   const navigation = createNavigation({
     root: hudRoot, terrain, registry: loaded.registry, streets,
   });
+
+  // The people directory, compiled by tools/compile_scene.py compile_people from
+  // data/residents/ — one row per person, so the Go to list can offer a person
+  // and the People section can filter a thousand of them without a fetch each.
+  // Absent (an older mirror, a failed fetch) degrades to "no people listed";
+  // it never takes the scene down.
+  let people = null;
+  try {
+    const res = await fetch(new URL(`sidecars/${loaded.scene.id ?? YEAR}/people.json`, bases.dataBase), { cache: 'no-cache' });
+    if (res.ok) people = await res.json();
+    else problems.push(`people: sidecars/${loaded.scene.id ?? YEAR}/people.json ${res.status} — nobody is listed in Go to or People`);
+  } catch (err) {
+    problems.push(`people: ${err.message} — nobody is listed in Go to or People`);
+  }
+
+  /** A structure's ground position in local ENU metres — footprint centroid where
+   *  one is drawn, the placement otherwise. Go to measures distance from it;
+   *  travel plans a route to it. */
+  function structurePosition(id) {
+    const fp = footprints.find((f) => f.id === id);
+    if (fp && fp.pts.length) {
+      return {
+        e: fp.pts.reduce((a, p) => a + p[0], 0) / fp.pts.length,
+        n: fp.pts.reduce((a, p) => a + p[1], 0) / fp.pts.length,
+      };
+    }
+    const pl = loaded.registry.get(id)?.sidecar?.placement;
+    if (!pl) return null;
+    return { e: pl.local_e ?? 0, n: pl.local_n ?? 0 };
+  }
+
+  // The route planner and the travel controller. `travel` is assigned after the
+  // HUD exists (it paints through it); the HUD's callbacks below reach it through
+  // the binding, which is settled long before the first frame.
+  const router = createRouter({
+    terrain, streets, footprints, decks, surfaceAt: (e, n) => walker.surfaceAt?.(e, n) ?? terrain.surfaceHeight(e, n),
+    // The walker's own capsule and step rule, so a route that plans is a route that walks.
+    radius: WALK.radius, stepUp: WALK.stepUp,
+  });
+  let travel = null;
+  api.router = router;
+
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
     registry: loaded.registry,
     intersections: loaded.index?.intersections ?? [],
+    people,
+    positionOf: structurePosition,
+    visitor: () => ({ e: walker.state.e, n: walker.state.n, bearingDeg: walker.bearingDeg }),
+    onTravelStop: () => travel?.stop('button'),
     isTouch: prefersTouch(),
     resolvedDetail: detailLevel,
     onConfidence: (on) => confidence.set(on),
@@ -1326,17 +1461,17 @@ async function boot() {
     // Hiding a level removes it from the view outright — see confidence.setHidden.
     onHideLevel: (level, hide) => confidence.setHidden(level, hide),
     onSetting: (key, value) => {
-      if (key === 'speed') {
-        // Keep the run multiplier the walker was tuned with rather than pinning
-        // a fixed run speed, so the two stay in proportion at any setting.
-        WALK.speed = value;
-        WALK.sprintSpeed = value * 2.28;
-      } else if (key === 'eyeHeight') {
-        // Applied to the standing eye immediately, not on the next step: a
-        // slider you have to walk away from before it does anything reads as
-        // broken, and this one exists because the default view felt too low.
-        WALK.eyeHeight = value;
-        walker.resettle();
+      if (key === 'speed' || key === 'eyeHeight' || key === 'pace') {
+        // The slider values and the pace compose into WALK in one place —
+        // travel.applyPace() — so a wagon seat and a raised eye-height slider
+        // add rather than overwrite each other. Applied to the standing eye
+        // immediately, not on the next step: a slider you have to walk away
+        // from before it does anything reads as broken.
+        travel?.applyPace();
+      } else if (key === 'travelMode') {
+        travel?.setMode(value);
+      } else if (key === 'headBob') {
+        travel?.setHeadBob(!!value);
       } else if (key === 'fov') {
         camera.fov = value;
         camera.updateProjectionMatrix();
@@ -1368,6 +1503,18 @@ async function boot() {
   // fired and forgotten: it is one small JSON, and a visitor who opens the panel
   // in the first second should not find it empty. A failure here degrades the
   // panel and records a problem; it does not stop the walkthrough.
+
+  // The Evidence panel as a hub of topics rather than one scroll; it reorganises
+  // the section's own static markup, so the mounts below keep their ids.
+  api.evidenceHub = createEvidenceHub({
+    root: hudRoot.querySelector('[data-panel="evidence"]'),
+    onTitle: (text, onBack) => hud.setTitle(text, onBack),
+  });
+  hud.onTabChange((tab) => {
+    if (tab === 'evidence') api.evidenceHub?.showHub?.({ keep: true });
+    if (tab === 'goto') hud.goTo?.refreshDistances?.();
+  });
+
   api.liberties = await mountLiberties({
     mount: document.getElementById('liberties'),
     noteMount: document.getElementById('liberties-note'),
@@ -1401,6 +1548,19 @@ async function boot() {
     noteMount: document.getElementById('residents-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+  // …and the same people as a DIRECTORY: one row a person, searchable and
+  // filterable, with the way to the building they lived or worked at.
+  api.people = await mountPeople({
+    mount: document.getElementById('people-directory'),
+    people,
+    registry: loaded.registry,
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
+    // The drawer's head shows the person's name with a back control while a card is open.
+    onTitle: (text, onBack) => hud.setTitle(text, onBack),
     problems,
   });
 
@@ -1460,9 +1620,6 @@ async function boot() {
   // returning visitor who had hidden the reconstructed town sees it flash in.
   hud.applyHidden();
 
-  WALK.speed = hud.settings.speed;
-  WALK.sprintSpeed = hud.settings.speed * 2.28;
-  WALK.eyeHeight = hud.settings.eyeHeight;
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
@@ -1477,6 +1634,27 @@ async function boot() {
 
   const intent = createIntent();
   const backends = createBackendSwitch(intent);
+
+  // The travel controller: instantly, on foot, by wagon, on horseback, or flying.
+  // It writes the shared intent the way a backend does, so the walker keeps its
+  // collision and terrain honesty whoever is steering — see travel.js.
+  travel = createTravel({
+    walker, intent, hud, settings: hud.settings, router, terrain, footprints,
+    focusPoint, structurePosition,
+    registry: loaded.registry,
+    frame: (id) => frame(id),
+    teleport: (where) => walker.teleport(where),
+    goToAnchor: (id) => api.goTo(id),
+    setFly: (on) => hud.setFly(on, { announce: false }),
+    // Arriving is what opens the card: the menu closes, the building's card opens.
+    onArrive: (id) => { hud.setPanel(false); pick(id); },
+  });
+  api.travel = travel;
+  // The stored pace and travel mode, through the one function that writes WALK
+  // (the slider values used to be copied into WALK by hand a few lines up).
+  travel.setMode(hud.settings.travelMode);
+  travel.setHeadBob(hud.settings.headBob !== false);
+  travel.applyPace();
 
   const pointerlock = createPointerLockBackend({
     intent,
@@ -1679,18 +1857,13 @@ async function boot() {
    * intersection, or use one of the authored scene viewpoints. */
   function goToTarget(target) {
     if (!target?.kind) return false;
-    if (target.kind === 'anchor') return api.goTo?.(target.id) ?? false;
-    hud.setFly(false, { announce: false });
-    walker.setFlying(false);
-    if (target.kind === 'structure') return frame(target.id);
-    if (target.kind === 'intersection'
-        && Number.isFinite(target.local_e) && Number.isFinite(target.local_n)) {
-      walker.teleport({
-        local_e: target.local_e, local_n: target.local_n, yaw_deg: 0,
-      });
-      return true;
+    // A person is a place by proxy: where they lived, else where they worked.
+    if (target.kind === 'person') {
+      const id = target.lives_at || target.works_at;
+      if (!id || !loaded.registry.has(id)) return false;
+      return travel.go({ kind: 'structure', id, person: target.id });
     }
-    return false;
+    return travel.go(target);
   }
 
   // ---- gate ------------------------------------------------------------- //
@@ -1782,6 +1955,9 @@ async function boot() {
     const dt = Math.min(frameDt, 0.05);
 
     backends.active?.update?.(dt);
+    // After the backend has written what the visitor is doing and before the
+    // walker reads it: a ride in progress either yields to that input or steers.
+    travel.update(dt, intent);
     terrain.update(dt);
     const asked = intent.takeInteract();
     // The inspect KEY toggles: the reach that opened the card also closes it
@@ -1792,6 +1968,9 @@ async function boot() {
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
+    // The ride's bookkeeping, after the walker has consumed the intent: its own
+    // writes are zeroed, the gait's head movement applied, arrival tested.
+    travel.afterWalk(intent, frameDt);
     // Before the render, after the walker: the near plane is a function of where
     // the eye ended up this frame (R-BUG1, and the NEAR block above).
     setNearFor(walker.state.altitude);
@@ -1883,6 +2062,11 @@ async function boot() {
     pick,
     frame,
     goToTarget,
+    structurePosition,
+    setTravelMode(mode) { return hud.setTravelMode(mode); },
+    setPace(pace) { return hud.setPace(pace, { announce: false }); },
+    /** Harness only: run the ride forward `seconds` of simulated time, synchronously. */
+    travelSimulate(seconds, dt = 1 / 30) { return travel.simulate(seconds, dt); },
     goTo(anchorId) {
       const a = anchorFor(loaded.scene, anchorId);
       if (!a) return false;
@@ -1991,6 +2175,8 @@ async function boot() {
   Object.defineProperties(api, {
     /** The level the visitor is actually on, now rather than at boot (T-0115). */
     detail: { get: () => detailLevel, enumerable: true },
+    /** The ride in progress — phase, destination, distance left — live. */
+    travelState: { get: () => travel?.state ?? { phase: 'idle' }, enumerable: true },
     /**
      * T-0115. What the level's shadow half actually DID to the scene, read off
      * the scene rather than off the table that asked for it — R-A1's rule about

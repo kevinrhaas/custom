@@ -21,7 +21,7 @@
     "geometry": "canvas texture, drawn at load",
     "tiers": {
       "inferred": 15,
-      "reconstructed": 20
+      "reconstructed": 19
     },
     "note": "DRAWN SINCE 2026-08-21, AND RE-WORDED THE SAME DAY. This block used to read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS LAYER', on L25's reasoning generalised: no source gives the wording of any sign in this town, so every board stayed a blank plank. The owner's instruction of 2026-08-18 overruled it — 'you can and should put the name of the location on the sign board … it is fine if they are reconstructions' — and T-0066 then painted THE RECORD'S OWN `name` on every board. T-0130 CORRECTS THAT, on the owner's word of 2026-08-21: 'philo would not have referred to his own place as log drug store, it would be philo carpenter, drugs and medicines, or druggist or whatever he would have referred to himself as on the sign, that may be different than the name of the building for us, the sign may read differently historically' — and, widening it, 'i guess do a pass on all those signs and make sure they feel right for the era'. A record's `name` is OUR LABEL FOR A BUILDING ('Philo Carpenter's Log Drug Store'); a board carries what a signwriter lettered. The two are now separate fields and are allowed to differ. What they must still agree about is WHO: every sign declares a `sign_identity` that appears in the board AND in the card, the generator refuses to build without it, and tools/smoke_renderer.mjs asserts it at run time over every sign. THE REGISTER is the advertisements' own — proprietor or firm first and largest, the trade beneath, the place last and smallest — carried per line in `sign_lines` and lettered in that hierarchy by renderers/web/js/signage.js. Period spelling is theirs and is kept. THE TIERS: a wording taken off a firm's own advertisement is `inferred`; one built out of the evidenced trade vocabulary for a business that left no advertisement is `reconstructed`. NOT ONE IS `attested` YET, and each note says why and what would change it — the seven 1833-35 newspaper pages behind these wordings were supplied as images in conversation on 2026-08-21 and are not committed to data/sources/assets/, so they are transcriptions and a transcription is not a citation. The owner's ruling of that day is the authority for proceeding anyway: 'I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like.' The LETTERFORM, the colours and the panel remain `style`, a table of the combinations the trade worked in rather than of anything Chicago recorded (docs/LIBERTIES.md L159; L169 for the wording). ONE DEVICE IS NOW PAINTED and it is the one a Chicago tradesman described himself: Carpenter's golden mortar, `sign_device` — see its own note. No other board carries an image, and L25 is untouched: it withholds the Wolf Point wolf because that IMAGE was never described, which is the opposite case to a shop whose own advertisement names its sign."
   },
@@ -29,12 +29,308 @@
     "confidence": "reconstructed",
     "note": "Five mountings, chosen by the trade's class and de-conflicted against every sign within 40 m so that no two neighbours hang alike: `bracket_board` (the wolf sign's own geometry — a plank hung by two straps 0.20 m under a 1.15 m bracket arm, 1.7 m to one side of the facade's centre and clear of the eave), `awning_board` (the same plank under a hood 1.45 m deep that falls 0.34 m to its outer edge), `wall_board` (a board fixed flat on the front under a cap), `post_board` (a pole at the street edge 1.9 m out from the wall, with a cross-arm and the board under it — the Green Tree's own arrangement, T-0082) and `facade_painted` (the name straight onto the boards of the building, no board at all — what image 5 of the owner's brief shows across the Tremont's row, standing with its foot 2.3 m up so it clears a door head, or lower where the wall has not the height for that and 0.25 m of eave besides). Not one of those numbers is a record's. A sign's SIZE is derived from the length of its own name inside the range its mounting allows and inside the frontage it stands on; its `aspect` comes from its style, so two boards on one street are not the same rectangle either.",
     "mountings": {
-      "awning_board": 7,
+      "awning_board": 6,
       "bracket_board": 8,
-      "facade_painted": 14,
+      "facade_painted": 13,
       "post_board": 2,
-      "wall_board": 4
+      "wall_board": 5
     }
+  },
+  "opening_sweep": {
+    "note": "Every sign in the record, and what the opening test did with it. A board on a BRACKET, an AWNING or a POST stands off the wall on an arm, a hood or a stick of its own and cannot cover an opening, so it is swept as `not flat on the wall` rather than as clear — the test applies to the boards fixed flat against a facade and to the names painted straight on one. `already clear` is a measurement and not a silence: it means the board was tested against this building's own door and window rectangles and stood off all of them where the trade rule had already put it.",
+    "flat_mounted": 18,
+    "counts": {
+      "moved": 13,
+      "not flat on the wall": 16,
+      "reshaped": 3,
+      "shrunk to the door": 2
+    },
+    "signs": [
+      {
+        "structure_id": "bates_auction_room",
+        "mounting": "wall_board",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door",
+          "window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "brown_boarding_house",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "carpenter_south_water_store",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "chicago_american_office",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "chicago_democrat_office",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "clybourn_slaughterhouse",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "dole_warehouse_south",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "window"
+        ],
+        "done": "reshaped"
+      },
+      {
+        "structure_id": "elston_soap_candle_manufactory",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "exchange_coffee_house",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "frederick_thomas_shop",
+        "mounting": "wall_board",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "goss_cobb_saddlery",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "h_jones_store",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "harmon_loomis_store",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "hogan_store",
+        "mounting": "wall_board",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "jh_kinzie_forwarding_store",
+        "mounting": "wall_board",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "shop_door",
+          "show_window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "john_holbrook_store",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "kinzie_hunter_warehouse",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "madore_beaubien_house",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "reshaped"
+      },
+      {
+        "structure_id": "mansion_house",
+        "mounting": "post_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "mason_blacksmith_shop",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "reshaped"
+      },
+      {
+        "structure_id": "miller_house",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "miller_tannery",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "shrunk to the door"
+      },
+      {
+        "structure_id": "new_york_house",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "newberry_dole_slaughterhouse_south_branch",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "newberry_dole_warehouse",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "peck_store",
+        "mounting": "wall_board",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "pierce_blacksmith_shop",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "moved"
+      },
+      {
+        "structure_id": "pruyne_kimball_drugstore",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "robert_kinzie_store",
+        "mounting": "facade_painted",
+        "covered_an_opening_before": true,
+        "covered_before": [
+          "door"
+        ],
+        "done": "shrunk to the door"
+      },
+      {
+        "structure_id": "sauganash_hotel",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "steamboat_hotel",
+        "mounting": "post_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "thomas_church_store",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "tremont_house_1",
+        "mounting": "awning_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      },
+      {
+        "structure_id": "western_hotel",
+        "mounting": "bracket_board",
+        "covered_an_opening_before": false,
+        "covered_before": [],
+        "done": "not flat on the wall"
+      }
+    ]
   },
   "rule": {
     "note": "A named record (not inf_/recon_, not 'Reconstructed'), a trade this project will announce — a PUBLIC TRADE whose customer arrived on foot off the street, which gets a board, or a WORKS OR WAREHOUSE trade whose custom came by name and by cart, which gets its firm painted on the front — that trade attested or inferred rather than reconstructed, standing on the scene date, no sign on the record already, no named board already standing on a post at its corner on the frontage layer, and (for a works only) a proprietor in its own name. Read the clauses and their reasons in tools/generate_business_signboards.py.",
@@ -147,7 +443,7 @@
       },
       "anchor_local_enu_m": [
         687.32,
-        -49.8
+        -54.83
       ],
       "facade_bearing_deg": 90.0,
       "arm_height_m": 2.55,
@@ -179,77 +475,68 @@
           687.32,
           -43.7
         ]
-      ]
-    },
-    {
-      "structure_id": "brickyard_north_side",
-      "name": "Blodgett's Brickyard",
-      "sign_text": "T. K. BLODGETT / Brick Maker",
-      "sign_lines": [
-        {
-          "text": "T. K. BLODGETT",
-          "role": "name"
-        },
-        {
-          "text": "Brick Maker",
-          "role": "trade"
-        }
       ],
-      "sign_identity": "Blodgett",
-      "sign_text_from": "No advertisement for this yard is in the pages read. Andreas names Tyler K. Blodgett and calls him \"undoubtedly the first brick-maker\", and the record's own occupants block carries him, so the board is built in the register the pages evidence — proprietor, then trade — out of the trade's own word. Reconstructed: nobody records that this yard announced itself at all, let alone in these words.",
-      "sign_text_confidence": "reconstructed",
-      "sign_text_sources": [],
-      "trade": "brickyard",
-      "trade_confidence": "attested",
-      "trade_class": "works",
-      "why_a_board": "a brickyard names its owner for the builder ordering by the thousand",
-      "confidence": "reconstructed",
-      "mounting": "facade_painted",
-      "mounting_note": null,
-      "style": {
-        "id": "black_on_white",
-        "ground": "#e8e1cf",
-        "letter": "#191410",
-        "face": "fat_face",
-        "panel": "double_rule",
-        "aspect": 2.1,
-        "note": "black on a white lead ground, the cheapest board a signwriter could sell"
-      },
-      "anchor_local_enu_m": [
-        627.3,
-        114.2
-      ],
-      "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.15,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.42,
-      "board_h_m": 0.61,
-      "board_thickness_m": 0.05,
-      "geometry": {
-        "proud_m": 0.03
-      },
-      "reach_m": 1.33,
-      "wall_height_m": 2.4,
-      "wall_height_from": "the record",
-      "frontage_m": 14.0,
-      "ground_quad_local_enu_m": [
-        [
-          620.3,
-          109.2
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door",
+          "window"
         ],
-        [
-          634.3,
-          109.2
+        "fixed_to": null,
+        "note": "moved 5.03 m along the front, off door and window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.19
         ],
-        [
-          634.3,
-          114.2
+        "board_span_local_m": [
+          10.29,
+          11.98
         ],
-        [
-          620.3,
-          114.2
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 5.58,
+            "u1": 6.62,
+            "z0": 0.02,
+            "z1": 2.06
+          },
+          {
+            "kind": "window",
+            "u0": 0.42,
+            "u1": 1.27,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 2.02,
+            "u1": 2.86,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 4.46,
+            "u1": 5.3,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 6.9,
+            "u1": 7.75,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 9.33,
+            "u1": 10.19,
+            "z0": 1.08,
+            "z1": 2.38
+          }
         ]
-      ]
+      }
     },
     {
       "structure_id": "brown_boarding_house",
@@ -516,7 +803,7 @@
         "note": "cream fat face on Venetian red"
       },
       "anchor_local_enu_m": [
-        557.55,
+        561.68,
         -4.89
       ],
       "facade_bearing_deg": 0.0,
@@ -549,7 +836,90 @@
           551.45,
           -4.89
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "fixed_to": null,
+        "note": "moved 4.13 m along the front, off fascia and shop_door and show_window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.19
+        ],
+        "board_span_local_m": [
+          8.67,
+          11.78
+        ],
+        "openings": [
+          {
+            "kind": "show_window",
+            "u0": 3.8,
+            "u1": 5.49,
+            "z0": 0.74,
+            "z1": 2.28
+          },
+          {
+            "kind": "shop_door",
+            "u0": 5.59,
+            "u1": 6.6,
+            "z0": 0.0,
+            "z1": 2.41
+          },
+          {
+            "kind": "show_window",
+            "u0": 6.71,
+            "u1": 8.39,
+            "z0": 0.74,
+            "z1": 2.28
+          },
+          {
+            "kind": "fascia",
+            "u0": 3.62,
+            "u1": 8.57,
+            "z0": 2.41,
+            "z1": 2.69
+          },
+          {
+            "kind": "window",
+            "u0": 0.42,
+            "u1": 1.27,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 2.02,
+            "u1": 2.86,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 4.46,
+            "u1": 5.3,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 6.9,
+            "u1": 7.75,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 9.33,
+            "u1": 10.19,
+            "z0": 3.58,
+            "z1": 4.88
+          }
+        ]
+      }
     },
     {
       "structure_id": "clybourn_slaughterhouse",
@@ -587,7 +957,7 @@
       },
       "anchor_local_enu_m": [
         -39.7,
-        300.2
+        302.31
       ],
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.55,
@@ -619,7 +989,32 @@
           -39.7,
           294.2
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 2.10 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.0
+        ],
+        "board_span_local_m": [
+          6.77,
+          9.43
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 5.33,
+            "u1": 6.67,
+            "z0": 0.0,
+            "z1": 2.3
+          }
+        ]
+      }
     },
     {
       "structure_id": "dole_warehouse_south",
@@ -660,15 +1055,15 @@
         -129.26
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 3.2,
+      "arm_height_m": 3.34,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.96,
-      "board_h_m": 0.9,
+      "board_w_m": 3.1,
+      "board_h_m": 0.86,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.6,
+      "reach_m": 1.67,
       "wall_height_m": 3.6,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -689,7 +1084,67 @@
           712.18,
           -129.26
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "reshaped",
+        "covered_before": [
+          "window"
+        ],
+        "fixed_to": null,
+        "note": "the copy would not clear window on a 2.96 x 0.90 m board, so the same words are lettered on a longer and narrower 3.10 x 0.86 m one, which does",
+        "wall_span_local_m": [
+          0.0,
+          12.19
+        ],
+        "board_span_local_m": [
+          4.55,
+          7.65
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 5.58,
+            "u1": 6.62,
+            "z0": 0.02,
+            "z1": 2.06
+          },
+          {
+            "kind": "window",
+            "u0": 0.42,
+            "u1": 1.27,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 2.02,
+            "u1": 2.86,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 4.46,
+            "u1": 5.3,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 6.9,
+            "u1": 7.75,
+            "z0": 1.08,
+            "z1": 2.38
+          },
+          {
+            "kind": "window",
+            "u0": 9.33,
+            "u1": 10.19,
+            "z0": 1.08,
+            "z1": 2.38
+          }
+        ]
+      }
     },
     {
       "structure_id": "elston_soap_candle_manufactory",
@@ -729,7 +1184,7 @@
       },
       "anchor_local_enu_m": [
         -19.7,
-        189.2
+        191.5
       ],
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.55,
@@ -761,7 +1216,32 @@
           -19.7,
           184.2
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 2.30 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          10.0
+        ],
+        "board_span_local_m": [
+          5.77,
+          8.82
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 4.33,
+            "u1": 5.67,
+            "z0": 0.0,
+            "z1": 2.3
+          }
+        ]
+      }
     },
     {
       "structure_id": "exchange_coffee_house",
@@ -875,7 +1355,7 @@
         "note": "cream fat face on Venetian red"
       },
       "anchor_local_enu_m": [
-        749.15,
+        751.97,
         -8.25
       ],
       "facade_bearing_deg": 0.0,
@@ -908,7 +1388,48 @@
           744.58,
           -8.25
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "fixed_to": null,
+        "note": "moved 2.81 m along the front, off fascia and shop_door and show_window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          9.14
+        ],
+        "board_span_local_m": [
+          6.24,
+          8.54
+        ],
+        "openings": [
+          {
+            "kind": "show_window",
+            "u0": 3.04,
+            "u1": 4.79,
+            "z0": 0.74,
+            "z1": 2.33
+          },
+          {
+            "kind": "shop_door",
+            "u0": 4.89,
+            "u1": 5.91,
+            "z0": 0.0,
+            "z1": 2.46
+          },
+          {
+            "kind": "fascia",
+            "u0": 2.8,
+            "u1": 6.14,
+            "z0": 2.46,
+            "z1": 2.74
+          }
+        ]
+      }
     },
     {
       "structure_id": "goss_cobb_saddlery",
@@ -1023,7 +1544,7 @@
         "note": "white block letters on a Prussian-blue ground"
       },
       "anchor_local_enu_m": [
-        353.48,
+        357.43,
         -6.55
       ],
       "facade_bearing_deg": 0.0,
@@ -1056,7 +1577,55 @@
           347.38,
           -6.55
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
+        ],
+        "fixed_to": null,
+        "note": "moved 3.95 m along the front, off fascia and shop_door and show_window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.19
+        ],
+        "board_span_local_m": [
+          8.67,
+          11.42
+        ],
+        "openings": [
+          {
+            "kind": "show_window",
+            "u0": 3.8,
+            "u1": 5.49,
+            "z0": 0.74,
+            "z1": 2.92
+          },
+          {
+            "kind": "shop_door",
+            "u0": 5.59,
+            "u1": 6.6,
+            "z0": 0.0,
+            "z1": 3.05
+          },
+          {
+            "kind": "show_window",
+            "u0": 6.71,
+            "u1": 8.39,
+            "z0": 0.74,
+            "z1": 2.92
+          },
+          {
+            "kind": "fascia",
+            "u0": 3.62,
+            "u1": 8.57,
+            "z0": 3.05,
+            "z1": 3.33
+          }
+        ]
+      }
     },
     {
       "structure_id": "harmon_loomis_store",
@@ -1168,7 +1737,7 @@
         "note": "black Egyptian on a yellow-ochre ground"
       },
       "anchor_local_enu_m": [
-        113.24,
+        115.01,
         -98.2
       ],
       "facade_bearing_deg": 180.0,
@@ -1201,7 +1770,46 @@
           120.1,
           -98.2
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 1.77 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          13.72
+        ],
+        "board_span_local_m": [
+          3.94,
+          6.24
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 6.34,
+            "u1": 7.38,
+            "z0": 0.02,
+            "z1": 1.95
+          },
+          {
+            "kind": "window",
+            "u0": 2.71,
+            "u1": 3.33,
+            "z0": 0.85,
+            "z1": 1.57
+          },
+          {
+            "kind": "window",
+            "u0": 10.39,
+            "u1": 11.01,
+            "z0": 0.85,
+            "z1": 1.57
+          }
+        ]
+      }
     },
     {
       "structure_id": "jh_kinzie_forwarding_store",
@@ -1242,7 +1850,7 @@
         "note": "gilt letters in an oval field on a dark green ground"
       },
       "anchor_local_enu_m": [
-        239.08,
+        242.63,
         -7.58
       ],
       "facade_bearing_deg": 0.0,
@@ -1274,6 +1882,129 @@
         [
           232.98,
           -7.58
+        ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "shop_door",
+          "show_window"
+        ],
+        "fixed_to": null,
+        "note": "moved 3.55 m along the front, off shop_door and show_window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.19
+        ],
+        "board_span_local_m": [
+          8.49,
+          10.79
+        ],
+        "openings": [
+          {
+            "kind": "show_window",
+            "u0": 3.8,
+            "u1": 5.49,
+            "z0": 0.74,
+            "z1": 2.92
+          },
+          {
+            "kind": "shop_door",
+            "u0": 5.59,
+            "u1": 6.6,
+            "z0": 0.0,
+            "z1": 3.05
+          },
+          {
+            "kind": "show_window",
+            "u0": 6.71,
+            "u1": 8.39,
+            "z0": 0.74,
+            "z1": 2.92
+          },
+          {
+            "kind": "fascia",
+            "u0": 3.62,
+            "u1": 8.57,
+            "z0": 3.05,
+            "z1": 3.33
+          }
+        ]
+      }
+    },
+    {
+      "structure_id": "john_holbrook_store",
+      "name": "John Holbrook's Clothing Store",
+      "sign_text": "JOHN HOLBROOK / Clothing & Boots",
+      "sign_lines": [
+        {
+          "text": "JOHN HOLBROOK",
+          "role": "name"
+        },
+        {
+          "text": "Clothing & Boots",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Holbrook",
+      "sign_text_from": "THE WORDING IS THE ADVERTISEMENT'S OWN HEAD, AND TWO PAPERS SET IT. The Chicago Democrat of 1835-06-10 heads the column \"[C]L[O]T[H]ING, BOOTS & SHOES, WHOLESALE AND RETAIL\" and signs it \"JOHN HOLBROOK\" (page 3 column 2, claim chicago_democrat_1835_06_10#c010); the Chicago American of 1835-06-13 heads the same card \"[H]at[s], Clothing, Boo[ts and Shoes …] WHOLESALE & [RETAIL]\" (claim chicago_american_1835_06_13#c012). Man, then trade, which is the register T-0130 fixed this table in, and the words are his own rather than this project's label for them. THE THIRD LINE IS THE TERMS AND NOT THE STREET: both printings set WHOLESALE AND RETAIL in their own head, and it is the thing a trader passing the door needed to know. THE COUNT OF DOORS IS DELIBERATELY NOT ON THE BOARD — 'one door from Dearborn street' is how a newspaper reader FINDS the shop, and a customer standing in front of the board has already found it. THE READING IS TRANSCRIPTION-MEDIATED, flagged under the owner's ruling of 2026-08-28, with the brackets left in. WHAT KEEPS THIS `inferred` RATHER THAN BETTER is that a transcription is not a page image; UPGRADE IT TO `attested` when either paper's scans are committed as a source record and this note can cite the plate. The board is a awning board, which carries 2 lines, so the place line — \"Wholesale & Retail\" — is not lettered here: a signwriter letters what fits. For the same reason the trade is shortened from \"Clothing, Boots & Shoes\" to \"Clothing & Boots\".",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_1835",
+        "chicago_american_1835"
+      ],
+      "trade": "store",
+      "trade_confidence": "attested",
+      "trade_class": "counter",
+      "why_a_board": "a counter open to the street",
+      "confidence": "reconstructed",
+      "mounting": "awning_board",
+      "mounting_note": null,
+      "style": {
+        "id": "red_on_white",
+        "ground": "#e9e2d1",
+        "letter": "#8c2f1f",
+        "face": "egyptian",
+        "panel": "oval",
+        "aspect": 1.8,
+        "note": "vermilion Egyptian on a white ground"
+      },
+      "anchor_local_enu_m": [
+        732.57,
+        -7.73
+      ],
+      "facade_bearing_deg": 0.0,
+      "arm_height_m": 2.55,
+      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
+      "board_w_m": 1.62,
+      "board_h_m": 0.76,
+      "board_thickness_m": 0.05,
+      "geometry": {
+        "awning_projection_m": 1.45,
+        "awning_drop_m": 0.34,
+        "awning_width_m": 2.52,
+        "hanger_drop_m": 0.2
+      },
+      "reach_m": 2.04,
+      "wall_height_m": 3.0,
+      "wall_height_from": "the record",
+      "frontage_m": 9.14,
+      "ground_quad_local_enu_m": [
+        [
+          726.3,
+          -15.35
+        ],
+        [
+          735.44,
+          -15.35
+        ],
+        [
+          735.44,
+          -7.73
+        ],
+        [
+          726.3,
+          -7.73
         ]
       ]
     },
@@ -1312,7 +2043,7 @@
         "note": "cream fat face on Venetian red"
       },
       "anchor_local_enu_m": [
-        109.3,
+        112.34,
         56.2
       ],
       "facade_bearing_deg": 180.0,
@@ -1345,7 +2076,32 @@
           115.3,
           56.2
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 3.04 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.0
+        ],
+        "board_span_local_m": [
+          1.46,
+          4.45
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 4.55,
+            "u1": 7.45,
+            "z0": 0.0,
+            "z1": 3.0
+          }
+        ]
+      }
     },
     {
       "structure_id": "madore_beaubien_house",
@@ -1370,7 +2126,7 @@
       "trade_class": "counter",
       "why_a_board": "a counter open to the street, with the keeper living over it",
       "confidence": "reconstructed",
-      "mounting": "awning_board",
+      "mounting": "facade_painted",
       "mounting_note": null,
       "style": {
         "id": "gold_on_black",
@@ -1382,22 +2138,19 @@
         "note": "gilt letters on a black ground, shaded — the commonest painted board of the trade"
       },
       "anchor_local_enu_m": [
-        683.95,
+        684.6,
         -6.49
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.2,
+      "arm_height_m": 2.25,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.66,
-      "board_h_m": 0.76,
+      "board_w_m": 3.45,
+      "board_h_m": 0.57,
       "board_thickness_m": 0.05,
       "geometry": {
-        "awning_projection_m": 1.45,
-        "awning_drop_m": 0.34,
-        "awning_width_m": 2.56,
-        "hanger_drop_m": 0.2
+        "proud_m": 0.03
       },
-      "reach_m": 2.05,
+      "reach_m": 1.85,
       "wall_height_m": 2.5,
       "wall_height_from": "the record",
       "frontage_m": 9.14,
@@ -1418,7 +2171,46 @@
           677.68,
           -6.49
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "reshaped",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "the copy would not clear door on a 2.63 x 0.75 m board, so the same words are lettered on a longer and narrower 3.45 x 0.57 m one, which does",
+        "wall_span_local_m": [
+          0.0,
+          9.14
+        ],
+        "board_span_local_m": [
+          5.19,
+          8.64
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 4.05,
+            "u1": 5.09,
+            "z0": 0.02,
+            "z1": 1.95
+          },
+          {
+            "kind": "window",
+            "u0": 1.7,
+            "u1": 2.32,
+            "z0": 0.85,
+            "z1": 1.57
+          },
+          {
+            "kind": "window",
+            "u0": 6.82,
+            "u1": 7.44,
+            "z0": 0.85,
+            "z1": 1.57
+          }
+        ]
+      }
     },
     {
       "structure_id": "mansion_house",
@@ -1537,13 +2329,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.85,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.6,
-      "board_h_m": 0.69,
+      "board_w_m": 3.99,
+      "board_h_m": 0.45,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.42,
+      "reach_m": 2.12,
       "wall_height_m": 3.1,
       "wall_height_from": "the record",
       "frontage_m": 6.1,
@@ -1564,7 +2356,32 @@
           731.95,
           -128.43
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "reshaped",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "the copy would not clear door on a 2.60 x 0.69 m board, so the same words are lettered on a longer and narrower 3.99 x 0.45 m one, which does",
+        "wall_span_local_m": [
+          0.0,
+          6.1
+        ],
+        "board_span_local_m": [
+          1.05,
+          5.04
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 2.37,
+            "u1": 3.72,
+            "z0": 0.0,
+            "z1": 2.3
+          }
+        ]
+      }
     },
     {
       "structure_id": "miller_house",
@@ -1589,7 +2406,7 @@
       "trade_class": "counter",
       "why_a_board": "a counter open to the street, with the keeper living over it",
       "confidence": "reconstructed",
-      "mounting": "facade_painted",
+      "mounting": "bracket_board",
       "mounting_note": null,
       "style": {
         "id": "black_on_timber",
@@ -1601,19 +2418,20 @@
         "note": "black on a bare weathered board — the tone L130 hung the town's blank boards in"
       },
       "anchor_local_enu_m": [
-        9.5,
+        7.8,
         50.0
       ],
       "facade_bearing_deg": 180.0,
-      "arm_height_m": 2.35,
+      "arm_height_m": 2.3,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.36,
-      "board_h_m": 0.63,
+      "board_w_m": 1.38,
+      "board_h_m": 0.69,
       "board_thickness_m": 0.05,
       "geometry": {
-        "proud_m": 0.03
+        "arm_m": 1.15,
+        "hanger_drop_m": 0.2
       },
-      "reach_m": 1.3,
+      "reach_m": 1.46,
       "wall_height_m": 2.6,
       "wall_height_from": "the record",
       "frontage_m": 9.0,
@@ -1675,15 +2493,15 @@
         72.5
       ],
       "facade_bearing_deg": 180.0,
-      "arm_height_m": 2.25,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.33,
-      "board_h_m": 0.67,
+      "arm_height_m": 1.85,
+      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it. This board is on the door leaf rather than on the wall, so its head is the door's head less a hand's breadth",
+      "board_w_m": 0.9,
+      "board_h_m": 0.26,
       "board_thickness_m": 0.05,
       "geometry": {
-        "proud_m": 0.03
+        "proud_m": 0.06
       },
-      "reach_m": 1.29,
+      "reach_m": 0.57,
       "wall_height_m": 2.5,
       "wall_height_from": "the record",
       "frontage_m": 7.0,
@@ -1704,7 +2522,52 @@
           14.0,
           72.5
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "shrunk to the door",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": {
+          "kind": "door",
+          "u0": 2.98,
+          "u1": 4.02,
+          "z0": 0.02,
+          "z1": 1.95
+        },
+        "note": "this front has no 2.33 m of blank face at any height a name can be read at — every band is taken by door — so the board is shrunk to 0.90 x 0.26 m and fixed to the door itself",
+        "wall_span_local_m": [
+          0.0,
+          7.0
+        ],
+        "board_span_local_m": [
+          3.05,
+          3.95
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 2.98,
+            "u1": 4.02,
+            "z0": 0.02,
+            "z1": 1.95
+          },
+          {
+            "kind": "window",
+            "u0": 1.23,
+            "u1": 1.85,
+            "z0": 0.85,
+            "z1": 1.57
+          },
+          {
+            "kind": "window",
+            "u0": 5.15,
+            "u1": 5.77,
+            "z0": 0.85,
+            "z1": 1.57
+          }
+        ]
+      }
     },
     {
       "structure_id": "new_york_house",
@@ -1819,7 +2682,7 @@
       },
       "anchor_local_enu_m": [
         64.3,
-        -259.8
+        -257.55
       ],
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.95,
@@ -1851,7 +2714,32 @@
           64.3,
           -265.8
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 2.25 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.0
+        ],
+        "board_span_local_m": [
+          6.77,
+          9.73
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 5.33,
+            "u1": 6.67,
+            "z0": 0.0,
+            "z1": 2.3
+          }
+        ]
+      }
     },
     {
       "structure_id": "newberry_dole_warehouse",
@@ -1894,7 +2782,7 @@
         "note": "gilt letters on a black ground, shaded — the commonest painted board of the trade"
       },
       "anchor_local_enu_m": [
-        205.8,
+        202.47,
         6.2
       ],
       "facade_bearing_deg": 0.0,
@@ -1927,24 +2815,53 @@
           200.3,
           6.2
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 3.33 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          11.0
+        ],
+        "board_span_local_m": [
+          0.39,
+          3.95
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 4.05,
+            "u1": 6.95,
+            "z0": 0.0,
+            "z1": 3.0
+          }
+        ]
+      }
     },
     {
       "structure_id": "peck_store",
       "name": "P. F. W. Peck's Store",
-      "sign_text": "P. F. W. PECK / Dry Goods & Groceries",
+      "sign_text": "P. F. W. PECK / Dry Goods, Groceries & Hardware / South Water Street",
       "sign_lines": [
         {
           "text": "P. F. W. PECK",
           "role": "name"
         },
         {
-          "text": "Dry Goods & Groceries",
+          "text": "Dry Goods, Groceries & Hardware",
           "role": "trade"
+        },
+        {
+          "text": "South Water Street",
+          "role": "place"
         }
       ],
       "sign_identity": "Peck",
-      "sign_text_from": "The 1833 pages carry \"P. F. PECK\" at the corner of LaSalle and South Water with staple articles, salt, flour, butter and feathers, and the same man reports the town's prices current for the Democrat. The record independently has him \"advertising dry goods, hardware and groceries through 1834-35\", which is the trade line the board takes; the street is his own. Graded `inferred` and not better because the goods line is assembled from the record and the page rather than lifted whole off one advertisement. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a bracket board, which carries 2 lines, so the place line — \"South Water Street\" — is not lettered here: a signwriter letters what fits. For the same reason the trade is shortened from \"Dry Goods, Groceries & Hardware\" to \"Dry Goods & Groceries\".",
+      "sign_text_from": "The 1833 pages carry \"P. F. PECK\" at the corner of LaSalle and South Water with staple articles, salt, flour, butter and feathers, and the same man reports the town's prices current for the Democrat. The record independently has him \"advertising dry goods, hardware and groceries through 1834-35\", which is the trade line the board takes; the street is his own. Graded `inferred` and not better because the goods line is assembled from the record and the page rather than lifted whole off one advertisement. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
       "sign_text_confidence": "inferred",
       "sign_text_sources": [],
       "trade": "store_and_dwelling",
@@ -1952,7 +2869,7 @@
       "trade_class": "counter",
       "why_a_board": "a counter open to the street, with the keeper living over it",
       "confidence": "reconstructed",
-      "mounting": "bracket_board",
+      "mounting": "wall_board",
       "mounting_note": null,
       "style": {
         "id": "cream_on_green",
@@ -1964,20 +2881,19 @@
         "note": "cream on a Brunswick-green ground"
       },
       "anchor_local_enu_m": [
-        435.94,
+        437.97,
         -5.89
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.46,
-      "board_h_m": 0.86,
+      "board_w_m": 2.3,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
-        "arm_m": 1.15,
-        "hanger_drop_m": 0.2
+        "proud_m": 0.02
       },
-      "reach_m": 1.48,
+      "reach_m": 1.27,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -1998,82 +2914,90 @@
           428.15,
           -5.89
         ]
-      ]
-    },
-    {
-      "structure_id": "philo_carpenter_log_shop",
-      "name": "Philo Carpenter's Log Drug Store",
-      "sign_text": "PHILO CARPENTER / Druggist",
-      "sign_lines": [
-        {
-          "text": "PHILO CARPENTER",
-          "role": "name"
-        },
-        {
-          "text": "Druggist",
-          "role": "trade"
-        }
       ],
-      "sign_identity": "Carpenter",
-      "sign_text_from": "HIS 1833 WORDS ON HIS 1832 SHOP, and the split is deliberate. The advertisement dated 22 November 1833 in the committed issue reads \"PHILO CARPENTER, CHICAGO—ILL. Will keep constantly on hand, a general assortment of DRUGS AND MEDICINES, Oils, Paints, Dye-Stuffs, &c. &c.\" — name first, trade second, which is the board. By 1835 he has rewritten himself as a \"Wholesale & Retail Druggist\" AT THE SIGN OF THE GOLDEN MORTAR on South Water Street, and that later line and that device go on the South Water frontage, not on this one. A FINDING THIS BOARD RAISES RATHER THAN BURIES: this record's own occupants block says NO SOURCE REACHED NAMES ANYONE IN THIS BUILDING IN 1835 and its change note calls the log shop's survival doubtful once he had the South Water store. If the shop had passed to another keeper by 1 July 1835, this board names the wrong man — which is a research question for the structure record, not a wording that can be fixed here. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. For the same reason the trade is shortened from \"Drugs and Medicines\" to \"Druggist\".",
-      "sign_text_confidence": "inferred",
-      "sign_text_sources": [
-        "chicago_democrat_1833_11_26"
-      ],
-      "trade": "drug_store",
-      "trade_confidence": "inferred",
-      "trade_class": "counter",
-      "why_a_board": "a counter open to the street",
-      "confidence": "reconstructed",
-      "mounting": "awning_board",
-      "mounting_note": "a wall board is what this frontage's place in the counter cycle asks for, and a sign within 40 m already hangs that way — so the cycle advances rather than repeating a neighbour",
-      "style": {
-        "id": "cream_on_green",
-        "ground": "#1d3226",
-        "letter": "#e7ddc0",
-        "face": "signwriter",
-        "panel": "single_rule",
-        "aspect": 1.7,
-        "note": "cream on a Brunswick-green ground"
-      },
-      "anchor_local_enu_m": [
-        118.15,
-        -122.62
-      ],
-      "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.2,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.59,
-      "board_h_m": 0.79,
-      "board_thickness_m": 0.05,
-      "geometry": {
-        "awning_projection_m": 1.45,
-        "awning_drop_m": 0.34,
-        "awning_width_m": 2.49,
-        "hanger_drop_m": 0.2
-      },
-      "reach_m": 2.03,
-      "wall_height_m": 2.5,
-      "wall_height_from": "the record",
-      "frontage_m": 6.1,
-      "ground_quad_local_enu_m": [
-        [
-          113.4,
-          -127.5
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "fascia",
+          "shop_door",
+          "show_window"
         ],
-        [
-          119.5,
-          -127.5
+        "fixed_to": null,
+        "note": "moved 3.73 m along the front, off fascia and shop_door and show_window, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          12.19
         ],
-        [
-          119.5,
-          -122.62
+        "board_span_local_m": [
+          8.67,
+          10.97
         ],
-        [
-          113.4,
-          -122.62
+        "openings": [
+          {
+            "kind": "show_window",
+            "u0": 3.8,
+            "u1": 5.49,
+            "z0": 0.74,
+            "z1": 2.28
+          },
+          {
+            "kind": "shop_door",
+            "u0": 5.59,
+            "u1": 6.6,
+            "z0": 0.0,
+            "z1": 2.41
+          },
+          {
+            "kind": "show_window",
+            "u0": 6.71,
+            "u1": 8.39,
+            "z0": 0.74,
+            "z1": 2.28
+          },
+          {
+            "kind": "fascia",
+            "u0": 3.62,
+            "u1": 8.57,
+            "z0": 2.41,
+            "z1": 2.69
+          },
+          {
+            "kind": "window",
+            "u0": 0.42,
+            "u1": 1.27,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 2.02,
+            "u1": 2.86,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 4.46,
+            "u1": 5.3,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 6.9,
+            "u1": 7.75,
+            "z0": 3.58,
+            "z1": 4.88
+          },
+          {
+            "kind": "window",
+            "u0": 9.33,
+            "u1": 10.19,
+            "z0": 3.58,
+            "z1": 4.88
+          }
         ]
-      ]
+      }
     },
     {
       "structure_id": "pierce_blacksmith_shop",
@@ -2114,7 +3038,7 @@
         "note": "black Egyptian on a yellow-ochre ground"
       },
       "anchor_local_enu_m": [
-        -140.5,
+        -142.72,
         -124.0
       ],
       "facade_bearing_deg": 0.0,
@@ -2147,7 +3071,32 @@
           -145.0,
           -124.0
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "moved",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": null,
+        "note": "moved 2.22 m along the front, off door, onto blank face",
+        "wall_span_local_m": [
+          0.0,
+          9.0
+        ],
+        "board_span_local_m": [
+          0.83,
+          3.73
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 3.83,
+            "u1": 5.17,
+            "z0": 0.0,
+            "z1": 2.3
+          }
+        ]
+      }
     },
     {
       "structure_id": "pruyne_kimball_drugstore",
@@ -2261,15 +3210,15 @@
         -66.3
       ],
       "facade_bearing_deg": 90.0,
-      "arm_height_m": 2.25,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.63,
-      "board_h_m": 0.63,
+      "arm_height_m": 1.85,
+      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it. This board is on the door leaf rather than on the wall, so its head is the door's head less a hand's breadth",
+      "board_w_m": 0.9,
+      "board_h_m": 0.22,
       "board_thickness_m": 0.05,
       "geometry": {
-        "proud_m": 0.03
+        "proud_m": 0.06
       },
-      "reach_m": 1.44,
+      "reach_m": 0.57,
       "wall_height_m": 2.5,
       "wall_height_from": "the archetype's default, because the record carries no wall height — the same number the wall itself is drawn at",
       "frontage_m": 7.0,
@@ -2290,7 +3239,52 @@
           -62.7,
           -62.8
         ]
-      ]
+      ],
+      "opening_fit": {
+        "action": "shrunk to the door",
+        "covered_before": [
+          "door"
+        ],
+        "fixed_to": {
+          "kind": "door",
+          "u0": 2.98,
+          "u1": 4.02,
+          "z0": 0.02,
+          "z1": 1.95
+        },
+        "note": "this front has no 2.63 m of blank face at any height a name can be read at — every band is taken by door — so the board is shrunk to 0.90 x 0.22 m and fixed to the door itself",
+        "wall_span_local_m": [
+          0.0,
+          7.0
+        ],
+        "board_span_local_m": [
+          3.05,
+          3.95
+        ],
+        "openings": [
+          {
+            "kind": "door",
+            "u0": 2.98,
+            "u1": 4.02,
+            "z0": 0.02,
+            "z1": 1.95
+          },
+          {
+            "kind": "window",
+            "u0": 1.23,
+            "u1": 1.85,
+            "z0": 0.85,
+            "z1": 1.57
+          },
+          {
+            "kind": "window",
+            "u0": 5.15,
+            "u1": 5.77,
+            "z0": 0.85,
+            "z1": 1.57
+          }
+        ]
+      }
     },
     {
       "structure_id": "sauganash_hotel",
@@ -2327,7 +3321,7 @@
         "note": "white block letters on a Prussian-blue ground"
       },
       "anchor_local_enu_m": [
-        109.1,
+        108.06,
         -122.6
       ],
       "facade_bearing_deg": 0.0,
@@ -2343,18 +3337,18 @@
       "reach_m": 1.48,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
-      "frontage_m": 12.0,
+      "frontage_m": 9.92,
       "ground_quad_local_enu_m": [
         [
           101.4,
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -122.6
         ],
         [
@@ -2688,6 +3682,11 @@
       "structure_id": "wolf_point_tavern",
       "trade": "tavern_inn",
       "why": "it already has one. This is the single record in the dataset that ATTESTS a sign, and the board hangs in its GLB already (phase log_frame_1828, docs/LIBERTIES.md L25). A second board here would be this layer duplicating the only real one."
+    },
+    {
+      "structure_id": "brickyard_north_side",
+      "trade": "brickyard",
+      "why": "a facade painted was refused here because this front has no 2.10 m of blank face at any height and no door to fix a board to — every elevation of it is open bay, and a name lettered there would hang in the air between the posts"
     }
   ],
   "research_note": "THE FIRST THING TO DO, AND IT IS ALREADY HALF DONE: COMMIT THE SEVEN PAGES. The wordings graded `inferred` above are transcribed from 1833-35 Chicago newspaper pages the owner supplied as IMAGES IN CONVERSATION on 2026-08-21 — one carrying 'Chicago, Dec. 31, 1833' with a 'CHICAGO PRICES CURRENT … Reported for the Democrat by P. F. Peck' that identifies the Chicago Democrat, one 'Chicago, Dec. 4, 1833', and several of 1835 carrying an 'ARRIVALS OF VESSELS AT CHICAGO, 1835' table and a Post Office list of letters remaining 'on the 31st day of March, 1835'. Drop those images into data/sources/assets/ with a source record and EVERY `inferred` WORDING HERE BECOMES A CANDIDATE FOR `attested`, one board at a time, each note already saying what its page says. Goss & Cobb's is the nearest: its page is committed already. WHAT WOULD MOVE THE REST — the fact of a sign, its colours and its mounting — is unchanged: a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale description naming a shop sign; any of the pre-fire photographs of a surviving 1830s frontage actually being opened at its holding institution (the Green Tree 1859 plate, ICHi-040230, is the nearest and is unseen); or a traveller's account of walking South Water Street.",

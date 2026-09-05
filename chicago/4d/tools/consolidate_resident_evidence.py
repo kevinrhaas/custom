@@ -1,0 +1,1535 @@
+#!/usr/bin/env python3
+"""One identity, every source: the cross-domain consolidation of the resident research.
+
+WHY THIS EXISTS, in the owner's words (2026-09-03): "make sure there is consolidation
+tickets that build out the full cross source corroboration of these people, like if you
+have found and matched philo carpenter from those multiple sources, you should have all
+of those in the resident data for him eventually".
+
+THE DEFECT IT MEASURES. Counted across the residents layer on 2026-09-03: 742 of 825
+household records cite exactly ONE source, 70 cite two, 13 cite three, and nothing cites
+more. Ninety per cent of the town rests on a single source while the crosswalks in
+`data/research/` hold rulings nobody has spent. `tools/measure_research_spend.py` puts the
+other end of the same fact at 109 rulings reaching a town person and 0 reaching that
+person's card. hh_carpenter_philo.json is the worked example: it cites `andreas_1884_v1`
+alone while the crosswalks have already ruled the 1833 poll, the 1833 tax list, the 1834
+poll and a newspaper person for the same man.
+
+WHAT THIS TOOL DOES, AND WHAT IT DELIBERATELY DOES NOT. It reads every landed domain,
+puts one row per IDENTITY against every appearance of that identity anywhere, applies the
+owner's ratified grading ladder as a PROPOSAL, and stops. It writes NO household file.
+T-0514 mints people from this and T-0515 regrades them; keeping the proposal separate from
+the application is what lets the owner read a diff of 849 grades before any of them moves.
+
+IT IS INCREMENTAL BY DESIGN. Wave 1 of the source sweep is open-ended — the owner adds
+sources as he finds them — so a consolidation sequenced after "all sweeps land" is
+sequenced after never. This runs again after every few sources; a pass that finds nothing
+newly closed says so and costs a run nothing.
+
+THE MERGE RULES ARE THE NEWSPAPERS' RULES, because they are already ratified in
+`data/research/newspapers/identity.json`: surname-only is always a refusal, and the same
+surname with a different forename initial NEVER merges. Two rules are added for the
+cross-domain case and both are conservative: an initial-only forename attaches to a full
+forename only when exactly ONE full forename in that surname carries the initial (two
+rivals is a refusal, not a coin toss), and a name that could be read two ways is refused
+with its rivals named. Every merge and every refusal carries a rule id so a later reader
+can count which fired.
+
+    tools/consolidate_resident_evidence.py --build       write the three data files
+    tools/consolidate_resident_evidence.py --check       they still re-derive; invariants hold
+    tools/consolidate_resident_evidence.py --self-test   the assertions still fire when broken
+    tools/consolidate_resident_evidence.py --report      the tables, to stdout
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+RESEARCH = ROOT / "data" / "research"
+RESIDENTS = ROOT / "data" / "residents"
+OUT_DIR = RESEARCH / "residents"
+MASTER = OUT_DIR / "identity_master.json"
+COVERAGE = OUT_DIR / "source_coverage.json"
+PROPOSAL = OUT_DIR / "grading_proposal.json"
+POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
+INDEX = RESIDENTS / "index.json"
+
+SCENE_YEAR = 1835
+GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
+
+# ---------------------------------------------------------------------------
+# THE RULES. Ids are stable and are cited by every row that fires them; the policy
+# doc restates them in prose for a human, and this table is what the code obeys.
+
+MERGE_RULES = {
+    "M1": "Identical normalised name — same surname, same forename tokens, letter for letter.",
+    "M2": "An initial-only forename attaches to the ONE full forename of that surname carrying "
+          "the initial. Two or more rivals is R3, never a choice.",
+    "M3": "A middle initial present on one reading and absent on the other, forename and surname "
+          "agreeing, and no rival of that surname carrying a different middle initial.",
+    "D1": "A merge already declared by a domain's own crosswalk or by the newspapers' identity.json. "
+          "A declared merge outranks every derived rule; this tool never overturns an adjudication.",
+}
+
+REFUSAL_RULES = {
+    "R1": "Surname only. A record that names no forename can never be merged onto a person "
+          "(the newspapers' rule, and the whole of the Newberry finding aid).",
+    "R2": "Same surname, different forename initial. Never merges — the newspapers' rule, "
+          "stated in identity.json's refused_merges.",
+    "R3": "An initial-only forename with two or more rival full forenames of that surname. "
+          "Refused with the rivals named rather than guessed at.",
+    "R4": "Same surname and same forename initial, but two different full forenames "
+          "(Jonathan against John). Two men until something says otherwise.",
+    "D2": "A refusal already declared by a domain's own crosswalk or by identity.json.",
+}
+
+# The ratified ladder, 2026-09-03, verbatim in the policy doc. One rung, one id, and the
+# rung records what class of evidence it accepts.
+GRADE_RULES = {
+    "G0": ("not_1835_resident", "Every appearance describes a date after the scene year. "
+           "1839/1840 alone is never an 1835 resident — later evidence only."),
+    "G1a": ("attested", "The 1835 poll list and at least one other independent source."),
+    "G1b": ("attested", "A contemporary record naming the person in Chicago — the 1833-1835 "
+            "newspapers, which print the person by name in the town."),
+    "G1c": ("attested", "CONVERGENCE — two or more independent in-window records from "
+            "DIFFERENT class families (the town's civic lists · the contemporary press, "
+            "letter lists included · the parish register). Two bodies that did not copy "
+            "each other naming one man inside the scene window. A letter list is never "
+            "promoted on its own by this rung; it only COUNTS TOWARD convergence."),
+    "G2a": ("inferred", "The 1835 poll list alone."),
+    "G2b": ("inferred", "An 1833 or 1834 list (poll, tax, muster) with another source."),
+    "G2c": ("inferred", "The St Cyr register 1833-1835 — a party to a marriage or burial "
+            "in the parish inside the scene window."),
+    "G2d": ("inferred", "Hubbard or Fergus or Norris naming a person the town already carries, "
+            "with a trade or an address."),
+    "G2e": ("inferred", "A Chicago post-office letter list of 1833-1835 and nothing stronger. "
+            "The list names a person whose mail is at Chicago; this tool declines to read that "
+            "as the ladder's `contemporary record naming the person in Chicago` and grades it "
+            "down. See the policy doc — it is the one reading put back to the owner."),
+    "G3": ("inferred", "A single appearance and nothing else: documented once, placed by nothing. "
+           "Carries resident_subtype `projected_resident`."),
+    "G4": ("inferred", "Two or more appearances, none of them of a class a rung above accepts. "
+           "Carries resident_subtype `projected_resident` until a rung above fires."),
+    "G5": (None, "NO PROPOSAL. The town already carries this person and every appearance this "
+           "consolidation can see describes a date after the scene year — their card rests on "
+           "sources outside these seven domains (Andreas, the newspapers' own register). The "
+           "ladder abstains rather than demote a resident on evidence it has not read; the row "
+           "is listed as a conflict for the owner."),
+}
+GRADE_ORDER = {None: 1, "not_1835_resident": 0, "inferred": 1, "attested": 2}
+
+# Evidence classes, and which rung may spend them. `contemporary` is the 1833-1835 press;
+# `later` is anything the ladder forbids from standing alone.
+CONTEMPORARY_CLASSES = {"newspaper_1833_1835"}
+LETTER_LIST_CLASS = "newspaper_letter_list"
+POLL_1835 = "poll_1835"
+EARLY_LIST_CLASSES = {"poll_1833", "tax_1833", "poll_1834", "muster_1832"}
+CHURCH_SCENE_CLASS = "church_1833_1835"
+DIRECTORY_CLASSES = {"directory_1843", "directory_1844", "book_recollection"}
+LATER_CLASSES = {"census_1840", "directory_1843", "directory_1844", "death_notice",
+                 "church_after_1835", "finding_aid"}
+
+# THE SCENE WINDOW, hoisted out of grade() so the record counter and the rungs read the
+# same set. Everything here describes 1832-1835; everything in LATER_CLASSES does not.
+SCENE_WINDOW_CLASSES = (CONTEMPORARY_CLASSES | EARLY_LIST_CLASSES
+                        | {POLL_1835, CHURCH_SCENE_CLASS, LETTER_LIST_CLASS})
+
+# THE CLASS FAMILIES — who MADE the record, which is what independence turns on. Two
+# entries in one family may be one body's habit; one entry in each of two families is two
+# bodies that did not copy each other. G1c is the only rung that reads this.
+CLASS_FAMILIES = {
+    "civic": EARLY_LIST_CLASSES | {POLL_1835},
+    "press": CONTEMPORARY_CLASSES | {LETTER_LIST_CLASS},
+    "church": {CHURCH_SCENE_CLASS},
+}
+
+# ---------------------------------------------------------------------------
+# Name normalisation. Deliberately small: this layer decides who is who, so every
+# transformation it makes has to be one a reader would make out loud.
+
+HONORIFICS = {"mr", "mrs", "miss", "dr", "rev", "capt", "col", "gen", "lt", "sergt",
+              "sgt", "maj", "hon", "esq", "jr", "sr", "widow", "mme", "madame"}
+ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
+               "chas": "charles", "thos": "thomas", "robt": "robert", "jos": "joseph",
+               "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edw": "edward",
+               "richd": "richard", "alexr": "alexander", "hy": "henry", "nathl": "nathaniel"}
+
+
+def clean(token: str) -> str:
+    return re.sub(r"[^a-z]", "", (token or "").lower())
+
+
+def split_name(text: str) -> tuple[str, list[str]] | None:
+    """(surname_key, forename tokens) out of a printed name, or None if it names nobody.
+
+    Handles both orders — 'Adams, W. H.' and 'W. H. Adams' — because the sources print
+    both and the comma is what tells them apart."""
+    if not text or not isinstance(text, str):
+        return None
+    text = text.replace("&", " and ")
+    if " and " in text.lower():
+        return None                      # a firm style, not a person
+    # A bracket holds what the printing could not: "William Cr[…]" is a man whose name
+    # the column cut, and identity.json has already ruled on him. Drop the bracket and
+    # keep the reading — but a DIGIT is never part of a name, and the 1843 directory
+    # lists institutions in the same alphabetical run as people ("Reading Room (Y. M.
+    # A.), 37 Clark, 2d story"), which is how an identity called `a` got minted once.
+    text = re.sub(r"[\[(][^\])]*[\])]", " ", text)
+    if "," in text:
+        surname_part, _, given_part = text.partition(",")
+    else:
+        parts = [p for p in re.split(r"\s+", text.strip()) if p]
+        while parts and clean(parts[-1]) in HONORIFICS:
+            parts.pop()              # "John Bates Jr." is a Bates, not a Jr.
+        if not parts:
+            return None
+        if len(parts) > 1 and len(clean(parts[-1])) == 1:
+            # PRINTED SURNAME FIRST, and the trailing initial is the tell. The letter
+            # lists set "Mason Sabrina A." and "Norton N. R." with no comma at all, and
+            # reading the last token as the surname made thirty of the town's own cards
+            # unparseable — a name ending in a lone initial is never a surname.
+            surname_part, given_part = parts[0], " ".join(parts[1:])
+        else:
+            surname_part, given_part = parts[-1], " ".join(parts[:-1])
+    tokens = [t for t in re.split(r"[\s.]+", given_part) if clean(t)]
+    if any(ch.isdigit() for ch in surname_part + given_part):
+        return None
+    surname = clean(surname_part)
+    # A SURNAME IS NOT AN INITIAL, AND A ROOM IS NOT A MAN. The 1843 and 1844
+    # directories list institutions in the same alphabetical run as people, and a
+    # naive read of "Reading Room (Y. M. A.), 37 Clark" takes "A.)" for the surname
+    # and mints an identity called `a`. One letter is never a surname, and a bracket
+    # or a digit in a printed name is the mark of an institution or an address.
+    if not surname or len(surname) < 2 or surname in HONORIFICS:
+        return None
+
+    if len(tokens) > 4:
+        return None
+    given = []
+    for token in tokens:
+        key = clean(token)
+        if key in HONORIFICS:
+            continue
+        given.append(ABBREVIATED.get(key, key))
+    return surname, given
+
+
+def forename_signature(given: list[str]) -> tuple[str, ...]:
+    return tuple(given)
+
+
+def is_initial(token: str) -> bool:
+    return len(token) == 1
+
+
+# ---------------------------------------------------------------------------
+# READING THE DOMAINS. Each reader yields appearance dicts; nothing here interprets,
+# it only says where a name was printed and what date that printing describes.
+
+
+def load(path: Path):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def year_of(value) -> int | None:
+    if not value:
+        return None
+    match = re.search(r"(1[78]\d\d)", str(value))
+    return int(match.group(1)) if match else None
+
+
+def appearance(domain, record_id, source_id, as_read, normalized, locator,
+               describes_date, evidence_class):
+    return {
+        "domain": domain,
+        "record_id": record_id,
+        "source_id": source_id,
+        "as_read": as_read,
+        "normalized": normalized,
+        "locator": locator,
+        "describes_date": describes_date,
+        "evidence_class": evidence_class,
+    }
+
+
+def read_civic():
+    out = []
+    path = RESEARCH / "civic" / "records" / "voter_lists_1833_1835.json"
+    doc = load(path) or {}
+    for record in doc.get("records", []):
+        listname = (record.get("locator") or {}).get("list") or "civic_list"
+        out.append(appearance(
+            "civic", record["id"], doc.get("source_id"), record.get("as_read"),
+            record.get("normalized"), listname, str(year_of(listname) or ""), listname))
+    path = RESEARCH / "civic" / "records" / "blackhawk_war_1832_chicago.json"
+    doc = load(path) or {}
+    for record in doc.get("records", []):
+        out.append(appearance(
+            "civic", record["id"], doc.get("source_id"), record.get("as_read"),
+            record.get("normalized"), record.get("company") or "muster",
+            "1832", "muster_1832"))
+    return out
+
+
+def read_church():
+    out = []
+    for name in ("st_cyr_marriages_1834_1839.json", "st_cyr_deaths_1834_1837.json"):
+        doc = load(RESEARCH / "church" / "records" / name) or {}
+        for record in doc.get("records", []):
+            year = year_of(record.get("describes_date"))
+            klass = (CHURCH_SCENE_CLASS if year and year <= SCENE_YEAR
+                     else "church_after_1835")
+            out.append(appearance(
+                "church", record["id"], doc.get("source_id"), record.get("as_read"),
+                record.get("normalized"),
+                (record.get("locator") or {}).get("role") or name,
+                record.get("describes_date"), klass))
+    return out
+
+
+def read_census_1840():
+    out = []
+    for path in sorted((RESEARCH / "census_1840" / "pages").glob("*.json")):
+        doc = load(path) or {}
+        for record in doc.get("records", []):
+            if not (record.get("normalized") or record.get("as_read")):
+                continue
+            out.append(appearance(
+                "census_1840",
+                f"{doc.get('familysearch_id') or path.stem}:{record.get('line')}",
+                doc.get("source_id") or "census_1840_cook_county",
+                record.get("as_read"), record.get("normalized"),
+                f"{doc.get('printed_page')}:{record.get('line')}",
+                "1840", "census_1840"))
+    return out
+
+
+def read_directories():
+    out = []
+    for name, klass, when in (
+            ("fergus_1843_directory_entries.json", "directory_1843", "1843"),
+            ("norris_1844_directory_entries.json", "directory_1844", "1844")):
+        doc = load(RESEARCH / "directories" / "claims" / name) or {}
+        for claim in doc.get("claims", []):
+            norm = claim.get("normalized") or {}
+            if not isinstance(norm, dict) or norm.get("firm"):
+                continue
+            printed = norm.get("printed_name")
+            if not printed:
+                continue
+            entry = appearance(
+                "directories", claim["id"], doc.get("source_id"), claim.get("quote"),
+                printed, norm.get("address") or norm.get("section"), when, klass)
+            entry["occupation"] = norm.get("occupation")
+            entry["address"] = norm.get("address")
+            out.append(entry)
+    return out
+
+
+def read_old_settlers():
+    doc = load(RESEARCH / "old_settlers" / "death_notices.json") or {}
+    out = []
+    for record in doc.get("records", []):
+        norm = record.get("normalized") or {}
+        name = norm.get("name") if isinstance(norm, dict) else norm
+        out.append(appearance(
+            "old_settlers", record["id"], doc.get("source_id"),
+            record.get("name_as_read") or record.get("as_read"), name,
+            record.get("letter_section"),
+            (norm.get("death_date_as_read") if isinstance(norm, dict) else None),
+            "death_notice"))
+    return out
+
+
+def read_newspapers():
+    doc = load(RESEARCH / "newspapers" / "gazetteer.json") or {}
+    out = []
+    for person in doc.get("persons", []):
+        year = year_of(person.get("first_seen"))
+        if not year or year > SCENE_YEAR:
+            klass = "newspaper_after_1835"
+        elif person.get("letter_list_only"):
+            # THE ONE PLACE THE LADDER NEEDED READING. A post-office list of letters
+            # remaining uncalled-for names a person whose MAIL is at Chicago. Whether
+            # that is "a contemporary record naming the person in Chicago" is the whole
+            # question, and this tool takes the cautious half: a letter-list-only name
+            # is inferred (G2e), not attested. The policy doc puts the fork to the owner.
+            klass = LETTER_LIST_CLASS
+        else:
+            klass = "newspaper_1833_1835"
+        out.append(appearance(
+            "newspapers", person["id"], "chicago_newspapers_1833_1835",
+            person.get("name"), person.get("name"),
+            (person.get("mentions") or [None])[0],
+            person.get("first_seen"), klass))
+    return out
+
+
+def read_town():
+    """The residents layer itself. Not a source — it is what the sources are spent onto —
+    but an identity has to be able to say which card it already stands on."""
+    out = []
+    for path in sorted(RESIDENTS.rglob("*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
+            continue
+        for person in doc["persons"]:
+            if not person.get("id"):
+                continue
+            entry = appearance(
+                "residents", person["id"], None, person.get("name"),
+                person.get("name"), doc.get("id"), None, "town_layer")
+            entry["household_id"] = doc.get("id")
+            entry["grade"] = person.get("grade")
+            entry["resident_subtype"] = person.get("resident_subtype")
+            entry["cited_sources"] = sorted(set(person.get("sources") or []))
+            out.append(entry)
+    return out
+
+
+READERS = {
+    "civic": read_civic,
+    "church": read_church,
+    "census_1840": read_census_1840,
+    "directories": read_directories,
+    "old_settlers": read_old_settlers,
+    "newspapers": read_newspapers,
+    "residents": read_town,
+}
+
+# Domains that hold no person-level rows, and why. Named here rather than omitted,
+# because a domain missing from the coverage table reads like one nobody looked at.
+NO_PERSON_ROWS = {
+    "newberry_index": ("finding_aid",
+                       "6,697 cards, every one of them a SURNAME heading a locality with no "
+                       "forename. R1 refuses all of them by construction: a finding aid names "
+                       "a book, not a man. Counted as refusals, never as appearances."),
+    "census_1830": ("unread", "The named schedule has not been found; the repo holds county "
+                    "aggregates only (T-0498)."),
+    "genealogytrails": ("inventory", "An inventory of sections, graded for what each one "
+                        "might yield; no names read out of them yet (T-0556)."),
+    "books": ("claims", "19 claims about the American Fur Company's trade, none of them a "
+              "person-level record; the men they name are already newspaper persons."),
+}
+
+
+# ---------------------------------------------------------------------------
+# THE DECLARED ADJUDICATIONS. A crosswalk that has already ruled outranks anything
+# derived here: this tool consolidates rulings, it does not second-guess them.
+
+
+def declared_rulings():
+    """(merges, refusals) as name pairs already adjudicated somewhere in the corpus."""
+    merges, refusals = [], []
+    identity = load(RESEARCH / "newspapers" / "identity.json") or {}
+    for row in identity.get("merges", []):
+        merges.append({"a": row.get("from"), "b": row.get("into"), "rule": "D1",
+                       "declared_in": "newspapers/identity.json#merges",
+                       "evidence": row.get("merge_rule")})
+    for row in identity.get("refused_merges", []):
+        refusals.append({"a": row.get("from"), "b": row.get("into"), "rule": "D2",
+                         "declared_in": "newspapers/identity.json#refused_merges",
+                         "evidence": row.get("refused_because")})
+    for path in sorted(RESEARCH.rglob("*crosswalk*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict):
+            continue
+        where = str(path.relative_to(RESEARCH))
+        for key, rows in doc.items():
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                a, b = row.get("a") or row.get("from"), row.get("b") or row.get("into")
+                if not (isinstance(a, str) and isinstance(b, str)):
+                    continue
+                target = refusals if "refus" in key else merges if "merge" in key else None
+                if target is None:
+                    continue
+                target.append({"a": a, "b": b,
+                               "rule": "D2" if target is refusals else "D1",
+                               "declared_in": f"{where}#{key}",
+                               "evidence": row.get("evidence") or row.get("rule")
+                               or row.get("note")})
+    return merges, refusals
+
+
+def person_links():
+    """person_id -> the source ids the rulings that reach them rest on, with the ruling.
+
+    This is the half of the consolidation that T-0598 makes mechanical: a crosswalk that
+    states no source id cannot be spent onto a card, and there are 103 of those today.
+    They are collected anyway, marked `states_no_source`, so the count is visible."""
+    links = defaultdict(list)
+    for path in sorted(RESEARCH.rglob("*crosswalk*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict):
+            continue
+        where = str(path.relative_to(RESEARCH))
+        domain = path.relative_to(RESEARCH).parts[0]
+        for key, rows in doc.items():
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                people = []
+                for field in ("person_id", "resident", "matched_resident", "household_id"):
+                    value = row.get(field)
+                    if isinstance(value, str) and value:
+                        people.append(value)
+                for field in ("person_ids", "residents"):
+                    value = row.get(field)
+                    if isinstance(value, list):
+                        people.extend(v for v in value if isinstance(v, str))
+                if not people:
+                    continue
+                rests = set()
+                for disc in row.get("discriminators") or []:
+                    if isinstance(disc, dict) and disc.get("source_id"):
+                        rests.add(disc["source_id"])
+                for sup in row.get("same_name_support") or []:
+                    if isinstance(sup, dict) and sup.get("source_id"):
+                        rests.add(sup["source_id"])
+                if row.get("source_id"):
+                    rests.add(row["source_id"])
+                for person in sorted(set(people)):
+                    links[person].append({
+                        "domain": domain,
+                        "declared_in": f"{where}#{key}",
+                        "outcome": row.get("outcome") or key,
+                        "rests_on": sorted(rests),
+                        "states_no_source": not rests,
+                    })
+    return links
+
+
+
+# An appearance row as the master carries it. `as_read` is CLIPPED, and the clip is
+# deliberate: a directory entry's own quote runs to a paragraph, and eight megabytes of
+# re-printed source text in a file whose subject is WHO SOMEBODY IS makes the file
+# unreadable to buy nothing — the quote is one `record_id` lookup away in its own domain.
+AS_READ_CLIP = 120
+
+
+def compact(member) -> dict:
+    as_read = member.get("as_read")
+    if isinstance(as_read, str):
+        as_read = " ".join(as_read.split())
+        if len(as_read) > AS_READ_CLIP:
+            as_read = as_read[:AS_READ_CLIP].rstrip() + "…"
+    row = {
+        "domain": member["domain"], "record_id": member["record_id"],
+        "source_id": member.get("source_id"), "as_read": as_read,
+        "locator": member.get("locator"),
+        "describes_date": member.get("describes_date"),
+        "evidence_class": member["evidence_class"],
+    }
+    if member.get("normalized") and member.get("normalized") != member.get("as_read"):
+        row["normalized"] = member["normalized"]
+    for field in ("occupation", "address"):
+        if member.get(field):
+            row[field] = member[field]
+    return row
+
+
+# ---------------------------------------------------------------------------
+# CLUSTERING. One bucket per surname; inside a bucket, full forenames are the anchors
+# and initial-only readings attach to them only when exactly one anchor fits.
+
+
+def cluster(appearances):
+    """-> (identities, refusals). An identity is a surname plus one forename signature."""
+    buckets = defaultdict(list)
+    unnamed = []
+    for entry in appearances:
+        parsed = split_name(entry.get("normalized") or entry.get("as_read"))
+        if not parsed or not parsed[1]:
+            unnamed.append(entry)
+            continue
+        surname, given = parsed
+        entry["_surname"] = surname
+        entry["_given"] = given
+        buckets[surname].append(entry)
+
+    identities, refusals = [], []
+    for entry in unnamed:
+        refusals.append({
+            "rule": "R1",
+            "why": "names no forename, so it can never be merged onto a person",
+            "domain": entry["domain"], "record_id": entry["record_id"],
+            "as_read": entry.get("as_read"),
+        })
+
+    for surname in sorted(buckets):
+        rows = buckets[surname]
+        anchors = {}                     # signature -> members, for full-forename readings
+        pending = []
+        for entry in rows:
+            given = entry["_given"]
+            if is_initial(given[0]):
+                pending.append(entry)
+            else:
+                anchors.setdefault(forename_signature(given), []).append(entry)
+        # M3: fold a bare 'John Smith' into 'John H. Smith' when there is exactly one
+        # such reading and no rival middle initial.
+        for signature in sorted(anchors, key=len):
+            if len(signature) != 1:
+                continue
+            rivals = [s for s in anchors if len(s) > 1 and s[0] == signature[0]]
+            if len(rivals) == 1:
+                anchors[rivals[0]].extend(anchors.pop(signature))
+        for entry in pending:
+            given = entry["_given"]
+            fits = [s for s in anchors if s and s[0][0] == given[0][0]]
+            exact = [s for s in anchors if forename_signature(given) == tuple(t[0] for t in s)]
+            chosen = None
+            if len(fits) == 1:
+                chosen = fits[0]
+                entry["_merge_rule"] = "M2"
+            elif len(exact) == 1:
+                chosen = exact[0]
+                entry["_merge_rule"] = "M2"
+            elif len(fits) > 1:
+                refusals.append({
+                    "rule": "R3",
+                    "why": "an initial-only forename with rival full forenames of the same surname",
+                    "domain": entry["domain"], "record_id": entry["record_id"],
+                    "as_read": entry.get("as_read"),
+                    "rivals": sorted(" ".join(s).title() + " " + surname.title() for s in fits),
+                })
+            if chosen is not None:
+                anchors[chosen].append(entry)
+            else:
+                anchors.setdefault(forename_signature(given), []).append(entry)
+        # R2/R4 ARE STATED ONCE PER SURNAME, NOT ONCE PER PAIR, and the difference is
+        # 17,726 rows against 1,100. Every identity left standing in a bucket is left
+        # standing because of one of these two rules, and enumerating the cross product
+        # of 40 Smiths says nothing the bucket does not already say. The bucket names
+        # what it holds apart and which rule holds each pair apart, which is the fact.
+        signatures = sorted(anchors)
+        if len(signatures) > 1:
+            initials = Counter(s[0][0] for s in signatures)
+            refusals.append({
+                "rule": "R2" if len(initials) > 1 else "R4",
+                "why": ("this surname holds more than one identity: readings with different "
+                        "forename initials never merge (R2), and two different full forenames "
+                        "behind one initial are two men until something says otherwise (R4)"),
+                "surname": surname,
+                "held_apart": [" ".join(sig).title() + " " + surname.title()
+                               for sig in signatures],
+                "distinct_initials": len(initials),
+            })
+        for signature in signatures:
+            members = anchors[signature]
+            identities.append({
+                "id": "id_" + surname + "_" + ("_".join(signature) or "x"),
+                "surname": surname,
+                "forename": " ".join(signature),
+                "members": members,
+                "merge_rules": sorted({m.get("_merge_rule", "M1") for m in members}),
+            })
+    return identities, refusals
+
+
+
+# ---------------------------------------------------------------------------
+# THE DECLARED ANCHORS, and this is the half of the ticket that actually SPENDS a
+# ruling. A crosswalk that has already matched a read record to a person in the town
+# outranks every rule derived here: `W. H. Adams` on the 1833 poll and `William Hanford
+# Adams` on the card were refused by R3 (two rival Adamses of that initial) while
+# civic/voter_crosswalk.json had matched them a month ago. Derived caution that
+# overturns a landed adjudication is not caution, it is the tool ignoring the corpus.
+
+POSITIVE_OUTCOMES = {"matched", "merged", "match"}
+POSITIVE_KEYS = {"merges", "matches", "heads", "entries"}
+RECORD_STR_KEYS = ("record_id", "id", "claim_id", "lead_id")
+RECORD_LIST_KEYS = ("record_ids", "entries", "entries_1843", "entries_1844", "cards_1844")
+PERSON_STR_KEYS = ("person_id", "matched_resident")
+PERSON_LIST_KEYS = ("person_ids",)
+
+
+def _record_ids(row) -> list:
+    out = []
+    for key in RECORD_STR_KEYS:
+        value = row.get(key)
+        if isinstance(value, str) and value:
+            out.append(value)
+    for key in RECORD_LIST_KEYS:
+        value = row.get(key)
+        if not isinstance(value, list):
+            continue
+        for item in value:
+            if isinstance(item, str):
+                out.append(item)
+            elif isinstance(item, dict):
+                for inner in ("claim", "record_id", "id", "entry_id"):
+                    if isinstance(item.get(inner), str):
+                        out.append(item[inner])
+                        break
+    return out
+
+
+def _person_ids(row) -> list:
+    out = []
+    for key in PERSON_STR_KEYS:
+        value = row.get(key)
+        if isinstance(value, str) and value:
+            out.append(value)
+    for key in PERSON_LIST_KEYS:
+        value = row.get(key)
+        if isinstance(value, list):
+            out.extend(v for v in value if isinstance(v, str))
+    return out
+
+
+def declared_anchors():
+    """(domain, record_id) -> {person_id, declared_in, rule} for every LANDED match."""
+    anchors = {}
+    for path in sorted(RESEARCH.rglob("*crosswalk*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict):
+            continue
+        parts = path.relative_to(RESEARCH).parts
+        domain = parts[0]
+        where = str(path.relative_to(RESEARCH))
+        for key, rows in doc.items():
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                outcome = row.get("outcome")
+                positive = (outcome in POSITIVE_OUTCOMES
+                            or (outcome is None and key in POSITIVE_KEYS))
+                if not positive:
+                    continue
+                people = _person_ids(row)
+                if len(people) != 1:
+                    continue
+                for record_id in _record_ids(row):
+                    anchors[(domain, record_id)] = {
+                        "person_id": people[0],
+                        "declared_in": f"{where}#{key}",
+                        "rule": "D1",
+                    }
+    return anchors
+
+
+def apply_anchors(identities, refusals, anchors):
+    """Move every anchored appearance onto the identity that holds its person.
+
+    Returns the D1 merges it made, so the master can say which derived refusals a
+    landed adjudication overruled."""
+    home = {}
+    for identity in identities:
+        for member in identity["members"]:
+            if member["domain"] == "residents":
+                home[member["record_id"]] = identity
+    made = []
+    overruled = set()
+    for identity in list(identities):
+        for member in list(identity["members"]):
+            anchor = anchors.get((member["domain"], member["record_id"]))
+            if not anchor:
+                continue
+            target = home.get(anchor["person_id"])
+            if target is None or target is identity:
+                continue
+            identity["members"].remove(member)
+            member["_merge_rule"] = "D1"
+            target["members"].append(member)
+            target["merge_rules"] = sorted(set(target["merge_rules"]) | {"D1"})
+            overruled.add((member["domain"], member["record_id"]))
+            made.append({
+                "a": member.get("normalized") or member.get("as_read"),
+                "b": target["forename"].title() + " " + target["surname"].title(),
+                "rule": "D1",
+                "declared_in": anchor["declared_in"],
+                "evidence": f"{member['domain']}:{member['record_id']} was matched to "
+                            f"{anchor['person_id']} there; the landed adjudication outranks "
+                            f"anything derived here",
+            })
+    kept = [i for i in identities if i["members"]]
+    survived = [r for r in refusals
+                if (r.get("domain"), r.get("record_id")) not in overruled]
+    return kept, survived, made
+
+
+# ---------------------------------------------------------------------------
+# THE LADDER, applied as a proposal.
+
+
+def in_window_records(identity):
+    """The distinct RECORDS naming this identity inside the scene window.
+
+    INDEPENDENCE IS A PROPERTY OF THE RECORD — a distinct list, taken on a distinct
+    occasion, by a distinct body — and NOT of the `source_id` that digitised it. This
+    function exists because the rungs used to count source_ids and got it wrong (T-0699):
+    every Chicago poll, tax and muster list in this project was published by IRAD under
+    the single id `chicago_voter_lists_1833_1835_irad`, so
+
+      Willard Jones   tax_1833 + poll_1834 + poll_1835   len(sources) == 1
+      Byran Guisin    tax_1833 + poll_1834               len(sources) == 1
+
+    Jones missed G1a and was graded G2a, "The 1835 poll list ALONE", which is false of his
+    own evidence blocks; Guisin missed G2b and fell two rungs to G4 `projected_resident`.
+    Three lists taken in three different years by the town are three records. That one
+    archive digitised them together is a fact about the archive.
+    """
+    return {(m["evidence_class"], m.get("describes_date"))
+            for m in identity["members"]
+            if m["evidence_class"] in SCENE_WINDOW_CLASSES}
+
+
+def independent_records(identity):
+    """Every distinct record naming this identity, in the window or after it.
+
+    G1a and G2b are worded "and at least one other independent source" / "with another
+    source" — the owner did not require the second one to be inside the window, because
+    the FIRST one already carries the 1835 claim and the second corroborates the identity.
+    So this counts across all classes; only G1c, which has no in-window anchor of its own
+    to rest on, insists that its records be in-window.
+
+    What it must NOT do is count `source_id`s. That was the defect: a man on three IRAD
+    lists reads as one source, and a man on the 1835 poll plus an 1843 directory reads as
+    two. Same evidence, opposite verdicts, decided by who digitised it.
+    """
+    return {(m["evidence_class"], m.get("describes_date"))
+            for m in identity["members"] if m["domain"] != "residents"}
+
+
+def in_window_families(identity):
+    """Which class families name this identity inside the scene window."""
+    classes = {m["evidence_class"] for m in identity["members"]}
+    return {name for name, members in CLASS_FAMILIES.items() if classes & members}
+
+
+def grade(identity):
+    classes = {m["evidence_class"] for m in identity["members"]}
+    domains = {m["domain"] for m in identity["members"]}
+    sources = {m["source_id"] for m in identity["members"] if m.get("source_id")}
+    on_a_card = "residents" in domains
+    evidence_domains = domains - {"residents"}
+    n = len([m for m in identity["members"] if m["domain"] != "residents"])
+
+    scene_window = (CONTEMPORARY_CLASSES | EARLY_LIST_CLASSES
+                    | {POLL_1835, CHURCH_SCENE_CLASS, LETTER_LIST_CLASS})
+    if not (classes & scene_window) and classes <= (LATER_CLASSES
+                                                    | {"newspaper_after_1835", "town_layer"}):
+        if on_a_card:
+            return "G5", None, None
+        if evidence_domains:
+            return "G0", "not_1835_resident", None
+    records = independent_records(identity)
+    if POLL_1835 in classes and len(records) > 1:
+        return "G1a", "attested", None
+    if classes & CONTEMPORARY_CLASSES:
+        return "G1b", "attested", None
+    # G1c — CONVERGENCE, and it sits here because it is an `attested` rung that the two
+    # above it cannot reach: neither the 1835 poll nor the contemporary press is present,
+    # but two DIFFERENT bodies name the man inside the window. The owner's reading, in his
+    # words: "the letter list places someone as likely there, AND there are voter records".
+    if len(in_window_families(identity)) > 1 and len(in_window_records(identity)) > 1:
+        return "G1c", "attested", None
+    if POLL_1835 in classes:
+        return "G2a", "inferred", None
+    if classes & EARLY_LIST_CLASSES and len(records) > 1:
+        return "G2b", "inferred", None
+    if CHURCH_SCENE_CLASS in classes:
+        return "G2c", "inferred", None
+    # G3 SITS HERE, above the two rungs below it, and the order is the ruling. The owner
+    # defined projected_resident as "a single appearance with nothing else", and the rungs
+    # that outrank it are the ones he named a lone source for — the 1835 poll, the parish
+    # register, the contemporary press. A lone letter-list name is not one of those, and
+    # the layer already agrees: the 706 `ll_*` people it carries are inferred and
+    # projected_resident today, which is what this rung re-derives.
+    if n <= 1:
+        return "G3", "inferred", "projected_resident"
+    if LETTER_LIST_CLASS in classes:
+        return "G2e", "inferred", None
+    if on_a_card and classes & DIRECTORY_CLASSES and any(
+            m.get("occupation") or m.get("address") for m in identity["members"]):
+        return "G2d", "inferred", None
+    return "G4", "inferred", "projected_resident"
+
+
+# ---------------------------------------------------------------------------
+# BUILD
+
+
+def build():
+    appearances = []
+    for domain, reader in READERS.items():
+        appearances.extend(reader())
+    identities, refusals = cluster(appearances)
+    identities, refusals, anchored = apply_anchors(identities, refusals, declared_anchors())
+    declared_merges, declared_refusals = declared_rulings()
+    declared_merges = anchored + declared_merges
+    links = person_links()
+
+    rows = []
+    for identity in sorted(identities, key=lambda i: i["id"]):
+        members = identity["members"]
+        town = [m for m in members if m["domain"] == "residents"]
+        canonical = town[0]["record_id"] if town else None
+        rests_on, unsourced = set(), 0
+        for ruling in links.get(canonical, []) if canonical else []:
+            rests_on.update(ruling["rests_on"])
+            unsourced += 1 if ruling["states_no_source"] else 0
+        cited = set()
+        for entry in town:
+            cited.update(entry.get("cited_sources") or [])
+        offered = {m["source_id"] for m in members if m.get("source_id")}
+        row = {
+            "id": identity["id"],
+            "surname": identity["surname"],
+            "forename": identity["forename"],
+            "canonical_person_id": canonical,
+            "household_id": town[0].get("household_id") if town else None,
+            "merge_rules": identity["merge_rules"],
+            "appearances": [compact(m) for m in members],
+            "domains": sorted({m["domain"] for m in members}),
+            "sources_offered": sorted(offered),
+            "sources_cited_on_the_card": sorted(cited),
+            "sources_the_card_has_not_learned":
+                sorted(offered - cited - {None}) if canonical else [],
+            "rulings_reaching_this_person": len(links.get(canonical, [])) if canonical else 0,
+            "rulings_that_state_no_source": unsourced,
+        }
+        # A row says what it HAS. 5,800 of these identities stand on no card, and six
+        # null-or-empty fields apiece on that many rows is a megabyte and a half of the
+        # file saying nothing — the reader learns the same thing from the key's absence.
+        rows.append({k: v for k, v in row.items()
+                     if v or k in ("id", "surname", "forename", "appearances", "domains")})
+
+    master = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/consolidate_resident_evidence.py --build. One row per "
+                "identity, every appearance of that identity in every landed domain, and the "
+                "rule that merged or refused each reading. Hand-edit and --check says so.",
+        "generated_by": GENERATED_BY,
+        "scene_year": SCENE_YEAR,
+        "merge_rules": MERGE_RULES,
+        "refusal_rules": REFUSAL_RULES,
+        "counts": {
+            "identities": len(rows),
+            "appearances": sum(len(r["appearances"]) for r in rows),
+            "identities_on_a_card": sum(1 for r in rows if r.get("canonical_person_id")),
+            "identities_in_two_or_more_domains":
+                sum(1 for r in rows if len(r["domains"]) > 1),
+            "derived_refusals": len(refusals),
+            "declared_merges": len(declared_merges),
+            "appearances_moved_by_a_landed_adjudication": len(anchored),
+            "declared_refusals": len(declared_refusals),
+        },
+        "identities": rows,
+        "refusals": refusals,
+        "declared_merges": declared_merges,
+        "declared_refusals": declared_refusals,
+    }
+
+    # ---- coverage -------------------------------------------------------
+    per_domain = {}
+    by_domain_ids = defaultdict(set)
+    for row in rows:
+        for entry in row["appearances"]:
+            by_domain_ids[entry["domain"]].add(row["id"])
+    read_counts = Counter()
+    matched = Counter()
+    for row in rows:
+        for entry in row["appearances"]:
+            read_counts[entry["domain"]] += 1
+            if row.get("canonical_person_id") and entry["domain"] != "residents":
+                matched[entry["domain"]] += 1
+    for domain in sorted(READERS):
+        per_domain[domain] = {
+            "names_read": read_counts[domain],
+            "identities": len(by_domain_ids[domain]),
+            "appearances_on_an_identity_the_town_already_carries": matched[domain],
+            "unmatched": read_counts[domain] - matched[domain],
+        }
+    for domain, (kind, why) in sorted(NO_PERSON_ROWS.items()):
+        per_domain[domain] = {"names_read": 0, "identities": 0,
+                              "appearances_on_an_identity_the_town_already_carries": 0,
+                              "unmatched": 0, "holds": kind, "why": why}
+    overlap = {}
+    domain_names = sorted(by_domain_ids)
+    for index, a in enumerate(domain_names):
+        for b in domain_names[index:]:
+            shared = len(by_domain_ids[a] & by_domain_ids[b])
+            if shared:
+                overlap[f"{a}|{b}"] = shared
+    town_rows = sum(1 for _ in TOWN_GRADES)
+    coverage = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/consolidate_resident_evidence.py --build. What each domain "
+                "was worth against the others: names read, how many landed on an identity the "
+                "town already carries, and how far any two domains overlap.",
+        "generated_by": GENERATED_BY,
+        "domains": per_domain,
+        "overlap": overlap,
+        "town_rows_this_tool_could_not_parse": {
+            "persons_in_the_layer": town_rows,
+            "persons_this_tool_placed_on_an_identity": read_counts["residents"],
+            "why": "a card whose name is a surname alone, a firm style, or an honorific with "
+                   "no forename cannot be split into (surname, forename) and is refused by R1 "
+                   "like any other source reading. They are named in the master's refusals.",
+        },
+        "negative_searches_recorded": {
+            "derived_refusals_by_rule": dict(Counter(r["rule"] for r in refusals)),
+            "declared_refusals": len(declared_refusals),
+        },
+    }
+
+    # ---- proposal -------------------------------------------------------
+    proposals, conflicts, changes = [], [], []
+    tally = Counter()
+    subtally = Counter()
+    for row in rows:
+        rule, proposed, subtype = grade({"members": row["appearances"]})
+        tally[proposed] += 1
+        subtally[subtype] += 1
+        entry = {
+            "identity": row["id"],
+            "name": (row["forename"] + " " + row["surname"]).title().strip(),
+            "canonical_person_id": row.get("canonical_person_id"),
+            "rule": rule,
+            "grade": proposed,
+            "resident_subtype": subtype,
+            "evidence": [f"{a['domain']}:{a['record_id']}" for a in row["appearances"]
+                         if a["domain"] != "residents"][:12],
+            "evidence_classes": sorted({a["evidence_class"] for a in row["appearances"]}),
+        }
+        proposals.append(entry)
+        if row.get("canonical_person_id"):
+            current = TOWN_GRADES.get(row["canonical_person_id"], {})
+            current_grade = current.get("grade")
+            current_sub = current.get("resident_subtype")
+            if current_grade != proposed or current_sub != subtype:
+                changes.append({
+                    "identity": row["id"],
+                    "person_id": row["canonical_person_id"],
+                    "from": {"grade": current_grade, "resident_subtype": current_sub},
+                    "to": {"grade": proposed, "resident_subtype": subtype},
+                    "rule": rule,
+                    "direction": ("up" if GRADE_ORDER.get(proposed, 1) >
+                                  GRADE_ORDER.get(current_grade, 1) else
+                                  "down" if GRADE_ORDER.get(proposed, 1) <
+                                  GRADE_ORDER.get(current_grade, 1) else "subtype_only"),
+                })
+        if rule == "G5":
+            conflicts.append({
+                "identity": row["id"], "kind": "abstention", "rule": "G5",
+                "person_id": row.get("canonical_person_id"),
+                "why": "the town carries this person and every appearance this consolidation "
+                       "can see describes a date after the scene year; their card rests on "
+                       "sources outside these domains, so the ladder does not rule",
+                "evidence_classes": sorted({a["evidence_class"] for a in row["appearances"]}),
+            })
+        elif changes and changes[-1]["identity"] == row["id"] and \
+                changes[-1]["direction"] == "down":
+            conflicts.append({
+                "identity": row["id"], "kind": "downgrade", "rule": rule,
+                "person_id": row.get("canonical_person_id"),
+                "why": "the ladder proposes a lower grade than the card carries; the card was "
+                       "graded on evidence this consolidation may not read, so the disagreement "
+                       "is listed rather than resolved",
+                "from": changes[-1]["from"], "to": changes[-1]["to"],
+            })
+
+    proposal = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/consolidate_resident_evidence.py --build. The owner's "
+                "ratified ladder applied to every identity AS A PROPOSAL. Nothing here is "
+                "written to a household file: T-0514 mints and T-0515 regrades from this.",
+        "generated_by": GENERATED_BY,
+        "ladder": {rule_id: {"grade": g, "says": says}
+                   for rule_id, (g, says) in GRADE_RULES.items()},
+        "baseline_668": {"attested": 117, "inferred": 731,
+                         "projected_resident": 706, "persons": 848},
+        "counts": {
+            "identities": len(proposals),
+            "by_grade": {str(k): v for k, v in tally.items()},
+            "by_subtype": {str(k): v for k, v in subtally.items()},
+            "by_rule": dict(Counter(p["rule"] for p in proposals)),
+            "proposed_changes_to_existing_people": len(changes),
+            "conflicts": len(conflicts),
+        },
+        "proposals": proposals,
+        "changes_to_existing_people": changes,
+        "conflicts": conflicts,
+    }
+    return master, coverage, proposal
+
+
+TOWN_GRADES: dict = {}
+
+
+def _load_town_grades():
+    TOWN_GRADES.clear()
+    for path in sorted(RESIDENTS.rglob("*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
+            continue
+        for person in doc["persons"]:
+            if person.get("id"):
+                TOWN_GRADES[person["id"]] = person
+
+
+# The long arrays are written ONE ROW PER LINE. Pretty-printing 6,600 identities at
+# indent=1 costs seven megabytes against five, and this file is rebuilt every
+# consolidation pass — a new blob each time. One row per line is smaller, greppable by
+# name, and gives a diff that shows which identities changed rather than which lines did.
+LINE_ARRAYS = ("identities", "refusals", "declared_merges", "declared_refusals",
+               "proposals", "changes_to_existing_people", "conflicts")
+
+
+def dump(path: Path, doc) -> str:
+    out = ["{"]
+    keys = list(doc)
+    for index, key in enumerate(keys):
+        tail = "," if index < len(keys) - 1 else ""
+        value = doc[key]
+        if key in LINE_ARRAYS and isinstance(value, list):
+            if not value:
+                out.append(f" {json.dumps(key)}: []{tail}")
+                continue
+            out.append(f" {json.dumps(key)}: [")
+            for position, row in enumerate(value):
+                comma = "," if position < len(value) - 1 else ""
+                out.append("  " + json.dumps(row, ensure_ascii=False,
+                                             separators=(",", ":")) + comma)
+            out.append(f" ]{tail}")
+        else:
+            body = json.dumps(value, indent=1, ensure_ascii=False).replace("\n", "\n ")
+            out.append(f" {json.dumps(key)}: {body}{tail}")
+    out.append("}")
+    return "\n".join(out) + "\n"
+
+
+def cmd_build(write=True):
+    _load_town_grades()
+    master, coverage, proposal = build()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    files = [(MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal)]
+    if write:
+        for path, doc in files:
+            path.write_text(dump(path, doc), encoding="utf-8")
+            print(f"  wrote {path.relative_to(ROOT)}")
+    return master, coverage, proposal
+
+
+def invariants(master, proposal) -> list[str]:
+    """The assertions the acceptance names. Each returns a sentence, or nothing."""
+    problems = []
+    seen = {}
+    for row in master["identities"]:
+        if row["id"] in seen:
+            problems.append(f"identity {row['id']} appears in two rows")
+        seen[row["id"]] = row
+    anchored = defaultdict(list)
+    for row in master["identities"]:
+        for entry in row["appearances"]:
+            anchored[(entry["domain"], entry["record_id"])].append(row["id"])
+    for key, holders in anchored.items():
+        if len(holders) > 1:
+            problems.append(f"{key[0]}:{key[1]} is claimed by {len(holders)} identities")
+    for refusal in master["refusals"]:
+        if refusal["rule"] not in REFUSAL_RULES:
+            problems.append(f"a refusal cites unknown rule {refusal['rule']}")
+        if not refusal.get("why"):
+            problems.append("a refusal states no reason")
+    for row in master["identities"]:
+        for rule in row["merge_rules"]:
+            if rule not in MERGE_RULES:
+                problems.append(f"identity {row['id']} cites unknown merge rule {rule}")
+    for entry in proposal["proposals"]:
+        rule = entry["rule"]
+        if rule not in GRADE_RULES:
+            problems.append(f"{entry['identity']} cites unknown grade rule {rule}")
+            continue
+        allowed = GRADE_RULES[rule][0]
+        if GRADE_ORDER.get(entry["grade"], 1) > GRADE_ORDER.get(allowed, 1):
+            problems.append(f"{entry['identity']} is graded {entry['grade']} above what "
+                            f"{rule} allows ({allowed})")
+        if entry["grade"] != "not_1835_resident" and not entry["evidence_classes"]:
+            problems.append(f"{entry['identity']} is graded on no evidence")
+    return problems
+
+
+
+# ---------------------------------------------------------------------------
+# THE LADDER, WHERE A BROWSER CAN READ IT (T-0668).
+#
+# `GRADE_RULES` above is the ratified ladder and it is Python. The reader is
+# JavaScript, and until this block existed nothing under `data/` carried the text
+# of a rung — so a card printing `G2c` beside a person's grade would have printed
+# a code whose meaning lives in a file no visitor opens. That is the same defect
+# the 1840 bridge had (T-0491): a verdict shown without the reasoning that reached
+# it is an assertion.
+#
+# ONE SOURCE OF TRUTH, NOT TWO. The rung text is not re-typed into the manifest by
+# hand and it is not re-typed into the renderer either. `--write-vocabulary` copies
+# it out of `GRADE_RULES`, and `--check` — which `tools/check.sh` runs — fails if
+# the manifest and the constant ever drift apart. Editing one without the other is
+# a gate failure rather than a silent lie on 531 cards.
+
+
+def ladder_vocabulary() -> list:
+    """The ratified ladder as the manifest carries it, in the ladder's own order.
+
+    A LIST of rungs and not an object keyed by rung id, because
+    `tools/measure_layer_reads.py` walks a manifest structurally: an object would
+    declare `ladder_rules.G2c.rule` as a figure of its own, eleven rungs would be
+    twenty-one figures, and every rung added later would be a new unread figure the
+    gate would demand be re-banked. A list of records is three figures, whatever the
+    ladder grows to.
+    """
+    return [{"rung": rule, "grade": grade, "rule": text}
+            for rule, (grade, text) in GRADE_RULES.items()]
+
+
+def cmd_write_vocabulary() -> int:
+    if not INDEX.exists():
+        print(f"  FAIL {INDEX.relative_to(ROOT)} is missing")
+        return 1
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    vocab = index.setdefault("vocabulary", {})
+    vocab["ladder_rules"] = ladder_vocabulary()
+    INDEX.write_text(json.dumps(index, indent=1, ensure_ascii=False) + "\n",
+                     encoding="utf-8")
+    print(f"  wrote {len(vocab['ladder_rules'])} rung(s) to "
+          f"{INDEX.relative_to(ROOT)} vocabulary.ladder_rules")
+    return 0
+
+
+def vocabulary_problems() -> list:
+    """Where the manifest's copy of the ladder disagrees with GRADE_RULES."""
+    if not INDEX.exists():
+        return [f"{INDEX.relative_to(ROOT)} is missing"]
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    got = (index.get("vocabulary") or {}).get("ladder_rules")
+    want = ladder_vocabulary()
+    if got is None:
+        return ["vocabulary.ladder_rules is missing from data/residents/index.json — "
+                "the card prints a rung id and nothing under data/ says what it means. "
+                "Run --write-vocabulary."]
+    if got == want:
+        return []
+    if not isinstance(got, list):
+        return ["vocabulary.ladder_rules must be a list of rungs"]
+    by_id = {row.get("rung"): row for row in got}
+    problems = []
+    for row in want:
+        rung = row["rung"]
+        if rung not in by_id:
+            problems.append(f"vocabulary.ladder_rules is missing rung {rung}")
+        elif by_id[rung] != row:
+            problems.append(f"vocabulary.ladder_rules disagrees with GRADE_RULES on "
+                            f"rung {rung} — the manifest says {by_id[rung]!r}")
+    for rung in by_id:
+        if rung not in {row["rung"] for row in want}:
+            problems.append(f"vocabulary.ladder_rules carries rung {rung}, "
+                            f"which the ladder no longer has")
+    if not problems:
+        problems.append("vocabulary.ladder_rules holds the rungs in an order the ladder "
+                        "does not — the card prints them in file order")
+    return problems
+
+
+def cmd_check() -> int:
+    failures = 0
+    _load_town_grades()
+    master, coverage, proposal = build()
+    for path, doc in ((MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal)):
+        if not path.exists():
+            print(f"  FAIL {path.relative_to(ROOT)} is missing — run --build")
+            failures += 1
+            continue
+        if path.read_text(encoding="utf-8") != dump(path, doc):
+            print(f"  FAIL {path.relative_to(ROOT)} does not re-derive from the sources — "
+                  "hand-edited, or a source moved under it. Run --build.")
+            failures += 1
+        else:
+            print(f"  ok    {path.relative_to(ROOT)} re-derives")
+    problems = invariants(master, proposal)
+    for problem in problems[:10]:
+        print(f"  FAIL {problem}")
+    failures += 1 if problems else 0
+    if not problems:
+        counts = master["counts"]
+        print(f"  ok    {counts['identities']} identities over {counts['appearances']} "
+              f"appearances; {counts['identities_in_two_or_more_domains']} stand in two or "
+              f"more domains; {counts['derived_refusals']} refusals, every one with a rule")
+    if not POLICY.exists():
+        print(f"  FAIL {POLICY.relative_to(ROOT)} is missing — the ladder has to be written down")
+        failures += 1
+    else:
+        text = POLICY.read_text(encoding="utf-8")
+        missing = [r for r in GRADE_RULES if r not in text]
+        if missing:
+            print(f"  FAIL the policy doc does not carry rung(s) {', '.join(missing)}")
+            failures += 1
+        else:
+            print("  ok    the policy doc carries every rung of the ratified ladder")
+    drift = vocabulary_problems()
+    for problem in drift[:5]:
+        print(f"  FAIL {problem}")
+    failures += 1 if drift else 0
+    if not drift:
+        print(f"  ok    data/residents/index.json carries all {len(GRADE_RULES)} rung(s) "
+              f"verbatim, so the card can print what a rung says")
+    return failures
+
+
+# ---------------------------------------------------------------------------
+# SELF-TEST. Each case breaks one thing and asserts the gate notices.
+
+
+def cmd_self_test() -> int:
+    failures = 0
+
+    # ---- T-0699: the rungs count RECORDS, and convergence is a rung ----------
+    def ident(*members):
+        return {"members": [dict(domain=d, evidence_class=c, describes_date=y,
+                                 source_id=sid, record_id=f"r{i}")
+                            for i, (d, c, y, sid) in enumerate(members)]}
+
+    def rung(*members):
+        return grade(ident(*members))[0]
+
+    IRAD = "chicago_voter_lists_1833_1835_irad"
+
+    def case(name, got, want):
+        nonlocal failures
+        if got == want:
+            print(f"  ok    {name} → {got}")
+        else:
+            print(f"  FAIL  {name} → {got}, wanted {want}")
+            failures += 1
+
+    # (a) THE DEFECT. Three lists, three years, one archive. Counting source_ids
+    # made this "the 1835 poll list ALONE" (G2a) — false of the record.
+    case("three IRAD lists under one source_id reach G1a",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD),
+              ("civic", "poll_1835", "1835", IRAD)), "G1a")
+    case("…and the 1835 poll genuinely alone is still G2a",
+         rung(("civic", "poll_1835", "1835", IRAD)), "G2a")
+    case("two early lists under one source_id reach G2b, not G4",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD)), "G2b")
+
+    # (b) CONVERGENCE. Two bodies that did not copy each other, in the window.
+    case("a poll list and a letter list converge to G1c",
+         rung(("civic", "poll_1834", "1834", IRAD),
+              ("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G1c")
+    case("…but a letter list ALONE is never promoted by it",
+         rung(("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G3")
+    case("…nor are two letter lists, which are one family",
+         rung(("press", "newspaper_letter_list", "1834-04-01", "democrat"),
+              ("press", "newspaper_letter_list", "1835-05-20", "democrat")), "G2e")
+    case("…nor are two civic lists, which are also one family",
+         rung(("civic", "tax_1833", "1833", IRAD),
+              ("civic", "poll_1834", "1834", IRAD)), "G2b")
+    case("the parish register converges with a civic list too",
+         rung(("civic", "poll_1834", "1834", IRAD),
+              ("church", "church_1833_1835", "1834", "stcyr")), "G1c")
+
+    # (c) THE GUARD. G0 survives: later evidence never attests on its own.
+    case("two later sources and nothing in-window stay not_1835_resident",
+         rung(("books", "directory_1843", "1843", "fergus"),
+              ("books", "death_notice", "1855", "fergus")), "G0")
+    case("…and a later source cannot lift a lone letter list into convergence",
+         rung(("press", "newspaper_letter_list", "1835-05-20", "democrat"),
+              ("books", "directory_1843", "1843", "fergus")), "G2e")
+
+
+    def assert_fires(what, master, proposal):
+        nonlocal failures
+        problems = invariants(master, proposal)
+        if problems:
+            print(f"  ok    {what} → {problems[0]}")
+        else:
+            print(f"  FAIL {what} did not fire")
+            failures += 1
+
+    base_master = {"identities": [{"id": "id_smith_john", "surname": "smith",
+                                  "forename": "john", "merge_rules": ["M1"],
+                                  "appearances": [{"domain": "civic", "record_id": "x1",
+                                                   "evidence_class": "poll_1835"}]}],
+                   "refusals": [{"rule": "R1", "why": "names no forename"}]}
+    base_proposal = {"proposals": [{"identity": "id_smith_john", "rule": "G2a",
+                                    "grade": "inferred", "evidence_classes": ["poll_1835"]}]}
+    problems = invariants(base_master, base_proposal)
+    if problems:
+        print(f"  FAIL the clean fixture is not clean: {problems[0]}")
+        failures += 1
+    else:
+        print("  ok    the clean fixture passes, so a firing below means something")
+
+    broken = json.loads(json.dumps(base_master))
+    broken["refusals"][0]["rule"] = "M1"
+    assert_fires("a surname-only row claiming a MERGE rule", broken, base_proposal)
+
+    broken = json.loads(json.dumps(base_master))
+    broken["refusals"][0].pop("why")
+    assert_fires("a refusal that states no reason", broken, base_proposal)
+
+    broken = json.loads(json.dumps(base_master))
+    broken["identities"].append(json.loads(json.dumps(broken["identities"][0])))
+    assert_fires("one identity standing in two rows", broken, base_proposal)
+
+    broken_proposal = json.loads(json.dumps(base_proposal))
+    broken_proposal["proposals"][0]["grade"] = "attested"
+    assert_fires("a grade above what its rung allows", base_master, broken_proposal)
+
+    broken_proposal = json.loads(json.dumps(base_proposal))
+    broken_proposal["proposals"][0]["evidence_classes"] = []
+    assert_fires("a grade resting on no evidence", base_master, broken_proposal)
+
+    # The ladder's copy in the manifest (T-0668). The card prints a rung id; if the
+    # manifest can drift from GRADE_RULES without the gate noticing, 531 cards can
+    # print a rung whose text is wrong, which is worse than printing no text at all.
+    real = vocabulary_problems()
+    if real:
+        print(f"  FAIL vocabulary.ladder_rules does not agree with GRADE_RULES: {real[0]}")
+        failures += 1
+    else:
+        print("  ok    vocabulary.ladder_rules agrees with GRADE_RULES as committed")
+    saved = dict(GRADE_RULES)
+    try:
+        GRADE_RULES["G2c"] = ("attested", "a rung nobody ratified")
+        if vocabulary_problems():
+            print("  ok    a rung whose text or grade drifts from the ladder is caught")
+        else:
+            print("  FAIL a drifted rung was not caught")
+            failures += 1
+        GRADE_RULES["G9z"] = ("inferred", "a rung the manifest has never heard of")
+        if any("G9z" in p for p in vocabulary_problems()):
+            print("  ok    a rung the manifest is missing is named in the failure")
+        else:
+            print("  FAIL a missing rung was not named")
+            failures += 1
+    finally:
+        GRADE_RULES.clear()
+        GRADE_RULES.update(saved)
+
+    # The merge rules themselves, on names rather than fixtures.
+    cases = [
+        ("Adams, W. H.", ("adams", ["w", "h"])),
+        ("William Hanford Adams", ("adams", ["william", "hanford"])),
+        ("Jno. L. Wilson", ("wilson", ["john", "l"])),
+        ("Mrs. M. Frauner", ("frauner", ["m"])),
+        ("Mason Sabrina A.", ("mason", ["sabrina", "a"])),
+        ("John Bates Jr.", ("bates", ["john"])),
+        ("BEAUMONT & SKINNER", None),
+        ("Reading Room (Y. M. A.), 37 Clark, 2d story", None),
+        ("Abbott", None),
+    ]
+    for text, want in cases:
+        got = split_name(text)
+        if got is not None and got[1] == []:
+            got = None
+        if want is None:
+            ok = got is None
+        else:
+            ok = got == (want[0], want[1])
+        print(f"  {'ok   ' if ok else 'FAIL'} split_name({text!r}) -> {got}")
+        failures += 0 if ok else 1
+
+    surname_only = cluster([{"domain": "newberry_index", "record_id": "nbi_1",
+                             "normalized": "Abbott", "as_read": "Abbott",
+                             "evidence_class": "finding_aid", "source_id": "s"}])
+    if surname_only[0] or not any(r["rule"] == "R1" for r in surname_only[1]):
+        print("  FAIL a surname-only reading was allowed to become an identity")
+        failures += 1
+    else:
+        print("  ok    a surname-only reading becomes a refusal, never an identity")
+
+    rivals = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "John Smith",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "James Smith",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "3", "normalized": "J. Smith",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    if not any(r["rule"] == "R3" for r in rivals[1]):
+        print("  FAIL 'J. Smith' against two rival Smiths did not refuse")
+        failures += 1
+    else:
+        print("  ok    an initial-only forename with two rivals is refused, not guessed")
+
+    different = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "John Smith",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "Peter Smith",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    if len(different[0]) != 2 or not any(r["rule"] == "R2" for r in different[1]):
+        print("  FAIL two different forename initials of one surname were merged")
+        failures += 1
+    else:
+        print("  ok    same surname, different initial — two identities and a stated refusal")
+    return failures
+
+
+def cmd_report(master, coverage, proposal):
+    print("\nidentities by the domains that name them")
+    print(f"  {master['counts']['identities']} identities, "
+          f"{master['counts']['appearances']} appearances, "
+          f"{master['counts']['identities_in_two_or_more_domains']} in two or more domains")
+    print(f"\n{'domain':18} {'read':>7} {'ids':>7} {'on a card':>10} {'unmatched':>10}")
+    print("-" * 56)
+    for domain, row in coverage["domains"].items():
+        print(f"{domain:18} {row['names_read']:>7} {row['identities']:>7} "
+              f"{row['appearances_on_an_identity_the_town_already_carries']:>10} "
+              f"{row['unmatched']:>10}")
+    print("\nproposed grades against the #668 baseline "
+          "(117 attested / 731 inferred / 706 projected / 848 persons)")
+    for name, count in sorted(proposal["counts"]["by_grade"].items(),
+                              key=lambda kv: str(kv[0])):
+        print(f"  {str(name):22} {count}")
+    print("  by rung: " + ", ".join(f"{k}={v}" for k, v in
+                                    sorted(proposal["counts"]["by_rule"].items())))
+    print(f"  proposed changes to existing people: "
+          f"{proposal['counts']['proposed_changes_to_existing_people']}; "
+          f"conflicts: {proposal['counts']['conflicts']}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--build", action="store_true")
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--report", action="store_true")
+    parser.add_argument("--write-vocabulary", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        return 1 if cmd_self_test() else 0
+    if args.write_vocabulary:
+        return cmd_write_vocabulary()
+    if args.check:
+        return 1 if cmd_check() else 0
+    if args.build or args.report:
+        master, coverage, proposal = cmd_build(write=args.build)
+        if args.report:
+            cmd_report(master, coverage, proposal)
+        return 0
+    parser.print_help()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

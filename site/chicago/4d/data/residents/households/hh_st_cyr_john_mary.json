@@ -94,7 +94,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "BORN AT LYONS, FRANCE, 2 NOVEMBER 1803, AND EDUCATED THERE. Andreas: 'He left France in June, 1831, reached St. Louis August 1, of the same year, and was there made a subdeacon. He was ordained at St. Mary's the Barrens by Bishop Rosatti in 1832, and on April 6, 1833, was by the same Bishop ordained priest.' He was sent to Chicago because 'Catholics were increasing in numbers in Chicago, and were becoming desirous' of a priest - a petition answered, not a migration chosen. He was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window."
+   "note": "BORN AT LYONS, FRANCE, 2 NOVEMBER 1803, AND EDUCATED THERE. Andreas: 'He left France in June, 1831, reached St. Louis August 1, of the same year, and was there made a subdeacon. He was ordained at St. Mary's the Barrens by Bishop Rosatti in 1832, and on April 6, 1833, was by the same Bishop ordained priest.' He was sent to Chicago because 'Catholics were increasing in numbers in Chicago, and were becoming desirous' of a priest - a petition answered, not a migration chosen. He was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Catholic institutional history independently places John Mary Irenaeus St. Cyr's appointment to Chicago in 1833, first Mass and first church construction, with recall in 1837. The bounded ministry strongly corroborates his presence during 1835.",
+    "notes": "Catholic institutional history independently places John Mary Irenaeus St. Cyr's appointment to Chicago in 1833, first Mass and first church construction, with recall in 1837. The bounded ministry strongly corroborates his presence during 1835.",
+    "source_ids": [
+     "catholic_chicago_st_cyr_1833"
+    ]
+   }
   }
  ],
  "touches_removal": false,

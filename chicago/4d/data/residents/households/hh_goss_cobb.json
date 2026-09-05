@@ -56,7 +56,7 @@
    "id": "goss_o",
    "name": "O. Goss",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "saddler",
@@ -68,9 +68,25 @@
    },
    "sources": [
     "andreas_1884_v1",
+    "chicago_american_1835",
     "chicago_democrat_1833_11_26"
    ],
-   "note": "THE FORENAME IS A GUESS AT AN INITIAL AND THE RECORD SAYS SO. The advertisement gives 'Goss' with no initial. Andreas's table of first purchasers of canal lots carries an 'O. Goss, Washington Co. Vermont' buying on 3 September 1832, which is the only Goss in the volume near this date and place, and this record adopts that initial while grading the person derived because the identification is a reading and not a statement. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+   "note": "THE FORENAME IS A GUESS AT AN INITIAL AND THE RECORD SAYS SO. The advertisement gives 'Goss' with no initial. Andreas's table of first purchasers of canal lots carries an 'O. Goss, Washington Co. Vermont' buying on 3 September 1832, which is the only Goss in the volume near this date and place, and this record adopts that initial while grading the person derived because the identification is a reading and not a statement. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later.",
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Oliver Goss",
+     "locator": "chicago_american_1835_06_13#c015",
+     "record_id": "person_oliver_goss",
+     "describes_date": "1835-06-13",
+     "source": "chicago_american_1835",
+     "rule": "G1b"
+    }
+   ],
+   "resident_research": {
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
+   }
   },
   {
    "id": "cobb_silas_b",
@@ -89,12 +105,26 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "calumet_club_early_chicago_1879"
    ],
-   "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record."
+   "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json)."
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "SADDLERY IS THE TRADE THAT PROVES THE TOWN HAD TRAFFIC. Two saddle and harness makers advertising at Lake and Canal in 1833 - on the west side, on the road out of town - is evidence about wagons, teams and the overland trade that this dataset otherwise sees only through Ordinance 9's barrels in the street. THIS HOUSEHOLD MAKES AN IDENTIFICATION THE STRUCTURES LAYER DECLINED TO MAKE, one grade down and with the disagreement written on both persons; that asymmetry is deliberate and should be read as the residents layer proposing a reading, not as the dataset having changed its mind."
+ "research_note": "SADDLERY IS THE TRADE THAT PROVES THE TOWN HAD TRAFFIC. Two saddle and harness makers advertising at Lake and Canal in 1833 - on the west side, on the road out of town - is evidence about wagons, teams and the overland trade that this dataset otherwise sees only through Ordinance 9's barrels in the street. THIS HOUSEHOLD MAKES AN IDENTIFICATION THE STRUCTURES LAYER DECLINED TO MAKE, one grade down and with the disagreement written on both persons; that asymmetry is deliberate and should be read as the residents layer proposing a reading, not as the dataset having changed its mind.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "cobb_silas_b"
+   }
+  ]
+ }
 }

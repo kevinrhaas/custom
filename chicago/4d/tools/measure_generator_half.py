@@ -97,13 +97,30 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # frame_tavern record, so one more committed asset and one more mesh a change to the shared
 # generator modules or to build.py would re-stale; terrain and pier_crib stay at 2 each.
 #
+# 359 -> 360 and 357 -> 358 on 2026-08-30 (T-0384): `john_holbrook_store__frame_1835.glb`,
+# the clothing store two papers place one door from Dearborn on South Water Street. One new
+# frame_storefront record, so one more committed asset and one more mesh a change to the
+# shared generator modules or to build.py would re-stale; terrain and pier_crib stay at 2.
+#
+# 359 -> 367 and 357 -> 365 on 2026-08-30 (T-0429): `blk_south_water_lasalle` took its second
+# deal — a party-line run of six along the west half of the block's South Water frontage and the
+# two yard buildings on the lots it stands on. Eight new structure assets, so eight more meshes a
+# change to the shared generator modules or to build.py would re-stale; the terrain and pier_crib
+# reaches stay at 2 each.
+#
+# 368 -> 372 and 366 -> 370 on 2026-09-03 (T-0430): `blk_south_water_franklin` took its
+# second deal — a party-line run of three on the block's one free lot of South Water
+# frontage and the privy in the yard behind them. Four new structure assets, so four more
+# meshes a change to the shared generator modules or to build.py would re-stale; the
+# terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 359,
+    "assets": 372,
     "restales": {
-        "generators/common/*.py": 359,
+        "generators/common/*.py": 372,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 357,
+        "generators/build.py": 370,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

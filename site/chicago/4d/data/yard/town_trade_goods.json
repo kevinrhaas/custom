@@ -8,20 +8,20 @@
   "coordinates": "Local East-North-Up metres from data/datum.json's origin, the same frame data/enclosures/ and data/signage/ and the sidecars' placement.local_e / local_n use.",
   "counts": {
     "frontages": 27,
-    "objects": 153,
-    "wagons": 64,
+    "objects": 155,
+    "wagons": 67,
     "wagons_by_kind": {
-      "farm_box": 26,
-      "covered": 22,
-      "cart": 16
+      "farm_box": 25,
+      "covered": 24,
+      "cart": 18
     },
-    "wagons_at_street_verges": 58,
+    "wagons_at_street_verges": 61,
     "wagons_in_yards": 3,
-    "wagon_stands_refused": 40,
+    "wagon_stands_refused": 42,
     "benches": 1,
     "sheds": 1,
-    "marked_objects": 153,
-    "distinct_marks": 73
+    "marked_objects": 155,
+    "distinct_marks": 75
   },
   "existence": {
     "value": true,
@@ -145,7 +145,7 @@
     }
   },
   "mark_rule": {
-    "note": "T-0065. Every barrel and every case on this record carries a MARK, and the mark is dealt by a rule rather than typed. The owner asked for it on 2026-08-18 — “you can add period correct names and brands and labels to things” — and the tier is his standing ruling of the same day: reconstructed, labelled as such, and bounded. What a mark may say is the whole of the invention's fence: the HOUSE'S OWN NAME, which is already in this dataset and already painted on the board over the door; a COMMODITY WORD out of the trade's own attested description (Peck advertising dry goods, hardware and groceries; Jones's grocery and provision store), so the category is the source's and only the word on the individual cask is invented; and, on a case in transit, its destination and the one port this project can name in writing. Nothing else — no trademark, no maker this town is not recorded as dealing with, no price, no date, no slogan. Read the clauses in tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166.",
+    "note": "T-0065. Every barrel and every case on this record carries a MARK, and the mark is dealt by a rule rather than typed. The owner asked for it on 2026-08-18 — “you can add period correct names and brands and labels to things” — and the tier is his standing ruling of the same day: reconstructed, labelled as such, and bounded. What a mark may say is the whole of the invention's fence: the HOUSE'S OWN NAME, which is already in this dataset and already painted on the board over the door; a COMMODITY WORD out of the trade's own attested description (Peck advertising dry goods, hardware and groceries; Jones's grocery and provision store), so the category is the source's and only the word on the individual cask is invented; and, on a case in transit, its destination and the one port this project can name in writing. Nothing else — no trademark, no maker this town is not recorded as dealing with, no price, no date, no slogan. Read the clauses in tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166. THE ONE CLASS THAT COULD NOT MEET THE SECOND CLAUSE NOW DOES: the trading house's FLOUR, SALT, POWDER, TOBACCO and HARDWARE were chosen on period plausibility because Beaubien's trading house has no attested description of its stock, and T-0596 found all five in the American Fur Company's own catalogue of goods furnished for the trade of the Chicago country (bk_afc_018). No word was added, moved or relettered on the strength of it — that catalogue is c.1828 and names a district rather than a shop, so docs/LIBERTIES.md L221 admits it as corroboration for a word already standing and refuses it as a warrant for a new one. Nothing in this town letters, models or pictures the Indian trade or the people it was with.",
     "confidence": "reconstructed",
     "stocks": {
       "auction": [
@@ -1705,6 +1705,119 @@
       ]
     },
     {
+      "structure_id": "john_holbrook_store",
+      "name": "John Holbrook's Clothing Store",
+      "trade": "store",
+      "trade_confidence": "attested",
+      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
+      "confidence": "reconstructed",
+      "facade_bearing_deg": 0.0,
+      "frontage_m": 9.14,
+      "usable_frontage_m": 8.14,
+      "standoff_m": 0.55,
+      "ground_quad_local_enu_m": [
+        [
+          726.3,
+          -15.35
+        ],
+        [
+          735.44,
+          -15.35
+        ],
+        [
+          735.44,
+          -7.73
+        ],
+        [
+          726.3,
+          -7.73
+        ]
+      ],
+      "items": [
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            727.11,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            727.73,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            728.35,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JOHN HOLBROOK"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 0,
+          "at_local_enu_m": [
+            729.64,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JOHN HOLBROOK",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 1,
+          "at_local_enu_m": [
+            729.64,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        }
+      ]
+    },
+    {
       "structure_id": "kinzie_hunter_warehouse",
       "name": "Kinzie & Hunter's Warehouse",
       "trade": "forwarding_commission_warehouse",
@@ -2465,87 +2578,6 @@
       ]
     },
     {
-      "structure_id": "philo_carpenter_log_shop",
-      "name": "Philo Carpenter's Log Drug Store",
-      "trade": "drug_store",
-      "trade_confidence": "inferred",
-      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
-      "confidence": "reconstructed",
-      "facade_bearing_deg": 0.0,
-      "frontage_m": 6.1,
-      "usable_frontage_m": 5.1,
-      "standoff_m": 0.55,
-      "ground_quad_local_enu_m": [
-        [
-          113.4,
-          -127.5
-        ],
-        [
-          119.5,
-          -127.5
-        ],
-        [
-          119.5,
-          -122.62
-        ],
-        [
-          113.4,
-          -122.62
-        ]
-      ],
-      "items": [
-        {
-          "kind": "barrel",
-          "pose": "upright",
-          "at_local_enu_m": [
-            114.21,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "LINSEED OIL"
-            ],
-            "letterform": "stencil",
-            "says": "commodity"
-          }
-        },
-        {
-          "kind": "barrel",
-          "pose": "upright",
-          "at_local_enu_m": [
-            114.83,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "TURPENTINE"
-            ],
-            "letterform": "stencil",
-            "says": "commodity"
-          }
-        },
-        {
-          "kind": "crate",
-          "tier": 0,
-          "at_local_enu_m": [
-            116.12,
-            -122.07
-          ],
-          "bearing_deg": 0.0,
-          "mark": {
-            "lines": [
-              "PHILO CARPENTER",
-              "CHICAGO"
-            ],
-            "letterform": "shipping",
-            "says": "shipping"
-          }
-        }
-      ]
-    },
-    {
       "structure_id": "pruyne_kimball_drugstore",
       "name": "Pruyne & Kimball's Drug Store",
       "trade": "drug_store",
@@ -2731,8 +2763,8 @@
       "why_goods": "a public house takes its provisions in by the barrel and puts the empties back out",
       "confidence": "reconstructed",
       "facade_bearing_deg": 0.0,
-      "frontage_m": 12.0,
-      "usable_frontage_m": 11.0,
+      "frontage_m": 9.92,
+      "usable_frontage_m": 8.92,
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
@@ -2740,11 +2772,11 @@
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -130.6
         ],
         [
-          113.4,
+          111.32,
           -122.6
         ],
         [
@@ -3686,23 +3718,6 @@
       "note": "A farm box wagon standing at the verge of Canal Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 90 m along this street's committed centreline (its traffic class is 'ordinary'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
-      "id": "town_wagon_canal_5",
-      "kind": "farm_box",
-      "stands_on": "canal",
-      "belongs_to": null,
-      "tilt": false,
-      "yoke": false,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        -171.47,
-        4.37
-      ],
-      "bearing_deg": 356.7,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A farm box wagon standing at the verge of Canal Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 90 m along this street's committed centreline (its traffic class is 'ordinary'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
       "id": "town_wagon_clinton_1",
       "kind": "cart",
       "stands_on": "clinton",
@@ -3769,6 +3784,40 @@
       "drawn_up": "along the road",
       "clear_of_track_m": 1.05,
       "note": "A farm box wagon standing at the verge of Dearborn Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 90 m along this street's committed centreline (its traffic class is 'ordinary'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
+      "id": "town_wagon_fulton_1",
+      "kind": "cart",
+      "stands_on": "fulton",
+      "belongs_to": null,
+      "tilt": false,
+      "yoke": false,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        -249.98,
+        16.3
+      ],
+      "bearing_deg": 90.3,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A two-wheeled cart standing at the verge of Fulton Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 140 m along this street's committed centreline (its traffic class is 'light'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its shafts down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
+      "id": "town_wagon_fulton_2",
+      "kind": "cart",
+      "stands_on": "fulton",
+      "belongs_to": null,
+      "tilt": false,
+      "yoke": false,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        -110.02,
+        7.52
+      ],
+      "bearing_deg": 270.3,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A two-wheeled cart standing at the verge of Fulton Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 140 m along this street's committed centreline (its traffic class is 'light'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its shafts down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
       "id": "town_wagon_kinzie_8",
@@ -4315,6 +4364,40 @@
       "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
+      "id": "town_wagon_south_water_11",
+      "kind": "covered",
+      "stands_on": "south_water",
+      "belongs_to": null,
+      "tilt": true,
+      "yoke": true,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        260.41,
+        -0.68
+      ],
+      "bearing_deg": 269.5,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
+      "id": "town_wagon_south_water_12",
+      "kind": "covered",
+      "stands_on": "south_water",
+      "belongs_to": null,
+      "tilt": true,
+      "yoke": true,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        280.41,
+        -0.5
+      ],
+      "bearing_deg": 269.5,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
       "id": "town_wagon_south_water_13",
       "kind": "covered",
       "stands_on": "south_water",
@@ -4716,6 +4799,11 @@
       "why": "EVERY OTHER PLACE IN THE TOWN, refused in writing UNTIL 2026-08-21, AND THE REFUSAL IS NOW OVERRULED. This entry used to read: 'docs/ROADMAP.md K5 (c) offers wagons/drays (documented mired on Lake St) — this project holds no source record for that, and a dray dropped into Lake Street on the strength of a roadmap parenthesis would be traffic invented to look busy … the yard whose own name is the attestation gets the wagon, and the rest wait for a source.' No source arrived. The OWNER did, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' T-0064 is that instruction and the town's wagons below are it, every one of them reconstructed and every one of them placed by a rule over the committed street lines rather than by a hand — see `town_wagon_rule` on this record and docs/LIBERTIES.md L162. What is still refused, and refused for the same reason as before, is a wagon standing IN a travelled track: a dray mired in Lake Street is a scene this project has no source for and would be a claim about the road as well as about the wagon."
     },
     {
+      "stand": "canal 5",
+      "street": "Canal Street",
+      "why": "on the left verge, it reaches into the Fulton Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway."
+    },
+    {
       "stand": "clark 5",
       "street": "Clark Street",
       "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
@@ -4846,6 +4934,11 @@
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
+      "stand": "south_water 23",
+      "street": "South Water Street",
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+    },
+    {
       "stand": "south_water 25",
       "street": "South Water Street",
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
@@ -4907,7 +5000,7 @@
     },
     {
       "stand": "*",
-      "why": "191 offered stand(s) fell more than 16 m from every committed footprint in the town and are not enumerated one by one. Past that the street is running out into the prairie: a wagon parked in the grass two blocks beyond the last house would be this record inventing a reason for it to be there, and the reason is the whole of what an invented object has to have."
+      "why": "192 offered stand(s) fell more than 16 m from every committed footprint in the town and are not enumerated one by one. Past that the street is running out into the prairie: a wagon parked in the grass two blocks beyond the last house would be this record inventing a reason for it to be there, and the reason is the whole of what an invented object has to have."
     }
   ],
   "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: the missing fourth page of the Democrat's first issue, which would carry more of the ordinances and may carry Ordinance 9's own text and its penalty; any later Chicago corporation order about obstructions, which would say what was being obstructed with; an insurance or tax description of a South Water Street lot; a traveller's account of walking the street; or the pre-fire photographs of surviving 1830s frontages actually opened at their holding institutions. WHAT THIS RECORD IS STILL SHORT OF, stated rather than left to be noticed: Ordinance 9's timber, stone and brick are not drawn at all; and nothing stands in a roadway though the ordinance is about roadways. WHAT IS NO LONGER SHORT, and it is worth being exact about what changed: this note used to end 'the wagons in this town still stand at two addresses out of hundreds', and T-0064 answered it on the owner's instruction rather than on a source. The town's wagons are spread now, and NOT ONE OF THEM IS BETTER EVIDENCED THAN IT WAS — the two the evidence reaches are still the wagon-yard's and the Green Tree's, everything else is `reconstructed` on a rule, and the rule is on this record under `town_wagon_rule` so it can be argued with. WHAT WOULD MOVE THE REST: a teamster's or a forwarding house's day-book naming what stood in the street; a Chicago corporation order about vehicles left standing, which would put a number on the thing Ordinance 9 only implies; or any dated view of a Chicago street before 1840. THE SHED IS THE FIRST ROOF THIS LAYER HAS EVER DRAWN, and it is worth saying what that does not mean: it is not a structure record, it has no archetype and it is not baked, because it is derived from a committed footprint the way a fence and a signboard are. If a second yard building is ever wanted the question to ask first is whether it belongs here or in data/structures/."

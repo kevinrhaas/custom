@@ -52,6 +52,8 @@ import json
 import math
 from pathlib import Path
 
+import enclosure_owners
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
@@ -252,15 +254,27 @@ def plot_for(block, index, lot, sid, sc, all_sidecars):
 def build_record():
     cands, sidecars = candidates()
     runs, openings, refused = [], [], []
+    links = enclosure_owners.household_links()
     for block, index, lot, sid, sc, fn in cands:
         plot, why = plot_for(block, index, lot, sid, sc, sidecars)
         if plot is None:
             refused.append(f"{block['id']} lot {index} ({sid}): {why}")
             continue
         ring = plot["corners"] + [plot["corners"][0]]
+        lot_id = f"{block['id']}_lot{index}"
         runs.append({
-            "id": f"{block['id']}_lot{index}",
+            "id": lot_id,
             "path_local_enu_m": ring,
+            # WHOSE GARDEN THIS IS (T-0637), by the same derivation the lot-line fences
+            # use — and it lands on ONE of these thirteen plots, which is a finding and not
+            # a bug in the join. Clause 4 above admits a lot on the strength of the
+            # structure record's `occupants` PROSE naming a household; the committed
+            # household index carries a real `lives_at` for twenty households in the whole
+            # town, and only Elijah Harmon's is on a lot this record reaches. The gap is
+            # the address work's (T-0514) and the stale-prose problem is T-0516's;
+            # tools/enclosure_owners.py counts both rather than papering over them.
+            "belongs_to": enclosure_owners.owners_for(
+                [(lot_id, lot["polygon"], [sid])], ring, links),
             "note": (
                 f"THE HOUSE LOT: {block['id']} lot {index} of the platted grid, holding "
                 f"{sid} ({fn}) and nothing else. IT PASSES THE RULE THIS RECORD IS BUILT "
@@ -301,6 +315,9 @@ def build_record():
 
 
 def record(runs, openings, refused):
+    owners = enclosure_owners.tally([{"runs": runs}])
+    prose = enclosure_owners.prose_report(
+        sid for run in runs for entry in run["belongs_to"] for sid in entry["structures"])
     return {
         "id": "town_dooryard_pickets",
         "name": "The town's dooryard garden pickets",
@@ -315,6 +332,7 @@ def record(runs, openings, refused):
             "data/structures/*.json",
         ],
         "belongs_to": [],
+        "belongs_to_rule": enclosure_owners.rule_block(owners, prose),
         "documented_range": {
             "from": "1835-01-01",
             "to": "1835-12-31",

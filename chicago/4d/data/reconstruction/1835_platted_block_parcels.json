@@ -599,11 +599,10 @@
         "fronts": "south_water",
         "setback_m": 1.5,
         "lots": [
-          2,
           4,
           6
         ],
-        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written. CORRECTED 2026-08-30 BY T-0430, AND NOT ONE RECORD MOVES. This entry named lots 2, 4 and 6 as the frontage its run was dealt, and the run it built stands on lot 6 alone: measured on the committed grid its three units span 77.13 m to 95.04 m along this face while lot 6 spans 71.47 m to 96.54 m, so neither lot 2 nor lot 4 carries any part of the row. The `lots` list is what the lot ledger counts, so naming a lot here RESERVES it — while tools/reconcile_665.py, which derives occupancy from what actually stands rather than from what a recipe claims, went on counting lot 2 free. Two files disagreeing about the same ground, and the disagreement was invisible because no second deal had ever asked this block for a lot. LOT 4 STAYS on the list and lot 2 comes off it, which is the distinction the two lots turned out to carry: this parcel's privy stands in lot 4's yard, so lot 4 is ground this parcel built on and the ledger is right to hold it, whereas nothing this parcel wrote has ever stood on lot 2. The placement is untouched: the strip's east end is lot 6's own east side line either way, the run is anchored 1.5 m clear of it and packs west, and `tools/generate_block_infill.py --check` re-derives all seven of this entry's records unchanged.",
         "runs": "One run of three, packed west from the east end of the block's own frontage at Wells Street, 1.5 m clear of the side line there. The Temple Building holds lot 0 at the Franklin corner and J. H. Kinzie's forwarding store laps the frontage in the middle of the face, so the run takes the eastern stretch and the documented pair keep the western — the gap between them is frontage this parcel was not dealt, not a break anybody chose. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged."
       }
     },
@@ -767,7 +766,7 @@
         "D4": 1,
         "D5": 1
       },
-      "arrangement_note": "The third block of the South Water row, bounded by South Water, Clark, Lake and LaSalle, and THE FIRST BLOCK THIS LANE HAS TAKEN THAT ARRIVES WITH A DOCUMENTED ROOF ON BOTH OF ITS FACES. The two before it were shaped by a business front on one side and an empty back street on the other; this one is not. Lot 6 — the South Water and Clark corner — is held by the Chicago Democrat's office, and lot 5, on the Lake face, by Thomas Church's store, both seated by tools/plat_occupancy.py rather than authored here. The schedule's six free lots are therefore 0, 2 and 4 on South Water and 1, 3 and 7 on Lake, and this parcel builds on five of them. What is argued and not found, and it is the T-A8/T-A9 frontage argument carried one block east rather than restated: South Water is still the valuable face — it is the river street and the module's own street hierarchy ranks it above Lake — so the three best dwellings the schedule deals take its three free lots and the two meanest take Lake. Within each face the better roof stands nearer CLARK, because on this block Clark is the town-centre end and LaSalle the end running back toward the wharves; that is the same rule T-A9 applied with its own ends reversed (there LaSalle was the town-centre end and Wells the wharf end), which is the point of stating it as a direction rather than as a street name. So on South Water the deep-plan cottage takes lot 4, the two-room lot 2 and the one-room lot 0, and on Lake the log cabin takes lot 7 against the plank shanty on lot 3. THE MEASUREMENT THIS BLOCK OWES ITS READER IS ON THE LAKE FACE, and it is the reason the shanty on lot 3 stands where it does. Church's store is seated on lot 5 by T-A7's first test — 59.3 m² of its 92.9 m² is there against 33.6 m² on lot 3 — but 22.1 m² of the lot 3 lap falls INSIDE that lot's buildable inset, so a lot the schedule reads as free carries a documented building across its Clark-end frontage corner. That is the third and by far the largest instance of the case T-A7 measured and deliberately declined to call occupancy (J. H. Kinzie's store at 9.7 m² and none of it buildable; recon_1835_west_018 at 11.9 m²), and it is 2.4 % of lot 3's buildable area, so the lot is still worth a roof. It is not free everywhere, though, and the parcel does not pretend otherwise: the shanty is offset WEST of its lot centre rather than east, away from the store, and clears it by 7.56 m against a 3 m separation gate. That 7.56 m is also the closest any roof of this parcel comes to anything already standing; the deep-plan cottage is 20.55 m from the Democrat's office and every other new roof is 25 m or better. The stable takes the yard of lot 3, at the alley end and 25.10 m from the store at the Lake frontage — the quiet street's far end once the Lake and LaSalle corner is left open, which is the same where-a-town-keeps-a-large-animal-shelter typology the five blocks before this one applied, tested here against a sixth geometry rather than assumed. The privy stands behind the deep-plan cottage on lot 4, at the opposite end of the alley from the stable and on the other side of it, so the two yard buildings share no alley frontage. None of it is evidence about this block, and no lot is numbered. THE LOG UNIT JOINS THE ROW, AND THE FACE RULE THAT KEPT IT OUT IS RETIRED (T-0022, legacy K29). This block's arrangement above sent the meanest dwelling the schedule dealt it to the back street on the reasoning that South Water is the business front. Measured, that was backwards: it left 15 invented buildings on South Water's line with NOT ONE of them log, against a documented record for the same line carrying Hogan's log store, and against the only picture of this row — “South Water Street in 1834”, the plate this recipe already cites for the party-line treatment itself — which draws it as “roughly ten one-storey LOG AND FRAME buildings shoulder to shoulder facing the river”. The half of that sentence about shape was taken and the half about fabric was not. So the log dwelling and the frame cottage below CHANGE PLACES. The D1 log dwelling comes off Lake lot 7 and takes the west end of the South Water run beside the D4 cottage; the D3 one-room cottage takes the Lake lot the cabin held, at the cabin's own 5.5 m setback and 1.5 m offset. This is the block whose Lake face already carries Thomas Church's store, so the swap also takes the meanest roof off the face that had the least room for it. NOTHING ELSE MOVES AND NOTHING IS ADDED: both records keep the id, family, footprint and every form value they already had — the slots keep their positions in the list precisely so the ids do not shift — the block's roof count, family mix and open lot are the ones the schedule dealt, and no household is re-homed. The schedule was never the fault; the arrangement was. tools/measure_frontage_fabric.py holds the result.",
+      "arrangement_note": "The third block of the South Water row, bounded by South Water, Clark, Lake and LaSalle, and THE FIRST BLOCK THIS LANE HAS TAKEN THAT ARRIVES WITH A DOCUMENTED ROOF ON BOTH OF ITS FACES. The two before it were shaped by a business front on one side and an empty back street on the other; this one is not. Lot 6 — the South Water and Clark corner — is held by the Chicago Democrat's office, and lot 5, on the Lake face, by Thomas Church's store, both seated by tools/plat_occupancy.py rather than authored here. The schedule's six free lots are therefore 0, 2 and 4 on South Water and 1, 3 and 7 on Lake, and this parcel builds on five of them. What is argued and not found, and it is the T-A8/T-A9 frontage argument carried one block east rather than restated: South Water is still the valuable face — it is the river street and the module's own street hierarchy ranks it above Lake — so the three best dwellings the schedule deals take its three free lots and the two meanest take Lake. Within each face the better roof stands nearer CLARK, because on this block Clark is the town-centre end and LaSalle the end running back toward the wharves; that is the same rule T-A9 applied with its own ends reversed (there LaSalle was the town-centre end and Wells the wharf end), which is the point of stating it as a direction rather than as a street name. So on South Water the deep-plan cottage takes lot 4, the two-room lot 2 and the one-room lot 0, and on Lake the log cabin takes lot 7 against the plank shanty on lot 3. THE MEASUREMENT THIS BLOCK OWES ITS READER IS ON THE LAKE FACE, and it is the reason the shanty on lot 3 stands where it does. Church's store is seated on lot 5 by T-A7's first test — 59.3 m² of its 92.9 m² is there against 33.6 m² on lot 3 — but 22.1 m² of the lot 3 lap falls INSIDE that lot's buildable inset, so a lot the schedule reads as free carries a documented building across its Clark-end frontage corner. That is the third and by far the largest instance of the case T-A7 measured and deliberately declined to call occupancy (J. H. Kinzie's store at 9.7 m² and none of it buildable; recon_1835_west_018 at 11.9 m²), and it is 2.4 % of lot 3's buildable area, so the lot is still worth a roof. It is not free everywhere, though, and the parcel does not pretend otherwise: the shanty is offset WEST of its lot centre rather than east, away from the store, and clears it by 7.56 m against a 3 m separation gate. That 7.56 m is also the closest any roof of this parcel comes to anything already standing; the deep-plan cottage is 20.55 m from the Democrat's office and every other new roof is 25 m or better. The stable takes the yard of lot 3, at the alley end and 25.10 m from the store at the Lake frontage — the quiet street's far end once the Lake and LaSalle corner is left open, which is the same where-a-town-keeps-a-large-animal-shelter typology the five blocks before this one applied, tested here against a sixth geometry rather than assumed. The privy stands behind the deep-plan cottage on lot 4, at the opposite end of the alley from the stable and on the other side of it, so the two yard buildings share no alley frontage. None of it is evidence about this block, and no lot is numbered. THE LOG UNIT JOINS THE ROW, AND THE FACE RULE THAT KEPT IT OUT IS RETIRED (T-0022, legacy K29). This block's arrangement above sent the meanest dwelling the schedule dealt it to the back street on the reasoning that South Water is the business front. Measured, that was backwards: it left 15 invented buildings on South Water's line with NOT ONE of them log, against a documented record for the same line carrying Hogan's log store, and against the only picture of this row — “South Water Street in 1834”, the plate this recipe already cites for the party-line treatment itself — which draws it as “roughly ten one-storey LOG AND FRAME buildings shoulder to shoulder facing the river”. The half of that sentence about shape was taken and the half about fabric was not. So the log dwelling and the frame cottage below CHANGE PLACES. The D1 log dwelling comes off Lake lot 7 and takes the west end of the South Water run beside the D4 cottage; the D3 one-room cottage takes the Lake lot the cabin held, at the cabin's own 5.5 m setback and 1.5 m offset. This is the block whose Lake face already carries Thomas Church's store, so the swap also takes the meanest roof off the face that had the least room for it. NOTHING ELSE MOVES AND NOTHING IS ADDED: both records keep the id, family, footprint and every form value they already had — the slots keep their positions in the list precisely so the ids do not shift — the block's roof count, family mix and open lot are the ones the schedule dealt, and no household is re-homed. The schedule was never the fault; the arrangement was. tools/measure_frontage_fabric.py holds the result. CORRECTED 2026-08-30, T-0429, and it is a correction to what this entry DECLARED rather than to anything it built. This entry's frontage named lots 0, 2 and 4; the run it anchors stands on lot 4 alone, measured on the committed block face. Nothing in the schedule claim above moves, no slot changes, no record changes id, family, footprint, form or position, and the run's own gate — three units against a ceiling of three per lot of frontage — is met on the one lot it actually occupies. What the over-declaration did was hide this block's own headroom from the only file that could spend it, which is why the second deal below could not be dealt until it was corrected.",
       "open_lots": [
         {
           "lot": 1,
@@ -845,12 +844,10 @@
         "fronts": "south_water",
         "setback_m": 1.5,
         "lots": [
-          0,
-          2,
           4
         ],
         "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
-        "runs": "One run of three on lots 0-2-4, packed west from their east end. The Chicago Democrat's office holds lot 6 at the Clark corner, so the run stops one lot short of it and the frontage between them is the office's own. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged."
+        "runs": "One run of three on lot 4, packed west from its east end. The Chicago Democrat's office holds lot 6 at the Clark corner, so the run stops one lot short of it and the frontage between them is the office's own. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged. THE LOTS THIS ENTRY DECLARES WERE CORRECTED ON 2026-08-30 BY T-0429, from 0-2-4 to 4, and no roof moved a millimetre: the run is anchored `corner: east` at the east end of its own strip, which is lot 4's east line under either reading, and its three units measure 54.90 m to 72.83 m along the face against lot 4's own 48.90 m to 74.33 m. It never reached lots 0 or 2. Declaring them was a claim the geometry refutes, and it cost this block eight roofs: `tools/plat_occupancy.py` reads occupancy off FOOTPRINTS, so the schedule has scored lots 0, 1 and 2 free ever since, while `check_block`'s lot classes read the recipe and called 0 and 2 built on. Two files disagreed about the same ground and the recipe was the one that was wrong."
       }
     },
     {
@@ -1836,6 +1833,224 @@
           "fronts": "washington",
           "setback_m": 5.0,
           "lateral_m": -4.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_south_water_lasalle",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_lasalle_second_deal",
+      "claimed": "2026-08-30",
+      "seq_start": 8,
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "lasalle",
+        "east": "clark"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 9,
+        "free_lots": 3,
+        "headroom": 8,
+        "dealt_roofs": 8,
+        "dealt_principal": 6,
+        "dealt_ancillary": 2,
+        "principal": 6,
+        "ancillary": 2
+      },
+      "families": {
+        "C3": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D6": 1,
+        "D7": 1,
+        "A1": 1,
+        "A2": 1
+      },
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "The Lake-and-LaSalle corner, left open, and left open for the same reading the first deal gave it: Lake is this block's back street and LaSalle the end that runs back west toward the lumber yards and the wharves, so the corner where the two meet is the least attractive residential lot the block has. This deal takes the two free lots on the river face and does not touch it. It is also what keeps the block off capacity — the standard is explicit that a block still keeps a lot open, that capacity is a ceiling rather than a target, and that a block whose every lot is built is a claim nobody made."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "adopts_face_line": [
+          "recon_1835_blk_south_water_lasalle_d5_01",
+          "recon_1835_blk_south_water_lasalle_d4_02",
+          "recon_1835_blk_south_water_lasalle_d1_04"
+        ],
+        "lots": [
+          0,
+          2
+        ],
+        "why": "T-0429, and the ground it stands on was unblocked by an owner's ruling rather than found. T-0143 and T-0188 each refused to tighten a party-line row against a street line that might move, and T-0317 inherited the refusal; T-0009 closed it on 2026-08-29 under the owner's ruling that THE DRAWN SOUTH WATER LINE DOES NOT MOVE — the corridor was re-derived from committed control and data/streets/1835.json was not touched. That refusal is what had held this reach, and it is discharged. THE FACE IS THE BLOCK'S OWN, MEASURED RATHER THAN ASSUMED: tools/measure_street_frontage.py reads South Water and Lake as the two faces of this block, the committed street hierarchy in data/streets/1835.json grades both `principal`, and South Water is the river street the owner's reference plate draws — 'South Water Street in 1834', roughly ten one-storey log and frame buildings shoulder to shoulder facing the river. This run is the west half of that row on this block. THE LINE IS NOT AUTHORED AT ALL, which is the difference between this run and the first deal's: the face is already built, so the run declares `adopts_face_line` and the 1.5 m is MEASURED off the three units the first deal stands on the same face — 1.4998, 1.4996 and 1.5004 m, a 0.8 mm spread — under T-0104's clause. A street wall is one wall, and this row joins one rather than opening one. THE CORNER CLAUSE BINDS AND THE FABRIC RULE AGREES WITH IT, which is the parcel's one new reading. Lot 0 is the block's free CORNER lot, at South Water and LaSalle, and the core density standard's third clause says a corner lot BUILDS TO THE CORNER: the run is anchored WEST, 1.5 m clear of the corner margin, and chains east on shared party walls. The frontage-fabric rule (T-0022) independently says a log dwelling takes the WEST END of a principal-street row where the block was dealt one, and this block was dealt a D1. On blk_randolph_market (T-0317) the corner clause and the end rule pointed in opposite directions and the parcel had to choose; here the corner clause and the fabric rule name the SAME unit, so the log cabin takes the corner and nothing has to be traded away. NO COORDINATE IS AUTHORED: the line, its bearing, the strip's two ends and the party walls between units are all read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the lots this run was dealt are named here so the ledger can count them rather than shared out one per unit.",
+        "runs": "One run of six on lots 0 and 2, anchored 1.5 m clear of the South Water and LaSalle corner at the west end of lot 0's own frontage and chaining EAST from it on five shared party walls. The older log cabin takes the corner itself; the rough plank dwelling, the one-room frame cottage, the one-and-a-half-storey cottage and the small two-storey frame house follow it eastward in that order; the narrow two-storey store closes the run. It occupies 34.88 m of the strip's 47.20 m of buildable frontage — the two lots measure 50.20 m end to end on the committed block boundary and the plat module's 1.5 m margin is kept clear at each end. The ceiling the standard measures is three units to a lot and this run spends all six it is entitled to. The 12.32 m left over are at the EAST end, between this run and the first deal's, which begins 6.84 m further east again at 54.90 m: that gap is frontage this parcel was not dealt, not a hole in a row, and a run is one continuous stretch of wall while the ground between two runs is neither's."
+      },
+      "arrangement_note": "THE SECOND DEAL ON THIS BLOCK, and the first of the four South Water blocks T-0009 unblocked (T-0429, from T-0420). WHAT IS BUILT: six principal roofs shoulder to shoulder along the whole west half of this block's river frontage — the longest single party-line run this programme has built — and the two yard buildings that belong to the lots they stand on. WHY THIS BLOCK COULD NOT BE DEALT UNTIL NOW, and there were two reasons rather than one. The first is the street line: T-0143 and T-0188 refused to tighten a row against a line that might move and T-0317 inherited the refusal, until T-0009 ruled on 2026-08-29 that the drawn South Water line does not move. The second was inside this recipe and nobody had measured it — the first deal declared its run's frontage as lots 0, 2 and 4 and the run stands on lot 4 alone, so `check_block`'s lot classes read lots 0 and 2 as built on while `tools/plat_occupancy.py`, which measures footprints, read them as free and the schedule went on dealing this block eight roofs it had no declared ground for. The correction is recorded on the first entry above; it moved no roof and changed no record. THE ROW'S ORDER, and which rule fixed each part of it. The log cabin takes the west end under TWO rules that here agree: the corner clause of the core density standard (a corner lot builds to the corner, and lot 0 is this block's free corner at South Water and LaSalle) and the frontage-fabric rule of T-0022 (a log dwelling takes the west end of a principal-street row where the block was dealt one, so the row reads log and frame as the owner's plate draws it). The four dwellings east of it are graded by the END RULE under its committed criterion, the WALK to the Dearborn Street drawbridge along the committed centrelines: worst to best running east, the rough plank dwelling, the one-room frame cottage, the one-and-a-half-storey cottage and the small two-storey frame house, which is also the order of their own storeys and footprint bands in the crosswalk rather than a taste. NO SOURCE SAYS ANY OF THIS and every record repeats so in its own position note. THE STORE IS NOT IN THAT GRADING, because T-0024 settled that the face rule ranks dwellings and a non-dwelling is placed by its FUNCTION: it takes the block's better face, which the committed hierarchy grades `principal` on this side, and it stands ON the street line rather than back at a dwelling's setback, which the whole run does. Its place at the east end of the run is the functional half of the same clause — it is the end of the block a stranger reaches first coming from the town centre at Clark and the Dearborn crossing beyond it, which is the direction this block's first deal already named. THE TWO YARD BUILDINGS serve the two lots the run stands on and no others: the stable in lot 0's yard at the alley, the barn or carriage shed in lot 2's, on opposite sides of their lots so they share no alley frontage. LOT 1 STAYS OPEN and this block does not reach capacity. NO ROOF IS ADDED TO THE TOWN: the eight come out of `south_plat_beyond_committed_control`, the south district's balance waiting on street control, and every marginal still sums to the programme's total. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS: that any building stood on this ground, that there were six of them, that they stood shoulder to shoulder, that a store closed the run and that a log cabin took the corner are all inventions of this programme. The side lot lines the row crosses between its own units are conjectural in every record this generator has ever written; the block face it stands on is committed geometry derived from the street centrelines, which is the unit the standard counts in.",
+      "slots": [
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "corner": "west",
+            "clear_m": 10.75
+          }
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_south_water_lasalle_d1_08"
+          }
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_south_water_lasalle_d2_09"
+          }
+        },
+        {
+          "family": "D6",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_south_water_lasalle_d3_10"
+          }
+        },
+        {
+          "family": "D7",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_south_water_lasalle_d6_11"
+          }
+        },
+        {
+          "family": "C3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_south_water_lasalle_d7_12"
+          }
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": 5.0
+        },
+        {
+          "family": "A2",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": -5.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_south_water_franklin",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_franklin_second_deal",
+      "claimed": "2026-08-30",
+      "seq_start": 8,
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "franklin",
+        "east": "wells"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 11,
+        "free_lots": 2,
+        "headroom": 4,
+        "dealt_roofs": 4,
+        "dealt_principal": 3,
+        "dealt_ancillary": 1,
+        "principal": 3,
+        "ancillary": 1
+      },
+      "families": {
+        "D4": 1,
+        "D5": 1,
+        "C2": 1,
+        "A3": 1
+      },
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "The Lake-and-Franklin corner, open since the first deal and untouched by this one. Franklin is the lumber-and-wharf end of this block and Lake is its back street, so the corner where the two meet is the least attractive residential lot the block has — the reading the first deal made of it, which this deal has no cause to overturn because it was dealt no roof that wants a back-street corner. It is the lot this block keeps open, and the core density standard is explicit that capacity is a ceiling and not a target: a block whose every lot is built on is a claim about 1835 that nobody made."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          2
+        ],
+        "why": "T-0430, the second deal on this block, and the SECOND of the four South Water blocks T-0009's ruling unblocked — blk_south_water_lasalle took its own second deal first, on 2026-08-30 under T-0429, and the reading below is that run's reading applied to different ground rather than a new one. THE FACE IS NOT RE-ARGUED: this block's north face is South Water Street, the town's business front, and the committed hierarchy in data/streets/1835.json grades it `principal`. What was in doubt until that ruling is whether the LINE would move — T-0143 and T-0188 each refused to tighten a party-line row against a street line that might, and T-0317 inherited the refusal. T-0009 closed it: the corridor was re-derived from committed control (`recentred`, +8.58 m) and data/streets/1835.json was not touched, so the drawn line does not move. THE ROW STILL STANDS ON THE BLOCK FACE AND NOT ON THAT CORRIDOR, which is the distinction the two refusals were protecting: the face is committed geometry read from data/traces/vectors/thompson_lots.json, and the run takes its line, its bearing and the end it packs back from off that boundary. The 8.58 m the corridor moved is therefore not in this placement at all, and if the strip between the corridor and the block faces is later resolved (T-0419) these roofs do not move with it. THE LOT IS THE ONE THE SCHEDULE COUNTS FREE, AND IT TOOK A LEDGER REPAIR TO REACH IT. tools/reconcile_665.py derives this block at 11 standing roofs, 2 free lots and 4 of headroom; the free lots are 1 and 2, read by tools/plat_occupancy.py's `exclusive_lots` from what actually stands. Lot 1 is the Lake-and-Franklin corner on the back tier and stays open. Lot 2 is this block's one free lot of business frontage — and the first entry above had RESERVED it by naming lots 2, 4 and 6 as the frontage its run was dealt, when the run it built stands on lot 6 alone. That entry now names lots 4 and 6 — lot 4 because its own privy stands in that lot's yard, lot 6 because that is where its roofs are — and lot 2, which nothing it wrote has ever stood on, comes off the list. The correction moves no record and is set out in its own `why`. THE CORNER CLAUSE DOES NOT BIND HERE and is not invoked: lot 0 is the Franklin corner and lot 6 the Wells corner, both built on, so lot 2 is an interior lot of this face and there is no corner for a run to be built to. THE END RULE IS READ RATHER THAN ASSERTED — tools/measure_end_rule.py reads this face at a spread of 73.22 m and a unit step of 6.07 m under the walked criterion, which is above the 6.00 m floor, so a grading is admissible here; the walk from lot 2's frontage to the Dearborn drawbridge's south abutment is 453.19 m against lot 4's 428.78 m and lot 6's 404.36 m, so the better end of this face, and of this lot, is the EAST. The run is anchored there and packs west. NO COORDINATE IS AUTHORED: the line, its bearing, lot 2's own stretch of it and the end the run packs back from are all read from the committed block boundary, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage. The row adopts the setback the three roofs already standing on this face were built to, so the street wall of blk_south_water_franklin stays one wall.",
+        "runs": "One run of three on lot 2, anchored 1.5 m clear of the lot's east side line and chaining WEST from it on two shared party walls. The two-room frame cottage takes the east end — the end of the face nearest the Dearborn drawbridge — the deep-plan frame cottage stands next to it, and the store-residence closes the run at the west end. The ceiling the core density standard measures is three units to a lot and this run spends all three; what is left over is at the WEST end of the lot, which is where the ground is least useful to it: J. H. Kinzie's forwarding store laps this face from lot 0 and its east wall reads 23.46 m along, so a run packed the other way would have had to break around a documented store that stands proud of the platted line. Packed east, the run's west wall stands clear of that store by more than the three metres the separation gate requires and the gap between them is frontage this parcel was not dealt, not a break anybody chose — the same sentence the first deal wrote about the gap on its own side of the block, and for the same reason."
+      },
+      "arrangement_note": "THE SECOND DEAL ON THIS BLOCK, and the second of the four South Water blocks T-0365's successor split into one ticket each (T-0429..T-0432) to reach the ground; blk_south_water_lasalle was the first, and its own second deal stands committed. The first deal (2026-08-15, the entry above) built seven roofs under the rule that allowed one principal roof per platted lot; T-0079 retired that ceiling — three party-line units per lot, measured at the smallest lot on the committed grid — and this block has stood below the new one ever since, at 11 standing roofs against a capacity of 31, with two free lots and four roofs of headroom. Rewriting the first entry to cover both deals would restate an August schedule under numbers that were not true in August, so the second deal is its own entry against its own headroom, numbered from `seq_start` so the two cannot collide on a record id. WHAT IS BUILT: three principal roofs shoulder to shoulder on lot 2, this block's one free lot of South Water frontage, and the privy that belongs to the lot they stand on. WHY THIS GROUND IS WORKABLE NOW: it is the refusal T-0009 discharged. Four of the five blocks the schedule still lists `open` front this reach of South Water, and until 2026-08-29 every one of them was held by T-0143's and T-0188's refusal to tighten a row against a street line that might move. The corridor was re-derived rather than redrawn, so the line did not move and the refusal is spent. blk_south_water_market is NOT one of the four and is not in this family: T-0183 measured it as a wedge the South Branch pinches to 2.8 m of depth at Market, and what to do with that wedge is with the owner. THE THREE ROOFS ARE ORDERED BY TWO DIFFERENT RULES, AND THE PARCEL SAYS WHICH IS WHICH. The two dwellings are graded between themselves by the end rule: the crosswalk ranks the two-room frame cottage 1 and the deep-plan frame cottage 3, so the better of the two takes the east end of the run, the end nearer the town's only crossing of the main stem in July 1835. THE STORE IS NOT GRADED BY IT. T-0024 settled that the face rule ranks DWELLINGS and a non-dwelling is placed by its own function, and the function clauses are both satisfied before the run is ordered: a store may not take a light street and this one takes the town's business front, and a commercial roof stands ON the street line rather than at a dwelling's typology setback, which a party-line run does by construction. WHERE ALONG THE RUN IT STANDS IS NOT DECIDED BY ANY COMMITTED RULE, and this parcel does not invent one: the store-residence takes the west end because the two dwellings' own grading fills the east, and the within-run order of a store against a dwelling is recorded here as ARBITRARY rather than dressed as a reading. That it ends up the unit nearest J. H. Kinzie's forwarding store is a consequence of the arithmetic and not a criterion — saying otherwise would be T-A15's refused extension coming back in through the door marked function. THAT A STORE-RESIDENCE MAY STAND SHOULDER TO SHOULDER WITH TWO COTTAGES is the frontage-fabric rule this file already states, read here on a principal street where it binds: South Water is in the committed hierarchy's principal class, so the dwelling families are dealt their party-line row without being ranked off the business front, and the row reads as the one picture of this street draws it. LOT 1 STAYS OPEN and the block is not built out. LOT 2 STOPS BEING RESERVED: the first entry named lots 2, 4 and 6 as frontage its run was dealt and the run stands on lot 6 alone, so the ledger was holding a lot the ground had never taken — corrected in that entry, which keeps lot 4 because its privy is in that lot's yard and gives up lot 2, moving no record. NO ROOF IS ADDED TO THE TOWN: the four come out of `south_plat_beyond_committed_control`, the south district's balance waiting on street control past State and Washington, and every marginal still sums to the programme's total. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS: that any building stood on this lot in July 1835, that there were three of them, that they stood shoulder to shoulder, that one of them was a shop, and that a privy stood in the yard behind them are all inventions of this programme, bounded by the reconstruction spec and graded at the bottom tier in every record it writes. The side lot lines the row crosses between its own units are conjectural; the block face it stands on is not.",
+      "slots": [
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_franklin_d4_08"
+          }
+        },
+        {
+          "family": "C2",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_franklin_d5_09"
+          }
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": -5.0
         }
       ]
     }

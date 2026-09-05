@@ -104,10 +104,29 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
+
+# The archetypes' own set-out, read without Blender. `facade_openings` is the one
+# place that answers WHERE THE OPENINGS ARE, and every rectangle it returns is
+# computed by the same function the mesh is built from — see its module docstring
+# and T-0459.
+sys.path.insert(0, str(ROOT / "generators"))
+from archetypes import facade_openings  # noqa: E402
+from archetypes.frame_storefront_params import from_phase as _storefront_params  # noqa: E402
+from archetypes.log_dwelling_params import from_phase as _log_dwelling_params  # noqa: E402
+from archetypes.outbuilding_params import from_phase as _outbuilding_params  # noqa: E402
+
+# The scene, and the phase of each record that stands on it.
+TARGET_DATE = "1835-07-01"
+_RESOLVERS = {
+    "frame_storefront": _storefront_params,
+    "log_dwelling": _log_dwelling_params,
+    "outbuilding": _outbuilding_params,
+}
 SIDECARS = DATA / "sidecars" / "1835"
 STRUCTURES = DATA / "structures"
 STREETS = DATA / "streets" / "1835.json"
@@ -451,6 +470,32 @@ SIGN_WORDING = {
             "this building was; the house name is the one Mark Beaubien's successors "
             "christened it with in 1834. A coffee house of these years lodged and fed "
             "people, and the record's own note says so. Reconstructed."
+        ),
+    },
+    "john_holbrook_store": {
+        "name": "JOHN HOLBROOK", "trade": "Clothing, Boots & Shoes",
+        "trade_short": "Clothing & Boots", "place": "Wholesale & Retail",
+        "identity": "Holbrook", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_1835", "chicago_american_1835"],
+        "why": (
+            "THE WORDING IS THE ADVERTISEMENT'S OWN HEAD, AND TWO PAPERS SET IT. The "
+            "Chicago Democrat of 1835-06-10 heads the column \"[C]L[O]T[H]ING, BOOTS & "
+            "SHOES, WHOLESALE AND RETAIL\" and signs it \"JOHN HOLBROOK\" (page 3 "
+            "column 2, claim chicago_democrat_1835_06_10#c010); the Chicago American of "
+            "1835-06-13 heads the same card \"[H]at[s], Clothing, Boo[ts and Shoes \u2026] "
+            "WHOLESALE & [RETAIL]\" (claim chicago_american_1835_06_13#c012). Man, then "
+            "trade, which is the register T-0130 fixed this table in, and the words are "
+            "his own rather than this project's label for them. THE THIRD LINE IS THE "
+            "TERMS AND NOT THE STREET: both printings set WHOLESALE AND RETAIL in their "
+            "own head, and it is the thing a trader passing the door needed to know. THE "
+            "COUNT OF DOORS IS DELIBERATELY NOT ON THE BOARD \u2014 'one door from "
+            "Dearborn street' is how a newspaper reader FINDS the shop, and a customer "
+            "standing in front of the board has already found it. THE READING IS "
+            "TRANSCRIPTION-MEDIATED, flagged under the owner's ruling of 2026-08-28, with "
+            "the brackets left in. WHAT KEEPS THIS `inferred` RATHER THAN BETTER is that a "
+            "transcription is not a page image; UPGRADE IT TO `attested` when either "
+            "paper's scans are committed as a source record and this note can cite the "
+            "plate."
         ),
     },
     "frederick_thomas_shop": {
@@ -923,6 +968,34 @@ NEIGHBOUR_M = 40.0
 STREET_REACH_M = 22.0
 FRONTAGE_DOMINANCE = 0.5
 
+# --- THE OPENINGS A FLAT BOARD MUST STAY OFF (T-0459) ------------------------
+#
+# The owner reported from the dev preview that boards sit over doors and over
+# windows on walls with blank face going spare — the Sauganash Hotel's is the one
+# in the screenshot, over a window bay — and a sweep found it was not some of them
+# but ALL TWENTY of the flat-mounted boards. The cause was one missing input: this
+# file mentions doors sixteen times, every one of them trade reasoning ("an office
+# is a door among doors"), and never once as geometry. It reasoned carefully about
+# WHICH door a board belonged beside and had no idea where any of them were.
+#
+# The owner allowed three moves, in this order of preference, and this is that
+# order: MOVE the board onto blank face on the same wall; RESHAPE it — the same
+# copy on a longer, narrower board, since nothing in the sources fixes a sign's
+# aspect and a signwriter letters what fits; or SHRINK it onto the door front,
+# which is what a modest office took anyway. Nothing here changes a word of the
+# copy: the rectangle moves, and the lettering scales with it.
+SIGN_CLEAR_M = 0.10       # blank face that has to show around a board, every side
+SIGN_END_CLEAR_M = 0.20   # ...and at the ends of the wall itself
+RESHAPE_H_FLOOR_M = 0.34  # narrowest a reshaped board may be lettered on
+RESHAPE_H_STEP_M = 0.02
+RESHAPE_MAX_ASPECT = 9.0  # a board longer than this is a batten, not a sign
+WALL_CAP_CLEAR_M = 0.09   # the rain cap `signage.js` stands over a wall board
+DOOR_KINDS = ("door", "shop_door")
+DOOR_BOARD_MARGIN_M = 0.07   # stile left showing either side of a board on a leaf
+DOOR_BOARD_DROP_M = 0.10     # ...and below the head it hangs under
+DOOR_BOARD_H_MIN_M = 0.20
+DOOR_BOARD_PROUD_M = 0.06    # clear of the leaf and its battens, not of the wall
+
 # Clause 5 and the log_dwelling default, mirrored: `wall_height_m` is optional on a
 # record and the archetype resolves 2.5 m for one storey, 4.6 m for more. A board
 # hung off a wall this project never measured is hung off the same number the wall
@@ -999,6 +1072,221 @@ def _nearest_on_path(pt, path) -> tuple[float, tuple[float, float]]:
         if d < best[0]:
             best = (d, (fx, fy))
     return best
+
+
+def _front_wall(sid: str) -> dict | None:
+    """The front elevation of `sid` and everything standing on it, or None.
+
+    None where the archetype has no reader in `facade_openings` — which is a
+    different answer from "this wall is blank", and the caller treats it as one: it
+    refuses to hang a board flat on a wall nobody has read rather than guessing.
+    """
+    path = STRUCTURES / f"{sid}.json"
+    if not path.exists():
+        return None
+    st = _load(path)
+    arch = st.get("archetype")
+    if arch not in _RESOLVERS:
+        return None
+    for ph in st.get("phases", []):
+        rng = ph.get("documented_range") or {}
+        if rng.get("from", "") <= TARGET_DATE <= rng.get("to", "9999-99-99"):
+            try:
+                return facade_openings.front_wall(arch, _RESOLVERS[arch](ph, st))
+            except Exception:      # noqa: BLE001 — a record the param check owns
+                return None
+    return None
+
+
+def _fits(wall: dict, u: float, w: float, z0: float, z1: float) -> bool:
+    """Is a board of this extent standing clear of everything on the wall?"""
+    lo = wall["u0"] + SIGN_END_CLEAR_M
+    hi = wall["u1"] - SIGN_END_CLEAR_M
+    if u - w / 2 < lo - 1e-9 or u + w / 2 > hi + 1e-9:
+        return False
+    return not facade_openings.overlaps(
+        wall, u - w / 2 - SIGN_CLEAR_M, u + w / 2 + SIGN_CLEAR_M,
+        z0 - SIGN_CLEAR_M, z1 + SIGN_CLEAR_M)
+
+
+def _nearest_clear(wall: dict, want_u: float, w: float,
+                   z0: float, z1: float) -> float | None:
+    """The centre nearest `want_u` at which a board of width `w` stands clear at
+    this band, or None if the band is full.
+
+    A wall is a rectangle with rectangles cut out of it, so "is there room" is one
+    interval subtraction in `u`. Nearest rather than widest: a name belongs as close
+    to the middle of its own front as the openings allow, and sliding it to the far
+    end of the building to find the largest gap would answer the wrong question.
+    """
+    spans = facade_openings.clear_spans(wall, z0 - SIGN_CLEAR_M, z1 + SIGN_CLEAR_M,
+                                        SIGN_CLEAR_M)
+    lo = wall["u0"] + SIGN_END_CLEAR_M
+    hi = wall["u1"] - SIGN_END_CLEAR_M
+    best = None
+    for a, c in spans:
+        a, c = max(a, lo), min(c, hi)
+        if c - a < w - 1e-9:
+            continue
+        u = _clamp(want_u, a + w / 2, c - w / 2)
+        if best is None or abs(u - want_u) < abs(best - want_u):
+            best = u
+    return best
+
+
+def _band_top(mounting: str, h: float, wall_height: float, head: float) -> float:
+    """The top of a flat board of height `h`, by its mounting.
+
+    A wall board hangs at the eave-clear height a board hangs at; a PAINTED NAME
+    goes above the door head, at `BAND_FOOT_M`, dropping back under the eave only
+    where the wall has not the height for both. Both rules are the ones this file
+    already kept — they are gathered here because reshaping changes `h`, and a top
+    computed once from the old height would float the new board.
+    """
+    if mounting != "facade_painted":
+        return head
+    top = min(BAND_FOOT_M + h, wall_height - BAND_EAVE_CLEAR_M)
+    return max(top, h + 0.4)
+
+
+def _has_flat_face(wall: dict, w_min: float) -> bool:
+    """Could a board `w_min` wide be fixed flat on this wall at ANY height?
+
+    Asked by the mounting cycle, before the wording and therefore before the board's
+    real size is known, because "may a name be fixed flat here at all" is a fact
+    about the building and not about what it says. A door counts: a board shrunk
+    onto the leaf is the third of the owner's three moves and is still a flat
+    mounting. An OPEN-SIDED shed passes neither test and is the case this exists
+    for — a drying shed open along its whole length has no front to paint.
+    """
+    if any(o["kind"] in DOOR_KINDS for o in wall["openings"]):
+        return True
+    edges = sorted({0.0, wall["wall_height_m"]}
+                   | {o["z0"] for o in wall["openings"]}
+                   | {o["z1"] for o in wall["openings"]})
+    for z0 in edges:
+        z1 = z0 + BOARD_H_MIN_M
+        if z1 > wall["wall_height_m"] + 1e-9:
+            continue
+        if _nearest_clear(wall, (wall["u0"] + wall["u1"]) / 2.0, w_min, z0, z1) \
+                is not None:
+            return True
+    return False
+
+
+def _tops(mounting: str, h: float, wall_height: float, head: float,
+          want_top: float, openings: list) -> list:
+    """Heights the head of a board of this height may take, nearest the wanted one
+    first.
+
+    The candidates are not a scan: they are the edges of what is already on the wall
+    — just under an opening, just over it — plus the wanted height and the highest
+    the mounting allows. A wall is mostly blank, so the interesting heights are the
+    few where the blankness starts and stops.
+    """
+    lo = h + 0.40
+    hi = (wall_height - BAND_EAVE_CLEAR_M) if mounting == "facade_painted" else head
+    cands = {want_top, hi}
+    for o in openings:
+        cands.add(o["z0"] - SIGN_CLEAR_M)
+        cands.add(o["z1"] + SIGN_CLEAR_M + h)
+    ok = sorted({round(t, 4) for t in cands if lo - 1e-9 <= t <= hi + 1e-9},
+                key=lambda t: (abs(t - want_top), -t))
+    return ok
+
+
+def _fit_flat(wall: dict | None, mounting: str, want_u: float, w: float, h: float,
+              wall_height: float, head: float, w_ceiling: float) -> dict:
+    """Place a flat-mounted board clear of the openings behind it.
+
+    Returns the placement and, whatever the outcome, the account of it: what the
+    board would have covered where it was going, and what was done about it. The
+    three moves are the owner's, in his order of preference.
+    """
+    cap = WALL_CAP_CLEAR_M if mounting == "wall_board" else 0.0
+    top = _band_top(mounting, h, wall_height, head)
+    out = {"u": want_u, "w": w, "h": h, "top": top, "proud_m": None, "on": None,
+           "action": "already clear", "covered": [], "note": None}
+    if wall is None:
+        out["action"] = "no reading"
+        out["note"] = ("no rule reads this archetype's front elevation, so the "
+                       "board is left where the trade put it and this is the "
+                       "record of that")
+        return out
+
+    covered = sorted({o["kind"] for o in facade_openings.overlaps(
+        wall, want_u - w / 2 - SIGN_CLEAR_M, want_u + w / 2 + SIGN_CLEAR_M,
+        top - h - SIGN_CLEAR_M, top + cap + SIGN_CLEAR_M)})
+    out["covered"] = covered
+    if _fits(wall, want_u, w, top - h, top + cap):
+        return out
+
+    # 1. MOVE IT — the same board, on blank face on the same wall. Along the wall
+    # first and up or down it second, which is what "the same height if it can" means
+    # in practice: the candidates are ordered by how far the board's head has to
+    # travel, and the first that clears wins, so a board that only needs to slide
+    # sideways never rises. A painted band may go as high as the eave allows because
+    # that is where paint goes on a front; a hung BOARD may not go above `head`,
+    # which is the eave-clear human height this file has always hung boards at.
+    for top2 in _tops(mounting, h, wall_height, head, top, wall["openings"]):
+        u = _nearest_clear(wall, want_u, w, top2 - h, top2 + cap)
+        if u is None:
+            continue
+        out["u"], out["top"], out["action"] = u, top2, "moved"
+        moves = []
+        if abs(u - want_u) > 5e-3:
+            moves.append(f"{abs(u - want_u):.2f} m along the front")
+        if abs(top2 - top) > 5e-3:
+            moves.append(f"{abs(top2 - top):.2f} m "
+                         + ("up" if top2 > top else "down") + " it")
+        out["note"] = (f"moved {' and '.join(moves)}, off {' and '.join(covered)}, "
+                       "onto blank face")
+        return out
+
+    # 2. RESHAPE IT — the same copy, longer and narrower, in a band that is clear
+    # across the front. Nothing in the sources fixes a sign's aspect; the lettering
+    # scales with the rectangle, so the copy is untouched.
+    h2 = h - RESHAPE_H_STEP_M
+    while h2 >= RESHAPE_H_FLOOR_M - 1e-9:
+        w2 = min(w * h / h2, w_ceiling)
+        if w2 / h2 <= RESHAPE_MAX_ASPECT and w2 >= w:
+            base2 = _band_top(mounting, h2, wall_height, head)
+            for top2 in _tops(mounting, h2, wall_height, head, base2,
+                              wall["openings"]):
+                u2 = _nearest_clear(wall, want_u, w2, top2 - h2, top2 + cap)
+                if u2 is None:
+                    continue
+                out.update({"u": u2, "w": w2, "h": h2, "top": top2,
+                            "action": "reshaped"})
+                out["note"] = (
+                    f"the copy would not clear {' and '.join(covered)} on a "
+                    f"{w:.2f} x {h:.2f} m board, so the same words are lettered on a "
+                    f"longer and narrower {w2:.2f} x {h2:.2f} m one, which does")
+                return out
+        h2 -= RESHAPE_H_STEP_M
+
+    # 3. SHRINK IT ONTO THE DOOR FRONT — a small board on the leaf itself, which is
+    # what a modest office took anyway. Reported per building with the measurement,
+    # because this is the case where the wall genuinely has no face to spare.
+    doors = [o for o in wall["openings"] if o["kind"] in DOOR_KINDS]
+    if doors:
+        d = max(doors, key=lambda o: o["u1"] - o["u0"])
+        w3 = (d["u1"] - d["u0"]) - 2 * DOOR_BOARD_MARGIN_M
+        h3 = max(min(h * w3 / w, d["z1"] - d["z0"] - 2 * DOOR_BOARD_DROP_M),
+                 DOOR_BOARD_H_MIN_M)
+        out.update({"u": (d["u0"] + d["u1"]) / 2.0, "w": w3, "h": h3,
+                    "top": d["z1"] - DOOR_BOARD_DROP_M, "on": d,
+                    "proud_m": DOOR_BOARD_PROUD_M, "action": "shrunk to the door"})
+        out["note"] = (
+            f"this front has no {w:.2f} m of blank face at any height a name can be "
+            f"read at — every band is taken by {' and '.join(covered)} — so the board "
+            f"is shrunk to {w3:.2f} x {h3:.2f} m and fixed to the door itself")
+        return out
+
+    out["action"] = "no face and no door"
+    out["note"] = ("neither blank face nor a door to fix a board to; the flat "
+                   "mounting is refused and the cycle advances")
+    return out
 
 
 def _streets() -> dict:
@@ -1299,6 +1587,11 @@ def build_record() -> tuple[list, list]:
         normal = (math.sin(rad), math.cos(rad))          # outward, in ENU
         mid_enu = _to_enu(mid, vmax, place)
 
+        # WHAT IS ALREADY ON THAT WALL (T-0459). Read before the mounting is chosen,
+        # because "may a board be fixed flat here at all" is one of the questions the
+        # cycle asks, and it cannot be answered by a wall nobody has read.
+        front = _front_wall(sid)
+
         # --- the mounting -----------------------------------------------------
         cycle = MOUNTING_CYCLE[cand["cls"]]
         near = [s for s in signs
@@ -1306,7 +1599,7 @@ def build_record() -> tuple[list, list]:
                               s["anchor_local_enu_m"][1] - mid_enu[1]) <= NEIGHBOUR_M]
         taken_mount = {s["mounting"] for s in near}
         mount_notes: list[str] = []
-        mounting = cycle[cand["rank"] % len(cycle)]
+        mounting = None
         for step in range(len(cycle)):
             trial = cycle[(cand["rank"] + step) % len(cycle)]
             if trial == "post_board":
@@ -1330,6 +1623,22 @@ def build_record() -> tuple[list, list]:
                         f"reaches to within {reach + POST_CLEAR_M:.2f} m of where the "
                         "post would stand")
                     continue
+            if trial in ("facade_painted", "wall_board") and front is not None \
+                    and not _has_flat_face(front, BOARD_SIZE[trial]["min"]):
+                mount_notes.append(
+                    f"a {trial.replace('_', ' ')} was refused here because this front "
+                    f"has no {BOARD_SIZE[trial]['min']:.2f} m of blank face at any "
+                    "height and no door to fix a board to — every elevation of it is "
+                    "open bay, and a name lettered there would hang in the air "
+                    "between the posts")
+                continue
+            if trial in ("facade_painted", "wall_board") and front is None:
+                mount_notes.append(
+                    f"a {trial.replace('_', ' ')} was refused here because no rule "
+                    "reads this archetype's front elevation, and a board fixed flat "
+                    "on a wall whose openings are unknown is the fault T-0459 "
+                    "records — so the cycle advances rather than guessing")
+                continue
             if trial == "facade_painted" and frontage < FACADE_MIN_FRONTAGE_M:
                 mount_notes.append(
                     f"a painted name was refused here because the front wall is "
@@ -1345,6 +1654,16 @@ def build_record() -> tuple[list, list]:
                 continue                       # a neighbour already hangs one this way
             mounting = trial
             break
+        if mounting is None:
+            # EVERY MOUNTING IN THIS CLASS'S CYCLE WAS REFUSED, which before T-0459
+            # could not happen: the loop fell through to the cycle's first entry and
+            # put the board up anyway. A works paints its front and hangs nothing, so
+            # a works with no front to paint has nowhere for a board at all, and the
+            # honest answer is the refusal with its reason rather than a name
+            # lettered across an opening.
+            refused.append({"structure_id": sid, "trade": cand["trade"],
+                            "why": "; ".join(mount_notes)})
+            continue
 
         # --- the style --------------------------------------------------------
         taken_style = {s["style"]["id"] for s in near}
@@ -1380,24 +1699,29 @@ def build_record() -> tuple[list, list]:
         w = _clamp(size["base"] + PER_LETTER_M * longest
                    + LINE_WIDTH_BONUS_M * (n_lines - 1) + extra,
                    size["min"], size["max"] + extra)
-        if mounting == "facade_painted":
-            w = min(w, frontage - 1.2)
-        else:
-            w = min(w, frontage - 2 * END_CLEAR_M)
-        w = max(w, 0.7)
+        # The ceiling is the frontage's, and a RESHAPED board may grow up to it but
+        # no further: a name is lettered on the building, not across its corners.
+        w_ceiling = max((frontage - 1.2) if mounting == "facade_painted"
+                        else (frontage - 2 * END_CLEAR_M), 0.7)
+        w = max(min(w, w_ceiling), 0.7)
         tall = LINE_H_MUL[n_lines] if mounting in LINE_H_MOUNTINGS else 1.0
         h = _clamp(w / (style["aspect"] * size["aspect_mul"]) * tall,
                    BOARD_H_MIN_M, BOARD_H_MAX_M)
 
         # --- where it sits on the wall ----------------------------------------
-        # A hanging board sits to one side of the door; a wall board and a painted
-        # band are centred on the front, which is where a painted name goes.
+        # A hanging board sits to one side of the door. A wall board and a painted
+        # band used to be centred on the front — which is where a painted name goes,
+        # and is also where the door is, which is the whole of T-0459. They are now
+        # fitted to the wall: moved onto blank face, or reshaped to a band that is
+        # clear across the front, or shrunk onto the door itself, in that order.
+        fit = None
         if mounting in ("bracket_board", "awning_board", "post_board"):
             u = mid + OFFSET_M
             if u > u1 - END_CLEAR_M:
                 u = max(mid, u1 - END_CLEAR_M)
         else:
-            u = mid
+            fit = _fit_flat(front, mounting, mid, w, h, float(wall), head, w_ceiling)
+            u, w, h = fit["u"], _round(fit["w"], 2), _round(fit["h"], 2)
         e, n = _to_enu(u, vmax, place)
         quad = [_to_enu(uu, vv, place) for uu, vv in (
             (min(p[0] for p in poly), min(p[1] for p in poly)),
@@ -1428,6 +1752,10 @@ def build_record() -> tuple[list, list]:
             geom["post_square_m"] = 0.16
         else:
             geom["proud_m"] = BAND_PROUD_M
+        # A board fixed to the DOOR stands off the leaf and its battens, not off the
+        # wall plane the leaf is hung in.
+        if fit and fit["proud_m"] is not None:
+            geom["proud_m"] = fit["proud_m"]
 
         # THE DATUM, and it is not the same one for every mounting. A sign fixed to
         # a building is measured from the base of that building's walls — the LOWEST
@@ -1436,21 +1764,18 @@ def build_record() -> tuple[list, list]:
         # wall on sloping ground. A POST is not on the building: it stands in the
         # street, on the ground under itself, so its head is measured from there and
         # `arm_height_m` says nothing about it.
-        head_y = _round(head, 2)
+        # A PAINTED NAME GOES ABOVE THE DOOR HEAD, which a hung board does not have
+        # to think about; `_band_top` is that rule, and it lives beside the fit
+        # because reshaping changes the board's height and a top computed from the
+        # old one would float the new board off its own wall.
+        head_y = _round(fit["top"] if fit else head, 2)
         datum = ("the base of this building's walls — the lowest of a 5x5 terrain "
                  "grid over the footprint, as buildings.js sets it")
-        if mounting == "facade_painted":
-            # A PAINTED NAME GOES ABOVE THE DOOR HEAD, which a hung board does not
-            # have to think about. `head` is the eave-clear height a BOARD hangs at
-            # — 2.55 m at most, because a board is a thing at human height over the
-            # footway — and a band painted there lands across the doorway of every
-            # frontage that has one, behind any surround that stands proud of the
-            # wall. So a band sits with its foot at BAND_FOOT_M, clear of a door
-            # head, and drops back under the eave only where the wall has not the
-            # height for both. Nothing here is a record's: it is where paint goes
-            # on a front, which is a drawing decision.
-            top = min(BAND_FOOT_M + h, wall - BAND_EAVE_CLEAR_M)
-            head_y = _round(max(top, h + 0.4), 2)
+        if fit and fit["action"] == "shrunk to the door":
+            datum = ("the base of this building's walls — the lowest of a 5x5 terrain "
+                     "grid over the footprint, as buildings.js sets it. This board is "
+                     "on the door leaf rather than on the wall, so its head is the "
+                     "door's head less a hand's breadth")
         if mounting == "post_board":
             datum = ("the ground under the post itself, sampled where it stands: the "
                      "post is in the street, not on the building. `post_height_m` is "
@@ -1489,12 +1814,85 @@ def build_record() -> tuple[list, list]:
             "ground_quad_local_enu_m": [[_round(p[0], 2), _round(p[1], 2)]
                                         for p in quad],
         }
+        # THE ACCOUNT OF THE FIT (T-0459), on every flat-mounted board whether or
+        # not it had to move — "already clear" is a measurement and not a silence,
+        # and the sweep in `findings` counts these rather than summarising them.
+        # `openings` is what the renderer's smoke holds the board against, so the
+        # rectangles travel with the sign that has to stay off them.
+        if fit is not None:
+            sign["opening_fit"] = {
+                "action": fit["action"],
+                "covered_before": fit["covered"],
+                # The ONE rectangle this board is allowed to stand over, and only
+                # ever a door it is deliberately fixed to. Null everywhere else, and
+                # the smoke reads it that way: anything a board covers that is not
+                # this is the fault T-0459 exists to stop coming back.
+                "fixed_to": ({"kind": fit["on"]["kind"],
+                              "u0": _round(fit["on"]["u0"], 2),
+                              "u1": _round(fit["on"]["u1"], 2),
+                              "z0": _round(fit["on"]["z0"], 2),
+                              "z1": _round(fit["on"]["z1"], 2)}
+                             if fit["on"] else None),
+                "note": fit["note"],
+                "wall_span_local_m": ([_round(front["u0"], 2), _round(front["u1"], 2)]
+                                      if front else None),
+                "board_span_local_m": [_round(u - w / 2, 2), _round(u + w / 2, 2)],
+                "openings": [
+                    {"kind": o["kind"], "u0": _round(o["u0"], 2),
+                     "u1": _round(o["u1"], 2), "z0": _round(o["z0"], 2),
+                     "z1": _round(o["z1"], 2)}
+                    for o in (front["openings"] if front else [])],
+            }
         # A DEVICE ONLY WHERE THE SHOP'S OWN ADVERTISEMENT NAMES ONE. Exactly one does.
         if word.get("device"):
             sign["sign_device"] = word["device"]
         signs.append(sign)
 
     return signs, refused
+
+
+def _opening_sweep(signs: list) -> dict:
+    """THE SWEEP T-0459 ASKED FOR, over every sign in the record: whether it stood
+    over an opening where the trade rule put it, and what was done about it.
+
+    Counted per sign and not summarised, because the summary is what let this run
+    for a month — twenty boards over doors and windows, on walls with blank face
+    going spare, and the record said only that fourteen names were painted and six
+    boards were fixed flat.
+    """
+    rows = []
+    counts: dict[str, int] = {}
+    for s in signs:
+        fit = s.get("opening_fit")
+        if fit is None:
+            action = "not flat on the wall"
+            covered = []
+        else:
+            action = fit["action"]
+            covered = fit["covered_before"]
+        counts[action] = counts.get(action, 0) + 1
+        rows.append({
+            "structure_id": s["structure_id"],
+            "mounting": s["mounting"],
+            "covered_an_opening_before": bool(covered),
+            "covered_before": covered,
+            "done": action,
+        })
+    return {
+        "note": (
+            "Every sign in the record, and what the opening test did with it. A board "
+            "on a BRACKET, an AWNING or a POST stands off the wall on an arm, a hood "
+            "or a stick of its own and cannot cover an opening, so it is swept as "
+            "`not flat on the wall` rather than as clear — the test applies to the "
+            "boards fixed flat against a facade and to the names painted straight on "
+            "one. `already clear` is a measurement and not a silence: it means the "
+            "board was tested against this building's own door and window rectangles "
+            "and stood off all of them where the trade rule had already put it."
+        ),
+        "flat_mounted": sum(1 for r in rows if r["done"] != "not flat on the wall"),
+        "counts": {k: counts[k] for k in sorted(counts)},
+        "signs": sorted(rows, key=lambda r: r["structure_id"]),
+    }
 
 
 def record(signs: list, refused: list) -> dict:
@@ -1521,7 +1919,7 @@ def record(signs: list, refused: list) -> dict:
         "name": "Signs on the town's business frontages",
         "kind": "signage",
         "scene": "1835",
-        "target_date": "1835-07-01",
+        "target_date": TARGET_DATE,
         "coordinates": (
             "Local East-North-Up metres from data/datum.json's origin, the same frame "
             "data/enclosures/ and the sidecars' placement.local_e / local_n use."
@@ -1629,6 +2027,7 @@ def record(signs: list, refused: list) -> dict:
             ),
             "mountings": {k: mounts[k] for k in sorted(mounts)},
         },
+        "opening_sweep": _opening_sweep(signs),
         "rule": {
             "note": (
                 "A named record (not inf_/recon_, not 'Reconstructed'), a trade this "

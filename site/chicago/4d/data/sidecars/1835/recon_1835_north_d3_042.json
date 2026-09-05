@@ -145,31 +145,17 @@
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
       "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred domestic's household (1 of 4 this layer infers): hh_inf_domestic_north_01 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+    },
+    "land_owner": {
+      "value": "The ground was entered by Robert A Kenzie, 7 May 1831",
+      "confidence": "reconstructed",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "KINZIE'S ADDITION. The north fraction of section 10 is the section north of the river, which is why the register prints 102.29 acres and not a quarter's 160. It is resolved as the section's own grid box clipped to the committed north bank of the main stem (`e1834_harbor_cut/shoreline.geojson`), so no boundary here is authored. The two rows the register carries for it — one plain, one with the school-section marker — are the same entry printed twice. THE REGISTER SPELLS THE PURCHASER MORE THAN ONE WAY for this same tract — Robert A Kenzie; Robert A Kinzie — and the spellings are carried rather than merged, which is the land_sales crosswalk's standing rule: tract agreement is where two spellings MIGHT be one man and is never proof that they are. THE ROOF IS AN INVENTION AND THIS CANNOT OUTRANK IT. The footprint stands 55 m inside the tract's nearest boundary, which on a documented building would carry the middle tier, but this building was dealt to its lot by a recipe and is not there. The tract is real and the register's words about it are read; what is graded here is the claim that THIS roof stands on it, and that claim is the recipe's. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
     }
   },
-  "residents": [
-    {
-      "household": "hh_inf_domestic_north_01",
-      "name": "The McGuire household — a reconstructed domestic (north division)",
-      "division": "north",
-      "relation": "lived here",
-      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d3_042 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
-      "sources": [
-        "owner_chicago_1835_reconstruction_spec_2026"
-      ],
-      "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
-      "persons": [
-        {
-          "name": "Mary McGuire",
-          "relationship": "head",
-          "grade": "reconstructed",
-          "occupation": "domestic",
-          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 DOMESTIC HOUSEHOLDS THIS LAYER RECONSTRUCTS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her."
-        }
-      ],
-      "research_note": "RECONSTRUCTED HOUSEHOLD - first of 4 domestic households in this layer, in the north division. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
-    }
-  ],
+  "residents": [],
   "citations": [
     {
       "source_id": "andreas_1884_v1",
@@ -178,6 +164,14 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
     },
     {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
