@@ -247,6 +247,23 @@ def _back_projected_position_count() -> int:
     return n
 
 
+def _back_projected_residence_count() -> int:
+    """Homes standing on a face read back out of a later directory (T-0669).
+
+    The residence half of the pass above, counted the same way and off the same
+    records, and kept a separate enumeration because it is a separate policy: a
+    home is carried back on a weaker argument than a shop is, and a scope that
+    added the two together would let one liberty's count move on the other's work.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        for person in (doc.get("directories") or {}).get("people") or []:
+            if (person.get("residence_back_projection") or {}).get("outcome") == "placed":
+                n += 1
+    return n
+
+
 STRUCTURES_DIR = ROOT / "data" / "structures"
 
 
@@ -283,6 +300,10 @@ SCOPE_SOURCES = {
         _back_projected_position_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/back_project_addresses.py --check"),
+    "residence_back_projection.positions[placed]": (
+        _back_projected_residence_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/back_project_residences.py --check"),
     "structures.land_owner[constructed_section_grid]": (
         _land_owner_count,
         "data/structures/*.json, themselves re-derived by "

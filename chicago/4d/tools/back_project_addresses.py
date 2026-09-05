@@ -169,6 +169,17 @@ _STREET_WORD = re.compile(
     r"ohio|superior|erie|pine|cass|rush|jefferson|wabash|michigan)\b", re.I)
 
 
+# The names whose type word is part of the NAME and must survive the fold.
+# `Michigan street` and `Michigan ave` are two different streets; `Dearborn pl`
+# is a later platting and not Dearborn Street; and the `St` in `St Clair` is
+# Saint, not Street. Every other name in the tables is bare, so the type word is
+# dropped once these are settled. Without this set the strip below reduced
+# `dearborn pl` to `dearborn` and `st clair` to `clair`, which made the two
+# NOT_1835 keys of those names unreachable — a latent refusal no address had yet
+# exercised, found by T-0669 when a residence printed `res 5 Dearborn pl`.
+KEEPS_ITS_TYPE_WORD = ("michigan street", "michigan ave", "dearborn pl", "st clair")
+
+
 def fold(token: str) -> str:
     """A printed street word as the table spells it: lower case, no points."""
     t = token.lower().replace(".", " ").replace(",", " ")
@@ -176,9 +187,7 @@ def fold(token: str) -> str:
     t = re.sub(r"\bstreet\b", "street", t)
     t = re.sub(r"\bplace\b", "pl", t)
     t = re.sub(r"\s+", " ", t).strip()
-    # `michigan street` and `michigan ave` are two streets; every other name in
-    # the table is bare, so the type word is dropped once those two are settled.
-    if t not in ("michigan street", "michigan ave"):
+    if t not in KEEPS_ITS_TYPE_WORD:
         t = re.sub(r"\b(street|st|ave|pl)\b", "", t)
     return re.sub(r"\s+", " ", t).strip()
 
