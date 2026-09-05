@@ -1,5 +1,5 @@
 {
-  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp — mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP — a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
+  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp \u2014 mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP \u2014 a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
   "written_by": "tools/web_derivatives.sh",
   "masters": {
     "bates_auction_room__frame_1834.glb": "1dafb0e00eba6ecb46d137b9e70fd6d0d66f06dfc8d31ec1c15dc458651b8592",
@@ -362,7 +362,7 @@
     "steamboat_hotel__frame_1835.glb": "c3566721ab8ad3ab5a36fe7940accaa4856ddfd5d73312bb6869866bb2b479c2",
     "temple_building__frame_1833.glb": "283dad2a015a91d9ff5766a9668a3921aff8213ea8449b9906ae24287ab5b1fb",
     "temple_lake_st_building__documented_1835.glb": "7b79bf6c474a17180bb57ce77a5a8d0e5c6b9b395fe050a71a398950c8626f88",
-    "terrain__e1834_harbor_cut.glb": "77b4868d766065d00cff15d199b3449c6bfcdf4122edc3314b0b9ac699ed72f5",
+    "terrain__e1834_harbor_cut.glb": "25a8159e6b3448f8d6f4b767f3f026782f42c1f1c5b8ac7f7cb0fa0ef30ed5fa",
     "thomas_church_store__frame_1834.glb": "202b177d910e7931732c9288e60abc97a61a15f1fc0c77121f6d1761f510f9f5",
     "tremont_house_1__frame_1833.glb": "b86969cda49cc9150e9f76ff61c7b94f747ad1e1c0d1f0b7bcb652507116ec88",
     "walker_meeting_house__log_1831.glb": "d5a0cc472713933f840af2dcd32fdd625840f57c096f487ea59b8d4d7e1c3615",

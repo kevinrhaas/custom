@@ -82,6 +82,10 @@ PARAMS = dict(
     dark_lo=20, dark_hi=78,           # wash is darker than paper but lighter than ink
     hue_tol=11,                       # departure from local paper hue that means "coloured"
     speckle_px=500,
+    ink_lum=110,                      # below this luminance a pixel is drawn line, not wash
+    bank_frag_px=160,                 # a wash fragment this big is drafted, not paper grain
+    bank_seam_px=3,                   # how wide a dry seam may be and still be one wash body
+    bank_ink_px=1.5,                  # ...and the fragment must abut the bank Wright inked
     close_r=40, open_r=9, fill_r=15,  # channel morphology
     slough_open_r=3, slough_min_px=120,
     simplify_px=2.5,
@@ -155,6 +159,61 @@ def wash_mask(rgb, np):
     gb0 = upsample(block_pct(gb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape, np)
     tint = np.abs(rb - rb0) + np.maximum(np.abs(gb - gb0) - 4, 0)
     return (dark > PARAMS["dark_lo"]) & (dark < PARAMS["dark_hi"]) & (tint < PARAMS["hue_tol"])
+
+
+def ink_mask(rgb, np, lum_lo):
+    """Wright's drawn line: darker than any wash he laid beside it. The same
+    luminance threshold `tools/measure_water_outliers.py --vs-ink` measures
+    against, so the trace and the measurement mean the same thing by "the ink"."""
+    a = rgb.astype(np.float32)
+    return (0.299 * a[..., 0] + 0.587 * a[..., 1] + 0.114 * a[..., 2]) < lum_lo
+
+
+def bank_wash(wash, ink, seeds, close_r, open_r, fill_r, np, ndi, params):
+    """Speckle-filter the wash, then put back the fragments a dry seam cut off
+    the bank — the rule that keeps the boundary on the ink rather than the seam.
+
+    The speckle floor exists so that stray tinted paper is not dragged into the
+    channel by the 40 px close. On the South Branch's east bank it also throws
+    away drafted bank wash. Rows 662-690 of the region carry a dry seam three to
+    six pixels wide *inside* the wash, running parallel to the bank a little west
+    of it; the strip of wash east of that seam is 205 px, well under the 500 px
+    floor, and goes out with the specks. The closing is then left with nothing to
+    bridge to, so the traced boundary walks the seam instead of the bank and
+    stands 11.9, 12.4 and 14.7 m west of the ink where the other 66 bank vertices
+    in the epoch sit a median 0.70 m from it
+    (docs/RESEARCH/south_branch_spike_1834.md).
+
+    A dropped fragment is drafted bank wash rather than a speck when all three
+    hold, and the third is why this reads the ink as well as the wash:
+
+      * it is at least `bank_frag_px` — big enough to have been laid with a brush
+        rather than to be paper grain or a scan artefact;
+      * it lies within `bank_seam_px` of the channel the surviving wash already
+        gives, so it is across a seam from it and not somewhere else on the sheet;
+      * it comes within `bank_ink_px` of the inked bank. Tint scatters along every
+        traced edge; wash that abuts the line Wright drew is the bank's own.
+
+    Returns the wash to trace from, and the fragments it put back.
+    """
+    lab, n = ndi.label(wash)
+    sizes = ndi.sum_labels(np.ones_like(lab, np.float32), lab, np.arange(1, n + 1))
+    kept = np.isin(lab, 1 + np.flatnonzero(sizes >= params["speckle_px"]))
+    small = 1 + np.flatnonzero(sizes < params["speckle_px"])
+    if not len(small):
+        return kept, []
+    # the channel the surviving wash gives on its own, which is what the
+    # fragments are measured against
+    provisional = channel_from(kept, seeds, close_r, open_r, fill_r, np, ndi)
+    to_channel = ndi.minimum(ndi.distance_transform_edt(~provisional), lab, small)
+    to_ink = ndi.minimum(ndi.distance_transform_edt(~ink), lab, small)
+    sel = small[(sizes[small - 1] >= params["bank_frag_px"])
+                & (np.asarray(to_channel) <= params["bank_seam_px"])
+                & (np.asarray(to_ink) <= params["bank_ink_px"])]
+    if not len(sel):
+        return kept, []
+    put_back = [(int(sizes[i - 1]), float(to_channel[list(small).index(i)])) for i in sel]
+    return kept | np.isin(lab, sel), put_back
 
 
 def _erode(m, r, np, ndi):
@@ -421,8 +480,14 @@ def main() -> int:
     print(f"region {REGION} sha256 {sha[:16]}...  {rgb.shape[1]}x{rgb.shape[0]} px")
 
     wash = wash_mask(rgb, np)
-    river = channel_from(wash, SEEDS, PARAMS["close_r"], PARAMS["open_r"],
-                         PARAMS["fill_r"], np, ndi, speckle=PARAMS["speckle_px"])
+    ink = ink_mask(rgb, np, PARAMS["ink_lum"])
+    traced_wash, put_back = bank_wash(wash, ink, SEEDS, PARAMS["close_r"], PARAMS["open_r"],
+                                      PARAMS["fill_r"], np, ndi, PARAMS)
+    if put_back:
+        print(f"   bank wash across a seam: {len(put_back)} fragment(s) put back, "
+              + ", ".join(f"{px} px at {d:.0f} px" for px, d in sorted(put_back, reverse=True)))
+    river = channel_from(traced_wash, SEEDS, PARAMS["close_r"], PARAMS["open_r"],
+                         PARAMS["fill_r"], np, ndi)
     slough_px, slough_w, slough_frags = slough_centreline(wash, river, np, ndi, cell_m)
     print(f"channel {int(river.sum())} px; slough centreline {len(slough_px)} pts from "
           f"{slough_frags} wash fragments, drafted width {slough_w} m")
