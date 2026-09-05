@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "domain": "census_1840",
+  "source_id": "dalton_1840_chicago_census_index",
+  "ticket": "T-0497",
+  "hand_authored": true,
+  "note": "identity.json's shape, applied to the Dalton Data Bank's seven 1840 Cook County index rows against (a) the Dalton-like names read off the deposited 1840 sheets, (b) the residents layer of 1835, and (c) the 210 named heads PR #670 recovered. It is a sibling of crosswalk_670.json and is NOT the domain's gated crosswalk.json, which is generated. Every pair below is a REFUSAL: this pass merged nothing, and it says so pair by pair so the next sweep does not do the work again.",
+  "passes": [
+    {
+      "ticket": "T-0497",
+      "what": "the whole Cook County part of the Dalton Data Bank's Illinois 1840 census-index section, adjudicated against every Dalton-like reading in this repo",
+      "index_rows_adjudicated": 7,
+      "outcomes": {
+        "matched": 0,
+        "candidate": 0,
+        "refused": 7
+      },
+      "why_it_is_all_refusals": "An index row carries a name, a ward and nothing else — no page, no line, no age bands, no household. There is no second attribute to agree on, so a match on the name alone is exactly the surname-plus-forename coincidence this project refuses by rule. The three Dalton-like names read off the sheets are, separately, a woman the index does not carry, a head whose given name is cut at the gutter, and a surname whose capital letter is not settled."
+    }
+  ],
+  "merges": [],
+  "refusals": [
+    {
+      "record_id": "ddb_il_1840_cook_01",
+      "a": "Edward Dalton, Chicago 1st Ward",
+      "b": "[?]nard Dalton",
+      "rule": "The index row 'Edward Dalton, Chicago 1st Ward' is NOT the sheet's '[?]nard Dalton' at printed page 208 line 21 (33SQ-GYYJ-992): the given name on the sheet is CUT AT THE GUTTER and the reading names three candidates for it — Bernard, Leonard and Edward — at name_confidence low. One of the three would make this pair the index row found on a sheet, which is exactly why it may not be assumed: an unread position is a position, not an invitation. The pair is left standing as the best-placed thing this read found, for the pass that re-reads 33SQ-GYYJ-992's gutter.",
+      "evidence": [
+        "33SQ-GYYJ-992",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "given name unread at the gutter",
+        "ddb_il_1840_cook_01"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_03",
+      "a": "Mr. Dalton, Cook Co., 1 Ward Chicago",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'Mr. Dalton, Cook Co., 1 Ward Chicago' is NOT the sheet's 'Mrs Catharine Dalton' at printed page 229 line 11 (33S7-9YYJ-9M5). Two rules refuse it and either is enough: the index row carries no given name at all, so it is surname-only and a surname-only merge is always a refusal; and the two titles disagree on sex, the index writing 'Mr.' where the sheet writes 'Mrs'. The temptation is real — both sit in the First Ward, and the index carries no other unnamed Chicago Dalton — and it is refused anyway.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "surname_only",
+        "title/sex conflict",
+        "ddb_il_1840_cook_03"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_02",
+      "a": "Michael Dalton, 2 Ward, Chicago",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'Michael Dalton, 2 Ward, Chicago' is NOT the sheet's 'Mrs Catharine Dalton' at printed page 229 line 11 (33S7-9YYJ-9M5): the given names conflict outright and the wards do not agree, the index putting its man in the Second Ward. Recorded because 'Mrs Catharine Dalton' is the only Chicago Dalton this repo has actually read off a sheet, so every index row has to be asked of her once.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "L3 given_name_conflict",
+        "ddb_il_1840_cook_02"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_04",
+      "a": "Mike Dalton, Cook Co.",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'Mike Dalton, Cook Co.' is NOT the sheet's 'Mrs Catharine Dalton': given names conflict, and the index row is not located to the city at all.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "L3 given_name_conflict",
+        "ddb_il_1840_cook_04"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_05",
+      "a": "Gerard Dalton, Cook Co",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'Gerard Dalton, Cook Co' is NOT the sheet's 'Mrs Catharine Dalton': given names conflict, and the index row is not located to the city at all.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "L3 given_name_conflict",
+        "ddb_il_1840_cook_05"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_06",
+      "a": "Patrick Dalton, Cook Co., Bridgeport",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'Patrick Dalton, Cook Co., Bridgeport' is NOT the sheet's 'Mrs Catharine Dalton': given names conflict, and Bridgeport is outside the city of 1840 and outside the town of 1835 altogether.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "L3 given_name_conflict",
+        "outside the town",
+        "ddb_il_1840_cook_06"
+      ]
+    },
+    {
+      "record_id": "ddb_il_1840_cook_07",
+      "a": "George Dalton, Cook County, Thornton Precinct",
+      "b": "Mrs Catharine Dalton",
+      "rule": "The index row 'George Dalton, Cook County, Thornton Precinct' is NOT the sheet's 'Mrs Catharine Dalton': given names conflict, and Thornton Precinct is rural Cook County some twenty miles south of the town.",
+      "evidence": [
+        "33S7-9YYJ-9M5",
+        "daltondatabank_illinois_census_indexes_1840",
+        "T-0497",
+        "L3 given_name_conflict",
+        "outside the town",
+        "ddb_il_1840_cook_07"
+      ]
+    }
+  ],
+  "against_the_residents_layer_of_1835": {
+    "surname_dalton_in_the_1835_residents_layer": 1,
+    "who": "Edward Dalton (person dalton_edward, household hh_dalton_edward), a PROJECTED RESIDENT known from one return of letters uncalled-for at the Chicago post office, the Democrat of 1 July 1835 column 4.",
+    "what_this_read_changes_for_him": "NOTHING, and that is the result. hh_dalton_edward already carries cand_edward_dalton_chicago_1840 — the candidate raised off this very index row, assessed 'moderate', asserted false — and reading the whole index found no second attribute to test it with. The index gives a name and a ward; the 1835 evidence gives a name and a postal return; there is no trade, address, household or family on either side to bridge them. The candidate therefore stands exactly as T-0479 left it, neither strengthened nor retired, and this pass declines to touch its grading.",
+    "the_one_thing_that_did_change": "The reason for the refusal is now MEASURED rather than assumed. The candidate's stated conflict was 'index-only access path'; it can now say what the index is — a one-surname genealogical compilation whose Illinois 1840 section is twenty rows for the whole state — and that a Chicago Dalton the sheets DO carry (Mrs Catharine Dalton, printed page 229) is missing from it."
+  },
+  "against_the_210_heads_of_pr_670": {
+    "surname_dalton_among_them": 0,
+    "note": "#670's row for printed page 229 line 11 — the line the sheet reads 'Mrs Catharine Dalton' — is 'William [unresolved]'. That disagreement is crosswalk_670.json's business and is not re-adjudicated here; it is recorded because it is the reason a search of the 210 rows for 'Dalton' returns nothing while a Dalton demonstrably stands on one of their lines."
+  },
+  "against_the_voter_lists_of_1833_1835": {
+    "surname_dalton": 0,
+    "note": "T-0493 read four poll and voter lists of 1833-1835, 346 entries. No Dalton is in any of them, which is a swept-and-empty result and is recorded as one."
+  },
+  "anchoring": "Every refusal carries the `record_id` of the index row it rules on, so the ruling anchors to a unit this domain has actually read and tools/measure_research_spend.py can see that all seven rows were adjudicated rather than merely transcribed. Seven rows read, seven rows ruled on, nothing left standing."
+}

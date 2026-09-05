@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "domain": "census_1840",
+  "source_id": "dalton_1840_chicago_census_index",
+  "ticket": "T-0497",
+  "read_on": "2026-09-05",
+  "what_this_is": "The Dalton Data Bank's Illinois census-index section, read whole. NAMES ONLY: the site's rights are check_required, so no page HTML, no markup and no prose of theirs is committed here — a name index of a public-domain federal census is fact, the page that carries it is theirs. The rows below are the seven 1840 entries that fall in Cook County, transcribed as printed.",
+  "the_premise_this_read_corrects": "T-0497 was opened on the belief — carried in the source record and in the ticket — that daltondatabank.net holds 'a free Illinois 1840 census index, Chicago by ward', i.e. a bulk head-of-household name list for the whole city. IT DOES NOT. The Dalton Data Bank is a ONE-SURNAME genealogical site: every page on it is organised by place and holds only bearers of the surname Dalton/Dolton. Its Illinois page carries a single section headed 'CENSUS INDEXES' listing the Daltons found in the Illinois federal census indexes of 1820, 1830, 1840, 1850, 1860 and after — 20 rows for the whole state in 1840, of which seven are in Cook County. There are no ward pages to fetch, because there is no by-ward index; there is one section of one page. The site itself says what its lists are worth, and the sentence is quoted below.",
+  "the_site_s_own_warning": "The Census Indexes provide an initial indication of the Dalton residents in Illinois. For expanded information on an indivdual and his/her family consult the actual Federal Census data and be aware that these indexes may be incomplete.",
+  "warning_note": "Transcribed as printed, misspelling and all ('indivdual'). It is quoted because THIS READ MEASURED THAT INCOMPLETENESS: see `measured_against_the_sheets` below.",
+  "scale": {
+    "illinois_1840_rows": 20,
+    "cook_county_1840_rows": 7,
+    "chicago_ward_1840_rows": 3,
+    "rows_the_repo_had_read_before_this_pass": 1,
+    "note": "The repo cited this source for Edward Dalton alone. Six further Cook County rows stood beside him on the same page, unread, for two days."
+  },
+  "records": [
+    {
+      "id": "ddb_il_1840_cook_01",
+      "as_read": "Edward Dalton, Chicago 1st Ward",
+      "normalized": "Edward Dalton — Chicago, First Ward",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "The one row the repo already cited, and the reason hh_dalton_edward carries cand_edward_dalton_chicago_1840. The index is an INDEX: it gives a name, a ward and nothing else — no page, no line, no household figures — so it cannot by itself put this man on a sheet."
+    },
+    {
+      "id": "ddb_il_1840_cook_02",
+      "as_read": "Michael Dalton, 2 Ward, Chicago",
+      "normalized": "Michael Dalton — Chicago, Second Ward",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "New to this repo. A Michael Dalton is also the single Dalton entry in the site's transcription of the 1844 Chicago general directory — 'Michael, Laborer, Water and Kinzie, Wolcott St.' — which is 1844 evidence about a 1844 man and is recorded here only as the continuity it is."
+    },
+    {
+      "id": "ddb_il_1840_cook_03",
+      "as_read": "Mr. Dalton, Cook Co., 1 Ward Chicago",
+      "normalized": "[?] Dalton — Chicago, First Ward",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "The index itself carries no given name for this head — 'Mr.' is a courtesy title and not a name, so `normalized` keeps the position unread rather than inventing one. A row of this shape can never be merged with anybody: it is surname-only, and a surname-only merge is always a refusal."
+    },
+    {
+      "id": "ddb_il_1840_cook_04",
+      "as_read": "Mike Dalton, Cook Co.",
+      "normalized": "Mike Dalton — Cook County",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "'Mike' and 'Michael' are the same given name and the index prints both, in two rows, one located to Chicago's Second Ward and one to the county at large. Whether they are two men or one man indexed twice is not settled here and is not settleable off an index."
+    },
+    {
+      "id": "ddb_il_1840_cook_05",
+      "as_read": "Gerard Dalton, Cook Co",
+      "normalized": "Gerard Dalton — Cook County",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "No ward, so not placed in the city by the index. Printed without the closing full stop the neighbouring rows carry; transcribed as it stands."
+    },
+    {
+      "id": "ddb_il_1840_cook_06",
+      "as_read": "Patrick Dalton, Cook Co., Bridgeport",
+      "normalized": "Patrick Dalton — Cook County, Bridgeport",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "Bridgeport is outside the 1835 town and outside the city of 1840; the row is recorded because the coverage declaration is for the whole Cook County section, and a swept row that lands outside the town is evidence, not a gap."
+    },
+    {
+      "id": "ddb_il_1840_cook_07",
+      "as_read": "George Dalton, Cook County, Thornton Precinct",
+      "normalized": "George Dalton — Cook County, Thornton Precinct",
+      "locator": { "list": "daltondatabank_illinois_census_indexes_1840" },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "notes": "Thornton Precinct is rural Cook County, some twenty miles south of the town. Recorded for the same reason as Bridgeport."
+    }
+  ],
+  "measured_against_the_sheets": {
+    "what_was_compared": "The seven rows above against every Dalton-like name this repo has read off the deposited 1840 page images. Twenty-five of the deposit's 74 images have been read so far, so this is a comparison over a THIRD of the book and not over the book.",
+    "names_the_sheets_carry": [
+      "Mrs Catharine Dalton — printed page 229 line 11, image 33S7-9YYJ-9M5, name_confidence medium",
+      "[?]nard Dalton — printed page 208 line 21, image 33SQ-GYYJ-992, name_confidence low, given name cut at the gutter (Bernard / Leonard / Edward)",
+      "M. K. Galton — printed page 219 line 4, image 33S7-9YYJ-9K3, name_confidence low, surname capital read as G or D (Galton / Dalton / Galten)"
+    ],
+    "overlap": 0,
+    "the_finding": "NOT ONE of the index's seven Cook County rows has been located on a sheet, and NOT ONE of the three Dalton-like sheet readings appears in the index. The two lists are disjoint on the third of the book that has been read. Both halves of that are informative: the index's Edward, Michael and 'Mr.' should sit somewhere in the 49 unread images, which makes them a target for the passes that read them; and 'Mrs Catharine Dalton', read off the sheet at printed page 229, is a Chicago Dalton the index does NOT carry for 1840 — a measured instance of the incompleteness the site warns of in its own words. The index carries a Catharine Dalton in Chicago's First Ward TEN YEARS LATER, in its 1850 section, which is continuity for the person and no help at all to the 1840 index's completeness.",
+    "cook_and_chicago_rows_in_the_neighbouring_decades": [
+      "1830 — none. The index's whole 1830 Illinois section is three rows (Morgan, Madison, Fayette counties) and Cook County is absent from it, which is consistent and unsurprising: Chicago was enumerated in Peoria County in 1830, and there is no Dalton in the 1830 district this project has read.",
+      "1850 — A. H. Dalton (Thornton); Catharine Dalton (Chicago 1 Ward); Ellen Dalton (Chicago 4th Ward); George Dalton (Worth Township); James Dalton (Chicago 4 Ward); Miss Dalton (Chicago 1st Ward)"
+    ],
+    "why_the_1850_rows_are_here": "As dated continuity context for the 1840 read and for nothing else. They are 1850 evidence, fifteen years after the scene; nothing downstream may treat them as 1840 rows, and they are deliberately not `records` in this file."
+  },
+  "what_this_read_did_not_do": "It minted no resident, regraded no resident, and asserted no identity. T-0514 and T-0515 do that from the consolidation, and this pass has nothing for them: every candidate it found is a refusal, and the refusals are in crosswalk_dalton_index.json with their rules."
+}

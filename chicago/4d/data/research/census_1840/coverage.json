@@ -869,6 +869,24 @@
    "query": "the collection page behind these image ids (collection 1786457)",
    "date": "2026-09-03",
    "result": "login-walled — recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
+  },
+  {
+   "source": "Dalton Data Bank (daltondatabank.net)",
+   "query": "the free 'Illinois 1840 census index, Chicago by ward' this repo's source record cites — i.e. a bulk head-of-household name list for the city",
+   "date": "2026-09-05",
+   "result": "NOT THERE, and it never was. The site is a one-surname genealogical compilation: every page is organised by place and holds only bearers of the surname Dalton/Dolton. Illinois.html carries one CENSUS INDEXES section listing 20 Illinois Daltons for 1840, seven of them in Cook County; there are no ward pages, so none could be fetched or missed. Probed and recorded: Illinois.html 200, Illinois_Page_2.html 200, index.html 200, us.html 200, daltonscenc.html 200, Census.html 404, Illinois_Page_3.html 404. The 280 links on Illinois.html are places and surname pages and carry no by-ward Chicago index. Recorded as ABSENT FROM THIS SOURCE — not as inaccessible, because the site was reached in full."
+  }
+ ],
+ "declarations": [
+  {
+   "unit": "list",
+   "ticket": "T-0497",
+   "items": [
+    "daltondatabank_illinois_census_indexes_1840"
+   ],
+   "what": "The Dalton Data Bank's Illinois page, section headed CENSUS INDEXES, 1840 sub-list — 20 rows for the whole state, read whole, of which the seven that fall in Cook County are committed as records in records/dalton_index.json.",
+   "read_in_full": true,
+   "why_this_is_a_list_and_not_an_image": "It is a website section, not a page of the deposited book: it carries no printed page number and no ruled line, so `list` is the coverage unit the shared vocabulary has for it. THE DOMAIN'S OTHER DECLARATIONS ARE NOT HERE — the 1840 page images are declared in `groups[]` below, in this domain's own images[] shape, which tools/research_domains.py does not read. That is T-0536's finding and T-0536's repair; this pass adds the shared-shape declaration its own reading needs and deliberately does not migrate the image groups underneath it."
   }
  ]
 }

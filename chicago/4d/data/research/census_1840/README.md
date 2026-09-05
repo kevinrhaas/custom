@@ -34,6 +34,8 @@ live on two different images.
 | `crosswalk_670.json` | the line-by-line comparison against the 210 rows PR #670 recovered from the owner's lost v4 workbook, page by page, with a row-offset test on each. |
 | `claims.json` | what the sheets say ABOUT the enumeration and about the town, as opposed to who they name. Hand-authored, each with its verbatim quote and locator. |
 | `composition_1840.json` | **counts and nothing else** — what a Chicago household looked like in 1840: the household-size distribution, the age bands, the industry columns, and the 1830 district and 1835 town placed beside them. Derived by `tools/census_1840_composition.py`, gated by `check.sh`, and refused by its own self-test if a name or a serial ever reaches it. T-0507; read `docs/RESEARCH/household-composition-1840-calibration.md` beside it. |
+| `records/dalton_index.json` | the Dalton Data Bank's Illinois census index, read whole — the seven 1840 rows that fall in Cook County, names only, with what the read did to the ticket's premise. T-0497. |
+| `crosswalk_dalton_index.json` | those seven index rows adjudicated against the sheets, the residents layer, the voter lists and PR #670's 210 heads. `identity.json`'s shape; a sibling of `crosswalk_670.json` and not the gated `crosswalk.json`. Every pair is a refusal. |
 
 ## The reading rules
 
@@ -87,6 +89,28 @@ readings stand, with the reason the scan is treated as senior stated on each lin
 this means for T-0504 and T-0505 is that the 210 rows cannot be used as ground truth for
 a serial fingerprint or an identity bridge until they have been re-read against the
 images, and that a bridge built on #670's row NUMBERS is unsafe on at least page 231.
+
+## The index beside the sheets, and what it is worth
+
+`data/sources/dalton_1840_chicago_census_index.json` was cited for one man, Edward Dalton, and
+described as *"a free Illinois 1840 census index, Chicago by ward"*. **T-0497 read the whole thing
+and the description was wrong.** The Dalton Data Bank is a ONE-SURNAME genealogical site: every page
+is organised by place and holds only bearers of the surname Dalton/Dolton. Its Illinois page carries
+a single `CENSUS INDEXES` section, and the 1840 sub-list is **20 rows for the entire state**, seven
+of them in Cook County. There are no ward pages, so none could be fetched and none is missing; the
+pages consulted and their HTTP results are in the source record's `access_notes`, and the negative
+is declared in `coverage.json` under `negative_and_inaccessible`.
+
+What the read is nevertheless worth is a **measurement of the index against the book**. The index
+names three Chicago Daltons — Edward (1st Ward), Michael (2nd Ward) and an unnamed *"Mr."* (1st
+Ward). The 25 images read so far carry three Dalton-like names — `Mrs Catharine Dalton` at printed
+page 229 line 11, `[?]nard Dalton` at printed page 208 line 21 with its given name cut at the
+gutter, and `M. K. Galton` at printed page 219 line 4 whose surname capital is not settled. **The
+two lists are disjoint.** So the index's three Chicago men are a search target for the 49 unread
+images, and `Mrs Catharine Dalton` — a Chicago Dalton standing on a sheet — is a measured instance
+of the incompleteness the site warns of in its own words. All seven rows are refusals against
+everything this repo holds, and an index row is why: it carries a name and a ward and nothing else,
+so there is no second attribute for a merge to agree on.
 
 ## Three pages in this deposit are not household pages
 

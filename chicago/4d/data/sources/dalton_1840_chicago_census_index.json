@@ -1,14 +1,28 @@
 {
   "id": "dalton_1840_chicago_census_index",
   "type": "website",
-  "citation": "Dalton Data Bank, Illinois census indexes, 1840: Edward Dalton, Chicago 1st Ward",
-  "date": "index accessed 2026-09-02",
+  "citation": "Dalton Data Bank, Illinois — section 'CENSUS INDEXES', the Illinois federal census indexes of 1820-1860+ as they name bearers of the surname Dalton/Dolton; the 1840 sub-list carries 20 Illinois rows, 7 of them in Cook County",
+  "date": "read whole 2026-09-05; first cited 2026-09-02",
   "describes_date": "1840",
-  "locator": "1840 census indexes — Edward Dalton, Chicago 1st Ward",
+  "locator": "Illinois.html, anchor #census, the sub-list headed 1840",
   "url": "https://daltondatabank.net/Illinois.html",
   "tier": 4,
   "rights_status": "check_required",
   "asset_use": "text_only",
   "verified": true,
-  "note": "Genealogy/index access path, not the census image. Retained only as a later-Chicago identity candidate; the index does not bridge the 1835 postal entry to the 1840 household."
+  "access_notes": "Retrieved by curl over HTTPS on 2026-09-05, and every page consulted is recorded with its HTTP result so no gap is silent: Illinois.html 200 (165,061 bytes), Illinois_Page_2.html 200 (204,480), index.html 200 (41,224), us.html 200 (48,686), daltonscenc.html 200 (93,681), Census.html 404, Illinois_Page_3.html 404 — the last two probed on the guess that a census index might have a page of its own, and it does not. No page HTML is committed: the site's rights are check_required, so only names are taken, on the rule that a name index of a public-domain federal census is fact while the page that carries it is theirs. THE CITATION WAS CORRECTED BY THIS READ. It formerly described a 'free Illinois 1840 census index, Chicago by ward' — a bulk head-of-household list for the whole city. There is no such thing here and there are no ward pages to fetch: the Dalton Data Bank is a ONE-SURNAME genealogical site whose 280 Illinois-page links are places and surnames, and its Illinois 1840 census index is 20 rows for the entire state. T-0497.",
+  "what_it_supplies": [
+    "Seven 1840 Cook County heads of the surname Dalton, three of them located to a Chicago ward: Edward (1st Ward), Michael (2nd Ward), 'Mr.' (1st Ward, no given name), Mike (county), Gerard (county), Patrick (Bridgeport), George (Thornton Precinct). Read whole into data/research/census_1840/records/dalton_index.json.",
+    "A search target for the 49 unread images of the 1840 deposit: three of those seven should stand on a Chicago sheet somewhere in them.",
+    "Dated later continuity for the surname — a Catharine Dalton in Chicago's 1st Ward in its 1850 section, an Ellen and a James in the 4th — usable as context and never as an 1840 or an 1835 fact.",
+    "A single Dalton entry transcribed from the 1844 Chicago general directory ('Michael, Laborer, Water and Kinzie, Wolcott St.'), on Illinois_Page_2.html."
+  ],
+  "what_it_does_not_supply": [
+    "A head-of-household index for Chicago. It indexes ONE SURNAME. The repo's own citation said otherwise for three days and this is the correction; anybody reaching for a city-wide 1840 name list must go to the deposited page images, or to Dalton Data Bank's warning that these indexes 'may be incomplete' — which this project measured: 'Mrs Catharine Dalton', read off printed page 229 line 11 (33S7-9YYJ-9M5), is a Chicago Dalton the 1840 section does not carry.",
+    "Any ward-by-ward structure. There are no ward pages; the whole index is one section of one page.",
+    "Household composition, age bands, a page, a line, or anything else a census sheet carries. It gives a name and a place and stops.",
+    "Any bridge from 1835 to 1840. It is LATER EVIDENCE and never an 1835 residency fact on its own; the candidate it raises for hh_dalton_edward stands unasserted, as T-0479 left it.",
+    "A census image. The site holds no scans of the federal schedules."
+  ],
+  "note": "Genealogy/index access path, not the census image. Read whole under T-0497; the crosswalk of its seven Cook County rows against the sheets, the residents layer, the voter lists and PR #670's 210 heads is data/research/census_1840/crosswalk_dalton_index.json and every one of the seven is a refusal. Retained as a later-Chicago identity candidate for Edward Dalton; the index does not bridge the 1835 postal entry to the 1840 household, and reading the rest of it found nothing that would."
 }
