@@ -444,6 +444,22 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
         # ever changes the note out from under a tail, the prefix stops matching, the
         # tail is dropped, and that pass's own `--check` says so rather than the sentence
         # disappearing quietly.
+        # THE LATER-TRADE POINTER IS INSIDE A KEY THIS PASS WRITES (T-0693). The loop
+        # above saves a key another pass added to the PERSON; `occupation` is this
+        # pass's own, so a `later_occupation` written into it by
+        # `tools/qualify_later_trades.py` would be re-derived away. It is carried here
+        # instead, back into the slot it is written in, after `confidence`. It says
+        # nothing about 1835 — it points at the `directories` block above, which this
+        # pass is already carrying over for exactly the same reason.
+        pointer = (old.get("occupation") or {}).get("later_occupation")
+        if pointer is not None and isinstance(person.get("occupation"), dict):
+            occ = person["occupation"]
+            rebuilt = {}
+            for key, value in occ.items():
+                rebuilt[key] = value
+                if key == "confidence":
+                    rebuilt["later_occupation"] = pointer
+            person["occupation"] = rebuilt
         person["sources"] = sorted(set(person["sources"]) | set(old.get("sources") or []))
         was = (old.get("note") or "")
         if was.startswith(person["note"]) and len(was) > len(person["note"]):
