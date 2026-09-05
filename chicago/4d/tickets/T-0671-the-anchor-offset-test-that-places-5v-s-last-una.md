@@ -1,7 +1,7 @@
 ---
 id: T-0671
 title: The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 1:50:50 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950203006
 ---
 
 The anchor-offset test that places 5V's last `unassigned_ink` stroke, salvaged from the
