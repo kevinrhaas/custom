@@ -149,6 +149,17 @@
           "outcome": "out of window — his own entry dates his arrival to 1 July 1839"
         }
       ]
+    },
+    {
+      "pass": "T-0650",
+      "what": "Every person and every building named in Illinois Catholic Historical Review vol. 4 pages 256-259 that could be the same as something this project already holds. FOUR OF THE EIGHT RULINGS ARE ABOUT A BUILDING RATHER THAN A PERSON, which is unusual in this file and is what the passage is: the article names one church four times across four pages and this project holds a record for it, so the question 'is the article's little church our st_marys_church' is the identity question the reading turns on.",
+      "readings_examined": 8,
+      "residents_examined": 2,
+      "merges": 4,
+      "refusals": 4,
+      "detail": "In this file. Eight claims is small enough that a separate detail file would only hide the reasoning.",
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. The article is 1921 and its Chicago detail runs 1833-1841; under the ladder ratified 2026-09-03 a source later than 1835 corroborates, dates and constrains, and never makes an 1835 resident. The one reading that argues for a record change — the church still standing at State and Lake in June 1837, against a phase end of 1836-12-31 — is written as T-0717 and is not acted on here.",
+      "ruled_on": "All eight claims carry a ruling anchored to them by claim_id: bk_ichr4_001 and bk_ichr4_007 merge the article's church into st_marys_church on two separate namings; bk_ichr4_003 merges Beaubien; bk_ichr4_005 merges St. Cyr; bk_ichr4_002, bk_ichr4_004, bk_ichr4_006 and bk_ichr4_008 are refusals. Nothing in the run read here is left unruled."
     }
   ],
   "merges": [
@@ -380,6 +391,58 @@
       ],
       "pass": "T-0500",
       "claim_id": "bk_fer2_025"
+    },
+    {
+      "into": "st_marys_church — St Mary's Church, the first Catholic church in Chicago",
+      "from": "the little church that Father St. Cyr had built",
+      "rule": "'the little church that Father St. Cyr had built' and 'st_marys_church — St Mary's Church, the first Catholic church in Chicago' are one thing. Thompson's page 258 has O'Meara finding 'the little church that Father St. Cyr had built standing near the southwest corner of what is now State and Lake Streets'. This project's structure record st_marys_church.json is the church St. Cyr's congregation raised in August 1833 and occupied in October, standing on the south-west quadrant of Lake and State. Four things agree and none of them is the name, because the article never names the building: the BUILDER (Father St. Cyr, whom this project holds as st_cyr_john_mary and whose record's lives_at is this very structure), the QUADRANT (south-west of Lake and State, in both), the HEDGE (both say near the corner and neither says which lot), and the GROUND (a canal lot in the record's Andreas transcription, 'ground controlled by the Canal Commissioners' here). There was one Catholic church in Chicago before 1840 and both sources say so. THE MERGE IS OF A BUILDING AND NOT A PERSON, and it is the ruling this whole reading exists to make: it says the passage CORROBORATES a placement already made and is not fresh evidence for it.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001",
+        "data/structures/st_marys_church.json — placed 2026-08-11 on the south-west quadrant of Lake and State, off chicagology_prefire216",
+        "data/residents/households/hh_st_cyr_john_mary.json — lives_at st_marys_church"
+      ],
+      "does_not_follow": "THE STRUCTURE RECORD IS NOT EDITED BY THIS MERGE, and two things it argues for are deliberately left undone. The record's phase ends 1836-12-31 and this article has the church still there in June 1837 (bk_ichr4_004); that is T-0717. And 'near' is still near: the article does not say which canal lot, so the record's stated unbounded westward error is untouched and no coordinate moves.",
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_001"
+    },
+    {
+      "into": "st_marys_church — St Mary's Church, the first Catholic church in Chicago",
+      "from": "the little church … from the State-Lake location to the Michigan-Madison site",
+      "rule": "'the little church … from the State-Lake location to the Michigan-Madison site' and 'st_marys_church — St Mary's Church, the first Catholic church in Chicago' are one thing. Page 259 names the same building a second time, and names its corner a second time with it: 'the removal of the little church from the State-Lake location to the Michigan-Madison site'. That is the same church as bk_ichr4_001 — the same author, the same article, one removal, the same two corners — and therefore the same st_marys_church. IT IS RECORDED AS A SEPARATE MERGE BECAUSE IT IS A SEPARATE SENTENCE: a location an author states twice, sixty lines apart and in different words, is worth more than one he states once, and the second statement would be invisible if it were folded into the first.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_007",
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001 — the first naming, page 258",
+        "data/structures/st_marys_church.json"
+      ],
+      "does_not_follow": "The rectory this sentence goes on to describe is post-scene and is NOT placed, NOT merged and NOT given a record. The article itself says nobody has stated whether O'Meara built it or found it, and this project will not settle from silence what its own source declines to settle.",
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_007"
+    },
+    {
+      "into": "Col. Jean Baptiste Beaubien",
+      "from": "Jean Baptiste Beaubien",
+      "rule": "'Jean Baptiste Beaubien' and 'Col. Jean Baptiste Beaubien' are one thing. Page 258 has O'Meara buying the Michigan-and-Madison lot from the government and receiving 'a quitclaim deed from Jean Baptiste Beaubien, who claimed it, together with all the other property, which had formerly been included in the government reservation for Fort Dearborn'. This project holds Col. Jean Baptiste Beaubien at hh_beaubien_jean_baptiste.json, and the same merge is already written twice in this file from two other books. Three things agree: the full given name and both middle-position names, spelled identically; the town; and the CLAIM ITSELF, which is the Fort Dearborn reservation claim Beaubien is known for. The name is written out in full, so this is not a surname merge.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_003",
+        "data/residents/households/hh_beaubien_jean_baptiste.json",
+        "data/research/books/crosswalk.json — the same merge at bk_afc_008 and bk_hub_065, from two other books"
+      ],
+      "does_not_follow": "NOTHING IS WRITTEN ONTO HIS RECORD. The sentence describes a conveyance after June 1837, and the extent of what he claimed — 'all the other property … formerly included in the government reservation' — is 1921 prose about a disputed claim, not a title this project can hold or map. It is recorded so that a later run reaching for the extent of the Beaubien claim finds that this project has heard the assertion and has not acted on it.",
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_003"
+    },
+    {
+      "into": "John Mary Irenaeus St. Cyr",
+      "from": "Rev. John Mary Iraneus St. Cyr",
+      "rule": "'Rev. John Mary Iraneus St. Cyr' and 'John Mary Irenaeus St. Cyr' are one thing. Page 256 names 'Rev. John Mary Iraneus St. Cyr, whom Bishop Rosati had sent to Chicago in 1833'. This project holds John Mary Irenaeus St. Cyr at hh_st_cyr_john_mary.json, sent to Chicago in 1833 by Bishop Rosati. THE ONE CHARACTER THAT DIFFERS IS AN OCR FAULT AND IS NAMED HERE RATHER THAN CORRECTED IN THE QUOTE: 'Iraneus' against 'Irenaeus', a dropped e in a machine reading of a scan whose faults are visible three words either side of it. Four things agree past the surname: three given names in the same order, the sending bishop by name, the year, and the destination. There was one Catholic priest at Chicago in 1833.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_005",
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_006 — the same man, remaining until 17 April 1837",
+        "data/residents/households/hh_st_cyr_john_mary.json — head st_cyr_john_mary, arrival 1833 attested, sent by Bishop Rosati"
+      ],
+      "does_not_follow": "His record is not edited. Its arrival is already graded attested at year precision off Andreas, and a 1921 digest agreeing with Andreas does not sharpen a year into a month. His departure — 17 April 1837, which this article gives to the day — is after the scene window and belongs to no field this project keeps.",
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_005"
     }
   ],
   "refusals": [
@@ -728,6 +791,50 @@
       ],
       "pass": "T-0500",
       "claim_id": "bk_fer2_041"
+    },
+    {
+      "a": "a private party",
+      "b": "the residents of 1835",
+      "rule": "'a private party' is NOT 'the residents of 1835'. Page 258 ends the auction story with 'the lot was purchased by a private party'. THE ARTICLE NAMES NOBODY. 'a private party' is not a name at all, so there is no spelling to compare against any of this town's people, and identifying the purchaser of the Lake-and-State canal lot with any named resident would be an invention wearing a citation. Refused, and recorded so that a later run finds the refusal rather than the temptation. The same sentence's other half — the $10,000 valuation — is a fact about the ground and is kept in the claim.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_002"
+      ],
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_002"
+    },
+    {
+      "a": "Rev. Timothy O'Meara",
+      "b": "the residents of 1835",
+      "rule": "'Rev. Timothy O'Meara' is NOT 'the residents of 1835'. O'Meara is the man the whole passage turns on, and he was not here. This same article dates his arrival to 'the early or middle part of June, 1837', which is 23 months after the scene date, and no other source in this project puts him at Chicago earlier. So Rev. Timothy O'Meara is not a resident of 1835, is given no record, and is named in the research layer only. Refused on the date, not on the name.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_004",
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001 — what he found when he came, which is the only reason this project cares about his arrival"
+      ],
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_004"
+    },
+    {
+      "a": "Rev. Bernard Schaefer",
+      "b": "the residents of 1835",
+      "rule": "'Rev. Bernard Schaefer' is NOT 'the residents of 1835'. Page 256 has 'Father Schaefer arrived in Chicago in the fall of 1836' and St. Cyr's own letter of 5 September 1836 saying Schaefer had been with him 'for some weeks'. Even the earliest reading of that — weeks before September 1836 — is more than a year after the scene date. Rev. Bernard Schaefer is not a resident of 1835 and gets no record. NOTE THE SECOND SPELLING IN THE SAME ARTICLE, nine lines earlier: 'Rev. Bernard Shaefer', without the c. Both are the same man and both are committed as printed; neither is corrected in a quote. THE REFUSAL IS THE POINT AND NOT THE SPELLING: St. Cyr was the only priest at Chicago across the whole scene window, which is what st_marys_church.json's owner reading already says, and this sentence is the second source that bounds it from the far side.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_006",
+        "data/structures/st_marys_church.json — the owner reading, St. Cyr as pastor across the scene window, graded inferred"
+      ],
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_006"
+    },
+    {
+      "a": "the little church thus enlarged and ornamented",
+      "b": "st_marys_church as it stands on the scene date",
+      "rule": "'the little church thus enlarged and ornamented' is NOT 'st_marys_church as it stands on the scene date'. Page 258 describes a rear addition 'about the same length as the original church', a small belfry on the front, a three-pound bell and a cross, and page 259's opening words date the lot of it: 'Having removed the little church'. So the enlarged and belfried church is the SAME BUILDING and NOT THE SAME THING: it is st_marys_church after June 1837, on a different lot, at twice its length, with a bell tower this project's record explicitly refuses. Identifying it with the building standing at Lake and State on 1835-07-01 would put a belfry on the scene. Refused, and the refusal is what st_marys_church.json already calls 'the tower trap on this record' — now with a date on it.",
+      "evidence": [
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_008",
+        "data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_003 — the removal that precedes every one of these additions",
+        "data/structures/st_marys_church.json — the tower trap"
+      ],
+      "pass": "T-0650",
+      "claim_id": "bk_ichr4_008"
     }
   ]
 }
