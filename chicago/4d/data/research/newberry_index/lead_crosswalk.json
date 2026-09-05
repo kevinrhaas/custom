@@ -33861,19 +33861,19 @@
    "layer": "structures",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against John Wright's Building to Let (east); John Wright's Building to Let (west) stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against John Wright's Building to Let (a); John Wright's Building to Let (b) stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v04_0405"
    ],
    "candidates": [
     {
      "id": "wright_building_to_let_a",
-     "name": "John Wright's Building to Let (east)",
+     "name": "John Wright's Building to Let (a)",
      "rule": "exact surname"
     },
     {
      "id": "wright_building_to_let_b",
-     "name": "John Wright's Building to Let (west)",
+     "name": "John Wright's Building to Let (b)",
      "rule": "exact surname"
     }
    ],
@@ -82787,10 +82787,10 @@
   {
    "record_id": "nbi_v04_0405",
    "a": "Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.",
-   "b": "Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (east); John Wright's Building to Let (west); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
+   "b": "Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (east); John Wright's Building to Let (west); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
+   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
    "layers": [
     "census_1840",
     "residents",
