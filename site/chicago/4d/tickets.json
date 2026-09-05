@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 8:15 PM",
+  "generated_ct": "Sep 4, 2026, 8:24 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11828,6 +11828,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 155
+    },
+    {
+      "id": "T-0716",
+      "title": "Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
