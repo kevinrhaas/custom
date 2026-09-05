@@ -1,5 +1,46 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0637: 302 runs of fence stop belonging to nobody
+
+**What shipped.** `tools/enclosure_owners.py`, a derivation, and the two generators that now
+call it. Every run on the enclosure layer carries a `belongs_to` naming the lot it bounds, the
+committed buildings standing on that lot, and the households `data/residents/index.json` puts
+in those buildings — `lives_at` as a home, `works_at` as a workplace, which is this dataset's
+join to a business because a business here IS a structure with a trade on its `function`.
+Where one line divides two lots it belongs to both and each entry gives the compass bearing
+from the run's midpoint to that owner's ground, so the side is a measurement off the committed
+plat rather than a word. `data/enclosures/town_lot_line_{boards,pickets,rails}.json` and
+`town_dooryard_pickets.json` are regenerated; a new record-level `belongs_to_rule` block on
+each states the rule, its sources and its counts.
+
+**The numbers, on 306 runs.** 51 joined to a household; 24 households now have a fence round
+their ground; 117 lots named. The other 251 name the structures whose ground they bound and
+carry `refused: no_household_names_this_ground`, with the reason stated once per record: 20 of
+this town's 1,380 households hold a real `lives_at` and 50 a real `works_at`, all at named
+landmarks. **That is a gap in the address work (T-0514), not in the join** — a re-generation
+picks up whatever the placement sweep lands without a line of the rule changing.
+
+**What was refused.** A structure's `occupants` block is prose, and 72 of the buildings this
+layer fences name a household id in it — 59 ids, of which **53 belong to households the
+2026-09-02 synthesis removed** and the index no longer holds (T-0516's finding, counted here).
+Worse, a mention is not an occupancy: `philo_carpenter_log_shop` names `hh_chappel_eliza_mir`
+in a sentence whose own `value` says no occupant is attested there at the scene date. Joining
+on that prose would have handed ground to the wrong household while looking like evidence, so
+the count is filed as a finding in each record and the join stays on the two committed links.
+It is also why the dooryard record joins **1 of its 13** plots: clause 4 of that generator's
+own rule admits a lot on the strength of the same prose, and only Elijah Harmon's household is
+on a lot this record reaches with a real address behind it.
+
+**Nothing hand-authored was overwritten.** `tools/check_enclosure_owners.py` (new, wired into
+`tools/check.sh`) re-derives the authored yards anyway and prints the comparison: it agrees
+`sauganash_yard` is the Sauganash's and reports that `philo_carpenter_log_shop` stands on the
+same lot — a second building on the ground, not a second owner of the yard. The Western's
+wagon yard and the estray pen stand on ground the plat never divided into lots, so the
+derivation has nothing to compare and says so. The gate also fails a run that names an owner
+this repository does not hold, and a generated run with no `belongs_to` and no refusal.
+
+**Nothing in the scene moved.** No coordinate, no fence, no bake: this ticket adds a relation.
+
 ## Shipped 2026-09-04 — T-0542: the third town election was Friday 10 July 1835, and the 85-name poll list is not its poll book
 
 **Nothing a visitor can see changed, and this is the exemption named in the PR: the finding

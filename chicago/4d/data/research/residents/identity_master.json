@@ -23,9 +23,9 @@
   "identities_on_a_card": 1395,
   "identities_in_two_or_more_domains": 1589,
   "derived_refusals": 1881,
-  "declared_merges": 300,
+  "declared_merges": 304,
   "appearances_moved_by_a_landed_adjudication": 82,
-  "declared_refusals": 1574
+  "declared_refusals": 1578
  },
  "identities": [
   {"id":"id_abbot_samuel_e","surname":"abbot","forename":"samuel e","merge_rules":["M1"],"appearances":[{"domain":"census_1840","record_id":"33S7-9YYN-3CDH:28","source_id":"census_1840_cook_county","as_read":"Saml E Abbot","locator":"239:28","describes_date":"1840","evidence_class":"census_1840","normalized":"Samuel E. Abbot"}],"domains":["census_1840"],"sources_offered":["census_1840_cook_county"]},
@@ -8898,6 +8898,10 @@
   {"a":"A. Garrett","b":"Augustus Garrett","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_039","data/residents/households/hh_doc_a_garrett.json"]},
   {"a":"John Calhoun","b":"John Calhoun","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_041","data/residents/households/hh_calhoun_john.json"]},
   {"a":"William B. Ogden","b":"William B. Ogden","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_025","data/residents/index.json"]},
+  {"a":"the little church that Father St. Cyr had built","b":"st_marys_church — St Mary's Church, the first Catholic church in Chicago","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001","data/structures/st_marys_church.json — placed 2026-08-11 on the south-west quadrant of Lake and State, off chicagology_prefire216","data/residents/households/hh_st_cyr_john_mary.json — lives_at st_marys_church"]},
+  {"a":"the little church … from the State-Lake location to the Michigan-Madison site","b":"st_marys_church — St Mary's Church, the first Catholic church in Chicago","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_007","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001 — the first naming, page 258","data/structures/st_marys_church.json"]},
+  {"a":"Jean Baptiste Beaubien","b":"Col. Jean Baptiste Beaubien","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_003","data/residents/households/hh_beaubien_jean_baptiste.json","data/research/books/crosswalk.json — the same merge at bk_afc_008 and bk_hub_065, from two other books"]},
+  {"a":"Rev. John Mary Iraneus St. Cyr","b":"John Mary Irenaeus St. Cyr","rule":"D1","declared_in":"books/crosswalk.json#merges","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_005","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_006 — the same man, remaining until 17 April 1837","data/residents/households/hh_st_cyr_john_mary.json — head st_cyr_john_mary, arrival 1833 attested, sent by Bishop Rosati"]},
   {"a":"William H. Stow","b":"William H. Stow","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-9HY","T-0505","data/research/census_1840/resident_crosswalk.json","fergus_chicago_directory_1843"]},
   {"a":"William Allen","b":"William Allen","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-NY","T-0505","data/research/census_1840/resident_crosswalk.json","norris_directory_1844","fergus_chicago_directory_1843"]},
   {"a":"Philo Carpenter","b":"Philo Carpenter","rule":"D1","declared_in":"census_1840/crosswalk.json#merges","evidence":["33S7-9YYJ-RC","T-0505","data/research/census_1840/resident_crosswalk.json","norris_directory_1844","fergus_chicago_directory_1843"]},
@@ -8982,6 +8986,10 @@
   {"a":"John Kinzie","b":"John Harris Kinzie","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_056","data/residents/households/hh_kinzie_john_h.json"]},
   {"a":"Rev. Jesse Walker","b":"George E. Walker","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_050","data/residents/households/hh_ll_george_e_walker.json"]},
   {"a":"John Wentworth","b":"Elijah Wentworth sen.","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/fergus_26_29_second_half.json bk_fer2_041","data/residents/households/hh_ll_elijah_wentworth_sen.json"]},
+  {"a":"a private party","b":"the residents of 1835","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_002"]},
+  {"a":"Rev. Timothy O'Meara","b":"the residents of 1835","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_004","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001 — what he found when he came, which is the only reason this project cares about his arrival"]},
+  {"a":"Rev. Bernard Schaefer","b":"the residents of 1835","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_006","data/structures/st_marys_church.json — the owner reading, St. Cyr as pastor across the scene window, graded inferred"]},
+  {"a":"the little church thus enlarged and ornamented","b":"st_marys_church as it stands on the scene date","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_008","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_003 — the removal that precedes every one of these additions","data/structures/st_marys_church.json — the tower trap"]},
   {"a":"Joseph LaFramboy","b":"Clouded L Framboy","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_029","census1830_n580_030"]},
   {"a":"Hugh Walker","b":"James Walker","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_007","census1830_n580_014"]},
   {"a":"Willard Scott","b":"Stephen J Scott","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n582_005","census1830_n582_013"]},
