@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 7:21 AM",
+  "generated_ct": "Sep 5, 2026, 7:27 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12334,7 +12334,7 @@
     {
       "id": "T-0740",
       "title": "The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12342,14 +12342,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "878",
       "claimed_by": "run 9/5/2026, 6:48:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T12:27:15.443Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33963509540",
-      "queue_rank": 138
+      "queue_rank": null
     },
     {
       "id": "T-0741",
@@ -12409,7 +12409,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 140
     },
     {
       "id": "T-0744",
@@ -12429,7 +12429,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 142
+      "queue_rank": 141
     },
     {
       "id": "T-0745",
@@ -12469,7 +12469,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 143
+      "queue_rank": 142
     },
     {
       "id": "T-0747",
@@ -12509,7 +12509,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 145
+      "queue_rank": 144
     },
     {
       "id": "T-0753",
@@ -12529,7 +12529,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 143
     },
     {
       "id": "T-0754",
@@ -12549,7 +12549,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 138
     },
     {
       "id": "T-0755",
@@ -12569,7 +12569,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 139
     },
     {
       "id": "T-0756",
@@ -12609,7 +12609,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 147
     },
     {
       "id": "T-0758",
@@ -12629,7 +12629,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 148
     },
     {
       "id": "T-0759",
@@ -12649,7 +12649,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 149
     },
     {
       "id": "T-0761",
@@ -12669,7 +12669,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0762",
@@ -12689,7 +12689,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0763",
@@ -12709,7 +12709,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
     },
     {
       "id": "T-0764",
@@ -12729,7 +12729,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 153
     },
     {
       "id": "T-0765",
@@ -12749,7 +12749,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 145
     },
     {
       "id": "T-0766",
@@ -12769,12 +12769,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 146
     },
     {
       "id": "T-0767",
       "title": "dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12782,14 +12782,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "878",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T12:27:15.528Z",
       "claimed_run": null,
-      "queue_rank": 155
+      "queue_rank": null
     }
   ]
 }
