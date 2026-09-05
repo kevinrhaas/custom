@@ -51,7 +51,7 @@
    "id": "winson_wm",
    "name": "Wm. Winson",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-01-28"
@@ -75,9 +75,7 @@
     "evidence_for": "No target-period Chicago-area discriminator found.",
     "evidence_against": "A later Illinois William Winson appears in Civil War-era Macoupin County records, far too late to bridge the 1834 postal item.",
     "summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-    "notes": "negative≠absence; no edit",
-    "regraded_on": "2026-09-04",
-    "rule": "G1c"
+    "notes": "negative≠absence; no edit"
    },
    "civic_evidence": [
     {
@@ -100,7 +98,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

@@ -1017,6 +1017,13 @@ step "…and its own assertions still fire when broken" \
 if [ -d ../../site/chicago/4d ]; then
   step "published mirror matches its source" \
     node tools/check_published.mjs
+
+  # …and the one layer in it publish.sh transforms rather than copies. The residents
+  # records ship minified for the size budget, so the byte comparison above cannot see
+  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+  # files, nothing dropped.
+  step "the published residents layer carries its source's value" \
+    node tools/check_published_residents.mjs
 fi
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has

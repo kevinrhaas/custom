@@ -59,12 +59,12 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 871,
+        "none_recorded": 885,
         "printer": 1,
         "saddler": 1,
         "tavern_keeper": 2
       },
-      "households_total": 878,
+      "households_total": 892,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -8977,7 +8977,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "murray_alonzo",
-      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_alonzo_murry",
@@ -9076,7 +9076,7 @@
       "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "ambrose_joshua",
-      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_amerman_jjghn_m",
@@ -10935,7 +10935,7 @@
       "last_seen": "1834-09-10",
       "action": "enrich",
       "action_target": "bradford_harriet",
-      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_bradford_william_h",
@@ -11089,7 +11089,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "brooks_gardner",
-      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_brown",
@@ -11485,7 +11485,7 @@
       "last_seen": "1835-06-20",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_c_handler_fi_s_her",
@@ -11969,7 +11969,7 @@
       "last_seen": "1833-11-26",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_chappel_eliza_mir",
@@ -12079,7 +12079,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_charles_h_roberts",
@@ -12200,7 +12200,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_chas_l_bristol",
@@ -13069,7 +13069,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "crawford_james",
-      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_critchet_johh",
@@ -14708,7 +14708,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "simons_e",
-      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_e_sproat",
@@ -14928,7 +14928,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "rogers_edward_a",
-      "action_note": "data/residents/ already holds this person as rogers_edward_a (hh_rogers_edward_a, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as rogers_edward_a (hh_rogers_edward_a, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_edward_allen",
@@ -15027,7 +15027,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "simons_e",
-      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_edward_trimble",
@@ -15104,7 +15104,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "doolittle_ehjah",
-      "action_note": "data/residents/ already holds this person as doolittle_ehjah (hh_doolittle_ehjah, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as doolittle_ehjah (hh_doolittle_ehjah, attested). The papers add mentions and dates."
     },
     {
       "id": "person_el_i_hu_walter",
@@ -16512,7 +16512,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "lee_george",
-      "action_note": "data/residents/ already holds this person as lee_george (hh_lee_george, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as lee_george (hh_lee_george, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_george_m_brooks",
@@ -16523,7 +16523,7 @@
       "last_seen": "1835-06-20",
       "action": "enrich",
       "action_target": "brooks_gardner",
-      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_george_mcwilliams",
@@ -17117,7 +17117,7 @@
       "last_seen": "1834-04-16",
       "action": "enrich",
       "action_target": "legg_gregory_e",
-      "action_note": "data/residents/ already holds this person as legg_gregory_e (hh_legg_gregory_e, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as legg_gregory_e (hh_legg_gregory_e, attested). The papers add mentions and dates."
     },
     {
       "id": "person_griffith_doctor_eb",
@@ -17502,7 +17502,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "vanderbogart_h",
-      "action_note": "data/residents/ already holds this person as vanderbogart_h (hh_vanderbogart_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as vanderbogart_h (hh_vanderbogart_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_walford",
@@ -17953,7 +17953,7 @@
       "last_seen": "1834-04-08",
       "action": "enrich",
       "action_target": "bradford_harriet",
-      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_harriet_e_brown",
@@ -20549,7 +20549,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "matthews_james_g",
-      "action_note": "data/residents/ already holds this person as matthews_james_g (hh_matthews_james_g, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as matthews_james_g (hh_matthews_james_g, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_james_gilbert",
@@ -20989,7 +20989,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "crawford_james",
-      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_jason_b_vaughan",
@@ -21858,7 +21858,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "barry_john_s",
-      "action_note": "data/residents/ already holds this person as barry_john_s (hh_barry_john_s, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as barry_john_s (hh_barry_john_s, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_john_s_c_hogan",
@@ -22782,7 +22782,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "ambrose_joshua",
-      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_joshua_hathaway_jr",
@@ -26269,7 +26269,7 @@
       "last_seen": "1834-09-24",
       "action": "enrich",
       "action_target": "murray_alonzo",
-      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_mutteson_thomas",
@@ -26533,7 +26533,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "neff_r_a",
-      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_nehemiah_king",
@@ -27402,7 +27402,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "cole_parker_m",
-      "action_note": "data/residents/ already holds this person as cole_parker_m (hh_cole_parker_m, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cole_parker_m (hh_cole_parker_m, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_parrish_stephen",
@@ -28480,7 +28480,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "neff_r_a",
-      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_r_c_bristol",
@@ -30713,7 +30713,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "albert_shepherd",
-      "action_note": "data/residents/ already holds this person as albert_shepherd (hh_albert_shepherd, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as albert_shepherd (hh_albert_shepherd, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_sherman_king",
@@ -31549,7 +31549,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "mack_stephen",
-      "action_note": "data/residents/ already holds this person as mack_stephen (hh_mack_stephen, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as mack_stephen (hh_mack_stephen, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_stephen_may",
@@ -32594,7 +32594,7 @@
       "last_seen": "1834-07-02",
       "action": "enrich",
       "action_target": "fitzgerald_thos",
-      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_galaher",
@@ -32814,7 +32814,7 @@
       "last_seen": "1834-04-08",
       "action": "enrich",
       "action_target": "fitzgerald_thos",
-      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_thos_galaher_jr",
@@ -33221,7 +33221,7 @@
       "last_seen": "1834-07-30",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_captain_smith",
@@ -36730,7 +36730,7 @@
       "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "winson_wm",
-      "action_note": "data/residents/ already holds this person as winson_wm (hh_winson_wm, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as winson_wm (hh_winson_wm, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_wm_wood",

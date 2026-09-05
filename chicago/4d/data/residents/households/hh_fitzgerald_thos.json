@@ -51,7 +51,7 @@
    "id": "fitzgerald_thos",
    "name": "Thos. Fitzgerald",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-08"
@@ -87,9 +87,7 @@
        "Michigan geography and common name; no Chicago bridge."
       ]
      }
-    ],
-    "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    ]
    },
    "church_evidence": [
     {
@@ -141,7 +139,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

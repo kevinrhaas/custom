@@ -51,7 +51,7 @@
    "id": "bradford_harriet",
    "name": "Harriet Bradford",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-08"
@@ -74,9 +74,7 @@
     "summary": "No reliable record in the reviewed repository corpus, exact/variant searches, 1839/1843 Chicago directories, and targeted regional/local histories could be tied to this person by more than the recorded postal name. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ],
-    "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    ]
    },
    "press_evidence": [
     {
@@ -97,7 +95,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

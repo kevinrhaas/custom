@@ -51,7 +51,7 @@
    "id": "ambrose_joshua",
    "name": "Joshua Ambrose",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -77,9 +77,7 @@
     "notes": "Open-web exact-name and reasonable spelling/order variants did not produce a reliable dated Chicago/Cook County discriminator beyond the seed letter-list evidence. Negative search is not evidence of nonexistence.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ],
-    "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    ]
    },
    "press_evidence": [
     {
@@ -100,7 +98,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,
