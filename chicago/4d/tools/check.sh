@@ -31,6 +31,19 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# data/residents/index.json is a MANIFEST — every row and every count in it
+# restates something the household records already say — so it is a derivation
+# and it is gated as one (T-0715). This sits high in the file on purpose: before
+# it existed, an index that had drifted away from the records failed as 19
+# per-household errors in the step above and a different sentence in six steps
+# below, none of which named the cause, and #797 diagnosed it by hand. Now one
+# step names the file, the drift and the command that fixes it.
+step "the residents manifest re-derives from the household records" \
+  python3 tools/rebuild_resident_index.py --check
+
+step "the residents manifest derivation's own tests" \
+  python3 tools/rebuild_resident_index.py --selftest
+
 # A book's page numbers are its locators, and for Hubbard's autobiography they are DERIVED:
 # the committed text is the Internet Archive's djvu OCR, which carries no page breaks at all,
 # so the leaf boundaries are carried onto it from the deposited scan. A derivation that is not

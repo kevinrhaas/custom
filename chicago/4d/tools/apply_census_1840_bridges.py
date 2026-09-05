@@ -13,10 +13,13 @@ import csv
 import gzip
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import rebuild_resident_index  # noqa: E402  (the one owner of index.json, T-0715)
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -234,42 +237,10 @@ def docs_and_people():
 
 
 def rebuild_index(index, docs):
-    old = {r.get("id"): r for r in index.get("households") or []}
-    rows=[]; grades=Counter(); letter=projected=census=0
-    for path, doc in sorted(docs.items(), key=lambda kv: kv[1].get("id", kv[0].name)):
-        people = doc.get("persons") or []
-        g = Counter(p.get("grade") for p in people if p.get("grade")); grades.update(g)
-        ll = sum(bool(p.get("letter_list_only")) for p in people)
-        pr = sum(p.get("resident_subtype") == "projected_resident" for p in people)
-        ce = sum(bool(p.get("later_census")) for p in people)
-        letter += ll; projected += pr; census += ce
-        hid = doc.get("id"); row = dict(old.get(hid) or {})
-        def val(block): return block.get("value") if isinstance(block, dict) else block
-        row.update({"id":hid,"file":f"households/{path.name}","head":doc.get("head"),
-                    "division":doc.get("division"),"persons":len(people),
-                    "grades":dict(sorted(g.items())),"lives_at":val(doc.get("lives_at")),
-                    "works_at":val(doc.get("works_at")),
-                    "present_on_scene_date":val(doc.get("present_on_scene_date")),
-                    "review_required":bool(doc.get("review_required"))})
-        if ll: row["letter_list_only"] = True
-        else: row.pop("letter_list_only", None)
-        if pr: row["projected_resident"] = True
-        else: row.pop("projected_resident", None)
-        if ce: row["census_1840_linked"] = ce
-        else: row.pop("census_1840_linked", None)
-        rows.append(row)
-    index["households"] = rows
-    counts = dict(index.get("counts") or {})
-    counts.update({
-        "households": len(rows),
-        "persons": sum(r["persons"] for r in rows),
-        "by_grade": {"attested": grades.get("attested",0), "inferred": grades.get("inferred",0), "reconstructed": grades.get("reconstructed",0)},
-        "letter_list_only": letter,
-        "projected_residents": projected,
-        "census_1840_linked": census,
-    })
-    index["counts"] = counts
-    return index
+    # T-0715: one derivation states the manifest. This used to restate it here,
+    # a fourth hand-rolled copy of the same tally, each seeded from the row on
+    # disk and so each able to carry another pass's stale flag through untouched.
+    return rebuild_resident_index.rebuild(index, docs)
 
 
 def update_ledger(rows, all_census):

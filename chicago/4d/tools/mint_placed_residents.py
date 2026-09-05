@@ -133,6 +133,7 @@ GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
 EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 
 sys.path.insert(0, str(ROOT / "tools"))
+import rebuild_resident_index  # noqa: E402  (the one owner of index.json, T-0715)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     BARE_TOWN, FEMALE_TITLES, FIRM, MALE_TITLES, PAPERS, SCENE_DATE, UNCERTAIN,
     cited, display, dumps, household_id, in_town_places, issue_of, load,
@@ -651,34 +652,13 @@ def build(preload: dict | None = None):
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
+    # One owner for the manifest (T-0715). This pass used to copy every row it
+    # had not minted straight across, which is how a household nobody owns kept
+    # a stale row; it now states the whole layer from the whole layer.
+    final = {path: doc for path, doc in docs.items() if path not in mine_paths}
+    final.update({path: json.loads(text) for path, text in files.items()})
+    index = rebuild_resident_index.rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 

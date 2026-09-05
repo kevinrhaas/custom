@@ -1128,6 +1128,15 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     # would otherwise still be quoting the old ones.
     vocab["grades"] = ["attested", "inferred", "reconstructed"]
 
+    # T-0715 NOTE. The manifest has one owner now — tools/rebuild_resident_index.py
+    # — and every other pass that wrote index rows calls it. This one does not,
+    # and deliberately: it is the RETIRED reconstructed-population programme (the
+    # owner's 2026-09-02 ruling), its own `--check` has been red ever since, and
+    # it no longer runs, so converting it could not be demonstrated. The keep/
+    # re-tally below is the shape T-0715 was opened about — a pass patching rows
+    # it does not own. If this programme is ever revived, delete it and call
+    # rebuild_resident_index.rebuild(index, records) instead; until then
+    # check.sh's re-derivation step catches anything it would leave behind.
     keep = [e for e in index["households"] if not e["id"].startswith(PREFIX)]
     by_id = {d["id"]: d for d in households + documented_updates}
     for entry in keep:

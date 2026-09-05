@@ -166,6 +166,7 @@ PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
+import rebuild_resident_index  # noqa: E402  (the one owner of index.json, T-0715)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
@@ -667,46 +668,16 @@ def build(preload: dict | None = None):
         taken.add(doc["id"])
         taken.add(doc["persons"][0]["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "civic_mint": True,
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-            "projected_resident": any(p.get("resident_subtype") == "projected_resident"
-                                      for p in doc["persons"]),
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-
+    # The manifest is not this pass's to patch. It restates the WHOLE layer, so
+    # it is stated from the whole layer: `others` (every household this pass did
+    # not mint) plus what this run just minted. Before T-0715 the rest of the
+    # file was copied verbatim - `keep = [r for r in index["households"] if
+    # r["id"] not in mine_ids]` - so a household no pass owned kept a row saying
+    # whatever it said when it was last written.
     final = dict(others)
     final.update({path: json.loads(text) for path, text in files.items()})
-    index["counts"]["civic_mint"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("civic_mint"))
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    index = rebuild_resident_index.rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -1009,6 +980,7 @@ def regrade_decisions(docs: dict, proposal: dict, master: dict):
 
 def apply_regrade(docs: dict, index: dict, applied: list) -> set:
     """Write the decisions onto the tree in memory. Returns the paths touched."""
+    index_before = dict(index)
     people = people_by_id(docs)
     touched: set = set()
     for change, path, pid, blocks, sources, refusal in applied:
@@ -1035,29 +1007,14 @@ def apply_regrade(docs: dict, index: dict, applied: list) -> set:
             rr["refusals"] = keep + [refusal]
         touched.add(path)
 
-    # The manifest rows and the counts the panels read. Re-derived from the tree
-    # rather than adjusted, so a second run of this mode is a no-op.
-    rows = {r["id"]: r for r in index.get("households") or []}
-    for path in touched:
-        doc = docs[path]
-        row = rows.get(doc.get("id"))
-        if row is None:
-            continue
-        tally: dict = {}
-        for person in doc.get("persons") or []:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        row["grades"] = dict(sorted(tally.items()))
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in docs.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    # The manifest rows and the counts the panels read. Stated from the whole
+    # tree, not from `touched`: this mode used to rewrite only the rows it had
+    # changed this run, and on the normal steady state - a proposal already
+    # spent - it touches nothing at all, so a row another pass had left stale
+    # stayed stale for ever (T-0715). The rebuild is idempotent, so a second run
+    # of this mode is still a no-op.
+    index.clear()
+    index.update(rebuild_resident_index.rebuild(dict(index_before), docs))
     return touched
 
 

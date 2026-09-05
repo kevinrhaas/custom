@@ -4720,6 +4720,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     person_ids: dict = {}
     grade_totals: dict = {g: 0 for g in RESIDENT_GRADES}
     n_persons = 0
+    stale_rows: list = []
 
     for entry in index.get("households", []):
         hid, hfile = entry.get("id"), entry.get("file")
@@ -4941,23 +4942,23 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             walk_attested(f"{where}/{p.get('id')}", p, source_ids, rep, tally)
 
         # --- the manifest's denormalised copies -----------------------------
+        # Every one of these is DERIVED (tools/rebuild_resident_index.py owns the
+        # derivation). So drift here is never eighteen separate faults to
+        # adjudicate; it is one file that was not rebuilt, and T-0715 was opened
+        # because reading it as 19 per-household errors — beside a different
+        # sentence for the same cause in six other steps — cost an afternoon to
+        # diagnose by hand. Collected, and reported once below.
         for key, actual in (("head", h.get("head")),
                             ("division", h.get("division")),
                             ("lives_at", (h.get("lives_at") or {}).get("value")),
                             ("works_at", (h.get("works_at") or {}).get("value")),
                             ("present_on_scene_date",
                              (h.get("present_on_scene_date") or {}).get("value")),
-                            ("review_required", h.get("review_required"))):
+                            ("review_required", h.get("review_required")),
+                            ("persons", len(persons)),
+                            ("grades", local_grades)):
             if entry.get(key) != actual:
-                rep.error("residents index", f"household '{hid}' {key} in the manifest "
-                                             f"({entry.get(key)!r}) disagrees with the record "
-                                             f"({actual!r}); the record is authoritative")
-        if entry.get("persons") != len(persons):
-            rep.error("residents index", f"household '{hid}' persons {entry.get('persons')!r} "
-                                         f"disagrees with the {len(persons)} in the record")
-        if entry.get("grades") != local_grades:
-            rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
-                                         f"disagrees with the record's {local_grades!r}")
+                stale_rows.append((hid, key, entry.get(key), actual))
         households[hid] = h
 
     # --- kin: the far end, and the reciprocity rule -------------------------
@@ -4991,15 +4992,26 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                               f"catch")
 
     counts = index.get("counts") or {}
-    if counts.get("households") != len(households):
-        rep.error("residents index", f"counts.households {counts.get('households')!r} "
-                                     f"disagrees with the {len(households)} loaded")
-    if counts.get("persons") != n_persons:
-        rep.error("residents index", f"counts.persons {counts.get('persons')!r} disagrees with "
-                                     f"the {n_persons} in the records")
-    if counts.get("by_grade") != grade_totals:
-        rep.error("residents index", f"counts.by_grade {counts.get('by_grade')!r} disagrees "
-                                     f"with the records' {grade_totals!r}")
+    for key, actual in (("households", len(households)),
+                        ("persons", n_persons),
+                        ("by_grade", grade_totals)):
+        if counts.get(key) != actual:
+            stale_rows.append((None, "counts." + key, counts.get(key), actual))
+
+    # ONE message for the whole manifest, naming the cause and the cure. The
+    # first three examples are spelled out so the failure is still legible; the
+    # rest are a count, because a hundred of them are the same fault.
+    if stale_rows:
+        shown = "; ".join(
+            f"{'counts' if hid is None else hid} {key.split('.')[-1]} "
+            f"{was!r} should be {now!r}" for hid, key, was, now in stale_rows[:3])
+        more = (f", and {len(stale_rows) - 3} more" if len(stale_rows) > 3 else "")
+        rep.error("residents index",
+                  f"data/residents/index.json disagrees with the household records in "
+                  f"{len(stale_rows)} place(s): {shown}{more}. The manifest is DERIVED "
+                  f"from the records and the records are authoritative - do not edit it. "
+                  f"Run `python3 tools/rebuild_resident_index.py` and commit the result "
+                  f"(T-0715).")
 
     # The researched-and-excluded half. Same standard as data/exclusions.json:
     # a finding that a person is NOT in this scene is a claim and owes a reason.
