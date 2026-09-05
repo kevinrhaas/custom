@@ -147,7 +147,6 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
-T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
 T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
 T-0636 — Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
 

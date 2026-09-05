@@ -1,7 +1,7 @@
 ---
 id: T-0650
 title: The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 830
 claimed_by: run 9/4/2026, 8:15:40 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T02:01:05.710Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935471720
 ---
 
