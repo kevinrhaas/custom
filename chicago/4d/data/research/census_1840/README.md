@@ -863,3 +863,68 @@ group 51-74 for the first time: 9 left sheets and 15 right, listed in the same f
 does not have to open them again to find the names. One of the nine is unlike anything else here —
 `33SQ-GYYJ-PW` is the densest leaf in the deposit and writes STREET NAMES down its left margin
 beside the households. It is the leaf T-0496 should open first.
+
+
+## The thirty columns a continuation sheet's reader never names, swept (T-0629, 2026-09-05)
+
+`read_census_continuation.py` names eight columns of a right-hand sheet — TOTAL and the seven
+industry columns — because that printed run is the one stretch of the form whose columns can be
+named off pitch alone. The other **thirty** are wide blocks of unequal pitch, and the tool has
+always reported their ink as one lump per block with a note saying the lump is dominated by
+printed rules and is not evidence either way. On `33S7-9YYJ-6H` that left the twelve SLAVES
+columns, both PENSIONERS columns, the ten DEAF AND DUMB, BLIND AND INSANE columns and the whole
+SCHOOLS, &c. block unlooked-at, and it left the sheet's own note saying a 1 and a 40 stood at the
+head of the schools block, still not read.
+
+`tools/read_census_lower_blocks.py` names them and sweeps them. It reads no digit — it says where
+to look and what the ink is like when you get there — and it reports four measurements per
+component: the box, the share of pixels standing 120 or more grey levels below local background
+(**solid**), the paper the ink shuts in after a 5 px closing (**encloses**), and the distance to
+the nearest printed rule.
+
+**The pale-rule problem is per block, and it is stated rather than tuned.** This leaf already
+needs `--cover 0.50` where its sibling 5V takes the 0.6 default. The six white
+deaf/dumb/blind/insane columns are paler again: at 0.50 only the block's outer rules stand, and
+the four interior ones arrive at 0.30. At 0.25 two of them drop out. 0.30 is not a threshold the
+reading was tuned to; it is the only one at which that block's run is complete.
+
+**Thirty columns swept, two cells written.** Fifteen components survive in the body and six in the
+footing band. Five are the enumerator's ink. Every other one is a printed rule clipped by the
+sweep window, a horizontal rule crossing the band, a round blot, or the feathered ghost of writing
+on the other side of the leaf — and the discriminator is measured, not judged: the sheet's 55
+committed number groups run 10–65 px wide and 15–82 tall, median 34×41, and every rejected
+component is at most 19×26 with a solid fraction of 0.01–0.14. So **744 cells** are committed
+blank, which on this form is a zero.
+
+**The 1 and the 40.** They stand in **Primary and Common Schools** and in the **No. of Scholars**
+immediately right of it — not the academies pair, which is empty on every line — and they stand
+on **line 1**. Placing them took a measurement the sheet had not needed before: the leaf *rises to
+the right*, its upper body rule falling from y613 at x300 to y580 at x3500, and the committed line
+index was fitted to industry ink 2 200 px to the left. Corrected for that slope the index predicts
+line 1 at y659.1 where the figures are; their ink centres are y661.5 and y662.5, residuals of
++2.4 and +3.4 px against an index whose own rms is 4.81. Line 2 would be at y734.
+
+**The 40's nought is the only bowl on the sheet outside the industry run.** Flooding each
+component's background from its box border, exactly one of the twenty-one encloses paper: the
+48×46 figure at x3536–3584, which encloses 25 px. That is what rules out 4, 44 and 11 — and it
+hands the leaf an *independent* instance of the two-stroke 4 that T-0645 had to argue into from
+the TOTAL footing's arithmetic. Here the same two-stroke figure is read off form, standing beside
+a nought it cannot be.
+
+**And the block is footed, which nothing had looked for.** `footer_blank_columns_note` listed the
+blocks carrying no figure at the foot of this sheet; the schools block was absent from that list
+only because nobody had examined it. Under Primary and Common Schools the footing is a single bold
+slash of the body figure's own form — read **1**, and **that column closes**: one entry of 1 in
+the body, 1 at the foot. It is the first column on this leaf outside the industry run to close.
+
+Under No. of Scholars the footing is **written and does not read**. Three components spanning
+38 px where the body's 40 spans 48; the bowl test returns 0 against the body's 25, the first glyph
+carries no crossbar, and the ink is half the body figure's depth — a drier pen at the foot of a
+leaf already curling into the binding. It is where a 40 would stand and it is not recorded as one,
+because assuming it is exactly how a column is made to close. **T-0742** carries it.
+
+The seventh schools column, *No. of Scholars at public charge*, has no right-hand rule at any
+threshold down to 0.30: the gutter takes it at about x3640. It is recorded **unread, not blank** —
+a blank here would mint a nought nobody read. **T-0743** carries it.
+
+None of this closes the sheet. The TOTAL column still stands 7 short of its 144 footing.
