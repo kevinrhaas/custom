@@ -558,8 +558,19 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "anonymous": d["id"].startswith(("recon_", "inf_")),
         })
 
-    for s in load_json(streets_file).get("streets", []):
-        town["streets"][street_key(s["name_1835"])] = s["id"]
+    # Where two records share a name_1835 the register has to choose, and the choice must
+    # not be the file's line order. T-0451 seated the North Division's six lines as the
+    # committed South Division streets CONTINUED across the river, so `dearborn` and
+    # `dearborn_north` both read "Dearborn Street" — and the plat letters no name in any
+    # North Division corridor, so nothing on the sheet tells them apart either. A bare
+    # street name in these newspapers is the South Division line: that is where the
+    # advertising town stood, and it is the reach every ordinal in this register is
+    # counted along. So the record reaching furthest SOUTH takes the name, and the North
+    # Division line stays reachable by its id. Before this, seating those six lines
+    # re-anchored 90 fields of the register onto the wrong side of the water.
+    for s in sorted(load_json(streets_file).get("streets", []),
+                    key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
+        town["streets"].setdefault(street_key(s["name_1835"]), s["id"])
         town["streets"][s["id"]] = s["id"]
 
     # The creek marker in OUTSIDE_MARKERS is only sound while this stays False.
