@@ -883,7 +883,7 @@ All three of its pages were fetched on 2026-09-05 (HTTP 200 each: the front page
 | Illinois rows, read whole | 20 |
 | in a Chicago ward | 3 — Edward Dalton (1st), Michael Dalton (2nd), "Mr. Dalton" (1st) |
 | Cook County outside a Chicago ward | 4 — Thornton Precinct, Bridgeport, and two with no place |
-| outside Cook County | 12 — Morgan, Knox, Pike, Adams, Scott, Jo Daviess |
+| outside Cook County | 13 — Morgan, Knox, Pike, Adams, Scott, Jo Daviess |
 
 The rows are in `records/dalton_index.json` (names only: the page's rights are `check_required`),
 and `dalton_index_crosswalk.json` beside it carries the adjudication — 0 merges, 7 refusals, 1

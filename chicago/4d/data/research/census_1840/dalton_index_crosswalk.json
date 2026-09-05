@@ -14,10 +14,9 @@
         "rows": 20,
         "matched": 0,
         "candidate": 1,
-        "refused": 7,
-        "outside_cook_county_and_not_adjudicated": 12
+        "refused": 19
       },
-      "why_twelve_are_not_adjudicated": "Twelve rows name Morgan, Knox, Pike, Adams, Scott and Jo Daviess counties. They are recorded so the Chicago selection is made from a declared whole, and they meet nothing in this town — there is no pair to rule on."
+      "every_row_is_adjudicated": "All 20 rows are ruled on: one candidate (entry 3) and 19 refusals. The 13 rows naming counties outside Cook are refused against the town's one Dalton household rather than left unruled — an unadjudicated row read into a domain is exactly the debt tools/measure_research_spend.py exists to measure, and 'it obviously is not him' is a ruling somebody still has to be able to read back."
     }
   ],
   "merges": [],
@@ -92,6 +91,136 @@
         "T-0497",
         "given_name_conflict"
       ]
+    },
+    {
+      "a": "Charles Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Charles Dalton' of the index's 1840 entry 1 (Morgan Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Morgan County is in west-central Illinois, some 200 miles south of the town. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_01",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "David Dalton",
+      "b": "Edward Dalton",
+      "rule": "'David Dalton' of the index's 1840 entry 2 (Knox Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Knox County is in western Illinois, well outside Cook. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_02",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "George Dalton",
+      "b": "Edward Dalton",
+      "rule": "'George Dalton' of the index's 1840 entry 5 (Pike Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Pike County is on the Mississippi, at the far side of the state. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_05",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Harry Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Harry Dalton' of the index's 1840 entry 7 (Knox County) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Knox County is in western Illinois, well outside Cook. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_07",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Isham Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Isham Dalton' of the index's 1840 entry 8 (Morgan Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Morgan County is in west-central Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_08",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "James Dalton",
+      "b": "Edward Dalton",
+      "rule": "'James Dalton' of the index's 1840 entry 9 (Pike Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Pike County is on the Mississippi. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_09",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "John Dalton",
+      "b": "Edward Dalton",
+      "rule": "'John Dalton' of the index's 1840 entry 10 (Adams Co., Quincy) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Quincy in Adams County is on the Mississippi. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_10",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "John Dalton",
+      "b": "Edward Dalton",
+      "rule": "'John Dalton' of the index's 1840 entry 11 (Scott Co., Winchester) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Winchester in Scott County is in west-central Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_11",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Little Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Little Dalton' of the index's 1840 entry 12 (Morgan Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Morgan County is in west-central Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_12",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Reuben Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Reuben Dalton' of the index's 1840 entry 17 (Knox Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Knox County is in western Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_17",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Samuel Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Samuel Dalton' of the index's 1840 entry 18 (Morgan Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Morgan County is in west-central Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_18",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sharon Dalton",
+      "b": "Edward Dalton",
+      "rule": "'Sharon Dalton' of the index's 1840 entry 19 (Knox Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Knox County is in western Illinois. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_19",
+        "T-0497",
+        "given_name_conflict"
+      ]
+    },
+    {
+      "a": "William Dalton",
+      "b": "Edward Dalton",
+      "rule": "'William Dalton' of the index's 1840 entry 20 (Jo Daviess Co.) is NOT 'Edward Dalton' of hh_dalton_edward: the given names disagree, and Jo Daviess County is the far north-west corner of the state, at Galena. The surname is all the two share, and a surname has never been an identity here. Recorded rather than passed over, so that the three Chicago rows are a SELECTION from an adjudicated whole.",
+      "evidence": [
+        "dalton_index_1840_20",
+        "T-0497",
+        "given_name_conflict"
+      ]
     }
   ],
   "candidates": [
@@ -111,6 +240,11 @@
       "for_consolidation": "T-0513 — this pass changes no grade and edits no resident record (T-0514/T-0515 apply).",
       "sources": [
         "dalton_1840_chicago_census_index"
+      ],
+      "evidence": [
+        "dalton_index_1840_03",
+        "T-0497",
+        "exact_name_later_geography"
       ]
     }
   ],
