@@ -82,7 +82,6 @@ T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number a
 # --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
 # --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 
@@ -99,24 +98,12 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
-T-0754 — The 1840 census recapitulation 33SQ-GYYJ-PW read in full: the six wards, its 30 numbered page rows and its grand total, tested against printed 237
-T-0755 — The 1840 census left sheets printed 212 and 213 (33SQ-GYYJ-RY and -RK) read to the name and the cell
-T-0745 — The 1840 census left sheets printed 214 and 220 (33SQ-GYYJ-BP and -P5) read to the name and the cell
-T-0746 — The 1840 census left sheets printed 223 and 240 (33SQ-GYYJ-LV and -CK) read to the name and the cell
-T-0747 — The cells of printed 233 and 235 read against those two sheets' own printed footings
-T-0748 — The 1840 census images 51-74: continuation sheets 33SQ-GYYJ-9J5, -9SQ and -9ZK read line by line
-T-0749 — The 1840 census images 51-74: continuation sheets 33SQ-GYYJ-BS, -FS and -J2 read line by line
-T-0750 — The 1840 census images 51-74: continuation sheets 33SQ-GYYJ-K5, -LC and -LK read line by line
-T-0751 — The 1840 census images 51-74: continuation sheets 33SQ-GYYJ-P1, -Z1 and 33SQ-GYYN-385R read line by line
-T-0752 — The 1840 census images 51-74: continuation sheet 33SQ-GYYN-38YY read line by line, and the two all-but-blank leaves 33SQ-GYYJ-BH and -NV declared empty from the leaf
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
-T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
-T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
 T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
 T-0659 — The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
 
@@ -319,3 +306,20 @@ T-0739 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
 T-0740 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
+T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0745 — dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line

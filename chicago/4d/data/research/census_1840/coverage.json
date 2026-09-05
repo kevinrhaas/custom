@@ -8,7 +8,8 @@
   "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg — byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each, md5 4cc1ca3ff88c213598c1cfe409938a35)",
   "correction": "the deposit holds 74 DISTINCT images, not 75. `ls chicago/reference/census1840/*.jpg | wc -l` is 75 and one of those 75 is the duplicate copy, so 74 remain; `md5sum *.jpg | awk '{print $1}' | sort -u | wc -l` is 74. T-0494/T-0495/T-0496, the source record and the schema-1 coverage all said 75 distinct / 76 files. Group 3 is therefore images 51-74 — 24 images, not 25.",
   "ordering": "ls chicago/reference/census1840/*.jpg | sort, with the duplicate copy removed first so the index runs 1..74 over the 74 distinct images. Group 1 ends at 33S7-9YYJ-C8 and group 2 begins at 33S7-9YYJ-DD, which is the boundary the schema-1 declaration already used.",
-  "deposit_is_read_only": true
+  "deposit_is_read_only": true,
+  "all_three_groups_declared": true
  },
  "groups": [
   {
@@ -870,7 +871,7 @@
   },
   {
    "range": "images 51-74 of 74",
-   "declared_by": "T-0496, split; piece 1 is T-0753, which DECLARED the group image by image and read the NAMES in full on the two leaves PR #670 also read - printed 233 (33SQ-GYYJ-RJ, 31 lines) and printed 235 (33SQ-GYYJ-ZQ, 24 lines) - which are the last two of #670's seven calibration pages, so all seven are now read off the sheets. What each image is, and what has and has not been read from it, is stated per image: a hole is meant to fail rather than pass quietly. The other 22 leaves are INVENTORIED ONLY and the ticket was split so that each has a reading ticket of its own; the highest-value of them is 33SQ-GYYJ-PW, which is not a household schedule at all but the enumerator's RECAPITULATION of Chicago City by ward.",
+   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail. Printed 233 (33SQ-GYYJ-RJ) and 235 (33SQ-GYYJ-ZQ) were then read to the NAME against this inventory, which closes PR #670's seven-page calibration set: all seven now stand on the sheets rather than on the lost workbook, and none of them reproduces.",
    "images": [
     {
      "index": 51,
@@ -878,12 +879,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-9J5.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet: slaves, family TOTAL, the six industry columns, pensioners, deaf/dumb/blind and schools - filled. The TOTAL column carries a figure on every one of its 31 lines and the sheet foots 179.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: the TOTAL column is written down the leaf and the footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 52,
@@ -891,12 +892,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-9SQ.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 30,
+     "what_it_is": "continuation sheet - filled, with one blank ruled line inside the run; foots 175.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 53,
@@ -904,12 +905,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-9ZK.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 23,
+     "what_it_is": "continuation sheet - filled for 23 lines and blank below them; foots 119, and the 23 TOTAL figures read at this magnification sum to 118.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 54,
@@ -917,12 +918,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-BH.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 0,
+     "what_it_is": "continuation sheet, BLANK - not one entry on any line, in any column, and no footing row. The form is ruled and printed and nothing was ever written on it.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "BLANK: the printed form is there and no entry is written anywhere between the heading and the footing rules"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 55,
@@ -930,12 +931,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-BP.jpg",
      "sheet_side": "left",
      "printed_page": 214,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 30,
+     "what_it_is": "names + free-white age bands, filled.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 56,
@@ -943,12 +943,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-BS.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 29,
+     "what_it_is": "continuation sheet - filled; foots 131.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 57,
@@ -956,12 +956,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-CK.jpg",
      "sheet_side": "left",
      "printed_page": 240,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 27,
+     "what_it_is": "names + free-white age bands, filled for 27 lines and blank below them. The left margin carries a vertical manuscript annotation beginning 'Chicago'.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 58,
@@ -969,12 +968,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-FS.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 28,
+     "what_it_is": "continuation sheet - filled, with blank ruled lines inside the run; foots 152.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 59,
@@ -982,12 +981,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-J2.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 30,
+     "what_it_is": "continuation sheet - filled; foots 112.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 60,
@@ -995,12 +994,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-K5.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 29,
+     "what_it_is": "continuation sheet - filled but very faint; foots 150 (the footing's middle digit is not certain at this magnification).",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled but sparse: the TOTAL column is written and most other blocks are empty"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 61,
@@ -1008,12 +1007,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-LC.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 28,
+     "what_it_is": "continuation sheet - filled; foots 175, with 43 in the manufactures-and-trades column.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 62,
@@ -1021,12 +1020,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-LK.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 157.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 63,
@@ -1034,12 +1033,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-LV.jpg",
      "sheet_side": "left",
      "printed_page": 223,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 28,
+     "what_it_is": "names + free-white age bands, filled for 28 lines and blank below them.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 64,
@@ -1047,12 +1045,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-NV.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 17,
+     "what_it_is": "continuation sheet - filled for 17 lines and blank below them; foots 70, and the seventeen TOTAL figures read at this magnification sum to EXACTLY 70.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "all but blank: a mark or two near the footing and nothing in the body. Counted as empty by this inventory and left for its reading ticket to say so from the leaf"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 65,
@@ -1060,12 +1058,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-P1.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 162.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 66,
@@ -1073,12 +1071,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-P5.jpg",
      "sheet_side": "left",
      "printed_page": 220,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 31,
+     "what_it_is": "names + free-white age bands, filled.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 67,
@@ -1086,12 +1083,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-PW.jpg",
      "sheet_side": "left",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "RECAPITULATION of Chicago City, not a household schedule",
+     "lines_with_an_entry": 30,
+     "what_it_is": "NOT AN ENUMERATING PAGE. The left-sheet form is used as a RECAPITULATION of the Chicago city enumeration: instead of names the first column runs 1 to 30 under the heading 'Page', each numbered page carrying its own totals across the free-white age bands, and a brace in the left margin groups the thirty pages into First, Second, Third, Fourth, Fifth and Sixth Ward. Ward subtotal rules cut across the table and a grand total closes it. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages', with one word struck through before the parenthesis.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "the sheet is printed as a left schedule but is used as the enumerator's RECAPITULATION: the sideways caption in the margin reads 'Recapitulation of Chicago City', the stub column names First Ward, Second Ward, Third Ward, Fourth Ward, Fifth Ward and Sixth Ward, and the body carries 30 NUMBERED ROWS - one per page of the schedule - each with that page's column figures. Sub-total rules are drawn under rows 8, 17, 19, 23 and 30, and a grand total closes the leaf. It names no person. On this evidence it looks like the LEFT half of the recapitulation whose RIGHT half this project has already read as 33S7-9YYJ-V2, printed 237 - that leaf also carries 30 ruled lines gathered into six blocks with ruled footings, and it foots 4,470, the city. If the pairing holds, PW is what NAMES V2's six anonymous blocks: the six wards. It is stated here as the thing its reading ticket must test, not as a fact (T-0754)"
+     "printed_page_note": "no printed page number is legible where this form carries it. On every other left sheet of this group the number is printed at the TOP RIGHT, past the marshal's signature; here that corner carries the signature 'S. W. Sherman' and nothing else. It is not guessed from the run of its neighbours."
     },
     {
      "index": 68,
@@ -1100,11 +1097,11 @@
      "sheet_side": "left",
      "printed_page": 233,
      "lines_with_an_entry": 31,
-     "what_it_is": "names + free-white age bands, filled",
+     "what_it_is": "names + free-white age bands, filled. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
      "read_state": "names_transcribed",
      "page_file": "data/research/census_1840/pages/33SQ-GYYJ-RJ.json",
-     "note": "filled; READ by this pass, names only"
+     "note": "NAMES read line by line off this leaf: 31 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 31 is confirmed by the reading."
     },
     {
      "index": 69,
@@ -1112,12 +1109,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-RK.jpg",
      "sheet_side": "left",
      "printed_page": 213,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 30,
+     "what_it_is": "names + free-white age bands, filled.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 70,
@@ -1125,12 +1121,11 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-RY.jpg",
      "sheet_side": "left",
      "printed_page": 212,
-     "lines_with_an_entry": null,
-     "what_it_is": "names + free-white age bands, filled",
+     "lines_with_an_entry": 31,
+     "what_it_is": "names + free-white age bands, filled.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
-     "page_file": null,
-     "note": "filled"
+     "page_file": null
     },
     {
      "index": 71,
@@ -1138,12 +1133,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-Z1.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 181.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 72,
@@ -1152,11 +1147,11 @@
      "sheet_side": "left",
      "printed_page": 235,
      "lines_with_an_entry": 24,
-     "what_it_is": "names + free-white age bands, filled",
+     "what_it_is": "names + free-white age bands, filled for 24 lines and blank below them. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
      "read_state": "names_transcribed",
      "page_file": "data/research/census_1840/pages/33SQ-GYYJ-ZQ.json",
-     "note": "filled; READ by this pass, names only"
+     "note": "NAMES read line by line off this leaf: 24 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 24 is confirmed by the reading."
     },
     {
      "index": 73,
@@ -1164,12 +1159,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYN-385R.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 24,
+     "what_it_is": "continuation sheet - filled for 24 lines and blank below them; foots 125. Its 24 filled lines match the 24 names on printed 235 (image 72), which is a pairing hint and not a pairing: T-0746 settles it.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     },
     {
      "index": 74,
@@ -1177,20 +1172,20 @@
      "file": "chicago/reference/census1840/33SQ-GYYN-38YY.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": null,
-     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, deaf/dumb/blind, schools",
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 147. The AGRICULTURE column carries a figure on every one of the 31 lines and foots 53 with 52 written under it - the only sheet in this group whose families are agricultural throughout, which is evidence about WHICH district it enumerates and is not read further here.",
      "in_pr_670_calibration_set": false,
      "read_state": "inventoried_only",
      "page_file": null,
-     "note": "filled: TOTAL column written, footing row carries figures"
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
     }
    ],
    "counts": {
     "images": 24,
     "left_sheets": 9,
     "right_sheets": 15,
-    "blank_or_all_but_blank": 2,
-    "recapitulation_sheets": 1,
+    "left_sheets_with_entries": 9,
+    "blank_or_cancelled": 1,
     "printed_page_numbers_read": [
      212,
      213,
@@ -1201,13 +1196,42 @@
      235,
      240
     ],
+    "pr_670_calibration_pages_in_this_group": [
+     233,
+     235
+    ],
     "names_transcribed_pages": 2,
     "names_transcribed_lines": 55,
     "cells_transcribed_pages": 0,
+    "cells_transcribed_lines": 0,
     "inventoried_only": 22,
-    "counts_note": "computed from the images array by T-0753 rather than incremented. `printed_page_numbers_read` is what is legible in each left sheet's own heading band; 33SQ-GYYJ-PW carries no page number there and is the recapitulation."
+    "lines_with_an_entry_total": 655,
+    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72. Two of the 24 have since been read to the NAME - printed 233 and 235, the group's two PR #670 calibration pages - so names_transcribed_pages is 2 and inventoried_only is 22."
    },
-   "line_counts_are": "STATED ONLY WHERE THE LEAF WAS READ. This pass read 31 lines on 33SQ-GYYJ-RJ and 24 on 33SQ-GYYJ-ZQ, both counted line by line down the names column with the blank remainder of ZQ looked at rather than assumed. For the other 22 leaves `lines_with_an_entry` is null on purpose. An automatic count was tried first and REFUSED: clustering the ink of the names column into rows returns 7 for the leaf this pass read as 31 and 20 for the leaf it read as 24, because cursive ascenders and descenders bridge neighbouring lines, and on the continuation leaves there is no horizontal rule to count against at all (`tools/read_census_continuation.py`). A count by eye is the figure `fit_census_line_grid.py` exists to replace, so each leaf's line count is left to the ticket that reads it."
+   "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0746 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
+   "findings": [
+    {
+     "image": "33SQ-GYYJ-PW",
+     "index": 67,
+     "finding": "the group holds a THIRD non-household sheet, and it is the one that names the wards. Thirty numbered enumerating pages, each with its own free-white age-band totals, braced into First through Sixth Ward, with ward subtotal rules and a grand total. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages'.",
+     "why_it_matters": "the README already records two non-household sheets - printed 206, the certificate, and printed 237, 'the other recapitulation', whose THIRTY ruled lines carry division totals gathered into SIX blocks summing to 4,466 against the 4,470 written at its foot. This sheet has the SAME shape - thirty rows, six groups - but broken out by age band and with the six groups NAMED as the city's wards. So it is a second, independent statement of the same recapitulation: it can be added against 237's division totals, it may bear on the residual of 4 that 237 leaves open, and it attributes every one of the thirty enumerating pages to a ward. Thirty pages at the ~31 ruled lines these sheets carry is about 930 households against the 964 the IPUMS extract holds, so it is also a completeness test for the whole reading programme. NONE of that is done here: this pass records that the sheet exists and what it is.",
+     "not_read_here": true
+    },
+    {
+     "image": "33SQ-GYYJ-BH",
+     "index": 54,
+     "finding": "a printed, ruled continuation sheet with no entry anywhere on it - the group's one blank.",
+     "why_it_matters": "a blank image is evidence and not a hole: it is declared read and empty, so the coverage gate cannot mistake it for something nobody looked at.",
+     "not_read_here": false
+    },
+    {
+     "image": "33SQ-GYYN-38YY",
+     "index": 74,
+     "finding": "every one of its 31 lines carries a figure in the AGRICULTURE column, footing 53.",
+     "why_it_matters": "Chicago's own sheets in this deposit foot agriculture at zero or near it and carry their families under commerce and under manufactures and trades. A sheet that is agricultural throughout is evidence about WHICH enumeration district it belongs to, and the question is left open here rather than answered.",
+     "not_read_here": false
+    }
+   ]
   }
  ],
  "negative_and_inaccessible": [

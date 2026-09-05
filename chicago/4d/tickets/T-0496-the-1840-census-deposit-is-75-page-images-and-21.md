@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-02
 closed: 2026-09-05
 pr: null
-claimed_by: run 9/5/2026, 1:38:26 AM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-05T06:50:05.585Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950196510
+closed_at: 2026-09-05T06:39:41.636Z
+claimed_run: null
 ---
 
 **The owner's ask, 2026-09-03, recorded verbatim:** "create tickets to do more resident research

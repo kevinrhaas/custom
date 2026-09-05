@@ -4432,7 +4432,9 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 # arrived in September 1835 is not in a scene set on 1 July 1835, and the
 # failure mode is silent: nothing about a household record looks wrong when its
 # subject was still in Vermont. Arrival values carry a `precision` because the
-# sources give years far more often than days, and the rule is asymmetric on
+# sources give years far more often than days - and one of those precisions,
+# `either_of_two_days`, exists for a source that gives two and declines to pick.
+# The rule is asymmetric on
 # purpose - the EARLIEST day a value permits must not be after the scene date
 # (an error), and a value whose LATEST day is after it earns a warning rather
 # than a failure, because "1835" with no month is a real state of the evidence
@@ -4469,7 +4471,17 @@ RESIDENT_EVIDENCE_ROW_KEYS = ("list", "as_read", "locator", "record_id",
 # next person to reach for it learns why.
 RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
 
-RESIDENT_PRECISION = ("day", "month", "season", "year", "not_later_than")
+RESIDENT_PRECISION = ("day", "either_of_two_days", "month", "season", "year",
+                      "not_later_than")
+
+# `either_of_two_days` is what a source looks like when it will not choose. Hurlbut
+# prints Hubbard as arriving at Chicago "on the last day of October or first day of
+# November" of 1818 - two adjacent days, offered as alternatives, and neither of them
+# preferred. Every coarser precision here is a LIE about that sentence in one of two
+# directions: `day` picks one of the two on the reader's behalf, and `month`, `season`
+# or `year` widen a claim that is already exact to within a day in order to contain
+# both. The value is the EARLIER of the two days and the bound runs to the day after
+# it, so the record keeps the source's own precision AND its own refusal.
 
 # A season, in days, for bounding a "spring of 1833" arrival. Deliberately
 # generous: the point is to bound the claim, not to date it.
@@ -4498,6 +4510,8 @@ def arrival_bounds(value, precision: str):
         return None
     if precision == "day":
         return d, d
+    if precision == "either_of_two_days":
+        return d, d + dt.timedelta(days=1)
     if precision == "month":
         if d.month == 12:
             last = dt.date(d.year, 12, 31)
