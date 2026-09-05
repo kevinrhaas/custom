@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 12:09 AM",
+  "generated_ct": "Sep 5, 2026, 12:23 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12298,6 +12298,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 156
+    },
+    {
+      "id": "T-0737",
+      "title": "dev's gate is red on nine steps: PR #844 changed data/residents/ without regenerating the sidecar and the eight cohort/ladder files derived from it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
     }
   ]
 }
