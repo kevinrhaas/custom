@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 605, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '2026-09-05T23:26:53.824Z', date: 'Sep 5, 2026, 6:26 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the record cards behind the people who live here, and a way one of them could quietly come to say the same thing twice over.',
+      'Thirty-one townspeople bought federal land around Chicago, and each of their cards carries a paragraph about it \u2014 which tracts, on what dates, for how much, and the standing warning that buying ground is not living on it. A tool writes those paragraphs from the register. That tool was rewritten last month, and the earlier version is still sitting on an old working branch.',
+      'Run the old one and it does not replace the new one\u2019s paragraph; it adds its own beside it, in different words, saying the same thing. All thirty-one cards end up telling a reader about the land sales twice. This project did exactly that today, by accident, following a note that pointed at the old tool.',
+      'Every check passed. The card check asked whether the paragraph was there, and whether any card carried one it had no right to \u2014 both true. Neither question can see a card that answers correctly and then answers again.',
+      'A card now says the register once, and the check refuses two ways of breaking that: the paragraph written twice over, or a superseded version left standing beside the current one. Proved by staging the fault \u2014 thirty-one refusals where there had been none \u2014 before fixing it.',
+      'The four other passes that write onto cards this way are open to the same thing, and that is written down as work rather than fixed here.',
+    ] },
   { v: 604, title: 'Eighty-one unresolved doubts, and what each is worth', kind: 'fix', ts: '2026-09-05T22:55:28.664Z', date: 'Sep 5, 2026, 5:55 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about doubt \u2014 the moments where the research found a plausible outsider who might be the same person as somebody in the town, and had a reason not to say so.',
