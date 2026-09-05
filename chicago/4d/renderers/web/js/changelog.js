@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '',
+  { v: 606, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '2026-09-05T23:39:19.639Z', date: 'Sep 5, 2026, 6:39 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the record cards behind the people who live here, and a way one of them could quietly come to say the same thing twice over.',
       'Thirty-one townspeople bought federal land around Chicago, and each of their cards carries a paragraph about it \u2014 which tracts, on what dates, for how much, and the standing warning that buying ground is not living on it. A tool writes those paragraphs from the register. That tool was rewritten last month, and the earlier version is still sitting on an old working branch.',
