@@ -1,17 +1,17 @@
 {
- "id": "hh_bogart_henry_van_der",
- "name": "The Bogart household — a name the town's own records carry",
+ "id": "hh_vanderbogart_henry",
+ "name": "The Vanderbogart household — a name the town's own records carry",
  "division": "unplaced",
- "head": "bogart_henry_van_der",
+ "head": "vanderbogart_henry",
  "source_pass": "civic",
  "arrival": {
-  "value": "1834-02-04",
+  "value": "1835-05-20",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "fergus_1843_old_settler_death_notices"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 4 February 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 20 May 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -50,12 +50,12 @@
  },
  "persons": [
   {
-   "id": "bogart_henry_van_der",
-   "name": "Henry Van Der Bogart",
+   "id": "vanderbogart_henry",
+   "name": "Henry Vanderbogart",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "civic_mint": true,
-   "ladder_rule": "G1b",
+   "ladder_rule": "G2e",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -65,7 +65,7 @@
     "chicago_democrat_1833_1835",
     "fergus_1843_old_settler_death_notices"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from death_notice, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 4 February 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CHICAGO POST-OFFICE LETTER LIST OF 1833-1835 AND NOTHING STRONGER. Read from death_notice, newspaper_letter_list. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2e), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 20 May 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "book_evidence": [
     {
      "list": "death_notice",
@@ -74,7 +74,7 @@
      "record_id": "fdn0049",
      "describes_date": "April 8, 1835",
      "source": "fergus_1843_old_settler_death_notices",
-     "rule": "G1b"
+     "rule": "G2e"
     },
     {
      "list": "death_notice",
@@ -83,18 +83,18 @@
      "record_id": "fdn0683",
      "describes_date": "April 8, 1835",
      "source": "fergus_1843_old_settler_death_notices",
-     "rule": "G1b"
+     "rule": "G2e"
     }
    ],
    "press_evidence": [
     {
-     "list": "newspaper_1833_1835",
-     "as_read": "H. Van Den Bogart",
-     "locator": "chicago_democrat_1834_02_04#c001",
-     "record_id": "person_h_van_den_bogart",
-     "describes_date": "1834-02-04",
+     "list": "newspaper_letter_list",
+     "as_read": "H. Vanderbogart",
+     "locator": "chicago_democrat_1835_05_20#c013",
+     "record_id": "person_h_vanderbogart",
+     "describes_date": "1835-05-20",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
+     "rule": "G2e"
     }
    ]
   }

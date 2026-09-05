@@ -342,4 +342,5 @@ T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 18
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
-
+T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
+T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second

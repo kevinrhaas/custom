@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:35 PM",
+  "generated_ct": "Sep 5, 2026, 5:00 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14340,6 +14340,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 181
+    },
+    {
+      "id": "T-0841",
+      "title": "The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 182
+    },
+    {
+      "id": "T-0842",
+      "title": "Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 183
     }
   ]
 }

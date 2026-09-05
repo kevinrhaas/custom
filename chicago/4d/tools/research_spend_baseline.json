@@ -8,7 +8,7 @@
   "census_1840": 284,
   "church": 458,
   "books": 176,
-  "directories": 7211,
+  "directories": 7212,
   "newberry_index": 4914,
   "land_sales": 442
  },
@@ -35,7 +35,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1046
+   "spent": 1045
   },
   "newberry_index": {
    "read": 7005,
@@ -267,6 +267,14 @@
    "to": 7211,
    "date": "2026-09-05",
    "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7211,
+   "to": 7212,
+   "date": "2026-09-05",
+   "why": "T-0724: one ruling was retired, not skipped. The 1843 and 1844 crosswalks each recorded a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn' — a refusal that only existed because the splitter had truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse, so the ruling is gone and the unspent count rises by one against a read count that did not move. No name went unread and no source was added."
   }
  ],
  "lowered": [

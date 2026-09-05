@@ -10328,9 +10328,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04.
 
-### L220 — 531 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 532 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 531 people
+**Scope:** `residents.persons[civic_mint]` — 532 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10342,6 +10342,16 @@ rest: every identity the ladder grades `attested` or `inferred` that the town di
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
 census. 531 of them, in 531 households of one.
+
+**The 532nd, and why every other figure below still says 531.** The 531 were minted in one
+pass on 2026-09-03 and every count in this entry is a count about that pass, left as it
+stands. On 2026-09-05 T-0724 taught the splitter that a compound surname is one surname,
+which parted `H. Van Den Bogart` from `Dr Henry Van der Bogart` — two printings the
+consolidation had been holding as one man only because both truncated to the surname
+`Bogart`, a merge nobody ever ruled on. The minting pass then wrote a household round the
+one it had never seen standing on its own. Whether the two are the same man is a reading
+somebody owes the page, and it is T-0842's; the liberty here is unchanged in kind and one
+larger in size.
 
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no
 confidence was upgraded to allow it: every one of the 531 is named in a record this project

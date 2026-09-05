@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 41 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1405 rows and 41 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -21,23 +21,23 @@ no grade moves. Every cell is copied or counted from a committed record.
 
 ## Coverage
 
-Each line is *how many of the 1404 people carry at least one record of that kind*.
+Each line is *how many of the 1405 people carry at least one record of that kind*.
 
-| coverage | of 1404 | % | what counts |
+| coverage | of 1405 | % | what counts |
 | --- | ---: | ---: | --- |
-| identities | **1401** | 99.8% | a name with at least one source id anywhere on the card |
+| identities | **1402** | 99.8% | a name with at least one source id anywhere on the card |
 | occupations | **135** | 9.6% | an occupation that is not `none_recorded` |
 | household membership | **44** | 3.1% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.4% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **288** | 20.5% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **289** | 20.6% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **30** | 2.1% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 428 | 30.5% |
+| `corroborated_across_categories` | 429 | 30.5% |
 | `two_or_more_sources_one_category` | 21 | 1.5% |
 | `one_source` | 390 | 27.8% |
 | `the_letter_lists_alone` | 562 | 40.0% |
@@ -51,8 +51,8 @@ record agree; two newspaper notices of the same name are
 
 | category | people citing at least one |
 | --- | ---: |
-| newspaper | 1160 |
-| civic | 288 |
+| newspaper | 1161 |
+| civic | 289 |
 | census | 30 |
 | church | 46 |
 | book | 192 |
@@ -234,7 +234,7 @@ secondary). A source id no rule reaches stops the build.
 | T-0509 | 1 |
 | T-0510 | 76 |
 | **reviewed** | **842** |
-| **not yet reviewed** | **562** |
+| **not yet reviewed** | **563** |
 
 | research outcome | people |
 | --- | ---: |
@@ -252,11 +252,11 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1374 | no 1840 census row is bridged to this person |
-| no address | 1328 | neither `lives_at` nor `works_at` resolves |
-| unplaced | 1308 | the household carries division `unplaced`: in the town, on no lot |
+| no census linkage | 1375 | no 1840 census row is bridged to this person |
+| no address | 1329 | neither `lives_at` nor `works_at` resolves |
+| unplaced | 1309 | the household carries division `unplaced`: in the town, on no lot |
 | rests on one source | 952 | one source id on the card and no second category to check it against |
-| no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
+| no research row | 563 | no cohort ticket has reviewed this person; the programme reached 842 of 1405 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review |
