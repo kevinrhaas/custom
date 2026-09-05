@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 605, title: 'Eleven townspeople and the land sale that proves they stayed', kind: 'change', ts: '2026-09-05T23:13:23.628Z', date: 'Sep 5, 2026, 6:13 PM CT',
+    items: [
+      'In June 1839 the ground the fort had stood on was cut into lots and auctioned, and Fergus\u2019 Chicago directory printed the whole sale \u2014 every lot, every bidder, every price. A hundred men bid. Eleven of them are people this town already holds a card for.',
+      'That reading was done weeks ago and then went nowhere. Not one of the eleven cards said a word about it. Three of them cited the volume nowhere at all, so as far as the project could tell, the sale had never been read.',
+      'All eleven now carry it: which blocks and lots the man bid on, what he paid, and the page it is printed on. Arthur Bronson took fifteen lots for $4,869; John Foot took one for $152. Together the eleven bid $14,988 across thirty-seven lots.',
+      'What the sale is NOT allowed to say is written on the card beside what it says. A bid in June 1839 is evidence the man was still in Chicago four years after the summer this town reconstructs \u2014 it is not evidence about that summer, and nobody\u2019s grade moves on it. And a lot number from this sale places nobody: in 1835 that ground was the garrison\u2019s reservation and was not divided into lots at all. No house moves, and none is added.',
+      'The sale table\u2019s own shorthand is kept rather than tidied away. Where the printer wrote a ditto mark under the name above instead of writing the name again, the card says so; where a row carries its block number forward from an earlier line rather than printing one, the card says that too. Twenty-one of the thirty-seven rows print a ditto mark rather than a name, and thirty-six take their block number from an earlier line.',
+      'The check that runs before every change now reads this both ways: a ruling that stops reaching its card fails, and so does a card that claims a bid the sale never records.',
+    ] },
   { v: 604, title: 'Eighty-one unresolved doubts, and what each is worth', kind: 'fix', ts: '2026-09-05T22:55:28.664Z', date: 'Sep 5, 2026, 5:55 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about doubt \u2014 the moments where the research found a plausible outsider who might be the same person as somebody in the town, and had a reason not to say so.',

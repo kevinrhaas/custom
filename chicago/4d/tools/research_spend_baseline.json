@@ -271,6 +271,14 @@
  ],
  "lowered": [
   {
+   "domain": "directories",
+   "hop": "write",
+   "from": 3,
+   "to": 0,
+   "date": "2026-09-05",
+   "why": "T-0681 paid the debt T-0635 filed. T-0666 (PR #791) read Fergus 1839's Fort Dearborn Addition lot sale of June 1839 and crosswalked 100 bidders against the town; 11 match a resident and 3 of those 11 named a card that cited nothing the ruling rests on. tools/spend_fergus_1839_lot_sale.py writes all eleven — not only the visible three, because the other eight cite the volume solely through the 1837 poll or the 1839 city register naming the same household, which makes the second hop read them as written while the lot sale itself had reached nobody. Two fields on the card, no grade moved and no placement written: the Addition was the garrison's reservation in 1835 and was not platted into lots at all, so its block and lot number locate nobody in the town this project builds. check.sh gates it in both directions. Lowering a ceiling is free and is exactly what spending a domain does; this one may not drift back up, and a later directory reading that rules on a person and does not reach their card raises it again and the gate says so."
+  },
+  {
    "domain": "newberry_index",
    "from": 2619,
    "to": 2077,
@@ -281,7 +289,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 3,
+  "directories": 0,
   "land_sales": 0
  },
  "unsourced_ceiling": {}

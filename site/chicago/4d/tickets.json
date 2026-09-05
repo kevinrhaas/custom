@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 5:55 PM",
+  "generated_ct": "Sep 5, 2026, 6:08 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11444,7 +11444,7 @@
     {
       "id": "T-0677",
       "title": "Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11454,11 +11454,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 6:07:27 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33997685934",
       "queue_rank": 5
     },
     {
@@ -11504,7 +11504,7 @@
     {
       "id": "T-0681",
       "title": "T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11514,11 +11514,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 6:08:55 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33997685934",
       "queue_rank": 6
     },
     {
