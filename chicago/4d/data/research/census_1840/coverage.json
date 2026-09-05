@@ -874,7 +874,7 @@
   },
   {
    "range": "images 51-74 of 74",
-   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail.",
+   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0746 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail. Printed 233 (33SQ-GYYJ-RJ) and 235 (33SQ-GYYJ-ZQ) were then read to the NAME against this inventory, which closes PR #670's seven-page calibration set: all seven now stand on the sheets rather than on the lost workbook, and none of them reproduces.",
    "images": [
     {
      "index": 51,
@@ -1102,8 +1102,9 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-RJ.json",
+     "note": "NAMES read line by line off this leaf: 31 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 31 is confirmed by the reading."
     },
     {
      "index": 69,
@@ -1151,8 +1152,9 @@
      "lines_with_an_entry": 24,
      "what_it_is": "names + free-white age bands, filled for 24 lines and blank below them. One of PR #670's seven calibration pages.",
      "in_pr_670_calibration_set": true,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-ZQ.json",
+     "note": "NAMES read line by line off this leaf: 24 lines, each with a stated confidence and `[?]` kept as a POSITION. It is one of PR #670's seven calibration pages and its line-by-line comparison is in crosswalk_670.json. The inventory's count of 24 is confirmed by the reading."
     },
     {
      "index": 73,
@@ -1201,13 +1203,13 @@
      233,
      235
     ],
-    "names_transcribed_pages": 0,
-    "names_transcribed_lines": 0,
+    "names_transcribed_pages": 2,
+    "names_transcribed_lines": 55,
     "cells_transcribed_pages": 0,
     "cells_transcribed_lines": 0,
-    "inventoried_only": 24,
+    "inventoried_only": 22,
     "lines_with_an_entry_total": 655,
-    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72."
+    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72. Two of the 24 have since been read to the NAME - printed 233 and 235, the group's two PR #670 calibration pages - so names_transcribed_pages is 2 and inventoried_only is 22."
    },
    "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0746 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
    "findings": [
