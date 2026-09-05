@@ -96,7 +96,6 @@ T-0592 — The fine well on lot 7 of block 16 is documented and the town has no 
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
 T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
-T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
