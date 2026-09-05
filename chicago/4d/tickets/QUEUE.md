@@ -102,7 +102,6 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
-T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
@@ -312,4 +311,3 @@ T-0736 — Printed 232's continuation leaf is not in this deposit: find it in Fa
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0739 — dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted
-
