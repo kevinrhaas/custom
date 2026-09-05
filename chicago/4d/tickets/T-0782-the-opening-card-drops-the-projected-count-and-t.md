@@ -1,7 +1,7 @@
 ---
 id: T-0782
 title: The opening card drops the projected count and the 371-structures line and reads as two parallel completeness ladders — buildings and people
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 893
+claimed_by: run 9/5/2026, 10:25:46 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T15:25:47.068Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33973340162
 ---
 
 The owner, 2026-09-05, on the opening card (the gate screen, `renderers/web/js/census.js` + the ready line in `main.js`): "for the named residents dont include the projected number there", "that 29 people housed of 3265 is a portion of what will eventually be the 1404 named residents 425 attested and 881 inferred and more and the balance will be reconstructed to get to the 3265, can you improve the way that is presented", and "at the top it says 371 structures, just remove that".
