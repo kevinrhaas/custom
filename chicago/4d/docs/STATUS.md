@@ -38,6 +38,15 @@ the card's top half uses **quiet coloured grade dots**.
 - `.pop-meta [data-note]` → `#popup .pop-where [data-note]`; chip coverage adds `.fact-dot ≥ 3`, `.pop-facts .conf === 0` (additions).
 - Card not collateral when the panel opens → unchanged; tucking keeps `hidden` off `#popup`.
 
+**Verified 2026-09-05 on the integrated tree** (`tools/check.sh` CHECK PASS; smoke to files,
+zero page errors in every leg): desktop parts 12, 3 and 13 and mobile 10-13 and 3-6 all
+pass — 66, 80, 110, 203 and 123 checks. The mobile 3-6 leg found one real defect on the way
+and it is fixed in the same PR: the new pace chip had pushed the confidence chip group to the
+left of a 390 px top bar, and its 280 px level menu, hung off the group's right edge, opened
+70 px past the screen; on a phone the menu now anchors to the viewport's own edges. One plan
+clause was corrected rather than the code: the Go to list starts with no row active, as a
+combobox does, so two ArrowDowns reach the SECOND row, and the gate asserts that.
+
 New assertions live in T-0701…T-0712's acceptance clauses. T-0713 (street lines attested from
 the Thompson plat) is written for the loop and stays in the queue.
 
