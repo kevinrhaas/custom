@@ -700,9 +700,22 @@ def standing_roofs(grid, datum, taken):
         # `generated`. The totals were unchanged, which is exactly why it is worth a
         # gate's attention: the ledger would have gone on reporting 665 roofs while
         # crediting a third of the household layer to a generator that never ran.
+        # T-0516. Two anonymous statuses now, and one of them was not dealt by a
+        # generator. The owner retired the reconstructed resident population on
+        # 2026-09-02 and ruled its roofs kept as anonymous stock, so the 31 buildings
+        # this layer RAISED read `inferred_anonymous` like every parcel's count-unit —
+        # and reading only the status would credit them to `generated`, which is the
+        # same fault in the other direction as the one the paragraph above records: a
+        # ledger reporting 665 roofs while crediting a thirty-first of the town to a
+        # generator that never ran. The phase is what survives the status change, so
+        # the phase is what separates them, and they enrol under their own source name
+        # rather than disappearing into the parcels'.
         block = record.get("reconstruction") or {}
         if block.get("status") == "inferred_anonymous":
-            row = {"id": rid, "source": "generated", "district": block["district"],
+            retired = block.get("programme_phase") == "phase2_inferred_households"
+            row = {"id": rid,
+                   "source": "retired_household_roofs" if retired else "generated",
+                   "district": block["district"],
                    "family": block["family"], "roofs_min": 1, "roofs_max": 1,
                    "programme_phase": block.get("programme_phase")}
         elif rid in reconciliation:

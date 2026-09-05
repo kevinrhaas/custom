@@ -130,15 +130,21 @@
     ],
     "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Assigned from the A1 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
   },
-  "occupants": {
-    "value": "An inferred household; no name is claimed",
-    "confidence": "reconstructed",
-    "sources": [
-      "andreas_1884_v1",
-      "owner_chicago_1835_reconstruction_spec_2026"
-    ],
-    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the workplace of an inferred teamster's household (4 of 5 this layer infers): hh_inf_teamster_north_04 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "A1",
+    "district": "north",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase2_north_division_initial",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 36,
+    "finish_key": "weathered_timber",
+    "roof_condition": "fresh",
+    "age_state": "new",
+    "yard_group": "km_d1_023_yard"
   },
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false,
   "land_owner": {
     "value": "The ground was entered by Alexander Wolcott, 29 September 1830",
     "confidence": "reconstructed",
@@ -154,20 +160,5 @@
     "type_of_sale": "canal land sale",
     "margin_m": 60.4,
     "generated_by": "tools/resolve_land_tracts.py --build"
-  },
-  "reconstruction": {
-    "status": "inferred_anonymous",
-    "family": "A1",
-    "district": "north",
-    "inventory_class": "ancillary",
-    "programme_phase": "phase2_north_division_initial",
-    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
-    "sequence": 36,
-    "finish_key": "weathered_timber",
-    "roof_condition": "fresh",
-    "age_state": "new",
-    "yard_group": "km_d1_023_yard"
-  },
-  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
-  "review_required": false
+  }
 }
