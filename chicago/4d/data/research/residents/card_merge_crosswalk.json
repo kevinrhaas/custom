@@ -42,8 +42,7 @@
    "sources": [
     "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad",
-    "fergus_1843_old_settler_death_notices",
-    "fergus_chicago_directory_1839"
+    "fergus_1843_old_settler_death_notices"
    ],
    "evidence": "T-0839: 'allen_james' and 'allen_lieut_james' are one person under rule C0; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'allen'."
   },
@@ -191,17 +190,13 @@
    "rule": "C0",
    "cluster": "fullerton",
    "record_ids": [
-    "n1844_e0659",
     "person_a_n_fullerton"
    ],
    "domains": [
-    "directories",
-    "newspapers",
-    "old_settlers"
+    "newspapers"
    ],
    "sources": [
-    "chicago_american_1835",
-    "norris_directory_1844"
+    "chicago_american_1835"
    ],
    "evidence": "T-0839: 'fullerton_a_n' and 'fullerton_alexander' are one person under rule C0; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'fullerton'."
   },
@@ -298,21 +293,17 @@
    "cluster": "hamilton",
    "record_ids": [
     "33S7-9YYJ-DD:12",
-    "n1844_e0782",
     "person_col_r_j_hamilton",
     "person_hon_r_j_hamilton",
     "person_r_j_hamilton"
    ],
    "domains": [
     "census_1840",
-    "directories",
-    "newspapers",
-    "old_settlers"
+    "newspapers"
    ],
    "sources": [
     "census_1840_chicago_familysearch_images",
-    "chicago_democrat_1833_1835",
-    "norris_directory_1844"
+    "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'hamilton_r_j' and 'hamilton_richard_j' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hamilton'."
   },
@@ -382,7 +373,6 @@
    "record_ids": [
     "f1843_e0073",
     "f1843_e0112",
-    "n1844_e0915",
     "person_col_g_s_hubbard",
     "person_g_s_hubbard"
    ],
@@ -393,8 +383,7 @@
    ],
    "sources": [
     "chicago_democrat_1833_1835",
-    "fergus_chicago_directory_1843",
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "evidence": "T-0839: 'hubbard_g_s' and 'hubbard_gurdon' are one person under rule C0; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hubbard'."
   },
@@ -641,20 +630,16 @@
    "cluster": "peck",
    "record_ids": [
     "33S7-9YYJ-DD:23",
-    "n1844_e1414",
     "person_p_f_w_peck",
     "person_peck_p_f_w"
    ],
    "domains": [
     "census_1840",
-    "directories",
-    "newspapers",
-    "old_settlers"
+    "newspapers"
    ],
    "sources": [
     "census_1840_chicago_familysearch_images",
-    "chicago_democrat_1833_1835",
-    "norris_directory_1844"
+    "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'peck_p_f_w' and 'peck_philip' are one person under rule C4; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'peck'."
   },
@@ -665,17 +650,13 @@
    "rule": "C2",
    "cluster": "snow",
    "record_ids": [
-    "n1844_e1671",
     "person_g_w_snow"
    ],
    "domains": [
-    "directories",
-    "newspapers",
-    "old_settlers"
+    "newspapers"
    ],
    "sources": [
-    "chicago_democrat_1833_1835",
-    "norris_directory_1844"
+    "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'snow_g_w' and 'snow_george_w' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'snow'."
   },
@@ -757,17 +738,13 @@
    "rule": "C2",
    "cluster": "taylor-edmund",
    "record_ids": [
-    "f1843_e2414",
     "person_e_d_taylor"
    ],
    "domains": [
-    "directories",
-    "newspapers",
-    "old_settlers"
+    "newspapers"
    ],
    "sources": [
-    "chicago_democrat_1833_1835",
-    "fergus_chicago_directory_1843"
+    "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'taylor_e_d' and 'taylor_edmund_d' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'taylor-edmund'."
   },

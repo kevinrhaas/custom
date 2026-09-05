@@ -52,6 +52,7 @@
    "name": "Silvester Marsh",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "provision_dealer",
     "confidence": "attested",

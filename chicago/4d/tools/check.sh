@@ -156,6 +156,17 @@ step "West Division approaches parcel matches its recipe" \
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
 
+# The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
+# minting passes and four rewriting passes each rebuilt the SLICE of
+# data/residents/index.json they owned and left the rest verbatim, so a household no
+# pass owned could be regraded elsewhere and keep a row saying something else for
+# ever - and the counts, summed from the rows, inherited the error. Landing #797
+# found 18 such households by hand. This re-derives every row and every derived
+# count from data/residents/households/*.json and fails if the committed file is not
+# what the derivation produces.
+step "the residents manifest re-derives from the household cards" \
+  python3 tools/rebuild_resident_index.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
@@ -1414,6 +1425,23 @@ step "…and none of them claims more than a person and a reading" \
 
 step "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
+
+# T-0720, the third spend of the same proposal. The two modes above own the 531 cards
+# that carry a `ladder_rule`; nothing owned the other 873, and T-0692's --coverage
+# measured 864 of them carrying a rung the ladder HAD ruled and no pass had ever
+# written down. This pass writes it — one scalar, only where the ladder AGREES with the
+# grade the card already carries, never a downgrade — and puts every disagreement on the
+# owner's conflict list instead. Gated because the whole value of a rung on a card is
+# that it is DERIVED: a hand-written one would be a grade's reason invented rather than
+# ruled, and `--check` is what says so.
+step "the ladder's ruled rungs re-derive on the cards no mint owns" \
+  python3 tools/spend_ladder_rungs.py --check
+
+step "…and none of them moves a grade to close the gap" \
+  python3 tools/spend_ladder_rungs.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/spend_ladder_rungs.py --self-test
 
 # T-0839. THE MINTS' TEST FOR "the town already carries this person" IS THE NAME AS THE
 # SOURCE PRINTED IT, so a man his sources spell six ways was minted six times: Gurdon

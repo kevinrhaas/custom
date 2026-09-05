@@ -57,6 +57,7 @@
    "name": "O. Goss",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "saddler",
@@ -104,6 +105,7 @@
    "name": "Silas B. Cobb",
    "relationship": "partner",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "saddler",

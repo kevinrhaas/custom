@@ -52,6 +52,7 @@
    "name": "Mr. Al. Anstin",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "sex": "male",
    "letter_list_only": true,
    "letter_list_returns": [

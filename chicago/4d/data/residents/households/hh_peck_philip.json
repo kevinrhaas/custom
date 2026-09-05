@@ -59,6 +59,7 @@
    "name": "Philip F. W. Peck",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "merchant",
@@ -98,7 +99,7 @@
       "regraded_on": "2026-09-04",
       "rule": "G2b",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 4 thing(s) the consolidation did not read — andreas_1884_v1, census_1840_chicago_familysearch_images, chicago_democrat_1833_1835, isa_public_domain_land_tract_sales. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
    },

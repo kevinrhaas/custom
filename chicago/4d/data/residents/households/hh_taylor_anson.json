@@ -57,6 +57,7 @@
    "name": "Anson H. Taylor",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "carpenter",
@@ -86,7 +87,7 @@
       "regraded_on": "2026-09-04",
       "rule": "G2e",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, blackhawk_war_chicago_enrollments_isa, chicago_voter_lists_1833_1835_irad. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
    },
@@ -137,6 +138,7 @@
    "name": "Charles H. Taylor",
    "relationship": "brother",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "occupation": {
     "value": "carpenter",

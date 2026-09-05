@@ -77,6 +77,7 @@
    "name": "John Harris Kinzie",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "forwarding_and_commission",
@@ -117,7 +118,7 @@
       "regraded_on": "2026-09-04",
       "rule": "G2b",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, chicago_antiquities_american_fur_co, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 4 thing(s) the consolidation did not read — andreas_1884_v1, chicago_american_1835, chicago_antiquities_american_fur_co, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
    },

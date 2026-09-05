@@ -591,6 +591,7 @@ def apply(write: bool = True) -> dict:
         prior[row["person"]] = row
     if prior:
         index["merged"] = sorted(prior.values(), key=lambda r: r["person"])
+        index.setdefault("counts", {})["merged_away"] = len(index["merged"])
         index["_merged_doc"] = (
             "T-0839. THE REDIRECT TABLE. One row per town card folded onto another "
             "because the two named one person. The record is not deleted: it is kept "
@@ -599,7 +600,14 @@ def apply(write: bool = True) -> dict:
             "identity_master.json, the smoke cohorts, the placed-resident parcels — "
             "still resolve it to somebody. The ruling and its reasoning are in "
             "data/residents/card_merge_rulings.json.")
-    files[INDEX] = dump(reindex(index, docs, folded_households))
+    # THE MANIFEST HAS AN OWNER (T-0715) and this pass is not it. Every row and every
+    # derived count comes back from the cards through that tool, over the whole layer as
+    # this pass will leave it; what is written here is only the `merged` redirect table,
+    # which is a claim about the cards that are GONE and which nothing derives.
+    import rebuild_resident_index
+    after = {HOUSEHOLDS / f"{hid}.json": doc for hid, doc in docs.items()
+             if hid not in folded_households}
+    files[INDEX] = dump(rebuild_resident_index.rebuild(index, after))
 
     if write:
         MERGED.mkdir(parents=True, exist_ok=True)
@@ -615,30 +623,6 @@ def apply(write: bool = True) -> dict:
         files[LEDGER] = LEDGER.read_text(encoding="utf-8")
         files[CROSSWALK] = CROSSWALK.read_text(encoding="utf-8")
     return files
-
-
-def reindex(index: dict, docs: dict, dropped: set) -> dict:
-    """counts.* re-derived off the rows that are left."""
-    persons, grades = 0, {"attested": 0, "inferred": 0, "reconstructed": 0}
-    for row in index["households"]:
-        doc = docs.get(row["id"])
-        if doc is None:
-            continue
-        people = doc.get("persons") or []
-        row["persons"] = len(people)
-        local: dict = {}
-        for person in people:
-            local[person["grade"]] = local.get(person["grade"], 0) + 1
-            grades[person["grade"]] = grades.get(person["grade"], 0) + 1
-        row["grades"] = {g: local[g] for g in ("attested", "inferred", "reconstructed")
-                         if g in local}
-        persons += len(people)
-    counts = index.setdefault("counts", {})
-    counts["households"] = len(index["households"])
-    counts["persons"] = persons
-    counts["by_grade"] = grades
-    counts["merged_away"] = len(index.get("merged") or [])
-    return index
 
 
 # ---------------------------------------------------------------------------

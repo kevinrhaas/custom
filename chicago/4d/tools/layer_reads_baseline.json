@@ -148,16 +148,16 @@
       "records": 6
     },
     "residents/household:persons[].resident_research.refusals[].reason": {
-      "records": 45
+      "records": 46
     },
     "residents/household:persons[].resident_research.refusals[].regraded_on": {
-      "records": 45
+      "records": 46
     },
     "residents/household:persons[].resident_research.refusals[].rule": {
-      "records": 45
+      "records": 46
     },
     "residents/household:persons[].resident_research.refusals[].withheld": {
-      "records": 45
+      "records": 46
     },
     "residents/household:persons[].resident_research.regraded_on": {
       "records": 72
@@ -207,7 +207,7 @@
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 1127
+      "records": 715
     },
     "residents/manifest:merged[].cluster": {
       "records": 42
