@@ -1,7 +1,7 @@
 ---
 id: T-0597
 title: James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-state: claimed
+state: open
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: run 9/4/2026, 10:29:05 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941759810
+claimed_run: null
 ---
 
 James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so.
