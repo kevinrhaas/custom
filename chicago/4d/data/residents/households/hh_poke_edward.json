@@ -74,9 +74,30 @@
     "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
-   "resident_subtype": "projected_resident"
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "E[d]mund Poke",
+     "locator": "chicago_democrat_1834_07_02#c031",
+     "record_id": "person_e_d_mund_poke",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Poke, Edward",
+     "locator": "chicago_democrat_1834_10_22#c003",
+     "record_id": "person_poke_edward",
+     "describes_date": "1834-10-22",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ]
   }
  ],
  "touches_removal": false,

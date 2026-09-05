@@ -60,7 +60,17 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "A DOCUMENTED PERSON, AND NO TRADE IS CLAIMED BECAUSE THE PAPERS GIVE NONE. The corpus prints 'Mark Nobles, Esq.' and places them at Chicago; it does not say what they did for a living, where this household lived, who else was in it, or when it came. The occupation therefore reads `none_recorded`, this dataset's own word for an absent record, rather than a trade reasoned from the company they keep — the absence is the finding. Cited at the Democrat of 3 December 1833, column 7. THE CORPUS PRINTS THIS PERSON IN THE COMPANY THE TOWN ALREADY HOLDS: 6 people this reconstruction already carries are named in the same claim, which the register records as its `enrich` finding. A place the corpus associates with a person is where the paper does business with them and not a statement about where they slept. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry."
+   "note": "A DOCUMENTED PERSON, AND NO TRADE IS CLAIMED BECAUSE THE PAPERS GIVE NONE. The corpus prints 'Mark Nobles, Esq.' and places them at Chicago; it does not say what they did for a living, where this household lived, who else was in it, or when it came. The occupation therefore reads `none_recorded`, this dataset's own word for an absent record, rather than a trade reasoned from the company they keep — the absence is the finding. Cited at the Democrat of 3 December 1833, column 7. THE CORPUS PRINTS THIS PERSON IN THE COMPANY THE TOWN ALREADY HOLDS: 6 people this reconstruction already carries are named in the same claim, which the register records as its `enrich` finding. A place the corpus associates with a person is where the paper does business with them and not a statement about where they slept. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
+   "resident_research": {
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — chicago_democrat_1833_1835. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

@@ -132,7 +132,9 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1843"
       ]
     },
     {
@@ -379,6 +381,7 @@
         "1835-07-01"
       ],
       "sources": [
+        "census_1840_chicago_familysearch_images",
         "chicago_democrat_1833_1835"
       ]
     },
@@ -459,7 +462,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ]
     },
     {
@@ -467,7 +471,7 @@
       "person_id": "murray_alonzo",
       "name": "Alonzo Murray",
       "stratum": "letter_list_only_uncertain",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [
         "1834-07-02"
@@ -839,7 +843,10 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "chicago_tribune_1882_05_19_fourth_reception",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {
@@ -881,7 +888,9 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {

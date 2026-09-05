@@ -88,7 +88,10 @@
      "rule": "G2b"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_research": {
+    "regraded_on": "2026-09-04",
+    "rule": "G2b"
+   }
   }
  ],
  "touches_removal": false,
