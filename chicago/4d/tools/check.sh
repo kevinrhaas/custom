@@ -518,6 +518,19 @@ step "the West Division's tiers, and Carroll's midpoint still inside its own bra
 step "West Water still stands one half-corridor off the bank, and the two refusals still hold" \
   python3 tools/measure_west_division_streets.py --self-test
 
+# T-0451, the same shape on the other side of the river. Six North Division lines are seated
+# as the committed South Division streets continued north, and everything that entitles them
+# to be there is arithmetic on two committed files — the pixel reading of the plat in
+# data/traces/thompson_north_division_streets.json and the street lines themselves. So it all
+# goes stale silently: move a South Division centreline and its northern half no longer lies
+# on it, re-grade one and the North Division line keeps an attestation the parent lost. This
+# holds the collinearity to 2 cm, holds each line's ends on North Water and Kinzie, holds the
+# one line graded lower than the rest at `inferred`, and holds the sheet reading that says the
+# plat letters no name in any North Division corridor. It needs no image library; the reading
+# is committed data and `--reread` is what goes back to the 7 MB sheet.
+step "the North Division lines still lie on the streets they continue, and say what names them" \
+  python3 tools/measure_north_division_streets.py --self-test
+
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
 # block recipes quietly acted on it: every log dwelling the five South Water blocks were

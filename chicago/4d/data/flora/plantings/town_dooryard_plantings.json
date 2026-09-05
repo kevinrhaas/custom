@@ -162,8 +162,8 @@
       "id": "inf_carpenter_dwelling_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        377.26,
-        189.79
+        392.14,
+        196.75
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -558,8 +558,8 @@
       "id": "recon_1835_north_d1_001_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        480.0,
-        166.39
+        494.87,
+        153.98
       ],
       "height_m": 19.1,
       "confidence": "reconstructed",
@@ -724,7 +724,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         515.0,
-        181.31
+        174.31
       ],
       "height_m": 16.1,
       "confidence": "reconstructed",
@@ -756,8 +756,8 @@
       "id": "recon_1835_north_d3_016_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        715.0,
-        166.12
+        731.12,
+        150.0
       ],
       "height_m": 18.4,
       "confidence": "reconstructed",
@@ -767,8 +767,8 @@
       "id": "recon_1835_north_d3_016_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        710.83,
-        165.57
+        730.57,
+        145.83
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -910,8 +910,8 @@
       "id": "recon_1835_north_d4_017_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        755.0,
-        182.06
+        763.71,
+        175.03
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -1141,8 +1141,8 @@
       "id": "recon_1835_north_d6_021_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        450.0,
-        183.98
+        431.98,
+        200.0
       ],
       "height_m": 16.8,
       "confidence": "reconstructed",
