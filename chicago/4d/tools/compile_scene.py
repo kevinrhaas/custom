@@ -718,41 +718,25 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             rows.append({
                 "id": person.get("id"),
                 "name": person.get("name"),
-                "surname": surname_of(person.get("name"), person.get("id")),
                 "household": hh.get("id"),
                 "household_name": hh.get("name"),
                 "file": rel,
                 "relationship": person.get("relationship"),
                 "grade": person.get("grade"),
                 "occupation": None if occ_value in (None, "", "none_recorded") else occ_value,
-                "occupation_confidence": occ.get("confidence"),
-                "sex": person.get("sex"),
-                "age": value_of(age) if age else None,
-                "birth_year": value_of(born) if born else None,
                 "letter_list_only": bool(person.get("letter_list_only")),
-                "letter_list_returns": len(returns),
-                "letter_list_first": returns[0] if returns else None,
-                "letter_list_last": returns[-1] if returns else None,
                 "civic_mint": bool(person.get("civic_mint")),
-                "ladder_rule": person.get("ladder_rule"),
                 "resident_subtype": person.get("resident_subtype"),
                 "how_known": how_known(person),
                 "division": hh.get("division"),
-                "arrival": arrival.get("value"),
                 "arrival_year": arrival_year(arrival.get("value")),
                 "arrival_precision": arrival.get("precision"),
-                "arrival_confidence": arrival.get("confidence"),
-                "origin": (hh.get("origin") or {}).get("value"),
                 "present": (hh.get("present_on_scene_date") or {}).get("value"),
                 "lives_at": lives.get("value"),
                 "works_at": works.get("value"),
-                "review_required": bool(hh.get("review_required")),
-                "touches_removal": bool(hh.get("touches_removal")),
-                "evidence_kinds": [label for key, label in PERSON_EVIDENCE_KINDS
-                                   if person.get(key)],
             })
 
-    rows.sort(key=lambda r: (r["surname"], fold(r["name"]), str(r["id"])))
+    rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
     def tally(key):
         counts: dict = {}

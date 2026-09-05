@@ -53,9 +53,9 @@
    "id": "walker_george_h",
    "name": "George H Walker",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "civic_mint": true,
-   "ladder_rule": "G2b",
+   "ladder_rule": "G1c",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -65,7 +65,7 @@
     "blackhawk_war_chicago_enrollments_isa",
     "chicago_democrat_1833_1835"
    ],
-   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from muster_1832, newspaper_letter_list. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from muster_1832, newspaper_letter_list. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "civic_evidence": [
     {
      "list": "muster_1832",
@@ -74,7 +74,7 @@
      "record_id": "blackhawk_1832_125",
      "describes_date": "1832",
      "source": "blackhawk_war_chicago_enrollments_isa",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ],
    "press_evidence": [
@@ -85,7 +85,7 @@
      "record_id": "person_g_h_walker",
      "describes_date": "1834-04-01",
      "source": "chicago_democrat_1833_1835",
-     "rule": "G2b"
+     "rule": "G1c"
     }
    ]
   }

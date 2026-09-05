@@ -566,7 +566,7 @@
     ],
     "person_id": "foot_john",
     "household_id": "hh_foot_john",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
@@ -1180,7 +1180,7 @@
     ],
     "person_id": "haddock_edward",
     "household_id": "hh_haddock_edward",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "E Haddock",
      "E W Haddock",

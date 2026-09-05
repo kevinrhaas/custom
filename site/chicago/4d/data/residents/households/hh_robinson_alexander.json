@@ -92,7 +92,17 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life."
+   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life.",
+   "resident_research": {
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — andreas_1884_v1, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
+   }
   },
   {
    "id": "robinson_catherine",

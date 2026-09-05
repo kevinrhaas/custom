@@ -69,9 +69,10 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "history_medicine_chicago_kimberly_maxwell"
+    "history_medicine_chicago_kimberly_maxwell",
+    "fergus_chicago_directory_1839"
    ],
-   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household.",
+   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household. FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Peter Pruyne,” (f1839_v0036, printed page 41, ward 1, voting for William B. Ogden). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Pruyne' folds to the same string as the 1837 entry's, and the given name of both begins P. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "resident_research": {
     "programme": "resident-research-2026",
     "ticket": "T-0478",
@@ -132,6 +133,20 @@
     "notes": "Chicago medical history expands Edmund Stoughton Kimberly with an exact birth date of April 7, 1803, medical education, 1829 marriage, 1832 move to Chicago, 1833 town-trustee service and 1834 cholera-hospital authorization. These are independent discriminators beyond surname or household association.",
     "source_ids": [
      "history_medicine_chicago_kimberly_maxwell"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G4",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — andreas_1884_v1, history_medicine_chicago_kimberly_maxwell. G4 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     },
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — andreas_1884_v1, history_medicine_chicago_kimberly_maxwell. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

@@ -1276,6 +1276,16 @@ step "…and its two readings of a printed name are still two" \
 step "the civic, church, press and book residents re-derive from the ladder" \
   python3 tools/mint_civic_residents.py --check
 
+# T-0515, the second mode of the same pass. `--build` above mints the identities
+# the town does NOT hold; this applies the ladder to the 162 it proposes for people
+# already on a card, and its whole value is that the decision is DERIVED — the
+# regrade, the eight it refuses on the forename the volume prints, and the forty-five
+# downgrades it declines because the card rests on Andreas or on an adjudicated
+# research outcome the ladder never read. A hand-edit to any one of those grades
+# would otherwise stand as a reading.
+step "the regraded residents re-derive from the ladder too" \
+  python3 tools/mint_civic_residents.py --regrade --check
+
 step "…and none of them claims more than a person and a reading" \
   python3 tools/mint_civic_residents.py --gate
 
@@ -1413,6 +1423,19 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
+
+# T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
+# Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
+# had matched 101 entries to people this town holds, and the second hop could not even see
+# them, because both crosswalks group their rulings under the pool each was matched against
+# rather than at the top of the file. This pass writes them, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made.
+step "…and Fergus 1839's later lists are on the 97 cards they name" \
+  python3 tools/spend_fergus_1839_later_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_later_lists.py --self-test
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent

@@ -53,7 +53,7 @@
    "id": "haddock_edward",
    "name": "Edward H. Haddock",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
@@ -65,6 +65,8 @@
    },
    "sources": [
     "andreas_1884_v1",
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
     "chicago_tribune_1882_04_25_old_settler_deaths",
     "chicago_voter_lists_1833_1835_irad"
    ],
@@ -76,8 +78,52 @@
     "reviewed_on": "",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
-   }
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "regraded_on": "2026-09-04",
+    "rule": "G1a"
+   },
+   "civic_evidence": [
+    {
+     "list": "tax_1833",
+     "as_read": "Haddock, E. H.",
+     "locator": "tax_1833",
+     "record_id": "tax_1833_041",
+     "describes_date": "1833",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    },
+    {
+     "list": "poll_1835",
+     "as_read": "Haddock, E. H.",
+     "locator": "poll_1835",
+     "record_id": "poll_1835_028",
+     "describes_date": "1835",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    }
+   ],
+   "census_evidence": [
+    {
+     "list": "census_1840",
+     "as_read": "E. H. Haddock",
+     "locator": "207:13",
+     "record_id": "33SQ-GYYJ-93G:13",
+     "describes_date": "1840",
+     "source": "census_1840_chicago_familysearch_images",
+     "rule": "G1a"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "E. H. Haddock",
+     "locator": "chicago_democrat_1834_07_02#c017",
+     "record_id": "person_e_h_haddock",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    }
+   ]
   }
  ],
  "touches_removal": false,
