@@ -4716,6 +4716,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     divisions = set(vocab.get("divisions") or [])
 
     households: dict = {}
+    manifest_drift: list = []          # T-0715: the index-vs-record fault, said once
     kin_rows: list = []
     person_ids: dict = {}
     grade_totals: dict = {g: 0 for g in RESIDENT_GRADES}
@@ -4941,6 +4942,10 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             walk_attested(f"{where}/{p.get('id')}", p, source_ids, rep, tally)
 
         # --- the manifest's denormalised copies -----------------------------
+        # ONE FAULT, ONE MESSAGE (T-0715). Every line below is the same defect — the
+        # manifest is a DERIVED summary and has drifted from the cards — and reporting it
+        # per household buried the cause under nineteen symptoms the day it happened.
+        # Collected here, said once below, with the rebuild that repairs it.
         for key, actual in (("head", h.get("head")),
                             ("division", h.get("division")),
                             ("lives_at", (h.get("lives_at") or {}).get("value")),
@@ -4949,15 +4954,15 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                              (h.get("present_on_scene_date") or {}).get("value")),
                             ("review_required", h.get("review_required"))):
             if entry.get(key) != actual:
-                rep.error("residents index", f"household '{hid}' {key} in the manifest "
-                                             f"({entry.get(key)!r}) disagrees with the record "
-                                             f"({actual!r}); the record is authoritative")
+                manifest_drift.append(f"household '{hid}' {key} in the manifest "
+                                      f"({entry.get(key)!r}) disagrees with the record "
+                                      f"({actual!r})")
         if entry.get("persons") != len(persons):
-            rep.error("residents index", f"household '{hid}' persons {entry.get('persons')!r} "
-                                         f"disagrees with the {len(persons)} in the record")
+            manifest_drift.append(f"household '{hid}' persons {entry.get('persons')!r} "
+                                  f"disagrees with the {len(persons)} in the record")
         if entry.get("grades") != local_grades:
-            rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
-                                         f"disagrees with the record's {local_grades!r}")
+            manifest_drift.append(f"household '{hid}' grades {entry.get('grades')!r} "
+                                  f"disagrees with the record's {local_grades!r}")
         households[hid] = h
 
     # --- kin: the far end, and the reciprocity rule -------------------------
@@ -4992,14 +4997,28 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     counts = index.get("counts") or {}
     if counts.get("households") != len(households):
-        rep.error("residents index", f"counts.households {counts.get('households')!r} "
-                                     f"disagrees with the {len(households)} loaded")
+        manifest_drift.append(f"counts.households {counts.get('households')!r} "
+                              f"disagrees with the {len(households)} loaded")
     if counts.get("persons") != n_persons:
-        rep.error("residents index", f"counts.persons {counts.get('persons')!r} disagrees with "
-                                     f"the {n_persons} in the records")
+        manifest_drift.append(f"counts.persons {counts.get('persons')!r} disagrees with "
+                              f"the {n_persons} in the records")
     if counts.get("by_grade") != grade_totals:
-        rep.error("residents index", f"counts.by_grade {counts.get('by_grade')!r} disagrees "
-                                     f"with the records' {grade_totals!r}")
+        manifest_drift.append(f"counts.by_grade {counts.get('by_grade')!r} disagrees "
+                              f"with the records' {grade_totals!r}")
+
+    # The one message. `counts.by_grade` is summed from the ROWS, so a single stale row
+    # makes the whole population count wrong — which is why this reads as a fault about
+    # the manifest rather than a list of facts about households.
+    if manifest_drift:
+        detail = "".join(f"\n      - {line}" for line in manifest_drift[:12])
+        if len(manifest_drift) > 12:
+            detail += f"\n      - … and {len(manifest_drift) - 12} more"
+        rep.error("residents index",
+                  f"the manifest has drifted from the household records in "
+                  f"{len(manifest_drift)} place(s). The RECORD is authoritative and the "
+                  f"manifest is its derived summary; rebuild it with "
+                  f"`python3 tools/rebuild_resident_index.py --write`, and never by hand."
+                  f"{detail}")
 
     # The researched-and-excluded half. Same standard as data/exclusions.json:
     # a finding that a person is NOT in this scene is a claim and owes a reason.

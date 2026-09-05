@@ -328,3 +328,4 @@ T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 18
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
+T-0839 — synthesize_resident_research.py carries a second, divergent derivation of the residents manifest, and T-0715's owner is the first

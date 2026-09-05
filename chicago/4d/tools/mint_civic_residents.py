@@ -166,6 +166,7 @@ PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
+import rebuild_resident_index                            # noqa: E402  (the index's owner)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
@@ -657,7 +658,7 @@ def build(preload: dict | None = None):
            for person in docs[path].get("persons") or []}
     accepted, refusals = pool(others, proposal, master, index, own)
 
-    files, rows = {}, []
+    files: dict = {}
     taken: set = set()
     for row, appearances in accepted:
         doc = record(row, appearances, others, taken)
@@ -667,46 +668,16 @@ def build(preload: dict | None = None):
         taken.add(doc["id"])
         taken.add(doc["persons"][0]["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "civic_mint": True,
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-            "projected_resident": any(p.get("resident_subtype") == "projected_resident"
-                                      for p in doc["persons"]),
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-
+    # THE MANIFEST HAS ONE OWNER (T-0715). This pass used to rebuild the rows for the
+    # households it minted and carry every other row across verbatim, which is how a
+    # household nobody's pass owned could have its grade changed elsewhere and keep an
+    # index row saying otherwise — for ever, and with the row-summed totals inheriting it.
+    # `final` is the tree exactly as main() will leave it on disk (the mine_paths this run
+    # did not re-mint are unlinked there), so the whole manifest re-derives from it.
     final = dict(others)
     final.update({path: json.loads(text) for path, text in files.items()})
-    index["counts"]["civic_mint"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("civic_mint"))
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    index = rebuild_resident_index.rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -1035,29 +1006,12 @@ def apply_regrade(docs: dict, index: dict, applied: list) -> set:
             rr["refusals"] = keep + [refusal]
         touched.add(path)
 
-    # The manifest rows and the counts the panels read. Re-derived from the tree
-    # rather than adjusted, so a second run of this mode is a no-op.
-    rows = {r["id"]: r for r in index.get("households") or []}
-    for path in touched:
-        doc = docs[path]
-        row = rows.get(doc.get("id"))
-        if row is None:
-            continue
-        tally: dict = {}
-        for person in doc.get("persons") or []:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        row["grades"] = dict(sorted(tally.items()))
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in docs.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    # The manifest rows and the counts the panels read, re-derived from the WHOLE tree
+    # rather than from the rows this run happened to touch (T-0715). The narrow version
+    # was the worse half of the fault: on the steady state — the proposal already spent —
+    # `applied` is empty, `touched` is empty, and the old code then corrected nothing at
+    # all while reporting success.
+    index.update(rebuild_resident_index.rebuild(index, docs))
     return touched
 
 

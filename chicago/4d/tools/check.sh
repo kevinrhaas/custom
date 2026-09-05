@@ -2054,6 +2054,18 @@ step "the final resident audit still re-derives from the residents layer" \
 step "…and its own assertions still fire when broken" \
   python3 tools/export_resident_audit.py --self-test
 
+# T-0715. `data/residents/index.json` is a DERIVED summary of the household cards and had
+# no single owner: two mint passes each rebuilt the slice of it they owned and carried the
+# rest across verbatim, so a household neither pass owned could be regraded elsewhere and
+# keep a row saying otherwise — with `counts.by_grade`, which is summed from the rows,
+# inheriting the error. Gated as a re-derivation, like datum.json and the crosswalks: the
+# committed manifest must be exactly what the cards produce.
+step "data/residents/index.json still re-derives from the household cards" \
+  python3 tools/rebuild_resident_index.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/rebuild_resident_index.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'
