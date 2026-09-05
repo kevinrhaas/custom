@@ -156,6 +156,17 @@ step "West Division approaches parcel matches its recipe" \
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
 
+# The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
+# minting passes and four rewriting passes each rebuilt the SLICE of
+# data/residents/index.json they owned and left the rest verbatim, so a household no
+# pass owned could be regraded elsewhere and keep a row saying something else for
+# ever - and the counts, summed from the rows, inherited the error. Landing #797
+# found 18 such households by hand. This re-derives every row and every derived
+# count from data/residents/households/*.json and fails if the committed file is not
+# what the derivation produces.
+step "the residents manifest re-derives from the household cards" \
+  python3 tools/rebuild_resident_index.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
