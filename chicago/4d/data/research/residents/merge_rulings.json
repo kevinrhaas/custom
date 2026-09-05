@@ -1,0 +1,497 @@
+{
+ "schema": "chicago4d.residents.merge_rulings.v1",
+ "_doc": "THE RULINGS (T-0839). Every cluster in merge_candidates.json is ruled here, in writing, and tools/merge_resident_cards.py --apply is what acts on them. MERGE is landed: the survivor takes the union and each folded card becomes a redirect stub at data/residents/merged/. DISTINCT and UNDECIDED are written onto the cards themselves, as `identity_rulings`, so the next pass does not re-ask. DEFERRED names the ticket that owns the pair.\n\nON `one source prints more than one of these cards`, which the candidate ledger files as evidence AGAINST nearly every cluster: read it carefully. `chicago_democrat_1833_1835` is a three-year run of a weekly, not a page, and the cards under it were minted from DIFFERENT issues months apart — that is a paper printing one man repeatedly, which is the normal case. The flag bites only where the two printings are the same line, or where the source is a LIST that names each person once: the 1833-1835 voter rolls, a census page, a directory. It is used that way in the Beaubien and Smith refusals and nowhere else.\n\nON THE GRADE: no ruling here grades anybody. A merged card is re-graded by the ladder — consolidate_resident_evidence.py --build then mint_civic_residents.py --regrade — never by taking the best of the folded grades, and each survivor carries `regrade_pending: true` until that has run.",
+ "ticket": "T-0839",
+ "authored": "2026-09-05",
+ "rulings": [
+  {
+   "cluster": "mc_allen_allen_james",
+   "ruling": "MERGE",
+   "why": "THE DEMONSTRATION THE TICKET WAS OPENED ON. Four cards, one man: Lieut. James Allen, U.S. Army, the harbour engineer. `allen_lieut` and `allen_lieut_j` print the title and an initial; `allen_lieut_james` prints the title and the full name and is the only card that knows his trade (`army_officer`, the Democrat of 13 August 1834); `allen_james` is the card the ladder graded G1b on four sources and it knew nothing about the army. Nothing in the four contradicts anything in the others — no second forename, no second trade, no second seat — and every one of them is the Democrat, the American or the voter lists printing the same officer the way each set him. Merged he is one attested man with a trade and four sources; split he was four thin men. `allen_william` and `allen_edward_richards` are NOT in this cluster and are not touched: a title with no forename joins only a card carrying the same title.",
+   "survivor": "allen_james",
+   "survivor_name": "Lieut. James Allen",
+   "folded": [
+    "allen_lieut",
+    "allen_lieut_j",
+    "allen_lieut_james"
+   ]
+  },
+  {
+   "cluster": "mc_hubbard_hubbard_g",
+   "ruling": "MERGE",
+   "why": "THE SECOND DEMONSTRATION. Six cards for Gurdon Saltonstall Hubbard, the packer, whom Andreas, the American Fur Company's own record and the voter lists all name. `hubbard_g`, `hubbard_g_s`, `hubbard_g_t` and `hubbard_gurdon_s` are initials the papers set; `hubbard_gordon_s` is Gurdon spelled with an o, which is one letter at six and the printers' commonest error on this name. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings. The one card that carries the identity — birth, trade, the fur company, the south division — is `hubbard_gurdon`, and it is the survivor. `hubbard_g_t`'s middle T is the weakest link in the cluster and it is folded rather than held: the town's records name no G. T. Hubbard and no second Gurdon, the reading stands whole in the stub, and Ahira, Elijah Kent, Henry G. and Otis Hubbard are not in this cluster at all.",
+   "survivor": "hubbard_gurdon",
+   "folded": [
+    "hubbard_g",
+    "hubbard_g_s",
+    "hubbard_g_t",
+    "hubbard_gordon_s",
+    "hubbard_gurdon_s"
+   ]
+  },
+  {
+   "cluster": "mc_owen_owen_t_j_v",
+   "ruling": "MERGE",
+   "why": "Thomas Jefferson Vance Owen, the Indian agent and the town's first president — Andreas and the voter lists name him, and `owen_thomas_jv` is the only card that carries the office. `owen_t_j_v`, `owen_th_j_v` and `owen_thomas_j_v` are the Democrat printing the same three initials, with `Th.` the printed contraction of Thomas that name_agreement.py already reads as agreement. `owen_thomas` is the St Cyr register's bare `Thomas Owen`: the register is the Chicago parish's own book for 1833-1836, its people are this town's people, and no second Thomas Owen stands anywhere in the town's records. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "owen_thomas_jv",
+   "folded": [
+    "owen_t_j_v",
+    "owen_th_j_v",
+    "owen_thomas",
+    "owen_thomas_j_v"
+   ]
+  },
+  {
+   "cluster": "mc_fullerton_fullerton_a_n",
+   "ruling": "MERGE",
+   "why": "Alexander N. Fullerton, attorney, is Andreas's man and the anchor. `A N` and `Alex N` are the same initials and the printed contraction of Alexander. `fullerton_alexander_m` differs in one glyph — M against N, the minim confusion the surname fold already carries in both directions — and the town's records name no second Fullerton of any forename. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "fullerton_alexander",
+   "folded": [
+    "fullerton_a_n",
+    "fullerton_alex_n",
+    "fullerton_alexander_m"
+   ]
+  },
+  {
+   "cluster": "mc_haddock_haddock_e",
+   "ruling": "MERGE",
+   "why": "Edward H. Haddock, tavern keeper, stands on five sources — Andreas, the 1840 census, the Democrat, the Tribune's old-settler deaths and the voter lists — and is the anchor. `E Haddock` contradicts nothing. `E W Haddock` and `Edward E Haddock` differ from him in the middle letter alone, and the town's records name no second Haddock. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "haddock_edward",
+   "folded": [
+    "haddock_e",
+    "haddock_e_w",
+    "haddock_edward_e"
+   ]
+  },
+  {
+   "cluster": "mc_kimberly_kimberly_e_s",
+   "ruling": "MERGE",
+   "why": "Dr Edmund Stoughton Kimberly, physician — Andreas and the History of Medicine in Chicago both write him, and he sits on `hh_pruyne_kimberly` as Peter Pruyne's partner, which is where the town's druggists' firm stands. `E S` and `Ed S` are his initials and the printed contraction; `Edmund L` differs in the middle letter alone. The survivor is a PARTNER rather than a head, so the household blocks of the folded cards are NOT unioned onto `hh_pruyne_kimberly` — an arrival or a dwelling carried onto a shared card would be claimed for Pruyne too. They stand whole in the stubs. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "kimberly_edmund_s",
+   "folded": [
+    "kimberly_e_s",
+    "kimberly_ed_s",
+    "kimberly_edmund_l"
+   ]
+  },
+  {
+   "cluster": "mc_hogan_hogan_j_s_c",
+   "ruling": "MERGE",
+   "why": "John S. C. Hogan, the postmaster — Andreas, the voter lists and the first post office's own history. `J S C Hogan` is the Democrat and the American printing his initials. `hogan_john` is the St Cyr register's bare `John Hogan`, and the register is this parish's own book. Mary Hogan is a separate card and is NOT in this cluster. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "hogan_john_s_c",
+   "folded": [
+    "hogan_j_s_c",
+    "hogan_john"
+   ]
+  },
+  {
+   "cluster": "mc_kinzie_kinzie_j_h",
+   "ruling": "MERGE",
+   "why": "John Harris Kinzie — Andreas, his wife's own Wau-Bun, the fur company's record and the voter lists. `J H Kinzie` is the American's initials for him. `John S Kinzie` differs in the middle letter alone and the town's records name no John S. Kinzie: the Kinzies of 1835 are John Harris, James, Robert Allen and Juliette. JAMES KINZIE IS NOT IN THIS CLUSTER and is not touched — he and John H. are brothers, which is exactly the case the compatibility rule must not fold. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "kinzie_john_h",
+   "folded": [
+    "kinzie_j_h",
+    "kinzie_john_s"
+   ]
+  },
+  {
+   "cluster": "mc_peck_peck_p_f",
+   "ruling": "MERGE",
+   "why": "Philip F. W. Peck, merchant — Andreas and the voter lists. `P F` and `P F W` are his own initials as the Democrat, the 1840 census and Norris's directory set them, one of them short by the W. Nothing contradicts. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "peck_philip",
+   "folded": [
+    "peck_p_f",
+    "peck_p_f_w"
+   ]
+  },
+  {
+   "cluster": "mc_taylor_taylor_anson_h",
+   "ruling": "MERGE",
+   "why": "Anson H. Taylor, carpenter — Andreas is the anchor and he is the Taylor the town's building record needs. `Anson N` and `Anson W` differ from him in the middle letter alone. Augustine Deodat, Edmund D., Charles H. and William Taylor are NOT in this cluster: a full forename that disagrees is refused before the cluster is formed. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "taylor_anson_h",
+   "folded": [
+    "taylor_anson_n",
+    "taylor_anson_w"
+   ]
+  },
+  {
+   "cluster": "mc_beaubien_beaubien_j_b",
+   "ruling": "MERGE",
+   "why": "Col. Jean Baptiste Beaubien, the trader — Andreas and the voter lists. `J B Beaubien` and `John B Beaubien` are the two ways the Democrat set the same man: John B. is the English of Jean Baptiste and it is what the papers called him. `beaubien_john_s` IS NOT FOLDED. John S. Beaubien is a second man, and the owner's own ticket says so; the voter list that prints him prints Jean Baptiste on the same roll, and a roll names each voter once. Alexandre, Charles H., Josette, Madore, Mark and Medard Beaubien are outside this cluster.",
+   "survivor": "beaubien_jean_baptiste",
+   "folded": [
+    "beaubien_j_b",
+    "beaubien_john_b"
+   ],
+   "held_apart": [
+    {
+     "person_id": "beaubien_john_s",
+     "ruling": "DISTINCT",
+     "against": [
+      "beaubien_jean_baptiste"
+     ],
+     "why": "John S. Beaubien is not Jean Baptiste Beaubien. The 1833-1835 voter lists print both, and a voter roll names each elector once; the owner's ticket names this pair as one of the cases the pass must not fold."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_beaubien_beaubien_madore",
+   "ruling": "MERGE",
+   "why": "Madore Benjamin Beaubien, merchant — Andreas and the voter lists — and `Medore B Beaubien`, which is the Democrat's and the Tribune's spelling of the same forename, one letter apart at six letters, with the same middle B. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "beaubien_madore",
+   "folded": [
+    "beaubien_medore_b"
+   ]
+  },
+  {
+   "cluster": "mc_adams_adams_william",
+   "ruling": "MERGE",
+   "why": "William Hanford Adams is the anchor: the 1835 census bridge, the Tribune's fourth old-settler reception and the voter lists give him a full forename and a history. `William Adams` is the Democrat's bare reading of the same name and contradicts nothing in it. Elizabeth, Hiram A. and James Adams are outside this cluster.",
+   "survivor": "adams_william_h",
+   "folded": [
+    "adams_william"
+   ]
+  },
+  {
+   "cluster": "mc_bates_bates_harriet_e",
+   "ruling": "MERGE",
+   "why": "One printing read twice. Both cards cite the SAME source and the SAME date — the Democrat of 26 August 1835 — and the names differ only in whether the middle name is written out. Two cards minted from one line of one column are one woman.",
+   "survivor": "bates_harriet_ellen",
+   "folded": [
+    "bates_harriet_e"
+   ]
+  },
+  {
+   "cluster": "mc_brown_brown_w_h",
+   "ruling": "MERGE",
+   "why": "William H. Brown, whom Norris's 1844 directory and the Democrat both print, and `W H Brown`, which is the Democrat's initials for the same name a week earlier. The middle initial AGREES; nothing contradicts. Hanna E., Jesse B., Lemuel and Rufus Brown are outside this cluster.",
+   "survivor": "brown_william_h",
+   "folded": [
+    "brown_w_h"
+   ]
+  },
+  {
+   "cluster": "mc_cobb_cobb_s_b",
+   "ruling": "MERGE",
+   "why": "Silas B. Cobb, saddler — Andreas, the Democrat of 26 November 1833 and the Calumet Club's early-Chicago list. `S B Cobb` is the American's initials for him and the middle initial agrees. The survivor is a PARTNER on `hh_goss_cobb`, so the folded card's household blocks are not unioned onto a card that also holds O. Goss; they stand whole in the stub. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "cobb_silas_b",
+   "folded": [
+    "cobb_s_b"
+   ]
+  },
+  {
+   "cluster": "mc_dole_dole_g_w",
+   "ruling": "MERGE",
+   "why": "George Washington Dole, forwarding and commission — Andreas, the Democrat's first number and the voter lists. `G W Dole` is his own initials in the Democrat. Nothing contradicts. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "dole_george_w",
+   "folded": [
+    "dole_g_w"
+   ]
+  },
+  {
+   "cluster": "mc_hamilton_hamilton_r_j",
+   "ruling": "MERGE",
+   "why": "Richard Jones Hamilton, county clerk — Andreas and the voter lists. `R J Hamilton` is his initials as the Democrat, the 1840 census and Norris set them, and the 1840 census and Norris are two more witnesses the anchor card had not learned. Amos C. and Diana Hamilton are outside this cluster. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "hamilton_richard_j",
+   "folded": [
+    "hamilton_r_j"
+   ]
+  },
+  {
+   "cluster": "mc_harmon_harmon_isaac",
+   "ruling": "MERGE",
+   "why": "Isaac Dewey Harmon, dry-goods merchant — Andreas, the Democrat of 26 November 1833 and the voter lists — sitting on `hh_harmon_brothers` beside Charles L. Harmon. `Isaac Harmon` is the Black Hawk enrolments and the Democrat printing the same forename bare. The survivor shares his card with his brother, so the folded card's household blocks are not unioned; they stand whole in the stub. Dr Elijah Dewey Harmon is a separate card and is NOT in this cluster.",
+   "survivor": "harmon_isaac_d",
+   "folded": [
+    "harmon_isaac"
+   ]
+  },
+  {
+   "cluster": "mc_heacock_heacock_russel_e",
+   "ruling": "MERGE",
+   "why": "Russel E. Heacock, attorney — Andreas, and the town's first lawyer. `Russell E Heacock` is the Democrat's spelling of the same name with the doubled l, one letter apart at seven, with the same middle initial. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "heacock_russel_e",
+   "folded": [
+    "heacock_russell_e"
+   ]
+  },
+  {
+   "cluster": "mc_king_king_byra",
+   "ruling": "MERGE",
+   "why": "Byram King, hardware merchant, and `Byra King` — the same paper, two weeks apart, with the second reading short by the final m. The trade stands on the fuller card and nothing on the other contradicts it. Byron, Hyram, John Lyle, Nehemiah, Sherman and Tuthill King are outside this cluster.",
+   "survivor": "king_byram",
+   "folded": [
+    "king_byra"
+   ]
+  },
+  {
+   "cluster": "mc_kinzie_kinzie_r_a",
+   "ruling": "MERGE",
+   "why": "Robert Allen Kinzie, merchant of the west division — Andreas and the voter lists — and `R A Kinzie`, the Democrat's initials for the same man. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "kinzie_robert_a",
+   "folded": [
+    "kinzie_r_a"
+   ]
+  },
+  {
+   "cluster": "mc_morrison_morrison_ordemus",
+   "ruling": "MERGE",
+   "why": "Orsemus Morrison, whom the voter lists, Fergus's 1843 directory and Norris's 1844 directory all print, and `Ordemus`, which is the same name with d for s — one letter apart at eight. The thin card cites only the voter list the fuller card also cites.",
+   "survivor": "morrison_orsemus",
+   "folded": [
+    "morrison_ordemus"
+   ]
+  },
+  {
+   "cluster": "mc_rider_rider_eli_a",
+   "ruling": "MERGE",
+   "why": "`Elia Rider` is `Eli A. Rider` with the space closed. Both cards cite the SAME two sources — the Democrat and the voter lists — and the fuller card carries two directories besides. Nothing contradicts.",
+   "survivor": "rider_eli_a",
+   "folded": [
+    "rider_elia"
+   ]
+  },
+  {
+   "cluster": "mc_snow_snow_g_w",
+   "ruling": "MERGE",
+   "why": "George W. Snow, surveyor — Andreas and the voter lists — and `G W Snow`, his own initials in the Democrat and in Norris's directory. Watson M. Snow is outside this cluster. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "snow_george_w",
+   "folded": [
+    "snow_g_w"
+   ]
+  },
+  {
+   "cluster": "mc_sproat_sproat_g_t",
+   "ruling": "MERGE",
+   "why": "Grenville Temple Sproat, the schoolteacher — Andreas and the Democrat of 26 November 1833 — and `G T Sproat`, which is exactly his two initials in the same paper. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "sproat_grenville",
+   "folded": [
+    "sproat_g_t"
+   ]
+  },
+  {
+   "cluster": "mc_taylor_taylor_e_d",
+   "ruling": "MERGE",
+   "why": "Edmund D. Taylor — the Calumet Club's early-Chicago list and the Democrat — and `E D Taylor`, the same initials in the same paper and in Fergus's 1843 directory. The middle initial AGREES. Anson, Augustine Deodat, Charles H. and William Taylor are outside this cluster.",
+   "survivor": "taylor_edmund_d",
+   "folded": [
+    "taylor_e_d"
+   ]
+  },
+  {
+   "cluster": "mc_temple_temple_j_t",
+   "ruling": "MERGE",
+   "why": "Dr John Taylor Temple, physician and the mail contractor — Andreas, the Baptist history and the voter lists — and `J T Temple`, exactly his initials in the Democrat. Mrs Temple, Dr Peter Temple and T Temple are NOT in this cluster: the honorific-only card joins no card that does not carry the same honorific, and a forename that begins with another letter is refused before the cluster forms. the cluster has an ANCHOR — one card carrying a documented identity from a biographical source (Andreas, a directory, a death notice) — and the rest are thin newspaper readings of the same name with no identity of their own. Where a thin card differs from the anchor only in a MIDDLE INITIAL, that letter is the least reliable thing in the corpus: it is one glyph in a newspaper column read through OCR, and the reading it produced is preserved whole in the stub. Where two thin cards contradict each other and NO anchor stands behind either, this pass does not pick one — see the UNDECIDED rulings.",
+   "survivor": "temple_john_t",
+   "folded": [
+    "temple_j_t"
+   ]
+  },
+  {
+   "cluster": "mc_wooley_wooley_jeddiah",
+   "ruling": "MERGE",
+   "why": "`Jeddiah` and `Jedidiah` Wooley are one spelling of one uncommon forename, one letter apart at eight, on the only two Wooleys the town holds. Neither card carries a trade, a seat or a date the other contradicts. Neither is anchored in a biographical source, so this merge rests on the name alone — which is defensible here precisely because the name is rare: the town has no other Wooley of any forename.",
+   "survivor": "wooley_jedidiah",
+   "folded": [
+    "wooley_jeddiah"
+   ]
+  },
+  {
+   "cluster": "mc_smith_smith_william",
+   "ruling": "DISTINCT",
+   "why": "Two men, not one. Both cards are ATTESTED at G1a with independent multi-source identities — William Smith on the Black Hawk enrolments, the 1840 census and both directories; William V. Smith on the Democrat and the voter lists — and the SAME 1833-1835 voter roll prints both, which is a roll naming each elector once. Smith is the commonest surname in the corpus and William the commonest forename; folding them on a bare initial would be the exact error name_agreement.py was written to stop.",
+   "held_apart": [
+    {
+     "person_id": "smith_william",
+     "ruling": "DISTINCT",
+     "against": [
+      "smith_william_v"
+     ],
+     "why": "The 1833-1835 voter lists print William Smith and William V. Smith both, and each carries an independent multi-source identity. Two men."
+    },
+    {
+     "person_id": "smith_william_v",
+     "ruling": "DISTINCT",
+     "against": [
+      "smith_william"
+     ],
+     "why": "The 1833-1835 voter lists print William Smith and William V. Smith both, and each carries an independent multi-source identity. Two men."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_wright_wright_j",
+   "ruling": "DISTINCT",
+   "why": "A FATHER AND HIS SON, and they already stand on one card. Andreas names John Wright, merchant, and John S. Wright, clerk, his son — `hh_wright_john` carries both, the second with relationship `son`. Folding them would delete a person the sources explicitly count. `wright_j`, the American's bare `J Wright` of July 1835, could be either of them or a third Wright (Amasa, Robert C. and Truman G. also stand in the town), and no source reached decides it — that one is UNDECIDED and goes to the owner rather than to a guess.",
+   "held_apart": [
+    {
+     "person_id": "wright_john",
+     "ruling": "DISTINCT",
+     "against": [
+      "wright_john_s"
+     ],
+     "why": "Andreas names John Wright the merchant and John S. Wright his son; the card already carries them as head and son."
+    },
+    {
+     "person_id": "wright_john_s",
+     "ruling": "DISTINCT",
+     "against": [
+      "wright_john"
+     ],
+     "why": "Andreas names John S. Wright as the son of John Wright, and gives him his own trade (clerk). Not a duplicate of his father."
+    },
+    {
+     "person_id": "wright_j",
+     "ruling": "UNDECIDED",
+     "against": [
+      "wright_john",
+      "wright_john_s"
+     ],
+     "why": "OWNER: the American of 11 July 1835 prints `J Wright` and nothing else. He is John Wright, or John S. Wright, or a fourth Wright the town already holds — Amasa, Robert C. and Truman G. stand on their own cards. No source reached decides it, and picking one would put a printing on a man on no evidence."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_clark_clark_john_a",
+   "ruling": "UNDECIDED",
+   "why": "OWNER. Two thin readings and NO anchor: `John A Clark` is the Democrat of 11 February 1834 and `John K Clark` the American of 11 July 1835, each a single printing, neither carrying a trade, a seat or a biographical source. They agree on John and disagree on the middle letter. Where an anchor stands behind one card this pass folds the thin readings onto it; here there is nothing to fold onto, and picking one of two equal readings would invent the man it kept. Erastus and Timothy J. Clark are outside this cluster.",
+   "held_apart": [
+    {
+     "person_id": "clark_john_a",
+     "ruling": "UNDECIDED",
+     "against": [
+      "clark_john_k"
+     ],
+     "why": "Two single-printing readings, John A. and John K., with no biographical anchor behind either. Neither can be folded onto the other without inventing which one survives."
+    },
+    {
+     "person_id": "clark_john_k",
+     "ruling": "UNDECIDED",
+     "against": [
+      "clark_john_a"
+     ],
+     "why": "Two single-printing readings, John A. and John K., with no biographical anchor behind either. Neither can be folded onto the other without inventing which one survives."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_saunders_saunders_william_s",
+   "ruling": "UNDECIDED",
+   "why": "OWNER. `William S. Saunders` is a letter-list-only card; `William W Saunders` is a single Democrat printing of March 1834. Same paper, same forename, contradicted middle letter, no anchor behind either and no trade, seat or date to test. The town holds no third Saunders to break the tie.",
+   "held_apart": [
+    {
+     "person_id": "saunders_william_s",
+     "ruling": "UNDECIDED",
+     "against": [
+      "saunders_william_w"
+     ],
+     "why": "S against W in the middle initial, two thin readings, no biographical anchor behind either."
+    },
+    {
+     "person_id": "saunders_william_w",
+     "ruling": "UNDECIDED",
+     "against": [
+      "saunders_william_s"
+     ],
+     "why": "S against W in the middle initial, two thin readings, no biographical anchor behind either."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_taylor_taylor_william",
+   "ruling": "UNDECIDED",
+   "why": "OWNER. `William Taylor` and `William H Taylor` are two Democrat printings ten months apart, neither with a trade, a seat or a biographical source. Nothing CONTRADICTS — the bare card simply says less — so this is not a refusal; but Taylor is one of the town's crowded surnames (Anson, Augustine Deodat, Charles H., E. D. all stand on their own cards) and no anchor decides whether the bare reading is the same man. The owner's call.",
+   "held_apart": [
+    {
+     "person_id": "taylor_william",
+     "ruling": "UNDECIDED",
+     "against": [
+      "taylor_william_h"
+     ],
+     "why": "A bare `William Taylor` against `William H Taylor`, both thin Democrat readings, on a surname the town already carries five ways."
+    },
+    {
+     "person_id": "taylor_william_h",
+     "ruling": "UNDECIDED",
+     "against": [
+      "taylor_william"
+     ],
+     "why": "A bare `William Taylor` against `William H Taylor`, both thin Democrat readings, on a surname the town already carries five ways."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_walker_walker_george_e",
+   "ruling": "UNDECIDED",
+   "why": "OWNER. `George E. Walker` is a letter-list card the Fergus 1843 death notices also reach; `George H Walker` is the Black Hawk enrolments and the Democrat at G1c. The middle letters contradict, both cards carry real independent evidence, and neither is anchored in a biographical source that would settle which letter the man used. James and Jeremiah Walker are outside this cluster.",
+   "held_apart": [
+    {
+     "person_id": "walker_george_e",
+     "ruling": "UNDECIDED",
+     "against": [
+      "walker_george_h"
+     ],
+     "why": "E against H in the middle initial, with independent evidence on both cards and no biographical anchor behind either."
+    },
+    {
+     "person_id": "walker_george_h",
+     "ruling": "UNDECIDED",
+     "against": [
+      "walker_george_e"
+     ],
+     "why": "E against H in the middle initial, with independent evidence on both cards and no biographical anchor behind either."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_brown_brown_mrs_rufus",
+   "ruling": "DEFERRED",
+   "why": "TWO PEOPLE, not one card split — the opposite fault. `Mrs Rufus Brown` is a woman (sex female, relationship wife) whom the honorific strip folded onto her husband's forename, so the candidate pass sees `Rufus` on both. Andreas names the Green Tree tavern's keeper and his wife. They must not be merged. This pair is T-0723's — 'One identity, two town cards' — and that ticket is IN FLIGHT on another branch as this ruling is written. The reading is recorded here so the sweep is complete and no later pass re-asks; the CARDS are deliberately not touched, because two runs writing the same two records is how a merge queue loses work.",
+   "held_apart": [
+    {
+     "person_id": "brown_rufus",
+     "ruling": "DISTINCT",
+     "against": [
+      "brown_mrs_rufus"
+     ],
+     "defer_write": true,
+     "why": "Husband and wife, not one person: the honorific strip took `Mrs` off and left her carrying his forename. T-0723 owns the strip."
+    },
+    {
+     "person_id": "brown_mrs_rufus",
+     "ruling": "DISTINCT",
+     "against": [
+      "brown_rufus"
+     ],
+     "defer_write": true,
+     "why": "Husband and wife, not one person: the honorific strip took `Mrs` off and left her carrying his forename. T-0723 owns the strip."
+    }
+   ]
+  },
+  {
+   "cluster": "mc_norton_norton_n_r",
+   "ruling": "DEFERRED",
+   "why": "ONE MAN ON TWO CARDS, and the merge is right: `N. R. Norton` is Nelson R. Norton, the ship carpenter Andreas names, carried a second time from a letter list. The middle initial agrees and the town holds no second N. Norton. But this is the second of T-0723's two named cases. This pair is T-0723's — 'One identity, two town cards' — and that ticket is IN FLIGHT on another branch as this ruling is written. The reading is recorded here so the sweep is complete and no later pass re-asks; the CARDS are deliberately not touched, because two runs writing the same two records is how a merge queue loses work.",
+   "held_apart": [
+    {
+     "person_id": "norton_n_r",
+     "ruling": "DEFERRED",
+     "against": [
+      "norton_nelson_r"
+     ],
+     "defer_write": true,
+     "why": "Reads as one man with Nelson R. Norton; the merge belongs to T-0723, which is in flight."
+    },
+    {
+     "person_id": "norton_nelson_r",
+     "ruling": "DEFERRED",
+     "against": [
+      "norton_n_r"
+     ],
+     "defer_write": true,
+     "why": "Reads as one man with N. R. Norton; the merge belongs to T-0723, which is in flight."
+    }
+   ]
+  }
+ ]
+}

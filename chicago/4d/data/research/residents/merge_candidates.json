@@ -1,0 +1,3563 @@
+{
+ "schema": "chicago4d.residents.merge_candidates.v1",
+ "_doc": "Surname plus a compatible forename over every person in data/residents/households/. A WORKLIST, not a merge list: the ruling for each cluster is in merge_rulings.json and the merge itself is landed by tools/merge_resident_cards.py --apply.",
+ "generated_by": "tools/merge_resident_cards.py --candidates",
+ "ticket": "T-0839",
+ "counts": {
+  "town_persons": 1404,
+  "clusters": 37,
+  "cards_in_clusters": 96
+ },
+ "clusters": [
+  {
+   "id": "mc_hubbard_hubbard_g",
+   "surname": "hubbard",
+   "person_ids": [
+    "hubbard_g",
+    "hubbard_g_s",
+    "hubbard_g_t",
+    "hubbard_gordon_s",
+    "hubbard_gurdon",
+    "hubbard_gurdon_s"
+   ],
+   "links": [
+    {
+     "pair": [
+      "hubbard_g",
+      "hubbard_g_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g",
+      "hubbard_g_t"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g",
+      "hubbard_gordon_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g",
+      "hubbard_gurdon"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g",
+      "hubbard_gurdon_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g_s",
+      "hubbard_gordon_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g_s",
+      "hubbard_gurdon"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_g_s",
+      "hubbard_gurdon_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hubbard_gordon_s",
+      "hubbard_gurdon"
+     ],
+     "rule": "two full forenames: spelling variant"
+    },
+    {
+     "pair": [
+      "hubbard_gordon_s",
+      "hubbard_gurdon_s"
+     ],
+     "rule": "two full forenames: spelling variant"
+    },
+    {
+     "pair": [
+      "hubbard_gurdon",
+      "hubbard_gurdon_s"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, packer",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> hubbard_g, hubbard_g_s, hubbard_gordon_s, hubbard_gurdon_s; chicago_voter_lists_1833_1835_irad -> hubbard_g_t, hubbard_gurdon"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_hubbard_g",
+      "person_id": "hubbard_g",
+      "name": "G Hubbard",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-08-05",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_hubbard_g_s",
+      "person_id": "hubbard_g_s",
+      "name": "G S Hubbard",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-04-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "fergus_chicago_directory_1843",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_hubbard_g_t",
+      "person_id": "hubbard_g_t",
+      "name": "G T Hubbard",
+      "grade": "inferred",
+      "rung": "G2a",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_hubbard_gordon_s",
+      "person_id": "hubbard_gordon_s",
+      "name": "Gordon S Hubbard",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-08-13",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_hubbard_gurdon",
+      "person_id": "hubbard_gurdon",
+      "name": "Gurdon Saltonstall Hubbard",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "packer",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1818-10-31",
+      "lives_at": null,
+      "works_at": "old_bank_building",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad",
+       "chicago_antiquities_american_fur_co"
+      ]
+     },
+     {
+      "household_id": "hh_hubbard_gurdon_s",
+      "person_id": "hubbard_gurdon_s",
+      "name": "Gurdon S Hubbard",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "census_1840_chicago_familysearch_images",
+       "chicago_american_1835",
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_owen_owen_t_j_v",
+   "surname": "owen",
+   "person_ids": [
+    "owen_t_j_v",
+    "owen_th_j_v",
+    "owen_thomas",
+    "owen_thomas_j_v",
+    "owen_thomas_jv"
+   ],
+   "links": [
+    {
+     "pair": [
+      "owen_t_j_v",
+      "owen_th_j_v"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "owen_t_j_v",
+      "owen_thomas_j_v"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "owen_t_j_v",
+      "owen_thomas_jv"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "owen_th_j_v",
+      "owen_thomas"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "owen_th_j_v",
+      "owen_thomas_j_v"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "owen_th_j_v",
+      "owen_thomas_jv"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "owen_thomas",
+      "owen_thomas_j_v"
+     ],
+     "rule": "two full forenames: same"
+    },
+    {
+     "pair": [
+      "owen_thomas",
+      "owen_thomas_jv"
+     ],
+     "rule": "two full forenames: same"
+    },
+    {
+     "pair": [
+      "owen_thomas_j_v",
+      "owen_thomas_jv"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: indian_agent, none_recorded",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> owen_t_j_v, owen_th_j_v, owen_thomas_j_v; chicago_voter_lists_1833_1835_irad -> owen_th_j_v, owen_thomas_jv"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_owen_t_j_v",
+      "person_id": "owen_t_j_v",
+      "name": "T J V Owen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-06-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_owen_th_j_v",
+      "person_id": "owen_th_j_v",
+      "name": "Th J V Owen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-07-02",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_owen_thomas",
+      "person_id": "owen_thomas",
+      "name": "Thomas Owen",
+      "grade": "inferred",
+      "rung": "G2c",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-10-15",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "st_cyr_register_ichr_v4"
+      ]
+     },
+     {
+      "household_id": "hh_owen_thomas_j_v",
+      "person_id": "owen_thomas_j_v",
+      "name": "Thomas J V Owen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-24",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "fergus_1843_old_settler_death_notices"
+      ]
+     },
+     {
+      "household_id": "hh_owen_thomas_jv",
+      "person_id": "owen_thomas_jv",
+      "name": "Thomas Jefferson Vance Owen",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "indian_agent",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1831-04-01",
+      "lives_at": null,
+      "works_at": "cobweb_castle",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_allen_allen_james",
+   "surname": "allen",
+   "person_ids": [
+    "allen_james",
+    "allen_lieut",
+    "allen_lieut_j",
+    "allen_lieut_james"
+   ],
+   "links": [
+    {
+     "pair": [
+      "allen_james",
+      "allen_lieut_j"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "allen_james",
+      "allen_lieut_james"
+     ],
+     "rule": "two full forenames: same"
+    },
+    {
+     "pair": [
+      "allen_lieut",
+      "allen_lieut_j"
+     ],
+     "rule": "a title and no forename, against the same title (lieut)"
+    },
+    {
+     "pair": [
+      "allen_lieut",
+      "allen_lieut_james"
+     ],
+     "rule": "a title and no forename, against the same title (lieut)"
+    },
+    {
+     "pair": [
+      "allen_lieut_j",
+      "allen_lieut_james"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: army_officer, none_recorded",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> allen_james, allen_lieut, allen_lieut_james"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_allen_james",
+      "person_id": "allen_james",
+      "name": "James Allen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_voter_lists_1833_1835_irad",
+       "fergus_1843_old_settler_death_notices",
+       "fergus_chicago_directory_1839"
+      ]
+     },
+     {
+      "household_id": "hh_allen_lieut",
+      "person_id": "allen_lieut",
+      "name": "Lieut Allen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-03-25",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_allen_lieut_j",
+      "person_id": "allen_lieut_j",
+      "name": "Lieut J Allen",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835"
+      ]
+     },
+     {
+      "household_id": "hh_allen_lieut_james",
+      "person_id": "allen_lieut_james",
+      "name": "Lieut. James Allen",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "army_officer",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-08-13",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_beaubien_beaubien_j_b",
+   "surname": "beaubien",
+   "person_ids": [
+    "beaubien_j_b",
+    "beaubien_jean_baptiste",
+    "beaubien_john_b",
+    "beaubien_john_s"
+   ],
+   "links": [
+    {
+     "pair": [
+      "beaubien_j_b",
+      "beaubien_jean_baptiste"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "beaubien_j_b",
+      "beaubien_john_b"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "beaubien_john_b",
+      "beaubien_john_s"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, trader",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> beaubien_j_b, beaubien_john_b; chicago_voter_lists_1833_1835_irad -> beaubien_jean_baptiste, beaubien_john_s"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_beaubien_j_b",
+      "person_id": "beaubien_j_b",
+      "name": "J B Beaubien",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-17",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_beaubien_jean_baptiste",
+      "person_id": "beaubien_jean_baptiste",
+      "name": "Col. Jean Baptiste Beaubien",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "trader",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1812",
+      "lives_at": "jb_beaubien_homestead",
+      "works_at": "jb_beaubien_homestead",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_beaubien_john_b",
+      "person_id": "beaubien_john_b",
+      "name": "John B Beaubien",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-09-03",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_beaubien_john_s",
+      "person_id": "beaubien_john_s",
+      "name": "John S Beaubien",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_fullerton_fullerton_a_n",
+   "surname": "fullerton",
+   "person_ids": [
+    "fullerton_a_n",
+    "fullerton_alex_n",
+    "fullerton_alexander",
+    "fullerton_alexander_m"
+   ],
+   "links": [
+    {
+     "pair": [
+      "fullerton_a_n",
+      "fullerton_alex_n"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "fullerton_a_n",
+      "fullerton_alexander"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "fullerton_alex_n",
+      "fullerton_alexander"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "fullerton_alex_n",
+      "fullerton_alexander_m"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "fullerton_alexander",
+      "fullerton_alexander_m"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: attorney, none_recorded",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_voter_lists_1833_1835_irad -> fullerton_alexander, fullerton_alexander_m"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_fullerton_a_n",
+      "person_id": "fullerton_a_n",
+      "name": "A N Fullerton",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-06-13",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_fullerton_alex_n",
+      "person_id": "fullerton_alex_n",
+      "name": "Alex N Fullerton",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-08-19",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_fullerton_alexander",
+      "person_id": "fullerton_alexander",
+      "name": "Alexander N. Fullerton",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "attorney",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1833",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_fullerton_alexander_m",
+      "person_id": "fullerton_alexander_m",
+      "name": "Alexander M Fullerton",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_haddock_haddock_e",
+   "surname": "haddock",
+   "person_ids": [
+    "haddock_e",
+    "haddock_e_w",
+    "haddock_edward",
+    "haddock_edward_e"
+   ],
+   "links": [
+    {
+     "pair": [
+      "haddock_e",
+      "haddock_e_w"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "haddock_e",
+      "haddock_edward"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "haddock_e",
+      "haddock_edward_e"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "haddock_edward",
+      "haddock_edward_e"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, tavern_keeper",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> haddock_e, haddock_e_w, haddock_edward; chicago_voter_lists_1833_1835_irad -> haddock_edward, haddock_edward_e"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_haddock_e",
+      "person_id": "haddock_e",
+      "name": "E Haddock",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-06-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_haddock_e_w",
+      "person_id": "haddock_e_w",
+      "name": "E W Haddock",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-03-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_haddock_edward",
+      "person_id": "haddock_edward",
+      "name": "Edward H. Haddock",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "tavern_keeper",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1835",
+      "lives_at": "mansion_house",
+      "works_at": "mansion_house",
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "census_1840_chicago_familysearch_images",
+       "chicago_democrat_1833_1835",
+       "chicago_tribune_1882_04_25_old_settler_deaths",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_haddock_edward_e",
+      "person_id": "haddock_edward_e",
+      "name": "Edward E Haddock",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_kimberly_kimberly_e_s",
+   "surname": "kimberly",
+   "person_ids": [
+    "kimberly_e_s",
+    "kimberly_ed_s",
+    "kimberly_edmund_l",
+    "kimberly_edmund_s"
+   ],
+   "links": [
+    {
+     "pair": [
+      "kimberly_e_s",
+      "kimberly_ed_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "kimberly_e_s",
+      "kimberly_edmund_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "kimberly_ed_s",
+      "kimberly_edmund_l"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "kimberly_ed_s",
+      "kimberly_edmund_s"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    },
+    {
+     "pair": [
+      "kimberly_edmund_l",
+      "kimberly_edmund_s"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, physician",
+     "not every card's person is a head: head, partner",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_voter_lists_1833_1835_irad -> kimberly_ed_s, kimberly_edmund_l, kimberly_edmund_s"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_kimberly_e_s",
+      "person_id": "kimberly_e_s",
+      "name": "E S Kimberly",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_kimberly_ed_s",
+      "person_id": "kimberly_ed_s",
+      "name": "Ed S Kimberly",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_kimberly_edmund_l",
+      "person_id": "kimberly_edmund_l",
+      "name": "Edmund L Kimberly",
+      "grade": "attested",
+      "rung": "G1a",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_pruyne_kimberly",
+      "person_id": "kimberly_edmund_s",
+      "name": "Dr Edmund Stoughton Kimberly",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "physician",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": "pruyne_kimball_drugstore",
+      "present": "present",
+      "relationship": "partner",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "history_medicine_chicago_kimberly_maxwell",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_hogan_hogan_j_s_c",
+   "surname": "hogan",
+   "person_ids": [
+    "hogan_j_s_c",
+    "hogan_john",
+    "hogan_john_s_c"
+   ],
+   "links": [
+    {
+     "pair": [
+      "hogan_j_s_c",
+      "hogan_john_s_c"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "hogan_john",
+      "hogan_john_s_c"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, postmaster"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_hogan_j_s_c",
+      "person_id": "hogan_j_s_c",
+      "name": "J S C Hogan",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-02-11",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835",
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_hogan_john",
+      "person_id": "hogan_john",
+      "name": "John Hogan",
+      "grade": "inferred",
+      "rung": "G2c",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "st_cyr_register_ichr_v4"
+      ]
+     },
+     {
+      "household_id": "hh_hogan_john_s_c",
+      "person_id": "hogan_john_s_c",
+      "name": "John S. C. Hogan",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "postmaster",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": "hogan_store",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad",
+       "chicagology_first_post_office"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_kinzie_kinzie_j_h",
+   "surname": "kinzie",
+   "person_ids": [
+    "kinzie_j_h",
+    "kinzie_john_h",
+    "kinzie_john_s"
+   ],
+   "links": [
+    {
+     "pair": [
+      "kinzie_j_h",
+      "kinzie_john_h"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "kinzie_john_h",
+      "kinzie_john_s"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: forwarding_and_commission, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_kinzie_j_h",
+      "person_id": "kinzie_j_h",
+      "name": "J H Kinzie",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-10-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835"
+      ]
+     },
+     {
+      "household_id": "hh_kinzie_john_h",
+      "person_id": "kinzie_john_h",
+      "name": "John Harris Kinzie",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "forwarding_and_commission",
+      "sex": "male",
+      "division": "north",
+      "arrival": "1834",
+      "lives_at": null,
+      "works_at": "jh_kinzie_forwarding_store",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 1,
+      "sources": [
+       "andreas_1884_v1",
+       "kinzie_waubun_1856",
+       "chicago_voter_lists_1833_1835_irad",
+       "chicago_antiquities_american_fur_co"
+      ]
+     },
+     {
+      "household_id": "hh_kinzie_john_s",
+      "person_id": "kinzie_john_s",
+      "name": "John S Kinzie",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-10",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_peck_peck_p_f",
+   "surname": "peck",
+   "person_ids": [
+    "peck_p_f",
+    "peck_p_f_w",
+    "peck_philip"
+   ],
+   "links": [
+    {
+     "pair": [
+      "peck_p_f",
+      "peck_p_f_w"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "peck_p_f",
+      "peck_philip"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "peck_p_f_w",
+      "peck_philip"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: merchant, none_recorded",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> peck_p_f, peck_p_f_w"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_peck_p_f",
+      "person_id": "peck_p_f",
+      "name": "P F Peck",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-03",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_peck_p_f_w",
+      "person_id": "peck_p_f_w",
+      "name": "P F W Peck",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-04-16",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "census_1840_chicago_familysearch_images",
+       "chicago_democrat_1833_1835",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_peck_philip",
+      "person_id": "peck_philip",
+      "name": "Philip F. W. Peck",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "merchant",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1831-07-01",
+      "lives_at": "peck_store",
+      "works_at": "peck_store",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_taylor_taylor_anson_h",
+   "surname": "taylor",
+   "person_ids": [
+    "taylor_anson_h",
+    "taylor_anson_n",
+    "taylor_anson_w"
+   ],
+   "links": [
+    {
+     "pair": [
+      "taylor_anson_h",
+      "taylor_anson_n"
+     ],
+     "rule": "two full forenames: same"
+    },
+    {
+     "pair": [
+      "taylor_anson_h",
+      "taylor_anson_w"
+     ],
+     "rule": "two full forenames: same"
+    },
+    {
+     "pair": [
+      "taylor_anson_n",
+      "taylor_anson_w"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: carpenter, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_taylor_anson",
+      "person_id": "taylor_anson_h",
+      "name": "Anson H. Taylor",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "carpenter",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": "south_branch_raft_bridge",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     },
+     {
+      "household_id": "hh_taylor_anson_n",
+      "person_id": "taylor_anson_n",
+      "name": "Anson N Taylor",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_taylor_anson_w",
+      "person_id": "taylor_anson_w",
+      "name": "Anson W Taylor",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1832-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "blackhawk_war_chicago_enrollments_isa",
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_wright_wright_j",
+   "surname": "wright",
+   "person_ids": [
+    "wright_j",
+    "wright_john",
+    "wright_john_s"
+   ],
+   "links": [
+    {
+     "pair": [
+      "wright_j",
+      "wright_john"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "wright_j",
+      "wright_john_s"
+     ],
+     "rule": "an initial reaching a full name"
+    },
+    {
+     "pair": [
+      "wright_john",
+      "wright_john_s"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: clerk, merchant, none_recorded",
+     "not every card's person is a head: head, son",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: andreas_1884_v1 -> wright_john, wright_john_s"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_wright_j",
+      "person_id": "wright_j",
+      "name": "J Wright",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-11",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835"
+      ]
+     },
+     {
+      "household_id": "hh_wright_john",
+      "person_id": "wright_john",
+      "name": "John Wright",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "merchant",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_democrat_1833_11_26"
+      ]
+     },
+     {
+      "household_id": "hh_wright_john",
+      "person_id": "wright_john_s",
+      "name": "John S. Wright",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "clerk",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "son",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_adams_adams_william",
+   "surname": "adams",
+   "person_ids": [
+    "adams_william",
+    "adams_william_h"
+   ],
+   "links": [
+    {
+     "pair": [
+      "adams_william",
+      "adams_william_h"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [],
+    "cards": [
+     {
+      "household_id": "hh_adams_william",
+      "person_id": "adams_william",
+      "name": "William Adams",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-03-25",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_adams_william_h",
+      "person_id": "adams_william_h",
+      "name": "William Hanford Adams",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "none_recorded",
+      "sex": "male",
+      "division": "unplaced",
+      "arrival": "1835-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "resident_research_v4_1835_census_bridge",
+       "chicago_tribune_1882_05_19_fourth_reception",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_bates_bates_harriet_e",
+   "surname": "bates",
+   "person_ids": [
+    "bates_harriet_e",
+    "bates_harriet_ellen"
+   ],
+   "links": [
+    {
+     "pair": [
+      "bates_harriet_e",
+      "bates_harriet_ellen"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> bates_harriet_e, bates_harriet_ellen"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_bates_harriet_e",
+      "person_id": "bates_harriet_e",
+      "name": "Harriet E Bates",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-08-26",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_bates_harriet_ellen",
+      "person_id": "bates_harriet_ellen",
+      "name": "Harriet Ellen Bates",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-08-26",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_beaubien_beaubien_madore",
+   "surname": "beaubien",
+   "person_ids": [
+    "beaubien_madore",
+    "beaubien_medore_b"
+   ],
+   "links": [
+    {
+     "pair": [
+      "beaubien_madore",
+      "beaubien_medore_b"
+     ],
+     "rule": "two full forenames: spelling variant"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: merchant, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_beaubien_madore",
+      "person_id": "beaubien_madore",
+      "name": "Madore Benjamin Beaubien",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "merchant",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1831",
+      "lives_at": "madore_beaubien_house",
+      "works_at": "madore_beaubien_house",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_beaubien_medore_b",
+      "person_id": "beaubien_medore_b",
+      "name": "Medore B Beaubien",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-10",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_tribune_1882_05_19_fourth_reception"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_brown_brown_mrs_rufus",
+   "surname": "brown",
+   "person_ids": [
+    "brown_mrs_rufus",
+    "brown_rufus"
+   ],
+   "links": [
+    {
+     "pair": [
+      "brown_rufus",
+      "brown_mrs_rufus"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites andreas_1884_v1",
+     "the trade agrees on every card that states one: boarding_house_keeper"
+    ],
+    "against": [
+     "the cards state different sexes: female, male",
+     "not every card's person is a head: head, wife",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: andreas_1884_v1 -> brown_rufus, brown_mrs_rufus"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_brown_rufus",
+      "person_id": "brown_rufus",
+      "name": "Rufus Brown",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "boarding_house_keeper",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1833",
+      "lives_at": "brown_boarding_house",
+      "works_at": "brown_boarding_house",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     },
+     {
+      "household_id": "hh_brown_rufus",
+      "person_id": "brown_mrs_rufus",
+      "name": "Mrs Rufus Brown",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "boarding_house_keeper",
+      "sex": "female",
+      "division": "south",
+      "arrival": "1833",
+      "lives_at": "brown_boarding_house",
+      "works_at": "brown_boarding_house",
+      "present": "present",
+      "relationship": "wife",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_brown_brown_w_h",
+   "surname": "brown",
+   "person_ids": [
+    "brown_w_h",
+    "brown_william_h"
+   ],
+   "links": [
+    {
+     "pair": [
+      "brown_w_h",
+      "brown_william_h"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> brown_w_h, brown_william_h"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_brown_w_h",
+      "person_id": "brown_w_h",
+      "name": "W H Brown",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-05-28",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_brown_william_h",
+      "person_id": "brown_william_h",
+      "name": "William H Brown",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-06-04",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "norris_directory_1844"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_clark_clark_john_a",
+   "surname": "clark",
+   "person_ids": [
+    "clark_john_a",
+    "clark_john_k"
+   ],
+   "links": [
+    {
+     "pair": [
+      "clark_john_a",
+      "clark_john_k"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [],
+    "cards": [
+     {
+      "household_id": "hh_clark_john_a",
+      "person_id": "clark_john_a",
+      "name": "John A Clark",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-02-11",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_clark_john_k",
+      "person_id": "clark_john_k",
+      "name": "John K Clark",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-11",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_cobb_cobb_s_b",
+   "surname": "cobb",
+   "person_ids": [
+    "cobb_s_b",
+    "cobb_silas_b"
+   ],
+   "links": [
+    {
+     "pair": [
+      "cobb_s_b",
+      "cobb_silas_b"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, saddler",
+     "not every card's person is a head: head, partner"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_cobb_s_b",
+      "person_id": "cobb_s_b",
+      "name": "S B Cobb",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-06-13",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_american_1835"
+      ]
+     },
+     {
+      "household_id": "hh_goss_cobb",
+      "person_id": "cobb_silas_b",
+      "name": "Silas B. Cobb",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "saddler",
+      "sex": "male",
+      "division": "west",
+      "arrival": "1833-06-01",
+      "lives_at": null,
+      "works_at": "goss_cobb_saddlery",
+      "present": "uncertain",
+      "relationship": "partner",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_democrat_1833_11_26",
+       "calumet_club_early_chicago_1879"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_dole_dole_g_w",
+   "surname": "dole",
+   "person_ids": [
+    "dole_g_w",
+    "dole_george_w"
+   ],
+   "links": [
+    {
+     "pair": [
+      "dole_g_w",
+      "dole_george_w"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: forwarding_and_commission, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_dole_g_w",
+      "person_id": "dole_g_w",
+      "name": "G W Dole",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-10",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_dole_george_w",
+      "person_id": "dole_george_w",
+      "name": "George Washington Dole",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "forwarding_and_commission",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1831",
+      "lives_at": null,
+      "works_at": "newberry_dole_warehouse",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_democrat_1833_11_26",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_hamilton_hamilton_r_j",
+   "surname": "hamilton",
+   "person_ids": [
+    "hamilton_r_j",
+    "hamilton_richard_j"
+   ],
+   "links": [
+    {
+     "pair": [
+      "hamilton_r_j",
+      "hamilton_richard_j"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: county_clerk, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_hamilton_r_j",
+      "person_id": "hamilton_r_j",
+      "name": "R J Hamilton",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-01-28",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "census_1840_chicago_familysearch_images",
+       "chicago_democrat_1833_1835",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_hamilton_richard_j",
+      "person_id": "hamilton_richard_j",
+      "name": "Richard Jones Hamilton",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "county_clerk",
+      "sex": "male",
+      "division": "north",
+      "arrival": "1831",
+      "lives_at": "cobweb_castle",
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_harmon_harmon_isaac",
+   "surname": "harmon",
+   "person_ids": [
+    "harmon_isaac",
+    "harmon_isaac_d"
+   ],
+   "links": [
+    {
+     "pair": [
+      "harmon_isaac_d",
+      "harmon_isaac"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: dry_goods_merchant, none_recorded",
+     "not every card's person is a head: brother, head"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_harmon_brothers",
+      "person_id": "harmon_isaac_d",
+      "name": "Isaac Dewey Harmon",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "dry_goods_merchant",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1831",
+      "lives_at": null,
+      "works_at": "harmon_loomis_store",
+      "present": "present",
+      "relationship": "brother",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_democrat_1833_11_26",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_harmon_isaac",
+      "person_id": "harmon_isaac",
+      "name": "Isaac Harmon",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1832-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "blackhawk_war_chicago_enrollments_isa",
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_heacock_heacock_russel_e",
+   "surname": "heacock",
+   "person_ids": [
+    "heacock_russel_e",
+    "heacock_russell_e"
+   ],
+   "links": [
+    {
+     "pair": [
+      "heacock_russel_e",
+      "heacock_russell_e"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: attorney, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_heacock_russel_e",
+      "person_id": "heacock_russel_e",
+      "name": "Russel E. Heacock",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "attorney",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1827",
+      "lives_at": "heacock_house_monroe",
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     },
+     {
+      "household_id": "hh_heacock_russell_e",
+      "person_id": "heacock_russell_e",
+      "name": "Russell E Heacock",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-05-27",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_king_king_byra",
+   "surname": "king",
+   "person_ids": [
+    "king_byra",
+    "king_byram"
+   ],
+   "links": [
+    {
+     "pair": [
+      "king_byra",
+      "king_byram"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835"
+    ],
+    "against": [
+     "the cards state different trades: hardware_merchant, none_recorded",
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> king_byra, king_byram"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_king_byra",
+      "person_id": "king_byra",
+      "name": "Byra King",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-07-23",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_king_byram",
+      "person_id": "king_byram",
+      "name": "Byram King",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "hardware_merchant",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-07-09",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_kinzie_kinzie_r_a",
+   "surname": "kinzie",
+   "person_ids": [
+    "kinzie_r_a",
+    "kinzie_robert_a"
+   ],
+   "links": [
+    {
+     "pair": [
+      "kinzie_r_a",
+      "kinzie_robert_a"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: merchant, none_recorded"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_kinzie_r_a",
+      "person_id": "kinzie_r_a",
+      "name": "R A Kinzie",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-10",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_kinzie_robert_a",
+      "person_id": "kinzie_robert_a",
+      "name": "Robert Allen Kinzie",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "merchant",
+      "sex": "male",
+      "division": "west",
+      "arrival": "1831",
+      "lives_at": null,
+      "works_at": "robert_kinzie_store",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_morrison_morrison_ordemus",
+   "surname": "morrison",
+   "person_ids": [
+    "morrison_ordemus",
+    "morrison_orsemus"
+   ],
+   "links": [
+    {
+     "pair": [
+      "morrison_ordemus",
+      "morrison_orsemus"
+     ],
+     "rule": "two full forenames: spelling variant"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_voter_lists_1833_1835_irad",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_voter_lists_1833_1835_irad -> morrison_ordemus, morrison_orsemus"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_morrison_ordemus",
+      "person_id": "morrison_ordemus",
+      "name": "Ordemus Morrison",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     },
+     {
+      "household_id": "hh_morrison_orsemus",
+      "person_id": "morrison_orsemus",
+      "name": "Orsemus Morrison",
+      "grade": "inferred",
+      "rung": "G2b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad",
+       "fergus_chicago_directory_1843",
+       "norris_directory_1844"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_norton_norton_n_r",
+   "surname": "norton",
+   "person_ids": [
+    "norton_n_r",
+    "norton_nelson_r"
+   ],
+   "links": [
+    {
+     "pair": [
+      "norton_n_r",
+      "norton_nelson_r"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, ship_carpenter"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_norton_n_r",
+      "person_id": "norton_n_r",
+      "name": "N. R. Norton",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": true,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_norton_nelson_r",
+      "person_id": "norton_nelson_r",
+      "name": "Nelson R. Norton",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "ship_carpenter",
+      "sex": "male",
+      "division": "north",
+      "arrival": "1833-11-16",
+      "lives_at": null,
+      "works_at": "dearborn_street_drawbridge",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_rider_rider_eli_a",
+   "surname": "rider",
+   "person_ids": [
+    "rider_eli_a",
+    "rider_elia"
+   ],
+   "links": [
+    {
+     "pair": [
+      "rider_eli_a",
+      "rider_elia"
+     ],
+     "rule": "two full forenames: contraction (prefix)"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835, chicago_voter_lists_1833_1835_irad",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> rider_eli_a, rider_elia; chicago_voter_lists_1833_1835_irad -> rider_eli_a, rider_elia"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_rider_eli_a",
+      "person_id": "rider_eli_a",
+      "name": "Eli A Rider",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-09-10",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_voter_lists_1833_1835_irad",
+       "fergus_chicago_directory_1843",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_rider_elia",
+      "person_id": "rider_elia",
+      "name": "Elia Rider",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_saunders_saunders_william_s",
+   "surname": "saunders",
+   "person_ids": [
+    "saunders_william_s",
+    "saunders_william_w"
+   ],
+   "links": [
+    {
+     "pair": [
+      "saunders_william_s",
+      "saunders_william_w"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> saunders_william_s, saunders_william_w"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_saunders_william_s",
+      "person_id": "saunders_william_s",
+      "name": "William S. Saunders",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": true,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_saunders_william_w",
+      "person_id": "saunders_william_w",
+      "name": "William W Saunders",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-03-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_smith_smith_william",
+   "surname": "smith",
+   "person_ids": [
+    "smith_william",
+    "smith_william_v"
+   ],
+   "links": [
+    {
+     "pair": [
+      "smith_william",
+      "smith_william_v"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_voter_lists_1833_1835_irad",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_voter_lists_1833_1835_irad -> smith_william, smith_william_v"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_smith_william",
+      "person_id": "smith_william",
+      "name": "William Smith",
+      "grade": "attested",
+      "rung": "G1a",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1832-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "blackhawk_war_chicago_enrollments_isa",
+       "census_1840_chicago_familysearch_images",
+       "chicago_voter_lists_1833_1835_irad",
+       "fergus_chicago_directory_1843",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_smith_william_v",
+      "person_id": "smith_william_v",
+      "name": "William V Smith",
+      "grade": "attested",
+      "rung": "G1a",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-04-01",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_snow_snow_g_w",
+   "surname": "snow",
+   "person_ids": [
+    "snow_g_w",
+    "snow_george_w"
+   ],
+   "links": [
+    {
+     "pair": [
+      "snow_g_w",
+      "snow_george_w"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, surveyor"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_snow_g_w",
+      "person_id": "snow_g_w",
+      "name": "G W Snow",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-06-18",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "norris_directory_1844"
+      ]
+     },
+     {
+      "household_id": "hh_snow_george_w",
+      "person_id": "snow_george_w",
+      "name": "George W. Snow",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "surveyor",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1832",
+      "lives_at": null,
+      "works_at": null,
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_sproat_sproat_g_t",
+   "surname": "sproat",
+   "person_ids": [
+    "sproat_g_t",
+    "sproat_grenville"
+   ],
+   "links": [
+    {
+     "pair": [
+      "sproat_g_t",
+      "sproat_grenville"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, schoolteacher"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_sproat_g_t",
+      "person_id": "sproat_g_t",
+      "name": "G T Sproat",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-03",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_sproat_grenville",
+      "person_id": "sproat_grenville",
+      "name": "Grenville Temple Sproat",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "schoolteacher",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1833-11-26",
+      "lives_at": null,
+      "works_at": "temple_building",
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "chicago_democrat_1833_11_26"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_taylor_taylor_e_d",
+   "surname": "taylor",
+   "person_ids": [
+    "taylor_e_d",
+    "taylor_edmund_d"
+   ],
+   "links": [
+    {
+     "pair": [
+      "taylor_e_d",
+      "taylor_edmund_d"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> taylor_e_d, taylor_edmund_d"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_taylor_e_d",
+      "person_id": "taylor_e_d",
+      "name": "E D Taylor",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-07-08",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "fergus_chicago_directory_1843"
+      ]
+     },
+     {
+      "household_id": "hh_taylor_edmund_d",
+      "person_id": "taylor_edmund_d",
+      "name": "Edmund D Taylor",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1835-03-25",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "calumet_club_early_chicago_1879",
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_taylor_taylor_william",
+   "surname": "taylor",
+   "person_ids": [
+    "taylor_william",
+    "taylor_william_h"
+   ],
+   "links": [
+    {
+     "pair": [
+      "taylor_william",
+      "taylor_william_h"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> taylor_william, taylor_william_h"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_taylor_william",
+      "person_id": "taylor_william",
+      "name": "William Taylor",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-17",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_taylor_william_h",
+      "person_id": "taylor_william_h",
+      "name": "William H Taylor",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-10-22",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_temple_temple_j_t",
+   "surname": "temple",
+   "person_ids": [
+    "temple_j_t",
+    "temple_john_t"
+   ],
+   "links": [
+    {
+     "pair": [
+      "temple_j_t",
+      "temple_john_t"
+     ],
+     "rule": "an initial reaching a full name"
+    }
+   ],
+   "evidence": {
+    "for": [],
+    "against": [
+     "the cards state different trades: none_recorded, physician"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_temple_j_t",
+      "person_id": "temple_j_t",
+      "name": "J T Temple",
+      "grade": "attested",
+      "rung": "G1b",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-03",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_temple_john_t",
+      "person_id": "temple_john_t",
+      "name": "Dr John Taylor Temple",
+      "grade": "attested",
+      "rung": null,
+      "occupation": "physician",
+      "sex": "male",
+      "division": "south",
+      "arrival": "1833-07-04",
+      "lives_at": null,
+      "works_at": "temple_building",
+      "present": "present",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": false,
+      "directories": 3,
+      "kin": 0,
+      "sources": [
+       "andreas_1884_v1",
+       "baptisthistoryhomepage",
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_walker_walker_george_e",
+   "surname": "walker",
+   "person_ids": [
+    "walker_george_e",
+    "walker_george_h"
+   ],
+   "links": [
+    {
+     "pair": [
+      "walker_george_e",
+      "walker_george_h"
+     ],
+     "rule": "two full forenames: same"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "every card cites chicago_democrat_1833_1835",
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [
+     "one source prints more than one of these cards, which is a source naming two people on one page unless the printings are the same line: chicago_democrat_1833_1835 -> walker_george_e, walker_george_h"
+    ],
+    "cards": [
+     {
+      "household_id": "hh_walker_george_e",
+      "person_id": "walker_george_e",
+      "name": "George E. Walker",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-07-02",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": true,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835",
+       "fergus_1843_old_settler_death_notices"
+      ]
+     },
+     {
+      "household_id": "hh_walker_george_h",
+      "person_id": "walker_george_h",
+      "name": "George H Walker",
+      "grade": "attested",
+      "rung": "G1c",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1832-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "blackhawk_war_chicago_enrollments_isa",
+       "chicago_democrat_1833_1835"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  },
+  {
+   "id": "mc_wooley_wooley_jeddiah",
+   "surname": "wooley",
+   "person_ids": [
+    "wooley_jeddiah",
+    "wooley_jedidiah"
+   ],
+   "links": [
+    {
+     "pair": [
+      "wooley_jeddiah",
+      "wooley_jedidiah"
+     ],
+     "rule": "two full forenames: spelling variant"
+    }
+   ],
+   "evidence": {
+    "for": [
+     "the trade agrees on every card that states one: none_recorded"
+    ],
+    "against": [],
+    "cards": [
+     {
+      "household_id": "hh_wooley_jeddiah",
+      "person_id": "wooley_jeddiah",
+      "name": "Jeddiah Wooley",
+      "grade": "inferred",
+      "rung": null,
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1834-07-02",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": true,
+      "civic_mint": false,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_democrat_1833_1835"
+      ]
+     },
+     {
+      "household_id": "hh_wooley_jedidiah",
+      "person_id": "wooley_jedidiah",
+      "name": "Jedidiah Wooley",
+      "grade": "inferred",
+      "rung": "G3",
+      "occupation": "none_recorded",
+      "sex": null,
+      "division": "unplaced",
+      "arrival": "1833-12-31",
+      "lives_at": null,
+      "works_at": null,
+      "present": "uncertain",
+      "relationship": "head",
+      "letter_list_only": false,
+      "civic_mint": true,
+      "directories": 0,
+      "kin": 0,
+      "sources": [
+       "chicago_voter_lists_1833_1835_irad"
+      ]
+     }
+    ]
+   },
+   "ruling": null,
+   "why": null
+  }
+ ]
+}
