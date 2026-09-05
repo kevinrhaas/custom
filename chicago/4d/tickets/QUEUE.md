@@ -164,7 +164,6 @@ T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
 T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
-T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
 T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
@@ -383,5 +382,4 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
-T-0728 — The published tree has 944 bytes of headroom under the 32 MB budget, and 2.8 MB of it is two byte-identical copies of changelog.js
-T-0729 — check.sh is red on dev: six cohort manifests read stale against their own selectors, so every branch inherits a failing gate
+T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice

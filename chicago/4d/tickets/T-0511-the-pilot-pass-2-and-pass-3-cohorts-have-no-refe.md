@@ -1,7 +1,7 @@
 ---
 id: T-0511
 title: The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 999
 claimed_by: run 9/4/2026, 10:28:34 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T03:54:43.338Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941770781
 ---
 
