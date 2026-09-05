@@ -1,7 +1,7 @@
 ---
 id: T-0831
 title: Six generated files conflict on every merge in this repo and always resolve by regenerating, so the conflict costs a hand resolution and buys nothing
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 910
 claimed_by: run 9/5/2026, 2:35:04 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:44:08.500Z
 claimed_run: null
 ---
 
