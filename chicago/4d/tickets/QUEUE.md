@@ -120,7 +120,6 @@
 # --- a druggist but that is not in his person record". The file quotes the trade three times and
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
-T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
