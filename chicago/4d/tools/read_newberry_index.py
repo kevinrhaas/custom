@@ -284,7 +284,7 @@ WORKS = [
         # leads.json by 6,039 lines for a reason that has nothing to do with this
         # table: the residents, voter and census_1840 layers have grown since the
         # committed leads were generated, and five of the new leads are unruled, which
-        # is a separate unit of work. T-0739 carries it. Until then follow_up.json does
+        # is a separate unit of work. T-0740 carries it. Until then follow_up.json does
         # not list this work and this comment is where its count lives.
     },
 ]
