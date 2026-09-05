@@ -13,9 +13,9 @@
       "illinois_abbreviated": 229
     },
     "distinct_surname_keys": 212,
-    "leads": 51,
+    "leads": 53,
     "leads_by_layer": {
-      "census_1840": 10,
+      "census_1840": 12,
       "residents": 27,
       "structures": 3,
       "voters": 11
