@@ -241,8 +241,12 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
       streetApproach.textContent = text;
       streetApproach.toggleAttribute('hidden', !text);
     }
+    // A street record may carry no modern name: `market_north` does, because N Wacker
+    // Drive north of the river is the riverside drive and not that line (T-0451). Say
+    // the 1835 name alone rather than reading the word "null" out to a screen reader.
+    const upcomingModern = upcoming?.street?.name_2026;
     const approachLabel = upcoming
-      ? `. Approaching ${upcoming.street.name_1835}, today ${upcoming.street.name_2026}, in ${formatDistance(upcoming.ahead_m, units)}.`
+      ? `. Approaching ${upcoming.street.name_1835}${upcomingModern ? `, today ${upcomingModern}` : ''}, in ${formatDistance(upcoming.ahead_m, units)}.`
       : '';
     streetReadout?.setAttribute('aria-label',
       `${mode}. In 1835: ${historic}. Today: ${modern}${approachLabel}`);
