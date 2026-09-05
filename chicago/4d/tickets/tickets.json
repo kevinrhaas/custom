@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 11:49 PM",
+  "generated_ct": "Sep 4, 2026, 11:58 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8568,7 +8568,7 @@
     {
       "id": "T-0517",
       "title": "What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8578,9 +8578,11 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/4/2026, 11:58:17 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33945832037",
       "queue_rank": 8
     },
     {
