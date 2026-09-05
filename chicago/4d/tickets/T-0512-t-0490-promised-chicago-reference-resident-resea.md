@@ -1,7 +1,7 @@
 ---
 id: T-0512
 title: T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 842
 claimed_by: run 9/4/2026, 10:36:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T04:23:57.860Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941756242
 ---
 
