@@ -13,8 +13,6 @@ p0024 c1  Saulx,
 p0025 c0  Snurriars
         .._.o.1..l1, 111.1.(rum... :1.)1114.§.._..1.11..
 p0025 c2  nundsra
-        111..
-p0025 c2  nundsra
         __Wuh1ng1nn. (Minn. N K) |B98l01,111.
 p0025 c3  Iundan
         1 Slundc4,1 11.11
@@ -22,8 +20,6 @@ p0026 c3  guqug
         __r..Iu. 09, III.(clllgmul.c. c. I. Go.)Ion.
 p0030 c0  s ug
         I11. he9 Sm11-
-p0030 c0  savm
-        I 11 . §2"""' "M"
 p0036 c0  Sayer
         . ._fuIum 0:,III.
 p0036 c3  Sayn
@@ -54,18 +50,10 @@ p0067 c1  Soars
         Am:-or. ' ‘_ Chicago;Hi. (|\'.c:.~:,I, and Kirkland,l.)d895l
 p0068 c3  Suntan
         ._.Fulton Co, Ill. (Chapman, 0. C. (4 Co.) 1879:
-p0071 c1  Sccord
-        L I 1.4.. £1.39»
-p0071 c3  sodgwiok
-        4 ILLINOIS.
 p0075 c0  Sinner
         _'.v.r.neha'ga ua., III. mu H F
 p0075 c1  Sogur
         )IBM-I900. --Cook co.. III. (Andrea: A. I.) 1334 I450.
-p0081 c3  Eu-rul
-        II 1.6 95
-p0084 c3  so-an
-        I ll .
 p0085 c3  Small
         ::ex9;l:; ‘,__1w1;.a, 111.,".1. qua: :1; ‘ u a.
 p0089 c3  rshaoklord
@@ -74,8 +62,6 @@ p0099 c2  Shh
         __5_.,..,p;1l1.1x. ' “- -’
 p0101 c3  Shaw
         III... I..... II-.I.I.,,c.1.)Iaa2. 5 ~- _ I
-p0102 c1  Shaw
-        111,
 p0119 c2  Bhoman
         IIl.’(.loBann
 p0124 c0  ' rvood
@@ -84,8 +70,6 @@ p0135 c1  Shropshlra
         4»m -_ Fuhanco, III.(ch. m‘
 p0140 c2  Mdlllplor
         .—-AHcnonourh Co.,lll. (Clnrko,S‘.:.!;g6g;’I:g U3
-p0145 c3  guidq Slmkln
-        III.
 p0149 c2  I Simona
         §g Indu -—.811mu 01)., 111.mm .1 c... .-_..-g.'.1>2-7. go},
 p0150 c1  yor ,wm,,muu
@@ -108,10 +92,6 @@ p0162 c1  Skinner
         I II. I893. Q-:.:iudie¢:s. E 695-12.5
 p0162 c2  Iunner
         1 II. Bridy.-water.Mm. (lilngrnn, 8.) I868:054­
-p0169 c2  ' Tim
-        III..., -m
-p0170 c3  Sloan
-        I 11 . .
 p0171 c0  Sloane
         s__.Cl:iuga, ill. (Andreas.A. T.) 1654-6: _l_. g
 p0171 c1  slooomb
@@ -142,8 +122,6 @@ p0194 c0  Snail
         III.“ IIIIIII _ "
 p0196 c1  a r u
         ___c| , Ill. (Andrus. A. T.) 1034-61 ;-_3_.' Snow
-p0203 c3  Souur
-        II I. 35*" I
 p0208 c2  outhur
         1 ll.I|Io.,P1cnaonof. (Popo,c.II.) Boutherln
 p0210 c2  souu T rn
@@ -156,8 +134,6 @@ p0213 c0  Ymlding
         ._Coe|( 00., ill. (Andreas,A. T.)‘ I884
 p0214 c0  I spuugeu do,
         ,I,,,,II1,,. ,w,1I,_
-p0220 c0  Spood
-        I I I. I
 p0221 c0  Spence
         ‘- , _..Uvi1(aeCo., 111.(lellu. 111..1..,cc.. _g..bg.1|a1g,
 p0222 c0  Spencer
@@ -168,30 +144,18 @@ p0226 c1  Spicor
         - ' _n.\vm'c...,111.(11.1.1..w.
 p0226 c1  Spicor
         Co.,Ill.(Power,
-p0233 c1  Spruzuo
-        ‘.7.0 736 #’— ,I I I.
 p0235 c2  Sprlnger
         V‘ ..._ SuugtmonCo., Ill. (Power,I. 0.) I876. '
 p0242 c0  Stufford
         .__fuItan Ca, Ill.(uuapnza.C.C.Q Co.)1.21:];
-p0245 c1  Stnnbridu
-        11 1.! 9749
-p0253 c1  Suplu
-        II 1.11 25:‘
-p0255 c0  Eurk
-        III.“
 p0255 c1  D lIg G itarkn
         III.“ ' ' Btarke, 9; SI‘.x.xx-I:
 p0258 c2  gnu ,
         —¢——— -ﬂvici 51!over.ILLINOIS.
-p0259 c3  ey F ' SlonPVnu
-        111..
 p0261 c1  indel II Steam
         L II.II.) I866.E
 p0265 c2  Steel
         _ ..15";..:.'”;.'., Ill. sum P1esb.GlI.,Il42-92.(arm.
-p0267 c1  Staalrmn
-        *5 ._.ChicAgo, m. <.-...«..-.5.
 p0268 c2  Sum -nHy- Stain
         ._..luruu co., Ill. (Ken a (:4...Pub.) I877: :22.
 p0280 c1  m Suvuna
@@ -206,8 +170,6 @@ p0296 c3  Stookor
         a.I;I11,~’.’ ‘ ‘ .
 p0297 c3  Iocarmn
         : Cook047.,Ill. (Andreas.A. 1.) I88! :53;;_
-p0299 c1  Stoddard
-        111.11
 p0303 c2  Stone
         C0,, Ill. 1( ndacna, A. T.) I806 .599.
 p0303 c2  Vood Stone
@@ -227,13 +189,9 @@ p0317 c2  Bundling
 p0318 c1  Stnngtgne Strhnge
         III.1|man I526;
 p0324 c0  ltrlclrlnnd
-        111. . 1:3952“
-p0324 c0  ltrlclrlnnd
         ____S|ngamonCo.,Ill.(ram, 1. c.) I876.
 p0325 c0  stringer
         I _jﬂ"f:", iii... ofTrIgg IAnnor.(|IuInn,§_I_§I.)
-p0325 c0  I Stringzollow
-        LII.) 1904376. I1 5.0 53
 p0325 c0  Stringfneld
         .__ SnngnmonCo., Ill. (Power,I. 0.) I876.
 p0325 c1  Sirnbridga
@@ -253,8 +211,6 @@ p0335 c0  Slnrdivnnl
 p0336 c3  Eturtevnnmgg smaovmc
         -—._ Cool.(“.o., Ill. (Andreas. A. T.) IBM x821. )
 p0336 c3  Eturtevnnmgg smaovmc
-        I 11.52 I
-p0336 c3  Eturtevnnmgg smaovmc
         ___Chh:|go, ill. (Andreas.A. T.) 18344: 3. an
 p0337 c3  I St uyvceunl
         ill. E.H..£5, E865-6.2 pin. ige lndlnn.
@@ -268,8 +224,6 @@ p0359 c2  Swift
         _ .__.l|SIIIe 00., III. (8.'.l_dmn.
 p0362 c2  ' D-nrdu
         _....fuiv.on Co, Iii. kL.'i.:q.r.'i..n,C. L‘. C: ":».) I879: . 5 1,
-p0363 c1  Sy er
-        Ill. .
 p0378 c1  Tumor
         I I1.” 1li
 p0378 c1  Tumor
@@ -310,10 +264,6 @@ p0416 c1  I moms
         111...... mum... _
 p0416 c3  Thom-I
         111.... n...uy..
-p0417 c0  I Thomas
-        1 11.91.. ‘-11,, _
-p0419 c1  ' Thoma
-        L 11.111195.
 p0419 c1  ' Thoma
         _...St||esf|n1.(Gu1ld,111.3.
 p0421 c1  Thnnpson
@@ -328,24 +278,16 @@ p0421 c3  rhoupson
         111. 3. _q hull!
 p0429 c0  Thorn
         111.". f....11y_
-p0429 c1  MAID
-        111.11.
 p0438 c0  mm o I
         Ill. 01$ So (1. cm c .
 p0440 c2  Ttbbetl
         I Lwf-,mImI ,,III,1,_ ——-—:——---— E“:
 p0445 c2  Tllden
         nude; III. E 7.7 ZQL
-p0445 c2  lden
-        111...
 p0451 c3  , nklaplugh
         III.N T L
 p0452 c1  uppin
         ‘.1,Co, III. (»u..a[.-r..a.:.C. C. in Co.) 13791
-p0453 c3  I tuomb, or Tllnonu
-        I l1.ﬂ
-p0454 c0  Thcomh
-        1 11 .31., 1_ .a
 p0457 c1  EILH Todd
         w.on n9a.2v. -—- lllinoinﬂnrly ﬂizicaro and. (Chicago
 p0457 c1  Todd
@@ -376,8 +318,6 @@ p0517 c2  Turner
         :——Muu co. , I11. (Inn-ray, Itllluuon
 p0518 c2  Turner
         ('I.ld, ILI.) 130313], ._._
-p0522 c0  Tupi
-        iii. I.
 p0524 c0  hall
         -—..Gkgo, III. (Andrus. A. T.) nan-on ;;3_.
 p0544 c2  ' - r mums
@@ -388,8 +328,6 @@ p0546 c3  Vvnlondinghnn
         Ill. (Muse... .. |.; u...d
 p0549 c2  Von Alon
         II. I888. _cook co.,iii.(r.......-., ... .... ms.
-p0551 c1  Jun Bum-on
-        1 ll .
 p0567 c0  Van llou
         --Ilnmnou, Dolly. (ooorlitn, ILI.)
 p0567 c1  Vannuu, oi- Vnn Yen
@@ -400,20 +338,14 @@ p0574 c1  Van Voorhuw I
         111.511 ....1-111:1... Roe V. (Van Voorhi-.F~_-fl-) I155}; .
 p0580 c2  A Vane
         ......S|ngImon 00., III.(Power,1. C.) I8l6.E G9195­7 é
-p0584 c1  Venn
-        I ll.“
 p0586 c3  Vorrllsre, do,
         —..Cooi 60., Ill. lnzuruas, A. n.) |'...;4 =9“­
 p0590 c0  ' Vim
         I II.1 vi“. 3“ vug" L
-p0591 c1  Villard,
-        I lI.M
 p0595 c1  Vhntlnlllu- 'ontpeznt,
         3.. .I.’79-".‘Jx.', . . Ir...u, III.
 p0597 c0  Bratugnn ,
         ‘ I .:fuNnlI 00, Ill. \Chap.::m. y. L. v."..\.) I8
-p0598 c2  Vol
-        Iii.
 p0598 c3  Vallmer
         Iii. Carolin:
 p0601 c1  Vnu
@@ -422,8 +354,6 @@ p0604 c1  Iaddel
         _.._Bureau 00., III. (Kali & 00., [u_b.)I817: 210, hm.“
 p0607 c3  Indium-eh
         III,5_Im,IIWWI IIIIII‘IIIIIII IPIIIIIIIII
-p0613 c0  A Plan
-        111.).
 p0613 c0  A Plan
         i 11... 1'a...ny. ‘
 p0620 c0  Iuldo
@@ -438,10 +368,6 @@ p0630 c2  Iallaca
         __u,1..‘.....c.., III.(1:61n1n.Vl..11-.l C"--E-4'21-kl
 p0630 c2  Wallace
         ._. Sangunon00., Ill. (Pour, J. 0.) I876. ll.
-p0631 c2  Wallace
-        111,?»-2133o.'‘
-p0634 c2  Inlllng
-        Illinois
 p0634 c3  llnrfotrc-Iv
         Illinois.Sac. Son: Am.Rev. H9613.-,.«;_
 p0640 c1  Inllon
@@ -450,16 +376,10 @@ p0640 c2  Valtnn
         ;L1l.on Iamlly. _ ' wuzon r....
 p0640 c2  Wilton
         Ill. Indian {r.:
-p0651 c0  lnrlnp
-        I 11 .
 p0654 c2  may
         I II ....._. E 1. oN_-,g_I_IV- um" nu
-p0656 c0  lgrrcn
-        III.......I..,~,.
 p0656 c2  Warren
         III.,d.«L..DowI.r,k
-p0658 c0  Warren
-        I 11 .
 p0658 c3  raa
         -—Bigalov nu. (mpzov, I 11.) 191713.
 p0660 c1  Warren
@@ -482,10 +402,6 @@ p0676 c2  v In -n'ly um
         .—- CA|~r3cI";III.(cfarr, I~..l.) _
 p0678 c3  Hutu
         )‘r1ondJh1p,IlI.(!lo.HaID.
-p0681 c3  Way
-        1 11 .
-p0682 c0  r nylon
-        1 11 . ,
 p0684 c1  Ilouvur
         ._|Zd5u 00., Ill. {luau-u.IL. 1.. I 60.. Ma) law: —-SprI
 p0684 c1  Ilouvur
@@ -502,20 +418,12 @@ p0695 c2  , n Ieebor
         III. ‘"6 (“uh
 p0703 c2  Ed lolch
         111.11.-me.
-p0704 c1  ' oJ ch
-        1 I 1.1! 16
 p0708 c0  Wellington
         111. E 7. T 24
 p0709 c2  Wells
         __ Illinois.(Mom, J.) 1888.92. 2v. §e_gIndex
 p0712 c1  Walla
         1 I 1.. It‘." I loll: (
-p0715 c2  Handel
-        111.
-p0726 c3  onian
-        1 11 . '
-p0727 c1  wuggn
-        LII,
 p0730 c2  Wotuore family elmoru
         '_._ChIu¢o, III. (AnJre:1:, A. T.) I8'.'A—6; 1. $73
 p0733 c0  ihaplea
@@ -524,12 +432,6 @@ p0733 c1  Wf rton
         otan, IL I.) -—- NewEngland ,l'.ccloa.hi-I .of.(701! .-1.8-)
 p0737 c0  , Ehaelu
         ...JdvIIICa.,IIl,(um. ,y1r “M ‘P
-p0739 c3  Wheeler
-        111.c 135
-p0739 c3  - heler
-        111,11-‘.. S«- 1-1.
-p0739 c3  eI Ihmeler
-        11 1.0 4751
 p0745 c2  '- hippie
         ,. '. —-—.(.oak Co., lli. (Ann...-'-2 ’~- 1.)‘ MM
 p0746 c2  Whipple
@@ -538,12 +440,6 @@ p0747 c3  Whistler
         111.-arr...
 p0750 c3  n om,
         III, I “" u V ,
-p0751 c2  ' White
-        1; 111.11: 1.--11, N553‘
-p0753 c3  While
-        iIi.
-p0755 c1  White
-        LII.) 19041153’). 1.‘5.6 53
 p0756 c2  A - wmu
         ._c1.nsr.m.1cn~.r--.1,111.,mw.E.)1a-:3. E " _
 p0761 c3  Whizaeidee
@@ -552,8 +448,6 @@ p0761 c3  Ihite
         Illlnois,Q5Pionc'cr'hist. of. (IIeynoIds¥.) 96.7402
 p0765 c0  F' muug
         (Perkin-,lLl.'. . ggmol
-p0765 c1  e oIndex I Whitinr,
-        III.
 p0765 c2  Whiting
         iii. .-——Pi-ontico inix.ily.(.'5innoy,C..I:F'.) 1883.
 p0772 c1  Nhjgngy
@@ -563,13 +457,9 @@ p0786 c1  H mm
 p0791 c0  Wilcox
         I11.“ m.11y. “‘-
 p0792 c2  Iiloon
-        1 1 1.1’ "'" '“"“‘
-p0792 c2  Iiloon
         —<\.m-e, LII.) -at-.n Io.-n. 18561259. P-‘I-R36 -~
 p0794 c2  lldor
         "1 A_p_)'18-,9_ B 9 1,111.11.’
-p0795 c1  Vildor
-        I11 .
 p0797 c3  Wilford
         I 1 I. ‘ E ,_ H 436,
 p0801 c1  ' wnk E
@@ -580,14 +470,8 @@ p0812 c1  vnlunm
         111. W~‘3- 4 32" -.r. __ Sh
 p0815 c2  I Ellliann
         -—-Dorlani fun. (Grower, LII.) 18982121. :
-p0822 c2  Vlllouzhhy
-        LLL. "
-p0825 c2  lndoxom - E
-        III. 1. '
 p0825 c2  lndoxom - E
         Ill.::£n2I; G¢_‘ c.,,_r..ux.nna-.:
-p0829 c3  Wilson
-        11 I.
 p0836 c1  Wlngata
         III. I893. . _5_t:\iil1u|C&S. Eégsaé
 p0838 c0  Iunn
@@ -596,12 +480,8 @@ p0838 c2  ,IspIe
         IIIIIIMN. E 7 ' 9” -.._..I:aoII Co., III. (Andreas,I. TJIID
 p0839 c3  nalow
         111. Historic dress1 933
-p0842 c3  linaton
-        I I 1.! 1:56
 p0849 c2  I Howell
         ll 1.9in 775 ;
-p0853 c1  ' vim
-        1 11.
 p0856 c0  loloott
         Ill. > I::.m
 p0899 c1  Wyllyn
@@ -612,8 +492,6 @@ p0899 c3  W VWIH gr Wnvman
         ._...ﬂu1nfa1d, 111..(1.p1.m,w.a.11asoI423.n1-w
 p0899 c3  W VWIH gr Wnvman
         —- Illinois 501:. 01 San: kn. Row.13“:
-p0905 c1  Y do Rhlgny,
-        t‘ 1...“; 1 11 , ' '
 p0906 c2  xenon
         ..._ 1:-;,lLl.:'. I el her:H.. N Mr. ms.” I
 p0910 c3  Yaunr

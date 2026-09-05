@@ -44,9 +44,9 @@
         }
       ],
       "cards_assembled": 58488,
-      "locality_cards_kept": 2579,
+      "locality_cards_kept": 2425,
       "text_file": "vol_01_locality_cards.txt",
-      "text_sha256": "49c1408945606bc79737b00374b065f7affdb9addf0f4e776cd989def1530d5f"
+      "text_sha256": "ba25be1c31621dde5e2daf9c313a6a70384ac4073cb591f225b1ebb5585b92d1"
     },
     "2": {
       "file": "FL2091536_CP-130151_02.pdf",
@@ -88,9 +88,9 @@
         }
       ],
       "cards_assembled": 58589,
-      "locality_cards_kept": 1987,
+      "locality_cards_kept": 1886,
       "text_file": "vol_02_locality_cards.txt",
-      "text_sha256": "02fa6b684b89a648535f3df3c514005f62a42be180e3cb4c946a534cffba4880"
+      "text_sha256": "0d7f6b4cd437026f543b2d51fb26a688d2bca7671bfc8e132477b868a784cc3b"
     },
     "3": {
       "file": "FL1982465_CP-130151_03.pdf",
@@ -132,9 +132,9 @@
         }
       ],
       "cards_assembled": 68552,
-      "locality_cards_kept": 2131,
+      "locality_cards_kept": 2004,
       "text_file": "vol_03_locality_cards.txt",
-      "text_sha256": "c4b3a0be16381e72b4302de0102da0f9ad0f9b349ec03a1b34ae5b753bc1cc08"
+      "text_sha256": "3127ef58e398ed074afe81f21cea57027b33b3248b60a93745a4175c778d8fa9"
     },
     "4": {
       "file": "130151_04.pdf",
@@ -176,9 +176,9 @@
         }
       ],
       "cards_assembled": 6548,
-      "locality_cards_kept": 308,
+      "locality_cards_kept": 247,
       "text_file": "vol_04_locality_cards.txt",
-      "text_sha256": "2955ba4bddfd5095cdd84ffa7c2ac4411e3348c881aa26249759ff3e5d1bbf20"
+      "text_sha256": "540aea9f08565a6bbc69f6991950244fd408cf4e1b72d3811bfe4ce7bf5ec158"
     }
   }
 }
