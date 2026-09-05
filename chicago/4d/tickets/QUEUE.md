@@ -97,7 +97,6 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
-T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
@@ -113,7 +112,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- T-0453 left behind when it closed.
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
@@ -274,7 +272,6 @@ T-0696 — The directory crosswalks want a second discriminator: a trade separat
 T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
 T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
-T-0713 — The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
@@ -328,3 +325,5 @@ T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' 
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0773 — Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
+T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
