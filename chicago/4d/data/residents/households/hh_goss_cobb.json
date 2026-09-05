@@ -85,12 +85,18 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "summary": "Nothing reviewed in this pass corroborates O. Goss from outside the record already held: the fergus chicago directory 1843, norris directory 1844 agreement is a surname-only refusal; the papers carry the name 1835-06-13.",
+    "source_ids": [
+     "andreas_1884_v1",
+     "chicago_american_1835",
+     "chicago_democrat_1833_11_26"
+    ]
    }
   },
   {
@@ -116,16 +122,19 @@
    "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "Early reminiscence and the 1843 directory independently connect Silas B. Cobb with saddlery and harness work and later premises at 171 Lake Street. The later address extends the profile but is not back-projected to 1835.",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Independent of the post office in books, directories, county histories and more.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "ingale_early_chicago_reminiscence",
-     "norris_chicago_directory_1843"
-    ]
+     "chicagology_prefire127",
+     "andreas_1884_v1",
+     "calumet_club_early_chicago_1879",
+     "chicago_democrat_1833_11_26"
+    ],
+    "summary": "Independently corroborated; confirmed, not moved."
    }
   }
  ],

@@ -90,21 +90,33 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Honoré Gratien Joseph Bailly de Messein is a strong regional candidate, but lived at his Porter County homestead and died there in December 1835. A Chicago letter may reflect transit, not residence.",
+    "evidence_for": "A same-name lead, unasserted: cand_joseph_bailly_baillytown.",
     "evidence_against": "Documented Porter County residence; no source links him to this letter.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "nps_bailly_homestead"
+     "nps_bailly_homestead",
+     "fergus_historical_series_26_29"
     ],
     "candidate_ids": [
-     "cand_honor_gratien_joseph_bailly_de_messein__bailly_joseph"
+     "cand_joseph_bailly_baillytown"
     ],
     "regraded_on": "2026-09-04",
-    "rule": "G2e"
+    "rule": "G2e",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "candidates": [
+     {
+      "id": "cand_joseph_bailly_baillytown",
+      "asserted": false,
+      "basis": "Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'.",
+      "conflicts": [
+       "His household stood on the Little Calumet in Indiana; a letter waiting at the Chicago post office is what a trader who collected mail here leaves, not a residence."
+      ]
+     }
+    ]
    }
   }
  ],
