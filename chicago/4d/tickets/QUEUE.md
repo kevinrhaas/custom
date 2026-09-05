@@ -104,7 +104,6 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
 # --- THE LOT GRID QUESTION — measure, THEN ask. Carrying out T-0009's ruling left the
 # --- South Water corridor 8.58 m north of its own block faces, with a strip belonging to
@@ -319,3 +318,4 @@ T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing c
 T-0803 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
 T-0804 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
 T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
+
