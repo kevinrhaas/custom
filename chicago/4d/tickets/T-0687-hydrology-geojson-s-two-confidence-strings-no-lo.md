@@ -11,10 +11,17 @@ parent: null
 opened: 2026-09-04
 closed: 2026-09-05
 pr: 874
+<<<<<<< HEAD
 claimed_by: run 9/5/2026, 6:33:36 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: 2026-09-05T12:05:44.978Z
+=======
+claimed_by: run 9/5/2026, 7:46:30 AM CT
+blocked_on: null
+needs_bake: false
+closed_at: 2026-09-05T12:46:30.528Z
+>>>>>>> origin/dev
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963525521
 ---
 
