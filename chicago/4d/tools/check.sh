@@ -1753,6 +1753,20 @@ step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+
 step "…and its own assertions still fire when broken" \
   python3 tools/read_st_cyr_register.py --self-test
 
+# T-0583. The 1842-1892 roll of the Second Presbyterian Church of Chicago — the work
+# fifty-four Newberry index cards cite and this project did not hold. Two things are
+# gated. First, the COLUMNS: archive.org reads a four-column table in the order the
+# scanner met the ink, so the reading is rebuilt from the committed row map's spans into
+# the committed text, and a span that points at the wrong ink fails here. Second, the
+# LADDER: the roll opens in June 1842, seven years after the scene date, so no line on it
+# can be an 1835 fact — the self-test asserts every record says so and that nothing dated
+# on or before 1835-07-01 has reached one.
+step "the Second Presbyterian roll rebuilds, and no line of it is an 1835 fact" \
+  python3 tools/read_second_presbyterian.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_second_presbyterian.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test
 
