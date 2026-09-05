@@ -386,3 +386,4 @@ T-0715 — data/residents/index.json rows go stale for any household no minting 
 T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
+T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
