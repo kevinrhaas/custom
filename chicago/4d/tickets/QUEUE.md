@@ -424,3 +424,5 @@ T-0808 — The owner's three rulings — the site budget, kinship, and the planf
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
+T-0823 — The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
+T-0824 — A repeated string in a provenance or coverage list is the same merge artefact as a repeated id, and nothing asserts it

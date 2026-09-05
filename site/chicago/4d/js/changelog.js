@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 591, title: 'Nothing you can see: one name given to two different things', kind: 'fix', ts: '2026-09-05T18:15:49.100Z', date: 'Sep 5, 2026, 1:15 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about a fault that stopped all work on this project twice in one day, and now cannot.',
+      'Everything here carries a name of its own — a street, a person, a piece of work. Twice on 5 September two separate efforts each minted the SAME name for different things, and when they were brought together both copies came with them. Neither looked wrong on its own; the fault only exists once they meet. The second time, nineteen pieces of finished work sat waiting behind a failure none of them had caused.',
+      'From now on, nothing is allowed in until every record file has been read and a name used twice refused by name — which file, which name, and whether the two things behind it are identical or merely share a label. It reads 2,835 files in under a second, so it runs on every change rather than once a night.',
+      'What makes it worth having is that nobody has to maintain a list of what to check. The rule is worked out from the shape of the records themselves, so a kind of record invented next month is covered without anyone remembering to add it — and the one that breaks is always the one nobody remembered.',
+      'It was tested against the whole town before being switched on: sixty-eight kinds of list, and sixty-seven already obeyed the rule without being asked to. It found one real fault, now fixed — Fulton Street was citing the 1830 plat twice, as though two surveys agreed with each other.',
+      'The sixty-eighth is honest rather than hidden. Two fences really do share a name, because a fence is named after the lot it encloses and a lot has two sides. Both fences are real. That is written down as work to do, with the check told exactly where it is allowed to look away — and told to complain the day it no longer needs to.',
+    ] },
   { v: 590, title: 'Seventy-six people the town had never actually looked for', kind: 'feat', ts: '2026-09-05T17:27:46.383Z', date: 'Sep 5, 2026, 12:27 PM CT',
     items: [
       'Two hundred and twenty-eight of the people standing in this town had never been researched \u2014 not researched and found wanting, simply never asked about. Seventy-six of them were asked today, and every one now carries a dated answer with the rule that produced it written beside it.',
