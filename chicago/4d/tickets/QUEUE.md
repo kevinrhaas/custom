@@ -121,20 +121,6 @@
 T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
 T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
-# --- AND THE TWO GAPS LANDING THAT RULING EXPOSED, 2026-09-04. Both are the owner's original
-# --- question — "you do a lot of work and not a lot of updates happen" — found one layer down,
-# --- and both are the same shape: a derivation that stopped being re-run, with nothing to say so.
-# --- T-0714 is the sharper one. On a clean dev the 1840 census crosswalk adjudicates 498 named
-# --- heads while 733 have been READ off the page images. The reading happened; the adjudication
-# --- never re-ran; and check.sh does not gate this crosswalk although it gates every sibling.
-# --- 235 heads of finished reading are sitting unspent, which is exactly T-0584's complaint.
-# --- T-0715 is the cheaper one and was diagnosed by hand while landing #797: neither pass that
-# --- writes data/residents/index.json refreshes a row it does not own, so a stale row survives
-# --- indefinitely and then surfaces as 19 validator errors plus six unrelated-looking failures
-# --- in other steps. One rebuild, one gate, one message naming the cause.
-T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
-T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
-
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
 # --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
@@ -161,7 +147,6 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
-T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
@@ -382,3 +367,10 @@ T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0701 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
+T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
+T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+
