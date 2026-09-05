@@ -51,7 +51,7 @@
    "id": "albert_shepherd",
    "name": "Shepherd Albert",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -73,9 +73,7 @@
     "reviewed_on": "",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "regraded_on": "2026-09-04",
-    "rule": "G1c"
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
    "civic_evidence": [
     {
@@ -98,7 +96,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

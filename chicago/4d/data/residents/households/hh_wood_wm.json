@@ -74,9 +74,7 @@
     "evidence_for": "No uniquely discriminating Chicago bridge found for this common name.",
     "evidence_against": "Contemporary Illinois land and other records contain multiple William Woods; none supplies a reliable identity bridge to the May 1835 Chicago letter.",
     "summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-    "notes": "common-name collision; no edit",
-    "regraded_on": "2026-09-04",
-    "rule": "G2e"
+    "notes": "common-name collision; no edit"
    },
    "press_evidence": [
     {
@@ -97,7 +95,8 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
-   ]
+   ],
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

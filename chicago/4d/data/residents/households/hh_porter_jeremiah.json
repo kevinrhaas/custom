@@ -78,7 +78,22 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
+   "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Surname 'Porter' folds to the same string as the entry's, and the given name of both begins J.",
+    "evidence_against": "'Millard Porter' at printed page 229 line 20 (33S7-9YYJ-9M5) is NOT 'Rev. Jeremiah Porter': The surname 'porter' is carried by 2 person(s) of 1835 (Rev. Jeremiah Porter, Eliza Chappel Porter) and none of their given names is 'millard'. The surname 'Porter' is in Norris 1844 and no entry under it carries the initial 'J' of 'Rev. Jeremiah Porter'. A surname-only agreement is a refusal. The surname 'Porter' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Rev. Jeremiah Porter'. A surname-only agreement is a refusal.",
+    "summary": "Corroborated in a volume printed after the scene date. Rev. Jeremiah Porter agrees with an entry in the old-settler rolls and Fergus's death notices. The reading enriches the biography and adds no 1835 attestation.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_1843_old_settler_death_notices"
+    ]
+   }
   },
   {
    "id": "porter_eliza_chappel",
@@ -113,7 +128,20 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
+   "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": false,
+    "evidence_against": "The surname 'Porter' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eliza Chappel Porter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Millard Porter' at printed page 229 line 20 (33S7-9YYJ-9M5) is NOT 'Eliza Chappel Porter': The surname 'porter' is carried by 2 person(s) of 1835 (Rev. Jeremiah Porter, Eliza Chappel Porter) and none of their given names is 'millard'. L3 given_name_conflict",
+    "summary": "A plausible external identity for Eliza Chappel Porter was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+    "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Porter/i Porter/porter' name Chicago or Cook County, the heading is the surname of Rev. Jeremiah Porter; Eliza Chappel Porter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
+   }
   }
  ],
  "touches_removal": false,

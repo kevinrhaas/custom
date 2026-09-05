@@ -75,8 +75,9 @@
   },
   "by_source": {
    "generated": 249,
-   "inferred_household_programme": 38,
-   "pre_existing": 72
+   "inferred_household_programme": 7,
+   "pre_existing": 72,
+   "retired_household_roofs": 31
   },
   "by_district": {
    "south": 216,
@@ -85,8 +86,8 @@
    "fort": 10
   },
   "by_group": {
-   "ordinary_dwellings": 170,
-   "larger_boarding_houses": 11,
+   "ordinary_dwellings": 169,
+   "larger_boarding_houses": 12,
    "stores_mixed_use": 38,
    "inns_taverns": 10,
    "workshops": 29,
@@ -108,7 +109,7 @@
    "C4": 1,
    "D1": 37,
    "D2": 23,
-   "D3": 35,
+   "D3": 34,
    "D4": 32,
    "D5": 26,
    "D6": 13,
@@ -117,7 +118,7 @@
    "F2": 3,
    "F3": 0,
    "F4": 1,
-   "H1": 7,
+   "H1": 8,
    "H2": 3,
    "H3": 1,
    "I1": 4,
@@ -163,8 +164,8 @@
   "by_district_group": {
    "south": {
     "barns_stables": 17,
-    "larger_boarding_houses": 22,
-    "ordinary_dwellings": 68,
+    "larger_boarding_houses": 21,
+    "ordinary_dwellings": 69,
     "small_outbuildings": 24,
     "stores_mixed_use": 11,
     "warehouses_freight": 6,
@@ -198,7 +199,7 @@
    "C4": 4,
    "D1": 15,
    "D2": 15,
-   "D3": 30,
+   "D3": 31,
    "D4": 32,
    "D5": 32,
    "D6": 16,
@@ -207,7 +208,7 @@
    "F2": 4,
    "F3": 3,
    "F4": 1,
-   "H1": 11,
+   "H1": 10,
    "H2": 11,
    "H3": 9,
    "I1": 0,
@@ -227,12 +228,12 @@
    "south": {
     "A1": 9,
     "A2": 8,
-    "H1": 8,
+    "H1": 7,
     "H2": 8,
     "H3": 6,
     "D1": 7,
     "D2": 7,
-    "D3": 13,
+    "D3": 14,
     "D4": 14,
     "D5": 14,
     "D6": 7,
@@ -273,8 +274,8 @@
    "north": {
     "A1": 5,
     "A2": 5,
-    "H1": 2,
-    "H2": 1,
+    "H1": 1,
+    "H2": 2,
     "H3": 1,
     "D1": 4,
     "D2": 4,
@@ -420,8 +421,8 @@
    "families": {
     "A3": 1,
     "C2": 1,
-    "D4": 1,
-    "D5": 1
+    "D3": 1,
+    "D4": 1
    },
    "principal": 3,
    "ancillary": 1,
@@ -451,7 +452,7 @@
     "A1": 1,
     "D1": 1,
     "D2": 1,
-    "D3": 1
+    "D5": 1
    },
    "principal": 3,
    "ancillary": 1,
@@ -823,9 +824,9 @@
     "C4": 1,
     "D1": 1,
     "D2": 1,
-    "D3": 2,
+    "D3": 3,
     "D4": 3,
-    "D5": 3,
+    "D5": 2,
     "D6": 2,
     "D7": 1,
     "F2": 1,
@@ -915,13 +916,13 @@
     "D2": 5,
     "D3": 10,
     "D4": 10,
-    "D5": 10,
+    "D5": 11,
     "D6": 5,
     "D7": 5,
     "F2": 2,
     "F3": 2,
     "F4": 1,
-    "H1": 6,
+    "H1": 5,
     "H2": 6,
     "H3": 5,
     "W2": 1
@@ -987,8 +988,8 @@
     "D5": 9,
     "D6": 4,
     "D7": 4,
-    "H1": 2,
-    "H2": 1,
+    "H1": 1,
+    "H2": 2,
     "H3": 1
    },
    "principal": 46,

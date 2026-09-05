@@ -82,14 +82,6 @@
     "source_ids": [
      "chicago_democrat_1833_1835",
      "hathaway_1834"
-    ],
-    "refusals": [
-     {
-      "regraded_on": "2026-09-04",
-      "rule": "G3",
-      "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 1 thing(s) the consolidation did not read — hathaway_1834. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
-     }
     ]
    },
    "biographical_evidence": {

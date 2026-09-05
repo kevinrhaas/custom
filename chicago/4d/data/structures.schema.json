@@ -61,7 +61,7 @@
     "reconstruction": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Machine-readable disclosure for production-specification infill: which family band the massing was drawn from, and under which programme. Named/documented structures do not carry this block. Two statuses, and the difference is whether anybody is claimed to be in the building: `inferred_anonymous` is a count-unit of the 665-roof programme, placed by aggregate mix and carrying no occupant; `inferred_household` is a roof the inferred-household layer raised BECAUSE an argued household needed somewhere to be, and it carries an occupants block naming that household. The anonymous slots additionally carry their place in the parcel that dealt them (sequence, inventory_class); a household roof has no slot — it was authored one at a time against the occupation census — so those are required of the anonymous status only rather than invented for the other.",
+      "description": "Machine-readable disclosure for production-specification infill: which family band the massing was drawn from, and under which programme. Named/documented structures do not carry this block. Two statuses, and the difference is whether anybody is claimed to be in the building: `inferred_anonymous` is a count-unit of the 665-roof programme, placed by aggregate mix and carrying no occupant; `inferred_household` is a roof the inferred-household layer raised BECAUSE an argued household needed somewhere to be, and it carries an occupants block naming that household. The anonymous slots additionally carry their place in the parcel that dealt them (sequence, inventory_class). A roof of `programme_phase: phase2_inferred_households` has NO SLOT — the inferred-household layer authored its 31 roofs one at a time against the occupation census rather than dealing them out of a parcel — so the slot fields are required of the anonymous status EXCEPT under that phase. That exception is what T-0516 needed: the owner retired the reconstructed resident population on 2026-09-02 and ruled the roofs kept as anonymous stock, so those 31 became anonymous without ever acquiring a parcel slot, and minting them a sequence to satisfy a required field would have invented a place in a deal that never dealt them.",
       "required": [
         "status",
         "family",
@@ -72,11 +72,30 @@
       "allOf": [
         {
           "if": {
-            "properties": {
-              "status": {
-                "const": "inferred_anonymous"
+            "allOf": [
+              {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "inferred_anonymous"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "required": [
+                    "programme_phase"
+                  ],
+                  "properties": {
+                    "programme_phase": {
+                      "const": "phase2_inferred_households"
+                    }
+                  }
+                }
               }
-            }
+            ]
           },
           "then": {
             "required": [
@@ -87,6 +106,9 @@
         },
         {
           "if": {
+            "required": [
+              "status"
+            ],
             "properties": {
               "status": {
                 "const": "inferred_household"
@@ -110,7 +132,7 @@
         "occupation": {
           "type": "string",
           "pattern": "^[a-z_]+$",
-          "description": "The trade the household this roof was raised for practises, as the occupation census names it. Present on `inferred_household` only, and it is the census's own string — this field claims a count and a trade, never a person."
+          "description": "The trade the household this roof was raised for practises, as the occupation census names it. Required of `inferred_household`, and RETAINED on the 31 roofs T-0516 moved to `inferred_anonymous`, because the trade a roof was raised for is what the later placement sweep the owner asked for on 2026-09-03 has to work from. It is the census's own string — this field claims a count and a trade, never a person, and after the retirement of 2026-09-02 it claims neither: it records what the retired programme raised the roof for."
         },
         "family": {
           "type": "string",
