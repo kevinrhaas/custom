@@ -51,6 +51,7 @@ T-0721 — Three town cards are named from an OCR misreading of an initial — 8
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0839 — One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing
 T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
+T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
 # --- that no card carries. Nothing here reads a new source either — every one turns research
