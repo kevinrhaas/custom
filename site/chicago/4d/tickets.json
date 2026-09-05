@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 7:46 AM",
+  "generated_ct": "Sep 5, 2026, 7:55 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -10400,7 +10400,7 @@
     {
       "id": "T-0621",
       "title": "Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10408,14 +10408,14 @@
       "legacy_id": null,
       "parent": "T-0613",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 6:35:29 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 12
+      "closed_at": "2026-09-05T12:05:51.348Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33963528564",
+      "queue_rank": null
     },
     {
       "id": "T-0625",
@@ -12814,6 +12814,26 @@
       "queue_rank": 152
     },
     {
+      "id": "T-0769",
+      "title": "Volume 4 read by OCR, pages 613-918: the shards",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0621",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "881",
+      "claimed_by": "run 9/5/2026, 7:06:13 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T12:31:50.564Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33963528564",
+      "queue_rank": null
+    },
+    {
       "id": "T-0770",
       "title": "south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it",
       "state": "open",
@@ -12832,6 +12852,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 153
+    },
+    {
+      "id": "T-0775",
+      "title": "Volume 4's OCR reading stitched, re-parsed and re-sampled, now that every band is in",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0621",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 12
     }
   ]
 }

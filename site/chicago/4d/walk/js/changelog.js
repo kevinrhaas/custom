@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 570, title: 'The last third of the finding aid, read again', kind: 'change', ts: '2026-09-05T12:55:07.228Z', date: 'Sep 5, 2026, 7:55 AM CT',
+    items: [
+      'The Newberry Library\u2019s genealogical index is four volumes of photostatted cards, and each card says where a book about a family is. Volume four\u2019s printed text layer is a bad reading of it: three of the four volumes give up between fifty-eight and sixty-eight cards a page, and the fourth gives seven. A third of the volume \u2014 pages 307 to 612 \u2014 was read a second way in September, by rendering each page a column at a time and putting an OCR engine over it. This is the last third: pages 613 to 918.',
+      'Three hundred and six pages, read in four foreground passes of seventy-two to eighty-two pages each, every one of them committed the moment it finished. Four files, two megabytes compressed. The middle band is already in; only pages 1 to 306 are still unread, and they are another run\u2019s.',
+      'On these exact pages the old reading assembles 2,131 cards and the new one assembles 10,247 \u2014 four point eight times as many, measured by the same assembler on the same pages, with only the reading of the characters changed.',
+      'The count that matters is smaller. Of the cards assembled, the ones kept are those whose text names Chicago, Cook County or Illinois: the old reading keeps 72 here and the new one keeps 127. Between them they name 171 distinct cards and share exactly four. They are not the same 72.',
+      'What each reading was matching says why. The old reading\u2019s 72 are 65 cards caught on a smudge that resembles the abbreviation of Illinois, four that name the state in full, and three that say Chicago. The new reading keeps 38 that say Chicago and 27 that say Cook County. The cards that actually name this town went past the text layer unread.',
+      'Nothing is promoted on the strength of it. The volume\u2019s committed reading is still the text-layer one, no book has moved up the reading queue and no person has been graded. The stitch that replaces the reading waits on the first band; this is the second measurement of three, committed so the next run starts from it.',
+    ] },
   { v: 569, title: 'How sure we are of the slough at the forks', kind: 'fix', ts: '2026-09-05T12:46:29.744Z', date: 'Sep 5, 2026, 7:46 AM CT',
     items: [
       'The river and the narrow slough at Wolf Point are not drawn by hand. They are traced out of the Wright 1834 survey by a program, and both files carry a line at the top saying so: generated, do not hand\u2019edit. For a month one of them had stopped matching the program that writes it, and nothing in the project could see it.',
