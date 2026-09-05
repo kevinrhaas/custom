@@ -1,7 +1,7 @@
 ---
 id: T-0597
 title: James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 822
 claimed_by: run 9/5/2026, 10:14:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T16:13:06.887Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33973909129
 ---
 
