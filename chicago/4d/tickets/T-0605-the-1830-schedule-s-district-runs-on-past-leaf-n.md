@@ -1,7 +1,7 @@
 ---
 id: T-0605
 title: The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 0
 claimed_by: run 9/4/2026, 11:59:47 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T05:29:19.564Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945835931
 ---
 

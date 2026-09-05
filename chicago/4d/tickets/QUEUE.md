@@ -100,7 +100,6 @@ T-0518 — The census, voter and research packages are on dev and indexed nowher
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
-T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
 T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0582 — The Chicago cards of the Newberry index also point at Moses's Illinois, historical and statistical (1888-92), the La Salle Book Co. Cook County volumes (1900, 1909), Wood's Chicago 1881 and Hurlbut's Chicago antiquities (1881), and none of the four is in this project's sources
@@ -323,3 +322,4 @@ T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the ki
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire
+T-0739 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column

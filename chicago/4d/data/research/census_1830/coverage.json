@@ -13,10 +13,9 @@
       "items": [
         "n576",
         "n578",
-        "n584",
-        "n586"
+        "n584"
       ],
-      "what_was_read": "Every head of family in the names column of n576 (55), n578 (56) and n584 (22), in the enumerator's order, plus each leaf's totals row to its first nine male columns; and the whole of n586, which carries the division's recapitulation and no head of family. 133 entries.",
+      "what_was_read": "Every head of family in the names column of n576 (55), n578 (56) and n584 (22), in the enumerator's order, plus each leaf's totals row to its first nine male columns. 133 entries. The recapitulation leaf n586 was read too and is transcribed in text/peoria_putnam_1830_recapitulation_n586.txt — it is NOT declared here, because it carries no head of family and so no record in this domain can ever reach it; see below.",
       "what_was_not_read": "The per-household age-band cells on n576, n578 and n584, as on n580 and n582 before them — twenty-eight columns per household is a pass of its own. On n586, the female half of the recapitulation grid beyond the columns transcribed, and the right-hand continuation half of every sheet (the odd leaves).",
       "note": "This closes the division. n586's five page rows are the totals rows of n576, n578, n580, n582 and n584 — page 1's row carries the same six struck-and-rewritten cells as n576's — so the district is those five leaves, printed pages 299 to 303, and it ends at n584 because n586 is its recapitulation. T-0605 was opened believing the district ran ON past n584; it runs BACK to n576 instead, and the two leaves at the front of it were the unread ones."
     },
@@ -36,6 +35,12 @@
     }
   ],
   "not_declared_and_why": [
+    {
+      "items": [
+        "n586"
+      ],
+      "why": "Read in full on 2026-09-05 for T-0605 and transcribed at text/peoria_putnam_1830_recapitulation_n586.txt, but NOT declared: it is the division's recapitulation and carries five page-total rows and not one head of family, so nothing in this domain can reach it and declaring it would open a hole that no reading could ever close. It is the evidence that the names end at n584 and begin at n576, and it lives in the source record's access notes and in the domain README rather than here."
+    },
     {
       "items": [
         "n577",
