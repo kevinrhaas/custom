@@ -1,7 +1,7 @@
 ---
 id: T-0708
 title: A people directory: every resident searchable by name, occupation, arrival, division, age and how they are known
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 829
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T01:52:46.662Z
 claimed_run: null
 ---
 

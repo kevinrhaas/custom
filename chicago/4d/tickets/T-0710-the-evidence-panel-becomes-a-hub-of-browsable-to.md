@@ -1,7 +1,7 @@
 ---
 id: T-0710
 title: The Evidence panel becomes a hub of browsable topics with search, instead of one scroll
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 829
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T01:52:46.960Z
 claimed_run: null
 ---
 
