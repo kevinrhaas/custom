@@ -1,7 +1,7 @@
 ---
 id: T-0518
 title: The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 845
 claimed_by: run 9/4/2026, 11:59:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T05:22:49.160Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945847348
 ---
 
