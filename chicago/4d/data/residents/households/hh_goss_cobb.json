@@ -103,7 +103,7 @@
    "id": "cobb_silas_b",
    "name": "Silas B. Cobb",
    "relationship": "partner",
-   "grade": "inferred",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "saddler",
@@ -118,7 +118,9 @@
     "andreas_1884_v1",
     "calumet_club_early_chicago_1879",
     "chicago_american_1835",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ],
    "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
@@ -135,7 +137,9 @@
      "calumet_club_early_chicago_1879",
      "chicago_democrat_1833_11_26"
     ],
-    "summary": "Independently corroborated; confirmed, not moved."
+    "summary": "Independently corroborated; confirmed, not moved.",
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
    },
    "press_evidence": [
     {
@@ -156,7 +160,27 @@
      "cobb_s_b"
     ],
     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   }
+   },
+   "book_evidence": [
+    {
+     "list": "directory_1843",
+     "as_read": "SILAS B. COBB, general dealer in saddles, harnesses, trunks, valises, collars, whips, carpet bags, etc., etc.; 171 Lake…",
+     "locator": "business directory",
+     "record_id": "f1843_e0141",
+     "describes_date": "1843",
+     "source": "fergus_chicago_directory_1843",
+     "rule": "G1b"
+    },
+    {
+     "list": "directory_1844",
+     "as_read": "Cobb, Silas B. saddler and harness maker, 171 Lake st. res Michi- gan avenue",
+     "locator": "res Michi gan avenue",
+     "record_id": "n1844_e0377",
+     "describes_date": "1844",
+     "source": "norris_directory_1844",
+     "rule": "G1b"
+    }
+   ]
   }
  ],
  "touches_removal": false,

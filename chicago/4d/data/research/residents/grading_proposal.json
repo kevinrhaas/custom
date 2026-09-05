@@ -83,7 +83,7 @@
    "G5": 34,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 69,
+  "proposed_changes_to_existing_people": 68,
   "conflicts": 67
  },
  "proposals": [
@@ -6806,7 +6806,6 @@
   {"identity":"id_church_thomas","person_id":"church_thomas","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_cleland_martin","person_id":"cleland_martin","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_clybourne_archibald","person_id":"clybourne_archibald","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
-  {"identity":"id_cobb_silas_b","person_id":"cobb_silas_b","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":"attested","resident_subtype":null},"rule":"G1b","direction":"up"},
   {"identity":"id_couch_ira_howes","person_id":"couch_ira","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_couch_james","person_id":"couch_james","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_davis_t_o","person_id":"davis_t_o","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},

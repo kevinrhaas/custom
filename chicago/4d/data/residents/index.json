@@ -242,8 +242,8 @@
   "households": 1338,
   "persons": 1362,
   "by_grade": {
-   "attested": 490,
-   "inferred": 872,
+   "attested": 491,
+   "inferred": 871,
    "reconstructed": 0
   },
   "letter_list_only": 727,
@@ -8357,8 +8357,7 @@
    "division": "west",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "attested": 2
    },
    "lives_at": null,
    "works_at": "goss_cobb_saddlery",
