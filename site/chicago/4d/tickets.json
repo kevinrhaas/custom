@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 10:29 PM",
+  "generated_ct": "Sep 4, 2026, 11:00 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12168,6 +12168,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 151
+    },
+    {
+      "id": "T-0731",
+      "title": "The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
+    },
+    {
+      "id": "T-0732",
+      "title": "James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
     }
   ]
 }

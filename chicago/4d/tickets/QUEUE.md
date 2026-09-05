@@ -383,3 +383,5 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
+T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
