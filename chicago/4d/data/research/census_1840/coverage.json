@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "domain": "census_1840",
- "schema_note": "schema 2 groups the declaration, because the deposit is read in three image groups by three tickets. Schema 1 declared one group at the top level; the group objects below carry exactly the fields schema 1 had.",
+ "schema_note": "schema 2 groups the declaration, because the deposit is read in three image groups by three tickets. Schema 1 declared one group at the top level; the group objects below carry exactly the fields schema 1 had. T-0497 adds the top-level `declarations` array the SHARED gate (tools/research_domains.py --check) reads, which the schema-2 `groups` shape above is invisible to (T-0536); the list declared there is T-0497's own and the image groups are untouched.",
  "deposit": {
   "files": 75,
   "distinct_images": 74,
@@ -1246,6 +1246,17 @@
    "query": "the collection page behind these image ids (collection 1786457)",
    "date": "2026-09-03",
    "result": "login-walled \u2014 recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
+  }
+ ],
+ "declarations": [
+  {
+   "unit": "list",
+   "ticket": "T-0497",
+   "items": [
+    "dalton_data_bank_illinois_1840_census_index"
+   ],
+   "what": "The Dalton Data Bank's Illinois census index, 1840 block — 20 rows, read whole off daltondatabank.net/Illinois.html on 2026-09-05 and recorded in records/dalton_index.json. A one-SURNAME index, not a city name list: see that file's what_this_index_actually_is.",
+   "read_whole": true
   }
  ]
 }
