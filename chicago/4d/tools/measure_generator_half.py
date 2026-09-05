@@ -114,13 +114,19 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # meshes a change to the shared generator modules or to build.py would re-stale; the
 # terrain and pier_crib reaches stay at 2 each.
 #
+# 372 -> 374 and 370 -> 372 on 2026-09-05 (T-0431): `blk_south_water_clark` took its
+# second deal — a wide two-storey store party-walled to Pruyne & Kimball's drug store on the
+# block's one free lot of South Water frontage, and the woodshed in its yard. Two new
+# structure assets, so two more meshes a change to the shared generator modules or to
+# build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 372,
+    "assets": 374,
     "restales": {
-        "generators/common/*.py": 372,
+        "generators/common/*.py": 374,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 370,
+        "generators/build.py": 372,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
