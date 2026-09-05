@@ -65,36 +65,36 @@
       "records": 31
     },
     "residents/household:division": {
-      "records": 1380,
+      "records": 1379,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 1380,
+      "records": 1379,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:persons[].resident_research.asserted_identity": {
-      "records": 842
+      "records": 841
     },
     "residents/household:persons[].resident_research.candidate_ids": {
-      "records": 92
+      "records": 97
     },
     "residents/household:persons[].resident_research.candidates[].asserted": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.candidates[].assessment": {
       "records": 13
     },
     "residents/household:persons[].resident_research.candidates[].basis": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.candidates[].candidate_id": {
       "records": 13
     },
     "residents/household:persons[].resident_research.candidates[].conflicts": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.evidence_against": {
-      "records": 240
+      "records": 270
     },
     "residents/household:persons[].resident_research.evidence_for": {
       "records": 477
@@ -103,10 +103,10 @@
       "records": 485
     },
     "residents/household:persons[].resident_research.outcome": {
-      "records": 842
+      "records": 841
     },
     "residents/household:persons[].resident_research.programme": {
-      "records": 842
+      "records": 841
     },
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
@@ -127,23 +127,27 @@
       "records": 71
     },
     "residents/household:persons[].resident_research.reviewed_on": {
-      "records": 842
+      "records": 841
     },
     "residents/household:persons[].resident_research.rule": {
       "records": 71
     },
     "residents/household:persons[].resident_research.source_ids": {
-      "records": 498
+      "records": 510
     },
     "residents/household:persons[].resident_research.summary": {
-      "records": 544
+      "records": 620
     },
     "residents/household:persons[].resident_research.ticket": {
-      "records": 842
+      "records": 841
     },
     "residents/household:source_pass": {
-      "records": 1302,
+      "records": 1301,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
+    },
+    "residents/manifest:_merged_records_doc": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
     },
     "residents/manifest:counts.households": {
       "records": 1,
@@ -157,15 +161,55 @@
       "records": 1
     },
     "residents/manifest:households[].head": {
-      "records": 1380,
+      "records": 1379,
       "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 1380,
+      "records": 1379,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 1169
+      "records": 1168
+    },
+    "residents/manifest:merged_records[].into_household_id": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].into_name": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].into_person_id": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].merge_argument": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].on": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].retired_household_id": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].retired_name": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].retired_person_id": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].rule": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
+    },
+    "residents/manifest:merged_records[].ticket": {
+      "records": 1,
+      "refused_because": "T-0723, the retirement ledger. A person this layer once carried TWICE, and where they went: provenance about a record that no longer exists rather than a figure about the town, kept so a reader who follows a retired id is not left with nothing. The claim itself does reach the visitor, and better \u2014 `residents.js` prints the merge, its reasoning and the absorbed id on the surviving person's card, beside the sources that say the two are one man. A second copy in the manifest would carry none of that."
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1

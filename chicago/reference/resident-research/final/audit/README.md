@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 41 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1403 rows and 41 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -21,11 +21,11 @@ no grade moves. Every cell is copied or counted from a committed record.
 
 ## Coverage
 
-Each line is *how many of the 1404 people carry at least one record of that kind*.
+Each line is *how many of the 1403 people carry at least one record of that kind*.
 
-| coverage | of 1404 | % | what counts |
+| coverage | of 1403 | % | what counts |
 | --- | ---: | ---: | --- |
-| identities | **1401** | 99.8% | a name with at least one source id anywhere on the card |
+| identities | **1400** | 99.8% | a name with at least one source id anywhere on the card |
 | occupations | **135** | 9.6% | an occupation that is not `none_recorded` |
 | household membership | **44** | 3.1% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
@@ -40,7 +40,7 @@ Each line is *how many of the 1404 people carry at least one record of that kind
 | `corroborated_across_categories` | 428 | 30.5% |
 | `two_or_more_sources_one_category` | 21 | 1.5% |
 | `one_source` | 390 | 27.8% |
-| `the_letter_lists_alone` | 562 | 40.0% |
+| `the_letter_lists_alone` | 561 | 40.0% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -51,7 +51,7 @@ record agree; two newspaper notices of the same name are
 
 | category | people citing at least one |
 | --- | ---: |
-| newspaper | 1160 |
+| newspaper | 1159 |
 | civic | 288 |
 | census | 30 |
 | church | 46 |
@@ -225,7 +225,7 @@ secondary). A source id no rule reaches stops the build.
 | T-0480 | 75 |
 | T-0481 | 73 |
 | T-0482 | 75 |
-| T-0483 | 74 |
+| T-0483 | 73 |
 | T-0484 | 75 |
 | T-0485 | 74 |
 | T-0486 | 11 |
@@ -233,12 +233,12 @@ secondary). A source id no rule reaches stops the build.
 | T-0508 | 76 |
 | T-0509 | 1 |
 | T-0510 | 76 |
-| **reviewed** | **842** |
+| **reviewed** | **841** |
 | **not yet reviewed** | **562** |
 
 | research outcome | people |
 | --- | ---: |
-| `no_corroboration_yet` | 463 |
+| `no_corroboration_yet` | 462 |
 | `no_corroboration` | 211 |
 | `candidate_identity` | 88 |
 | `corroborated` | 46 |
@@ -252,12 +252,12 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1374 | no 1840 census row is bridged to this person |
-| no address | 1328 | neither `lives_at` nor `works_at` resolves |
-| unplaced | 1308 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 952 | one source id on the card and no second category to check it against |
-| no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
-| rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
+| no census linkage | 1373 | no 1840 census row is bridged to this person |
+| no address | 1327 | neither `lives_at` nor `works_at` resolves |
+| unplaced | 1307 | the household carries division `unplaced`: in the town, on no lot |
+| rests on one source | 951 | one source id on the card and no second category to check it against |
+| no research row | 562 | no cohort ticket has reviewed this person; the programme reached 841 of 1403 |
+| rests on the letter lists alone | 561 | known only from the post office's uncalled-for lists |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |

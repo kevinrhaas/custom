@@ -9,11 +9,11 @@
   },
   "proposed_not_written": {
    "says": "The ladder HAS ruled this person — the rung is in grading_proposal.json — and no pass has written it onto the card. A spend, not a reading.",
-   "people": 864
+   "people": 865
   },
   "absorbed_by_another_card": {
    "says": "The person's row stands on an identity the ladder ruled, but that identity names a DIFFERENT town card as its canonical person, so the rung was never offered to this one. Two cards, one identity.",
-   "people": 2
+   "people": 0
   },
   "refused_no_identity": {
    "says": "The consolidation built no identity for this name and said so at the time: the refusal is in identity_master.json with its rule. The ladder abstains, and here is the reason it abstained.",
@@ -21,9 +21,9 @@
   }
  },
  "counts": {
-  "person_records": 1404,
+  "person_records": 1403,
   "carry_a_rule": 531,
-  "carry_no_rule": 873,
+  "carry_no_rule": 872,
   "proposed_not_written_by_rule": {
    "G1a": 20,
    "G1b": 76,
@@ -31,13 +31,13 @@
    "G2b": 16,
    "G2e": 56,
    "G3": 650,
-   "G5": 36
+   "G5": 37
   },
   "refused_by_rule": {
    "R1": 2,
    "R5": 5
   },
-  "the_ladder_has_never_looked": 9
+  "the_ladder_has_never_looked": 7
  },
  "person_records": [
   {"person_id":"abbot_8_g","household_id":"hh_abbot_8_g","name":"8. G. Abbot","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"a digit stands inside the printed name. On a directory line that is an address and the row is an institution; on a town card it is an OCR misreading of an initial (S. read as 8, H. as I1), so the name as stored is not a name the town ever used"},
@@ -165,7 +165,7 @@
   {"person_id":"brooks_gardner","household_id":"hh_brooks_gardner","name":"Gardner Brooks","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","chicago_voter_lists_1833_1835_irad"],"identity":"id_brooks_gardner","state":"proposed_not_written","proposed_rule":"G1c","proposed_grade":"attested","why":"the ladder ruled this person G1c in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"brown_lemuel","household_id":"hh_brown_lemuel","name":"Lemuel Brown","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_voter_lists_1833_1835_irad"],"identity":"id_brown_lemuel","state":"proposed_not_written","proposed_rule":"G1c","proposed_grade":"attested","why":"the ladder ruled this person G1c in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"brown_rufus","household_id":"hh_brown_rufus","name":"Rufus Brown","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_brown_rufus_b","state":"proposed_not_written","proposed_rule":"G2b","proposed_grade":"inferred","why":"the ladder ruled this person G2b in grading_proposal.json; no pass has written that rung onto the card"},
-  {"person_id":"brown_mrs_rufus","household_id":"hh_brown_rufus","name":"Mrs Rufus Brown","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_brown_rufus_b","state":"absorbed_by_another_card","proposed_rule":"G2b","proposed_grade":"inferred","absorbed_by":"brown_rufus","why":"identity id_brown_rufus_b holds this card and brown_rufus, and the proposal names the other one; the rung was ruled for the identity and never offered to this card"},
+  {"person_id":"brown_mrs_rufus","household_id":"hh_brown_rufus","name":"Mrs Rufus Brown","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_brown_mrs_rufus","state":"proposed_not_written","proposed_rule":"G5","proposed_grade":null,"why":"the ladder ruled this person G5 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"bruen_hir","household_id":"hh_bruen_hir","name":"hir. Bruen","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_bruen_hir","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"brundage_asa","household_id":"hh_brundage_asa","name":"Asa Brundage","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_brundage_asa","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"brush_matthias","household_id":"hh_brush_matthias","name":"Matthias Brush","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_brush_matthias","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
@@ -635,7 +635,6 @@
   {"person_id":"night_clapp","household_id":"hh_night_clapp","name":"Clapp Night","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_night_clapp","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"noble_mark","household_id":"hh_noble_mark","name":"Esq. Mark Noble","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835"],"identity":"id_noble_mark","state":"proposed_not_written","proposed_rule":"G2b","proposed_grade":"inferred","why":"the ladder ruled this person G2b in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"northrop_francis_b","household_id":"hh_northrop_francis_b","name":"Francis B. Northrop","grade_on_the_card":"inferred","resident_subtype":null,"sources":["chicago_democrat_1833_1835"],"identity":"id_northrop_francis_b","state":"proposed_not_written","proposed_rule":"G2e","proposed_grade":"inferred","why":"the ladder ruled this person G2e in grading_proposal.json; no pass has written that rung onto the card"},
-  {"person_id":"norton_n_r","household_id":"hh_norton_n_r","name":"N. R. Norton","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_norton_nelson_r","state":"absorbed_by_another_card","proposed_rule":"G3","proposed_grade":"inferred","absorbed_by":"norton_nelson_r","why":"identity id_norton_nelson_r holds this card and norton_nelson_r, and the proposal names the other one; the rung was ruled for the identity and never offered to this card"},
   {"person_id":"norton_nelson_r","household_id":"hh_norton_nelson_r","name":"Nelson R. Norton","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_norton_nelson_r","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"norton_wm_h","household_id":"hh_norton_wm_h","name":"Wm. H. Norton","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_norton_william_h","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},
   {"person_id":"nowland_michael","household_id":"hh_nowland_michael","name":"Michael Nowland","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_nowland_michael","state":"proposed_not_written","proposed_rule":"G3","proposed_grade":"inferred","why":"the ladder ruled this person G3 in grading_proposal.json; no pass has written that rung onto the card"},

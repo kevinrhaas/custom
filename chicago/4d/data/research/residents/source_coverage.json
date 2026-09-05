@@ -23,13 +23,13 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2921,
-   "appearances_on_an_identity_the_town_already_carries": 290,
-   "unmatched": 4056
+   "identities": 2922,
+   "appearances_on_an_identity_the_town_already_carries": 289,
+   "unmatched": 4057
   },
   "newspapers": {
    "names_read": 2274,
-   "identities": 2101,
+   "identities": 2102,
    "appearances_on_an_identity_the_town_already_carries": 1281,
    "unmatched": 993
   },
@@ -40,10 +40,10 @@
    "unmatched": 690
   },
   "residents": {
-   "names_read": 1397,
-   "identities": 1395,
+   "names_read": 1396,
+   "identities": 1396,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1397
+   "unmatched": 1396
   },
   "books": {
    "names_read": 0,
@@ -97,20 +97,20 @@
   "civic|newspapers": 92,
   "civic|old_settlers": 27,
   "civic|residents": 271,
-  "directories|directories": 2921,
+  "directories|directories": 2922,
   "directories|newspapers": 158,
   "directories|old_settlers": 31,
   "directories|residents": 170,
-  "newspapers|newspapers": 2101,
+  "newspapers|newspapers": 2102,
   "newspapers|old_settlers": 47,
   "newspapers|residents": 1141,
   "old_settlers|old_settlers": 735,
   "old_settlers|residents": 51,
-  "residents|residents": 1395
+  "residents|residents": 1396
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1404,
-  "persons_this_tool_placed_on_an_identity": 1397,
+  "persons_in_the_layer": 1403,
+  "persons_this_tool_placed_on_an_identity": 1396,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
@@ -119,7 +119,8 @@
    "R5": 266,
    "R2": 972,
    "R3": 181,
-   "R4": 80
+   "R4": 80,
+   "R6": 4
   },
   "declared_refusals": 1688
  }

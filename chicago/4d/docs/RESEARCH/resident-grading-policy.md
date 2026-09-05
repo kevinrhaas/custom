@@ -141,22 +141,22 @@ and read as *"the consolidation never reached them"*. It had reached all but nin
 
 | what the ladder can say | people |
 |---|---|
-| **a rung already ruled, never written onto the card** | **864** — G3 650, G1b 76, G2e 56, G5 36, G1a 20, G2b 16, G1c 10 |
-| the person's row sits on an identity that names ANOTHER card as canonical | 2 |
+| **a rung already ruled, never written onto the card** | **865** — G3 650, G1b 76, G2e 56, G5 37, G1a 20, G2b 16, G1c 10 |
+| the person's row sits on an identity that names ANOTHER card as canonical | 0 — both closed by T-0723 |
 | the splitter built no identity from the name, and says which guard refused it | 7 — R5 5, R1 2 |
 
-**So the bottleneck is the SPEND, not the reading.** For 864 of 873 people the rung exists
+**So the bottleneck is the SPEND, not the reading.** For 865 of 872 people the rung exists
 in `grading_proposal.json` and no pass has ever carried it onto the card; 76 of them are
 `attested` rungs sitting unspent. That is a different job from reading a new source, and it
 is the one that moves the number.
 
-**The nine the ladder cannot see, each with the reason it abstained.** Two are absorbed:
+**The nine the ladder could not see, each with the reason it abstained.** Two WERE absorbed:
 `canonical_person_id` is `town[0]`, so an identity holding two town cards reported one and
-dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` (a wife whose only
-printed name is her husband's, and the honorific strip makes the two indistinguishable) and
-`norton_n_r` onto `norton_nelson_r` (where the merge is right and the town simply carries
-the man twice). Master rows now carry `town_person_ids`, so an absorbed card is visible
-rather than silent. The other seven are refusals the master has recorded all along:
+dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` and `norton_n_r` onto
+`norton_nelson_r`. Master rows carry `town_person_ids`, which is what made the two visible;
+**T-0723 then closed both, and they were two different faults with two different answers**
+(see *The wife form* below and the merge recorded in `data/residents/index.json` §
+`merged_records`). No card is absorbed today. The other seven are refusals the master has recorded all along:
 `8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR misreadings of an initial
 (S. read as 8, H. as I1) rather than names the town used; `Heacock's wife and children,
 unnamed` is a description; `Beckford` and `Mrs Temple` name no forename at all; and
@@ -216,6 +216,7 @@ and every refusal in `identity_master.json` names the rule that made it.
 | **R4** | Same surname and initial, two different full forenames. 80. |
 | **D2** | A refusal already declared by a crosswalk or `identity.json`. 1,574. |
 | **R5** | **A printed name the splitter cannot read as (surname, forename) at all** — a firm style, an institution, a digit standing where an initial was misread, a description rather than a name, more forename tokens than the four-token cap. 266, each row naming which guard fired. |
+| **R6** | **The wife form.** A reading carrying `Mrs`, `Madame`, `Mme` or `Widow` names a woman, and a card the town records as `sex: male` is a man; they never merge. 4. |
 
 **Why R5 exists, and what it cost to not have it (T-0692).** Until 2026-09-04 every one of
 those 266 rows was filed as R1, *"names no forename"* — and that sentence is false of most
@@ -225,6 +226,23 @@ town's own cards carried that refusal, and a refusal whose stated reason is untr
 page is barely better than no refusal at all. **The guards did not change and no identity
 moved** — `grading_proposal.json` is byte-identical across the split. What changed is that
 each refusal now says which guard fired.
+
+**The wife form, and why a rule was needed rather than a correction (T-0723).** *Mrs.
+Rufus Brown* kept one of Chicago's first-class boarding houses and her only printed name is
+her husband's. `Mrs` is stripped as an honorific, which leaves *Rufus Brown* on both
+readings, so M1 merged her onto him letter for letter; the ladder then ruled the identity
+under HIS card and hers fell out unruled. **The shape is not rare** — this corpus prints it
+111 times, and Fergus 1843 and Norris 1844 list widows under their late husbands' names as
+house style: *Gale, Mrs. Abram*; *Johnson, Mrs. Seth*; *Ward, Mrs. Bernard*.
+
+The discriminator is **the town's own `sex` field**, not a guess at which forenames belong
+to men. A wife-form reading is refused R6 against a card the layer records as male whenever
+M1, M2 or M3 could otherwise have merged them — mergeability, not identity, because *Brown,
+Mrs. Rufus B., dress and cloak maker, 189 Lake* is not letter-for-letter her husband and M3
+folded her onto him anyway. The rule is deliberately narrow: it is silent where the town
+supplies no man, so *Mrs. Mary Merriam* still merges onto *Mary Merriam*. Four rows fire
+today — the two Browns, *Mrs. Wm. B. Egan* and *Taylor, Mrs. C.* — and six self-test cases
+hold it there, three of them negative controls that fail if the rule widens.
 
 R2 and R4 are stated **once per surname**, naming everyone the bucket holds apart, not once
 per pair: the cross product of forty Smiths is 780 rows that say what the bucket already

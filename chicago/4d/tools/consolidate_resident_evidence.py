@@ -95,6 +95,14 @@ REFUSAL_RULES = {
           "Refused with the rivals named rather than guessed at.",
     "R4": "Same surname and same forename initial, but two different full forenames "
           "(Jonathan against John). Two men until something says otherwise.",
+    "R6": "THE WIFE FORM. A reading carrying a wife-form honorific — Mrs, Madame, Mme, "
+          "Widow — names a WOMAN, and a town card the layer records as `sex: male` is a "
+          "MAN, so the two are never one person however alike the names read. The shape "
+          "that makes this necessary is the wife named for her husband: strip 'Mrs' from "
+          "'Mrs. Rufus Brown' and M1 merges her onto Rufus Brown letter for letter. The "
+          "rule fires only where the TOWN ITSELF supplies the man and only where the "
+          "derived rules could otherwise have merged them, so 'Mrs. Mary Merriam' still "
+          "merges onto 'Mary Merriam' — no Mary of that surname is recorded male.",
     "D2": "A refusal already declared by a domain's own crosswalk or by identity.json.",
     "R5": "A PRINTED NAME THIS SPLITTER CANNOT READ AS (surname, forename) AT ALL — a firm "
           "style, an institution, a digit standing where an initial was misread, a "
@@ -172,6 +180,14 @@ CLASS_FAMILIES = {
 
 HONORIFICS = {"mr", "mrs", "miss", "dr", "rev", "capt", "col", "gen", "lt", "sergt",
               "sgt", "maj", "hon", "esq", "jr", "sr", "widow", "mme", "madame"}
+# THE WIFE FORM. A subset of the honorifics, and the only one that changes WHOSE name
+# is printed. "Mrs. Rufus Brown" and "Gale, Mrs. Abram" print a MAN'S forename against a
+# WOMAN, which is a shape this corpus produces 111 times over — the 1843 and 1844
+# directories list widows under their late husbands' names as a matter of house style.
+# Strip the honorific and the two readings become letter-for-letter identical, so M1
+# merges a wife onto her husband and the second card falls out in silence (T-0723).
+# `miss` is deliberately NOT here: an unmarried woman is printed under her own forename.
+WIFE_FORMS = {"mrs", "madame", "mme", "widow"}
 ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
                "chas": "charles", "thos": "thomas", "robt": "robert", "jos": "joseph",
                "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edw": "edward",
@@ -256,6 +272,36 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
             continue
         given.append(ABBREVIATED.get(key, key))
     return (surname, given), None
+
+
+def wife_form(text: str) -> bool:
+    """Does this printed name carry a wife-form honorific? (T-0723, rule R6.)
+
+    Read off the RAW printing rather than the split, because the split is exactly what
+    throws the honorific away."""
+    if not text or not isinstance(text, str):
+        return False
+    return any(clean(token) in WIFE_FORMS for token in re.split(r"[\s.,]+", text))
+
+
+def could_merge(a: tuple[str, ...], b: tuple[str, ...]) -> bool:
+    """Could M1/M2/M3 put these two forename signatures of one surname together?
+
+    R6 needs this because the fault it catches is not a merge, it is a MERGEABILITY:
+    'Brown, Mrs. Rufus B' and 'Rufus Brown' are not letter-for-letter identical, and M3
+    joins them anyway. A rule that only looked for M1 would have held the town card apart
+    and left the 1843 directory's widow sitting on her husband (T-0723)."""
+    if not a or not b:
+        return False
+    if a == b:                                      # M1
+        return True
+    if a[0][0] != b[0][0]:                          # different initial — R2, never merges
+        return False
+    if is_initial(a[0]) or is_initial(b[0]):        # M2 — an initial attaches to a forename
+        return True
+    if a[0] != b[0]:                                # two forenames behind one initial — R4
+        return False
+    return True                                     # M3 — a middle initial apart
 
 
 def forename_signature(given: list[str]) -> tuple[str, ...]:
@@ -428,6 +474,7 @@ def read_town():
                 person.get("name"), doc.get("id"), None, "town_layer")
             entry["household_id"] = doc.get("id")
             entry["grade"] = person.get("grade")
+            entry["sex"] = person.get("sex")     # R6 reads this and nothing else does
             entry["resident_subtype"] = person.get("resident_subtype")
             entry["cited_sources"] = sorted(set(person.get("sources") or []))
             out.append(entry)
@@ -603,6 +650,7 @@ def cluster(appearances):
         surname, given = parsed
         entry["_surname"] = surname
         entry["_given"] = given
+        entry["_wife_form"] = wife_form(entry.get("normalized") or entry.get("as_read"))
         buckets[surname].append(entry)
 
     identities, refusals = [], []
@@ -616,6 +664,34 @@ def cluster(appearances):
 
     for surname in sorted(buckets):
         rows = buckets[surname]
+        # R6 — THE WIFE FORM, APPLIED BEFORE ANYTHING ELSE IN THE BUCKET, because every
+        # rule below reads the signature and this is the rule that says what the
+        # signature IS. "Mrs. Rufus Brown" carries her husband's forename and the strip
+        # leaves 'rufus' on both readings, so M1 merged a woman onto a man and the ladder
+        # then ruled the identity under HIS card while HERS fell out unruled (T-0723).
+        # The discriminator is the town's own `sex` field, not a guess at what forenames
+        # men have: a wife-form reading whose forename the town records as a MAN of that
+        # surname is a different person, and keeping the honorific in her signature is
+        # what holds her apart. Where the town supplies no such man the rule is silent.
+        male_signatures = {forename_signature(entry["_given"]) for entry in rows
+                           if entry["domain"] == "residents" and entry.get("sex") == "male"}
+        for entry in rows:
+            if not entry.get("_wife_form"):
+                continue
+            signature = forename_signature(entry["_given"])
+            husband = next((sig for sig in sorted(male_signatures)
+                            if could_merge(signature, sig)), None)
+            if husband is None:
+                continue
+            entry["_given"] = ["mrs"] + entry["_given"]
+            refusals.append({
+                "rule": "R6",
+                "why": ("a wife-form honorific over a forename the town records as a MAN "
+                        "of this surname: she is named for her husband and is not him"),
+                "domain": entry["domain"], "record_id": entry["record_id"],
+                "as_read": entry.get("as_read"),
+                "held_apart_from": " ".join(husband).title() + " " + surname.title(),
+            })
         anchors = {}                     # signature -> members, for full-forename readings
         pending = []
         for entry in rows:
@@ -1696,6 +1772,45 @@ def cmd_self_test() -> int:
         ok = len(rows) == 1 and rows[0]["rule"] == rule and must_say in rows[0]["why"]
         print(f"  {'ok   ' if ok else 'FAIL'} {text!r} is refused {rule} and says why"
               f" -> {rows[0]['rule'] + ': ' + rows[0]['why'][:60] if rows else 'no refusal'}")
+        failures += 0 if ok else 1
+
+    # ---- T-0723: THE WIFE FORM (R6) ----------------------------------------
+    # "Mrs. Rufus Brown" is not Rufus Brown. Strip the honorific and the two readings
+    # are letter-for-letter identical, so M1 merged her onto him, the ladder ruled the
+    # identity under HIS card, and hers was left in `absorbed_by_another_card` with no
+    # rung at all. THE TOWN'S OWN `sex` FIELD IS THE DISCRIMINATOR, and each case below
+    # breaks one leg of the rule and requires the answer to change.
+
+    def wife_case(name, town, wife_domain="residents", wife_id="w"):
+        """town = (as_read, sex) for the card the town already carries."""
+        rows = [{"domain": "residents", "record_id": "husband", "normalized": town[0],
+                 "as_read": town[0], "evidence_class": "town_layer", "source_id": None,
+                 "sex": town[1]},
+                {"domain": wife_domain, "record_id": wife_id, "normalized": name,
+                 "as_read": name, "evidence_class": "town_layer", "source_id": None,
+                 "sex": "female" if wife_domain == "residents" else None}]
+        identities, refused = cluster(rows)
+        held = len(identities) > 1
+        r6 = [r for r in refused if r["rule"] == "R6"]
+        return held, bool(r6)
+
+    for what, got, want in [
+            ("a wife named for her husband is held apart from him",
+             wife_case("Mrs Rufus Brown", ("Rufus Brown", "male")), (True, True)),
+            ("…and so is the directory's widow, whom M3 would otherwise have folded on",
+             wife_case("Brown, Mrs. Rufus B", ("Rufus Brown", "male")), (True, True)),
+            ("…and a newspaper's 'Mrs. Wm. B. Egan' never becomes the doctor",
+             wife_case("Mrs. Wm. B. Egan", ("William Bradshaw Egan", "male"),
+                       wife_domain="newspapers"), (True, True)),
+            ("a woman under her OWN forename still merges with her own other reading",
+             wife_case("Mrs. Mary Merriam", ("Mary Merriam", "female")), (False, False)),
+            ("…and the rule is silent where the town records no sex at all",
+             wife_case("Mrs Rufus Brown", ("Rufus Brown", None)), (False, False)),
+            ("…and a different initial was never a merge to begin with",
+             wife_case("Mrs. Sarah Brown", ("Rufus Brown", "male")), (True, False)),
+    ]:
+        ok = got == want
+        print(f"  {'ok   ' if ok else 'FAIL'} {what} -> held_apart={got[0]}, R6={got[1]}")
         failures += 0 if ok else 1
 
     # ---- T-0692: THE COVERAGE INVARIANT ------------------------------------

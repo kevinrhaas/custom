@@ -59,32 +59,32 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6742,
+  "identities": 6745,
   "by_grade": {
-   "not_1835_resident": 4276,
+   "not_1835_resident": 4277,
    "inferred": 1958,
-   "attested": 472,
-   "None": 36
+   "attested": 473,
+   "None": 37
   },
   "by_subtype": {
-   "None": 5027,
+   "None": 5030,
    "projected_resident": 1715
   },
   "by_rule": {
-   "G0": 4276,
+   "G0": 4277,
    "G3": 1714,
-   "G1b": 402,
+   "G1b": 403,
    "G2b": 47,
    "G1a": 49,
    "G1c": 21,
    "G2e": 126,
    "G2c": 35,
    "G2a": 35,
-   "G5": 36,
+   "G5": 37,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 82,
-  "conflicts": 81
+  "proposed_changes_to_existing_people": 83,
+  "conflicts": 82
  },
  "proposals": [
   {"identity":"id_abbot_samuel_e","name":"Samuel E Abbot","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYN-3CDH:28"],"evidence_classes":["census_1840"]},
@@ -856,7 +856,9 @@
   {"identity":"id_brown_kiler","name":"Kiler Brown","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_kiler_brown"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_brown_lemuel","name":"Lemuel Brown","canonical_person_id":"brown_lemuel","rule":"G1c","grade":"attested","resident_subtype":null,"evidence":["civic:tax_1833_010","directories:f1843_e0457","newspapers:person_lemuel_brown"],"evidence_classes":["directory_1843","newspaper_letter_list","tax_1833","town_layer"]},
   {"identity":"id_brown_michael","name":"Michael Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-98M:16"],"evidence_classes":["census_1840"]},
-  {"identity":"id_brown_rufus_b","name":"Rufus B Brown","canonical_person_id":"brown_rufus","rule":"G2b","grade":"inferred","resident_subtype":null,"evidence":["directories:f1843_e0458","directories:f1843_e0459","directories:n1844_e0219","civic:blackhawk_1832_009"],"evidence_classes":["directory_1843","directory_1844","muster_1832","town_layer"]},
+  {"identity":"id_brown_mrs_rufus","name":"Mrs Rufus Brown","canonical_person_id":"brown_mrs_rufus","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
+  {"identity":"id_brown_mrs_rufus_b","name":"Mrs Rufus B Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0459"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_brown_rufus_b","name":"Rufus B Brown","canonical_person_id":"brown_rufus","rule":"G2b","grade":"inferred","resident_subtype":null,"evidence":["directories:f1843_e0458","directories:n1844_e0219","civic:blackhawk_1832_009"],"evidence_classes":["directory_1843","directory_1844","muster_1832","town_layer"]},
   {"identity":"id_brown_s_b_ohio","name":"S B Ohio Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0220"],"evidence_classes":["directory_1844"]},
   {"identity":"id_brown_s_c","name":"S C Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0463","directories:n1844_e0221"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_brown_samuel_lockwood","name":"Samuel Lockwood Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0461","directories:f1843_e0460","directories:n1844_e0218","directories:n1844_e0222"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -1957,9 +1959,9 @@
   {"identity":"id_egan_emeline","name":"Emeline Egan","canonical_person_id":"egan_emeline","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_egan_james","name":"James Egan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_055_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_egan_margaret","name":"Margaret Egan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_122_2","church:st_cyr_marriage_123_4","church:st_cyr_marriage_128_2"],"evidence_classes":["church_after_1835"]},
+  {"identity":"id_egan_mrs_william_b","name":"Mrs William B Egan","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_mrs_wm_b_egan"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_egan_patrick","name":"Patrick Egan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9M5:27"],"evidence_classes":["census_1840"]},
   {"identity":"id_egan_wiley_m","name":"Wiley M Egan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0897"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_egan_william_b","name":"William B Egan","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_mrs_wm_b_egan"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_egan_william_bradshaw","name":"William Bradshaw Egan","canonical_person_id":"egan_william_b","rule":"G2b","grade":"inferred","resident_subtype":null,"evidence":["civic:tax_1833_028","civic:poll_1834_038","directories:f1843_e0898","directories:n1844_e0562"],"evidence_classes":["directory_1843","directory_1844","poll_1834","tax_1833","town_layer"]},
   {"identity":"id_eigs_david","name":"David Eigs","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_david_m_eigs"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_el_wil_m","name":"Wil M El","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_w_el_ch_wil_lia_m"],"evidence_classes":["newspaper_letter_list"]},
@@ -6063,7 +6065,7 @@
   {"identity":"id_taylor_anson_w","name":"Anson W Taylor","canonical_person_id":"taylor_anson_w","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_anson_w_taylor","civic:blackhawk_1832_110"],"evidence_classes":["muster_1832","newspaper_1833_1835","town_layer"]},
   {"identity":"id_taylor_augustine_deodat","name":"Augustine Deodat Taylor","canonical_person_id":"taylor_augustine","rule":"G5","grade":null,"resident_subtype":null,"evidence":["directories:f1843_e2410","directories:n1844_e1746"],"evidence_classes":["directory_1843","directory_1844","town_layer"]},
   {"identity":"id_taylor_benjamin_f","name":"Benjamin F Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0657"],"evidence_classes":["death_notice"]},
-  {"identity":"id_taylor_charles","name":"Charles Taylor","canonical_person_id":null,"rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-JM:13","directories:f1843_e0152","directories:f1843_e2411","directories:n1844_e1747","newspapers:person_charles_taylor","newspapers:person_taylor_charles","newspapers:person_taylor_mrs_c"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_1833_1835","newspaper_letter_list"]},
+  {"identity":"id_taylor_charles","name":"Charles Taylor","canonical_person_id":null,"rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-JM:13","directories:f1843_e0152","directories:f1843_e2411","directories:n1844_e1747","newspapers:person_charles_taylor","newspapers:person_taylor_charles"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_1833_1835","newspaper_letter_list"]},
   {"identity":"id_taylor_charles_a","name":"Charles A Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0658"],"evidence_classes":["death_notice"]},
   {"identity":"id_taylor_charles_h","name":"Charles H Taylor","canonical_person_id":"taylor_charles","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e2412","directories:n1844_e1748","civic:poll_1833_026","civic:poll_1834_106","civic:poll_1835_079"],"evidence_classes":["directory_1843","directory_1844","poll_1833","poll_1834","poll_1835","town_layer"]},
   {"identity":"id_taylor_d","name":"D Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-992:27"],"evidence_classes":["census_1840"]},
@@ -6088,6 +6090,7 @@
   {"identity":"id_taylor_justin","name":"Justin Taylor","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_justin_taylor"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_taylor_louisa_m","name":"Louisa M Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_082_2"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_taylor_matthias","name":"Matthias Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2420","directories:n1844_e1755"],"evidence_classes":["directory_1843","directory_1844"]},
+  {"identity":"id_taylor_mrs_c","name":"Mrs C Taylor","canonical_person_id":null,"rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_taylor_mrs_c"],"evidence_classes":["newspaper_1833_1835"]},
   {"identity":"id_taylor_reuben","name":"Reuben Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2421"],"evidence_classes":["directory_1843"]},
   {"identity":"id_taylor_rueben","name":"Rueben Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1756"],"evidence_classes":["directory_1844"]},
   {"identity":"id_taylor_solomon","name":"Solomon Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0034","directories:f1843_e2422"],"evidence_classes":["directory_1843"]},
@@ -6840,6 +6843,7 @@
   {"identity":"id_blodgett_tyler_k","person_id":"blodgett_tyler_k","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_bobinson_george_is","person_id":"bobinson_george_is","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_boilvin_nicholas","person_id":"boilvin_nicholas","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
+  {"identity":"id_brown_mrs_rufus","person_id":"brown_mrs_rufus","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_brown_rufus_b","person_id":"brown_rufus","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2b","direction":"down"},
   {"identity":"id_caldwell_billy","person_id":"caldwell_billy","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2b","direction":"down"},
   {"identity":"id_chandler_joseph_m","person_id":"chandler_joseph","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},
@@ -6924,6 +6928,7 @@
   {"identity":"id_blodgett_tyler_k","kind":"downgrade","rule":"G3","person_id":"blodgett_tyler_k","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_bobinson_george_is","kind":"abstention","rule":"G5","person_id":"bobinson_george_is","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_boilvin_nicholas","kind":"downgrade","rule":"G3","person_id":"boilvin_nicholas","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
+  {"identity":"id_brown_mrs_rufus","kind":"abstention","rule":"G5","person_id":"brown_mrs_rufus","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_brown_rufus_b","kind":"downgrade","rule":"G2b","person_id":"brown_rufus","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_caldwell_billy","kind":"downgrade","rule":"G2b","person_id":"caldwell_billy","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_chandler_joseph_m","kind":"downgrade","rule":"G2e","person_id":"chandler_joseph","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},

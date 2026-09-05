@@ -633,6 +633,12 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${(person.merged_from_person_ids || []).length
+        ? `<dt>This card absorbed another</dt><dd>${swatch('attested')}The town carried this person twice. ${
+          (person.merged_from_person_ids || []).map((id) => `<code>${escapeHtml(id)}</code>`).join(' \u00b7 ')
+        } named the same person as this record and is retired into it. The merge asserts nothing the sources did not already say: no arrival, trade, roof or grade moved.${
+          person.merged_from_note
+            ? `<br><span class="res-why">${escapeHtml(person.merged_from_note)}</span>` : ''}</dd>` : ''}
       ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}

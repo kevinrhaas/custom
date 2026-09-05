@@ -596,6 +596,9 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].relationship": ("shown", "words(person.relationship)"),
     "persons[].sex": ("shown", "words(person.sex)"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    "persons[].merged_from_person_ids": ("shown",
+        "(person.merged_from_person_ids || []).map((id) => `<code>${escapeHtml(id)}</code>`)"),
+    "persons[].merged_from_note": ("shown", "escapeHtml(person.merged_from_note)"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
     # for as long as it was unread a letter-list name and a documented tradesman
@@ -789,7 +792,35 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # the census. A refusal is not a permission: the figure stays in the unread bank,
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
+_MERGED_LEDGER_REFUSAL = (
+    "T-0723, the retirement ledger. A person this layer once carried TWICE, and where "
+    "they went: provenance about a record that no longer exists rather than a figure "
+    "about the town, kept so a reader who follows a retired id is not left with nothing. "
+    "The claim itself does reach the visitor, and better — `residents.js` prints the "
+    "merge, its reasoning and the absorbed id on the surviving person's card, beside the "
+    "sources that say the two are one man. A second copy in the manifest would carry "
+    "none of that.")
+
+
 REFUSALS: dict[str, str] = {
+    # T-0723. The retirement ledger in the manifest. The town carried Nelson R. Norton
+    # twice and the duplicate is retired into his card; this block is the half a reader
+    # who follows the RETIRED id can find, and it is provenance about a record that no
+    # longer exists rather than a figure about the town. The claim itself does reach the
+    # visitor — `residents.js` prints the merge, its reasoning and the absorbed id on the
+    # surviving person's card, which is where a reader meets it. A second copy in the
+    # manifest would be the poorer one: no sources, no card, no context.
+    "residents/manifest:_merged_records_doc": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].retired_person_id": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].retired_household_id": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].retired_name": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].into_person_id": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].into_household_id": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].into_name": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].ticket": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].on": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].rule": _MERGED_LEDGER_REFUSAL,
+    "residents/manifest:merged_records[].merge_argument": _MERGED_LEDGER_REFUSAL,
     "residents/manifest:counts.households": (
         "The panel renders one row per household and counts the rows. A tally shown "
         "beside a list it might disagree with is worse than no tally; validate.py holds "
