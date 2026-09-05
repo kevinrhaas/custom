@@ -344,6 +344,6 @@ T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0841 — Name and rule every duplicate: the candidate pass over all 1,404 town cards, a written ruling for every cluster it finds, and the gate that refuses a new unruled one
 T-0842 — Land the merges: fold every card ruled MERGE onto its survivor as a union with redirect stubs, and re-derive the 47 consumer gates the fold moves
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
+
