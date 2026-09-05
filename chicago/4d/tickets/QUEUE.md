@@ -215,7 +215,6 @@ T-0536 — The census_1840 domain declares its 25 read images in its own images[
 # --- building west of the river turns on it. T-0685/T-0686/T-0687 are the bank measurements
 # --- T-0453 left behind when it closed.
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
-T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
@@ -470,3 +469,5 @@ T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second ti
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0820 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
+
+T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
