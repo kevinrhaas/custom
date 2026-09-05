@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:02 AM",
+  "generated_ct": "Sep 5, 2026, 11:27 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13541,7 +13541,7 @@
     },
     {
       "id": "T-0805",
-      "title": "Drain lap 1: the five PRs standing closest to dev, and the three ticket ids minted twice",
+      "title": "Drain lap 1: the six PRs standing closest to dev, and the four ticket ids minted twice",
       "state": "open",
       "epic": "META",
       "requested_by": "owner",
@@ -13581,7 +13581,7 @@
     },
     {
       "id": "T-0807",
-      "title": "Drain lap 3: the site-budget cluster, and the one PR whose conflict is a research claim",
+      "title": "Drain lap 3: the site-budget cluster, the Thompson georeference, and the one PR whose conflict is a research claim",
       "state": "open",
       "epic": "META",
       "requested_by": "owner",
@@ -13601,7 +13601,7 @@
     },
     {
       "id": "T-0808",
-      "title": "The three questions the parked PRs are waiting on: the site budget, kinship, and the planform of record at the forks",
+      "title": "The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked",
       "state": "open",
       "epic": "META",
       "requested_by": "owner",

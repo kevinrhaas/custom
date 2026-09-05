@@ -19,6 +19,9 @@
 #               of PRs that get left open on dev ... add a ticket or tickets to queue in the
 #               correct order to work and close and merge correctly open PRs". T-0803..T-0809
 #               head the file; the band below carries the measurement and his three rulings.
+#   2026-09-05  THE THREE PARKED QUESTIONS ANSWERED — the owner, same session, ruling on the
+#               measurements: keep the 32 MB budget · model kinship as kin[] · Wright 1834
+#               stays the planform of record. Quoted in full in T-0808; no queue line moved.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -52,29 +55,42 @@
 # ---     conflicts on 0 of 21 — that is the whole argument for T-0804.
 # ---   oldest four are 515-672 commits behind and carry bakes · one (#799) is superseded
 # ---   3 ticket ids minted twice across open PRs — each one refuses a merge
-# ---   only 3 of the 14 `hold` PRs are blocked on a real decision (T-0808); the rest were
-# ---     parked on dev's red gate, which is green again since #863 and #889
+# ---   only 3 of the 14 `hold` PRs were blocked on a real decision; the rest were parked
+# ---     on dev's red gate, which is green again since #863 and #889. THE THREE WERE
+# ---     ANSWERED 2026-09-05 (T-0808), so nothing in the backlog now waits on the owner
+# ---     and the drain ends at ZERO open PRs, not two.
 # ---
 # --- THE ORDER IS A DEPENDENCY, NOT A PREFERENCE. T-0803 culls what cannot be saved
 # --- (21 -> 16). T-0804 stops the six build products conflicting, which is what makes
 # --- every lap after the first cheap. T-0805/6/7 are three laps of four to five PRs,
 # --- landed as units the way #880 and #891 landed theirs — one at a time loses ground,
 # --- because a merge lap costs more wall-clock than the interval between merges.
-# --- T-0808 is the owner's three answers; two PRs cannot move without them. T-0809 is
+# --- T-0808 carries the owner's three answers into the tickets that asked them. T-0809 is
 # --- why the pile formed and is the only ticket here that stops it re-forming.
+# ---
+# --- LAP SIZES AFTER THE RULINGS: T-0803 culls 5 (21 -> 16) · lap 1 six PRs (-> 10) ·
+# --- lap 2 five (-> 5) · lap 3 five (-> 0). #839 joins lap 1 beside #822, which writes
+# --- the note its kin[] rows cite; #886 joins lap 3, mergeable as it stands because its
+# --- own acceptance was `nothing moves` and the ruling is that nothing does.
 # ---
 # --- OWNER RULINGS TAKEN IN THE SAME SESSION, so the runs do not re-ask:
 # ---   the stale four: "close them, re-queue the tickets" — their tickets all read open
 # ---     on dev, so nothing is lost
 # ---   the lane rate: drop custom to slices: 2 in polecat-platform's focus.json
-# ---   the three parked questions: one decision ticket, answered together
+# ---   the three parked questions, ANSWERED IN FULL the same day and quoted in T-0808:
+# ---     the site budget — "keep 32, land #836, rank T-0727 next"; the 1.31 MB duplicate
+# ---       changelog is the whole fix, and the budget stays because it is what found it
+# ---     kinship — YES, the household-level kin[] block #839 built: graded, reciprocal,
+# ---       legal only against declared inverses
+# ---     the forks — WRIGHT 1834 STAYS the planform of record, nothing moves; and
+# ---       thompson_plat_1830.json's declared +/-20 m is corrected to the 27-60 m measured
 
 T-0803 — Close the five PRs dev has outrun or superseded, and put their tickets back in play
 T-0804 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
-T-0805 — Drain lap 1: the five PRs standing closest to dev, and the three ticket ids minted twice
+T-0805 — Drain lap 1: the six PRs standing closest to dev, and the four ticket ids minted twice
 T-0806 — Drain lap 2: the five research and cohort PRs, oldest first
-T-0807 — Drain lap 3: the site-budget cluster, and the one PR whose conflict is a research claim
-T-0808 — The three questions the parked PRs are waiting on: the site budget, kinship, and the planform of record at the forks
+T-0807 — Drain lap 3: the site-budget cluster, the Thompson georeference, and the one PR whose conflict is a research claim
+T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
