@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import math
 import re
@@ -153,6 +154,10 @@ WIDE_RANGE_YEARS = 12
 # and is not an answer, and folding either into a ticket about a dwelling on Lake Street
 # would be two units in one revert.
 SITE_BUDGET_MB = 36
+# Warn at 90 % of it. See run_site_check for why this band exists (T-0722).
+SITE_WARN_FRACTION = 0.90
+# Identical files smaller than this are not worth a merge refusal (T-0722).
+SITE_DUPE_FLOOR = 64 * 1024
 
 CONFIDENCE = ("attested", "inferred", "reconstructed")
 SLUG = re.compile(r"^[a-z0-9_]+$")
@@ -5461,12 +5466,50 @@ def run_site_check(rep: Report) -> None:
     if not site.exists():
         rep.note("site check: nothing published yet")
         return
-    total = sum(p.stat().st_size for p in site.rglob("*") if p.is_file())
+    files = [p for p in site.rglob("*") if p.is_file()]
+    total = sum(p.stat().st_size for p in files)
     mb = total / (1024 * 1024)
     if mb > SITE_BUDGET_MB:
         rep.error("site", f"published tree is {mb:.1f} MB, over the {SITE_BUDGET_MB} MB budget — "
-                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean")
-    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget")
+                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean. "
+                          f"`python3 tools/site_budget.py` says where the bytes are (T-0722)")
+    elif mb > SITE_BUDGET_MB * SITE_WARN_FRACTION:
+        # A budget with no slack fails the NEXT PR either way, and until T-0722
+        # nothing said so until it was already too late: dev reached 31.999 MB of
+        # 32 in silence, and the run that discovered it was a run whose finished
+        # work could not merge. This band is the warning that was missing — it
+        # cannot stop a merge, and it is not meant to; it is meant to reach the
+        # queue while there is still room to answer it.
+        rep.warn("site", f"published tree is {mb:.2f} MB — {100 * mb / SITE_BUDGET_MB:.0f} % of the "
+                         f"{SITE_BUDGET_MB} MB budget, {SITE_BUDGET_MB - mb:.2f} MB left. Print "
+                         f"`python3 tools/site_budget.py` and open a ticket before it is a wall")
+    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget "
+             f"({SITE_BUDGET_MB - mb:.2f} MB headroom)")
+
+    # THE SAME BYTES, SHIPPED TWICE — T-0722. The mirror carried the 1.31 MB
+    # changelog under two URLs for as long as both paths existed, which is 4.1 % of
+    # the budget spent on a copy, growing at twice the rate of the record. Nothing
+    # noticed, because the only question ever asked of this tree was its total.
+    #
+    # A duplicate is not a judgement call the way a large file is: one of the two is
+    # the file and the other is waste, and the answer is always a re-export, a
+    # redirect or a deletion. So this refuses rather than warns. The floor keeps it
+    # about payload rather than about tidiness — small identical files (an empty
+    # index, a shared stub) are not what this is for.
+    by_hash: dict[str, list[Path]] = {}
+    for f in files:
+        if f.stat().st_size < SITE_DUPE_FLOOR:
+            continue
+        by_hash.setdefault(hashlib.sha256(f.read_bytes()).hexdigest(), []).append(f)
+    for paths in by_hash.values():
+        if len(paths) < 2:
+            continue
+        size = paths[0].stat().st_size
+        names = ", ".join(sorted(p.relative_to(site).as_posix() for p in paths))
+        rep.error("site", f"{len(paths)} files in the published tree are byte-identical at "
+                          f"{size / 1024:.0f} KB each — {names}. That is "
+                          f"{size * (len(paths) - 1) / 1048576:.2f} MB of the budget spent on a "
+                          f"copy. Publish one and re-export or redirect the others (T-0722)")
     # Only page directories need an index.html; asset and data directories are
     # fetched by explicit path and are never a bare URL a visitor lands on.
     def is_page_dir(d: Path) -> bool:

@@ -43,14 +43,25 @@ const nowIso = new Date().toISOString();
  *    this list and that script cannot drift into two disagreeing copies of one
  *    fact.
  */
+
+import { WALK_SHIM } from './changelog_shim.mjs';
+
+
+/**
+ * Each published path and what belongs at it: the fleet contract URL takes the
+ * file, the walk copy takes the shim above.
+ */
 const MIRRORS = [
-  path.resolve(ROOT, '../../site/chicago/4d/js/changelog.js'),
-  path.resolve(ROOT, '../../site/chicago/4d/walk/js/changelog.js'),
+  { dest: path.resolve(ROOT, '../../site/chicago/4d/js/changelog.js'),
+    bytes: (src) => src },
+  { dest: path.resolve(ROOT, '../../site/chicago/4d/walk/js/changelog.js'),
+    bytes: () => Buffer.from(WALK_SHIM) },
 ];
 /** The lines in publish.sh these mirrors are the twins of. The test pins them. */
 export const PUBLISH_PINS = [
   'cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"',
   'cp -a renderers/web "$SITE/walk"',
+  'node tools/stamp-changelog.mjs --write-mirrors',
 ];
 
 /**
@@ -61,13 +72,36 @@ export const PUBLISH_PINS = [
 function mirrorChangelog() {
   const src = readFileSync(SOURCE);
   const wrote = [];
-  for (const dest of MIRRORS) {
+  for (const { dest, bytes } of MIRRORS) {
     if (!existsSync(path.dirname(dest))) continue;   // never published: leave it that way
-    if (existsSync(dest) && readFileSync(dest).equals(src)) continue;
-    writeFileSync(dest, src);
+    const want = bytes(src);
+    if (existsSync(dest) && readFileSync(dest).equals(want)) continue;
+    writeFileSync(dest, want);
     wrote.push(path.relative(path.resolve(ROOT, '../..'), dest));
   }
   return wrote;
+}
+
+/**
+ * `--write-mirrors`: install both published forms and stop, without touching the
+ * source. This is `tools/publish.sh` calling the tool that OWNS the shim rather
+ * than keeping a second copy of it in a heredoc — two hand-kept copies of one
+ * fact is the drift PUBLISH_PINS exists to catch, and not having a second copy
+ * is better than catching it.
+ *
+ * It writes unconditionally, which the stamp path deliberately does not: publish
+ * IS the writer of the mirror, so there is nothing here to launder. The
+ * anti-laundering rule guards the STAMP path, where a blanket refresh would hide
+ * a mirror somebody else made stale from check_published.
+ */
+if (process.argv.includes('--write-mirrors')) {
+  const src = readFileSync(SOURCE);
+  for (const { dest, bytes } of MIRRORS) {
+    if (!existsSync(path.dirname(dest))) continue;
+    writeFileSync(dest, bytes(src));
+    console.log(`   changelog.js published to ${path.relative(path.resolve(ROOT, '../..'), dest)} (T-0722)`);
+  }
+  process.exit(0);
 }
 
 function ctAlias(iso){
