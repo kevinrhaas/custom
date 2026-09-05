@@ -149,13 +149,15 @@
       "person_id": "legg_gregory_e",
       "name": "Gregory E. Legg",
       "stratum": "letter_list_only_uncertain",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [
         "1834-04-16"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1839",
+        "st_cyr_register_ichr_v4"
       ]
     },
     {
@@ -190,13 +192,14 @@
       "person_id": "vanderbogart_h",
       "name": "H. Vanderbogart",
       "stratum": "letter_list_only_uncertain",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [
         "1835-05-20"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ]
     },
     {
@@ -250,7 +253,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_democrat_1833_11_26"
+        "chicago_democrat_1833_11_26",
+        "isa_public_domain_land_tract_sales"
       ]
     },
     {
@@ -258,13 +262,14 @@
       "person_id": "doolittle_ehjah",
       "name": "Ehjah Doolittle",
       "stratum": "letter_list_only_present",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "present",
       "letter_list_returns": [
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ]
     },
     {
@@ -458,7 +463,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "isa_public_domain_land_tract_sales"
       ]
     },
     {

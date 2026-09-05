@@ -96,6 +96,14 @@
      "fergus_chicago_directory_1839",
      "fergus_chicago_directory_1843",
      "fergus_historical_series_26_29"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — andreas_1884_v1, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   },

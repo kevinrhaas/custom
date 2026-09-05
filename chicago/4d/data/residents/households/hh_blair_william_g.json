@@ -112,9 +112,10 @@
     ],
     "candidate_ids": [
      "cand_william_g_blair_of_winnebago_county__blair_william_g"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,

@@ -596,7 +596,7 @@
     ],
     "person_id": "chapman_chas_h",
     "household_id": "hh_chapman_chas_h",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null,
     "could_carry": [
@@ -956,7 +956,7 @@
     ],
     "person_id": "simons_e",
     "household_id": "hh_simons_e",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null,
     "could_carry": [
@@ -980,7 +980,7 @@
     ],
     "person_id": "rogers_edward_a",
     "household_id": "hh_rogers_edward_a",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null,
     "could_carry": [
@@ -2884,7 +2884,7 @@
     ],
     "person_id": "cole_parker_m",
     "household_id": "hh_cole_parker_m",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null,
     "could_carry": [

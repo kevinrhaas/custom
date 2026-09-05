@@ -51,7 +51,7 @@
    "id": "mack_stephen",
    "name": "Stephen Mack",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-01",
@@ -76,7 +76,9 @@
     "evidence_for": "forenames agree initial for initial: entry 'Stephen Mack' against resident 'Stephen Mack'",
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1c"
    },
    "civic_evidence": [
     {
@@ -99,8 +101,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

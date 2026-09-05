@@ -102,9 +102,10 @@
     ],
     "candidate_ids": [
      "cand_honor_gratien_joseph_bailly_de_messein__bailly_joseph"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,
