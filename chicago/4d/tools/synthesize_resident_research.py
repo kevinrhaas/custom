@@ -268,6 +268,9 @@ def promote(person, hh, item):
     # description of the BOOK, not of the person: Norris 1844 was printed by Ellis &
     # Fergus and the St Cyr register was kept by a priest, and scanning those citations
     # gave Gregory E. Legg the occupation "priest" and B. S. Morris "printer" (T-0510).
+    # Cohort 13 found the same defect independently and on two other people: the St Mary's
+    # register made Josette Beaubien a priest, and a directory made William Hanford Adams
+    # a printer (T-0508).  Neither was ever committed.
     own = item_text(item).lower()
     for pat, occ in OCCUPATIONS:
         if re.search(pat, own):
@@ -522,7 +525,15 @@ def main():
     for pid,item in sorted(research.items()):
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
-        p,hh=persons[pid]; p["resident_research"]=research_block(item)
+        p,hh=persons[pid]
+        # MERGE, DO NOT CLOBBER (T-0508).  This block is co-owned: the synthesis writes the
+        # outcome and its evidence, and mint_civic_residents.py --regrade writes `refusals`
+        # onto the same key (T-0515/T-0699) — a standing downgrade the ladder declined to
+        # apply, which is a ruling and not a restatement.  Assigning a fresh dict deleted
+        # 143 of them the first time this pass was re-run after that ticket landed, in files
+        # this cohort does not even touch.  Keys this function derives still win.
+        merged=dict(p.get("resident_research") or {}); merged.update(research_block(item))
+        p["resident_research"]=merged
         if p.get("letter_list_only"):
             if outcome in CORROBORATED:
                 p["grade"]="attested"; p.pop("resident_subtype",None); p["sources"]=list(dict.fromkeys((p.get("sources") or [])+independent(item)))
