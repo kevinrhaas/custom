@@ -10913,7 +10913,7 @@ for (const [label, viewport, touch] of [
           chip: document.getElementById('btn-pace')?.dataset.pace };
       }
       const slider = api.hud.settings.speed;
-      // T-0819: each pace has its own slider, and the walker's WALK follows the
+      // T-0823: each pace has its own slider, and the walker's WALK follows the
       // one for the pace in force. Read the three stored values, each slider's
       // ceiling, and what the readout SAYS as the horse's slider is dragged.
       const sliders = { walk: api.hud.settings.speed, wagon: api.hud.settings.wagonSpeed, horse: api.hud.settings.horseSpeed };
@@ -10957,7 +10957,7 @@ for (const [label, viewport, touch] of [
       && travelUi.chosen.on === 'horse' && travelUi.chosen.checked === 'horse'
       && travelUi.restored.stored === 'instantly' && travelUi.restored.mode === 'instantly',
       `${JSON.stringify(travelUi.chosen)} -> ${JSON.stringify(travelUi.restored)}`);
-    // T-0819 RESTATED, NOT WEAKENED. The horse's 6.5/11 and the wagon's 3.6 were
+    // T-0823 RESTATED, NOT WEAKENED. The horse's 6.5/11 and the wagon's 3.6 were
     // constants; each pace now has its own slider, so the claim is that WALK
     // follows THAT pace's stored value — sprint = value × factor (2.28 on foot,
     // 1 by wagon, 1.7 in the saddle) capped at the slider's top — and the seats
@@ -11000,7 +11000,7 @@ for (const [label, viewport, touch] of [
     // on-street share depends on it (REQUESTS-travel §4: south_water 100 %,
     // the forks 47 % — the forks sit off any street). `streets.status()` is
     // null off-street, so the read is guarded.
-    // T-0820: every arrival — a ride, a flight, an instant Go to — ends at the
+    // T-0824: every arrival — a ride, a flight, an instant Go to — ends at the
     // framing distance for THAT building and with the whole of it in frame. The
     // probe projects the footprint's four extreme ground points and the ridge
     // through the live camera; all five must sit inside NDC ±0.95.

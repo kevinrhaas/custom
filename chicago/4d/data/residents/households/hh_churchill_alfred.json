@@ -68,19 +68,20 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Cook County history places an Alfred Churchill on Flag Creek and in an 1836 county political meeting. Exact name and Cook County geography are strong, but no source directly links him to the earlier letter.",
-    "evidence_against": "Hinterland residence and no explicit letter linkage.",
+    "evidence_against": "Surname only, in directories, Newberry index — each a committed refusal on the forename.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
      "goodman_history_cook_county_early"
     ],
     "candidate_ids": [
      "cand_alfred_churchill_of_flag_creek__churchill_alfred"
-    ]
+    ],
+    "summary": "No independent bridge; see the ledger."
    }
   }
  ],

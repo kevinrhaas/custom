@@ -1102,7 +1102,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       `;
       root.removeAttribute('hidden');
       // On a phone the sheet takes the lower screen and the building is framed into
-      // the strip above it (T-0820); the map and compass would cover that strip.
+      // the strip above it (T-0824); the map and compass would cover that strip.
       document.documentElement.classList.add('card-open');
       root.scrollTop = 0;
       return true;

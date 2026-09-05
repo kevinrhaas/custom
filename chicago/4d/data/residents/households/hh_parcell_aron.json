@@ -68,15 +68,29 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Aron Parcell and Aaron Parcel are reciprocal duplicate candidates. The spelling and shared post-office context are suggestive but insufficient to merge.",
+    "evidence_for": "A same-name lead, unasserted: cand_parcel_parcell_same_hand.",
     "evidence_against": "Different return dates and no linking record.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
-     "cand_aaron_parcel_letter_list_record__parcell_aron"
+     "cand_parcel_parcell_same_hand"
+    ],
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ],
+    "candidates": [
+     {
+      "id": "cand_parcel_parcell_same_hand",
+      "asserted": false,
+      "basis": "Two post-office readings one letter apart in the same list family.",
+      "conflicts": [
+       "Nothing outside the letter lists names either spelling; collapsing them asserts an identity no source states."
+      ]
+     }
     ]
    }
   }

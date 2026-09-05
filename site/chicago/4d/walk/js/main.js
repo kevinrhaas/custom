@@ -1450,7 +1450,7 @@ async function boot() {
   api.router = router;
 
   /**
-   * Where the last arrival stood (T-0820). While its card is up the building is
+   * Where the last arrival stood (T-0824). While its card is up the building is
    * framed into the free part of the screen; when the card closes and the
    * visitor has not moved, the look swings back to centre the building, so the
    * crosshair is on it and the view is the plain one.
@@ -1847,7 +1847,7 @@ async function boot() {
 
   /** Stand back and look at a structure — used by anchors and by the harness. */
   /**
-   * THE ONE FRAMING RULE (T-0820). Where you stand when you arrive at a building
+   * THE ONE FRAMING RULE (T-0824). Where you stand when you arrive at a building
    * — by an instant Go to, at the end of a ride, or at the end of a flight — so
    * that the whole of it is in view: from its front, at the distance that fits
    * its width across the horizontal field of view and its height within the

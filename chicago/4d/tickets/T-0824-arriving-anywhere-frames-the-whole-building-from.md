@@ -1,5 +1,5 @@
 ---
-id: T-0820
+id: T-0824
 title: Arriving anywhere frames the whole building from its front and opens its card
 state: done
 epic: RENDERING
@@ -36,4 +36,4 @@ there" from a person's card each end within 2.5 m of `api.framing(id).distance` 
 card open AND the footprint's four extreme ground points and the ridge project inside the
 frame (NDC ±0.95); both viewports green, zero page errors.
 
-Claimed together with T-0819; ships in one PR into dev on the owner's instruction.
+Claimed together with T-0823; ships in one PR into dev on the owner's instruction.

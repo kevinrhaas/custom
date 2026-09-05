@@ -1,7 +1,7 @@
 # STATUS
 
 
-## Shipped 2026-09-05 — T-0819, T-0820: a speed slider per pace, and a framed arrival
+## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
 
 The owner, in session: three speed sliders "like you have for walk speed", ceilings "like
 walk at 20 mph and horse gallop at some high number like 60 mph", gait names as the slider

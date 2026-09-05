@@ -1,5 +1,5 @@
 ---
-id: T-0819
+id: T-0823
 title: Walk, wagon and horse each get a speed slider with a named gait, up to 20, 30 and 60 mph
 state: done
 epic: RENDERING
@@ -39,4 +39,4 @@ and "the three pace sliders top out at 20, 30 and 60 mph and name the gait as th
 (maxes 8.94 / 13.41 / 26.82; dragging the horse's slider paints "canter", "gallop", "beyond any
 horse · 60.0 mph" and sets WALK 26.82 / 26.82); both viewports green, zero page errors.
 
-Claimed together with T-0820; ships in one PR into dev on the owner's instruction.
+Claimed together with T-0824; ships in one PR into dev on the owner's instruction.

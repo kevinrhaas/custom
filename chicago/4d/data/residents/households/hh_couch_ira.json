@@ -81,16 +81,19 @@
    "note": "1 JULY 1835 FALLS SQUARELY INSIDE HIS TENURE, on two sources that do not disagree: chicagology's 1874 letter has him becoming proprietor in 1834, and Andreas has him running the house until 1836. FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Ira Couch,” (f1839_v0087, printed page 41, ward 1, voting for William B. Ogden). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Couch' folds to the same string as the 1837 entry's, and the given name of both begins I. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "Chicago History Museum and WTTW independently connect Ira Couch to the Tremont House. Later summaries differ on when management began, so Andreas's earlier 1834 evidence remains qualified rather than replaced.",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Independent of the post office in books, 1840 census, directories and more.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicagology_prefire021",
      "chm_ira_couch_portrait",
-     "wttw_ira_couch"
-    ]
+     "wttw_ira_couch",
+     "andreas_1884_v1"
+    ],
+    "summary": "Independently corroborated; confirmed, not moved."
    }
   },
   {
@@ -114,19 +117,23 @@
    "note": "A REAL, NAMED MAN WHOSE PRESENCE ON THE SCENE DATE IS THE RECONSTRUCTED PART. Andreas names him twice - as one of 'the Couch brothers' who bought the property and as the brother who took control in 1836 - and quotes him directly on how crowded the house was in its early days ('every available space of floor room' occupied at night). That he was living at Chicago in July 1835 rather than joining later is this project's reading of a joint purchase, not a statement in the source. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Couch, James, | 1836, | New York. | 79 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "Later Tremont histories identify James Couch as Ira Couch's brother and hotel partner, but place the brothers' hotel operation after 1835. The exact-name candidate is strong while the current scene-date role needs documentary adjudication.",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Independent of the post office in directories, county histories, Newberry index and more.",
     "evidence_against": "Reviewed histories place the Couch hotel operation after the 1 July 1835 scene date.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "chicagology_prefire127"
+     "andreas_1884_v1",
+     "calumet_club_early_chicago_1879",
+     "chicagology_prefire021",
+     "fergus_chicago_directory_1839"
     ],
     "candidate_ids": [
      "cand_james_couch_later_tremont_house_proprietor__couch_james"
-    ]
+    ],
+    "summary": "Independently corroborated; confirmed, not moved."
    }
   }
  ],

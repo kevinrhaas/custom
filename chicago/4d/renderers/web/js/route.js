@@ -719,7 +719,7 @@ export function createRouter({
   /**
    * A free standing point in front of a building. `distance` (metres from the
    * centre) is the caller's when given — main.js's framing rule computes the one
-   * that fits the whole building in view (T-0820) — else the old stand-off,
+   * that fits the whole building in view (T-0824) — else the old stand-off,
    * `max(8, radius + 5)`.
    */
   function standOff(id, centre, radiusM = 0, { distance = null } = {}) {

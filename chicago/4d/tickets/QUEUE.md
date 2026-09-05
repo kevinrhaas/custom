@@ -16,7 +16,7 @@
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
 #   2026-09-05  pace sliders + framed arrival — the owner, in session: "issue this as a ticket … and then
-#               work it directly". T-0819, T-0820 head the file, claimed together in one PR.
+#               work it directly"; two owner tickets, claimed and closed together in one PR (#907).
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -33,60 +33,6 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
-
-# --- OWNER ASKS 2026-09-05 — a speed slider per pace with named gaits (20/30/60 mph ceilings), and
-# --- every arrival framing the whole building from its front with the card open.
-
-# --- ==========================================================================
-# --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05
-# --- ==========================================================================
-# --- Verbatim: "we have a whole lot of PRs that get left open on dev, and while we are
-# --- working them there are so many, can you add a ticket or tickets to queue in the
-# --- correct order to work and close and merge correctly open PRs?"
-# ---
-# --- MEASURED 16:00Z on dev at 8cd39ed3: 21 PRs open, 21 of 21 CONFLICTING, and the
-# --- conflict the same six GENERATED files every time — site walk/index.html, both
-# --- tickets.json, build.json, tickets/BOARD.md (21 of 21) and dev-smoke-state.json
-# --- (15 of 21). changelog.js, which HAS a driver, conflicted on 0 of 21. That contrast
-# --- is the whole argument for T-0813.
-# ---
-# --- WHAT HAPPENED IN THE NINETY MINUTES AFTER, and it is the finding rather than a
-# --- footnote. This band was written assuming runs would have to land those PRs in laps.
-# --- They did not need to. T-0815 closed five PRs dev had outrun (#799 superseded by
-# --- #816; #432, #562, #599, #601 between 515 and 672 commits behind, carrying bakes) —
-# --- and then the LANE DRAINED ITSELF, merging #892, #836, #839, #876, #899, #868, #898,
-# --- #801 and #901 with no help at all, the moment #836 took the published tree off the
-# --- 32 MB wall and dev's gate went green. It also replaced two of its own stale PRs with
-# --- fresher ones on the same tickets (#865 by #901, #835 by #902). 21 open at 16:00Z,
-# --- 8 by 17:40Z.
-# ---
-# --- SO THE BINDING CONSTRAINT WAS NEVER "NOBODY IS MERGING". It was two stop-the-world
-# --- faults — a full byte budget and a red gate — plus a janitor that can see neither.
-# --- The lap tickets stay because a backlog will re-form; T-0813 and T-0809 are the two
-# --- that matter: stop the six build products conflicting, and make the janitor merge the
-# --- base before it gates and REPORT a PR it cannot merge instead of skipping it silently.
-# ---
-# --- AND THE COST OF LANDING THIS ONE BAND IS ITS OWN EVIDENCE. Five id restamps against
-# --- a moving dev — T-0803, T-0804, T-0805, then T-0812, then T-0818 — because parallel
-# --- slices draw ids from one counter and a claim only becomes visible when its PR merges.
-# --- Three merge laps, every one of them conflicting on the same three build products and
-# --- on nothing else. And the QUEUE driver dropped this band on EVERY lap, because its
-# --- rule is "the side that RE-ORDERED wins" and a branch adding a band at the top loses
-# --- it each time. All three are T-0813's to fix.
-# ---
-# --- OWNER RULINGS TAKEN IN THE SAME SESSION, so no run re-asks (all three in T-0808):
-# ---   the stale four: "close them, re-queue the tickets" — done, T-0815, PR #900
-# ---   the lane rate: custom 5 -> 2 slices, merged as polecat-platform#157
-# ---   the site budget: keep 32, land #836 (landed), rank T-0727 next
-# ---   kinship: YES, the household-level kin[] block #839 built (landed on dev)
-# ---   the forks: WRIGHT 1834 STAYS the planform of record, nothing moves
-
-T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
-T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
-T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
-T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
-T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
@@ -198,7 +144,6 @@ T-0693 — Edward Richards Allen's card says occupation none_recorded while the 
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
-T-0508 — 237 named residents have no research row: cohort 13 of 79
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
@@ -472,3 +417,12 @@ T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second ti
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
+T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
+T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
+T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
+T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
+T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
+T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
+T-0820 — A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
+T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted

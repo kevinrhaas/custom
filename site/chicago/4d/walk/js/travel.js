@@ -60,7 +60,7 @@ const TAU = Math.PI * 2;
  */
 export const PACES = {
   instantly: { label: 'Instantly', hint: 'straight there, as before' },
-  // Each ground pace has its own slider (T-0819): `settingKey` names the stored
+  // Each ground pace has its own slider (T-0823): `settingKey` names the stored
   // value, `defaultSpeed` is what a fresh visitor gets, `maxSpeed` is the slider's
   // ceiling — 20, 30 and 60 mph, the owner's figures — and `sprintFactor` is what
   // Shift does to it (a run on foot, nothing on a wagon, a gallop on a horse),
@@ -245,7 +245,7 @@ export function createTravel({
     if (target.kind === 'structure') {
       const centre = structurePosition?.(target.id);
       if (!centre) return null;
-      // Where a ride ends is where the building is framed whole (T-0820): the
+      // Where a ride ends is where the building is framed whole (T-0824): the
       // same point an instant Go to stands you at, so the two cannot disagree.
       const framed = standFor?.(target.id);
       if (framed && Number.isFinite(framed.e) && Number.isFinite(framed.n)) return { e: framed.e, n: framed.n };
@@ -414,7 +414,7 @@ export function createTravel({
     let pitchOff = 0;
     if (r.kind === 'structure') {
       point = focusPoint?.(r.id) ?? null;
-      // The framing rule's offsets (T-0820): the card opens on arrival and the
+      // The framing rule's offsets (T-0824): the card opens on arrival and the
       // building should sit centred in the part of the screen it leaves free.
       const f = standFor?.(r.id);
       yawOff = (f?.yawOffsetDeg ?? 0) * DEG;

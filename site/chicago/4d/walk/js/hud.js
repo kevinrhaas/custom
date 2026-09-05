@@ -44,7 +44,7 @@ const DEFAULT_SETTINGS = {
   // is whether the Go to list shows the reconstructed roofs (off by default —
   // the owner's ruling). `headBob`: the rider's eye moves with the horse's gait.
   pace: 'walk', travelMode: 'instantly', headBob: true, gotoReconstructed: false,
-  // The wagon's and the horse's own speeds (T-0819); `speed` above is the walk's.
+  // The wagon's and the horse's own speeds (T-0823); `speed` above is the walk's.
   wagonSpeed: 3.6, horseSpeed: 6.5,
 };
 
@@ -418,7 +418,7 @@ export function createHud({
     return paint;
   }
   // Each pace's slider names the gait as it moves — "trot · 8.1 mph" — because a
-  // number alone says nothing about what a horse is doing at it (T-0819).
+  // number alone says nothing about what a horse is doing at it (T-0823).
   const gaitReadout = (pace) => (v) => `${gaitName(pace, v)} · ${formatSpeed(v, settings.units)}`;
   const paintSpeed = wireRange('s-speed', 'v-speed', 'speed', gaitReadout('walk'));
   const paintWagon = wireRange('s-wagon-speed', 'v-wagon-speed', 'wagonSpeed', gaitReadout('wagon'));
