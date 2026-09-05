@@ -122,7 +122,6 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed; each puts something in
 # --- the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
@@ -331,3 +330,4 @@ T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0778 — Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
 T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
+T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
