@@ -2941,19 +2941,36 @@ def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
         idx["households"][0]["head"] = "somebody_else"
     rep = _run_residents([_resident_household()], index_patch=bad_head)
     check("a manifest head disagreeing with the record is an error",
-          any("head in the manifest" in e for e in rep.errors), rep.errors)
+          any("head 'somebody_else' should be" in e for e in rep.errors), rep.errors)
 
     def bad_count(idx):
         idx["counts"]["persons"] = 99
     rep = _run_residents([_resident_household()], index_patch=bad_count)
     check("a manifest person count disagreeing with the records is an error",
-          any("counts.persons" in e for e in rep.errors), rep.errors)
+          any("persons 99 should be" in e for e in rep.errors), rep.errors)
 
     def bad_grades(idx):
         idx["households"][0]["grades"] = {"attested": 7}
     rep = _run_residents([_resident_household()], index_patch=bad_grades)
     check("a manifest grade tally disagreeing with the record is an error",
-          any("grades" in e and "disagrees" in e for e in rep.errors), rep.errors)
+          any("grades {'attested': 7} should be" in e for e in rep.errors), rep.errors)
+
+    # T-0715: drift is ONE fault — a file that was not rebuilt — and it now reads
+    # as one error naming the rebuild, however many rows and counts are wrong.
+    # It used to read as one error per row plus three more for the counts, which
+    # is how #797's single stale index arrived as 19 separate complaints.
+    def all_wrong(idx):
+        idx["households"][0]["head"] = "somebody_else"
+        idx["households"][0]["division"] = "nowhere"
+        idx["households"][0]["persons"] = 42
+        idx["counts"]["persons"] = 99
+    rep = _run_residents([_resident_household()], index_patch=all_wrong)
+    drift = [e for e in rep.errors if "index.json disagrees with the household records" in e]
+    check("four disagreements are one error, not four", len(drift) == 1, rep.errors)
+    check("and that error names the rebuild that fixes it",
+          bool(drift) and "tools/rebuild_resident_index.py" in drift[0], rep.errors)
+    check("and says how many places disagree",
+          bool(drift) and "in 4 place(s)" in drift[0], rep.errors)
 
     def short_precision(idx):
         idx["vocabulary"]["arrival_precision"] = ["day", "year"]
