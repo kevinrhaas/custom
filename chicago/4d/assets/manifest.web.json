@@ -1,5 +1,5 @@
 {
-  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp \u2014 mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP \u2014 a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
+  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp — mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP — a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
   "written_by": "tools/web_derivatives.sh",
   "masters": {
     "bates_auction_room__frame_1834.glb": "1dafb0e00eba6ecb46d137b9e70fd6d0d66f06dfc8d31ec1c15dc458651b8592",
@@ -189,7 +189,7 @@
     "recon_1835_blk_south_water_dearborn_c3_02__inferred_1835.glb": "1437abb41b7b951c90e09e61cc98e43149713080b5f3e53328e3b019647818ee",
     "recon_1835_blk_south_water_dearborn_d1_05__inferred_1835.glb": "9eda22c3979c5f66d4ef6abc06e010670c75ac682273b00efee82cad133102cf",
     "recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb": "b7939c825388565a5c0dce56b5e23aa0e3d67d6599a46b4afde5eba4550b33cf",
-    "recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb": "77359067a58b41c589eb8a0f57768c8e90605c40ad0c756a01be17711a6a9952",
+    "recon_1835_blk_south_water_dearborn_h1_03__inferred_1835.glb": "a5afbcf86bdeb79024dd0e309d3651aad00979ca4ba9280fe43cc46bee1f3ff5",
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": "43b73c7e3bb6e16d9d3b357c6a3b49558604c8a45aa9772224cdbbb6feba7253",
     "recon_1835_blk_south_water_franklin_a3_07__inferred_1835.glb": "2ac9f70c8146dd603f2885badd3ec632d7cc323ed6f26079d1339d6c5ba8358e",
     "recon_1835_blk_south_water_franklin_a3_11__inferred_1835.glb": "8fc76a6de71be30a2eab24dd0a91688e91409f335c558461bfb45676b63a07e3",

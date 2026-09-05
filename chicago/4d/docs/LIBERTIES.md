@@ -5151,7 +5151,14 @@ frontage — a South Water Street advertisement in the Chicago American or Democ
 address, or an itemised loss list — would replace an invented unit with a named one on the same
 line, which is what the 665-roof programme's substitution clause exists for.
 **Two of the fourteen were re-dealt on 2026-08-19 (T-0102) and are no longer named above.** `..._dearborn_d5_01` and `..._dearborn_d4_02` were the deep-plan and two-room cottages at the west end of the Dearborn run. The schedule re-deal that put two two-storey stores on the row's east end took those two slots (L143), so the ids no longer name a building and this entry's Covers field can no longer claim them. Nothing above is withdrawn: the twelve that remain still stand exactly as described, and the two that went are described where they went.
-**Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`.
+**The Lake-face roof of `blk_south_water_dearborn` was re-dealt on 2026-09-04 (T-0593) and is
+named above under a new id.** `..._dearborn_d3_03` is now `..._dearborn_h1_03`: the same slot, on
+the same lot, at the same 5.5 m setback and −2.0 m lateral offset, re-dealt out of the D3
+one-room cottage band into H1 because a documented notice calls the house on that lot LARGE
+(**L222**). The position this entry admits is unchanged and invented on the same reasoning, so
+the Covers token follows the id rather than being dropped — unlike the two T-0102 retired in the
+paragraph above, which stopped naming a building at all.
+**Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`.
 **Recorded:** 2026-08-19.
 
 
@@ -8563,7 +8570,15 @@ its written description.
 Related: **L99**, **L100**, **L101** (the three business-front blocks and the worry this
 refutes) · **L148** (the same reading, taken for one instance on Lake at Clark) · **L177** (one
 line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store).
-**Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`
+**The Lake-face cottage this entry moved was re-dealt on 2026-09-04 (T-0593), and the paragraph
+above narrates it under an id that no longer exists.** The swap it describes stands: the D1 log
+dwelling is still at the west end of the South Water run and the roof that took the Lake lot is
+still on the Lake lot, at the cabin's own 5.5 m setback and −2.0 m offset. What changed is the
+family under it — `..._dearborn_d3_03` is now `..._dearborn_h1_03`, out of the D3 one-room
+cottage band and into H1, because a documented notice calls the house on that lot LARGE
+(**L222**). Read "the D3 one-room cottage" above as the roof this entry moved, not as the band it
+now carries; the position claim is unchanged and the Covers token follows the id.
+**Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`
 **Recorded:** 2026-08-27.
 
 ### L188 — Five business-front lots on South Water carry a documented store at the street and anonymous roofs beside and behind it
@@ -10518,4 +10533,76 @@ fence, which this supplies the missing citation for), **L159** (the boards' lett
 (where the no-marks restraint started), **L1** (no people, anywhere), **L180** (Robert
 Kinzie's store and its landing on the west bank). Sources: `bk_afc_018`, `bk_afc_005`, `bk_afc_012`, `bk_afc_003`,
 `bk_afc_013`.
+**Recorded:** 2026-09-04.
+
+### L222 — A documented address re-deals the family under it: the one lot-and-block notice says LARGE, and the town's first H1 answers the word
+**Decision:** the anonymous count-unit seated by the town's one lot-and-block address is
+**re-dealt out of the D3 one-room cottage band and into H1, "Larger one-and-a-half-story
+house"**, because the source that fixes the address also describes the building on the lot and
+this project's roof contradicted it. G. Spring's For-Sale notice — six printings in the
+*Chicago Democrat* between 1834-06-18 and 1834-11-19, four of them legible whole — reads "LOT
+No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street … There is on said lot
+a large **Dwelling-House** and fine well". **L216** seated that address on
+`recon_1835_blk_south_water_dearborn_d3_03`, a 5.36 × 6.38 m one-room frame cottage — the
+smallest dwelling family the 665-roof programme deals — and said in as many words that the
+contradiction was recorded rather than repaired because repairing it was a second
+demonstration with a bake behind it. **This is that demonstration, and it supersedes L216's
+fourth paragraph and nothing else in it.** The roof is now
+`recon_1835_blk_south_water_dearborn_h1_03`, 8.03 × 9.96 m, one and a half storeys.
+
+**What is invented is unchanged, and so is the grade.** That any building stood on this ground,
+that this count-unit is the house the notice advertises, and every dimension of it are
+conjectural exactly as they were under **L92**: "lot 7" is a conjectural line bearing a
+documented number, four lots to a block face is a reading of one block, and the
+counter-clockwise numbering was read off block 18 and counted outward. The seating stays at the
+bottom tier — `confidence` is `const: "reconstructed"` in the schema and
+`tools/lot_addresses.py --check` re-reads the phase and fails if a documented address has
+promoted the roof it lands on. **What changed is only which invention stands there**: one
+bounded by the source instead of one contradicting it.
+
+**Why H1 and nothing above it.** The band is chosen by the lowest rung that answers the
+notice's own two words. `data/reconstruction/1835_family_archetype_crosswalk.json` labels D6
+and every D family below it a *cottage* and D7 a *Small* two-storey house; H1 is the first the
+crosswalk itself calls **larger** and calls a **house**, at 24×30–28×38 ft against the D3
+band's 16×20–18×24. The notice says large and says nothing about storeys, paint, trade or
+wealth, so nothing above H1 — not H2's merchant house, not H3's boarding house — may be read
+out of it. Taking the lowest rung that answers the adjective is the restraint that keeps this
+from being a licence to build the best house a word will bear.
+
+**No total moves, and this is a re-deal rather than an overspend.** The 665-roof programme
+apportions H1's eighteen roofs to the DISTRICTS and not to any block — "a per-unit family mix
+is an apportionment of that district's remainder, not a claim about any block" — so the south
+district's remainder held eight unbuilt H1 before this run and holds seven after it, with the
+displaced D3 going back the other way, thirteen to fourteen. The block still builds six roofs,
+five principal and one ancillary, against the same headroom of six, on the same lots. The
+argument is T-0102's and **L143**'s, made again on different evidence.
+`tools/reconcile_665.py` re-derives it and `tools/check.sh` runs that derivation.
+
+**The household is not re-homed and no person is claimed.** The inferred carpenter's household
+`hh_inf_carpenter_south_17` lived on this roof before the re-deal and lives on it after; the
+occupancy note is the one the inferred-household programme wrote, no name is claimed and no
+figure is drawn. Nor does the re-deal seat the advertiser: `is_the_occupant` and `is_the_owner`
+stay `false` in the ledger, and this is still not "G. Spring's house" — **L216**'s third
+refusal is untouched.
+
+**The town's first H1 is this one.** The family was dealt eighteen roofs in July 1835 and
+instantiated none of them, so the first larger house this reconstruction raises stands where a
+documented notice says a large dwelling-house stood. That is the argument for spending the slot
+here rather than anywhere else the schedule could have put it.
+
+**What this does NOT rule.** It does not license an address to move, resize by hand, re-form,
+promote or people the roof it lands on — `docs/LOT-ADDRESS.md`'s four refusals stand and are
+assertions in `tools/lot_addresses.py --self-test`, and the family band is the ONLY thing a
+source's description may reach. The well is still not drawn (**L216**, T-0592). And the rule is
+written into `docs/LOT-ADDRESS.md` § *When the notice describes the building* so the next
+lot-and-block address inherits it rather than re-arguing it.
+
+**How to resolve:** a deed, an assessment or a canal-commission record naming lot 7 of block 16
+would replace the conjectural line with a recovered one; a measured description of the house
+would replace the band with a dimension and end the reliance on an adjective altogether.
+Related: **L216** (the seating, whose fourth paragraph this supersedes) · **L92** (the anonymous
+roofs' own conjecture) · **L142**, **L187** (the two entries whose Covers tokens follow the
+re-dealt id) · **L143** (the same re-deal argument on this same block) · tickets **T-0593**
+(this), **T-0423** (the seating), **T-0102** (the precedent), **T-0592** (the well).
+**Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
