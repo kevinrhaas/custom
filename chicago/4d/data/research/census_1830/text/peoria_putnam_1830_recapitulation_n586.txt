@@ -1,0 +1,44 @@
+1830 FEDERAL CENSUS — THE RECAPITULATION OF THE DIVISION THAT CONTAINED CHICAGO
+NARA M19, Illinois, reel 24 — Internet Archive item populationsc18300024unit, leaf n586,
+printed page 304. Read off the page image on 2026-09-05 for T-0605.
+
+WHAT THIS LEAF IS. It carries the same printed schedule head as every other leaf of the division
+and NOT ONE head of family. In the names column the enumerator has written five page-total rows
+("Total 1st P.", " 2d ", " 3d ", " 4th ", " 5th "), a division total under a rule, and a
+"Free White Males / do Females" line beneath that. It is the last leaf of the division, and it is
+what proves the names end on n584.
+
+THE FAMILY COLUMN, as read, in the leftmost (county) column against each page row:
+
+  page 1   53
+  page 2   56
+  page 3   88        (see THE DISCREPANCY)
+  page 4   28
+  page 5   22
+  total    199       (the leading figure is written over a flourish; 197 is available)
+
+THE MALE AGE-BAND ROWS, as read, first nine columns, with the enumerator's own corrections shown
+as struck/rewritten:
+
+  page 1   24/25  34/33  23  15  40/39  28/29  13/20  7/4  4/6
+  page 2   37     16     29  21  37     26/27  7      9/8  9/4
+  page 3   20      9      9   2  38     32     11     2    4
+  page 4   16     15     14   8  110    376    13     4    2    1
+  page 5   15      8      8   5  13      4      5     1    1
+  total    112    82/89  83  51  228    127    55     23   14   1
+
+Row 4's fifth and sixth cells are written across their rules and are read here exactly as the ink
+falls ("110", "376"); they are not reconciled and nothing is claimed from them.
+
+WHAT THE ROWS PROVE. Page 1's row carries the SAME six corrections, in the same six cells, as the
+totals row of leaf n576. Page 2's row is the totals row of n578. Page 3's is the totals row of
+n580. Page 5's is the totals row of n584. The division is therefore n576, n578, n580, n582, n584
+(printed pages 299-303) and this leaf; page 4 is n582 by elimination and by its family count of 28,
+which is exactly the number of heads read on it.
+
+THE DISCREPANCY, stated and not resolved. The family column as read sums to 247, not to the 199
+written under it. The five leaves as read carry 55 + 56 + 39 + 28 + 22 = 200 heads of family. Two
+of the recapitulation's five family cells therefore disagree with the leaves they total: page 1
+(53 written, 55 read on n576) and page 3 (88 written, 39 read on n580 by T-0498). A re-count of
+n576 and n580 against this column, cell by cell, is filed as its own ticket; it is NOT settled by
+preferring whichever figure is convenient, and no record in this domain is graded on it.

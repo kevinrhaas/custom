@@ -39,7 +39,7 @@ paper (not by luminance), closes across the unshaded mid-channel, and traces the
 |---|---|---|
 | `river.geojson` → `chicago_river_forks` | water polygon, 70 vertices | `inferred` — planform traced from a tier-1 survey, but a cadastral plat is not a hydrographic one |
 | `river.geojson` → three bank runs | LineStrings, one per division shore | `inferred`, same reason |
-| `hydrology.geojson` → `north_side_slough` | **centreline**, 45 points, 7.1 m drafted width | `documented` for existence and course; `inferred` for width; `conjectural` for depth |
+| `hydrology.geojson` → `north_side_slough` | **centreline**, 45 points, 7.1 m drafted width | `attested` for existence and course; `inferred` for width; `reconstructed` for depth (§1.2) |
 
 The three bank runs are named for the divisions they bound — `north_division_shore`,
 `south_division_shore`, `west_division_shore` — because the divisions *were* defined by the
@@ -50,6 +50,60 @@ refit.
 Every vertex carries the georeferencing reality: **±20 m**. Both 1834 sheets are anisotropically
 stretched (Wright 3.7%), so a global affine cannot do better locally, and the two sheets disagree
 about the forks by 58 m.
+
+### 1.2 The slough's two grades, ruled on the evidence (T-0687)
+
+For a month the committed `hydrology.geojson` and the generator that says it wrote it disagreed
+about two provenance grades, and nothing could see it. `trace_river.py --check` reproduced
+`river.geojson` byte for byte and reported `DIFF` on the hydrology file; the geometry was
+identical to the millimetre and only two strings differed. T-0687 settled which side is right,
+on the evidence rather than on which was newer.
+
+**Width — `inferred`.** `drafted_width_m` is not an assumption: it is twice the interior
+distance transform of the surviving wash fragments, read off this same BPL scan at 0.7115 m per
+map pixel. That is reasoning from evidence about *this particular watercourse*, which is what
+`inferred` means, and it is the same rung the water polygon and the three bank runs traced from
+the same wash already sit on — a width measured inside a polygon cannot honestly be graded below
+the polygon. What it measures is the width **as drafted on a cadastral plat**, not a sounded
+channel, and the note in the file says so.
+
+**Depth — `reconstructed`.** No source gives a depth for this watercourse or any other on the
+town site. One foot is chosen: the shallowest value that still reads as standing water for
+something Wright draws as a continuous channel rather than as marsh. That is invention within
+bounds, which is the definition of `reconstructed` — this project's bottom tier since the
+vocabulary rename, and its word for what the note calls conjectural. `conjectural` is not a
+value in `CONFIDENCE` (`tools/validate.py`: `attested`, `inferred`, `reconstructed`); it
+survives here and in `terrain_spec.json` as prose and as the name of a render channel, not as a
+grade. Grading the depth `conjectural` in a `*_confidence` key was writing a word the vocabulary
+does not have.
+
+So the committed file was right on both counts and the generator had drifted; the fix is in
+`tools/trace_river.py`, no committed grade moved, and no vertex moved — which also means no
+Blender bake, since a `*_confidence` value *is* in the terrain's staleness hash and a `note` is
+not.
+
+**How the drift happened**, because the mechanism will recur. The file was born
+`width: inferred` / `depth: conjectural` under the old `documented`/`derived`/`inferred`
+vocabulary, in which `inferred` was the BOTTOM tier. A hand pass over the JSON
+(`WIP: the confidence vocabulary rename (K16)`) then edited this generated file directly,
+mapping the width up to `derived` and mapping the off-vocabulary `conjectural` onto `inferred`;
+the mechanical rename (`tools/rename_confidence_vocab.py`, which only ever touched `data/`)
+carried both one step further to `inferred` and `reconstructed`. The generator, being Python,
+was never in that pass and was hand-corrected separately and differently. **A generated file
+that gets hand-edited during a migration is the whole fault**, and it is exactly what the file's
+own `_doc` forbids.
+
+**The gate.** The reproduction that would have caught this on the day cannot be a per-commit
+gate: it re-traces the scan, so it needs numpy, scipy and Pillow — which the agent sandbox does
+not carry — and it fetches a 1,120 px IIIF region from Boston Public Library over the network.
+A gate that installs a scientific stack and reaches the internet gets skipped. So the half that
+costs nothing is gated instead: `trace_river.py --check-properties` compares every LITERAL the
+two files carry — envelope, `_doc`, feature ids, kinds, names, grades, sources, the whole note
+as a template around its one measured number, and the static provenance — against the module
+constants the generator writes them from, offline, in milliseconds. `tools/check.sh` runs it.
+It does **not** see a coordinate, a `drafted_width_m`, an affine RMS or the region sha256; those
+still need the deliberate `--check` re-run, and that is the residual cost, stated rather than
+hidden.
 
 ### 1.1 The slough is a centreline, and that is a finding
 

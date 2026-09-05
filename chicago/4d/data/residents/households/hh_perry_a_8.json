@@ -72,13 +72,7 @@
     "outcome": "no_corroboration_yet",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
-    "evidence_for": "Seed Chicago post-office letter-list appearance only.",
-    "evidence_against": "No independent dated Chicago/Cook County identity discriminator was found in the completed open-web sweep.",
-    "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-    "notes": "Open-web exact-name and reasonable spelling/order variants did not produce a reliable dated Chicago/Cook County discriminator beyond the seed letter-list evidence. Negative search is not evidence of nonexistence.",
-    "source_ids": [
-     "chicago_democrat_1833_1835"
-    ]
+    "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist."
    },
    "resident_subtype": "projected_resident"
   }
@@ -126,6 +120,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. The entry names the government reservation — the military ground round the fort — which is a place the town holds and is not a street. This policy positions a home on a street face and has no grammar for a reservation, so it refuses rather than reaching for the nearest street name. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]

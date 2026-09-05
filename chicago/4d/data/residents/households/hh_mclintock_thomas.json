@@ -71,16 +71,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
-    "evidence_for": "Cook County biography places Thomas McClintock Sr. and…",
-    "evidence_against": "Both father and son are Thomas; no disc…",
     "summary": "Cook County biography places Thomas McClintock Sr. and his son Thomas Franklin McClintock in Bachelor's Grove from fall 1833. This is strong family-level Cook County chronology, but two Thomas McClintocks are simultaneously available and the postal item cannot safely identify either one.",
-    "notes": "research-only; full detail in pass_10_findings.json",
     "source_ids": [
      "chicago_democrat_1833_1835",
      "cook_county_mclintock_bachelors_grove"
-    ],
-    "candidate_ids": [
-     "cand_thomas_mcclintock_bachelors_grove"
     ],
     "candidates": [
      {

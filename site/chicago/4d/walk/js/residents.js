@@ -349,7 +349,8 @@ function laterClaimHtml(block, citationsById) {
   };
   return one(block.occupation_later, 'A trade printed against this name')
     + one(block.address_later, 'An address printed against this name')
-    + backProjectionHtml(block.back_projection);
+    + backProjectionHtml(block.back_projection)
+    + residenceBackProjectionHtml(block.residence_back_projection, citationsById);
 }
 
 /**
@@ -399,6 +400,52 @@ function backProjectionHtml(bp) {
   return `<dt>${escapeHtml(label)}</dt>
     <dd>${chip}${escapeHtml(where)}${carried}${clause}
       <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
+}
+
+/**
+ * And the same question asked about a HOME (T-0669), which is a different question and
+ * so gets a different row rather than a wider one.
+ *
+ * `docs/RESIDENCE-BACK-PROJECTION.md` is L218's mechanism aimed at where a man slept:
+ * a street the volume prints as `res` or `bds`, read backwards and carried as the
+ * household's street FACE. It departs from the business rule in two places, and both
+ * are visible here. A home needs no attested trade — everybody the town holds lived
+ * somewhere in it — which is why forty-four of these forty-eight belong to people the
+ * 1835 papers give no trade and the business pass refused before it ever asked about
+ * their houses. And a home never reaches a POINT, not even where the volume prints a
+ * corner: that corner hangs off a street number from a grid 1835 did not have.
+ *
+ * BOTH ROWS CAN APPEAR ON ONE CARD, and that is deliberate. One printed address can
+ * carry two rulings because two policies asked two questions of it, and a card showing
+ * only the second would leave a reader wondering what became of the first.
+ */
+function residenceBackProjectionHtml(rp, citationsById) {
+  if (!rp) return '';
+  const placed = rp.outcome === 'placed';
+  const label = {
+    placed: 'That home address was read backwards, and here is what it reaches',
+    already_better_placed: 'Not read backwards — something better already houses him',
+  }[rp.outcome] || 'That home address was refused, and here is why';
+  // `rp.placement` is always `face` and is read rather than assumed: the day this
+  // policy grows a second unit, the row says so instead of the prose lying.
+  const where = placed
+    ? `${rp.value} — the ${words(rp.placement)}, and nothing narrower`
+    : 'no position taken';
+  const kind = rp.kind
+    ? `<span class="res-chip res-research">${escapeHtml(
+      rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence')}</span>` : '';
+  const carried = rp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(rp.read_back_years))} years back, from ${
+      escapeHtml(String(rp.describes_date))}</span>` : '';
+  const clause = rp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(rp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade, for the reason the row above gives.
+  const chip = placed ? swatch(rp.confidence) : '';
+  const cites = (rp.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${kind}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(rp.note)}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
 /**

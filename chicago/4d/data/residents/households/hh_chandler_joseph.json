@@ -87,7 +87,7 @@
       "regraded_on": "2026-09-04",
       "rule": "G2e",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 2 thing(s) the consolidation did not read — fergus_chicago_directory_1839, resident_research_chandler_cook_history. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — fergus_chicago_directory_1839, isa_public_domain_land_tract_sales, resident_research_chandler_cook_history. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
    }
@@ -136,6 +136,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. The entry names Fort Dearborn — the fort at the river mouth — and not Dearborn Street, which runs south from the river three blocks west of it. The fort IS 1835 ground and the town holds it, but this policy's unit is a street face and a reservation is not one, so the address is refused here rather than resolved onto the wrong grammar. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]

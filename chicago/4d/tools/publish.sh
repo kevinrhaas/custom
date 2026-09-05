@@ -166,9 +166,22 @@ fi
 # site. Until this line existed the whole layer stopped at the repo: ninety-six
 # researched people that a visitor had no way to reach, which reads exactly like
 # work that was never done.
+# PUBLISHED MINIFIED, AND ONLY HERE. The residents layer is 1,380 hand-annotated
+# household records whose notes run to paragraphs, and at indent=1 it was 8.8 MB of
+# the 32 MB the published tree is allowed — the tree measured 31.999 MB on 2026-09-05
+# and the next resident pass of any size could not land. Whitespace is the one thing
+# in it a visitor never reads: the renderer fetches these with response.json(). The
+# authored files under data/residents/ are untouched and stay diff-readable.
 if [ -d data/residents ]; then
   rm -rf "$SITE/data/residents"
   cp -a data/residents "$SITE/data/residents"
+  python3 - "$SITE/data/residents" <<'MINIFY'
+import json, sys
+from pathlib import Path
+for q in Path(sys.argv[1]).rglob("*.json"):
+    q.write_text(json.dumps(json.loads(q.read_text(encoding="utf-8")),
+                            ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+MINIFY
 fi
 
 # The enclosure layer — fence lines, yards and pens, drawn by

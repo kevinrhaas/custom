@@ -68,7 +68,23 @@
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26"
    ],
-   "note": "ONE OF THE TWELVE WHO VOTED FOR INCORPORATION on 5 August 1833 (Andreas prints the poll: 'John W. Wright'), one of the twenty-eight electors five days later, a candidate who took two votes, and one of the nine village citizens founding the First Presbyterian Church on 26 June 1833 and one of its three first elders. Charles Butler met him on his first morning in Chicago in August 1833, at the funeral of a child. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds, and an advertisement in it is a peculiarly good witness: the advertiser was paying for it and his customers had to be able to find him. It is also NINETEEN MONTHS before the scene date, in the town's fastest-changing period, so it is strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835."
+   "note": "ONE OF THE TWELVE WHO VOTED FOR INCORPORATION on 5 August 1833 (Andreas prints the poll: 'John W. Wright'), one of the twenty-eight electors five days later, a candidate who took two votes, and one of the nine village citizens founding the First Presbyterian Church on 26 June 1833 and one of its three first elders. Charles Butler met him on his first morning in Chicago in August 1833, at the funeral of a child. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds, and an advertisement in it is a peculiarly good witness: the advertiser was paying for it and his customers had to be able to find him. It is also NINETEEN MONTHS before the scene date, in the town's fastest-changing period, so it is strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Surname 'Wright' folds to the same string as the entry's, and the given name of both begins J. Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J.",
+    "evidence_against": "'John Wright' at printed page 207 line 17 (33SQ-GYYJ-93G) is NOT 'John S. Wright': The name 'John Wright' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names. L5 name_is_not_unique The surname 'Wright' is in Norris 1844 and no entry under it carries the initial 'J' of 'John Wright'. A surname-only agreement is a refusal. The same volume's obituary list prints 'Wright, John, died September 20, 1810, aged 57' — a death 25 years before the scene date, so that entry is not this man; the 1840 census pair is refused in the repository because 'John Wright' is borne by two people of 1835.",
+    "summary": "Corroborated in a volume printed after the scene date. John Wright agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. The reading enriches the biography and adds no 1835 attestation.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_1843_old_settler_death_notices",
+     "fergus_chicago_directory_1839"
+    ]
+   }
   },
   {
    "id": "wright_john_s",

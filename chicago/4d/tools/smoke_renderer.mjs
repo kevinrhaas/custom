@@ -1822,6 +1822,47 @@ for (const [label, viewport, touch] of [
           mitredJoints: a.streets.stats?.mitredJoints ?? null,
           fannedJoints: a.streets.stats?.fannedJoints ?? null,
           jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
+          // T-0713. THE TWO CHANNELS, censused off the geometry the browser
+          // actually built. `_confidence` is the contract's channel and now
+          // carries the LINE's grade alone, so it decides whether a ribbon
+          // stands; `_trackConfidence` carries the weakest of surface and wear
+          // and is spent only on the worn texture. A vertex census is the only
+          // reading that can tell the two apart from out here, and it is what
+          // would have caught the split being quietly reverted — the whole
+          // platted town going back to dithering as invention while every
+          // node-side test still passed.
+          streetChannels: (() => {
+            const band = (v) => (v >= 0.75 ? 'reconstructed' : v >= 0.25 ? 'inferred' : 'attested');
+            const out = {
+              ribbon: { attested: 0, inferred: 0, reconstructed: 0 },
+              track: { attested: 0, inferred: 0, reconstructed: 0 },
+              meshes: 0, missingTrack: 0, unequal: 0,
+            };
+            a.streets.group.traverse((o) => {
+              const g = o.geometry;
+              const conf = g?.getAttribute?.('_confidence');
+              if (!conf) return;
+              out.meshes += 1;
+              const trk = g.getAttribute('_trackConfidence');
+              if (!trk) { out.missingTrack += 1; return; }
+              if (trk.count !== conf.count) out.unequal += 1;
+              for (let i = 0; i < conf.count; i += 1) out.ribbon[band(conf.getX(i))] += 1;
+              for (let i = 0; i < trk.count; i += 1) out.track[band(trk.getX(i))] += 1;
+            });
+            return out;
+          })(),
+          // ...and the records those channels were built from, so a census that
+          // disagrees with the dataset is reported as the disagreement it is
+          // rather than as a bare count nobody can check.
+          streetGrades: (() => {
+            const out = { attested: [], inferred: [], reconstructed: [], wornInvented: 0 };
+            for (const rec of a.streets.records) {
+              (out[rec.geometry_confidence] ?? out.reconstructed).push(rec.id);
+              if (rec.wear_confidence === 'reconstructed'
+                || rec.surface_confidence === 'reconstructed') out.wornInvented += 1;
+            }
+            return out;
+          })(),
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -1919,19 +1960,34 @@ for (const [label, viewport, touch] of [
     // and compares figure for figure cannot. The residents manifest is fetched here
     // rather than taken off the harness handle because `census.js` reads it directly and
     // nothing puts it on `window`.
+    //
+    // T-0782 rebuilt the card as TWO rows — buildings, then people — and demoted `people
+    // housed` from a headline figure to a placement note under the people row, because
+    // set against the town total it read as population coverage and is nothing of the
+    // kind. So the headline figures are now the two numerators, and the housed count is
+    // asserted where it moved to rather than dropped: it is the number this whole check
+    // exists to keep honest. The two strings the owner asked be struck are asserted
+    // ABSENT, because either of them coming back is a silent regression of the reading.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
       const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      const seg = (sel) => [...(host?.querySelectorAll(sel) || [])].map((el) => el.style.width);
       return {
         visible,
         figures,
         text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        aria: host ? (host.getAttribute('aria-label') || '') : '',
+        note: host ? [...host.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()) : [],
+        bars: host ? host.querySelectorAll('.gc-bar').length : 0,
+        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
+        keys: host ? [...host.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()) : [],
+        gateSub: (document.getElementById('gate-sub')?.textContent || '').trim(),
         box: host ? host.getBoundingClientRect().width : 0,
         data: window.__chicago4d.census,
       };
     });
-    // The third row's figure is not on the harness handle, so it is read off the
+    // The people row's figure is not on the harness handle, so it is read off the
     // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
     // this run is serving, which is the same file the page fetched.
     let residentCounts = null;
@@ -1940,19 +1996,44 @@ for (const [label, viewport, touch] of [
         fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
       ).counts || null;
     } catch { residentCounts = null; }
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
-      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
+    const want = [gateCensus.data?.buildings?.standing, residentCounts?.persons]
+      .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
       `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
       want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Each numerator carries a bar it is a portion of, and the people bar carries the
+    // three grades as segments of the town total — a key alone would let the bar rot.
+    const housed = Number(gateCensus.data?.people?.housed);
+    const byGrade = residentCounts?.by_grade || {};
+    const gradeWant = ['attested', 'inferred', 'reconstructed']
+      .filter((g) => Number.isFinite(Number(byGrade[g])));
+    check(`${label}: both rows carry a completeness bar, the people bar graded`,
+      gateCensus.bars === want.length && gateCensus.grades.length === gradeWant.length
+      && gateCensus.keys.length === gradeWant.length
+      && gradeWant.every((g, i) => gateCensus.keys[i]
+        === `${grouped(Number(byGrade[g]))} ${g}`),
+      `bars=${gateCensus.bars} segments=${JSON.stringify(gateCensus.grades)} keys=${JSON.stringify(gateCensus.keys)}`);
+    // The placement figure survives as a note under the people row, in the committed
+    // data's own number, and never again as a share of the town.
+    check(`${label}: people housed reads as placement, under the people row`,
+      Number.isFinite(housed) && gateCensus.note.length === 1
+      && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
+      && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
+      `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-0782's two strikes, asserted as absences. `structures` was the ready line's
+    // record count, which contradicted the buildings figure below it.
+    check(`${label}: the card drops the projected count and the structures line`,
+      !/projected/i.test(gateCensus.text) && !/projected/i.test(gateCensus.aria)
+      && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
+      `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
     // against the town's own recorded size, both quoted out of the same file.
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     check(`${label}: the gate names both denominators`,
       Number.isFinite(gateCensus.data?.buildings?.target)
       && Number.isFinite(gateCensus.data?.people?.town_total)
@@ -2198,19 +2279,41 @@ for (const [label, viewport, touch] of [
     // fence — the layer knew only posts and horizontal rails until today, and a
     // picket drawn as three rails would pass every count in this file. And a
     // fence at the back of a lot can be invisible from anywhere a visitor stands.
+    //
+    // T-0516: THIRTEEN PLOTS BECAME ONE, and the floor here moved with them because
+    // the twelve were never the town's to keep. Clause 4 of the rule admits a lot on
+    // "a household recorded as living in it", read off the structure record's
+    // `occupants` PROSE — and on 2026-09-02 the owner retired the reconstructed
+    // resident population, so twelve of the thirteen were resting on the prose of
+    // households that no longer exist. A garden behind a house nobody lives in claims
+    // a gardener who does not exist. `generate_dooryard_pickets.py` said so itself,
+    // in a comment naming T-0516 as the cause before T-0516 was worked.
+    //
+    // A floor of ten would now be an assertion about retired people, so it is
+    // replaced rather than lowered — and by something STRONGER than a count. The one
+    // plot that survives is the one lot in this town where the committed household
+    // index carries a real `lives_at`: Elijah Harmon's, on Randolph, which is also the
+    // garden the checks below walk into. Naming it asserts that the rule kept the
+    // EVIDENCED plot and dropped the inferred ones, which a floor of ten never could.
+    // Whether a garden should follow the HOUSE instead of the household is a claim
+    // about the town rather than a bug, and it is the owner's: T-0727 asks him. If he
+    // rules that way this floor rises again, and it should.
     const pickets = await page.evaluate(() => {
       const e = window.__chicago4d.enclosures;
       const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
       return {
         found: !!rec,
         runs: rec?.runs?.length ?? 0,
+        ids: (rec?.runs ?? []).map((r) => r.id),
         type: rec?.form?.fence_type?.value ?? null,
         pales: e?.census?.pales ?? 0,
       };
     });
     check(`${label}: the town's house lots carry generated picket gardens`,
-      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
-      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
+      pickets.found && pickets.runs >= 1 && pickets.type === 'picket'
+      && pickets.ids.includes('blk_randolph_franklin_lot2'),
+      `record ${pickets.found}, ${pickets.runs} plot(s) [${pickets.ids.join(', ')}], `
+      + `fence type ${pickets.type}`);
     // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
     // fence; the floor is deliberately far under the count so it asserts the
     // BRANCH ran, not a number that will drift with the rule's output.
@@ -2590,9 +2693,15 @@ for (const [label, viewport, touch] of [
         sampledArea: inside * STEP * STEP,
       };
     });
+    // T-0516 moved the interior floor from 18 to 8 for the same reason the picket
+    // floor above moved: twelve of the eighteen interiors were the dooryard gardens
+    // of households retired on 2026-09-02. What the check is FOR is untouched — every
+    // record that declares a treatment still has to have got an interior, which is the
+    // failure this layer would most quietly make, and all three treatments still have
+    // to reach the ground.
     check(`${label}: every fenced interior in the town carries a ground treatment`,
       fenced.declared.length >= 4 && fenced.declared.every((d) => d.interiors >= 1)
-      && fenced.census?.interiors >= 18 && fenced.meshes >= 3 && fenced.tris > 0
+      && fenced.census?.interiors >= 8 && fenced.meshes >= 3 && fenced.tris > 0
       && Object.keys(fenced.census?.byTreatment ?? {}).length === 3,
       `${fenced.declared.length} record(s) declare a treatment `
       + `[${fenced.declared.map((d) => `${d.id} ${d.treatment} x${d.interiors}`).join(', ')}]; `
@@ -8149,6 +8258,40 @@ for (const [label, viewport, touch] of [
       `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
       + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
       + `${streetLayer.slivers} dropped as narrower than a metre`);
+    // T-0713. The platted streets are `attested` from the Thompson plat and
+    // every record in the file still grades its wear `reconstructed`, so under
+    // the old Math.max() composition the whole platted town drew as invention.
+    // This asserts the split reached the geometry the browser built: the ribbon
+    // channel stands at `attested` for the seventeen platted streets, and the
+    // grade that is NOT about whether the street was there rides its own
+    // channel instead of pulling the road down with it.
+    check(`${label}: the platted streets reach the picture as attested, not as invention`,
+      streetLayer.streetGrades.attested.length >= 17
+      && streetLayer.streetChannels.ribbon.attested > 0
+      && streetLayer.streetChannels.ribbon.attested
+         > streetLayer.streetChannels.ribbon.reconstructed,
+      `${streetLayer.streetGrades.attested.length} attested lines, `
+      + `${streetLayer.streetGrades.inferred.length} inferred `
+      + `(${streetLayer.streetGrades.inferred.join(', ') || 'none'}), `
+      + `${streetLayer.streetGrades.reconstructed.length} reconstructed `
+      + `(${streetLayer.streetGrades.reconstructed.join(', ') || 'none'}) — `
+      + `ribbon vertices ${JSON.stringify(streetLayer.streetChannels.ribbon)}`);
+    // The other half, and it is the half that would fail silently: the track
+    // grade must be CARRIED, on its own channel, on every street mesh and at
+    // the same vertex count as the ribbon's. A missing attribute arrives at the
+    // shader unbound, which is not reliably zero — it can be NaN, and NaN reads
+    // as `attested` after a clamp. So absence is a failure here, not a default.
+    check(`${label}: surface and wear ride their own channel and every street carries it`,
+      streetLayer.streetChannels.meshes > 0
+      && streetLayer.streetChannels.missingTrack === 0
+      && streetLayer.streetChannels.unequal === 0
+      && streetLayer.streetChannels.track.reconstructed > 0
+      && streetLayer.streetChannels.track.attested === 0,
+      `${streetLayer.streetChannels.meshes} street mesh(es), `
+      + `${streetLayer.streetChannels.missingTrack} without a track channel, `
+      + `${streetLayer.streetChannels.unequal} of unequal length — `
+      + `track vertices ${JSON.stringify(streetLayer.streetChannels.track)}, `
+      + `${streetLayer.streetGrades.wornInvented} record(s) grade a surface or wear invented`);
     // T-0110. Vertex drape above says every vertex touches the ground; this
     // says the ground stays UNDER the ribbon between them. The 0.35 bar is
     // documented at the probe: measured worst after refinement is 0.21 m

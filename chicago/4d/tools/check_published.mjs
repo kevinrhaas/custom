@@ -90,6 +90,15 @@ const TRANSFORMED = [
   { re: /^walk\/index\.html$/,
     what: 'publish.sh stamps the build commit and its Central-time date into the gate overlay',
     gate: 'tools/test_dev_preview.mjs asserts the stamp on the PUBLISHED form' },
+  { re: /^data\/residents\/.*\.json$/,
+    what: 'publish.sh writes the residents layer minified — the same JSON value on one line',
+    gate: 'tools/check_published_residents.mjs asserts the SHIPPED file parses to a value '
+        + 'deep-equal to its source, file for file, with none missing and none extra. The '
+        + 'transform exists because the layer is 1,380 hand-annotated household records whose '
+        + 'notes run to paragraphs: at indent=1 it was 8.8 MB of the 32 MB budget, the tree '
+        + 'measured 31.999 MB on 2026-09-05, and the next resident pass could not land. '
+        + 'Whitespace is the one thing in it a visitor never reads — the renderer fetches '
+        + 'these with response.json().' },
   { re: /^data\/gltf\/.*\.glb$/,
     what: 'gltf-transform meshopt derivative built by bake.sh from assets/gltf masters',
     gate: 'R-BUG3c-b: check.sh asserts the committed master against the heightfield and REPORTS the '
