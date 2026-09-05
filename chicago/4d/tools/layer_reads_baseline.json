@@ -87,10 +87,10 @@
     "residents/household:persons[].merge_ruling[].rule": {
       "records": 42
     },
-    "residents/household:persons[].merge_ruling[].state": {
+    "residents/household:persons[].merge_ruling[].ticket": {
       "records": 42
     },
-    "residents/household:persons[].merge_ruling[].ticket": {
+    "residents/household:persons[].merge_ruling[].verdict": {
       "records": 42
     },
     "residents/household:persons[].merge_ruling[].weighed_against": {
@@ -224,7 +224,7 @@
     "residents/manifest:merged[].person": {
       "records": 42
     },
-    "residents/manifest:merged[].record": {
+    "residents/manifest:merged[].record_file": {
       "records": 42
     },
     "residents/manifest:merged[].rule": {

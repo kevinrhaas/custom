@@ -1415,6 +1415,22 @@ step "…and none of them claims more than a person and a reading" \
 step "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
 
+# T-0839. THE MINTS' TEST FOR "the town already carries this person" IS THE NAME AS THE
+# SOURCE PRINTED IT, so a man his sources spell six ways was minted six times: Gurdon
+# Saltonstall Hubbard stood on six cards and Lieut. James Allen on four, and only the one
+# card the ladder never reached knew Allen was an army officer. The merges landed on
+# 2026-09-05 under written rulings. This gate is the half that stops it recurring — it
+# re-derives the candidate clusters from the committed cards and FAILS while any card in
+# one carries no written ruling, so a pass that re-splits an identity says so here rather
+# than in the town's population count. It also holds the promise the merge made: every
+# folded record still in the tree, every folded person_id still resolving, and every
+# source a folded card brought still cited by the survivor.
+step "one person, one card — every duplicate cluster carries a written ruling" \
+  python3 tools/consolidate_town_cards.py --check
+
+step "…and that pass's own assertions still fire when broken" \
+  python3 tools/consolidate_town_cards.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

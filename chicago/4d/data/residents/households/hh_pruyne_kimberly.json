@@ -208,7 +208,16 @@
   ],
   "people": [
    {
-    "person_id": "kimberly_edmund_s"
+    "person_id": "kimberly_edmund_s",
+    "address_later": {
+     "value": "res. N. Water st next Lake House",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Kimberly, Dr. Edmund S., res. N. Water st next Lake House'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    }
    },
    {
     "person_id": "pruyne_peter",

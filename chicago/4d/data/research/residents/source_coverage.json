@@ -23,9 +23,9 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2920,
-   "appearances_on_an_identity_the_town_already_carries": 290,
-   "unmatched": 4056
+   "identities": 2915,
+   "appearances_on_an_identity_the_town_already_carries": 297,
+   "unmatched": 4049
   },
   "newspapers": {
    "names_read": 2274,
@@ -82,7 +82,7 @@
   "census_1840|census_1840": 697,
   "census_1840|church": 24,
   "census_1840|civic": 22,
-  "census_1840|directories": 137,
+  "census_1840|directories": 135,
   "census_1840|newspapers": 48,
   "census_1840|old_settlers": 14,
   "census_1840|residents": 38,
@@ -93,14 +93,14 @@
   "church|old_settlers": 6,
   "church|residents": 40,
   "civic|civic": 378,
-  "civic|directories": 82,
+  "civic|directories": 83,
   "civic|newspapers": 103,
   "civic|old_settlers": 29,
   "civic|residents": 263,
-  "directories|directories": 2920,
-  "directories|newspapers": 166,
-  "directories|old_settlers": 31,
-  "directories|residents": 169,
+  "directories|directories": 2915,
+  "directories|newspapers": 167,
+  "directories|old_settlers": 32,
+  "directories|residents": 171,
   "newspapers|newspapers": 2081,
   "newspapers|old_settlers": 49,
   "newspapers|residents": 1121,
@@ -121,6 +121,6 @@
    "R3": 125,
    "R4": 80
   },
-  "declared_refusals": 1688
+  "declared_refusals": 1685
  }
 }

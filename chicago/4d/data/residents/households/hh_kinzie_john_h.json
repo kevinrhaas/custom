@@ -155,7 +155,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R3",
      "cluster": "kinzie-john",
      "weighed_against": [
@@ -202,7 +202,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "distinct",
+     "verdict": "distinct",
      "rule": "D1",
      "cluster": "kinzie-john",
      "weighed_against": [

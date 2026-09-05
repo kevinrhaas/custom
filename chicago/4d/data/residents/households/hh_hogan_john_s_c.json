@@ -120,7 +120,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "distinct",
+     "verdict": "distinct",
      "rule": "D2",
      "cluster": "hogan",
      "weighed_against": [

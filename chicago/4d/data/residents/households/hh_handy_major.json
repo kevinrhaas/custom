@@ -79,7 +79,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R1",
      "cluster": "handy",
      "weighed_against": [

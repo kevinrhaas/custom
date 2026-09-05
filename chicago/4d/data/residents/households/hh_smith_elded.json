@@ -78,7 +78,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R5",
      "cluster": "smith-e-kirby",
      "weighed_against": [

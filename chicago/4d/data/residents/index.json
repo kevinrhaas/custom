@@ -21451,10 +21451,10 @@
    "name": "William Adams",
    "merged_into_person": "adams_william_h",
    "merged_into_household": "hh_adams_william_h",
-   "record": "merged/hh_adams_william.json",
    "rule": "C3",
    "cluster": "adams",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_adams_william.json"
   },
   {
    "person": "allen_james",
@@ -21462,10 +21462,10 @@
    "name": "James Allen",
    "merged_into_person": "allen_lieut_james",
    "merged_into_household": "hh_allen_lieut_james",
-   "record": "merged/hh_allen_james.json",
    "rule": "C0",
    "cluster": "allen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_allen_james.json"
   },
   {
    "person": "allen_lieut",
@@ -21473,10 +21473,10 @@
    "name": "Lieut Allen",
    "merged_into_person": "allen_lieut_james",
    "merged_into_household": "hh_allen_lieut_james",
-   "record": "merged/hh_allen_lieut.json",
    "rule": "C0",
    "cluster": "allen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_allen_lieut.json"
   },
   {
    "person": "allen_lieut_j",
@@ -21484,10 +21484,10 @@
    "name": "Lieut J Allen",
    "merged_into_person": "allen_lieut_james",
    "merged_into_household": "hh_allen_lieut_james",
-   "record": "merged/hh_allen_lieut_j.json",
    "rule": "C0",
    "cluster": "allen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_allen_lieut_j.json"
   },
   {
    "person": "bates_harriet_e",
@@ -21495,10 +21495,10 @@
    "name": "Harriet E Bates",
    "merged_into_person": "bates_harriet_ellen",
    "merged_into_household": "hh_bates_harriet_ellen",
-   "record": "merged/hh_bates_harriet_e.json",
    "rule": "C1",
    "cluster": "bates-harriet",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_bates_harriet_e.json"
   },
   {
    "person": "beaubien_j_b",
@@ -21506,10 +21506,10 @@
    "name": "J B Beaubien",
    "merged_into_person": "beaubien_jean_baptiste",
    "merged_into_household": "hh_beaubien_jean_baptiste",
-   "record": "merged/hh_beaubien_j_b.json",
    "rule": "C2",
    "cluster": "beaubien",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_beaubien_j_b.json"
   },
   {
    "person": "beaubien_john_b",
@@ -21517,10 +21517,10 @@
    "name": "John B Beaubien",
    "merged_into_person": "beaubien_jean_baptiste",
    "merged_into_household": "hh_beaubien_jean_baptiste",
-   "record": "merged/hh_beaubien_john_b.json",
    "rule": "C2",
    "cluster": "beaubien",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_beaubien_john_b.json"
   },
   {
    "person": "brown_w_h",
@@ -21528,10 +21528,10 @@
    "name": "W H Brown",
    "merged_into_person": "brown_william_h",
    "merged_into_household": "hh_brown_william_h",
-   "record": "merged/hh_brown_w_h.json",
    "rule": "C2",
    "cluster": "brown-william-h",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_brown_w_h.json"
   },
   {
    "person": "cobb_s_b",
@@ -21539,10 +21539,10 @@
    "name": "S B Cobb",
    "merged_into_person": "cobb_silas_b",
    "merged_into_household": "hh_goss_cobb",
-   "record": "merged/hh_cobb_s_b.json",
    "rule": "C2",
    "cluster": "cobb",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_cobb_s_b.json"
   },
   {
    "person": "dole_g_w",
@@ -21550,10 +21550,10 @@
    "name": "G W Dole",
    "merged_into_person": "dole_george_w",
    "merged_into_household": "hh_dole_george_w",
-   "record": "merged/hh_dole_g_w.json",
    "rule": "C2",
    "cluster": "dole",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_dole_g_w.json"
   },
   {
    "person": "fullerton_a_n",
@@ -21561,10 +21561,10 @@
    "name": "A N Fullerton",
    "merged_into_person": "fullerton_alexander",
    "merged_into_household": "hh_fullerton_alexander",
-   "record": "merged/hh_fullerton_a_n.json",
    "rule": "C0",
    "cluster": "fullerton",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_fullerton_a_n.json"
   },
   {
    "person": "fullerton_alex_n",
@@ -21572,10 +21572,10 @@
    "name": "Alex N Fullerton",
    "merged_into_person": "fullerton_alexander",
    "merged_into_household": "hh_fullerton_alexander",
-   "record": "merged/hh_fullerton_alex_n.json",
    "rule": "C0",
    "cluster": "fullerton",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_fullerton_alex_n.json"
   },
   {
    "person": "fullerton_alexander_m",
@@ -21583,10 +21583,10 @@
    "name": "Alexander M Fullerton",
    "merged_into_person": "fullerton_alexander",
    "merged_into_household": "hh_fullerton_alexander",
-   "record": "merged/hh_fullerton_alexander_m.json",
    "rule": "C0",
    "cluster": "fullerton",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_fullerton_alexander_m.json"
   },
   {
    "person": "haddock_e",
@@ -21594,10 +21594,10 @@
    "name": "E Haddock",
    "merged_into_person": "haddock_edward",
    "merged_into_household": "hh_haddock_edward",
-   "record": "merged/hh_haddock_e.json",
    "rule": "C0",
    "cluster": "haddock",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_haddock_e.json"
   },
   {
    "person": "haddock_e_w",
@@ -21605,10 +21605,10 @@
    "name": "E W Haddock",
    "merged_into_person": "haddock_edward",
    "merged_into_household": "hh_haddock_edward",
-   "record": "merged/hh_haddock_e_w.json",
    "rule": "C0",
    "cluster": "haddock",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_haddock_e_w.json"
   },
   {
    "person": "haddock_edward_e",
@@ -21616,10 +21616,10 @@
    "name": "Edward E Haddock",
    "merged_into_person": "haddock_edward",
    "merged_into_household": "hh_haddock_edward",
-   "record": "merged/hh_haddock_edward_e.json",
    "rule": "C0",
    "cluster": "haddock",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_haddock_edward_e.json"
   },
   {
    "person": "hamilton_r_j",
@@ -21627,10 +21627,10 @@
    "name": "R J Hamilton",
    "merged_into_person": "hamilton_richard_j",
    "merged_into_household": "hh_hamilton_richard_j",
-   "record": "merged/hh_hamilton_r_j.json",
    "rule": "C2",
    "cluster": "hamilton",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hamilton_r_j.json"
   },
   {
    "person": "harmon_isaac",
@@ -21638,10 +21638,10 @@
    "name": "Isaac Harmon",
    "merged_into_person": "harmon_isaac_d",
    "merged_into_household": "hh_harmon_brothers",
-   "record": "merged/hh_harmon_isaac.json",
    "rule": "C3",
    "cluster": "harmon-isaac",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_harmon_isaac.json"
   },
   {
    "person": "hogan_j_s_c",
@@ -21649,10 +21649,10 @@
    "name": "J S C Hogan",
    "merged_into_person": "hogan_john_s_c",
    "merged_into_household": "hh_hogan_john_s_c",
-   "record": "merged/hh_hogan_j_s_c.json",
    "rule": "C2",
    "cluster": "hogan",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hogan_j_s_c.json"
   },
   {
    "person": "hubbard_g",
@@ -21660,10 +21660,10 @@
    "name": "G Hubbard",
    "merged_into_person": "hubbard_gurdon",
    "merged_into_household": "hh_hubbard_gurdon",
-   "record": "merged/hh_hubbard_g.json",
    "rule": "C0",
    "cluster": "hubbard",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hubbard_g.json"
   },
   {
    "person": "hubbard_g_s",
@@ -21671,10 +21671,10 @@
    "name": "G S Hubbard",
    "merged_into_person": "hubbard_gurdon",
    "merged_into_household": "hh_hubbard_gurdon",
-   "record": "merged/hh_hubbard_g_s.json",
    "rule": "C0",
    "cluster": "hubbard",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hubbard_g_s.json"
   },
   {
    "person": "hubbard_g_t",
@@ -21682,10 +21682,10 @@
    "name": "G T Hubbard",
    "merged_into_person": "hubbard_gurdon",
    "merged_into_household": "hh_hubbard_gurdon",
-   "record": "merged/hh_hubbard_g_t.json",
    "rule": "C0",
    "cluster": "hubbard",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hubbard_g_t.json"
   },
   {
    "person": "hubbard_gordon_s",
@@ -21693,10 +21693,10 @@
    "name": "Gordon S Hubbard",
    "merged_into_person": "hubbard_gurdon",
    "merged_into_household": "hh_hubbard_gurdon",
-   "record": "merged/hh_hubbard_gordon_s.json",
    "rule": "C0",
    "cluster": "hubbard",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hubbard_gordon_s.json"
   },
   {
    "person": "hubbard_gurdon_s",
@@ -21704,10 +21704,10 @@
    "name": "Gurdon S Hubbard",
    "merged_into_person": "hubbard_gurdon",
    "merged_into_household": "hh_hubbard_gurdon",
-   "record": "merged/hh_hubbard_gurdon_s.json",
    "rule": "C0",
    "cluster": "hubbard",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_hubbard_gurdon_s.json"
   },
   {
    "person": "kimberly_e_s",
@@ -21715,10 +21715,10 @@
    "name": "E S Kimberly",
    "merged_into_person": "kimberly_edmund_s",
    "merged_into_household": "hh_pruyne_kimberly",
-   "record": "merged/hh_kimberly_e_s.json",
    "rule": "C0",
    "cluster": "kimberly",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_kimberly_e_s.json"
   },
   {
    "person": "kimberly_ed_s",
@@ -21726,10 +21726,10 @@
    "name": "Ed S Kimberly",
    "merged_into_person": "kimberly_edmund_s",
    "merged_into_household": "hh_pruyne_kimberly",
-   "record": "merged/hh_kimberly_ed_s.json",
    "rule": "C0",
    "cluster": "kimberly",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_kimberly_ed_s.json"
   },
   {
    "person": "kimberly_edmund_l",
@@ -21737,10 +21737,10 @@
    "name": "Edmund L Kimberly",
    "merged_into_person": "kimberly_edmund_s",
    "merged_into_household": "hh_pruyne_kimberly",
-   "record": "merged/hh_kimberly_edmund_l.json",
    "rule": "C0",
    "cluster": "kimberly",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_kimberly_edmund_l.json"
   },
   {
    "person": "kinzie_j_h",
@@ -21748,10 +21748,10 @@
    "name": "J H Kinzie",
    "merged_into_person": "kinzie_john_h",
    "merged_into_household": "hh_kinzie_john_h",
-   "record": "merged/hh_kinzie_j_h.json",
    "rule": "C2",
    "cluster": "kinzie-john",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_kinzie_j_h.json"
   },
   {
    "person": "kinzie_r_a",
@@ -21759,10 +21759,10 @@
    "name": "R A Kinzie",
    "merged_into_person": "kinzie_robert_a",
    "merged_into_household": "hh_kinzie_robert_a",
-   "record": "merged/hh_kinzie_r_a.json",
    "rule": "C2",
    "cluster": "kinzie-robert",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_kinzie_r_a.json"
   },
   {
    "person": "owen_t_j_v",
@@ -21770,10 +21770,10 @@
    "name": "T J V Owen",
    "merged_into_person": "owen_thomas_jv",
    "merged_into_household": "hh_owen_thomas_jv",
-   "record": "merged/hh_owen_t_j_v.json",
    "rule": "C0",
    "cluster": "owen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_owen_t_j_v.json"
   },
   {
    "person": "owen_th_j_v",
@@ -21781,10 +21781,10 @@
    "name": "Th J V Owen",
    "merged_into_person": "owen_thomas_jv",
    "merged_into_household": "hh_owen_thomas_jv",
-   "record": "merged/hh_owen_th_j_v.json",
    "rule": "C0",
    "cluster": "owen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_owen_th_j_v.json"
   },
   {
    "person": "owen_thomas",
@@ -21792,10 +21792,10 @@
    "name": "Thomas Owen",
    "merged_into_person": "owen_thomas_jv",
    "merged_into_household": "hh_owen_thomas_jv",
-   "record": "merged/hh_owen_thomas.json",
    "rule": "C0",
    "cluster": "owen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_owen_thomas.json"
   },
   {
    "person": "owen_thomas_j_v",
@@ -21803,10 +21803,10 @@
    "name": "Thomas J V Owen",
    "merged_into_person": "owen_thomas_jv",
    "merged_into_household": "hh_owen_thomas_jv",
-   "record": "merged/hh_owen_thomas_j_v.json",
    "rule": "C0",
    "cluster": "owen",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_owen_thomas_j_v.json"
   },
   {
    "person": "peck_p_f",
@@ -21814,10 +21814,10 @@
    "name": "P F Peck",
    "merged_into_person": "peck_philip",
    "merged_into_household": "hh_peck_philip",
-   "record": "merged/hh_peck_p_f.json",
    "rule": "C4",
    "cluster": "peck",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_peck_p_f.json"
   },
   {
    "person": "peck_p_f_w",
@@ -21825,10 +21825,10 @@
    "name": "P F W Peck",
    "merged_into_person": "peck_philip",
    "merged_into_household": "hh_peck_philip",
-   "record": "merged/hh_peck_p_f_w.json",
    "rule": "C4",
    "cluster": "peck",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_peck_p_f_w.json"
   },
   {
    "person": "snow_g_w",
@@ -21836,10 +21836,10 @@
    "name": "G W Snow",
    "merged_into_person": "snow_george_w",
    "merged_into_household": "hh_snow_george_w",
-   "record": "merged/hh_snow_g_w.json",
    "rule": "C2",
    "cluster": "snow",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_snow_g_w.json"
   },
   {
    "person": "sproat_g_n",
@@ -21847,10 +21847,10 @@
    "name": "G N Sproat",
    "merged_into_person": "sproat_grenville",
    "merged_into_household": "hh_sproat_grenville",
-   "record": "merged/hh_sproat_g_n.json",
    "rule": "C4",
    "cluster": "sproat",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_sproat_g_n.json"
   },
   {
    "person": "sproat_g_t",
@@ -21858,10 +21858,10 @@
    "name": "G T Sproat",
    "merged_into_person": "sproat_grenville",
    "merged_into_household": "hh_sproat_grenville",
-   "record": "merged/hh_sproat_g_t.json",
    "rule": "C4",
    "cluster": "sproat",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_sproat_g_t.json"
   },
   {
    "person": "taylor_anson_n",
@@ -21869,10 +21869,10 @@
    "name": "Anson N Taylor",
    "merged_into_person": "taylor_anson_h",
    "merged_into_household": "hh_taylor_anson",
-   "record": "merged/hh_taylor_anson_n.json",
    "rule": "C4",
    "cluster": "taylor-anson",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_taylor_anson_n.json"
   },
   {
    "person": "taylor_anson_w",
@@ -21880,10 +21880,10 @@
    "name": "Anson W Taylor",
    "merged_into_person": "taylor_anson_h",
    "merged_into_household": "hh_taylor_anson",
-   "record": "merged/hh_taylor_anson_w.json",
    "rule": "C4",
    "cluster": "taylor-anson",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_taylor_anson_w.json"
   },
   {
    "person": "taylor_e_d",
@@ -21891,10 +21891,10 @@
    "name": "E D Taylor",
    "merged_into_person": "taylor_edmund_d",
    "merged_into_household": "hh_taylor_edmund_d",
-   "record": "merged/hh_taylor_e_d.json",
    "rule": "C2",
    "cluster": "taylor-edmund",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_taylor_e_d.json"
   },
   {
    "person": "temple_j_t",
@@ -21902,10 +21902,10 @@
    "name": "J T Temple",
    "merged_into_person": "temple_john_t",
    "merged_into_household": "hh_temple_john_t",
-   "record": "merged/hh_temple_j_t.json",
    "rule": "C2",
    "cluster": "temple",
-   "ticket": "T-0839"
+   "ticket": "T-0839",
+   "record_file": "merged/hh_temple_j_t.json"
   }
  ],
  "_merged_doc": "T-0839. THE REDIRECT TABLE. One row per town card folded onto another because the two named one person. The record is not deleted: it is kept whole at the `record` path with a `merged_into` block, and this table is what lets every consumer that cites the folded `person` — the crosswalks, identity_master.json, the smoke cohorts, the placed-resident parcels — still resolve it to somebody. The ruling and its reasoning are in data/residents/card_merge_rulings.json."

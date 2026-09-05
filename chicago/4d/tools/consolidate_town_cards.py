@@ -452,7 +452,11 @@ def merge_ruling_block(ruling: dict, this: str, others: list) -> dict:
     state = ruling["state"]
     block = {
         "ticket": TICKET,
-        "state": state,
+        # `verdict`, not `state`: tools/measure_layer_reads.py matches a figure's leaf
+        # name against the renderer's property accesses, and `.state` is a word the
+        # walk uses everywhere, so a key called `state` reads as shipped-and-drawn
+        # when nothing draws it.
+        "verdict": state,
         "rule": ruling["rule"],
         "cluster": ruling["cluster"],
         "weighed_against": sorted(p for p in others if p != this),
@@ -508,7 +512,7 @@ def apply(write: bool = True) -> dict:
                     "name": person.get("name") or "",
                     "merged_into_person": ruling["survivor"],
                     "merged_into_household": survivor_home,
-                    "record": f"merged/{hid}.json",
+                    "record_file": f"merged/{hid}.json",
                     "rule": ruling["rule"], "cluster": ruling["cluster"],
                     "ticket": TICKET,
                 })
@@ -577,7 +581,12 @@ def apply(write: bool = True) -> dict:
     # the index: the folded rows out, the redirect table in
     index["households"] = [r for r in index["households"]
                            if r["id"] not in folded_households]
-    prior = {r["person"]: r for r in index.get("merged", [])}
+    prior = {}
+    for row in index.get("merged", []):
+        if "record" in row:            # the key this table shipped with before it was
+            row = dict(row)            # renamed off a collision with the renderer's own
+            row["record_file"] = row.pop("record")
+        prior[row["person"]] = row
     for row in redirects:
         prior[row["person"]] = row
     if prior:
@@ -648,9 +657,9 @@ def check() -> int:
             problems.append(f"the redirect for '{row['person']}' points at "
                             f"'{row['merged_into_person']}', who is on no card — a "
                             f"person_id a crosswalk cites would stop resolving")
-        path = RESIDENTS / row["record"]
+        path = RESIDENTS / row["record_file"]
         if not path.exists():
-            problems.append(f"'{row['person']}' redirects to {row['record']}, which is "
+            problems.append(f"'{row['person']}' redirects to {row['record_file']}, which is "
                             f"not in the tree — the folded record has been LOST, and "
                             f"'a merge loses nothing' is the one promise this pass made")
         if row["person"] in people:
@@ -674,7 +683,7 @@ def check() -> int:
         survivor = by_person.get(row["merged_into_person"])
         if survivor is None:
             continue
-        stub = RESIDENTS / row["record"]
+        stub = RESIDENTS / row["record_file"]
         if not stub.exists():
             continue
         record = json.loads(stub.read_text(encoding="utf-8")).get("superseded_record") or {}

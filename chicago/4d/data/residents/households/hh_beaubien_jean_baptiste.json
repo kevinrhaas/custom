@@ -167,7 +167,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "distinct",
+     "verdict": "distinct",
      "rule": "D1",
      "cluster": "beaubien",
      "weighed_against": [

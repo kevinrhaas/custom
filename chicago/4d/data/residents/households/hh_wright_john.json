@@ -88,7 +88,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R2",
      "cluster": "wright",
      "weighed_against": [
@@ -136,7 +136,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R2",
      "cluster": "wright",
      "weighed_against": [

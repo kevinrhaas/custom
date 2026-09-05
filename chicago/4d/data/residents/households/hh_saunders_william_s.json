@@ -82,7 +82,7 @@
    "merge_ruling": [
     {
      "ticket": "T-0839",
-     "state": "undecided",
+     "verdict": "undecided",
      "rule": "R3",
      "cluster": "saunders",
      "weighed_against": [
