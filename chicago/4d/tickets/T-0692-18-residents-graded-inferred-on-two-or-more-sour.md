@@ -1,7 +1,7 @@
 ---
 id: T-0692
 title: 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 8:16:05 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935445500
 ---
 
 **Found while answering the owner's question of 2026-09-04** about people standing in several
