@@ -309,3 +309,7 @@ T-0735 — check.sh is red on dev: nine steps fail before any branch touches the
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0739 — dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted
