@@ -47,14 +47,12 @@
 # --- that drifts silently, or one identity split across two cards, makes every figure under it
 # --- unarguable. Nothing here reads a source.
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
-T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
 T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
 # --- that no card carries. Nothing here reads a new source either — every one turns research
 # --- already done into household, person and business DATA, which is what the owner asked for.
-T-0720 — 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
 T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
@@ -343,3 +341,7 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0839 — One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing

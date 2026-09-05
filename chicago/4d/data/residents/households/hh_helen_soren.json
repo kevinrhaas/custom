@@ -52,6 +52,7 @@
    "name": "Soren Helen Miss",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "sex": "female",
    "letter_list_only": true,
    "letter_list_returns": [

@@ -52,6 +52,7 @@
    "name": "G. W. Keeney",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "founder",
     "confidence": "attested",

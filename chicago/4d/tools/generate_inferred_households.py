@@ -53,6 +53,7 @@ PREFIX = "hh_inf_"
 
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 
 from band_notes import split_notes  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
@@ -1128,56 +1129,15 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     # would otherwise still be quoting the old ones.
     vocab["grades"] = ["attested", "inferred", "reconstructed"]
 
-    keep = [e for e in index["households"] if not e["id"].startswith(PREFIX)]
-    by_id = {d["id"]: d for d in households + documented_updates}
-    for entry in keep:
-        doc = by_id.get(entry["id"])
-        if doc:
-            entry["lives_at"] = (doc["lives_at"] or {}).get("value")
-            entry["works_at"] = (doc["works_at"] or {}).get("value")
-        # RECOUNT from the record rather than carrying the row's own tally. An
-        # index is a claim about files that exist; when the grades in those files
-        # were renamed, every untouched row went on quoting the old words and the
-        # manifest disagreed with the dataset it indexes.
-        hh_path = HOUSEHOLDS / f"{entry['id']}.json"
-        if hh_path.exists():
-            tally: dict[str, int] = {}
-            for person in load(hh_path).get("persons", []):
-                g = person.get("grade")
-                if g:
-                    tally[g] = tally.get(g, 0) + 1
-            if tally:
-                entry["grades"] = dict(sorted(tally.items()))
-    rows = keep + [{
-        "id": h["id"],
-        "file": f"households/{h['id']}.json",
-        "head": h["head"],
-        "division": h["division"],
-        "persons": len(h["persons"]),
-        "grades": {"reconstructed": len(h["persons"])},
-        "lives_at": (h["lives_at"] or {}).get("value"),
-        "works_at": (h["works_at"] or {}).get("value"),
-        "present_on_scene_date": h["present_on_scene_date"]["value"],
-        "review_required": h["review_required"],
-    } for h in households]
-    rows.sort(key=lambda e: e["id"])
-    index["households"] = rows
-
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    for entry in rows:
-        for grade, n in entry["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    # The three counts this programme OWNS, and then every other count key the
-    # manifest carries, preserved rather than dropped. A later pass may tally
-    # something this one knows nothing about — `letter_list_only` is
-    # tools/mint_letter_list_residents.py's — and rebuilding `counts` from
-    # scratch would delete it here and re-add it there on every run, which reads
-    # as drift in whichever pass ran last.
-    index["counts"] = {"households": len(rows),
-                       "persons": sum(e["persons"] for e in rows),
-                       "by_grade": totals,
-                       **{k: v for k, v in (index.get("counts") or {}).items()
-                          if k not in ("households", "persons", "by_grade")}}
+    # THE MANIFEST HAS ONE OWNER (T-0715). This programme used to rebuild its own
+    # PREFIX rows and patch the rest in place, which left every row no pass owns
+    # carrying whatever the last writer happened to leave. `final` is the layer as
+    # this run leaves it: the records it just wrote, over the cards on disk.
+    final = {path: json.loads(text) for path, text in files.items()
+             if path != INDEX and path.parent == HOUSEHOLDS}
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        final.setdefault(path, load(path))
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, records, households
 

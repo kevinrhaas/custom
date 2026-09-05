@@ -52,6 +52,7 @@
    "name": "L. W. Montgomery",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "occupation": {
     "value": "shoemaker",
     "confidence": "attested",

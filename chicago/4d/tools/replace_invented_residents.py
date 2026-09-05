@@ -149,6 +149,9 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+
+sys.path.insert(0, str(ROOT / "tools"))
 
 import fronting_street  # noqa: E402  (needs the path above)
 
@@ -646,24 +649,14 @@ def build(preload: dict | None = None):
         files[path] = dumps(doc, 1)
 
     # The manifest's denormalised copies, which validate.py holds equal to the
-    # records: the grade tallies move when a person's grade does, and the hh_inf_
-    # rows are written by the household programme with a hardcoded
-    # {"reconstructed": n} that this pass has just made untrue.
+    # records. Re-derived over the WHOLE layer by the manifest's one owner
+    # (T-0715) rather than patched row by row: this pass moves grades, and the
+    # rows it does not move can be as stale as any other pass has left them.
     index = json.loads(index_text) if index_text is not None else load(INDEX)
-    changed = {doc["id"]: doc for (_p, doc, _pn), *_ in pairs}
-    for row in index["households"]:
-        doc = changed.get(row["id"])
-        if not doc:
-            continue
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        row["grades"] = dict(sorted(tally.items()))
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    for row in index["households"]:
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["by_grade"] = totals
+    final = dict(house_docs)
+    final.update({path: json.loads(text) for path, text in files.items()
+                  if path != INDEX})
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, pairs, refusals
 

@@ -52,6 +52,7 @@
    "name": "Caroline Miss Gooding",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G2e",
    "sex": "female",
    "letter_list_only": true,
    "letter_list_returns": [

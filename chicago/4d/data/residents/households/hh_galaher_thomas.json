@@ -52,6 +52,7 @@
    "name": "Thomas Galaher",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "postmaster",
     "confidence": "attested",

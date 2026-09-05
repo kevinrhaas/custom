@@ -54,6 +54,7 @@
    "name": "Frederick Thomas",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "barber_surgeon",

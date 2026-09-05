@@ -52,6 +52,7 @@
    "name": "H. C. Bennett",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "attorney",
     "confidence": "attested",

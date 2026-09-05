@@ -166,6 +166,7 @@
    "name": "Dr Peter Temple",
    "relationship": "brother",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "dentist",
