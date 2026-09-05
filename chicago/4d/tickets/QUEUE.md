@@ -143,7 +143,6 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
-T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend

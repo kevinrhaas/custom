@@ -1,7 +1,7 @@
 ---
 id: T-0508
 title: 237 named residents have no research row: cohort 13 of 79
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 902
 claimed_by: run 9/5/2026, 11:47:33 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T17:05:36.313Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33977365314
 ---
 
