@@ -1,5 +1,78 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0820: an id used twice is refused on the branch, not on dev
+
+**What shipped.** `tools/check_unique_ids.py`, wired into `tools/check.sh` beside the
+conflict-marker check it is a sibling of. It walks every committed JSON under `data/`,
+`tools/` and `tickets/` — 2,835 files, 0.6 s — and refuses any list of objects that
+carries the same `id` twice, naming the file, the key, the id, and whether the two
+bodies are identical (a merge that kept both) or different (an id that names two
+things). Fourteen self-test cases prove it fires.
+
+**Why it is on the branch's gate and not a nightly.** `dev` went red twice on
+2026-09-05 on this exact fault — T-0739 minted by two branches (#863), then a second
+byte-identical `west_water` in `data/streets/1835.json` from a branch cut before the
+first landed (#889) — and a third came that evening from an agent staging a `UU`
+conflict with `git add -A`. None was caught on the branch that wrote it. All three were
+caught by `check.sh` against `dev` AFTER the merge, which is the expensive place: the
+dev gate is the base every open PR inherits, so one duplicate parked nineteen PRs
+behind a red they had not caused. `dev` now carries a ruleset requiring `gate`, so a
+red dev no longer discourages merging — it forbids it.
+
+### The rule is discovered, not listed
+
+A hand-maintained table of "lists to check" goes stale the first time somebody adds a
+list, and the list they add is the one that breaks. So the check applies wherever the
+SHAPE appears: a dict value that is a list of two or more objects, every one carrying
+an `id`. Measured over the tree before it was switched on: **68 kinds of list, 67
+already clean.** The rule is what the data already obeyed, written down.
+
+### What it found, and the cause was not the one expected
+
+One real fault: `fulton` in `data/streets/1835.json` cited `thompson_plat_1830`
+**twice**. It is not a merge artefact. `abacee6e4` — the T-0713 sweep that attested the
+platted streets — appended the plat to every street's `sources`, and Fulton's list
+already contained it. T-0713's own STATUS entry above says so in as many words: "and
+`fulton`, which already cited the plat". The sweep knew and appended anyway. Fixed
+here, one element removed; every other street in the file cites the plat once.
+
+That matters beyond the one line: **the fault the check was built for arrived by a
+route nobody predicted.** Three duplicates from merges, and the fourth from a
+single-branch sweep that read the value and added it again. A check written to catch
+merges would have missed it; a check written against the shape caught it.
+
+### The one exception, named rather than skipped — T-0828
+
+`runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeats ids, and
+those are NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sit at easting
+709.8 and 735.7 — one lot's width apart, the east and the west line of that lot. Both
+are real fence; the generator names a run after the LOT and a lot has two sides, so the
+id under-specifies. Asserting there would refuse correct data. **T-0828** fixes the
+generator; the check refuses the exception the day it stops being needed, so it cannot
+outlive its ticket.
+
+### Not covered, and measured rather than assumed — T-0829
+
+T-0820's acceptance also named `data/research/*/coverage.json` →
+`declarations[].items[]`. It is **not** covered: those are lists of strings and the
+declarations carry no `id`. All ten files are clean today, but nothing holds them.
+The obvious extension was measured and refused: 222 kinds of string list, 28,331 lists,
+14 with a repeat — and most of those repeats are **correct**, because the lists are
+multisets (`by_ward` has one entry per person, and two people share a ward). A blanket
+rule would refuse honest data, the same mistake `raised[]` forced this check to avoid.
+Three `mentions` lists in `gazetteer.json` are genuinely suspect and are written up in
+T-0829 for adjudication against the clippings, not silently deduplicated — the same
+clipping id twice is either a double count or a clipping-level id doing a
+mention-level job, and which one it is decides whether the fix is a deletion or a
+rename.
+
+### Visible-progress rule
+
+This is an invisible run under **exemption 3** — a gate blocking visible parcels. It is
+not speculative: with `dev`'s ruleset active, the next duplicate id stops every merge
+on the lane, and the parcels it stopped on 2026-09-05 were the nineteen PRs held behind
+#889. The last three merged entries (v588–v590) are all visible, so the one-in-four cap
+is not in play.
 
 ## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
 

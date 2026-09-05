@@ -420,10 +420,18 @@ T-0809 — The janitor gates the branch un-merged and drops a conflict in silenc
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
-T-0820 — A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-0828 — The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
+T-0829 — A repeated string in a provenance or coverage list is the same merge artefact as a repeated id, and nothing asserts it
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
+
