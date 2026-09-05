@@ -48,6 +48,7 @@
    "name": "Dr. Josiah C. Goodhue",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "physician",
     "confidence": "attested",

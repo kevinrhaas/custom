@@ -63,6 +63,7 @@
    "name": "John Murphy",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",

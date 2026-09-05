@@ -63,6 +63,7 @@
    "name": "Col. Jean Baptiste Beaubien",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "occupation": {
     "value": "trader",

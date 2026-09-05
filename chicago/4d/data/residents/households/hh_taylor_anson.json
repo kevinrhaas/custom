@@ -93,6 +93,7 @@
    "name": "Charles H. Taylor",
    "relationship": "brother",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "occupation": {
     "value": "carpenter",

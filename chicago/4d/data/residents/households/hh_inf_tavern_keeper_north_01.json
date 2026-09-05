@@ -48,6 +48,7 @@
    "name": "J. Shrigley",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "tavern_keeper",
     "confidence": "attested",

@@ -4,14 +4,13 @@
 
 - **T-0447** North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it · **OWNER** · SEEN · claimed · run 9/4/2026, 2:25:19 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737)
 
-## In the queue, in the owner’s order (181)
+## In the queue, in the owner’s order (180)
 
 - **T-0814** The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
 - **T-0721** Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
 - **T-0723** One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 - **T-0839** One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing · **OWNER**
 - **T-0724** The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
-- **T-0720** 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
 - **T-0677** Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
 - **T-0681** T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
 - **T-0678** The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
@@ -275,9 +274,10 @@
 - **T-0793** The river's mouth is wrong at its east end: re-trace the piers, the cut, the sand bar to its southern tip, the old channel to where Wright closes it, and the shore south to the sheet's edge · **OWNER** · needs-bake — T-0799, T-0800
 - **T-0813** Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool · **OWNER** — T-0832, T-0833
 
-## Finished, newest first — 100 of 485; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 486; the older ones are in the ticket files (100)
 
 - **T-0733** 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches · Sep 5, 2026, 5:54 PM · [PR #930](https://github.com/kevinrhaas/custom/pull/930)
+- **T-0720** 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own · Sep 5, 2026, 5:27 PM · [PR #927](https://github.com/kevinrhaas/custom/pull/927)
 - **T-0715** data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices · **OWNER** · Sep 5, 2026, 4:34 PM · [PR #924](https://github.com/kevinrhaas/custom/pull/924)
 - **T-0822** The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699 · Sep 5, 2026, 3:49 PM · [PR #918](https://github.com/kevinrhaas/custom/pull/918)
 - **T-0431** Open blk_south_water_clark: 4 roofs of headroom on two free lots · needs-bake · Sep 5, 2026, 3:33 PM · [PR #916](https://github.com/kevinrhaas/custom/pull/916)
@@ -376,5 +376,4 @@
 - **T-0444** Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton? · **OWNER** · SEEN · Sep 4, 2026, 3:22 PM · [PR #681](https://github.com/kevinrhaas/custom/pull/681)
 - **T-0426** A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods · Sep 4, 2026, 3:21 PM · [PR #675](https://github.com/kevinrhaas/custom/pull/675)
 - **T-0450** SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other · **OWNER** · SEEN · Sep 4, 2026, 3:21 PM · [PR #674](https://github.com/kevinrhaas/custom/pull/674)
-- **T-0684** The South Branch bank spike, resolved against Wright's own ink line, and the departure scan run over every water feature · **OWNER** · SEEN · Sep 4, 2026, 2:43 PM · [PR #800](https://github.com/kevinrhaas/custom/pull/800)
 
