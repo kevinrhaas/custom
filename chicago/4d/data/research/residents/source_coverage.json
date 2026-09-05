@@ -4,10 +4,10 @@
  "generated_by": "tools/consolidate_resident_evidence.py --build",
  "domains": {
   "census_1840": {
-   "names_read": 659,
-   "identities": 650,
-   "appearances_on_an_identity_the_town_already_carries": 40,
-   "unmatched": 619
+   "names_read": 708,
+   "identities": 697,
+   "appearances_on_an_identity_the_town_already_carries": 41,
+   "unmatched": 667
   },
   "church": {
    "names_read": 520,
@@ -23,9 +23,9 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2917,
-   "appearances_on_an_identity_the_town_already_carries": 323,
-   "unmatched": 4023
+   "identities": 2921,
+   "appearances_on_an_identity_the_town_already_carries": 290,
+   "unmatched": 4056
   },
   "newspapers": {
    "names_read": 2274,
@@ -75,32 +75,32 @@
    "appearances_on_an_identity_the_town_already_carries": 0,
    "unmatched": 0,
    "holds": "finding_aid",
-   "why": "6,697 cards, every one of them a SURNAME heading a locality with no forename. R1 refuses all of them by construction: a finding aid names a book, not a man. Counted as refusals, never as appearances."
+   "why": "6,728 cards, every one of them a SURNAME heading a locality with no forename. R1 refuses all of them by construction: a finding aid names a book, not a man. Counted as refusals, never as appearances."
   }
  },
  "overlap": {
-  "census_1840|census_1840": 650,
+  "census_1840|census_1840": 697,
   "census_1840|church": 24,
-  "census_1840|civic": 18,
-  "census_1840|directories": 124,
-  "census_1840|newspapers": 46,
-  "census_1840|old_settlers": 11,
+  "census_1840|civic": 19,
+  "census_1840|directories": 135,
+  "census_1840|newspapers": 48,
+  "census_1840|old_settlers": 14,
   "census_1840|residents": 38,
   "church|church": 480,
   "church|civic": 2,
-  "church|directories": 45,
+  "church|directories": 44,
   "church|newspapers": 8,
   "church|old_settlers": 5,
   "church|residents": 40,
   "civic|civic": 386,
-  "civic|directories": 82,
+  "civic|directories": 79,
   "civic|newspapers": 92,
   "civic|old_settlers": 27,
   "civic|residents": 271,
-  "directories|directories": 2917,
-  "directories|newspapers": 174,
-  "directories|old_settlers": 32,
-  "directories|residents": 189,
+  "directories|directories": 2921,
+  "directories|newspapers": 158,
+  "directories|old_settlers": 31,
+  "directories|residents": 170,
   "newspapers|newspapers": 2101,
   "newspapers|old_settlers": 47,
   "newspapers|residents": 1141,
@@ -115,11 +115,12 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 649,
-   "R2": 971,
-   "R3": 183,
+   "R1": 389,
+   "R5": 266,
+   "R2": 972,
+   "R3": 181,
    "R4": 80
   },
-  "declared_refusals": 1389
+  "declared_refusals": 1670
  }
 }

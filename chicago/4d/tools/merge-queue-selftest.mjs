@@ -95,6 +95,33 @@ console.log('\n\x1b[1m== the QUEUE.md merge driver\x1b[0m');
 }
 
 // 6. …and its own assertions still fire when broken.
+// 7. THE REGRESSION THAT COST AN OWNER HIS RANKING, 2026-09-04. A STALE branch merges
+//    dev after the owner re-ranked. Ours is older; theirs carries the re-rank. The first
+//    version of this driver kept OURS and erased the ranking — four times, then carried
+//    the stale order back to dev on merge.
+{
+  const base = HEAD + [1,2,3,4].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const ours = base;                                            // stale: never re-ranked
+  const theirs = HEAD + '# --- the owner\'s new band\n'
+    + [4,3,2,1].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';   // dev: re-ranked
+  const r = run(base, ours, theirs);
+  ok(r.code === 0, 'a stale branch merging a re-ranked dev resolves');
+  ok(ids(r.text).join() === 'T-0004,T-0003,T-0002,T-0001', "...THEIRS' re-rank survives, not ours");
+  ok(/the owner's new band/.test(r.text), '...and their band comment comes with it');
+}
+
+// 8. The mirror of it: we re-ranked, dev did not. Ours must win.
+{
+  const base = HEAD + [1,2,3,4].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const ours = HEAD + [4,3,2,1].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const theirs = HEAD + [1,2,3,4].map((n) => `T-000${n} — t${n}`).join('\n')
+    + '\nT-0009 — they filed one\n';
+  const r = run(base, ours, theirs);
+  ok(r.code === 0, 'we re-ranked and dev did not — ours wins');
+  ok(ids(r.text).slice(0,4).join() === 'T-0004,T-0003,T-0002,T-0001', '...our order kept');
+  ok(ids(r.text).includes('T-0009'), '...and their new ticket still arrives');
+}
+
 console.log('\n\x1b[1m== …and the refusal still fires\x1b[0m');
 {
   // A base that already carries a duplicate forces the result to carry one too.
@@ -109,5 +136,13 @@ console.log('\n\x1b[1m== …and the refusal still fires\x1b[0m');
   ok(r.code === 0, 'three empty files are not an error');
 }
 
+{
+  // BOTH sides re-ranked: two deliberate orderings, and neither may be picked silently.
+  const base = HEAD + [1,2,3,4].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const ours = HEAD + [4,3,2,1].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const theirs = HEAD + [2,1,4,3].map((n) => `T-000${n} — t${n}`).join('\n') + '\n';
+  const r = run(base, ours, theirs);
+  ok(r.code !== 0, 'BOTH sides re-ranking is REFUSED, not silently decided');
+}
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

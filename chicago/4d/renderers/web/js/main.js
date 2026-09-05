@@ -43,6 +43,10 @@ import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
 import { mountGateCensus } from './census.js';
 import { mountLiberties } from './liberties.js';
+import { createRouter } from './route.js';
+import { createTravel } from './travel.js';
+import { mountPeople } from './people.js';
+import { createEvidenceHub } from './evidence.js';
 
 const VERSION = '0.1.0';
 
@@ -1398,11 +1402,57 @@ async function boot() {
   const navigation = createNavigation({
     root: hudRoot, terrain, registry: loaded.registry, streets,
   });
+
+  // The people directory, compiled by tools/compile_scene.py compile_people from
+  // data/residents/ — one row per person, so the Go to list can offer a person
+  // and the People section can filter a thousand of them without a fetch each.
+  // Absent (an older mirror, a failed fetch) degrades to "no people listed";
+  // it never takes the scene down.
+  let people = null;
+  try {
+    const res = await fetch(new URL(`sidecars/${loaded.scene.id ?? YEAR}/people.json`, bases.dataBase), { cache: 'no-cache' });
+    if (res.ok) people = await res.json();
+    else problems.push(`people: sidecars/${loaded.scene.id ?? YEAR}/people.json ${res.status} — nobody is listed in Go to or People`);
+  } catch (err) {
+    problems.push(`people: ${err.message} — nobody is listed in Go to or People`);
+  }
+
+  /** A structure's ground position in local ENU metres — footprint centroid where
+   *  one is drawn, the placement otherwise. Go to measures distance from it;
+   *  travel plans a route to it. */
+  function structurePosition(id) {
+    const fp = footprints.find((f) => f.id === id);
+    if (fp && fp.pts.length) {
+      return {
+        e: fp.pts.reduce((a, p) => a + p[0], 0) / fp.pts.length,
+        n: fp.pts.reduce((a, p) => a + p[1], 0) / fp.pts.length,
+      };
+    }
+    const pl = loaded.registry.get(id)?.sidecar?.placement;
+    if (!pl) return null;
+    return { e: pl.local_e ?? 0, n: pl.local_n ?? 0 };
+  }
+
+  // The route planner and the travel controller. `travel` is assigned after the
+  // HUD exists (it paints through it); the HUD's callbacks below reach it through
+  // the binding, which is settled long before the first frame.
+  const router = createRouter({
+    terrain, streets, footprints, decks, surfaceAt: (e, n) => walker.surfaceAt?.(e, n) ?? terrain.surfaceHeight(e, n),
+    // The walker's own capsule and step rule, so a route that plans is a route that walks.
+    radius: WALK.radius, stepUp: WALK.stepUp,
+  });
+  let travel = null;
+  api.router = router;
+
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
     registry: loaded.registry,
     intersections: loaded.index?.intersections ?? [],
+    people,
+    positionOf: structurePosition,
+    visitor: () => ({ e: walker.state.e, n: walker.state.n, bearingDeg: walker.bearingDeg }),
+    onTravelStop: () => travel?.stop('button'),
     isTouch: prefersTouch(),
     resolvedDetail: detailLevel,
     onConfidence: (on) => confidence.set(on),
@@ -1411,17 +1461,17 @@ async function boot() {
     // Hiding a level removes it from the view outright — see confidence.setHidden.
     onHideLevel: (level, hide) => confidence.setHidden(level, hide),
     onSetting: (key, value) => {
-      if (key === 'speed') {
-        // Keep the run multiplier the walker was tuned with rather than pinning
-        // a fixed run speed, so the two stay in proportion at any setting.
-        WALK.speed = value;
-        WALK.sprintSpeed = value * 2.28;
-      } else if (key === 'eyeHeight') {
-        // Applied to the standing eye immediately, not on the next step: a
-        // slider you have to walk away from before it does anything reads as
-        // broken, and this one exists because the default view felt too low.
-        WALK.eyeHeight = value;
-        walker.resettle();
+      if (key === 'speed' || key === 'eyeHeight' || key === 'pace') {
+        // The slider values and the pace compose into WALK in one place —
+        // travel.applyPace() — so a wagon seat and a raised eye-height slider
+        // add rather than overwrite each other. Applied to the standing eye
+        // immediately, not on the next step: a slider you have to walk away
+        // from before it does anything reads as broken.
+        travel?.applyPace();
+      } else if (key === 'travelMode') {
+        travel?.setMode(value);
+      } else if (key === 'headBob') {
+        travel?.setHeadBob(!!value);
       } else if (key === 'fov') {
         camera.fov = value;
         camera.updateProjectionMatrix();
@@ -1453,6 +1503,18 @@ async function boot() {
   // fired and forgotten: it is one small JSON, and a visitor who opens the panel
   // in the first second should not find it empty. A failure here degrades the
   // panel and records a problem; it does not stop the walkthrough.
+
+  // The Evidence panel as a hub of topics rather than one scroll; it reorganises
+  // the section's own static markup, so the mounts below keep their ids.
+  api.evidenceHub = createEvidenceHub({
+    root: hudRoot.querySelector('[data-panel="evidence"]'),
+    onTitle: (text, onBack) => hud.setTitle(text, onBack),
+  });
+  hud.onTabChange((tab) => {
+    if (tab === 'evidence') api.evidenceHub?.showHub?.({ keep: true });
+    if (tab === 'goto') hud.goTo?.refreshDistances?.();
+  });
+
   api.liberties = await mountLiberties({
     mount: document.getElementById('liberties'),
     noteMount: document.getElementById('liberties-note'),
@@ -1486,6 +1548,19 @@ async function boot() {
     noteMount: document.getElementById('residents-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+  // …and the same people as a DIRECTORY: one row a person, searchable and
+  // filterable, with the way to the building they lived or worked at.
+  api.people = await mountPeople({
+    mount: document.getElementById('people-directory'),
+    people,
+    registry: loaded.registry,
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
+    // The drawer's head shows the person's name with a back control while a card is open.
+    onTitle: (text, onBack) => hud.setTitle(text, onBack),
     problems,
   });
 
@@ -1545,9 +1620,6 @@ async function boot() {
   // returning visitor who had hidden the reconstructed town sees it flash in.
   hud.applyHidden();
 
-  WALK.speed = hud.settings.speed;
-  WALK.sprintSpeed = hud.settings.speed * 2.28;
-  WALK.eyeHeight = hud.settings.eyeHeight;
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
@@ -1562,6 +1634,27 @@ async function boot() {
 
   const intent = createIntent();
   const backends = createBackendSwitch(intent);
+
+  // The travel controller: instantly, on foot, by wagon, on horseback, or flying.
+  // It writes the shared intent the way a backend does, so the walker keeps its
+  // collision and terrain honesty whoever is steering — see travel.js.
+  travel = createTravel({
+    walker, intent, hud, settings: hud.settings, router, terrain, footprints,
+    focusPoint, structurePosition,
+    registry: loaded.registry,
+    frame: (id) => frame(id),
+    teleport: (where) => walker.teleport(where),
+    goToAnchor: (id) => api.goTo(id),
+    setFly: (on) => hud.setFly(on, { announce: false }),
+    // Arriving is what opens the card: the menu closes, the building's card opens.
+    onArrive: (id) => { hud.setPanel(false); pick(id); },
+  });
+  api.travel = travel;
+  // The stored pace and travel mode, through the one function that writes WALK
+  // (the slider values used to be copied into WALK by hand a few lines up).
+  travel.setMode(hud.settings.travelMode);
+  travel.setHeadBob(hud.settings.headBob !== false);
+  travel.applyPace();
 
   const pointerlock = createPointerLockBackend({
     intent,
@@ -1764,18 +1857,13 @@ async function boot() {
    * intersection, or use one of the authored scene viewpoints. */
   function goToTarget(target) {
     if (!target?.kind) return false;
-    if (target.kind === 'anchor') return api.goTo?.(target.id) ?? false;
-    hud.setFly(false, { announce: false });
-    walker.setFlying(false);
-    if (target.kind === 'structure') return frame(target.id);
-    if (target.kind === 'intersection'
-        && Number.isFinite(target.local_e) && Number.isFinite(target.local_n)) {
-      walker.teleport({
-        local_e: target.local_e, local_n: target.local_n, yaw_deg: 0,
-      });
-      return true;
+    // A person is a place by proxy: where they lived, else where they worked.
+    if (target.kind === 'person') {
+      const id = target.lives_at || target.works_at;
+      if (!id || !loaded.registry.has(id)) return false;
+      return travel.go({ kind: 'structure', id, person: target.id });
     }
-    return false;
+    return travel.go(target);
   }
 
   // ---- gate ------------------------------------------------------------- //
@@ -1867,6 +1955,9 @@ async function boot() {
     const dt = Math.min(frameDt, 0.05);
 
     backends.active?.update?.(dt);
+    // After the backend has written what the visitor is doing and before the
+    // walker reads it: a ride in progress either yields to that input or steers.
+    travel.update(dt, intent);
     terrain.update(dt);
     const asked = intent.takeInteract();
     // The inspect KEY toggles: the reach that opened the card also closes it
@@ -1877,6 +1968,9 @@ async function boot() {
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
+    // The ride's bookkeeping, after the walker has consumed the intent: its own
+    // writes are zeroed, the gait's head movement applied, arrival tested.
+    travel.afterWalk(intent, frameDt);
     // Before the render, after the walker: the near plane is a function of where
     // the eye ended up this frame (R-BUG1, and the NEAR block above).
     setNearFor(walker.state.altitude);
@@ -1968,6 +2062,11 @@ async function boot() {
     pick,
     frame,
     goToTarget,
+    structurePosition,
+    setTravelMode(mode) { return hud.setTravelMode(mode); },
+    setPace(pace) { return hud.setPace(pace, { announce: false }); },
+    /** Harness only: run the ride forward `seconds` of simulated time, synchronously. */
+    travelSimulate(seconds, dt = 1 / 30) { return travel.simulate(seconds, dt); },
     goTo(anchorId) {
       const a = anchorFor(loaded.scene, anchorId);
       if (!a) return false;
@@ -2076,6 +2175,8 @@ async function boot() {
   Object.defineProperties(api, {
     /** The level the visitor is actually on, now rather than at boot (T-0115). */
     detail: { get: () => detailLevel, enumerable: true },
+    /** The ride in progress — phase, destination, distance left — live. */
+    travelState: { get: () => travel?.state ?? { phase: 'idle' }, enumerable: true },
     /**
      * T-0115. What the level's shadow half actually DID to the scene, read off
      * the scene rather than off the table that asked for it — R-A1's rule about
@@ -2179,8 +2280,12 @@ async function boot() {
   api.ready = true;
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
   if (gateSub) {
-    const n = loaded.registry.size;
-    gateSub.textContent = `${n} structure${n === 1 ? '' : 's'} · ${world.describe()}`;
+    // T-0782: the count that used to open this line was `registry.size` — every
+    // RECORD in the scene, bridges and the pier and the palisade and the parade
+    // ground included — so it read as a building count and contradicted the 359
+    // on the card three lines below it. The card counts the town; this line says
+    // when the town is.
+    gateSub.textContent = world.describe();
   }
 
   if (DEBUG) {

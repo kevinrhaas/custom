@@ -120,7 +120,8 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -135,7 +136,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "isa_public_domain_land_tract_sales"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -149,7 +151,8 @@
       "starting_occupation": "hotel_keeper",
       "letter_list_returns": [],
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "fergus_chicago_directory_1839"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -194,6 +197,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_antiquities_american_fur_co",
         "chicago_voter_lists_1833_1835_irad",
         "kinzie_waubun_1856"
       ],
@@ -269,7 +273,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_voter_lists_1833_1835_irad",
+        "isa_public_domain_land_tract_sales"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -403,7 +408,8 @@
         "1835-07-01"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_1843_old_settler_death_notices"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
     },
@@ -467,6 +473,7 @@
         "1835-07-01"
       ],
       "sources": [
+        "census_1840_chicago_familysearch_images",
         "chicago_democrat_1833_1835"
       ],
       "selection_reason": "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing."
@@ -556,7 +563,7 @@
       "person_id": "brooks_gardner",
       "name": "Gardner Brooks",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "present",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -829,7 +836,7 @@
       "person_id": "murray_alonzo",
       "name": "Alonzo Murray",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "starting_occupation": "none_recorded",
       "letter_list_returns": [
@@ -1079,7 +1086,8 @@
         "1834-01-28"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "isa_public_domain_land_tract_sales"
       ],
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },
@@ -1168,14 +1176,16 @@
       "person_id": "legg_gregory_e",
       "name": "Gregory E. Legg",
       "starting_evidence": "letter_list_only",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "priest",
       "letter_list_returns": [
         "1834-04-16"
       ],
       "sources": [
-        "chicago_democrat_1833_1835"
+        "chicago_democrat_1833_1835",
+        "fergus_chicago_directory_1839",
+        "st_cyr_register_ichr_v4"
       ],
       "selection_reason": "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing."
     },

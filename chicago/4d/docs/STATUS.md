@@ -1,5 +1,170 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0713: the platted streets are attested, and the line grades the ribbon
+
+**What shipped.** Seventeen streets in `data/streets/1835.json` move from
+`geometry_confidence: inferred` to `attested` and each now cites
+`thompson_plat_1830`: the sixteen the owner named — `south_water`, `lake`, `randolph`,
+`washington`, `market`, `franklin`, `wells`, `lasalle`, `clark`, `dearborn`, `state`,
+`canal`, `clinton`, `kinzie`, `wolcott`, `michigan_north` — and `fulton`, which already
+cited the plat and is the best-held line in the file at RMS 0.35 m across four surviving
+intersections. `surface_confidence` and `wear_confidence` are untouched everywhere: the
+plat attests where a street ran, and carries nothing about what it was paved with or how
+it was worn. `north_water`, `fort_road` and `fort_bank_track` stay `reconstructed` — a
+line derived from the committed bank and two fort tracks the plat does not draw — and
+`carroll` stays `inferred`, because it is the one West Division tier that does not survive
+inside the plat and its line is interpolated between Kinzie and Fulton.
+
+### The distinction each upgraded note now states
+
+The 17.5 m RMS in `data/datum.json` `derivation.residual_m` is COORDINATE UNCERTAINTY —
+how well the 1834 sheet warped onto modern ground — and it bounds how precisely a line is
+PLACED, not whether the street was there. Confusing the two is what held these sixteen at
+`inferred`: a metric bracket on a position was being read as a doubt about existence. Every
+upgraded note says so in its own words, and each was re-read for
+`tools/audit_confidence.py`'s SILENCE vocabulary. One hit, in `fulton`: "no source gives
+Fulton a crossing" is a sentence about a BRIDGE and not about the line, and it is reworded
+so an attested field is not hedged in its own note.
+
+### The composition decision, which is what makes it visible
+
+`streets.js` graded a ribbon by `Math.max()` of geometry, surface and wear (T-0100), and
+every record in the file carries `wear_confidence: reconstructed` — so upgrading the lines
+alone would have moved no pixel and the whole platted town would have gone on dithering as
+invention. T-0713 splits the one grade into the two claims it had flattened:
+
+- **the LINE decides whether the ribbon STANDS** — presence, dither, and which level hides
+  it. That is the claim "a street ran here", and it is the only one of the three the
+  visitor's own footing depends on. It is carried on `_confidence`, the contract's channel,
+  and it is the channel the confidence view reads.
+- **SURFACE and WEAR decide only the TRACK painted on it.** They are carried on a second
+  attribute, `_trackConfidence`, read nowhere but the street material's own fragment block,
+  which fades the worn texture toward the bare corridor in proportion to how invented it is
+  — and only while the confidence view is on (`vTrackConfidence * uConfMode`), so the
+  ordinary daylight frame is the frame that shipped before this.
+
+T-0100's guard is kept rather than traded away, and `tools/test_street_confidence.mjs` is
+restated to prove it: an invented line under an attested surface still dithers out, and a
+record with no geometry grade still falls to `reconstructed` rather than reading as
+attested. What the split adds is the converse the `max()` could not express — an attested
+line under an invented wear no longer dithers away, because "we do not know how worn it was"
+is not a reason to tell a visitor the street was not there. The test now extracts BOTH
+expressions from the source and refuses to pass if the ribbon's one reads `surface_` or
+`wear_confidence` again, if the track's one has dropped either of them, or if
+`_trackConfidence` reaches the shader and is never spent.
+
+**Measured on the shipped index:** 21 street records — 17 ribbons attested, 1 inferred
+(`carroll`), 3 reconstructed. Hiding `inferred` drops Carroll and leaves the platted town
+standing; hiding `reconstructed` drops the two fort tracks and the north bank line.
+
+### Not decided here
+
+`INVENTED_TRACK_ALPHA` is 0.45, chosen to sit clear of the 0.34 the confidence view already
+uses to dither invented massing — a track we made up should read fainter than one we did
+not, and still plainly fainter than the road it is painted on is solid. It is a legibility
+constant and no measurement fixed it; if the fade reads wrong against the amber tint at a
+distance, that number is the thing to move, not the split.
+
+### Carried, not caused
+
+`python3 tools/compile_scene.py --all` was run and five sidecars —
+`clybourn_slaughterhouse`, `elston_soap_candle_manufactory`, `green_tree_tavern`,
+`pruyne_kimball_drugstore` and `residents_sources.json` — recompiled with land-sale evidence
+that had landed on `dev` without a recompile. That drift was on `dev` before this branch
+existed (verified against a clean tree) and `check.sh` fails on it either way, so the
+recompile is carried here rather than left for the next run to trip over.
+
+## Shipped 2026-09-05 — T-0637: 302 runs of fence stop belonging to nobody
+
+**What shipped.** `tools/enclosure_owners.py`, a derivation, and the two generators that now
+call it. Every run on the enclosure layer carries a `belongs_to` naming the lot it bounds, the
+committed buildings standing on that lot, and the households `data/residents/index.json` puts
+in those buildings — `lives_at` as a home, `works_at` as a workplace, which is this dataset's
+join to a business because a business here IS a structure with a trade on its `function`.
+Where one line divides two lots it belongs to both and each entry gives the compass bearing
+from the run's midpoint to that owner's ground, so the side is a measurement off the committed
+plat rather than a word. `data/enclosures/town_lot_line_{boards,pickets,rails}.json` and
+`town_dooryard_pickets.json` are regenerated; a new record-level `belongs_to_rule` block on
+each states the rule, its sources and its counts.
+
+**The numbers, on 306 runs.** 51 joined to a household; 24 households now have a fence round
+their ground; 117 lots named. The other 251 name the structures whose ground they bound and
+carry `refused: no_household_names_this_ground`, with the reason stated once per record: 20 of
+this town's 1,380 households hold a real `lives_at` and 50 a real `works_at`, all at named
+landmarks. **That is a gap in the address work (T-0514), not in the join** — a re-generation
+picks up whatever the placement sweep lands without a line of the rule changing.
+
+**What was refused.** A structure's `occupants` block is prose, and 72 of the buildings this
+layer fences name a household id in it — 59 ids, of which **53 belong to households the
+2026-09-02 synthesis removed** and the index no longer holds (T-0516's finding, counted here).
+Worse, a mention is not an occupancy: `philo_carpenter_log_shop` names `hh_chappel_eliza_mir`
+in a sentence whose own `value` says no occupant is attested there at the scene date. Joining
+on that prose would have handed ground to the wrong household while looking like evidence, so
+the count is filed as a finding in each record and the join stays on the two committed links.
+It is also why the dooryard record joins **1 of its 13** plots: clause 4 of that generator's
+own rule admits a lot on the strength of the same prose, and only Elijah Harmon's household is
+on a lot this record reaches with a real address behind it.
+
+**Nothing hand-authored was overwritten.** `tools/check_enclosure_owners.py` (new, wired into
+`tools/check.sh`) re-derives the authored yards anyway and prints the comparison: it agrees
+`sauganash_yard` is the Sauganash's and reports that `philo_carpenter_log_shop` stands on the
+same lot — a second building on the ground, not a second owner of the yard. The Western's
+wagon yard and the estray pen stand on ground the plat never divided into lots, so the
+derivation has nothing to compare and says so. The gate also fails a run that names an owner
+this repository does not hold, and a generated run with no `belongs_to` and no refusal.
+
+**Nothing in the scene moved.** No coordinate, no fence, no bake: this ticket adds a relation.
+
+## Shipped 2026-09-04 — T-0701…T-0712: the drawer, Go to, Travel, People, the Evidence hub, the card
+
+**Every screen a visitor sees changed; the PR names the twelve tickets.** The owner's asks:
+the menu "is so small" (a sixth tab did not fit); Go to with "reconstructed roofs hidden by
+default" and "filters like taverns, shops, etc."; travel "instantly, by walking, by wagon
+(fast), by horse (faster)", "go as fast as a horse through the city", "maybe a gallop
+up-and-down view", "open the card on landing" or "fly … and open the card"; the card should
+not lead with "what we made up"; "the citizens should show there"; Evidence "is entirely
+unwieldy". Ruled in session: one PR into `dev`; menu and card **share one right-hand slot**;
+the card's top half uses **quiet coloured grade dots**.
+
+### Decisions
+- **One slot**: opening the drawer tucks the card (`#popup[data-tucked]`, never `hidden`);
+  closing untucks; a Go-to arrival closes the drawer and opens the card.
+- **Hidden roofs** follow the presence grade, `documented_range.confidence ||
+  placement.position_confidence || 'reconstructed'` — 276 of 358 hidden until the toggle.
+  Privies, stables and sheds file under Homes & yards.
+- **Default travel mode `instantly`**, so first-run behaviour and every arrival assertion stand.
+- **Router**: grid A* on 2 m cells, streets cheap, footprints and undecked water blocked; a
+  null route falls back to instant travel and says so.
+- **Paces are interface choices, not claims about 1835** — 3.6 m/s says nothing about any
+  1835 wagon — so **no LIBERTIES entry**; the Travel note says so instead.
+- **`people.json`** is a compiled sidecar (`compile_people()`, drift-checked under `--check`);
+  `residents.js` still reads the manifest and household files.
+
+### Smoke restatements — restated, never weakened (unverified until the gate runs)
+- Tab order → exactly `goto,travel,people,evidence,settings,controls,whatsnew` (same exactness).
+- "Five tabs fit one row" → every rail item unsqueezed, one column desktop / one row mobile (same fit test).
+- "Every loaded structure" → default `=== count(presenceGrade ≠ reconstructed)`, toggle `=== registry.size` (full count kept, behind the owner's toggle).
+- Position grade per row → chip `=== presenceGrade` and `data-jump-position ===` position grade (both grades read).
+- Chip colours distinct and `≠ .jump-name` → same, reconstructed read after the toggle.
+- `.jump-result span` → `.jump-result .jump-name` (the same element, by its own class).
+- Intersection arrival → precondition `api.setTravelMode('instantly')` stated (the default it already relied on).
+- `checkVisibility` in card panes → activate the pane's `[data-pop-tab]` first (a collapsed read passing would be dishonest).
+- `.pop-account` → `#popup .pop-lead.pop-account`, plus a composed lead without `change_note` (stricter).
+- `.pop-meta [data-note]` → `#popup .pop-where [data-note]`; chip coverage adds `.fact-dot ≥ 3`, `.pop-facts .conf === 0` (additions).
+- Card not collateral when the panel opens → unchanged; tucking keeps `hidden` off `#popup`.
+
+**Verified 2026-09-05 on the integrated tree** (`tools/check.sh` CHECK PASS; smoke to files,
+zero page errors in every leg): desktop parts 12, 3 and 13 and mobile 10-13 and 3-6 all
+pass — 66, 80, 110, 203 and 123 checks. The mobile 3-6 leg found one real defect on the way
+and it is fixed in the same PR: the new pace chip had pushed the confidence chip group to the
+left of a 390 px top bar, and its 280 px level menu, hung off the group's right edge, opened
+70 px past the screen; on a phone the menu now anchors to the viewport's own edges. One plan
+clause was corrected rather than the code: the Go to list starts with no row active, as a
+combobox does, so two ArrowDowns reach the SECOND row, and the gate asserts that.
+
+New assertions live in T-0701…T-0712's acceptance clauses. T-0713 (street lines attested from
+the Thompson plat) is written for the loop and stays in the queue.
+
 ## Shipped 2026-09-04 — T-0542: the third town election was Friday 10 July 1835, and the 85-name poll list is not its poll book
 
 **Nothing a visitor can see changed, and this is the exemption named in the PR: the finding
@@ -133,6 +298,48 @@ and the **fine well** is not drawn, because this town has no well of any kind an
 one would stand on the single lot whose address happens to resolve (**T-0592**). Both are on
 the record in the notice's own words. A documented feature that is absent is stated, not
 omitted.
+
+## Shipped 2026-09-03 — T-0450: three caps, and the one a leg's margin is taken against
+
+**`docs/SMOKE-BUDGET.md` opened by telling three tickets that the 30-minute cap their
+margins are taken against "is not this machine's". It was wrong, and it has ranked those
+tickets against the wrong bound since 2026-08-30.** The page compared a **per-leg**
+timeout with a **whole-body** reading. They do not bound each other:
+
+| cap | what it bounds | where it is written |
+|---|---|---|
+| 600 s | ONE foreground command in a steward run | the harness |
+| 30 min | ONE LEG of the nightly gate — one viewport, one stage range, eight legs in parallel | `chicago-4d-bake.yml` § `smoke` |
+| 90 min | the WHOLE body in one process, no per-leg cap at all | `chicago-4d-smoke.yml` § `smoke` |
+
+The 55 m 10 s figure offered as proof is a reading of the third row and sits comfortably
+inside its own cap. **T-0170, T-0173 and T-0181 were reasoning about the leg cap
+correctly**, and the page now says so.
+
+**The same-machine half is settled from committed files rather than from a timing.** The
+nightly gate's legs, the full-body run, the dev gate and the steward improve runner are
+all `runs-on: ubuntu-latest`; the two smoke workflows install the same `playwright@1.56.1`
+and chromium alone; `smoke_renderer.mjs` passes `--enable-unsafe-swiftshader` wherever it
+runs. T-0450's own pair of readings — 4 m 40 s on the gate runner, 4 m 44 s on the improve
+runner, four seconds apart — is recorded with its provenance, **and with its unverified
+half named**: the ticket gives `dev` at `415909cf` for both, while run 33290607360's head
+commit is `fc10c83d`, so "the same bytes" is not a checked fact and is not claimed as one.
+
+**The leg table is a tool, not prose, because four re-cuts in 2026 rotted every prose copy
+of it.** `node tools/smoke_budget.mjs --legs` reads the stage ranges and the cap out of the
+workflow and prices each leg from `tools/dev-smoke-state.json`. Today: the worst fully
+measured margin is **desktop `10-13` at 12 m 09 s**, and a leg whose only readings straddle
+its boundary is priced with the neighbour included and says so — cost an upper bound, margin
+a lower one. `--self-test`, which `check.sh` runs, now fails if the ranges ever stop tiling
+parts 1..13 exactly once; the workflow's own comment has asserted that since T-0171 and
+nothing held it.
+
+**Nothing a visitor can see changed, and T-0181 is not closed by this.** Its acceptance —
+the worst desktop leg measured on three separate runs, the spread recorded, the cap or the
+cut set from the spread — stands unchanged, because the 17 m 51 s above is summed from
+per-part readings that each paid their own boot, which is the very prediction-from-parts
+move that ticket was opened to object to. What is removed is only the claim that it was
+arguing against the wrong bound. The re-read is written into T-0181 itself.
 
 ## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
 

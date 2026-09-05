@@ -68,7 +68,7 @@
       "lots": [
        {
         "claim": "f1839_lot0238",
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 15,
         "amount_usd": 480,
@@ -83,7 +83,7 @@
        },
        {
         "claim": "f1839_lot0239",
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 16,
         "amount_usd": 560,
@@ -111,8 +111,8 @@
      {
       "bidder_as_printed": "A. Bronson",
       "lots_bid": 15,
-      "amount_read_usd": 4000,
-      "lots_whose_price_the_scan_destroyed": 3,
+      "amount_read_usd": 4869,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0018",
@@ -208,7 +208,7 @@
         "claim": "f1839_lot0034",
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 14,
         "amount_usd": 303,
         "as_printed": {
          "block": null,
@@ -224,7 +224,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 233,
         "as_printed": {
          "block": null,
          "lot": "15",
@@ -269,7 +269,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 18,
-        "amount_usd": null,
+        "amount_usd": 333,
         "as_printed": {
          "block": null,
          "lot": "18",
@@ -314,7 +314,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 21,
-        "amount_usd": null,
+        "amount_usd": 303,
         "as_printed": {
          "block": null,
          "lot": "21",
@@ -454,7 +454,7 @@
         "claim": "f1839_lot0073",
         "block": 5,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 208,
         "as_printed": {
          "block": null,
@@ -467,9 +467,9 @@
        },
        {
         "claim": "f1839_lot0180",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 7,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -482,9 +482,9 @@
        },
        {
         "claim": "f1839_lot0181",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -566,7 +566,7 @@
     ],
     "person_id": "foot_john",
     "household_id": "hh_foot_john",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
@@ -677,9 +677,9 @@
       "lots": [
        {
         "claim": "f1839_lot0218",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 3,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -692,9 +692,9 @@
        },
        {
         "claim": "f1839_lot0219",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 4,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -707,9 +707,9 @@
        },
        {
         "claim": "f1839_lot0221",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 6,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -735,15 +735,15 @@
      {
       "bidder_as_printed": "S. Paine",
       "lots_bid": 1,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 530,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0151",
         "block": 9,
         "block_carried": true,
-        "lot": null,
-        "amount_usd": null,
+        "lot": 10,
+        "amount_usd": 530,
         "as_printed": {
          "block": null,
          "lot": "IO",
@@ -768,8 +768,8 @@
      {
       "bidder_as_printed": "Walter Kimball",
       "lots_bid": 2,
-      "amount_read_usd": 600,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1050,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0081",
@@ -791,7 +791,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 2,
-        "amount_usd": null,
+        "amount_usd": 450,
         "as_printed": {
          "block": null,
          "lot": "2",
@@ -863,7 +863,7 @@
         "claim": "f1839_lot0134",
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "as_printed": {
          "block": null,
@@ -891,14 +891,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -911,10 +911,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -926,10 +926,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -958,14 +958,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -978,10 +978,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -993,10 +993,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -1032,7 +1032,7 @@
         "claim": "f1839_lot0134",
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "as_printed": {
          "block": null,
@@ -1060,14 +1060,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -1080,10 +1080,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -1095,10 +1095,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -1127,14 +1127,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -1147,10 +1147,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -1162,10 +1162,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -1180,7 +1180,7 @@
     ],
     "person_id": "haddock_edward",
     "household_id": "hh_haddock_edward",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "E Haddock",
      "E W Haddock",
@@ -1239,7 +1239,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -1305,9 +1305,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -1343,7 +1343,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -1519,7 +1519,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -1625,7 +1625,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -1691,9 +1691,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -1727,9 +1727,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -1803,7 +1803,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -1972,15 +1972,15 @@
      {
       "bidder_as_printed": "S. B. Cobb",
       "lots_bid": 2,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 516.0,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0183",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
         "as_printed": {
          "block": null,
          "lot": "O",
@@ -1992,10 +1992,10 @@
        },
        {
         "claim": "f1839_lot0184",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
         "as_printed": {
          "block": null,
          "lot": "^",
@@ -2022,15 +2022,15 @@
      {
       "bidder_as_printed": "S. B. Cobb",
       "lots_bid": 2,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 516.0,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0183",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
         "as_printed": {
          "block": null,
          "lot": "O",
@@ -2042,10 +2042,10 @@
        },
        {
         "claim": "f1839_lot0184",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
         "as_printed": {
          "block": null,
          "lot": "^",
@@ -2079,9 +2079,9 @@
       "lots": [
        {
         "claim": "f1839_lot0200",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
         "amount_usd": 215,
         "as_printed": {
          "block": null,
@@ -2097,8 +2097,8 @@
      {
       "bidder_as_printed": "J. Iv. Botsford",
       "lots_bid": 2,
-      "amount_read_usd": 470,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 940,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0226",
@@ -2120,7 +2120,7 @@
         "block": 13,
         "block_carried": true,
         "lot": 4,
-        "amount_usd": null,
+        "amount_usd": 470,
         "as_printed": {
          "block": null,
          "lot": "4",
@@ -2144,15 +2144,15 @@
      {
       "bidder_as_printed": "J. J- Phelps",
       "lots_bid": 1,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 510,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0138",
         "block": 8,
         "block_carried": true,
         "lot": 27,
-        "amount_usd": null,
+        "amount_usd": 510,
         "as_printed": {
          "block": null,
          "lot": "27",
@@ -2172,9 +2172,9 @@
       "lots": [
        {
         "claim": "f1839_lot0220",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 5,
         "amount_usd": 564,
         "as_printed": {
          "block": null,
@@ -2710,7 +2710,7 @@
       "lots": [
        {
         "claim": "f1839_lot0238",
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 15,
         "amount_usd": 480,
@@ -2725,7 +2725,7 @@
        },
        {
         "claim": "f1839_lot0239",
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 16,
         "amount_usd": 560,
@@ -2749,8 +2749,8 @@
      {
       "bidder_as_printed": "A. Bronson",
       "lots_bid": 15,
-      "amount_read_usd": 4000,
-      "lots_whose_price_the_scan_destroyed": 3,
+      "amount_read_usd": 4869,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0018",
@@ -2846,7 +2846,7 @@
         "claim": "f1839_lot0034",
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 14,
         "amount_usd": 303,
         "as_printed": {
          "block": null,
@@ -2862,7 +2862,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 233,
         "as_printed": {
          "block": null,
          "lot": "15",
@@ -2907,7 +2907,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 18,
-        "amount_usd": null,
+        "amount_usd": 333,
         "as_printed": {
          "block": null,
          "lot": "18",
@@ -2952,7 +2952,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 21,
-        "amount_usd": null,
+        "amount_usd": 303,
         "as_printed": {
          "block": null,
          "lot": "21",
@@ -3017,14 +3017,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -3037,10 +3037,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -3052,10 +3052,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -3076,14 +3076,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -3096,10 +3096,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -3111,10 +3111,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -3135,14 +3135,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -3155,10 +3155,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -3170,10 +3170,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -3259,7 +3259,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -3318,7 +3318,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -3377,7 +3377,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -3494,7 +3494,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -3553,7 +3553,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -3639,9 +3639,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -3668,9 +3668,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -4150,7 +4150,7 @@
         "claim": "f1839_lot0073",
         "block": 5,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 208,
         "as_printed": {
          "block": null,
@@ -4163,9 +4163,9 @@
        },
        {
         "claim": "f1839_lot0180",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 7,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4178,9 +4178,9 @@
        },
        {
         "claim": "f1839_lot0181",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4253,7 +4253,7 @@
         "claim": "f1839_lot0134",
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "as_printed": {
          "block": null,
@@ -4275,14 +4275,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -4295,10 +4295,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -4310,10 +4310,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -4334,14 +4334,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -4354,10 +4354,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -4369,10 +4369,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -4393,14 +4393,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -4413,10 +4413,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -4428,10 +4428,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -4459,7 +4459,7 @@
         "claim": "f1839_lot0134",
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "as_printed": {
          "block": null,
@@ -4679,7 +4679,7 @@
         "claim": "f1839_lot0073",
         "block": 5,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 208,
         "as_printed": {
          "block": null,
@@ -4692,9 +4692,9 @@
        },
        {
         "claim": "f1839_lot0180",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 7,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4707,9 +4707,9 @@
        },
        {
         "claim": "f1839_lot0181",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4738,7 +4738,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -4824,9 +4824,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -4915,7 +4915,7 @@
         "claim": "f1839_lot0073",
         "block": 5,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 208,
         "as_printed": {
          "block": null,
@@ -4928,9 +4928,9 @@
        },
        {
         "claim": "f1839_lot0180",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 7,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4943,9 +4943,9 @@
        },
        {
         "claim": "f1839_lot0181",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 353,
         "as_printed": {
          "block": null,
@@ -4974,7 +4974,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -5120,7 +5120,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -5179,7 +5179,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -5236,9 +5236,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -5260,8 +5260,8 @@
      {
       "bidder_as_printed": "Walter Kimball",
       "lots_bid": 2,
-      "amount_read_usd": 600,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1050,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0081",
@@ -5283,7 +5283,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 2,
-        "amount_usd": null,
+        "amount_usd": 450,
         "as_printed": {
          "block": null,
          "lot": "2",
@@ -5340,7 +5340,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -5548,7 +5548,7 @@
         "claim": "f1839_lot0053",
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 33,
         "amount_usd": 400,
         "as_printed": {
          "block": null,
@@ -5780,9 +5780,9 @@
       "lots": [
        {
         "claim": "f1839_lot0218",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 3,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -5795,9 +5795,9 @@
        },
        {
         "claim": "f1839_lot0219",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 4,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -5810,9 +5810,9 @@
        },
        {
         "claim": "f1839_lot0221",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 6,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -5834,15 +5834,15 @@
      {
       "bidder_as_printed": "S. B. Cobb",
       "lots_bid": 2,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 516.0,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0183",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
         "as_printed": {
          "block": null,
          "lot": "O",
@@ -5854,10 +5854,10 @@
        },
        {
         "claim": "f1839_lot0184",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
         "as_printed": {
          "block": null,
          "lot": "^",
@@ -5878,8 +5878,8 @@
      {
       "bidder_as_printed": "S. L. Smith",
       "lots_bid": 3,
-      "amount_read_usd": 960,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1521,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0152",
@@ -5916,7 +5916,7 @@
         "block": 9,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 561,
         "as_printed": {
          "block": null,
          "lot": "15",
@@ -5937,15 +5937,15 @@
      {
       "bidder_as_printed": "S. Paine",
       "lots_bid": 1,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 530,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0151",
         "block": 9,
         "block_carried": true,
-        "lot": null,
-        "amount_usd": null,
+        "lot": 10,
+        "amount_usd": 530,
         "as_printed": {
          "block": null,
          "lot": "IO",
@@ -5966,15 +5966,15 @@
      {
       "bidder_as_printed": "S. B. Cobb",
       "lots_bid": 2,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 516.0,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0183",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
         "as_printed": {
          "block": null,
          "lot": "O",
@@ -5986,10 +5986,10 @@
        },
        {
         "claim": "f1839_lot0184",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
         "as_printed": {
          "block": null,
          "lot": "^",
@@ -6155,8 +6155,8 @@
      {
       "bidder_as_printed": "S. L. Smith",
       "lots_bid": 3,
-      "amount_read_usd": 960,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1521,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0152",
@@ -6193,7 +6193,7 @@
         "block": 9,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 561,
         "as_printed": {
          "block": null,
          "lot": "15",
@@ -6214,8 +6214,8 @@
      {
       "bidder_as_printed": "A. D. Stewart",
       "lots_bid": 6,
-      "amount_read_usd": 751,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 1153,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0101",
@@ -6252,7 +6252,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 30,
-        "amount_usd": null,
+        "amount_usd": 351,
         "as_printed": {
          "block": null,
          "lot": "30",
@@ -6264,9 +6264,9 @@
        },
        {
         "claim": "f1839_lot0199",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 26,
         "amount_usd": 230,
         "as_printed": {
          "block": null,
@@ -6279,9 +6279,9 @@
        },
        {
         "claim": "f1839_lot0209",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 2,
         "amount_usd": 51,
         "as_printed": {
          "block": null,
@@ -6294,10 +6294,10 @@
        },
        {
         "claim": "f1839_lot0210",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 51,
         "as_printed": {
          "block": null,
          "lot": "Oj",
@@ -6318,8 +6318,8 @@
      {
       "bidder_as_printed": "A. D. Stewart",
       "lots_bid": 6,
-      "amount_read_usd": 751,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 1153,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0101",
@@ -6356,7 +6356,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 30,
-        "amount_usd": null,
+        "amount_usd": 351,
         "as_printed": {
          "block": null,
          "lot": "30",
@@ -6368,9 +6368,9 @@
        },
        {
         "claim": "f1839_lot0199",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 26,
         "amount_usd": 230,
         "as_printed": {
          "block": null,
@@ -6383,9 +6383,9 @@
        },
        {
         "claim": "f1839_lot0209",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 2,
         "amount_usd": 51,
         "as_printed": {
          "block": null,
@@ -6398,10 +6398,10 @@
        },
        {
         "claim": "f1839_lot0210",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 51,
         "as_printed": {
          "block": null,
          "lot": "Oj",
@@ -6422,8 +6422,8 @@
      {
       "bidder_as_printed": "Walter Kimball",
       "lots_bid": 2,
-      "amount_read_usd": 600,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1050,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0081",
@@ -6445,7 +6445,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 2,
-        "amount_usd": null,
+        "amount_usd": 450,
         "as_printed": {
          "block": null,
          "lot": "2",
@@ -6471,9 +6471,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -6500,9 +6500,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -6531,9 +6531,9 @@
       "lots": [
        {
         "claim": "f1839_lot0200",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
         "amount_usd": 215,
         "as_printed": {
          "block": null,
@@ -6549,8 +6549,8 @@
      {
       "bidder_as_printed": "J. Iv. Botsford",
       "lots_bid": 2,
-      "amount_read_usd": 470,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 940,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0226",
@@ -6572,7 +6572,7 @@
         "block": 13,
         "block_carried": true,
         "lot": 4,
-        "amount_usd": null,
+        "amount_usd": 470,
         "as_printed": {
          "block": null,
          "lot": "4",
@@ -6598,9 +6598,9 @@
       "lots": [
        {
         "claim": "f1839_lot0200",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
         "amount_usd": 215,
         "as_printed": {
          "block": null,
@@ -6616,8 +6616,8 @@
      {
       "bidder_as_printed": "J. Iv. Botsford",
       "lots_bid": 2,
-      "amount_read_usd": 470,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 940,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0226",
@@ -6639,7 +6639,7 @@
         "block": 13,
         "block_carried": true,
         "lot": 4,
-        "amount_usd": null,
+        "amount_usd": 470,
         "as_printed": {
          "block": null,
          "lot": "4",
@@ -6660,15 +6660,15 @@
      {
       "bidder_as_printed": "J. J- Phelps",
       "lots_bid": 1,
-      "amount_read_usd": 0,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 510,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0138",
         "block": 8,
         "block_carried": true,
         "lot": 27,
-        "amount_usd": null,
+        "amount_usd": 510,
         "as_printed": {
          "block": null,
          "lot": "27",
@@ -6688,9 +6688,9 @@
       "lots": [
        {
         "claim": "f1839_lot0220",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 5,
         "amount_usd": 564,
         "as_printed": {
          "block": null,
@@ -7658,8 +7658,8 @@
      {
       "bidder_as_printed": "A. D. Stewart",
       "lots_bid": 6,
-      "amount_read_usd": 751,
-      "lots_whose_price_the_scan_destroyed": 2,
+      "amount_read_usd": 1153,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0101",
@@ -7696,7 +7696,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 30,
-        "amount_usd": null,
+        "amount_usd": 351,
         "as_printed": {
          "block": null,
          "lot": "30",
@@ -7708,9 +7708,9 @@
        },
        {
         "claim": "f1839_lot0199",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 26,
         "amount_usd": 230,
         "as_printed": {
          "block": null,
@@ -7723,9 +7723,9 @@
        },
        {
         "claim": "f1839_lot0209",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 2,
         "amount_usd": 51,
         "as_printed": {
          "block": null,
@@ -7738,10 +7738,10 @@
        },
        {
         "claim": "f1839_lot0210",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 51,
         "as_printed": {
          "block": null,
          "lot": "Oj",
@@ -7806,14 +7806,14 @@
      {
       "bidder_as_printed": "E. H. Haddock",
       "lots_bid": 3,
-      "amount_read_usd": 247,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0171",
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "as_printed": {
          "block": null,
@@ -7826,10 +7826,10 @@
        },
        {
         "claim": "f1839_lot0185",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "In)",
@@ -7841,10 +7841,10 @@
        },
        {
         "claim": "f1839_lot0186",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "as_printed": {
          "block": null,
          "lot": "Oo",
@@ -7872,7 +7872,7 @@
         "claim": "f1839_lot0134",
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "as_printed": {
          "block": null,
@@ -7944,9 +7944,9 @@
        },
        {
         "claim": "f1839_lot0190",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 17,
         "amount_usd": 231,
         "as_printed": {
          "block": null,
@@ -8048,7 +8048,7 @@
         "claim": "f1839_lot0090",
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "as_printed": {
          "block": null,
@@ -8105,9 +8105,9 @@
       "lots": [
        {
         "claim": "f1839_lot0215",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "as_printed": {
          "block": null,
@@ -8279,9 +8279,9 @@
       "lots": [
        {
         "claim": "f1839_lot0218",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 3,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -8294,9 +8294,9 @@
        },
        {
         "claim": "f1839_lot0219",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 4,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -8309,9 +8309,9 @@
        },
        {
         "claim": "f1839_lot0221",
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 6,
         "amount_usd": 465,
         "as_printed": {
          "block": null,
@@ -8406,8 +8406,8 @@
      {
       "bidder_as_printed": "S. L. Smith",
       "lots_bid": 3,
-      "amount_read_usd": 960,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1521,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0152",
@@ -8444,7 +8444,7 @@
         "block": 9,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 561,
         "as_printed": {
          "block": null,
          "lot": "15",
@@ -8465,8 +8465,8 @@
      {
       "bidder_as_printed": "Walter Kimball",
       "lots_bid": 2,
-      "amount_read_usd": 600,
-      "lots_whose_price_the_scan_destroyed": 1,
+      "amount_read_usd": 1050,
+      "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
         "claim": "f1839_lot0081",
@@ -8488,7 +8488,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 2,
-        "amount_usd": null,
+        "amount_usd": 450,
         "as_printed": {
          "block": null,
          "lot": "2",

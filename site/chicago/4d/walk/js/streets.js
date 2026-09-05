@@ -216,6 +216,14 @@ const MITRE_MAX_TURN_RAD = (120 * Math.PI) / 180;
 const MIN_TRACK_PX = 2.0;
 const MAX_THIN_BOOST = 6.0;
 const MAX_ALPHA = 0.92;
+// T-0713. How faint an entirely INVENTED track reads while the confidence view
+// is on. It scales the worn texture only — never whether the ribbon is drawn,
+// which is the line's claim and is carried on `_confidence` — and it is inert
+// at uConfMode == 0, so the ordinary daylight frame is untouched. 0.45 was
+// chosen to sit clear of the 0.34 the view already uses to dither invented
+// massing: a track we made up should read fainter than one we did not, and
+// still plainly fainter than the road it is painted on is solid.
+const INVENTED_TRACK_ALPHA = 0.45;
 const NEAR_FULL_M = 15.0;
 const NEAR_FADE_M = 40.0;
 const NEAR_GAIN = 2.4;
@@ -564,7 +572,7 @@ function mitreJoins(pts, half, dryReach, stats) {
 
 function addRecord(buffers, record, terrain, stats) {
   const key = record.surface;
-  const buf = buffers.get(key) ?? { pos: [], uv: [], conf: [], idx: [] };
+  const buf = buffers.get(key) ?? { pos: [], uv: [], conf: [], track: [], idx: [] };
   buffers.set(key, buf);
   // T-0111. The ribbon is painted on the WHEEL line; every other question this
   // module answers is asked of the platted one. `drawn` is `path` for all but
@@ -581,23 +589,39 @@ function addRecord(buffers, record, terrain, stats) {
     const step = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
     alongAt.push(alongAt[i - 1] + (step < 1e-5 ? 0 : step));
   }
-  // The weakest grade on anything that decides what this ribbon is OR WHERE IT
-  // RUNS. `geometry_confidence` grades the line itself — traced, inferred or
-  // invented — and it belongs beside the two surface grades, because where a
-  // street ran is a larger claim than what it was paved with: a route nobody
-  // attested puts the visitor in an invented place, not merely on an invented
-  // surface. T-0100.
+  // WHICH GRADE DECIDES WHAT, and it is two questions rather than one. T-0100
+  // put `geometry_confidence` into the ribbon's grade because a route nobody
+  // attested puts the visitor in an invented PLACE, not merely on an invented
+  // surface; it did so by taking the weakest of all three, which answered the
+  // fault but flattened the distinction. T-0713 separates them:
   //
-  // It is degenerate in the present dataset, and that is a coincidence of the
-  // data rather than a property of the layer. All 18 street records carry
-  // `wear_confidence: reconstructed`, so the max is already pinned at 1 and this
-  // third term moves no pixel today (16 records grade their geometry `inferred`,
-  // 2 `reconstructed`). It is here so that the day a street's surface and wear
-  // are attested and its route is not, the ribbon dithers out with the rest of
-  // the invented town instead of drawing at full confidence — and so that
-  // turning `reconstructed` off cannot leave an invented line standing.
-  const confidence = Math.max(
-    LEVEL[record.geometry_confidence] ?? 1,
+  //   the LINE decides whether the ribbon STANDS — presence, dither, and which
+  //   level hides it — because that is the claim "a street ran here", and it is
+  //   the only one of the three the visitor's own position depends on;
+  //
+  //   SURFACE and WEAR decide only the TRACK painted on it — the rut texture
+  //   and how firmly it reads — because they are claims about what the street
+  //   looked like, not about whether it was there.
+  //
+  // The guard the old expression existed for is kept exactly: an invented line
+  // under an attested surface still dithers out, because the line alone now
+  // decides that, and a record with NO geometry grade still falls to
+  // `reconstructed` rather than reading as attested. What changes is the
+  // converse case the max() could not express — an ATTESTED line carrying an
+  // invented wear used to dither away entirely, which told the visitor the
+  // street was not there when what we do not know is how worn it was.
+  //
+  // This stopped being theoretical on 2026-09-04: T-0713 graded the seventeen
+  // platted streets `attested` from the Thompson plat while every record in the
+  // file still carries `wear_confidence: reconstructed`, so under the old max()
+  // the whole platted town would have gone on dithering as invention. The layer
+  // is no longer degenerate and `tools/test_street_confidence.mjs` measures it.
+  const confidence = LEVEL[record.geometry_confidence] ?? 1;
+  // The track's own grade, carried to the shader on its own channel so it can
+  // fade the worn texture WITHOUT touching whether the ribbon is drawn. See
+  // meshOf(): it is read only while the confidence view is on, so the ordinary
+  // daylight frame is the frame that shipped before this.
+  const trackConfidence = Math.max(
     LEVEL[record.surface_confidence] ?? 1,
     LEVEL[record.wear_confidence] ?? 1,
   );
@@ -700,6 +724,7 @@ function addRecord(buffers, record, terrain, stats) {
         const [e, n, y] = grid[r][c];
         buf.pos.push(e, y, -n);
         buf.conf.push(confidence);
+        buf.track.push(trackConfidence);
         buf.uv.push(c / cols, v);
       }
     }
@@ -732,6 +757,7 @@ function addRecord(buffers, record, terrain, stats) {
       const n = Math.fround(pn);
       buf.pos.push(e, terrain.surfaceHeight(e, n) + LIFT_M, -n);
       buf.conf.push(confidence);
+      buf.track.push(trackConfidence);
       buf.uv.push(u, v);
     };
     // `u` runs 0 at the left edge to 1 at the right, as it does across a panel,
@@ -806,6 +832,12 @@ function meshOf(surface, buf, confidence, aidUniform) {
   geo.setAttribute('position', new THREE.Float32BufferAttribute(buf.pos, 3));
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(buf.uv, 2));
   geo.setAttribute('_confidence', new THREE.Float32BufferAttribute(buf.conf, 1));
+  // T-0713. A SECOND channel, not a second meaning for the first one. `_confidence`
+  // is the contract's channel and the confidence view reads it to decide what stands;
+  // this one carries the surface-and-wear grade and is read nowhere but the block
+  // below, which paints the track rather than deciding the road.
+  geo.setAttribute('_trackConfidence',
+    new THREE.Float32BufferAttribute(buf.track, 1));
   geo.setIndex(buf.idx);
   geo.computeVertexNormals();
   const map = roadTexture(surface);
@@ -840,9 +872,29 @@ function meshOf(surface, buf, confidence, aidUniform) {
   // the ribbon's width in screen pixels — no uniform, no viewport to keep in
   // sync, and correct under any field of view. Set BEFORE confidence.patch(),
   // which chains whatever it finds here rather than replacing it.
+  // T-0713. `uConfMode` and the varying below only exist once confidence.patch()
+  // has run, and it is optional — createStreets({ confidence: null }) is a
+  // supported call. So the track-grade block is COMPILED IN only when the view
+  // is there to switch it on; without it this is the shader that shipped before.
+  const graded = Boolean(confidence);
   mat.onBeforeCompile = (shader) => {
     shader.uniforms.uRoadAid = aidUniform;
-    shader.fragmentShader = `uniform float uRoadAid;\n${shader.fragmentShader}`.replace(
+    if (graded) {
+      shader.vertexShader = `attribute float _trackConfidence;
+varying float vTrackConfidence;
+${shader.vertexShader}`.replace(
+        '#include <begin_vertex>',
+        `#include <begin_vertex>
+  // Sanitised at source for the reason confidence.js states at length: an
+  // unbound attribute is not reliably zero and can arrive as NaN. The fallback
+  // is 1.0 — the INVENTED end — because a track whose grade did not reach the
+  // shader must not read as one somebody wrote down.
+  float chicagoT = _trackConfidence;
+  vTrackConfidence = (chicagoT == chicagoT) ? clamp(chicagoT, 0.0, 1.0) : 1.0;`,
+      );
+    }
+    shader.fragmentShader = `uniform float uRoadAid;
+${graded ? 'varying float vTrackConfidence;\n' : ''}${shader.fragmentShader}`.replace(
       '#include <map_fragment>',
       `#include <map_fragment>
       {
@@ -861,12 +913,22 @@ function meshOf(surface, buf, confidence, aidUniform) {
         float gain = max(mix(1.0, ${NEAR_GAIN.toFixed(2)}, near),
                          mix(1.0, ${MID_GAIN.toFixed(2)}, mid));
         diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
+        ${graded ? `
+        // T-0713. THE TRACK'S OWN GRADE, and it goes no further than the track.
+        // Whether this ribbon is drawn at all was decided by \`_confidence\`,
+        // which now carries the LINE's grade alone; what the surface and wear
+        // records are worth is a different claim and it is answered here, by
+        // fading the worn texture toward the bare corridor in proportion to how
+        // invented it is. Only while the view is on: at uConfMode == 0 this is
+        // mix(1.0, X, 0.0) == 1.0 and multiplies nothing.
+        diffuseColor.a *= mix(1.0, ${INVENTED_TRACK_ALPHA.toFixed(2)},
+                              vTrackConfidence * uConfMode);` : ''}
         // R-A1, and it is LAST on purpose: the aid scales whatever the
         // recorded surface and the two fixes above arrived at, so it can never
         // change which road is fainter than which. At uRoadAid == 0 this is
-        // min(a * 1.0, ${MAX_ALPHA.toFixed(2)}) — the line immediately above,
-        // re-applied — so the default frame is the frame that shipped before
-        // the control existed.
+        // min(a * 1.0, ${MAX_ALPHA.toFixed(2)}) — the clamp the block above
+        // arrived at, re-applied — so the default frame is the frame that
+        // shipped before the control existed.
         diffuseColor.a = min(
           diffuseColor.a * mix(1.0, ${AID_GAIN.toFixed(4)}, uRoadAid),
           mix(${MAX_ALPHA.toFixed(2)}, 1.0, uRoadAid));

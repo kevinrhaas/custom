@@ -10,8 +10,8 @@
       "businesses": 206
     },
     "structures": 372,
-    "structures_sharing_a_name": 36,
-    "streets": 19,
+    "structures_sharing_a_name": 37,
+    "streets": 22,
     "resident_persons": 1404
   },
   "counts": {
@@ -24,21 +24,21 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 58,
-        "unplaceable": 93
+        "new_building": 26,
+        "street_only": 60,
+        "unplaceable": 90
       },
       "by_placement_class": {
-        "corner": 16,
-        "none": 74,
-        "relative": 98,
-        "street_only": 18
+        "corner": 18,
+        "none": 61,
+        "relative": 104,
+        "street_only": 23
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 58,
-        "unplaceable": 76
+        "new_building": 26,
+        "street_only": 60,
+        "unplaceable": 73
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -49,38 +49,27 @@
       "total": 2630,
       "by_action": {
         "enrich": 1386,
-        "new_resident": 1207,
-        "replace_invented": 37
+        "new_resident": 1222,
+        "replace_invented": 22
       },
       "letter_list_only": 1936
     },
     "invented_residents": {
       "households_by_trade": {
-        "blacksmith": 1,
         "boarding_house_keeper": 1,
-        "cooper": 1,
-        "dentist": 1,
         "hotel_keeper": 1,
-        "joiner": 1,
         "merchant": 1,
-        "none_recorded": 903,
-        "physician": 1,
+        "none_recorded": 868,
         "printer": 1,
         "saddler": 1,
-        "tailor": 1,
-        "tavern_keeper": 4
+        "tavern_keeper": 2
       },
-      "households_total": 918,
+      "households_total": 875,
       "retirable_by_trade": {
-        "blacksmith": 1,
-        "dentist": 1,
-        "joiner": 1,
         "merchant": 1,
-        "physician": 1,
-        "tailor": 1,
-        "tavern_keeper": 4
+        "tavern_keeper": 2
       },
-      "retirable_total": 10
+      "retirable_total": 3
     }
   },
   "businesses": [
@@ -271,7 +260,7 @@
       "id": "business_a_leather_stock_chicago_june_1835",
       "name": "a leather stock, Chicago, June 1835",
       "trade": "leather",
-      "occupation": null,
+      "occupation": "merchant",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -452,7 +441,7 @@
       "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
       "name": "a wholesale wine and liquor store, Dearborn Street",
       "trade": "wholesale wine and liquors",
-      "occupation": null,
+      "occupation": "liquor_dealer",
       "proprietors": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
@@ -678,7 +667,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1834-06-11"
@@ -709,7 +698,7 @@
       "id": "business_briggs_humphrey",
       "name": "Briggs & Humphrey",
       "trade": "carriage and sleigh making",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "Briggs & Humphrey",
         "Briggs",
@@ -748,13 +737,13 @@
       "id": "business_brown_painter",
       "name": "Brown, painter",
       "trade": "carriage, sign, ornamental and figure painting, and gilding",
-      "occupation": null,
+      "occupation": "painter",
       "proprietors": [
         "Brown"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Randolph Street",
+      "street_id": "randolph",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-08",
         "last_issue": "1835-08-15"
@@ -767,11 +756,11 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
+        "kind": "business",
         "target": null,
         "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
+        "via": "business_briggs_humphrey",
+        "note": "The landmark is another documented business (business_briggs_humphrey), which places this one exactly as well as that one is placed."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -859,7 +848,7 @@
       "id": "business_carpenter_chicago_merchant",
       "name": "Carpenter, Chicago merchant",
       "trade": "general merchandise on consignment",
-      "occupation": null,
+      "occupation": "merchant",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -1167,9 +1156,9 @@
       "proprietors": [
         "Clark, Filer & Co."
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-05-28",
         "last_issue": "1834-12-10"
@@ -1182,19 +1171,21 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
+        "kind": "street",
         "target": null,
-        "streets": null,
+        "streets": [
+          "randolph"
+        ],
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor is a reach of randolph and names nothing narrower."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of randolph and names nothing narrower."
     },
     {
       "id": "business_collins_caton",
@@ -1380,7 +1371,7 @@
       "id": "business_cromelien_brothers_co",
       "name": "Cromelien, Brothers & Co.",
       "trade": "foreign wine and liquor establishment",
-      "occupation": null,
+      "occupation": "liquor_dealer",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -1612,7 +1603,7 @@
       "id": "business_dart_co_castings",
       "name": "Dart & Co., castings",
       "trade": "iron castings",
-      "occupation": null,
+      "occupation": "founder",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -1653,7 +1644,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1835-07-29"
@@ -1796,7 +1787,7 @@
       "id": "business_dr_w_g_austin",
       "name": "Dr. W. G. Austin",
       "trade": "practice of medicine, botanic system",
-      "occupation": null,
+      "occupation": "physician",
       "proprietors": [
         "Austin, W. G.",
         "W. G. Austin"
@@ -2342,7 +2333,7 @@
       "id": "business_everson_co",
       "name": "Everson & Co.",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [
         "Everson"
       ],
@@ -2422,7 +2413,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-08",
         "last_issue": "1835-08-15"
@@ -2439,7 +2430,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the drawbridge' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -2453,7 +2444,7 @@
       "id": "business_fullerton_botsford",
       "name": "Fullerton & Botsford",
       "trade": "pork and provisions",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Fullerton & Botsford"
       ],
@@ -2771,9 +2762,9 @@
         "Goss",
         "Cobb"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "corner",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-06-13"
@@ -2790,7 +2781,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "A corner of 'Lake' and 'Canal streets on the corner of Lake and', and the plat resolves both sides to ['canal', 'lake']."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -2957,7 +2948,7 @@
       "id": "business_henry_moore_attorney_counsellor_at_law",
       "name": "Henry Moore, Attorney & Counsellor at Law",
       "trade": "law",
-      "occupation": null,
+      "occupation": "attorney",
       "proprietors": [
         "Moore, Henry"
       ],
@@ -3086,7 +3077,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "corner",
       "evidence": {
         "first_issue": "1834-07-02",
         "last_issue": "1835-08-29"
@@ -3103,7 +3094,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -3111,7 +3102,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
     },
     {
       "id": "business_ingersoll_s_tavern_stand",
@@ -3267,7 +3258,7 @@
       "id": "business_j_c_goodhue_land_agent",
       "name": "J. C. Goodhue, land agent",
       "trade": "leasing town lots",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [
         "Goodhue, J. C."
       ],
@@ -3341,7 +3332,7 @@
       "id": "business_j_curtiss_attorney_and_counsellor_at_law",
       "name": "J. Curtiss, Attorney and Counsellor at Law",
       "trade": "law",
-      "occupation": null,
+      "occupation": "attorney",
       "proprietors": [
         "Curtiss, J."
       ],
@@ -3452,7 +3443,7 @@
       "id": "business_j_h_mulford",
       "name": "J. H. Mulford",
       "trade": "watches, jewelry, engravings and fancy goods",
-      "occupation": null,
+      "occupation": "jeweller",
       "proprietors": [
         "J. H. Mulford",
         "Mulford, J. H."
@@ -3871,7 +3862,7 @@
       "id": "business_john_dean_caton_attorney_and_counsellor_at_law",
       "name": "John Dean Caton, Attorney and Counsellor at Law",
       "trade": "law",
-      "occupation": null,
+      "occupation": "attorney",
       "proprietors": [
         "Caton, John Dean"
       ],
@@ -4076,7 +4067,7 @@
       "id": "business_john_wright",
       "name": "John Wright",
       "trade": "general merchandise",
-      "occupation": null,
+      "occupation": "merchant",
       "proprietors": [
         "John Wright"
       ],
@@ -4119,9 +4110,9 @@
         "Wm. Jones",
         "Jones & King"
       ],
-      "street": null,
+      "street": "Water Street",
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-07-09",
         "last_issue": "1834-12-03"
@@ -4138,7 +4129,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the bridge' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -4146,7 +4137,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor 'the bridge' names nothing the committed town holds."
     },
     {
       "id": "business_jones_king_co",
@@ -4262,7 +4253,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-07-02",
         "last_issue": "1834-11-19"
@@ -4275,19 +4266,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "chicago_democrat_office",
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The landmark is the committed structure chicago_democrat_office."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "chicago_democrat_office",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure chicago_democrat_office."
     },
     {
       "id": "business_kinzie_hall",
@@ -4407,7 +4398,7 @@
       "id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
       "name": "L. G. Curtiss, Deputy Surveyor of Cook County",
       "trade": "land surveying",
-      "occupation": null,
+      "occupation": "surveyor",
       "proprietors": [
         "Curtiss, L. G."
       ],
@@ -4481,7 +4472,7 @@
       "id": "business_lathrop_johnson_co_livery",
       "name": "Lathrop Johnson & Co., livery",
       "trade": "livery",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [
         "Lathrop Johnson"
       ],
@@ -5086,7 +5077,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-08-05"
@@ -5423,7 +5414,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-07-22"
@@ -5643,7 +5634,7 @@
       "id": "business_riggs_humphrey",
       "name": "Riggs & Humphrey",
       "trade": "carriage and sleigh making",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "Riggs & Humphrey"
       ],
@@ -5684,9 +5675,9 @@
       "proprietors": [
         "Rockwell"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "street_only",
       "evidence": {
         "first_issue": "1835-06-13",
         "last_issue": "1835-07-04"
@@ -5703,15 +5694,15 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'Apply to […] ROCKWELL, [S]outh Wate[r street] Apply 10 < ROCKWELL, Bouth Wate ant' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor 'Apply to […] ROCKWELL, [S]outh Wate[r street] Apply 10 < ROCKWELL, Bouth Wate ant' names nothing the committed town holds."
     },
     {
       "id": "business_russell_brown",
@@ -5872,7 +5863,7 @@
       "id": "business_s_abell_attorney_counsellor_at_law",
       "name": "S. Abell, Attorney & Counsellor at Law",
       "trade": "law",
-      "occupation": null,
+      "occupation": "attorney",
       "proprietors": [
         "Abell, S."
       ],
@@ -6104,7 +6095,7 @@
       "id": "business_sarah_d_howe",
       "name": "Sarah D. Howe",
       "trade": "dress, cloak and habit making",
-      "occupation": null,
+      "occupation": "dressmaker",
       "proprietors": [
         "Howe, Sarah D.",
         "Sarah D. Howe"
@@ -6159,7 +6150,7 @@
       "id": "business_stuart_s_confectionary_and_perfumery",
       "name": "Stuart's confectionary and perfumery",
       "trade": "confectionary and perfumery",
-      "occupation": null,
+      "occupation": "confectioner",
       "proprietors": [
         "Stuart"
       ],
@@ -6234,7 +6225,7 @@
       "id": "business_the_boston_market",
       "name": "The Boston Market",
       "trade": "market, provisions",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Edward Simons"
       ],
@@ -6271,7 +6262,7 @@
       "id": "business_the_chicago_academy",
       "name": "the Chicago Academy",
       "trade": "English and classical academy",
-      "occupation": null,
+      "occupation": "schoolteacher",
       "proprietors": [
         "G. T. Sproat"
       ],
@@ -6378,7 +6369,7 @@
       "id": "business_the_chicago_brewery",
       "name": "the Chicago Brewery",
       "trade": "brewing",
-      "occupation": null,
+      "occupation": "brewer",
       "proprietors": [
         "Crawford"
       ],
@@ -6500,7 +6491,7 @@
       "id": "business_the_livery_stable_at_the_point",
       "name": "the Livery Stable at the Point",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -6789,7 +6780,7 @@
       "id": "business_thos_emerson_co",
       "name": "Thos. Emerson & Co.",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -6934,7 +6925,7 @@
       "id": "business_uncertain_j_i_mulford_carriage_and_sleigh_maker",
       "name": "[uncertain: J. I. Mulford], carriage and sleigh maker",
       "trade": "carriage and sleigh making, and repairing",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "[uncertain: J. I. Mulford]"
       ],
@@ -7080,7 +7071,7 @@
       "id": "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834",
       "name": "[uncertain: the physician lodging at the Mansion House, July 1834]",
       "trade": "medicine and surgery",
-      "occupation": null,
+      "occupation": "physician",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -7224,7 +7215,7 @@
       "id": "business_unnamed_house_and_land_agent",
       "name": "[unnamed] house and land agent",
       "trade": "houses and lands purchased and sold; building lots; houses to let",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -7741,7 +7732,7 @@
       "id": "business_whitehead_co",
       "name": "Whitehead & Co.",
       "trade": "letting agents",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -7776,7 +7767,7 @@
       "id": "business_william_clay",
       "name": "William Clay",
       "trade": "hat manufacturing and dealing",
-      "occupation": null,
+      "occupation": "hatter",
       "proprietors": [
         "William Clay"
       ],
@@ -8063,7 +8054,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "none",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-09-03",
         "last_issue": "1835-07-29"
@@ -8083,7 +8074,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor \"P. Pruyne & Co's store\" names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -8091,7 +8082,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor \"P. Pruyne & Co's store\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
@@ -8205,9 +8196,9 @@
       "letter_list_only": false,
       "first_seen": "1834-05-21",
       "last_seen": "1834-05-21",
-      "action": "replace_invented",
-      "action_target": "joiner",
-      "action_note": "A documented joiner. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_g_starrett",
@@ -8339,7 +8330,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "borland_andrew_w",
-      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_a_n_fullerton",
@@ -8988,7 +8979,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "murray_alonzo",
-      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, attested). The papers add mentions and dates."
     },
     {
       "id": "person_alonzo_murry",
@@ -9081,13 +9072,13 @@
     {
       "id": "person_ambrose_j_e",
       "name": "Ambrose, J. E.",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "ambrose_joshua",
-      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, attested). The papers add mentions and dates."
     },
     {
       "id": "person_amerman_jjghn_m",
@@ -9239,9 +9230,9 @@
       "letter_list_only": false,
       "first_seen": "1834-10-29",
       "last_seen": "1834-12-10",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_andrews_phimes",
@@ -9895,7 +9886,7 @@
     {
       "id": "person_banks",
       "name": "Banks",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-10-08",
@@ -9994,7 +9985,7 @@
     {
       "id": "person_barnard",
       "name": "Barnard",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-08-06",
@@ -10247,7 +10238,7 @@
     {
       "id": "person_beaubien_john_b",
       "name": "Beaubien, John B.",
-      "occupation": null,
+      "occupation": "militia_officer",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-24",
@@ -10946,7 +10937,7 @@
       "last_seen": "1834-09-10",
       "action": "enrich",
       "action_target": "bradford_harriet",
-      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, attested). The papers add mentions and dates."
     },
     {
       "id": "person_bradford_william_h",
@@ -11006,7 +10997,7 @@
     {
       "id": "person_briggs_humphrey",
       "name": "Briggs & Humphrey",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-05-20",
@@ -11028,7 +11019,7 @@
     {
       "id": "person_bristol",
       "name": "Bristol",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-08-20",
@@ -11083,7 +11074,7 @@
     {
       "id": "person_brooks",
       "name": "Brooks",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-07-02",
@@ -11100,7 +11091,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "brooks_gardner",
-      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, attested). The papers add mentions and dates."
     },
     {
       "id": "person_brown",
@@ -11496,7 +11487,7 @@
       "last_seen": "1835-06-20",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_c_handler_fi_s_her",
@@ -11655,7 +11646,7 @@
     {
       "id": "person_capt_d_wilcox",
       "name": "Capt. D. Wilcox",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -11980,7 +11971,7 @@
       "last_seen": "1833-11-26",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_chappel_eliza_mir",
@@ -12090,7 +12081,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_charles_h_roberts",
@@ -12211,7 +12202,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_chas_l_bristol",
@@ -12550,9 +12541,9 @@
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-07-02",
-      "action": "replace_invented",
-      "action_target": "joiner",
-      "action_note": "A documented joiner. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_clark_james_capt",
@@ -12755,7 +12746,7 @@
     {
       "id": "person_col_owen",
       "name": "Col. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-02-18",
       "last_seen": "1834-03-04",
@@ -12957,9 +12948,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_cooley_and_halsman",
@@ -12968,9 +12959,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-22",
       "last_seen": "1835-07-29",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_cooley_e_w",
@@ -13063,7 +13054,7 @@
     {
       "id": "person_crawford",
       "name": "Crawford",
-      "occupation": null,
+      "occupation": "brewer",
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
@@ -13080,7 +13071,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "crawford_james",
-      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_critchet_johh",
@@ -13239,7 +13230,7 @@
     {
       "id": "person_cushwa",
       "name": "Cushwa",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
@@ -13419,9 +13410,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-18",
       "last_seen": "1834-12-17",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_dalton_edward",
@@ -14180,7 +14171,7 @@
       "last_seen": "1834-04-01",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_dickinson_menthony",
@@ -14207,7 +14198,7 @@
     {
       "id": "person_disbrow",
       "name": "Disbrow",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-11-19",
@@ -14400,7 +14391,7 @@
       "last_seen": "1834-02-04",
       "action": "enrich",
       "action_target": "inf_physician_south_01",
-      "action_note": "data/residents/ already holds this person as inf_physician_south_01 (hh_inf_physician_south_01, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_physician_south_01 (hh_inf_physician_south_01, attested). The papers add mentions and dates."
     },
     {
       "id": "person_dr_temple",
@@ -14510,7 +14501,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_b_williams",
@@ -14559,7 +14550,7 @@
     {
       "id": "person_e_d_taylor",
       "name": "E. D. Taylor",
-      "occupation": null,
+      "occupation": "land_office_receiver",
       "letter_list_only": false,
       "first_seen": "1835-07-08",
       "last_seen": "1835-07-29",
@@ -14719,7 +14710,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "simons_e",
-      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_sproat",
@@ -14796,7 +14787,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_eben_griswold",
@@ -14900,7 +14891,7 @@
     {
       "id": "person_edmund_d_taylor",
       "name": "Edmund D. Taylor",
-      "occupation": null,
+      "occupation": "land_office_receiver",
       "letter_list_only": false,
       "first_seen": "1835-03-25",
       "last_seen": "1835-03-25",
@@ -14939,7 +14930,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "rogers_edward_a",
-      "action_note": "data/residents/ already holds this person as rogers_edward_a (hh_rogers_edward_a, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as rogers_edward_a (hh_rogers_edward_a, attested). The papers add mentions and dates."
     },
     {
       "id": "person_edward_allen",
@@ -14950,7 +14941,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "allen_edward_richards",
-      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as allen_edward_richards (hh_allen_edward_richards, attested). The papers add mentions and dates."
     },
     {
       "id": "person_edward_b_coleman",
@@ -14999,7 +14990,7 @@
     {
       "id": "person_edward_f_h_u_nter",
       "name": "Edward F. H[u]nter",
-      "occupation": null,
+      "occupation": "fire_warden",
       "letter_list_only": false,
       "first_seen": "1834-10-01",
       "last_seen": "1834-10-01",
@@ -15038,7 +15029,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "simons_e",
-      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as simons_e (hh_simons_e, attested). The papers add mentions and dates."
     },
     {
       "id": "person_edward_trimble",
@@ -15104,7 +15095,7 @@
       "last_seen": "1834-09-24",
       "action": "enrich",
       "action_target": "inf_tailor_north_02",
-      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, attested). The papers add mentions and dates."
     },
     {
       "id": "person_ehjah_doolittle",
@@ -15115,7 +15106,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "doolittle_ehjah",
-      "action_note": "data/residents/ already holds this person as doolittle_ehjah (hh_doolittle_ehjah, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as doolittle_ehjah (hh_doolittle_ehjah, attested). The papers add mentions and dates."
     },
     {
       "id": "person_el_i_hu_walter",
@@ -15483,7 +15474,7 @@
     {
       "id": "person_everson",
       "name": "Everson",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-04",
@@ -16077,7 +16068,7 @@
     {
       "id": "person_fullerton_alex_n",
       "name": "Fullerton, Alex. N.",
-      "occupation": null,
+      "occupation": "town_clerk",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -16149,7 +16140,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "walker_george_h",
-      "action_note": "data/residents/ already holds this person as walker_george_h (hh_walker_george_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as walker_george_h (hh_walker_george_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_kercheval",
@@ -16275,7 +16266,7 @@
     {
       "id": "person_g_w_snow",
       "name": "G. W. Snow",
-      "occupation": null,
+      "occupation": "public_administrator",
       "letter_list_only": false,
       "first_seen": "1834-06-18",
       "last_seen": "1834-12-24",
@@ -16402,7 +16393,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "chapman_george",
-      "action_note": "data/residents/ already holds this person as chapman_george (hh_chapman_george, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_george (hh_chapman_george, attested). The papers add mentions and dates."
     },
     {
       "id": "person_geo_n_powell",
@@ -16523,7 +16514,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "lee_george",
-      "action_note": "data/residents/ already holds this person as lee_george (hh_lee_george, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as lee_george (hh_lee_george, attested). The papers add mentions and dates."
     },
     {
       "id": "person_george_m_brooks",
@@ -16534,7 +16525,7 @@
       "last_seen": "1835-06-20",
       "action": "enrich",
       "action_target": "brooks_gardner",
-      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as brooks_gardner (hh_brooks_gardner, attested). The papers add mentions and dates."
     },
     {
       "id": "person_george_mcwilliams",
@@ -17023,7 +17014,7 @@
     {
       "id": "person_grant_j_jr",
       "name": "Grant, J., Jr.",
-      "occupation": null,
+      "occupation": "militia_officer",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -17062,7 +17053,7 @@
       "last_seen": "1833-11-26",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_graves_willard",
@@ -17128,7 +17119,7 @@
       "last_seen": "1834-04-16",
       "action": "enrich",
       "action_target": "legg_gregory_e",
-      "action_note": "data/residents/ already holds this person as legg_gregory_e (hh_legg_gregory_e, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as legg_gregory_e (hh_legg_gregory_e, attested). The papers add mentions and dates."
     },
     {
       "id": "person_griffith_doctor_eb",
@@ -17513,7 +17504,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "vanderbogart_h",
-      "action_note": "data/residents/ already holds this person as vanderbogart_h (hh_vanderbogart_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as vanderbogart_h (hh_vanderbogart_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_walford",
@@ -17557,7 +17548,7 @@
       "last_seen": "1834-12-17",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_hady_john",
@@ -17650,7 +17641,7 @@
     {
       "id": "person_hallam_rev_mr",
       "name": "Hallam, Rev. Mr.",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-08-26",
       "last_seen": "1835-08-26",
@@ -17964,7 +17955,7 @@
       "last_seen": "1834-04-08",
       "action": "enrich",
       "action_target": "bradford_harriet",
-      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bradford_harriet (hh_bradford_harriet, attested). The papers add mentions and dates."
     },
     {
       "id": "person_harriet_e_brown",
@@ -18475,7 +18466,7 @@
     {
       "id": "person_hinton_isaac_t",
       "name": "Hinton, Isaac T.",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -18666,9 +18657,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_holbrook_john",
@@ -18772,7 +18763,7 @@
     {
       "id": "person_hon_r_j_hamilton",
       "name": "Hon. R. J. Hamilton",
-      "occupation": null,
+      "occupation": "county_clerk",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -18904,7 +18895,7 @@
     {
       "id": "person_howe",
       "name": "Howe",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-07-16",
       "last_seen": "1834-12-03",
@@ -18970,7 +18961,7 @@
     {
       "id": "person_hubbard_a_b",
       "name": "Hubbard, A. B.",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -19080,7 +19071,7 @@
     {
       "id": "person_hugunin",
       "name": "Hugunin",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-08-06",
       "last_seen": "1834-11-19",
@@ -19102,7 +19093,7 @@
     {
       "id": "person_hugunin_s",
       "name": "Hugunin, [S.]",
-      "occupation": null,
+      "occupation": "town_president",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -19647,7 +19638,7 @@
       "last_seen": "1834-11-05",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_b_t_beaubien",
@@ -19845,7 +19836,7 @@
       "last_seen": "1834-06-11",
       "action": "enrich",
       "action_target": "inf_cooper_north_04",
-      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_green",
@@ -19876,9 +19867,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-04",
       "last_seen": "1835-06-04",
-      "action": "replace_invented",
-      "action_target": "physician",
-      "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_h_collins",
@@ -19933,7 +19924,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "inf_cooper_north_04",
-      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_k_botsford",
@@ -20015,7 +20006,7 @@
     {
       "id": "person_j_n_story",
       "name": "J. N. Story",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1835-07-04",
       "last_seen": "1835-07-04",
@@ -20109,7 +20100,7 @@
       "last_seen": "1834-10-08",
       "action": "enrich",
       "action_target": "inf_tavern_keeper_north_01",
-      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_snow",
@@ -20197,7 +20188,7 @@
       "last_seen": "1833-12-31",
       "action": "enrich",
       "action_target": "inf_joiner_north_02",
-      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_w_smith",
@@ -20461,7 +20452,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_a_curry",
@@ -20560,7 +20551,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "matthews_james_g",
-      "action_note": "data/residents/ already holds this person as matthews_james_g (hh_matthews_james_g, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as matthews_james_g (hh_matthews_james_g, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_gilbert",
@@ -20571,7 +20562,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "gilbert_james",
-      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_grant",
@@ -20901,7 +20892,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "inf_joiner_north_02",
-      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_w_stephenson",
@@ -21000,7 +20991,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "crawford_james",
-      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as crawford_james (hh_crawford_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jason_b_vaughan",
@@ -21236,7 +21227,7 @@
     {
       "id": "person_jeste_or_ya_ple_bernard",
       "name": "Jeste or [Ya]ple, Bernard",
-      "occupation": null,
+      "occupation": "pedlar",
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
@@ -21341,7 +21332,7 @@
       "last_seen": "1834-07-30",
       "action": "enrich",
       "action_target": "inf_joiner_north_02",
-      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jo_h_n_wal_t_er",
@@ -21506,7 +21497,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "cook_john",
-      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cook_john (hh_cook_john, attested). The papers add mentions and dates."
     },
     {
       "id": "person_john_dave",
@@ -21869,7 +21860,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "barry_john_s",
-      "action_note": "data/residents/ already holds this person as barry_john_s (hh_barry_john_s, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as barry_john_s (hh_barry_john_s, attested). The papers add mentions and dates."
     },
     {
       "id": "person_john_s_c_hogan",
@@ -21924,7 +21915,7 @@
       "last_seen": "1834-08-13",
       "action": "enrich",
       "action_target": "inf_tavern_keeper_north_01",
-      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, attested). The papers add mentions and dates."
     },
     {
       "id": "person_john_stringer",
@@ -22243,7 +22234,7 @@
       "last_seen": "1834-11-19",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_johnson_wi_lli_am_c",
@@ -22287,7 +22278,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "gilbert_james",
-      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as gilbert_james (hh_gilbert_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_a_s",
@@ -22430,7 +22421,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_william",
@@ -22441,7 +22432,7 @@
       "last_seen": "1835-08-05",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jones_wm",
@@ -22452,7 +22443,7 @@
       "last_seen": "1834-09-03",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_jordan_j_b",
@@ -22749,7 +22740,7 @@
       "last_seen": "1834-04-01",
       "action": "enrich",
       "action_target": "skinner_joseph",
-      "action_note": "data/residents/ already holds this person as skinner_joseph (hh_skinner_joseph, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as skinner_joseph (hh_skinner_joseph, attested). The papers add mentions and dates."
     },
     {
       "id": "person_joseph_steward",
@@ -22793,7 +22784,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "ambrose_joshua",
-      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as ambrose_joshua (hh_ambrose_joshua, attested). The papers add mentions and dates."
     },
     {
       "id": "person_joshua_hathaway_jr",
@@ -23689,7 +23680,7 @@
     {
       "id": "person_lathrop_johnson",
       "name": "Lathrop Johnson",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1835-06-27",
       "last_seen": "1835-06-27",
@@ -24107,7 +24098,7 @@
     {
       "id": "person_lieut_j_l_thompson",
       "name": "Lieut. J. L. Thompson",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -24591,7 +24582,7 @@
     {
       "id": "person_m_cormick_moon",
       "name": "M'Cormick & Moon",
-      "occupation": null,
+      "occupation": "hatter",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -24712,7 +24703,7 @@
     {
       "id": "person_m_k_intry",
       "name": "M'[K]intry",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-10-08",
@@ -25213,7 +25204,7 @@
       "last_seen": "1834-09-10",
       "action": "enrich",
       "action_target": "mason_matthias",
-      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, attested). The papers add mentions and dates."
     },
     {
       "id": "person_mason_matthias_co",
@@ -25224,7 +25215,7 @@
       "last_seen": "1833-11-26",
       "action": "enrich",
       "action_target": "mason_matthias",
-      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, attested). The papers add mentions and dates."
     },
     {
       "id": "person_mason_sabrina_a",
@@ -25268,7 +25259,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "mason_matthias",
-      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as mason_matthias (hh_mason_matthias, attested). The papers add mentions and dates."
     },
     {
       "id": "person_matthias_mason_co",
@@ -25277,9 +25268,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1834-11-19",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_mattison_james",
@@ -26071,7 +26062,7 @@
       "last_seen": "1834-04-01",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_mr_lozser",
@@ -26280,7 +26271,7 @@
       "last_seen": "1834-09-24",
       "action": "enrich",
       "action_target": "murray_alonzo",
-      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as murray_alonzo (hh_murray_alonzo, attested). The papers add mentions and dates."
     },
     {
       "id": "person_mutteson_thomas",
@@ -26494,7 +26485,7 @@
     {
       "id": "person_nathaniel_carpenter",
       "name": "Nathaniel Carpenter",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-01-14",
       "last_seen": "1834-01-14",
@@ -26544,7 +26535,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "neff_r_a",
-      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, attested). The papers add mentions and dates."
     },
     {
       "id": "person_nehemiah_king",
@@ -26940,7 +26931,7 @@
       "last_seen": "1835-06-13",
       "action": "enrich",
       "action_target": "goss_o",
-      "action_note": "data/residents/ already holds this person as goss_o (hh_goss_cobb, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as goss_o (hh_goss_cobb, attested). The papers add mentions and dates."
     },
     {
       "id": "person_oliver_newberry",
@@ -27270,7 +27261,7 @@
       "last_seen": "1834-07-09",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_p_t_russell",
@@ -27413,7 +27404,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "cole_parker_m",
-      "action_note": "data/residents/ already holds this person as cole_parker_m (hh_cole_parker_m, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as cole_parker_m (hh_cole_parker_m, attested). The papers add mentions and dates."
     },
     {
       "id": "person_parrish_stephen",
@@ -28056,7 +28047,7 @@
     {
       "id": "person_pickering",
       "name": "Pickering",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-07-16",
       "last_seen": "1834-10-08",
@@ -28093,9 +28084,9 @@
       "letter_list_only": false,
       "first_seen": "1834-04-08",
       "last_seen": "1834-04-08",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pierce_abbott",
@@ -28104,9 +28095,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-11-19",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pierce_and_abbott",
@@ -28115,9 +28106,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-12-17",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pierce_downer",
@@ -28137,9 +28128,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-25",
       "last_seen": "1834-12-17",
-      "action": "replace_invented",
-      "action_target": "blacksmith",
-      "action_note": "A documented blacksmith. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pierce_howley",
@@ -28491,7 +28482,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "neff_r_a",
-      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as neff_r_a (hh_neff_r_a, attested). The papers add mentions and dates."
     },
     {
       "id": "person_r_c_bristol",
@@ -28551,7 +28542,7 @@
     {
       "id": "person_r_j_hamilton",
       "name": "R. J. Hamilton",
-      "occupation": null,
+      "occupation": "county_clerk",
       "letter_list_only": false,
       "first_seen": "1834-01-28",
       "last_seen": "1835-07-01",
@@ -28837,7 +28828,7 @@
     {
       "id": "person_rev_mr_blackwell",
       "name": "Rev. Mr. Blackwell",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-07-22",
       "last_seen": "1835-07-22",
@@ -28848,7 +28839,7 @@
     {
       "id": "person_rev_mr_freeman",
       "name": "Rev. Mr. Freeman",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1834-11-26",
       "last_seen": "1834-11-26",
@@ -28859,7 +28850,7 @@
     {
       "id": "person_rev_mr_truman",
       "name": "Rev. Mr. Truman",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1834-11-26",
       "last_seen": "1834-11-26",
@@ -28881,7 +28872,7 @@
     {
       "id": "person_rev_samuel_mcburney",
       "name": "Rev. Samuel McBurney",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-05-27",
       "last_seen": "1835-05-27",
@@ -28892,7 +28883,7 @@
     {
       "id": "person_rev_w_m_royal",
       "name": "Rev. W[m]. Royal",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": true,
       "first_seen": "1834-07-30",
       "last_seen": "1834-07-30",
@@ -29035,7 +29026,7 @@
     {
       "id": "person_richard_m_sweet",
       "name": "Richard M. Sweet",
-      "occupation": null,
+      "occupation": "farmer",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1833-12-03",
@@ -29123,7 +29114,7 @@
     {
       "id": "person_riggs_humphrey",
       "name": "Riggs & Humphrey",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -29380,9 +29371,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-13",
       "last_seen": "1835-06-27",
-      "action": "replace_invented",
-      "action_target": "joiner",
-      "action_note": "A documented joiner. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_rodd_charles",
@@ -30724,7 +30715,7 @@
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "albert_shepherd",
-      "action_note": "data/residents/ already holds this person as albert_shepherd (hh_albert_shepherd, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as albert_shepherd (hh_albert_shepherd, attested). The papers add mentions and dates."
     },
     {
       "id": "person_sherman_king",
@@ -30960,7 +30951,7 @@
     {
       "id": "person_smith",
       "name": "[?]. Smith",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-10-08",
@@ -30993,7 +30984,7 @@
     {
       "id": "person_smith_capt",
       "name": "Smith, Capt.",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
@@ -31230,7 +31221,7 @@
       "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "spence_james_c",
-      "action_note": "data/residents/ already holds this person as spence_james_c (hh_spence_james_c, attested). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as spence_james_c (hh_spence_james_c, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_spencer_edgar_h",
@@ -31505,7 +31496,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "downer_stephen",
-      "action_note": "data/residents/ already holds this person as downer_stephen (hh_downer_stephen, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as downer_stephen (hh_downer_stephen, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stephen_e_dow",
@@ -31560,7 +31551,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "mack_stephen",
-      "action_note": "data/residents/ already holds this person as mack_stephen (hh_mack_stephen, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as mack_stephen (hh_mack_stephen, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stephen_may",
@@ -31862,7 +31853,7 @@
     {
       "id": "person_stuart",
       "name": "Stuart",
-      "occupation": null,
+      "occupation": "confectioner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1835-06-08",
@@ -32126,7 +32117,7 @@
     {
       "id": "person_t_j_v_owen",
       "name": "T. J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-06-18",
       "last_seen": "1834-11-19",
@@ -32350,9 +32341,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-10",
-      "action": "replace_invented",
-      "action_target": "dentist",
-      "action_note": "A documented dentist. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_tensenring_peter",
@@ -32379,7 +32370,7 @@
     {
       "id": "person_th_j_v_owen",
       "name": "Th. J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-08-20",
@@ -32605,7 +32596,7 @@
       "last_seen": "1834-07-02",
       "action": "enrich",
       "action_target": "fitzgerald_thos",
-      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_galaher",
@@ -32665,7 +32656,7 @@
     {
       "id": "person_thomas_j_v_owen",
       "name": "Thomas J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1833-12-24",
@@ -32737,7 +32728,7 @@
       "last_seen": "1834-10-01",
       "action": "enrich",
       "action_target": "inf_tailor_north_02",
-      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_smith",
@@ -32825,7 +32816,7 @@
       "last_seen": "1834-04-08",
       "action": "enrich",
       "action_target": "fitzgerald_thos",
-      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as fitzgerald_thos (hh_fitzgerald_thos, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thos_galaher_jr",
@@ -33028,13 +33019,13 @@
     {
       "id": "person_trowbridge",
       "name": "Trowbridge",
-      "occupation": null,
+      "occupation": "tavern_keeper",
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-06-24",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "replace_invented",
+      "action_target": "tavern_keeper",
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_truman_king",
@@ -33232,7 +33223,7 @@
       "last_seen": "1834-07-30",
       "action": "enrich",
       "action_target": "chapman_chas_h",
-      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as chapman_chas_h (hh_chapman_chas_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_captain_smith",
@@ -33384,9 +33375,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-06",
       "last_seen": "1834-08-06",
-      "action": "replace_invented",
-      "action_target": "physician",
-      "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_uncertain_duncklo",
@@ -33545,7 +33536,7 @@
     {
       "id": "person_uncertain_j_i_mulford",
       "name": "[uncertain: J. I. Mulford]",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -35410,7 +35401,7 @@
       "last_seen": "1834-05-21",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_w_wr_hirom",
@@ -35674,7 +35665,7 @@
       "last_seen": "1833-11-26",
       "action": "replace_invented",
       "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_webb",
@@ -35800,7 +35791,7 @@
     {
       "id": "person_whitaker",
       "name": "Whitaker",
-      "occupation": null,
+      "occupation": "master_mariner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-10-08",
@@ -35976,7 +35967,7 @@
     {
       "id": "person_william_clay",
       "name": "William Clay",
-      "occupation": null,
+      "occupation": "hatter",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -36070,7 +36061,7 @@
       "last_seen": "1835-07-29",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_william_laird",
@@ -36554,7 +36545,7 @@
       "last_seen": "1834-07-23",
       "action": "enrich",
       "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wm_kimbal",
@@ -36741,7 +36732,7 @@
       "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "winson_wm",
-      "action_note": "data/residents/ already holds this person as winson_wm (hh_winson_wm, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as winson_wm (hh_winson_wm, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wm_wood",
@@ -36972,7 +36963,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "wright_truman_g",
-      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wright_thomas",
@@ -36983,7 +36974,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "wright_truman_g",
-      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as wright_truman_g (hh_wright_truman_g, attested). The papers add mentions and dates."
     },
     {
       "id": "person_y_meriams",

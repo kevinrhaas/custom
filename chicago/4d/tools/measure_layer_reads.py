@@ -192,12 +192,12 @@ STATED_SHARED = frozenset({
     # These leaves also occur in the separately rendered research_pilot payload;
     # a bare-name text scan cannot attribute those accesses to the embedded block.
     "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",
-    # `source` is the volume each row of a T-0514 evidence block resolves to
-    # (civic_evidence[].source and the four beside it). The only `.source` in the
-    # renderers is main.js:1808 — `asked.source === 'key'`, a keyboard event's own
-    # origin, nothing to do with a resident. The blocks reach no visitor yet and
-    # stay in the unread bank; T-0668 is the ticket that puts them on the card.
-    "source",
+    # `source` WAS here: the volume each row of a T-0514 evidence block resolves
+    # to, with the only `.source` in the renderers being main.js:1808's keyboard
+    # event. T-0668 put the blocks on the card, so `citationsById.get(entry.source)`
+    # is now a resident read and the five paths are declared shown below. The
+    # exemption is gone rather than kept as a courtesy: a stated share is an
+    # admission the scan cannot attribute an access, and this one it can.
 })
 
 # ---------------------------------------------------------------------------
@@ -397,7 +397,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
-    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
     # T-0491. Three of these people are bridged to a named head of household in the
     # 1840 census, and PR #670 attached that bridge without giving the panel any way
     # to say so. Both copies are read now: the total in the count sentence, so a
@@ -440,10 +439,29 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "vocabulary.divisions": ("shown", "rank(vocab.divisions, a.division)"),
     "vocabulary.arrival_precision": ("shown", "vocab.arrival_precision"),
     "vocabulary.relationships": ("shown", "vocab.relationships"),
+    # T-0597. The second relationship set, and it exists because a place INSIDE a
+    # household and a tie BETWEEN two households are different questions. The
+    # degrees are the whole point of showing it: a reader who cannot see that
+    # `half_brother` and `brother` are both in the closed set cannot see that the
+    # dataset holds them apart.
+    "vocabulary.kin_relations": ("shown", "['Ties between two households', vocab.kin_relations]"),
     # Shown because the value it governs is shown: `persons[].sex` is on every
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
     "vocabulary.occupations": ("shown", "vocab.occupations"),
+    # T-0668. The ratified grading ladder, carried in the manifest because the card
+    # prints a rung id beside a person's grade and the rung's text lived in Python.
+    # `tools/consolidate_resident_evidence.py --check` holds this block equal to its
+    # own `GRADE_RULES`, so the words on 531 cards cannot drift from the ladder.
+    "vocabulary.ladder_rules[].rung": ("shown", "(ladderRules || []).find((r) => r.rung"),
+    "vocabulary.ladder_rules[].grade": ("shown", "swatch(rung && rung.grade)"),
+    "vocabulary.ladder_rules[].rule": ("shown", "rung ? escapeHtml(rung.rule)"),
+    # The consolidation's own mint, on the manifest: the tally in the count
+    # sentence, and the per-household flag as a chip on the closed row. Both were
+    # banked unread, and both collide by leaf name with `persons[].civic_mint`,
+    # which is why they are shown rather than exempted.
+    "counts.civic_mint": ("shown", "${counts.civic_mint} of these people were minted"),
+    "households[].civic_mint": ("shown", "entry.civic_mint"),
 }
 
 RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
@@ -480,6 +498,18 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0597. The kinship rows, which are the first claim on this layer to point at
+    # ANOTHER record. Each of the four link fields is named at its own call site in
+    # `kinRows` — the person the tie belongs to here, the term, the far household and
+    # the far person — for the same reason the seven graded claims are: a figure dug
+    # out inside a generic accessor is a figure this census cannot see. The three
+    # parts the block shares with every other claim are read in `claimRow`, once.
+    "kin[].person": ("shown", "${words(k.person)} is the"),
+    "kin[].relation": ("shown", "the ${words(k.relation)} of"),
+    "kin[].value": ("shown", "${words(k.value)}, "),
+    "kin[].household": ("shown", "words(String(k.household ?? '').replace(/^hh_/, ''))"),
+    "kin[].confidence": ("shown", "swatch(block.confidence)"),
+    "kin[].note": ("shown", "escapeHtml(block.note)"),
     # T-0632. The later directories, on the record rather than only beside it. The
     # printed lines and the crosswalks' arithmetic stay in
     # `data/residents/directories.json`, which the panel opens once for the town; what
@@ -529,6 +559,31 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "directories.people[].back_projection.read_back_years": (
         "shown", "escapeHtml(String(bp.read_back_years))"),
     "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
+    # T-0669, the residence half of the same grammar, on its own row of the same
+    # card. `residenceBackProjectionHtml` has no branch that drops one either, so
+    # all 48 render — the 7 placements and the 41 refusals — and `kind` is the one
+    # leaf the business row has no counterpart for: whether the volume printed
+    # `res` or `bds` is the difference between a household and a month's rent.
+    "directories.people[].residence_back_projection.outcome": (
+        "shown", "rp.outcome === 'placed'"),
+    "directories.people[].residence_back_projection.clause": (
+        "shown", "escapeHtml(String(rp.clause))"),
+    "directories.people[].residence_back_projection.kind": (
+        "shown", "rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence'"),
+    "directories.people[].residence_back_projection.value": (
+        "shown", "`${rp.value} — the ${words(rp.placement)}, and nothing narrower`"),
+    "directories.people[].residence_back_projection.confidence": (
+        "shown", "swatch(rp.confidence)"),
+    "directories.people[].residence_back_projection.placement": (
+        "shown", "words(rp.placement)"),
+    "directories.people[].residence_back_projection.describes_date": (
+        "shown", "escapeHtml(String(rp.describes_date))"),
+    "directories.people[].residence_back_projection.read_back_years": (
+        "shown", "escapeHtml(String(rp.read_back_years))"),
+    "directories.people[].residence_back_projection.note": (
+        "shown", "escapeHtml(rp.note)"),
+    "directories.people[].residence_back_projection.sources": (
+        "shown", "(rp.sources || []).map((id) => citationsById.get(id))"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),
@@ -623,6 +678,70 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].later_census.scan_verified.age_bands": ("shown", "band by band: ${escapeHtml(scan.age_bands)}"),
     "persons[].later_census.scan_verified.column_totals_check": ("shown", "escapeHtml(scan.column_totals_check)"),
     "persons[].later_census.scan_disagreement": ("shown", "escapeHtml(census.scan_disagreement)"),
+    # -----------------------------------------------------------------------
+    # T-0668. THE EVIDENCE CONSOLIDATION'S OWN READING, on the card at last.
+    #
+    # `tools/consolidate_resident_evidence.py` reads seven source domains, decides
+    # who is who and grades each person on a ratified ladder. Everything it decided
+    # was written onto the person and NOTHING read it: 44 figures over 531 people,
+    # the largest unread population this census has ever carried on one layer. That
+    # is the T-0491 defect at scale — a grade is a verdict, the appearances are the
+    # argument, and a verdict shipped without its argument is an assertion.
+    #
+    # The five domains share one row shape and one renderer — `evidenceLineHtml` —
+    # so one expression covers each leaf across all five, exactly as `claimRow`
+    # covers the graded claims above. `describes_date` is on every line on purpose:
+    # the domains are not contemporaries of each other and the ladder grades them
+    # differently for that reason.
+    "persons[].ladder_rule": ("shown", "escapeHtml(String(person.ladder_rule))"),
+    "persons[].civic_mint": ("shown", "person.civic_mint"),
+    # T-0708. The People directory's "How known" filter reads the subtype off the
+    # compiled people.json row (a denormalised copy of this figure, made by
+    # compile_scene.py compile_people) and the projected cohort is one of its four
+    # answers, so the figure now reaches a visitor as a filter and a row mark.
+    "persons[].resident_subtype": ("shown", "r.resident_subtype === 'projected_resident'"),
+    "persons[].press_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].press_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].press_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].press_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].press_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].press_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].press_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].civic_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].civic_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].civic_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].civic_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].civic_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].civic_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].civic_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].church_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].church_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].church_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].church_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].church_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].church_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].church_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].book_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].book_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].book_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].book_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].book_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].book_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].book_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    "persons[].census_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
+    "persons[].census_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
+    "persons[].census_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
+    "persons[].census_evidence[].record_id": ("shown", "Record ${\n      escapeHtml(String(entry.record_id))}"),
+    "persons[].census_evidence[].describes_date": ("shown", "printedOn(entry.describes_date)"),
+    "persons[].census_evidence[].source": ("shown", "citationsById.get(entry.source)"),
+    "persons[].census_evidence[].rule": ("shown", "rung ${\n      escapeHtml(String(entry.rule))}"),
+    # The two people the consolidation could date. Both go through `claimRow`, so
+    # each carries its own confidence, its reasoning and its citation like every
+    # other graded claim on this card; the age is a RANGE because a birth year with
+    # no month cannot say which side of 1 July the person turned.
+    "persons[].biographical_evidence.birth_year.value": ("shown", "bio.birth_year && bio.birth_year.value"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.min": ("shown", "between ${age.value.min}"),
+    "persons[].biographical_evidence.age_on_1835_07_01.value.max": ("shown", "and ${age.value.max}"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {
@@ -674,6 +793,16 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/manifest:counts.projected_residents": (
+        "T-0782, the owner's ruling on the opening card: the aggregate is struck. It "
+        "reached a visitor in one place — a parenthesis inside the gate card's inferred "
+        "count — where it read as a fourth grade beside attested/inferred/reconstructed "
+        "and was in fact a subtype OF the inferred, counted on a different axis. The "
+        "claim itself still reaches the visitor, and better: `people.js` filters and "
+        "chips `resident_subtype === 'projected_resident'` on the person's own row, "
+        "where the evidence that made them projected is beside the label. A bare total "
+        "with nothing beside it was the poorer of the two copies. The field stays in the "
+        "manifest because the mint tools derive it and validate.py holds it."),
     "residents/household:source_pass": (
         "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
         "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "

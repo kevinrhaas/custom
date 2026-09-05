@@ -92,7 +92,22 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life."
+   "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Surname and given name both agree between the 1830 reading 'Alexander Robinson' and the town person 'Alexander Robinson (Che-che-pin-qua)' in household hh_robinson_alexander. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
+    "summary": "Independently corroborated. Alexander Robinson (Che-che-pin-qua) agrees, forename for forename or initial for initial, with a record outside the post-office lists in the 1830 census of the Chicago precinct. Surname and given name both agree between the 1830 reading 'Alexander Robinson' and the town person 'Alexander Robinson (Che-che-pin-qua)' in household hh_robinson_alexander. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
+    "notes": "FERGUS 26-29, AS PRINTED: \"Robinson, Alex. (Indian chief), died, on his Reservation, April 22, 1872, aged 83\". The volume's obituary list gives a death date and age that put birth about 1789, and names the reservation. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "census_1830_peoria_county_chicago_precinct",
+     "chicago_democrat_1833_1835",
+     "fergus_historical_series_26_29"
+    ]
+   }
   },
   {
    "id": "robinson_catherine",
@@ -108,7 +123,20 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "NAMED, WITH A MARRIAGE DATE, A FATHER AND A DEATH DATE - which makes her one of only four women in this parcel documented in her own right rather than as 'Mrs'. Andreas: married 28 September 1826 by John Kinzie, J.P.; daughter of Francois and Mary Ann Chevalier, her father chief of a united band of Potawatomi, Ottawa and Chippewa with his village at the Calumet; she died 7 August 1860 and is buried with her husband on the bank of the Des Plaines."
+   "note": "NAMED, WITH A MARRIAGE DATE, A FATHER AND A DEATH DATE - which makes her one of only four women in this parcel documented in her own right rather than as 'Mrs'. Andreas: married 28 September 1826 by John Kinzie, J.P.; daughter of Francois and Mary Ann Chevalier, her father chief of a united band of Potawatomi, Ottawa and Chippewa with his village at the Calumet; she died 7 August 1860 and is buried with her husband on the bank of the Des Plaines.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": false,
+    "evidence_against": "The surname 'Robinson' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Catherine Chevalier Robinson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 1 person(s) of 1835 (Catherine Chevalier Robinson) and none of their given names is 'james'. 'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 1 person(s) of 1835 (Catherine Chevalier Robinson) and none of their given names is 'john'. The 1840 census heads 'James Robinson' and 'John Robinson' are both refused against her in the repository on a given-name conflict; she is the only Robinson woman the 1835 layer holds.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Catherine Chevalier Robinson with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Robinson' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Catherine Chevalier Robinson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
+   }
   },
   {
    "id": "robinson_household_unnamed",

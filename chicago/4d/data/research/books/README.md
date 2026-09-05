@@ -3,8 +3,8 @@
 **What lives here.** Fergus' Historical Series Nos. 26-29 (read in its first half
 by T-0499 - see the contents table below), Gurdon Hubbard's
 autobiography (a 226-page scan the project has never mentioned), H. H. Porter's
-*Short Autobiography* (66 MB, a garbled text layer, and nothing yet saying whether
-it carries 1835 Chicago at all), and the memoirs printed beside them (T-0499,
+*Short Autobiography* (read in full by T-0502 and it carries no Chicago before
+September 1853), and the memoirs printed beside them (T-0499,
 T-0500, T-0501, T-0502).
 
 **Shape: `claims`.** A book is PROSE, so the unit is a claim and not a row —
@@ -46,6 +46,137 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 **This is research, not payload.** Nothing under `data/research/` reaches
 `site/chicago/4d/`.
+
+---
+
+## What has been read (T-0502, 2026-09-05)
+
+**H. H. Porter, *A Short Autobiography* (1915) — all seventy leaves, and it carries no
+document of Chicago 1830-1836.** Eight claims at
+`claims/porter_hh_short_autobiography_1915.json`, out of the Internet Archive's own hOCR
+search text of this project's own deposit, committed at
+`text/porter_hh_short_autobiography_1915.txt`. Source record:
+`data/sources/porter_hh_short_autobiography_1915.json`, tier 4.
+
+**THE DELIVERABLE IS AN ABSENCE, AND THE POINT IS THAT SOMEBODY LOOKED FOR IT.** The
+owner listed this book among the reference materials to read. T-0502 read it end to end
+and the answer is: nothing. The volume prints no year between 1829 and 1848 except the
+author's own birth year, and its earliest Chicago is **September 1853**, when Porter
+stepped off the Michigan Central onto the prairie at about Sixteenth Street. An absence a
+pass has looked for is evidence; an absence nobody looked for is a hole, and without this
+record the next run that meets a 66 MB scan of a Chicago memoir spends its budget
+discovering the same nothing.
+
+**The sentence that rules on the volume** is one line of leaf 11: *"I was born in
+Machias, оп the 7th day of December, 1835."* On the scene date the author was unborn, and
+he was born five months later 1,300 miles away. The ticket allowed for family memory of
+the 1830s reaching him second hand; it does not exist either. His father, Rufus King
+Porter, was a Biddeford man who read law at Portland and practised at Machias "until his
+death, in 1856"; his mother died at Machias in 1862. **There is no Chicago anywhere in the
+family.**
+
+**Two town findings, and both of them describe 1853.** They are recorded because they are
+what the sweep yielded and because a later run should not have to re-read seventy leaves
+to learn that this is all there is:
+
+1. *The old blockhouse of Fort Dearborn was still standing in September 1853* — a
+   terminus ante quem non for its removal, seen by a man who was there. It constrains no
+   dimension, no position and no appearance, and no fort record is edited by it.
+2. *The grade.* In 1853 the street level from the river south to Monroe stood five to
+   twelve feet below the grade of 1904, the raising having begun some years before the
+   fire of 1871. This is the statement most likely to be cited loosely, so it is written
+   down with its date attached: it is a reading of 1853 against 1904 and it is **not**
+   evidence for the natural surface of 1835. `data/datum.json` is derived from committed
+   ground control and nothing here touches it.
+
+**Three Porters, two of them ruled apart here.** `crosswalk.json` refuses H. H. Porter
+against the poll list's `Porter, H.` on the birth date, and against the Rev. Jeremiah
+Porter on given name, trade and dates alike. **The third pair is deliberately not ruled
+on**: whether `Porter, H.` is Jeremiah Porter is a question about the poll list and the
+chaplain, not about this book, and it stays with T-0493. `poll_1835_059` remains a
+candidate matched to nobody — this pass removes a wrong answer and does not supply a
+right one.
+
+**The text is the hOCR search text and not the djvu text, and the reason is the page
+index.** The deposited PDF's own text layer is garbage, exactly as the ticket said — it
+uses subset encodings — and it could not have been used here in any case, because the 66
+MB scan is offloaded outside this repository and is not in the checkout. Two Internet
+Archive derivations of the same OCR pass were available; the hOCR search text was
+committed because the Archive emitted its **page index** beside it, which gives every
+leaf's exact character range in that very text. So `page_index/porter_hh_short_autobiography_1915.json`
+holds all seventy leaf boundaries **exactly and not by alignment**, and
+`tools/build_book_page_index.py --build` refuses to write it unless the ranges tile the
+committed text end to end. That is the Fergus arrangement, for the Fergus reason, and the
+two deposit artifacts sit beside the pointer at
+`chicago/reference/hh-porter-a-short-autobiography/`.
+
+---
+
+## What has been read (T-0650, 2026-09-05)
+
+**Illinois Catholic Historical Review, vol. 4 (1921-22), pages 256-259** — Joseph J.
+Thompson's *The Illinois Part of the Diocese of Vincennes*, read for one sentence and the
+four pages around it. Eight claims at `claims/ichr_v4_thompson_vincennes.json`, out of the
+Internet Archive's own OCR of the whole volume committed at `text/ichr_v4_1921_22.txt`.
+Source record: `data/sources/ichr_v4_thompson_illinois_vincennes.json`, tier 4.
+
+**THE TICKET'S PREMISE WAS WRONG TWICE AND THAT IS THE FINDING.** T-0650 was opened on the
+belief that the first Catholic church is not in the scene, and that this passage is the only
+located statement of the building the project holds. Neither is true.
+`data/structures/st_marys_church.json` has stood on the south-west quadrant of Lake and State
+since 2026-08-11, and it was placed off `chicagology_prefire216`, whose Andreas transcription
+has St. Cyr selecting *a canal lot near the southwest corner of Lake and State streets*. So
+this reading is a CORROBORATION of a placement already made, and it is written down as one.
+A run reaching for "the ICHR passage that puts the church on the map" is reaching for a second
+witness, not a first.
+
+**What the passage fixes.** Four things, and only the last two are new to the project.
+
+1. *The quadrant, said again by a second author.* "near the southwest corner of what is now
+   State and Lake Streets", and a second time sixty lines later as "the State-Lake location".
+   Same quadrant as the record already carries, same hedge word — **near** — so it does not
+   narrow the lot and the unbounded westward error `st_marys_church.json` states is untouched.
+2. *Whose ground it was.* "upon ground controlled by the Canal Commissioners". On the scene
+   date the congregation stood on a canal lot it did not own. That is a fact about the parcel,
+   and the project had the word *canal lot* but not the ownership.
+3. *A price.* The commissioners' valuation was "fixed at $10,000", the Catholics could not
+   raise it, and "the lot was purchased by a private party". The project held the shape of
+   this story from Andreas and not the figure.
+4. *A terminus post quem for the removal, which is what this article is worth to a scene dated
+   1835-07-01.* "When he came he found the little church … standing" is O'Meara's arrival, and
+   the same article dates that to "the early or middle part of June, 1837". **The church had
+   not moved 23 months after the scene date.**
+
+**What it does not fix.** The lot — "near" is still *near*. Any dimension, material, plan or
+orientation; the article says "the little church" and no more. The date of the removal: it
+names the auction as the cause and dates neither. Anything about 1835 in particular — it looks
+back from 1837 at a building of 1833 and is silent on the years between. And it is not an
+independent voice: the run read here footnotes Garraghan on six of its pages, this project does
+not hold Garraghan, and **the sentence about State and Lake carries no footnote at all**, so
+which of those words are Thompson's cannot be said.
+
+**One sentence is a NEGATIVE constraint on the scene and is the second most useful thing here.**
+The rear addition, the small belfry, the three-pound bell and the cross all come *after* the
+removal. The building standing at Lake and State on 1835-07-01 therefore had no belfry, no bell
+and no rear addition, and was one length rather than two. `st_marys_church.json` already refuses
+a tower and calls the belfry "the tower trap on this record"; this dates the trap. It also says
+something about the town — until at least 1837 no church bell had ever rung in Chicago.
+
+**Nothing here is payload, and one reading is deliberately left unspent.** No structure, asset,
+resident or household record was changed. The June 1837 terminus sits against a phase end of
+1836-12-31 on `st_marys_church.json`, which that record took as the conservative of two
+readings; the scene is not wrong either way — the record's own note says so — but the end bound
+is, and **T-0717** carries that question rather than this ticket. Jean Baptiste Beaubien's
+claim on the whole Fort Dearborn reservation, which the removal passage states in passing, is
+recorded in `bk_ichr4_003` and written into no resident record.
+
+**The volume is committed and four pages of it are read.** 290,298 bytes of OCR for four pages
+of reading, because a quote is checked against a committed file and cutting the middle out of an
+OCR run would break the byte-identity the corpus asserts. There is no deposit PDF and no page
+index: the page boundaries were read off the volume's own running heads, which this OCR prints,
+so no alignment was needed. `data/sources/st_cyr_register_ichr_v4.json` reads the SAME volume
+through a Genealogy Trails transcription of two of its register pages — two source records of
+one volume, by two different routes, and neither was re-read against the other.
 
 ---
 

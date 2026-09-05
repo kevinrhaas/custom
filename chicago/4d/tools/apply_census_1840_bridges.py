@@ -391,12 +391,20 @@ def check():
     if int(census.get("provisional_identity_bridges") or 0) != provisional: problems.append("ledger provisional bridge count disagrees")
     summary=SUMMARY.read_text(encoding="utf-8")
     if "**210 named 1840 household-head rows" not in summary: problems.append("summary census coverage is stale")
+    # The residents layer ships MINIFIED (tools/publish.sh, declared in
+    # check_published.mjs § TRANSFORMED), so a byte comparison here reported every
+    # published household as stale.  The claim was never about bytes: it is that the
+    # mirror carries the same record, so compare the parsed VALUE.
+    def mirror_carries(src: Path, dst: Path) -> bool:
+        if not dst.exists(): return False
+        try: return json.loads(dst.read_text(encoding="utf-8")) == json.loads(src.read_text(encoding="utf-8"))
+        except Exception: return False
     site_index=SITE/"data"/"residents"/"index.json"
-    if not site_index.exists() or site_index.read_text(encoding="utf-8") != INDEX.read_text(encoding="utf-8"): problems.append("published resident index mirror is stale")
+    if not mirror_carries(INDEX, site_index): problems.append("published resident index mirror is stale")
     for pid,row in expected.items():
         if pid not in people: continue
         _p,path,_doc=people[pid]; site_path=SITE/"data"/"residents"/"households"/path.name
-        if not site_path.exists() or site_path.read_text(encoding="utf-8") != path.read_text(encoding="utf-8"): problems.append(f"published household mirror stale: {path.name}")
+        if not mirror_carries(path, site_path): problems.append(f"published household mirror stale: {path.name}")
     adams=people.get("adams_william_h")
     if adams and len(adams[2].get("persons") or []) != 1: problems.append("Adams 1840 second person was incorrectly back-projected into 1835")
     if problems:
@@ -407,8 +415,164 @@ def check():
     return 0
 
 
+# ---------------------------------------------------------------------------
+# T-0515 — the candidates, and why so few of them become bridges
+#
+# The ticket asks for the bridge CSV to be EXTENDED from the 1840 appearances
+# the identity consolidation now carries, "keeping its rule — a bridge needs an
+# adjudicated discriminator; composition is never back-projected". This mode
+# derives every candidate that consolidation offers and rules on each one, so
+# the links this project has NOT made are as legible as the three it has.
+#
+# The three rules, in the order they fire. A candidate must pass all three.
+#
+#   B1  A SERIAL. The bridge row's key is the 1840 dwelling serial, and the only
+#       place a serial exists is the 210-row recovery of the owner's v4 workbook
+#       (pages 229-235). An appearance citing any other page — and 33 of the 40
+#       cite pages 207-228 — has been read off the deposited image, and those
+#       page files carry the schedule's ruled lines and no serial at all. There
+#       is nothing to key a bridge on, and one keyed on a page and a row alone
+#       would not survive the duplicate-serial check this tool already enforces.
+#
+#   B2  THE TWO READINGS AGREE ON WHO IT IS. PR #683 established that where a
+#       page in the recovery has since been read off the image the two disagree,
+#       sometimes about the head's name. Six of the seven candidates that clear
+#       B1 are exactly that: the consolidation reads Gurdon S. Hubbard at 232:17
+#       and the recovery's own preferred name for that line is Samuel J. McCord.
+#       A bridge across that disagreement would be picking a winner in the very
+#       dispute the tool was built to keep visible.
+#
+#   B3  AN ADJUDICATED DISCRIMINATOR. The rule the three committed bridges were
+#       written under: something beyond the name — an 1833/1834/1835 poll or tax
+#       hit, or a directory match — that is not itself flagged as a common-name
+#       caution. The last candidate standing, John Wilson at 229:2, fails on the
+#       recovery's own words: "Common-name caution."
+#
+# So the honest count today is zero new bridges, and this ledger is the reason
+# rather than a silence. It is DERIVED — re-run it when a page is read or a
+# discriminator is adjudicated and the candidate moves by itself.
+# ---------------------------------------------------------------------------
+
+MASTER = RESEARCH / "identity_master.json"
+CANDIDATES = RESEARCH / "census_1840_bridge_candidates_ruled.json"
+COMMON_NAME = re.compile(r"common[- ]name", re.I)
+
+
+def _tokens(value):
+    return [t for t in re.split(r"[^A-Za-z]+", str(value or "").lower())
+            if t and t not in {"mr", "mrs", "miss", "dr", "capt", "col", "jr", "sr"}]
+
+
+def _agrees(identity, printed):
+    """The same forename test the regrade uses, imported rather than restated."""
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    from mint_civic_residents import forename_agrees
+    sur = (identity.get("surname") or "").lower()
+    if sur and sur not in _tokens(printed):
+        return False
+    return forename_agrees(identity.get("forename") or "", sur, printed)
+
+
+def candidates():
+    master = load(MASTER)
+    census = census_rows()
+    by_pr = {(r["page"], r["row"]): r for r in census}
+    have = {r["person_id"].strip() for r in bridge_rows()}
+    ruled = []
+    for identity in sorted(master.get("identities") or [], key=lambda i: i["id"]):
+        pid = identity.get("canonical_person_id")
+        if not pid:
+            continue
+        for app in identity.get("appearances") or []:
+            if app.get("domain") != "census_1840":
+                continue
+            locator = str(app.get("locator") or "")
+            page, _, row_no = locator.partition(":")
+            entry = {"person_id": pid, "identity": identity["id"],
+                     "as_read": app.get("as_read"), "locator": locator,
+                     "record_id": app.get("record_id")}
+            if pid in have:
+                entry.update(outcome="bridged", rule=None,
+                             reason="already carried as an adjudicated bridge")
+                ruled.append(entry)
+                continue
+            found = by_pr.get((page, row_no))
+            if not found:
+                entry.update(outcome="refused", rule="B1",
+                             reason=("no SERIAL: this appearance cites a page outside the "
+                                     "210-row recovery, and the page scans carry no serial "
+                                     "a bridge row could be keyed on"))
+                ruled.append(entry)
+                continue
+            entry["serial"] = found["serial"]
+            entry["recovery_name"] = found["preferred_name"]
+            if not _agrees(identity, found["preferred_name"]):
+                entry.update(outcome="refused", rule="B2",
+                             reason=(f"the two readings of {locator} disagree about who it "
+                                     f"is: the consolidation reads {app.get('as_read')!r} "
+                                     f"and the recovery {found['preferred_name']!r}"))
+                ruled.append(entry)
+                continue
+            discriminators = [found[k] for k in ("1833_poll", "1833_tax", "1834_poll",
+                                                 "1835_poll", "1839_directory_match")
+                              if (found.get(k) or "").strip()]
+            clean = [d for d in discriminators if not COMMON_NAME.search(d)]
+            if not clean:
+                entry.update(outcome="refused", rule="B3",
+                             reason=("no adjudicated discriminator beyond the name" +
+                                     (" — the recovery's own note is a common-name caution"
+                                      if discriminators else "")))
+                ruled.append(entry)
+                continue
+            entry.update(outcome="bridgeable", rule=None,
+                         reason="; ".join(clean), basis=clean)
+            ruled.append(entry)
+    return ruled
+
+
+def candidates_report(write: bool = False) -> int:
+    ruled = candidates()
+    tally = Counter((r["outcome"], r.get("rule")) for r in ruled)
+    print(f"1840 BRIDGE CANDIDATES — {len(ruled)} appearance(s) the consolidation offers")
+    for (outcome, rule), n in sorted(tally.items(), key=lambda kv: -kv[1]):
+        print(f"  {n:5d}  {outcome}{(' / ' + rule) if rule else ''}")
+    for r in ruled:
+        if r["outcome"] != "refused":
+            print(f"  {r['outcome'].upper():11s} {r['person_id'][:30]:32s} {r['reason']}")
+    print()
+    for r in ruled:
+        if r["outcome"] == "refused" and r["rule"] != "B1":
+            print(f"  REFUSE {r['rule']} {r['person_id'][:30]:32s} {r['reason']}")
+    doc = {
+        "schema": 1,
+        "_doc": ("GENERATED by tools/apply_census_1840_bridges.py --candidates (T-0515). "
+                 "Every 1840 census appearance the identity consolidation carries for a "
+                 "canonical resident, ruled on against the three bridge rules. A refusal "
+                 "here is a link this project has NOT made and the reason it has not."),
+        "generated_by": "tools/apply_census_1840_bridges.py --candidates",
+        "rules": {
+            "B1": "a bridge is keyed on the 1840 SERIAL, which only the 210-row recovery has",
+            "B2": "the recovery's reading of the line and the consolidation's must name the same person",
+            "B3": "a discriminator beyond the name, and not one the recovery itself flags as common-name",
+        },
+        "counts": {f"{o}{'/' + r if r else ''}": n for (o, r), n in sorted(tally.items())},
+        "candidates": ruled,
+    }
+    if write:
+        dump(CANDIDATES, doc)
+        print(f"wrote {CANDIDATES.relative_to(ROOT)}")
+    return 0
+
+
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("--check",action="store_true"); args=ap.parse_args()
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--check",action="store_true")
+    ap.add_argument("--candidates",action="store_true",
+                    help="T-0515: rule on every 1840 appearance the consolidation offers")
+    ap.add_argument("--write",action="store_true",help="with --candidates, commit the ledger")
+    args=ap.parse_args()
+    if args.candidates: return candidates_report(args.write)
     return check() if args.check else apply()
 
 

@@ -33,6 +33,7 @@ live on two different images.
 | `pages/<familysearch_id>.json` | one file per page read: the printed page number, the sheet side, and one record per ruled line — `line`, `as_read`, `normalized`, `name_confidence`, `reading`. |
 | `crosswalk_670.json` | the line-by-line comparison against the 210 rows PR #670 recovered from the owner's lost v4 workbook, page by page, with a row-offset test on each. |
 | `claims.json` | what the sheets say ABOUT the enumeration and about the town, as opposed to who they name. Hand-authored, each with its verbatim quote and locator. |
+| `composition_1840.json` | **counts and nothing else** — what a Chicago household looked like in 1840: the household-size distribution, the age bands, the industry columns, and the 1830 district and 1835 town placed beside them. Derived by `tools/census_1840_composition.py`, gated by `check.sh`, and refused by its own self-test if a name or a serial ever reaches it. T-0507; read `docs/RESEARCH/household-composition-1840-calibration.md` beside it. |
 
 ## The reading rules
 
@@ -56,8 +57,9 @@ live on two different images.
 
 PR #670 recovered 210 named household heads from the owner's v4 workbook, which he has
 since ruled lost — "They are lost; rebuild". Those 210 rows are the calibration set any
-new reading must reproduce before it extends. **Five of the seven pages they cover have
-now been read off the sheets, and they do not reproduce.**
+new reading must reproduce before it extends. **All seven of the pages they cover have now been read off the sheets, and they do not
+reproduce.** Printed 233 and 235, the last two, were read to the name off `33SQ-GYYJ-RJ` and
+`33SQ-GYYJ-ZQ` against T-0741's inventory of the group.
 
 | printed page | image | scan lines | #670 rows | agree on both names |
 |---|---|---|---|---|
@@ -65,7 +67,9 @@ now been read off the sheets, and they do not reproduce.**
 | 230 | `33S7-9YYJ-NY` | 31 | 31 | see `crosswalk_670.json` |
 | 231 | `33S7-9YYJ-38` | 31 | 31 | 0 |
 | 232 | `33S7-9YYJ-W6` | 31 | 31 | see `crosswalk_670.json` |
+| 233 | `33SQ-GYYJ-RJ` | 31 | 31 | 2 |
 | 234 | `33S7-9YYJ-99F` | 31 | 31 | 4 |
+| 235 | `33SQ-GYYJ-ZQ` | 24 | 24 | 6 |
 
 Some of the disagreements are large: page 232 line 17 reads *Gurdon S. Hubbard* on the
 sheet against *Saml. J. McCord?* in #670, and line 25 reads *John H. Kinzie* against
@@ -801,6 +805,41 @@ That is a second and independent witness for 4 — and it is the same two-stroke
 T-0627 and T-0645 settled toward 4 on `33S7-9YYJ-6H`. The page file is not rewritten: the
 residual stays where T-0585 put it, with this pairing named beside it.
 
+**And the 4/11 form is now decided by a measurement rather than by prose (T-0647).** Every pass
+that met the two-stroke figure argued it in words — "tops level", "set below and right", "the
+sheet's reference pair" — and `33S7-9YYJ-6H` recorded honestly that the argument does not work:
+"the pitch test does not separate them on this sheet". Neither does stroke weight or stroke
+height; `33S7-9YYJ-24` line 21 is a **4** on a column that closes at its printed 201 and its two
+strokes are twins. What does separate them is the **x overlap of the two strokes' ink boxes**,
+because that is a fact about the form and not about the hand: two digits written side by side
+occupy two x slots, and one numeral's two strokes share a slot however far their feet drift.
+Measured on **nine figures whose value is fixed by a closure and not by anyone's eye** — three 4s
+and four two-digit numbers on 24's closing TOTAL column, the 4 in 6H's TOTAL footing that T-0645
+settled at 144, and the 11 in 6H's MANUFACTURES footing that T-0627's column closes on — the two
+classes are **+10 to +17** for one numeral and **−13 to +4** for two digits, and they do not
+touch. `tools/census_pair_geometry.py` is the instrument; it imports the ink mask and component
+finder from `read_census_continuation.py` rather than defining a second pair, and it reads no
+digits. The calibration table is committed on `33S7-9YYJ-5V`'s page file under
+`total_column.stroke_overlap_test`.
+
+**What it did to `33S7-9YYJ-5V`.** That sheet read six two-stroke figures as 11 and called one of
+them its reference pair. They are not one figure: lines **6, 9 and 24** measure +10, +19 and +19
+and are **4s**; lines **2, 3 and 4** measure +5, +3 and +5 and stay at **11**. The committed sum
+falls from 126 to 105, which does not close anything — the sheet's own footing is still one glyph
+short of legible — but it does dissolve the strain that reading recorded and could not resolve.
+Line 3 is the cross-check the whole result rests on: it carries a **commerce 4 and a
+learned-professions 1**, five persons of that family employed, against a TOTAL column that counts
+*persons in each family* — so it is at least 5 and cannot be a 4, and both those columns close
+exactly against the enumerator's own footings. An instrument that knows nothing of the ink and an
+instrument that knows nothing of the arithmetic agree on the one line that can be tested both
+ways.
+
+**Whether the key binds `33S7-9YYJ-8D` is still open, and deliberately.** The calibration is
+S. W. Sherman's hand — 24, 5V, 6H and 6Q all carry his name in the printed heading — and **8D's
+page file records no division at all**, so nothing yet shows he wrote it. Its six two-stroke
+figures, and the +15 by which its lines over-run its printed 106, belong to T-0652, which now has
+an instrument it did not have.
+
 **One is shown outright to have no partner here.** `33S7-9YYJ-8D` carries **32** entries, read
 line by line by T-0643 and anchored on a thirty-second line the inventory had missed. No left
 sheet in images 1-25 carries more than 31, so 8D's left half is not in this image group at all.
@@ -820,3 +859,246 @@ T-0641.
 the left-sheet footings of image groups 2 and 3: nine of those sheets are read for names and none
 of them for cells, so none of them has a population key to be tested against.
 
+
+## Printed 232 has no facing leaf in this deposit, and the search that says so (T-0543, 2026-09-05)
+
+Printed pages **230** and **232** were both read to the cell with their family totals, industry
+columns, pensioners and schools cells still on a leaf nobody had named. Printed 230 was settled
+first: T-0656 attached it to `33S7-9YYJ-K2` on both keys with the sequence agreeing position for
+position, and `pages/33S7-9YYJ-NY.json` carries that pairing. Printed 232 was not, and the reason
+is worth stating, because it is the reason a pairing question can sit open for four tickets — the
+search had only ever been run INSIDE one image group at a time. The deposit is ordered by sorted
+filename and not by the book, so a left sheet and its own continuation are in the same group only
+by accident.
+
+So this pass ran the search across all three groups at once, and it is exhausted.
+`continuation_search_page_232.json` names **every right sheet in the deposit — 37 of them, 33 of
+which are household continuations — image by image, with its TOTAL footing and the reason it is
+not printed 232's pair.** Seventeen of those footings were read here for the first time: the whole
+of image group 51-74, which nothing in this project had opened, plus `33S7-9YYJ-5V`, `-B1` and
+`-B2`, the three that T-0642 recorded as owed.
+
+**Printed 232 wants a sheet of 31 entries footing 193 (by its marks) or 195 (by its own
+footings), and no such sheet exists here.** The nearest unpaired footings in the whole deposit are
+`33S7-9YYJ-6Q` at 198 — refused by its 30-entry line count — and `33SQ-GYYJ-Z1` at 181, twelve
+short. One sheet and one only matches on the line count: `33SQ-GYYJ-9J5`, measured at 31 entries
+at every grouping distance the tool offers. It foots 179, and its TOTAL column read at
+magnification opens 5, 6, 25, 11, 8 against printed 232's 5, 7, 5, 9, 6 — agreeing at position one
+and nowhere else, with none of the page's distinctive 13, 14, 16 run anywhere on the leaf. Refused
+on the population key and refused again on the sequence.
+
+That is a statement about the deposit, not about the schedule. The 1840 book had a facing leaf for
+every page it enumerated; these 74 images do not hold all of them, which is the same fact that
+leaves ten of image group 1's eleven continuations without a partner. `pages/33S7-9YYJ-W6.json`
+now says so in its own `pairing` block: those 31 households' family totals and industry columns
+are **absent rather than unread**, and nothing should be filled into them from the left sheet's
+own cells. Recovering them needs a leaf from outside this deposit — FamilySearch collection
+1786457, recorded as login-walled and inaccessible rather than absent, or a National Archives
+microfilm this project does not hold — and that is a new source record, not a re-reading.
+
+**A by-product worth having.** Counting the deposit by side classified all 24 leaves of image
+group 51-74 for the first time: 9 left sheets and 15 right, listed in the same file so that T-0496
+does not have to open them again to find the names. One of the nine is unlike anything else here —
+`33SQ-GYYJ-PW` is the densest leaf in the deposit and writes STREET NAMES down its left margin
+beside the households. It is the leaf T-0496 should open first.
+
+## Images 51-74 inventoried, and the sheet that names the wards (T-0741, 2026-09-05)
+
+`coverage.json` carried two image groups while its own `schema_note` promised three, so the
+last **24 images of the deposit — 51 to 74 in the sorted filename order — were the only ones
+nothing described**. A hole there could not fail. They are now declared, one entry each: what
+the sheet is, which side it is, the printed page number where it carries one, and how many
+ruled lines carry an entry. Nothing else was read from them — no name, no cell, no serial, no
+resident. That is T-0746's, and this inventory is what lets it be parcelled by printed page.
+
+**Nine left sheets, fifteen continuations, one of them blank.** The eight printed page numbers
+this group carries are **212, 213, 214, 220, 223, 233, 235 and 240** — a set that does not run
+consecutively, so the deposit's filename order is not the printed order and an opening is whole
+inside one group only by accident. `33SQ-GYYJ-BH` is printed, ruled and wholly unfilled, which
+is declared rather than omitted for the same reason printed 238 is. Two of PR #670's seven
+calibration pages fall here exactly as the corrected deposit note predicted: **233** on
+`33SQ-GYYJ-RJ` and **235** on `33SQ-GYYJ-ZQ`.
+
+**Where the printed page number lives.** On a left sheet it is printed at the TOP RIGHT, past
+the marshal's signature. A continuation sheet carries none of its own; what shows through at
+its top left is the number printed on the other side of the leaf, read backwards. That
+show-through is legible on some of these sheets and is deliberately NOT recorded as a reading —
+it is not this sheet's number, and pairing is a fingerprint job, not a bleed-through job.
+
+**The find is `33SQ-GYYJ-PW`.** It is a left-sheet form used as a recapitulation, and it is the
+third non-household sheet in this deposit. Instead of names its first column runs **1 to 30**
+under the heading *Page*; each numbered page carries its own totals across the free-white age
+bands; and a brace in the left margin gathers the thirty pages into **First, Second, Third,
+Fourth, Fifth and Sixth Ward**, each closed by a subtotal rule, with a grand total at the foot.
+The margin heading reads *"Recapitulation of [?] (Chicago City) preceding pages"*, one word
+struck through before the parenthesis.
+
+That shape is the shape of printed **237** — the recapitulation this README already describes,
+whose thirty ruled lines carry division totals gathered into six blocks. 237 gives the division
+totals and no more; `33SQ-GYYJ-PW` gives the same thirty rows broken out by age band and **names
+the six groups as the city's wards**. So it is a second, independent statement of the same
+recapitulation, and it is worth three things this pass does not attempt: it can be added against
+237's blocks, it may bear on the residual of **4** that 237 leaves open against the 4,470 at its
+foot, and it attributes every one of the thirty enumerating pages to a ward. Thirty pages at the
+~31 ruled lines these sheets carry is about 930 households against the **964** the IPUMS extract
+holds, which makes it a completeness test for the whole reading programme. None of that is done
+here. This pass records that the sheet exists and what it is.
+
+**One sheet is agricultural throughout.** `33SQ-GYYN-38YY` carries a figure in the AGRICULTURE
+column on every one of its 31 lines, footing 53. Chicago's own sheets foot agriculture at or
+near zero and carry their families under commerce and under manufactures and trades, so this is
+evidence about which enumeration district the sheet belongs to. The question is left open rather
+than answered.
+
+**What the line counts are worth.** They are read off a rendering of each image at 820 px across
+the left half of the sheet — the NAMES column on a left sheet, the TOTAL column on a continuation
+— and are stated to the nearest line, exactly as groups 1 and 2 state theirs. Both of those
+groups found the estimate reads LONG by one to four lines and never short, so a transcribing pass
+should expect to remove lines rather than find them. Two counts here have an independent check:
+`33SQ-GYYJ-NV`'s seventeen TOTAL figures sum to **exactly** its printed footing of 70, and
+`33SQ-GYYJ-9ZK`'s twenty-three sum to 118 against a footing of 119.
+
+## The thirty columns a continuation sheet's reader never names, swept (T-0629, 2026-09-05)
+
+`read_census_continuation.py` names eight columns of a right-hand sheet — TOTAL and the seven
+industry columns — because that printed run is the one stretch of the form whose columns can be
+named off pitch alone. The other **thirty** are wide blocks of unequal pitch, and the tool has
+always reported their ink as one lump per block with a note saying the lump is dominated by
+printed rules and is not evidence either way. On `33S7-9YYJ-6H` that left the twelve SLAVES
+columns, both PENSIONERS columns, the ten DEAF AND DUMB, BLIND AND INSANE columns and the whole
+SCHOOLS, &c. block unlooked-at, and it left the sheet's own note saying a 1 and a 40 stood at the
+head of the schools block, still not read.
+
+`tools/read_census_lower_blocks.py` names them and sweeps them. It reads no digit — it says where
+to look and what the ink is like when you get there — and it reports four measurements per
+component: the box, the share of pixels standing 120 or more grey levels below local background
+(**solid**), the paper the ink shuts in after a 5 px closing (**encloses**), and the distance to
+the nearest printed rule.
+
+**The pale-rule problem is per block, and it is stated rather than tuned.** This leaf already
+needs `--cover 0.50` where its sibling 5V takes the 0.6 default. The six white
+deaf/dumb/blind/insane columns are paler again: at 0.50 only the block's outer rules stand, and
+the four interior ones arrive at 0.30. At 0.25 two of them drop out. 0.30 is not a threshold the
+reading was tuned to; it is the only one at which that block's run is complete.
+
+**Thirty columns swept, two cells written.** Fifteen components survive in the body and six in the
+footing band. Five are the enumerator's ink. Every other one is a printed rule clipped by the
+sweep window, a horizontal rule crossing the band, a round blot, or the feathered ghost of writing
+on the other side of the leaf — and the discriminator is measured, not judged: the sheet's 55
+committed number groups run 10–65 px wide and 15–82 tall, median 34×41, and every rejected
+component is at most 19×26 with a solid fraction of 0.01–0.14. So **744 cells** are committed
+blank, which on this form is a zero.
+
+**The 1 and the 40.** They stand in **Primary and Common Schools** and in the **No. of Scholars**
+immediately right of it — not the academies pair, which is empty on every line — and they stand
+on **line 1**. Placing them took a measurement the sheet had not needed before: the leaf *rises to
+the right*, its upper body rule falling from y613 at x300 to y580 at x3500, and the committed line
+index was fitted to industry ink 2 200 px to the left. Corrected for that slope the index predicts
+line 1 at y659.1 where the figures are; their ink centres are y661.5 and y662.5, residuals of
++2.4 and +3.4 px against an index whose own rms is 4.81. Line 2 would be at y734.
+
+**The 40's nought is the only bowl on the sheet outside the industry run.** Flooding each
+component's background from its box border, exactly one of the twenty-one encloses paper: the
+48×46 figure at x3536–3584, which encloses 25 px. That is what rules out 4, 44 and 11 — and it
+hands the leaf an *independent* instance of the two-stroke 4 that T-0645 had to argue into from
+the TOTAL footing's arithmetic. Here the same two-stroke figure is read off form, standing beside
+a nought it cannot be.
+
+**And the block is footed, which nothing had looked for.** `footer_blank_columns_note` listed the
+blocks carrying no figure at the foot of this sheet; the schools block was absent from that list
+only because nobody had examined it. Under Primary and Common Schools the footing is a single bold
+slash of the body figure's own form — read **1**, and **that column closes**: one entry of 1 in
+the body, 1 at the foot. It is the first column on this leaf outside the industry run to close.
+
+Under No. of Scholars the footing is **written and does not read**. Three components spanning
+38 px where the body's 40 spans 48; the bowl test returns 0 against the body's 25, the first glyph
+carries no crossbar, and the ink is half the body figure's depth — a drier pen at the foot of a
+leaf already curling into the binding. It is where a 40 would stand and it is not recorded as one,
+because assuming it is exactly how a column is made to close. **T-0754** carries it.
+
+The seventh schools column, *No. of Scholars at public charge*, has no right-hand rule at any
+threshold down to 0.30: the gutter takes it at about x3640. It is recorded **unread, not blank** —
+a blank here would mint a nought nobody read. **T-0755** carries it.
+
+None of this closes the sheet. The TOTAL column still stands 7 short of its 144 footing.
+
+## Two of image group 2's continuation sheets read line by line (T-0658)
+
+`33S7-9YYN-3CF6` and `33S7-9YYJ-V4` are read to the cell on the rule the continuation
+readings have used since T-0540: **a column is committed only when the per-line values sum,
+column by column, to what the man who took the census wrote at the foot of his own sheet.**
+Neither leaf carries a printed page number and neither is paired, so nothing here attaches a
+household figure to a name; both remain LATER EVIDENCE that names nobody.
+
+| image | lines | footed columns | closes | what it says |
+|---|---|---|---|---|
+| `33S7-9YYN-3CF6` | **27** | TOTAL 116 · agriculture 25 · canals 31 | TOTAL and canals **exactly**; agriculture short one illegible cell | 116 people, 25 in agriculture, 31 on the canal |
+| `33S7-9YYJ-V4` | **21** | TOTAL 100 · agriculture 33 | TOTAL **exactly**; agriculture reads 34 against 33 | 100 people, agriculture on nearly every line |
+
+The group's third continuation sheet, `33S7-9YYJ-VJ`, is **not** read here. T-0658 was sized
+at three and two is what one run could demonstrate, so the third is split out as T-0762 with
+the method above written down for it rather than shipped as a self-invented half.
+
+**`33S7-9YYN-3CF6` is a canal sheet, and that is the reading's finding rather than its
+premise.** Twenty-seven households hold 116 people; twenty-five of them are returned in
+agriculture and thirty-one in the navigation of canals, lakes and rivers, and *not one*
+person on the leaf is in commerce, in manufactures and trades, in the learned professions,
+in mining or on the ocean — the other five industry columns are blank down all 27 lines and
+carry no figure at the foot. The last seven lines are what the canal looks like in a
+schedule: lines 21, 22 and 23 are households of ONE with that one man on the canal, and
+lines 24, 25, 26 and 27 are households of 11, 7, 7 and 3 with **every** member of each
+returned on the canal. Four shanties and three single men, consecutive in the enumerator's
+walking order, on a leaf taken while the Illinois and Michigan Canal was being dug.
+
+**The two-stroke figure is settled on this leaf, by arithmetic.** Line 24 carries the form
+this deposit has argued about since T-0627 — two parallel slants that read as `11` or as
+this hand's `4` — and it carries it twice, in the TOTAL column and in the canals column.
+Read as 11 both columns close on the enumerator's own footings exactly, 116 and 31; read as
+4 they come to 109 and 24. The same leaf writes a plain `4` on four other lines as one
+cursive glyph and not as two strokes, so on this hand the forms are distinct and the
+two-stroke one is 11. **That is a witness about this hand on this leaf and it is not carried
+to `33S7-9YYJ-5V`, `-6H` or `-8D`**, whose own tickets are open: a second enumerator's 4 is
+a second question.
+
+**One cell on 3CF6 is illegible and the column that holds it is therefore not committed.**
+Line 5's agriculture cell sits on a hard vertical crease that has taken the body of the
+figure with it. The 26 legible lines sum to 23 against a footing of 25, so the residual of
+exactly 2 sits in exactly one unread cell — the column is one legible cell away from closing
+and the sheet's own arithmetic asks for a 2 there. That is *not* written into the record. An
+arithmetic implication is not a reading, the rule is that a column commits only when the
+lines READ sum to the footing, and the cell is null with the residual named and located.
+
+**`33S7-9YYJ-V4` corrects its own line count, and the correction is not a matter of
+opinion.** The contact-sheet pass declared 31 lines "to the nearest line"; T-0656 counted 20
+off a magnified strip and said why that count was soft. This pass reads the TOTAL column
+glyph by glyph and finds **21** entries — and they sum to 100, which is exactly what the
+enumerator footed. At 20 lines no subset of the reading reaches 100. The line the strip pass
+missed is line 19, a pale `5` written low between a `7` and a `2`. `pairing_key_26_50.json`
+carries the corrected key; the pairing verdict does not move, because the sixteen left
+sheets read anywhere in this deposit run 29 to 33 lines and none foots 100.
+
+**V4's agriculture column is an ATTEMPT and not data.** Its 21 lines read 34 against a
+footing of 33. One person out is one cell, not a spread, and on this exposure there are
+three cells that could carry it — line 2 (read 6, alternate 5), line 7 (read 2, alternate 1)
+and line 16 (read 4, alternate 1). The reading is kept whole in `cells_first_pass`, where
+nothing downstream can consume it as fact, and `cells` carries null for that column on every
+line. This is the `33S7-9YYJ-5S` treatment applied to one column instead of a whole sheet.
+
+**The tooling did not survive contact with either leaf, and the reason is the same on both.**
+`tools/read_census_continuation.py` refuses 3CF6 outright — *"no industry run bracketed by
+TOTAL and PENSIONERS: the form is not as expected"* — at every `--cover` from 0.40 to 0.60,
+and it cannot fit a row grid to V4 at all. The cause is measured rather than guessed: **these
+rules lean.** On 3CF6 the nine printed rules of the TOTAL-and-industry run stand at 1004,
+1194, 1265, 1329, 1396, 1480, 1564, 1647 and 1712 px at the head of the body and 12 to 17 px
+further right at its foot; on V4 the lean is 41 px. That tool locates its rules from a single
+darkness profile over the whole body, and a rule that walks 41 px across the leaf smears out
+of such a profile entirely. Both page files carry the banded measurement that replaced it, so
+the next reader does not spend the same passes rediscovering it. The tool is **not** changed
+here — the fix it wants is a banded profile, and that is filed as T-0761 rather than
+slipped into a reading.
+
+Both leaves also show the other trap a fixed grid sets. A tenth apparent rule on 3CF6 at
+x=1250, and one on V4 at x=1333–1365, appear in every band and do **not** lean with the
+printed rules. They are creases. V4's runs through the TOTAL column, which is why that
+sheet's footed `100` looks at first sight as though its last `0` has crossed into the mining
+cell; it has not — the mining rule is 60 px further right.

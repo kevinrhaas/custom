@@ -64,7 +64,19 @@
     "chicagology_prefire275",
     "andreas_1884_v1"
    ],
-   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here."
+   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "A published early-Chicago reminiscence says Thomas Church arrived in 1834 and describes his Lake Street building activity. It corroborates the uncommon name, migration year and merchant setting without proving scene-date occupancy.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "ingale_early_chicago_reminiscence"
+    ]
+   }
   }
  ],
  "touches_removal": false,

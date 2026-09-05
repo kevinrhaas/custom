@@ -973,7 +973,7 @@
         "C3": 2,
         "D1": 1,
         "D2": 1,
-        "D3": 1
+        "H1": 1
       },
       "redealt": {
         "on": "2026-08-19",
@@ -1023,7 +1023,7 @@
           }
         },
         {
-          "family": "D3",
+          "family": "H1",
           "inventory_class": "principal_functional",
           "lot": 5,
           "stands_on": "street",
@@ -1070,6 +1070,25 @@
         ],
         "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
         "runs": "One run of three on lots 0-2-4, packed west from their east end. The slots are dealt west to east on this block and the run is chained the other way round, which the anchors say and the sequence does not have to: the roof at the east end anchors on the end of the frontage and the other two abut west of it in turn. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged."
+      },
+      "redealt_2": {
+        "on": "2026-09-04",
+        "ticket": "T-0593",
+        "was": {
+          "A3": 1,
+          "C3": 2,
+          "D1": 1,
+          "D2": 1,
+          "D3": 1
+        },
+        "now": {
+          "A3": 1,
+          "C3": 2,
+          "D1": 1,
+          "D2": 1,
+          "H1": 1
+        },
+        "why": "THE ROOF COUNT DOES NOT MOVE AND ONE FAMILY DOES, and what moves it is a source about this lot rather than a rule about this block. G. Spring's For-Sale notice ran six times in the Chicago Democrat between 1834-06-18 and 1834-11-19 and four printings carry it whole: \"LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street ... There is on said lot a large Dwelling-House and fine well\". T-0423 seated that address on the roof whose footprint centroid falls inside the lot, which is the plat lot 7 this recipe builds as its own lot index 5 on the Lake face, and it declined to touch the fabric under it. So the card carried the notice's own word LARGE over a 5.36 x 6.38 m one-room frame cottage - the smallest dwelling family the schedule deals - and the town's answer to \"what stood on lot 7 of block 16\" contradicted the only source that speaks about that lot. THE SLOT IS RE-DEALT TO H1, the lowest rung that answers the notice's own two words. The crosswalk labels D6 and every D family below it a COTTAGE and D7 a SMALL two-storey house; H1 is 'Larger one-and-a-half-story house', the first family the crosswalk itself calls larger and calls a house, and 24x30-28x38 ft against the D3 band's 16x20-18x24. Taking the lowest rung that answers the adjective is the restraint: the notice says large and says nothing about storeys, paint, trade or wealth, so nothing above H1 may be read out of it. NO TOTAL MOVES. The 665-roof programme apportions H1's eighteen roofs to the districts and not to any block - 'a per-unit family mix is an apportionment of that district's remainder, not a claim about any block' - and the south district's remainder held eight unbuilt H1 before this run and seven after it, with the displaced D3 going back the other way, thirteen to fourteen. The block still builds six roofs, five principal and one ancillary, against the same headroom of six, on the same lots, at the same 5.5 m setback and -2.0 m lateral offset the cottage stood at. This is the town's FIRST H1: the family was dealt eighteen roofs in July 1835 and instantiated none, and the first one lands where a documented notice says a large dwelling-house stood. WHAT IS STILL INVENTED IS EVERYTHING THAT MATTERS AND THE GRADE DOES NOT MOVE. That any building stood on this ground, that this count-unit is that house, and every dimension of it are conjectural exactly as they were: 'lot 7' is a conjectural line bearing a documented number, the numbering was read off block 18 and counted, and the seating stays at the bottom tier where L216 put it. What changes is only that the invention is now bounded by the source instead of contradicting it. Recorded in docs/LIBERTIES.md and ruled in docs/LOT-ADDRESS.md."
       }
     },
     {

@@ -175,3 +175,16 @@ The question the ticket asked cannot be answered by this sheet.
   retrospective illustration that was composed rather than constructed, which is what
   most retrospective illustrations are.
 * **It did not bake.** T-0649 is `needs_bake: false` and stayed that way.
+
+## 8. The route this pass left open, and what came of it (T-0663, 2026-09-04)
+
+§ 6 filed one successor: **find the original.** It was run, and it did **not** find it.
+`docs/RESEARCH/chappel_shore_origin_search.md` is that record — four publications a
+reader would assume this sheet came from are eliminated by their own lists of
+illustrations (Andreas 1884, the Porter memoir 1892, Kirkland 1892, Quaife 1933), one
+untested candidate is named and quarantined (William Mark Young, *Chicago's First School
+House*, ca. 1925, which **nobody has seen**), and six blocked routes are written down so
+the next run does not walk into them.
+
+Nothing measured above changes. `verified` is still **false**, the tower is still not a
+control, and the sheet is still spent on nothing.

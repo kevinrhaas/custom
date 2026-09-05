@@ -140,10 +140,10 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. AND THE WEST END IS NOT WHERE THE NOTE ABOVE IMPLIES, MEASURED 2026-08-29 BY T-0183: the drawn end at local (100, -101) stands 34 m SOUTH of the northernmost line the committed bank allows there, and 9.5 m from Lake Street's own committed centreline, so the last stretch of this street's platted corridor overlaps Lake's by 14.9 m. That is why the corner at Market cannot be closed without emitting blk_south_water_market as a bowtie, and why the block is a wedge the South Branch pinches out rather than a rectangle waiting on a trace — see `refused_control.market_south_water` in data/traces/street_control.json. Track width and ruts are visual interpretation, not measurements.",
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. AND THE WEST END IS NOT WHERE THE NOTE ABOVE IMPLIES, MEASURED 2026-08-29 BY T-0183: the drawn end at local (100, -101) stands 34 m SOUTH of the northernmost line the committed bank allows there, and 9.5 m from Lake Street's own committed centreline, so the last stretch of this street's platted corridor overlaps Lake's by 14.9 m. That is why the corner at Market cannot be closed without emitting blk_south_water_market as a bowtie, and why the block is a wedge the South Branch pinches out rather than a rectangle waiting on a trace — see `refused_control.market_south_water` in data/traces/street_control.json. Track width and ruts are visual interpretation, not measurements. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The plat's line is the module; the curved west approach and the measured 8.28 m southward shift recorded above are how that platted corridor is SEATED on this ground, and they remain the reasoning for the placement rather than for the existence.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -190,6 +190,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -235,10 +243,10 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work.",
+      "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -285,6 +293,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -330,10 +346,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated.",
+      "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -380,6 +396,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -421,10 +445,10 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -471,6 +495,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -512,10 +544,10 @@
       "track_width_m": 8.0,
       "surface": "worn_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -562,6 +594,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -603,10 +643,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 — 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved.",
+      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 — 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -653,6 +693,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -694,10 +742,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -744,6 +792,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -785,10 +841,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment.",
+      "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -835,6 +891,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -876,10 +940,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -926,6 +990,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -982,10 +1054,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1032,6 +1104,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1073,10 +1153,10 @@
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1123,6 +1203,159 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "west_water",
+      "name_1835": "West Water Street",
+      "name_2026": "no street survives; the Chicago Riverwalk runs nearest",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          -20.21,
+          -404.02
+        ],
+        [
+          -15.68,
+          -359.15
+        ],
+        [
+          -17.32,
+          -322.26
+        ],
+        [
+          -13.08,
+          -302.6
+        ],
+        [
+          -9.29,
+          -253.85
+        ],
+        [
+          -9.58,
+          -205.6
+        ],
+        [
+          1.1,
+          -134.02
+        ],
+        [
+          -0.08,
+          -117.1
+        ],
+        [
+          -9.34,
+          -104.2
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "T-0445. THE WEST DIVISION'S RIVERFRONT STREET, SEATED OFF THE COMMITTED WATERLINE AND NOTHING ELSE. The plat carries five north-south streets west of the river — West Water, Canal, Clinton, Jefferson, Des Plaines (the owner's reading of the sheet, T-0443) — and this file held only the middle two. West Water is the one of the three missing lines the modelled ground can carry, so it is seated here and the other two are refused in docs/RESEARCH/west_division_streets.md with the measurement that refuses them. METHOD: the centreline is the committed west bank of the South Branch (data/terrain/epochs/e1834_harbor_cut/river.geojson, traced from Wright 1834 and graded inferred there) offset one half-corridor — 12.192 m — to the west, so the street's EAST KERB stands on the 1834 waterline. That is the furthest east an 80 ft street on this bank can be, which is the same bound T-0444's swap test rested on; taking the bound as the placement is this line's one reconstruction and WHAT WOULD MOVE IT IS STATED: any wharf or landing strip between the kerb and the water pushes the whole line west by its width, and no source reached gives that width. Every vertex is 12.19-12.29 m from the bank, so the kerb reaches the waterline and does not cross it. THE GRADE IS INHERITED and is not better than its anchor: the bank is inferred, so this is. THE REACH stops at local north -104, where the traced bank turns west into the junction pool at Wolf Point; north of that turn an offset line runs through the attested Wolf Point cluster (the tavern, Robert Kinzie's store, James Kinzie's house, the Walker meeting house), so the continuation the 1839 directory attests — 'W. Water st north of West Lake st' — is left unseated rather than guessed. ATTESTATION, all of it already committed here: Fergus 1839 prints three West Water addresses (a hotel at the Randolph corner, a grocery and ship stores near Randolph, the Rat's-castle Hotel north of West Lake) — 1839 evidence recalled in 1876, which attests the street and is NOT backdated into its 1835 wear, which is why the traffic grade here is the light one Clinton carries and not Canal's; and south_branch_raft_bridge's committed position puts its west landing on West Water Street, with the war-dance procession coming south along it. NOTHING SURVIVES ON THE LINE and the negative is recorded rather than passed over: an Overpass query for every named highway in the box 41.8825/-87.6395 to 41.8862/-87.6368, run 2026-09-05, returned Wacker Drive and its lower decks on the EAST bank, the cross streets, and the Riverwalk — no through street on the west bank of the South Branch. The bridge record's parenthetical gloss 'West Water Street (now Canal Street)' cannot be right for this line: the committed `canal` is fitted to modern Canal Street's own surviving intersections and stands 131-159 m west of it over the reach they share, which is about one plat module, exactly as the plat draws the two as separate streets.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "fergus_chicago_directory_1839",
+          "citation": "Robert Fergus, Fergus' Directory of the City of Chicago, 1839 (Chicago: Fergus Printing Company, 1876) — Fergus' Historical Series No. 2; read from the Allen County Public Library Genealogy Center scan on the Internet Archive",
+          "url": "https://archive.org/details/fergusdirectoryo00ferg",
+          "archived_url": "https://archive.org/details/fergusdirectoryo00ferg",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "what_it_supplies": [
+            "A name, a trade and a street for 1,655 entries in the city of 1839 — the closest address list to 1835 this project can reach.",
+            "A trade for 976 of them at a stated street, which compiles into 102 street faces (Lake 199, Clark 94, North Water 83, South Water 72).",
+            "On printed page 37: six churches with their ministers, fifteen hotels, the public offices around the Public Square, the land office, the lighthouse, the theatre, two named building rows, the Dutch Settlement, and the fire that took the Tremont House on 27 October 1839."
+          ],
+          "what_it_does_not_supply": [
+            "An 1835 residency. Four years late, and the ratified ladder never makes a resident from a later listing alone.",
+            "An address number that means anything, off Lake street. Fergus writes on printed page 3 that no street but Lake was numbered in 1839 and that 'the numbers now given are those of the present day' — 1876's. Only the street name crosses.",
+            "A count of its own entries. The volume states no number of names anywhere, so a reading of it cannot be closed against the book the way a census sheet closes against its printed totals."
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1172,10 +1405,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated.",
+      "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The fall-1836 grading work on Canal is still not backdated into this scene, which is a claim about surface and belongs to `surface_confidence`.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1222,6 +1455,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1263,10 +1504,10 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1313,6 +1554,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1358,10 +1607,10 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1408,6 +1657,212 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carroll",
+      "name_1835": "Carroll Street",
+      "name_2026": "W Carroll Avenue",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          137.85
+        ],
+        [
+          -104.96,
+          136.47
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 4.5,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "T-0446. THE ONE WEST DIVISION TIER THAT DOES NOT SURVIVE INSIDE THE PLAT, so its line is INTERPOLATED between two that do and is graded for that and nothing better. The plat carries the West Division's tiers north to south as Kinzie, Carroll, Fulton, Lake, Randolph, Washington (the owner's reading of the sheet, carried in T-0443); `kinzie` and the new `fulton` are both held by surviving intersection control, and Carroll is the single tier between them. MODERN CARROLL AVENUE IS NO USE HERE and the negative is recorded rather than passed over: an Overpass query for every way named Carroll between lon -87.68 and -87.632 on 2026-09-04 returned eight, and not one of them meets Canal, Clinton, Jefferson or Des Plaines. The two fragments nearest the plat are outside it in opposite directions - one at local north +193 to +199 and east -55 to +561, which is the Kinzie's Addition alignment on the far side of the North Branch, and one at north +95 to +133 more than 1,180 m west of the datum, in ground the Thompson plat never covered. Inside the original town Carroll was taken by the Union Station approaches and the Kennedy Expressway. METHOD: the centreline is the midpoint of `kinzie` and `fulton` at every easting, which is 137.85 at the west end and 136.47 at the bank. THE BRACKET IS STATED BECAUSE IT IS THE HONEST WIDTH OF THIS READING: the two tiers are not evenly spaced on the surviving grid - at local east -250 Kinzie to Fulton measures 250.30 m against Fulton to Lake's 119.91 m - so stepping one Fulton-to-Lake module south from Kinzie puts Carroll at north 142.63 and one module north from Fulton puts it at 132.16. The midpoint, 137.40 at that easting, sits between them and is 5.24 m from either, which is this line's uncertainty and is larger than any other West Division street's. tools/measure_west_division_tiers.py --self-test holds the midpoint inside that bracket, so a later re-derivation of kinzie or fulton cannot leave this line behind. THE EAST END IS THE WATER, not a bend: the path stops 3 m short of the committed west bank of the North Branch, because no source gives Carroll a crossing and the tier does not continue on the far side under this name in 1835. Track width and wear are visual interpretation, and the narrowest in this file, because no committed structure fronts this tier at all.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fulton",
+      "name_1835": "Fulton Street",
+      "name_2026": "W Fulton Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          12.59
+        ],
+        [
+          -98.33,
+          11.51
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 4.5,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "attested",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "T-0446. HELD BY FOUR SURVIVING INTERSECTIONS, the same modern control this file's other West Division lines are fitted to, so this is the better attested of the two tiers added with it. The plat carries the tier (the owner's reading of the sheet, T-0443) and West Fulton Street still crosses all four of the West Division's north-south streets on the ground. Control read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json: Canal node 258020617 at local east -162.00 north +12.17; Clinton node 258966840 at -282.18, +11.83; Jefferson node 262247424 at -401.04, +13.11; Des Plaines node 258966841 at -524.88, +13.72. A least-squares line through the four has slope -0.004909 and residuals of +0.35, -0.58, +0.12 and +0.11 m, RMS 0.35 m - a tighter fit than the two-point lines several of this file's streets carry. WHY THE LINE STILL STOPS AT EAST -320 like `kinzie`, `lake`, `randolph` and `washington`, when the control runs 200 m further west: the west clip is this reconstruction's own extent, not a statement that the street ended there, and moving it would move five streets rather than one. THE EAST END IS THE WATER: the path stops 3 m short of the committed west bank of the North Branch, because Kinzie Street's is the only West Division bridge this scene carries, and this line claims a street rather than a crossing. Track width and wear are visual interpretation, and the narrowest in this file, because no committed structure fronts this tier. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04), and upgraded WITH the sixteen platted streets rather than after them, because it is the best-held line in this file: the plat draws the tier and four surviving intersections fit it at RMS 0.35 m, the tightest fit here. That is why the ruling reaches it — the sheet attests the street, and the modern control says only how precisely the drawn line is seated. The 17.5 m RMS in `data/datum.json` `derivation.residual_m` is COORDINATE UNCERTAINTY on the georeference — how well the 1834 sheet warped onto modern ground — and not a grade on the claim; Fulton's own four-intersection fit is tighter than it. `surface_confidence` and `wear_confidence` stand where they were.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1485,12 +1940,12 @@
           156.9
         ],
         [
-          255,
-          128.3
+          240,
+          134.3
         ],
         [
-          375,
-          121.6
+          250,
+          134.3
         ],
         [
           410,
@@ -1597,6 +2052,14 @@
           "tier_label": "later scholarship"
         },
         {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
           "source_id": "wright_1834",
           "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
           "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
@@ -1636,10 +2099,10 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. Wolcott carries no `wright_1834` and none is added here: the plat and the two sheets already cited are what hold it.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1686,6 +2149,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1727,10 +2198,10 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "",
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY — how well the 1834 sheet warped onto modern ground — and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The plat draws the North Division tier; the line's seating follows the same 1834 control as its neighbours.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -1777,6 +2248,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wright_1834",
@@ -1943,6 +2422,14 @@
           "tier_label": "later scholarship"
         },
         {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
           "source_id": "wright_1834",
           "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
           "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
@@ -2069,6 +2556,14 @@
           "archived_url": "https://overpass-api.de/",
           "tier": 4,
           "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
         },
         {
           "source_id": "wentworth_1881_fort_dearborn",
@@ -3243,10 +3738,10 @@
       "asset": "gltf/recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb"
     },
     {
-      "id": "recon_1835_blk_south_water_dearborn_d3_03",
-      "name": "Reconstructed D3 one-room frame cottage #03",
-      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d3_03.json",
-      "asset": "gltf/recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb"
+      "id": "recon_1835_blk_south_water_dearborn_h1_03",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_h1_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_h1_03__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_franklin_a1_06",

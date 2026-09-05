@@ -71,9 +71,33 @@ fi
 # a page under walk/ cannot import from this publish mirror). Manager and the
 # polecat.live launcher fetch it from <site>/js/changelog.js, though, so mirror
 # it to that URL — it is a fleet-parsed contract path and must not move.
+#
+# AND IT IS MIRRORED ONCE, NOT TWICE — T-0722. The line above used to be the
+# SECOND copy: `cp -a renderers/web "$SITE/walk"` had already carried the
+# authored file to walk/js/changelog.js, so the mirror shipped the same 1.31 MB
+# under two URLs. That is 4.1 % of the whole 32 MB budget spent on a byte-for-byte
+# duplicate, and it grows twice as fast as the record does — every entry costs the
+# payload double. It is what put dev at 31.999 MB with nothing left for a PR.
+#
+# So the real file goes to the fleet-parsed path, and walk/js/changelog.js becomes
+# a re-export of it. `whatsnew.js` imports `./changelog.js` and cares only that
+# CHANGELOG and LATEST_VERSION come back; ../../js/changelog.js resolves inside the
+# mirror, where the fleet path is guaranteed to exist. Nothing under renderers/web
+# changes: the dev tree still holds the authored file at the path the app imports,
+# which is the whole reason the changelog is authored inside the app (a page under
+# walk/ cannot import from a mirror that does not exist yet in the dev tree).
 if [ -f renderers/web/js/changelog.js ]; then
   mkdir -p "$SITE/js"
   cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"
+  # …and the SECOND published path takes a re-export of it rather than a second
+  # copy. tools/stamp-changelog.mjs owns both forms (it is the writer of this
+  # file), so the shim's text lives in exactly one place; calling it here is what
+  # keeps publish.sh from being a second hand-kept copy of the same fact.
+  # tools/check_published.mjs carries the TRANSFORMED row that says why the walk
+  # copy is allowed to differ from its source, and tools/validate.py refuses any
+  # two published files over 64 KB that hold identical bytes, so the duplicate
+  # cannot come back the way it arrived.
+  node tools/stamp-changelog.mjs --write-mirrors
 fi
 
 # The ticket board, for Manager and any fleet reader: tickets.json is generated
@@ -142,9 +166,22 @@ fi
 # site. Until this line existed the whole layer stopped at the repo: ninety-six
 # researched people that a visitor had no way to reach, which reads exactly like
 # work that was never done.
+# PUBLISHED MINIFIED, AND ONLY HERE. The residents layer is 1,380 hand-annotated
+# household records whose notes run to paragraphs, and at indent=1 it was 8.8 MB of
+# the 32 MB the published tree is allowed — the tree measured 31.999 MB on 2026-09-05
+# and the next resident pass of any size could not land. Whitespace is the one thing
+# in it a visitor never reads: the renderer fetches these with response.json(). The
+# authored files under data/residents/ are untouched and stay diff-readable.
 if [ -d data/residents ]; then
   rm -rf "$SITE/data/residents"
   cp -a data/residents "$SITE/data/residents"
+  python3 - "$SITE/data/residents" <<'MINIFY'
+import json, sys
+from pathlib import Path
+for q in Path(sys.argv[1]).rglob("*.json"):
+    q.write_text(json.dumps(json.loads(q.read_text(encoding="utf-8")),
+                            ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+MINIFY
 fi
 
 # The enclosure layer — fence lines, yards and pens, drawn by

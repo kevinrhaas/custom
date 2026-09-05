@@ -8,9 +8,9 @@
     "url": "https://archive.org/details/fergusdirectoryo00ferg",
     "what": "Allen County Public Library Genealogy Center scan of Robert Fergus, Fergus' Directory of the City of Chicago, 1839 (Chicago: Fergus Printing Company, 1876). 86 leaves. Printed pages 47-50 are leaves 59-62.",
     "committed": true,
-    "how": "tools/fetch_fergus_1839_pages.py commits the page text; tools/read_fergus_1839_lots.py --map commits the row map that puts the columns back in printed order, out of the same scan's word coordinates."
+    "how": "tools/fetch_fergus_1839_pages.py commits the page text; tools/read_fergus_1839_lots.py --map commits the row map that puts the columns back in printed order, out of the same scan's word coordinates; fergus_1839_lots_corrections.json holds the numerals that were read off the page images themselves, because the OCR destroyed them."
   },
-  "reading_note": "transcription_mediated throughout: archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every cell on purpose — a tidied cell cannot be found again on the page. The columns are the hazard here rather than the spelling: the OCR reads a four-column table in the order the scanner met the ink, so the printed rows are put back from the word coordinates by --map and every cell carries the spans of the committed text it is made of. A numeral the scan destroyed is NULL and its ink is kept in as_printed; it is never recovered from the run it sits in. T-0679 owns settling those off the page images.",
+  "reading_note": "TWO GRADES, ROW BY ROW. A row graded transcription_mediated is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. A row graded scan_verified had its NUMERAL columns — block, lot, amount, and whether the lot was withheld — read off the page image by T-0679, and the reading it was made against is committed as fergus_1839_lots_corrections.json. That grade does NOT extend to the bidder column, which is still the OCR's on every row of these three pages. The damage is left in every cell on purpose — the ink stays in as_printed beside the number the image settled, because a tidied cell cannot be found again on the page. The columns are the hazard here rather than the spelling: the OCR reads a four-column table in the order the scanner met the ink, so the printed rows are put back from the word coordinates by --map and every cell carries the spans of the committed text it is made of. A numeral is still never recovered from the RUN it sits in: what the image does not print, no row here invents.",
   "date_note": "1839, NOT 1835. The sale ran 10-24 June 1839 and every claim carries describes_date 1839-06. This ground is the Fort Dearborn reservation, which in July 1835 was the garrison's and was not lots at all, so no row here places anybody in the scene. A bidder is a name that MAY corroborate a man in the town; under the ratified grading ladder a later appearance alone never makes an 1835 resident, and nothing in this file mints or regrades anybody.",
   "compiler_note": "Printed page 3, already recorded in data/sources/fergus_chicago_directory_1839.json: the volume is Fergus's 1876 completion, out of Old Settlers' recollections, of a list he set up from memory in 1839. This list reads like a clerk's abstract of the sale and may well be one; this reading cannot show that it is, so it is graded as the rest of the volume is.",
   "ditto_note": "The printer sets a repeated bidder as a ditto mark, and the scan ruins it into II, 11, It, », „ and a dozen more. A bidder cell with no word of three or more letters is read as a ditto and carries the name above it with bidder_ditto true — the mark IS the printer saying the same name, so the name is not an inference, but which mark it was is not recoverable and the ink is kept in as_printed.",
@@ -18,20 +18,28 @@
     "claims": 267,
     "rows": 267,
     "bidders_named": 100,
-    "rows_with_a_lot_number": 194,
-    "rows_with_an_amount": 227,
+    "rows_with_a_lot_number": 264,
+    "rows_with_an_amount": 249,
     "cells_the_scan_destroyed": {
       "lot": 62,
       "amount": 22,
       "block": 9
     },
+    "cells_settled_off_the_page_image": {
+      "lot": 76,
+      "amount": 27,
+      "block": 4,
+      "withheld_from_sale": 10,
+      "rows": 102
+    },
+    "rows_scan_verified": 102,
     "aggregate_printed_usd": 100000
   },
   "claims": [
     {
       "id": "f1839_lot0001",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1 \nReserved.",
       "normalized": {
         "as_printed": {
@@ -75,12 +83,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "block 1 is set as one braced Reserved. and carries no lot number of its own"
     },
     {
       "id": "f1839_lot0002",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "2 \nI\nH.  Norton,\n$2657",
       "normalized": {
         "as_printed": {
@@ -94,7 +102,7 @@
         "bidder_wrapped": false,
         "block": 2,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 2657,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -197,7 +205,7 @@
     {
       "id": "f1839_lot0004",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "n\nA.  J.  Underhill,\n1506",
       "normalized": {
         "as_printed": {
@@ -211,7 +219,7 @@
         "bidder_wrapped": false,
         "block": 2,
         "block_carried": true,
-        "lot": null,
+        "lot": 3,
         "amount_usd": 1506,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -253,7 +261,7 @@
     {
       "id": "f1839_lot0005",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "0",
       "normalized": {
         "as_printed": {
@@ -292,7 +300,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "no printed row stands here: the gathering caught a fragment between block 2's lots 3 and 4"
     },
     {
       "id": "f1839_lot0006",
@@ -521,7 +529,7 @@
     {
       "id": "f1839_lot0010",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "8\n)",
       "normalized": {
         "as_printed": {
@@ -537,7 +545,7 @@
         "block_carried": true,
         "lot": 8,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -565,7 +573,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "lots 8, 9 and 10 are braced together against a single Reserved.; the OCR kept the brace only against lot 9; a reserved lot has no price printed"
     },
     {
       "id": "f1839_lot0011",
@@ -619,7 +627,7 @@
     {
       "id": "f1839_lot0012",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "10",
       "normalized": {
         "as_printed": {
@@ -635,7 +643,7 @@
         "block_carried": true,
         "lot": 10,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -658,7 +666,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over lots 8, 9 and 10; a reserved lot has no price printed"
     },
     {
       "id": "f1839_lot0013",
@@ -780,7 +788,7 @@
     {
       "id": "f1839_lot0015",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "j\nII  ✓\n2000",
       "normalized": {
         "as_printed": {
@@ -794,7 +802,7 @@
         "bidder_wrapped": false,
         "block": 3,
         "block_carried": true,
-        "lot": null,
+        "lot": 3,
         "amount_usd": 2000,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -1121,7 +1129,7 @@
     {
       "id": "f1839_lot0021",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4 \nn",
       "normalized": {
         "as_printed": {
@@ -1135,9 +1143,9 @@
         "bidder_wrapped": false,
         "block": 4,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -1165,12 +1173,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "block 4's lots 1 to 6 are braced together against a single Reserved.; the OCR kept the brace only against lot 3"
     },
     {
       "id": "f1839_lot0022",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "2 \n;",
       "normalized": {
         "as_printed": {
@@ -1186,7 +1194,7 @@
         "block_carried": true,
         "lot": 2,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -1214,12 +1222,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 4's lots 1 to 6"
     },
     {
       "id": "f1839_lot0023",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "J\nJ-  Reserved.",
       "normalized": {
         "as_printed": {
@@ -1233,7 +1241,7 @@
         "bidder_wrapped": false,
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 3,
         "amount_usd": null,
         "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -1268,7 +1276,7 @@
     {
       "id": "f1839_lot0024",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4",
       "normalized": {
         "as_printed": {
@@ -1284,7 +1292,7 @@
         "block_carried": true,
         "lot": 4,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -1307,12 +1315,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 4's lots 1 to 6"
     },
     {
       "id": "f1839_lot0025",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "5\nJ",
       "normalized": {
         "as_printed": {
@@ -1328,7 +1336,7 @@
         "block_carried": true,
         "lot": 5,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -1356,12 +1364,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 4's lots 1 to 6"
     },
     {
       "id": "f1839_lot0026",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "6",
       "normalized": {
         "as_printed": {
@@ -1377,7 +1385,7 @@
         "block_carried": true,
         "lot": 6,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -1400,7 +1408,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 4's lots 1 to 6"
     },
     {
       "id": "f1839_lot0027",
@@ -1802,7 +1810,7 @@
     {
       "id": "f1839_lot0034",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "H\nM\n303",
       "normalized": {
         "as_printed": {
@@ -1816,7 +1824,7 @@
         "bidder_wrapped": false,
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 14,
         "amount_usd": 303,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -1858,7 +1866,7 @@
     {
       "id": "f1839_lot0035",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "15\nA.\nBronson,\n“JO",
       "normalized": {
         "as_printed": {
@@ -1873,7 +1881,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 233,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -2031,7 +2039,7 @@
     {
       "id": "f1839_lot0038",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "18\n1\njjj",
       "normalized": {
         "as_printed": {
@@ -2046,7 +2054,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 18,
-        "amount_usd": null,
+        "amount_usd": 333,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -2199,7 +2207,7 @@
     {
       "id": "f1839_lot0041",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "21\n1\n3°3",
       "normalized": {
         "as_printed": {
@@ -2214,7 +2222,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 21,
-        "amount_usd": null,
+        "amount_usd": 303,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -2372,7 +2380,7 @@
     {
       "id": "f1839_lot0044",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "24\nC.\nLyon,\n35o",
       "normalized": {
         "as_printed": {
@@ -2387,7 +2395,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 24,
-        "amount_usd": null,
+        "amount_usd": 350,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -2850,7 +2858,7 @@
     {
       "id": "f1839_lot0052",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "32\nDr\n.  H.  Humphrey,\n43i",
       "normalized": {
         "as_printed": {
@@ -2865,7 +2873,7 @@
         "block": 4,
         "block_carried": true,
         "lot": 32,
-        "amount_usd": null,
+        "amount_usd": 431,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -2911,7 +2919,7 @@
     {
       "id": "f1839_lot0053",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "'l  \">\nOJ\nL.\nR.  Lyon,\n400",
       "normalized": {
         "as_printed": {
@@ -2925,7 +2933,7 @@
         "bidder_wrapped": false,
         "block": 4,
         "block_carried": true,
-        "lot": null,
+        "lot": 33,
         "amount_usd": 400,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -3338,7 +3346,7 @@
     {
       "id": "f1839_lot0060",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "40",
       "normalized": {
         "as_printed": {
@@ -3377,7 +3385,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "lots 39 and 40 are braced to one bidder and one price, C. Walker 408; lot 40 has no price of its own"
     },
     {
       "id": "f1839_lot0061",
@@ -3611,7 +3619,7 @@
     {
       "id": "f1839_lot0065",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "5 \nn",
       "normalized": {
         "as_printed": {
@@ -3625,9 +3633,9 @@
         "bidder_wrapped": false,
         "block": 5,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -3655,12 +3663,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "block 5's lots 1 to 5 are braced together against a single Reserved.; the OCR kept the brace only against lot 3"
     },
     {
       "id": "f1839_lot0066",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "2\n;",
       "normalized": {
         "as_printed": {
@@ -3676,7 +3684,7 @@
         "block_carried": true,
         "lot": 2,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -3704,7 +3712,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 5's lots 1 to 5"
     },
     {
       "id": "f1839_lot0067",
@@ -3758,7 +3766,7 @@
     {
       "id": "f1839_lot0068",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4 \nI",
       "normalized": {
         "as_printed": {
@@ -3774,7 +3782,7 @@
         "block_carried": true,
         "lot": 4,
         "amount_usd": null,
-        "withheld_from_sale": null,
+        "withheld_from_sale": "reserved",
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
       "locator": {
@@ -3802,7 +3810,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the same brace over block 5's lots 1 to 5"
     },
     {
       "id": "f1839_lot0069",
@@ -4031,7 +4039,7 @@
     {
       "id": "f1839_lot0073",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "IO\nII\n208",
       "normalized": {
         "as_printed": {
@@ -4045,7 +4053,7 @@
         "bidder_wrapped": false,
         "block": 5,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 208,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -4143,7 +4151,7 @@
     {
       "id": "f1839_lot0075",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "6 \ni\nD.  Root,\n359",
       "normalized": {
         "as_printed": {
@@ -4157,7 +4165,7 @@
         "bidder_wrapped": false,
         "block": 6,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 359,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -4428,7 +4436,7 @@
     {
       "id": "f1839_lot0080",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "6\nForfeited.",
       "normalized": {
         "as_printed": {
@@ -4472,7 +4480,7 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "the row prints Forfeited. and no price"
     },
     {
       "id": "f1839_lot0081",
@@ -4538,7 +4546,7 @@
     {
       "id": "f1839_lot0082",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "2\nII\n45o",
       "normalized": {
         "as_printed": {
@@ -4553,7 +4561,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 2,
-        "amount_usd": null,
+        "amount_usd": 450,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -4874,7 +4882,7 @@
     {
       "id": "f1839_lot0088",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "S\nII\n235",
       "normalized": {
         "as_printed": {
@@ -4888,7 +4896,7 @@
         "bidder_wrapped": false,
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 8,
         "amount_usd": 235,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -4986,7 +4994,7 @@
     {
       "id": "f1839_lot0090",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "IO\nJ.  H.  Kinzie,\n273",
       "normalized": {
         "as_printed": {
@@ -5000,7 +5008,7 @@
         "bidder_wrapped": false,
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 10,
         "amount_usd": 273,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -5154,7 +5162,7 @@
     {
       "id": "f1839_lot0093",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "II\n215",
       "normalized": {
         "as_printed": {
@@ -5168,7 +5176,7 @@
         "bidder_wrapped": false,
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 13,
         "amount_usd": 215,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -5877,7 +5885,7 @@
     {
       "id": "f1839_lot0106",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "26\nII\n3i5",
       "normalized": {
         "as_printed": {
@@ -5892,7 +5900,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 26,
-        "amount_usd": null,
+        "amount_usd": 315,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -6101,7 +6109,7 @@
     {
       "id": "f1839_lot0110",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "30\nA.  D.  Stewart,\n35i",
       "normalized": {
         "as_printed": {
@@ -6116,7 +6124,7 @@
         "block": 7,
         "block_carried": true,
         "lot": 30,
-        "amount_usd": null,
+        "amount_usd": 351,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -6157,7 +6165,7 @@
     {
       "id": "f1839_lot0111",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "3i\nM.  Ayers,\n476",
       "normalized": {
         "as_printed": {
@@ -6171,7 +6179,7 @@
         "bidder_wrapped": false,
         "block": 7,
         "block_carried": true,
-        "lot": null,
+        "lot": 31,
         "amount_usd": 476,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -6386,7 +6394,7 @@
     {
       "id": "f1839_lot0115",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4\nMosely  &  McCord,\n5°7",
       "normalized": {
         "as_printed": {
@@ -6401,7 +6409,7 @@
         "block": 8,
         "block_carried": true,
         "lot": 4,
-        "amount_usd": null,
+        "amount_usd": 507,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -6722,7 +6730,7 @@
     {
       "id": "f1839_lot0121",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "10\nChas.  Walker,\n45i",
       "normalized": {
         "as_printed": {
@@ -6737,7 +6745,7 @@
         "block": 8,
         "block_carried": true,
         "lot": 10,
-        "amount_usd": null,
+        "amount_usd": 451,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -6834,7 +6842,7 @@
     {
       "id": "f1839_lot0123",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "12\nPat.  Timony,\n45i",
       "normalized": {
         "as_printed": {
@@ -6849,7 +6857,7 @@
         "block": 8,
         "block_carried": true,
         "lot": 12,
-        "amount_usd": null,
+        "amount_usd": 451,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -7114,7 +7122,7 @@
     {
       "id": "f1839_lot0128",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "17\nII\n5io",
       "normalized": {
         "as_printed": {
@@ -7129,7 +7137,7 @@
         "block": 8,
         "block_carried": true,
         "lot": 17,
-        "amount_usd": null,
+        "amount_usd": 510,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -7170,7 +7178,7 @@
     {
       "id": "f1839_lot0129",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "T  Si\nI  O\nII\n460",
       "normalized": {
         "as_printed": {
@@ -7184,7 +7192,7 @@
         "bidder_wrapped": false,
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 18,
         "amount_usd": 460,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -7231,7 +7239,7 @@
     {
       "id": "f1839_lot0130",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "I9\nII\n460",
       "normalized": {
         "as_printed": {
@@ -7245,7 +7253,7 @@
         "bidder_wrapped": false,
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 19,
         "amount_usd": 460,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -7455,7 +7463,7 @@
     {
       "id": "f1839_lot0134",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "E.  W.  Taylor,\n506",
       "normalized": {
         "as_printed": {
@@ -7469,7 +7477,7 @@
         "bidder_wrapped": false,
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 23,
         "amount_usd": 506,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -7674,7 +7682,7 @@
     {
       "id": "f1839_lot0138",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "27\nJ.  J-  Phelps,\n5io",
       "normalized": {
         "as_printed": {
@@ -7689,7 +7697,7 @@
         "block": 8,
         "block_carried": true,
         "lot": 27,
-        "amount_usd": null,
+        "amount_usd": 510,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -7842,7 +7850,7 @@
     {
       "id": "f1839_lot0141",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "3°\nS.  N.  Beers,\n812",
       "normalized": {
         "as_printed": {
@@ -7856,7 +7864,7 @@
         "bidder_wrapped": false,
         "block": 8,
         "block_carried": true,
-        "lot": null,
+        "lot": 30,
         "amount_usd": 812,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -7898,7 +7906,7 @@
     {
       "id": "f1839_lot0142",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "9 \n*\nStiles  Burton,\n712",
       "normalized": {
         "as_printed": {
@@ -7912,7 +7920,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 712,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -8412,7 +8420,7 @@
     {
       "id": "f1839_lot0151",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "IO\nS.  Paine,\n53o",
       "normalized": {
         "as_printed": {
@@ -8426,8 +8434,8 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": null,
-        "amount_usd": null,
+        "lot": 10,
+        "amount_usd": 530,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -8692,7 +8700,7 @@
     {
       "id": "f1839_lot0156",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "15\nS.  L.  Smith,  .\n56i",
       "normalized": {
         "as_printed": {
@@ -8707,7 +8715,7 @@
         "block": 9,
         "block_carried": true,
         "lot": 15,
-        "amount_usd": null,
+        "amount_usd": 561,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -9252,7 +9260,7 @@
     {
       "id": "f1839_lot0166",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "J\nJ.  W.  Hooker,\n276",
       "normalized": {
         "as_printed": {
@@ -9266,7 +9274,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": null,
+        "lot": 25,
         "amount_usd": 276,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9364,7 +9372,7 @@
     {
       "id": "f1839_lot0168",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "27\n^  J\nThos.  Dyer,\n217",
       "normalized": {
         "as_printed": {
@@ -9378,7 +9386,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": null,
+        "lot": 27,
         "amount_usd": 217,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9481,7 +9489,7 @@
     {
       "id": "f1839_lot0170",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "90\nzy\nII\n217",
       "normalized": {
         "as_printed": {
@@ -9495,7 +9503,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": null,
+        "lot": 29,
         "amount_usd": 217,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9542,7 +9550,7 @@
     {
       "id": "f1839_lot0171",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "70\nE.  H.  Haddock,\n232",
       "normalized": {
         "as_printed": {
@@ -9556,7 +9564,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": 70,
+        "lot": 30,
         "amount_usd": 232,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9593,12 +9601,12 @@
         "E. H. Haddock"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the one numeral this reading got WRONG rather than refused: the scan's 70 is a ruin of a printed 30, and block 9 runs 1 to 31"
     },
     {
       "id": "f1839_lot0172",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "TI\nT.  Wheeler,\n263",
       "normalized": {
         "as_printed": {
@@ -9612,7 +9620,7 @@
         "bidder_wrapped": false,
         "block": 9,
         "block_carried": true,
-        "lot": null,
+        "lot": 31,
         "amount_usd": 263,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9654,7 +9662,7 @@
     {
       "id": "f1839_lot0173",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "j",
       "normalized": {
         "as_printed": {
@@ -9693,12 +9701,12 @@
       "describes_date": "1839-06",
       "entities": [],
       "town_finding": false,
-      "notes": null
+      "notes": "no printed row stands here: this is the blank line the printer leaves between block 9 and block 10"
     },
     {
       "id": "f1839_lot0174",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "IO \nI\nR.  T.  Haines,\n429",
       "normalized": {
         "as_printed": {
@@ -9710,9 +9718,9 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": 9,
-        "block_carried": true,
-        "lot": null,
+        "block": 10,
+        "block_carried": false,
+        "lot": 1,
         "amount_usd": 429,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9771,8 +9779,8 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
+        "block": 10,
+        "block_carried": true,
         "lot": 2,
         "amount_usd": 360,
         "withheld_from_sale": null,
@@ -9815,7 +9823,7 @@
     {
       "id": "f1839_lot0176",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "3 \nR.  T.  Haines, \n325",
       "normalized": {
         "as_printed": {
@@ -9827,8 +9835,8 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
+        "block": 10,
+        "block_carried": true,
         "lot": 3,
         "amount_usd": 325,
         "withheld_from_sale": null,
@@ -9871,7 +9879,7 @@
     {
       "id": "f1839_lot0177",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4 \n\" \n315",
       "normalized": {
         "as_printed": {
@@ -9883,8 +9891,8 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
+        "block": 10,
+        "block_carried": true,
         "lot": 4,
         "amount_usd": 315,
         "withheld_from_sale": null,
@@ -9927,7 +9935,7 @@
     {
       "id": "f1839_lot0178",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "<J\\Ui\nS.  N.  Dexter, \n305",
       "normalized": {
         "as_printed": {
@@ -9939,9 +9947,9 @@
         "bidder": "S. N. Dexter",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 5,
         "amount_usd": 305,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -9983,7 +9991,7 @@
     {
       "id": "f1839_lot0179",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "B.  McDonald, \n331",
       "normalized": {
         "as_printed": {
@@ -9995,9 +10003,9 @@
         "bidder": "B. McDonald",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 6,
         "amount_usd": 331,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10034,7 +10042,7 @@
     {
       "id": "f1839_lot0180",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "00^1 \nJ.  H.  Collins, \n353",
       "normalized": {
         "as_printed": {
@@ -10046,9 +10054,9 @@
         "bidder": "J. H. Collins",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 7,
         "amount_usd": 353,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10090,7 +10098,7 @@
     {
       "id": "f1839_lot0181",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "» \n353",
       "normalized": {
         "as_printed": {
@@ -10102,9 +10110,9 @@
         "bidder": "J. H. Collins",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 353,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10141,7 +10149,7 @@
     {
       "id": "f1839_lot0182",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "'O \nIsaac  F.  Massy. \n300",
       "normalized": {
         "as_printed": {
@@ -10153,9 +10161,9 @@
         "bidder": "Isaac F. Massy.",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 9,
         "amount_usd": 300,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10197,7 +10205,7 @@
     {
       "id": "f1839_lot0183",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "O \nS.  B.  Cobb, \n268^",
       "normalized": {
         "as_printed": {
@@ -10209,10 +10217,10 @@
         "bidder": "S. B. Cobb",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -10248,12 +10256,12 @@
         "S. B. Cobb"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "268 1/2 — the price carries a printed half dollar"
     },
     {
       "id": "f1839_lot0184",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "^ \nit \n247^",
       "normalized": {
         "as_printed": {
@@ -10265,10 +10273,10 @@
         "bidder": "S. B. Cobb",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -10304,12 +10312,12 @@
         "S. B. Cobb"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "247 1/2 — the price carries a printed half dollar"
     },
     {
       "id": "f1839_lot0185",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "In) \nE.  H.  Haddock, \n15",
       "normalized": {
         "as_printed": {
@@ -10321,10 +10329,10 @@
         "bidder": "E. H. Haddock",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": 15,
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -10360,12 +10368,12 @@
         "E. H. Haddock"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the second numeral this reading got wrong rather than refused: the scan's 15 is a ruin of a printed 151"
     },
     {
       "id": "f1839_lot0186",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Oo \n\" \nI51",
       "normalized": {
         "as_printed": {
@@ -10377,10 +10385,10 @@
         "bidder": "E. H. Haddock",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -10421,7 +10429,7 @@
     {
       "id": "f1839_lot0187",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4- \nPeter  Merril, \n150",
       "normalized": {
         "as_printed": {
@@ -10433,9 +10441,9 @@
         "bidder": "Peter Merril",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 14,
         "amount_usd": 150,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10477,7 +10485,7 @@
     {
       "id": "f1839_lot0188",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Qn^i \nStanton  &  Black, \n215",
       "normalized": {
         "as_printed": {
@@ -10489,9 +10497,9 @@
         "bidder": "Stanton & Black",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 15,
         "amount_usd": 215,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10533,7 +10541,7 @@
     {
       "id": "f1839_lot0189",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "S.  N.  Beers, \n225",
       "normalized": {
         "as_printed": {
@@ -10545,9 +10553,9 @@
         "bidder": "S. N. Beers",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 16,
         "amount_usd": 225,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10584,7 +10592,7 @@
     {
       "id": "f1839_lot0190",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "00^1 \nJ.  Russell, \n231",
       "normalized": {
         "as_printed": {
@@ -10596,9 +10604,9 @@
         "bidder": "J. Russell",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 17,
         "amount_usd": 231,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10640,7 +10648,7 @@
     {
       "id": "f1839_lot0191",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "231",
       "normalized": {
         "as_printed": {
@@ -10652,9 +10660,9 @@
         "bidder": null,
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 18,
         "amount_usd": 231,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10684,7 +10692,7 @@
     {
       "id": "f1839_lot0192",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "t0^t0K)l^^ls)K)l\\)l0wwWWwMHHWH\n0*0 \nE.  S.  Prescott, \n127",
       "normalized": {
         "as_printed": {
@@ -10696,9 +10704,9 @@
         "bidder": "E. S. Prescott",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 19,
         "amount_usd": 127,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10745,7 +10753,7 @@
     {
       "id": "f1839_lot0193",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "B.  M.  Wilson, \n201",
       "normalized": {
         "as_printed": {
@@ -10757,9 +10765,9 @@
         "bidder": "B. M. Wilson",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 20,
         "amount_usd": 201,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10796,7 +10804,7 @@
     {
       "id": "f1839_lot0194",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "h« \n- \n193",
       "normalized": {
         "as_printed": {
@@ -10808,9 +10816,9 @@
         "bidder": "B. M. Wilson",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 21,
         "amount_usd": 193,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10852,7 +10860,7 @@
     {
       "id": "f1839_lot0195",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "bO \nJ.  M.  Underwood, \n161",
       "normalized": {
         "as_printed": {
@@ -10864,9 +10872,9 @@
         "bidder": "J. M. Underwood",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 22,
         "amount_usd": 161,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10908,7 +10916,7 @@
     {
       "id": "f1839_lot0196",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Oj \nJ.  Y.  Scammon, \n153",
       "normalized": {
         "as_printed": {
@@ -10920,9 +10928,9 @@
         "bidder": "J. Y. Scammon",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 23,
         "amount_usd": 153,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -10964,7 +10972,7 @@
     {
       "id": "f1839_lot0197",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4* \n205",
       "normalized": {
         "as_printed": {
@@ -10976,9 +10984,9 @@
         "bidder": null,
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 24,
         "amount_usd": 205,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11013,7 +11021,7 @@
     {
       "id": "f1839_lot0198",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Q\\Ln \n•! \n215",
       "normalized": {
         "as_printed": {
@@ -11025,9 +11033,9 @@
         "bidder": "J. Y. Scammon",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 25,
         "amount_usd": 215,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11069,7 +11077,7 @@
     {
       "id": "f1839_lot0199",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "A.  D.  Stewart, \n230",
       "normalized": {
         "as_printed": {
@@ -11081,9 +11089,9 @@
         "bidder": "A. D. Stewart",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 26,
         "amount_usd": 230,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11120,7 +11128,7 @@
     {
       "id": "f1839_lot0200",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "^ \nJ.  K.  Botsford, \n215",
       "normalized": {
         "as_printed": {
@@ -11132,9 +11140,9 @@
         "bidder": "J. K. Botsford",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
         "amount_usd": 215,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11176,7 +11184,7 @@
     {
       "id": "f1839_lot0201",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "00 \nJ.  P.  Chapin, \n216",
       "normalized": {
         "as_printed": {
@@ -11188,9 +11196,9 @@
         "bidder": "J. P. Chapin",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 28,
         "amount_usd": 216,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11232,7 +11240,7 @@
     {
       "id": "f1839_lot0202",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "VO \nS.  N.  Dexter, \n210",
       "normalized": {
         "as_printed": {
@@ -11244,9 +11252,9 @@
         "bidder": "S. N. Dexter",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 29,
         "amount_usd": 210,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11288,7 +11296,7 @@
     {
       "id": "f1839_lot0203",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Oj \nO \n11 \n210",
       "normalized": {
         "as_printed": {
@@ -11300,9 +11308,9 @@
         "bidder": "S. N. Dexter",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 30,
         "amount_usd": 210,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11349,7 +11357,7 @@
     {
       "id": "f1839_lot0204",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "r*jJ \nH \nR.  T.  Haines, \n203",
       "normalized": {
         "as_printed": {
@@ -11361,9 +11369,9 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 31,
         "amount_usd": 203,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11410,7 +11418,7 @@
     {
       "id": "f1839_lot0205",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "O-J \nto \n11 \n210",
       "normalized": {
         "as_printed": {
@@ -11422,9 +11430,9 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 32,
         "amount_usd": 210,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11471,7 +11479,7 @@
     {
       "id": "f1839_lot0206",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "L/J \nU \nJ.  P.  Chapin, \n227",
       "normalized": {
         "as_printed": {
@@ -11483,9 +11491,9 @@
         "bidder": "J. P. Chapin",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 33,
         "amount_usd": 227,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11532,7 +11540,7 @@
     {
       "id": "f1839_lot0207",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4^ \nA.  G.  Hobbie, \n305",
       "normalized": {
         "as_printed": {
@@ -11544,9 +11552,9 @@
         "bidder": "A. G. Hobbie",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 10,
+        "block_carried": true,
+        "lot": 34,
         "amount_usd": 305,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11588,7 +11596,7 @@
     {
       "id": "f1839_lot0208",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "H \nJ.  C.  Gibson, \n103",
       "normalized": {
         "as_printed": {
@@ -11600,9 +11608,9 @@
         "bidder": "J. C. Gibson",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
+        "block": 11,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 103,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11639,12 +11647,12 @@
         "J. C. Gibson"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the block heading printed page 49 sets inside the ruined lot column"
     },
     {
       "id": "f1839_lot0209",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "K) \nA.  D.  Stewart, \n51",
       "normalized": {
         "as_printed": {
@@ -11656,9 +11664,9 @@
         "bidder": "A. D. Stewart",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 2,
         "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11700,7 +11708,7 @@
     {
       "id": "f1839_lot0210",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Oj \n» \n5i",
       "normalized": {
         "as_printed": {
@@ -11712,10 +11720,10 @@
         "bidder": "A. D. Stewart",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -11756,7 +11764,7 @@
     {
       "id": "f1839_lot0211",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4^ \n51",
       "normalized": {
         "as_printed": {
@@ -11768,9 +11776,9 @@
         "bidder": null,
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 4,
         "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11805,7 +11813,7 @@
     {
       "id": "f1839_lot0212",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "OnUt \nT.  Church,  jr. , \n51",
       "normalized": {
         "as_printed": {
@@ -11817,9 +11825,9 @@
         "bidder": "T. Church, jr.",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 5,
         "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -11861,7 +11869,7 @@
     {
       "id": "f1839_lot0213",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "» \n5i",
       "normalized": {
         "as_printed": {
@@ -11873,10 +11881,10 @@
         "bidder": "T. Church, jr.",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 6,
+        "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -11912,7 +11920,7 @@
     {
       "id": "f1839_lot0214",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "C/O^J \n» \n5i",
       "normalized": {
         "as_printed": {
@@ -11924,10 +11932,10 @@
         "bidder": "T. Church, jr.",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
-        "amount_usd": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 7,
+        "amount_usd": 51,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -11968,7 +11976,7 @@
     {
       "id": "f1839_lot0215",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "John  Wright, \n65",
       "normalized": {
         "as_printed": {
@@ -11980,9 +11988,9 @@
         "bidder": "John Wright",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
         "amount_usd": 65,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12019,7 +12027,7 @@
     {
       "id": "f1839_lot0216",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "H« \nS.  Willard, \n501",
       "normalized": {
         "as_printed": {
@@ -12031,9 +12039,9 @@
         "bidder": "S. Willard",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
+        "block": 12,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 501,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12070,12 +12078,12 @@
         "S. Willard"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the block heading printed page 49 sets inside the ruined lot column"
     },
     {
       "id": "f1839_lot0217",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "tsJ \n11 \n401",
       "normalized": {
         "as_printed": {
@@ -12087,9 +12095,9 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 2,
         "amount_usd": 401,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12131,7 +12139,7 @@
     {
       "id": "f1839_lot0218",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "U> \nR.  C.  Bristol, \n465",
       "normalized": {
         "as_printed": {
@@ -12143,9 +12151,9 @@
         "bidder": "R. C. Bristol",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 3,
         "amount_usd": 465,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12187,7 +12195,7 @@
     {
       "id": "f1839_lot0219",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4* \n\" \n465",
       "normalized": {
         "as_printed": {
@@ -12199,9 +12207,9 @@
         "bidder": "R. C. Bristol",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 4,
         "amount_usd": 465,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12243,7 +12251,7 @@
     {
       "id": "f1839_lot0220",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Of \nJ.  J.  Phelps, \n564",
       "normalized": {
         "as_printed": {
@@ -12255,9 +12263,9 @@
         "bidder": "J. J. Phelps",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 5,
         "amount_usd": 564,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12299,7 +12307,7 @@
     {
       "id": "f1839_lot0221",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "ON \nR.  C.  Bristol, \n465",
       "normalized": {
         "as_printed": {
@@ -12311,9 +12319,9 @@
         "bidder": "R. C. Bristol",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
-        "lot": null,
+        "block": 12,
+        "block_carried": true,
+        "lot": 6,
         "amount_usd": 465,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
@@ -12367,8 +12375,8 @@
         "bidder": "S. Willard",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
+        "block": 12,
+        "block_carried": true,
         "lot": 7,
         "amount_usd": 401,
         "withheld_from_sale": null,
@@ -12423,8 +12431,8 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": null,
-        "block_carried": false,
+        "block": 12,
+        "block_carried": true,
         "lot": 8,
         "amount_usd": 557,
         "withheld_from_sale": null,
@@ -12640,7 +12648,7 @@
     {
       "id": "f1839_lot0227",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "4 \n\" \n47°",
       "normalized": {
         "as_printed": {
@@ -12655,7 +12663,7 @@
         "block": 13,
         "block_carried": true,
         "lot": 4,
-        "amount_usd": null,
+        "amount_usd": 470,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
       },
@@ -12808,7 +12816,7 @@
     {
       "id": "f1839_lot0230",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1\n7 \nJ.  Wadsworth, \n401",
       "normalized": {
         "as_printed": {
@@ -12820,8 +12828,8 @@
         "bidder": "J. Wadsworth",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": 1,
-        "block_carried": false,
+        "block": 13,
+        "block_carried": true,
         "lot": 7,
         "amount_usd": 401,
         "withheld_from_sale": null,
@@ -12864,7 +12872,7 @@
         "J. Wadsworth"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "no block number is printed on this row; block 13's run carries on from lot 6 to lot 16 and the 1 the OCR read is a speck"
     },
     {
       "id": "f1839_lot0231",
@@ -12881,7 +12889,7 @@
         "bidder": "J. Wadsworth",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 8,
         "amount_usd": 503,
@@ -12937,7 +12945,7 @@
         "bidder": "S. Willard",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 9,
         "amount_usd": 415,
@@ -12993,7 +13001,7 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 10,
         "amount_usd": 403,
@@ -13049,7 +13057,7 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 11,
         "amount_usd": 376,
@@ -13105,7 +13113,7 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 12,
         "amount_usd": 362,
@@ -13161,7 +13169,7 @@
         "bidder": "S. Willard",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 13,
         "amount_usd": 361,
@@ -13217,7 +13225,7 @@
         "bidder": "R. T. Haines",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 14,
         "amount_usd": 403,
@@ -13273,7 +13281,7 @@
         "bidder": "A. Wright",
         "bidder_ditto": false,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 15,
         "amount_usd": 480,
@@ -13329,7 +13337,7 @@
         "bidder": "A. Wright",
         "bidder_ditto": true,
         "bidder_wrapped": false,
-        "block": 1,
+        "block": 13,
         "block_carried": true,
         "lot": 16,
         "amount_usd": 560,
@@ -13373,7 +13381,7 @@
     {
       "id": "f1839_lot0240",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "14 \nI \nJ.  Wadsworth, \n427",
       "normalized": {
         "as_printed": {
@@ -13387,7 +13395,7 @@
         "bidder_wrapped": false,
         "block": 14,
         "block_carried": false,
-        "lot": null,
+        "lot": 1,
         "amount_usd": 427,
         "withheld_from_sale": null,
         "addition": "Fort Dearborn Addition to the Town of Chicago"
