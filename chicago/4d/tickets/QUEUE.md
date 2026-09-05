@@ -139,7 +139,6 @@ T-0693 — Edward Richards Allen's card says occupation none_recorded while the 
 # --- counted, and the one figure that moves the rest is that the 1835 town census gives
 # --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
 # --- dwelling held more than one household, so one family per roof undercounts.
-T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
@@ -154,11 +153,9 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
-T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
-T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton
@@ -178,7 +175,6 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed; each puts something in
 # --- the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
 # --- they decide whether the ones above land on the right names and corners.
@@ -404,3 +400,10 @@ T-0728 — dev's own gate is red before any branch touches it: three research co
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0812 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
 T-0813 — T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
+T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
+T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
+T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
