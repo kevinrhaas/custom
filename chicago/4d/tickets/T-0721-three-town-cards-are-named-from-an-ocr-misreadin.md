@@ -1,7 +1,7 @@
 ---
 id: T-0721
 title: Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 4:22:06 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33990347792
 ---
 **Found by T-0692's coverage pass, 2026-09-04.** Three of the town's own person records are
 stored under a name that contains a DIGIT, and a digit is never part of a name:
