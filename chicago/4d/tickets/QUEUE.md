@@ -306,3 +306,6 @@ T-0733 — 103 people carry a conflicting-evidence flag the final audit can see 
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
