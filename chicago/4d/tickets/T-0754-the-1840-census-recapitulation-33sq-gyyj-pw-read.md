@@ -1,5 +1,5 @@
 ---
-id: T-0743
+id: T-0754
 title: The 1840 census recapitulation 33SQ-GYYJ-PW read in full: the six wards, its 30 numbered page rows and its grand total, tested against printed 237
 state: open
 epic: META
@@ -24,7 +24,7 @@ Piece 2 of 11 of **T-0496 — The 1840 census deposit is 75 page images and 210 
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-**Why this is the first piece to do after T-0742.** `33SQ-GYYJ-PW` is not a household
+**Why this is the first piece to do after T-0753.** `33SQ-GYYJ-PW` is not a household
 schedule. T-0496's inventory found its margin caption reading *Recapitulation of Chicago
 City*, its stub naming **First Ward** through **Sixth Ward**, and its body carrying **30
 numbered rows — one per page of the schedule** — with sub-total rules under rows 8, 17, 19,
@@ -42,4 +42,4 @@ then set beside V2's. A residual is recorded, never closed by adjusting a digit.
 here mints or places an 1835 resident; 1840 is later evidence.
 
 **Links:** `data/research/census_1840/README.md` § "Three pages in this deposit are not
-household pages" · `pages/33S7-9YYJ-V2.json` · T-0496 · T-0742.
+household pages" · `pages/33S7-9YYJ-V2.json` · T-0496 · T-0753.

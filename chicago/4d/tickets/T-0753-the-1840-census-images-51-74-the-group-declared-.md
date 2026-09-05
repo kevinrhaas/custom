@@ -1,5 +1,5 @@
 ---
-id: T-0742
+id: T-0753
 title: The 1840 census images 51-74: the group declared image by image, and printed 233 and 235 - PR #670's last two calibration pages - read to the name
 state: done
 epic: META
@@ -35,4 +35,4 @@ Piece 1 of 11 of **T-0496 — The 1840 census deposit is 75 page images and 210 
   measured rather than asserted.
 
 **Done by this ticket** — see the PR. The other ten pieces carry the reading of the
-remaining 22 leaves; `T-0743` is the one to do first.
+remaining 22 leaves; `T-0754` is the one to do first.

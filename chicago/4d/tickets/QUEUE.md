@@ -99,8 +99,8 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
-T-0743 — The 1840 census recapitulation 33SQ-GYYJ-PW read in full: the six wards, its 30 numbered page rows and its grand total, tested against printed 237
-T-0744 — The 1840 census left sheets printed 212 and 213 (33SQ-GYYJ-RY and -RK) read to the name and the cell
+T-0754 — The 1840 census recapitulation 33SQ-GYYJ-PW read in full: the six wards, its 30 numbered page rows and its grand total, tested against printed 237
+T-0755 — The 1840 census left sheets printed 212 and 213 (33SQ-GYYJ-RY and -RK) read to the name and the cell
 T-0745 — The 1840 census left sheets printed 214 and 220 (33SQ-GYYJ-BP and -P5) read to the name and the cell
 T-0746 — The 1840 census left sheets printed 223 and 240 (33SQ-GYYJ-LV and -CK) read to the name and the cell
 T-0747 — The cells of printed 233 and 235 read against those two sheets' own printed footings
@@ -115,7 +115,8 @@ T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, s
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
 T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
 T-0652 — 33S7-9YYJ-8D's six two-stroke totals, re-read against 6H's footing: its column over-runs its printed 106 by 15
-T-0657 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line
+T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
+T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
 T-0658 — The 1840 census images 26-50: continuation sheets 33S7-9YYJ-V4, -VJ and 33S7-9YYN-3CF6 read line by line
 T-0659 — The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line
 
