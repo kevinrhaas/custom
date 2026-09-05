@@ -73,6 +73,18 @@
      "source": "chicago_american_1835",
      "rule": "G1b"
     }
+   ],
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "UNDECIDED",
+     "against": [
+      "wright_john",
+      "wright_john_s"
+     ],
+     "reasoning": "OWNER: the American of 11 July 1835 prints `J Wright` and nothing else. He is John Wright, or John S. Wright, or a fourth Wright the town already holds — Amasa, Robert C. and Truman G. stand on their own cards. No source reached decides it, and picking one would put a printing on a man on no evidence."
+    }
    ]
   }
  ],

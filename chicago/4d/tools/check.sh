@@ -2059,6 +2059,22 @@ step "…and its own assertions still fire when broken" \
 # it has stopped being true: a cohort lands, the layer moves, and a stale CSV keeps telling
 # the owner the programme reached 611 people. Gated in both directions — the committed
 # package must re-derive, and a hand edit to it is refused.
+# T-0839/T-0841. One person on several cards is the fault the residents layer could not
+# see: each source pass minted the name the way its source printed it, and no pass asked
+# whether the town already had the man. Lieut. James Allen stood on four cards, Gurdon
+# Hubbard on six, and a town that counted 1,404 people did not have them. The candidate
+# pass — surname plus a compatible forename, the same standard name_agreement.py already
+# writes for the directory crosswalks — finds every such cluster; this gate holds each one
+# to a WRITTEN RULING. It is deliberately not a merge check: a cluster may be ruled
+# DISTINCT (John Wright and his son) or UNDECIDED (a middle initial with no anchor behind
+# either reading) and the gate is satisfied. What it refuses is SILENCE — a new mint that
+# splits an identity, and nobody having said so.
+step "every duplicate-identity cluster in the residents layer carries a written ruling" \
+  python3 tools/merge_resident_cards.py --check
+
+step "…and the merge's own mechanics still hold" \
+  python3 tools/merge_resident_cards.py --self-test
+
 step "the final resident audit still re-derives from the residents layer" \
   python3 tools/export_resident_audit.py --check
 

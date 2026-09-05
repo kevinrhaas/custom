@@ -82,6 +82,17 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "UNDECIDED",
+     "against": [
+      "taylor_william_h"
+     ],
+     "reasoning": "A bare `William Taylor` against `William H Taylor`, both thin Democrat readings, on a surname the town already carries five ways."
+    }
    ]
   }
  ],

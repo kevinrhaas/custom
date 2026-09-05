@@ -84,7 +84,18 @@
      "fergus_1843_old_settler_death_notices",
      "fergus_chicago_directory_1839"
     ]
-   }
+   },
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "DISTINCT",
+     "against": [
+      "wright_john_s"
+     ],
+     "reasoning": "Andreas names John Wright the merchant and John S. Wright his son; the card already carries them as head and son."
+    }
+   ]
   },
   {
    "id": "wright_john_s",
@@ -117,7 +128,18 @@
      "cpl_john_s_wright_papers",
      "wright_in_memoriam_1885"
     ]
-   }
+   },
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "DISTINCT",
+     "against": [
+      "wright_john"
+     ],
+     "reasoning": "Andreas names John S. Wright as the son of John Wright, and gives him his own trade (clerk). Not a duplicate of his father."
+    }
+   ]
   }
  ],
  "touches_removal": false,

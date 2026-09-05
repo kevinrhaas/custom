@@ -72,29 +72,44 @@
       "records": 1380,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
+    "residents/household:persons[].identity_rulings[].against": {
+      "records": 14
+    },
+    "residents/household:persons[].identity_rulings[].on": {
+      "records": 14
+    },
+    "residents/household:persons[].identity_rulings[].reasoning": {
+      "records": 14
+    },
+    "residents/household:persons[].identity_rulings[].ruling": {
+      "records": 14
+    },
+    "residents/household:persons[].identity_rulings[].ticket": {
+      "records": 14
+    },
     "residents/household:persons[].resident_research.asserted_identity": {
       "records": 842
     },
     "residents/household:persons[].resident_research.candidate_ids": {
-      "records": 92
+      "records": 97
     },
     "residents/household:persons[].resident_research.candidates[].asserted": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.candidates[].assessment": {
       "records": 13
     },
     "residents/household:persons[].resident_research.candidates[].basis": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.candidates[].candidate_id": {
       "records": 13
     },
     "residents/household:persons[].resident_research.candidates[].conflicts": {
-      "records": 48
+      "records": 64
     },
     "residents/household:persons[].resident_research.evidence_against": {
-      "records": 240
+      "records": 270
     },
     "residents/household:persons[].resident_research.evidence_for": {
       "records": 477
@@ -133,10 +148,10 @@
       "records": 71
     },
     "residents/household:persons[].resident_research.source_ids": {
-      "records": 498
+      "records": 510
     },
     "residents/household:persons[].resident_research.summary": {
-      "records": 544
+      "records": 621
     },
     "residents/household:persons[].resident_research.ticket": {
       "records": 842

@@ -327,8 +327,12 @@ LIST_PERSON_KEYS = ("press_evidence", "civic_evidence", "book_evidence", "church
                     "census_evidence", "biographical_evidence", "later_census",
                     "letter_list_returns", "resident_research")
 
-SCALAR_PERSON_KEYS = ("sex", "birth_year", "age_on_scene_date", "ladder_rule",
-                      "resident_subtype")
+# `ladder_rule` and `resident_subtype` are DELIBERATELY ABSENT. They are the ladder's
+# own verdict on a card, and carrying one off a folded card onto a survivor the ladder
+# graded differently is how a merge produces "4 projected residents are not inferred" —
+# a projected-resident subtype riding onto an attested man. The grade after a merge is
+# the ladder's, re-run; this tool never writes one.
+SCALAR_PERSON_KEYS = ("sex", "birth_year", "age_on_scene_date")
 
 
 def merge_person(survivor: dict, folded: dict, notes: list) -> None:
@@ -436,9 +440,13 @@ def write_held_apart(cards: dict, rows: dict, ruling: dict, today: str,
             continue
         card = cards[rows[pid]["household_id"]]
         person = next(p for p in card["persons"] if p["id"] == pid)
+        # `reasoning`, not `why`: tools/measure_layer_reads.py scans the renderers for a
+        # BARE LEAF NAME, and `.why` is already read there (ground.js's not-modelled
+        # zones), so a figure called `why` on a resident card would be counted as read by
+        # a renderer that never sees it. The word the card carries is its own.
         row = {"ticket": TICKET, "on": today, "ruling": verdict,
                "against": [x for x in held.get("against") or [] if x != pid],
-               "why": held["why"]}
+               "reasoning": held["why"]}
         existing = [r for r in person.get("identity_rulings") or []
                     if not (r.get("ticket") == TICKET and r.get("ruling") == verdict
                             and r.get("against") == row["against"])]
@@ -447,7 +455,7 @@ def write_held_apart(cards: dict, rows: dict, ruling: dict, today: str,
     return written
 
 
-def apply_rulings(write=True) -> int:
+def apply_rulings(write=True, refusals_only=False) -> int:
     rows = {r["person_id"]: r for r in town_cards()}
     found = {c["id"]: c for c in clusters(list(rows.values()))}
     rulings = load_rulings()
@@ -471,7 +479,7 @@ def apply_rulings(write=True) -> int:
                             f"the ruling does not speak for them. Every card is the "
                             f"survivor, folded, or held apart with a reason")
         held_written = write_held_apart(cards, rows, ruling, today, problems)
-        if ruling["ruling"] != "MERGE":
+        if ruling["ruling"] != "MERGE" or refusals_only:
             if write and held_written:
                 for held in ruling.get("held_apart") or []:
                     pid = held.get("person_id")
@@ -626,7 +634,8 @@ def rewrite_index(redirects: list, today: str) -> None:
 # the gate
 
 def check() -> int:
-    problems = []
+    problems: list = []
+    pending: list = []
     rows = {r["person_id"]: r for r in town_cards()}
     found = clusters(list(rows.values()))
     rulings = load_rulings()
@@ -644,11 +653,12 @@ def check() -> int:
             problems.append(f"{c['id']}: {', '.join(sorted(loose))} stand in this cluster "
                             f"and the ruling does not speak for them")
         if ruling.get("ruling") == "MERGE" and set(ruling.get("folded") or []) & cluster_ids:
-            problems.append(f"{c['id']}: ruled MERGE and its cards still stand apart — "
-                            f"run tools/merge_resident_cards.py --apply")
+            pending.append(c["id"])
         for held in ruling.get("held_apart") or []:
             if held.get("defer_write") or held["person_id"] not in rows:
                 continue
+            if c["id"] in pending:
+                continue      # the fold has not landed; the write lands with it
             person = rows[held["person_id"]]["person"]
             if not any(r.get("ticket") == TICKET
                        for r in person.get("identity_rulings") or []):
@@ -679,12 +689,17 @@ def check() -> int:
                             f"that loses the folded reading is not reversible")
         if stub.get("id") not in {e["household_id"] for e in index.get("merged", [])}:
             problems.append(f"data/residents/merged/{path.name} is in no redirect table")
-    pending = sum(1 for r in rows.values() if r["card"].get("regrade_pending"))
+    regrade = sum(1 for r in rows.values() if r["card"].get("regrade_pending"))
     for p in problems:
         print(f"  ! {p}")
+    if pending:
+        print(f"  … {len(pending)} cluster(s) ruled MERGE and not yet folded, which is "
+              f"T-0842's piece of T-0839 — the ruling stands, the cards have not moved "
+              f"yet: {', '.join(sorted(pending))}")
     print(f"merge gate: {len(found)} candidate cluster(s), "
-          f"{len(index.get('merged', []))} card(s) folded, "
-          f"{pending} survivor(s) awaiting the ladder's regrade, {len(problems)} problem(s)")
+          f"{len(index.get('merged', []))} card(s) folded, {len(pending)} ruled MERGE and "
+          f"not yet landed, {regrade} survivor(s) awaiting the ladder's regrade, "
+          f"{len(problems)} problem(s)")
     return 1 if problems else 0
 
 
@@ -761,6 +776,11 @@ def main() -> int:
         return 0
     if arg == "--apply":
         return apply_rulings(write=True)
+    if arg == "--apply-refusals":
+        # The refusals alone: DISTINCT and UNDECIDED written onto the cards they speak
+        # for, with no card folded. That is T-0841's half of the sweep — a refusal has
+        # to reach the record or the next pass re-asks the same question.
+        return apply_rulings(write=True, refusals_only=True)
     if arg == "--check":
         return check()
     if arg == "--self-test":

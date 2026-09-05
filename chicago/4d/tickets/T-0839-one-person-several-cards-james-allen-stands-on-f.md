@@ -1,7 +1,7 @@
 ---
 id: T-0839
 title: One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: run 9/5/2026, 4:49:00 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T22:14:00.671Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33994010225
 ---
 

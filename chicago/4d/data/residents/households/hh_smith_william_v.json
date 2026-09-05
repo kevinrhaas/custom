@@ -87,6 +87,17 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1a"
     }
+   ],
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "DISTINCT",
+     "against": [
+      "smith_william"
+     ],
+     "reasoning": "The 1833-1835 voter lists print William Smith and William V. Smith both, and each carries an independent multi-source identity. Two men."
+    }
    ]
   }
  ],

@@ -73,6 +73,17 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "identity_rulings": [
+    {
+     "ticket": "T-0839",
+     "on": "2026-09-05",
+     "ruling": "UNDECIDED",
+     "against": [
+      "saunders_william_s"
+     ],
+     "reasoning": "S against W in the middle initial, two thin readings, no biographical anchor behind either."
+    }
    ]
   }
  ],
