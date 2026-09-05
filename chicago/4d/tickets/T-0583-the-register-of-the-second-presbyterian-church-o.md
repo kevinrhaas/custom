@@ -1,7 +1,7 @@
 ---
 id: T-0583
 title: The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 852
+claimed_by: run 9/5/2026, 12:08:16 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T06:01:53.526Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945820660
 ---
 
 The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
