@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 599, title: 'A census index that turns out to be one family', kind: 'change', ts: '2026-09-05T20:02:02.427Z', date: 'Sep 5, 2026, 3:02 PM CT',
+    items: [
+      'This project has cited a free online index of the 1840 census for exactly one man since early September \u2014 Edward Dalton, a name known only from a list of letters waiting uncalled-for at the Chicago post office in July 1835 \u2014 and had never opened the rest of it. The plan was to read it as a cheap second opinion on the whole city\u2019s 1840 households. It cannot be one: the Dalton Data Bank indexes a single surname, and its entire 1840 Illinois block is twenty rows.',
+      'All twenty are now read and written down, counties and all, so that the Chicago ones are a selection from a declared whole rather than a search that stopped the moment it found something. Three of the twenty stand in a Chicago ward: an Edward Dalton in the First, a Michael Dalton in the Second, and a \u201CMr. Dalton\u201D in the First with no given name at all.',
+      'That third row is the point. The candidate identity for Edward Dalton was accepted partly because the index put him in the First Ward \u2014 and the First Ward, read whole, holds two Dalton households, one of which can never be identified with anybody because it prints no given name. The candidate is no weaker in its name and no stronger in its place; it is simply not alone there. Nobody\u2019s grade moved and nothing in the town changed \u2014 the qualification is written down for the pass that applies these readings.',
+      'What the surname meets elsewhere is nothing, and that is worth recording too: no Dalton on the town\u2019s poll and voter lists of 1833 to 1835, none among the 210 named heads read off the census sheets so far, none in the federal land sales through 1836. So the three Chicago Dalton households stand on census images nobody has opened yet, which tells the readings still to come exactly what to watch for.',
+    ] },
   { v: 598, title: 'Nothing you can see: the same five files, argued over every time', kind: 'change', ts: '2026-09-05T19:38:53.543Z', date: 'Sep 5, 2026, 2:38 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about work on this project colliding with itself, and how much of the day that was costing.',
