@@ -1021,3 +1021,84 @@ threshold down to 0.30: the gutter takes it at about x3640. It is recorded **unr
 a blank here would mint a nought nobody read. **T-0755** carries it.
 
 None of this closes the sheet. The TOTAL column still stands 7 short of its 144 footing.
+
+## Two of image group 2's continuation sheets read line by line (T-0658)
+
+`33S7-9YYN-3CF6` and `33S7-9YYJ-V4` are read to the cell on the rule the continuation
+readings have used since T-0540: **a column is committed only when the per-line values sum,
+column by column, to what the man who took the census wrote at the foot of his own sheet.**
+Neither leaf carries a printed page number and neither is paired, so nothing here attaches a
+household figure to a name; both remain LATER EVIDENCE that names nobody.
+
+| image | lines | footed columns | closes | what it says |
+|---|---|---|---|---|
+| `33S7-9YYN-3CF6` | **27** | TOTAL 116 · agriculture 25 · canals 31 | TOTAL and canals **exactly**; agriculture short one illegible cell | 116 people, 25 in agriculture, 31 on the canal |
+| `33S7-9YYJ-V4` | **21** | TOTAL 100 · agriculture 33 | TOTAL **exactly**; agriculture reads 34 against 33 | 100 people, agriculture on nearly every line |
+
+The group's third continuation sheet, `33S7-9YYJ-VJ`, is **not** read here. T-0658 was sized
+at three and two is what one run could demonstrate, so the third is split out as T-0762 with
+the method above written down for it rather than shipped as a self-invented half.
+
+**`33S7-9YYN-3CF6` is a canal sheet, and that is the reading's finding rather than its
+premise.** Twenty-seven households hold 116 people; twenty-five of them are returned in
+agriculture and thirty-one in the navigation of canals, lakes and rivers, and *not one*
+person on the leaf is in commerce, in manufactures and trades, in the learned professions,
+in mining or on the ocean — the other five industry columns are blank down all 27 lines and
+carry no figure at the foot. The last seven lines are what the canal looks like in a
+schedule: lines 21, 22 and 23 are households of ONE with that one man on the canal, and
+lines 24, 25, 26 and 27 are households of 11, 7, 7 and 3 with **every** member of each
+returned on the canal. Four shanties and three single men, consecutive in the enumerator's
+walking order, on a leaf taken while the Illinois and Michigan Canal was being dug.
+
+**The two-stroke figure is settled on this leaf, by arithmetic.** Line 24 carries the form
+this deposit has argued about since T-0627 — two parallel slants that read as `11` or as
+this hand's `4` — and it carries it twice, in the TOTAL column and in the canals column.
+Read as 11 both columns close on the enumerator's own footings exactly, 116 and 31; read as
+4 they come to 109 and 24. The same leaf writes a plain `4` on four other lines as one
+cursive glyph and not as two strokes, so on this hand the forms are distinct and the
+two-stroke one is 11. **That is a witness about this hand on this leaf and it is not carried
+to `33S7-9YYJ-5V`, `-6H` or `-8D`**, whose own tickets are open: a second enumerator's 4 is
+a second question.
+
+**One cell on 3CF6 is illegible and the column that holds it is therefore not committed.**
+Line 5's agriculture cell sits on a hard vertical crease that has taken the body of the
+figure with it. The 26 legible lines sum to 23 against a footing of 25, so the residual of
+exactly 2 sits in exactly one unread cell — the column is one legible cell away from closing
+and the sheet's own arithmetic asks for a 2 there. That is *not* written into the record. An
+arithmetic implication is not a reading, the rule is that a column commits only when the
+lines READ sum to the footing, and the cell is null with the residual named and located.
+
+**`33S7-9YYJ-V4` corrects its own line count, and the correction is not a matter of
+opinion.** The contact-sheet pass declared 31 lines "to the nearest line"; T-0656 counted 20
+off a magnified strip and said why that count was soft. This pass reads the TOTAL column
+glyph by glyph and finds **21** entries — and they sum to 100, which is exactly what the
+enumerator footed. At 20 lines no subset of the reading reaches 100. The line the strip pass
+missed is line 19, a pale `5` written low between a `7` and a `2`. `pairing_key_26_50.json`
+carries the corrected key; the pairing verdict does not move, because the sixteen left
+sheets read anywhere in this deposit run 29 to 33 lines and none foots 100.
+
+**V4's agriculture column is an ATTEMPT and not data.** Its 21 lines read 34 against a
+footing of 33. One person out is one cell, not a spread, and on this exposure there are
+three cells that could carry it — line 2 (read 6, alternate 5), line 7 (read 2, alternate 1)
+and line 16 (read 4, alternate 1). The reading is kept whole in `cells_first_pass`, where
+nothing downstream can consume it as fact, and `cells` carries null for that column on every
+line. This is the `33S7-9YYJ-5S` treatment applied to one column instead of a whole sheet.
+
+**The tooling did not survive contact with either leaf, and the reason is the same on both.**
+`tools/read_census_continuation.py` refuses 3CF6 outright — *"no industry run bracketed by
+TOTAL and PENSIONERS: the form is not as expected"* — at every `--cover` from 0.40 to 0.60,
+and it cannot fit a row grid to V4 at all. The cause is measured rather than guessed: **these
+rules lean.** On 3CF6 the nine printed rules of the TOTAL-and-industry run stand at 1004,
+1194, 1265, 1329, 1396, 1480, 1564, 1647 and 1712 px at the head of the body and 12 to 17 px
+further right at its foot; on V4 the lean is 41 px. That tool locates its rules from a single
+darkness profile over the whole body, and a rule that walks 41 px across the leaf smears out
+of such a profile entirely. Both page files carry the banded measurement that replaced it, so
+the next reader does not spend the same passes rediscovering it. The tool is **not** changed
+here — the fix it wants is a banded profile, and that is filed as T-0761 rather than
+slipped into a reading.
+
+Both leaves also show the other trap a fixed grid sets. A tenth apparent rule on 3CF6 at
+x=1250, and one on V4 at x=1333–1365, appear in every band and do **not** lean with the
+printed rules. They are creases. V4's runs through the TOTAL column, which is why that
+sheet's footed `100` looks at first sight as though its last `0` has crossed into the mining
+cell; it has not — the mining rule is 60 px further right.
