@@ -85,6 +85,14 @@
      "chicago_democrat_1833_1835",
      "fergus_chicago_directory_1839",
      "st_cyr_register_ichr_v4"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — fergus_chicago_directory_1839, st_cyr_register_ichr_v4. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

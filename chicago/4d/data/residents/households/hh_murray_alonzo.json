@@ -51,7 +51,7 @@
    "id": "murray_alonzo",
    "name": "Alonzo Murray",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-07-02"
@@ -96,9 +96,10 @@
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
      "cand_alonzo_murry_letter_list_record__murray_alonzo"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
+   }
   }
  ],
  "touches_removal": false,

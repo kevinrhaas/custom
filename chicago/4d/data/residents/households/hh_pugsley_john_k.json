@@ -77,6 +77,14 @@
     "summary": "An 1880 Van Buren County history says John K. Pugsley left near Utica, New York in June 1835, traveled to Chicago, prospected there, then returned to Paw Paw Township and entered land. The full middle-initial name, route and month strongly corroborate the postal-list identity while also showing a transient migration pattern.",
     "source_ids": [
      "resident_research_pugsley_barrien_vanburen"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — resident_research_pugsley_barrien_vanburen. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

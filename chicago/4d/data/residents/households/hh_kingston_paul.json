@@ -78,6 +78,14 @@
     "source_ids": [
      "rr_andreas_chicago_1884_pass11",
      "rr_racine_old_settlers_1871"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — isa_public_domain_land_tract_sales, rr_andreas_chicago_1884_pass11, rr_racine_old_settlers_1871. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

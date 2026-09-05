@@ -79,7 +79,9 @@
     ],
     "candidate_ids": [
      "cand_george_e_walker_utica_1834"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
    "book_evidence": [
     {
@@ -102,8 +104,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,
