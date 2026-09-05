@@ -115,7 +115,8 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 649,
+   "R1": 383,
+   "R5": 266,
    "R2": 971,
    "R3": 181,
    "R4": 80
