@@ -3,127 +3,131 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "13",
+      "stage": "12-13",
       "parts": [
+        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 110,
+      "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 312,
-      "takenAt": "2026-09-05T17:35:54.824Z",
-      "ref": "steward/t-0693-occupation-none-recorded",
-      "commit": "376bcacff0b7",
-      "devCommit": "89aaae238d23",
-      "treeHash": "sha256:e35202cb65db32f5",
+      "wallSeconds": 568,
+      "takenAt": "2026-09-05T17:25:50.617Z",
+      "ref": "steward/t-0509-land-cohort-14",
+      "commit": "d96009d37b56",
+      "devCommit": "0f768d5ff1eb",
+      "treeHash": "sha256:0102e17514c16db6",
       "treeDirty": false,
-      "changelogHash": "sha256:b7b2ee1fbb46b8fa",
+      "changelogHash": "sha256:875b0f8f2e251e0f",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          4,
-          3.2
+          4.3,
+          4.6,
+          3.7
         ]
       },
-      "source": "/tmp/t0508/sd3.log"
+      "source": "/tmp/sm2_desktop.log"
     },
     {
       "viewport": "mobile",
-      "stage": "13",
+      "stage": "12-13",
       "parts": [
+        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 110,
+      "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 167,
-      "takenAt": "2026-09-05T17:35:54.714Z",
-      "ref": "steward/t-0693-occupation-none-recorded",
-      "commit": "376bcacff0b7",
-      "devCommit": "89aaae238d23",
-      "treeHash": "sha256:e35202cb65db32f5",
+      "wallSeconds": 309,
+      "takenAt": "2026-09-05T17:25:50.532Z",
+      "ref": "steward/t-0509-land-cohort-14",
+      "commit": "d96009d37b56",
+      "devCommit": "0f768d5ff1eb",
+      "treeHash": "sha256:0102e17514c16db6",
       "treeDirty": false,
-      "changelogHash": "sha256:b7b2ee1fbb46b8fa",
+      "changelogHash": "sha256:875b0f8f2e251e0f",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          4,
-          3.2
+          4.3,
+          4.6,
+          3.7
         ]
       },
-      "source": "/tmp/t0508/sm3.log"
+      "source": "/tmp/sm2_mobile.log"
     },
     {
       "viewport": "desktop",
-      "stage": "13",
+      "stage": "12-13",
       "parts": [
+        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 110,
+      "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 326,
-      "takenAt": "2026-09-05T17:22:33.022Z",
-      "ref": "steward/t-0693-occupation-none-recorded",
-      "commit": "39e758f4a364",
+      "wallSeconds": 579,
+      "takenAt": "2026-09-05T17:07:25.785Z",
+      "ref": "steward/t-0509-land-cohort-14",
+      "commit": "713515919de6",
       "devCommit": "0f768d5ff1eb",
-      "treeHash": "sha256:3edec6d4605b97d1",
-      "treeDirty": false,
-      "changelogHash": "sha256:6c0cbf3cd9798829",
+      "treeHash": "sha256:33e80b860a3f885d",
+      "treeDirty": true,
+      "changelogHash": "sha256:ae76060f9d859782",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          3.8,
-          2.8
+          0.3,
+          1.8,
+          2.2
         ]
       },
-      "source": "/tmp/t0508/sd2.log"
+      "source": "/tmp/smoke_desktop.log"
     },
     {
       "viewport": "mobile",
-      "stage": "13",
+      "stage": "12-13",
       "parts": [
+        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 110,
+      "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 174,
-      "takenAt": "2026-09-05T17:22:32.913Z",
-      "ref": "steward/t-0693-occupation-none-recorded",
-      "commit": "39e758f4a364",
+      "wallSeconds": 323,
+      "takenAt": "2026-09-05T17:07:25.683Z",
+      "ref": "steward/t-0509-land-cohort-14",
+      "commit": "713515919de6",
       "devCommit": "0f768d5ff1eb",
-      "treeHash": "sha256:3edec6d4605b97d1",
-      "treeDirty": false,
-      "changelogHash": "sha256:6c0cbf3cd9798829",
+      "treeHash": "sha256:33e80b860a3f885d",
+      "treeDirty": true,
+      "changelogHash": "sha256:ae76060f9d859782",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          3.8,
-          2.8
+          0.3,
+          1.8,
+          2.2
         ]
       },
-      "source": "/tmp/t0508/sm2.log"
+      "source": "/tmp/smoke_mobile.log"
     },
     {
       "viewport": "mobile",

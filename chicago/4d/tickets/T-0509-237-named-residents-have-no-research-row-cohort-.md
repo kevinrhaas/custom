@@ -1,7 +1,7 @@
 ---
 id: T-0509
 title: 237 named residents have no research row: cohort 14 of 79
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 901
 claimed_by: null
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T17:02:25.796Z
+claimed_run: null
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "Once complete i would like to begin to do and update of the
