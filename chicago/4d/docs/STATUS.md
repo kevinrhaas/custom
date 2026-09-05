@@ -1,6 +1,6 @@
 # STATUS
 
-## Shipped 2026-09-05 — T-0831: the five files that conflict on every merge stop conflicting
+## Shipped 2026-09-05 — T-0832 (of T-0813): the five files that conflict on every merge stop conflicting
 
 **What shipped.** Two merge drivers and the `.gitattributes` to reach them:
 `tools/merge-generated.mjs` (the five build products — keep ours, print the
@@ -85,6 +85,34 @@ and Kirkland vol. 1) are all sitting with green work behind this exact conflict,
 and #894 ran out of clock on it outright.
 
 **The next run must be visible, and this entry is the commitment.**
+
+### A correction, because it was my own duplicate
+
+This work was first filed as **T-0831** and it should not have been: **T-0813**
+already asked for exactly it, on the owner's request, and was ranked at the top of
+the drain band. T-0813's measurement is also better than the one above — it counted
+**21 of 21 open PRs** conflicting on the same six files, and observed that the two
+files which already had drivers conflicted on **0 of 21** and **3 of 21**
+respectively. That is the real evidence; my five laps are a second sample of it.
+
+T-0813 is now split — **T-0832** (this, the merge treatment) and **T-0833**
+(`tools/drain.mjs`, its untouched second half) — and the children hold its queue
+place. T-0831 is withdrawn.
+
+**Two deliberate deviations from what T-0813 specified**, recorded in T-0832 rather
+than left to be found:
+
+1. It asked for a driver that *re-runs the tool that owns the file*. A merge driver
+   runs during the merge on a HALF-MERGED tree, once per conflicting file, and the
+   owning tools here are `ticket.mjs board` and `publish.sh` — the second reads the
+   whole tree and takes a minute or two. Regenerating from a state that never
+   existed is worse than keeping a stale copy. So it keeps ours and PRINTS the
+   command, and the gate's existing staleness checks are what make that safe.
+2. It asked to union the ledger *by (tree hash, viewport, stage), newest wins on a
+   tie*. Newest-wins **discards a reading**, and two runs of one stage on one tree
+   are not redundant — they are the evidence it was run twice. This unions on full
+   identity and drops nothing; pruning, if ever wanted, is a deliberate pass and not
+   a merge driver's silent side effect.
 
 ## Shipped 2026-09-05 — T-0820: an id used twice is refused on the branch, not on dev
 

@@ -1,7 +1,7 @@
 ---
 id: T-0831
 title: Six generated files conflict on every merge in this repo and always resolve by regenerating, so the conflict costs a hand resolution and buys nothing
-state: done
+state: withdrawn
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -12,9 +12,9 @@ opened: 2026-09-05
 closed: 2026-09-05
 pr: 910
 claimed_by: run 9/5/2026, 2:35:04 PM CT
-blocked_on: null
+blocked_on: Duplicates T-0813 (owner-requested), split into T-0832 + T-0833; the work landed as T-0832 via PR #910
 needs_bake: false
-closed_at: 2026-09-05T19:44:08.500Z
+closed_at: 2026-09-05T19:46:22.713Z
 claimed_run: null
 ---
 

@@ -84,7 +84,7 @@
 # ---   kinship: YES, the household-level kin[] block #839 built (landed)
 # ---   the forks: WRIGHT 1834 STAYS the planform of record, nothing moves (landed, #905)
 
-T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
+T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
 T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
@@ -490,4 +490,3 @@ T-0829 — A repeated string in a provenance or coverage list is the same merge 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-
