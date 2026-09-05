@@ -424,4 +424,5 @@ T-0809 — The janitor gates the branch un-merged and drops a conflict in silenc
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
-
+T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
+T-0825 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it

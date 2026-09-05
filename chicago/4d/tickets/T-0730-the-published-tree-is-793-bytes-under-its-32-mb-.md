@@ -1,7 +1,7 @@
 ---
 id: T-0730
 title: The published tree is 793 bytes under its 32 MB budget on dev, so the next changelog entry or new ticket fails check.sh for every run in the lane
-state: blocked-owner
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: null
-blocked_on: The published tree is out of headroom under the 32 MB budget and every run in the lane now fails check.sh on bookkeeping bytes. Which do you want: raise SITE_BUDGET_MB, stop publishing changelog.js twice (1.35 MB of verbatim duplicate), or ship only the newest N changelog entries to the site and keep the whole literal in the renderer? The third touches the changelog contract, so nothing is written until you say.
+blocked_on: Answered by events, not by the owner: the published-tree budget was re-budgeted from 32 to 36 MB in #823 (with the reasoning written into validate.py), and #836 (T-0722) stopped publishing changelog.js twice. dev now measures 31.73 MB of 36 MB, so the bookkeeping bytes this ticket priced no longer fail check.sh and T-0581's PR is no longer parked on them.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T18:24:38.068Z
 claimed_run: null
 ---
 

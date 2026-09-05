@@ -132,9 +132,9 @@ written so a later run can act on them without re-opening the volume.
 
 **Two things it found and did not do, both filed rather than left silent.** The **LIST OF ACTUAL
 SETTLERS AT CHICAGO, PRIOR TO 1830** at pages 78-79 — about thirty rows with nativity, year and
-remarks columns — is recorded as claim `bk_mose1_014` and transcribed by **T-0728**, because a
+remarks columns — is recorded as claim `bk_mose1_014` and transcribed by **T-0825**, because a
 roster is a records-shaped dataset and its own demonstration. And **volume 2 is neither held nor
-read** (**T-0729**): the Newberry cards do not say which volume they cite, so every ABSENT verdict
+read** (**T-0826**): the Newberry cards do not say which volume they cite, so every ABSENT verdict
 above is an absence from *volume 1 only*.
 
 ---
