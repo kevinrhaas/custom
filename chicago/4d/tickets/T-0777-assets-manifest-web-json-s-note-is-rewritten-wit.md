@@ -1,5 +1,5 @@
 ---
-id: T-0775
+id: T-0777
 title: assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
 state: open
 epic: META
@@ -17,6 +17,10 @@ needs_bake: false
 closed_at: null
 claimed_run: null
 ---
+
+assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
 assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed.
 

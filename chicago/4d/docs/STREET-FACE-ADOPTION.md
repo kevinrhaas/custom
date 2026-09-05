@@ -309,6 +309,31 @@ Nothing here writes a SIGNBOARD or a frontage, and that is not an oversight:
 one of these roofs would be a change to the signage rule and needs its own argument. The
 frontages are **T-0263's** and the seeding tickets'.
 
+## Two more houses reached the policy on 2026-09-04 (T-0440)
+
+The population this policy works on is the register's `street_only` businesses, and that
+population is set by what the gazetteer holds as a house's LIVE placement. Until T-0440
+that was whatever the earliest printing the corpus carries happened to say, so a firm whose
+opening notice gave no address stood at `{"class": "none"}` for good and never reached this
+table at all. Thirteen houses were repaired; two of them name South Water Street and take a
+face here.
+
+| | before | after |
+|---|---:|---:|
+| `street_only` in the register | 58 | **60** |
+| adopted a street face | 35 | **37** |
+| refused, all four reasons | 23 | 23 |
+| `unplaceable` at the scene date | 76 | **73** |
+
+**Clark, Filer & Co.**'s cabinet warehouse and **Rockwell's cabinet furniture warehouse**
+are the two, both on South Water Street, and the face absorbed them without evicting
+anybody: the businesses naming that street went 22 to 24, the adoptions on it 15 to 17, and
+no refusal count moved. What DID move is which roof each business on that face holds,
+because the allocation is an ordering and two new entrants shift the ones below them —
+eleven roofs carry a different name and two that were anonymous now carry one. That is the allocation working as documented (limit 3: the order
+on a face is not a claim), and it is recorded here because a reader diffing the roofs will
+see eleven changes for two additions and should not have to guess why.
+
 A future pass that spends an adoption some other way reads `street_face_adoptions.json`,
 takes `structure_id` and `cites`, and carries limits 2, 3 and 4 into whatever it writes: the
 roof stays reconstructed, the along-street position is not evidence, and the order on a face
@@ -317,5 +342,6 @@ is not a claim.
 **Related:** T-0354 (this) · T-0416 (the corner-side ruling of 2026-08-30, and refusal 5's
 second layer) · T-0417 (spent into the roofs, and refusal 6) · T-0262 (the
 register) · T-0263, T-0384–T-0387 (the seeding) ·
-T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
+T-0375 (South Water's roofs) · T-0440 (the live placement that decides who reaches this
+policy) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`
