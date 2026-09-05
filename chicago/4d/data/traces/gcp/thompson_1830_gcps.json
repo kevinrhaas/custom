@@ -1,0 +1,545 @@
+{
+ "_doc": "Ground control for the Thompson 1830 plat of the Town of Chicago. Pixel coordinates are in the space of the sheet THIS REPOSITORY holds \u2014 chicago/pre_fire_v1/maps/images/1830_thompson_plat.png, 2728 x 1944 px, sha256 below \u2014 which is the copy data/sources/thompson_plat_1830.json names as its locator. Junction pixels are not picked by hand: each is the centre of the light gap between the two ruled block edges that bound the street, found by tools/thompson_forks.py's profile reading of a 180 px window and then checked by eye against a marked crop. Estimated picking precision +/- 4 px (about 2 m). WHY THIS FILE EXISTS: data/sources/thompson_plat_1830.json calls the sheet a PARAMETER SOURCE and forbids tracing geometry off it, and that rule left the plat's own planform with no way to be compared with the Wright 1834 line the terrain is built from. T-0685 is the owner's question about exactly that comparison at Wolf Point. Fitting the sheet is what makes the comparison possible; it does not license building from it, and nothing in the reconstruction is built from it.",
+ "raster": {
+  "path": "chicago/pre_fire_v1/maps/images/1830_thompson_plat.png",
+  "width": 2728,
+  "height": 1944,
+  "sha256": "c0a6403979e628268d6f0e89ab0a8cd0cddfbb255f13487722a886d5e401e701",
+  "note": "The surviving artifact is a Canal Commissioners' working copy (Chicago History Museum, ICHi-34284) dated to at least 1836, not Thompson's burned original, and no open high-resolution archival scan has been located. At 2728 px across a sheet whose town is about 1,200 m wide, one pixel is about half a metre, so the scan is not the limit on this fit; the draughtsmanship and the paper are."
+ },
+ "control_source": "Modern control from OpenStreetMap. Nineteen junctions were read 2026-09-05 through the rule written down in data/traces/street_control.json `node_rule` \u2014 the nodes SHARED by the two named surface roadways, averaged, footways and bikeways and sub-surface carriageways excluded \u2014 fetched from the api.openstreetmap.org map endpoint the same way tools/refetch_control.py --discover fetches. Four more are re-used from control this project already committed, so the Thompson fit and the Wright fit stand on the same ground where they overlap. OSM data is (c) OpenStreetMap contributors, ODbL \u2014 see data/sources/osm_streets_2026.json.",
+ "control_note": "EVERY CONTROL POINT IS A STREET CROSSING INSIDE THE PLAT, and none is on its boundary. The sheet's south and east edges are the 'Due East and West Line' and the 'Due North Line' \u2014 section lines, not street centrelines \u2014 and reading Madison Street or State Street off them would put a 12 m half-street of assumption into the control. Two junctions on the Fulton Street row were read and DROPPED: the profile reading locked onto a lot line rather than the street gap, which a marked crop showed plainly, and both then disagreed with modern Fulton Street by 35-38 m in the same direction. They are recorded in `refused_control` rather than left out silently. Lake St & Des Plaines St was searched for and refused for a different reason, also recorded there.",
+ "refused_control": {
+  "_doc": "Junctions this fit LOOKED FOR and does not use. A refusal is recorded rather than left as an absence, because an absence reads as 'nobody got to this one' and these are 'somebody did'. The convention is data/traces/street_control.json's.",
+  "fulton_canal": {
+   "reason": "Read at plat pixel (785.8, 786.6) and dropped. The window's strongest ruled lines there are a lot line and a block edge, not the two edges of the Fulton Street gap; a marked crop shows the detected centre sitting inside the block. The point disagreed with modern Fulton St & Canal St (E 446910.70, N 4637407.97, node-rule mean) by 35.3 m.",
+   "osm_ways": [
+    "West Fulton Street",
+    "North Canal Street"
+   ]
+  },
+  "fulton_jefferson": {
+   "reason": "The same fault as fulton_canal, on the same row: detected centre (331.5, 771.4) sits inside the block, and the point disagreed with modern Fulton St & Jefferson St (E 446671.66, N 4637408.91) by 38.3 m. Two failures on one row and none anywhere else is why the row was dropped rather than the reading re-tuned to rescue it.",
+   "osm_ways": [
+    "West Fulton Street",
+    "North Jefferson Street"
+   ]
+  },
+  "lake_desplaines": {
+   "reason": "The plat junction reads cleanly at (144.8, 1055.1); the modern side is what refuses. Des Plaines Street is 'North Desplaines Street' in OpenStreetMap \u2014 one word \u2014 and the junction was not re-fetched under the corrected name because the fit already carries 23 points and adding one more after seeing the residuals is how control gets chosen to flatter a fit. Left for whoever next needs the west end tightened.",
+   "osm_ways": [
+    "West Lake Street",
+    "North Desplaines Street"
+   ]
+  }
+ },
+ "gcps": [
+  {
+   "id": "lake_canal",
+   "map_feature": "Canal St & Lake St",
+   "feature_note": "West Division. Also data/traces/gcp/wright_1834_gcps.json G5 and data/traces/street_control.json lake_canal \u2014 the one junction all three georeferences share.",
+   "pixel": [
+    789.1,
+    1069.6
+   ],
+   "modern": {
+    "lat": 41.8857338,
+    "lon": -87.6398656,
+    "osm_node_ids": [
+     258020603
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446913.03,
+    "utm_n": 4637287.42
+   },
+   "source": "committed",
+   "residual_m": 4.7
+  },
+  {
+   "id": "randolph_canal",
+   "map_feature": "Canal St & Randolph St",
+   "feature_note": "West Division. Also data/traces/street_control.json randolph_canal.",
+   "pixel": [
+    792.2,
+    1340.4
+   ],
+   "modern": {
+    "lat": 41.8844479,
+    "lon": -87.6397994,
+    "osm_node_ids": [
+     7015619031
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446917.46,
+    "utm_n": 4637144.61
+   },
+   "source": "committed",
+   "residual_m": 7.7
+  },
+  {
+   "id": "randolph_lasalle",
+   "map_feature": "LaSalle St & Randolph St",
+   "feature_note": "South Division. Modern coordinate taken from data/traces/gcp/wright_1834_gcps.json G3 (LaSalle & Randolph, 4 nodes averaged).",
+   "pixel": [
+    1970.1,
+    1357.8
+   ],
+   "modern": {
+    "lat": 41.8845065,
+    "lon": -87.6324648,
+    "osm_node_ids": [
+     10923165759,
+     10923165760,
+     10929181429,
+     10929181430
+    ],
+    "nodes_averaged": 4,
+    "utm_e": 447526.04,
+    "utm_n": 4637146.61
+   },
+   "source": "committed",
+   "residual_m": 3.9
+  },
+  {
+   "id": "washington_clark",
+   "map_feature": "Clark St & Washington St",
+   "feature_note": "South Division. Modern coordinate taken from data/traces/gcp/wright_1834_gcps.json G4 (Clark & Washington).",
+   "pixel": [
+    2203.6,
+    1620.7
+   ],
+   "modern": {
+    "lat": 41.8832047,
+    "lon": -87.6309328,
+    "osm_node_ids": [],
+    "nodes_averaged": 0,
+    "utm_e": 447652.09,
+    "utm_n": 4637001.14
+   },
+   "source": "committed",
+   "residual_m": 4.7
+  },
+  {
+   "id": "lake_clark",
+   "map_feature": "Clark St & Lake St",
+   "feature_note": "South Division.",
+   "pixel": [
+    2195.7,
+    1099.0
+   ],
+   "modern": {
+    "lat": 41.885747,
+    "lon": -87.6309862,
+    "osm_node_ids": [
+     258957339
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447649.73,
+    "utm_n": 4637283.43
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.7
+  },
+  {
+   "id": "lake_clinton",
+   "map_feature": "Clinton St & Lake St",
+   "feature_note": "West Division.",
+   "pixel": [
+    569.1,
+    1062.9
+   ],
+   "modern": {
+    "lat": 41.8857228,
+    "lon": -87.6413417,
+    "osm_node_ids": [
+     258956212
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446790.56,
+    "utm_n": 4637287.11
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.7
+  },
+  {
+   "id": "lake_dearborn",
+   "map_feature": "Dearborn St & Lake St",
+   "feature_note": "South Division.",
+   "pixel": [
+    2427.3,
+    1106.8
+   ],
+   "modern": {
+    "lat": 41.8857516,
+    "lon": -87.6295039,
+    "osm_node_ids": [
+     27477597
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447772.72,
+    "utm_n": 4637283.04
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 4.6
+  },
+  {
+   "id": "lake_franklin",
+   "map_feature": "Franklin St & Lake St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1507.5,
+    1084.7
+   ],
+   "modern": {
+    "lat": 41.8857333,
+    "lon": -87.6354195,
+    "osm_node_ids": [
+     258021252
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447281.91,
+    "utm_n": 4637284.63
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 3.7
+  },
+  {
+   "id": "lake_jefferson",
+   "map_feature": "Jefferson St & Lake St",
+   "feature_note": "West Division.",
+   "pixel": [
+    333.5,
+    1057.6
+   ],
+   "modern": {
+    "lat": 41.8857168,
+    "lon": -87.6427895,
+    "osm_node_ids": [
+     258020602
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446670.43,
+    "utm_n": 4637287.35
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.5
+  },
+  {
+   "id": "lake_lasalle",
+   "map_feature": "LaSalle St & Lake St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1966.7,
+    1094.4
+   ],
+   "modern": {
+    "lat": 41.8857419,
+    "lon": -87.6324743,
+    "osm_node_ids": [
+     258957340,
+     6991303059
+    ],
+    "nodes_averaged": 2,
+    "utm_e": 447526.27,
+    "utm_n": 4637283.78,
+    "node_spread_m": 14.6
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 0.6
+  },
+  {
+   "id": "lake_wells",
+   "map_feature": "Wells St & Lake St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1737.7,
+    1088.6
+   ],
+   "modern": {
+    "lat": 41.8857353,
+    "lon": -87.6339477,
+    "osm_node_ids": [
+     258957316
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447404.02,
+    "utm_n": 4637283.94
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.6
+  },
+  {
+   "id": "randolph_clark",
+   "map_feature": "Clark St & Randolph St",
+   "feature_note": "South Division.",
+   "pixel": [
+    2200.1,
+    1362.8
+   ],
+   "modern": {
+    "lat": 41.8844774,
+    "lon": -87.6309528,
+    "osm_node_ids": [
+     28290286
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447651.47,
+    "utm_n": 4637142.45
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.2
+  },
+  {
+   "id": "randolph_clinton",
+   "map_feature": "Clinton St & Randolph St",
+   "feature_note": "West Division.",
+   "pixel": [
+    579.2,
+    1333.4
+   ],
+   "modern": {
+    "lat": 41.8844447,
+    "lon": -87.6413075,
+    "osm_node_ids": [
+     258020220
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446792.33,
+    "utm_n": 4637145.19
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 5.8
+  },
+  {
+   "id": "randolph_franklin",
+   "map_feature": "Franklin St & Randolph St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1510.8,
+    1351.4
+   ],
+   "modern": {
+    "lat": 41.8844649,
+    "lon": -87.6354008,
+    "osm_node_ids": [
+     258021251
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447282.42,
+    "utm_n": 4637143.79
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 5.0
+  },
+  {
+   "id": "randolph_jefferson",
+   "map_feature": "Jefferson St & Randolph St",
+   "feature_note": "West Division.",
+   "pixel": [
+    340.9,
+    1325.9
+   ],
+   "modern": {
+    "lat": 41.8844384,
+    "lon": -87.6427529,
+    "osm_node_ids": [
+     258020206
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446672.41,
+    "utm_n": 4637145.39
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 1.6
+  },
+  {
+   "id": "randolph_wells",
+   "map_feature": "Wells St & Randolph St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1741.3,
+    1353.6
+   ],
+   "modern": {
+    "lat": 41.884468,
+    "lon": -87.6339164,
+    "osm_node_ids": [
+     27477592
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447405.58,
+    "utm_n": 4637143.22
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.9
+  },
+  {
+   "id": "washington_canal",
+   "map_feature": "Canal St & Washington St",
+   "feature_note": "West Division.",
+   "pixel": [
+    795.2,
+    1603.6
+   ],
+   "modern": {
+    "lat": 41.8831847,
+    "lon": -87.6397453,
+    "osm_node_ids": [
+     258020660
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446920.9,
+    "utm_n": 4637004.33
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 9.4
+  },
+  {
+   "id": "washington_clinton",
+   "map_feature": "Clinton St & Washington St",
+   "feature_note": "West Division.",
+   "pixel": [
+    576.5,
+    1595.9
+   ],
+   "modern": {
+    "lat": 41.8831852,
+    "lon": -87.6412675,
+    "osm_node_ids": [
+     258020219
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446794.61,
+    "utm_n": 4637005.33
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.1
+  },
+  {
+   "id": "washington_dearborn",
+   "map_feature": "Dearborn St & Washington St",
+   "feature_note": "South Division.",
+   "pixel": [
+    2435.3,
+    1623.8
+   ],
+   "modern": {
+    "lat": 41.8832349,
+    "lon": -87.6294313,
+    "osm_node_ids": [
+     28290277
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447776.69,
+    "utm_n": 4637003.57
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 4.6
+  },
+  {
+   "id": "washington_franklin",
+   "map_feature": "Franklin St & Washington St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1513.1,
+    1611.7
+   ],
+   "modern": {
+    "lat": 41.8832393,
+    "lon": -87.635376,
+    "osm_node_ids": [
+     258021250
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447283.47,
+    "utm_n": 4637007.7
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 5.9
+  },
+  {
+   "id": "washington_jefferson",
+   "map_feature": "Jefferson St & Washington St",
+   "feature_note": "West Division.",
+   "pixel": [
+    343.4,
+    1589.9
+   ],
+   "modern": {
+    "lat": 41.8831922,
+    "lon": -87.6427118,
+    "osm_node_ids": [
+     258020207
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 446674.78,
+    "utm_n": 4637007.0
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 0.7
+  },
+  {
+   "id": "washington_lasalle",
+   "map_feature": "LaSalle St & Washington St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1973.5,
+    1616.2
+   ],
+   "modern": {
+    "lat": 41.883243,
+    "lon": -87.6324167,
+    "osm_node_ids": [
+     28290296
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447529.0,
+    "utm_n": 4637006.29
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 1.3
+  },
+  {
+   "id": "washington_wells",
+   "map_feature": "Wells St & Washington St",
+   "feature_note": "South Division.",
+   "pixel": [
+    1744.6,
+    1612.4
+   ],
+   "modern": {
+    "lat": 41.8832423,
+    "lon": -87.6338816,
+    "osm_node_ids": [
+     27477591
+    ],
+    "nodes_averaged": 1,
+    "utm_e": 447407.46,
+    "utm_n": 4637007.11
+   },
+   "source": "osm_2026_09_05",
+   "residual_m": 2.8
+  }
+ ],
+ "fit": {
+  "type": "affine, least squares, plat pixel -> EPSG:26916",
+  "coefficients": {
+   "a": 0.5251487172,
+   "b": -4.52092e-05,
+   "c": 446494.0271401469,
+   "d": 0.0083976407,
+   "e": -0.5316173865,
+   "f": 4637848.876461652
+  },
+  "n_control": 23,
+  "rms_m": 4.2,
+  "max_residual_m": 9.4,
+  "scale_m_per_px": {
+   "x": 0.5252,
+   "y": 0.5316
+  },
+  "rotation_deg": 0.92,
+  "axis_scale_difference_pct": 1.2,
+  "note": "The plat is a fair copy of a survey, not a lithograph of a landscape: its streets are ruled and its module is arithmetic, so it fits far tighter than the Wright and Hathaway sheets do (RMS 17.5 m and 17.7 m). Read that as a property of the DRAWING and not as accuracy about the ground \u2014 a ruled grid reproduces a ruled grid, and the modern streets this is fitted to are the ones the plat itself laid out. The river, which is the thing this fit exists to measure, is the one feature on the sheet the ruling does not govern."
+ }
+}
