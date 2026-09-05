@@ -85,7 +85,6 @@
 # ---     the forks — WRIGHT 1834 STAYS the planform of record, nothing moves; and
 # ---       thompson_plat_1830.json's declared +/-20 m is corrected to the 27-60 m measured
 
-T-0803 — Close the five PRs dev has outrun or superseded, and put their tickets back in play
 T-0804 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0805 — Drain lap 1: the six PRs standing closest to dev, and the four ticket ids minted twice
 T-0806 — Drain lap 2: the five research and cohort PRs, oldest first

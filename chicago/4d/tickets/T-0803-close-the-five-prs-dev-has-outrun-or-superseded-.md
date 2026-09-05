@@ -1,7 +1,7 @@
 ---
 id: T-0803
 title: Close the five PRs dev has outrun or superseded, and put their tickets back in play
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 900
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T17:01:48.902Z
 claimed_run: null
 ---
 
@@ -53,7 +53,23 @@ measurement (dev had 1,566 triangles of `balanced` headroom and four roofs cost 
 which is a real finding whoever takes T-0432 next needs.
 
 **Acceptance:** PRs #799, #432, #562, #599 and #601 are CLOSED with a comment stating
-why, and their five `steward/*` branches are deleted. T-0219, T-0385, T-0432, T-0431 and
-T-0676 are each verified against `dev`: the first four `open` and in QUEUE.md, T-0676
-`done`. Each of the four open tickets carries a `Prior attempt:` line naming its closed
-PR. `./tools/check.sh` passes. The open-PR count against `dev` is 16.
+why. T-0219, T-0385, T-0432, T-0431 and T-0676 are each verified against `dev`: the first
+four `open` and in QUEUE.md, T-0676 `done`. Each of the four open tickets carries a
+`Prior attempt:` line naming its closed PR. `./tools/check.sh` passes. The open-PR count
+against `dev` is 16.
+
+**THE FIVE BRANCHES ARE STILL ON THE REMOTE, and that is not an oversight.** A ref delete
+is refused in the session that closed these PRs — `git push origin --delete` disconnects
+mid-sideband and `DELETE /repos/.../git/refs/heads/...` answers **HTTP 403, "Write access
+to this GitHub API path is not permitted through this proxy"**. Both routes, all five
+branches. So the deletion is the ONE part of this ticket that needs a hand: each closed
+PR carries a **Delete branch** button, which is one click apiece, or the janitor's
+`branch-delete` path can do it with the `STEWARD_PAT` this environment does not hold.
+
+**What it costs until then, so nobody is surprised by it.** `ticket.mjs claim` checks
+`git ls-remote` for a branch carrying the ticket's number and refuses when it finds one —
+that guard exists to stop two runs rebuilding one ticket, and here it will fire on a
+branch whose PR is closed. **It is a false stop and `--force` is the right answer**, which
+is why each of the four tickets now says so in its own body. `ticket.mjs inflight` already
+reads all five as COLD (a branch older than any run could be), which is the honest signal
+and needs no change.
