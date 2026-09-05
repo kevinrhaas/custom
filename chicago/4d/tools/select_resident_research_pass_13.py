@@ -239,7 +239,16 @@ def derive(pass_no: int) -> dict:
     # Zero overlap with the people who already carry a research row. This is the
     # non-overlap that means something; see the module docstring for why "zero
     # overlap with passes 1-12" is not the same claim and is not made.
-    if overlap := researched_ids(people).intersection(ids):
+    #
+    # A COHORT'S OWN OUTCOMES DO NOT MAKE IT STALE (T-0508). The frame is frozen and
+    # hard-coded above, so what this clause guards is a manifest claiming somebody
+    # ANOTHER pass has already ruled on. Read without the exclusion it also fired the
+    # moment its own cohort was researched — the first run to complete cohort 13 turned
+    # this gate red for cohort 13 — which is a freeze that cannot survive being used.
+    own = set(TICKETS.values())
+    already = {pid for pid in researched_ids(people)
+               if ((people[pid][1].get("resident_research") or {}).get("ticket")) not in own}
+    if overlap := already.intersection(ids):
         raise SystemExit("cohort %d claims people who already carry a research row: %s"
                          % (pass_no, sorted(overlap)))
 

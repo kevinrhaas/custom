@@ -1,103 +1,860 @@
 {
-  "_doc": "Pending T-0508 ledger. Opened empty by T-0492 so cohort 13 has a home before its run starts. Every manifest member is listed under `pending` until it receives a dated review; a member moves to `completed_person_ids` only when it has one. tools/synthesize_resident_research.py reads `completed_person_ids` and nothing else here, so an empty ledger changes no resident record.",
-  "ticket": "T-0508",
-  "reviewed_on": null,
-  "status": "pending",
-  "default_outcome": "no_corroboration_yet",
-  "default_summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name sweep could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-  "query_templates": [
-    "\"{name}\" Chicago 1835",
-    "\"{name}\" Illinois 1834 1835",
-    "\"{name}\" Chicago directory",
-    "\"{name}\" genealogy occupation migration",
-    "justified OCR/spelling variants where the printed form was visibly suspect"
-  ],
-  "search_scope": [
-    "repository Chicago Democrat and Chicago American transcriptions, newspaper identity ledger and resident/source records",
-    "the six source domains scaffolded by T-0492 under data/research/ — civic lists, 1830 and 1840 census, church registers, books, directories",
-    "Fergus Chicago directories and the existing resident-research source registry",
-    "Cook, Will, Kane, Lake and neighbouring-county local histories",
-    "government, library and archival institutional records"
-  ],
-  "outcome_counts": {},
-  "completed_person_ids": [],
-  "pending": [
-    "adams_william_h",
-    "aiker_samuel",
-    "parcel_aaron",
-    "bates_john_jr",
-    "akers_simon",
-    "reel_absolam",
-    "beaubien_jean_baptiste",
-    "allen_william",
-    "vandorwerk_adam",
-    "beaubien_josette",
-    "allin_richard",
-    "vaughan_alanson_b",
-    "beaubien_madore",
-    "alling_prudde",
-    "wilkes_alexander",
-    "beaubien_mark",
-    "anderson_eli_f",
-    "tucker_alexr_h",
-    "beckford_printer",
-    "anstin_al",
-    "churchill_alfred",
-    "blodgett_tyler_k",
-    "archer_joseph",
-    "vaughn_alison_b",
-    "brown_lemuel",
-    "avery_charles",
-    "perring_almon",
-    "brown_mrs_rufus",
-    "ayres_levi",
-    "castle_alonzo",
-    "brown_rufus",
-    "bailly_joseph",
-    "murray_alonzo",
-    "caldwell_billy",
-    "bakwith_albert",
-    "murry_alonzo",
-    "calhoun_john",
-    "bebee_orson",
-    "crandal_alva",
-    "carpenter_philo",
-    "beddlecome_ash",
-    "dunlap_alva",
-    "carver_david",
-    "beeson_william",
-    "miner_amanda",
-    "casey_edward_w",
-    "beger_tobias",
-    "rathburn_amos",
-    "caton_john_dean",
-    "bemis_samuel_c",
-    "wear_amy_c",
-    "church_thomas",
-    "benton_datas_e",
-    "miles_andrew",
-    "clybourne_archibald",
-    "benubien_charl",
-    "vann_angeline",
-    "cobb_silas_b",
-    "bishop_j_e",
-    "heere_anthony",
-    "cohen_peter",
-    "blair_william_g",
-    "winsor_aram",
-    "couch_ira",
-    "bloget_josiah_i",
-    "knox_archibald",
-    "couch_james",
-    "blood_amos",
-    "parcell_aron",
-    "davis_john",
-    "bly_rouse",
-    "brundage_asa",
-    "davis_t_o",
-    "boardman_elect",
-    "doel_asa",
-    "garrett_a"
-  ],
-  "overrides": {}
+ "_doc": "Completed T-0508 ledger (cohort 13 of the three T-0492 froze). Every one of the 76 manifest members received a dated review: an exact-name sweep and a justified surname-variant sweep across every committed corpus in this repository — the post-office and newspaper extractions, the 1833-1835 civic rolls, Fergus 1839/1843 and Norris 1844 and their crosswalks, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry index leads, the digitised books and the transcribed county histories — together with the source records this project already holds. Outcomes are here; pending is empty. Candidate identities are retained unasserted.",
+ "ticket": "T-0508",
+ "reviewed_on": "2026-09-05",
+ "status": "complete",
+ "default_outcome": "no_corroboration_yet",
+ "default_summary": "No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
+ "query_templates": [
+  "\"{name}\" Chicago 1835",
+  "\"{name}\" Illinois 1834 1835",
+  "\"{name}\" Chicago directory",
+  "\"{name}\" genealogy occupation migration",
+  "justified OCR/spelling variants where the printed form was visibly suspect"
+ ],
+ "search_scope": [
+  "repository Chicago Democrat and Chicago American transcriptions, newspaper identity ledger and resident/source records",
+  "the six source domains scaffolded by T-0492 under data/research/ — civic lists, 1830 and 1840 census, church registers, books, directories",
+  "Fergus Chicago directories and the existing resident-research source registry",
+  "Cook, Will, Kane, Lake and neighbouring-county local histories",
+  "government, library and archival institutional records"
+ ],
+ "outcome_counts": {
+  "corroborated": 26,
+  "candidate": 16,
+  "no_corroboration": 34
+ },
+ "completed_person_ids": [
+  "adams_william_h",
+  "aiker_samuel",
+  "parcel_aaron",
+  "bates_john_jr",
+  "akers_simon",
+  "reel_absolam",
+  "beaubien_jean_baptiste",
+  "allen_william",
+  "vandorwerk_adam",
+  "beaubien_josette",
+  "allin_richard",
+  "vaughan_alanson_b",
+  "beaubien_madore",
+  "alling_prudde",
+  "wilkes_alexander",
+  "beaubien_mark",
+  "anderson_eli_f",
+  "tucker_alexr_h",
+  "beckford_printer",
+  "anstin_al",
+  "churchill_alfred",
+  "blodgett_tyler_k",
+  "archer_joseph",
+  "vaughn_alison_b",
+  "brown_lemuel",
+  "avery_charles",
+  "perring_almon",
+  "brown_mrs_rufus",
+  "ayres_levi",
+  "castle_alonzo",
+  "brown_rufus",
+  "bailly_joseph",
+  "murray_alonzo",
+  "caldwell_billy",
+  "bakwith_albert",
+  "murry_alonzo",
+  "calhoun_john",
+  "bebee_orson",
+  "crandal_alva",
+  "carpenter_philo",
+  "beddlecome_ash",
+  "dunlap_alva",
+  "carver_david",
+  "beeson_william",
+  "miner_amanda",
+  "casey_edward_w",
+  "beger_tobias",
+  "rathburn_amos",
+  "caton_john_dean",
+  "bemis_samuel_c",
+  "wear_amy_c",
+  "church_thomas",
+  "benton_datas_e",
+  "miles_andrew",
+  "clybourne_archibald",
+  "benubien_charl",
+  "vann_angeline",
+  "cobb_silas_b",
+  "bishop_j_e",
+  "heere_anthony",
+  "cohen_peter",
+  "blair_william_g",
+  "winsor_aram",
+  "couch_ira",
+  "bloget_josiah_i",
+  "knox_archibald",
+  "couch_james",
+  "blood_amos",
+  "parcell_aron",
+  "davis_john",
+  "bly_rouse",
+  "brundage_asa",
+  "davis_t_o",
+  "boardman_elect",
+  "doel_asa",
+  "garrett_a"
+ ],
+ "pending": [],
+ "overrides": {
+  "adams_william_h": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicago_tribune_1882_05_19_fourth_reception",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844",
+    "resident_research_v4_1835_census_bridge"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "aiker_samuel": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "parcel_aaron": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. 'Aaron Parcel' and 'Aron Parcell' are two post-office readings one letter apart, in the same list family; the 1830 schedule's 'William Parcel' shares only the surname and is refused. Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into. The candidate is retained and not asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_parcel_parcell_same_hand",
+     "asserted": false,
+     "basis": "'Aaron Parcel' and 'Aron Parcell' are two post-office readings one letter apart, in the same list family; the 1830 schedule's 'William Parcel' shares only the surname and is refused.",
+     "conflicts": [
+      "Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into."
+     ]
+    }
+   ]
+  },
+  "bates_john_jr": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "old_settlers_bridges_1883",
+    "andreas_1884_v1",
+    "calumet_club_early_chicago_1879",
+    "chicago_tribune_1882_05_19_fourth_reception",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; Fergus's old-settler death notices."
+  },
+  "akers_simon": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial. Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict. The candidate is retained and not asserted.",
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "candidates": [
+    {
+     "id": "cand_simon_akers_1837_poll",
+     "asserted": false,
+     "basis": "The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial.",
+     "conflicts": [
+      "Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict."
+     ]
+    }
+   ]
+  },
+  "reel_absolam": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "beaubien_jean_baptiste": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "chicagology_prefire052",
+    "hubbard_autobiography_1911",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "allen_william": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. Fergus 1839 prints 'Allen, William, saloon, North Canal street south of Kinzie', and the 1840 reading carries 'Wm. Allen' at printed page 230 line 26. William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list. The candidate is retained and not asserted.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "census_1840_chicago_name_crosswalk"
+   ],
+   "candidates": [
+    {
+     "id": "cand_william_allen_1839_saloon",
+     "asserted": false,
+     "basis": "Fergus 1839 prints 'Allen, William, saloon, North Canal street south of Kinzie', and the 1840 reading carries 'Wm. Allen' at printed page 230 line 26.",
+     "conflicts": [
+      "William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list."
+     ]
+    }
+   ]
+  },
+  "vandorwerk_adam": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "beaubien_josette": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "st_marys_baptismal_register_1833_1835",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the St Mary's and St Cyr registers; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; Fergus's old-settler death notices."
+  },
+  "allin_richard": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "vaughan_alanson_b": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. A history of Mower County, Minnesota carries an exact Alanson B. Vaughan. Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial. The candidate is retained and not asserted.",
+   "sources": [
+    "mower_history_alanson_vaughan"
+   ],
+   "candidates": [
+    {
+     "id": "cand_alanson_b_vaughan_mower",
+     "asserted": false,
+     "basis": "A history of Mower County, Minnesota carries an exact Alanson B. Vaughan.",
+     "conflicts": [
+      "Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial."
+     ]
+    }
+   ]
+  },
+  "beaubien_madore": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "cpn_madore_beaubien",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; Fergus's old-settler death notices."
+  },
+  "alling_prudde": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "wilkes_alexander": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "beaubien_mark": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "andreas_1884_chicago_1830_map",
+    "census_1830_peoria_county_chicago_precinct",
+    "chicagology_prefire216",
+    "drloih_beaubien",
+    "eliza_chappel_school_shore_view",
+    "encyclopedia_chicago_mark_beaubien"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; Fergus's old-settler death notices."
+  },
+  "anderson_eli_f": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "tucker_alexr_h": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "beckford_printer": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicago_antiquities_pratt",
+    "andreas_1884_v1"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the committed source records cited."
+  },
+  "anstin_al": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "churchill_alfred": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "blodgett_tyler_k": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicagology_chicago_brick",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards."
+  },
+  "archer_joseph": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "vaughn_alison_b": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. 'Alison B. Vaughn' and 'Alanson B. Vaughan' are the same initial and middle initial under two spellings of one surname, in the same list family; the 1830 schedule's 'James Vaughn' is refused on the forename. No independent record carries either spelling in Chicago, so the pair stays two rows rather than becoming one man. The candidate is retained and not asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_vaughan_vaughn_same_hand",
+     "asserted": false,
+     "basis": "'Alison B. Vaughn' and 'Alanson B. Vaughan' are the same initial and middle initial under two spellings of one surname, in the same list family; the 1830 schedule's 'James Vaughn' is refused on the forename.",
+     "conflicts": [
+      "No independent record carries either spelling in Chicago, so the pair stays two rows rather than becoming one man."
+     ]
+    }
+   ]
+  },
+  "brown_lemuel": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1840 census heads read for this project; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "avery_charles": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. Fergus 1839 prints 'Avery, Charles E., lumber dealer, cor. LaSalle and So. Water'. The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk. The candidate is retained and not asserted.",
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "candidates": [
+    {
+     "id": "cand_charles_e_avery_lumber",
+     "asserted": false,
+     "basis": "Fergus 1839 prints 'Avery, Charles E., lumber dealer, cor. LaSalle and So. Water'.",
+     "conflicts": [
+      "The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk."
+     ]
+    }
+   ]
+  },
+  "perring_almon": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "brown_mrs_rufus": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1840 census heads read for this project; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "ayres_levi": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "castle_alonzo": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "brown_rufus": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1840 census heads read for this project; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "bailly_joseph": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'. Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence. The candidate is retained and not asserted.",
+   "sources": [
+    "nps_bailly_homestead",
+    "fergus_historical_series_26_29"
+   ],
+   "candidates": [
+    {
+     "id": "cand_joseph_bailly_baillytown",
+     "asserted": false,
+     "basis": "Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'.",
+     "conflicts": [
+      "Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence."
+     ]
+    }
+   ]
+  },
+  "murray_alonzo": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. 'Alonzo Murray' and 'Alonzo Murry' differ by one letter in the same list family. Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal. The candidate is retained and not asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_murray_murry_same_hand",
+     "asserted": false,
+     "basis": "'Alonzo Murray' and 'Alonzo Murry' differ by one letter in the same list family.",
+     "conflicts": [
+      "Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal."
+     ]
+    }
+   ]
+  },
+  "caldwell_billy": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "fergus_historical_series_26_29",
+    "hubbard_autobiography_1911",
+    "andreas_1884_v1"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the committed source records cited."
+  },
+  "bakwith_albert": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "murry_alonzo": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. 'Alonzo Murry' and 'Alonzo Murray' differ by one letter in the same list family; the St Cyr register's 1837 'S. Murry' is refused on the forename. The Murray surname is common in this corpus (James H, Patrick, John are all separately held) and no source equates the two Alonzos. The candidate is retained and not asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_murray_murry_same_hand",
+     "asserted": false,
+     "basis": "'Alonzo Murry' and 'Alonzo Murray' differ by one letter in the same list family; the St Cyr register's 1837 'S. Murry' is refused on the forename.",
+     "conflicts": [
+      "The Murray surname is common in this corpus (James H, Patrick, John are all separately held) and no source equates the two Alonzos."
+     ]
+    }
+   ]
+  },
+  "calhoun_john": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicago_democrat_1833_11_26",
+    "fergus_historical_series_26_29",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards."
+  },
+  "bebee_orson": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "crandal_alva": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "carpenter_philo": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicago_democrat_1833_11_26",
+    "drloih_beaubien",
+    "drloih_chappell",
+    "encyclopedia_chicago_medical_pharmaceutical",
+    "andreas_1884_v1",
+    "calumet_club_early_chicago_1879"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "beddlecome_ash": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "dunlap_alva": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. A community history dates Alva Dunlap's first Illinois journey to 1834 and his settlement near Peoria. Peoria is not Chicago and the account names no Chicago residence; the surname stands in Fergus 1839, Fergus 1843 and Norris 1844 with no entry carrying the initial A. The candidate is retained and not asserted.",
+   "sources": [
+    "dunlap_alva_dunlap_history"
+   ],
+   "candidates": [
+    {
+     "id": "cand_alva_dunlap_peoria",
+     "asserted": false,
+     "basis": "A community history dates Alva Dunlap's first Illinois journey to 1834 and his settlement near Peoria.",
+     "conflicts": [
+      "Peoria is not Chicago and the account names no Chicago residence; the surname stands in Fergus 1839, Fergus 1843 and Norris 1844 with no entry carrying the initial A."
+     ]
+    }
+   ]
+  },
+  "carver_david": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "migenweb_clark_albee_grand_haven",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "beeson_william": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "miner_amanda": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. Kaneville Township's history names Amos and Amanda Miner among its settlers. Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'. The candidate is retained and not asserted.",
+   "sources": [
+    "kaneville_amanda_miner"
+   ],
+   "candidates": [
+    {
+     "id": "cand_amanda_miner_kaneville",
+     "asserted": false,
+     "basis": "Kaneville Township's history names Amos and Amanda Miner among its settlers.",
+     "conflicts": [
+      "Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'."
+     ]
+    }
+   ]
+  },
+  "casey_edward_w": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "caton_atlantic_chicago_1893",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; Fergus's old-settler death notices."
+  },
+  "beger_tobias": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "rathburn_amos": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "caton_john_dean": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "caton_atlantic_chicago_1893",
+    "chicagology_lastwardance",
+    "illinois_courts_caton_biography",
+    "old_settlers_bridges_1883",
+    "papers_abraham_lincoln_james_h_collins",
+    "andreas_1884_v1"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "bemis_samuel_c": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "wear_amy_c": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Illinois public-domain land tract sales entries held here, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Illinois public-domain land tract sales entries held here, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "church_thomas": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicagology_prefire275",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards."
+  },
+  "benton_datas_e": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "miles_andrew": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834. The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial. The candidate is retained and not asserted.",
+   "sources": [
+    "kane_geneva_andrew_miles"
+   ],
+   "candidates": [
+    {
+     "id": "cand_andrew_miles_geneva",
+     "asserted": false,
+     "basis": "A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834.",
+     "conflicts": [
+      "The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial."
+     ]
+    }
+   ]
+  },
+  "clybourne_archibald": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here."
+  },
+  "benubien_charl": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "vann_angeline": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "cobb_silas_b": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicagology_prefire127",
+    "andreas_1884_v1",
+    "calumet_club_early_chicago_1879",
+    "chicago_democrat_1833_11_26",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "bishop_j_e": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J. Illinois Street is a Kinzie's Addition name the 1835 street layer does not carry, so the entry cannot even be placed in the modelled town, and the 1837 poll refuses the surname on the initial. The candidate is retained and not asserted.",
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "candidates": [
+    {
+     "id": "cand_j_e_bishop_1839_illinois_st",
+     "asserted": false,
+     "basis": "Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J.",
+     "conflicts": [
+      "Illinois Street is a Kinzie's Addition name the 1835 street layer does not carry, so the entry cannot even be placed in the modelled town, and the 1837 poll refuses the surname on the initial."
+     ]
+    }
+   ]
+  },
+  "heere_anthony": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "cohen_peter": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicago_democrat_1833_11_26",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus."
+  },
+  "blair_william_g": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36. Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry. The candidate is retained and not asserted.",
+   "sources": [
+    "rockford_first_settlers_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_william_g_blair_winnebago",
+     "asserted": false,
+     "basis": "A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36.",
+     "conflicts": [
+      "Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry."
+     ]
+    }
+   ]
+  },
+  "winsor_aram": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "couch_ira": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "chicagology_prefire021",
+    "chm_ira_couch_portrait",
+    "wttw_ira_couch",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards."
+  },
+  "bloget_josiah_i": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "knox_archibald": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards; Fergus's old-settler death notices, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "couch_james": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "andreas_1884_v1",
+    "calumet_club_early_chicago_1879",
+    "chicagology_prefire021",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices."
+  },
+  "blood_amos": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the Newberry family-history index cards, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "parcell_aron": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. 'Aron Parcell' and 'Aaron Parcel' are two post-office readings one letter apart, in the same list family. Nothing outside the letter lists names either spelling; collapsing them would assert an identity no source states. The candidate is retained and not asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "candidates": [
+    {
+     "id": "cand_parcel_parcell_same_hand",
+     "asserted": false,
+     "basis": "'Aron Parcell' and 'Aaron Parcel' are two post-office readings one letter apart, in the same list family.",
+     "conflicts": [
+      "Nothing outside the letter lists names either spelling; collapsing them would assert an identity no source states."
+     ]
+    }
+   ]
+  },
+  "davis_john": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "drloih_hotels",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards."
+  },
+  "bly_rouse": {
+   "outcome": "candidate_identity",
+   "summary": "Reviewed 2026-09-05. The Firelands Pioneer of 1888 carries an exact-name Rouse Bly in Huron County, Ohio. A competing Ohio identity of the same uncommon name is a reason for caution, not a bridge; nothing in the Chicago corpus repeats the name. The candidate is retained and not asserted.",
+   "sources": [
+    "ohio_firelands_rouse_bly"
+   ],
+   "candidates": [
+    {
+     "id": "cand_rouse_bly_firelands",
+     "asserted": false,
+     "basis": "The Firelands Pioneer of 1888 carries an exact-name Rouse Bly in Huron County, Ohio.",
+     "conflicts": [
+      "A competing Ohio identity of the same uncommon name is a reason for caution, not a bridge; nothing in the Chicago corpus repeats the name."
+     ]
+    }
+   ]
+  },
+  "brundage_asa": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "davis_t_o": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the Newberry family-history index cards."
+  },
+  "boardman_elect": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844, and every one of those readings is a committed refusal on the forename or the initial.",
+   "evidence_against": "Reached only by surname in the 1840 census heads read for this project; Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844, and every one of those readings is a committed refusal on the forename or the initial."
+  },
+  "doel_asa": {
+   "outcome": "no_corroboration",
+   "summary": "Reviewed 2026-09-05. No reliable record in the reviewed repository newspaper/reference corpus, the Chicago directories of 1839, 1843 and 1844, the 1833-1835 civic rolls, the 1830 and 1840 census readings, the church registers, the land-sale entries, the Newberry family-history index and the digitised county and local histories held here could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist. Not reached at all outside the post-office lists: no committed corpus carries the name.",
+   "evidence_against": "Not reached at all outside the post-office lists: no committed corpus carries the name."
+  },
+  "garrett_a": {
+   "outcome": "corroborated",
+   "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+   "sources": [
+    "cpl_augustus_garrett_biography",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards."
+  }
+ },
+ "pending_person_ids": []
 }

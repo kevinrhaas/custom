@@ -108,7 +108,25 @@
     "chicago_democrat_1833_11_26",
     "calumet_club_early_chicago_1879"
    ],
-   "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json)."
+   "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record. OLD SETTLERS, 1879 — A DATE THIS MAN GAVE FOR HIMSELF, AND STILL NOT A FACT ABOUT 1835. The Calumet Club's FIRST reception to the settlers of Chicago prior to 1840, 27 May 1879, printed its register in the proceedings (Early Chicago, Chicago, 1879, pages 84-90), and this man's entry reads “Cobb, Silas B. | 1833, May 29, | Montpelier, Vt. | 67 | Chicago.” — name, his own date of arrival, his birthplace, his age and his 1879 post-office address, in the register's five columns. The date of arrival is HIS RECOLLECTION, set down forty to sixty years after the event; the address is where he lived in 1879 and is never read as an 1835 residence. Under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot lift a rung by itself, so this record's GRADE IS UNCHANGED by it: T-0513 consolidates the identity and T-0515 regrades. Identity by rule OS1 — surname and spelled-out forename agree, one bearer (data/research/old_settlers/crosswalk.json).",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards; Fergus's old-settler death notices.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "chicagology_prefire127",
+     "andreas_1884_v1",
+     "calumet_club_early_chicago_1879",
+     "chicago_democrat_1833_11_26",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843"
+    ]
+   }
   }
  ],
  "touches_removal": false,

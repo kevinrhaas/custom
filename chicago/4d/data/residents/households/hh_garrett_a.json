@@ -67,7 +67,23 @@
     "chicago_american_1835",
     "chicago_democrat_1833_1835"
    ],
-   "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'A. Gatren' and 'GARRETT,' and 'RRSTT' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the American of 25 July 1835, column 3; the American of 15 August 1835, column 2; the Democrat of 17 December 1834, column 1; the Democrat of 24 December 1834, column 1. The corpus associates the name with Dearborn Street, South Water Street; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `auctioneer` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry."
+   "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'A. Gatren' and 'GARRETT,' and 'RRSTT' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the American of 25 July 1835, column 3; the American of 15 August 1835, column 2; the Democrat of 17 December 1834, column 1; the Democrat of 24 December 1834, column 1. The corpus associates the name with Dearborn Street, South Water Street; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `auctioneer` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "cpl_augustus_garrett_biography",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
+    ]
+   }
   }
  ],
  "touches_removal": false,

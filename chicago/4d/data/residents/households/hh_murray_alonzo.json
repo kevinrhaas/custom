@@ -87,7 +87,32 @@
    ],
    "resident_research": {
     "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    "rule": "G1b",
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": false,
+    "evidence_for": "'Alonzo Murray' and 'Alonzo Murry' differ by one letter in the same list family.",
+    "evidence_against": "Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal.",
+    "summary": "Reviewed 2026-09-05. 'Alonzo Murray' and 'Alonzo Murry' differ by one letter in the same list family. Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal. The candidate is retained and not asserted.",
+    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ],
+    "candidate_ids": [
+     "cand_murray_murry_same_hand"
+    ],
+    "candidates": [
+     {
+      "id": "cand_murray_murry_same_hand",
+      "asserted": false,
+      "basis": "'Alonzo Murray' and 'Alonzo Murry' differ by one letter in the same list family.",
+      "conflicts": [
+       "Committed refusals stand against every other Murray reached: 'John Murray' in the St Mary's register, 'Patrick Murray' on the 1834 poll, 'Alon On Sweet' in Fergus 1839 — each a surname-only or forename-conflict refusal."
+      ]
+     }
+    ]
    }
   }
  ],

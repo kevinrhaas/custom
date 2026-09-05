@@ -64,7 +64,24 @@
     "chicagology_prefire275",
     "andreas_1884_v1"
    ],
-   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here."
+   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the digitised books corpus (Andreas, Hurlbut, Fergus's Historical Series, Hubbard); the 1840 census heads read for this project; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "chicagology_prefire275",
+     "andreas_1884_v1",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
+    ]
+   }
   }
  ],
  "touches_removal": false,

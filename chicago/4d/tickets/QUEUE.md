@@ -371,4 +371,4 @@ T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0701 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
-
+T-0720 — Sixteen letter-list people are graded attested with no research row and a note that says the opposite: the ladder and the synthesis programme disagree about the same card

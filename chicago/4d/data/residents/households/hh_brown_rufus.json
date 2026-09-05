@@ -78,6 +78,21 @@
       "withheld": "the downgrade to inferred",
       "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
+    ],
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1840 census heads read for this project; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "census_1830_peoria_county_chicago_precinct",
+     "andreas_1884_v1",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
     ]
    }
   },
@@ -98,7 +113,24 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A WOMAN NAMED ONLY BY HER HUSBAND'S NAME AND DOCUMENTED AS THE PROPRIETOR OF A BUSINESS, which is a combination this literature produces constantly and this schema has to be able to carry. Two women named Brown are among the nine village citizens founding the First Presbyterian Church in June 1833 - 'Mrs. Elizabeth Brown' and 'Mrs. Cynthia Brown' - and one of them may be this woman. The record does not choose: identifying her with either would manufacture a forename out of a surname."
+   "note": "A WOMAN NAMED ONLY BY HER HUSBAND'S NAME AND DOCUMENTED AS THE PROPRIETOR OF A BUSINESS, which is a combination this literature produces constantly and this schema has to be able to carry. Two women named Brown are among the nine village citizens founding the First Presbyterian Church in June 1833 - 'Mrs. Elizabeth Brown' and 'Mrs. Cynthia Brown' - and one of them may be this woman. The record does not choose: identifying her with either would manufacture a forename out of a surname.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the 1830 Peoria/Putnam schedule leaves for the Chicago precinct; the 1840 census heads read for this project; the St Mary's and St Cyr registers; the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Illinois public-domain land tract sales entries held here; the Newberry family-history index cards; Fergus's old-settler death notices.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "census_1830_peoria_county_chicago_precinct",
+     "andreas_1884_v1",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
+    ]
+   }
   }
  ],
  "touches_removal": false,

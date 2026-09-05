@@ -97,7 +97,21 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "SURNAME ONLY, NO FORENAME, NO SEX RECORDED. Andreas prints 'Oscar Pratt and Bcckford, printers' with the first letters damaged in the scan. The sex field is omitted rather than assumed: a compositor in 1833 was overwhelmingly likely to be a man, but 'overwhelmingly likely' is not what documented means and this record has no other information about the person at all."
+   "note": "SURNAME ONLY, NO FORENAME, NO SEX RECORDED. Andreas prints 'Oscar Pratt and Bcckford, printers' with the first letters damaged in the scan. The sex field is omitted rather than assumed: a compositor in 1833 was overwhelmingly likely to be a man, but 'overwhelmingly likely' is not what documented means and this record has no other information about the person at all.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Named independently of the post-office lists in the committed source records cited.",
+    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
+    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "source_ids": [
+     "chicago_antiquities_pratt",
+     "andreas_1884_v1"
+    ]
+   }
   }
  ],
  "touches_removal": false,
