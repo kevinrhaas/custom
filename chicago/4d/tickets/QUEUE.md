@@ -15,6 +15,8 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  pace sliders + framed arrival — the owner, in session: "issue this as a ticket … and then
+#               work it directly". T-0819, T-0820 head the file, claimed together in one PR.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -31,6 +33,11 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- OWNER ASKS 2026-09-05 — a speed slider per pace with named gaits (20/30/60 mph ceilings), and
+# --- every arrival framing the whole building from its front with the card open.
+T-0819 — Walk, wagon and horse each get a speed slider with a named gait, up to 20, 30 and 60 mph
+T-0820 — Arriving anywhere frames the whole building from its front and opens its card
 
 # --- ==========================================================================
 # --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05

@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 591, title: 'Set your own pace, and arrive with the whole building in view', kind: 'feature', ts: '2026-09-05T18:03:59.685Z', date: 'Sep 5, 2026, 1:03 PM CT',
+    items: [
+      'Under Travel there are now three speed sliders — walking, wagon and horse — and each names the gait as you move it: a stroll, a brisk walk, a jog, a run; a wagon at a walking pace, a steady roll, rattling along; a horse at a walk, a trot, a canter, a gallop. The tops are deliberately far past the possible, 20 mph on foot, 30 by wagon and 60 in the saddle, and the readout says plainly when a figure is beyond any man or any horse.',
+      'Shift still hurries you: a run on foot, a gallop on horseback, nothing on a wagon — and never past the slider\u2019s top. The horse\u2019s gait in your eye beats faster the faster you have set it.',
+      'Arriving anywhere — an instant Go to, the end of a ride, the end of a flight — now stands you on the building\u2019s front at the distance that fits the whole of it in view, aimed at its middle, with its card open. The distance comes from the building\u2019s own footprint and height and the camera\u2019s field of view, so a privy is framed as closely as a long store is framed wide.',
+    ] },
   { v: 590, title: 'Seventy-six people the town had never actually looked for', kind: 'feat', ts: '2026-09-05T17:27:46.383Z', date: 'Sep 5, 2026, 12:27 PM CT',
     items: [
       'Two hundred and twenty-eight of the people standing in this town had never been researched \u2014 not researched and found wanting, simply never asked about. Seventy-six of them were asked today, and every one now carries a dated answer with the rule that produced it written beside it.',

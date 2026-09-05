@@ -13,7 +13,7 @@ import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
 import { isTyping } from './controls/pointerlock.js';
 import { formatDistance, formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
 import { createGoTo } from './goto.js';
-import { PACES } from './travel.js';
+import { PACES, gaitName } from './travel.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
@@ -44,6 +44,8 @@ const DEFAULT_SETTINGS = {
   // is whether the Go to list shows the reconstructed roofs (off by default —
   // the owner's ruling). `headBob`: the rider's eye moves with the horse's gait.
   pace: 'walk', travelMode: 'instantly', headBob: true, gotoReconstructed: false,
+  // The wagon's and the horse's own speeds (T-0819); `speed` above is the walk's.
+  wagonSpeed: 3.6, horseSpeed: 6.5,
 };
 
 function readSettings() {
@@ -415,8 +417,12 @@ export function createHud({
     });
     return paint;
   }
-  const paintSpeed = wireRange('s-speed', 'v-speed', 'speed',
-    (v) => formatSpeed(v, settings.units));
+  // Each pace's slider names the gait as it moves — "trot · 8.1 mph" — because a
+  // number alone says nothing about what a horse is doing at it (T-0819).
+  const gaitReadout = (pace) => (v) => `${gaitName(pace, v)} · ${formatSpeed(v, settings.units)}`;
+  const paintSpeed = wireRange('s-speed', 'v-speed', 'speed', gaitReadout('walk'));
+  const paintWagon = wireRange('s-wagon-speed', 'v-wagon-speed', 'wagonSpeed', gaitReadout('wagon'));
+  const paintHorse = wireRange('s-horse-speed', 'v-horse-speed', 'horseSpeed', gaitReadout('horse'));
   // The readout names the researched default rather than only the number, so
   // moving off it is a visible choice instead of a silent drift.
   const paintEye = wireRange('s-eye', 'v-eye', 'eyeHeight',
@@ -444,6 +450,8 @@ export function createHud({
       settings.units = normalUnitSystem(units.value);
       units.value = settings.units;
       paintSpeed?.();
+      paintWagon?.();
+      paintHorse?.();
       paintEye?.();
       paintTravelMode?.();
       goTo?.refreshDistances?.();
@@ -554,16 +562,10 @@ export function createHud({
     });
     const note = $('travel-note');
     if (note) {
-      const line = (id) => {
-        const p = PACES[id];
-        if (!p?.speed) return null;
-        return `${p.label} ${formatSpeed(p.speed, settings.units)}${p.sprint && p.sprint !== p.speed
-          ? ` (${formatSpeed(p.sprint, settings.units)} on Shift)` : ''}`;
-      };
-      note.textContent = [
-        `Walk ${formatSpeed(settings.speed, settings.units)} — the slider under Settings.`,
-        line('wagon'), line('horse'),
-      ].filter(Boolean).join(' · ');
+      const cap = (id) => formatSpeed(PACES[id].maxSpeed, settings.units);
+      note.textContent = `Shift hurries you: ×${PACES.walk.sprintFactor} on foot, a gallop ×${PACES.horse.sprintFactor} `
+        + `in the saddle, nothing on a wagon — never past the slider's top (${cap('walk')} on foot, `
+        + `${cap('wagon')} by wagon, ${cap('horse')} on horseback).`;
     }
   }
   function setTravelMode(mode) {

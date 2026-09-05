@@ -60,18 +60,28 @@ const TAU = Math.PI * 2;
  */
 export const PACES = {
   instantly: { label: 'Instantly', hint: 'straight there, as before' },
+  // Each ground pace has its own slider (T-0819): `settingKey` names the stored
+  // value, `defaultSpeed` is what a fresh visitor gets, `maxSpeed` is the slider's
+  // ceiling — 20, 30 and 60 mph, the owner's figures — and `sprintFactor` is what
+  // Shift does to it (a run on foot, nothing on a wagon, a gallop on a horse),
+  // capped at the ceiling. The gait names a slider shows are in GAITS below.
   walk: {
-    label: 'Walk', verb: 'Walking to', speed: null, sprint: null, eyeOffset: 0,
-    turnRate: 150, hint: "the slider's pace",
+    label: 'Walk', verb: 'Walking to', eyeOffset: 0, turnRate: 150,
+    settingKey: 'speed', defaultSpeed: 1.45, maxSpeed: 8.94, sprintFactor: 2.28,
+    hint: 'your own two feet',
   },
   wagon: {
-    label: 'Wagon', verb: 'Driving to', speed: 3.6, sprint: 3.6, eyeOffset: 0.5,
-    turnRate: 70, hint: 'a light wagon at a trot',
+    label: 'Wagon', verb: 'Driving to', eyeOffset: 0.5, turnRate: 70,
+    settingKey: 'wagonSpeed', defaultSpeed: 3.6, maxSpeed: 13.41, sprintFactor: 1,
+    hint: 'a light wagon',
   },
   horse: {
-    label: 'Horse', verb: 'Riding to', speed: 6.5, sprint: 11, eyeOffset: 0.75,
-    turnRate: 90, bob: { hz: 2.0, amp: 0.06, sprintHz: 1.6, sprintAmp: 0.09 },
-    hint: 'a canter; Shift to gallop',
+    label: 'Horse', verb: 'Riding to', eyeOffset: 0.75, turnRate: 90,
+    settingKey: 'horseSpeed', defaultSpeed: 6.5, maxSpeed: 26.82, sprintFactor: 1.7,
+    // The gait figures are a canter's (2 strides a second at 6.5 m/s); updateBob
+    // scales the beat with the speed the slider actually set.
+    bob: { hz: 2.0, amp: 0.06, sprintHz: 1.6, sprintAmp: 0.09, atSpeed: 6.5 },
+    hint: 'in the saddle; Shift to gallop',
   },
   fly: {
     label: 'Fly', verb: 'Flying to', turnRate: 120,
@@ -81,6 +91,42 @@ export const PACES = {
     hint: 'up, across and down to the door',
   },
 };
+
+/**
+ * What a speed is CALLED, per pace — the word a slider shows as it moves. Metres
+ * per second, first threshold that exceeds the value wins; the last entry has no
+ * ceiling. These are names for a speed, not claims about 1835: a man cannot run
+ * 20 mph and no horse has done 60, which is what the top entries say in as many
+ * words.
+ */
+export const GAITS = {
+  walk: [[0.9, 'stroll'], [1.8, 'walk'], [2.6, 'brisk walk'], [3.6, 'jog'], [5.5, 'run'],
+    [7.5, 'sprint'], [Infinity, 'faster than any man']],
+  // A wagon has no gait of its own — it rolls — so its words are the wagon's, not
+  // the team's (the owner, 2026-09-05: "a wagon does not trot").
+  wagon: [[0.9, 'crawl'], [1.8, 'walking pace'], [3.0, 'easy roll'], [4.5, 'steady roll'], [7, 'brisk pace'],
+    [11, 'rattling along'], [Infinity, 'runaway']],
+  horse: [[1.8, 'walk'], [3.0, 'jog'], [4.5, 'trot'], [7.5, 'canter'], [12.5, 'gallop'],
+    [20, 'racing gallop'], [Infinity, 'beyond any horse']],
+};
+
+/** `gaitName('horse', 8.1)` → 'gallop'. Unknown pace or value → ''. */
+export function gaitName(pace, metresPerSecond) {
+  const table = GAITS[pace];
+  const v = Number(metresPerSecond);
+  if (!table || !Number.isFinite(v)) return '';
+  for (const [ceiling, name] of table) if (v < ceiling) return name;
+  return table[table.length - 1][1];
+}
+
+/** The slider value for a pace: the stored setting, clamped to the pace's range. */
+export function paceSpeed(pace, settings = {}) {
+  const p = typeof pace === 'string' ? PACES[pace] : pace;
+  if (!p?.settingKey) return null;
+  const stored = Number(settings[p.settingKey]);
+  const base = Number.isFinite(stored) ? stored : p.defaultSpeed;
+  return clamp(base, 0.5, p.maxSpeed);
+}
 
 /** The paces that ride along the ground and take the router's route. */
 const GROUND = new Set(['walk', 'wagon', 'horse']);
@@ -104,7 +150,7 @@ function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
 export function createTravel({
   walker, intent, hud, settings = {}, router = null, terrain = null,
-  focusPoint, structurePosition, footprints = null,
+  focusPoint, structurePosition, footprints = null, standFor = null,
   frame, teleport, goToAnchor, setFly, onArrive,
 } = {}) {
   let mode = 'instantly';
@@ -134,9 +180,9 @@ export function createTravel({
    */
   function applyPace() {
     const pace = activePace();
-    const base = Number.isFinite(settings.speed) ? settings.speed : 1.45;
-    WALK.speed = pace.speed ?? base;
-    WALK.sprintSpeed = pace.sprint ?? base * 2.28;
+    const base = paceSpeed(pace, settings) ?? 1.45;
+    WALK.speed = base;
+    WALK.sprintSpeed = Math.min(base * (pace.sprintFactor ?? 1), pace.maxSpeed ?? Infinity);
     WALK.eyeHeight = (Number.isFinite(settings.eyeHeight) ? settings.eyeHeight : 1.68)
       + (pace.eyeOffset ?? 0);
     walker?.resettle?.();
@@ -156,11 +202,14 @@ export function createTravel({
     const on = !!gait && allowed && !s.flying && s.speed > 0.05;
     if (on) {
       const sprint = !!intentNow.sprint && !ride;
-      const hz = sprint ? gait.sprintHz : gait.hz;
+      // The beat follows the speed the slider set: a canter's two strides a second
+      // at 6.5 m/s, faster at a racing gallop, slower at a jog — within reason.
+      const tempo = clamp(s.speed / (gait.atSpeed ?? 6.5), 0.6, 1.8);
+      const hz = (sprint ? gait.sprintHz : gait.hz) * tempo;
       const amp = sprint ? gait.sprintAmp : gait.amp;
-      const paceSpeed = sprint ? (pace.sprint ?? WALK.sprintSpeed) : (pace.speed ?? WALK.speed);
+      const target = sprint ? WALK.sprintSpeed : WALK.speed;
       bobPhase = (bobPhase + TAU * hz * dt) % TAU;
-      s.bob = amp * Math.sin(bobPhase) * Math.min(1, s.speed / Math.max(paceSpeed, 0.01));
+      s.bob = amp * Math.sin(bobPhase) * Math.min(1, s.speed / Math.max(target, 0.01));
       return;
     }
     if (s.bob === 0) return;
@@ -196,6 +245,10 @@ export function createTravel({
     if (target.kind === 'structure') {
       const centre = structurePosition?.(target.id);
       if (!centre) return null;
+      // Where a ride ends is where the building is framed whole (T-0820): the
+      // same point an instant Go to stands you at, so the two cannot disagree.
+      const framed = standFor?.(target.id);
+      if (framed && Number.isFinite(framed.e) && Number.isFinite(framed.n)) return { e: framed.e, n: framed.n };
       const off = router?.standOff?.(target.id, centre, radiusOf(target.id));
       return off && Number.isFinite(off.e) && Number.isFinite(off.n) ? off : centre;
     }
@@ -311,7 +364,10 @@ export function createTravel({
       // Past the plane through the waypoint perpendicular to its leg: the
       // walker overshot it, which at a gallop happens every few frames.
       const passed = (we - s.e) * (we - prev[0]) + (wn - s.n) * (wn - prev[1]) < 0;
-      if (d < WAYPOINT_M || passed) r.index++;
+      // A galloping ride covers a 1.2 m circle in a frame or two; the reach grows
+      // with the speed so a fast ride does not overshoot and circle back.
+      const reach = Math.max(WAYPOINT_M, walker.state.speed * 0.12);
+      if (d < reach || passed) r.index++;
       else break;
     }
   }
@@ -354,9 +410,17 @@ export function createTravel({
     const s = walker.state;
     let yaw = null;
     let point = null;
-    if (r.kind === 'structure') point = focusPoint?.(r.id) ?? null;
-    else if (Number.isFinite(r.target?.yaw_deg)) yaw = bearingToYaw(r.target.yaw_deg);
-    r.arrive = { point, yaw, t: ARRIVE_TURN_S, startYaw: s.yaw };
+    let yawOff = 0;
+    let pitchOff = 0;
+    if (r.kind === 'structure') {
+      point = focusPoint?.(r.id) ?? null;
+      // The framing rule's offsets (T-0820): the card opens on arrival and the
+      // building should sit centred in the part of the screen it leaves free.
+      const f = standFor?.(r.id);
+      yawOff = (f?.yawOffsetDeg ?? 0) * DEG;
+      pitchOff = (f?.pitchOffsetDeg ?? 0) * DEG;
+    } else if (Number.isFinite(r.target?.yaw_deg)) yaw = bearingToYaw(r.target.yaw_deg);
+    r.arrive = { point, yaw, yawOff, pitchOff, t: ARRIVE_TURN_S, startYaw: s.yaw };
   }
 
   function steerGround(intentNow, dt) {
@@ -438,8 +502,9 @@ export function createTravel({
     if (r.arrive.point) {
       const p = r.arrive.point;
       const de = p.x - s.e, dn = -p.z - s.n;
-      yawT = bearingToYaw(Math.atan2(de, dn) / DEG);
-      pitchT = Math.atan2(p.y - s.eyeY, Math.max(Math.hypot(de, dn), 0.1));
+      // A larger compass bearing is a smaller yaw (yaw grows counter-clockwise).
+      yawT = bearingToYaw(Math.atan2(de, dn) / DEG + (r.arrive.yawOff ?? 0) / DEG);
+      pitchT = Math.atan2(p.y - s.eyeY, Math.max(Math.hypot(de, dn), 0.1)) + (r.arrive.pitchOff ?? 0);
     } else if (r.arrive.yaw !== null) {
       yawT = r.arrive.yaw;
     }

@@ -1,5 +1,32 @@
 # STATUS
 
+
+## Shipped 2026-09-05 — T-0819, T-0820: a speed slider per pace, and a framed arrival
+
+The owner, in session: three speed sliders "like you have for walk speed", ceilings "like
+walk at 20 mph and horse gallop at some high number like 60 mph", gait names as the slider
+moves; and "for any travel, when you land it should be a nice complete view of the structure
+… center the structure entirely in frame" with the card open.
+
+**Sliders.** The walking slider moved from Settings to Travel (ids kept) and gained two
+siblings: walk 0.5–8.94 m/s, wagon 0.5–13.41, horse 0.5–26.82, each stored under its own key
+(`speed`, `wagonSpeed`, `horseSpeed`) and composed into `WALK` by `travel.applyPace()`; Shift
+multiplies by 2.28 / 1 / 1.7, capped at the ceiling. `GAITS` in travel.js names the speed
+("trot · 8.1 mph"); the top names — "faster than any man", "runaway", "beyond any horse" —
+say what the ceilings are. Interface, not claims about 1835; no LIBERTIES entry.
+
+**Framing.** `main.js framing(id)`: the front bearing from the router (nearest street track,
+else south-west), the distance that fits the footprint's half-diagonal across the 76°
+horizontal field of view and the height (wall × 1.55) within the live vertical one, aimed at
+the building's middle, clamped 10–90 m. `frame()`, the ride's destination and the flight's
+landing all take it, so the three arrivals cannot disagree.
+
+**Smoke restated, not weakened:** the pace assertion compares WALK to each pace's stored
+slider value instead of to the old constants; the three arrival distances (`<= 14 m`,
+`<= 40 m`) became "within 2.5 m of the framing distance for that building AND its four
+extreme ground points and ridge inside the frame" — a stronger claim than the fixed radius.
+Unverified until the gate runs.
+
 ## Shipped 2026-09-05 — T-0713: the platted streets are attested, and the line grades the ribbon
 
 **What shipped.** Seventeen streets in `data/streets/1835.json` move from
