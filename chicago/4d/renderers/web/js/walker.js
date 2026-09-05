@@ -208,6 +208,13 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
     flying: false,
     /** Metres above local ground, 0 on foot. What the HUD reports. */
     altitude: 0,
+    /**
+     * The gait's vertical head movement, metres, written by travel.js and added
+     * to the camera in apply() ONLY. `eyeY` stays the honest standing eye height
+     * — the eye-height smoke reads it — so a rider's bob is a camera offset, not
+     * a change of stature. Zero on foot, in the air, and under reduced motion.
+     */
+    bob: 0,
   };
   const euler = new THREE.Euler(0, 0, 0, 'YXZ');
   const world = new THREE.Vector3();
@@ -295,6 +302,8 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
 
   return {
     state,
+    /** The walk surface (decks included) — exposed for the route planner. */
+    surfaceAt,
     get position() { return world.clone(); },
     get enu() { return { e: state.e, n: state.n, y: state.eyeY }; },
     get bearingDeg() { return yawToBearing(state.yaw); },
@@ -445,7 +454,7 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
 
     /** Write the camera. The ONLY place the camera transform is authored. */
     apply() {
-      enuToWorld(state.e, state.n, state.eyeY, world);
+      enuToWorld(state.e, state.n, state.eyeY + state.bob, world);
       camera.position.copy(world);
       euler.set(state.pitch, state.yaw, 0, 'YXZ');
       camera.quaternion.setFromEuler(euler);
