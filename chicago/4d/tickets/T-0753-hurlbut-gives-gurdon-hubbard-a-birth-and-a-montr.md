@@ -1,5 +1,5 @@
 ---
-id: T-0746
+id: T-0753
 title: Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
 state: open
 epic: META
