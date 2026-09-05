@@ -1,7 +1,7 @@
 ---
 id: T-0739
 title: dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: duplicate of T-0735 and T-0745; the red gate is repaired there
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T09:29:39.962Z
 claimed_run: null
 ---
 
@@ -53,3 +53,11 @@ This blocks every run in this lane: the dev gate is `check.sh` and nothing else
 blocks the owner's promote-to-prod. It is filed rather than fixed here because T-0543 was one
 unit of work about a census pairing and repairing the resident layer is a different unit.
 
+
+**Withdrawn 2026-09-05 as a duplicate, and the duplication is the interesting part.**
+Three tickets were filed for one red gate within a day of each other — T-0735 (the
+diagnosis, with the cohort-gate bug named), this one, and T-0745 (which re-measured after
+T-0735 and misread three self-test sections as failures). This ticket's id was also the
+one the restamp collided on. The work is done under T-0745; T-0735 carries the acceptance
+that was actually met. Nothing here is unaddressed: the cohorts, the two ladder
+re-derivations and the sidecar are all repaired in that PR.

@@ -1,7 +1,7 @@
 ---
 id: T-0745
 title: dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 4:28:19 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33957698251
 ---
 
 dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id.
@@ -47,3 +47,29 @@ which is worse than no record, because the next run to read it will look for the
 census images. Three of these four are terrain and street geometry and the fourth is ticket
 bookkeeping; none of them is that unit, and bundling them into its PR would make one
 un-revertible commit out of four unrelated repairs.
+
+---
+
+**WHAT WAS ACTUALLY RED, measured 2026-09-05 on a clean worktree of `origin/dev` at
+`cfda02f34` — and three of this ticket's four were never failures at all.** `check.sh`
+reports a failing STEP as `^ <label> failed`; the lines this ticket quoted come from
+inside three self-test steps, whose whole job is to break the enumeration and prove the
+assertions fire. `FAIL the seven cross streets have 34 platted faces — got 0` is the
+self-test working. So are the two `SOUTHERN GROUND FAIL` lines and the three far-timber
+ones; each is followed by its step's own `self-test OK`. Reading them as red cost this
+ticket its diagnosis, and would have cost the next run a day of chasing street geometry
+that is fine. The nine real steps were T-0735's nine, one of them since repaired:
+
+```
+ticket queue                                              (the duplicate id — real, and this ticket found it)
+the 75-person real-resident research cohort is fixed
+the second / third non-overlapping 75-person research cohort is fixed
+the thirteenth / fourteenth / fifteenth research cohort is fixed
+the civic, church, press and book residents re-derive from the ladder
+the regraded residents re-derive from the ladder too
+```
+
+**CLOSED on the acceptance as written:** `./tools/check.sh` exits 0 on this branch, each
+of the nine repaired rather than silenced, and T-0739 corrected — the id collision is
+restamped to T-0757 and the duplicate GATE ticket of the same number is withdrawn with
+its reasoning. T-0735 is closed by the same PR; it holds the acceptance that was met.

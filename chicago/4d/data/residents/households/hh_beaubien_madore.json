@@ -80,6 +80,14 @@
     "evidence_for": "forenames agree initial for initial: entry 'Madore Beaubien' against resident 'Madore Benjamin Beaubien'",
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

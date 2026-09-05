@@ -52,6 +52,8 @@ import argparse
 import json
 from pathlib import Path
 
+import resident_cohort_freeze
+
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
 RESEARCH = ROOT / "data" / "research" / "residents"
@@ -218,7 +220,7 @@ def researched_ids(people: dict) -> set:
             if (p.get("resident_research") or {}).get("outcome")}
 
 
-def derive(pass_no: int) -> dict:
+def derive(pass_no: int, *, novelty: bool = True) -> dict:
     if len(FRAME) != 228 or len(set(FRAME)) != 228:
         raise SystemExit("the frozen frame is not 228 unique people: %d/%d"
                          % (len(FRAME), len(set(FRAME))))
@@ -239,7 +241,14 @@ def derive(pass_no: int) -> dict:
     # Zero overlap with the people who already carry a research row. This is the
     # non-overlap that means something; see the module docstring for why "zero
     # overlap with passes 1-12" is not the same claim and is not made.
-    if overlap := researched_ids(people).intersection(ids):
+    #
+    # IT IS A SELECTION RULE AND NOT A GATE (T-0745). Researching this cohort is what
+    # gives all 76 of its people a research row, so re-running it against a frozen
+    # manifest fires on the pass's own completed work: on 2026-09-05 cohorts 13, 14
+    # and 15 were red on 76 of 76 each, and 13 and 14 were red on rows the pilot,
+    # pass 2 and pass 3 sweeps had finally written onto their reserved people. The
+    # refusal still stands, unchanged, wherever a manifest is WRITTEN.
+    if novelty and (overlap := researched_ids(people).intersection(ids)):
         raise SystemExit("cohort %d claims people who already carry a research row: %s"
                          % (pass_no, sorted(overlap)))
 
@@ -292,16 +301,13 @@ def run(pass_no: int, argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args(argv)
-    doc = derive(pass_no)
+    doc = derive(pass_no, novelty=not args.gate)
     path = out_path(pass_no)
     if args.gate:
-        # The committed manifest is the frozen thing; formatting is not evidence.
-        if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != doc:
-            raise SystemExit("%s is stale; regenerate it without --gate"
-                             % path.relative_to(ROOT))
-        print("resident research pass %d: %d people, committed manifest current"
-              % (pass_no, len(doc["people"])))
-        return 0
+        # The committed manifest is the frozen thing; formatting is not evidence, and
+        # neither is the snapshot beside the reservation (tools/resident_cohort_freeze.py).
+        return resident_cohort_freeze.gate(
+            path, doc, "resident research pass %d" % pass_no)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("resident research pass %d: wrote %d people (%s)"

@@ -1215,6 +1215,16 @@ step "…and its own assertions still fire when broken" \
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.
+# WHAT A FROZEN COHORT IS GATED ON (T-0745). All eight manifests below are gated by
+# tools/resident_cohort_freeze.py: the reservation — the ids, in order, still real,
+# named people — and not the snapshot of grades, sources and counts beside it, which
+# records the tree as it stood when the cohort was fixed. Re-deriving that snapshot
+# made a completed pass fire its own gate, and on 2026-09-05 five of these eight steps
+# were red on dev for two days on nothing but the research landing. The novelty
+# refusal is unchanged and still fatal where a manifest is WRITTEN.
+step "the cohort freeze gate's own assertions still fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
+
 step "the 75-person real-resident research cohort is fixed" \
   python3 tools/select_resident_research_pilot.py --gate
 

@@ -7,6 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import resident_cohort_freeze
+
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
 PILOT = ROOT / "data" / "research" / "residents" / "pilot_75_cohort.json"
@@ -127,12 +129,10 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gate", action="store_true")
     args = parser.parse_args()
-    rendered = json.dumps(derive(), indent=2, ensure_ascii=False) + "\n"
+    doc = derive()
+    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass two: 75 people, committed manifest current")
-        return 0
+        return resident_cohort_freeze.gate(OUT, doc, "resident research pass two")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(rendered)
     print("resident research pass two: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
