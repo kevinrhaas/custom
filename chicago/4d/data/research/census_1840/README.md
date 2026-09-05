@@ -821,3 +821,45 @@ T-0641.
 the left-sheet footings of image groups 2 and 3: nine of those sheets are read for names and none
 of them for cells, so none of them has a population key to be tested against.
 
+
+## Printed 232 has no facing leaf in this deposit, and the search that says so (T-0543, 2026-09-05)
+
+Printed pages **230** and **232** were both read to the cell with their family totals, industry
+columns, pensioners and schools cells still on a leaf nobody had named. Printed 230 was settled
+first: T-0656 attached it to `33S7-9YYJ-K2` on both keys with the sequence agreeing position for
+position, and `pages/33S7-9YYJ-NY.json` carries that pairing. Printed 232 was not, and the reason
+is worth stating, because it is the reason a pairing question can sit open for four tickets — the
+search had only ever been run INSIDE one image group at a time. The deposit is ordered by sorted
+filename and not by the book, so a left sheet and its own continuation are in the same group only
+by accident.
+
+So this pass ran the search across all three groups at once, and it is exhausted.
+`continuation_search_page_232.json` names **every right sheet in the deposit — 37 of them, 33 of
+which are household continuations — image by image, with its TOTAL footing and the reason it is
+not printed 232's pair.** Seventeen of those footings were read here for the first time: the whole
+of image group 51-74, which nothing in this project had opened, plus `33S7-9YYJ-5V`, `-B1` and
+`-B2`, the three that T-0642 recorded as owed.
+
+**Printed 232 wants a sheet of 31 entries footing 193 (by its marks) or 195 (by its own
+footings), and no such sheet exists here.** The nearest unpaired footings in the whole deposit are
+`33S7-9YYJ-6Q` at 198 — refused by its 30-entry line count — and `33SQ-GYYJ-Z1` at 181, twelve
+short. One sheet and one only matches on the line count: `33SQ-GYYJ-9J5`, measured at 31 entries
+at every grouping distance the tool offers. It foots 179, and its TOTAL column read at
+magnification opens 5, 6, 25, 11, 8 against printed 232's 5, 7, 5, 9, 6 — agreeing at position one
+and nowhere else, with none of the page's distinctive 13, 14, 16 run anywhere on the leaf. Refused
+on the population key and refused again on the sequence.
+
+That is a statement about the deposit, not about the schedule. The 1840 book had a facing leaf for
+every page it enumerated; these 74 images do not hold all of them, which is the same fact that
+leaves ten of image group 1's eleven continuations without a partner. `pages/33S7-9YYJ-W6.json`
+now says so in its own `pairing` block: those 31 households' family totals and industry columns
+are **absent rather than unread**, and nothing should be filled into them from the left sheet's
+own cells. Recovering them needs a leaf from outside this deposit — FamilySearch collection
+1786457, recorded as login-walled and inaccessible rather than absent, or a National Archives
+microfilm this project does not hold — and that is a new source record, not a re-reading.
+
+**A by-product worth having.** Counting the deposit by side classified all 24 leaves of image
+group 51-74 for the first time: 9 left sheets and 15 right, listed in the same file so that T-0496
+does not have to open them again to find the names. One of the nine is unlike anything else here —
+`33SQ-GYYJ-PW` is the densest leaf in the deposit and writes STREET NAMES down its left margin
+beside the households. It is the leaf T-0496 should open first.

@@ -103,7 +103,6 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
-T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
@@ -305,4 +304,12 @@ T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0739 — dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted
 
