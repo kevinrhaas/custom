@@ -15,13 +15,6 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
-#   2026-09-05  DRAIN THE OPEN-PR QUEUE FIRST — the owner, in session: "we have a whole lot
-#               of PRs that get left open on dev ... add a ticket or tickets to queue in the
-#               correct order to work and close and merge correctly open PRs". T-0803..T-0809
-#               head the file; the band below carries the measurement and his three rulings.
-#   2026-09-05  THE THREE PARKED QUESTIONS ANSWERED — the owner, same session, ruling on the
-#               measurements: keep the 32 MB budget · model kinship as kin[] · Wright 1834
-#               stays the planform of record. Quoted in full in T-0808; no queue line moved.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -42,53 +35,41 @@
 # --- ==========================================================================
 # --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05
 # --- ==========================================================================
-# --- Verbatim, because it re-ranks the file: "we have a whole lot of PRs that get left
-# --- open on dev, and while we are working them there are so many, can you add a ticket
-# --- or tickets to queue in the correct order to work and close and merge correctly open
-# --- PRs?"
+# --- Verbatim: "we have a whole lot of PRs that get left open on dev, and while we are
+# --- working them there are so many, can you add a ticket or tickets to queue in the
+# --- correct order to work and close and merge correctly open PRs?"
 # ---
-# --- MEASURED ON DEV AT 8cd39ed3, 2026-09-05 — this band is ordered by these numbers:
-# ---   21 PRs open against dev · 21 of 21 CONFLICT with it
-# ---   the conflict is the same six GENERATED files every time: site walk/index.html,
-# ---     both tickets.json, build.json, tickets/BOARD.md (21 of 21) and
-# ---     tools/dev-smoke-state.json (15 of 21). changelog.js, which HAS a driver,
-# ---     conflicts on 0 of 21 — that is the whole argument for T-0804.
-# ---   oldest four are 515-672 commits behind and carry bakes · one (#799) is superseded
-# ---   3 ticket ids minted twice across open PRs — each one refuses a merge
-# ---   only 3 of the 14 `hold` PRs were blocked on a real decision; the rest were parked
-# ---     on dev's red gate, which is green again since #863 and #889. THE THREE WERE
-# ---     ANSWERED 2026-09-05 (T-0808), so nothing in the backlog now waits on the owner
-# ---     and the drain ends at ZERO open PRs, not two.
+# --- MEASURED 2026-09-05 16:00Z on dev at 8cd39ed3: 21 PRs open, 21 of 21 CONFLICTING,
+# --- and the conflict the same six GENERATED files every time — site walk/index.html,
+# --- both tickets.json, build.json, tickets/BOARD.md (21 of 21) and
+# --- tools/dev-smoke-state.json (15 of 21). changelog.js, which HAS a driver, conflicted
+# --- on 0 of 21. That contrast is the whole argument for T-0813.
 # ---
-# --- THE ORDER IS A DEPENDENCY, NOT A PREFERENCE. T-0803 culls what cannot be saved
-# --- (21 -> 16). T-0804 stops the six build products conflicting, which is what makes
-# --- every lap after the first cheap. T-0805/6/7 are three laps of four to five PRs,
-# --- landed as units the way #880 and #891 landed theirs — one at a time loses ground,
-# --- because a merge lap costs more wall-clock than the interval between merges.
-# --- T-0808 carries the owner's three answers into the tickets that asked them. T-0809 is
-# --- why the pile formed and is the only ticket here that stops it re-forming.
+# --- WHAT HAPPENED IN THE HOUR AFTER, and it is the finding, not a footnote. The band
+# --- below was written assuming runs would have to land those PRs in laps. They did not
+# --- need to. T-0812 closed five that dev had outrun (#799 superseded by #816; #432,
+# --- #562, #599, #601 between 515 and 672 commits behind, carrying bakes) — and then the
+# --- LANE DRAINED ITSELF, merging #892, #836, #839, #876, #899 and more without help,
+# --- the moment #836 took the published tree off the 32 MB wall and dev's gate went
+# --- green. 21 open at 16:00Z, 12 by 17:05Z.
 # ---
-# --- LAP SIZES AFTER THE RULINGS: T-0803 culls 5 (21 -> 16) · lap 1 six PRs (-> 10) ·
-# --- lap 2 five (-> 5) · lap 3 five (-> 0). #839 joins lap 1 beside #822, which writes
-# --- the note its kin[] rows cite; #886 joins lap 3, mergeable as it stands because its
-# --- own acceptance was `nothing moves` and the ruling is that nothing does.
+# --- SO THE BINDING CONSTRAINT WAS NEVER "NOBODY IS MERGING". It was two stop-the-world
+# --- faults — a full byte budget and a red gate — plus a janitor that cannot see either.
+# --- The lap tickets are kept because a backlog will re-form, but T-0813 and T-0809 are
+# --- the ones that matter: stop the six build products conflicting, and make the janitor
+# --- report a PR it cannot merge instead of skipping it in silence.
 # ---
-# --- OWNER RULINGS TAKEN IN THE SAME SESSION, so the runs do not re-ask:
-# ---   the stale four: "close them, re-queue the tickets" — their tickets all read open
-# ---     on dev, so nothing is lost
-# ---   the lane rate: drop custom to slices: 2 in polecat-platform's focus.json
-# ---   the three parked questions, ANSWERED IN FULL the same day and quoted in T-0808:
-# ---     the site budget — "keep 32, land #836, rank T-0727 next"; the 1.31 MB duplicate
-# ---       changelog is the whole fix, and the budget stays because it is what found it
-# ---     kinship — YES, the household-level kin[] block #839 built: graded, reciprocal,
-# ---       legal only against declared inverses
-# ---     the forks — WRIGHT 1834 STAYS the planform of record, nothing moves; and
-# ---       thompson_plat_1830.json's declared +/-20 m is corrected to the 27-60 m measured
+# --- OWNER RULINGS TAKEN IN THE SAME SESSION, so no run re-asks (all three in T-0808):
+# ---   the stale four: "close them, re-queue the tickets" — done, T-0812, PR #900
+# ---   the lane rate: custom 5 -> 2 slices, merged as polecat-platform#157
+# ---   the site budget: keep 32, land #836 (done), rank T-0727 next
+# ---   kinship: YES, the household-level kin[] block #839 built (landed on dev)
+# ---   the forks: WRIGHT 1834 STAYS the planform of record, nothing moves
 
-T-0804 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
-T-0805 — Drain lap 1: the six PRs standing closest to dev, and the four ticket ids minted twice
-T-0806 — Drain lap 2: the five research and cohort PRs, oldest first
-T-0807 — Drain lap 3: the site-budget cluster, the Thompson georeference, and the one PR whose conflict is a research claim
+T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
+T-0814 — Drain lap 1: the four PRs whose conflict is build products and nothing else
+T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
+T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 
@@ -199,7 +180,6 @@ T-0693 — Edward Richards Allen's card says occupation none_recorded while the 
 # --- counted, and the one figure that moves the rest is that the 1835 town census gives
 # --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
 # --- dwelling held more than one household, so one family per roof undercounts.
-T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
@@ -219,7 +199,6 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
-T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton
@@ -233,14 +212,12 @@ T-0451 — Only one north-south street stands north of the river, where the Thom
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
-T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed; each puts something in
 # --- the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
@@ -408,8 +385,8 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0725 — The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate
-T-0727 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
-T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
+T-0803 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
+T-0804 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
@@ -456,3 +433,28 @@ T-0798 — Spend the 125 land-sale rows onto the School Section's numbered block
 T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
+T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
+T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
+T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
+T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
+T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
+T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.

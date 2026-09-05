@@ -67479,6 +67479,7 @@
           "claims": [
             "chicago_democrat_1834_02_11#c004",
             "chicago_democrat_1834_05_07#c012",
+            "chicago_democrat_1834_05_21#c001",
             "chicago_democrat_1834_06_11#c012",
             "chicago_democrat_1834_07_02#c009",
             "chicago_democrat_1835_06_10#c011",
@@ -67504,20 +67505,6 @@
             "offset_text": "RK AND DEARBORS-STREETS.",
             "offset_normalized": "[STORE BETWEEN CLA]RK AND DEARBORN-STREETS",
             "street": null
-          }
-        },
-        {
-          "anchor": "Lasalle and Lake streets",
-          "class": "corner",
-          "first_issue": "1834-05-21",
-          "last_issue": "1834-05-21",
-          "claims": [
-            "chicago_democrat_1834_05_21#c001"
-          ],
-          "placement": {
-            "class": "corner",
-            "anchor": "Lasalle and Lake streets",
-            "street": "Lasalle Street and Lake Street"
           }
         },
         {
@@ -67550,6 +67537,20 @@
         {
           "from": "P. Pruyne",
           "merge_rule": "'P. Pruyne' is 'P. Pruyne & Co.' with the '& Co.' not set, and ONE advertisement is printed under both signatures. The timber notice copy-dated Ap'l. 22 runs on the '& Co.' side at 1834-04-23 c005 and 1834-04-30 c012 — 'THE subscribers having this day made an arrangement with Mr. A. McGregor … Pine Timber from 12 to 60 feet in length', signed '[P.] PRUYNE & CO.' — and on the other side at 1834-05-07 c012 as '[The] subscribers having this da[y] … from 12 to 60 f[eet] in [length,] from 6 to 14 in square. Thills supplied on short notice. Ap'l. 22. P PRUYNE'. Same opening words, same length range, same copy date, and a PLURAL subscriber over a singular signature. The house-for-sale notice at 1834-05-21 c001 carries the same copy date and the same plural — 'WE offer for sale the House on the corner of Lasalle and Lake streets' over 'Ap'l. 22. P. PRUYNE'. The surviving record already carries 'pine timber dealing' among its trades from the (timber) merge, so this is the third printing of a house the register had split three ways. Merged INTO 'P. Pruyne & Co.' because that is the record that can be placed: its store stands between Clark and Dearborn streets across four printings, while the other's live placement is `none`. ONE CAUTION THE MERGE CANNOT FIX HERE: the Lasalle-and-Lake corner it brings across is a house Pruyne OFFERS FOR SALE, not his own stand — 1834-05-21 c001 is a `building` claim and he signs it as vendor — so that reading must not be read as a second frontage for this firm. It does not become the live placement (its class outranks nothing, the source record's live placement being `none`), but it does stand in `placement_readings`, and T-0412 carries the machinery question."
+        }
+      ],
+      "vendor_placements": [
+        {
+          "claim": "chicago_democrat_1834_05_21#c001",
+          "issue": "1834-05-21",
+          "role": "vendor",
+          "printed_placement": {
+            "class": "corner",
+            "anchor": "Lasalle and Lake streets",
+            "street": "Lasalle Street and Lake Street"
+          },
+          "address_text": "the House on [the corner] of Lasalle and Lake streets",
+          "rule": "T-0412: the advertiser signs this building notice as its VENDOR, so the address is the house he is selling and not the ground his own house stands on. It places nothing here; the building itself stands in the claim."
         }
       ],
       "built_at_scene_date": true,
