@@ -26,6 +26,14 @@
  * MEANS — Space inspects on foot and ascends in the air — so the backend that
  * reads the key has to be able to see the mode.
  *
+ * A SECOND WRITER besides the active backend: js/travel.js, the auto-travel
+ * controller, writes `forward`, `yawDelta`, `pitchDelta`, `rise` (and
+ * `sprint = false`) BEFORE the walker reads them and zeroes exactly those fields
+ * again in `afterWalk()` once the walker has consumed them, so a value it wrote
+ * never stands into the next frame the way a touch value legitimately does. It
+ * never overwrites a visitor's write: any movement, look, sprint or inspect of
+ * theirs ends the ride first and flows through untouched.
+ *
  * `interactPoint` rides along with `interact`: a crosshair inspection has no
  * point (null) and a tap has the one you tapped, in normalised device coords.
  * `interactSource` says which gesture asked — 'key' or 'point' — because the

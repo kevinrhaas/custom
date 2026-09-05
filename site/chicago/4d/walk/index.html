@@ -22,6 +22,14 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316150f'/%3E%3Cpath d='M30 16H17M17 16L7 6M17 16L7 26' stroke='%23d8a24a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="./css/walk.css">
+<!-- One sheet per feature of the right-hand drawer, so the people who own a
+     feature own its style. walk.css stays the base and the tokens. -->
+<link rel="stylesheet" href="./css/drawer.css">
+<link rel="stylesheet" href="./css/goto.css">
+<link rel="stylesheet" href="./css/travel.css">
+<link rel="stylesheet" href="./css/people.css">
+<link rel="stylesheet" href="./css/evidence.css">
+<link rel="stylesheet" href="./css/card.css">
 
 <!--
   No build step, no CDN. three is vendored under vendor/three-<version>/ and
@@ -63,7 +71,7 @@
     <p class="gate-keys gate-touch">
       Left thumb to walk · drag the right side to look · tap a building to inspect
     </p>
-    <p class="gate-build" id="gate-build">build 9a5f1677 · Sep 4, 2026, 9:15 PM CT</p>
+    <p class="gate-build" id="gate-build">build e8be83da · Sep 4, 2026, 9:33 PM CT</p>
   </div>
 </div>
 <div id="hud" class="hud" hidden>
@@ -99,15 +107,21 @@
           <button type="button" class="cm-reset" id="cm-reset">Show everything</button>
         </div>
       </div>
-      <button id="btn-fly" class="chip" aria-pressed="false" title="Free-fly — rise above the town (F)">
-        <span class="fly-glyph" aria-hidden="true">▲</span> <span class="chip-label" id="fly-label">Fly</span>
+      <!-- The pace you move at on your own feet — walk, wagon or horse. One tap
+           from the walk, because "go as fast as a horse through the city" is a
+           thing you decide while walking, not in a settings page. -->
+      <button id="btn-pace" class="chip" data-pace="walk" title="Your pace — walk, wagon or horse (P)">
+        <span class="pace-glyph" aria-hidden="true"></span> <span class="chip-label" id="pace-label">Walk</span>
       </button>
-      <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
+      <button id="btn-fly" class="chip" aria-pressed="false" title="Free-fly — rise above the town (F)">
+        <span class="fly-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg></span> <span class="chip-label" id="fly-label">Fly</span>
+      </button>
+      <button id="btn-theme" class="chip icon" title="Light / dark interface" aria-label="Light / dark interface"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17" fill="currentColor" stroke="none"/></svg></button>
       <!-- A hamburger, not a "?". Behind it are the controls, every place you can
            go, the settings and the release notes; a question mark promises help
            and hides four fifths of the interface. -->
       <button id="btn-help" class="chip icon" aria-label="Menu"
-        title="Menu — controls, places, settings and what's new (H)">☰<span
+        title="Menu — controls, places, settings and what's new (H)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span
         class="chip-dot" id="help-dot" hidden aria-hidden="true"></span></button>
     </div>
   </div>
@@ -152,18 +166,302 @@
     </div>
   </div>
 
+  <!-- THE DRAWER. A right-hand rail of sections with a content column beside it,
+       the way the fleet's apps carry their left rail; on a phone it is a sheet
+       rising from the bottom. `hidden` stays the state of record (the harness
+       reads it); drawer.css turns it into a slide rather than a display switch. -->
   <div class="hud-panel" id="panel" hidden>
-    <div class="panel-tabs" role="tablist">
-      <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
-      <button class="panel-tab" data-tab="goto" role="tab">Go to</button>
-      <button class="panel-tab" data-tab="settings" role="tab">Settings</button>
-      <button class="panel-tab" data-tab="evidence" role="tab">Evidence</button>
-      <button class="panel-tab" data-tab="whatsnew" role="tab">What's new<span
-        class="tab-dot" id="whatsnew-dot" hidden aria-hidden="true"></span></button>
-      <button class="panel-close" id="panel-close" title="Close (Esc)">&times;</button>
-    </div>
+    <nav class="panel-tabs" role="tablist" aria-label="Menu sections">
+      <button class="panel-tab is-on" data-tab="goto" role="tab" aria-selected="true" title="Go to"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg><span class="tab-label">Go to</span></button>
+      <button class="panel-tab" data-tab="travel" role="tab" aria-selected="false" title="Travel"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h3l2-5h6l2 5h3"/><path d="M9 12l1.5-4h3L15 12"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M12 8V4"/></svg><span class="tab-label">Travel</span></button>
+      <button class="panel-tab" data-tab="people" role="tab" aria-selected="false" title="People"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 22 19"/></svg><span class="tab-label">People</span></button>
+      <button class="panel-tab" data-tab="evidence" role="tab" aria-selected="false" title="Evidence"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0z"/></svg><span class="tab-label">Evidence</span></button>
+      <button class="panel-tab" data-tab="settings" role="tab" aria-selected="false" title="Settings"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 12h2M10 12h10M4 17h8M16 17h4"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="17" r="2"/></svg><span class="tab-label">Settings</span></button>
+      <button class="panel-tab" data-tab="controls" role="tab" aria-selected="false" title="Controls"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h10"/></svg><span class="tab-label">Controls</span></button>
+      <button class="panel-tab" data-tab="whatsnew" role="tab" aria-selected="false" title="What's new"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="tab-label">What's new</span><span class="tab-dot" id="whatsnew-dot" hidden aria-hidden="true"></span></button>
+    </nav>
+    <header class="panel-head">
+      <button class="panel-back" id="panel-back" type="button" aria-label="Back" hidden><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h2 class="panel-title" id="panel-title">Go to</h2>
+      <button class="panel-close" id="panel-close" type="button" title="Close (Esc)" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+    <div class="panel-scroll" id="panel-scroll">
+    <!-- Everywhere you can stand, and everyone who stood there, in one searchable
+         list: js/goto.js renders this section from the scene, the compiled index,
+         the registry and the people directory, so nothing here goes stale by hand. -->
+    <section class="panel-body" data-panel="goto"></section>
+    <!-- How you get there — instantly, on foot, by wagon, on horseback, or flying.
+         js/hud.js paints the controls; js/travel.js owns the moving. -->
+    <section class="panel-body" data-panel="travel" hidden>
+      <div class="field"><span>How you get there</span>
+        <div class="seg" role="radiogroup" id="s-travel" aria-label="Travel mode">
+          <button type="button" class="seg-btn" data-mode="instantly" role="radio" aria-checked="true">Instantly</button>
+          <button type="button" class="seg-btn" data-mode="walk" role="radio" aria-checked="false">Walk</button>
+          <button type="button" class="seg-btn" data-mode="wagon" role="radio" aria-checked="false">Wagon</button>
+          <button type="button" class="seg-btn" data-mode="horse" role="radio" aria-checked="false">Horse</button>
+          <button type="button" class="seg-btn" data-mode="fly" role="radio" aria-checked="false">Fly</button>
+        </div></div>
+      <div class="field"><span>Your own pace, on the streets</span>
+        <div class="seg" role="radiogroup" id="s-pace" aria-label="Your pace">
+          <button type="button" class="seg-btn" data-pace="walk" role="radio" aria-checked="true">Walk</button>
+          <button type="button" class="seg-btn" data-pace="wagon" role="radio" aria-checked="false">Wagon</button>
+          <button type="button" class="seg-btn" data-pace="horse" role="radio" aria-checked="false">Horse</button>
+        </div></div>
+      <p class="legend-note" id="travel-note"></p>
+      <label class="field row check-field"><span>Rider's head moves with the horse's gait</span>
+        <input type="checkbox" id="s-head-bob"></label>
+      <p class="legend-note">These paces are how the camera moves, not claims about 1835: a light
+        wagon at a trot, a horse at a canter, and a gallop on <kbd>Shift</kbd>. Walking speed is
+        the slider under Settings. Choosing a place in Go to takes you there at the pace above,
+        along the streets where they run — Fly lifts you over the town and sets you down at the
+        door. Any movement of your own stops the ride; where no walkable route exists you are
+        taken straight there, as before.</p>
+    </section>
+    <!-- Everyone the sources put in this town. js/people.js renders the directory;
+         the household browser the Evidence panel used to carry lives at its foot,
+         under the same #residents mount. -->
+    <section class="panel-body" data-panel="people" hidden>
+      <div id="people-directory"></div>
+      <h3 class="legend-h">Browse by household</h3>
+      <p class="legend-note" id="residents-note" aria-busy="true">Loading…</p>
+      <div class="liberties" id="residents" aria-busy="true">
+        <p class="legend-note">Loading…</p>
+      </div>
+    </section>
+    <section class="panel-body" data-panel="evidence" hidden>
+      <!-- The Evidence hub (evidence.js). Seven topics, one shown at a time; the
+           tiles render into #evidence-hub. Each topic is a container whose mounts
+           keep their ids — liberties.js, ground.js, fauna.js, plants.js and
+           exclusions.js still render into them, and the smoke reads them by id.
+           The topics carry no `hidden` in the markup on purpose: if the hub
+           module fails, the panel degrades to the one long scroll it used to be. -->
+      <div class="ev-hub" id="evidence-hub"></div>
 
-    <section class="panel-body" data-panel="controls">
+      <div class="ev-topic" data-topic="grades">
+        <h3 class="legend-h ev-topic-title">How we grade</h3>
+        <ul class="legend-list">
+          <li><i class="sw sw-doc"></i> <b>attested</b> — a source attests this at the scene date</li>
+          <li><i class="sw sw-inf"></i> <b>inferred</b> — reasoned from evidence about this thing: a described location, a measured lot, an adjacent record</li>
+          <li><i class="sw sw-rec"></i> <b>reconstructed</b> — no source speaks to this one; built to fill a demonstrable need of the town, and drawn as dithered massing</li>
+        </ul>
+        <p class="legend-note">Every building is clickable. The tint and the citation come from the
+          same record, so they cannot drift apart. Dimensional uncertainty is separate: a building
+          can be well documented in character and still have a guessed size, and the popup says so.</p>
+      </div>
+
+      <div class="ev-topic" data-topic="liberties">
+        <h3 class="legend-h ev-topic-title">What we made up</h3>
+        <!-- The document's own account of what this list is, from docs/LIBERTIES.md.
+             A hand-written paraphrase of it stood here until 2026-08-11 and nothing
+             held the two together. -->
+        <p class="legend-note ev-lead" id="liberties-note" aria-busy="true">Loading…</p>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">Straight from the project's append-only
+            <code>docs/LIBERTIES.md</code>. Every value a record states without evidence is named in
+            this list — an invented outline or placement, and equally a roof, a height or a porch
+            chosen because it was usual rather than because it was found. An entry says which
+            inventions it admits to — the dashed chips — and the commit gate checks those claims
+            against the records both ways, failing if an invention has no admission or an admission
+            has no invention. The rule now runs the other way as well: where a record states
+            something the model does not build — a stable, a painted sign, a chimney count no
+            generator reads — the popup marks that row <em>not built</em> or <em>not modelled from
+            this</em>, and it too has to be named here. A well-evidenced feature you cannot see is
+            as much a gap as an invention you can.</p>
+        </details>
+        <div class="liberties" id="liberties" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+
+      <div class="ev-topic" data-topic="ground">
+        <h3 class="legend-h ev-topic-title">The ground you stand on</h3>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">The buildings are not the only things making claims here. The
+            terrain is a research record too — a documented water surface, three division levels
+            argued out of period narrative feet, a bank face and a river cross-section that no
+            source describes at all — and it dithers under the confidence view like everything
+            else while never saying what was graded. These are its own statements, each with its
+            figures, its reasoning and its citation, straight from the epoch's
+            <code>terrain_spec.json</code>. Where a claim has no reasoning recorded, it says so.</p>
+        </details>
+        <div class="liberties" id="ground" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+
+      <div class="ev-topic" data-topic="fauna">
+        <h3 class="legend-h ev-topic-title">What was living here</h3>
+        <!-- ROADMAP K51. The animal records existed from the beginning and reached
+             no browser: no renderer named the directory and publish.sh did not
+             copy it. Three documents implied otherwise. -->
+        <p class="legend-note ev-lead" id="fauna-note" aria-busy="true">Loading…</p>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">Ten habitats and every animal researched into them, stated for
+            <b>1 July</b> rather than for the year — which is the whole difficulty of the dataset,
+            because July is the quietest wildlife date in the Chicago calendar. The birds are mostly
+            done singing, the ducks are flightless and in cover, and several of the animals a reader
+            expects are here only as sign or are not here at all. Each record says whether you would
+            see it, hear it, or find only its tracks, how many, what it would be doing, and the
+            sources behind all three. <b>None of them is drawn in the scene.</b> This is the
+            research, published where a visitor can read it, and not a claim that the town in front
+            of you is populated.</p>
+        </details>
+        <div class="liberties" id="fauna" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+
+      <div class="ev-topic" data-topic="plants">
+        <h3 class="legend-h ev-topic-title">What grows here</h3>
+        <!-- T-0281. The plant records were planted by flora.js from the beginning and
+             reached no card a visitor could open — the third time this project found
+             the same gap, after the animals (K51) and the households (K52). The
+             section carries the sward's own ceiling with them, because the share of a
+             record the scene can draw had until now been declared to reviewers only. -->
+        <p class="legend-note ev-lead" id="plants-note" aria-busy="true">Loading…</p>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">Ten plant communities and every species researched into them,
+            recorded for <b>1 July</b> — what each one is doing in its community, how much of it
+            the record asks for, how tall and how wide, whether it is in flower on the day, and
+            the sources behind all of it. The communities' boundaries are the weakest claim here
+            and each says so: the vegetation is documented, but no survey drew the line between
+            one community and the next. Where a community asks for more small plants than the
+            sward lattice can hold, the card says <b>what share of the record you are actually
+            standing in</b> — under the dense timber it is half of one per cent, and that is a
+            limit of the drawing and not a gap in the research.</p>
+        </details>
+        <div class="liberties" id="plants" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+
+      <div class="ev-topic" data-topic="exclusions">
+        <h3 class="legend-h ev-topic-title">What is not here</h3>
+        <p class="legend-note ev-lead" id="exclusions-note" aria-busy="true">Loading…</p>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">Two different findings share this one list, and the chip is how
+            to tell them apart: an entry marked <em>not until</em> a later year is dated after
+            1 July 1835, and an entry with no chip at all had already come down. Each carries the
+            citation the decision rests on. The view from the air stays the honest picture of the
+            rest.</p>
+        </details>
+        <div class="liberties" id="exclusions" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+
+      <div class="ev-topic" data-topic="uncertain">
+        <h3 class="legend-h ev-topic-title">What is still an open question</h3>
+        <p class="legend-note ev-lead" id="uncertain-note" aria-busy="true">Loading…</p>
+        <details class="ev-about">
+          <summary>About this list</summary>
+          <p class="legend-note">Which is why they are not on the list of what is not here: a
+            structure standing in the scene cannot be filed under what is not here. Each entry says
+            what is open, what settling it would change, and the evidence it rests on — or that it
+            rests on none.</p>
+        </details>
+        <div class="liberties" id="uncertain" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
+      </div>
+    </section>
+    <!-- Grouped so the list scans: the value is the first thing on every row and
+         the reasoning behind a researched default folds under "Why this default".
+         Every id here is read by the smoke gate — keep them. -->
+    <section class="panel-body" data-panel="settings" hidden>
+      <div class="settings-group">
+        <h4>Units</h4>
+        <label class="field row"><span>Measurement units</span>
+          <select id="s-units">
+            <option value="imperial">Imperial — ft, mi, mph</option>
+            <option value="metric">Metric — m, km, km/h</option>
+          </select></label>
+      </div>
+      <div class="settings-group">
+        <h4>Movement</h4>
+        <label class="field"><span>Walking speed <b id="v-speed"></b></span>
+          <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
+        <!-- Eye height is a CLAIM about 1835, so the default is the researched
+             figure and the slider says where that figure sits. Raising it is a
+             comfort choice about the view, not a correction. -->
+        <label class="field"><span>Eye height <b id="v-eye"></b></span>
+          <input type="range" id="s-eye" min="1.4" max="2.6" step="0.02"></label>
+        <details class="why"><summary>Why this default</summary>
+          <p class="legend-note" id="eye-note">The default, 1.68 m, is the mean stature of an adult
+            man in the 1830s United States — this walkthrough puts your eye where a person of the
+            period had theirs, which is lower than a modern viewer expects and lower than the
+            prairie grass beside you, because both of those are true of the place. Raise it if the
+            view is uncomfortable; it changes only the camera, never the town.</p>
+        </details>
+      </div>
+      <div class="settings-group">
+        <h4>View</h4>
+        <label class="field"><span>Field of view <b id="v-fov"></b></span>
+          <input type="range" id="s-fov" min="55" max="100" step="1"></label>
+        <!-- R-A1. An accessibility aid layered on a default that was measured
+             correct, never a substitute for one. It must not read as a claim
+             about how visible an 1835 street was — see streets.js § R-A1. -->
+        <label class="field"><span>Road visibility <b id="v-road-aid"></b></span>
+          <input type="range" id="s-road-aid" min="0" max="1" step="0.05"></label>
+        <details class="why"><summary>Why this default</summary>
+          <p class="legend-note" id="road-aid-note">These are worn earth tracks through prairie
+            grass, and how much bare earth shows is a modelled figure with its own evidence behind
+            it — so the default paints them exactly as the record describes. Raise this if they are
+            hard to follow: on a phone in daylight, or if faint contrast is difficult to see. It
+            changes nothing but how strongly the roads are painted on your screen, and it is not a
+            claim that 1835 Chicago's streets looked bolder than this.</p>
+        </details>
+        <!-- K24, owner-requested. The same standing as the road aid: an
+             accommodation for your screen, layered on a grade that was measured
+             against a photograph. The ceiling is one stop — see world.js
+             § BASE_EXPOSURE for why that is the bound. -->
+        <label class="field"><span>Brightness <b id="v-brightness"></b></span>
+          <input type="range" id="s-brightness" min="0" max="1" step="0.05"></label>
+        <details class="why"><summary>Why this default</summary>
+          <p class="legend-note" id="brightness-note">The scene is lit by a sky whose colour was
+            matched to a July photograph taken at this latitude, and the default position of this
+            slider is that measured light — which is why it says "calibrated" rather than showing a
+            number. Raise it if the scene is hard to see: a dim room, a bright window, a phone at
+            arm's length. It opens the exposure by up to one photographic stop and changes nothing
+            else — no wall, roof or street is a different colour underneath it, and the brighter
+            end is not a second reconstruction of how 1835 looked. All of this project's own
+            measurements are taken at the calibrated position whatever you choose here.</p>
+        </details>
+      </div>
+      <div class="settings-group">
+        <h4>Performance</h4>
+        <label class="field row"><span>Scene detail</span>
+          <select id="s-detail">
+            <option value="full">Full — every plant and tree</option>
+            <option value="balanced">Balanced — fewer plants</option>
+            <option value="light">Light — fewest, for slow machines</option>
+          </select></label>
+        <label class="field row"><span>Image sharpness</span>
+          <select id="s-quality">
+            <option value="1">Low — smoother</option>
+            <option value="1.5">Medium</option>
+            <option value="2">High — sharper</option>
+          </select></label>
+      </div>
+      <div class="settings-group">
+        <h4>Show</h4>
+        <label class="field row check-field"><span>Compass</span>
+          <input type="checkbox" id="s-compass"></label>
+        <label class="field row check-field"><span>Overview map</span>
+          <input type="checkbox" id="s-overview-map"></label>
+        <label class="field row check-field"><span>1835 / current street names</span>
+          <input type="checkbox" id="s-street-names"></label>
+        <div class="field row"><span>Navigation guide</span>
+          <button class="setting-button" id="s-show-control-help" type="button">Show guide</button>
+        </div>
+      </div>
+    </section>
+    <section class="panel-body" data-panel="controls" hidden>
       <dl class="keys" id="keys-desktop">
         <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>walk</dd>
         <dt><kbd>Shift</kbd></dt><dd>run</dd>
@@ -186,224 +484,20 @@
         <dt>Fly</dt><dd>rise above the town — ▲ ▼ appear bottom-right</dd>
       </dl>
     </section>
-
-    <!-- Everywhere you can stand, in one list. The scene's viewpoints, the
-         verified street junctions and every structure the renderer loaded used
-         to sit in two different places inside Settings — a "Named viewpoints"
-         row of chips and, below it, a search that already contained the same
-         ground. Going somewhere is not a setting, so it is its own tab, next
-         to Controls, and the two lists are one. -->
-    <section class="panel-body" data-panel="goto" hidden>
-      <div class="field jump-field">
-        <span>Search every place <b id="jump-count"></b></span>
-        <input type="search" id="jump-search" placeholder="A viewpoint, a building, a corner…"
-          autocomplete="off" spellcheck="false" aria-controls="jump-results">
-        <div class="jump-results" id="jump-results" role="listbox"></div>
-      </div>
-      <p class="legend-note" id="jump-note"></p>
-      <p class="legend-note">The chip grades the POSITION, not the building: a tavern can be
-        documented down to its landlord and its sign and still stand where no source puts it,
-        because what survives is usually a street and a side of it rather than a corner. The
-        grade is the record's own — the same value the building card shows when you arrive —
-        so the two cannot drift apart. Viewpoints are authored camera positions, not claims
-        about the town, and junctions are the survey control this project georeferenced from.</p>
-    </section>
-
-    <section class="panel-body" data-panel="settings" hidden>
-      <label class="field row"><span>Measurement units</span>
-        <select id="s-units">
-          <option value="imperial">Imperial — ft, mi, mph</option>
-          <option value="metric">Metric — m, km, km/h</option>
-        </select></label>
-      <label class="field"><span>Walking speed <b id="v-speed"></b></span>
-        <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
-      <!-- Eye height is a CLAIM about 1835, so the default is the researched
-           figure and the slider says where that figure sits. Raising it is a
-           comfort choice about the view, not a correction. -->
-      <label class="field"><span>Eye height <b id="v-eye"></b></span>
-        <input type="range" id="s-eye" min="1.4" max="2.6" step="0.02"></label>
-      <p class="legend-note" id="eye-note">The default, 1.68 m, is the mean stature of an adult
-        man in the 1830s United States — this walkthrough puts your eye where a person of the
-        period had theirs, which is lower than a modern viewer expects and lower than the
-        prairie grass beside you, because both of those are true of the place. Raise it if the
-        view is uncomfortable; it changes only the camera, never the town.</p>
-      <label class="field"><span>Field of view <b id="v-fov"></b></span>
-        <input type="range" id="s-fov" min="55" max="100" step="1"></label>
-      <!-- R-A1. An accessibility aid layered on a default that was measured
-           correct, never a substitute for one. It must not read as a claim
-           about how visible an 1835 street was — see streets.js § R-A1. -->
-      <label class="field"><span>Road visibility <b id="v-road-aid"></b></span>
-        <input type="range" id="s-road-aid" min="0" max="1" step="0.05"></label>
-      <p class="legend-note" id="road-aid-note">These are worn earth tracks through prairie
-        grass, and how much bare earth shows is a modelled figure with its own evidence behind
-        it — so the default paints them exactly as the record describes. Raise this if they are
-        hard to follow: on a phone in daylight, or if faint contrast is difficult to see. It
-        changes nothing but how strongly the roads are painted on your screen, and it is not a
-        claim that 1835 Chicago's streets looked bolder than this.</p>
-      <!-- K24, owner-requested. The same standing as the road aid: an
-           accommodation for your screen, layered on a grade that was measured
-           against a photograph. The ceiling is one stop — see world.js
-           § BASE_EXPOSURE for why that is the bound. -->
-      <label class="field"><span>Brightness <b id="v-brightness"></b></span>
-        <input type="range" id="s-brightness" min="0" max="1" step="0.05"></label>
-      <p class="legend-note" id="brightness-note">The scene is lit by a sky whose colour was
-        matched to a July photograph taken at this latitude, and the default position of this
-        slider is that measured light — which is why it says "calibrated" rather than showing a
-        number. Raise it if the scene is hard to see: a dim room, a bright window, a phone at
-        arm's length. It opens the exposure by up to one photographic stop and changes nothing
-        else — no wall, roof or street is a different colour underneath it, and the brighter
-        end is not a second reconstruction of how 1835 looked. All of this project's own
-        measurements are taken at the calibrated position whatever you choose here.</p>
-      <label class="field row"><span>Scene detail</span>
-        <select id="s-detail">
-          <option value="full">Full — every plant and tree</option>
-          <option value="balanced">Balanced — fewer plants</option>
-          <option value="light">Light — fewest, for slow machines</option>
-        </select></label>
-      <label class="field row"><span>Image sharpness</span>
-        <select id="s-quality">
-          <option value="1">Low — smoother</option>
-          <option value="1.5">Medium</option>
-          <option value="2">High — sharper</option>
-        </select></label>
-      <label class="field row check-field"><span>Show compass</span>
-        <input type="checkbox" id="s-compass"></label>
-      <label class="field row check-field"><span>Show overview map</span>
-        <input type="checkbox" id="s-overview-map"></label>
-      <label class="field row check-field"><span>Show 1835 / current street names</span>
-        <input type="checkbox" id="s-street-names"></label>
-      <div class="field row"><span>Navigation help</span>
-        <button class="setting-button" id="s-show-control-help" type="button">Show guide</button>
-      </div>
-    </section>
-
-    <section class="panel-body" data-panel="evidence" hidden>
-      <ul class="legend-list">
-        <li><i class="sw sw-doc"></i> <b>attested</b> — a source attests this at the scene date</li>
-        <li><i class="sw sw-inf"></i> <b>inferred</b> — reasoned from evidence about this thing: a described location, a measured lot, an adjacent record</li>
-        <li><i class="sw sw-rec"></i> <b>reconstructed</b> — no source speaks to this one; built to fill a demonstrable need of the town, and drawn as dithered massing</li>
-      </ul>
-      <p class="legend-note">Every building is clickable. The tint and the citation come from the
-        same record, so they cannot drift apart. Dimensional uncertainty is separate: a building
-        can be well documented in character and still have a guessed size, and the popup says so.</p>
-
-      <h3 class="legend-h">What we made up</h3>
-      <!-- The document's own account of what this list is, from docs/LIBERTIES.md.
-           A hand-written paraphrase of it stood here until 2026-08-11 and nothing
-           held the two together. -->
-      <p class="legend-note" id="liberties-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Straight from the project's append-only
-        <code>docs/LIBERTIES.md</code>. Every value a record states without evidence is named in
-        this list — an invented outline or placement, and equally a roof, a height or a porch
-        chosen because it was usual rather than because it was found. An entry says which
-        inventions it admits to — the dashed chips — and the commit gate checks those claims
-        against the records both ways, failing if an invention has no admission or an admission
-        has no invention. The rule now runs the other way as well: where a record states
-        something the model does not build — a stable, a painted sign, a chimney count no
-        generator reads — the popup marks that row <em>not built</em> or <em>not modelled from
-        this</em>, and it too has to be named here. A well-evidenced feature you cannot see is
-        as much a gap as an invention you can.</p>
-      <div class="liberties" id="liberties" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">The ground you are standing on</h3>
-      <p class="legend-note">The buildings are not the only things making claims here. The
-        terrain is a research record too — a documented water surface, three division levels
-        argued out of period narrative feet, a bank face and a river cross-section that no
-        source describes at all — and it dithers under the confidence view like everything
-        else while never saying what was graded. These are its own statements, each with its
-        figures, its reasoning and its citation, straight from the epoch's
-        <code>terrain_spec.json</code>. Where a claim has no reasoning recorded, it says so.</p>
-      <div class="liberties" id="ground" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">Who was living here</h3>
-      <!-- ROADMAP K52. The household records had ONE reader — a building card,
-           reached through `lives_at` or `works_at` — so 17 households whose
-           residence and workplace are both unattested appeared nowhere at all,
-           and two thirds of every record that did appear was left in the file. -->
-      <p class="legend-note" id="residents-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Each household says when it came, from where, why, where it
-        lived and worked, and whether the sources actually place it here on 1 July 1835 —
-        with the reasoning attached to every one of those, because on this layer the
-        reasoning is usually the finding. A famous man with a conjectural roof is the normal
-        case, not the exception. Open a household to fetch its record. <b>Nobody is drawn in
-        the scene</b>, and the removal of the Potawatomi in August 1835 is not depicted or
-        staged anywhere in it: this is published research, not a population.</p>
-      <div class="liberties" id="residents" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">What was living here</h3>
-      <!-- ROADMAP K51. The animal records existed from the beginning and reached
-           no browser: no renderer named the directory and publish.sh did not
-           copy it. Three documents implied otherwise. -->
-      <p class="legend-note" id="fauna-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Ten habitats and every animal researched into them, stated for
-        <b>1 July</b> rather than for the year — which is the whole difficulty of the dataset,
-        because July is the quietest wildlife date in the Chicago calendar. The birds are mostly
-        done singing, the ducks are flightless and in cover, and several of the animals a reader
-        expects are here only as sign or are not here at all. Each record says whether you would
-        see it, hear it, or find only its tracks, how many, what it would be doing, and the
-        sources behind all three. <b>None of them is drawn in the scene.</b> This is the
-        research, published where a visitor can read it, and not a claim that the town in front
-        of you is populated.</p>
-      <div class="liberties" id="fauna" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">What grows here</h3>
-      <!-- T-0281. The plant records were planted by flora.js from the beginning and
-           reached no card a visitor could open — the third time this project found
-           the same gap, after the animals (K51) and the households (K52). The
-           section carries the sward's own ceiling with them, because the share of a
-           record the scene can draw had until now been declared to reviewers only. -->
-      <p class="legend-note" id="plants-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Ten plant communities and every species researched into them,
-        recorded for <b>1 July</b> — what each one is doing in its community, how much of it
-        the record asks for, how tall and how wide, whether it is in flower on the day, and
-        the sources behind all of it. The communities' boundaries are the weakest claim here
-        and each says so: the vegetation is documented, but no survey drew the line between
-        one community and the next. Where a community asks for more small plants than the
-        sward lattice can hold, the card says <b>what share of the record you are actually
-        standing in</b> — under the dense timber it is half of one per cent, and that is a
-        limit of the drawing and not a gap in the research.</p>
-      <div class="liberties" id="plants" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">What is not here</h3>
-      <p class="legend-note" id="exclusions-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Two different findings share this one list, and the chip is how
-        to tell them apart: an entry marked <em>not until</em> a later year is dated after
-        1 July 1835, and an entry with no chip at all had already come down. Each carries the
-        citation the decision rests on. The view from the air stays the honest picture of the
-        rest.</p>
-      <div class="liberties" id="exclusions" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-
-      <h3 class="legend-h">What is still an open question</h3>
-      <p class="legend-note" id="uncertain-note" aria-busy="true">Loading…</p>
-      <p class="legend-note">Which is why they are not on the list above: a structure standing
-        in the scene cannot be filed under what is not here. Each entry says what is open,
-        what settling it would change, and the evidence it rests on — or that it rests on
-        none.</p>
-      <div class="liberties" id="uncertain" aria-busy="true">
-        <p class="legend-note">Loading…</p>
-      </div>
-    </section>
-
     <section class="panel-body" data-panel="whatsnew" hidden>
       <div id="whatsnew"></div>
     </section>
+    </div>
   </div>
 
   <div class="crosshair" id="crosshair" aria-hidden="true"></div>
 
   <div class="hud-bottom">
+    <div class="travel-banner" id="travel-banner" role="status" hidden>
+      <span class="tb-verb" id="travel-verb">Walking to</span> <strong id="travel-dest"></strong>
+      <span class="tb-dist" id="travel-dist"></span>
+      <button type="button" class="tb-stop" id="travel-stop">Stop</button>
+    </div>
     <p class="hint" id="hint"></p>
   </div>
 

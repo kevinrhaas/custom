@@ -653,6 +653,11 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # differently for that reason.
     "persons[].ladder_rule": ("shown", "escapeHtml(String(person.ladder_rule))"),
     "persons[].civic_mint": ("shown", "person.civic_mint"),
+    # T-0708. The People directory's "How known" filter reads the subtype off the
+    # compiled people.json row (a denormalised copy of this figure, made by
+    # compile_scene.py compile_people) and the projected cohort is one of its four
+    # answers, so the figure now reaches a visitor as a filter and a row mark.
+    "persons[].resident_subtype": ("shown", "r.resident_subtype === 'projected_resident'"),
     "persons[].press_evidence[].list": ("shown", "escapeHtml(words(entry.list))"),
     "persons[].press_evidence[].as_read": ("shown", "escapeHtml(String(entry.as_read ?? ''))"),
     "persons[].press_evidence[].locator": ("shown", "at ${escapeHtml(String(entry.locator))}"),
