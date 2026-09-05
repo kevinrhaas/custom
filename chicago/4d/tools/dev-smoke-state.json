@@ -13,25 +13,25 @@
       "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 571,
-      "takenAt": "2026-09-05T08:13:05.680Z",
-      "ref": "steward/t-0496-census-1840-51-74",
-      "commit": "69fa4494ff8c",
+      "wallSeconds": 320,
+      "takenAt": "2026-09-05T07:49:14.112Z",
+      "ref": "steward/t-0659-continuation-5h-9cz",
+      "commit": "281b4af40aa7",
       "devCommit": "dddca42cd91c",
-      "treeHash": "sha256:bad017958513db74",
-      "treeDirty": false,
-      "changelogHash": "sha256:0f207bc03f5a8bde",
+      "treeHash": "sha256:324c4ec404c4a071",
+      "treeDirty": true,
+      "changelogHash": "sha256:94c657e32aa5cb59",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          4.4,
-          3.7
+          2,
+          3.4,
+          2.9
         ]
       },
-      "source": "/tmp/cen/sd3.log"
+      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "mobile",
@@ -45,25 +45,25 @@
       "passed": 167,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 306,
-      "takenAt": "2026-09-05T08:13:05.579Z",
-      "ref": "steward/t-0496-census-1840-51-74",
-      "commit": "69fa4494ff8c",
+      "wallSeconds": 174,
+      "takenAt": "2026-09-05T07:49:14.045Z",
+      "ref": "steward/t-0659-continuation-5h-9cz",
+      "commit": "281b4af40aa7",
       "devCommit": "dddca42cd91c",
-      "treeHash": "sha256:bad017958513db74",
-      "treeDirty": false,
-      "changelogHash": "sha256:0f207bc03f5a8bde",
+      "treeHash": "sha256:324c4ec404c4a071",
+      "treeDirty": true,
+      "changelogHash": "sha256:94c657e32aa5cb59",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          4.4,
-          3.7
+          2,
+          3.4,
+          2.9
         ]
       },
-      "source": "/tmp/cen/sm3.log"
+      "source": "/tmp/smoke_m3.log"
     },
     {
       "viewport": "desktop",
