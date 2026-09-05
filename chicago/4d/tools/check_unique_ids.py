@@ -61,12 +61,12 @@ SIZE_CAP = 12_000_000
 # `side_blk_lake_dearborn_lot1` sit at easting 709.8 and 735.7 — one lot's width
 # apart, the east and the west line of that lot. Both are real fence. Asserting
 # uniqueness here would refuse correct data; the fix is in the generator that
-# mints the name, which is what T-0823 asks for. Recorded rather than skipped,
+# mints the name, which is what T-0828 asks for. Recorded rather than skipped,
 # so the gap is visible and gets closed instead of becoming permanent.
 EXCEPTIONS = {
-    ("data/enclosures/town_lot_line_pickets.json", "runs"): "T-0823",
-    ("data/enclosures/town_lot_line_rails.json", "runs"): "T-0823",
-    ("data/enclosures/town_lot_line_boards.json", "runs"): "T-0823",
+    ("data/enclosures/town_lot_line_pickets.json", "runs"): "T-0828",
+    ("data/enclosures/town_lot_line_rails.json", "runs"): "T-0828",
+    ("data/enclosures/town_lot_line_boards.json", "runs"): "T-0828",
 }
 
 # ── append-only ledgers, which have no `id` and a different rule ───────────

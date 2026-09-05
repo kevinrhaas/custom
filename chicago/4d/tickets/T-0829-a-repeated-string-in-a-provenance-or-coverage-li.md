@@ -1,5 +1,5 @@
 ---
-id: T-0824
+id: T-0829
 title: A repeated string in a provenance or coverage list is the same merge artefact as a repeated id, and nothing asserts it
 state: open
 epic: META
@@ -69,7 +69,7 @@ persons[2342]  person_uncertain_orinda_guryl chicago_democrat_1834_01_28#c001 ×
 
 Either the clipping was counted twice, or the id names a CLIPPING while the list
 means a MENTION and one clipping mentions the person twice — the same
-under-specification as T-0823's fence runs. **Which one it is decides whether
+under-specification as T-0828's fence runs. **Which one it is decides whether
 the fix is a deletion or a renaming**, and anything that counts mentions is
 off-by-one until it is settled. Read the three clippings before touching them.
 

@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 592, title: 'Nothing you can see: one name given to two different things', kind: 'fix', ts: '2026-09-05T18:22:52.522Z', date: 'Sep 5, 2026, 1:22 PM CT',
+  { v: 594, title: 'Nothing you can see: one name given to two different things', kind: 'fix', ts: '2026-09-05T19:18:50.939Z', date: 'Sep 5, 2026, 2:18 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a fault that stopped all work on this project twice in one day, and now cannot.',
       'Everything here carries a name of its own — a street, a person, a piece of work. Twice on 5 September two separate efforts each minted the SAME name for different things, and when they were brought together both copies came with them. Neither looked wrong on its own; the fault only exists once they meet. The second time, nineteen pieces of finished work sat waiting behind a failure none of them had caused.',
@@ -7,6 +7,19 @@ export const CHANGELOG = [ // newest first
       'What makes it worth having is that nobody has to maintain a list of what to check. The rule is worked out from the shape of the records themselves, so a kind of record invented next month is covered without anyone remembering to add it — and the one that breaks is always the one nobody remembered.',
       'It was tested against the whole town before being switched on: sixty-eight kinds of list, and sixty-seven already obeyed the rule without being asked to. It found one real fault, now fixed — Fulton Street was citing the 1830 plat twice, as though two surveys agreed with each other.',
       'The sixty-eighth is honest rather than hidden. Two fences really do share a name, because a fence is named after the lot it encloses and a lot has two sides. Both fences are real. That is written down as work to do, with the check told exactly where it is allowed to look away — and told to complain the day it no longer needs to.',
+    ] },
+  { v: 593, title: 'A trade printed against ninety-seven names, and a record saying none', kind: 'fix', ts: '2026-09-05T18:50:17.630Z', date: 'Sep 5, 2026, 1:50 PM CT',
+    items: [
+      'Open Edward Richards Allen\u2019s card and it tells you three times over that the man was a druggist: Fergus\u2019s directory of 1839 prints it, the 1843 directory prints it again, and the prose note under his name quotes the line. Then the field a reader actually reads \u2014 the one every tool here consults \u2014 said his occupation was none recorded. The owner found it by opening one file.',
+      'The fault was one phrase carrying two different facts. \u201cNothing anywhere records a trade for this person\u201d and \u201cnothing records one for 1835, and a directory four years later prints one\u201d were the same six letters on the card, with no way to tell them apart. Ninety-seven of the town\u2019s fourteen hundred and four people were in the second state and reading as the first.',
+      'All ninety-seven now say which. Each carries the trade the later volume printed, the year that volume describes, the grade it was given and the book it was read out of \u2014 set beside the 1835 record and never inside it. Allen\u2019s card reads as what the sources support: a man whose trade is known for 1839 and unknown for July 1835.',
+      'What deliberately did not happen is the tempting half. Nobody gained a shop, a counter or a street. No grade moved, and the 1835 occupation still reads none recorded, because a trade printed in 1839 is evidence about 1839. The new line points at evidence already sitting on the same page. Not one of the ninety-seven had an 1835 trade this could have overwritten, and a check now runs on every build so a card cannot go back to asserting an absence its own file contradicts.',
+    ] },
+  { v: 592, title: 'Set your own pace, and arrive with the whole building in view', kind: 'feature', ts: '2026-09-05T18:36:15.876Z', date: 'Sep 5, 2026, 1:36 PM CT',
+    items: [
+      'Under Travel there are now three speed sliders — walking, wagon and horse — and each names the gait as you move it: a stroll, a brisk walk, a jog, a run; a wagon at a walking pace, a steady roll, rattling along; a horse at a walk, a trot, a canter, a gallop. The tops are deliberately far past the possible, 20 mph on foot, 30 by wagon and 60 in the saddle, and the readout says plainly when a figure is beyond any man or any horse.',
+      'Shift still hurries you: a run on foot, a gallop on horseback, nothing on a wagon — and never past the slider\u2019s top. The horse\u2019s gait in your eye beats faster the faster you have set it.',
+      'Arriving anywhere — an instant Go to, the end of a ride, the end of a flight — now stands you on the building\u2019s front at the distance that fits the whole of it in view, aimed at its middle, with its card open. The distance comes from the building\u2019s own footprint and height and the camera\u2019s field of view, so a privy is framed as closely as a long store is framed wide.',
     ] },
   { v: 591, title: 'Seventy-six people the research programme had reserved and never read', kind: 'feat', ts: '2026-09-05T17:52:04.387Z', date: 'Sep 5, 2026, 12:52 PM CT',
     items: [

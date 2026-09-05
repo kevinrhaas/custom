@@ -1,5 +1,5 @@
 ---
-id: T-0823
+id: T-0828
 title: The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
 state: open
 epic: TOWN

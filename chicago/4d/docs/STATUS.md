@@ -41,17 +41,17 @@ route nobody predicted.** Three duplicates from merges, and the fourth from a
 single-branch sweep that read the value and added it again. A check written to catch
 merges would have missed it; a check written against the shape caught it.
 
-### The one exception, named rather than skipped — T-0823
+### The one exception, named rather than skipped — T-0828
 
 `runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeats ids, and
 those are NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sit at easting
 709.8 and 735.7 — one lot's width apart, the east and the west line of that lot. Both
 are real fence; the generator names a run after the LOT and a lot has two sides, so the
-id under-specifies. Asserting there would refuse correct data. **T-0823** fixes the
+id under-specifies. Asserting there would refuse correct data. **T-0828** fixes the
 generator; the check refuses the exception the day it stops being needed, so it cannot
 outlive its ticket.
 
-### Not covered, and measured rather than assumed — T-0824
+### Not covered, and measured rather than assumed — T-0829
 
 T-0820's acceptance also named `data/research/*/coverage.json` →
 `declarations[].items[]`. It is **not** covered: those are lists of strings and the
@@ -61,7 +61,7 @@ The obvious extension was measured and refused: 222 kinds of string list, 28,331
 multisets (`by_ward` has one entry per person, and two people share a ward). A blanket
 rule would refuse honest data, the same mistake `raised[]` forced this check to avoid.
 Three `mentions` lists in `gazetteer.json` are genuinely suspect and are written up in
-T-0824 for adjudication against the clippings, not silently deduplicated — the same
+T-0829 for adjudication against the clippings, not silently deduplicated — the same
 clipping id twice is either a double count or a clipping-level id doing a
 mention-level job, and which one it is decides whether the fix is a deletion or a
 rename.
@@ -73,6 +73,32 @@ not speculative: with `dev`'s ruleset active, the next duplicate id stops every 
 on the lane, and the parcels it stopped on 2026-09-05 were the nineteen PRs held behind
 #889. The last three merged entries (v588–v590) are all visible, so the one-in-four cap
 is not in play.
+
+## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
+
+The owner, in session: three speed sliders "like you have for walk speed", ceilings "like
+walk at 20 mph and horse gallop at some high number like 60 mph", gait names as the slider
+moves; and "for any travel, when you land it should be a nice complete view of the structure
+… center the structure entirely in frame" with the card open.
+
+**Sliders.** The walking slider moved from Settings to Travel (ids kept) and gained two
+siblings: walk 0.5–8.94 m/s, wagon 0.5–13.41, horse 0.5–26.82, each stored under its own key
+(`speed`, `wagonSpeed`, `horseSpeed`) and composed into `WALK` by `travel.applyPace()`; Shift
+multiplies by 2.28 / 1 / 1.7, capped at the ceiling. `GAITS` in travel.js names the speed
+("trot · 8.1 mph"); the top names — "faster than any man", "runaway", "beyond any horse" —
+say what the ceilings are. Interface, not claims about 1835; no LIBERTIES entry.
+
+**Framing.** `main.js framing(id)`: the front bearing from the router (nearest street track,
+else south-west), the distance that fits the footprint's half-diagonal across the 76°
+horizontal field of view and the height (wall × 1.55) within the live vertical one, aimed at
+the building's middle, clamped 10–90 m. `frame()`, the ride's destination and the flight's
+landing all take it, so the three arrivals cannot disagree.
+
+**Smoke restated, not weakened:** the pace assertion compares WALK to each pace's stored
+slider value instead of to the old constants; the three arrival distances (`<= 14 m`,
+`<= 40 m`) became "within 2.5 m of the framing distance for that building AND its four
+extreme ground points and ridge inside the frame" — a stronger claim than the fixed radius.
+Unverified until the gate runs.
 
 ## Shipped 2026-09-05 — T-0713: the platted streets are attested, and the line grades the ribbon
 
