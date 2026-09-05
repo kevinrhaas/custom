@@ -15,6 +15,10 @@
 # `epic:` has drifted to a default and is not load-bearing — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  DRAIN THE OPEN-PR QUEUE FIRST — the owner, in session: "we have a whole lot
+#               of PRs that get left open on dev ... add a ticket or tickets to queue in the
+#               correct order to work and close and merge correctly open PRs". T-0803..T-0809
+#               head the file; the band below carries the measurement and his three rulings.
 #   2026-09-04  RESTORED. The research-first order below was clobbered and the owner put it
 #               back: "the queue got massively reordered, we were working on all of the
 #               research items first ... please put it back with all of the research items for
@@ -31,6 +35,47 @@
 #   2026-09-03  the resident source sweep → consolidation → residents/households update
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- ==========================================================================
+# --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05
+# --- ==========================================================================
+# --- Verbatim, because it re-ranks the file: "we have a whole lot of PRs that get left
+# --- open on dev, and while we are working them there are so many, can you add a ticket
+# --- or tickets to queue in the correct order to work and close and merge correctly open
+# --- PRs?"
+# ---
+# --- MEASURED ON DEV AT 8cd39ed3, 2026-09-05 — this band is ordered by these numbers:
+# ---   21 PRs open against dev · 21 of 21 CONFLICT with it
+# ---   the conflict is the same six GENERATED files every time: site walk/index.html,
+# ---     both tickets.json, build.json, tickets/BOARD.md (21 of 21) and
+# ---     tools/dev-smoke-state.json (15 of 21). changelog.js, which HAS a driver,
+# ---     conflicts on 0 of 21 — that is the whole argument for T-0804.
+# ---   oldest four are 515-672 commits behind and carry bakes · one (#799) is superseded
+# ---   3 ticket ids minted twice across open PRs — each one refuses a merge
+# ---   only 3 of the 14 `hold` PRs are blocked on a real decision (T-0808); the rest were
+# ---     parked on dev's red gate, which is green again since #863 and #889
+# ---
+# --- THE ORDER IS A DEPENDENCY, NOT A PREFERENCE. T-0803 culls what cannot be saved
+# --- (21 -> 16). T-0804 stops the six build products conflicting, which is what makes
+# --- every lap after the first cheap. T-0805/6/7 are three laps of four to five PRs,
+# --- landed as units the way #880 and #891 landed theirs — one at a time loses ground,
+# --- because a merge lap costs more wall-clock than the interval between merges.
+# --- T-0808 is the owner's three answers; two PRs cannot move without them. T-0809 is
+# --- why the pile formed and is the only ticket here that stops it re-forming.
+# ---
+# --- OWNER RULINGS TAKEN IN THE SAME SESSION, so the runs do not re-ask:
+# ---   the stale four: "close them, re-queue the tickets" — their tickets all read open
+# ---     on dev, so nothing is lost
+# ---   the lane rate: drop custom to slices: 2 in polecat-platform's focus.json
+# ---   the three parked questions: one decision ticket, answered together
+
+T-0803 — Close the five PRs dev has outrun or superseded, and put their tickets back in play
+T-0804 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
+T-0805 — Drain lap 1: the five PRs standing closest to dev, and the three ticket ids minted twice
+T-0806 — Drain lap 2: the five research and cohort PRs, oldest first
+T-0807 — Drain lap 3: the site-budget cluster, and the one PR whose conflict is a research claim
+T-0808 — The three questions the parked PRs are waiting on: the site budget, kinship, and the planform of record at the forks
+T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
