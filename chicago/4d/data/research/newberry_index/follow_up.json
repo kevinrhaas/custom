@@ -16,8 +16,8 @@
       "date": "1884-1886",
       "cards": 1127,
       "chicago_or_cook_cards": 898,
-      "cards_on_a_lead_surname": 233,
-      "chicago_or_cook_cards_on_a_lead_surname": 175,
+      "cards_on_a_lead_surname": 234,
+      "chicago_or_cook_cards_on_a_lead_surname": 176,
       "surnames_on_a_lead_in_chicago_or_cook": [
         "allan",
         "andersen",
@@ -146,6 +146,7 @@
         "laner",
         "lawrence",
         "lewis",
+        "lill",
         "lincoln",
         "lyon",
         "mack",
