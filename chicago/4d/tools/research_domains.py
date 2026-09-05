@@ -208,6 +208,74 @@ def coverage_key(unit: str, item) -> str:
     return "%s:%s" % (unit, item)
 
 
+# --------------------------------------------------------------------------- #
+# THE images[] COVERAGE SHAPE, AND WHY THE GATE READS IT RATHER THAN REWRITING IT
+#
+# T-0536, and the ticket asked for the decision in writing, so here it is.
+#
+# `census_1840` declared its deposit before T-0492 fixed `declarations[]`, and it
+# declared it RICHER: one object per page image, carrying the FamilySearch id, the
+# sheet side, the printed page number, the line count, a `read_state` and a
+# `page_file`. So the shared gate read zero declarations out of the domain that has
+# been read the most, and either the tool learned that shape or the file was
+# migrated to this one.
+#
+# THE GATE LEARNS `images[]`. Three reasons, in the order they bind:
+#
+#   1. The file is being appended to right now. T-0496 and the sheet-reading tickets
+#      split out of T-0494 and T-0495 all extend this one document, on branches that
+#      cannot see each other. Rewriting it underneath them loses readings in a merge,
+#      and a lost reading is a sheet read twice.
+#   2. `declarations[{unit, items[], ticket}]` has nowhere to put `read_state`,
+#      `page_file` or `lines_with_an_entry` — and those three ARE the evidence that a
+#      hole is a hole. The ticket forbids dropping a field to fit the shape.
+#   3. `declarations[]` is a PROJECTION of `images[]`, not a rival to it: unit
+#      `image`, items the FamilySearch ids, ticket the group's. A projection can be
+#      derived, so nothing needs hand-migrating at all.
+#
+# THE DISTINCTION THAT MAKES THE HOLE ASSERTION MEAN SOMETHING is `read_state`. An
+# image whose state is `inventoried_only` is declared as INVENTORIED — the sheet has
+# been looked at and described and nothing has been read off it — and it is NOT
+# asserted to be reached. Every other state declares the image READ, and a read image
+# must name a committed `page_file` and be reached by a `pages/*.json`. Run together,
+# the two states would make "declared" mean "seen", and a hole could never fire.
+INVENTORIED_ONLY = "inventoried_only"
+
+
+def coverage_images(cov: dict) -> list:
+    """Every image object in an `images[]` coverage document, with its ticket.
+
+    Schema 1 carried `images[]` at the top level. Schema 2 groups them, because the
+    deposit is read in image groups by one ticket each; a group's `declared_by` is
+    prose that opens with that ticket's id, and that is the ticket the declaration is
+    attributed to. Both shapes are read here, and a domain with neither yields
+    nothing — which is the correct answer for the six domains that use
+    `declarations[]`.
+    """
+    out = []
+    for image in cov.get("images") or []:
+        out.append((image, str(cov.get("ticket") or "?")))
+    for group in cov.get("groups") or []:
+        found = re.search(r"T-\d{4}", str(group.get("declared_by") or ""))
+        ticket = found.group(0) if found else "?"
+        for image in group.get("images") or []:
+            out.append((image, ticket))
+    return out
+
+
+def resolve_page_file(domain_dir: Path, name: str, page_file: str) -> Path:
+    """Where a declared `page_file` actually is.
+
+    The committed file states the path from `chicago/4d/`, which is what a person
+    reading coverage.json wants; the gate holds a domain directory, which is what the
+    self-test's synthetic tree gives it. Strip the one prefix that means "this
+    domain" and the two agree.
+    """
+    prefix = "data/research/%s/" % name
+    rel = page_file[len(prefix):] if page_file.startswith(prefix) else page_file
+    return domain_dir / rel
+
+
 def locator_reached(locator: dict) -> list:
     """The coverage keys a locator reaches. One locator may reach exactly one item."""
     if not isinstance(locator, dict):
@@ -299,7 +367,7 @@ def check_crosswalk(doc, label: str, bad: list) -> None:
 
 def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad: list) -> dict:
     domain_dir = research / name
-    counts = {"records": 0, "claims": 0, "declared": 0}
+    counts = {"records": 0, "claims": 0, "declared": 0, "inventoried": 0}
     if not domain_dir.exists():
         bad.append("%s: the domain has no directory — run --build" % name)
         return counts
@@ -323,9 +391,52 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
                 bad.append("%s coverage %d: a declaration with no ticket" % (name, i))
             for item in dec.get("items") or []:
                 declared[coverage_key(unit, item)] = dec.get("ticket") or "?"
+
+        # …and the same declaration in the other shape. See the block above
+        # coverage_images() for why this file is read rather than rewritten.
+        for image, ticket in coverage_images(cov):
+            fid = image.get("familysearch_id")
+            if not fid:
+                bad.append("%s coverage: an image with no familysearch_id — the id is "
+                           "how a declaration names what it declares" % name)
+                continue
+            state = image.get("read_state")
+            if not state:
+                bad.append("%s coverage %s: an image with no read_state, so nothing "
+                           "can tell an inventoried sheet from a read one"
+                           % (name, fid))
+                continue
+            page_file = image.get("page_file")
+            if state == INVENTORIED_ONLY:
+                counts["inventoried"] += 1
+                if page_file:
+                    bad.append("%s coverage %s: read_state is %r and it names the page "
+                               "file %s — an inventoried sheet has nothing read off it"
+                               % (name, fid, INVENTORIED_ONLY, page_file))
+                continue
+            declared[coverage_key("image", fid)] = ticket
+            if not page_file:
+                bad.append("%s coverage %s: read_state %r declares the image read and "
+                           "it names no page_file" % (name, fid, state))
+            elif not resolve_page_file(domain_dir, name, page_file).exists():
+                bad.append("%s coverage %s: page_file %s is declared and is not "
+                           "committed" % (name, fid, page_file))
     counts["declared"] = len(declared)
 
     reached = set()
+
+    # A page file reaches the image it names, and that is the third thing that can
+    # reach a coverage item — `records/` and `claims/` are the other two. It is what
+    # turns a declared-read image with no reading behind it into a hole instead of a
+    # silence.
+    for path in sorted((domain_dir / "pages").glob("*.json")) if (domain_dir / "pages").exists() else []:
+        doc = load(path)
+        fid = doc.get("familysearch_id")
+        if not fid:
+            bad.append("%s/pages/%s: names no familysearch_id, so it reaches no "
+                       "declared image" % (name, path.name))
+            continue
+        reached.add(coverage_key("image", fid))
 
     for path in sorted((domain_dir / "records").glob("*.json")) if (domain_dir / "records").exists() else []:
         doc = load(path)
@@ -465,7 +576,7 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
 def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = False) -> list:
     bad = []
     known = source_ids(sources)
-    totals = {"records": 0, "claims": 0, "declared": 0}
+    totals = {"records": 0, "claims": 0, "declared": 0, "inventoried": 0}
     for name, spec in DOMAINS.items():
         counts = check_domain(name, spec, research, known, bad)
         for k in totals:
@@ -498,8 +609,10 @@ def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
     if not quiet:
         for b in bad:
             print("  FAIL  " + b)
-        print("  %d domain(s); %d record(s), %d claim(s), %d declared coverage item(s)"
-              % (len(DOMAINS), totals["records"], totals["claims"], totals["declared"]))
+        print("  %d domain(s); %d record(s), %d claim(s), %d declared coverage "
+              "item(s), %d inventoried and not asserted read"
+              % (len(DOMAINS), totals["records"], totals["claims"],
+                 totals["declared"], totals["inventoried"]))
     return bad
 
 
@@ -535,6 +648,18 @@ FIXTURE_RECORD = {
 }
 
 
+FIXTURE_PAGE = {
+    "schema": 1,
+    "familysearch_id": "33S7-FIXT-A",
+    "image": "chicago/reference/census1840/33S7-FIXT-A.jpg",
+    "printed_page": 229,
+    "sheet_side": "left",
+    "division": "Chicago",
+    "reading": "scan_verified",
+    "lines": [],
+}
+
+
 def _fixture(tmp: Path) -> Path:
     """A minimal but GREEN tree: one records domain, one claims domain, both covered."""
     research = tmp / "research"
@@ -566,6 +691,33 @@ def _fixture(tmp: Path) -> Path:
     dump(books / "coverage.json", {
         "schema": 1, "domain": "books", "generated_by": "fixture",
         "declarations": [{"unit": "page", "items": [7], "ticket": "T-9999"}],
+    })
+
+    # The third shape in the tree, because it is a third shape the gate has to hold:
+    # one image read and reached by its page file, one inventoried and asserted only
+    # to have been looked at. Both states have to be here or the case that tells them
+    # apart has nothing to break.
+    census = research / "census_1840"
+    dump(census / "pages" / "33S7-FIXT-A.json", copy.deepcopy(FIXTURE_PAGE))
+    dump(census / "coverage.json", {
+        "schema": 2, "domain": "census_1840", "generated_by": "fixture",
+        "groups": [{
+            "range": "images 1-2 of 2",
+            "declared_by": "T-9999. One sheet read to the line, one inventoried only.",
+            "images": [
+                {"index": 1, "familysearch_id": "33S7-FIXT-A",
+                 "file": "chicago/reference/census1840/33S7-FIXT-A.jpg",
+                 "sheet_side": "left", "printed_page": 229,
+                 "lines_with_an_entry": 2, "what_it_is": "fixture",
+                 "read_state": "names_and_cells_transcribed",
+                 "page_file": "data/research/census_1840/pages/33S7-FIXT-A.json"},
+                {"index": 2, "familysearch_id": "33S7-FIXT-B",
+                 "file": "chicago/reference/census1840/33S7-FIXT-B.jpg",
+                 "sheet_side": "right", "printed_page": None,
+                 "lines_with_an_entry": 0, "what_it_is": "fixture",
+                 "read_state": INVENTORIED_ONLY, "page_file": None},
+            ],
+        }],
     })
     return research
 
@@ -632,6 +784,30 @@ def self_test() -> int:
     run(lambda r, t: edit(r / "civic/coverage.json",
                           lambda d: d["declarations"][0].update(unit="parish")),
         "is outside", "a coverage unit outside the vocabulary")
+
+    # 4b. the same hole, in the images[] shape — T-0536. An image declared READ that
+    # no pages/ file reaches, an inventoried one dressed up as read, and the two
+    # pointers a declaration can break.
+    def _images(d):
+        return d["groups"][0]["images"]
+
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: d.update(familysearch_id="33S7-FIXT-Z")),
+        "coverage hole", "a census image declared read that no pages/ file reaches")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[1].update(
+                              page_file="data/research/census_1840/pages/33S7-FIXT-A.json")),
+        "an inventoried sheet has nothing read off it",
+        "an inventoried image that names a page file")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[0].update(page_file=None)),
+        "names no page_file", "an image declared read that names no page file")
+    run(lambda r, t: (r / "census_1840/pages/33S7-FIXT-A.json").unlink(),
+        "is declared and is not committed",
+        "an image whose declared page file is not committed")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[0].pop("read_state")),
+        "no read_state", "an image the gate cannot grade")
 
     # 5. a merge with no rule, and a rule that does not read back
     run(lambda r, t: edit(r / "civic/crosswalk.json",

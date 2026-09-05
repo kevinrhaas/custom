@@ -1102,3 +1102,40 @@ x=1250, and one on V4 at x=1333–1365, appear in every band and do **not** lean
 printed rules. They are creases. V4's runs through the TOTAL column, which is why that
 sheet's footed `100` looks at first sight as though its last `0` has crossed into the mining
 cell; it has not — the mining rule is 60 px further right.
+
+## Which coverage shape this file is in, and why it stays in it (T-0536)
+
+`coverage.json` here is in the **`images[]` shape**, not the `declarations[]` shape
+`tools/research_domains.py` fixed for the other seven domains — and after T-0536 that is a
+decision rather than a leftover. **The gate learned this shape.** `research_domains.py` reads
+an image object as a declaration of unit `image`, item its FamilySearch id, ticket the one its
+group's `declared_by` opens with; the same hole assertion that guards a declared page now
+guards a declared image.
+
+Three reasons it went that way and not the other:
+
+1. **The file is being appended to.** T-0496 and the sheet-reading tickets split out of T-0494
+   and T-0495 all extend this one document, on branches that cannot see each other. Migrating
+   it underneath them loses readings to a merge, and a lost reading is a sheet read twice.
+2. **`declarations[{unit, items[], ticket}]` has nowhere to put `read_state`, `page_file` or
+   `lines_with_an_entry`** — and those three are the evidence that a hole is a hole. T-0536
+   forbade dropping a field to fit the shape, so the shape gave way instead.
+3. **`declarations[]` is a projection of `images[]`, not a rival to it.** A projection can be
+   derived, so nothing had to be hand-migrated at all.
+
+**`read_state` is what the gate grades on, and the distinction is the whole point.** An image
+whose state is `inventoried_only` is declared as INVENTORIED — the sheet has been looked at and
+described, and nothing has been read off it — and it is *not* asserted to be reached; its
+`page_file` must be `null`, because an inventoried sheet has nothing read off it to point at.
+Every other state declares the image READ, and a read image must name a committed `page_file`
+and be reached by a `pages/*.json` naming the same `familysearch_id`. Run the two states
+together and "declared" would mean "seen", and a hole could never fire.
+
+Measured when this landed, on the dev of 2026-09-05: the shared gate went from **0 declared
+coverage items** in this domain to **46 declared read and 28 declared inventoried** — 74
+images, the whole deposit, and 357 to 403 declared items across all eight domains — with no
+reading touched. The counts moved because the gate can now see what was already committed.
+
+Five new self-test cases hold it: an image declared read that no `pages/`
+file reaches, an inventoried image that names a page file, a read image that names none, a
+declared page file that is not committed, and an image with no `read_state` at all.
