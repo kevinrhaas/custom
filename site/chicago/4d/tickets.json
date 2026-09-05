@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 2:15 AM",
+  "generated_ct": "Sep 5, 2026, 2:16 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8158,7 +8158,7 @@
     {
       "id": "T-0496",
       "title": "The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8166,12 +8166,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "closed_at": "2026-09-05T06:39:41.636Z",
+      "claimed_run": null,
+      "queue_rank": null
     },
     {
       "id": "T-0497",
@@ -12368,6 +12370,26 @@
       "queue_rank": 152
     },
     {
+      "id": "T-0741",
+      "title": "The 1840 census images 51-74: inventory all 24 sheets — sheet side, printed page and lines with an entry",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0496",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "855",
+      "claimed_by": "run 9/5/2026, 1:39:44 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T07:15:38.226Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33950186427",
+      "queue_rank": null
+    },
+    {
       "id": "T-0742",
       "title": "33S7-9YYJ-K2 read line by line, and the printed-230 pairing tested against a committed reading rather than a strip",
       "state": "done",
@@ -12426,6 +12448,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 18
+    },
+    {
+      "id": "T-0745",
+      "title": "dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0746",
+      "title": "The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0496",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 10
     }
   ]
 }
