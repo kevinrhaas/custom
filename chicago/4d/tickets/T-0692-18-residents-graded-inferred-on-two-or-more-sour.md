@@ -1,7 +1,7 @@
 ---
 id: T-0692
 title: 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 827
+claimed_by: run 9/4/2026, 8:16:05 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T01:48:07.249Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935445500
 ---
 
 **Found while answering the owner's question of 2026-09-04** about people standing in several
@@ -65,3 +67,45 @@ the file does not say. `docs/RESEARCH/resident-grading-policy.md` records that t
 **Done when** every person record in the residents layer either carries a `ladder_rule` or carries
 G5 with its reason, the report says how many were in each state before and after, and the policy
 doc's "moves N of M people" figure is restated against the full layer rather than the reached part.
+
+---
+
+## WHAT THE MEASUREMENT FOUND, 2026-09-04 — and it corrects this ticket's diagnosis
+
+`consolidate_resident_evidence.py --coverage` now accounts for every person record in the
+layer. The ticket was opened on a subset of 18 and read as *"the consolidation never
+reached them"*. Over the whole layer that is true of **nine people, not 873**:
+
+| | people |
+|---|---|
+| person records in `data/residents/` | 1,404 |
+| carrying a `ladder_rule` on the card | 531 |
+| **a rung already ruled and never written onto the card** | **864** — G3 650, G1b 76, G2e 56, G5 36, G1a 20, G2b 16, G1c 10 |
+| absorbed: the row sits on an identity naming ANOTHER card as canonical | 2 |
+| refused: the splitter built no identity, and says which guard fired | 7 |
+
+**The fault is a SPEND, not a READ.** For 864 people the rung exists in
+`grading_proposal.json` and nothing has ever carried it onto the card; 106 of those are
+`attested` rungs. Filed as **T-0720**, which is the successor to this ticket.
+
+**And the nine each say why now.** Seven were refusals the master had recorded all along
+under a reason that is false of four of them — R1, *"names no forename"*, filed against
+`8. G. Abbot` (which prints a forename initial) and `Rev. John Mary Irenaeus St Cyr` (which
+prints three). R5 splits those out and every row names the guard that actually fired; 266
+readings move from a false R1 to a true R5. The two absorbed cards were invisible because
+`canonical_person_id` is `town[0]`, so an identity holding two town cards reported one and
+dropped the other; master rows now carry `town_person_ids`.
+
+**Nothing was applied.** `grading_proposal.json` is byte-identical across this pass: no
+grade moved, no household file was touched, nobody was downgraded to close the gap. The
+ticket is explicit that the measurement and the regrade do not ride in one PR.
+
+**The three repairs the nine turned up** are their own tickets, because each is a different
+job: **T-0721** (three cards named from an OCR misreading of an initial), **T-0723** (one
+identity holding two town cards — a wife folded onto her husband, and a man carried twice),
+**T-0724** (the four-token cap that turns away the parish priest).
+
+**What guards it.** `invariants()` now fails if the coverage does not account for the whole
+layer, if any person sits in state `unclassified`, or if any uncovered person states no
+reason — so a person can never again go silently ungraded. Three self-test cases fire when
+each of those is broken, and `check.sh` runs them.
