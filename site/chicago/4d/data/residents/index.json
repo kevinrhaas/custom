@@ -29,6 +29,12 @@
    "lodger",
    "household_member"
   ],
+  "kin_relations": [
+   "brother",
+   "half_brother",
+   "half_sister",
+   "sister"
+  ],
   "occupations": [
    "army_officer",
    "army_surgeon",

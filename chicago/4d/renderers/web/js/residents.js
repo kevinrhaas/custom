@@ -136,6 +136,36 @@ function claimRow(label, value, block, citationsById) {
 }
 
 /**
+ * The household's kin rows — a relationship that crosses to ANOTHER household
+ * record (T-0597).
+ *
+ * `persons[].relationship` is a person's place inside one household and stops
+ * at its edge, so until `kin` existed the only place a family tie between two
+ * records could go was a free-text note, where a reader may find it and a query
+ * never will. The row renders like any other graded claim, which is the whole
+ * argument: the tie carries its confidence swatch, its reasoning and its
+ * citations exactly as an arrival does, because it is exactly as much of a
+ * claim as an arrival is.
+ *
+ * The far person and household are shown as their ids, humanised the same way
+ * the collapsed summary humanises a household id. The card holds ONE record —
+ * the others are fetched only when their own row is opened — so printing a
+ * neighbour's display name here would mean either a fetch per kin row or a
+ * denormalised copy that can go stale, and the manifest's rule is that a copy
+ * which can disagree with its record does not get made.
+ */
+function kinRows(hh, citationsById) {
+  const kin = Array.isArray(hh.kin) ? hh.kin : [];
+  return kin.map((k) => claimRow(
+    'Related to',
+    `${words(k.person)} is the ${words(k.relation)} of ${words(k.value)}, `
+      + `in the ${words(String(k.household ?? '').replace(/^hh_/, ''))} household`,
+    k,
+    citationsById,
+  )).join('');
+}
+
+/**
  * One person. `grade` says how much of the PERSON is reconstructed and the
  * occupation's `confidence` says how well that one attribute is evidenced —
  * the manifest's two orthogonal axes, shown as two chips rather than merged
@@ -597,6 +627,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${kinRows(hh, citationsById)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
            <code>AGENTS.md</code>. This record is published as research; nothing about the
@@ -697,6 +728,13 @@ function vocabularyHtml(vocab) {
     ['Divisions of the town', vocab.divisions],
     ['How exact an arrival year is', vocab.arrival_precision],
     ['Places in a household', vocab.relationships],
+    // T-0597. A place in a household and a tie between two households are
+    // different questions, so they are two sets: `relationships` stops at the
+    // household's edge and `kin_relations` is what may cross it. Shown for the
+    // same reason every other set here is — the degrees are the point, and a
+    // reader who cannot see that `half_brother` and `brother` are both in the
+    // set cannot see that the dataset keeps them apart.
+    ['Ties between two households', vocab.kin_relations],
     // Shown because `sex` is shown. The census of T-0021 found this set reaching
     // nothing while the value it governs was on every person's card — five closed
     // sets listed and the sixth withheld, which reads as a set the dataset does
