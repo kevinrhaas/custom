@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The grocer was selling a house, not standing in one', kind: 'fix', ts: '',
+  { v: 583, title: 'The grocer was selling a house, not standing in one', kind: 'fix', ts: '2026-09-05T15:59:19.657Z', date: 'Sep 5, 2026, 10:59 AM CT',
     items: [
       'P. Pruyne & Co. kept a wholesale and retail store \u2014 groceries, hardware, crockery and drugs \u2014 and four separate printings of its advertisement say where: in the block between Clark and Dearborn streets. In May 1834 the same man put a different notice in the Democrat. \u201c[W]E offer for sale the House on [the corner] of Lasalle and Lake streets. [It] is 16 by 30 feet, and possession can [be had on] the first day of next month.\u201d He signs it as the seller.',
       'The reading pass that turns advertisements into records attached that address to his firm. So the store, which the papers put between Clark and Dearborn, also carried a corner at Lasalle and Lake among the places it was said to stand \u2014 a corner it never stood on, half a dozen blocks away, belonging to a house he was trying to be rid of.',
