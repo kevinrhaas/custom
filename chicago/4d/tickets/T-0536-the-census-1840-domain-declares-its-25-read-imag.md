@@ -1,7 +1,7 @@
 ---
 id: T-0536
 title: The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 858
 claimed_by: run 9/5/2026, 2:00:18 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:16:11.828Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33985345042
 ---
 
