@@ -4678,6 +4678,10 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     if not isinstance(index, dict):
         return {}
 
+    # Every way the manifest can disagree with the cards, collected rather than
+    # reported one at a time - see the single error this becomes at the end.
+    index_drift: list[str] = []
+
     scene_date = index.get("scene_date") or ""
     scene = parse_date(scene_date)
     if scene is None:
@@ -4949,15 +4953,15 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                              (h.get("present_on_scene_date") or {}).get("value")),
                             ("review_required", h.get("review_required"))):
             if entry.get(key) != actual:
-                rep.error("residents index", f"household '{hid}' {key} in the manifest "
-                                             f"({entry.get(key)!r}) disagrees with the record "
-                                             f"({actual!r}); the record is authoritative")
+                index_drift.append(f"household '{hid}' {key} in the manifest "
+                                   f"({entry.get(key)!r}) disagrees with the record "
+                                   f"({actual!r})")
         if entry.get("persons") != len(persons):
-            rep.error("residents index", f"household '{hid}' persons {entry.get('persons')!r} "
-                                         f"disagrees with the {len(persons)} in the record")
+            index_drift.append(f"household '{hid}' persons {entry.get('persons')!r} "
+                               f"disagrees with the {len(persons)} in the record")
         if entry.get("grades") != local_grades:
-            rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
-                                         f"disagrees with the record's {local_grades!r}")
+            index_drift.append(f"household '{hid}' grades {entry.get('grades')!r} "
+                               f"disagrees with the record's {local_grades!r}")
         households[hid] = h
 
     # --- kin: the far end, and the reciprocity rule -------------------------
@@ -4992,14 +4996,31 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     counts = index.get("counts") or {}
     if counts.get("households") != len(households):
-        rep.error("residents index", f"counts.households {counts.get('households')!r} "
-                                     f"disagrees with the {len(households)} loaded")
+        index_drift.append(f"counts.households {counts.get('households')!r} "
+                           f"disagrees with the {len(households)} loaded")
     if counts.get("persons") != n_persons:
-        rep.error("residents index", f"counts.persons {counts.get('persons')!r} disagrees with "
-                                     f"the {n_persons} in the records")
+        index_drift.append(f"counts.persons {counts.get('persons')!r} disagrees with "
+                           f"the {n_persons} in the records")
     if counts.get("by_grade") != grade_totals:
-        rep.error("residents index", f"counts.by_grade {counts.get('by_grade')!r} disagrees "
-                                     f"with the records' {grade_totals!r}")
+        index_drift.append(f"counts.by_grade {counts.get('by_grade')!r} disagrees "
+                           f"with the records' {grade_totals!r}")
+
+    # ONE FAULT, ONE SENTENCE, AND IT NAMES THE FIX (T-0715). Every disagreement
+    # collected above has the same cause - the manifest is DERIVED from the cards,
+    # and some pass left behind a row it did not own - and reporting them one per
+    # household turned a single stale write into nineteen errors that named no
+    # remedy between them. tools/rebuild_resident_index.py is the derivation and
+    # tools/check.sh re-runs it; this is the diagnosis, not the gate.
+    if index_drift:
+        shown = index_drift[:12]
+        more = ("" if len(index_drift) == len(shown)
+                else f"; ... and {len(index_drift) - len(shown)} more")
+        rep.error("residents index",
+                  "the manifest is DERIVED from data/residents/households/*.json and no "
+                  f"longer matches them on {len(index_drift)} point(s); the records are "
+                  "authoritative. Re-derive it with `python3 "
+                  "tools/rebuild_resident_index.py --write`. What disagrees: "
+                  + "; ".join(shown) + more)
 
     # The researched-and-excluded half. Same standard as data/exclusions.json:
     # a finding that a person is NOT in this scene is a claim and owes a reason.

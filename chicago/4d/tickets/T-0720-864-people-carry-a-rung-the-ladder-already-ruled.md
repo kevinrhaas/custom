@@ -14,7 +14,7 @@ pr: 927
 claimed_by: run 9/5/2026, 4:50:43 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-05T22:03:35.757Z
+closed_at: 2026-09-05T22:27:14.551Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33994095741
 ---
 **Measured by T-0692's `--coverage`, 2026-09-04, on dev.** Of the 1,404 person records in
