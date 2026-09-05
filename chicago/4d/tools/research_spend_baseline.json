@@ -5,7 +5,7 @@
  "unspent_ceiling": {
   "civic": 16,
   "census_1830": 0,
-  "census_1840": 229,
+  "census_1840": 284,
   "church": 458,
   "books": 176,
   "directories": 7210,
@@ -22,7 +22,7 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 737,
+   "read": 792,
    "spent": 508
   },
   "church": {
@@ -243,6 +243,14 @@
    "to": 176,
    "date": "2026-09-05",
    "why": "T-0502 read H. H. Porter's Short Autobiography (1915) end to end and the finding is that it carries no document of Chicago 1830-1836. Eight claims were filed; five of them are the evidence of the two identity refusals this pass wrote and are spent. The other three rule on nobody and cannot: bk_porter_006 and bk_porter_007 are town findings that describe 1853 - the Fort Dearborn blockhouse still standing, and the street grade five to twelve feet below 1904's - and bk_porter_008 states the volume's own distance from everything. A carries-no-document finding necessarily reads further ahead of its adjudication, because what it read names nobody this town holds. The alternative was to file the ruling and not the three readings, which would leave the next run to re-read seventy leaves to learn the same nothing. +3, deliberately."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "read",
+   "from": 229,
+   "to": 284,
+   "date": "2026-09-05",
+   "why": "T-0742 read printed 233 and 235 to the name - 55 more named lines off the sheets, and the last two of PR #670's seven calibration pages. Ruling on them is not this ticket's job and may not be faked to hold a ratchet: the 1840 bridge is T-0505's, over a deposit that is deliberately read ahead of it. The ceiling rises by exactly what was read."
   },
   {
    "domain": "civic",

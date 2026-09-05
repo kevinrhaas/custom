@@ -413,6 +413,100 @@
     },
     {
       "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 352,
+      "takenAt": "2026-09-05T08:44:44.117Z",
+      "ref": "steward/t-0496-census-1840-51-74",
+      "commit": "000c5b804278",
+      "devCommit": "42c8e308e72d",
+      "treeHash": "sha256:6a31934e4e6bcec9",
+      "treeDirty": false,
+      "changelogHash": "sha256:78eaf9b9f55d0a4d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          4.2
+        ]
+      },
+      "source": "/tmp/cen/sd4b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 66,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 273,
+      "takenAt": "2026-09-05T08:44:44.020Z",
+      "ref": "steward/t-0496-census-1840-51-74",
+      "commit": "000c5b804278",
+      "devCommit": "42c8e308e72d",
+      "treeHash": "sha256:6a31934e4e6bcec9",
+      "treeDirty": false,
+      "changelogHash": "sha256:78eaf9b9f55d0a4d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          4.2
+        ]
+      },
+      "source": "/tmp/cen/sd4a.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 167,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 326,
+      "takenAt": "2026-09-05T08:44:43.923Z",
+      "ref": "steward/t-0496-census-1840-51-74",
+      "commit": "000c5b804278",
+      "devCommit": "42c8e308e72d",
+      "treeHash": "sha256:6a31934e4e6bcec9",
+      "treeDirty": false,
+      "changelogHash": "sha256:78eaf9b9f55d0a4d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          4.2
+        ]
+      },
+      "source": "/tmp/cen/sm4.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12-13",
       "parts": [
         12,
