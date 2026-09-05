@@ -926,8 +926,14 @@ def self_test() -> int:
     # 1. the reading is off the record, and the record says which programme wrote it
     record = json.loads(
         (STRUCTURES / "physicians_office.json").read_text(encoding="utf-8"))
+    # T-0516: the record's own declaration MOVED, and the reading followed it without a
+    # line of this module changing — which is the property the test was written to hold.
+    # The owner retired the reconstructed resident population on 2026-09-02 and ruled its
+    # roofs kept as anonymous stock, so `physicians_office` now declares
+    # `inferred_anonymous` and reads as `reconstruction`. It is still the one record whose
+    # id says one layer and whose record says another, which is the whole fixture.
     checks.append(("physicians_office reads as the layer its own record declares",
-                   layer_of("physicians_office") == "inferred_household"
+                   layer_of("physicians_office") == "reconstruction"
                    == layer_of_record(record),
                    f"{layer_of('physicians_office')} / "
                    f"{record['reconstruction']['status']}"))
@@ -938,13 +944,27 @@ def self_test() -> int:
                    layer_of("physicians_office")
                    != _id_prefix_layer("physicians_office"), "the two readings differ"))
 
-    # 2. and it is the ONLY record they differ on, measured rather than remembered
+    # 2. and the set they differ on is the RETIRED HOUSEHOLD LAYER, measured rather than
+    #    remembered. It was one record until 2026-09-02 — `physicians_office`, the only
+    #    roof of that layer the `inf_` convention never reached. The owner then retired
+    #    the reconstructed resident population and ruled its roofs kept as anonymous
+    #    stock (T-0516), so all 31 now declare `inferred_anonymous` while their names
+    #    still say `inf_`. That is the id reading's reach growing thirtyfold, not
+    #    shrinking: a name records the programme that MINTED a record and cannot follow
+    #    it when the record's own claim moves, which is why nothing measures with it.
+    #    Asserted as the layer rather than as a list of 31 ids, so a roof leaving this
+    #    layer fails here instead of being papered over by editing the expected list.
     disagree = sorted(sid for sid, layer in committed.items()
                       if layer != _id_prefix_layer(sid))
+    retired = sorted(sid for sid in committed
+                     if (json.loads((STRUCTURES / f"{sid}.json").read_text(encoding="utf-8"))
+                         .get("reconstruction") or {}).get("programme_phase")
+                     == "phase2_inferred_households")
     checks.append((f"across all {len(committed)} committed records the name and the "
-                   f"record disagree on exactly one",
-                   disagree == ["physicians_office"],
-                   ", ".join(disagree) or "none"))
+                   f"record disagree on exactly the {len(retired)} roofs of the retired "
+                   f"inferred-household layer",
+                   disagree == retired and len(retired) == 31,
+                   f"{len(disagree)} disagree, {len(retired)} retired"))
 
     # 3. one reading, both callers. `researched_ids` used to carry its own copy.
     checks.append(("plat_occupancy.researched_ids is the research layer of the same map",

@@ -651,6 +651,143 @@ that now stands on them is invented in its own right and claimed at **L128**. Th
 this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
 wants the pen baked with the rest of the town still needs one.
 
+
+### L94 — Two of ten roofs given an occupant, and the rule that left the other eight anonymous
+
+**Decision:** of the ten anonymous roofs `blk_randolph_wells` put on the plat, **two are adopted
+by the inferred-household layer** — the D1 log cabin becomes the dwelling of a thirteenth
+labouring household and the D3 one-room frame cottage the dwelling of an eleventh carpenter's —
+and **eight stay anonymous count-units**. Nothing is built, moved or regraded by the adoption. The
+roofs' presence, position and footprint were invented before it and are invented after it; what
+the two gain is an argued occupant instead of a blank, and what the town gains is two households
+it did not have.
+
+**The rule is the point of this entry, because the temptation it refuses is structural.** A block
+parcel can put ten dwellings on the plat in the time it takes to append a recipe entry, and the
+occupation census cannot move at that speed without becoming a function of what has been drawn.
+The town's trade mix is a claim about the town — 3,265 people in 398 dwellings, calibrated against
+Andreas's 1833 roster — and a census that grows every time somebody draws a cottage is fitting the
+evidence to the model. So a block roof may be adopted only where **both** of two independent tests
+pass, and the rule is now written into the programme's `method` list where the next parcel will
+read it:
+
+1. the trade's own committed argument states, in its own text, that its count is a **floor rather
+   than a bound**; and
+2. the roof's family is one this layer **already houses that trade in**.
+
+Exactly two of the twenty-nine trades in the census pass the first test: the carpenter (*"the shop
+count is a floor under the trade, not a measure of it"*) and the labourer (*"still a small fraction
+of what 3,265 people implies"*). Every other entry either states a ceiling — the plasterer's and
+the drover's say *"and no more"* outright — or is bounded by a workshop or store family's roof
+target under the programme's own method rule 2. And the two trades that pass the first test are
+housed by this layer in exactly the two families this block deals them: **all eight** of the
+layer's adopted labouring households live in a D1, and **nine of ten** carpenters in a D3. The
+tests were derived independently and agreed on the first block they were applied to, which is the
+only reason to trust either of them.
+
+**What that leaves unoccupied, and why each refusal is a different kind.** The three yard
+buildings — a stable, a privy, a woodshed — have no occupant to argue about: a yard building
+serves the lot it stands behind, and a household living in a privy is not a modest claim but a
+nonsensical one. The generator now refuses an ancillary adoption by name. The D2 plank shanty, the
+D4 two-room and the D5 deep-plan cottages are refused by the rule above: this layer houses
+laundresses, boatmen, masons, clerks and shoemakers in those families, and every one of those
+trades is bounded by a count somebody argued to a number. **The H1 and H2 houses are refused for
+the strongest reason of the three.** They are the town's larger house and its merchant or
+professional house, of which the schedule allows 18 and 14 in the whole town; the people who lived
+in the best fourteen houses in Chicago are the most likely of anyone here to be nameable, and
+inventing an anonymous merchant into one of them would break the programme's own rule never to
+infer a person where a documented one is available. Those two want the treatment the civic roofs
+are getting under T-I3 — a reading of the record, not a household drawn from a census.
+
+**Consequence:** 85 anonymous roofs now carry an argued occupant rather than 83, and the town
+holds 154 households and 190 persons — 94 of them reconstructed, none of them a figure anybody
+will see, because no human is drawn (L1). Standing roofs are unchanged at 251: this parcel added
+no building. A visitor clicking either of the two adopted roofs is told who the layer supposes
+lived there, that the supposition is a hypothesis and not a person, and that the roof itself is
+still an invention.
+
+**How to resolve:** the same evidence the block itself wants — parcel-level tax, deed or
+assessment records naming who held and occupied these lots in July 1835. A named occupant replaces
+an inferred one; it never adds a household to the census.
+
+**Covers:** `recon_1835_blk_randolph_wells_d1_06.occupants`,
+`recon_1835_blk_randolph_wells_d3_05.occupants`
+**Recorded:** 2026-08-14.
+**Resolved:** 2026-09-02, by the owner's ruling that retired the reconstructed resident population — "remove any pre-existing reconstructed people from the resident list and household" — and, asked whether the roofs they occupied should be abandoned or kept, "Keep as anonymous stock." The adoption this entry records was WITHDRAWN rather than corrected: the households that made it no longer exist, so the two roofs went back to being the anonymous count-units the other eight always were, and the `occupants` block this entry covers is gone from both records. Nothing was built, moved or regraded on the way out either — the roofs stand exactly where this entry put them, unassigned until the placement sweep the same ruling asks for. T-0516 carried the withdrawal to the records (2026-09-05); the argument that raised the households is kept as history in `data/reconstruction/1835_inferred_household_programme.json`.
+
+
+### L109 — Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place
+
+**Decision:** two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted
+by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a
+twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third
+labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or
+regraded.** The roofs' presence, position and footprint were invented before the adoption and are
+invented after it; what each gains is an argued occupant instead of a blank. This is the backfill
+the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the
+last block of this parcel shape to be asked the question.
+
+**The block was measured rather than remembered, which is the only reason the next paragraph
+exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints
+one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5,
+and — as at eight blocks before this one — a "second roof" for each of the two trades: the D4 on lot
+6 for the carpenters and the D2 on lot 5 for the labourers.
+
+**WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S
+REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already
+houses the trade in, and its third whether the roof's division is. The layer houses trades in
+(family, division) PAIRS, and the rule states in its own text that *the three tests are
+independent* — so the two tests read the two projections of that table, and a roof can pass on a
+family taken out of one division and a division taken out of another family. Both second roofs are
+exactly that:
+
+- one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen
+  carpenters this layer houses in the **South** Division live in a D3;
+- four labouring households live in a D2, and all four stand in the **North** or the **West**; all
+  eleven labourers this layer houses in the **South** Division live in a D1.
+
+`tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family,
+division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1
+narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the
+labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28
+has been collecting evidence on since T-A9.
+
+**The liberty admitted here is that this project has been refusing something it never measured.**
+Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not
+one of them checked that the layer had ever housed that trade in that family in that division, and
+none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the
+conservative reading gave the same answer either way, which is luck rather than method.
+
+**AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY
+STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted
+in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued
+in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third
+test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports
+and gates nothing; K28 decides, with both facts committed.
+
+**Consequence:** 104 anonymous roofs now carry an argued occupant rather than 102, and the town
+holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn
+(L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no
+building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed
+for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a
+household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A
+visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition
+is a hypothesis and not a person, and that the roof itself is still an invention.
+
+**The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110
+at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this
+layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every
+`name_basis` kept its pool citation, and `check.sh` re-derives all 113.
+
+**How to resolve:** the same evidence the block itself wants — parcel-level tax, deed or assessment
+records naming who held and occupied these lots on Randolph or Washington between Dearborn and State
+in July 1835. A named occupant replaces an inferred one; it never adds a household to the census.
+
+**Covers:** `recon_1835_blk_randolph_dearborn_d1_04.occupants`,
+`recon_1835_blk_randolph_dearborn_d3_01.occupants`
+**Recorded:** 2026-08-15.
+**Resolved:** 2026-09-02, by the owner's ruling that retired the reconstructed resident population — "remove any pre-existing reconstructed people from the resident list and household" — and, asked whether the roofs they occupied should be abandoned or kept, "Keep as anonymous stock." The adoption this entry records was WITHDRAWN rather than corrected: the households that made it no longer exist, so the two roofs went back to being the anonymous count-units the other eight always were, and the `occupants` block this entry covers is gone from both records. Nothing was built, moved or regraded on the way out either — the roofs stand exactly where this entry put them, unassigned until the placement sweep the same ruling asks for. T-0516 carried the withdrawal to the records (2026-09-05); the argument that raised the households is kept as history in `data/reconstruction/1835_inferred_household_programme.json`.
+
 ---
 
 ## Per-subject liberties
@@ -2834,68 +2971,6 @@ compatible anonymous roof and never increases the total.
 `recon_1835_blk_randolph_dearborn_*.inferred_1835.footprint`
 **Recorded:** 2026-08-14.
 
-### L94 — Two of ten roofs given an occupant, and the rule that left the other eight anonymous
-
-**Decision:** of the ten anonymous roofs `blk_randolph_wells` put on the plat, **two are adopted
-by the inferred-household layer** — the D1 log cabin becomes the dwelling of a thirteenth
-labouring household and the D3 one-room frame cottage the dwelling of an eleventh carpenter's —
-and **eight stay anonymous count-units**. Nothing is built, moved or regraded by the adoption. The
-roofs' presence, position and footprint were invented before it and are invented after it; what
-the two gain is an argued occupant instead of a blank, and what the town gains is two households
-it did not have.
-
-**The rule is the point of this entry, because the temptation it refuses is structural.** A block
-parcel can put ten dwellings on the plat in the time it takes to append a recipe entry, and the
-occupation census cannot move at that speed without becoming a function of what has been drawn.
-The town's trade mix is a claim about the town — 3,265 people in 398 dwellings, calibrated against
-Andreas's 1833 roster — and a census that grows every time somebody draws a cottage is fitting the
-evidence to the model. So a block roof may be adopted only where **both** of two independent tests
-pass, and the rule is now written into the programme's `method` list where the next parcel will
-read it:
-
-1. the trade's own committed argument states, in its own text, that its count is a **floor rather
-   than a bound**; and
-2. the roof's family is one this layer **already houses that trade in**.
-
-Exactly two of the twenty-nine trades in the census pass the first test: the carpenter (*"the shop
-count is a floor under the trade, not a measure of it"*) and the labourer (*"still a small fraction
-of what 3,265 people implies"*). Every other entry either states a ceiling — the plasterer's and
-the drover's say *"and no more"* outright — or is bounded by a workshop or store family's roof
-target under the programme's own method rule 2. And the two trades that pass the first test are
-housed by this layer in exactly the two families this block deals them: **all eight** of the
-layer's adopted labouring households live in a D1, and **nine of ten** carpenters in a D3. The
-tests were derived independently and agreed on the first block they were applied to, which is the
-only reason to trust either of them.
-
-**What that leaves unoccupied, and why each refusal is a different kind.** The three yard
-buildings — a stable, a privy, a woodshed — have no occupant to argue about: a yard building
-serves the lot it stands behind, and a household living in a privy is not a modest claim but a
-nonsensical one. The generator now refuses an ancillary adoption by name. The D2 plank shanty, the
-D4 two-room and the D5 deep-plan cottages are refused by the rule above: this layer houses
-laundresses, boatmen, masons, clerks and shoemakers in those families, and every one of those
-trades is bounded by a count somebody argued to a number. **The H1 and H2 houses are refused for
-the strongest reason of the three.** They are the town's larger house and its merchant or
-professional house, of which the schedule allows 18 and 14 in the whole town; the people who lived
-in the best fourteen houses in Chicago are the most likely of anyone here to be nameable, and
-inventing an anonymous merchant into one of them would break the programme's own rule never to
-infer a person where a documented one is available. Those two want the treatment the civic roofs
-are getting under T-I3 — a reading of the record, not a household drawn from a census.
-
-**Consequence:** 85 anonymous roofs now carry an argued occupant rather than 83, and the town
-holds 154 households and 190 persons — 94 of them reconstructed, none of them a figure anybody
-will see, because no human is drawn (L1). Standing roofs are unchanged at 251: this parcel added
-no building. A visitor clicking either of the two adopted roofs is told who the layer supposes
-lived there, that the supposition is a hypothesis and not a person, and that the roof itself is
-still an invention.
-
-**How to resolve:** the same evidence the block itself wants — parcel-level tax, deed or
-assessment records naming who held and occupied these lots in July 1835. A named occupant replaces
-an inferred one; it never adds a household to the census.
-
-**Covers:** `recon_1835_blk_randolph_wells_d1_06.occupants`,
-`recon_1835_blk_randolph_wells_d3_05.occupants`
-**Recorded:** 2026-08-14.
-
 ### L95 — A West Division block that was already partly built, and four lots taken as read
 
 **Decision:** `blk_randolph_clinton` — bounded by Randolph, Canal, Washington and Clinton, and the
@@ -4008,77 +4083,6 @@ The refusal itself is unlikely to move; the boundary is what wants better eviden
 **Recorded:** 2026-08-15.
 
 
-### L109 — Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place
-
-**Decision:** two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted
-by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a
-twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third
-labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or
-regraded.** The roofs' presence, position and footprint were invented before the adoption and are
-invented after it; what each gains is an argued occupant instead of a blank. This is the backfill
-the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the
-last block of this parcel shape to be asked the question.
-
-**The block was measured rather than remembered, which is the only reason the next paragraph
-exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints
-one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5,
-and — as at eight blocks before this one — a "second roof" for each of the two trades: the D4 on lot
-6 for the carpenters and the D2 on lot 5 for the labourers.
-
-**WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S
-REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already
-houses the trade in, and its third whether the roof's division is. The layer houses trades in
-(family, division) PAIRS, and the rule states in its own text that *the three tests are
-independent* — so the two tests read the two projections of that table, and a roof can pass on a
-family taken out of one division and a division taken out of another family. Both second roofs are
-exactly that:
-
-- one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen
-  carpenters this layer houses in the **South** Division live in a D3;
-- four labouring households live in a D2, and all four stand in the **North** or the **West**; all
-  eleven labourers this layer houses in the **South** Division live in a D1.
-
-`tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family,
-division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1
-narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the
-labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28
-has been collecting evidence on since T-A9.
-
-**The liberty admitted here is that this project has been refusing something it never measured.**
-Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not
-one of them checked that the layer had ever housed that trade in that family in that division, and
-none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the
-conservative reading gave the same answer either way, which is luck rather than method.
-
-**AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY
-STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted
-in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued
-in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third
-test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports
-and gates nothing; K28 decides, with both facts committed.
-
-**Consequence:** 104 anonymous roofs now carry an argued occupant rather than 102, and the town
-holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn
-(L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no
-building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed
-for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a
-household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A
-visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition
-is a hypothesis and not a person, and that the roof itself is still an invention.
-
-**The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110
-at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this
-layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every
-`name_basis` kept its pool citation, and `check.sh` re-derives all 113.
-
-**How to resolve:** the same evidence the block itself wants — parcel-level tax, deed or assessment
-records naming who held and occupied these lots on Randolph or Washington between Dearborn and State
-in July 1835. A named occupant replaces an inferred one; it never adds a household to the census.
-
-**Covers:** `recon_1835_blk_randolph_dearborn_d1_04.occupants`,
-`recon_1835_blk_randolph_dearborn_d3_01.occupants`
-**Recorded:** 2026-08-15.
-
 ### L110 — A building taken out of the town, and the three public roofs that are all of them there were
 
 **Decision:** the first Cook County court-house **no longer stands in the 1835 scene**. Its record
@@ -5147,7 +5151,14 @@ frontage — a South Water Street advertisement in the Chicago American or Democ
 address, or an itemised loss list — would replace an invented unit with a named one on the same
 line, which is what the 665-roof programme's substitution clause exists for.
 **Two of the fourteen were re-dealt on 2026-08-19 (T-0102) and are no longer named above.** `..._dearborn_d5_01` and `..._dearborn_d4_02` were the deep-plan and two-room cottages at the west end of the Dearborn run. The schedule re-deal that put two two-storey stores on the row's east end took those two slots (L143), so the ids no longer name a building and this entry's Covers field can no longer claim them. Nothing above is withdrawn: the twelve that remain still stand exactly as described, and the two that went are described where they went.
-**Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`.
+**The Lake-face roof of `blk_south_water_dearborn` was re-dealt on 2026-09-04 (T-0593) and is
+named above under a new id.** `..._dearborn_d3_03` is now `..._dearborn_h1_03`: the same slot, on
+the same lot, at the same 5.5 m setback and −2.0 m lateral offset, re-dealt out of the D3
+one-room cottage band into H1 because a documented notice calls the house on that lot LARGE
+(**L222**). The position this entry admits is unchanged and invented on the same reasoning, so
+the Covers token follows the id rather than being dropped — unlike the two T-0102 retired in the
+paragraph above, which stopped naming a building at all.
+**Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`.
 **Recorded:** 2026-08-19.
 
 
@@ -8559,7 +8570,15 @@ its written description.
 Related: **L99**, **L100**, **L101** (the three business-front blocks and the worry this
 refutes) · **L148** (the same reading, taken for one instance on Lake at Clark) · **L177** (one
 line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store).
-**Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`
+**The Lake-face cottage this entry moved was re-dealt on 2026-09-04 (T-0593), and the paragraph
+above narrates it under an id that no longer exists.** The swap it describes stands: the D1 log
+dwelling is still at the west end of the South Water run and the roof that took the Lake lot is
+still on the Lake lot, at the cabin's own 5.5 m setback and −2.0 m offset. What changed is the
+family under it — `..._dearborn_d3_03` is now `..._dearborn_h1_03`, out of the D3 one-room
+cottage band and into H1, because a documented notice calls the house on that lot LARGE
+(**L222**). Read "the D3 one-room cottage" above as the roof this entry moved, not as the band it
+now carries; the position claim is unchanged and the Covers token follows the id.
+**Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.position`
 **Recorded:** 2026-08-27.
 
 ### L188 — Five business-front lots on South Water carry a documented store at the street and anonymous roofs beside and behind it
@@ -10515,3 +10534,114 @@ fence, which this supplies the missing citation for), **L159** (the boards' lett
 Kinzie's store and its landing on the west bank). Sources: `bk_afc_018`, `bk_afc_005`, `bk_afc_012`, `bk_afc_003`,
 `bk_afc_013`.
 **Recorded:** 2026-09-04.
+
+### L222 — A documented address re-deals the family under it: the one lot-and-block notice says LARGE, and the town's first H1 answers the word
+**Decision:** the anonymous count-unit seated by the town's one lot-and-block address is
+**re-dealt out of the D3 one-room cottage band and into H1, "Larger one-and-a-half-story
+house"**, because the source that fixes the address also describes the building on the lot and
+this project's roof contradicted it. G. Spring's For-Sale notice — six printings in the
+*Chicago Democrat* between 1834-06-18 and 1834-11-19, four of them legible whole — reads "LOT
+No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street … There is on said lot
+a large **Dwelling-House** and fine well". **L216** seated that address on
+`recon_1835_blk_south_water_dearborn_d3_03`, a 5.36 × 6.38 m one-room frame cottage — the
+smallest dwelling family the 665-roof programme deals — and said in as many words that the
+contradiction was recorded rather than repaired because repairing it was a second
+demonstration with a bake behind it. **This is that demonstration, and it supersedes L216's
+fourth paragraph and nothing else in it.** The roof is now
+`recon_1835_blk_south_water_dearborn_h1_03`, 8.03 × 9.96 m, one and a half storeys.
+
+**What is invented is unchanged, and so is the grade.** That any building stood on this ground,
+that this count-unit is the house the notice advertises, and every dimension of it are
+conjectural exactly as they were under **L92**: "lot 7" is a conjectural line bearing a
+documented number, four lots to a block face is a reading of one block, and the
+counter-clockwise numbering was read off block 18 and counted outward. The seating stays at the
+bottom tier — `confidence` is `const: "reconstructed"` in the schema and
+`tools/lot_addresses.py --check` re-reads the phase and fails if a documented address has
+promoted the roof it lands on. **What changed is only which invention stands there**: one
+bounded by the source instead of one contradicting it.
+
+**Why H1 and nothing above it.** The band is chosen by the lowest rung that answers the
+notice's own two words. `data/reconstruction/1835_family_archetype_crosswalk.json` labels D6
+and every D family below it a *cottage* and D7 a *Small* two-storey house; H1 is the first the
+crosswalk itself calls **larger** and calls a **house**, at 24×30–28×38 ft against the D3
+band's 16×20–18×24. The notice says large and says nothing about storeys, paint, trade or
+wealth, so nothing above H1 — not H2's merchant house, not H3's boarding house — may be read
+out of it. Taking the lowest rung that answers the adjective is the restraint that keeps this
+from being a licence to build the best house a word will bear.
+
+**No total moves, and this is a re-deal rather than an overspend.** The 665-roof programme
+apportions H1's eighteen roofs to the DISTRICTS and not to any block — "a per-unit family mix
+is an apportionment of that district's remainder, not a claim about any block" — so the south
+district's remainder held eight unbuilt H1 before this run and holds seven after it, with the
+displaced D3 going back the other way, thirteen to fourteen. The block still builds six roofs,
+five principal and one ancillary, against the same headroom of six, on the same lots. The
+argument is T-0102's and **L143**'s, made again on different evidence.
+`tools/reconcile_665.py` re-derives it and `tools/check.sh` runs that derivation.
+
+**The household is not re-homed and no person is claimed.** The inferred carpenter's household
+`hh_inf_carpenter_south_17` lived on this roof before the re-deal and lives on it after; the
+occupancy note is the one the inferred-household programme wrote, no name is claimed and no
+figure is drawn. Nor does the re-deal seat the advertiser: `is_the_occupant` and `is_the_owner`
+stay `false` in the ledger, and this is still not "G. Spring's house" — **L216**'s third
+refusal is untouched.
+
+**The town's first H1 is this one.** The family was dealt eighteen roofs in July 1835 and
+instantiated none of them, so the first larger house this reconstruction raises stands where a
+documented notice says a large dwelling-house stood. That is the argument for spending the slot
+here rather than anywhere else the schedule could have put it.
+
+**What this does NOT rule.** It does not license an address to move, resize by hand, re-form,
+promote or people the roof it lands on — `docs/LOT-ADDRESS.md`'s four refusals stand and are
+assertions in `tools/lot_addresses.py --self-test`, and the family band is the ONLY thing a
+source's description may reach. The well is still not drawn (**L216**, T-0592). And the rule is
+written into `docs/LOT-ADDRESS.md` § *When the notice describes the building* so the next
+lot-and-block address inherits it rather than re-arguing it.
+
+**How to resolve:** a deed, an assessment or a canal-commission record naming lot 7 of block 16
+would replace the conjectural line with a recovered one; a measured description of the house
+would replace the band with a dimension and end the reliance on an adjective altogether.
+Related: **L216** (the seating, whose fourth paragraph this supersedes) · **L92** (the anonymous
+roofs' own conjecture) · **L142**, **L187** (the two entries whose Covers tokens follow the
+re-dealt id) · **L143** (the same re-deal argument on this same block) · tickets **T-0593**
+(this), **T-0423** (the seating), **T-0102** (the precedent), **T-0592** (the well).
+**Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
+**Recorded:** 2026-09-04.
+
+### L223 — Seven houses stand on a street a directory printed eight years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 7 households
+**Decision:** where no source of the scene year says where a person's house stood, a
+**street** printed as that person's residence — the volume's own `res` or `bds` — in
+Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
+household's street **face**. The placement is graded `reconstructed`, the note says how
+many years it was carried, and the policy is `docs/RESIDENCE-BACK-PROJECTION.md`.
+**Why:** this is L218's mechanism aimed at the other question, and `docs/ADDRESS-BACK-
+PROJECTION.md` clause 2 refused it by name so that it would be argued rather than
+absorbed. The argument is that a home is not a shop in two places. A residence needs **no
+attested trade**, where a business does — everybody the town holds lived somewhere in it,
+so an absent occupation says nothing about whether a man had a house — and that departure
+is most of the yield: 44 of the 48 residence addresses on the layer belong to people the
+1835 papers give no trade, and five of these seven placements are such people. Against
+that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
+into one street's trade and a lodging is a month's rent.
+**Consequence:** seven households stand on a face on the authority of a volume printed
+four or eight years after the scene. Twenty of 825 households carried a real `lives_at`
+before this pass and twenty carry one after — the faces are text on a card and not a
+placement of anybody in the town.
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
+count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even where the
+volume prints a corner. Every residence entry that prints one prints it against a street
+NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
+its reader which of two hundred Clark Street doors it means, and reading it back would be
+reading a finding aid as a survey. The 41 refusals are on the record beside the seven, so
+the arithmetic is visible and not just the successes.
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
+drawn — the same admission **L2** makes for the fauna layer.
+**How to resolve:** a source inside the scene year that says where somebody slept. The
+1835 poll and tax lists are closer to 1835 than a directory is, and any one of them that
+houses one of these seven supersedes this entry under the policy's clause R3 without an
+argument.
+
+Related: **L218** (the business half, and the clause that refused this one) · **L212**
+(a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
+**T-0633**, **T-0632**.
+**Recorded:** 2026-09-04 (T-0669).

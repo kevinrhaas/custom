@@ -391,12 +391,20 @@ def check():
     if int(census.get("provisional_identity_bridges") or 0) != provisional: problems.append("ledger provisional bridge count disagrees")
     summary=SUMMARY.read_text(encoding="utf-8")
     if "**210 named 1840 household-head rows" not in summary: problems.append("summary census coverage is stale")
+    # The residents layer ships MINIFIED (tools/publish.sh, declared in
+    # check_published.mjs § TRANSFORMED), so a byte comparison here reported every
+    # published household as stale.  The claim was never about bytes: it is that the
+    # mirror carries the same record, so compare the parsed VALUE.
+    def mirror_carries(src: Path, dst: Path) -> bool:
+        if not dst.exists(): return False
+        try: return json.loads(dst.read_text(encoding="utf-8")) == json.loads(src.read_text(encoding="utf-8"))
+        except Exception: return False
     site_index=SITE/"data"/"residents"/"index.json"
-    if not site_index.exists() or site_index.read_text(encoding="utf-8") != INDEX.read_text(encoding="utf-8"): problems.append("published resident index mirror is stale")
+    if not mirror_carries(INDEX, site_index): problems.append("published resident index mirror is stale")
     for pid,row in expected.items():
         if pid not in people: continue
         _p,path,_doc=people[pid]; site_path=SITE/"data"/"residents"/"households"/path.name
-        if not site_path.exists() or site_path.read_text(encoding="utf-8") != path.read_text(encoding="utf-8"): problems.append(f"published household mirror stale: {path.name}")
+        if not mirror_carries(path, site_path): problems.append(f"published household mirror stale: {path.name}")
     adams=people.get("adams_william_h")
     if adams and len(adams[2].get("persons") or []) != 1: problems.append("Adams 1840 second person was incorrectly back-projected into 1835")
     if problems:

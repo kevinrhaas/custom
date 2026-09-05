@@ -66,7 +66,24 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+   "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "The surname folds equal but no forename agrees initial for initial: 'Louisa M. Taylor' against 'Anson H. Taylor', 'Charles H. Taylor', 'Anson N Taylor', 'Anson W Taylor', 'Augustine Deodat Taylor', 'E D Taylor', 'Edmund D Taylor', 'William Taylor', 'William H Taylor'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 20 Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins A. Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "evidence_against": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 3 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor) and none of their given names is 'ezra'. 'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 3 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor) and none of their given names is 'dennis'. L3 given_name_conflict",
+    "summary": "Independently corroborated. Augustine Deodat Taylor agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the Fergus 1839/1843 and Norris 1844 directories. The surname folds equal but no forename agrees initial for initial: 'Louisa M. Taylor' against 'Anson H. Taylor', 'Charles H. Taylor', 'Anson N Taylor', 'Anson W Taylor', 'Augustine Deodat Taylor', 'E D Taylor', 'Edmund D Taylor', 'William Taylor', 'William H Taylor'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 20",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "st_cyr_register_ichr_v4"
+    ]
+   }
   }
  ],
  "touches_removal": false,
@@ -103,6 +120,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1843 prints an address against this name in 1843, and it is left where it is. An 1835 placement already stands: this household works at `st_marys_church`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later. The later address stays on the record as 1843's evidence and moves nothing."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]

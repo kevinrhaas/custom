@@ -136,6 +136,36 @@ function claimRow(label, value, block, citationsById) {
 }
 
 /**
+ * The household's kin rows — a relationship that crosses to ANOTHER household
+ * record (T-0597).
+ *
+ * `persons[].relationship` is a person's place inside one household and stops
+ * at its edge, so until `kin` existed the only place a family tie between two
+ * records could go was a free-text note, where a reader may find it and a query
+ * never will. The row renders like any other graded claim, which is the whole
+ * argument: the tie carries its confidence swatch, its reasoning and its
+ * citations exactly as an arrival does, because it is exactly as much of a
+ * claim as an arrival is.
+ *
+ * The far person and household are shown as their ids, humanised the same way
+ * the collapsed summary humanises a household id. The card holds ONE record —
+ * the others are fetched only when their own row is opened — so printing a
+ * neighbour's display name here would mean either a fetch per kin row or a
+ * denormalised copy that can go stale, and the manifest's rule is that a copy
+ * which can disagree with its record does not get made.
+ */
+function kinRows(hh, citationsById) {
+  const kin = Array.isArray(hh.kin) ? hh.kin : [];
+  return kin.map((k) => claimRow(
+    'Related to',
+    `${words(k.person)} is the ${words(k.relation)} of ${words(k.value)}, `
+      + `in the ${words(String(k.household ?? '').replace(/^hh_/, ''))} household`,
+    k,
+    citationsById,
+  )).join('');
+}
+
+/**
  * One person. `grade` says how much of the PERSON is reconstructed and the
  * occupation's `confidence` says how well that one attribute is evidenced —
  * the manifest's two orthogonal axes, shown as two chips rather than merged
@@ -349,7 +379,8 @@ function laterClaimHtml(block, citationsById) {
   };
   return one(block.occupation_later, 'A trade printed against this name')
     + one(block.address_later, 'An address printed against this name')
-    + backProjectionHtml(block.back_projection);
+    + backProjectionHtml(block.back_projection)
+    + residenceBackProjectionHtml(block.residence_back_projection, citationsById);
 }
 
 /**
@@ -399,6 +430,52 @@ function backProjectionHtml(bp) {
   return `<dt>${escapeHtml(label)}</dt>
     <dd>${chip}${escapeHtml(where)}${carried}${clause}
       <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
+}
+
+/**
+ * And the same question asked about a HOME (T-0669), which is a different question and
+ * so gets a different row rather than a wider one.
+ *
+ * `docs/RESIDENCE-BACK-PROJECTION.md` is L218's mechanism aimed at where a man slept:
+ * a street the volume prints as `res` or `bds`, read backwards and carried as the
+ * household's street FACE. It departs from the business rule in two places, and both
+ * are visible here. A home needs no attested trade — everybody the town holds lived
+ * somewhere in it — which is why forty-four of these forty-eight belong to people the
+ * 1835 papers give no trade and the business pass refused before it ever asked about
+ * their houses. And a home never reaches a POINT, not even where the volume prints a
+ * corner: that corner hangs off a street number from a grid 1835 did not have.
+ *
+ * BOTH ROWS CAN APPEAR ON ONE CARD, and that is deliberate. One printed address can
+ * carry two rulings because two policies asked two questions of it, and a card showing
+ * only the second would leave a reader wondering what became of the first.
+ */
+function residenceBackProjectionHtml(rp, citationsById) {
+  if (!rp) return '';
+  const placed = rp.outcome === 'placed';
+  const label = {
+    placed: 'That home address was read backwards, and here is what it reaches',
+    already_better_placed: 'Not read backwards — something better already houses him',
+  }[rp.outcome] || 'That home address was refused, and here is why';
+  // `rp.placement` is always `face` and is read rather than assumed: the day this
+  // policy grows a second unit, the row says so instead of the prose lying.
+  const where = placed
+    ? `${rp.value} — the ${words(rp.placement)}, and nothing narrower`
+    : 'no position taken';
+  const kind = rp.kind
+    ? `<span class="res-chip res-research">${escapeHtml(
+      rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence')}</span>` : '';
+  const carried = rp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(rp.read_back_years))} years back, from ${
+      escapeHtml(String(rp.describes_date))}</span>` : '';
+  const clause = rp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(rp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade, for the reason the row above gives.
+  const chip = placed ? swatch(rp.confidence) : '';
+  const cites = (rp.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${kind}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(rp.note)}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
 /**
@@ -597,6 +674,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${kinRows(hh, citationsById)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
            <code>AGENTS.md</code>. This record is published as research; nothing about the
@@ -697,6 +775,13 @@ function vocabularyHtml(vocab) {
     ['Divisions of the town', vocab.divisions],
     ['How exact an arrival year is', vocab.arrival_precision],
     ['Places in a household', vocab.relationships],
+    // T-0597. A place in a household and a tie between two households are
+    // different questions, so they are two sets: `relationships` stops at the
+    // household's edge and `kin_relations` is what may cross it. Shown for the
+    // same reason every other set here is — the degrees are the point, and a
+    // reader who cannot see that `half_brother` and `brother` are both in the
+    // set cannot see that the dataset keeps them apart.
+    ['Ties between two households', vocab.kin_relations],
     // Shown because `sex` is shown. The census of T-0021 found this set reaching
     // nothing while the value it governs was on every person's card — five closed
     // sets listed and the sixth withheld, which reads as a set the dataset does

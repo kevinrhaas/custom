@@ -6,28 +6,31 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 
 | Measure | Before | After |
 |---|---:|---:|
-| Households | 920 | 825 |
-| Person entries | 956 | 849 |
-| Attested | 823 | 118 |
-| Inferred | 25 | 731 |
+| Households | 920 | 1380 |
+| Person entries | 956 | 1404 |
+| Attested | 823 | 526 |
+| Inferred | 25 | 878 |
 | Reconstructed | 108 | 0 |
 | Letter-list-only flag | 727 | 727 |
-| Projected residents | 0 | 706 |
+| Projected residents | 0 | 719 |
 | Linked to named 1840 census household | 0 | 3 |
 
 **108 reconstructed people were retired** and 96 empty household containers removed. 5 evidence-based people/households formerly seated by the reconstructed programme were retained but made unplaced. Reconstructed building stock was abandoned as unassigned rather than deleted.
 
 ## Research adjudication
 
-The synthesis resolved **611 unique research outcomes**: candidate: 5, candidate_identity: 68, corroborated: 2, corroborated_enrichment: 23, no_corroboration: 139, no_corroboration_yet: 374.
+The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 122, corroborated: 54, corroborated_enrichment: 43, no_corroboration: 243, no_corroboration_yet: 406.
 
 A post-office letter now documents a real named person considered reachable through Chicago; it is not automatic proof of Chicago residence. Independently corroborated letter-list identities are `attested`; other qualifying letter-list names are `inferred` + `projected_resident`. Candidate identities remain explicitly unasserted with evidence for/against retained.
 
 ## Profile enrichment
 
-Structured promotion changed **2 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
+Structured promotion changed **5 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
 
+- `bailey_bennet` (T-0509): occupation=carpenter
+- `chapman_chas_h` (T-0509): occupation=printer
 - `hathaway_joshua` (T-0483): birth_year=1810
+- `tuller_elam` (T-0509): occupation=farmer
 - `woodworth_james_h` (T-0486): birth_year=1804
 
 ## 1840 census evidence

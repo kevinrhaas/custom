@@ -14,169 +14,195 @@
     "reconstructed": "reserved for later explicit reconstruction; zero now"
   },
   "research": {
-    "reviewed_people": 611,
+    "reviewed_people": 873,
     "outcome_counts": {
       "candidate": 5,
-      "candidate_identity": 68,
-      "corroborated": 2,
-      "corroborated_enrichment": 23,
-      "no_corroboration": 139,
-      "no_corroboration_yet": 374
+      "candidate_identity": 122,
+      "corroborated": 54,
+      "corroborated_enrichment": 43,
+      "no_corroboration": 243,
+      "no_corroboration_yet": 406
     },
-    "unmatched_research_person_ids": [],
-    "letter_list_missing_research_row": [
-      "parcel_aaron",
-      "reel_absolam",
-      "vandorwerk_adam",
-      "aiker_samuel",
-      "akers_simon",
-      "vaughan_alanson_b",
-      "wilkes_alexander",
-      "tucker_alexr_h",
-      "churchill_alfred",
-      "vaughn_alison_b",
-      "allen_william",
-      "allin_richard",
-      "alling_prudde",
-      "perring_almon",
-      "castle_alonzo",
-      "murray_alonzo",
-      "murry_alonzo",
-      "crandal_alva",
-      "dunlap_alva",
-      "miner_amanda",
-      "rathburn_amos",
-      "wear_amy_c",
-      "anderson_eli_f",
-      "miles_andrew",
-      "vann_angeline",
-      "anstin_al",
-      "heere_anthony",
-      "winsor_aram",
-      "archer_joseph",
-      "knox_archibald",
-      "parcell_aron",
-      "brundage_asa",
-      "doel_asa",
-      "parsalls_austin",
-      "avery_charles",
-      "ayres_levi",
-      "paige_b_r",
-      "bailly_joseph",
-      "bakwith_albert",
-      "bebee_orson",
-      "beddlecome_ash",
-      "beeson_william",
-      "beger_tobias",
-      "bemis_samuel_c",
-      "bailey_bennet",
-      "benton_datas_e",
-      "benubien_charl",
-      "bishop_j_e",
-      "blair_william_g",
-      "bloget_josiah_i",
-      "blood_amos",
-      "bly_rouse",
-      "boardman_elect",
-      "boles_george",
-      "bostwick_e_b",
-      "bradstreet_j_p",
-      "brookins_david",
-      "brooks_gardner",
-      "brush_matthias",
-      "bullen_jeduthnn",
-      "bullock_stephen",
-      "burbee_jonathan",
-      "burdick_paul",
-      "butterfield_ben",
-      "byam_seth",
-      "foster_caleb",
-      "romer_carl",
-      "case_nehemiah",
-      "chadwick_joseph",
-      "chamberlain_l_c",
-      "chambers_john",
-      "chanpagne_batist",
-      "chappel_eliza_mir",
-      "drake_charles_c",
-      "bartlett_charles_h",
-      "richards_charles_t",
-      "chapman_chas_h",
-      "chase_peter",
-      "house_chester",
-      "albee_clark_b",
-      "clark_erastus",
-      "codding_sally",
-      "comstock_h_h",
-      "abbott_constant",
-      "cook_rowland_i",
-      "cooley_edward_v",
-      "covell_thomas_r",
-      "curtenius_fredk",
-      "curtis_liman",
-      "parkes_curtis",
-      "torry_d_v_s",
-      "dunn_dangerfield",
-      "davenport_dennis",
-      "ingersall_david",
-      "frame_david_p",
-      "farren_dean",
-      "demans_j_t",
-      "dement_wm",
-      "dow_albert_f",
-      "griswold_eben",
-      "alden_ebenozer",
-      "doolittle_ehjah",
-      "tuller_elam",
-      "benn_eli",
-      "filer_elihu_d",
-      "sen_elijah_wentworth",
-      "covalt_enos",
-      "fairchilds_ransom",
-      "felch_alaneon",
-      "force_john",
-      "ford_ebenezer",
-      "spalding_franklin",
-      "page_frederick_w",
-      "galusha_ezra",
-      "makepiece_george_r",
-      "gooding_caroline",
-      "legg_gregory_e",
-      "vanderbogart_h",
-      "hail_aifred",
-      "hurlburt_hannah",
-      "eager_hiram",
-      "langer_jacob",
-      "mcfadden_james",
-      "holder_jesse",
-      "musgrave_john",
-      "folliott_jonathan",
-      "kinsey_joshua",
-      "albyn_lucius_b",
-      "mvaughton_angus",
-      "lorenzo_maccoy",
-      "cutler_morris",
-      "mary_nelson",
-      "oakley_benjamin_w",
-      "chauncy_orange",
-      "ostrander_catherine",
-      "harriet_paddock",
-      "win_payne",
-      "howley_pierce",
-      "preston_stephen_ii",
-      "westover_roy_k",
-      "stephens_s",
-      "stuart_samuel",
-      "saunders_william_s",
-      "helen_soren",
-      "starkweather_robt",
-      "sunny_miches",
-      "renwick_theophilus",
-      "vyekoff_henry_s",
-      "conter_willard",
-      "loring_wm"
+    "unmatched_research_person_ids": [
+      {
+        "person_id": "8_perry_a",
+        "outcome": "no_corroboration_yet",
+        "name": "Perry A. 8."
+      },
+      {
+        "person_id": "a_mason_sabrina",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "allison_tho_s",
+        "outcome": "no_corroboration_yet",
+        "name": "Tho's Allison"
+      },
+      {
+        "person_id": "b_merrich_j",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "behan_tho_s",
+        "outcome": "no_corroboration_yet",
+        "name": "Tho's. Behan"
+      },
+      {
+        "person_id": "c_mills_joel",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "e_hhelps_theodore",
+        "outcome": "no_corroboration_yet",
+        "name": "Hhelps Theodore E."
+      },
+      {
+        "person_id": "es_jones_high",
+        "outcome": "no_corroboration_yet",
+        "name": "Jones, High Es"
+      },
+      {
+        "person_id": "f_mabbet_benjamin",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "g_willinm",
+        "outcome": "no_corroboration",
+        "name": "Willinm G."
+      },
+      {
+        "person_id": "h_norton_wm",
+        "outcome": "no_corroboration_yet",
+        "name": "Norton Wm. H."
+      },
+      {
+        "person_id": "i_mcloud",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "is_bobinson_george",
+        "outcome": "no_corroboration_yet",
+        "name": "Bobinson George IS."
+      },
+      {
+        "person_id": "k_pugsley_john",
+        "outcome": "no_corroboration_yet",
+        "name": "John K. Pugsley"
+      },
+      {
+        "person_id": "l_pixley_john",
+        "outcome": "no_corroboration_yet",
+        "name": "Pixley John L."
+      },
+      {
+        "person_id": "m_clintock_thomas",
+        "outcome": "candidate_identity",
+        "name": "Thomas M'Clintock"
+      },
+      {
+        "person_id": "m_dolold_james",
+        "outcome": "no_corroboration",
+        "name": "James M'Dolold"
+      },
+      {
+        "person_id": "m_ewen_wm_b",
+        "outcome": "no_corroboration_yet",
+        "name": ""
+      },
+      {
+        "person_id": "m_fadin_james",
+        "outcome": "no_corroboration_yet",
+        "name": "James M'Fadin"
+      },
+      {
+        "person_id": "m_grigg_a_a",
+        "outcome": "no_corroboration",
+        "name": "A. A. M'Grigg"
+      },
+      {
+        "person_id": "m_kean_joseph",
+        "outcome": "no_corroboration_yet",
+        "name": "Joseph M'Kean"
+      },
+      {
+        "person_id": "m_lean_john_y",
+        "outcome": "no_corroboration",
+        "name": ""
+      },
+      {
+        "person_id": "o_ranwin",
+        "outcome": "no_corroboration",
+        "name": "Ranwin O."
+      },
+      {
+        "person_id": "p_aylor_john_o",
+        "outcome": "no_corroboration_yet",
+        "name": "John O. P'aylor"
+      },
+      {
+        "person_id": "p_clapp_a",
+        "outcome": "no_corroboration_yet",
+        "name": "Clapp. A. P."
+      },
+      {
+        "person_id": "r_norton_n",
+        "outcome": "no_corroboration_yet",
+        "name": "Norton N. R."
+      },
+      {
+        "person_id": "s_page_elisha",
+        "outcome": "no_corroboration_yet",
+        "name": "Page Elisha S."
+      },
+      {
+        "person_id": "selden_sam_l_l",
+        "outcome": "candidate_identity",
+        "name": "Sam'l. L. Selden"
+      },
+      {
+        "person_id": "t_orinsbey_martin",
+        "outcome": "no_corroboration_yet",
+        "name": "Orinsbey martin T."
+      },
+      {
+        "person_id": "v_regera_john",
+        "outcome": "no_corroboration",
+        "name": "Regera John V."
+      },
+      {
+        "person_id": "wm_nelts",
+        "outcome": "no_corroboration_yet",
+        "name": "Nelts Wm."
+      }
     ],
+    "letter_list_missing_research_row": [],
     "promoted_facts": [
+      {
+        "person_id": "bailey_bennet",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=carpenter"
+        ],
+        "source_ids": [
+          "fergus_chicago_directory_1839",
+          "norris_chicago_directory_1843"
+        ]
+      },
+      {
+        "person_id": "chapman_chas_h",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=printer"
+        ],
+        "source_ids": [
+          "fergus_chicago_directory_1839"
+        ]
+      },
       {
         "person_id": "hathaway_joshua",
         "ticket": "T-0483",
@@ -185,6 +211,16 @@
         ],
         "source_ids": [
           "hathaway_1834"
+        ]
+      },
+      {
+        "person_id": "tuller_elam",
+        "ticket": "T-0509",
+        "changes": [
+          "occupation=farmer"
+        ],
+        "source_ids": [
+          "whiteside_elam_tuller"
         ]
       },
       {
@@ -564,6 +600,34 @@
           ]
         }
       ]
+    },
+    {
+      "file": "T-0504_1840_name_serial_crosswalk.xlsx",
+      "sheets": [
+        {
+          "sheet": "serial_crosswalk",
+          "rows": 637,
+          "columns": 15,
+          "probable_header_row": 1,
+          "probable_headers": [
+            "familysearch_id",
+            "printed_page",
+            "line",
+            "head_name_as_read",
+            "head_name_normalized",
+            "name_confidence",
+            "name_reading",
+            "serial",
+            "serial_mapping_confidence",
+            "columns_compared",
+            "candidates",
+            "block_continuity_preferred_serial",
+            "block_continuity_argument",
+            "evidence",
+            "source_image"
+          ]
+        }
+      ]
     }
   ],
   "structure_policy": "Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry.",
@@ -801,19 +865,20 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 825,
-    "persons": 849,
-    "attested": 118,
-    "inferred": 731,
+    "households": 1380,
+    "persons": 1404,
+    "attested": 526,
+    "inferred": 878,
     "reconstructed": 0,
     "letter_list_only": 727,
-    "projected_residents": 706,
+    "projected_residents": 719,
     "census_1840_linked": 3
   },
   "retirement": {
     "removed_people": 108,
     "removed_households": 96,
     "retained_hh_inf": 5,
-    "structures_unassigned": 30
+    "structures_unassigned": 30,
+    "roofs_enrolled_anonymous": 30
   }
 }

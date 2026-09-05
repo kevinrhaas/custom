@@ -153,6 +153,57 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
+# AND A PLACEMENT CAN BELONG TO A HOUSE THE ADVERTISER IS SELLING (T-0412). A `building`
+# claim carries an address because the notice gives one, and the extractor attaches the
+# business the signature names to it — which is right where the signer KEEPS the house
+# and wrong where he is only selling it. P. Pruyne signs "[W]E offer for sale the House
+# on [the corner] of Lasalle and Lake streets. [It] is 16 by 30 feet"
+# (chicago_democrat_1834_05_21 c001) as VENDOR, and T-0400 merged the record that minted
+# into `P. Pruyne & Co.`, whose store the papers put between Clark and Dearborn streets
+# across four printings. The corner then stood among that firm's `placement_readings` as
+# though it were a second frontage of the store.
+#
+# It did no harm on this record, and that was luck rather than design: the minting
+# claim's own placement was `none`, so `placement_rank` never promoted the corner. A
+# vendor notice that happened to be the ONLY reading on its record would have moved a
+# firm to a house it was selling — which is what the rule below refuses, once, for every
+# such notice the corpus may yet carry.
+#
+# THE RULE: a claim of kind `building` whose own entities sign it as the VENDOR of that
+# building contributes NO placing reading to the business the signature names. What the
+# printing said about the firm's own ground is nothing, so it records `{"class": "none"}`
+# — the same value every other silent printing records, and the claim key therefore
+# still stands in the record's readings rather than being dropped out of the history.
+# The notice is NOT thrown away: the printed placement, the address text and the claim go
+# on the business as `vendor_placements`, so the judgement can be read back, and the
+# claim itself — a documented Chicago house with a corner and a 16-by-30-foot footprint —
+# is untouched in `extracted/` where it always was.
+#
+# WHAT IT DOES NOT REACH, deliberately. `role` is free prose in this corpus (some three
+# hundred distinct strings), and a rule that read it loosely would silence an auctioneer
+# selling at his own store house — `chicago_democrat_1834_04_16` c008 is exactly that,
+# and its business is David Carver's own commission house. So the match is exact: the
+# role is `vendor`, or `vendor` followed by a qualifier ("vendor at auction"). Anything
+# else is a role somebody has to write a rule for, deliberately, having read it.
+VENDOR_ROLES = ("vendor",)
+
+
+def vendor_role(claim):
+    """The role string by which this claim's signature says the advertiser is SELLING.
+
+    Returns the role AS AUTHORED — so the record can quote it — or None. Only a
+    `building` claim can carry one: the seller of a building, not its occupant. See the
+    ruling above for why the match is exact rather than a search over prose.
+    """
+    if claim.get("kind") != "building":
+        return None
+    for ent in claim.get("entities") or []:
+        role = (ent.get("role") or "").strip()
+        low = role.lower()
+        if low in VENDOR_ROLES or any(low.startswith(v + " ") for v in VENDOR_ROLES):
+            return role
+    return None
+
 # AND A PAPER CAN SAY WHEN A HOUSE OPENED (T-0356). The register had no way to ask the
 # question, so it answered a different one: a business whose FIRST issue postdated the
 # scene date was excluded as `first_evidence_after_scene_date`, which is the absence of
@@ -578,16 +629,37 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             biz = claim.get("business")
             if biz:
                 bk = slug(biz.get("name"))
+                # T-0412. The address in a vendor's for-sale notice is the house he is
+                # selling, not the ground his own firm stands on, so it places nothing
+                # here and the printing is recorded as the silence it is about the firm.
+                printed_placement = biz.get("placement") or {}
+                sold_by = vendor_role(claim)
+                sold = bool(sold_by) and placement_rank(printed_placement) > 0
+                placement = {"class": "none"} if sold else biz.get("placement")
                 b = businesses.setdefault(bk, {
                     "id": "business_" + bk, "name": biz.get("name"), "proprietors": [],
                     "trade": biz.get("trade"), "goods": [], "street": biz.get("street"),
-                    "placement": biz.get("placement"),
+                    "placement": placement,
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
                     "contradicted_by": [], "opening_announced": [], "mentions": [],
                     "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                if sold:
+                    # The notice, kept where the judgement can be read back off the
+                    # record it was made about. Nothing downstream places on this.
+                    b.setdefault("vendor_placements", []).append({
+                        "claim": key,
+                        "issue": issue_date,
+                        "role": sold_by,
+                        "printed_placement": printed_placement,
+                        "address_text": biz.get("address_text"),
+                        "rule": "T-0412: the advertiser signs this building notice as its "
+                                "VENDOR, so the address is the house he is selling and not "
+                                "the ground his own house stands on. It places nothing "
+                                "here; the building itself stands in the claim.",
+                    })
                 # EVERY PRINTING'S OWN PLACEMENT, KEPT (T-0345). The dict above takes
                 # the placement of whichever claim mints the key, and until now every
                 # later printing's was thrown away — which is why a house whose printed
@@ -597,7 +669,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 # and the gazetteer held only the first. Readings collapse on (class,
                 # anchor) and carry their own dates: this is what each printing SAID and
                 # when, not a judgement about it. The judgement is `anchor_changes`.
-                record_reading(b, biz.get("placement") or {}, issue_date, key)
+                record_reading(b, placement or {}, issue_date, key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
                 b["evidence"]["last_issue"] = max(b["evidence"]["last_issue"], issue_date)
                 for who in biz.get("proprietors", []):
@@ -917,6 +989,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         dst["opening_announced"].extend(src["opening_announced"])
         for reading in src["placement_readings"]:
             absorb_reading(dst, reading)
+        # T-0412. A vendor notice usually mints its own key — "P. Pruyne" beside
+        # "P. Pruyne & Co." — so the record of WHY that printing places nothing has to
+        # survive the merge that joins them, or the judgement is lost at the one moment
+        # it becomes about the firm the corpus actually keeps.
+        for vp in src.get("vendor_placements") or []:
+            dst.setdefault("vendor_placements", []).append(vp)
         for cd in src["evidence"]["copy_dates"]:
             if cd not in dst["evidence"]["copy_dates"]:
                 dst["evidence"]["copy_dates"].append(cd)
@@ -937,6 +1015,68 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         if len(trades) > 1:
             dst["trade_variants"] = sorted(trades)
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
+
+    # A PRINTING THAT OMITS THE ADDRESS DOES NOT HOLD THE HOUSE'S PLACEMENT (T-0440).
+    #
+    # The dict a house is minted into takes `placement` and `street` from WHICHEVER
+    # CLAIM MINTS THE KEY — the earliest printing the corpus carries — and nothing
+    # downstream of that ever revised it. `record_reading` keeps every later printing's
+    # placement (T-0345), and a firm merge may raise the live one, but within a single
+    # key the first printing won outright. So a house whose first advertisement ran
+    # without an address, and which printed one afterwards, stood at `{"class": "none"}`
+    # for good: `compile_register.resolve_anchor` is handed no anchor, the row reads
+    # `unplaceable`, and its own printings say otherwise three lines below in the same
+    # file. Clark, Filer & Co. is the case this was found on — silent on 1834-05-28,
+    # then "their ware house on South water St. five [doors east] of the corner [of
+    # Randolph st.]" on 1834-06-11, 1834-06-18 and 1834-07-02 — and 13 other houses of
+    # the 206 were in the same position (tools/measure_placement_silence.py).
+    #
+    # WHAT THIS DECIDES, AND WHAT IT REFUSES TO. A printing that omits the address does
+    # not contradict one that gives it; it simply did not repeat it, which is what a
+    # standing advertisement does every other week. Preferring speech to silence is
+    # therefore not a judgement about a house that MOVED, and this pass makes none: it
+    # fires only where the live placement places nothing at all, and it takes the
+    # EARLIEST placing reading — the same tie-break `absorb_reading` already applies
+    # inside a reading, and the same one the mint applied, now asked of the first
+    # printing that actually said something. Where two placing readings disagree about
+    # the anchor, both are kept with their own dates exactly as before and the only
+    # thing that may reorder them is the authored `anchor_changes` rule below, which
+    # runs after this and overwrites what it decides. Nothing here upgrades a class,
+    # invents an anchor, or touches a house whose live placement already places
+    # something: a printed address is never overridden by another printed address.
+    #
+    # AND IT IS BOUNDED BY THE SCENE DATE, for the reason `anchor_changes` already is
+    # and AGENTS.md rule 3 states generally: an address first printed after 1 July 1835
+    # was not up on 1 July 1835, and a house is not placed in this town on the strength
+    # of it. Jones, King & Co. is the case — silent through its 1834 printings and given
+    # South Water Street on 1835-08-05 — and it stays silent here.
+    scene_iso_placement = SCENE_DATE.isoformat()
+    for biz in businesses.values():
+        if placement_rank(biz.get("placement")) > 0:
+            continue
+        placing = [r for r in biz["placement_readings"]
+                   if placement_rank(r.get("placement")) > 0
+                   and r["first_issue"] <= scene_iso_placement]
+        if not placing:
+            continue
+        first = min(placing, key=lambda r: (r["first_issue"], min(r["claims"])))
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0440: the minting printing gave no address, so the house is "
+                    "placed by the earliest printing that did. A printing that omits "
+                    "the address does not contradict one that gives it.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "superseded": {"class": "none"},
+        }
+        # The street the same reading names, where the minting printing named none.
+        # This is the reading's OWN `street` field and not a second inference: the
+        # sentence that carries the offset carries the street it is measured along.
+        street = (first["placement"] or {}).get("street")
+        if street and not biz.get("street") and " and " not in street \
+                and street != "unstated":
+            biz["street"] = street
+            biz["placement_from"]["street_from_reading"] = street
 
     # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
     # This is the other thing two printings of one advertisement can differ about, and
@@ -1005,7 +1145,16 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                             % (label, ", ".join(repr(n) for n in unnamed)))
             continue
         biz = businesses[bkey]
-        held = {r["anchor"]: r for r in biz["placement_readings"]}
+        # T-0440. A reading that places NOTHING names no landmark, so it can neither be
+        # claimed by an anchor group (guard 3 would refuse the name `null`) nor be left
+        # out of one (guard 4 would call it a printing silently dropped). Before this,
+        # any house whose advertisement ever ran without an address could not have an
+        # anchor rule written for it AT ALL — the one mechanism that may order a house's
+        # anchors was unreachable for exactly the houses whose placement most needed
+        # ordering. Silence is still kept in `placement_readings` with its own dates;
+        # what it may not do is take part in a judgement about which anchor is live.
+        held = {r["anchor"]: r for r in biz["placement_readings"]
+                if placement_rank(r.get("placement")) > 0}
         claimed, windows, bad = [], [], False
         for g in groups:
             readings = g.get("readings") or []
@@ -1263,6 +1412,8 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             r["claims"].sort()
         b["placement_readings"].sort(
             key=lambda r: (r["first_issue"], r["anchor"] or "", r["class"] or ""))
+        if b.get("vendor_placements"):
+            b["vendor_placements"].sort(key=lambda v: (v["issue"], v["claim"]))
     for p in persons.values():
         p["mentions"].sort()
         p["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
@@ -2467,6 +2618,117 @@ def self_test():
                anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
                "overlapping weeks", "two anchors printed in the same weeks")
 
+    # SILENCE DOES NOT HOLD A HOUSE'S PLACEMENT (T-0440). The mint takes `placement`
+    # and `street` from the earliest printing, so a standing advertisement that ran
+    # without an address in its first week and with one afterwards stood at
+    # `{"class": "none"}` for good and read `unplaceable` in the register. Both halves
+    # of the repair are asserted here: that a later printing's address is taken up, and
+    # that a printed address is NEVER overridden by another printed address.
+    def silent_then_placed(late_placement, early_placement=None):
+        def doc_for(issue_id, placement):
+            return {"issue_id": issue_id, "claims": [
+                {"id": "zs0", "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "placement": placement}}]}
+        return [doc_for(early_id, early_placement or {"class": "none"}),
+                doc_for(late_id, late_placement)]
+
+    LATE = {"class": "relative", "anchor": "the hotel", "offset_text": "opposite the hotel",
+            "street": "Lake Street"}
+    out = run_anchor(silent_then_placed(LATE), {"merges": [], "anchor_changes": []}, None,
+                     "a first printing with no address does not hold the placement")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the silent-printing case lost the house it was declared on")
+    elif (got["placement"] or {}).get("anchor") != "the hotel":
+        failures.append("a house silent in its first printing and placed in its second "
+                        "is left placed by the silence: %r" % got["placement"])
+    elif got.get("street") != "Lake Street":
+        failures.append("the street the placing printing names was not taken up: %r"
+                        % got.get("street"))
+    elif not got.get("placement_from"):
+        failures.append("a placement taken from a later printing left no record of "
+                        "where it came from")
+    elif len(got["placement_readings"]) != 2:
+        failures.append("the silent printing was dropped rather than kept as a reading: "
+                        "%d reading(s)" % len(got["placement_readings"]))
+
+    # …and the other direction: an address that IS printed first stands, whatever a
+    # later printing says. Reordering two printed addresses is `anchor_changes`' to
+    # declare and this pass may never do it in silence.
+    out = run_anchor(silent_then_placed(LATE, early_placement={
+        "class": "street_only", "street": "South Water Street"}),
+        {"merges": [], "anchor_changes": []}, None,
+        "a printed address is not overridden by a later printed address")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a house printed with an address in its first week was re-placed "
+                        "by a later printing with no rule declaring the move: %r"
+                        % got["placement"])
+    if got and got.get("placement_from"):
+        failures.append("the silence rule fired on a house that was never silent")
+
+    # …and an address first printed AFTER the scene date does not place the house at the
+    # scene date, which is the bound `anchor_changes` and AGENTS.md rule 3 already hold.
+    # The SILENT printing has to be the one that MINTS the house, or this case tests the
+    # mint rather than the pass — `compile_gazetteer` reads the extraction files in
+    # filename order, so both ids are chosen off the corpus by that order and the
+    # fixture asserts the ordering it depends on rather than assuming it.
+    silent_id = min(i for d, i in dates if d <= scene_iso)
+    placed_after_id = max((i for d, i in dates if d > scene_iso), default=None)
+    if placed_after_id is None or silent_id >= placed_after_id:
+        failures.append("the after-the-scene-date placement case cannot be built from "
+                        "this corpus: %r does not sort before %r"
+                        % (silent_id, placed_after_id))
+    else:
+        out = run_anchor([{"issue_id": silent_id, "claims": [
+            {"id": "zs0", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "placement": {"class": "none"}}}]},
+            {"issue_id": placed_after_id, "claims": [
+                {"id": "zs1", "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "placement": LATE}}]}],
+            {"merges": [], "anchor_changes": []}, None,
+            "an address first printed after the scene date")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"),
+                   None)
+        if got and placement_rank(got.get("placement")) > 0:
+            failures.append("an address first printed after the scene date %s placed "
+                            "the house at it: %r" % (scene_iso, got["placement"]))
+
+    # …and an anchor rule may now be written for a house one of whose printings gave no
+    # address at all. Before T-0440 the `null` anchor of a silent printing could neither
+    # be named by a group (guard 3) nor left out of one (guard 4), so the one mechanism
+    # that may order a house's anchors was unreachable for exactly those houses.
+    def three_printings(anchors):
+        docs = silent_then_placed({"class": "relative", "anchor": anchors[1],
+                                   "offset_text": "opposite %s" % anchors[1]})
+        docs.append({"issue_id": after_id, "claims": [
+            {"id": "zs1", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "placement": {"class": "relative", "anchor": anchors[2],
+                                        "offset_text": "opposite %s" % anchors[2]}}}]})
+        return docs
+
+    out = run_anchor(three_printings([None, "the tavern", "the hotel"]),
+                     anchor_rule([{"name": "the tavern", "readings": ["the tavern"]},
+                                  TREMONT]),
+                     None, "an anchor rule on a house whose first printing was silent")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the silent-printing anchor-rule case lost its house")
+    elif not got.get("anchor_change"):
+        failures.append("a silent printing still blocks an anchor rule from being "
+                        "written for the house")
+    elif got["anchor_change"]["live_anchor"] != "the tavern":
+        failures.append("the anchor live at the scene date is %r on a house whose only "
+                        "later printing runs after it"
+                        % got["anchor_change"]["live_anchor"])
+    elif len(got["placement_readings"]) != 3:
+        failures.append("the silent printing was dropped from the readings by the "
+                        "anchor rule: %d kept" % len(got["placement_readings"]))
+
     # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
     # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
     # place table becoming a hole in the families rule, so each is asserted from the
@@ -2771,6 +3033,70 @@ def self_test():
     if DASH_COLUMN_HEADING.match("--- SOURCE PDF PAGE 13, COLUMN 1 ---"):
         failures.append("the 1833 dash-column heading swallowed a 1835 scan-page column "
                         "rule, which carries a page the 1833 shape does not")
+
+    # A VENDOR'S FOR-SALE NOTICE PLACES NOTHING (T-0412), and the control beside it is
+    # the whole of the rule: change one word of the role and the same corner places the
+    # firm. Asserted on the compiled record, because a rule that silently changed
+    # nothing would look exactly like a green run.
+    def for_sale(role, claim_id="zv1", kind="building"):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["kind"] = kind
+        c["entities"] = [{"as_printed": "P. PRUYNE", "normalized": "P. Pruyne",
+                          "role": role, "occupations": []}]
+        c["business"] = {"name": "Vendor Test & Co.",
+                         "placement": {"class": "corner",
+                                       "anchor": "Lasalle and Lake streets",
+                                       "street": "Lasalle Street and Lake Street"},
+                         "address_text": "the House on the corner of Lasalle and Lake"}
+        d["claims"] = [c]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                           corpus_doc)
+        got = next((b for b in doc["businesses"] if b["name"] == "Vendor Test & Co."), None)
+        return got, probs, claim_key(d["issue_id"], c)
+
+    cases.append("a building notice signed by its vendor")
+    sold, probs, sold_key = for_sale("vendor")
+    if probs:
+        failures.append("the vendor case did not compile clean: %r" % probs)
+    elif sold is None:
+        failures.append("the vendor case minted no business at all")
+    elif placement_rank(sold["placement"]) > 0:
+        failures.append("a vendor's for-sale notice placed the firm that signed it: %r"
+                        % sold["placement"])
+    elif any(placement_rank(r["placement"]) > 0 for r in sold["placement_readings"]):
+        failures.append("a vendor's for-sale notice left a placing reading on the firm: %r"
+                        % sold["placement_readings"])
+    elif sold_key not in {c for r in sold["placement_readings"] for c in r["claims"]}:
+        failures.append("the vendor printing was dropped out of the readings entirely — "
+                        "it says nothing about the firm's ground, which is a silence and "
+                        "not an absence")
+    elif not sold.get("vendor_placements"):
+        failures.append("a vendor's for-sale notice was silenced and not recorded, so "
+                        "the judgement cannot be read back off the record")
+    elif sold["vendor_placements"][0]["printed_placement"].get("anchor") \
+            != "Lasalle and Lake streets":
+        failures.append("the vendor record does not carry the corner the paper printed: %r"
+                        % sold["vendor_placements"][0])
+
+    cases.append("the same corner signed by an occupant")
+    for role, kind, why in (("occupant", "building", "an occupant's building notice"),
+                            ("vendor", "business", "a vendor role on a business claim")):
+        cases.append(why)
+        kept, probs, _ = for_sale(role, claim_id="zv2", kind=kind)
+        if probs:
+            failures.append("%s did not compile clean: %r" % (why, probs))
+        elif kept is None or placement_rank(kept["placement"]) <= 0:
+            failures.append("%s stopped placing the firm — T-0412 reaches only a "
+                            "`building` claim signed by its vendor" % why)
+        elif kept.get("vendor_placements"):
+            failures.append("%s was recorded as a vendor notice" % why)
 
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:

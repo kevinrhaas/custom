@@ -183,6 +183,26 @@ def occupancy() -> dict[str, dict]:
     """
     out: dict[str, dict] = {}
     programme = _load()
+    # T-0516. THE HOUSEHOLD LAYER IS RETIRED, AND A RETIRED ARGUMENT SEATS NOBODY.
+    # The owner retired the reconstructed resident population on 2026-09-02 —
+    # "remove any pre-existing reconstructed people from the resident list and
+    # household" — and ruled the geometry kept: "keep the geometry for the later
+    # placement sweep". Its 101 households were deleted from `data/residents/` that
+    # day, but the ADOPTIONS they had made were not, so 104 anonymous roofs went on
+    # carrying an `occupants` block that named a household no file held, and a
+    # visitor clicking one was told about people who had been retired weeks before.
+    #
+    # This is the one place that can undo it, because these roofs are generated and
+    # a hand-edit would fail the drift check that makes the anonymous parcels
+    # trustworthy. An adoption whose adopter no longer exists yields no block at
+    # all, so the roof returns to what it was before the household layer reached
+    # it: an anonymous count-unit of the 665-roof programme, carrying no occupant.
+    # Nothing is deleted here and no geometry moves — the recipe still records
+    # which roof each household had taken, and if the owner ever revives the
+    # population `resident_population_active` turning back to true restores every
+    # one of these blocks from that same record.
+    if programme.get("resident_population_active") is False:
+        return dict(street_face_occupancy())
     for h in programme.get("households", []):
         for key in ("lives_at", "works_at"):
             sid = h.get(key)
