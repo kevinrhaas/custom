@@ -1624,7 +1624,13 @@ step "…and that pass writes two fields, moves no grade and repeats without dri
 # reaching its card, and a card that carries the paragraph for a ruling the crosswalk never
 # made. The paragraph says PURCHASE and never residence, because the register's own
 # Residence column reads COOK, ILLINOIS or UNKNOWN on every one of these rows.
-step "…and the land tract sales are on the 31 cards they name" \
+#
+# T-0677 added a THIRD direction, because two was not enough to keep the cards right. This
+# tool was rewritten between passes 2 and 3 and the earlier version is still pushed on a
+# branch; running it against dev gives every one of the 31 cards a second paragraph about
+# the same register, and this step was GREEN on exactly that tree. A card says the register
+# once — once written twice, and once by a superseded pass left standing beside this one.
+step "…and the land tract sales are on the 31 cards they name, once each" \
   python3 tools/spend_land_sales.py --check
 
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
