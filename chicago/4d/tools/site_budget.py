@@ -29,13 +29,31 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT.parent.parent / "site" / "chicago" / "4d"
-BUDGET_MB = 32.0
+# THE BUDGET IS READ FROM THE GATE, NOT RESTATED HERE. This tool hardcoded 32.0
+# while tools/validate.py had been raised to 36 (T-0593, #823), so the report said
+# "95.0 % of the 32 MB budget, 1.588 MB of headroom" about a tree the gate saw as
+# 30.4 of 36 with 5.59 MB spare — and a 2026-09-05 ticket cleanup quoted the wrong
+# figure out of it. A reporting tool that names a different number than the gate it
+# reports on is worse than no report.
+def _gate_budget_mb(default: float = 36.0) -> float:
+    try:
+        src = (ROOT / "tools" / "validate.py").read_text()
+        m = re.search(r"^SITE_BUDGET_MB\s*=\s*([0-9.]+)", src, re.M)
+        if m:
+            return float(m.group(1))
+    except OSError:
+        pass
+    return default
+
+
+BUDGET_MB = _gate_budget_mb()
 DUPE_FLOOR = 64 * 1024  # a group smaller than this is not worth a word
 
 
