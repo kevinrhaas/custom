@@ -4,10 +4,10 @@
  "generated_by": "tools/consolidate_resident_evidence.py --build",
  "domains": {
   "census_1840": {
-   "names_read": 659,
-   "identities": 650,
-   "appearances_on_an_identity_the_town_already_carries": 40,
-   "unmatched": 619
+   "names_read": 708,
+   "identities": 697,
+   "appearances_on_an_identity_the_town_already_carries": 41,
+   "unmatched": 667
   },
   "church": {
    "names_read": 520,
@@ -23,7 +23,7 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2920,
+   "identities": 2921,
    "appearances_on_an_identity_the_town_already_carries": 290,
    "unmatched": 4056
   },
@@ -79,12 +79,12 @@
   }
  },
  "overlap": {
-  "census_1840|census_1840": 650,
+  "census_1840|census_1840": 697,
   "census_1840|church": 24,
-  "census_1840|civic": 18,
-  "census_1840|directories": 125,
-  "census_1840|newspapers": 46,
-  "census_1840|old_settlers": 11,
+  "census_1840|civic": 19,
+  "census_1840|directories": 135,
+  "census_1840|newspapers": 48,
+  "census_1840|old_settlers": 14,
   "census_1840|residents": 38,
   "church|church": 480,
   "church|civic": 2,
@@ -97,7 +97,7 @@
   "civic|newspapers": 92,
   "civic|old_settlers": 27,
   "civic|residents": 271,
-  "directories|directories": 2920,
+  "directories|directories": 2921,
   "directories|newspapers": 158,
   "directories|old_settlers": 31,
   "directories|residents": 170,
@@ -115,8 +115,8 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 649,
-   "R2": 971,
+   "R1": 655,
+   "R2": 972,
    "R3": 181,
    "R4": 80
   },
