@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 41 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 43 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -259,8 +259,9 @@ defect in this export.
 | no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
-| conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review |
+| conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review. `conflict_ruling` says what was decided about it |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
+| conflicting evidence nobody has ruled on | 0 | a conflict is recorded and `data/research/residents/conflict_rulings.json` carries no verdict for it — the gap T-0733 closed, and the one `tools/check_conflict_rulings.py` now refuses to let reopen |
 
 ## Reading the table
 
@@ -270,6 +271,16 @@ defect in this export.
   household's own graded blocks. `src_<category>` splits the same list.
 - `flag_*` columns are the unresolved list. They are not failures; they are what
   is still open, and they are what T-0517's re-run will be measured against.
+- `flag_conflicting_evidence` says a conflict is RECORDED against the person;
+  `conflict_ruling` says what was DECIDED about it, and
+  `flag_unruled_conflict` is the pair that matters — a conflict weighed by
+  nobody. T-0733 ruled the 81 standing conflicts and
+  `tools/check_conflict_rulings.py` refuses a new one that goes unruled, so this
+  column is designed to read zero and to stop the gate when it does not. The
+  verdicts are `candidate_withheld` (not disqualifying, not bridged either),
+  `candidate_rejected` (disqualifying on the record as it stands) and
+  `held_for_consultation` (AGENTS.md's standing constraint — not ours to close).
+  The ruling file names, per ground, the evidence that would settle it.
 - `research_ticket` empty and `flag_no_research_row` true means no cohort has
   reached this person yet — see T-0508 to T-0510 and the cohorts after them.
 

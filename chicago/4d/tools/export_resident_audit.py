@@ -182,6 +182,22 @@ def findings() -> dict:
     return out
 
 
+RULINGS = RESEARCH / "conflict_rulings.json"
+
+
+def rulings() -> tuple[dict, dict]:
+    """(person id -> ruling, household id -> ruling) from the committed ruling layer.
+
+    T-0733. The ledger records the conflict; this records what was DECIDED about it, which
+    until now was written nowhere a reader could reach. The audit does not adjudicate — it
+    reports whether an adjudication exists, and `tools/check_conflict_rulings.py` is what
+    makes the coverage total."""
+    doc = json.loads(RULINGS.read_text(encoding="utf-8"))
+    people = {r["person_id"]: r for r in doc.get("rulings") or []}
+    households = {r["household_id"]: r for r in doc.get("household_rulings") or []}
+    return people, households
+
+
 def value_of(block) -> str:
     """A graded block's value as one cell. `{value, confidence, note}` is the shape of
     nearly every claim in this layer; a bare scalar is passed through."""
@@ -238,6 +254,7 @@ COLUMNS = [
     "later_census_serial", "later_census_bridge_status", "present_on_scene_date",
     "division", "lives_at", "works_at", "occupation", "occupation_confidence",
     "flag_no_research_row", "flag_candidate_identity_open", "flag_conflicting_evidence",
+    "flag_unruled_conflict", "conflict_ruling",
     "flag_single_source", "flag_no_source", "flag_unplaced", "flag_no_address",
     "audit_result",
 ]
@@ -245,6 +262,7 @@ COLUMNS = [
 
 def rows() -> tuple[list[dict], dict]:
     ledger = findings()
+    person_rulings, household_rulings = rulings()
     cache: dict = {}
     out: list[dict] = []
     for household in households():
@@ -257,8 +275,16 @@ def rows() -> tuple[list[dict], dict]:
             research = person.get("resident_research") or {}
             has_research_row = bool(research.get("ticket"))
             override = ledger.get(person["id"]) or {}
-            conflicts = any(c.get("conflicts")
-                            for c in (override.get("candidates") or []))
+            stated = [x for c in (override.get("candidates") or [])
+                      for x in (c.get("conflicts") or [])]
+            conflicts = bool(stated)
+            held = bool(household.get("review_required"))
+            ruling = person_rulings.get(person["id"]) if conflicts else None
+            household_ruling = household_rulings.get(household["id"]) if held else None
+            verdicts = [r["verdict"] for r in (ruling, household_ruling) if r]
+            unruled = (
+                (conflicts and not set(stated) <= set((ruling or {}).get("conflicts") or []))
+                or (held and household_ruling is None))
             later = person.get("later_census") if isinstance(
                 person.get("later_census"), dict) else {}
             returns = person.get("letter_list_returns") or []
@@ -308,8 +334,9 @@ def rows() -> tuple[list[dict], dict]:
                 "flag_candidate_identity_open": (
                     research.get("outcome") in ("candidate_identity", "candidate")
                     and not research.get("asserted_identity")),
-                "flag_conflicting_evidence": bool(
-                    conflicts or household.get("review_required")),
+                "flag_conflicting_evidence": conflicts or held,
+                "flag_unruled_conflict": unruled,
+                "conflict_ruling": ";".join(dict.fromkeys(verdicts)),
                 "flag_single_source": len(ids) == 1,
                 "flag_no_source": not ids,
                 "flag_unplaced": household.get("division") == "unplaced",
@@ -368,7 +395,12 @@ def gaps(table: list[dict]) -> list[tuple[str, int, str]]:
         ("conflicting evidence",
          sum(1 for r in table if r["flag_conflicting_evidence"]),
          "the ledger records a conflict against a candidate, or the household is "
-         "flagged for review"),
+         "flagged for review. `conflict_ruling` says what was decided about it"),
+        ("conflicting evidence nobody has ruled on",
+         sum(1 for r in table if r["flag_unruled_conflict"]),
+         "a conflict is recorded and `data/research/residents/conflict_rulings.json` "
+         "carries no verdict for it — the gap T-0733 closed, and the one "
+         "`tools/check_conflict_rulings.py` now refuses to let reopen"),
         ("no census linkage",
          sum(1 for r in table if not (r["src_census"] or r["later_census_year"] != "")),
          "no 1840 census row is bridged to this person"),
@@ -524,6 +556,17 @@ def render_readme(table: list[dict], cache: dict) -> str:
     add("  household's own graded blocks. `src_<category>` splits the same list.")
     add("- `flag_*` columns are the unresolved list. They are not failures; they are what")
     add("  is still open, and they are what T-0517's re-run will be measured against.")
+    add("- `flag_conflicting_evidence` says a conflict is RECORDED against the person;")
+    add("  `conflict_ruling` says what was DECIDED about it, and")
+    add("  `flag_unruled_conflict` is the pair that matters — a conflict weighed by")
+    add("  nobody. T-0733 ruled the %d standing conflicts and"
+        % sum(1 for r in table if r["flag_conflicting_evidence"]))
+    add("  `tools/check_conflict_rulings.py` refuses a new one that goes unruled, so this")
+    add("  column is designed to read zero and to stop the gate when it does not. The")
+    add("  verdicts are `candidate_withheld` (not disqualifying, not bridged either),")
+    add("  `candidate_rejected` (disqualifying on the record as it stands) and")
+    add("  `held_for_consultation` (AGENTS.md's standing constraint — not ours to close).")
+    add("  The ruling file names, per ground, the evidence that would settle it.")
     add("- `research_ticket` empty and `flag_no_research_row` true means no cohort has")
     add("  reached this person yet — see T-0508 to T-0510 and the cohorts after them.")
     add("")
@@ -718,6 +761,23 @@ def cmd_self_test() -> bool:
     want(all(r["relationship"] == "household_member"
              for r in sample if r["flag_no_source"]), True,
          "a sourceless row is never a head")
+
+    # T-0733. A RECORDED CONFLICT THAT NOBODY RULED ON is the fault this pair of columns
+    # exists to make visible, and the whole point is that it reads zero. The assertion is
+    # not that conflicts are gone — 81 rows still carry one — but that every one of them
+    # has a verdict a reader can find.
+    want([r["person_id"] for r in sample if r["flag_unruled_conflict"]], [],
+         "every recorded conflict carries a ruling")
+    want(all(bool(r["conflict_ruling"]) == bool(r["flag_conflicting_evidence"])
+             for r in sample), True,
+         "the ruling column carries ink exactly where a conflict is recorded")
+    # Two verdicts, not three: `candidate_rejected` is ruled in the ledger layer and does
+    # not reach this table, because `findings()` keeps only the NEWEST override per person
+    # and pass 13 rewrote the one pass 02 recorded the disqualifying conflict on. The ruling
+    # file covers every pass; this column reports the one the audit can see (T-0844).
+    want(sorted(set(r["conflict_ruling"] for r in sample if r["conflict_ruling"])),
+         ["candidate_withheld", "held_for_consultation"],
+         "the verdicts the audit's own view of the ledgers draws on")
 
     if not bad:
         print("resident audit self-test: all assertions fire")

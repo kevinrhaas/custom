@@ -1,0 +1,1685 @@
+{
+  "_doc": "THE RULINGS ON RECORDED CONFLICTS (T-0733). The research passes recorded a conflict against a candidate 106 times, across 96 people, and adjudicated none of them in a form anything downstream could read: the final audit (T-0512) could see the flag and not the decision, so a conflict that HAD been weighed read exactly like a conflict nobody found. This file is the decision, written down. One entry per person carrying a ledger conflict, plus one per household held under AGENTS.md's standing constraint.\n\nIT RESOLVES NOTHING BY ITSELF AND MOVES NO GRADE. Every one of the 96 ended the same way in the ledger — a candidate found, a conflict stated, and the identity NOT asserted — and the ruling records that outcome rather than improving on it. What the ruling adds is the part the ledger never wrote: WHICH KIND of objection stands (`grounds`), and therefore WHAT WOULD SETTLE IT (`grounds` -> `settled_by`). A conflict with a named exit is a research task; a bare flag is not.\n\nHAND-AUTHORED, AND GATED. `tools/check_conflict_rulings.py` refuses a ledger conflict that no ruling covers, a ruling that names a conflict the ledgers do not carry, and a ground outside the vocabulary below. New conflicts therefore cannot silt up unruled the way these 106 did — but nothing here rules them for you: the gate fails until a person writes one.\n\n`conflicts` is quoted VERBATIM from the pass ledgers and is the key the gate matches on. Never edit a quoted conflict here to make it agree with a ruling; edit the ledger, and rule again.",
+  "ticket": "T-0733",
+  "ruled_on": "2026-09-05",
+  "verdicts": {
+    "candidate_withheld": "The objection is not disqualifying, and it is not bridged either. The candidate stays on the ledger unasserted, the card carries no identity, and the evidence named under `grounds` is what would close it.",
+    "candidate_rejected": "The objection is disqualifying on the record as it stands: a stated fact makes the identification impossible rather than merely unproved. The candidate is out, and no further reading of the same records rescues it.",
+    "held_for_consultation": "Not an adjudication and not for this project to make alone. The record is held under AGENTS.md's standing constraint on 1835 and Indigenous history; the exit is the consultation the project has committed to, not more research by us."
+  },
+  "grounds": {
+    "competing_residence": {
+      "stands_because": "The candidate is documented living outside the town — another county, another state, or a hinterland settlement — at or about the scene date, and nothing moves him into Chicago.",
+      "settled_by": "A Chicago record — a poll book, deed, tax list, church entry, notice or census line — placing the candidate in the town at the scene date."
+    },
+    "no_linking_record": {
+      "stands_because": "Nothing bridges the candidate to the Chicago item at all; the match rests on the name and the period.",
+      "settled_by": "A source that names the candidate and the Chicago record together, or a discriminator — occupation, address, kin — that both records carry."
+    },
+    "chronological_gap": {
+      "stands_because": "The independent evidence sits years before or after the Chicago item and no record carries the person across the interval.",
+      "settled_by": "A record inside the gap, or one that states the person's presence on both sides of it."
+    },
+    "date_excludes": {
+      "stands_because": "A date on the record makes the identification impossible, not merely unproved.",
+      "settled_by": "Nothing. The date is the ruling; only a demonstrated error in the date reopens it."
+    },
+    "orthographic_variance": {
+      "stands_because": "The two records spell the name differently — a variant surname, a differing forename, an initial the other lacks — and no source prints both forms for one person.",
+      "settled_by": "A source printing both forms for one person, or the original manuscript behind the reading."
+    },
+    "contradicted_detail": {
+      "stands_because": "A stated detail on one record contradicts the other — a spouse's name, an arrival year, a return date — so the two cannot both describe one person as written.",
+      "settled_by": "A source that reconciles the detail, or the manuscript that shows one of the two readings to be wrong."
+    },
+    "common_name": {
+      "stands_because": "The name is too common in this corpus for a match on the name to discriminate between the people carrying it.",
+      "settled_by": "A discriminator beyond the name, held by both records."
+    },
+    "source_unreachable": {
+      "stands_because": "The scan, volume or finding aid the bridge would be tested against could not be reached, so the test was never made.",
+      "settled_by": "Obtaining the underlying image or volume and making the test."
+    },
+    "duplicate_pair_unresolved": {
+      "stands_because": "Two rows of this layer may be one person, and no source outside the layer names either form — so collapsing them would invent the man they collapse into.",
+      "settled_by": "Any external record naming one of the spellings, which anchors the pair to a person rather than to each other."
+    },
+    "policy_refusal": {
+      "stands_because": "This project's own committed rules refuse the bridge — a later directory never attests 1835 presence, or a refusal already stands against the surname.",
+      "settled_by": "A source inside the layer's date, or a ruling that reverses the refusal on its own terms."
+    },
+    "standing_constraint": {
+      "stands_because": "AGENTS.md holds the record for consultation on 1835 and Indigenous history. It is not a research gap and must not be closed as one.",
+      "settled_by": "The review by Native scholars or community organizations the project has committed to seeking. Clearing `review_required` is the claim that it has happened."
+    }
+  },
+  "rulings": [
+    {
+      "person_id": "abbott_constant",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Dr. Constant Abbott"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No direct Chicago link."
+      ]
+    },
+    {
+      "person_id": "akers_simon",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "orthographic_variance"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "Two years after the scene and on an initial agreement only; the crosswalk hands on evidence, not a verdict."
+      ]
+    },
+    {
+      "person_id": "albee_clark_b",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Clark B. Albee of Grand Haven"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Documented Michigan setting and no direct letter link."
+      ]
+    },
+    {
+      "person_id": "allen_william",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "common_name",
+        "policy_refusal"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "One of the commonest names here, and this project's directory policy holds that an 1839 or 1840 entry never attests 1835 presence."
+      ]
+    },
+    {
+      "person_id": "alling_prudde",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Prudden Alling"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "No Chicago, Illinois or scene-date discriminator was found."
+      ]
+    },
+    {
+      "person_id": "avery_charles",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "orthographic_variance",
+        "policy_refusal"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "The directory's man carries a middle initial the letter list does not, and the 1840 'C. E. Avery' is already refused on the forename."
+      ]
+    },
+    {
+      "person_id": "bailey_bennet",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Bennet Bailey of the Chicago Mechanics' Institute"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "No record bridges the 1834 letter to the 1843 directory entry."
+      ]
+    },
+    {
+      "person_id": "bailly_joseph",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Honoré Gratien Joseph Bailly de Messein"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Documented Porter County residence; no source links him to this letter.",
+        "His household stood on the Little Calumet in Indiana; a letter waiting at the Chicago post office is what a trader who collected mail here leaves, not a residence."
+      ]
+    },
+    {
+      "person_id": "bartlett_charles_h",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "source_unreachable"
+      ],
+      "candidates": [
+        "Charles H. Bartlett of Diamond Lake"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Regional farm rather than Chicago town; letter not identified in the finding aid."
+      ]
+    },
+    {
+      "person_id": "bishop_j_e",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "policy_refusal"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "Illinois Street is not in the 1835 layer, so the entry cannot be placed in the town at all, and the 1837 poll refuses the surname."
+      ]
+    },
+    {
+      "person_id": "blair_william_g",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name",
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "William G. Blair of Winnebago County"
+      ],
+      "passes": [
+        "T-0463",
+        "T-0508"
+      ],
+      "conflicts": [
+        "No direct Chicago post-office link; common name.",
+        "Fergus 1843's Chicago hardware Blair carries no middle initial and a later arrival; Winnebago is another county. Neither bridges the postal entry."
+      ]
+    },
+    {
+      "person_id": "bly_rouse",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Rouse Bly of New Haven Township, Ohio"
+      ],
+      "passes": [
+        "T-0463",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Documented Ohio residence and no Chicago migration bridge.",
+        "A competing Ohio identity of the same uncommon name is caution, not a bridge; the Chicago corpus never repeats the name."
+      ]
+    },
+    {
+      "person_id": "bomgarten_moritz",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "source_unreachable"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Indexed source states Chicago arrival in 1836, after the postal return; underlying volume/independent bridge is needed."
+      ]
+    },
+    {
+      "person_id": "bristol_r_c",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Five-year gap; no direct 1834 record found."
+      ]
+    },
+    {
+      "person_id": "brookes_samuel",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Four-year gap; no seed-date bridge."
+      ]
+    },
+    {
+      "person_id": "brooks_gardner",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Gardner Brooks of Des Plaines"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No direct link to the Chicago post-office entry."
+      ]
+    },
+    {
+      "person_id": "burdick_paul",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Paul Burdick of Milwaukee"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Milwaukee residence; no linking Chicago record."
+      ]
+    },
+    {
+      "person_id": "butterfield_ben",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Ben Butterfield of Lockport"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Lockport residence; no record links him to this letter."
+      ]
+    },
+    {
+      "person_id": "case_nehemiah",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Nehemiah Case of Buffalo"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Buffalo geography and no Chicago discriminator."
+      ]
+    },
+    {
+      "person_id": "chadwick_joseph",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Joseph M. Chadwick, later of Goliad"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "No Chicago location or letter linkage; candidate left for Texas by December 1835."
+      ]
+    },
+    {
+      "person_id": "chappel_eliza_mir",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "source_unreachable",
+        "orthographic_variance"
+      ],
+      "candidates": [
+        "Eliza Chappel Porter"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "The scan is unavailable; Mir-to-Miss remains unverified."
+      ]
+    },
+    {
+      "person_id": "churchill_alfred",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Alfred Churchill of Flag Creek"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Hinterland residence and no explicit letter linkage."
+      ]
+    },
+    {
+      "person_id": "cleaveland_wm_p",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "source_unreachable",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0486"
+      ],
+      "conflicts": [
+        "The retrieved excerpt does not expose enough heading/page context to prove that Andreas's William P. Cleaveland is the same individual as the January 1834 postal entry."
+      ]
+    },
+    {
+      "person_id": "comstock_h_h",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "H. H. Comstock of Kalamazoo County"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Michigan rather than Chicago residence; no letter bridge."
+      ]
+    },
+    {
+      "person_id": "conger_thomas",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Michigan office and no Chicago bridge; name not rare enough for merge."
+      ]
+    },
+    {
+      "person_id": "couch_james",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap"
+      ],
+      "candidates": [
+        "James Couch, later Tremont House proprietor"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Reviewed histories place the Couch hotel operation after the 1 July 1835 scene date."
+      ]
+    },
+    {
+      "person_id": "covell_thomas_r",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Thomas R. Covell of Salt Creek"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Salt Creek lay outside Chicago town; no explicit link to the letter."
+      ]
+    },
+    {
+      "person_id": "curtenius_fredk",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Frederick William Curtenius"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Middle initial differs and the source supplies no Chicago link."
+      ]
+    },
+    {
+      "person_id": "dalton_edward",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "source_unreachable",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Edward Dalton, Chicago First Ward in 1840 census index"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Index-only access path; no independent bridge from the 1835 postal entry to the 1840 household."
+      ]
+    },
+    {
+      "person_id": "dimmick_e",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Edward Dimmick, Chicago painter in 1839"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "The 1835 entry supplies only E. Dimmick; other E-named Dimmicks exist and no direct bridge identifies Edward."
+      ]
+    },
+    {
+      "person_id": "dow_albert_f",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Albert F. Dow of Ottawa"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No 1835 migration or household bridge."
+      ]
+    },
+    {
+      "person_id": "downer_pierce",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Established residence west of Chicago from 1832 onward."
+      ]
+    },
+    {
+      "person_id": "dunlap_alva",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record",
+        "policy_refusal"
+      ],
+      "candidates": [
+        "Alva Dunlap of Peoria County"
+      ],
+      "passes": [
+        "T-0463",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Later Peoria-area settlement and no direct letter bridge.",
+        "Peoria is not Chicago and the account names no Chicago residence; three directories refuse the surname on the initial."
+      ]
+    },
+    {
+      "person_id": "elisha_rayond",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "The dated Chicago transit is September 1835, after the scene date; no direct bridge to the printed Rayond entry."
+      ]
+    },
+    {
+      "person_id": "fairchilds_ransom",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record",
+        "orthographic_variance"
+      ],
+      "candidates": [
+        "Ransom Fairchild of Michigan"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No Chicago link; name normalization unverified."
+      ]
+    },
+    {
+      "person_id": "felch_alaneon",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Alson Felch of Racine"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Given-name reading differs and no migration bridge exists."
+      ]
+    },
+    {
+      "person_id": "filer_elihu_d",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Elihu D. Filer of Racine"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No Chicago-to-Racine migration bridge."
+      ]
+    },
+    {
+      "person_id": "fitzgerald_thos",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Michigan geography and common name; no Chicago bridge."
+      ]
+    },
+    {
+      "person_id": "ford_ebenezer",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Ebenezer Ford of the Fort Dearborn garrison"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "The roster does not explicitly identify the later letter recipient."
+      ]
+    },
+    {
+      "person_id": "fraser_wm_h",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "No independent source yet resolves whether one or two people."
+      ]
+    },
+    {
+      "person_id": "frazer_wm_h",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "No independent source yet resolves whether one or two people."
+      ]
+    },
+    {
+      "person_id": "galusha_ezra",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Ezra Galusha of Warrenville"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No record directly links him to the letter; documented hinterland residence."
+      ]
+    },
+    {
+      "person_id": "garton_elijah",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Elijah Garton of Round Grove / St. Charles"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Documented at the Fox River settlement rather than Chicago; no source connects him to the waiting letter."
+      ]
+    },
+    {
+      "person_id": "gifford_hezekiah",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Hezekiah Gifford, co-founder of Elgin"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "The source places him at Elgin by the scene date; no independent evidence links that settler to the Chicago postal entry."
+      ]
+    },
+    {
+      "person_id": "gould_a_b",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Ambrose B. Gould, Chicago sailor in 1843"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Eight-year gap after the postal entry; no source explicitly expands the 1835 initials or connects the records."
+      ]
+    },
+    {
+      "person_id": "griswold_eben",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Eben Griswold of Berrien County"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "No chronology or identifier links him to the letter."
+      ]
+    },
+    {
+      "person_id": "hateh_betsey",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Betsey Hatch of La Salle County"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Documented in La Salle County in 1836, not Chicago; no postal or kinship bridge."
+      ]
+    },
+    {
+      "person_id": "hawley_oscar_l",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "1842 is substantially later than the 1834 letter and no independent Chicago bridge exists."
+      ]
+    },
+    {
+      "person_id": "herrick_ira",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "DuPage geography competes with the Chicago postal reading."
+      ]
+    },
+    {
+      "person_id": "holliday_william",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Dr. William Holliday of White Hall, Illinois"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "White Hall, Greene County is competing geography; the common name and lack of a Chicago bridge make identity weak."
+      ]
+    },
+    {
+      "person_id": "hon_reynolds_john",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Government biography supplies competing Belleville/congressional geography; a Chicago waiting letter alone cannot identify him."
+      ]
+    },
+    {
+      "person_id": "horr_raiph_c",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Aurora geography conflicts with Chicago scene-date residence."
+      ]
+    },
+    {
+      "person_id": "house_chester",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "contradicted_detail"
+      ],
+      "candidates": [
+        "Chester House of House's Grove"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Hinterland residence; Judith versus Lucinda spouse conflict."
+      ]
+    },
+    {
+      "person_id": "how_phineas",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Marengo geography; source spells Howe; no direct postal bridge."
+      ]
+    },
+    {
+      "person_id": "howard_joshua",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Competing Michigan geography; likely namesake."
+      ]
+    },
+    {
+      "person_id": "hutchins_nathan",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Competing Will County geography; no direct source ties the settler to the Chicago post-office entry."
+      ]
+    },
+    {
+      "person_id": "jaines_gooding",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "James Gooding of Gooding's Grove"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Gooding's Grove was a hinterland settlement; no source bridges the pioneer to the Chicago post-office item."
+      ]
+    },
+    {
+      "person_id": "luce_william",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Documented at Racine before the May 1835 Chicago letter list."
+      ]
+    },
+    {
+      "person_id": "makepiece_george_r",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "George R. Makepeace of Joliet"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Makepiece/Makepeace variant unverified; no direct letter link."
+      ]
+    },
+    {
+      "person_id": "mclintock_thomas",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "common_name",
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Both father and son are Thomas; no discriminator assigns the letter to either individual, and Bachelor's Grove is not Chicago proper."
+      ]
+    },
+    {
+      "person_id": "merrill_winthrop",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "chronological_gap"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Two stable IDs exist and should not be merged silently; some histories date township settlement to 1836."
+      ]
+    },
+    {
+      "person_id": "miles_andrew",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "orthographic_variance",
+        "no_linking_record",
+        "policy_refusal"
+      ],
+      "candidates": [
+        "Andrew Miles or Mills of Kane County"
+      ],
+      "passes": [
+        "T-0463",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Miles/Mills source conflict; no direct link to the Chicago letter.",
+        "The passage carries a Miles/Mills spelling conflict, and two directories refuse the surname on the initial."
+      ]
+    },
+    {
+      "person_id": "minard_ira",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Strong 1834 St. Charles geography competes with Chicago residence."
+      ]
+    },
+    {
+      "person_id": "miner_amanda",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record",
+        "orthographic_variance"
+      ],
+      "candidates": [
+        "Amanda Miner of Kaneville"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "No direct bridge to the Chicago letter; printed 2 counts letters, not people.",
+        "Kane County, and nothing ties the pair to the Chicago post office; the Newberry card is a 'Milner' heading."
+      ]
+    },
+    {
+      "person_id": "moody_robert",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Kane County/Fox River geography competes with Chicago; no independent bridge to the postal item."
+      ]
+    },
+    {
+      "person_id": "mulford_e_h",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "contradicted_detail",
+        "common_name"
+      ],
+      "candidates": [
+        "James H. Mulford, Chicago jeweler/watch dealer"
+      ],
+      "passes": [
+        "T-0478"
+      ],
+      "conflicts": [
+        "Existing Andreas-derived record says E. H. Mulford and arrival 1833; later sources distinguish multiple Mulford men in the jewelry business."
+      ]
+    },
+    {
+      "person_id": "murphy_harriet",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap"
+      ],
+      "candidates": [
+        "Harriet Murphy, later United States Hotel manager"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "The management evidence begins in 1836; it does not establish her 1835 roof or maiden name."
+      ]
+    },
+    {
+      "person_id": "murray_alonzo",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "no_linking_record",
+        "policy_refusal"
+      ],
+      "candidates": [
+        "Alonzo Murry letter-list record"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "No external bridge.",
+        "Committed refusals stand against every other Murray reached — St Mary's 'John Murray', the 1834 poll's 'Patrick Murray', Fergus 1839."
+      ]
+    },
+    {
+      "person_id": "murry_alonzo",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "no_linking_record",
+        "common_name"
+      ],
+      "candidates": [
+        "Alonzo Murray letter-list record"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "No external bridge.",
+        "The surname is common here — James H, Patrick and John are separately held — and no source equates the two Alonzos."
+      ]
+    },
+    {
+      "person_id": "newton_daniel",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Daniel Newton of Ottawa"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "The source places him in Ottawa; nothing links him directly to the Chicago post-office entry."
+      ]
+    },
+    {
+      "person_id": "osborn_wm",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Will County geography and common name; no direct Chicago bridge."
+      ]
+    },
+    {
+      "person_id": "paddock_jane",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Palos geography; no direct Chicago bridge."
+      ]
+    },
+    {
+      "person_id": "parcel_aaron",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "contradicted_detail",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Aron Parcell letter-list record"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Different return dates and no linking record.",
+        "Nothing outside the letter lists names either spelling, so collapsing the pair would invent the man they collapse into."
+      ]
+    },
+    {
+      "person_id": "parcell_aron",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "contradicted_detail",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Aaron Parcel letter-list record"
+      ],
+      "passes": [
+        "T-0462",
+        "T-0508"
+      ],
+      "conflicts": [
+        "Different return dates and no linking record.",
+        "Nothing outside the letter lists names either spelling; collapsing them asserts an identity no source states."
+      ]
+    },
+    {
+      "person_id": "parkes_curtis",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Curtis Parkes of Porter County"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Porter County residence and no direct letter bridge."
+      ]
+    },
+    {
+      "person_id": "parsons_edward",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "common_name",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Five-year gap and common surname; no 1834-35 identity bridge."
+      ]
+    },
+    {
+      "person_id": "platt_daniel",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Daniel Platt of Lisbon Township / Plattville"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Documented outside Chicago; no postal, occupation or kinship bridge to the letter-list person."
+      ]
+    },
+    {
+      "person_id": "poor_edward",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Edward Poor of Homer/New Lenox Township"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Homer/New Lenox is competing residence; no source directly ties him to the Chicago post-office item."
+      ]
+    },
+    {
+      "person_id": "reel_absolam",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "orthographic_variance",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Absalom Reel of Indiana"
+      ],
+      "passes": [
+        "T-0463"
+      ],
+      "conflicts": [
+        "Indiana record and no Chicago link; Absolam/Absalom spelling differs."
+      ]
+    },
+    {
+      "person_id": "ritchey_james",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Returned to Will County; no 1835 Chicago residence bridge."
+      ]
+    },
+    {
+      "person_id": "rutherford_salmon",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Aux Sable/Grundy County residence is explicitly documented."
+      ]
+    },
+    {
+      "person_id": "scarritt_isaac",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "No proof of Chicago household at the 1834 postal date."
+      ]
+    },
+    {
+      "person_id": "selden_saml_l",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Rochester judicial residence/service spans the target period; no evidence links that judge to the Chicago postal item."
+      ]
+    },
+    {
+      "person_id": "starr_ruel",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0485"
+      ],
+      "conflicts": [
+        "Documented Porter County, Indiana settlement and continued residence."
+      ]
+    },
+    {
+      "person_id": "teall_wm",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0486"
+      ],
+      "conflicts": [
+        "The Chicago waiting letter is dated April 1, 1834; the Michigan City merchant license is May 13 and no source explicitly identifies the addressee with the merchant."
+      ]
+    },
+    {
+      "person_id": "titcomb_timothy",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Timothy Titcomb of Wheeling Township"
+      ],
+      "passes": [
+        "T-0478"
+      ],
+      "conflicts": [
+        "Hinterland residence; no record explicitly links this man to the Chicago post-office item."
+      ]
+    },
+    {
+      "person_id": "titur_starr",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0484"
+      ],
+      "conflicts": [
+        "Four-year gap after the postal return; no direct evidence connects the Lake County official to the 1835 letter."
+      ]
+    },
+    {
+      "person_id": "trimble_edward",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Edward Trimble of early Geneva Township"
+      ],
+      "passes": [
+        "T-0479"
+      ],
+      "conflicts": [
+        "Geneva Township is competing geography; no independent evidence ties this claimant to the Chicago letter."
+      ]
+    },
+    {
+      "person_id": "vann_angeline",
+      "verdict": "candidate_rejected",
+      "grounds": [
+        "date_excludes",
+        "competing_residence"
+      ],
+      "candidates": [
+        "Angeline Vann of Missouri"
+      ],
+      "passes": [
+        "T-0462"
+      ],
+      "conflicts": [
+        "Born 1834 and later Missouri geography."
+      ]
+    },
+    {
+      "person_id": "vaughan_alanson_b",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "competing_residence",
+        "policy_refusal"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "Later, and a thousand miles north-west; St Cyr's 1837 'Ann Vaughan' and the directories both refuse on the forename."
+      ]
+    },
+    {
+      "person_id": "vaughn_alison_b",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "duplicate_pair_unresolved",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0508"
+      ],
+      "conflicts": [
+        "No independent record carries either spelling in Chicago, so the pair stays two rows rather than one man."
+      ]
+    },
+    {
+      "person_id": "ward_hanibal",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Hannibal Ward of the DuPage River valley"
+      ],
+      "passes": [
+        "T-0478"
+      ],
+      "conflicts": [
+        "Documented outside Chicago; no source ties him directly to this letter."
+      ]
+    },
+    {
+      "person_id": "white_edson",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [
+        "Edson White of Joliet"
+      ],
+      "passes": [
+        "T-0478"
+      ],
+      "conflicts": [
+        "Joliet residence; no direct Chicago-post-office linkage."
+      ]
+    },
+    {
+      "person_id": "wooley_jeddiah",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0481"
+      ],
+      "conflicts": [
+        "Transactions do not prove Chicago residence."
+      ]
+    },
+    {
+      "person_id": "works_charles",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "chronological_gap",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0486"
+      ],
+      "conflicts": [
+        "The independent evidence begins nearly three years after the Chicago letter and supplies no direct identity bridge."
+      ]
+    },
+    {
+      "person_id": "young_gideon",
+      "verdict": "candidate_withheld",
+      "grounds": [
+        "competing_residence",
+        "no_linking_record"
+      ],
+      "candidates": [],
+      "passes": [
+        "T-0486"
+      ],
+      "conflicts": [
+        "Naperville residence competes with Chicago residence and no direct source links the waiting letter to this man."
+      ]
+    }
+  ],
+  "household_rulings": [
+    {
+      "household_id": "hh_beaubien_jean_baptiste",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_beaubien_madore",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_caldwell_billy",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_kercheval_gholson",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_mckee_david",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_owen_thomas_jv",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_porthier_joseph",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    },
+    {
+      "household_id": "hh_robinson_alexander",
+      "verdict": "held_for_consultation",
+      "grounds": [
+        "standing_constraint"
+      ]
+    }
+  ]
+}

@@ -2076,6 +2076,17 @@ step "…and its own assertions still fire when broken" \
 # it has stopped being true: a cohort lands, the layer moves, and a stale CSV keeps telling
 # the owner the programme reached 611 people. Gated in both directions — the committed
 # package must re-derive, and a hand edit to it is refused.
+# T-0733. The passes recorded 106 conflicts against candidates and ruled on none of them
+# anywhere a reader could reach, so the audit could see the flag and never the verdict. The
+# rulings are committed data now; this keeps them TOTAL — a conflict the next pass writes
+# fails the gate until somebody rules on it, which is the only thing that stops the backlog
+# rebuilding itself.
+step "every recorded conflict carries a ruling, and every ruling a real conflict" \
+  python3 tools/check_conflict_rulings.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/check_conflict_rulings.py --self-test
+
 step "the final resident audit still re-derives from the residents layer" \
   python3 tools/export_resident_audit.py --check
 
