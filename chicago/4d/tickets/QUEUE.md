@@ -173,7 +173,6 @@ T-0451 — Only one north-south street stands north of the river, where the Thom
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
-T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
@@ -408,3 +407,7 @@ T-0728 — dev's own gate is red before any branch touches it: three research co
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
 T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
