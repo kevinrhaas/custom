@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 8:17 PM",
+  "generated_ct": "Sep 4, 2026, 8:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7257,7 +7257,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": 9
     },
     {
       "id": "T-0442",
@@ -9891,7 +9891,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 9
+      "queue_rank": 10
     },
     {
       "id": "T-0593",
@@ -9911,7 +9911,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 7
+      "queue_rank": 8
     },
     {
       "id": "T-0594",
@@ -9931,7 +9931,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 6
+      "queue_rank": 7
     },
     {
       "id": "T-0595",
@@ -9991,7 +9991,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 5
+      "queue_rank": 6
     },
     {
       "id": "T-0598",
@@ -10891,7 +10891,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 10
+      "queue_rank": 11
     },
     {
       "id": "T-0652",
@@ -11116,7 +11116,7 @@
     {
       "id": "T-0663",
       "title": "Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11124,14 +11124,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "826",
+      "claimed_by": "run 9/4/2026, 8:15:28 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 11
+      "closed_at": "2026-09-05T01:35:29.573Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935461254",
+      "queue_rank": null
     },
     {
       "id": "T-0664",
@@ -11251,7 +11251,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 3
+      "queue_rank": 4
     },
     {
       "id": "T-0670",
@@ -11451,7 +11451,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 4
+      "queue_rank": 5
     },
     {
       "id": "T-0681",
@@ -11649,7 +11649,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": 0
     },
     {
       "id": "T-0693",
@@ -11669,7 +11669,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935441064",
-      "queue_rank": 2
+      "queue_rank": 1
     },
     {
       "id": "T-0694",
@@ -11774,7 +11774,7 @@
     {
       "id": "T-0699",
       "title": "Six men on the 1835 poll AND other lists are graded \"the 1835 poll alone\", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -11782,14 +11782,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-04",
+      "pr": "817",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T01:15:26.204Z",
       "claimed_run": null,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0700",
@@ -11830,6 +11830,66 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 155
+    },
+    {
+      "id": "T-0714",
+      "title": "The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0715",
+      "title": "data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0716",
+      "title": "Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
