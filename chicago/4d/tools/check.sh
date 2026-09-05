@@ -1415,6 +1415,23 @@ step "…and none of them claims more than a person and a reading" \
 step "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
 
+# T-0720, the third spend of the same proposal. The two modes above own the 531 cards
+# that carry a `ladder_rule`; nothing owned the other 873, and T-0692's --coverage
+# measured 864 of them carrying a rung the ladder HAD ruled and no pass had ever
+# written down. This pass writes it — one scalar, only where the ladder AGREES with the
+# grade the card already carries, never a downgrade — and puts every disagreement on the
+# owner's conflict list instead. Gated because the whole value of a rung on a card is
+# that it is DERIVED: a hand-written one would be a grade's reason invented rather than
+# ruled, and `--check` is what says so.
+step "the ladder's ruled rungs re-derive on the cards no mint owns" \
+  python3 tools/spend_ladder_rungs.py --check
+
+step "…and none of them moves a grade to close the gap" \
+  python3 tools/spend_ladder_rungs.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/spend_ladder_rungs.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
