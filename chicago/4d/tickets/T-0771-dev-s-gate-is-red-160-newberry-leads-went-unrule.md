@@ -1,5 +1,5 @@
 ---
-id: T-0767
+id: T-0771
 title: dev's gate is red: 160 Newberry leads went unruled when T-0600 struck 443 cards, and neither derived file was re-derived
 state: claimed
 epic: META

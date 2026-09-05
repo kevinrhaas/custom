@@ -1,29 +1,37 @@
-# The inferred-residents programme, phase one: the documented population
+# The residents layer: the town's people, and what each of them rests on
 
-**Roadmap:** `docs/ROADMAP.md` § K1 · **Data:** `data/residents/` ·
+**Data:** `data/residents/` · **Manifest:** `data/residents/index.json` ·
 **Gate:** `check_residents` in `tools/validate.py`, tested in `tools/test_validate.py` ·
-**Scene date:** 1835-07-01
+**Scene date:** 1835-07-01 ·
+**The measured state:** `docs/RESEARCH/residents-households-summary-2026-09.md`
+
+> **This dossier describes the model. It carries no population figures**, because they move
+> every week and a number typed into prose goes stale silently. The summary beside it prints
+> every figure from a command over the committed layer; run
+> `python3 tools/summarize_residents.py` and the answer is current by construction.
+>
+> **Rewritten for the current model under T-0517 (September 2026).** Everything before that
+> described the 2026-08 phase-one parcel of 72 households, a `documented` / `derived` /
+> `inferred` grading and a reconstructed population that no longer exists. The old text is
+> in the file's history.
 
 ---
 
 ## 1. What this layer is for
 
-Chicago went from about 350 people in 1833 to **3,265 in the town census of 1835**
-(Andreas vol. 1, printed p. 180, archive.org scan p. 377). The same census counts **398
-dwellings**. This dataset models 184 structures, of which 108 are anonymous inferred infill.
+Chicago went from about 350 people in 1833 to 3,265 in the town census of November 1835
+(`andreas_1884_v1`, printed p. 180, archive.org scan p. 377), counted in 398 dwellings. The
+programme's argument is that the people and the buildings are the same problem seen from
+opposite ends: *the population is what justifies the roofs*. A household that needs a
+dwelling can become a structure record on the plat, archetyped, baked and confidence-graded.
 
-The programme's argument is that the two numbers are the same problem seen from opposite
-ends: *the population is what justifies the buildings*. A household that needs a dwelling
-eventually becomes a structure record on the plat, archetyped, baked and confidence-graded.
-So the order of work is people first, then houses — and phase one, this one, is the
-**documented and derived** layer that the inferred layer will later be reasoned from.
-
-**No human figures are drawn.** `docs/LIBERTIES.md` L1 and AGENTS.md stand: v1 ships an empty,
-accurate town. This is a dataset layer feeding structures and the evidence panel.
+**No human figures are drawn.** `docs/LIBERTIES.md` L1 and AGENTS.md stand: this ships an
+empty, accurate town. This is a dataset layer feeding structures, the register and the
+evidence panel.
 
 ## 2. The schema, and the one thing about it that is easy to get wrong
 
-`data/residents/index.json` is the manifest (a static host cannot be globbed) and
+`data/residents/index.json` is the manifest — a static host cannot be globbed — and
 `data/residents/households/*.json` is one file per household. The shape mirrors
 `data/flora/` and `data/fauna/`: denormalised copies in the manifest, the record
 authoritative, the validator failing the build on drift.
@@ -32,167 +40,237 @@ authoritative, the validator failing the build on drift.
 
 | axis | key | vocabulary | what it grades |
 |---|---|---|---|
-| evidence | `confidence` | `documented` / `inferred` / `conjectural` | an **attribute** — the same contract as a roof pitch, checked by `check_attested` |
-| reconstruction | `grade` | `documented` / `derived` / `inferred` | a **person** — how much of them is reconstructed |
+| evidence | `confidence` | `attested` / `inferred` / `reconstructed` | an **attribute** — the same contract as a roof pitch |
+| resident evidence | `grade` | `attested` / `inferred` / `reconstructed` | a **person** — how strongly the town's records place them here |
 
-- **`documented`** — a source names this person.
-- **`derived`** — a real, named person whose details are partly reconstructed (their trade is
-  attested and their household size is not; their forename comes from another record; their
-  presence on the day is read across from a partnership).
-- **`inferred`** — a hypothesised resident filling a demonstrable need of the town. **None
-  exist in this dataset yet.** The vocabulary exists and validates so a later parcel can add
-  them without touching the schema.
+The two vocabularies are the same three words on purpose — the project has one accuracy
+ladder — but they answer different questions, and a person graded `attested` may carry an
+attribute graded `reconstructed` and routinely does. `occupation` is the common case: a
+person the poll book names is `attested`; the absence of a trade beside their name is
+written as `none_recorded` at `reconstructed`, because "the list did not print a trade" is
+not evidence that the man had none.
 
-**Never `recommended`.** The programme was renamed on 2026-08-13. `tools/validate.py` rejects
-that term *by name*, with a message pointing at the rename, because a vocabulary that merely
-omits a word gets it back the first time somebody copies an older file. (One legacy filename
-still carries it: `docs/RESEARCH/recommended_infill_1835.md`. Renaming it is a separate slice.)
+**Two terms are retired and the validator refuses them by name.** `recommended` was renamed
+away from on 2026-08-13 (`RETIRED_GRADE_TERMS` in `tools/validate.py`, with a message
+pointing at the rename), because a vocabulary that merely omits a word gets it back the
+first time somebody copies an older file. `derived` was the phase-one grade for a real named
+person partly reconstructed; it is now `inferred`, and the axis table above is what stops
+the old conflation coming back.
 
-The first pass of the data used `derived` as an *attribute* confidence in 79 places. That is
-the conflation the table above exists to prevent, and it was caught by the validator on its
-first run: an attribute reconstructed with stated reasoning is `inferred`, which the project's
-confidence model already had a word for.
+## 3. The three grades, the subtype, and the ladder that assigns them
 
-## 3. The gate that actually protects the scene
+- **`attested`** — the town's own contemporary records name this person here. Requires at
+  least one `source_id` that resolves in `data/sources/`.
+- **`inferred`** — a real, named person the evidence reasonably places in the 1835
+  population, with something about them reconstructed: their presence read across from a
+  partnership, their forename from another record, their residence bounded rather than
+  dated. Requires a note stating *which* details are reconstructed and from what — a real
+  person with invented details and no reasoning is indistinguishable from a fabrication.
+- **`reconstructed`** — a hypothesised person filling a demonstrable need of the town.
+  **The layer holds none, deliberately.** The 108 the earlier programme had minted were
+  retired in the 2026-09-02 synthesis. The grade stays in the vocabulary, gated and tested,
+  so a later explicit reconstruction pass can use it without a schema change. If one ever
+  returns it carries a `name_basis` block: an invented name can never grade above
+  `reconstructed`, because a name *looks* like a fact in a way that "wall height 3.25 m"
+  does not.
+
+`resident_subtype` is the second axis on a person and has one value, **`projected_resident`**
+— the weakest evidence-based subset of `inferred`, a person whose whole claim on the town is
+one appearance, or several of a class no stronger rung accepts.
+
+**The ladder** is written into `index.json`'s `vocabulary.ladder_rules` and is the machine-
+readable form of the grading policy in `docs/RESEARCH/resident-grading-policy.md`. Its rungs,
+in order: **G0** refuses outright — every appearance describes a date after the scene year,
+and 1839 or 1840 alone is never an 1835 resident. **G1a/G1b/G1c** grade `attested`: the 1835
+poll list plus an independent source; a contemporary record naming the person in the town;
+or convergence — two in-window records from *different* class families that did not copy each
+other. **G2a–G2e** grade `inferred`: the poll list alone, an 1833/1834 list with another
+source, the St Cyr register, a later directory naming someone the town already carries, and
+— G2e — a post-office letter list and nothing stronger. **G3** and **G4** grade `inferred`
+with `projected_resident`. **G5 abstains**: the town already carries the person and every
+appearance the consolidation can see is later, so the row goes to the owner as a conflict
+rather than demoting a resident on evidence the ladder has not read.
+
+A `ladder_rule` on a person names the rung that graded them. Only the civic mint writes one;
+the earlier mints graded before the ladder existed and their reasoning is in the notes.
+**That is an audit-trail gap, not an evidence gap**, and the summary counts it.
+
+## 4. The four mints, and the precedence between them
+
+Every household is `hh_<surname>_<forename>` — the prefix families `hh_doc_`, `hh_placed_`,
+`hh_ll_` and `hh_civic_` are **gone**, collapsed by the T-0638 rename
+(`data/residents/rename_map_t0638.json`, applied by `tools/rename_household_ids.py`). What
+minted a household is now recorded in its **`source_pass`** field, which
+`RESIDENT_SOURCE_PASSES` closes to four values. A hand-authored household omits the key.
+
+| `source_pass` | tool | what it mints from |
+|---|---|---|
+| `documented` | `tools/mint_documented_residents.py` | the newspaper register's `new_resident` people whose **trade** the papers print |
+| `placed` | `tools/mint_placed_residents.py` | the register's people who pass the residency test — named in the town, doing something in it |
+| `letter_list` | `tools/mint_letter_list_residents.py` | the Chicago post office's letter lists of 1833-1835 |
+| `civic` | `tools/mint_civic_residents.py` | the town's own lists — poll books, tax rolls, the 1832 muster |
+
+`documented` here is a **pass name and not a grade**; it is the one place the retired word
+survives, kept because renaming a gated enum value is a migration and not a documentation
+fix. Everything the word once graded is now `attested`.
+
+**The precedence is `civic` above the other three** (T-0514). Each mint refuses to write a
+person the town already carries, and the sharpest of those refusals is by family name — *the
+town already names a Smith* — because a bare surname on a list is probably the Smith the town
+already holds. That refusal is a proxy for identity and the better-evidenced pass gets to
+spend it: the civic lists say a man voted or paid tax **in the town**, which is a stronger
+claim than that his mail was waiting for him at its post office. Each mint also excludes its
+own output when it reads the town, so the refusal is about what stood before the pass ran.
+
+## 5. The evidence blocks
+
+Beyond the flat `sources` array, a person may carry a typed block per body of record:
+`press_evidence`, `civic_evidence`, `book_evidence`, `church_evidence`, `census_evidence`
+and `biographical_evidence`. Each holds the reading itself — what the record says, where it
+says it, and the locator — so that the *kind* of record standing behind a person is
+machine-readable rather than inferable from a source id.
+
+That is what makes convergence checkable. `tools/export_resident_audit.py` categorises every
+cited source id — newspaper, civic, census, church, book, directory, secondary — and reports
+`corroborated_across_categories` only where two different kinds of record agree. Two
+newspaper notices of the same name are `two_or_more_sources_one_category` and no stronger.
+**The category table is the audit's one judgement**, written record by record in that tool
+rather than heuristically, and a source id no rule reaches stops the build.
+
+`resident_research` is the parallel block: which research ticket looked at this person, on
+what date, what it concluded (`corroborated`, `corroborated_enrichment`, `candidate`,
+`candidate_identity`, `no_corroboration`, `no_corroboration_yet`) and whether an identity was
+asserted. `no_corroboration_yet` and `no_corroboration` are different claims — the corpus not
+yet searched to exhaustion, against searched and found nothing — and neither is evidence that
+the person did not exist.
+
+## 6. The 1840 bridge, and the rule that keeps it from leaking
+
+The project holds a substantial 1840 census layer under `data/census/1840/` — named
+household heads on the printed pages, with resolved IPUMS serials and household demographic
+fields. **1840 is later evidence, not the 1835 household**, and the rule is absolute:
+
+- A bridge is an explicit, graded assertion on a person — a `later_census` block naming the
+  year, the serial and the bridge's confidence. It is never minted in bulk from a name match.
+- **Nothing crosses the bridge backwards.** Household totals, children, sex structure,
+  industry, foreigner and literacy fields stay under the census dataset. They do not mint a
+  spouse, a child, a partner, a servant or a boarder into the 1835 layer, and they never
+  raise an 1835 grade.
+- 1839 or 1840 evidence *alone* is rung G0 — not an 1835 resident at all.
+
+The bridge's value is the reverse direction: an 1840 row is how a person the 1835 lists name
+once acquires a household, a trade and sometimes an address, all correctly dated as five
+years later. `docs/RESEARCH/resident-household-synthesis-2026-09-02.md` records the first
+validated bridges and the reasoning; the same rule governs the directories of 1839 and 1843,
+whose addresses may be carried back only as `inferred`, with the date of the printing on the
+note.
+
+## 7. A street name nobody else uses
+
+Matthias Mason's own 1833 advertisement puts his smithy on **"Main-street"**, which appears
+nowhere in `data/traces/street_control.json`, the Thompson plat module or either 1834 sheet.
+The cross-reference is usable: Graves' Tavern is the log tavern at what became 84-86 Lake
+Street, so "Main-street" in November 1833 is very probably Lake Street under a colloquial
+name. **Recorded as a finding for the streets layer, not acted on** — and cited as this
+section by `data/structures/mason_blacksmith_shop.json`, its sidecar and
+`data/signage/town_business_signboards.json`, which is why this dossier keeps a § 7. The
+signboard takes the firm and the trade word and refuses the address.
+
+## 8. The scene-date gate, and the removal
 
 An arrival after 1835-07-01 is the population layer's version of the Saloon Building problem,
 and it fails **silently**: a household record for a man who reached Chicago in September 1835
 looks exactly like one for a man who reached it in 1832, and this layer licenses buildings.
 
 Arrival values carry a **`precision`** — `day`, `either_of_two_days`, `month`, `season`,
-`year`, `not_later_than` — because the sources give years far more often than days. Of 72 households: 43 year, 12
-not_later_than, 6 day, 6 month, 5 season. The rule is **asymmetric on purpose**:
-
-- the **earliest** day the value permits must not be after the scene date → **error**;
-- a value whose **latest** day is after it → **warning**, because "1835" with no month is a
-  real state of the evidence and not a mistake. Two households sit there (`hh_davis_john`,
-  `hh_haddock_edward`) and both say so in their notes.
+`year`, `not_later_than` — because the sources give years far more often than days, and the
+rule is **asymmetric on purpose**: the *earliest* day a value permits must not be after the
+scene date → **error**; a value whose *latest* day is after it → **warning**, because "1835"
+with no month is a real state of the evidence and not a mistake. `not_later_than` exists
+because the commonest evidence of residence in this corpus is *an act performed at Chicago on
+a date* — an advertisement placed, an office taken, a tavern licensed. That bounds an arrival
+from above and not at all from below, and calling it a month precision would be a claim nobody
+made.
 
 `either_of_two_days` exists for the opposite reason, and for one record: a source that is
 exact to within a day and *will not pick between two of them*. Hurlbut has Gurdon Hubbard
 first reaching Chicago "on the last day of October or first day of November" of 1818, and
 every other precision here misreports that sentence — `day` chooses one of the two on the
 reader's behalf, and `month`, `season` or `year` widen a nearly-exact reading in order to
-contain both. The value is the **earlier** day and the bound runs to the day after it, so
-the gate sees the two days the source offered and no others. (`hh_hubbard_gurdon`, T-0594.)
+contain both. The value is the **earlier** day and the bound runs to the day after it, so the
+gate sees the two days the source offered and no others. (`hh_hubbard_gurdon`, T-0594.)
 
-`not_later_than` exists because the commonest evidence of residence in this corpus is *an act
-performed at Chicago on a date* — an advertisement placed, an office taken, a tavern licensed.
-That bounds an arrival from above and not at all from below, and calling it a month precision
-would be a claim nobody made.
+`review_required` and `touches_removal` mark the households that touch the removal of 1835-36
+— the Indian agency's establishment, the families with Native kin, and the households the
+sources name at Wolf Point — and the validator makes the second imply the first. Two datings
+are held side by side and **not** averaged: Andreas puts the last assembly and the march to
+the Missouri in 1836; `chicagology_lastwardance` puts the last great war dance at Chicago on
+18 August 1835; AGENTS.md takes the 1835 dating as the project's standing constraint. Under
+either, 1 July 1835 is before it. Nothing in this layer improvises Native presence,
+representation or depiction; it states what named sources say about named people and stops.
 
-## 4. Where the documented people are
+`index.json`'s **`researched_not_resident`** is the exclusions-style half of the dataset and
+is as load-bearing as the households. Three kinds of finding live there: a person whose
+arrival is after the scene date; a person the sources place at Chicago but not as a resident
+of the town; and a person this project believes was here and cannot cite. **Adding to that
+list is preferred to deleting from it**, exactly as `data/exclusions.json` requires for
+structures.
 
-Ranked by yield, after working Andreas vol. 1 end to end from the `_djvu.txt` and pinning
-each quotation to a scan page through the archive.org `inside.php` index. **The scan page is
-almost exactly `2 × printed page + 17`** across the whole volume; verified on eleven quotations.
+## 9. The gates this layer must pass
 
-1. **`andreas_1884_v1`, printed p. 132 (scan p. 281)** — *the motherlode*. "The following is
-   an imperfect list of the denizens of the town in the fall of 1833, not before named",
-   followed by about fifty names, most with a trade and an arrival year, plus, on the same and
-   the facing page, the town's six lawyers, its eight physicians, its four churches with their
-   pastors, its four hotels with their landlords and its boarding houses. **One page supplies a
-   third of this parcel.** It is a retrospective of 1884: a YEAR off it is documented, a MONTH
-   is not, and it says nothing whatever about 1835.
-2. **`andreas_1884_v1`, printed pp. 128 and 175–176 (scan pp. 273, 367–369)** — the town's own
-   election records. The incorporation poll of 5 August 1833 with all thirteen voters named;
-   the enrolment of the twenty-eight electors of 10 August; the officers of 1833, 1834 and
-   1835. A man on those lists was in Chicago on that day.
-3. **`chicago_democrat_1833_11_26`** — the only contemporary Chicago document this project
-   holds, and the only *tier-1* evidence of residence in it. Every advertiser is a documented
-   resident with a trade, and six of them state an address. It is **nineteen months** before
-   the scene date, in the town's fastest-changing period, so it is strong evidence of existence
-   in November 1833 and weak evidence of survival to 1835.
-4. **`andreas_1884_v1`, printed pp. 457–465 (scan pp. 933–955)** — the medical chapter, which
-   is really a biographical dictionary: dates of birth, places of study, routes of migration
-   and arrival dates for every physician and druggist, plus the resolution of "C. & I. Harmon"
-   into Dr Elijah Harmon's two eldest sons.
-5. **`andreas_1884_v1`, printed pp. 420–422 (scan pp. 857–867)** — the bar. Caton's arrival to
-   the day, the first law office, and the only account in the corpus of what an educated
-   newcomer did for money in the town's first summer (carried a surveyor's chain).
-6. **The existing `data/structures/*.json` prose** — Asahel Pierce arriving from Vermont on
-   8 October 1833, Silas B. Cobb, the Murphys, Ira Couch, T. O. Davis, Frederick Thomas.
+| gate | what it refuses |
+|---|---|
+| `check_residents` (`tools/validate.py`) | the schema, the closed vocabularies, manifest/record drift, duplicate person ids, a household with no persons, an unresolvable `source_id`, the scene-date rule, and the retired grade terms by name |
+| `check_resident_grade` | an `attested` person with no source; an `inferred` person with no note; a `reconstructed` person with no `name_basis` |
+| `tools/town_census.py --check` | the town census re-derives from the roofs and the residents; it is DERIVED and hand-edits are refused |
+| `tools/export_resident_audit.py --check` | the committed audit table matches the layer, row for row |
+| `tools/consolidate_resident_evidence.py --check` | `identity_master.json` re-derives from the landed domains |
+| the mints' own `--check` / `--self-test` | each pass re-derives its own output from its source, and its refusal ranking is tested |
+| `node tools/check_published_residents.mjs` | the published mirror carries its source's values |
 
-**The single most valuable unfetched source is the `Chicago American` of 1835–36.** Andreas
-quotes its advertisements by name and date throughout; every one is a documented resident with
-a trade and often an address, *in the scene year* rather than nineteen months before it.
+## 10. The liberties this layer stands on
 
-## 5. What phase one deliberately left undone
+`docs/LIBERTIES.md` is the register of what this project invented, and the population layer
+is the largest single entry in it. **L205** — five men the papers name, given reconstructed
+roofs. **L206** — sixteen tradespeople the papers name, written as households of one, where
+the *household* is the invention and the man is not. **L207** — twelve letter-list names
+written the same way, on the thinnest evidence this project accepts for a resident.
+**L211/L212** — businesses standing because nothing says they closed, and nineteen of them
+seated on reconstructed roofs. **L213** — four people the papers name with no trade, on a residency
+test. **L214** — the ruling that scaled L207 up, and the reason three quarters of this town's
+people are a name on a post-office list and nothing else. **L220** — the newest, and the
+civic mint's: 531 people join the town on the town's own lists, and a household is written
+round each of them.
 
-- **No inferred residents.** The vocabulary validates; the volume is the next phase's job.
-- **The enlisted garrison.** Fort Dearborn was an occupied post; two officers are written and
-  no private soldier is, because no source in `data/sources/` names one. That needs a muster
-  roll, not a guess.
-- **The 1832 militia roll** (Andreas, scan p. 627) — about forty men of the settlement, several
-  appearing nowhere else here. A population census of the adult male settlement two years
-  before the 1833 roster, unworked.
-- **The 1835 town election's date.** Andreas says only "in July, 1835". The 1833 and 1834
-  elections were both held on the 10th or 11th of August. **This project cannot say whether the
-  board sitting on 1 July 1835 was Kinzie's or Hugunin's**, so the seven trustees of the 1835
-  board are not written as households and no office-holding claim in the parcel rests on it.
-- **William B. Ogden.** Named in K1 and *not written*, because the widely repeated June 1835
-  arrival could not be traced to any source this project holds. Recorded as an open item in
-  `index.json`'s `researched_not_resident` rather than cited to nothing.
+Read together they say one thing, and it is the honest reading of this layer: **the names are
+real and the households are ours.** Every person here comes from a record that names them. The
+claim that each of them constituted a household — rather than boarding, lodging, or living in
+somebody else's — is the project's, is stated, and is why the layer's mean household size sits
+just above one while the town census counts 8.20 people to a dwelling.
 
-## 6. Buildings this layer discovered
+## 11. What this layer still cannot say
 
-The residents pass found **documented, positioned, described buildings with no structure
-record**. In order of strength:
+- **Almost nobody has an address.** The overwhelming majority of households are `unplaced`,
+  and the summary measures how few resolve a `lives_at` or a `works_at`. The route in is the
+  later directories under the § 6 rule, businesses before residences.
+- **Sex is recorded for a small minority**, and the split among those is a property of the
+  lists — which print an initial and a surname — and not of the town. It must never be read
+  as a sex ratio.
+- **The enlisted garrison is absent.** Fort Dearborn was an occupied post; the officers are
+  written and no private soldier is, because no source in `data/sources/` names one. That
+  needs a muster roll, not a guess.
+- **The 1835 town election's date.** Andreas says only "in July, 1835"; the 1833 and 1834
+  elections were held on the 10th or 11th of August. This project cannot say whether the
+  board sitting on 1 July 1835 was Kinzie's or Hugunin's, so no office-holding claim rests
+  on it.
+- **The gap itself.** The town census counts 3,265 people four months after the scene date
+  and this layer names a fraction of them. That difference is the correct, stated size of
+  what the sources do not say, and closing it by reasoning about family sizes would replace
+  a dataset whose every row cites a record with one whose rows cite an average.
 
-1. **Rufus Brown's log boarding house** — fabric (log), use (a first-class boarding house),
-   keeper (Mrs Rufus Brown, named as the proprietor in her own right) and position ("the first
-   building in the rear of this store", i.e. behind Peck's store at South Water and LaSalle).
-   That is more than several buildings already standing in this scene have.
-2. **Russel Heacock's house on Monroe Street** — built in the *spring of 1835*, on the wrong
-   lot, and then *moved one block on rollers*. A dated, positioned, described dwelling for the
-   parcel's largest documented household (a wife and five sons, the youngest born there).
-3. **A third blacksmith shop** — Matthias Mason & Co., "Main-street, nearly opposite Graves'
-   Tavern", self-reported in 1833. The `& Co.` says it employed more than one man.
-4. **Dr Elijah Harmon's cabin of hewn logs** — the hewn-versus-round distinction K4 asks for,
-   attested.
-5. **Dr Temple's building on Lake Street** — Caton's first law office *and* his bedroom, in the
-   attic. Not the Temple Building at Franklin and South Water, which is a different building.
-6. **John Wright's "two buildings to let"** — rental housing stock, otherwise invisible.
-7. **A physician's office of any kind.** Eight doctors are documented in the 1833 town and this
-   dataset holds no doctor's office, apothecary's back room or hospital outside the fort.
-
-## 7. A street name nobody else uses
-
-Matthias Mason's own 1833 advertisement puts his smithy on **"Main-street"**, which appears
-nowhere in `data/traces/street_control.json`, the Thompson plat module or either 1834 sheet.
-The cross-reference is usable: Graves' Tavern is the log tavern at what became 84–86 Lake
-Street, so "Main-street" in November 1833 is very probably Lake Street under a colloquial name.
-**Recorded as a finding for the streets layer, not acted on.**
-
-## 8. The removal
-
-Seven households carry `review_required: true` and `touches_removal: true`, and the validator
-makes the second imply the first. They are the Owen, J. B. Beaubien, Madore Beaubien, Robinson,
-Caldwell, McKee, Porthier and Kercheval records — the Indian agency's establishment, the
-families with Native kin, and the two Native households the sources name at Wolf Point.
-
-Two datings are held side by side and **not** averaged. Andreas puts the last assembly and the
-march to the Missouri in **1836** under Captain Russell and Billy Caldwell;
-`chicagology_lastwardance` puts the last great war dance at Chicago on **18 August 1835**;
-AGENTS.md takes the 1835 dating as the project's standing constraint. **Under either, 1 July
-1835 is before it**, so the scene date is unaffected and the disagreement is recorded rather
-than resolved.
-
-Shabbona is deliberately **not** a household: Andreas gives him a full notice and puts his
-village on the Illinois and then at Shabbona Grove in De Kalb County. He is at Chicago
-repeatedly and lives elsewhere — a distinction this dataset has to be able to make about a man
-it would otherwise be tempting to include.
-
-Nothing in this layer improvises Native presence, representation or depiction. It states what
-named sources say about named people and stops.
-
-## 9. Where phase one landed
-
-72 households, 96 person entries — **76 documented, 20 derived, 0 inferred**. Five of the 96 are
-placeholders that carry a *count* in their name for people a source counts and does not name
-(an unnamed wife, "four children", "and family"); they say in their notes that they must not be
-counted as individuals, so the named-person figure is 91.
-
-**43 structures that previously had no named resident now have one**, and 24 households are
-**not** recorded as certainly present on the scene date — which is the number this layer exists
-to be able to state.
+**Related:** `docs/RESEARCH/residents-households-summary-2026-09.md` (the measured state) ·
+`docs/RESEARCH/resident-grading-policy.md` (the ladder, argued) ·
+`docs/RESEARCH/resident-household-synthesis-2026-09-02.md` (the synthesis that emptied the
+reconstructed grade) · `docs/RESEARCH/residents_1835_inferred.md` (**stale in the same way
+this file was** — it still describes the retired reconstructed population; rewriting it is a
+separate slice) · `chicago/reference/resident-research/final/audit/` (one row per person).

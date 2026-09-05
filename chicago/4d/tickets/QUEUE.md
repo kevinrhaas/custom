@@ -88,7 +88,6 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 # --- on purpose: it should describe a town whose cards are current.
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
-T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
@@ -325,4 +324,5 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
-T-0767 — dev's gate is red: 160 Newberry leads went unruled when T-0600 struck 443 cards, and neither derived file was re-derived
+T-0771 — dev's gate is red: 160 Newberry leads went unruled when T-0600 struck 443 cards, and neither derived file was re-derived
+T-0767 — dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives
