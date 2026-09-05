@@ -56,7 +56,6 @@ T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Iren
 # --- that no card carries. Nothing here reads a new source either — every one turns research
 # --- already done into household, person and business DATA, which is what the owner asked for.
 T-0720 — 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
-T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
 T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
 T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
@@ -342,4 +341,3 @@ T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 18
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
-
