@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 10:28 PM",
+  "generated_ct": "Sep 4, 2026, 10:58 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12170,6 +12170,66 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 151
+    },
+    {
+      "id": "T-0728",
+      "title": "Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
+    },
+    {
+      "id": "T-0729",
+      "title": "Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
+    },
+    {
+      "id": "T-0730",
+      "title": "The published tree is 793 bytes under its 32 MB budget on dev, so the next changelog entry or new ticket fails check.sh for every run in the lane",
+      "state": "blocked-owner",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "The published tree is out of headroom under the 32 MB budget and every run in the lane now fails check.sh on bookkeeping bytes. Which do you want: raise SITE_BUDGET_MB, stop publishing changelog.js twice (1.35 MB of verbatim duplicate), or ship only the newest N changelog entries to the site and keep the whole literal in the renderer? The third touches the changelog contract, so nothing is written until you say.",
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": null
     }
   ]
 }

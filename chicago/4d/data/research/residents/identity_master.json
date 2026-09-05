@@ -24,7 +24,7 @@
   "derived_refusals": 1881,
   "declared_merges": 304,
   "appearances_moved_by_a_landed_adjudication": 82,
-  "declared_refusals": 1578
+  "declared_refusals": 1583
  },
  "identities": [
   {"id":"id_abbot_samuel_e","surname":"abbot","forename":"samuel e","merge_rules":["M1"],"appearances":[{"domain":"census_1840","record_id":"33S7-9YYN-3CDH:28","source_id":"census_1840_cook_county","as_read":"Saml E Abbot","locator":"239:28","describes_date":"1840","evidence_class":"census_1840","normalized":"Samuel E. Abbot"}],"domains":["census_1840"],"sources_offered":["census_1840_cook_county"]},
@@ -8989,6 +8989,11 @@
   {"a":"Rev. Timothy O'Meara","b":"the residents of 1835","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_004","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_001 — what he found when he came, which is the only reason this project cares about his arrival"]},
   {"a":"Rev. Bernard Schaefer","b":"the residents of 1835","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_006","data/structures/st_marys_church.json — the owner reading, St. Cyr as pastor across the scene window, graded inferred"]},
   {"a":"the little church thus enlarged and ornamented","b":"st_marys_church as it stands on the scene date","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_008","data/research/books/claims/ichr_v4_thompson_vincennes.json bk_ichr4_003 — the removal that precedes every one of these additions","data/structures/st_marys_church.json — the tower trap"]},
+  {"a":"Spring","b":"Giles Spring","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/claims/moses_kirkland_history_of_chicago_v1.json bk_mose1_011","data/research/books/text/moses_kirkland_history_of_chicago_v1.txt line 100547 — 'tor, Spring.'"]},
+  {"a":"blodget","b":"Blodgett","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/moses_kirkland_v1_lead_surnames.json — the `blodget` row, occurrences 0, edit_distance_1_in_the_volume {blodgett: 10}","data/research/newberry_index/follow_up.json — the lead surname list this pass was given"]},
+  {"a":"caapbell","b":"Campbell","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/moses_kirkland_v1_lead_surnames.json — the `caapbell` row, occurrences 0, edit_distance_1_in_the_volume {campbell: 31}"]},
+  {"a":"gardiner","b":"Gardner","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/moses_kirkland_v1_lead_surnames.json — the `gardiner` row, occurrences 0, edit_distance_1_in_the_volume {gardner: 22, gardener: 1}","data/research/newberry_index/follow_up.json — `gardiner` and `gardner` are BOTH on the lead list, as separate surnames"]},
+  {"a":"mattoson","b":"Matteson","rule":"D2","declared_in":"books/crosswalk.json#refusals","evidence":["data/research/books/moses_kirkland_v1_lead_surnames.json — the `mattoson` row, occurrences 0, edit_distance_1_in_the_volume {matteson: 8, mattoon: 3}"]},
   {"a":"Joseph LaFramboy","b":"Clouded L Framboy","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_029","census1830_n580_030"]},
   {"a":"Hugh Walker","b":"James Walker","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n580_007","census1830_n580_014"]},
   {"a":"Willard Scott","b":"Stephen J Scott","rule":"D2","declared_in":"census_1830/crosswalk.json#refusals","evidence":["census1830_n582_005","census1830_n582_013"]},

@@ -49,6 +49,96 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 ---
 
+## What has been read (T-0581, 2026-09-05)
+
+**Moses and Kirkland, *History of Chicago, Illinois*, vol. 1 (Chicago and New York: Munsell &
+Co., 1895)** — twenty claims at `claims/moses_kirkland_history_of_chicago_v1.json`, read out of
+the Internet Archive's own OCR of the whole volume committed at
+`text/moses_kirkland_history_of_chicago_v1.txt` (137,410 lines). Source record:
+`data/sources/moses_kirkland_history_of_chicago_v1.json`, **tier 3** — compiled secondary, the
+same rung as Andreas, which it cites.
+
+**WHY IT WAS FETCHED, AND WHY THE NEGATIVES ARE THE POINT.** T-0570's reading of the Newberry
+genealogical index found 299 cards citing this work — 193 of them Chicago or Cook County — and
+**forty-nine surnames** on those cards that also stand on a lead in this project. It was the
+largest Chicago work the index pointed at that the project did not hold. All forty-nine were
+looked up in the volume itself, not a sample, and **the row-by-row result of that search is
+committed at `moses_kirkland_v1_lead_surnames.json`**, verdict by verdict:
+
+| verdict | n |
+|---|---|
+| READ — earned a claim | 13 |
+| PRESENT AND EARLY, NOT CLAIMED | 8 |
+| NOT A SURNAME HERE (`black`, the adjective) | 1 |
+| PRESENT BUT LATE — never reaches 1835 | 21 |
+| UNRESOLVED — the volume prints a surname one character away | 4 |
+| ABSENT | 2 |
+
+A surname with a verdict and no claim is a **negative result**, and the file exists so the next
+run does not pay for the same search twice. Nine of the verdicts are authored by hand against the
+mechanical one, which is kept beside them: `allen` looked like four hits and is four given
+names; `black` looked like a claim and is Black Hawk and black walnut.
+
+**A ZERO IS NOT AUTOMATICALLY AN ABSENCE, and one nearly got away.** Both sides of the search are
+OCR — the index cards and this scan — so a miss can belong to either. A plain word-boundary
+search reported `obrien` absent while the volume prints **O'Brien** thirteen times; the match is
+apostrophe-tolerant because of it. Every remaining zero is re-tested at edit distance 1 against
+the volume's entire vocabulary, and the four whose neighbour is a *surname* (`blodget`/Blodgett,
+`caapbell`/Campbell, `gardiner`/Gardner, `mattoson`/Matteson) are **unresolved and refused in
+`crosswalk.json`**, not merged — deciding two spellings are one name is a merge, and a merge
+needs a rule.
+
+**THE FOLIOS ARE READ, NOT DERIVED — no page index was built.** `build_book_page_index.py` exists
+because Hubbard's djvu text carries no page breaks at all. This volume prints its own: the page
+number stands alone on a line at the head of every verso above "HISTORY OF CHICAGO", and after
+the chapter title at the head of every recto. **Verso heads are even and recto heads are odd**,
+and that parity is a check the OCR cannot pass by accident — it is what refuses the "93" printed
+above a verso head at line 13147, which the surrounding run 96, 97, 99 fixes as **98**. Where a
+numeral did not survive, the page is carried between two read folios and the locator says so.
+
+**What the reading is worth, shortest first.**
+
+1. *A trade census of the whole town* (page 95). The State census taken between 1 September and
+   December 1835: 3,297 people, forty-four stores, four druggists, eight taverns, two breweries,
+   twenty-two lawyers, fourteen physicians, and eleven more counts. The project has never held a
+   **denominator** for its business layer. It does now — for December 1835, **not for July**, and
+   the claim says so in its first line. The population figure itself is a *third* printing of a
+   number already in `data/research/newspapers/`; the trade counts are new to the repository.
+2. *A building with four of the five fields `data/structures/` wants* (page 90). Hogan's
+   story-and-a-half **log** storehouse, **45 x 18 feet**, at the angle where Lake and South Water
+   meet, with the post office partitioned off inside it from 2 November 1832.
+3. *Two residences stated as such* (pages 571, 577) — the field the town is thinnest in at 2.4%.
+   Jeremiah Porter lodging and keeping his study in the second storey of Peck's store; John Dean
+   Caton renting Dr Temple's back room and attic, sleeping in the attic, practising law in the
+   back room, and sub-letting desk-room in it to "his competitor, Spring".
+4. *Businesses given by corner, lot or landmark* — and one of them by **tree**: Sylvester Marsh
+   killing beef under an old elm on the open prairie at what became Monroe Street, from the winter
+   of 1833-4 (page 389). A pre-street locator that must not be rounded to a block corner.
+5. *One statement about the ground of the scene* (page 79): the winter of 1834-5 was open, little
+   snow, front doors open all winter, **cattle living on grass on the river bank**. The closest in
+   time of anything here, and evidence for the preceding winter and not for July.
+
+**THE VOLUME CONTRADICTS ITSELF TWICE AND BOTH ARE RECORDED, NEITHER ADOPTED.** Page 89 dates
+Dole's and Peck's first frame business buildings to 1832 while page 570 has Peck's occupied in the
+fall of 1831. Page 207 forms the Pioneer Hook and Ladder Company on 7 October 1835 while page 570
+has it organised on 20 October 1835. A fortnight is exactly the gap a compiler working from two
+sources leaves behind.
+
+**NOTHING WAS PLACED, AND THAT IS THE TICKET'S OWN RULE.** No record under `data/structures/`,
+`data/residents/`, `data/households/` or `data/assets/` was edited. T-0581's third acceptance
+clause requires that what this work dates and places before 1835-07-01 is offered to those layers
+**under the ratified ladder, in that layer's own PR** — never off the reading. The claims are
+written so a later run can act on them without re-opening the volume.
+
+**Two things it found and did not do, both filed rather than left silent.** The **LIST OF ACTUAL
+SETTLERS AT CHICAGO, PRIOR TO 1830** at pages 78-79 — about thirty rows with nativity, year and
+remarks columns — is recorded as claim `bk_mose1_014` and transcribed by **T-0728**, because a
+roster is a records-shaped dataset and its own demonstration. And **volume 2 is neither held nor
+read** (**T-0729**): the Newberry cards do not say which volume they cite, so every ABSENT verdict
+above is an absence from *volume 1 only*.
+
+---
+
 ## What has been read (T-0650, 2026-09-05)
 
 **Illinois Catholic Historical Review, vol. 4 (1921-22), pages 256-259** — Joseph J.

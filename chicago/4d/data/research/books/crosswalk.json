@@ -160,6 +160,16 @@
       "detail": "In this file. Eight claims is small enough that a separate detail file would only hide the reasoning.",
       "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. The article is 1921 and its Chicago detail runs 1833-1841; under the ladder ratified 2026-09-03 a source later than 1835 corroborates, dates and constrains, and never makes an 1835 resident. The one reading that argues for a record change — the church still standing at State and Lake in June 1837, against a phase end of 1836-12-31 — is written as T-0717 and is not acted on here.",
       "ruled_on": "All eight claims carry a ruling anchored to them by claim_id: bk_ichr4_001 and bk_ichr4_007 merge the article's church into st_marys_church on two separate namings; bk_ichr4_003 merges Beaubien; bk_ichr4_005 merges St. Cyr; bk_ichr4_002, bk_ichr4_004, bk_ichr4_006 and bk_ichr4_008 are refusals. Nothing in the run read here is left unruled."
+    },
+    {
+      "pass": "T-0581",
+      "what": "Every person named in the twenty claims read out of Moses and Kirkland volume 1, against the people this project already holds. The pass is deliberately EMPTY OF MERGES and that is its result: the volume is a compilation of 1895 and names men this project already carries from period sources, so a merge made off it would substitute a compiler's spelling for a witness's without adding anything, and the surname-only cases are refusals by this file's own rule.",
+      "readings_examined": 20,
+      "residents_examined": 0,
+      "merges": 0,
+      "refusals": 5,
+      "detail": "In this file. Twenty claims is small enough that a separate detail file would only hide the reasoning.",
+      "does_not_follow": "THAT A NAME IN THIS VOLUME IS THE PERSON THIS PROJECT HOLDS. The claims name Philo Carpenter, P. F. W. Peck, John Dean Caton, Gurdon S. Hubbard, John S. C. Hogan, Augustus Garrett and twenty-two signatures on a fire company roll, and this project holds people under most of those surnames. Deciding they are the same people is a residents-layer judgement made under the ratified ladder in that layer's own PR, which is what T-0581's third acceptance clause requires; it is not made here and no merge here may be read as making it."
     }
   ],
   "merges": [
@@ -835,6 +845,55 @@
       ],
       "pass": "T-0650",
       "claim_id": "bk_ichr4_008"
+    },
+    {
+      "a": "Spring",
+      "b": "Giles Spring",
+      "rule": "bk_mose1_011 has Caton sub-letting desk-room in the Temple Building to 'his competitor, Spring', and this project holds a Giles Spring practising law at Chicago in the same years. The passage gives a bare surname and a trade and no given name, and a surname-only merge is always a refusal here however good the rule — the trade making it likely is exactly the reasoning the rule exists to stop. Recorded because an unstated refusal reads like a pair nobody has looked at.",
+      "evidence": [
+        "data/research/books/claims/moses_kirkland_history_of_chicago_v1.json bk_mose1_011",
+        "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt line 100547 — 'tor, Spring.'"
+      ],
+      "pass": "T-0581",
+      "claim_id": "bk_mose1_011"
+    },
+    {
+      "a": "blodget",
+      "b": "Blodgett",
+      "rule": "ONE CHARACTER APART AND UNRESOLVED. The Newberry index card carries `blodget`, which does not occur in volume 1; the volume prints Blodgett ten times. Both sides of the comparison are OCR — the index cards T-0570 read, and this volume's own scan — and either could be the error. Until one of them is read off a page image this is unresolved, and merging would decide it on nothing.",
+      "evidence": [
+        "data/research/books/moses_kirkland_v1_lead_surnames.json — the `blodget` row, occurrences 0, edit_distance_1_in_the_volume {blodgett: 10}",
+        "data/research/newberry_index/follow_up.json — the lead surname list this pass was given"
+      ],
+      "pass": "T-0581"
+    },
+    {
+      "a": "caapbell",
+      "b": "Campbell",
+      "rule": "ONE CHARACTER APART AND UNRESOLVED, and this one is almost certainly the index card's OCR: `caapbell` is not an English surname and volume 1 prints Campbell thirty-one times. Almost certainly is not a rule. Merging would rewrite a lead this project inherited from T-0570 rather than reading the card again, which is the cheaper and correct fix and is not this ticket's.",
+      "evidence": [
+        "data/research/books/moses_kirkland_v1_lead_surnames.json — the `caapbell` row, occurrences 0, edit_distance_1_in_the_volume {campbell: 31}"
+      ],
+      "pass": "T-0581"
+    },
+    {
+      "a": "gardiner",
+      "b": "Gardner",
+      "rule": "ONE CHARACTER APART AND THE WEAKEST OF THE FOUR. The card carries `gardiner`; volume 1 prints Gardner twenty-two times and Gardener once. Gardiner and Gardner are BOTH real surnames that coexisted in the period and in this town, so unlike the Campbell case there is no reason to think either spelling is a fault. Two families is the likelier reading and the merge is refused.",
+      "evidence": [
+        "data/research/books/moses_kirkland_v1_lead_surnames.json — the `gardiner` row, occurrences 0, edit_distance_1_in_the_volume {gardner: 22, gardener: 1}",
+        "data/research/newberry_index/follow_up.json — `gardiner` and `gardner` are BOTH on the lead list, as separate surnames"
+      ],
+      "pass": "T-0581"
+    },
+    {
+      "a": "mattoson",
+      "b": "Matteson",
+      "rule": "ONE CHARACTER APART AND WITH A SECOND CANDIDATE. The card carries `mattoson`, which volume 1 never prints; it prints Matteson eight times and Mattoon three, and both are one character from the card. Two candidates one character away is worse evidence than one, not better, and neither is merged.",
+      "evidence": [
+        "data/research/books/moses_kirkland_v1_lead_surnames.json — the `mattoson` row, occurrences 0, edit_distance_1_in_the_volume {matteson: 8, mattoon: 3}"
+      ],
+      "pass": "T-0581"
     }
   ]
 }

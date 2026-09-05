@@ -383,3 +383,5 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+T-0728 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
+T-0729 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
