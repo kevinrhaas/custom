@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 1:39 AM",
+  "generated_ct": "Sep 5, 2026, 2:12 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12408,6 +12408,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 11
+    },
+    {
+      "id": "T-0745",
+      "title": "dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
     }
   ]
 }
