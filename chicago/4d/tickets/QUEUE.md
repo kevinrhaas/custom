@@ -398,7 +398,7 @@ T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street f
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
-T-0812 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
+T-0815 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
 T-0813 — T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
@@ -407,3 +407,5 @@ T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the
 T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
 T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
 T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
+T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
+T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
