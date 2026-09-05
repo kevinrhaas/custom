@@ -1,5 +1,5 @@
 ---
-id: T-0818
+id: T-0820
 title: A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
 state: open
 epic: META
