@@ -1449,6 +1449,33 @@ async function boot() {
   let travel = null;
   api.router = router;
 
+  /**
+   * Where the last arrival stood (T-0820). While its card is up the building is
+   * framed into the free part of the screen; when the card closes and the
+   * visitor has not moved, the look swings back to centre the building, so the
+   * crosshair is on it and the view is the plain one.
+   */
+  let lastArrival = null;
+  function reaimAfterCard() {
+    if (!lastArrival) return;
+    const st = walker.state;
+    const moved = Math.hypot(st.e - lastArrival.e, st.n - lastArrival.n) > 0.5;
+    const id = lastArrival.id;
+    lastArrival = null;
+    if (moved || st.flying) return;
+    const aim = focusPoint(id);
+    if (!aim) return;
+    const de = aim.x - st.e, dn = -aim.z - st.n;
+    walker.teleport({
+      local_e: st.e, local_n: st.n,
+      yaw_deg: ((Math.atan2(de, dn) / DEG) + 360) % 360,
+      pitch_deg: Math.atan2(aim.y - st.eyeY, Math.max(Math.hypot(de, dn), 0.1)) / DEG,
+    });
+  }
+  new MutationObserver(() => {
+    if (document.getElementById('popup')?.hasAttribute('hidden')) reaimAfterCard();
+  }).observe(document.getElementById('popup'), { attributes: true, attributeFilter: ['hidden'] });
+
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
@@ -1647,14 +1674,14 @@ async function boot() {
     walker, intent, hud, settings: hud.settings, router, terrain, footprints,
     focusPoint, structurePosition,
     // Where a ride or a flight ends: the framed stand-off, the same one Go to uses.
-    standFor: (id) => framing(id),
+    standFor: (id) => framing(id, { card: true }),
     registry: loaded.registry,
-    frame: (id) => frame(id),
+    frame: (id) => frame(id, { card: true }),
     teleport: (where) => walker.teleport(where),
     goToAnchor: (id) => api.goTo(id),
     setFly: (on) => hud.setFly(on, { announce: false }),
     // Arriving is what opens the card: the menu closes, the building's card opens.
-    onArrive: (id) => { hud.setPanel(false); pick(id); },
+    onArrive: (id) => { hud.setPanel(false); pick(id); lastArrival = { id, e: walker.state.e, n: walker.state.n }; },
   });
   api.travel = travel;
   // The stored pace and travel mode, through the one function that writes WALK
@@ -1828,7 +1855,7 @@ async function boot() {
    * height the record carries and from the camera's live field of view, never
    * from a fixed number, so a privy and a long store are each framed to fit.
    */
-  function framing(id) {
+  function framing(id, { card = popup.openId !== null } = {}) {
     const centre = structurePosition(id);
     const aim = focusPoint(id);
     if (!centre || !aim) return null;
@@ -1855,7 +1882,7 @@ async function boot() {
     // "centred in view" means centred in what the card leaves free: the sphere
     // fits inside THAT region's half-angles, and the look is turned so the
     // building sits at the free region's centre rather than the screen's.
-    const free = freeRegion();
+    const free = freeRegion(card);
     // In ANGLE space, not screen space: a perspective frame is linear in the
     // tangent, so a strip at the edge of the screen is angularly narrow, and a
     // fit done on screen fractions leaves a corner out (measured: −1.05 on the
@@ -1886,7 +1913,8 @@ async function boot() {
    * a sheet of min(62vh, vh − 120px) from the bottom. Read live, so a resized
    * window frames for the window it is.
    */
-  function freeRegion() {
+  function freeRegion(card = true) {
+    if (!card) return { x: [-1, 1], y: [-1, 1] };
     const w = Math.max(1, window.innerWidth);
     const hgt = Math.max(1, window.innerHeight);
     if (w > 620) {
@@ -1898,8 +1926,11 @@ async function boot() {
   }
 
   /** Stand back and look at a structure, framed whole — used by Go to, the rides and the harness. */
-  function frame(id) {
-    const f = framing(id);
+  function frame(id, { card = false } = {}) {
+    // `card`: the arrival will open the building's card, so frame into the part
+    // of the screen it leaves free. The harness's bare frame() aims straight, so
+    // the crosshair lands on the building it was pointed at.
+    const f = framing(id, { card });
     if (!f) return false;
     // lookAt places the eye `distance` from the AIM along `bearingDeg` — which is
     // the stand-off point framing() already probed for free ground — then the
