@@ -43,7 +43,6 @@
 # --- G1 — THE CARD MUST BE ABLE TO HOLD IT. Small repairs the spend below writes THROUGH: a card
 # --- that drifts silently, or one identity split across two cards, makes every figure under it
 # --- unarguable. Nothing here reads a source.
-T-0836 — Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them
 T-0837 — Spend the standing synthesis write: read the promotions it proposes and land them deliberately
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699

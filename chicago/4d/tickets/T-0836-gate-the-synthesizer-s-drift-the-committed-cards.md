@@ -1,7 +1,7 @@
 ---
 id: T-0836
 title: Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0814
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 917
 claimed_by: run 9/5/2026, 3:25:53 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T20:38:58.596Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649
 ---
 
