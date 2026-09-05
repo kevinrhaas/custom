@@ -94,7 +94,6 @@ T-0517 — What the residents and households look like: the summary the owner as
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
-T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
@@ -304,9 +303,10 @@ T-0735 — check.sh is red on dev: nine steps fail before any branch touches the
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0740 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
+T-0739 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
-T-0739 — dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted
+T-0740 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
+
