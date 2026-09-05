@@ -173,7 +173,6 @@ T-0451 — Only one north-south street stands north of the river, where the Thom
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
-T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
@@ -403,3 +402,4 @@ T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any
 T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
