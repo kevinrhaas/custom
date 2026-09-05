@@ -8,7 +8,7 @@
   "census_1840": 284,
   "church": 458,
   "books": 176,
-  "directories": 7210,
+  "directories": 7211,
   "newberry_index": 4914,
   "land_sales": 442
  },
@@ -34,7 +34,7 @@
    "spent": 50
   },
   "directories": {
-   "read": 8256,
+   "read": 8257,
    "spent": 1046
   },
   "newberry_index": {
@@ -259,6 +259,14 @@
    "to": 16,
    "date": "2026-09-04",
    "why": "T-0592 added three claims to town_findings_andreas_v1.json (c012-c014) that carry no town person to rule on: the trustees' $95.50 well of 10 Nov 1834, the water carts that served the town from the lake instead, and the Hydraulic Company's 1836 charter. They are town findings about water supply, quoted for docs/RESEARCH/wells.md, and the spend they demand is a ruling rather than a name — which the ticket made in full. Reclaim with --tighten once the civic domain next spends."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7210,
+   "to": 7211,
+   "date": "2026-09-05",
+   "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
   }
  ],
  "lowered": [
