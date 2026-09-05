@@ -403,3 +403,4 @@ T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street f
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+T-0810 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
