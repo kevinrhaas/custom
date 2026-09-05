@@ -430,3 +430,87 @@ for Chicago plus a canal context would take it for 1835.
 all twenty-five people named inside the 1830–1836 window by name with the outcome of
 each, because a crosswalk that reports only its merges cannot be audited. Nothing in
 `data/residents/`, `data/structures/` or `data/assets/` was edited.
+
+---
+
+## Moses and Kirkland, *History of Chicago, Illinois*, vol. 1 (1895) — T-0581, 2026-09-05
+
+**The largest Chicago work the Newberry index pointed at that this project did not hold, and
+half of it is now held.** 76 of the 581 Chicago and Cook County cards in the Newberry
+genealogical index (T-0570) cite Moses and Kirkland, and those cards name **66 surnames** this
+project already carries. Volume 1 — the project owner's own Internet Archive upload,
+`historyofchicago01mose_202609` — is committed at
+`text/moses_kirkland_history_of_chicago_v1_1895.txt` (1,056 leaves, 14,792 lines) with an
+**exact** page index derived from the deposit's own hOCR ranges. Volume 2 is still unfetched
+and is T-0759.
+
+**Three ranges read, 900 leaves swept.** `coverage.json` declares the difference rather than
+blurring it:
+
+| range | leaves | what |
+|---|---|---|
+| Chapters V and VI | 89–141 (pp. 65–102) | the whole of the volume's town before 1836, read line by line |
+| the two pre-1836 sketches | 806–812 | P. F. W. Peck (p. 569) and Philo Carpenter (p. 572), read in full |
+| the front matter | 15–24 | contents, portraits and the list of forty-seven biographies |
+
+**The sweep, and its command.** Every one of the 66 lead surnames was searched over the whole
+committed text:
+
+```
+python3 - <<'PY'
+import json,re
+text=open('data/research/books/text/moses_kirkland_history_of_chicago_v1_1895.txt',encoding='utf-8').read()
+leads=json.load(open('data/research/newberry_index/leads.json'))['leads']
+keys=sorted({d['surname_key'] for d in leads if 'moses_kirkland_history_of_chicago' in d.get('works_cited',[])})
+print(len(keys), sum(1 for k in keys if not re.search(r'\b'+re.escape(k)+r'\b',text,re.I)))
+PY
+```
+
+**66 surnames; 12 of them do not occur in volume 1 at all** — `blodget`, `caapbell`,
+`chamberlin`, `chancy`, `franke`, `gardiner`, `gunn`, `heal`, `jacobe`, `mattoson`, `nlan`,
+`obrien` — and several of those are the index cards' own OCR garbling rather than names. A bare
+surname over OCR is **a screen and not a reading**; where it found a pre-1836 man it was
+followed into the text, and that following is what the thirty-four claims are.
+
+**THE INDEX'S PREMISE DOES NOT SURVIVE THE READING, and that is the finding worth carrying
+forward.** The volume carries a signed biography for **eleven** of the 66 surnames, and **only
+three of those eleven men were in Chicago before 1836** — Philo Carpenter, John Dean Caton and
+Philip F. W. Peck. The other thirty-six sketches are of Gilded Age Chicagoans. A Newberry card
+citing "Moses and Kirkland" for a surname is a card about a *family*, so it almost never reaches
+an 1835 person through this work.
+
+**What the read half is actually worth** is twelve printed pages of dense 1830s narrative: the
+incorporation vote of 5 August 1833 and the footnoted roll of its twenty-eight electors; the
+three boards of trustees, including **the 1835 board that sat on the scene date**; the trades
+advertised in the first numbers of the *Chicago Democrat*; **the 1835 State census — 3,297
+people and a tally of forty-four stores, eight taverns, five churches, twenty-two lawyers and
+the rest — taken from 1 September and therefore a ceiling for 1 July, not a count of it**; the
+town's two legal boundaries; four corner placements; two bridges with dimensions; and the jail
+at the north-west corner of the public square.
+
+**The volume contradicts itself about the first brick building and the contradiction is
+recorded, not reconciled.** Chapter VI gives it to John Noble in 1833, built by Alanson Sweet
+and William Worthingham on the North Side (`bk_mk1_007`); the Peck sketch gives it to P. F. W.
+Peck in 1836 and calls it "the first struc- ture of that material put up in the town"
+(`bk_mk1_031`). What *is* usable is the date: Peck's brick house is 1836 and is therefore **not
+standing on the scene date**.
+
+**Four open tickets are touched and none is decided.** T-0396 (Newberry and Dole's partner),
+T-0407 (the blacksmith read here as "Matthias Mason"), T-0412 (P. Pruyne & Co.'s store) and the
+Green Tree tavern's keeper, whom this volume gives as David Clock. On T-0407 the crosswalk
+**refuses** rather than merges, and the reason is the rule for this whole source: Moses and
+Kirkland are not an independent witness to the *Democrat*, they are a 1895 summary of it, so a
+third spelling from a weaker copy of the same source is noise.
+
+**The identity pass rules on five pairs** — two merges (Philo Carpenter, and the volume's
+"P. F. W. Peck" into `peck_philip`) and three refusals (`E. K. Hubbard` against Gurdon S.
+Hubbard, `Matthias Mason` against `Matthias Nason & Co.`, and Walter against Mark Kimball).
+Nothing in `data/residents/`, `data/households/`, `data/businesses/`, `data/structures/` or
+`data/assets/` was edited: T-0581 routes every offer through the receiving layer's own PR.
+
+**The owner's open question about the `andr` file is answered, and he was right to ask.** The
+item carries **two complete works**: besides `historyofchicago01mose.pdf` it holds
+`historyofchicago01andr.epub`, `historyofchicago01andr.pdf` and a full set of `andr`-named
+derivatives, whose OCR is a different book with a different title page. Only the `mose`
+derivatives were fetched and only they are committed. Nothing in this project cites the `andr`
+files.

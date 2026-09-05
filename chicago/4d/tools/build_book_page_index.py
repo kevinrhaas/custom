@@ -149,6 +149,35 @@ BOOKS_INDEXED = {
                               "narrative, whose printed folios run 9 to 43; leaves "
                               "46-70 are the plates, their captions and the endpapers.",
     },
+    # The fourth, added by T-0581 for volume 1 of Moses and Kirkland's History of
+    # Chicago (1895). It takes the Fergus/Porter route for the Porter reason: the
+    # Internet Archive emitted this item's hOCR search text AND the hOCR page index
+    # beside it, so leaf i IS text[start:end] and nothing is aligned. The 72 MB
+    # deposit PDF is not committed either — chicago/reference/
+    # moses-kirkland-history-of-chicago-v1.yaml is the pointer at the owner's own
+    # upload — so Hubbard's pdftotext transfer could not be run here in any case.
+    "moses_kirkland_history_of_chicago_v1_1895": {
+        "title": "John Moses and Joseph Kirkland, History of Chicago, Illinois, "
+                 "Volume I (Chicago and New York: Munsell & Co., 1895)",
+        "archive_item": "historyofchicago01mose_202609",
+        "derivation": "hocr_page_index",
+        "deposit_text": "chicago/reference/moses-kirkland-history-of-chicago-v1/"
+                        "historyofchicago01mose_hocr_searchtext",
+        "deposit_page_index": "chicago/reference/moses-kirkland-history-of-chicago-v1/"
+                              "historyofchicago01mose_hocr_pageindex.json",
+        "leaves": 1056,
+        # NO `folio_runs`. The volume prints roman front matter, an arabic body, and
+        # sixty-odd unnumbered plate leaves interleaved through the body wherever a
+        # portrait fell; a constant offset carried across a plate would invent a
+        # folio on every leaf after it. A folio here is READ off the running head or
+        # it is null, which is the Fergus rule for the Fergus reason.
+        "folios": "read_only",
+        "reading_order_note": "Leaf order throughout. Leaves 1-30 are the covers, "
+                              "title, preface and contents; the body's printed "
+                              "folios run from 1 and are interrupted by unnumbered "
+                              "plate leaves, so a leaf number and a folio differ by "
+                              "no constant and only the read folio is trusted.",
+    },
 }
 
 ROMAN = [(1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"),

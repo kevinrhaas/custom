@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 229,
   "church": 458,
-  "books": 176,
+  "books": 183,
   "directories": 7210,
   "newberry_index": 4914,
   "land_sales": 442
@@ -30,8 +30,8 @@
    "spent": 1286
   },
   "books": {
-   "read": 226,
-   "spent": 50
+   "read": 260,
+   "spent": 77
   },
   "directories": {
    "read": 8256,
@@ -243,6 +243,14 @@
    "to": 176,
    "date": "2026-09-05",
    "why": "T-0502 read H. H. Porter's Short Autobiography (1915) end to end and the finding is that it carries no document of Chicago 1830-1836. Eight claims were filed; five of them are the evidence of the two identity refusals this pass wrote and are spent. The other three rule on nobody and cannot: bk_porter_006 and bk_porter_007 are town findings that describe 1853 - the Fort Dearborn blockhouse still standing, and the street grade five to twelve feet below 1904's - and bk_porter_008 states the volume's own distance from everything. A carries-no-document finding necessarily reads further ahead of its adjudication, because what it read names nobody this town holds. The alternative was to file the ruling and not the three readings, which would leave the next run to re-read seventy leaves to learn the same nothing. +3, deliberately."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 176,
+   "to": 183,
+   "date": "2026-09-05",
+   "why": "T-0581 read Moses and Kirkland vol. 1 and wrote 34 claims; 43 of them are ruled on in books/crosswalk.json, which is the largest identity pass this domain has had. The remaining seven CANNOT BE RULED ON BY AN IDENTITY CROSSWALK AND NEVER WILL BE, because they name nobody: the 1835 State census total of 3,297 with its tally of the town's trades, the town boundaries of 6 November 1833 and 11 February 1835, the forty-foot road across the reservation, the Pioneer hook and ladder company of October 1835, the two cemeteries the 1835 trustees laid out, and Latrobe's count of about fifty clapboard houses. They are the most useful readings in the whole volume for the reconstruction and they are civic facts about a town, not people. The measure counts claims and spends identities, so a source that answers 'how many' rather than 'who' reads the meter up and can never read it back down. Raising by seven is the honest figure for that, and it is the whole of the gap."
   }
  ],
  "lowered": [

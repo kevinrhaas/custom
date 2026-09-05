@@ -318,3 +318,6 @@ T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the h
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0748 — The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
+T-0758 — Moses and Kirkland put P. F. W. Peck's store on the south-EAST corner of South Water and La Salle, and hh_peck_philip puts it south-west - and the project holds two Peck households
+T-0759 — Moses and Kirkland volume 2 (historyofchicagov2mose) is unfetched and unread, and the Newberry cards do not say which volume they cite
+T-0760 — John Dean Caton's biography in Moses and Kirkland volume 1, printed page 575: the third pre-1836 sketch, left unread by T-0581
