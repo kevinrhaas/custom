@@ -113,7 +113,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- T-0453 left behind when it closed.
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
@@ -327,3 +326,5 @@ T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' 
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0773 — Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
+T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
