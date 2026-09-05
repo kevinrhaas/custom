@@ -1159,6 +1159,22 @@ PY
 step "the reconstructed residents' invented names re-derive" \
   python3 tools/synthesize_resident_research.py --check
 
+# `none_recorded` was carrying two facts at once (T-0693): "no trade anywhere" and
+# "no trade for 1835, and a dated one for 1839". The owner opened one card and found
+# the man's trade printed three times on it while the field a reader consults said he
+# had none. The pointer that separates them is DERIVED from the `directories` block on
+# the same record, so it is checkable rather than asserted — and gated here, because a
+# later pass that stopped writing it would otherwise put every one of those cards back
+# to asserting an absence its own file contradicts.
+step "no person asserts a bare 'none_recorded' while the same record dates a trade" \
+  python3 tools/qualify_later_trades.py --check
+
+# ...and the four rules that derivation rests on, held over a record built to trip
+# each: only an absence is qualified, the 1835 claim never moves, and the year travels
+# with the trade. Nothing here is back-projection; T-0633 is where an address is.
+step "the later-trade pointer obeys its own four rules" \
+  python3 tools/qualify_later_trades.py --self-test
+
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
 # new household rewrote up to 73 of the 113 invented names — a diff in which the

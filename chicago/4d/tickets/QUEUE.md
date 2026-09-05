@@ -120,7 +120,6 @@
 # --- a druggist but that is not in his person record". The file quotes the trade three times and
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
-T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
 # --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
@@ -424,7 +423,8 @@ T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothin
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
 T-0820 — A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0825 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
+T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module

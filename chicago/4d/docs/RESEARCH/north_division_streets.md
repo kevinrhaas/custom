@@ -184,7 +184,7 @@ the plat's module where the other five read 122–123.6 m.
 Nothing in this reading can choose between two lines 9 m apart, so nothing is
 moved. `market_north` is graded `inferred`, cites `thompson_plat_1830` alone, and
 carries `name_2026: null` — N Wacker Drive north of the river is the east–west
-riverside drive and is not this line. The re-fit that would settle it is **T-0825**.
+riverside drive and is not this line. The re-fit that would settle it is **T-0827**.
 
 Its south end is also the least settled of the six. It lands on `north_water`'s
 committed centreline at the reach **T-0447** has open, where the plat does not give
