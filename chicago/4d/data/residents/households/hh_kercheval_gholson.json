@@ -114,6 +114,19 @@
       "fergus_chicago_directory_1843"
      ],
      "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1843 prints an address against this name in 1843, and it is left where it is. An 1835 placement already stands: this household works at `cobweb_castle`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later. The later address stays on the record as 1843's evidence and moves nothing."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "boards",
+     "value": null,
+     "describes_date": 1843,
+     "read_back_years": 8,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man boarded in 1843 and this pass will not carry it back to 1835. The entry names the household this man boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]
