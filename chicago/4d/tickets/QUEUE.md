@@ -100,7 +100,6 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0496 — The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
-T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0671 — The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746
 T-0629 — 33S7-9YYJ-6H: the slaves, pensioners, deaf/dumb/blind/insane and schools blocks, and the 1 and 40 at the head of the schools block
