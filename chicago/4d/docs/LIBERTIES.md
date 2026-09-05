@@ -10048,7 +10048,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 726 people
+**Scope:** `residents.persons[letter_list_only]` — 727 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244

@@ -86,11 +86,7 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   },
-   "merged_from_person_ids": [
-    "norton_n_r"
-   ],
-   "merged_from_note": "ONE MAN, TWO CARDS UNTIL 2026-09-05 (T-0723). The town also carried `norton_n_r` / `hh_norton_n_r`, \"N. R. Norton\", minted from the Chicago Democrat's list of letters uncalled-for at the Chicago post office of 1 July 1835, column 5. That card is retired into this one and the letter-list return is this man's. THE EVIDENCE: Fergus's Chicago directory of 1839 prints exactly one Norton of that initial on page 26 — 'Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts' — and BRIDGE-BUILDER is the deed Andreas gives Nelson R. Norton in terms, the first draw-bridge over the main river at Dearborn Street in March 1834. The initial-form and the full forename name the one bridge-builder the corpus holds, and his arrival of 16 November 1833 and the Clarissa of May 1836 bracket 1 July 1835, so he is the man whose mail was waiting. HOW THE DUPLICATE AROSE: tools/mint_letter_list_residents.py mints one record per printed name and, by its own ruling, matches none of them against residents the town already holds — so a name the town had was minted a second time. NOTHING IS ASSERTED BY THE MERGE: no grade, arrival, trade, roof or member on this card moves; the retired card claimed none of those either. The 1839 directory's match against this person was recorded `contested` because two 1835 residents met that one line; with the duplicate retired the contest has one party."
+   }
   }
  ],
  "touches_removal": false,

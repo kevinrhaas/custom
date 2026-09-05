@@ -40,10 +40,10 @@
    "unmatched": 690
   },
   "residents": {
-   "names_read": 1396,
+   "names_read": 1397,
    "identities": 1396,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1396
+   "unmatched": 1397
   },
   "books": {
    "names_read": 0,
@@ -109,8 +109,8 @@
   "residents|residents": 1396
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1403,
-  "persons_this_tool_placed_on_an_identity": 1396,
+  "persons_in_the_layer": 1404,
+  "persons_this_tool_placed_on_an_identity": 1397,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {

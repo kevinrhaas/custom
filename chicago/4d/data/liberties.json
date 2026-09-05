@@ -13514,14 +13514,14 @@
       "covers": [],
       "scope": {
         "enumeration": "residents.persons[letter_list_only]",
-        "count": 726
+        "count": 727
       },
       "recorded": "2026-08-30",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`residents.persons[letter_list_only]` — 726 people"
+          "text": "`residents.persons[letter_list_only]` — 727 people"
         },
         {
           "label": "Decision",

@@ -49,7 +49,8 @@
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
 T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
-T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
+T-0839 — The honorific strip merges Mrs Rufus Brown onto her husband: hold a wife-form reading apart from a man the town records, by rule and self-test
+T-0840 — N. R. Norton and Nelson R. Norton are one bridge-builder carried twice: retire the duplicate card and rebuild the sixteen crosswalks that re-derive against the layer
 T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist

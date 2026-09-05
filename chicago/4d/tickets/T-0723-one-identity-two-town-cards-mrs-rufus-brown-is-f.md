@@ -1,7 +1,7 @@
 ---
 id: T-0723
 title: One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: run 9/5/2026, 3:47:00 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T21:23:03.855Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33990992662
 ---
 **Found by T-0692's coverage pass, 2026-09-04.** Two identities in `identity_master.json`
