@@ -2,6 +2,40 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "1-4",
+      "parts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 246,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 217,
+      "takenAt": "2026-09-05T12:24:47.525Z",
+      "ref": "steward/t-0445-west-division-streets",
+      "commit": "2d07d9b8a4b6",
+      "devCommit": "a8d7b3452a3f",
+      "treeHash": "sha256:e91fc86ea2072b44",
+      "treeDirty": false,
+      "changelogHash": "sha256:fb236510e222488a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_m_1_4_merged.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "2",
       "parts": [
@@ -1520,40 +1554,6 @@
         ]
       },
       "source": "/tmp/s2_d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-4",
-      "parts": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 246,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 390,
-      "takenAt": "2026-09-05T04:02:30.893Z",
-      "ref": "steward/t-0593-large-dwelling-house",
-      "commit": "e7b2baa7516b",
-      "devCommit": "e3c58817ef3f",
-      "treeHash": "sha256:aace0c284d06874c",
-      "treeDirty": false,
-      "changelogHash": "sha256:26ffa85f00762c4d",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          1.7,
-          3.5,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_m14.log"
     },
     {
       "viewport": "mobile",
