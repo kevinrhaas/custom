@@ -129,7 +129,6 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 # --- the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
-T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings;
 # --- they decide whether the ones above land on the right names and corners.
