@@ -105,7 +105,6 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
 T-0619 — Volume 4 read by OCR, pages 1-306: the shards
-T-0620 — Volume 4 read by OCR, pages 307-612: the shards
 T-0621 — Volume 4 read by OCR, pages 613-918: the shards, then stitch, re-parse and re-sample the volume
 T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
@@ -322,4 +321,3 @@ T-0759 — Chicago drank from the lake by cart in 1835 and the town has no water
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
-
