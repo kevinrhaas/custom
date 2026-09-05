@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 1:25 PM",
+  "generated_ct": "Sep 5, 2026, 1:46 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14032,6 +14032,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 187
+    },
+    {
+      "id": "T-0825",
+      "title": "dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 188
     }
   ]
 }

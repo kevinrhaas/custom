@@ -424,3 +424,4 @@ T-0809 — The janitor gates the branch un-merged and drops a conflict in silenc
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0818 — Drain lap 1: the four PRs whose conflict is build products and nothing else
 T-0822 — The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
+T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
