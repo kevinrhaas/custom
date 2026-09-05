@@ -403,3 +403,5 @@ T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street f
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+T-0812 — tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it
+T-0813 — T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way

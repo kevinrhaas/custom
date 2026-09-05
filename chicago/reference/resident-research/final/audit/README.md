@@ -245,7 +245,7 @@ defect in this export.
 | rests on one source | 954 | one source id on the card and no second category to check it against |
 | no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
-| conflicting evidence | 97 | the ledger records a conflict against a candidate, or the household is flagged for review |
+| conflicting evidence | 100 | the ledger records a conflict against a candidate, or the household is flagged for review |
 | candidate identity open | 77 | a candidate was found and not asserted; the identity is still a question |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 

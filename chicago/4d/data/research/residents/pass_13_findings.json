@@ -1,103 +1,558 @@
 {
-  "_doc": "Pending T-0508 ledger. Opened empty by T-0492 so cohort 13 has a home before its run starts. Every manifest member is listed under `pending` until it receives a dated review; a member moves to `completed_person_ids` only when it has one. tools/synthesize_resident_research.py reads `completed_person_ids` and nothing else here, so an empty ledger changes no resident record.",
-  "ticket": "T-0508",
-  "reviewed_on": null,
-  "status": "pending",
-  "default_outcome": "no_corroboration_yet",
-  "default_summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name sweep could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-  "query_templates": [
-    "\"{name}\" Chicago 1835",
-    "\"{name}\" Illinois 1834 1835",
-    "\"{name}\" Chicago directory",
-    "\"{name}\" genealogy occupation migration",
-    "justified OCR/spelling variants where the printed form was visibly suspect"
+ "_doc": "T-0508's outcome ledger for cohort 13. Seventy-six named residents who carried no research row are reviewed here, each with a dated outcome. The default is a DOCUMENTED NEGATIVE, not silence: every person was searched across the whole committed corpus and across the fetched Andreas OCR, and the searches that found nothing are as much a result as the ones that did. Nothing in this file changes a grade, mints a person, or writes a trade onto a 1835 record - T-0513 consolidates and T-0514/T-0515 apply. Later evidence stays dated as later evidence.",
+ "ticket": "T-0508",
+ "reviewed_on": "2026-09-05",
+ "status": "complete",
+ "default_outcome": "no_corroboration_yet",
+ "default_summary": "Exact-name and justified-variant searches across the whole committed repository corpus (42.8 MB: newspapers, directories, church registers, civic and voter lists, the 1830 and 1840 censuses, land sales, old-settler material, genealogytrails and the book texts) and across the fetched OCR of Andreas's History of Chicago vol. 1 returned nothing that a date, place, trade, kinship or paired-name discriminator could tie to this postal person. This is a documented no-corroboration result, not evidence that the person did not exist, and not evidence of absence from Chicago.",
+ "search_scope": {
+  "repository_corpus": {
+   "files": 794,
+   "bytes": 42838069,
+   "roots": [
+    "data/research/ (excluding residents/ and newberry_index/)",
+    "data/sources/"
+   ]
+  },
+  "fetched": [
+   {
+    "source_id": "andreas_1884_v1",
+    "item": "historyofchicago01andr",
+    "url": "https://dn760009.eu.archive.org/0/items/historyofchicago01andr/historyofchicago01andr_djvu.txt",
+    "bytes": 5214426,
+    "sha256": "e842bdadb9385be2e3e673b7191520ddcd20fb035b7229cf829eb516c9a95687",
+    "accessed": "2026-09-05",
+    "why": "the archive.org full-text index is lossy on this item by its own source record, so the OCR was fetched whole and searched here; the sha256 of what was read is recorded because the text is not committed"
+   }
   ],
-  "search_scope": [
-    "repository Chicago Democrat and Chicago American transcriptions, newspaper identity ledger and resident/source records",
-    "the six source domains scaffolded by T-0492 under data/research/ — civic lists, 1830 and 1840 census, church registers, books, directories",
-    "Fergus Chicago directories and the existing resident-research source registry",
-    "Cook, Will, Kane, Lake and neighbouring-county local histories",
-    "government, library and archival institutional records"
+  "inaccessible": [
+   {
+    "what": "FamilySearch and Ancestry record pages",
+    "why": "login-walled; recorded as inaccessible, never as absent"
+   },
+   {
+    "what": "HathiTrust page views",
+    "why": "403 to this runner; the catalog API answers"
+   },
+   {
+    "what": "archive.org advancedsearch full-text",
+    "why": "the public endpoint searches metadata only and returned 0 for names present in the same item's OCR - which is why the OCR was fetched instead"
+   }
+  ]
+ },
+ "method": [
+  "Exact name first, then justified spelling and OCR variants, then the surname alone for a file census.",
+  "A surname-only agreement is a REFUSAL, however good it looks.",
+  "The post-office letter lists (chicago_democrat_1833_1835) are the SEED and are never counted as corroboration of themselves.",
+  "Evidence printed in 1839, 1840, 1843, 1844 or 1892 is evidence about those years. It corroborates an IDENTITY and never a 1835 residence, occupation or address.",
+  "Candidate identities are retained unasserted with their conflicts written down.",
+  "Negative searches are recorded as results."
+ ],
+ "outcome_counts": {
+  "candidate_identity": 7,
+  "corroborated": 10,
+  "corroborated_enrichment": 18,
+  "no_corroboration_yet": 41
+ },
+ "completed_person_ids": [
+  "adams_william_h",
+  "aiker_samuel",
+  "parcel_aaron",
+  "bates_john_jr",
+  "akers_simon",
+  "reel_absolam",
+  "beaubien_jean_baptiste",
+  "allen_william",
+  "vandorwerk_adam",
+  "beaubien_josette",
+  "allin_richard",
+  "vaughan_alanson_b",
+  "beaubien_madore",
+  "alling_prudde",
+  "wilkes_alexander",
+  "beaubien_mark",
+  "anderson_eli_f",
+  "tucker_alexr_h",
+  "beckford_printer",
+  "anstin_al",
+  "churchill_alfred",
+  "blodgett_tyler_k",
+  "archer_joseph",
+  "vaughn_alison_b",
+  "brown_lemuel",
+  "avery_charles",
+  "perring_almon",
+  "brown_mrs_rufus",
+  "ayres_levi",
+  "castle_alonzo",
+  "brown_rufus",
+  "bailly_joseph",
+  "murray_alonzo",
+  "caldwell_billy",
+  "bakwith_albert",
+  "murry_alonzo",
+  "calhoun_john",
+  "bebee_orson",
+  "crandal_alva",
+  "carpenter_philo",
+  "beddlecome_ash",
+  "dunlap_alva",
+  "carver_david",
+  "beeson_william",
+  "miner_amanda",
+  "casey_edward_w",
+  "beger_tobias",
+  "rathburn_amos",
+  "caton_john_dean",
+  "bemis_samuel_c",
+  "wear_amy_c",
+  "church_thomas",
+  "benton_datas_e",
+  "miles_andrew",
+  "clybourne_archibald",
+  "benubien_charl",
+  "vann_angeline",
+  "cobb_silas_b",
+  "bishop_j_e",
+  "heere_anthony",
+  "cohen_peter",
+  "blair_william_g",
+  "winsor_aram",
+  "couch_ira",
+  "bloget_josiah_i",
+  "knox_archibald",
+  "couch_james",
+  "blood_amos",
+  "parcell_aron",
+  "davis_john",
+  "bly_rouse",
+  "brundage_asa",
+  "davis_t_o",
+  "boardman_elect",
+  "doel_asa",
+  "garrett_a"
+ ],
+ "pending_person_ids": [],
+ "overrides": {
+  "adams_william_h": {
+   "outcome": "corroborated",
+   "summary": "On the poll list of the first town-trustee election, 10 August 1833, and again on the poll list of 1835; named in Andreas's list of the denizens of the town in the fall of 1833.  voter_crosswalk matches poll_1833_001 ('Adams, W. H.') and poll_1835_001 ('Adams, William H.') to this resident, forenames agreeing initial for initial against one bearer of the surname. Andreas's 1833 roll names 'W. H. Adams' in the same breath as Enoch Darling and C. A. Ballard.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "bates_john_jr": {
+   "outcome": "corroborated_enrichment",
+   "summary": "On the 1834 poll list. Andreas: 'John Bates, Jr., still living in Chicago, auctioneer, who came in 1832' — an arrival year of 1832 and a trade, both stated of the fall of 1833.  voter_crosswalk matches poll_1834_008 'Bates, John Jr.'. Andreas's fall-1833 denizens list gives the trade and the arrival.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "akers_simon": {
+   "outcome": "candidate_identity",
+   "summary": "'S. Akers' stands on the 1837 poll list printed in Fergus 1839 (f1839_v0675) and on the subscription list taken for John H. Kinzie that Andreas prints.  Two independent later lists carry the surname with the initial S.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "andreas_1884_v1"
+   ],
+   "candidates": [
+    {
+     "id": "cand_simon_akers_1837_poll",
+     "asserted": false,
+     "basis": "'S. Akers' on the 1837 Chicago poll list and on the Kinzie subscription list.",
+     "conflicts": [
+      "Given name survives only as an initial.",
+      "Both lists post-date 1 July 1835."
+     ]
+    }
+   ]
+  },
+  "beaubien_jean_baptiste": {
+   "outcome": "corroborated",
+   "summary": "Head of a Chicago-precinct household in the 1830 federal census; named through the St Mary's baptismal register 1833-1835; on the 1833 trustee poll list; 'J. B. Beaubien, merchant' in Andreas's fall-1833 roll.  Four independent records across 1830-1835, three of them in the scene window, and a trade for 1833.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "st_marys_baptismal_register_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "allen_william": {
+   "outcome": "corroborated_enrichment",
+   "summary": "The 1840 head 'Wm. Allen' at printed page 230 line 26 merges to this resident under rule L6, scan-verified; Andreas names a William Allen as alderman of the fifth ward in 1840.  A federal enumeration and a town office, four to five years after the scene date.",
+   "sources": [
+    "census_1840_chicago_name_crosswalk",
+    "andreas_1884_v1"
+   ]
+  },
+  "beaubien_josette": {
+   "outcome": "corroborated",
+   "summary": "Stood as sponsor at a Chicago baptism on 16 July 1834 (St Mary's register); named twice in the 1833 treaty annuity schedule Andreas prints — 'Josette Beaubien 500' and 'Josette Beaubien's children 1000'.  A scan-verified church entry inside the scene window and a federal annuity schedule of 1833 naming her and her children by name.",
+   "sources": [
+    "st_marys_baptismal_register_1833_1835",
+    "andreas_1884_v1"
+   ]
+  },
+  "vaughan_alanson_b": {
+   "outcome": "candidate_identity",
+   "summary": "This repository already holds a source record for a History of Mower County biography of an Alanson B. Vaughan; the corpus sweep found no Chicago record of him beyond the postal return.  An exact full-name county-history biography exists and is already cited by this repository.",
+   "sources": [
+    "mower_history_alanson_vaughan"
+   ],
+   "candidates": [
+    {
+     "id": "cand_alanson_b_vaughan_mower_county",
+     "asserted": false,
+     "basis": "A Mower County pioneer biography of an Alanson B. Vaughan.",
+     "conflicts": [
+      "No Chicago bridge of any kind.",
+      "Three standing refusals in the repository crosswalks."
+     ]
+    }
+   ]
+  },
+  "beaubien_madore": {
+   "outcome": "corroborated",
+   "summary": "On the 1834 poll list; godfather at St Mary's, entry 13 of 1833, signing 'M. Beaubien' in his own hand; elected town trustee with 23 votes; 'Madore W. Beaubien, merchant' in Andreas's fall-1833 roll.  Three independent in-window records — civic, church and the 1884 recollection — and a trade for 1833.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "st_marys_baptismal_register_1833_1835",
+    "andreas_1884_v1"
+   ]
+  },
+  "beaubien_mark": {
+   "outcome": "corroborated",
+   "summary": "Head of household in the 1830 census (leaf n580, entry 28); the St Mary's register's first Chicago entry, 22 May 1833, baptises 'George Beaubien fils de Mark Beaubien et de Monique Nadeau'; on the poll lists; Andreas has the Sauganash 'still kept by the original proprietor, Mark Beaubien' in 1833.  Four independent records, three in the window, one of them naming his wife and son.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "st_marys_baptismal_register_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "beckford_printer": {
+   "outcome": "corroborated",
+   "summary": "Andreas, of the fall of 1833, immediately after John Calhoun: 'Oscar Pratt and Bcckford, printer[s], were in the employ of Mr. Calhoun at that time.'  The ONLY naming of this person anywhere in the repository corpus or in the swept Andreas text — and it gives a trade and an employer for 1833: a printer working for John Calhoun on the Chicago Democrat.",
+   "sources": [
+    "andreas_1884_v1"
+   ]
+  },
+  "blodgett_tyler_k": {
+   "outcome": "corroborated_enrichment",
+   "summary": "On the 1834 poll list (entry 15). Andreas, of the fall of 1833: 'Tyler K. Blodgett, came in the spring of 1833, and started the first brickyard, between Dearborn and Clark streets, on the North Side' — and, in the brick chapter, 'In the spring of 1833, Tyler K. Blodgett established a brick-yard, on the North Side, not far from the river bank, between Dearborn and Clark streets.'  A civic record inside the window and TWO separate Andreas passages agreeing on the year, the trade and the ground: arrival spring 1833, brickmaker, North Side between Dearborn and Clark, near the river bank.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "brown_lemuel": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Matched on the voter material; Andreas's fall-1833 roll: 'Lemuel Brown, blacksmith, came in 1833'.  A civic in-window record and a trade with an arrival year, stated of 1833.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "avery_charles": {
+   "outcome": "candidate_identity",
+   "summary": "A Fergus 1839 entry matches on surname and initial; Andreas prints 'Charles K. Avery' in a Chicago list of the 1840s.  Two later sources carry a Charles Avery at Chicago.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "andreas_1884_v1"
+   ],
+   "candidates": [
+    {
+     "id": "cand_charles_avery_fergus_1839",
+     "asserted": false,
+     "basis": "A Charles Avery in Fergus 1839.",
+     "conflicts": [
+      "Competing middle initials K and E in two other sources.",
+      "All later than 1835."
+     ]
+    }
+   ]
+  },
+  "brown_mrs_rufus": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Andreas, of the town in 1833: 'Mrs. Rufus Brown kept one of the first-class boarding houses.'  An independent 1884 recollection naming her by her husband's name and giving her trade and her house, stated of 1833.",
+   "sources": [
+    "andreas_1884_v1"
+   ]
+  },
+  "brown_rufus": {
+   "outcome": "corroborated",
+   "summary": "Named in the Chicago subscription list Andreas prints beside Richard J. Hamilton, Jesse B. Brown and Samuel Miller; his wife keeps a boarding house in the same chapter.  An independent naming outside the postal seed, in the 1833-37 chapter.",
+   "sources": [
+    "andreas_1884_v1",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  "bailly_joseph": {
+   "outcome": "candidate_identity",
+   "summary": "Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'; Hurlbut's American Fur Company outfits name 'Joseph Bailly, for trade of Lake Michigan' on 30 July 1821; Andreas has him an Indian trader on the St Joseph.  A well-documented Joseph Bailly of the Lake Michigan fur trade is alive through 1835 and within a day's travel of Chicago — which is exactly the man who would have mail waiting at the Chicago post office.",
+   "sources": [
+    "fergus_chicago_directory_1843",
+    "andreas_1884_v1"
+   ],
+   "candidates": [
+    {
+     "id": "cand_joseph_bailly_baillytown",
+     "asserted": false,
+     "basis": "The Lake Michigan fur trader Joseph Bailly of Baillytown, Indiana, died 21 December 1835 aged 61.",
+     "conflicts": [
+      "His seat is in Indiana; the postal person is a Chicago letter-list return.",
+      "The books crosswalk refuses the merge on exactly this ground."
+     ]
+    }
+   ]
+  },
+  "caldwell_billy": {
+   "outcome": "corroborated",
+   "summary": "In the 1830 Chicago-precinct census; Andreas has him as interpreter to the Indian agency beside David McKee the blacksmith, and among the three friendly chiefs with Alexander Robinson and Shabbona.  A federal enumeration and an office held under the agency, both independent of the postal seed.",
+   "sources": [
+    "census_1830_peoria_county_chicago_precinct",
+    "andreas_1884_v1"
+   ]
+  },
+  "calhoun_john": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Matched on the letter-list and resident voter material; Andreas: 'John Calhoun, printer and editor of the first newspaper published in Chicago, arrived in November, 1833, and issued the first number of the Chicago Democrat November 26, 1833.'  An arrival month, a trade and a dated act — all of 1833, inside the window — from a source independent of the paper he printed.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  "carpenter_philo": {
+   "outcome": "corroborated_enrichment",
+   "summary": "On the 1833 trustee poll list; Andreas: 'Philo Carpenter, still living in Chicago, druggist, who came in July, 1832'; head of a household at printed page 217 of the 1840 census.  Civic in-window, a trade with a month of arrival stated of 1832-33, and a later federal enumeration.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1",
+    "census_1840_chicago_name_crosswalk"
+   ]
+  },
+  "dunlap_alva": {
+   "outcome": "candidate_identity",
+   "summary": "'Dunlap, Alva | Letter. | February 29, 1892' on the Second Presbyterian roll — the exact, rare full name; Andreas names 'Captain A. Dunlap' raising a company of mounted volunteers in 1846.  An exact rare full-name agreement in a Chicago church record.",
+   "sources": [
+    "second_presbyterian_chicago_1892",
+    "andreas_1884_v1"
+   ],
+   "candidates": [
+    {
+     "id": "cand_alva_dunlap_second_presbyterian_1892",
+     "asserted": false,
+     "basis": "An exact 'Alva Dunlap' admitted by letter to Second Presbyterian, Chicago, 29 February 1892.",
+     "conflicts": [
+      "A fifty-seven-year gap.",
+      "No discriminator but the name."
+     ]
+    }
+   ]
+  },
+  "carver_david": {
+   "outcome": "corroborated_enrichment",
+   "summary": "poll_1833_007, 'Carver, David', line 28; Andreas: 'David Carver, seaman and lumber merchant, came in 1833'.  A civic record of 10 August 1833 and an independent trade and arrival for the same year.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "casey_edward_w": {
+   "outcome": "corroborated_enrichment",
+   "summary": "tax_1833_014; Andreas names him among the lawyers 'who had put out their signs in 1833', and again as secretary of an incorporated company under George W. Dole.  A tax record of 1833 and an independent statement of his trade in the same year.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "caton_john_dean": {
+   "outcome": "corroborated_enrichment",
+   "summary": "tax_1833_015; Andreas has him appointed Corporate Attorney (Corporation Counsel) on 4 December 1833 beside George Snow as Assessor and Surveyor.  A tax record and a dated town appointment, both of 1833.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "church_thomas": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Matched in Fergus 1839 and 1843 and carried into the 1840 heads; Andreas names him alderman in the 1840s.  Three later independent sources agree on the man.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "census_1840_chicago_name_crosswalk"
+   ]
+  },
+  "clybourne_archibald": {
+   "outcome": "corroborated_enrichment",
+   "summary": "tax_1833_019; Andreas: 'Archibald Clybourne, butcher, came in 1823, then living north of the town limits, and not a voter in the new village'.  A tax record of 1833 and an independent trade, arrival and RESIDENCE RELATION for the same period.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "cobb_silas_b": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Andreas's own search material has 'S. B. Cobb, a minor, came June 1, 1833'; he signs as one of the first members of a Chicago body Andreas lists beside P. F. W. Peck and J. K. Botsford; on the 1837 poll printed in Fergus 1839; 'SILAS B. COBB, general dealer in saddles, harnesses, trunks, valises, collars' in 1843.  An arrival to the day in 1833, a signed membership, and two later directory entries agreeing on the man.",
+   "sources": [
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839",
+    "second_presbyterian_chicago_1892"
+   ]
+  },
+  "bishop_j_e": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Matched in Fergus 1839 with the printed address 'Illinois street'; carried into Norris 1844; 'J. E. Bishop' stands in an Andreas list beside J. M. Van Osdel and U. P. Harris.  Three later independent sources carry the same initials and surname, and one of them a street.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "norris_directory_1844",
+    "andreas_1884_v1"
+   ]
+  },
+  "cohen_peter": {
+   "outcome": "corroborated",
+   "summary": "poll_1834_026, 'Cohen, Peter', line 195; named on the Chicago Harbor subscription list Andreas prints, and in the 1839 directory list Andreas corrects from the 1837 poll.  A poll entry in the window and an independent subscription list.",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad",
+    "andreas_1884_v1"
+   ]
+  },
+  "blair_william_g": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Matched in Fergus 1843 and Norris 1844 with the printed address 'cor Dearborn, bds Tremont House'; Andreas names a William Blair as a director and treasurer of several Chicago institutions from 1840 on.  Three later sources agree on a William Blair at Chicago.",
+   "sources": [
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844",
+    "andreas_1884_v1"
+   ]
+  },
+  "couch_ira": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Head of household at printed page 217 line 3 of the 1840 census, name_confidence high; 'Couch, Ira H.' admitted to Second Presbyterian by letter, 6 August 1842; Andreas names him on 1840s juries and committees.  Three independent later records agree on the man.",
+   "sources": [
+    "census_1840_chicago_name_crosswalk",
+    "second_presbyterian_chicago_1892",
+    "andreas_1884_v1"
+   ]
+  },
+  "knox_archibald": {
+   "outcome": "candidate_identity",
+   "summary": "A line on the Second Presbyterian roll folds to this surname with the initial A.  A Chicago church roll carries the surname and initial.",
+   "sources": [
+    "second_presbyterian_chicago_1892"
+   ],
+   "candidates": [
+    {
+     "id": "cand_archibald_knox_second_presbyterian",
+     "asserted": false,
+     "basis": "Surname and first initial agree on the Second Presbyterian roll.",
+     "conflicts": [
+      "Decades later.",
+      "Three independent refusals stand against him elsewhere."
+     ]
+    }
+   ]
+  },
+  "couch_james": {
+   "outcome": "corroborated_enrichment",
+   "summary": "'Couch, James, Superintendent Tremont House' (Fergus 1839, f1839_e0331); the same office in 1843 and 'res Tremont House' in Norris 1844; Andreas quotes him recollecting the house's crowded early days.  Four later independent sources, three of them printing the same office.",
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844",
+    "andreas_1884_v1"
+   ]
+  },
+  "davis_john": {
+   "outcome": "candidate_identity",
+   "summary": "The 1840 head 'John Davis' at printed page 232 line 13 merges to this resident under rule L6; Andreas mentions 'a John (L.?) Davis residing here in 1830' beside the American Fur Company's John H. Davis of the Upper Wabash.  A later federal head with a clean L6 merge.",
+   "sources": [
+    "census_1840_chicago_name_crosswalk",
+    "andreas_1884_v1"
+   ],
+   "candidates": [
+    {
+     "id": "cand_john_davis_andreas_1830",
+     "asserted": false,
+     "basis": "Andreas records a John (L.?) Davis resident at Chicago in 1830.",
+     "conflicts": [
+      "Andreas hedges the middle initial and the sentence is speculative.",
+      "A second John H. Davis, American Fur Company clerk on the Upper Wabash, stands in the same passage."
+     ]
+    }
+   ]
+  },
+  "davis_t_o": {
+   "outcome": "corroborated",
+   "summary": "Named twice by Andreas: on the subscription list taken for John H. Kinzie, beside Alvin Calhoun and J. Young Scammon; and reporting to the Board with A. Calhoun and J. K. Botsford on 3 March as one of three who named the town's first fire officers.  Two independent civic namings outside the postal seed, one of them a committee of three.",
+   "sources": [
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1839"
+   ]
+  },
+  "garrett_a": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Andreas: 'A. Garrett, auction room, on Dearborn Street. Mr. Garrett's room was the most popular resort of the speculating crowd', of July 1836; and 'In October, A. Garrett announces in the American that from January 4 to the 27th of that month he has sold $1,800,000 worth of real [estate]'. Fergus 1843 prints 'A. GARRETT, agent, Marine and Inland Insurance'.  A trade, a street and a volume of business, all attached to the same initial-and-surname the project holds; the books crosswalk already merges 'A. Garrett' into Augustus Garrett.",
+   "sources": [
+    "andreas_1884_v1",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  }
+ },
+ "findings_beyond_the_cohort": [
+  {
+   "about": "Andreas reprints the 1 January 1834 letter list in full",
+   "note": "Searching Alfred Churchill returned him inside Andreas's own reprint of the letter list of 1 January 1834 - 'the first extended list is as follows, published in the Democrat of January 7, 1834'. That is the SEED reprinted, so it corroborates nobody; but it is a further PRINTING of a list whose length and lost names are the open question in T-0318, T-0424, T-0425 and T-0428, and it is not among the printings those tickets enumerate. Recorded here so the next pass on those tickets does not have to find it again.",
+   "bears_on": [
+    "T-0318",
+    "T-0424",
+    "T-0425",
+    "T-0428"
+   ]
+  },
+  {
+   "about": "three pairs inside this one cohort look like one person read twice",
+   "note": "Aaron Parcel / Aron Parcell, Alonzo Murray / Alonzo Murry and Alanson B. Vaughan / Alison B. Vaughn each stand as two separate people in data/residents/, and each pair is one name under two readings of the same postal list. This pass does not merge them - identity merges are T-0513's - but it names them, because a cohort that reviews both halves of a duplicate twice is spending twice.",
+   "bears_on": [
+    "T-0513"
+   ]
+  },
+  {
+   "about": "a person with nothing acquired a trade and an employer",
+   "note": "'Beckford' returned ZERO hits in 42.8 MB of committed corpus and is named once in the fetched Andreas: a printer in John Calhoun's employ in 1833. The cohort's emptiest record is the one the external sweep paid for."
+  }
+ ],
+ "prior_coverage": {
+  "_doc": "Measured before the pass was written, because it changes what this cohort IS. T-0492 froze cohorts 13-15 as 'named residents carrying no resident_research block' - a test run against data/residents/households/. That is NOT the same test as 'no research row': research_rows() also reads the durable packages under chicago/reference/resident-research/, and ALL 76 of this cohort already carried a row in one of them.",
+  "cohort_members_with_a_row_in_an_earlier_package": 76,
+  "earlier_packages": {
+   "T-0463": 43,
+   "T-0493": 27,
+   "T-0462": 23,
+   "T-0442": 9
+  },
+  "outcomes_raised_by_this_pass": 10,
+  "raised": [
+   "akers_simon",
+   "allen_william",
+   "avery_charles",
+   "beckford_printer",
+   "bishop_j_e",
+   "blair_william_g",
+   "brown_mrs_rufus",
+   "couch_james",
+   "garrett_a",
+   "knox_archibald"
   ],
-  "outcome_counts": {},
-  "completed_person_ids": [],
-  "pending": [
-    "adams_william_h",
-    "aiker_samuel",
-    "parcel_aaron",
-    "bates_john_jr",
-    "akers_simon",
-    "reel_absolam",
-    "beaubien_jean_baptiste",
-    "allen_william",
-    "vandorwerk_adam",
-    "beaubien_josette",
-    "allin_richard",
-    "vaughan_alanson_b",
-    "beaubien_madore",
-    "alling_prudde",
-    "wilkes_alexander",
-    "beaubien_mark",
-    "anderson_eli_f",
-    "tucker_alexr_h",
-    "beckford_printer",
-    "anstin_al",
-    "churchill_alfred",
-    "blodgett_tyler_k",
-    "archer_joseph",
-    "vaughn_alison_b",
-    "brown_lemuel",
-    "avery_charles",
-    "perring_almon",
-    "brown_mrs_rufus",
-    "ayres_levi",
-    "castle_alonzo",
-    "brown_rufus",
-    "bailly_joseph",
-    "murray_alonzo",
-    "caldwell_billy",
-    "bakwith_albert",
-    "murry_alonzo",
-    "calhoun_john",
-    "bebee_orson",
-    "crandal_alva",
-    "carpenter_philo",
-    "beddlecome_ash",
-    "dunlap_alva",
-    "carver_david",
-    "beeson_william",
-    "miner_amanda",
-    "casey_edward_w",
-    "beger_tobias",
-    "rathburn_amos",
-    "caton_john_dean",
-    "bemis_samuel_c",
-    "wear_amy_c",
-    "church_thomas",
-    "benton_datas_e",
-    "miles_andrew",
-    "clybourne_archibald",
-    "benubien_charl",
-    "vann_angeline",
-    "cobb_silas_b",
-    "bishop_j_e",
-    "heere_anthony",
-    "cohen_peter",
-    "blair_william_g",
-    "winsor_aram",
-    "couch_ira",
-    "bloget_josiah_i",
-    "knox_archibald",
-    "couch_james",
-    "blood_amos",
-    "parcell_aron",
-    "davis_john",
-    "bly_rouse",
-    "brundage_asa",
-    "davis_t_o",
-    "boardman_elect",
-    "doel_asa",
-    "garrett_a"
-  ],
-  "overrides": {}
+  "so_what": "The gain of this pass is therefore NOT 76 people going from nothing to something. It is: ten outcomes raised off a documented negative; every one of the 76 rows re-stated with a DATED discriminator and a named source record where the earlier packages carried prose; and 41 negatives that now say what was searched, over what corpus, on what date, with the sha256 of the external text that was read. Saying this plainly is worth more than the headline the ticket title promised.",
+  "bears_on": [
+   "T-0492",
+   "T-0509",
+   "T-0511"
+  ]
+ }
 }

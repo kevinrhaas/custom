@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:08 AM",
+  "generated_ct": "Sep 5, 2026, 11:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8406,7 +8406,7 @@
     {
       "id": "T-0508",
       "title": "237 named residents have no research row: cohort 13 of 79",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8416,9 +8416,11 @@
       "opened": "2026-09-02",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 11:47:33 AM CT",
       "blocked_on": null,
       "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33977365314",
       "queue_rank": 2
     },
     {
@@ -13622,6 +13624,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 126
+    },
+    {
+      "id": "T-0812",
+      "title": "tools/synthesize_resident_research.py write-mode reverts the 2026-09-04 regrades and --check cannot see it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 176
+    },
+    {
+      "id": "T-0813",
+      "title": "T-0492 froze cohorts 13-15 on 'no resident_research block', but all 76 of cohort 13 already carried a package row — cohorts 14 and 15 are framed the same way",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }
