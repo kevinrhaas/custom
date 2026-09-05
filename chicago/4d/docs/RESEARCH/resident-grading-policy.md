@@ -122,6 +122,51 @@ Against the #668 baseline (117 attested / 731 inferred / 706 projected / 848 per
 ladder as ratified moves 159 of 849 people. **It is a proposal. No household file was
 changed by this pass.**
 
+## How much of the layer the ladder has actually ruled on
+
+**Restated 2026-09-04 against the WHOLE layer rather than the part the ladder reached
+(T-0692), because "moves 159 of 849" was only ever true of the people it looked at.**
+`--coverage` prints this and `--check` fails if the account is not total; the full list,
+one person per line with their sources and their current grade, is
+`data/research/residents/ladder_coverage.json`.
+
+| | people |
+|---|---|
+| person records in `data/residents/` | **1,404** |
+| carrying a `ladder_rule` on the card | 531 |
+| carrying none | **873** |
+
+And the 873 are not one thing, which is the finding. The ticket was opened on a count of 18
+and read as *"the consolidation never reached them"*. It had reached all but nine:
+
+| what the ladder can say | people |
+|---|---|
+| **a rung already ruled, never written onto the card** | **864** — G3 650, G1b 76, G2e 56, G5 36, G1a 20, G2b 16, G1c 10 |
+| the person's row sits on an identity that names ANOTHER card as canonical | 2 |
+| the splitter built no identity from the name, and says which guard refused it | 7 — R5 5, R1 2 |
+
+**So the bottleneck is the SPEND, not the reading.** For 864 of 873 people the rung exists
+in `grading_proposal.json` and no pass has ever carried it onto the card; 76 of them are
+`attested` rungs sitting unspent. That is a different job from reading a new source, and it
+is the one that moves the number.
+
+**The nine the ladder cannot see, each with the reason it abstained.** Two are absorbed:
+`canonical_person_id` is `town[0]`, so an identity holding two town cards reported one and
+dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` (a wife whose only
+printed name is her husband's, and the honorific strip makes the two indistinguishable) and
+`norton_n_r` onto `norton_nelson_r` (where the merge is right and the town simply carries
+the man twice). Master rows now carry `town_person_ids`, so an absorbed card is visible
+rather than silent. The other seven are refusals the master has recorded all along:
+`8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR misreadings of an initial
+(S. read as 8, H. as I1) rather than names the town used; `Heacock's wife and children,
+unnamed` is a description; `Beckford` and `Mrs Temple` name no forename at all; and
+`Rev. John Mary Irenaeus St Cyr` — the parish priest whose own register is rung G2c — is
+turned away by a four-token cap that a compound surname trips.
+
+**Nothing here was applied.** No grade moved and no household file was touched: the ticket
+keeps the measurement and the regrade in separate passes, and `grading_proposal.json` is
+byte-identical across this one.
+
 ## The review half — what each source turned out to be worth
 
 | domain | names read | identities | on a card the town already has |
@@ -165,11 +210,21 @@ and every refusal in `identity_master.json` names the rule that made it.
 | **M2** | An initial-only forename attaches to the ONE full forename of that surname carrying the initial. Two rivals is R3, never a choice. |
 | **M3** | A middle initial on one reading and absent on the other, forename and surname agreeing, no rival middle initial. |
 | **D1** | A merge already declared by a domain's crosswalk or by `identity.json`. **A landed adjudication outranks everything derived here** — 74 appearances moved on this rule in this pass, including `W. H. Adams` of the 1833 poll, whom R3 had refused while `civic/voter_crosswalk.json` had matched him a month earlier. |
-| **R1** | Surname only. Never merges onto a person. 614 derived refusals, plus the whole Newberry finding aid. |
+| **R1** | Surname only — the record genuinely prints no forename. Never merges onto a person. 383 derived refusals, plus the whole Newberry finding aid. |
 | **R2** | Same surname, different forename initial. Never merges. 956. |
 | **R3** | An initial-only forename with two or more rival full forenames of that surname — refused with the rivals named. 150. |
 | **R4** | Same surname and initial, two different full forenames. 80. |
-| **D2** | A refusal already declared by a crosswalk or `identity.json`. 784. |
+| **D2** | A refusal already declared by a crosswalk or `identity.json`. 1,574. |
+| **R5** | **A printed name the splitter cannot read as (surname, forename) at all** — a firm style, an institution, a digit standing where an initial was misread, a description rather than a name, more forename tokens than the four-token cap. 266, each row naming which guard fired. |
+
+**Why R5 exists, and what it cost to not have it (T-0692).** Until 2026-09-04 every one of
+those 266 rows was filed as R1, *"names no forename"* — and that sentence is false of most
+of them. `8. G. Abbot` prints a forename initial; `Rev. John Mary Irenaeus St Cyr` prints
+three forenames and is turned away by the token cap, not by an absent name. Seven of the
+town's own cards carried that refusal, and a refusal whose stated reason is untrue of the
+page is barely better than no refusal at all. **The guards did not change and no identity
+moved** — `grading_proposal.json` is byte-identical across the split. What changed is that
+each refusal now says which guard fired.
 
 R2 and R4 are stated **once per surname**, naming everyone the bucket holds apart, not once
 per pair: the cross product of forty Smiths is 780 rows that say what the bucket already
@@ -177,10 +232,12 @@ says.
 
 ## Running it
 
-    tools/consolidate_resident_evidence.py --build       write the three data files
+    tools/consolidate_resident_evidence.py --build       write the four data files
     tools/consolidate_resident_evidence.py --check       they re-derive; the invariants hold
     tools/consolidate_resident_evidence.py --self-test   the assertions still fire when broken
     tools/consolidate_resident_evidence.py --report      the tables above
+    tools/consolidate_resident_evidence.py --coverage    who the ladder has ruled on, and
+                                                         who it has not, with the reason
 
 `--check` and `--self-test` run in `tools/check.sh`. The pass is **incremental**: it
 consolidates what is closed and runs again after every few sources. A pass that finds
