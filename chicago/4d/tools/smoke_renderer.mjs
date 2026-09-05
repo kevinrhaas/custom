@@ -1822,6 +1822,47 @@ for (const [label, viewport, touch] of [
           mitredJoints: a.streets.stats?.mitredJoints ?? null,
           fannedJoints: a.streets.stats?.fannedJoints ?? null,
           jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
+          // T-0713. THE TWO CHANNELS, censused off the geometry the browser
+          // actually built. `_confidence` is the contract's channel and now
+          // carries the LINE's grade alone, so it decides whether a ribbon
+          // stands; `_trackConfidence` carries the weakest of surface and wear
+          // and is spent only on the worn texture. A vertex census is the only
+          // reading that can tell the two apart from out here, and it is what
+          // would have caught the split being quietly reverted — the whole
+          // platted town going back to dithering as invention while every
+          // node-side test still passed.
+          streetChannels: (() => {
+            const band = (v) => (v >= 0.75 ? 'reconstructed' : v >= 0.25 ? 'inferred' : 'attested');
+            const out = {
+              ribbon: { attested: 0, inferred: 0, reconstructed: 0 },
+              track: { attested: 0, inferred: 0, reconstructed: 0 },
+              meshes: 0, missingTrack: 0, unequal: 0,
+            };
+            a.streets.group.traverse((o) => {
+              const g = o.geometry;
+              const conf = g?.getAttribute?.('_confidence');
+              if (!conf) return;
+              out.meshes += 1;
+              const trk = g.getAttribute('_trackConfidence');
+              if (!trk) { out.missingTrack += 1; return; }
+              if (trk.count !== conf.count) out.unequal += 1;
+              for (let i = 0; i < conf.count; i += 1) out.ribbon[band(conf.getX(i))] += 1;
+              for (let i = 0; i < trk.count; i += 1) out.track[band(trk.getX(i))] += 1;
+            });
+            return out;
+          })(),
+          // ...and the records those channels were built from, so a census that
+          // disagrees with the dataset is reported as the disagreement it is
+          // rather than as a bare count nobody can check.
+          streetGrades: (() => {
+            const out = { attested: [], inferred: [], reconstructed: [], wornInvented: 0 };
+            for (const rec of a.streets.records) {
+              (out[rec.geometry_confidence] ?? out.reconstructed).push(rec.id);
+              if (rec.wear_confidence === 'reconstructed'
+                || rec.surface_confidence === 'reconstructed') out.wornInvented += 1;
+            }
+            return out;
+          })(),
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -8149,6 +8190,40 @@ for (const [label, viewport, touch] of [
       `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
       + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
       + `${streetLayer.slivers} dropped as narrower than a metre`);
+    // T-0713. The platted streets are `attested` from the Thompson plat and
+    // every record in the file still grades its wear `reconstructed`, so under
+    // the old Math.max() composition the whole platted town drew as invention.
+    // This asserts the split reached the geometry the browser built: the ribbon
+    // channel stands at `attested` for the seventeen platted streets, and the
+    // grade that is NOT about whether the street was there rides its own
+    // channel instead of pulling the road down with it.
+    check(`${label}: the platted streets reach the picture as attested, not as invention`,
+      streetLayer.streetGrades.attested.length >= 17
+      && streetLayer.streetChannels.ribbon.attested > 0
+      && streetLayer.streetChannels.ribbon.attested
+         > streetLayer.streetChannels.ribbon.reconstructed,
+      `${streetLayer.streetGrades.attested.length} attested lines, `
+      + `${streetLayer.streetGrades.inferred.length} inferred `
+      + `(${streetLayer.streetGrades.inferred.join(', ') || 'none'}), `
+      + `${streetLayer.streetGrades.reconstructed.length} reconstructed `
+      + `(${streetLayer.streetGrades.reconstructed.join(', ') || 'none'}) — `
+      + `ribbon vertices ${JSON.stringify(streetLayer.streetChannels.ribbon)}`);
+    // The other half, and it is the half that would fail silently: the track
+    // grade must be CARRIED, on its own channel, on every street mesh and at
+    // the same vertex count as the ribbon's. A missing attribute arrives at the
+    // shader unbound, which is not reliably zero — it can be NaN, and NaN reads
+    // as `attested` after a clamp. So absence is a failure here, not a default.
+    check(`${label}: surface and wear ride their own channel and every street carries it`,
+      streetLayer.streetChannels.meshes > 0
+      && streetLayer.streetChannels.missingTrack === 0
+      && streetLayer.streetChannels.unequal === 0
+      && streetLayer.streetChannels.track.reconstructed > 0
+      && streetLayer.streetChannels.track.attested === 0,
+      `${streetLayer.streetChannels.meshes} street mesh(es), `
+      + `${streetLayer.streetChannels.missingTrack} without a track channel, `
+      + `${streetLayer.streetChannels.unequal} of unequal length — `
+      + `track vertices ${JSON.stringify(streetLayer.streetChannels.track)}, `
+      + `${streetLayer.streetGrades.wornInvented} record(s) grade a surface or wear invented`);
     // T-0110. Vertex drape above says every vertex touches the ground; this
     // says the ground stays UNDER the ribbon between them. The 0.35 bar is
     // documented at the probe: measured worst after refinement is 0.21 m
