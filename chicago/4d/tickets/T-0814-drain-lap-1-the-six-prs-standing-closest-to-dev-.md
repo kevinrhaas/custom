@@ -29,13 +29,13 @@ here needs a ruling; the whole lap is `ticket.mjs board` + `publish.sh` + a merg
 
 | order | PR | ticket | behind | conflicts | non-build conflicts |
 |---|---|---|---|---|---|
-| 1 | [#898](https://github.com/kevinrhaas/custom/pull/898) | T-0415 | **0** | **CLEAN** | — |
-| 2 | [#894](https://github.com/kevinrhaas/custom/pull/894) | T-0451, owner | 6 | 7 | **none** |
-| 3 | [#886](https://github.com/kevinrhaas/custom/pull/886) | T-0685, owner | 19 | 7 | **none** |
-| 4 | [#901](https://github.com/kevinrhaas/custom/pull/901) | T-0509, owner | 4 | 6 | one `.xlsx` the audit tool regenerates |
+| 1 | [#894](https://github.com/kevinrhaas/custom/pull/894) | T-0451, owner | 6 | 7 | **none** |
+| 2 | [#886](https://github.com/kevinrhaas/custom/pull/886) | T-0685, owner | 19 | 7 | **none** |
+| 3 | [#901](https://github.com/kevinrhaas/custom/pull/901) | T-0509, owner | 4 | 6 | one `.xlsx` the audit tool regenerates |
 
-**#898 merges with no lap at all** — zero commits behind, no conflict. It should go in
-before anything else touches `dev`.
+**[#898](https://github.com/kevinrhaas/custom/pull/898) was the fourth here and merged on
+its own at 17:20Z** while this ticket was being written — it stood zero commits behind with
+no conflict at all, which is what a PR looks like when nothing is wedging the lane.
 
 **#886 was parked on the planform question and the owner ruled it (T-0808 § 3): Wright
 1834 stays, nothing moves.** That is what it was waiting for, and its own acceptance 5 was

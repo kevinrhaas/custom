@@ -1976,16 +1976,24 @@
           110.2
         ],
         [
-          830,
-          104.2
+          845,
+          110
+        ],
+        [
+          905,
+          164
         ],
         [
           920,
-          190
+          190.3
         ],
         [
-          970,
-          270
+          925,
+          197.8
+        ],
+        [
+          973.6,
+          252.9
         ]
       ],
       "corridor_width_m": 24.384,
@@ -4817,13 +4825,13 @@
     },
     {
       "id": "wright_building_to_let_a",
-      "name": "John Wright's Building to Let (east)",
+      "name": "John Wright's Building to Let (a)",
       "sidecar": "sidecars/1835/wright_building_to_let_a.json",
       "asset": "gltf/wright_building_to_let_a__documented_1835.glb"
     },
     {
       "id": "wright_building_to_let_b",
-      "name": "John Wright's Building to Let (west)",
+      "name": "John Wright's Building to Let (b)",
       "sidecar": "sidecars/1835/wright_building_to_let_b.json",
       "asset": "gltf/wright_building_to_let_b__documented_1835.glb"
     }

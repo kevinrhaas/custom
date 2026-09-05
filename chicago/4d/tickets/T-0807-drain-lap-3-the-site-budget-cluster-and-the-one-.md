@@ -24,18 +24,16 @@ household records apiece.
 
 | order | PR | ticket | behind | conflicts | shape |
 |---|---|---|---|---|---|
-| 1 | [#801](https://github.com/kevinrhaas/custom/pull/801) | T-0447, owner | 82 | 9 | small, but touches `data/streets/1835.json` |
-| 2 | [#834](https://github.com/kevinrhaas/custom/pull/834) | T-0693, owner | 56 | **116** | ~110 published household records |
-| 3 | [#835](https://github.com/kevinrhaas/custom/pull/835) | T-0508, owner | 56 | **186** | ~180 household records, both trees |
+| 1 | [#834](https://github.com/kevinrhaas/custom/pull/834) | T-0693, owner | 56 | **116** | ~110 published household records |
+| 2 | [#835](https://github.com/kevinrhaas/custom/pull/835) | T-0508, owner | 56 | **186** | ~180 household records, both trees |
 
-**All three are owner-requested tickets**, so none of them is a candidate for the treatment
-T-0812 gave the stale four — they are worth the lap.
+**Both are owner-requested tickets**, so neither is a candidate for the treatment T-0815
+gave the stale four — they are worth the lap.
 
-**#801 goes first despite being the furthest behind, because it is the smallest and the
-most dangerous.** It touches `data/streets/1835.json`, which is the file #882 committed a
-duplicate `west_water` object into and #889 (T-0780) repaired. A careless merge here
-re-introduces a fault `dev` has already paid to fix once. Read #889 before touching it. Its
-other two files, `town_trade_goods.json`, are built — regenerate.
+**[#801](https://github.com/kevinrhaas/custom/pull/801) was the third here and merged on
+its own at 17:24Z**, 82 commits behind and touching `data/streets/1835.json` — the file
+#882 committed a duplicate `west_water` object into and #889 (T-0780) repaired. Worth a
+look at what landed: this ticket flagged it as the most dangerous merge in the lap.
 
 **#834 and #835 look enormous and are mostly not.** The bulk on both sides is
 `site/chicago/4d/data/residents/households/*.json`, which is the PUBLISHED MIRROR —
