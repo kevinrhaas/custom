@@ -802,6 +802,41 @@ That is a second and independent witness for 4 — and it is the same two-stroke
 T-0627 and T-0645 settled toward 4 on `33S7-9YYJ-6H`. The page file is not rewritten: the
 residual stays where T-0585 put it, with this pairing named beside it.
 
+**And the 4/11 form is now decided by a measurement rather than by prose (T-0647).** Every pass
+that met the two-stroke figure argued it in words — "tops level", "set below and right", "the
+sheet's reference pair" — and `33S7-9YYJ-6H` recorded honestly that the argument does not work:
+"the pitch test does not separate them on this sheet". Neither does stroke weight or stroke
+height; `33S7-9YYJ-24` line 21 is a **4** on a column that closes at its printed 201 and its two
+strokes are twins. What does separate them is the **x overlap of the two strokes' ink boxes**,
+because that is a fact about the form and not about the hand: two digits written side by side
+occupy two x slots, and one numeral's two strokes share a slot however far their feet drift.
+Measured on **nine figures whose value is fixed by a closure and not by anyone's eye** — three 4s
+and four two-digit numbers on 24's closing TOTAL column, the 4 in 6H's TOTAL footing that T-0645
+settled at 144, and the 11 in 6H's MANUFACTURES footing that T-0627's column closes on — the two
+classes are **+10 to +17** for one numeral and **−13 to +4** for two digits, and they do not
+touch. `tools/census_pair_geometry.py` is the instrument; it imports the ink mask and component
+finder from `read_census_continuation.py` rather than defining a second pair, and it reads no
+digits. The calibration table is committed on `33S7-9YYJ-5V`'s page file under
+`total_column.stroke_overlap_test`.
+
+**What it did to `33S7-9YYJ-5V`.** That sheet read six two-stroke figures as 11 and called one of
+them its reference pair. They are not one figure: lines **6, 9 and 24** measure +10, +19 and +19
+and are **4s**; lines **2, 3 and 4** measure +5, +3 and +5 and stay at **11**. The committed sum
+falls from 126 to 105, which does not close anything — the sheet's own footing is still one glyph
+short of legible — but it does dissolve the strain that reading recorded and could not resolve.
+Line 3 is the cross-check the whole result rests on: it carries a **commerce 4 and a
+learned-professions 1**, five persons of that family employed, against a TOTAL column that counts
+*persons in each family* — so it is at least 5 and cannot be a 4, and both those columns close
+exactly against the enumerator's own footings. An instrument that knows nothing of the ink and an
+instrument that knows nothing of the arithmetic agree on the one line that can be tested both
+ways.
+
+**Whether the key binds `33S7-9YYJ-8D` is still open, and deliberately.** The calibration is
+S. W. Sherman's hand — 24, 5V, 6H and 6Q all carry his name in the printed heading — and **8D's
+page file records no division at all**, so nothing yet shows he wrote it. Its six two-stroke
+figures, and the +15 by which its lines over-run its printed 106, belong to T-0652, which now has
+an instrument it did not have.
+
 **One is shown outright to have no partner here.** `33S7-9YYJ-8D` carries **32** entries, read
 line by line by T-0643 and anchored on a thirty-second line the inventory had missed. No left
 sheet in images 1-25 carries more than 31, so 8D's left half is not in this image group at all.
