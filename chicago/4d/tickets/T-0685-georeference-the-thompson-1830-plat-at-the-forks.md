@@ -1,7 +1,7 @@
 ---
 id: T-0685
 title: Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0453
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 905
 claimed_by: run 9/5/2026, 8:30:01 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T18:01:37.015Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33968826436
 ---
 

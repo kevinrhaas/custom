@@ -469,5 +469,3 @@ T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second ti
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0820 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-
-T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
