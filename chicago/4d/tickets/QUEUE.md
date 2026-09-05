@@ -117,7 +117,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
 T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
@@ -325,3 +324,5 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
+T-0775 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
+T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
