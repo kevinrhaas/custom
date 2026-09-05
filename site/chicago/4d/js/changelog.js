@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last hand-drawn piece of North Water Street', kind: 'change', ts: '',
+  { v: 588, title: 'The last hand-drawn piece of North Water Street', kind: 'change', ts: '2026-09-05T17:01:55.795Z', date: 'Sep 5, 2026, 12:01 PM CT',
     items: [
       'The street along the north bank used to be a line somebody drew by hand. Earlier work replaced almost all of it with a line worked out from the traced riverbank, kept half a street\u2019s width clear of the water the whole way along. Almost all: the last two corners, out at the east end, were left exactly as drawn, under a note saying they were dry and so not in question.',
       'They were in question. Measured against the same rule that governs the rest of the street, the final corner stood twenty-one metres too far from the water. Measured against the town, it was worse: it stood seventeen metres past Kinzie Street, so North Water Street ended in the block beyond the street it runs to.',

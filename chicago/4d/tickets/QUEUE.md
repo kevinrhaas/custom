@@ -234,7 +234,7 @@ T-0662 — check.sh runs synthesize_resident_research.py for three mint steps wh
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
-T-0684 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
+T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
