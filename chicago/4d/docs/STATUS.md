@@ -1,5 +1,71 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0431: blk_south_water_clark's second deal, on the drug store's party wall
+
+**What shipped.** Two roofs on `blk_south_water_clark`, the third of the four South Water
+blocks T-0009's ruling unblocked (T-0420 piece 3 of 4):
+
+- `recon_1835_blk_south_water_clark_c2_06` — a **C2 store-residence**, 5.751 m × 10.760 m,
+  1.5 levels, standing ON the committed South Water block face at the plat module's 1.5 m
+  margin, its **east wall the west wall of `pruyne_kimball_drugstore`** on a shared party
+  line. First time this project has stood an invented roof shoulder to shoulder with a
+  *documented* one.
+- `recon_1835_blk_south_water_clark_a3_07` — the A3 privy in the same lot's yard, at the
+  alley end.
+
+Lot 1, the Lake-and-Clark corner, stays open. The block moves `open` → **`at_capacity`**,
+free lots 2 → 1, headroom 4 → 0, standing roofs 10 → 12.
+
+**The face is this block's own record, not the town's.** South Water carries four documented
+records on this block (Harmon & Loomis, Pruyne & Kimball, Bates's auction room, Madore
+Beaubien) against Lake's one, and three of the four are commercial; T-0024's second clause
+then puts a commercial roof ON the street line. The town-wide count does not decide it and
+the recipe says so.
+
+**The end rule is read, not asserted.** `measure_end_rule.py blk_south_water_clark --list`
+puts lot 2 at **84.44 m walked** from the Dearborn drawbridge against lot 1's **231.87 m**.
+This face grades only on the walked criterion (6.07 m unit step); the straight line reads
+4.81 m and is BELOW THE FLOOR — the same shape T-0317 found on `blk_randolph_market`.
+
+### The finding: two sizings of the same ground, in different units
+
+`reconcile_665.py` sizes principal room as `ROW_UNITS_PER_LOT * (free_lots - 1)` — party-line
+units of 6.072 m counted against LOTS — and dealt this block 3 principal roofs.
+`generate_block_infill.py`'s T-0105 ceiling is one principal roof per lot, and a frontage run
+may carry no more roofs than the lots it was dealt; this run was dealt one lot, so one is the
+ceiling. **It is not the metres that refuse the other two here.** Measured on the committed
+face: lot 2 projects 24.643–49.751 m, 22.108 m buildable after the 1.5 m side margins; the
+drug store holds 39.108–46.825 m; 12.965 m clear west and 1.426 m east; the store takes
+33.356–39.107 m and leaves **7.213 m still clear**, which is width enough for a D3 at its
+4.88 m band minimum. The two dealt cottages (D3, D4) are therefore NOT deferred — this
+generator's deferral list is for families it refuses by name — so the recipe claims 2 of the
+4 in its own `drawn_from_schedule` numbers and the other two return to the south district's
+balance. Filed as the successor ticket T-0431 owes under T-0028's programme rule.
+
+### The correction that made the ground reachable
+
+The first deal (2026-08-15) was declared on frontage lots `[2, 4]` and stands **entirely on
+lot 4** (60.439–72.893 m along the face, where lot 4 runs 49.286–74.393 m): it packs west
+from the east end and ran out of roofs 10.7 m short of lot 2. Lot 2 stayed declared as its
+ground, and the two halves of the programme then read it two ways — `reconcile_665.py`
+counted it FREE, `generate_block_infill.py`'s T-0105 lot accounting counted it built on and
+refused it to any later deal. Narrowing the declaration to `[4]` moves no coordinate (the
+east anchor reads `along_max`, which lot 4 sets either way) and both units re-derive
+byte-identical. The amendment is written into that entry's own `runs` field.
+
+### Side effect worth having
+
+`adopt_street_faces.py` seats one more documented trader on the street: **J. Curtiss,
+attorney and counsellor at law** — 38 adoptions → 39, refusals 22 → 21.
+
+### Also here
+
+- Baked: `c2_06`, `a3_07`, and `d5_01` — whose siding stock was re-dealt (6 in → 4.5 in) by
+  the new neighbours within 60 m, which `validate.py --stale` caught.
+- Re-derived: the 665 programme, `town_census.json`, `street_face_adoptions.json`,
+  `register_1835.json`, `land_sales/ground.json`, all sidecars, and the publish mirror.
+
+
 
 ## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
 
