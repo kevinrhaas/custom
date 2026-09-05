@@ -1,7 +1,7 @@
 ---
 id: T-0415
 title: John Wright's two buildings to let are named (east) and (west) and stand the other way round
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 10:25:46 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33971701303
 ---
 
 John Wright's two buildings to let are named (east) and (west) and stand the other way round.

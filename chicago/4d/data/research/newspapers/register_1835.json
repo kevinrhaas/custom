@@ -10,7 +10,7 @@
       "businesses": 206
     },
     "structures": 372,
-    "structures_sharing_a_name": 37,
+    "structures_sharing_a_name": 36,
     "streets": 22,
     "resident_persons": 1404
   },
@@ -3706,8 +3706,8 @@
       "action": "enrich_existing",
       "action_target": "wright_building_to_let_a",
       "match_tier": "name",
-      "match_evidence": "John Wright's Building to Let (east)",
-      "action_note": "wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (east)\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Wright's Building to Let (a)",
+      "action_note": "wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (a)\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_james_grant",
@@ -4097,8 +4097,8 @@
       "action": "enrich_existing",
       "action_target": "wright_building_to_let_a",
       "match_tier": "name",
-      "match_evidence": "John Wright's Building to Let (east)",
-      "action_note": "wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (east)\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Wright's Building to Let (a)",
+      "action_note": "wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (a)\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_jones_king",

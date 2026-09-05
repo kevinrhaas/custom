@@ -2254,7 +2254,7 @@
     },
     "wright_building_to_let_a": {
       "occupants_value": "To let - the tenant is not named",
-      "name": "John Wright's Building to Let (east)",
+      "name": "John Wright's Building to Let (a)",
       "function": "dwelling_to_let",
       "existence": [
         "attested",
@@ -2331,7 +2331,7 @@
     },
     "wright_building_to_let_b": {
       "occupants_value": "To let - the tenant is not named",
-      "name": "John Wright's Building to Let (west)",
+      "name": "John Wright's Building to Let (b)",
       "function": "dwelling_to_let",
       "existence": [
         "attested",
