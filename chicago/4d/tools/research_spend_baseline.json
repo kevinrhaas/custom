@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 284,
   "church": 458,
-  "books": 176,
+  "books": 195,
   "directories": 7211,
   "newberry_index": 4914,
   "land_sales": 442
@@ -30,8 +30,8 @@
    "spent": 1286
   },
   "books": {
-   "read": 226,
-   "spent": 50
+   "read": 246,
+   "spent": 51
   },
   "directories": {
    "read": 8257,
@@ -267,6 +267,14 @@
    "to": 7211,
    "date": "2026-09-05",
    "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 176,
+   "to": 195,
+   "date": "2026-09-05",
+   "why": "T-0581 read Moses and Kirkland's History of Chicago, Illinois, vol. 1 (1895) — the largest Chicago work the Newberry genealogical index points at that this project did not hold — as twenty claims, and its crosswalk pass rules zero merges ON PURPOSE. The volume is a compilation of 1895 that cites Andreas, Bross and Blanchard on the very pages read here, and it names men this project already carries from period sources: merging a compiler's spelling onto a witness's person would add nothing to the town and would make the identity layer's judgement off an 1895 secondary. Five refusals are written and only one of them can anchor to a claim (Spring / Giles Spring, a surname with a trade and no given name); the other four are index-card-versus-volume spelling pairs — blodget/Blodgett, caapbell/Campbell, gardiner/Gardner, mattoson/Matteson — which this instrument counts as id pairs and never as spend, correctly, because they adjudicate the sources' vocabulary and not the town. Of the twenty claims, six name nobody rulable at all (the State census trade counts, the open winter of 1834-5, Hogan's storehouse, Peck's store, the school-section purchase and the Pioneer Hook and Ladder roll of October 1835, which postdates the scene date by three months); the rest name people whose identification is a residents-layer judgement made under the ratified ladder in that layer's own PR, which is exactly what T-0581's third acceptance clause requires and forbids doing here. +19, deliberately, and the bridge work is filed rather than promised: T-0825 transcribes the volume's LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 and T-0826 reads volume 2, against which every ABSENT verdict this pass recorded is an absence from volume 1 only."
   }
  ],
  "lowered": [
