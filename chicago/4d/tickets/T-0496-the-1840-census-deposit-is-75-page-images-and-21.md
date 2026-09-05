@@ -1,7 +1,7 @@
 ---
 id: T-0496
 title: The 1840 census deposit is 75 page images and 210 heads on seven printed pages are the only names read from it: images 51-75
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: run 9/5/2026, 1:38:26 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T06:50:05.585Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950196510
 ---
 

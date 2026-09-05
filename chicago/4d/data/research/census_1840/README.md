@@ -57,8 +57,8 @@ live on two different images.
 
 PR #670 recovered 210 named household heads from the owner's v4 workbook, which he has
 since ruled lost — "They are lost; rebuild". Those 210 rows are the calibration set any
-new reading must reproduce before it extends. **Five of the seven pages they cover have
-now been read off the sheets, and they do not reproduce.**
+new reading must reproduce before it extends. **All seven of the pages they cover have now been read off the sheets (T-0496 read the last
+two), and they do not reproduce.**
 
 | printed page | image | scan lines | #670 rows | agree on both names |
 |---|---|---|---|---|
@@ -66,7 +66,9 @@ now been read off the sheets, and they do not reproduce.**
 | 230 | `33S7-9YYJ-NY` | 31 | 31 | see `crosswalk_670.json` |
 | 231 | `33S7-9YYJ-38` | 31 | 31 | 0 |
 | 232 | `33S7-9YYJ-W6` | 31 | 31 | see `crosswalk_670.json` |
+| 233 | `33SQ-GYYJ-RJ` | 31 | 31 | 2 |
 | 234 | `33S7-9YYJ-99F` | 31 | 31 | 4 |
+| 235 | `33SQ-GYYJ-ZQ` | 24 | 24 | 6 |
 
 Some of the disagreements are large: page 232 line 17 reads *Gurdon S. Hubbard* on the
 sheet against *Saml. J. McCord?* in #670, and line 25 reads *John H. Kinzie* against
@@ -103,6 +105,16 @@ extrapolated back to 1835.
 `33S7-9YYJ-C8`, printed page **238**, is printed, numbered and wholly unfilled. A
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
+
+`33SQ-GYYJ-PW` carries no printed page number and is a **third**: a left schedule used as a
+recapitulation. Its margin caption reads *Recapitulation of Chicago City*, its stub column
+names **First Ward** through **Sixth Ward**, and its body is 30 numbered rows — one per page
+of the schedule — with sub-total rules under rows 8, 17, 19, 23 and 30 and a grand total at
+the foot. That is the shape of `33S7-9YYJ-V2` below, seen from the left-hand leaf: 30 rows,
+six blocks, ruled footings. If the two are halves of one table, PW is what **names V2's six
+anonymous blocks**, and it would bind each printed page of the Chicago schedule to a ward —
+the only ward-level spatial signal this deposit carries. T-0496 declares the leaf and states
+the pairing as the thing its reading ticket must test; it did not read it.
 
 `33S7-9YYJ-V2`, printed page **237**, is the other recapitulation — **the sheet the
 certificate page was pointing at**. It sat in the inventory as "a continuation sheet whose
