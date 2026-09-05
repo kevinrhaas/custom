@@ -1,7 +1,7 @@
 ---
 id: T-0620
 title: Volume 4 read by OCR, pages 307-612: the shards
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0613
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 870
 claimed_by: run 9/5/2026, 4:25:33 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T10:25:55.131Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33957713792
 ---
 
