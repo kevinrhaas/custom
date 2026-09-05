@@ -434,4 +434,4 @@ T-0829 — A repeated string in a provenance or coverage list is the same merge 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-
+T-0831 — Six generated files conflict on every merge in this repo and always resolve by regenerating, so the conflict costs a hand resolution and buys nothing

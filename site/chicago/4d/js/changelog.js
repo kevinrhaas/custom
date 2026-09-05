@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 598, title: 'Nothing you can see: the same five files, argued over every time', kind: 'change', ts: '2026-09-05T19:38:53.543Z', date: 'Sep 5, 2026, 2:38 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about work on this project colliding with itself, and how much of the day that was costing.',
+      'When two pieces of work are brought together, anything they both touched has to be settled by hand. Yesterday one piece of work sat waiting for seventy minutes while five others arrived ahead of it, and every single time the same thing was argued over — and never the actual work. It was always the same five files: an index of tasks, a list of what has been published, and the like. Files nobody writes. Files a machine builds from the real records in a few seconds.',
+      'So they are no longer argued over. When two efforts disagree about one of those five, the disagreement is now dropped and the file is simply rebuilt from the records it comes from — which is what a person did by hand, five times in seventy minutes, every time reaching the same answer.',
+      'The reason this is safe is that something already checks them. A rebuilt file that has gone out of date is refused before anything ships, and has been for weeks. The argument was never what protected them; that check was. So the argument was pure cost.',
+      'One file in that group turned out not to belong to it, and that is the part worth the care. It looks identical to the others and is not: it is a running record of every time this town has been tested, added to and never rewritten, and nothing anywhere checks it. Treating it like the rest would have quietly thrown away half of that history on every merge. It now keeps both sides of any disagreement, always, and twenty tests hold it to that — the last of which stages a real collision to prove the rule is actually reached, rather than merely written down.',
+    ] },
   { v: 597, title: 'Nothing you can see: one name given to two different things', kind: 'fix', ts: '2026-09-05T19:27:33.115Z', date: 'Sep 5, 2026, 2:27 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a fault that stopped all work on this project twice in one day, and now cannot.',
