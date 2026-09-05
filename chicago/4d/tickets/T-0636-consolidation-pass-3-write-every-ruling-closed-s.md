@@ -1,7 +1,7 @@
 ---
 id: T-0636
 title: Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 8:20:10 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935468156
 ---
 
 Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops.
