@@ -394,14 +394,18 @@
    "line": 28,
    "glyph_group": 28,
    "y0": 2699,
-   "y1": 2719,
+   "y1": 2772,
    "line_predicted_y": 2716.7,
    "line_residual_px": -17.7,
    "line_fixed_by": "commerce 1 at y2723",
    "total": null,
    "total_confidence": null,
    "reading": "scan_verified",
-   "note": "NOT COMMITTED. Two short components side by side — x1433-1448 at y2699-2712 and x1450-1458 at y2704-2719 — which is the g2 two-digit geometry at half the usual stroke length, on ink faint enough that at a 45-level threshold only the first survives. The line carries a commerce 1, so the family is at least one. What the previous pass reported here as a single '1' is the first of the two."
+   "note": "NOT COMMITTED, and its ink now includes the stroke at y2743-2772 that this file previously carried as line_index.unassigned_ink (T-0671). The line's ink is three components: x1433-1448 at y2699-2712 and x1450-1458 at y2704-2719 — the g2 two-digit geometry at half the usual stroke length, on ink faint enough that at a 45-level threshold only the first survives — and then x1411-1430 at y2743-2772, below and to the left. The anchor-offset test against the commerce 1 at y2723 accepts the three together at +0.56 sd and rejects both alternatives (+3.96 sd for the low stroke alone, -3.55 sd for the two upper components alone); see line_index.unassigned_ink. What the line's number IS remains unread: three components is one more than any other number on this sheet, and whether the low stroke is the second half of a two-part glyph or an abandoned start is not settled. The line carries a commerce 1, so the family is at least one, and that is all this pass commits.",
+   "glyph_groups": [
+    28,
+    29
+   ]
   },
   {
    "line": 29,
@@ -690,7 +694,7 @@
   "indexed_by": "LINE ORDINAL, committed this pass. The previous version of this block was indexed by image y and said so, because 'a record keyed line: 4 would commit an ordinal the sheet does not carry'. It carries one now: see line_index, and records[] below, which is keyed by line and states each line's predicted y and residual so the assignment can be checked rather than taken.",
   "closes": false,
   "residual": null,
-  "residual_note": "Still not one number, because the printed footing is still one glyph short of legible — but the arithmetic has moved from an inference to a bound, and T-0647 moved the bound. Twenty-six of the thirty lines are committed and sum to 105 (they summed to 126 before three of the sheet's two-stroke figures were re-read as 4s). The four that are not (lines 8, 28, 29, 30) are each at least one person and line 8 is at least seven, so the column is at least 133 whatever they hold. See footing_argument and stroke_overlap_test.",
+  "residual_note": "Still not one number, because the printed footing is still one glyph short of legible — but the arithmetic has moved from an inference to a bound, and T-0647 moved the bound. Twenty-six of the thirty lines are committed and sum to 105 (they summed to 126 before three of the sheet's two-stroke figures were re-read as 4s). The four that are not (lines 8, 28, 29, 30) are each at least one person and line 8 is at least seven, so the column is at least 133 whatever they hold. See footing_argument and stroke_overlap_test. T-0671 placed the sheet's last unassigned stroke on line 28 and moved none of these numbers either: line 28 was uncommitted before it and is uncommitted after it, so the committed sum stands at 105 and the floor at 133.",
   "glyph_groups": 31,
   "numbers_committed": 26,
   "numbers_not_committed": 4,
@@ -836,7 +840,9 @@
     }
    },
    "no_line_violates_it": "checked across all 26 committed lines after the T-0647 re-reading, and across the four uncommitted ones as a floor. Under the previous reading no line violated it either — the constraint is new to the record, not newly satisfied."
-  }
+  },
+  "glyph_groups_note": "31 glyph groups over 30 line slots, and after T-0671 that is no longer a surplus: line 28's number is built from two of them (the group at y2699-2719 and the stroke at y2743-2772), which is why the counts differ by one. No component of the TOTAL column is now unassigned to a line.",
+  "unassigned_components": 0
  },
  "footer_total_argument": {
   "printed_glyphs": "1 ? 5",

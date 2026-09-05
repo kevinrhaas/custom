@@ -71,3 +71,40 @@ fields, never the filename, for what a household actually is.
 
 `hh_inf_*` (5 files) is `tools/generate_inferred_households.py`'s own, unrelated
 pipeline and is not part of any of the above.
+
+## `kin` — a relationship that crosses two records (T-0597)
+
+`persons[].relationship` is a person's place **inside** one household and stops
+at that household's edge. A family tie between two households had nowhere to go
+but a free-text note, which is to say nowhere a query can reach it — and the
+households this dataset most needs to keep apart are exactly the ones a shared
+surname makes mergeable. Six households here are Kinzies.
+
+`kin` is an optional household-level list. Each row is an ordinary graded claim
+block — `value` names the **other person**, so `walk_attested()` checks its
+`confidence`, `sources` and `note` exactly as it checks an `arrival` — plus
+three fields that make it a link:
+
+| field | means |
+|---|---|
+| `person` | whose relative this is; must be a person in **this** household |
+| `relation` | the term, from `index.json`'s `vocabulary.kin_relations` |
+| `household` | the other household's id; must resolve, and must not be this one |
+| `value` | the other person's id; must be a person in that household |
+
+Two rules, and both exist because **half** is the point. Hurlbut says James
+Kinzie was the *half* brother of John H. Kinzie — same father, different
+mothers — and that is the first thing a summary flattens:
+
+- **A relation is legal only against its declared inverses.** For a sibling tie
+  the mirror must be a sibling tie *of the same degree*; a `half_brother` whose
+  mirror row says `brother` fails. The vocabulary is therefore exactly the set
+  whose inverse `tools/validate.py` knows (`RESIDENT_KIN_INVERSES`).
+- **Every row is reciprocal.** Write it on both records or on neither: the
+  record that omits it still reads as no relationship at all, which is the
+  defect the ticket was opened about.
+
+Asymmetric relations (father/son, uncle/nephew) are deliberately **not**
+declared. Their inverse depends on the other person, and declaring a term
+without its inverse would let a one-way claim through. Add the pair together or
+not at all.

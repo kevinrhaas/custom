@@ -39,6 +39,15 @@ can count which fired.
     tools/consolidate_resident_evidence.py --check       they still re-derive; invariants hold
     tools/consolidate_resident_evidence.py --self-test   the assertions still fire when broken
     tools/consolidate_resident_evidence.py --report      the tables, to stdout
+    tools/consolidate_resident_evidence.py --coverage    who the ladder has ruled on, and
+                                                         who it has not, with the reason
+
+WHO IT HAS RULED ON (T-0692). A grade is only worth something if it can be argued with,
+and a person the ladder never looked at carries a grade that means whatever the pass that
+wrote it meant. `--coverage` walks every person record in `data/residents/` and puts it in
+exactly one state — the rung is on the card, or the rung is ruled and unwritten, or the
+ladder cannot see the person and here is why. `--check` fails if that account is not
+total, so a person can never again go silently ungraded.
 """
 from __future__ import annotations
 
@@ -56,6 +65,7 @@ OUT_DIR = RESEARCH / "residents"
 MASTER = OUT_DIR / "identity_master.json"
 COVERAGE = OUT_DIR / "source_coverage.json"
 PROPOSAL = OUT_DIR / "grading_proposal.json"
+LADDER_COVERAGE = OUT_DIR / "ladder_coverage.json"
 POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
 INDEX = RESIDENTS / "index.json"
 
@@ -86,6 +96,14 @@ REFUSAL_RULES = {
     "R4": "Same surname and same forename initial, but two different full forenames "
           "(Jonathan against John). Two men until something says otherwise.",
     "D2": "A refusal already declared by a domain's own crosswalk or by identity.json.",
+    "R5": "A PRINTED NAME THIS SPLITTER CANNOT READ AS (surname, forename) AT ALL — a firm "
+          "style, an institution, a digit standing where an initial was misread, a "
+          "description rather than a name, or more forename tokens than the cap allows. "
+          "Distinct from R1, which is the true surname-only case: R1 says the record names "
+          "no forename, and saying that of 'Rev. John Mary Irenaeus St Cyr' or of "
+          "'8. G. Abbot' would be false of the record. Every R5 row carries WHICH guard "
+          "fired, because a refusal whose stated reason is untrue of the page is barely "
+          "better than no refusal at all (T-0692).",
 }
 
 # The ratified ladder, 2026-09-03, verbatim in the policy doc. One rung, one id, and the
@@ -165,15 +183,29 @@ def clean(token: str) -> str:
 
 
 def split_name(text: str) -> tuple[str, list[str]] | None:
-    """(surname_key, forename tokens) out of a printed name, or None if it names nobody.
+    """(surname_key, forename tokens) out of a printed name, or None if it names nobody."""
+    return split_name_or_reason(text)[0]
+
+
+def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str | None]:
+    """(parsed, reason). Exactly one of the two is set.
 
     Handles both orders — 'Adams, W. H.' and 'W. H. Adams' — because the sources print
-    both and the comma is what tells them apart."""
+    both and the comma is what tells them apart.
+
+    THE REASON HALF EXISTS BECAUSE A REFUSAL HAS TO BE TRUE (T-0692). Every guard below
+    used to return a bare None, `cluster` filed all of them as R1 "names no forename",
+    and the residents layer ended up with seven cards refused for a reason that is false
+    of four of them: '8. G. Abbot' prints a forename initial, and 'Rev. John Mary
+    Irenaeus St Cyr' prints three forenames. The guards are unchanged; what changes is
+    that each one now says which one it was."""
     if not text or not isinstance(text, str):
-        return None
+        return None, "the record prints no name at all"
     text = text.replace("&", " and ")
     if " and " in text.lower():
-        return None                      # a firm style, not a person
+        # a firm style, not a person
+        return None, ("the name joins two parties with 'and' — a firm style or a "
+                      "description of a household, not one person")
     # A bracket holds what the printing could not: "William Cr[…]" is a man whose name
     # the column cut, and identity.json has already ruled on him. Drop the bracket and
     # keep the reading — but a DIGIT is never part of a name, and the 1843 directory
@@ -187,7 +219,7 @@ def split_name(text: str) -> tuple[str, list[str]] | None:
         while parts and clean(parts[-1]) in HONORIFICS:
             parts.pop()              # "John Bates Jr." is a Bates, not a Jr.
         if not parts:
-            return None
+            return None, "the name is an honorific and nothing else"
         if len(parts) > 1 and len(clean(parts[-1])) == 1:
             # PRINTED SURNAME FIRST, and the trailing initial is the tell. The letter
             # lists set "Mason Sabrina A." and "Norton N. R." with no comma at all, and
@@ -198,7 +230,10 @@ def split_name(text: str) -> tuple[str, list[str]] | None:
             surname_part, given_part = parts[-1], " ".join(parts[:-1])
     tokens = [t for t in re.split(r"[\s.]+", given_part) if clean(t)]
     if any(ch.isdigit() for ch in surname_part + given_part):
-        return None
+        return None, ("a digit stands inside the printed name. On a directory line that "
+                      "is an address and the row is an institution; on a town card it is "
+                      "an OCR misreading of an initial (S. read as 8, H. as I1), so the "
+                      "name as stored is not a name the town ever used")
     surname = clean(surname_part)
     # A SURNAME IS NOT AN INITIAL, AND A ROOM IS NOT A MAN. The 1843 and 1844
     # directories list institutions in the same alphabetical run as people, and a
@@ -206,17 +241,21 @@ def split_name(text: str) -> tuple[str, list[str]] | None:
     # and mints an identity called `a`. One letter is never a surname, and a bracket
     # or a digit in a printed name is the mark of an institution or an address.
     if not surname or len(surname) < 2 or surname in HONORIFICS:
-        return None
+        return None, ("the surname reads as one letter or as an honorific, which is a "
+                      "room or an institution in the directory's alphabetical run, "
+                      "never a man")
 
     if len(tokens) > 4:
-        return None
+        return None, (f"{len(tokens)} forename tokens, and the splitter caps at four — "
+                      "which is what a compound surname read as one token does to a "
+                      "long baptismal name")
     given = []
     for token in tokens:
         key = clean(token)
         if key in HONORIFICS:
             continue
         given.append(ABBREVIATED.get(key, key))
-    return surname, given
+    return (surname, given), None
 
 
 def forename_signature(given: list[str]) -> tuple[str, ...]:
@@ -409,7 +448,7 @@ READERS = {
 # because a domain missing from the coverage table reads like one nobody looked at.
 NO_PERSON_ROWS = {
     "newberry_index": ("finding_aid",
-                       "6,697 cards, every one of them a SURNAME heading a locality with no "
+                       "6,728 cards, every one of them a SURNAME heading a locality with no "
                        "forename. R1 refuses all of them by construction: a finding aid names "
                        "a book, not a man. Counted as refusals, never as appearances."),
     "census_1830": ("unread", "The named schedule has not been found; the repo holds county "
@@ -552,9 +591,14 @@ def cluster(appearances):
     buckets = defaultdict(list)
     unnamed = []
     for entry in appearances:
-        parsed = split_name(entry.get("normalized") or entry.get("as_read"))
-        if not parsed or not parsed[1]:
-            unnamed.append(entry)
+        parsed, reason = split_name_or_reason(
+            entry.get("normalized") or entry.get("as_read"))
+        if not parsed:
+            unnamed.append((entry, "R5", reason))
+            continue
+        if not parsed[1]:
+            unnamed.append((entry, "R1",
+                            "names no forename, so it can never be merged onto a person"))
             continue
         surname, given = parsed
         entry["_surname"] = surname
@@ -562,10 +606,10 @@ def cluster(appearances):
         buckets[surname].append(entry)
 
     identities, refusals = [], []
-    for entry in unnamed:
+    for entry, rule, why in unnamed:
         refusals.append({
-            "rule": "R1",
-            "why": "names no forename, so it can never be merged onto a person",
+            "rule": rule,
+            "why": why,
             "domain": entry["domain"], "record_id": entry["record_id"],
             "as_read": entry.get("as_read"),
         })
@@ -882,6 +926,12 @@ def build():
         members = identity["members"]
         town = [m for m in members if m["domain"] == "residents"]
         canonical = town[0]["record_id"] if town else None
+        # EVERY town card this identity absorbed, not only the one `canonical` names.
+        # `canonical` is `town[0]` and always was, so an identity holding two cards
+        # reported one and dropped the other in silence — which is how `brown_mrs_rufus`
+        # and `norton_n_r` came to have no proposal row at all (T-0692). The merge is
+        # not changed here; what changes is that the row now SAYS what it absorbed.
+        town_person_ids = sorted({m["record_id"] for m in town})
         rests_on, unsourced = set(), 0
         for ruling in links.get(canonical, []) if canonical else []:
             rests_on.update(ruling["rests_on"])
@@ -895,6 +945,7 @@ def build():
             "surname": identity["surname"],
             "forename": identity["forename"],
             "canonical_person_id": canonical,
+            "town_person_ids": town_person_ids,
             "household_id": town[0].get("household_id") if town else None,
             "merge_rules": identity["merge_rules"],
             "appearances": [compact(m) for m in members],
@@ -1091,7 +1142,7 @@ def _load_town_grades():
 # consolidation pass — a new blob each time. One row per line is smaller, greppable by
 # name, and gives a diff that shows which identities changed rather than which lines did.
 LINE_ARRAYS = ("identities", "refusals", "declared_merges", "declared_refusals",
-               "proposals", "changes_to_existing_people", "conflicts")
+               "proposals", "changes_to_existing_people", "conflicts", "person_records")
 
 
 def dump(path: Path, doc) -> str:
@@ -1117,19 +1168,163 @@ def dump(path: Path, doc) -> str:
     return "\n".join(out) + "\n"
 
 
+# ---------------------------------------------------------------------------
+# LADDER COVERAGE (T-0692) — WHICH PEOPLE THE LADDER HAS ACTUALLY RULED ON.
+#
+# The ticket was opened on a count of 18: of the 54 people graded `inferred` while citing
+# two or more sources, 18 carried no `ladder_rule` at all, and it read that as "the
+# consolidation never reached them". Measuring the WHOLE layer rather than that subset says
+# something different, and the difference is the point of this pass:
+#
+#   1,404 person records · 531 carry a rung on the card · 873 do not.
+#   Of those 873, the ladder has ALREADY ruled on 864 — the rung is sitting in
+#   grading_proposal.json and nothing ever wrote it onto the card.
+#   NINE have no proposal row at all, and those nine are the real gap.
+#
+# So the fault is a SPEND, not a READ, for all but nine people, and the nine each have a
+# nameable reason that the tool already knew and never said out loud:
+#
+#   * SEVEN are R1 refusals the master has recorded since it was written — a name the
+#     splitter cannot turn into (surname, forename): a digit where an initial was misread
+#     ("8. G. Abbot", "A. 8. Perry", "James I1. Gabbs"), a surname with no forename at all
+#     ("Beckford", "Mrs Temple"), a description rather than a name ("Heacock's wife and
+#     children, unnamed"), and one true name the four-token cap turns away
+#     ("Rev. John Mary Irenaeus St Cyr").
+#   * TWO are absorbed: their row IS on an identity, but `canonical_person_id` is
+#     `town[0]` and the identity holds two town cards, so the second one fell out in
+#     silence. `brown_mrs_rufus` is folded onto `brown_rufus` — a wife whose only printed
+#     name is her husband's, and the honorific strip makes the two indistinguishable —
+#     and `norton_n_r` onto `norton_nelson_r`, where the merge is right and the town
+#     simply carries the man twice.
+#
+# THIS PASS MEASURES AND NAMES. It writes no household file and moves no grade: the ticket
+# is explicit that the regrade must not ride in the same PR as the measurement, and the
+# abstentions here are listed for the owner exactly as the 44 proposed downgrades already
+# are. Nobody is downgraded to close the gap.
+
+COVERAGE_STATES = {
+    "rule_on_the_card": "The card carries a `ladder_rule`. The ladder has ruled and the "
+                        "ruling is written down where a reader of the card can see it.",
+    "proposed_not_written": "The ladder HAS ruled this person — the rung is in "
+                            "grading_proposal.json — and no pass has written it onto the "
+                            "card. A spend, not a reading.",
+    "absorbed_by_another_card": "The person's row stands on an identity the ladder ruled, "
+                                "but that identity names a DIFFERENT town card as its "
+                                "canonical person, so the rung was never offered to this "
+                                "one. Two cards, one identity.",
+    "refused_no_identity": "The consolidation built no identity for this name and said so "
+                           "at the time: the refusal is in identity_master.json with its "
+                           "rule. The ladder abstains, and here is the reason it abstained.",
+}
+
+
+def ladder_coverage(master, proposal):
+    """Every person record in the layer against what the ladder can say about it."""
+    by_town_id, canonical_of = {}, {}
+    for row in master["identities"]:
+        for person_id in row.get("town_person_ids") or []:
+            by_town_id[person_id] = row["id"]
+            canonical_of[person_id] = row.get("canonical_person_id")
+    ruling = {entry["identity"]: entry for entry in proposal["proposals"]}
+    refused = {}
+    for refusal in master["refusals"]:
+        if refusal.get("domain") == "residents":
+            refused.setdefault(refusal["record_id"], refusal)
+
+    records, states, by_proposed_rule, refusal_rules = [], Counter(), Counter(), Counter()
+    total = 0
+    for path in sorted(RESIDENTS.rglob("*.json")):
+        doc = load(path)
+        if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
+            continue
+        for person in doc["persons"]:
+            person_id = person.get("id")
+            if not person_id:
+                continue
+            total += 1
+            if person.get("ladder_rule"):
+                states["rule_on_the_card"] += 1
+                continue
+            identity_id = by_town_id.get(person_id)
+            entry = ruling.get(identity_id) if identity_id else None
+            row = {
+                "person_id": person_id,
+                "household_id": doc.get("id"),
+                "name": person.get("name"),
+                "grade_on_the_card": person.get("grade"),
+                "resident_subtype": person.get("resident_subtype"),
+                "sources": sorted(set(person.get("sources") or [])),
+                "identity": identity_id,
+            }
+            if entry and canonical_of.get(person_id) == person_id:
+                row["state"] = "proposed_not_written"
+                row["proposed_rule"] = entry["rule"]
+                row["proposed_grade"] = entry["grade"]
+                row["why"] = (f"the ladder ruled this person {entry['rule']} in "
+                              "grading_proposal.json; no pass has written that rung "
+                              "onto the card")
+                by_proposed_rule[entry["rule"]] += 1
+            elif entry:
+                row["state"] = "absorbed_by_another_card"
+                row["proposed_rule"] = entry["rule"]
+                row["proposed_grade"] = entry["grade"]
+                row["absorbed_by"] = canonical_of.get(person_id)
+                row["why"] = (f"identity {identity_id} holds this card and "
+                              f"{canonical_of.get(person_id)}, and the proposal names the "
+                              "other one; the rung was ruled for the identity and never "
+                              "offered to this card")
+            elif person_id in refused:
+                refusal = refused[person_id]
+                row["state"] = "refused_no_identity"
+                row["refusal_rule"] = refusal["rule"]
+                row["why"] = refusal.get("why")
+                refusal_rules[refusal["rule"]] += 1
+            else:
+                row["state"] = "unclassified"
+                row["why"] = ("neither a rung, nor a refusal, nor an identity — the "
+                              "invariant that forbids this row is in invariants()")
+            states[row["state"]] += 1
+            records.append(row)
+
+    return {
+        "schema": 1,
+        "_doc": "GENERATED by tools/consolidate_resident_evidence.py --build (T-0692). "
+                "Every person record in data/residents/ that carries no `ladder_rule`, "
+                "against what the ratified ladder can say about it. NOTHING HERE IS "
+                "APPLIED: the ticket keeps the measurement and the regrade in separate "
+                "passes, and a rung listed here is an offer, not a change.",
+        "generated_by": GENERATED_BY,
+        "states": {name: {"says": says, "people": states.get(name, 0)}
+                   for name, says in COVERAGE_STATES.items()},
+        "counts": {
+            "person_records": total,
+            "carry_a_rule": states.get("rule_on_the_card", 0),
+            "carry_no_rule": len(records),
+            "proposed_not_written_by_rule": dict(sorted(by_proposed_rule.items())),
+            "refused_by_rule": dict(sorted(refusal_rules.items())),
+            "the_ladder_has_never_looked": (states.get("absorbed_by_another_card", 0)
+                                            + states.get("refused_no_identity", 0)
+                                            + states.get("unclassified", 0)),
+        },
+        "person_records": records,
+    }
+
+
 def cmd_build(write=True):
     _load_town_grades()
     master, coverage, proposal = build()
+    ladder = ladder_coverage(master, proposal)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    files = [(MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal)]
+    files = [(MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal),
+             (LADDER_COVERAGE, ladder)]
     if write:
         for path, doc in files:
             path.write_text(dump(path, doc), encoding="utf-8")
             print(f"  wrote {path.relative_to(ROOT)}")
-    return master, coverage, proposal
+    return master, coverage, proposal, ladder
 
 
-def invariants(master, proposal) -> list[str]:
+def invariants(master, proposal, ladder=None) -> list[str]:
     """The assertions the acceptance names. Each returns a sentence, or nothing."""
     problems = []
     seen = {}
@@ -1164,6 +1359,31 @@ def invariants(master, proposal) -> list[str]:
                             f"{rule} allows ({allowed})")
         if entry["grade"] != "not_1835_resident" and not entry["evidence_classes"]:
             problems.append(f"{entry['identity']} is graded on no evidence")
+    # T-0692. THE COVERAGE IS TOTAL OR IT IS NOTHING. The whole value of the ladder is
+    # that a grade is checkable, and a person the ladder never looked at has a grade that
+    # means whatever the pass that wrote it meant. So: every person record is either
+    # ruled or refused WITH ITS REASON, the two halves add up to the layer, and no row is
+    # allowed to sit in `unclassified` — the state that says the tool met a person it has
+    # no account of at all.
+    if ladder is not None:
+        counts = ladder["counts"]
+        if counts["carry_a_rule"] + counts["carry_no_rule"] != counts["person_records"]:
+            problems.append(
+                f"ladder coverage does not add up: {counts['carry_a_rule']} with a rung "
+                f"+ {counts['carry_no_rule']} without against "
+                f"{counts['person_records']} person records")
+        stranded = [row["person_id"] for row in ladder["person_records"]
+                    if row["state"] == "unclassified"]
+        if stranded:
+            problems.append(
+                f"{len(stranded)} person record(s) are neither ruled nor refused, so "
+                f"nothing says why the ladder is silent about them "
+                f"(first: {', '.join(stranded[:5])})")
+        for row in ladder["person_records"]:
+            if not row.get("why"):
+                problems.append(f"{row['person_id']} is uncovered by the ladder and the "
+                                "coverage states no reason")
+                break
     return problems
 
 
@@ -1251,7 +1471,9 @@ def cmd_check() -> int:
     failures = 0
     _load_town_grades()
     master, coverage, proposal = build()
-    for path, doc in ((MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal)):
+    ladder = ladder_coverage(master, proposal)
+    for path, doc in ((MASTER, master), (COVERAGE, coverage), (PROPOSAL, proposal),
+                      (LADDER_COVERAGE, ladder)):
         if not path.exists():
             print(f"  FAIL {path.relative_to(ROOT)} is missing — run --build")
             failures += 1
@@ -1262,7 +1484,7 @@ def cmd_check() -> int:
             failures += 1
         else:
             print(f"  ok    {path.relative_to(ROOT)} re-derives")
-    problems = invariants(master, proposal)
+    problems = invariants(master, proposal, ladder)
     for problem in problems[:10]:
         print(f"  FAIL {problem}")
     failures += 1 if problems else 0
@@ -1457,6 +1679,46 @@ def cmd_self_test() -> int:
     else:
         print("  ok    a surname-only reading becomes a refusal, never an identity")
 
+    # ---- T-0692: A REFUSAL HAS TO BE TRUE OF THE RECORD IT REFUSES ----------
+    # Each of these was filed as R1 "names no forename" before this pass, and that
+    # sentence is false of every one of them. R1 is now reserved for the record that
+    # genuinely prints no forename; R5 says which guard actually fired.
+    for text, rule, must_say in [
+            ("8. G. Abbot", "R5", "digit"),
+            ("Rev. John Mary Irenaeus St Cyr", "R5", "four"),
+            ("Heacock's wife and children, unnamed", "R5", "'and'"),
+            ("Abbott", "R1", "no forename"),
+    ]:
+        _, refused = cluster([{"domain": "residents", "record_id": "p", "normalized": text,
+                               "as_read": text, "evidence_class": "town_layer",
+                               "source_id": None}])
+        rows = [r for r in refused if r.get("record_id") == "p"]
+        ok = len(rows) == 1 and rows[0]["rule"] == rule and must_say in rows[0]["why"]
+        print(f"  {'ok   ' if ok else 'FAIL'} {text!r} is refused {rule} and says why"
+              f" -> {rows[0]['rule'] + ': ' + rows[0]['why'][:60] if rows else 'no refusal'}")
+        failures += 0 if ok else 1
+
+    # ---- T-0692: THE COVERAGE INVARIANT ------------------------------------
+    # A person record the ladder is silent about, with nothing saying why, is exactly
+    # what this ticket was opened over. The gate has to notice it.
+    stranded = {"counts": {"person_records": 2, "carry_a_rule": 1, "carry_no_rule": 1},
+                "person_records": [{"person_id": "ghost_1", "state": "unclassified",
+                                    "why": "n/a"}]}
+    if any("neither ruled nor refused" in p for p in
+           invariants(base_master, base_proposal, stranded)):
+        print("  ok    a person the ladder never looked at is caught by the gate")
+    else:
+        print("  FAIL an unclassified person record was allowed through")
+        failures += 1
+    miscounted = {"counts": {"person_records": 9, "carry_a_rule": 1, "carry_no_rule": 1},
+                  "person_records": []}
+    if any("does not add up" in p for p in
+           invariants(base_master, base_proposal, miscounted)):
+        print("  ok    coverage that does not account for the whole layer is caught")
+    else:
+        print("  FAIL a partial coverage was allowed through")
+        failures += 1
+
     rivals = cluster([
         {"domain": "d", "record_id": "1", "normalized": "John Smith",
          "evidence_class": "poll_1835", "source_id": "s"},
@@ -1508,12 +1770,50 @@ def cmd_report(master, coverage, proposal):
           f"conflicts: {proposal['counts']['conflicts']}")
 
 
+
+def cmd_coverage(ladder):
+    """The T-0692 report: who the ladder has ruled on, and who it has not."""
+    counts = ladder["counts"]
+    print("\nWHO THE LADDER HAS RULED ON")
+    print(f"  person records in data/residents/          {counts['person_records']:>6}")
+    print(f"  carrying a ladder_rule on the card         {counts['carry_a_rule']:>6}")
+    print(f"  carrying none                              {counts['carry_no_rule']:>6}")
+    print("\n  OF THOSE, BY WHAT THE LADDER CAN SAY")
+    for name, block_ in ladder["states"].items():
+        if name == "rule_on_the_card":
+            continue
+        print(f"    {name:<26} {block_['people']:>6}")
+    print("\n  A RUNG ALREADY RULED AND NEVER WRITTEN ONTO THE CARD")
+    for rule, n in counts["proposed_not_written_by_rule"].items():
+        print(f"    {rule:<6} {GRADE_RULES[rule][0] or 'no proposal':<18} {n:>6}   "
+              f"{GRADE_RULES[rule][1][:58]}")
+    print("\n  THE LADDER HAS NEVER LOOKED — "
+          f"{counts['the_ladder_has_never_looked']} people, each with its reason")
+    for row in ladder["person_records"]:
+        if row["state"] in ("proposed_not_written", "rule_on_the_card"):
+            continue
+        tag = row.get("refusal_rule") or row["state"]
+        print(f"    {row['person_id']:<28} {str(row['name'])[:34]:<36} "
+              f"{row['grade_on_the_card'] or '-':<10} {tag}")
+        print(f"      {row['why']}")
+    print("\n  sources cited by the people with no rung, most-cited first")
+    tally = Counter()
+    for row in ladder["person_records"]:
+        tally.update(row["sources"])
+    for source, n in tally.most_common(10):
+        print(f"    {source:<44} {n:>6}")
+    print(f"\n  the full list, one person per line: "
+          f"{LADDER_COVERAGE.relative_to(ROOT)}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--report", action="store_true")
+    parser.add_argument("--coverage", action="store_true",
+                        help="who the ladder has ruled on and who it has not (T-0692)")
     parser.add_argument("--write-vocabulary", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -1522,10 +1822,12 @@ def main() -> int:
         return cmd_write_vocabulary()
     if args.check:
         return 1 if cmd_check() else 0
-    if args.build or args.report:
-        master, coverage, proposal = cmd_build(write=args.build)
+    if args.build or args.report or args.coverage:
+        master, coverage, proposal, ladder = cmd_build(write=args.build)
         if args.report:
             cmd_report(master, coverage, proposal)
+        if args.coverage:
+            cmd_coverage(ladder)
         return 0
     parser.print_help()
     return 0

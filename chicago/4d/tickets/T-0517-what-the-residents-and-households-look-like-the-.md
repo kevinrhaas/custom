@@ -1,7 +1,7 @@
 ---
 id: T-0517
 title: What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 847
+claimed_by: run 9/5/2026, 6:36:26 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T11:54:27.786Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963518050
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "then i would like a summary of what the residents and
