@@ -1,7 +1,7 @@
 ---
 id: T-0406
 title: 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 2:03:46 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33985752856
 ---
 
 `tools/compile_register.py` resolves a printed anchor against the committed town by
