@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0817: the owner's queue ranking stops going backwards
+
+**What shipped.** Two halves, because the fault has two.
+
+1. **`tools/merge-queue.mjs` — the band-stripping bug.** A new ticket is now placed
+   where its own side placed it, carrying the comment band that introduced it,
+   instead of being dumped at the end under "MERGED IN, NOT YET PLACED". And a band
+   that genuinely cannot be anchored now **refuses the merge and names the line**
+   rather than dropping it.
+2. **`tools/check_queue_order.mjs` — a gate, wired into `check.sh`.** Every re-rank
+   the base records must still be present on the branch.
+
+### Why the driver alone was never going to be enough
+
+T-0817 found the thing that matters and it is worth quoting: *"It never reaches a
+squash-merge on GitHub, because GitHub does not run this repository's merge
+drivers. So the driver protects branch merges and cannot protect the thing that
+actually lands."*
+
+That is exactly what happened with **PR #801** — the driver **refused**, correctly,
+and the ranking was lost anyway, because the refusal lives on a developer's machine
+and the merge happened on the server. `check.sh` is the required `gate` on dev's
+ruleset, so a gate refuses the merge **button**, which is the only door the
+regression actually comes through.
+
+### The driver's bug was not where the ordering rule is
+
+The ordering rule ("the side that actually re-ordered wins") is sound. The bug was
+below it: only the **ordering side's** text is walked, so any band the *other* side
+wrote was discarded outright — and because `seq()` compares only ids present in all
+three versions, six brand-new tickets under a new band do not register as a re-order
+at all. `theirsReordered` stays false, ours becomes the ordering side, and the
+owner's ranking is dropped without the "both sides re-ranked" refusal ever being
+reached. #909 measured the result: *"stripped THREE times … six tickets the owner put
+at the top came to be sitting at line 416."*
+
+### What the gate asserts, and what it deliberately does not
+
+**Set inclusion of the RE-RANK LEDGER's entries, not a date comparison.** Two
+re-ranks happened on 2026-09-05 alone, so "is our newest date ≥ theirs" would have
+passed a branch that dropped one of them. It never judges whether an order is good —
+only whether a decision the base already recorded has gone missing, which is
+decidable without reading a single ranking.
+
+It **skips rather than fails** when there is no base to read (no `origin/dev`, a
+detached checkout, an offline runner). A gate that fails for want of a network is a
+gate people learn to bypass.
+
+### Tested against the real regression, not a fixture
+
+The real `tickets/QUEUE.md` with yesterday's two re-ranks removed is **refused**, and
+both are named in the owner's own words. 37 assertions on the driver (11 new, on the
+band-stripping case and its refusal) and 13 on the gate — including the #801 scenario
+end to end in a real git repo, and the same-day case a date check would wave through.
+
+### Visible-progress rule
+
+The previous entry committed that the next run must be visible, and this one is not.
+**Exemption 1 — an owner-reported bug — which AGENTS.md says "always outranks this
+rule".** The owner asked for this fix directly, after that commitment was made. The
+commitment carries to the run after this one.
+
 ## Shipped 2026-09-05 — T-0820: an id used twice is refused on the branch, not on dev
 
 **What shipped.** `tools/check_unique_ids.py`, wired into `tools/check.sh` beside the

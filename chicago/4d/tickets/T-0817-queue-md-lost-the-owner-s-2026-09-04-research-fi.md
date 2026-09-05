@@ -1,7 +1,7 @@
 ---
 id: T-0817
 title: QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 2:51:42 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
