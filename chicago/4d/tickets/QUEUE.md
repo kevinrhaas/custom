@@ -151,7 +151,6 @@ T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago
 
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
-T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 T-0497 — Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 
