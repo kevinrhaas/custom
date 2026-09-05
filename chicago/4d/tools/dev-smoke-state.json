@@ -2,6 +2,99 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 82,
+      "takenAt": "2026-09-05T23:34:31.136Z",
+      "ref": "steward/t-0839-consolidate-residents",
+      "commit": "e90f8874b1e4",
+      "devCommit": "a0a23acc70dc",
+      "treeHash": "sha256:eb9d55d5f6272a69",
+      "treeDirty": false,
+      "changelogHash": "sha256:4ed080b8bf9434e2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.3,
+          3.6
+        ]
+      },
+      "source": "/tmp/t_m3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 331,
+      "takenAt": "2026-09-05T23:34:31.032Z",
+      "ref": "steward/t-0839-consolidate-residents",
+      "commit": "e90f8874b1e4",
+      "devCommit": "a0a23acc70dc",
+      "treeHash": "sha256:eb9d55d5f6272a69",
+      "treeDirty": false,
+      "changelogHash": "sha256:4ed080b8bf9434e2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.3,
+          3.6
+        ]
+      },
+      "source": "/tmp/t_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 144,
+      "takenAt": "2026-09-05T23:34:30.930Z",
+      "ref": "steward/t-0839-consolidate-residents",
+      "commit": "e90f8874b1e4",
+      "devCommit": "a0a23acc70dc",
+      "treeHash": "sha256:eb9d55d5f6272a69",
+      "treeDirty": false,
+      "changelogHash": "sha256:4ed080b8bf9434e2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.3,
+          3.6
+        ]
+      },
+      "source": "/tmp/t_d3.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "1",
       "parts": [
@@ -1345,100 +1438,6 @@
         ]
       },
       "source": "/tmp/smoke_mobile.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 167,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 314,
-      "takenAt": "2026-09-05T16:46:07.074Z",
-      "ref": "steward/t-0597-kinzie-half-brothers",
-      "commit": "19d42c45bcbf",
-      "devCommit": "937afd675f73",
-      "treeHash": "sha256:de343181b4d37ee7",
-      "treeDirty": false,
-      "changelogHash": "sha256:a5ec16fc6effacdd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.6,
-          3.6
-        ]
-      },
-      "source": "/tmp/s2_m1213.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 110,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 350,
-      "takenAt": "2026-09-05T16:46:06.976Z",
-      "ref": "steward/t-0597-kinzie-half-brothers",
-      "commit": "19d42c45bcbf",
-      "devCommit": "937afd675f73",
-      "treeHash": "sha256:de343181b4d37ee7",
-      "treeDirty": false,
-      "changelogHash": "sha256:a5ec16fc6effacdd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.6,
-          3.6
-        ]
-      },
-      "source": "/tmp/s2_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 66,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 291,
-      "takenAt": "2026-09-05T16:46:06.879Z",
-      "ref": "steward/t-0597-kinzie-half-brothers",
-      "commit": "19d42c45bcbf",
-      "devCommit": "937afd675f73",
-      "treeHash": "sha256:de343181b4d37ee7",
-      "treeDirty": false,
-      "changelogHash": "sha256:a5ec16fc6effacdd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.6,
-          3.6
-        ]
-      },
-      "source": "/tmp/s2_d12.log"
     },
     {
       "viewport": "mobile",
