@@ -28,6 +28,9 @@ on:
 permissions:
   contents: write
   actions: write
+  # The back-merge into dev is offered as a PR rather than pushed, because dev
+  # requires the `gate` check and a ruleset applies to direct pushes too.
+  pull-requests: write
 
 concurrency:
   group: chicago-4d-promote
@@ -110,20 +113,43 @@ jobs:
           echo "dry_run — the promotion steps below are SKIPPED."
           echo "Check the step list: 'Back-merge…' and 'Publish…' must read as skipped."
 
-      - name: Back-merge main into dev, then merge dev into main
+      - name: Merge dev into main, then open the back-merge as a PR
         if: ${{ !inputs.dry_run && steps.survey.outputs.count != '0' }}
+        env:
+          # Step 5 opens the back-merge PR through `gh api` (REST). Without this
+          # the call is unauthenticated and the promotion ships without its
+          # back-merge, warning rather than failing — so the token is what keeps
+          # the warning from becoming the normal case.
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -e
           git config user.name  "polecat-ci"
           git config user.email "ci@polecat.live"
 
           # 1. main → dev, so a hotfix is never lost by the forward merge.
+          #
+          #    LOCAL ONLY — THIS NO LONGER PUSHES dev, AND THAT IS THE POINT.
+          #    `dev` carries a ruleset requiring the `gate` check, and a ruleset
+          #    applies to DIRECT PUSHES as well as to merges: GitHub's own
+          #    wording is that commits must be "merged or pushed directly … after
+          #    status checks have passed". The merge commit this line creates is
+          #    brand new and has no checks against it, so the push was rejected
+          #    and `set -e` killed the promotion here — before main was touched.
+          #
+          #    Bypassing was the obvious fix and is the wrong one. This job pushes
+          #    as github-actions[bot], which holds no repository ROLE, so a
+          #    "Repository admin" bypass does not cover it. And admin bypass would
+          #    exempt the STEWARD, which authenticates as kevinrhaas — the one
+          #    actor the gate exists to hold — letting it merge a red gate.
+          #
+          #    So the back-merge still happens, and still fails loudly when it
+          #    cannot: it is computed here, and offered to `dev` as a gated PR at
+          #    the end of this step instead of shoved past the gate.
           git checkout -B dev origin/dev
           if ! git merge --no-edit main -m "Back-merge main into dev before promotion"; then
             echo "::error::main does not merge cleanly into dev. Resolve on a branch and re-dispatch."
             exit 1
           fi
-          git push origin dev
 
           # 2. The changelog contract is checked AFTER the merge, not only
           #    before: `merge=union` runs during the merge, so both parents can
@@ -171,6 +197,42 @@ jobs:
             git tag -a "release-v$VER" -m "chicago/4d release v$VER ($COUNT commit(s) promoted)"
             git push origin "release-v$VER"
             echo "Tagged release-v$VER"
+          fi
+
+          # 5. Offer the back-merge to dev as a PR, so it goes THROUGH the gate
+          #    rather than around it. Step 1 already computed it on the local
+          #    `dev`; this pushes that to a branch and opens the PR.
+          #
+          #    NOT FATAL, for the same reason the tag above is not: main is
+          #    already pushed and live by this line. Failing here would report a
+          #    shipped promotion as a failure. If the PR does not open, the next
+          #    promotion recomputes the same back-merge — this is self-healing,
+          #    and the warning says what to do meanwhile.
+          #
+          #    REST, not `gh pr create`: that is GraphQL, a separate hourly
+          #    bucket, and the one the fleet exhausts (steward run 1140 read
+          #    `graphql remaining 0 of 5000` while core sat at 4969).
+          if [ "$(git rev-list --count origin/dev..dev)" = "0" ]; then
+            echo "::notice::main was already in dev — no back-merge to open"
+          else
+            BR="promote/back-merge-main-${GITHUB_RUN_ID}"
+            if git push -q origin "dev:refs/heads/${BR}" \
+               && gh api -X POST "repos/${GITHUB_REPOSITORY}/pulls" \
+                    -f title="Back-merge main into dev after release-v${VER:-?}" \
+                    -f head="$BR" -f base=dev \
+                    -f body="Opened by \`chicago-4d-promote-to-prod\` run ${GITHUB_RUN_ID}.
+
+          Production has already been promoted and is live; this carries \`main\` back
+          into \`dev\` so the next forward merge does not lose the hotfix that prompted it.
+
+          It is a PR rather than a direct push because \`dev\` requires the \`gate\` check,
+          and this is the back-merge going through that gate instead of around it. Merge it
+          when the gate is green." --jq .number > /tmp/backmerge-pr.txt 2>/dev/null; then
+              echo "::notice::back-merge opened as PR #$(cat /tmp/backmerge-pr.txt) from ${BR}"
+            else
+              echo "::warning::promotion is LIVE, but the back-merge PR could not be opened."
+              echo "::warning::main is not yet in dev. Open it by hand from ${BR}, or re-dispatch — the next promotion recomputes it."
+            fi
           fi
 
       - name: Publish (GITHUB_TOKEN pushes don't trigger deploy — dispatch it)
