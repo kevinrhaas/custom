@@ -10088,33 +10088,56 @@ for (const [label, viewport, touch] of [
     // after Controls. These assertions are what would notice the duplicate
     // coming back, or the tab quietly moving to the end of the strip where
     // nobody opens it.
+    // T-0701 RESTATED, NOT WEAKENED. The strip became a RAIL: seven sections
+    // (Go to, Travel, People, Evidence, Settings, Controls, What's new) in a
+    // 66 px icon column on the desktop drawer and one row across the top of the
+    // phone sheet. The old read measured `offsetTop` alone, which on a column
+    // would report seven "rows" and fail a correct rail — so both axes are read
+    // and the viewport says which one has to collapse to a single value. The
+    // overflow and squeeze reads are kept and widened to both axes: an item
+    // whose scrollHeight exceeds its box is a label pushed out of its button
+    // just as surely as one whose scrollWidth does. Labels are ALLOWED to wrap
+    // onto two lines by design ("What's / new"), which is why the button is
+    // measured and never the label.
     const tabStrip = await page.evaluate(() => {
       const bar = document.querySelector('.panel-tabs');
       const items = [...bar.querySelectorAll('.panel-tab')];
       return {
         order: items.map((el) => el.dataset.tab),
-        // A strip that has silently become two rows tall is the failure mode
-        // this panel has already had once, so measure rows rather than trust
-        // white-space: nowrap to hold. The tabs only: the close button is
-        // shorter than they are and `align-items: center` gives it an offsetTop
-        // of its own, which is not a second row.
+        // A rail that has silently become two columns (desktop) or two rows
+        // (phone) is the failure mode this panel has already had once, so
+        // measure the geometry rather than trust the flex direction to hold.
+        // The tabs only: the close button lives in the head row, not the rail.
         rows: new Set(items.map((el) => Math.round(el.offsetTop))).size,
-        overflow: Math.round(bar.scrollWidth - bar.clientWidth),
-        // The tabs are allowed to shrink, so "one row, no overflow" can also be
-        // reached by squeezing a label out past its own button. Count that too.
-        squeezed: items.filter((el) => el.scrollWidth > el.clientWidth + 1)
-          .map((el) => el.dataset.tab),
+        cols: new Set(items.map((el) => Math.round(el.offsetLeft))).size,
+        overflow: Math.max(Math.round(bar.scrollWidth - bar.clientWidth),
+          Math.round(bar.scrollHeight - bar.clientHeight)),
+        // The tabs are allowed to shrink, so "one line, no overflow" can also be
+        // reached by squeezing a label out past its own button. Count that too,
+        // in both directions.
+        squeezed: items.filter((el) => el.scrollWidth > el.clientWidth + 1
+          || el.scrollHeight > el.clientHeight + 1).map((el) => el.dataset.tab),
+        // Every item has a real box: a rail item collapsed to nothing would
+        // trivially satisfy "one column, unsqueezed".
+        boxless: items.filter((el) => el.getBoundingClientRect().height < 40
+          || el.getBoundingClientRect().width < 40).map((el) => el.dataset.tab),
         strayViewpointList: document.querySelectorAll(
           '[data-panel="settings"] .anchor-btn, #anchors').length,
       };
     });
-    check(`${label}: Go to is a tab of its own, immediately after Controls`,
-      tabStrip.order.join(',') === 'controls,goto,settings,evidence,whatsnew',
+    // Was "Go to is a tab of its own, immediately after Controls" (five tabs).
+    // The claim is the same — the rail's order is exact and Go to leads it —
+    // over the seven sections T-0701 gave the drawer.
+    check(`${label}: the rail lists the seven sections in order, Go to first`,
+      tabStrip.order.join(',') === 'goto,travel,people,evidence,settings,controls,whatsnew',
       tabStrip.order.join(','));
-    check(`${label}: five tabs still fit the panel on one row, unsqueezed`,
-      tabStrip.rows === 1 && tabStrip.overflow <= 1 && !tabStrip.squeezed.length,
-      `${tabStrip.rows} row(s), ${tabStrip.overflow}px of horizontal overflow, `
-      + `squeezed [${tabStrip.squeezed.join(', ')}]`);
+    // Was "five tabs still fit the panel on one row, unsqueezed". Seven items
+    // now, one column on the desktop drawer and one row on the phone sheet.
+    check(`${label}: seven rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
+      (touch ? tabStrip.rows === 1 : tabStrip.cols === 1)
+      && tabStrip.overflow <= 1 && !tabStrip.squeezed.length && !tabStrip.boxless.length,
+      `${tabStrip.rows} row(s) x ${tabStrip.cols} column(s), ${tabStrip.overflow}px of rail `
+      + `overflow, squeezed [${tabStrip.squeezed.join(', ')}], boxless [${tabStrip.boxless.join(', ')}]`);
     check(`${label}: Settings no longer carries a second list of viewpoints`,
       tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
 
@@ -10135,25 +10158,52 @@ for (const [label, viewport, touch] of [
       && (touch ? viaKey.focused !== 'jump-search' : viaKey.focused === 'jump-search'),
       JSON.stringify(viaKey));
 
+    // T-0702 RESTATED, NOT WEAKENED. The list now grades a row by the record's
+    // PRESENCE — did the building stand here — and hides the roofs whose
+    // presence is `reconstructed` until the visitor asks for them, so "every
+    // loaded structure" is read in two halves that together say more than the
+    // old single count did: the default list is exactly the non-reconstructed
+    // records, and the toggle brings the list to exactly the registry. The
+    // position grade did not leave the row — it moved to `data-jump-position`
+    // and is compared record for record as before. The presence rule is
+    // inlined here rather than imported, so the gate cannot agree with the app
+    // by sharing its mistake: `documented_range.confidence`, else the position
+    // grade, else `reconstructed`.
     const jumps = await page.evaluate(() => {
+      const api = window.__chicago4d;
       const input = document.getElementById('jump-search');
-      const registry = window.__chicago4d.registry;
-      const rows = [...document.querySelectorAll('#jump-results .jump-result')];
-      // The chip on a result and the grade on the record it jumps to are the
-      // same claim shown twice. Compare every one of them, the way the popup's
-      // own confidence assertions do — a menu that graded a position more
-      // kindly than the record does would be this project's worst kind of bug.
-      const mismatched = [];
-      let graded = 0;
-      for (const row of rows) {
-        if (row.dataset.jumpKind !== 'structure') continue;
-        const want = registry.get(row.dataset.jumpId)?.sidecar?.placement?.position_confidence
-          || 'reconstructed';
-        const chip = row.querySelector('.conf');
-        const shown = chip?.textContent?.trim();
-        if (shown === want && chip.classList.contains(`conf-${want}`)) graded++;
-        else mismatched.push({ id: row.dataset.jumpId, want, shown: shown ?? null });
+      const registry = api.registry;
+      const presenceOf = (s) => s?.documented_range?.confidence
+        || s?.placement?.position_confidence || 'reconstructed';
+      const positionOf = (s) => s?.placement?.position_confidence || 'reconstructed';
+      const rowsNow = () => [...document.querySelectorAll('#jump-results .jump-result')];
+      const structRows = () => rowsNow().filter((r) => r.dataset.jumpKind === 'structure');
+      // The stated preconditions for everything below, and for the arrival
+      // check that follows: the list on All, no query, reconstructed roofs
+      // hidden (the default), travel mode `instantly` (the default) — a ride
+      // would take minutes to reach Randolph and Canal and the arrival read
+      // would measure a visitor still walking.
+      api.setTravelMode('instantly');
+      api.hud.goTo.setKind('all');
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      const toggle = document.getElementById('jump-reconstructed');
+      const setToggle = (on) => {
+        if (toggle.checked === on) return;
+        toggle.checked = on;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+      setToggle(false);
+      // The registry's own tallies, counted here and not read off the app.
+      const tally = { attested: 0, inferred: 0, reconstructed: 0 };
+      const posTally = { attested: 0, inferred: 0, reconstructed: 0 };
+      for (const [, record] of registry) {
+        const g = presenceOf(record?.sidecar);
+        if (g in tally) tally[g]++;
+        const p = positionOf(record?.sidecar);
+        if (p in posTally) posTally[p]++;
       }
+      const nonReconstructed = registry.size - tally.reconstructed;
       // And the colour has to carry the distinction, which is exactly what a
       // bare `.jump-result small` rule took away from it once: it outranks
       // `.conf-inferred` on specificity and painted all three grades the same
@@ -10163,36 +10213,81 @@ for (const [label, viewport, touch] of [
         const chip = document.querySelector(`.jump-result .conf-${grade}`);
         return chip ? getComputedStyle(chip).color : null;
       };
-      const all = {
-        anchors: document.querySelectorAll('[data-jump-kind="anchor"]').length,
-        structures: document.querySelectorAll('[data-jump-kind="structure"]').length,
-        intersections: document.querySelectorAll('[data-jump-kind="intersection"]').length,
-        loaded: registry.size,
-        sceneAnchors: window.__chicago4d.scene?.anchors?.length ?? 0,
-        sceneIntersections: window.__chicago4d.intersections?.length ?? 0,
+      const rows = rowsNow();
+      const dflt = {
+        structures: structRows().length,
+        anchors: rows.filter((r) => r.dataset.jumpKind === 'anchor').length,
+        intersections: rows.filter((r) => r.dataset.jumpKind === 'intersection').length,
         chippedNonStructures: rows.filter((r) => r.dataset.jumpKind !== 'structure'
           && r.querySelector('.conf')).length,
+        // Only the two grades that stood here should be chipped before the toggle.
+        chipGrades: [...new Set(structRows().map((r) => r.querySelector('.conf')?.textContent.trim()))],
+        note: document.getElementById('jump-note')?.textContent ?? '',
+        colours: {
+          attested: colourOf('attested'),
+          inferred: colourOf('inferred'),
+          reconstructed: colourOf('reconstructed'),
+          plain: getComputedStyle(document.querySelector('.jump-result .jump-name')).color,
+        },
       };
-      const note = document.getElementById('jump-note')?.textContent ?? '';
-      const tally = { attested: 0, inferred: 0, reconstructed: 0 };
-      for (const [, record] of registry) {
-        const grade = record?.sidecar?.placement?.position_confidence || 'reconstructed';
-        if (grade in tally) tally[grade]++;
+      // The toggle on: every roof, and every row compared to its record.
+      setToggle(true);
+      const mismatched = [];
+      let graded = 0;
+      for (const row of structRows()) {
+        const s = registry.get(row.dataset.jumpId)?.sidecar;
+        const wantPresence = presenceOf(s);
+        const wantPosition = positionOf(s);
+        const chip = row.querySelector('.conf');
+        const shown = chip?.textContent?.trim();
+        if (shown === wantPresence && chip.classList.contains(`conf-${wantPresence}`)
+          && row.dataset.jumpConfidence === wantPresence
+          && row.dataset.jumpPosition === wantPosition) graded++;
+        else {
+          mismatched.push({ id: row.dataset.jumpId, wantPresence, shown: shown ?? null,
+            wantPosition, position: row.dataset.jumpPosition ?? null });
+        }
       }
-      const colours = {
-        inferred: colourOf('inferred'),
-        reconstructed: colourOf('reconstructed'),
-        plain: getComputedStyle(document.querySelector('.jump-result span')).color,
+      const on = {
+        structures: structRows().length,
+        note: document.getElementById('jump-note')?.textContent ?? '',
+        colours: { reconstructed: colourOf('reconstructed') },
       };
+      setToggle(false);
+      const all = {
+        anchors: dflt.anchors,
+        structures: dflt.structures,
+        intersections: dflt.intersections,
+        loaded: registry.size,
+        sceneAnchors: api.scene?.anchors?.length ?? 0,
+        sceneIntersections: api.intersections?.length ?? 0,
+        chippedNonStructures: dflt.chippedNonStructures,
+      };
+      // The default colours, with the reconstructed chip's colour read while
+      // the toggle was on (no reconstructed row is on the default list).
+      const colours = { ...dflt.colours, reconstructed: on.colours.reconstructed };
       input.value = 'Randolph Canal';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       const filtered = [...document.querySelectorAll('#jump-results .jump-result')]
         .map((b) => ({ id: b.dataset.jumpId, kind: b.dataset.jumpKind, text: b.textContent }));
-      return { all, filtered, graded, mismatched, note, tally, colours };
+      return { all, filtered, graded, mismatched, tally, posTally, nonReconstructed,
+        dflt: { structures: dflt.structures, chipGrades: dflt.chipGrades, note: dflt.note },
+        on: { structures: on.structures, note: on.note }, colours, stored:
+          JSON.parse(localStorage.getItem('chicago4d.settings') || '{}').gotoReconstructed };
     });
-    check(`${label}: jump menu includes every loaded structure`,
-      jumps.all.structures === jumps.all.loaded && jumps.all.loaded > 70,
-      `${jumps.all.structures} listed of ${jumps.all.loaded} loaded`);
+    // Was "jump menu includes every loaded structure" (=== registry.size). The
+    // list now hides presence-reconstructed roofs by default, so the claim is
+    // taken in both states: exactly the non-reconstructed records by default,
+    // exactly the registry with the toggle on — and the toggle's own state is
+    // persisted where the visitor's settings live.
+    check(`${label}: jump menu lists every structure that stood here, and every roof once asked`,
+      jumps.dflt.structures === jumps.nonReconstructed && jumps.nonReconstructed > 70
+      && jumps.on.structures === jumps.all.loaded && jumps.all.loaded > jumps.nonReconstructed
+      && jumps.dflt.chipGrades.every((g) => g === 'attested' || g === 'inferred')
+      && jumps.stored === false,
+      `${jumps.dflt.structures} listed of ${jumps.nonReconstructed} non-reconstructed by default `
+      + `(chips ${jumps.dflt.chipGrades.join('/')}); ${jumps.on.structures} of ${jumps.all.loaded} `
+      + `loaded with the toggle on; stored gotoReconstructed ${jumps.stored}`);
     // Against the compiled list, NOT against a literal. This assertion read
     // `=== 4` until T-0245 committed a fifth control point on South Water at
     // Franklin and turned a correct menu into a red gate — the same fault the

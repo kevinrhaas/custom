@@ -1,4 +1,20 @@
 export const CHANGELOG = [ // newest first
+  { v: 533, title: 'The menu becomes a drawer, and you can ride to a building', kind: 'feature', ts: '2026-09-05T01:03:14.190Z', date: 'Sep 4, 2026, 8:03 PM CT',
+    items: [
+      'The menu on the right is now a drawer with a rail of sections down its side — Go to, Travel, People, Evidence, Settings, Controls and What’s new — and on a phone it rises from the foot of the screen as a sheet. The menu and the building card share the one right-hand slot: open the menu and the card tucks away; close it and the card comes back.',
+      'Go to no longer lists the reconstructed roofs unless you ask for them; by default you see the places the record attests or infers. Filter by kind — taverns & hotels, stores, trades, homes & yards, public & fort, waterfront, viewpoints, corners, people — and every row says how far away it is and in which direction, changing as you move. Arrow keys walk the list; Enter takes you there.',
+      'A Travel section chooses how you get there: instantly, on foot, by wagon, on horseback, or by air. Choose a place and you are carried there at that pace along the streets, under a banner naming where you are bound with a Stop button; touching the controls also stops you. Arriving opens the card. Flying rises above the roofs, glides, and lands in front of the door.',
+      'The pace you choose is also yours to walk at, so you can cross the town at a wagon’s 3.6 metres a second or a horse’s canter of 6.5 — hold Shift to gallop at 11 — sitting higher in the saddle, with the gait moving your eye. The gait is off under reduced motion and can be switched off in Travel. These paces are choices for the interface, not claims about 1835.',
+      'A People section lists the 1,404 people this town holds — 727 of them known only from a name on a letter list. Search by name, or narrow by trade, division, year of arrival and how each is known. Every person opens to their household record, and where the record knows the house they lived or worked at, a button takes you there. Those people also appear in Go to.',
+      'The Evidence section is now a hub of topics — how we grade, what we made up, the ground, what was living here, what grows here, what is not here, open questions — each with a count and its own search, instead of one long scroll.',
+    ] },
+  { v: 532, title: 'The building card reads like a card', kind: 'feature', ts: '2026-09-05T01:03:14.190Z', date: 'Sep 4, 2026, 8:03 PM CT',
+    items: [
+      'A building’s card now opens on what the building was — its name, its kind, where it stood — then the account of its story, then a grid of key facts: when it stood, its use, how it was built, its roof, who was here and who kept it. Each fact carries a small coloured dot for its grade — attested, inferred or reconstructed — in place of the chips that used to lead.',
+      'The evidence tables, what we made up, and the record’s own words have moved under three tabs at the foot of the card — Evidence, What we made up, Record — so the provenance is one tap away rather than the first thing you read. The card remembers which tab you last opened.',
+      'A record with no written account gets a plain lead composed from its own fields — what it was and where it stood — rather than an empty space.',
+      'The nine records held under the standing constraint on 1835 and Indigenous history now say so on the card: held pending consultation, with a pointer to the constraint.',
+    ] },
   { v: 531, title: 'Thomas Abbott is not Titus Abbott, and the rule had stopped noticing', kind: 'fix', ts: '2026-09-04T22:22:17.197Z', date: 'Sep 4, 2026, 5:22 PM CT',
     items: [
       'When a name is printed in a Chicago directory of 1843 or 1844, this project has to decide whether it is one of the people already standing in the town of 1835. The rule it used was a surname and a first initial \u2014 Abbott, T. is Abbott, T. That rule was written when this reconstruction held 848 people, and among 848 people a surname plus an initial is very nearly one person.',
