@@ -509,6 +509,15 @@ step "the West Division module, and the ceiling that answers the owner's shift r
 step "the West Division's tiers, and Carroll's midpoint still inside its own bracket" \
   python3 tools/measure_west_division_tiers.py --self-test
 
+# T-0445. West Water is the West Division's riverfront street and it is not fitted to
+# anything modern — nothing modern survives on its line. It is the committed 1834 west
+# bank offset one half-corridor west, so the moment that bank trace moves, the street is
+# in the water or off it and no other gate would notice. This holds the offset to the
+# centimetre against the bank as committed, holds the two refusals against the modelled
+# ground's own west edge, and holds the module the seating measures.
+step "West Water still stands one half-corridor off the bank, and the two refusals still hold" \
+  python3 tools/measure_west_division_streets.py --self-test
+
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
 # block recipes quietly acted on it: every log dwelling the five South Water blocks were

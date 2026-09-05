@@ -1,7 +1,7 @@
 ---
 id: T-0445
 title: West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
-state: open
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0443
 opened: 2026-08-31
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 875
+claimed_by: run 9/5/2026, 6:36:13 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T12:17:03.686Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963532089
 ---
 
 West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds.
