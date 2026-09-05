@@ -1,7 +1,7 @@
 ---
 id: T-0511
 title: The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/4/2026, 10:29:17 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941763731
 ---
 
 **The owner's concern, 2026-09-03, verbatim:** "I am concerned that there are only adjudicated mappings
