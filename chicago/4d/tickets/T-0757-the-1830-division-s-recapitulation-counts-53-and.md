@@ -1,5 +1,5 @@
 ---
-id: T-0739
+id: T-0757
 title: The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
 state: open
 epic: META

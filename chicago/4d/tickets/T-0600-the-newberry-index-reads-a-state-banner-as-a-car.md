@@ -1,7 +1,7 @@
 ---
 id: T-0600
 title: The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 873
+claimed_by: run 9/5/2026, 4:25:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T11:05:40.860Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33957706556
 ---
 
 The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and

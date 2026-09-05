@@ -1,0 +1,202 @@
+{
+ "schema": 1,
+ "state": "Illinois",
+ "county": "Cook",
+ "division": "S. W. Sherman (as written in the printed heading)",
+ "reading": "scan_verified",
+ "read_pass": "names (T-0496)",
+ "cells_state": "not_read",
+ "cells_not_read_why": "This pass read the NAMES only. The 26 free-white and 12 free-coloured age-band columns of this leaf are unread and are left to the ticket that reads them, on the grid method T-0532 and T-0552 used. Nothing here may be taken as a zero: an unread column is unread.",
+ "familysearch_id": "33SQ-GYYJ-ZQ",
+ "image": "chicago/reference/census1840/33SQ-GYYJ-ZQ.jpg",
+ "printed_page": 235,
+ "sheet_side": "left",
+ "lines_ruled_with_an_entry": 24,
+ "lines_are": "Twenty-four ruled lines carry an entry; the remainder of the leaf down to the footing rule is empty, and was looked at rather than assumed. The last written line is followed by seven blank ruled lines before the double rule.",
+ "records": [
+  {
+   "line": 1,
+   "as_read": "J[?]s. S. Wheele[?]",
+   "normalized": "[?] S. Wheeler",
+   "name_confidence": "low",
+   "note": "the given abbreviation and the surname's terminal are unread",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 2,
+   "as_read": "Andrew Anderson",
+   "normalized": "Andrew Anderson",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 3,
+   "as_read": "L. Oberhard",
+   "normalized": "L. Oberhard",
+   "name_confidence": "low",
+   "note": "the initial is L or J; the surname's terminal is d or dt",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 4,
+   "as_read": "Chs. Mac Kee[?]",
+   "normalized": "Charles MacKeen",
+   "name_confidence": "low",
+   "note": "the surname is written as two words and its terminal is unread",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 5,
+   "as_read": "Will[?] Wilhelmson",
+   "normalized": "William Wilhelmson",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 6,
+   "as_read": "Nicholas Newdorf",
+   "normalized": "Nicholas Neudorf",
+   "name_confidence": "medium",
+   "note": "the surname is written Newdorf; Neudorf is the modern spelling",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 7,
+   "as_read": "[H]ar[d] Larson",
+   "normalized": "[?] Larson",
+   "name_confidence": "low",
+   "note": "the given name is unread at two positions; the surname is legible",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 8,
+   "as_read": "Henry Kneis[t]",
+   "normalized": "Henry Kneist",
+   "name_confidence": "low",
+   "note": "the surname's terminal is unread",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 9,
+   "as_read": "Wm. Luebke",
+   "normalized": "William Luebke",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 10,
+   "as_read": "Gerhard Finke",
+   "normalized": "Gerhard Finke",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 11,
+   "as_read": "Ge[p]hard Shenkle",
+   "normalized": "Gerhard Shenkle",
+   "name_confidence": "low",
+   "note": "the given name's third letter is p or r; the surname's terminal may be -el",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 12,
+   "as_read": "[Jo]seph L. Willemin",
+   "normalized": "Joseph L. Willemin",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 13,
+   "as_read": "Michael D[?]v[?]rse[?]",
+   "normalized": "Michael Diversey",
+   "name_confidence": "medium",
+   "note": "the surname's middle is crossed by the flourish of the line above; Diversey is the reading the surviving letters carry, and the brewer's partner William Lill reads eight lines below at line 19",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 14,
+   "as_read": "Henry Grosken",
+   "normalized": "Henry Grosken",
+   "name_confidence": "low",
+   "note": "the surname's middle is a k or ck cluster; Gucken also fits",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 15,
+   "as_read": "[M]anoris Langer",
+   "normalized": "[?] Langer",
+   "name_confidence": "low",
+   "note": "the given name is unread at its head",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 16,
+   "as_read": "Jam[e]s Vassard",
+   "normalized": "James Vassard",
+   "name_confidence": "low",
+   "note": "the surname's initial is a looped V or N",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 17,
+   "as_read": "Mathias Miller",
+   "normalized": "Mathias Miller",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 18,
+   "as_read": "Andrew Sho[m]er",
+   "normalized": "Andrew Shomer",
+   "name_confidence": "low",
+   "note": "one position of the surname is unread",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 19,
+   "as_read": "[?]m. [?]ill[?]",
+   "normalized": "William Lill",
+   "name_confidence": "low",
+   "note": "the surname's initial is a tall looped letter read as S or L; Lill is the reading preferred because Michael Diversey stands at line 13 of this same leaf and the two were partners in the Chicago brewery. Sills is kept as the alternate",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 20,
+   "as_read": "John Mc[H]ale",
+   "normalized": "John McHale",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 21,
+   "as_read": "[H]ugh Morric[e]",
+   "normalized": "Hugh Morrice",
+   "name_confidence": "low",
+   "note": "the given name's head and the surname's terminal are unread",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 22,
+   "as_read": "R[ob]t. Smith",
+   "normalized": "Robert Smith",
+   "name_confidence": "low",
+   "note": "the given abbreviation is unread at two positions; the surname is legible",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 23,
+   "as_read": "J. Griswold",
+   "normalized": "J. Griswold",
+   "name_confidence": "low",
+   "note": "the surname's middle is a w or v",
+   "reading": "scan_verified"
+  },
+  {
+   "line": 24,
+   "as_read": "Henry Hall",
+   "normalized": "Henry Hall",
+   "name_confidence": "medium",
+   "reading": "scan_verified"
+  }
+ ]
+}

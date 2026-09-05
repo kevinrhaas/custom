@@ -51,7 +51,7 @@
    "id": "murray_alonzo",
    "name": "Alonzo Murray",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-07-02"
@@ -87,18 +87,33 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0508",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Alonzo Murray and Alonzo Murry are strong duplicate candidates from one-letter variants in consecutive-year Chicago returns; no independent identity record resolves them.",
+    "evidence_for": "A same-name lead, unasserted: cand_murray_murry_same_hand.",
     "evidence_against": "No external bridge.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "candidate_ids": [
-     "cand_alonzo_murry_letter_list_record__murray_alonzo"
+     "cand_murray_murry_same_hand"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G1b",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ],
+    "candidates": [
+     {
+      "id": "cand_murray_murry_same_hand",
+      "asserted": false,
+      "basis": "One letter apart in the same list family.",
+      "conflicts": [
+       "Committed refusals stand against every other Murray reached — St Mary's 'John Murray', the 1834 poll's 'Patrick Murray', Fergus 1839."
+      ]
+     }
     ]
-   },
-   "resident_subtype": "projected_resident"
+   }
   }
  ],
  "touches_removal": false,
