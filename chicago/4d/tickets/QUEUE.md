@@ -424,8 +424,9 @@ T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0827 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
+T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
+T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
