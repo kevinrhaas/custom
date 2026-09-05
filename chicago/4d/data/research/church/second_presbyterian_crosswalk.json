@@ -1248,7 +1248,7 @@
       "name": "Edward A. Rogers",
       "person_id": "rogers_edward_a",
       "household_id": "hh_rogers_edward_a",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Rogers' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
@@ -3203,7 +3203,7 @@
       "name": "John S. Barry",
       "person_id": "barry_john_s",
       "household_id": "hh_barry_john_s",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Barry' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John S. Barry'. A surname-only agreement is a refusal."
@@ -3329,7 +3329,7 @@
       "name": "Harriet Bradford",
       "person_id": "bradford_harriet",
       "household_id": "hh_bradford_harriet",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Bradford' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'Harriet Bradford'. A surname-only agreement is a refusal."
@@ -3356,7 +3356,7 @@
       "name": "Gardner Brooks",
       "person_id": "brooks_gardner",
       "household_id": "hh_brooks_gardner",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 10,
       "rule": "The surname 'Brooks' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gardner Brooks'. A surname-only agreement is a refusal."
@@ -3554,7 +3554,7 @@
       "name": "Chas. H. Chapman",
       "person_id": "chapman_chas_h",
       "household_id": "hh_chapman_chas_h",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Chapman' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal."
@@ -3635,7 +3635,7 @@
       "name": "Parker M. Cole",
       "person_id": "cole_parker_m",
       "household_id": "hh_cole_parker_m",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Cole' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'Parker M. Cole'. A surname-only agreement is a refusal."
@@ -3698,7 +3698,7 @@
       "name": "James Crawford",
       "person_id": "crawford_james",
       "household_id": "hh_crawford_james",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Crawford' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'James Crawford'. A surname-only agreement is a refusal."
@@ -4742,7 +4742,7 @@
       "name": "George Lee",
       "person_id": "lee_george",
       "household_id": "hh_lee_george",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 4,
       "rule": "The surname 'Lee' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'George Lee'. A surname-only agreement is a refusal."
@@ -4850,7 +4850,7 @@
       "name": "Stephen Mack",
       "person_id": "mack_stephen",
       "household_id": "hh_mack_stephen",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Mack' stands on the Second Presbyterian roll and no line under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal."
@@ -5075,7 +5075,7 @@
       "name": "Alonzo Murray",
       "person_id": "murray_alonzo",
       "household_id": "hh_murray_alonzo",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 9,
       "rule": "The surname 'Murray' stands on the Second Presbyterian roll and no line under it carries the initial 'A' of 'Alonzo Murray'. A surname-only agreement is a refusal."

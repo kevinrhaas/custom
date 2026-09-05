@@ -97,9 +97,10 @@
     "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
      "chicago_democrat_1833_1835"
-    ]
-   },
-   "resident_subtype": "projected_resident"
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
+   }
   }
  ],
  "touches_removal": false,
