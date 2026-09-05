@@ -1,7 +1,7 @@
 ---
 id: T-0429
 title: Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0420
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 597
 claimed_by: run 8/30/2026, 1:51:13 AM CT
 blocked_on: null
 needs_bake: true
+closed_at: 2026-09-05T15:43:21.242Z
+claimed_run: null
 ---
 
 Open `blk_south_water_lasalle` — 8 roof(s) of headroom, 3 free lot(s) — under the anonymous-block
@@ -113,3 +115,35 @@ reading at all before this branch.
 
 **The successor T-0028's programme rule owes is already in the queue**: T-0430, the next block in
 this family. The ticket stays `open` because its PR has not merged.
+
+---
+
+## Outcome — closed 2026-09-05 against PR #597, which had already delivered it
+
+**This ticket was finished on 2026-09-01 and never closed.** PR #597
+(*"blk_south_water_lasalle's second deal builds the west half of the river row"*) merged
+into `dev` at 2026-09-01T00:40:50Z carrying all eight roofs. The run that opened it did not
+reach `ticket.mjs done`, so the ticket stayed `state: claimed` — the only ticket in the repo
+in that state — and sat in `list --workable` for five days, where it read as available work.
+
+It was not free. A later branch, `steward/t-0429-south-water-lasalle`, rebuilt the block from
+scratch: 116 files, 5,827 insertions, baked and gated, and then parked on the 32 MB published
+ceiling without ever opening a PR. Every one of the eight records it "adds" already existed on
+`dev` under the same ids — the merge of that branch into current `dev` is eight add/add
+conflicts on the ticket's own payload. That branch is litter and is deleted with this close.
+
+**Acceptance, re-measured on `dev` at this commit — not taken on trust:**
+
+| clause | measured |
+|---|---|
+| 8 roofs stand on the block's own committed lots | `standing_roofs` **9 → 17** on `blk_south_water_lasalle` |
+| `reconcile_665.py` re-derives; block moves to `at_capacity` or states its headroom | `state: at_capacity`, `headroom: 0`, `free_lots: 1` in `data/reconstruction/1835_665_roof_programme.json` |
+| the roofs are baked in the same commit, `publish.sh` mirrors the result | shipped by #597; `check.sh`'s `validate.py --stale` re-asserts every record against its committed mesh here |
+| one successor handed on per T-0028 | **T-0431** (`blk_south_water_clark`) and **T-0432** (`blk_south_water_dearborn`), both in QUEUE — the two South Water blocks still `open`, 4 roofs of headroom each |
+
+The one clause this close does NOT re-demonstrate is the screenshot. #597 took it; nothing has
+moved since, and re-taking it would be re-proving a merged PR rather than this one.
+
+**Nothing about the town changes here.** No record, mesh, street, lot or heightfield is touched.
+This is the bookkeeping #597 owed, and the queue is what it repairs. The gap that let a merged
+ticket sit `claimed` for five days is filed as its own ticket rather than fixed in passing.
