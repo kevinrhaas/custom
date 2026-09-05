@@ -69,12 +69,16 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    "evidence_against": "The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'George F. Foster' at printed page 229 line 13 (33S7-9YYJ-9M5) is NOT 'Caleb Foster': The surname 'foster' is carried by 1 person(s) of 1835 (Caleb Foster) and none of their given names is 'george'. L3 given_name_conflict",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Caleb Foster with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
    }
   }
  ],

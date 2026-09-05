@@ -352,7 +352,7 @@
    "resident": "Bennet Bailey",
    "person_id": "bailey_bennet",
    "household_id": "hh_bailey_bennet",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -408,7 +408,7 @@
    "resident": "Chas. H. Chapman",
    "person_id": "chapman_chas_h",
    "household_id": "hh_chapman_chas_h",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -9041,7 +9041,7 @@
   {
    "resident": "Clark B. Albee",
    "person_id": "albee_clark_b",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e0189",
     "as_printed": "Albee, Cyrus P., butcher, at Fulton Market, s.-w. cor Lake & Dearb. [died March 25, 1871, aged 68.]",
@@ -9155,7 +9155,7 @@
   {
    "resident": "Erastus Clark",
    "person_id": "clark_erastus",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e0621",
     "as_printed": "Clark, Edwin, grocer, W. Lake",
@@ -9174,7 +9174,7 @@
   {
    "resident": "Erastus Clark",
    "person_id": "clark_erastus",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e0622",
     "as_printed": "Clark, Edwin P., dry goods and groceries, 154 Lake, bds Hump. Clark",
@@ -9193,7 +9193,7 @@
   {
    "resident": "Erastus Clark",
    "person_id": "clark_erastus",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1843": {
     "claim": "f1843_e0623",
     "as_printed": "Clark, Elisha, carpenter, res W. Water, bet Washington and Madison [died July 23, 1853, aged 53.]",

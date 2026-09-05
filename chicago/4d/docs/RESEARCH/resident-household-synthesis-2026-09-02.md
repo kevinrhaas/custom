@@ -8,18 +8,18 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 |---|---:|---:|
 | Households | 920 | 1380 |
 | Person entries | 956 | 1404 |
-| Attested | 823 | 509 |
-| Inferred | 25 | 895 |
+| Attested | 823 | 518 |
+| Inferred | 25 | 886 |
 | Reconstructed | 108 | 0 |
 | Letter-list-only flag | 727 | 727 |
-| Projected residents | 0 | 784 |
+| Projected residents | 0 | 775 |
 | Linked to named 1840 census household | 0 | 3 |
 
 **108 reconstructed people were retired** and 96 empty household containers removed. 5 evidence-based people/households formerly seated by the reconstructed programme were retained but made unplaced. Reconstructed building stock was abandoned as unassigned rather than deleted.
 
 ## Research adjudication
 
-The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 74, corroborated: 20, corroborated_enrichment: 29, no_corroboration: 187, no_corroboration_yet: 558.
+The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 82, corroborated: 38, corroborated_enrichment: 40, no_corroboration: 226, no_corroboration_yet: 482.
 
 A post-office letter now documents a real named person considered reachable through Chicago; it is not automatic proof of Chicago residence. Independently corroborated letter-list identities are `attested`; other qualifying letter-list names are `inferred` + `projected_resident`. Candidate identities remain explicitly unasserted with evidence for/against retained.
 

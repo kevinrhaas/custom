@@ -69,18 +69,16 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A contemporary 1835 letter and local histories place distinctive-name Chester House at House's Grove from 1833. He is probably the recipient, but as a hinterland resident, not proof of Chicago residence; sources conflict on spouse name.",
-    "evidence_against": "Hinterland residence; Judith versus Lucinda spouse conflict.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "The surname is also the commonest building word in a directory. Every apparent hit is a hotel — 'American Temperance House', 'the Tremont House', 'the Mansion House' — and the volume prints no person named House.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Chester House with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "talcott_chester_house_1835"
-    ],
-    "candidate_ids": [
-     "cand_chester_house_of_house_s_grove__house_chester"
+     "chicago_democrat_1833_1835",
+     "fergus_historical_series_26_29"
     ]
    }
   }

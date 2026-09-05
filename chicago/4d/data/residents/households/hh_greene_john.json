@@ -84,12 +84,16 @@
    "note": "THE MAN IN COMMAND ON THE SCENE DATE, on a tour that starts eighteen months before it and ends ten weeks after it. Three separately written accounts agree the fort was garrisoned through 1835, and the post surgeon's prescription book carries an entry dated 15 March 1835.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    "evidence_against": "Mary Green married Michael Nolan on 29 August 1835. Major John Greene is an attested resident. The surnames do not fold equal — green against greene — and the forenames are a woman's and a man's. Recorded because the pair looks like a spelling variant at a glance and is not one. Refused. All 1 card(s) heading 'Green' name Illinois and neither Chicago nor Cook County, so the lead against Damel M. Green; Major John Greene stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. 1 of the 2 card(s) heading 'Greene' do name Chicago or Cook County and the heading is the surname of Major John Greene exactly, but the index files every family of a surname under one heading and gives no forename, so 'Greene' against Damel M. Green; Major John Greene is a surname against a person. It waits on moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, w",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Major John Greene with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Mary Green married Michael Nolan on 29 August 1835. Major John Greene is an attested resident. The surnames do not fold equal — green against greene — and the forenames are a woman's and a man's. Recorded because the pair looks like a spelling variant at a glance and is not one. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
    }
   }
  ],

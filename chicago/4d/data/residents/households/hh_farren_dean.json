@@ -68,12 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed web, institutional-history, digitized-book, newspaper-index and genealogy-finding-aid searches could be tied to this 1835 Chicago person without relying on the name alone.",
-    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Dean Farren with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
    }
   }
  ],

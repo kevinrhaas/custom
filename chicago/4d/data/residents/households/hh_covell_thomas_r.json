@@ -87,18 +87,14 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A county history says Thomas R. Covell moved to Salt Creek, Cook County, about 1833 after work as trader and mill builder. Exact middle initial and migration make a high-confidence candidate, not town residence.",
-    "evidence_against": "Salt Creek lay outside Chicago town; no explicit link to the letter.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Thomas R. Covell with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "lasalle_thomas_covell"
-    ],
-    "candidate_ids": [
-     "cand_thomas_r_covell_of_salt_creek__covell_thomas_r"
+     "chicago_democrat_1833_1835"
     ]
    },
    "resident_subtype": "projected_resident"

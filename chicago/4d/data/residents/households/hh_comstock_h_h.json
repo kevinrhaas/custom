@@ -68,18 +68,16 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "H. H. Comstock appears in Kalamazoo County pioneer history around 1834. Exact initials and regional chronology are useful, but competing Michigan geography and no migration bridge bar a merge.",
-    "evidence_against": "Michigan rather than Chicago residence; no letter bridge.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. Ruled on the card 'Comatock | I l l i n o i e . R a r l y Cr.ie«ro (Chicago' against H. H The surname 'Comstock' is in Norris 1844 and no entry under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal. The 1843 directory prints 'Comstock. J. S. (C. & Ackley)' and 'Comstock, Luke, laborer' and no H. H. Comstock.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to H. H. Comstock with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "michigan_hh_comstock_history"
-    ],
-    "candidate_ids": [
-     "cand_h_h_comstock_of_kalamazoo_county__comstock_h_h"
+     "chicago_democrat_1833_1835",
+     "fergus_historical_series_26_29"
     ]
    }
   }

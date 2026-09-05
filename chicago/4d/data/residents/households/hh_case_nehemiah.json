@@ -68,18 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A Buffalo directory supplies a competing Nehemiah Case, but wrong geography and no migration bridge make it a rejected match rather than a Chicago identity.",
-    "evidence_against": "Buffalo geography and no Chicago discriminator.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "The surname 'Case' stands on the Second Presbyterian roll and no line under it carries the initial 'N' of 'Nehemiah Case'. A surname-only agreement is a refusal. Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Nehemiah Case; Peter Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Nehemiah Case; Peter Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | Bureau Co., III. (Kett It Co., Pub.) I877i igo,' against Nehemiah Case; Peter Chase.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Nehemiah Case with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Case' stands on the Second Presbyterian roll and no line under it carries the initial 'N' of 'Nehemiah Case'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "buffalo_nehemiah_case"
-    ],
-    "candidate_ids": [
-     "cand_nehemiah_case_of_buffalo__case_nehemiah"
+     "chicago_democrat_1833_1835"
     ]
    }
   }

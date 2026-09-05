@@ -66,12 +66,19 @@
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'B. King' and 'BYRA' and 'BYRAM KING' and 'BYRAM KING, Clerk' and 'BYRAM KING.' and 'BYRAM, KING' and 'BYWAM KING' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 9 July 1834, column 20; the Democrat of 27 May 1835, column 5; the Democrat of 17 June 1835, column 2; the Democrat of 17 June 1835, column 6; the Democrat of 1 July 1835, column 12; the Democrat of 8 July 1835, column 9, and 2 further mention(s). The corpus associates the name with Chicago, South Water Street; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `hardware_merchant` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed web, institutional-history, digitized-book, newspaper-index and genealogy-finding-aid searches could be tied to this 1835 Chicago person without relying on the name alone.",
-    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
+    "ticket": "T-0509",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B.",
+    "evidence_against": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byram King': The surname 'king' is carried by 1 person(s) of 1835 (Byram King) and none of their given names is 'nathaniel'. L3 given_name_conflict The surname 'King' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Byram King'. A surname-only agreement is a refusal.",
+    "summary": "Corroborated in a volume printed after the scene date. Byram King agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+    "notes": "FERGUS 26-29, AS PRINTED: \"King, By ram, died\". The volume's old-settler obituary list prints the exact and unusual forename Byram against this surname, which attests a Chicago old settler of that name. THE ENTRY IS TRUNCATED WHERE IT SHOULD CARRY ITS DATE: 'died' is followed straight by the next name, so no death date, no place and no age survive. The name is the whole of the reading. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
+     "fergus_historical_series_26_29"
+    ]
    }
   }
  ],

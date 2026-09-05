@@ -17,11 +17,11 @@
     "reviewed_people": 873,
     "outcome_counts": {
       "candidate": 5,
-      "candidate_identity": 74,
-      "corroborated": 20,
-      "corroborated_enrichment": 29,
-      "no_corroboration": 187,
-      "no_corroboration_yet": 558
+      "candidate_identity": 82,
+      "corroborated": 38,
+      "corroborated_enrichment": 40,
+      "no_corroboration": 226,
+      "no_corroboration_yet": 482
     },
     "unmatched_research_person_ids": [
       {
@@ -836,11 +836,11 @@
   "after": {
     "households": 1380,
     "persons": 1404,
-    "attested": 509,
-    "inferred": 895,
+    "attested": 518,
+    "inferred": 886,
     "reconstructed": 0,
     "letter_list_only": 727,
-    "projected_residents": 784,
+    "projected_residents": 775,
     "census_1840_linked": 3
   },
   "retirement": {

@@ -68,18 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A historical marker places Ben Butterfield at Lockport and on a Danville-to-Chicago route from 1830-31. This is a strong regional candidate, but postal reachability does not establish town residence.",
-    "evidence_against": "Lockport residence; no record links him to this letter.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. The surname 'Butterfield' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. The surname 'Butterfield' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Ben Butterfield with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "hmdb_butterfield_trail"
-    ],
-    "candidate_ids": [
-     "cand_ben_butterfield_of_lockport__butterfield_ben"
+     "chicago_democrat_1833_1835"
     ]
    }
   }

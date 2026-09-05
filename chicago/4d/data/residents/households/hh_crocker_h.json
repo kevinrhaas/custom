@@ -66,12 +66,23 @@
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'H. CROCKER, Clerk' and 'HI. CROCKER' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 21 January 1835, column 7; the Democrat of 8 July 1835, column 4. The corpus associates the name with Chicago; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `schoolteacher` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed web, institutional-history, digitized-book, newspaper-index and genealogy-finding-aid searches could be tied to this 1835 Chicago person without relying on the name alone.",
-    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
+    "evidence_for": "Surname 'Crocker' folds to the same string as the entry's, and the given name of both begins H. Surname 'Crocker' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "evidence_against": "Refused. All 1 card(s) heading 'Crocker' name Illinois and neither Chicago nor Cook County, so the lead against H. Crocker stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 1 card(s) heading 'Crocker' name Illinois and neither Chicago nor Cook County, so the lead against H. Crocker stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Crocker | IhingiKn Co., lil. (LeBaron, W„ lr., <k Co.. _ b _ \\\\ ,878,' against H. Crocker. The surname 'Crocker' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Crocker'. A surname-only agreement is a refusal.",
+    "summary": "The volume prints two Crockers and neither settles 'H. Crocker'. Its obituary list has 'Crocker. Hans, lawyer, died, Milwaukee, Wis., Mar. 17, 1889, a. 73', whose initial agrees but whose age puts birth about 1816 — nineteen at the scene date, and in Milwaukee thereafter; the 1843 directory has 'Crocker, Josiah Dunton, whitewasher, res 171 Clark [died December 28, 1888, aged 82', whose initial does not agree at all. The lead is retained unasserted.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_1843_old_settler_death_notices",
+     "fergus_chicago_directory_1839",
+     "fergus_historical_series_26_29"
+    ],
+    "candidate_ids": [
+     "cand_crocker_h_fergus_hans_lawyer"
+    ]
    }
   }
  ],

@@ -68,19 +68,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "The entry is a near-certain duplicate of Eliza Chappel Porter: Mir likely misreads Miss, and the letter appeared 16 days after her marriage. It is not merged until the original scan is inspected.",
-    "evidence_against": "The scan is unavailable; Mir-to-Miss remains unverified.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. Ruled on the card ', Chappell | iL_Cook Co., III. (And. css, A. T.) I8C4 i541.' ag The surname 'Chappel' is in Norris 1844 and no entry under it carries the initial 'E' of 'Eliza Mir Chappel'. A surname-only agreement is a refusal.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Eliza Mir Chappel with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "rochester_porter_chappel_marriage",
-     "chm_eliza_chappel"
-    ],
-    "candidate_ids": [
-     "cand_eliza_chappel_porter__chappel_eliza_mir"
+     "chicago_democrat_1833_1835"
     ]
    }
   }

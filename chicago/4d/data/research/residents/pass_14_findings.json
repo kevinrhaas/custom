@@ -1,103 +1,799 @@
 {
-  "_doc": "Pending T-0509 ledger. Opened empty by T-0492 so cohort 14 has a home before its run starts. Every manifest member is listed under `pending` until it receives a dated review; a member moves to `completed_person_ids` only when it has one. tools/synthesize_resident_research.py reads `completed_person_ids` and nothing else here, so an empty ledger changes no resident record.",
-  "ticket": "T-0509",
-  "reviewed_on": null,
-  "status": "pending",
-  "default_outcome": "no_corroboration_yet",
-  "default_summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name sweep could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-  "query_templates": [
-    "\"{name}\" Chicago 1835",
-    "\"{name}\" Illinois 1834 1835",
-    "\"{name}\" Chicago directory",
-    "\"{name}\" genealogy occupation migration",
-    "justified OCR/spelling variants where the printed form was visibly suspect"
-  ],
-  "search_scope": [
-    "repository Chicago Democrat and Chicago American transcriptions, newspaper identity ledger and resident/source records",
-    "the six source domains scaffolded by T-0492 under data/research/ — civic lists, 1830 and 1840 census, church registers, books, directories",
-    "Fergus Chicago directories and the existing resident-research source registry",
-    "Cook, Will, Kane, Lake and neighbouring-county local histories",
-    "government, library and archival institutional records"
-  ],
-  "outcome_counts": {},
-  "completed_person_ids": [],
-  "pending": [
-    "boles_george",
-    "parsalls_austin",
-    "king_byram",
-    "bostwick_e_b",
-    "paige_b_r",
-    "thrall_e_l",
-    "bradstreet_j_p",
-    "bailey_bennet",
-    "fowler_elmira",
-    "brookins_david",
-    "foster_caleb",
-    "clarke_h_b",
-    "brooks_gardner",
-    "romer_carl",
-    "bennett_h_c",
-    "brush_matthias",
-    "drake_charles_c",
-    "crocker_h",
-    "bullen_jeduthnn",
-    "bartlett_charles_h",
-    "sherman_h",
-    "bullock_stephen",
-    "richards_charles_t",
-    "moore_henry",
-    "burbee_jonathan",
-    "chapman_chas_h",
-    "marshall_j_a",
-    "burdick_paul",
-    "house_chester",
-    "curtiss_j",
-    "butterfield_ben",
-    "albee_clark_b",
-    "collins_j_h",
-    "byam_seth",
-    "abbott_constant",
-    "grant_james",
-    "case_nehemiah",
-    "parkes_curtis",
-    "stewart_r",
-    "chadwick_joseph",
-    "torry_d_v_s",
-    "lewis_samuel",
-    "chamberlain_l_c",
-    "dunn_dangerfield",
-    "sabine_wm",
-    "chambers_john",
-    "ingersall_david",
-    "dole_george_w",
-    "chanpagne_batist",
-    "frame_david_p",
-    "egan_emeline",
-    "chappel_eliza_mir",
-    "farren_dean",
-    "egan_william_b",
-    "chase_peter",
-    "griswold_eben",
-    "elston_daniel",
-    "clark_erastus",
-    "alden_ebenozer",
-    "fullerton_alexander",
-    "codding_sally",
-    "tuller_elam",
-    "gale_stephen_f",
-    "comstock_h_h",
-    "benn_eli",
-    "goss_o",
-    "cook_rowland_i",
-    "filer_elihu_d",
-    "greene_john",
-    "cooley_edward_v",
-    "sen_elijah_wentworth",
-    "hamilton_richard_j",
-    "covell_thomas_r",
-    "covalt_enos",
-    "harmon_charles_l",
-    "curtenius_fredk"
-  ],
-  "overrides": {}
+ "_doc": "Completed T-0509 ledger — cohort 14 of the resident-research programme. Every one of the 76 frozen-manifest members received a dated review on 2026-09-05 against the repository corpus and its committed crosswalks, and the outcome is written here with the discriminator, or its absence, that decided it. Later-volume readings are recorded in `notes`, which the synthesizer does not promote canonical facts out of: back-projecting a trade or an age across eight years is T-0514/T-0515's decision, not this pass's.",
+ "ticket": "T-0509",
+ "reviewed_on": "2026-09-05",
+ "status": "complete",
+ "default_outcome": "no_corroboration_yet",
+ "default_summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name sweep could be tied to this person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
+ "query_templates": [
+  "\"{name}\" Chicago 1835",
+  "\"{name}\" Illinois 1834 1835",
+  "\"{name}\" Chicago directory",
+  "\"{name}\" genealogy occupation migration",
+  "justified OCR/spelling variants where the printed form was visibly suspect"
+ ],
+ "search_scope": [
+  "repository Chicago Democrat and Chicago American transcriptions, newspaper identity ledger and resident/source records",
+  "the six source domains scaffolded by T-0492 under data/research/ — civic lists, 1830 and 1840 census, church registers, books, directories",
+  "Fergus Chicago directories and the existing resident-research source registry",
+  "Cook, Will, Kane, Lake and neighbouring-county local histories",
+  "government, library and archival institutional records"
+ ],
+ "outcome_counts": {
+  "candidate_identity": 8,
+  "corroborated": 18,
+  "corroborated_enrichment": 11,
+  "no_corroboration": 39
+ },
+ "completed_person_ids": [
+  "boles_george",
+  "parsalls_austin",
+  "king_byram",
+  "bostwick_e_b",
+  "paige_b_r",
+  "thrall_e_l",
+  "bradstreet_j_p",
+  "bailey_bennet",
+  "fowler_elmira",
+  "brookins_david",
+  "foster_caleb",
+  "clarke_h_b",
+  "brooks_gardner",
+  "romer_carl",
+  "bennett_h_c",
+  "brush_matthias",
+  "drake_charles_c",
+  "crocker_h",
+  "bullen_jeduthnn",
+  "bartlett_charles_h",
+  "sherman_h",
+  "bullock_stephen",
+  "richards_charles_t",
+  "moore_henry",
+  "burbee_jonathan",
+  "chapman_chas_h",
+  "marshall_j_a",
+  "burdick_paul",
+  "house_chester",
+  "curtiss_j",
+  "butterfield_ben",
+  "albee_clark_b",
+  "collins_j_h",
+  "byam_seth",
+  "abbott_constant",
+  "grant_james",
+  "case_nehemiah",
+  "parkes_curtis",
+  "stewart_r",
+  "chadwick_joseph",
+  "torry_d_v_s",
+  "lewis_samuel",
+  "chamberlain_l_c",
+  "dunn_dangerfield",
+  "sabine_wm",
+  "chambers_john",
+  "ingersall_david",
+  "dole_george_w",
+  "chanpagne_batist",
+  "frame_david_p",
+  "egan_emeline",
+  "chappel_eliza_mir",
+  "farren_dean",
+  "egan_william_b",
+  "chase_peter",
+  "griswold_eben",
+  "elston_daniel",
+  "clark_erastus",
+  "alden_ebenozer",
+  "fullerton_alexander",
+  "codding_sally",
+  "tuller_elam",
+  "gale_stephen_f",
+  "comstock_h_h",
+  "benn_eli",
+  "goss_o",
+  "cook_rowland_i",
+  "filer_elihu_d",
+  "greene_john",
+  "cooley_edward_v",
+  "sen_elijah_wentworth",
+  "hamilton_richard_j",
+  "covell_thomas_r",
+  "covalt_enos",
+  "harmon_charles_l",
+  "curtenius_fredk"
+ ],
+ "overrides": {
+  "boles_george": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to George Boles with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "parsalls_austin": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Austin Parsalls with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "king_byram": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Byram King agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_for": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B.",
+   "evidence_against": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byram King': The surname 'king' is carried by 1 person(s) of 1835 (Byram King) and none of their given names is 'nathaniel'. L3 given_name_conflict The surname 'King' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Byram King'. A surname-only agreement is a refusal.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"King, By ram, died\". The volume's old-settler obituary list prints the exact and unusual forename Byram against this surname, which attests a Chicago old settler of that name. THE ENTRY IS TRUNCATED WHERE IT SHOULD CARRY ITS DATE: 'died' is followed straight by the next name, so no death date, no place and no age survive. The name is the whole of the reading. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bostwick_e_b": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to E. B. Bostwick with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Bostwick' is in Norris 1844 and no entry under it carries the initial 'E' of 'E. B. Bostwick'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "The surname 'Bostwick' is in Norris 1844 and no entry under it carries the initial 'E' of 'E. B. Bostwick'. A surname-only agreement is a refusal. The surname 'Bostwick' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E. B. Bostwick'. A surname-only agreement is a refusal. The 1843 directory prints 'Bostwick, George M., bartender, Illinois Exchange' and a 'Lardner, Bostwick, straw milliner, Clark'; neither answers to E. B.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "paige_b_r": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to B. R. Paige with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused. All 1 card(s) heading 'Paige' name Illinois and neither Chicago nor Cook County, so the lead against Frederick W. Page; B. R. Paige stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused. All 1 card(s) heading 'Paige' name Illinois and neither Chicago nor Cook County, so the lead against Frederick W. Page; B. R. Paige stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused twice over. No candidate reaches 'Paige' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Paige' at all. And if it were, a heading against Charles Page; Edward Page would still be a surname against a person, which is always a refusal here. Ruled on the card 'Paige | . Bureau Co., III. (Kelt 4 Co., fPub.)' against Charles P",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "thrall_e_l": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. E. L. Thrall agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Surname 'Thrall' folds to the same string as the 1844 entry's, and the given name of both begins E. Surname 'Thrall' folds to the same string as the 1843 entry's, and the given name of both begins E. Surname 'Thrall' folds to the same string as the 1837 entry's, and the given name of both begins E.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Thrall, E, L,, clerk, Charles Walker & Co.\". The 1843 directory prints the same initial pair the 1835 record carries and adds a trade and an employer to a man the corpus otherwise holds only as an initialled letter-list name: clerk to Charles Walker & Co. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bradstreet_j_p": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to J. P Bradstreet with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bailey_bennet": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Bennet Bailey agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "calumet_club_early_chicago_1879",
+    "chicago_democrat_1833_1835",
+    "chicago_tribune_1882_04_25_old_settler_deaths",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Surname 'Bailey' folds to the same string as the 1844 entry's, and the given name of both begins B. Surname 'Bailey' folds to the same string as the 1839 entry's, and the given name of both begins B. Surname 'Bailey' folds to the same string as the 1843 entry's, and the given name of both begins B.",
+   "evidence_against": "The surname 'Bailey' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Bennet Bailey'. A surname-only agreement is a refusal. Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against Bennet Bailey; John Baily stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against Bennet Bailey; John Baily stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bailey | Illinois. (Moses, J.) 1880-9?. ?». See inder. I J' against Bennet Bailey; John Baily; Amos Bailey.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Bailey. Bennet, car[p]e[n]ter. Dearborn, bds John Gray [died [N]ovember 7, 18[8]1, aged 70-11-[7]\". The 1843 directory prints the exact forename and surname, a trade, a street and a household he boards in, and a death date with an age to the month that puts birth about December 1810 — twenty-four at the scene date. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "fowler_elmira": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Elmira Fowler agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers. Surname 'Fowler' folds to the same string as the roll line's, and the given name of both begins E.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Fowler' folds to the same string as the roll line's, and the given name of both begins E.",
+   "evidence_against": "FOWLER ALBERT is refused against Elmira Fowler: the surname agrees and the forename does not.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "brookins_david": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to David Brookins with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "foster_caleb": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Caleb Foster with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'George F. Foster' at printed page 229 line 13 (33S7-9YYJ-9M5) is NOT 'Caleb Foster': The surname 'foster' is carried by 1 person(s) of 1835 (Caleb Foster) and none of their given names is 'george'. L3 given_name_conflict",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "clarke_h_b": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. H. B. Clarke agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Surname 'Clarke' folds to the same string as the entry's, and the given name of both begins H. Surname 'Clarke' folds to the same string as the 1844 entry's, and the given name of both begins H. Surname 'Clarke' folds to the same string as the card's, and the given name of both begins H.",
+   "evidence_against": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 1 person(s) of 1835 (H. B. Clarke) and none of their given names is 'thomas'. 'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 1 person(s) of 1835 (H. B. Clarke) and none of their given names is 'samuel'. L3 given_name_conflict",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Clarke. Hen[r]y B.. farmer, Michigan ave, n.-[e]. cor 16th Street [died July 28, 1840, aged 48.\". The 1843 directory resolves the initials H. B. to Henry B. and gives a trade and a corner. THE PRINTED DEATH YEAR IS NOT USABLE AS READ: this OCR gives 1840, which a directory of 1843 could not have listed him alive for, so the digit is recorded as printed and not corrected. The age 48 is left to whichever year is right. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "brooks_gardner": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Gardner Brooks agrees, forename for forename or initial for initial, with a record outside the post-office lists in the town's 1833 tax and 1834/1835 poll lists. one resident of the surname 'Brooks' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence_for": "one resident of the surname 'Brooks' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "evidence_against": "'J. Brooks' at printed page 215 line 21 (33S7-9YYJ-9WF) is NOT 'Gardner Brooks': The head is written 'J. Brooks' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'brooks'. A surname and a letter is not an identity. L4 initial_only The surname 'Brooks' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gardner Brooks'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "romer_carl": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Carl Romer with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Roer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Roer' at all. And if it were, a heading against Carl Romer would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused twice over. No candidate reaches 'Roer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Roer' at all. And if it were, a heading against Carl Romer would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Roer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Roer' at all. And if it were, a heading against Carl Romer would still be a surname against a person, which is always a refusal here. Ruled on the card 'Roer | FttttM Co, III. l^cpraaa, C. C. Co.) !379i' against Carl Romer.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bennett_h_c": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. H. C. Bennett agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_for": "Surname 'Bennett' folds to the same string as the 1839 entry's, and the given name of both begins H. Surname 'Bennett' folds to the same string as the 1843 entry's, and the given name of both begins H.",
+   "evidence_against": "'John Bennett' at printed page 222 line 30 (33S7-9YYJ-98M) is NOT 'H. C. Bennett': The surname 'bennett' is carried by 1 person(s) of 1835 (H. C. Bennett) and none of their given names is 'john'. L3 given_name_conflict The surname 'Bennett' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'H. C. Bennett'. A surname-only agreement is a refusal. Fergus's reprint of the 1843 Chicago Directory prints Abel Bennett, Henry Bennett, Samuel Curtis Bennett and a 'S. C. Bennett' whose house a teacher boards in — and no H. C. Bennett at all. An initial pair that the volume does not carry is a refusal on the pair, not on the surname.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "brush_matthias": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Matthias Brush with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "drake_charles_c": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Charles C. Drake with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Drake' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Drake' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. The surname 'Drake' is in Norris 1844 and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal. The surname 'Drake' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "crocker_h": {
+   "outcome": "candidate_identity",
+   "summary": "The volume prints two Crockers and neither settles 'H. Crocker'. Its obituary list has 'Crocker. Hans, lawyer, died, Milwaukee, Wis., Mar. 17, 1889, a. 73', whose initial agrees but whose age puts birth about 1816 — nineteen at the scene date, and in Milwaukee thereafter; the 1843 directory has 'Crocker, Josiah Dunton, whitewasher, res 171 Clark [died December 28, 1888, aged 82', whose initial does not agree at all. The lead is retained unasserted.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_for": "Surname 'Crocker' folds to the same string as the entry's, and the given name of both begins H. Surname 'Crocker' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+   "evidence_against": "Refused. All 1 card(s) heading 'Crocker' name Illinois and neither Chicago nor Cook County, so the lead against H. Crocker stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 1 card(s) heading 'Crocker' name Illinois and neither Chicago nor Cook County, so the lead against H. Crocker stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Crocker | IhingiKn Co., lil. (LeBaron, W„ lr., <k Co.. _ b _ \\\\ ,878,' against H. Crocker. The surname 'Crocker' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Crocker'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+   "candidate_ids": [
+    "cand_crocker_h_fergus_hans_lawyer"
+   ]
+  },
+  "bullen_jeduthnn": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Jeduthnn Bullen with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Bullen' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'Jeduthnn Bullen'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Bullen' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'Jeduthnn Bullen'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bartlett_charles_h": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for Charles H. Bartlett was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "evidence_against": "Refused twice over. No candidate reaches 'Bartlott' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bartlott' at all. And if it were, a heading against Charles H. Bartlett would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Bartlott' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bartlott' at all. And if it were, a heading against Charles H. Bartlett would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bartlott | pr— Chicago, 1 1 1 . , Creeta and m a t e of' against  The surname 'Bartlett' is in Norris 1844 and no entry under it carries the initial 'C' of 'Charles H. Bartlett'. A surname-only agreement is a refusal.",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Bartlett' name Chicago or Cook County, the heading is the surname of Charles H. Bartlett exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "sherman_h": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Mrs. H. Sherman agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers. Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H.",
+   "evidence_against": "The surname 'Sherman' stands on printed pages 38-39 and no man under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal. The surname 'Sherman' is in Norris 1844 and no entry under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal. The surname 'Sherman' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal. The 1835 record carries no forename at all — 'Mrs. H. Sherman' — and the volume prints Alson S., Francis Cornwell, Francis T., B. F. and N. Sherman jr. A surname-only agreement is a refusal under this project's standing rule, and an initial with no forename behind it cannot be tested against any of them.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "bullock_stephen": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Stephen Bullock with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "richards_charles_t": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for Charles T. Richards was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "evidence_against": "The surname 'Richards' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Charles T. Richards'. A surname-only agreement is a refusal. Refused. All 9 card(s) heading 'Richardson' name Illinois and neither Chicago nor Cook County, so the lead against Charles T. Richards; Benjamin Richardson stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 9 card(s) heading 'Richardson' name Illinois and neither Chicago nor Cook County, so the lead against Charles T. Richards; Benjamin Richardson stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Richardson | Bureau Co., III. (Kett d, Co., Pub.) 1877; j — _ R' against Charles T. Richards; Benjamin ",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 2 of the 6 card(s) heading 'Richards' name Chicago or Cook County, the heading is the surname of Charles T. Richards exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "moore_henry": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Henry Moore agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. Surname 'Moore' folds to the same string as the entry's, and the given name of both begins H.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839",
+    "fergus_historical_series_26_29",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Moore' folds to the same string as the entry's, and the given name of both begins H. Surname 'Moore' folds to the same string as the roll line's, and the given name of both begins H. Surname 'Moore' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+   "evidence_against": "'David Moore' at printed page 230 line 23 (33S7-9YYJ-NY) is NOT 'Henry Moore': The surname 'moore' is carried by 1 person(s) of 1835 (Henry Moore) and none of their given names is 'david'. 'James S. Moore' at printed page 232 line 20 (33S7-9YYJ-W6) is NOT 'Henry Moore': The surname 'moore' is carried by 1 person(s) of 1835 (Henry Moore) and none of their given names is 'james'. L3 given_name_conflict",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Moore, Henry, died. Concord, Mass., after 1841, aged — .\". The volume's old-settler obituary list prints the exact name, so the entry is about a Chicago man, and dates the death only as 'after 1841' with no age. Henry Moore is among the commonest name shapes in the corpus and the entry carries no trade, address or kinship to discriminate on, so the reading is recorded and nothing is built on it. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "burbee_jonathan": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Jonathan Burbee with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chapman_chas_h": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Chas. H. Chapman agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Surname 'Chapman' folds to the same string as the 1844 entry's, and the given name of both begins C. Surname 'Chapman' folds to the same string as the 1839 entry's, and the given name of both begins C. Surname 'Chapman' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "evidence_against": "The surname 'Chapman' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. The surname 'Chapman' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal. Refused. All 4 card(s) heading 'Chapman' name Illinois and neither Chicago nor Cook County, so the lead against Chas. H. Chapman stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Chapman. Charles [H]., res Wells, bet Randolph and Washington [and, two entries later] Chapman. Henry, tobacconist, 88 Clark, bds Charles [H]. Chapman [died Au[g]ust [6], 1851, aged 48.\". The 1843 directory resolves Chas. H. to Charles H., puts him on Wells between Randolph and Washington, and prints a second Chapman boarding in his house — an address and a household relation for a man the 1835 layer holds as an initialled name. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "marshall_j_a": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. J. A. Marshall agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. Surname 'Marshall' folds to the same string as the entry's, and the given name of both begins J.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Marshall' folds to the same string as the entry's, and the given name of both begins J. Surname 'Marshall' folds to the same string as the roll line's, and the given name of both begins J. Surname 'Marshall' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "evidence_against": "MARSHALL ROLLEN is refused against J. A. Marshall: the surname agrees and the forename does not. Refused twice over. No candidate reaches 'Marahall' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Marahall' at all. And if it were, a heading against J. A. Marshall would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Marahall' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Marahall' at all. And if it were, a heading against Jam[?] A. Marshall would still be a surname against a person, which is always a refusal here. Ruled on the card 'Marahall | Illinois' against Jam[?] A. Marshall; J. A. Marshall.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "burdick_paul": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Paul Burdick with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Burdick' is in Norris 1844 and no entry under it carries the initial 'P' of 'Paul Burdick'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Burdick' is in Norris 1844 and no entry under it carries the initial 'P' of 'Paul Burdick'. A surname-only agreement is a refusal. The surname 'Burdick' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Paul Burdick'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "house_chester": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Chester House with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "The surname is also the commonest building word in a directory. Every apparent hit is a hotel — 'American Temperance House', 'the Tremont House', 'the Mansion House' — and the volume prints no person named House.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "curtiss_j": {
+   "outcome": "candidate_identity",
+   "summary": "Fergus's reprint of the 1843 Chicago Directory prints TWO men who answer to 'J. Curtiss': 'Curtiss, James, State’s attorney, 136 Lake, res W. Randolph, bet May and Ann [9th mayor, died, Joliet, Ill., November 2, 1859, aged 56' and 'Curtiss. J. W., gunsmith, res cor North Water and Wolcott'. The 1835 record carries the initial alone, and nothing in it — no trade, no street, no kin — chooses between an attorney and a gunsmith. Both readings are recorded and neither is asserted.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "Surname 'Curtiss' folds to the same string as the register entry's, and the given name of both begins J. Surname 'Curtiss' folds to the same string as the 1844 entry's, and the given name of both begins J. Surname 'Curtiss' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+   "evidence_against": "Surname 'Curtiss' folds to the same string as the 1843 entry's, and the given name of both begins J. Surname 'Curtiss' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+   "candidate_ids": [
+    "cand_curtiss_j_fergus_1843_james_attorney",
+    "cand_curtiss_j_fergus_1843_jw_gunsmith"
+   ]
+  },
+  "butterfield_ben": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Ben Butterfield with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. The surname 'Butterfield' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal. The surname 'Butterfield' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "albee_clark_b": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Clark B. Albee agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Surname 'Albee' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+   "evidence_against": "Refused. 1 of the 1 card(s) heading 'Albee' do name Chicago or Cook County and the heading is the surname of Clark B. Albee exactly, but the index files every family of a surname under one heading and gives no forename, so 'Albee' against Clark B. Albee is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Refused. 1 of the 1 card(s) heading 'Albee' do name Chicago or Cook County and the heading is the surname of Clark B. Albee exactly, but the index files every family of a surname under one heading and gives no forename, so 'Albee' against Clark B. Albee is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the c",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "collins_j_h": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. J. H. Collins agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the Fergus 1839/1843 and Norris 1844 directories. The surname folds equal but no forename agrees initial for initial: 'George C. Collins' against 'J. H. Collins'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844",
+    "st_cyr_register_ichr_v4"
+   ],
+   "evidence_for": "The surname folds equal but no forename agrees initial for initial: 'George C. Collins' against 'J. H. Collins'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches. Surname 'Collins' folds to the same string as the 1844 entry's, and the given name of both begins J. Surname 'Collins' folds to the same string as the bidder's, and the given name of both begins J.",
+   "evidence_against": "The surname 'Collins' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. H. Collins'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Charles Collins' at printed page 222 line 9 (33S7-9YYJ-98M) is NOT 'J. H. Collins': The surname 'collins' is carried by 1 person(s) of 1835 (J. H. Collins) and none of their given names is 'charles'. 'S. B. Collins' at printed page 215 line 18 (33S7-9YYJ-9WF) is NOT 'J. H. Collins': The head is written 'S. B. Collins' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'collins'. A surname and a letter is not an identity.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Collins, James [H]., attorney (Butterfield & C.), res 15 Lake [died, Ottawa, 111., July 14, 1854, aged 50.\". The 1843 directory resolves the initials J. H. to James H., prints the trade attorney and the firm Butterfield & Collins, and gives a death date and age that put birth about 1804. The same volume prints 'James H. Collins, Esq.' in its list of the town's notables. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "byam_seth": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Seth Byam with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "abbott_constant": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Constant Abbott agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers. Surname 'Abbott' folds to the same string as the roll line's, and the given name of both begins C.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Abbott' folds to the same string as the roll line's, and the given name of both begins C.",
+   "evidence_against": "The surname 'Abbott' is in Norris 1844 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal. The surname 'Abbott' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal. The surname 'Abbott' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "grant_james": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. James Grant agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. Surname 'Grant' folds to the same string as the entry's, and the given name of both begins J.",
+   "sources": [
+    "calumet_club_early_chicago_1879",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices",
+    "fergus_chicago_directory_1839",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Grant' folds to the same string as the entry's, and the given name of both begins J. Surname 'Grant' folds to the same string as the roll line's, and the given name of both begins J. one resident of the surname 'Grant' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "evidence_against": "'Barry Grant' at printed page 231 line 15 (33S7-9YYJ-38) is NOT 'James Grant': The surname 'grant' is carried by 1 person(s) of 1835 (James Grant) and none of their given names is 'barry'. L3 given_name_conflict",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "case_nehemiah": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Nehemiah Case with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Case' stands on the Second Presbyterian roll and no line under it carries the initial 'N' of 'Nehemiah Case'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Case' stands on the Second Presbyterian roll and no line under it carries the initial 'N' of 'Nehemiah Case'. A surname-only agreement is a refusal. Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Nehemiah Case; Peter Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Nehemiah Case; Peter Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | Bureau Co., III. (Kett It Co., Pub.) I877i igo,' against Nehemiah Case; Peter Chase.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "parkes_curtis": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Curtis Parkes with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Parke' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Parke' at all. And if it were, a heading against Manson Parker; Curtis Parkes would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused twice over. No candidate reaches 'Parke' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Parke' at all. And if it were, a heading against Manson Parker; Curtis Parkes would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Parke' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Parke' at all. And if it were, a heading against Manson Parker; Curtis Parkes would still be a surname against a person, which is always a refusal here. Ruled on the card 'Parke | I^Virrtoa\\'Co\", III. (Chapman, C. C. 4 Co.) 18791' aga",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "stewart_r": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. R. Stewart agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_for": "Surname 'Stewart' folds to the same string as the 1839 entry's, and the given name of both begins R. Surname 'Stewart' folds to the same string as the 1837 entry's, and the given name of both begins R.",
+   "evidence_against": "The surname 'Stewart' is in Fergus's death notices and no entry under it carries the initial 'R' of 'R. Stewart'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Alexander Stewart' at printed page 215 line 9 (33S7-9YYJ-9WF) is NOT 'R. Stewart': The surname 'stewart' is carried by 1 person(s) of 1835 (R. Stewart) and none of their given names is 'alexander'. L3 given_name_conflict The 1843 directory prints E. A. Stewart the watchmaker, Ephraim T. Stewart and Hart L. Stewart, and no R. Stewart.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chadwick_joseph": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Joseph Chadwick agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Surname 'Chadwick' folds to the same string as the 1837 entry's, and the given name of both begins J.",
+   "evidence_against": "The surname 'Chadwick' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joseph Chadwick'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "torry_d_v_s": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to D. V. S. Torry with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "lewis_samuel": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for Samuel Lewis was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "The surname 'Lewis' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. The surname 'Lewis' stands on the Second Presbyterian roll and no line under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal. The surname 'Lewis' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal. The apparent hits are the FORENAME Lewis, not the surname — 'Burke, Lewis', 'Roberts. Henry Lewis' — and the volume prints no Samuel Lewis.",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 3 of the 5 card(s) heading 'Lewis' name Chicago or Cook County, the heading is the surname of Samuel Lewis exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chamberlain_l_c": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for L. C Chamberlain was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "evidence_against": "The surname 'Chamberlain' stands on the Second Presbyterian roll and no line under it carries the initial 'L' of 'L. C Chamberlain'. A surname-only agreement is a refusal. Refused twice over. No candidate reaches 'Chamberlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Chamberlin' at all. And if it were, a heading against L. C Chamberlain would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Chamberlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Chamberlin' at all. And if it were, a heading against L. C Chamberlain would still be a surname against a person, which is always a refusal here. Ruled on the card 'Chamberlin | .24 ILLINOIS' against L. C Chamberlain.",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Chamberlain' name Chicago or Cook County, the heading is the surname of L. C Chamberlain exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "dunn_dangerfield": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Dangerfield Dunn with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Dunn' stands on the Second Presbyterian roll and no line under it carries the initial 'D' of 'Dangerfield Dunn'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Dunn' stands on the Second Presbyterian roll and no line under it carries the initial 'D' of 'Dangerfield Dunn'. A surname-only agreement is a refusal. Refused. All 2 card(s) heading 'Dunn' name Illinois and neither Chicago nor Cook County, so the lead against Dangerfield Dunn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 2 card(s) heading 'Dunn' name Illinois and neither Chicago nor Cook County, so the lead against Dangerfield Dunn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Dunn | . Fulton Co , III. tCkptnai, C. C. t Co.) 1379:' against Dangerfield Dunn.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "sabine_wm": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Wm. Sabine agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839"
+   ],
+   "evidence_for": "Surname 'Sabine' folds to the same string as the 1839 entry's, and the given name of both begins W. Surname 'Sabine' folds to the same string as the 1837 entry's, and the given name of both begins W.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chambers_john": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to John Chambers with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Chambers' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John Chambers'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Chambers' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John Chambers'. A surname-only agreement is a refusal. Refused. All 1 card(s) heading 'Chambers' name Illinois and neither Chicago nor Cook County, so the lead against John Chambers stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. All 1 card(s) heading 'Chambers' name Illinois and neither Chicago nor Cook County, so the lead against John Chambers stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chambers | I Co., 111. (LtSute, W„ k „ 4Co., PubJ 1879,' against John Chambers.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "ingersall_david": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to David Ingersall with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Ingeraoll' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Ingeraoll' at all. And if it were, a heading against David Ingersall; Chester Ingersoll would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused twice over. No candidate reaches 'Ingeraoll' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Ingeraoll' at all. And if it were, a heading against David Ingersall; Chester Ingersoll would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Ingeraoll' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Ingeraoll' at all. And if it were, a heading against David Ingersall; Chester Ingersoll would still be a surname against a person, which is always a refusal here. Ruled on the card 'Ingeraoll | . Illlnolt. (Motes, J,) 1888-92. 2v. Refused twice over. No candidate reaches 'Ingeraoll' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Ingeraoll' at all. And if it were, a heading against David Ingersall; Chester Ingersoll would still be a surname against a person, which is always a refusal here. Ruled on the card 'Ingeraoll | Chicago, III. (Andreat, A. T.) l8»4-",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "dole_george_w": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. George Washington Dole agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories. Surname 'Dole' folds to the same string as the roll line's, and the given name of both begins G.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_historical_series_26_29",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Dole' folds to the same string as the roll line's, and the given name of both begins G. one resident of the surname 'Dole' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. Surname 'Dole' folds to the same string as the 1837 entry's, and the given name of both begins G.",
+   "evidence_against": "Newberry & Dole is a firm's own style and George Washington Dole is a man. A style stands for a partnership and names no one member of it; T-0398 records the same fault arriving from the other direction, where a firm's signature was read where a person was wanted. The firm is held as a business and is not merged into either partner. Refused. Refused. All 1 card(s) heading 'Dole' name Illinois and neither Chicago nor Cook County, so the lead against George Washington Dole stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused twice over. No candidate reaches 'Doyle' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Doyle' at all. And if it were, a heading against George Washington Dole would still be a surname against a person, which is always a refusal here.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Dole, George Wa[sh]ington ([N]ewberry [&] D.). Michigan, bet [R]ush a[nd] Pine, alderman [6]th ward [died April 18, 18[6]0, a[g]ed — .\". The 1843 directory prints the full given names this project already carries, an address on Michigan between Rush and Pine, an aldermanship, and the firm as 'Newberry & D.' — which names the firm and still does not say WHICH Newberry stood in it, the question T-0396 holds open. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chanpagne_batist": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Batist Chanpagne with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "frame_david_p": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. David P. Frame agrees, forename for forename or initial for initial, with a record outside the post-office lists in the Illinois public-domain land tract sales. FRAME DAVID P matches David P. Frame: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "isa_public_domain_land_tract_sales"
+   ],
+   "evidence_for": "FRAME DAVID P matches David P. Frame: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "egan_emeline": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Emeline Egan agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers. The surname folds equal but no forename agrees initial for initial: 'James Egan' against 'Dr William Bradshaw Egan', 'Emeline Egan'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-10-17 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "st_cyr_register_ichr_v4"
+   ],
+   "evidence_for": "The surname folds equal but no forename agrees initial for initial: 'James Egan' against 'Dr William Bradshaw Egan', 'Emeline Egan'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-10-17 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches. The surname folds equal but no forename agrees initial for initial: 'Margaret Egan' against 'Dr William Bradshaw Egan', 'Emeline Egan'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-08-26 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches. The surname folds equal but no forename agrees initial for initial: 'Margaret Egan' against 'Dr William Bradshaw Egan', 'Emeline Egan'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-09-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches.",
+   "evidence_against": "The surname 'Egan' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Emeline Egan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Patrick Egan' at printed page 229 line 27 (33S7-9YYJ-9M5) is NOT 'Emeline Egan': The surname 'egan' is carried by 2 person(s) of 1835 (Dr William Bradshaw Egan, Emeline Egan) and none of their given names is 'patrick'. L3 given_name_conflict",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chappel_eliza_mir": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Eliza Mir Chappel with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches ', Chappell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly ', Chappell' at all. And if it were, a heading against Eliza Mir Chappel would still be a surname against a person, which is always a refusal here. Ruled on the card ', Chappell | iL_Cook Co., III. (And. css, A. T.) I8C4 i541.' ag The surname 'Chappel' is in Norris 1844 and no entry under it carries the initial 'E' of 'Eliza Mir Chappel'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "farren_dean": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Dean Farren with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "egan_william_b": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Dr William Bradshaw Egan agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories. The register writes \"Doctor Egan\" and the residents layer writes \"Dr William Bradshaw Egan\". THIS MERGE IS MADE ON A TITLE, NOT A FORENAME, and it is made only because the title is itself an attribute that agrees: three independent agreements stand behind it — the surname Egan; the medical title, which matches the resident record's occupation of physician and Andreas' count of him among the eight ",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844",
+    "st_marys_baptismal_register_1833_1835"
+   ],
+   "evidence_for": "The register writes \"Doctor Egan\" and the residents layer writes \"Dr William Bradshaw Egan\". THIS MERGE IS MADE ON A TITLE, NOT A FORENAME, and it is made only because the title is itself an attribute that agrees: three independent agreements stand behind it — the surname Egan; the medical title, which matches the resident record's occupation of physician and Andreas' count of him among the eight  one resident of the surname 'Egan' agrees with the entry's forenames; 2 bearer(s) of the surname were considered. Surname 'Egan' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+   "evidence_against": "The surname 'Egan' is in Fergus's death notices and no entry under it carries the initial 'W' of 'Dr William Bradshaw Egan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Patrick Egan' at printed page 229 line 27 (33S7-9YYJ-9M5) is NOT 'Dr William Bradshaw Egan': The surname 'egan' is carried by 2 person(s) of 1835 (Dr William Bradshaw Egan, Emeline Egan) and none of their given names is 'patrick'. The surname 'Egan' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Dr William Bradshaw Egan'. A surname-only agreement is a refusal.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Egan, [W]m. Bradshaw, ph[y]sician, recorder, etc., 68 Clark, res Clark [died October 27, 18[6]0, aged — .\". The 1843 directory prints the middle name Bradshaw in full, the trade the 1835 record carries, a second office (recorder), and a street number on Clark. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "chase_peter": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Peter Chase with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Chase' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Peter Chase'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Chase' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Peter Chase'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. The surname 'Chase' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'Peter Chase'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "griswold_eben": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Eben Griswold with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Griawold' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Griawold' at all. And if it were, a heading against Eben Griswold would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Refused twice over. No candidate reaches 'Griawold' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Griawold' at all. And if it were, a heading against Eben Griswold would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Griawold' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Griawold' at all. And if it were, a heading against Eben Griswold would still be a surname against a person, which is always a refusal here. Ruled on the card 'Griawold | ILLINOIS.' against Eben Griswold. The surname 'Griswold' is in Norris 1844 and no entry under it carries the initial 'E' of 'Eben Griswold'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "elston_daniel": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Daniel Elston agrees, forename for forename or initial for initial, with a record outside the post-office lists in the Fergus 1839/1843 and Norris 1844 directories, the Illinois public-domain land tract sales. ELSTON DANIEL matches Daniel Elston: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "isa_public_domain_land_tract_sales",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "ELSTON DANIEL matches Daniel Elston: the residents layer holds exactly one person of the surname and the forename agrees in full. Surname 'Elston' folds to the same string as the register entry's, and the given name of both begins D. Surname 'Elston' folds to the same string as the 1844 entry's, and the given name of both begins D.",
+   "evidence_against": "Surname 'Elston' folds to the same string as the 1839 entry's, and the given name of both begins D.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Elston, Daniel, patent press [b]rick [m]aker, res [N]orth [B]ranch [died Se[p]tember 13, 18[55], aged — .\". The 1843 directory prints the exact name with a trade — patent press brick maker — and a location on the North Branch, where the repository already places his brickyard. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "clark_erastus": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Erastus Clark agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the Fergus 1839/1843 and Norris 1844 directories. Surname 'Clark' folds to the same string as the roll line's, and the given name of both begins E.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Clark' folds to the same string as the roll line's, and the given name of both begins E. Surname 'Clark' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+   "evidence_against": "The surname 'Clark' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'J. D. Clark' at printed page 215 line 19 (33S7-9YYJ-9WF) is NOT 'Erastus Clark': The head is written 'J. D. Clark' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'clark'. A surname and a letter is not an identity. 'J. E. Clark' at printed page 226 line 5 (33S7-9YYJ-B3) is NOT 'Erastus Clark': The head is written 'J. E. Clark' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'clark'. A surname and a letter is not an identity. One hundred and fifteen apparent surname hits in the volume and not one 'Erastus Clark'. The forename appears in it only as Erastus Bowen, Erastus Selden Bowen and Erastus Smith Williams, all bearing other surnames.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "alden_ebenozer": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Ebenozer Alden with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Alden' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Ebenozer Alden'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "The surname 'Alden' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Ebenozer Alden'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "fullerton_alexander": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Alexander N. Fullerton agrees, forename for forename or initial for initial, with a record outside the post-office lists in the St Cyr / St Mary registers, the town's 1833 tax and 1834/1835 poll lists. Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "second_presbyterian_chicago_1892"
+   ],
+   "evidence_for": "Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A. one resident of the surname 'Fullerton' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "evidence_against": "Refused. 1 of the 2 card(s) heading 'Fullerton' do name Chicago or Cook County and the heading is the surname of Alexander N. Fullerton exactly, but the index files every family of a surname under one heading and gives no forename, so 'Fullerton' against Alexander N. Fullerton is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold. Refused. 1 of the 2 card(s) heading 'Fullerton' do name Chicago or Cook County and the heading is the surname of Alexander N. Fullerton exactly, but the index files every family of a surname under one heading and gives no forename, so 'Fullerton' against Alexander N. Fullerton is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold. Ruled on t Surname 'Fullerton' folds to the same string as the 1839 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "codding_sally": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Sally Mr Codding with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "tuller_elam": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Elam Tuller with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: TULLER JONATHON is refused against Elam Tuller: the surname agrees and the forename does not. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "TULLER JONATHON is refused against Elam Tuller: the surname agrees and the forename does not. The surname 'Tuller' is in Norris 1844 and no entry under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal. The surname 'Tuller' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "gale_stephen_f": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Stephen F. Gale agrees, forename for forename or initial for initial, with a record outside the post-office lists in the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories, the old-settler rolls and Fergus's death notices. one resident of the surname 'Gale' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "sources": [
+    "calumet_club_early_chicago_1879",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "one resident of the surname 'Gale' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. Surname 'Gale' folds to the same string as the 1844 entry's, and the given name of both begins S. Surname 'Gale' folds to the same string as the 1839 entry's, and the given name of both begins S.",
+   "evidence_against": "The same passage names Hubbard's informant's 'brother William' — William Gale — among the passengers of 25 May 1835. This project holds Stephen F. Gale, graded attested. William Gale against Stephen F. Gale is a disagreement of given names on a shared surname and is refused for that reason alone, without reaching the middle initial. REFUSED. The surname 'Gale' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Stephen F. Gale'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. Surname 'Gale' folds to the same string as the 1843 entry's, and the given name of both begins S.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Gale. Stephen Francis (S. F. Gale [&] Co.), 108 Dearborn [and, in the fire-department roll] Stephen Francis Gale, 1st Assistant.\". The 1843 directory resolves the initial F. to Francis, gives the firm S. F. Gale & Co. at 108 Dearborn, and the same volume's fire-department roll makes him First Assistant Engineer — three printings of the same resolved name in one book. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "comstock_h_h": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to H. H. Comstock with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. Refused twice over. No candidate reaches 'Comatock' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Comatock' at all. And if it were, a heading against H. H. Comstock would still be a surname against a person, which is always a refusal here. Ruled on the card 'Comatock | I l l i n o i e . R a r l y Cr.ie«ro (Chicago' against H. H The surname 'Comstock' is in Norris 1844 and no entry under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal. The 1843 directory prints 'Comstock. J. S. (C. & Ackley)' and 'Comstock, Luke, laborer' and no H. H. Comstock.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "benn_eli": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Eli Benn with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "goss_o": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to O. Goss with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: The surname 'Goss' is in Norris 1844 and no entry under it carries the initial 'O' of 'O. Goss'. A surname-only agreement is a refusal. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "The surname 'Goss' is in Norris 1844 and no entry under it carries the initial 'O' of 'O. Goss'. A surname-only agreement is a refusal. The surname 'Goss' is in Fergus 1839 and no entry under it carries the initial 'O' of 'O. Goss'. A surname-only agreement is a refusal. The surname 'Goss' is in Fergus 1843 and no entry under it carries the initial 'O' of 'O. Goss'. A surname-only agreement is a refusal. The 1843 directory prints only 'Goss, Samuel W. & Co., dry goods and groceries, 98 Lake' and its principal 'Goss, Samuel W.'; no O. Goss stands in the volume.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "cook_rowland_i": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for Rowland I!. Cook was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "evidence_against": "The surname 'Cook' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'Martin Cook' at printed page 222 line 22 (33S7-9YYJ-98M) is NOT 'Rowland I!. Cook': The surname 'cook' is carried by 1 person(s) of 1835 (Rowland I!. Cook) and none of their given names is 'martin'. L3 given_name_conflict A raw surname sweep over-reports this name badly: every apparent hit in the volume is the COUNTY — 'Dunlap of Cook', 'Cook County' — and no Rowland Cook is printed anywhere in it.",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 3 of the 10 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Rowland I!. Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "filer_elihu_d": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Elihu D. Filer with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "greene_john": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Major John Greene with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: Mary Green married Michael Nolan on 29 August 1835. Major John Greene is an attested resident. The surnames do not fold equal — green against greene — and the forenames are a woman's and a man's. Recorded because the pair looks like a spelling variant at a glance and is not one. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "evidence_against": "Mary Green married Michael Nolan on 29 August 1835. Major John Greene is an attested resident. The surnames do not fold equal — green against greene — and the forenames are a woman's and a man's. Recorded because the pair looks like a spelling variant at a glance and is not one. Refused. All 1 card(s) heading 'Green' name Illinois and neither Chicago nor Cook County, so the lead against Damel M. Green; Major John Greene stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Refused. 1 of the 2 card(s) heading 'Greene' do name Chicago or Cook County and the heading is the surname of Major John Greene exactly, but the index files every family of a surname under one heading and gives no forename, so 'Greene' against Damel M. Green; Major John Greene is a surname against a person. It waits on moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, w",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "cooley_edward_v": {
+   "outcome": "candidate_identity",
+   "summary": "A plausible external identity for Edward V Cooley was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+   "evidence_against": "'Simon Cooley' at printed page 216 line 16 (33S7-9YYJ-DD) is NOT 'Edward V Cooley': The surname 'cooley' is carried by 1 person(s) of 1835 (Edward V Cooley) and none of their given names is 'simon'. L3 given_name_conflict The surname 'Cooley' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Edward V Cooley'. A surname-only agreement is a refusal.",
+   "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 1 of the 2 card(s) heading 'Cooley' name Chicago or Cook County, the heading is the surname of Edward V Cooley exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "sen_elijah_wentworth": {
+   "outcome": "corroborated_enrichment",
+   "summary": "Corroborated in a volume printed after the scene date. Elijah Wentworth sen. agrees with an entry in a later volume. The reading enriches the biography and adds no 1835 attestation.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_historical_series_26_29"
+   ],
+   "notes": "FERGUS 26-29, AS PRINTED: \"Wentworth, Elijah, died, St. Jo., Mich., [N]ov.. 1863, aged 87. [and the line below it] Wentworth, jr., Elijah, died, Galesburg, 111., November 18, 1875, aged 72.\". The volume's obituary list carries BOTH Elijah Wentworths on consecutive lines and distinguishes them senior from junior exactly as this project's two person records do — an independent printing of the split, not just of the name. The senior's age at death puts birth about 1776, which makes him about fifty-nine at the scene date. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "hamilton_richard_j": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Richard Jones Hamilton agrees, forename for forename or initial for initial, with a record outside the post-office lists in the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories. one resident of the surname 'Hamilton' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "one resident of the surname 'Hamilton' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. Surname 'Hamilton' folds to the same string as the 1844 entry's, and the given name of both begins R. Surname 'Hamilton' folds to the same string as the 1843 entry's, and the given name of both begins R.",
+   "evidence_against": "'R. J. Hamilton' at printed page 216 line 12 (33S7-9YYJ-DD) is NOT 'Richard Jones Hamilton': The head is written 'R. J. Hamilton' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'hamilton'. A surname and a letter is not an identity. 'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Richard Jones Hamilton': The surname 'hamilton' is carried by 1 person(s) of 1835 (Richard Jones Hamilton) and none of their given names is 'mrs'. 'Robert S. Hamilton' at printed page 232 line 24 (33S7-9YYJ-W6) is NOT 'Richard Jones Hamilton': The surname 'hamilton' is carried by 1 person(s) of 1835 (Richard Jones Hamilton) and none of their given names is 'robert'.",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Hamilton, Richard Jones (H. [&] Chamberlin). res 264 [M]ichi[g]an [died December 26, 1860, aged 6[?].\". The 1843 directory resolves the initial J. to Jones, names the firm Hamilton & Chamberlin and gives a residence on Michigan. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "covell_thomas_r": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Thomas R. Covell with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "covalt_enos": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Enos Covalt with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "harmon_charles_l": {
+   "outcome": "corroborated",
+   "summary": "Independently corroborated. Charles Loomis Harmon agrees, forename for forename or initial for initial, with a record outside the post-office lists in the town's 1833 tax and 1834/1835 poll lists, the Fergus 1839/1843 and Norris 1844 directories. one resident of the surname 'Harmon' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "fergus_historical_series_26_29",
+    "norris_directory_1844"
+   ],
+   "evidence_for": "one resident of the surname 'Harmon' agrees with the entry's forenames; 3 bearer(s) of the surname were considered. Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C. Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C.",
+   "evidence_against": "The surname 'Harmon' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles Loomis Harmon'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'William Harmon' at printed page 231 line 3 (33S7-9YYJ-38) is NOT 'Charles Loomis Harmon': The surname 'harmon' is carried by 3 person(s) of 1835 (Charles Loomis Harmon, Isaac Dewey Harmon, Dr Elijah Dewey Harmon) and none of their given names is 'william'. L3 given_name_conflict",
+   "notes": "FERGUS 26-29, AS PRINTED: \"Harmon, Charles Loomis. dry goods and [g]roceries. 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and [M]adison [died [N]ovember 2, 1868, aged 5[9]-4. [and, in the volume's advertising pages] C L, HARMON, commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago. 111.\". TWO independent printings in one volume put the same man's business on the same corner — the directory line and his own advertisement — with a street number, 145 South Water, a residence street, and a death age to the month that puts birth about July 1809. This is the shape the owner asked for: a documented later address for a business the 1835 layer cannot place. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  },
+  "curtenius_fredk": {
+   "outcome": "no_corroboration",
+   "summary": "No reliable record outside the Chicago post-office lists could be tied to Fred'k. Curtenius with a date, place, occupation or kinship discriminator. No later volume, civic list, land-sale, census or church register reached prints the name at all. This is a documented no-corroboration result, not evidence that the person did not exist.",
+   "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply."
+  }
+ },
+ "method": "Exact name first, then justified initial and OCR variants, across the committed newspapers and identity ledger, the 1833 tax and 1834/1835 poll lists, the Illinois public-domain land tract sales, the 1830 census of the Chicago precinct, the 1840 census heads, the St Cyr and St Mary registers, Fergus 1839, Fergus 1843, Norris 1844, Fergus's Historical Series 26-29 (the 1843 directory, its advertising pages, its fire-department and civic rolls, and Wentworth's obituary lists), the Calumet Club old-settler rolls, the Newberry genealogical index cards and the Genealogy Trails transcriptions. Where the repository already holds a crosswalk verdict for a name, that verdict is quoted rather than re-decided; what this pass adds on top is a directed reading of Fergus 26-29 against all 76 names, which the directory claim ledgers do not cover.",
+ "outcome_rule": "corroborated = an agreement, forename for forename or initial for initial, with an independent source written at or before the scene year; corroborated_enrichment = the same agreement but only in a volume printed after 1835, which enriches biography and adds no 1835 attestation; candidate_identity = a plausible external identity with no date, place, occupation or kinship discriminator bridging it; no_corroboration = the post-office lists and a documented refusal, which is a negative search and not evidence of absence.",
+ "pending_person_ids": []
 }

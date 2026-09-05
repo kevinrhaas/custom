@@ -24,7 +24,7 @@
       "name": "Constant Abbott",
       "person_id": "abbott_constant",
       "household_id": "hh_abbott_constant",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Abbott' folds to the same string as the roll line's, and the given name of both begins C.",
       "roll_lines": [
@@ -1826,7 +1826,7 @@
       "name": "Erastus Clark",
       "person_id": "clark_erastus",
       "household_id": "hh_clark_erastus",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Clark' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
@@ -3158,7 +3158,7 @@
       "name": "Bennet Bailey",
       "person_id": "bailey_bennet",
       "household_id": "hh_bailey_bennet",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Bailey' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Bennet Bailey'. A surname-only agreement is a refusal."
@@ -3356,7 +3356,7 @@
       "name": "Gardner Brooks",
       "person_id": "brooks_gardner",
       "household_id": "hh_brooks_gardner",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 10,
       "rule": "The surname 'Brooks' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gardner Brooks'. A surname-only agreement is a refusal."
@@ -3554,7 +3554,7 @@
       "name": "Chas. H. Chapman",
       "person_id": "chapman_chas_h",
       "household_id": "hh_chapman_chas_h",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Chapman' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal."

@@ -69,14 +69,15 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A county biography says Elam Tuller's family reached Chicago in July 1833 and identifies his Connecticut origin and farmer, mechanic and steam-engine manufacturing background. Two letter returns support the chronology.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "evidence_against": "TULLER JONATHON is refused against Elam Tuller: the surname agrees and the forename does not. The surname 'Tuller' is in Norris 1844 and no entry under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal. The surname 'Tuller' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elam Tuller'. A surname-only agreement is a refusal.",
+    "summary": "No reliable record outside the Chicago post-office lists could be tied to Elam Tuller with a date, place, occupation or kinship discriminator. The repository's own crosswalks record the refusal: TULLER JONATHON is refused against Elam Tuller: the surname agrees and the forename does not. This is a documented no-corroboration result, not evidence that the person did not exist.",
+    "notes": "Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
     "source_ids": [
-     "whiteside_elam_tuller"
+     "chicago_democrat_1833_1835"
     ]
    }
   }

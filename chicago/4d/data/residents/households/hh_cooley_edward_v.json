@@ -68,12 +68,16 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
-    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    "evidence_against": "'Simon Cooley' at printed page 216 line 16 (33S7-9YYJ-DD) is NOT 'Edward V Cooley': The surname 'cooley' is carried by 1 person(s) of 1835 (Edward V Cooley) and none of their given names is 'simon'. L3 given_name_conflict The surname 'Cooley' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Edward V Cooley'. A surname-only agreement is a refusal.",
+    "summary": "A plausible external identity for Edward V Cooley was found and is retained unasserted: no date, place, occupation or kinship discriminator bridges it to the 1835 person.",
+    "notes": "Repository lead retained as a candidate: Plausible, insufficient - and answerable without acquiring anything. 1 of the 2 card(s) heading 'Cooley' name Chicago or Cook County, the heading is the surname of Edward V Cooley exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835"
+    ]
    }
   }
  ],
