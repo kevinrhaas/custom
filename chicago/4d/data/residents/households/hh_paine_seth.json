@@ -77,7 +77,9 @@
     "notes": "Andreas's Seth Paine biography gives an exact uncommon name and a direct 1834 migration from Montpelier, Vermont to Chicago. In combination with the 1835 postal entry, this is sufficient to treat the postal name as strongly corroborated while not importing Paine's much later banking or abolitionist activity into the 1835 scene.",
     "source_ids": [
      "andreas_seth_paine_1834"
-    ]
+    ],
+    "regraded_on": "2026-09-04",
+    "rule": "G2e"
    },
    "book_evidence": [
     {
@@ -100,8 +102,7 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
-   ],
-   "resident_subtype": "projected_resident"
+   ]
   }
  ],
  "touches_removal": false,

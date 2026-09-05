@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:10 AM",
+  "generated_ct": "Sep 5, 2026, 4:34 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12312,7 +12312,7 @@
     {
       "id": "T-0739",
       "title": "dev's gate has been red since 2026-09-05 04:00 UTC: cohorts 13, 14 and 15 claim people who already carry a research row, the ladder re-derivations disagree, and data/sidecars/1835/people.json has drifted",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12322,32 +12322,12 @@
       "opened": "2026-09-05",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 4:34:50 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
-    },
-    {
-      "id": "T-0739",
-      "title": "The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column",
-      "state": "open",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "M",
-      "legacy_id": null,
-      "parent": null,
-      "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
-      "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 155
     },
     {
       "id": "T-0740",
@@ -12588,6 +12568,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 148
+    },
+    {
+      "id": "T-0757",
+      "title": "The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 144
     }
   ]
 }
