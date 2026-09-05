@@ -277,14 +277,14 @@ T-0301 — Every visible ticket at the top of the queue is parked on hold or in 
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 
 # --- CLEANUP — MANY TICKETS, FEW FAULTS. Verify, keep what is still true, and withdraw the rest
-# --- WITH THE EVIDENCE. T-0722, T-0725, T-0731, T-0774, T-0803 and T-0804 are six reports of ONE
-# --- 32 MB ceiling, each filed by a different run inside a day, and #836 has since fixed it
-# --- (31.999 -> 30.4 MB). The eight below them were already banded this way.
-T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
-T-0725 — The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate
-T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
-T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
-T-0803 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
+# --- WITH THE EVIDENCE. THE 32 MB BAND IS DONE, 2026-09-05, on the owner's "do it if those
+# --- tickets are useless now": T-0725, T-0731, T-0774 and T-0803 were four more reports of the
+# --- one ceiling and are withdrawn — measured 30.412 MB of 32 with 1.588 MB of headroom and
+# --- zero duplicate published files over 64 KB, which is the condition #836's new rule gates.
+# --- T-0722 was NOT withdrawn: its work LANDED in #836 while the ticket still read `claimed,
+# --- pr: null`, which is T-0802's fault caught live, so it closed as done. T-0804 stays open —
+# --- it is a live proposal (1.99 MB from minifying the mirror) with an owner question attached,
+# --- not a report of the ceiling. The eight below it are an older band of the same shape.
 T-0804 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
