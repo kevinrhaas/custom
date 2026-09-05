@@ -50,6 +50,7 @@ OUT = REFERENCE / "resident-research" / "final" / "audit"
 HOUSEHOLDS = ROOT / "data/residents/households"
 INDEX = ROOT / "data/residents/index.json"
 RESEARCH = ROOT / "data/research/residents"
+RULINGS = RESEARCH / "conflict_rulings.json"
 SOURCES = ROOT / "data/sources"
 
 CSV_NAME = "resident_audit_master.csv"
@@ -182,6 +183,40 @@ def findings() -> dict:
     return out
 
 
+def ruling_covers(ruling: dict, recorded_conflicts: list[str]) -> bool:
+    """Does this ruling reach the conflicts the ledgers state RIGHT NOW?
+
+    Exact-list equality, deliberately. A ruling names the conflict strings it was made
+    against; anything else on the record is a conflict it never read."""
+    if not ruling:
+        return False
+    return list(ruling.get("ruled_conflicts") or []) == list(recorded_conflicts)
+
+
+def rulings() -> dict:
+    """The written adjudications of the conflicts the ledgers record — T-0733.
+
+    A ruling is PINNED to the conflict text it read. `ruled_conflicts` carries the
+    ledger's conflict strings verbatim, and the ruling covers a person only while that
+    list is still exactly what the ledgers say about them. Reword a conflict, or add a
+    second one to a person already ruled, and the ruling stops reaching them — the flag
+    fires again and somebody has to look. A ruling that could rubber-stamp a conflict it
+    has never read would be worse than no ruling at all."""
+    doc = json.loads(RULINGS.read_text())
+    for verdict in sorted({r["verdict"] for r in doc["rulings"].values()}):
+        if verdict not in doc["verdicts"]:
+            raise Refused(
+                "conflict_rulings.json rules with verdict %r and does not define it. "
+                "Every verdict states what it means and what it does NOT mean, or it is "
+                "not a ruling." % verdict)
+    for person_id, row in doc["rulings"].items():
+        if not row.get("reopens_on"):
+            raise Refused(
+                "the ruling on %r names no reopening condition. A decline that cannot be "
+                "reopened is a closed door, and none of these are." % person_id)
+    return doc
+
+
 def value_of(block) -> str:
     """A graded block's value as one cell. `{value, confidence, note}` is the shape of
     nearly every claim in this layer; a bare scalar is passed through."""
@@ -237,7 +272,9 @@ COLUMNS = [
     "src_book", "src_directory", "src_secondary", "later_census_year",
     "later_census_serial", "later_census_bridge_status", "present_on_scene_date",
     "division", "lives_at", "works_at", "occupation", "occupation_confidence",
+    "conflict_recorded", "conflict_ruling", "conflict_reopens_on",
     "flag_no_research_row", "flag_candidate_identity_open", "flag_conflicting_evidence",
+    "flag_standing_constraint",
     "flag_single_source", "flag_no_source", "flag_unplaced", "flag_no_address",
     "audit_result",
 ]
@@ -245,9 +282,13 @@ COLUMNS = [
 
 def rows() -> tuple[list[dict], dict]:
     ledger = findings()
+    ruled = rulings()
+    seen_rulings: set[str] = set()
+    live_households: set[str] = set()
     cache: dict = {}
     out: list[dict] = []
     for household in households():
+        live_households.add(household["id"])
         members = household.get("persons") or []
         for person in members:
             ids = cited_sources(person, household)
@@ -257,8 +298,15 @@ def rows() -> tuple[list[dict], dict]:
             research = person.get("resident_research") or {}
             has_research_row = bool(research.get("ticket"))
             override = ledger.get(person["id"]) or {}
-            conflicts = any(c.get("conflicts")
-                            for c in (override.get("candidates") or []))
+            recorded_conflicts = [t for c in (override.get("candidates") or [])
+                                  for t in (c.get("conflicts") or [])]
+            ruling = ruled["rulings"].get(person["id"]) or {}
+            if ruling:
+                seen_rulings.add(person["id"])
+            # The ruling reaches this person only while it still names exactly the
+            # conflicts the ledgers state. See rulings().
+            covered = ruling_covers(ruling, recorded_conflicts)
+            standing = bool(household.get("review_required"))
             later = person.get("later_census") if isinstance(
                 person.get("later_census"), dict) else {}
             returns = person.get("letter_list_returns") or []
@@ -308,8 +356,11 @@ def rows() -> tuple[list[dict], dict]:
                 "flag_candidate_identity_open": (
                     research.get("outcome") in ("candidate_identity", "candidate")
                     and not research.get("asserted_identity")),
-                "flag_conflicting_evidence": bool(
-                    conflicts or household.get("review_required")),
+                "conflict_recorded": bool(recorded_conflicts),
+                "conflict_ruling": ruling.get("verdict", "") if covered else "",
+                "conflict_reopens_on": ruling.get("reopens_on", "") if covered else "",
+                "flag_standing_constraint": standing,
+                "flag_conflicting_evidence": bool(recorded_conflicts) and not covered,
                 "flag_single_source": len(ids) == 1,
                 "flag_no_source": not ids,
                 "flag_unplaced": household.get("division") == "unplaced",
@@ -321,6 +372,18 @@ def rows() -> tuple[list[dict], dict]:
                 row["src_%s" % category] = ";".join(by_category[category])
             out.append(row)
     out.sort(key=lambda r: (r["household_id"], r["person_id"]))
+    orphans = sorted(set(ruled["rulings"]) - seen_rulings)
+    if orphans:
+        raise Refused(
+            "conflict_rulings.json rules on %d person(s) the residents layer no longer "
+            "holds: %s. A ruling outlives its person only when a card was merged or "
+            "renamed under it — move the ruling or retire it."
+            % (len(orphans), ", ".join(orphans)))
+    stray = sorted(set(ruled["standing_constraints"]) - live_households)
+    if stray:
+        raise Refused(
+            "conflict_rulings.json names standing constraints on household(s) that are "
+            "gone: %s" % ", ".join(stray))
     return out, cache
 
 
@@ -365,10 +428,19 @@ def gaps(table: list[dict]) -> list[tuple[str, int, str]]:
         ("candidate identity open",
          sum(1 for r in table if r["flag_candidate_identity_open"]),
          "a candidate was found and not asserted; the identity is still a question"),
-        ("conflicting evidence",
+        ("conflicting evidence, unruled",
          sum(1 for r in table if r["flag_conflicting_evidence"]),
-         "the ledger records a conflict against a candidate, or the household is "
-         "flagged for review"),
+         "the ledger records a conflict against a candidate and no ruling in "
+         "`data/research/residents/conflict_rulings.json` reaches it (T-0733)"),
+        ("conflicting evidence, ruled",
+         sum(1 for r in table if r["conflict_ruling"]),
+         "a recorded conflict carries a written adjudication and a named reopening "
+         "condition; every one of them is a decline, and none adopts a candidate"),
+        ("standing constraint",
+         sum(1 for r in table if r["flag_standing_constraint"]),
+         "the household carries `review_required` with `touches_removal`: the final "
+         "removal of the Potawatomi reaches it, no scene holding it may be `released`, "
+         "and no research retires the flag"),
         ("no census linkage",
          sum(1 for r in table if not (r["src_census"] or r["later_census_year"] != "")),
          "no 1840 census row is bridged to this person"),
@@ -506,6 +578,54 @@ def render_readme(table: list[dict], cache: dict) -> str:
     for outcome, count in sorted(outcomes.items(), key=lambda kv: -kv[1]):
         add("| `%s` | %d |" % (outcome, count))
     add("")
+    add("## The conflicts, and what was ruled on them")
+    add("")
+    add("Under **T-0733**. The ledgers record a conflict against a candidate for **%d**"
+        % sum(1 for r in table if r["conflict_recorded"]))
+    add("of the %d people. Before T-0733 nothing ruled on any of them, and a conflict" % total)
+    add("that is recorded and never adjudicated reads, to anybody downstream, exactly like")
+    add("a conflict nobody found. `data/research/residents/conflict_rulings.json` is the")
+    add("adjudication: a verdict, the conflict text it was made against, and the record")
+    add("that would reopen it.")
+    add("")
+    add("**Every verdict is a decline, and no candidate is adopted here.** The decline is")
+    add("what the layer already did silently — the candidate was never asserted and the")
+    add("card carries no identity on its strength. What was missing was the writing down.")
+    add("")
+    add("| verdict | people | what it means |")
+    add("| --- | ---: | --- |")
+    verdicts = Counter(r["conflict_ruling"] for r in table if r["conflict_ruling"])
+    ruled_doc = rulings()
+    for verdict, count in sorted(verdicts.items(), key=lambda kv: (-kv[1], kv[0])):
+        add("| `%s` | %d | %s |"
+            % (verdict, count, " ".join(ruled_doc["verdicts"][verdict].split())))
+    add("| **unruled** | **%d** | a recorded conflict no ruling reaches; the flag fires |"
+        % sum(1 for r in table if r["flag_conflicting_evidence"]))
+    add("")
+    add("A ruling is pinned to the conflict text it read: `ruled_conflicts` carries the")
+    add("ledger's strings verbatim, and the moment one is reworded — or a second conflict")
+    add("is added to a person already ruled — the ruling stops reaching them and")
+    add("`flag_conflicting_evidence` fires again. A ruling may not rubber-stamp a conflict")
+    add("it has never read.")
+    add("")
+    add("### The standing constraints are not conflicts")
+    add("")
+    add("%d people in %d households carry `review_required`, and folding them into the"
+        % (sum(1 for r in table if r["flag_standing_constraint"]),
+           len(ruled_doc["standing_constraints"])))
+    add("conflicting-evidence flag was a defect in the flag. Every one of those households")
+    add("carries `touches_removal` with it: they are the households the final removal of")
+    add("the Potawatomi from Chicago reaches, AGENTS.md requires the flag to stand on them")
+    add("permanently, and `tools/measure_review_constraint.py --gate` refuses its silent")
+    add("removal. It is a standing ethical constraint, not an open evidentiary question,")
+    add("and no research retires it. They are counted under `flag_standing_constraint`.")
+    add("")
+    add("| household | people |")
+    add("| --- | ---: |")
+    for hid in sorted(ruled_doc["standing_constraints"]):
+        add("| `%s` | %d |"
+            % (hid, len(ruled_doc["standing_constraints"][hid]["persons"])))
+    add("")
     add("## The gaps")
     add("")
     add("Named, largest first. Each is a ticket somebody could write; none of them is a")
@@ -522,6 +642,14 @@ def render_readme(table: list[dict], cache: dict) -> str:
     add("  `sources`, the research row, the five evidence blocks the consolidation wrote,")
     add("  the `later_census` bridge, the occupation block, and — for a head — the")
     add("  household's own graded blocks. `src_<category>` splits the same list.")
+    add("- `conflict_recorded` says the ledgers hold a conflict against a candidate for")
+    add("  this person; `conflict_ruling` and `conflict_reopens_on` are the adjudication")
+    add("  T-0733 wrote, and are empty when no ruling reaches the conflicts on record.")
+    add("- `flag_conflicting_evidence` means an UNRULED conflict — the flag fires on what")
+    add("  nobody has looked at, not on the fact that a conflict exists. Before T-0733 it")
+    add("  meant \"a conflict exists\" and also swept in the `review_required` households,")
+    add("  which are a standing constraint and not a conflict at all; those now count")
+    add("  under `flag_standing_constraint`. T-0517 compares against that definition.")
     add("- `flag_*` columns are the unresolved list. They are not failures; they are what")
     add("  is still open, and they are what T-0517's re-run will be measured against.")
     add("- `research_ticket` empty and `flag_no_research_row` true means no cohort has")
@@ -718,6 +846,52 @@ def cmd_self_test() -> bool:
     want(all(r["relationship"] == "household_member"
              for r in sample if r["flag_no_source"]), True,
          "a sourceless row is never a head")
+
+    # T-0733. THE RULINGS. The flag now means "a conflict nobody has ruled on", so the
+    # assertions are about the PINNING — a ruling that could drift off the conflict text
+    # it read would quietly retire a flag nobody had looked at, which is the exact fault
+    # this file was written to close.
+    ruled_doc = rulings()
+    want(sorted({r["verdict"] for r in ruled_doc["rulings"].values()}
+                - set(ruled_doc["verdicts"])), [],
+         "every verdict used is a verdict defined")
+    want(all(v.startswith("declined_") for v in ruled_doc["verdicts"]), True,
+         "no ruling adopts a candidate: every verdict is a decline")
+    want(all(r["conflict_recorded"] for r in sample if r["conflict_ruling"]), True,
+         "a ruling only ever lands on a person who has a conflict on record")
+    want(all(not (r["conflict_ruling"] and r["flag_conflicting_evidence"])
+             for r in sample), True,
+         "ruled and unruled are exclusive")
+    want(all(r["conflict_recorded"] for r in sample
+             if r["flag_conflicting_evidence"]), True,
+         "the unruled flag fires only on a recorded conflict")
+    want(sorted(r["person_id"] for r in sample if r["flag_standing_constraint"]) ==
+         sorted(pid for hh in ruled_doc["standing_constraints"].values()
+                for pid in hh["persons"]), True,
+         "the standing-constraint column is exactly the review_required households")
+    want(all(household.get("touches_removal") for household in households()
+             if household.get("review_required")), True,
+         "every review_required household is a removal household, which is why it is "
+         "not a conflict")
+
+    # THE PINNING, exercised by breaking it: reword one conflict and the ruling must stop
+    # reaching that person. Done against a copy of the loaded documents, never the files.
+    pinned = next((r for r in sample if r["conflict_ruling"]), None)
+    if pinned is None:
+        print("  FAIL no ruled row to exercise the pinning against")
+        bad = True
+    else:
+        ruling = ruled_doc["rulings"][pinned["person_id"]]
+        on_record = list(ruling["ruled_conflicts"])
+        want(ruling_covers(ruling, on_record), True,
+             "a ruling reaches the conflicts it names")
+        want(ruling_covers(ruling, on_record + ["a conflict added after the ruling"]),
+             False, "a conflict added after the ruling is one the ruling never read")
+        want(ruling_covers(ruling, [t.replace("no", "NO") for t in on_record]), False,
+             "a reworded conflict is one the ruling never read")
+        want(ruling_covers(ruling, []), False,
+             "a ruling on a person whose conflicts are gone reaches nothing")
+        want(ruling_covers({}, on_record), False, "no ruling covers nothing")
 
     if not bad:
         print("resident audit self-test: all assertions fire")
