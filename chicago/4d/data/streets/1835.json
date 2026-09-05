@@ -7,7 +7,8 @@
     "chicago_dpw_1891_streets",
     "hathaway_1834",
     "wright_1834",
-    "osm_streets_2026"
+    "osm_streets_2026",
+    "thompson_plat_1830"
   ],
   "surface_standard": "No gravel or hard paving is shown. 'graded' and 'turnpiked' are rendered as drained or thrown-up earth with wagon wear; ordinary streets are worn native soil with a grassy crown and margins.",
   "streets": [
@@ -21,11 +22,11 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. AND THE WEST END IS NOT WHERE THE NOTE ABOVE IMPLIES, MEASURED 2026-08-29 BY T-0183: the drawn end at local (100, -101) stands 34 m SOUTH of the northernmost line the committed bank allows there, and 9.5 m from Lake Street's own committed centreline, so the last stretch of this street's platted corridor overlaps Lake's by 14.9 m. That is why the corner at Market cannot be closed without emitting blk_south_water_market as a bowtie, and why the block is a wedge the South Branch pinches out rather than a rectangle waiting on a trace — see `refused_control.market_south_water` in data/traces/street_control.json. Track width and ruts are visual interpretation, not measurements."
+      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. AND THE WEST END IS NOT WHERE THE NOTE ABOVE IMPLIES, MEASURED 2026-08-29 BY T-0183: the drawn end at local (100, -101) stands 34 m SOUTH of the northernmost line the committed bank allows there, and 9.5 m from Lake Street's own committed centreline, so the last stretch of this street's platted corridor overlaps Lake's by 14.9 m. That is why the corner at Market cannot be closed without emitting blk_south_water_market as a bowtie, and why the block is a wedge the South Branch pinches out rather than a rectangle waiting on a trace — see `refused_control.market_south_water` in data/traces/street_control.json. Track width and ruts are visual interpretation, not measurements. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The plat's line is the module; the curved west approach and the measured 8.28 m southward shift recorded above are how that platted corridor is SEATED on this ground, and they remain the reasoning for the placement rather than for the existence."
     },
     {
       "id": "lake",
@@ -36,11 +37,11 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026"],
-      "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work."
+      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "randolph",
@@ -51,11 +52,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated."
+      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "washington",
@@ -66,10 +67,11 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "market",
@@ -80,10 +82,11 @@
       "track_width_m": 8.0,
       "surface": "worn_earth",
       "traffic": "principal",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "franklin",
@@ -94,11 +97,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"],
-      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 \u2014 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved."
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 \u2014 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "wells",
@@ -109,10 +112,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "lasalle",
@@ -123,11 +127,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment."
+      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "clark",
@@ -138,10 +142,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"]
+      "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "dearborn",
@@ -154,10 +159,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "state",
@@ -168,10 +174,11 @@
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "canal",
@@ -182,11 +189,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026"],
-      "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated."
+      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The fall-1836 grading work on Canal is still not backdated into this scene, which is a claim about surface and belongs to `surface_confidence`."
     },
     {
       "id": "clinton",
@@ -197,10 +204,11 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
+      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "kinzie",
@@ -211,10 +219,11 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
+      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn."
     },
     {
       "id": "carroll",
@@ -240,11 +249,11 @@
       "track_width_m": 4.5,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["thompson_plat_1830", "osm_streets_2026"],
-      "note": "T-0446. HELD BY FOUR SURVIVING INTERSECTIONS, the same modern control this file's other West Division lines are fitted to, so this is the better attested of the two tiers added with it. The plat carries the tier (the owner's reading of the sheet, T-0443) and West Fulton Street still crosses all four of the West Division's north-south streets on the ground. Control read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json: Canal node 258020617 at local east -162.00 north +12.17; Clinton node 258966840 at -282.18, +11.83; Jefferson node 262247424 at -401.04, +13.11; Des Plaines node 258966841 at -524.88, +13.72. A least-squares line through the four has slope -0.004909 and residuals of +0.35, -0.58, +0.12 and +0.11 m, RMS 0.35 m - a tighter fit than the two-point lines several of this file's streets carry. WHY THE LINE STILL STOPS AT EAST -320 like `kinzie`, `lake`, `randolph` and `washington`, when the control runs 200 m further west: the west clip is this reconstruction's own extent, not a statement that the street ended there, and moving it would move five streets rather than one. THE EAST END IS THE WATER: the path stops 3 m short of the committed west bank of the North Branch, because no source gives Fulton a crossing - Kinzie Street's is the only West Division bridge in this scene. Track width and wear are visual interpretation, and the narrowest in this file, because no committed structure fronts this tier."
+      "sources": ["thompson_plat_1830", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "T-0446. HELD BY FOUR SURVIVING INTERSECTIONS, the same modern control this file's other West Division lines are fitted to, so this is the better attested of the two tiers added with it. The plat carries the tier (the owner's reading of the sheet, T-0443) and West Fulton Street still crosses all four of the West Division's north-south streets on the ground. Control read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json: Canal node 258020617 at local east -162.00 north +12.17; Clinton node 258966840 at -282.18, +11.83; Jefferson node 262247424 at -401.04, +13.11; Des Plaines node 258966841 at -524.88, +13.72. A least-squares line through the four has slope -0.004909 and residuals of +0.35, -0.58, +0.12 and +0.11 m, RMS 0.35 m - a tighter fit than the two-point lines several of this file's streets carry. WHY THE LINE STILL STOPS AT EAST -320 like `kinzie`, `lake`, `randolph` and `washington`, when the control runs 200 m further west: the west clip is this reconstruction's own extent, not a statement that the street ended there, and moving it would move five streets rather than one. THE EAST END IS THE WATER: the path stops 3 m short of the committed west bank of the North Branch, because Kinzie Street's is the only West Division bridge this scene carries, and this line claims a street rather than a crossing. Track width and wear are visual interpretation, and the narrowest in this file, because no committed structure fronts this tier. ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04), and upgraded WITH the sixteen platted streets rather than after them, because it is the best-held line in this file: the plat draws the tier and four surviving intersections fit it at RMS 0.35 m, the tightest fit here. That is why the ruling reaches it \u2014 the sheet attests the street, and the modern control says only how precisely the drawn line is seated. The 17.5 m RMS in `data/datum.json` `derivation.residual_m` is COORDINATE UNCERTAINTY on the georeference \u2014 how well the 1834 sheet warped onto modern ground \u2014 and not a grade on the claim; Fulton's own four-intersection fit is tighter than it. `surface_confidence` and `wear_confidence` stand where they were."
     },
     {
       "id": "north_water",
@@ -270,10 +279,11 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "osm_streets_2026"]
+      "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. Wolcott carries no `wright_1834` and none is added here: the plat and the two sheets already cited are what hold it."
     },
     {
       "id": "michigan_north",
@@ -284,10 +294,11 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
+      "geometry_confidence": "attested",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
+      "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026", "thompson_plat_1830"],
+      "note": "ATTESTED FROM THE THOMPSON PLAT (T-0713, the owner's ruling of 2026-09-04). James Thompson's 1830 plat of the Town of Chicago DRAWS this street, so that it ran here is a claim the sheet itself makes, and `geometry_confidence` now says so. WHAT THE 17.5 m FIGURE IS, because it is the thing most easily mistaken for a grade: `data/datum.json` `derivation.residual_m` is 17.5 m RMS of COORDINATE UNCERTAINTY \u2014 how well the 1834 sheet warped onto modern ground \u2014 and it bounds how precisely this line is PLACED, not whether the street was there. A metric bracket on a position is not a doubt about existence, and the two must not be traded for one another. `surface_confidence` and `wear_confidence` are untouched by this ruling: the plat attests where a street ran, and carries nothing about what it was paved with or how it was worn. The plat draws the North Division tier; the line's seating follows the same 1834 control as its neighbours."
     },
     {
       "id": "fort_road",
