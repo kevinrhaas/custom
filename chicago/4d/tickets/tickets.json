@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 10:51 AM",
+  "generated_ct": "Sep 5, 2026, 10:58 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12242,6 +12242,26 @@
       "queue_rank": 117
     },
     {
+      "id": "T-0722",
+      "title": "The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green",
+      "state": "claimed",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 9/4/2026, 10:30:40 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941748580",
+      "queue_rank": 172
+    },
+    {
       "id": "T-0723",
       "title": "One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice",
       "state": "open",
@@ -12303,7 +12323,7 @@
     },
     {
       "id": "T-0727",
-      "title": "The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again",
+      "title": "Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree",
       "state": "open",
       "epic": "META",
       "requested_by": "loop",
@@ -12319,7 +12339,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 126
+      "queue_rank": 174
     },
     {
       "id": "T-0728",
@@ -12339,7 +12359,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 127
+      "queue_rank": 175
+    },
+    {
+      "id": "T-0729",
+      "title": "dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
     },
     {
       "id": "T-0733",
@@ -13520,6 +13560,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 170
+    },
+    {
+      "id": "T-0803",
+      "title": "The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 126
+    },
+    {
+      "id": "T-0804",
+      "title": "Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 127
     }
   ]
 }

@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The What’s-new tab was downloading itself twice', kind: 'fix', ts: '',
+  { v: 583, title: 'The What’s-new tab was downloading itself twice', kind: 'fix', ts: '2026-09-05T15:58:16.304Z', date: 'Sep 5, 2026, 10:58 AM CT',
     items: [
       'The changelog you are reading was being shipped to the site twice over. It is written inside the walkthrough, because this tab imports it; it is also copied to a second address, because Manager and the polecat.live launcher read it from there. Both addresses are needed and neither was wrong, but the publish step was sending the whole 1.31 MB file to each of them — and the file grows every time an entry like this one is added, so the waste was growing at twice the rate of the record. The second address now holds the changelog and the first re-exports it in nine lines. Same two addresses, half the bytes.',
       'That mattered more than a duplicate usually does, because the published site is held to a 32 MB budget and had reached 31.999 MB of it. Every finished piece of work waiting to land was stuck behind a wall built, to the tune of four per cent, out of one file sent twice. The site is 30.69 MB now.',

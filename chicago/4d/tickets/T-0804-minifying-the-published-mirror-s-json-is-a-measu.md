@@ -1,5 +1,5 @@
 ---
-id: T-0728
+id: T-0804
 title: Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
 state: open
 epic: META
