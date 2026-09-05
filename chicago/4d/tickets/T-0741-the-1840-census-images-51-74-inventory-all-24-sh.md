@@ -1,7 +1,7 @@
 ---
 id: T-0741
 title: The 1840 census images 51-74: inventory all 24 sheets — sheet side, printed page and lines with an entry
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0496
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 855
 claimed_by: run 9/5/2026, 1:39:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T07:15:38.226Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950186427
 ---
 
