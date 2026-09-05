@@ -76,6 +76,26 @@
      "chicago_democrat_1833_1835"
     ]
    },
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "E[d]mund Poke",
+     "locator": "chicago_democrat_1834_07_02#c031",
+     "record_id": "person_e_d_mund_poke",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Poke, Edward",
+     "locator": "chicago_democrat_1834_10_22#c003",
+     "record_id": "person_poke_edward",
+     "describes_date": "1834-10-22",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ],
    "resident_subtype": "projected_resident"
   }
  ],

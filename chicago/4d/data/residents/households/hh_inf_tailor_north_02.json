@@ -47,7 +47,7 @@
    "id": "inf_tailor_north_02",
    "name": "Thomas S. Eels",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "attested",
    "occupation": {
     "value": "tailor",
     "confidence": "attested",
@@ -59,7 +59,31 @@
    "note": "A DOCUMENTED MAN ON A RECONSTRUCTED ROOF. The papers name him and this household's dwelling does not: what is attested is the person and his trade, and what remains the reconstruction's is everything about where he lived. He is printed as 'THOMAS 8. EELS.', 'THOMAS S. EELS.' and the corpus reads his trade as tailor. Cited at the Democrat of 23 July 1834, column 4; the Democrat of 1 October 1834, column 7. THIS ROOF DID NOT COME FROM HIS RECORD. The household was raised by the occupation census because the town of 3,265 people in 398 dwellings needed a tailor and no documented one was available; the register (data/research/newspapers/register_1835.json, action `replace_invented`) is what says one now is. The dwelling's existence, position and footprint are unchanged and still conjectural, and nothing here claims he slept in it — only that the town's need for this trade is met by a man the papers name rather than by one this project invented. The invented name this record used to carry, and its name_basis block, are retired: an invented name is not kept beside a documented one. No figure is drawn (docs/LIBERTIES.md L1); the placement is L205. He is placed nowhere in particular by his own record, which is the condition of taking ANY roof of his trade — a man the papers put on a named street takes only a roof the plat stands on that street (T-0367), and one they place somewhere this scene cannot honour is refused outright. READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "sources": [
     "chicago_democrat_1833_1835"
-   ]
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Thomas S. Eels",
+     "locator": "chicago_democrat_1834_07_23#c004",
+     "record_id": "person_thomas_s_eels",
+     "describes_date": "1834-07-23",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Eels, Thomas S.",
+     "locator": "chicago_democrat_1834_09_03#c019",
+     "record_id": "person_eels_thomas_s",
+     "describes_date": "1834-09-03",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "resident_research": {
+    "regraded_on": "2026-09-04",
+    "rule": "G1b"
+   }
   }
  ],
  "touches_removal": false,

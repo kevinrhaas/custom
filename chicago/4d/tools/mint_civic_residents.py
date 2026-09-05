@@ -752,6 +752,355 @@ def scale_report() -> None:
 
 
 # ---------------------------------------------------------------------------
+# T-0515 — the SECOND mode: regrade the people the town already carries
+#
+# `--build` above mints the identities the town does NOT hold. Its refusal 2 —
+# "the town already carries this person" — hands every one of the others to this
+# mode, and `grading_proposal.json` lists them as `changes_to_existing_people`:
+# 162 rows, each a rule of the owner's ratified ladder fired against an identity
+# whose card is already committed.
+#
+# THE TWO RULES THIS MODE IS BUILT AROUND, both from the ticket and both about
+# what the ladder may NOT do:
+#
+#   * "nothing may be graded DOWN without a recorded refusal". A downgrade is
+#     therefore never silent here. Where it fires, the grade it takes away is
+#     written onto the person as a refusal with the rule that took it; where it
+#     is declined, the decline is written the same way. Either way the reading
+#     is on the card and a later run can see it was ruled on rather than missed.
+#
+#   * The consolidation sees SEVEN domains and no more. Its own G5 says so in
+#     the ladder's words — it "abstains rather than demote a resident on evidence
+#     it has not read". That abstention is a proposal with no grade in it and is
+#     refused here rather than applied. And the same reasoning reaches further
+#     than G5 does: 44 of the 45 downgrades this proposal offers fall on cards
+#     that cite Andreas, Kinzie's Waubun, a dated Democrat issue or a research
+#     package the consolidation never read. A rung fired on the evidence it
+#     could see is not a finding about the evidence it could not, so those are
+#     declined for the reason G5 declines its own, and the decline is recorded.
+#     The one downgrade whose card cites nothing outside the ladder's field of
+#     view is applied.
+#
+# WHAT IT WRITES on a person it regrades: `grade`, `resident_subtype`, the
+# per-domain evidence blocks `evidence_blocks()` derives for the mint above, the
+# union of the sources those rows cite, and a `resident_research` stamp naming
+# the rule and the date. Everything else on the card belongs to the pass that
+# wrote it and is left alone. The write is a pure function of the proposal, the
+# identity master and the committed tree, so `--regrade --check` re-derives it —
+# and reads its own answer back the way `--build` does. Once a regrade lands, the
+# consolidation rebuilds against the card it wrote and stops proposing the change,
+# so the steady state is nought applied with the refusals still standing. A hand-edit
+# to one of those grades puts the proposal back and the gate says so, which is the
+# thing it is there to catch.
+# ---------------------------------------------------------------------------
+
+# THE NAME TEST THE REGRADE OWES, and the reason it exists. The consolidation
+# merges an identity on a surname and a compatible forename, and its D-rules are
+# loose enough that `id_albee_clark_b` — Clark B. Albee, printed once by the post
+# office — carries Fergus's 1843 line for *Cyrus P.* Albee. Read naively, that
+# line is the second source that takes `projected_resident` off him. It is not:
+# it is a different man with the same surname. So an evidence row corroborates
+# here only when the forename it prints AGREES with the identity's — the same
+# word, an initial, or one of the abbreviations these volumes actually set. Rows
+# that fail are not attached and do not count towards a rung, and a proposal left
+# with nothing is refused as one the evidence rows do not support.
+#
+# The abbreviations are the printers' own, taken from the entries in the corpus
+# rather than invented: a directory of the 1840s sets Wm., Jas., Chas., Thos.
+FORENAME_ABBREV = {
+    "wm": "william", "willm": "william", "will": "william",
+    "jas": "james", "jos": "joseph", "jno": "john", "jon": "john",
+    "chas": "charles", "thos": "thomas", "geo": "george", "robt": "robert",
+    "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edwd": "edward",
+    "edw": "edward", "richd": "richard", "rich": "richard", "nathl": "nathaniel",
+    "nath": "nathaniel", "alexr": "alexander", "alex": "alexander",
+    "fredk": "frederick", "fred": "frederick", "patk": "patrick",
+    "michl": "michael", "matt": "matthew", "abm": "abraham", "andw": "andrew",
+    "chrisr": "christopher", "hy": "henry", "hen": "henry", "theo": "theodore",
+    "elizth": "elizabeth", "eliz": "elizabeth", "margt": "margaret",
+    "cathe": "catherine", "cath": "catherine", "sar": "sarah",
+}
+NAME_NOISE = {"mr", "mrs", "miss", "dr", "capt", "col", "gen", "rev", "hon",
+              "maj", "esq", "jr", "sr", "or", "and", "the", "of"}
+
+
+def name_tokens(value: str) -> list:
+    return [t for t in re.split(r"[^A-Za-z]+", str(value or "").lower())
+            if t and t not in NAME_NOISE]
+
+
+def expand(token: str) -> str:
+    return FORENAME_ABBREV.get(token, token)
+
+
+def forename_agrees(forename: str, surname_of: str, printed: str) -> bool:
+    """Does the name this row PRINTS agree with the forename of the identity?
+
+    True when the row prints no forename at all — a bare surname is silent, not a
+    contradiction — and when any forename token it does print is the identity's,
+    its initial, or a printed abbreviation of it.
+    """
+    want = [t for t in name_tokens(forename) if t != surname_of]
+    got = [t for t in name_tokens(printed) if t != surname_of]
+    if not want or not got:
+        return True
+    head = expand(want[0])
+    for t in got:
+        t = expand(t)
+        if t == head or (len(t) == 1 and t == head[0]) or (len(head) == 1 and head == t[0]):
+            return True
+    return False
+
+
+def agreeing(identity: dict, appearances: list) -> tuple:
+    """(the rows whose printed forename agrees, the ones it does not)."""
+    fore = identity.get("forename") or ""
+    sur = (identity.get("surname") or "").lower()
+    keep, drop = [], []
+    for app in appearances:
+        printed = app.get("normalized") or app.get("as_read")
+        (keep if forename_agrees(fore, sur, printed) else drop).append(app)
+    return keep, drop
+
+
+REGRADE_DATE = "2026-09-04"
+
+# The abstention. `to.grade` is null on these rows and the ladder says why.
+ABSTAIN_RULE = "G5"
+
+# The sources a regrade may reason about: the ones the identity master itself
+# cites for this identity. A card citing anything else is outside the ladder's
+# field of view — see the note above.
+def in_view(appearances: list) -> set:
+    view: set = set()
+    for app in appearances:
+        sid = app.get("source_id")
+        if not sid:
+            continue
+        view.add(sid)
+        view.add(SOURCE_ALIAS.get(sid, sid))
+        if app.get("domain") == "newspapers":
+            for _prefix, paper in PAPERS:
+                view.add(paper)
+    return view
+
+
+def people_by_id(docs: dict) -> dict:
+    out = {}
+    for path, doc in docs.items():
+        for person in doc.get("persons") or []:
+            if person.get("id"):
+                out[person["id"]] = (path, person)
+    return out
+
+
+def regrade_refusal(change: dict, applied: bool, unseen: list) -> dict:
+    """The refusal a downgrade writes onto the person, whichever way it went."""
+    if applied:
+        return {
+            "regraded_on": REGRADE_DATE,
+            "rule": change["rule"],
+            # `withheld`, not `refused`, and `regraded_on`, not `date`: the read-map
+            # gate reads a field's LEAF name across the renderer, and a leaf called
+            # `date` or `refused` collides with text the walkthrough genuinely reads.
+            # A distinct leaf keeps the gate's phantom test meaningful (T-0515).
+            "withheld": change["from"]["grade"],
+            "reason": (f"The ladder's {change['rule']} is the highest rung this identity's "
+                       f"evidence reaches, and every source this card cites was read by the "
+                       f"consolidation that fired it. The grade it held is refused rather "
+                       f"than kept, and the refusal is the record (T-0515)."),
+        }
+    return {
+        "regraded_on": REGRADE_DATE,
+        "rule": change["rule"],
+        "withheld": f"the downgrade to {change['to']['grade']}",
+        "reason": (f"This card rests on {len(unseen)} thing(s) the consolidation did not read — "
+                   f"{', '.join(unseen[:4])}{' and others' if len(unseen) > 4 else ''}. "
+                   f"{change['rule']} fired on the seven domains the ladder reads and says "
+                   f"nothing about the evidence outside them, so the grade stands. The same "
+                   f"reasoning the ladder's own G5 gives for abstaining (T-0515)."),
+    }
+
+
+def regrade_decisions(docs: dict, proposal: dict, master: dict):
+    """Every proposed change to a committed person, ruled on. Pure — see build().
+
+    Returns (applied, refusals): `applied` is a list of (change, path, person_id,
+    blocks, sources, refusal|None); `refusals` is a list of (change, reason).
+    """
+    idents = {i["id"]: i for i in master.get("identities", [])}
+    apps = {i["id"]: [a for a in (i.get("appearances") or [])
+                      if a.get("domain") != "town_layer"]
+            for i in master.get("identities", [])}
+    people = people_by_id(docs)
+    applied, refusals = [], []
+    for change in sorted(proposal.get("changes_to_existing_people", []),
+                         key=lambda c: (c.get("person_id") or "", c.get("identity") or "")):
+        pid = change.get("person_id")
+        found = people.get(pid)
+        if not found:
+            refusals.append((change, "the town no longer carries this person"))
+            continue
+        path, person = found
+        if change["rule"] == ABSTAIN_RULE or change["to"].get("grade") is None:
+            refusals.append((change, "the ladder abstains on this identity (G5) and an "
+                                     "abstention is not a grade"))
+            continue
+        identity = idents.get(change["identity"], {})
+        appearances, disagree = agreeing(identity, apps.get(change["identity"], []))
+        blocks, sources = evidence_blocks(change, appearances)
+        if not blocks:
+            refusals.append((change, "the evidence rows do not support the proposal: no "
+                                     "appearance in a domain this pass writes a block for"))
+            continue
+        # Every rung this mode applies rests on a SECOND thing — a second source
+        # for G1a/G1b, a list plus another for G2b/G2e, more than one appearance
+        # for the subtype it takes off. One surviving class is not that, and a
+        # proposal that only had two because a same-surname stranger supplied one
+        # of them is refused rather than quietly applied.
+        classes = {e.get("list") for rows in blocks.values() for e in rows}
+        if len(classes) < 2 and disagree:
+            refusals.append((change, "the evidence rows do not support the proposal: its "
+                                     "second source prints a forename this identity does "
+                                     "not carry"))
+            continue
+        refusal = None
+        if change["direction"] == "down":
+            unseen = sorted(set(person.get("sources") or []) - in_view(appearances))
+            # A research pass that ASSERTED this identity is a second reading the
+            # ladder has not made. `synthesize_resident_research.py` promotes a
+            # letter-list person to `attested` only on an adjudicated outcome with
+            # a stated discriminator (christy_nathan's paired-name continuity in
+            # T-0484 is the one this proposal reaches), and a rung fired on the
+            # bare classes of the same two sources is not a finding about that
+            # argument. Declining also keeps the tree self-consistent: the
+            # synthesis would put the grade straight back.
+            if not unseen and (person.get("resident_research") or {}).get("asserted_identity"):
+                unseen = ["an adjudicated resident_research outcome "
+                          f"({(person['resident_research'] or {}).get('ticket') or 'unticketed'}"
+                          f", {(person['resident_research'] or {}).get('outcome')})"]
+            if unseen:
+                refusals.append((change, f"a downgrade on evidence the ladder has not read "
+                                         f"({len(unseen)} source(s) outside its seven domains)"))
+                # The decline is written onto the person all the same: it is the
+                # record that the proposal was ruled on rather than missed.
+                applied.append((change, path, pid, {}, [], regrade_refusal(change, False, unseen)))
+                continue
+            refusal = regrade_refusal(change, True, [])
+        applied.append((change, path, pid, blocks, sources, refusal))
+    return applied, refusals
+
+
+def apply_regrade(docs: dict, index: dict, applied: list) -> set:
+    """Write the decisions onto the tree in memory. Returns the paths touched."""
+    people = people_by_id(docs)
+    touched: set = set()
+    for change, path, pid, blocks, sources, refusal in applied:
+        _p, person = people[pid]
+        if blocks:
+            if change["to"].get("grade"):
+                person["grade"] = change["to"]["grade"]
+            sub = change["to"].get("resident_subtype")
+            if sub:
+                person["resident_subtype"] = sub
+            else:
+                person.pop("resident_subtype", None)
+            for key, rows in blocks.items():
+                person[key] = rows
+            person["sources"] = sorted(set(person.get("sources") or []) | set(sources))
+            rr = person.setdefault("resident_research", {})
+            rr["regraded_on"] = REGRADE_DATE
+            rr["rule"] = change["rule"]
+        if refusal is not None:
+            rr = person.setdefault("resident_research", {})
+            keep = [r for r in (rr.get("refusals") or [])
+                    if not (r.get("rule") == refusal["rule"]
+                            and r.get("regraded_on") == refusal["regraded_on"])]
+            rr["refusals"] = keep + [refusal]
+        touched.add(path)
+
+    # The manifest rows and the counts the panels read. Re-derived from the tree
+    # rather than adjusted, so a second run of this mode is a no-op.
+    rows = {r["id"]: r for r in index.get("households") or []}
+    for path in touched:
+        doc = docs[path]
+        row = rows.get(doc.get("id"))
+        if row is None:
+            continue
+        tally: dict = {}
+        for person in doc.get("persons") or []:
+            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
+        row["grades"] = dict(sorted(tally.items()))
+    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    persons = 0
+    for row in index["households"]:
+        persons += row["persons"]
+        for grade, n in row["grades"].items():
+            totals[grade] = totals.get(grade, 0) + n
+    index["counts"]["persons"] = persons
+    index["counts"]["by_grade"] = totals
+    index["counts"]["projected_residents"] = sum(
+        1 for doc in docs.values() for person in doc.get("persons") or []
+        if person.get("resident_subtype") == "projected_resident")
+    return touched
+
+
+def regrade(preload: dict | None = None):
+    docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
+            if preload is not None
+            else {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))})
+    index = (json.loads(preload[INDEX]) if preload is not None and INDEX in preload
+             else load(INDEX))
+    proposal, master = load(PROPOSAL), load(MASTER)
+    applied, refusals = regrade_decisions(docs, proposal, master)
+    touched = apply_regrade(docs, index, applied)
+    files = {path: dumps(docs[path], 1) for path in touched}
+    files[INDEX] = dumps(index, 1)
+    return files, applied, refusals
+
+
+def regrade_report(applied, refusals) -> None:
+    real = [a for a in applied if a[3]]
+    declines = [a for a in applied if not a[3]]
+    print(f"REGRADED — {len(real)} person(s) the town already carried")
+    by_rule: dict = {}
+    by_move: dict = {}
+    for change, _path, _pid, _b, _s, _r in real:
+        by_rule[change["rule"]] = by_rule.get(change["rule"], 0) + 1
+        move = (f"{change['from']['grade']}/{change['from'].get('resident_subtype') or '-'}"
+                f" -> {change['to']['grade']}/{change['to'].get('resident_subtype') or '-'}")
+        by_move[move] = by_move.get(move, 0) + 1
+    for move, n in sorted(by_move.items(), key=lambda kv: -kv[1]):
+        print(f"  {n:5d}  {move}")
+    for rule, n in sorted(by_rule.items()):
+        print(f"  {n:5d}  {rule}")
+    print(f"\nREFUSED — {len(refusals)} proposal(s), with the reason "
+          f"({len(declines)} of them written onto the person as a refusal)")
+    tally: dict = {}
+    for _change, reason in refusals:
+        tally[reason_key(reason)] = tally.get(reason_key(reason), 0) + 1
+    for reason, n in sorted(tally.items(), key=lambda kv: -kv[1]):
+        print(f"  {n:5d}  {reason}")
+    print()
+    for change, _path, pid, blocks, _s, refusal in sorted(real, key=lambda a: a[2]):
+        print(f"  REGRADE {pid[:36]:38s} {change['rule']:4s} "
+              f"{change['direction']:12s} {'+refusal' if refusal else ''}")
+    for change, reason in sorted(refusals, key=lambda c: c[0].get('person_id') or ''):
+        print(f"  REFUSE  {(change.get('person_id') or '')[:36]:38s} {change['rule']:4s} {reason}")
+
+
+def regrade_counts(docs: dict, index: dict) -> dict:
+    people = [p for d in docs.values() for p in d.get("persons") or []]
+    out = {"attested": 0, "inferred": 0, "projected_resident": 0}
+    for person in people:
+        out[person["grade"]] = out.get(person["grade"], 0) + 1
+        if person.get("resident_subtype") == "projected_resident":
+            out["projected_resident"] += 1
+    out["census_1840_linked"] = (index.get("counts") or {}).get("census_1840_linked")
+    return out
+
+
+# ---------------------------------------------------------------------------
 # the gate — the invariants this pass owes, proved on whatever tree it is run on
 # ---------------------------------------------------------------------------
 
@@ -1041,10 +1390,33 @@ def main() -> int:
     ap.add_argument("--scale", action="store_true")
     ap.add_argument("--gate", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--regrade", action="store_true",
+                    help="T-0515: apply the ladder to the people the town already carries")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.regrade:
+        files, applied, refusals = regrade()
+        if args.report:
+            regrade_report(applied, refusals)
+            return 0
+        if args.check:
+            stale = [path for path, text in sorted(files.items())
+                     if not path.exists() or path.read_text(encoding="utf-8") != text]
+            for path in stale:
+                print(f"   {path.relative_to(ROOT)} does not match the regrade")
+            if stale:
+                print(f"   {len(stale)} file(s) differ; run --regrade")
+                return 1
+            print(f"   OK: {len([a for a in applied if a[3]])} regraded person(s) re-derive "
+                  f"byte for byte, {len(refusals)} refused")
+            return 0
+        for path, text in sorted(files.items()):
+            path.write_text(text, encoding="utf-8")
+        print(f"wrote {len(files)} file(s); "
+              f"{len([a for a in applied if a[3]])} regraded, {len(refusals)} refused")
+        return 0
     if args.gate:
         return gate()
     if args.scale:

@@ -91,7 +91,25 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street."
+   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0510",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins E. Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins E. Surname 'Harmon' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "evidence_against": "The surname 'Harmon' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Dr Elijah Dewey Harmon'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths. 'William Harmon' at printed page 231 line 3 (33S7-9YYJ-38) is NOT 'Dr Elijah Dewey Harmon': The surname 'harmon' is carried by 3 person(s) of 1835 (Charles Loomis Harmon, Isaac Dewey Harmon, Dr Elijah Dewey Harmon) and none of their given names is 'william'. L3 given_name_conflict",
+    "summary": "Corroborated in a volume printed after the scene date. Dr Elijah Dewey Harmon agrees with an entry in the Fergus 1839/1843 and Norris 1844 directories. The reading enriches the biography and adds no 1835 attestation.",
+    "notes": "FERGUS 26-29, AS PRINTED: \"Harmon, Eli[j]ah D[e]we[y], physician, bds C. L. Harmon [died January 3, 1869, aged 80]\". The 1843 directory prints the full given names Elijah Dewey behind this project's 'Dr Elijah Dewey Harmon', with the same trade the 1835 record carries, and a death date and age that put birth about 1788-89. Research only. Later-volume readings are recorded here and NOT promoted: T-0513 consolidates and T-0514/T-0515 apply.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843",
+     "fergus_historical_series_26_29",
+     "norris_directory_1844"
+    ]
+   }
   }
  ],
  "touches_removal": false,

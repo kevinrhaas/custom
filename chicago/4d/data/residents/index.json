@@ -185,6 +185,11 @@
     "rule": "A contemporary record naming the person in Chicago — the 1833-1835 newspapers, which print the person by name in the town."
    },
    {
+    "rung": "G1c",
+    "grade": "attested",
+    "rule": "CONVERGENCE — two or more independent in-window records from DIFFERENT class families (the town's civic lists · the contemporary press, letter lists included · the parish register). Two bodies that did not copy each other naming one man inside the scene window. A letter list is never promoted on its own by this rung; it only COUNTS TOWARD convergence."
+   },
+   {
     "rung": "G2a",
     "grade": "inferred",
     "rule": "The 1835 poll list alone."
@@ -230,12 +235,12 @@
   "households": 1380,
   "persons": 1404,
   "by_grade": {
-   "attested": 482,
-   "inferred": 922,
+   "attested": 509,
+   "inferred": 895,
    "reconstructed": 0
   },
   "letter_list_only": 727,
-  "projected_residents": 790,
+  "projected_residents": 784,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
   "civic_mint": 531
@@ -285,9 +290,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_abell_sidney",
@@ -302,8 +306,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_abrams_john",
@@ -366,8 +369,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_adams_hiram_a",
@@ -382,8 +384,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_adams_james",
@@ -414,8 +415,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_adams_william_h",
@@ -552,13 +552,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_allen_james",
@@ -573,8 +572,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_allen_lieut",
@@ -589,8 +587,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_allen_lieut_j",
@@ -605,8 +602,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_allen_lieut_james",
@@ -778,8 +774,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_andrews_thomas",
@@ -810,8 +805,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_andrus_thomas",
@@ -905,8 +899,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_archibald_rius",
@@ -1015,8 +1008,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_austin_w_g",
@@ -1031,8 +1023,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_avery_charles",
@@ -1111,8 +1102,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bailey_bennet",
@@ -1143,8 +1133,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bailly_joseph",
@@ -1239,8 +1228,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ballantine_geor",
@@ -1287,8 +1275,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ballingale_p",
@@ -1303,8 +1290,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bandle_will_nm",
@@ -1367,8 +1353,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_barber_al",
@@ -1383,8 +1368,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_barber_beta_l",
@@ -1431,8 +1415,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_barney_anne_maria",
@@ -1447,8 +1430,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_barney_john",
@@ -1542,8 +1524,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bartlett_charles_h",
@@ -1590,8 +1571,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bates_harriet_ellen",
@@ -1606,8 +1586,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bates_john_jr",
@@ -1650,8 +1629,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_baxter_daniel",
@@ -1730,8 +1708,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_beaubien_b",
@@ -1746,8 +1723,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_beaubien_charles_h",
@@ -1778,8 +1754,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_beaubien_jean_baptiste",
@@ -1809,8 +1784,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_beaubien_john_s",
@@ -1886,8 +1860,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bebee_orson",
@@ -2110,8 +2083,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bennett_h_c",
@@ -2252,8 +2224,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_biakie_a_or_h_p",
@@ -2284,8 +2255,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bigelow_david",
@@ -2316,8 +2286,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bishop_j_e",
@@ -2364,8 +2333,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_blake_edio_l",
@@ -2380,8 +2348,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_blake_levi",
@@ -2427,8 +2394,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_blanchard_gantry",
@@ -2473,8 +2439,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_blanshard_g",
@@ -2597,8 +2562,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_boardwell_gideo",
@@ -2645,8 +2609,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_boilvin_nicholas",
@@ -2708,8 +2671,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bonin_augustus",
@@ -2724,8 +2686,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_borland_andrew_w",
@@ -2735,13 +2696,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_borum_richard",
@@ -2818,8 +2778,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bourque_william",
@@ -2834,8 +2793,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bourrassa_leon",
@@ -2850,8 +2808,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bowe_g_c",
@@ -2866,8 +2823,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bowen_air",
@@ -2898,8 +2854,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bower_h",
@@ -2914,8 +2869,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_boyer_j_k",
@@ -2944,8 +2898,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bradford_harriet",
@@ -2976,8 +2929,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bradley_joseph",
@@ -2992,8 +2944,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bradstreet_j_p",
@@ -3024,8 +2975,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_braxton_lewis",
@@ -3040,8 +2990,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bread_a_o_t",
@@ -3056,8 +3005,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_breed_a_o_t",
@@ -3072,8 +3020,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_breese_judge_sidney",
@@ -3088,8 +3035,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brewster_franklin",
@@ -3104,8 +3050,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brewster_william",
@@ -3120,8 +3065,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brigham_nelson",
@@ -3184,8 +3128,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bristol_r_c",
@@ -3216,8 +3159,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_britain_hiram_z",
@@ -3264,8 +3206,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brookes_samuel",
@@ -3328,8 +3269,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brown_hanna_e",
@@ -3343,9 +3283,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_brown_jesse_b",
@@ -3360,8 +3299,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brown_lemuel",
@@ -3405,8 +3343,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_brown_william_h",
@@ -3421,8 +3358,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bruen_hir",
@@ -3549,8 +3485,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_burbee_jonathan",
@@ -3628,9 +3563,9 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false,
-   "projected_resident": false
+   "projected_resident": true
   },
   {
    "id": "hh_burlingame_geo_a",
@@ -3693,8 +3628,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_burton_edward",
@@ -3709,8 +3643,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_burton_john",
@@ -3725,8 +3658,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_bush_riley",
@@ -3773,8 +3705,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_byam_seth",
@@ -3805,8 +3736,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cable_p_b_f",
@@ -3821,8 +3751,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cady_levi",
@@ -3867,8 +3796,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_calhoun_john",
@@ -3897,8 +3825,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_camp_g_t",
@@ -3913,8 +3840,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_campbell_james_b",
@@ -3929,8 +3855,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_canp_george_s",
@@ -3961,8 +3886,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_carley_quartus_j",
@@ -3993,8 +3917,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_carpenter_abel_b",
@@ -4025,8 +3948,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_carpenter_philo",
@@ -4055,8 +3977,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_carter_j",
@@ -4101,8 +4022,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cary_junis_a_or_j_r",
@@ -4163,8 +4083,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_castle_alonzo",
@@ -4347,13 +4266,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_chappel_eliza_mir",
@@ -4528,8 +4446,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_chevallier_john_b",
@@ -4544,8 +4461,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_chevallier_louis_p",
@@ -4560,8 +4476,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_childs_sarah",
@@ -4733,8 +4648,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clark_john_k",
@@ -4749,8 +4663,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clark_timothy_j",
@@ -4765,8 +4678,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clarke_h_b",
@@ -4795,8 +4707,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clay_william",
@@ -4811,8 +4722,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cleaveland_wm_p",
@@ -4874,8 +4784,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clift_benjamin_h",
@@ -4890,8 +4799,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clizbe_joseph",
@@ -4922,8 +4830,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clybourn_archibald",
@@ -4938,8 +4845,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clybourn_s",
@@ -4954,8 +4860,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_clybourne_archibald",
@@ -4984,8 +4889,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cobb_l_b",
@@ -5000,8 +4904,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cobb_s_b",
@@ -5016,8 +4919,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cochrane_r",
@@ -5032,8 +4934,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_codding_sally",
@@ -5110,8 +5011,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_collett_j_a",
@@ -5154,8 +5054,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_comstock_h_h",
@@ -5307,13 +5206,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cook_josiah_p",
@@ -5328,8 +5226,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cook_rowland_i",
@@ -5360,8 +5257,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cooley_edward_v",
@@ -5392,8 +5288,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cory_john_l",
@@ -5408,8 +5303,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_couch_ira",
@@ -5439,8 +5333,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_covalt_enos",
@@ -5661,8 +5554,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_curtis_liman",
@@ -5707,8 +5599,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cusick_theodore",
@@ -5723,8 +5614,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_cutler_morris",
@@ -5803,8 +5693,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_darling_daniel",
@@ -5867,8 +5756,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_davenport_dennis",
@@ -5931,8 +5819,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_davis_george",
@@ -5947,8 +5834,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_davis_john",
@@ -5991,8 +5877,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_day_ann_airs",
@@ -6023,8 +5908,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dean_james_l",
@@ -6181,8 +6065,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dewey_s",
@@ -6197,8 +6080,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dickson_david",
@@ -6261,8 +6143,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dimmick_e",
@@ -6309,8 +6190,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_doane_seth_b",
@@ -6357,8 +6237,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dole_george_w",
@@ -6446,13 +6325,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_dorby_william_r",
@@ -6531,8 +6409,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_douglass_nelson",
@@ -6579,8 +6456,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dowd_james",
@@ -6622,13 +6498,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_downing_lorenzo",
@@ -6723,8 +6598,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dunlap_alva",
@@ -6771,8 +6645,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dustin_thomas",
@@ -6803,8 +6676,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_dyer_sidney",
@@ -6929,8 +6801,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_eldridge_john_w",
@@ -6945,8 +6816,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_elias_maynar",
@@ -7041,8 +6911,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_elston_daniel",
@@ -7071,8 +6940,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_erastus_patterson",
@@ -7134,8 +7002,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ewing_w_l_d",
@@ -7262,8 +7129,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_farnsworth_reuben",
@@ -7310,8 +7176,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_felch_alaneon",
@@ -7342,8 +7207,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_fell_j_w",
@@ -7388,8 +7252,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_field_j_e",
@@ -7420,8 +7283,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_filer_a",
@@ -7436,8 +7298,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_filer_elihu_d",
@@ -7531,9 +7392,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_fitzgerald_thos",
@@ -7655,13 +7515,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_foot_s",
@@ -7832,8 +7691,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_foster_caleb",
@@ -7864,8 +7722,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_fowler_elmira",
@@ -7926,8 +7783,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_fraser_wm_h",
@@ -7958,8 +7814,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_frazer_wm_h",
@@ -8006,8 +7861,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_friend_charles",
@@ -8054,8 +7908,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_fullerton_alex_n",
@@ -8070,8 +7923,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_fullerton_alexander",
@@ -8116,8 +7968,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_gabbs_james_i1",
@@ -8148,8 +7999,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_galaher_thomas",
@@ -8343,13 +8193,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_gilman_eli",
@@ -8508,8 +8357,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_goodrich_john",
@@ -8524,8 +8372,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_goodsough_harriet_m",
@@ -8582,7 +8429,8 @@
    "division": "west",
    "persons": 2,
    "grades": {
-    "inferred": 2
+    "attested": 1,
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": "goss_cobb_saddlery",
@@ -8634,8 +8482,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_granger_harrison",
@@ -8680,8 +8527,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_green_damel_m",
@@ -8712,8 +8558,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_green_mary",
@@ -8728,8 +8573,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_greene_john",
@@ -8822,8 +8666,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_gunn_medad_h",
@@ -8854,8 +8697,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_haddock_e_w",
@@ -8870,8 +8712,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_haddock_edward",
@@ -8880,7 +8721,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": "mansion_house",
    "works_at": "mansion_house",
@@ -8916,8 +8757,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_haighs_isaac",
@@ -8932,8 +8772,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hail_aifred",
@@ -8964,8 +8803,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hall_george",
@@ -8980,8 +8818,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hamilton_amos_c",
@@ -8996,8 +8833,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hamilton_diana",
@@ -9012,8 +8848,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hamilton_r_j",
@@ -9028,8 +8863,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hamilton_richard_j",
@@ -9058,8 +8892,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hands_george_e",
@@ -9074,8 +8907,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_handy_henry_s",
@@ -9090,8 +8922,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_handy_major",
@@ -9131,13 +8962,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_harman_isaac",
@@ -9182,8 +9012,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_harmon_elijah_d",
@@ -9212,8 +9041,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_harmon_m_d",
@@ -9228,8 +9056,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_harriet_paddock",
@@ -9260,8 +9087,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_harris_david",
@@ -9435,8 +9261,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hazzard_elisha_h",
@@ -9482,8 +9307,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_heere_anthony",
@@ -9562,8 +9386,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_henthuy_edward_e",
@@ -9578,8 +9401,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_herrick_ira",
@@ -9706,8 +9528,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hobson_jesse",
@@ -9737,8 +9558,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hogan_john",
@@ -9753,8 +9573,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hogan_john_s_c",
@@ -9782,9 +9601,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_hogue_william",
@@ -9799,8 +9617,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hoit_sarah",
@@ -9815,8 +9632,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hoit_thomas",
@@ -9875,8 +9691,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_holder_jesse",
@@ -9939,8 +9754,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hon_reynolds_john",
@@ -10019,8 +9833,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_horr_raiph_c",
@@ -10115,8 +9928,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_howell_thomas_m",
@@ -10179,8 +9991,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hoyt_thomas",
@@ -10195,8 +10006,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_ahira",
@@ -10211,8 +10021,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_b",
@@ -10227,8 +10036,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_elijah_kent",
@@ -10243,8 +10051,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_g",
@@ -10259,8 +10066,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_g_s",
@@ -10275,8 +10081,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_g_t",
@@ -10291,8 +10096,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_gordon_s",
@@ -10307,8 +10111,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_gurdon",
@@ -10337,8 +10140,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_henry_g",
@@ -10353,8 +10155,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hubbard_otis",
@@ -10462,8 +10263,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunt_charles_cotesworth_pinckney",
@@ -10478,8 +10278,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunt_henry_n",
@@ -10510,8 +10309,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunter_edward_e",
@@ -10526,8 +10324,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunter_osice",
@@ -10542,8 +10339,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunter_robert",
@@ -10558,8 +10354,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hunter_william",
@@ -10590,8 +10385,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_hurlburt_hannah",
@@ -10696,7 +10490,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10710,7 +10504,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10724,7 +10518,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10738,7 +10532,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10752,7 +10546,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10818,8 +10612,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_inven_elias",
@@ -10882,8 +10675,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ives_chauncy_p",
@@ -10914,8 +10706,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_jackson_samuel",
@@ -10993,8 +10784,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_janea_russell",
@@ -11089,8 +10879,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_john_meclure",
@@ -11121,8 +10910,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_johnson_lathrop",
@@ -11137,8 +10925,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_johnson_samuel",
@@ -11169,8 +10956,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_johnson_seth",
@@ -11180,13 +10966,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_johnston_t",
@@ -11311,8 +11096,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_jones_willard",
@@ -11322,13 +11106,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_jones_william",
@@ -11343,8 +11126,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_jordan_j_b",
@@ -11423,8 +11205,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_keeney_g_w",
@@ -11453,8 +11234,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kendall_samuel",
@@ -11485,8 +11265,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kennicott_w_l",
@@ -11501,8 +11280,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kennicott_william_h",
@@ -11517,8 +11295,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kent_alex_m",
@@ -11549,8 +11326,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kercheval_benjamin",
@@ -11705,8 +11481,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kimberly_e_s",
@@ -11721,8 +11496,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kimberly_ed_s",
@@ -11748,13 +11522,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kimberly_ira",
@@ -11764,13 +11537,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kimberly_osa",
@@ -11833,8 +11605,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_king_byram",
@@ -11863,8 +11634,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_king_hyram",
@@ -11879,8 +11649,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_king_john_lyle",
@@ -11895,8 +11664,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_king_nehemiah",
@@ -11911,8 +11679,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_king_sherman",
@@ -11926,9 +11693,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_king_tuthill",
@@ -11943,8 +11709,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kingston_paul",
@@ -12006,8 +11771,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kinzie_james",
@@ -12050,8 +11814,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kinzie_r_a",
@@ -12066,8 +11829,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kinzie_robert_a",
@@ -12096,8 +11858,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kirby_hannah_a",
@@ -12176,8 +11937,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_knapp_george",
@@ -12208,8 +11968,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_knight_clark",
@@ -12240,8 +11999,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_knowles_j_a",
@@ -12320,8 +12078,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_kurcheval_louis_c",
@@ -12336,8 +12093,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lafrombois_joseph",
@@ -12352,8 +12108,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lafton_lewis",
@@ -12384,8 +12139,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_laird_william",
@@ -12400,8 +12154,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lake_lewis",
@@ -12527,8 +12280,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_laughton_barnardus_h",
@@ -12543,8 +12295,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_laughton_david",
@@ -12559,8 +12310,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_laughton_sophia",
@@ -12575,8 +12325,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lawrence_james_r",
@@ -12650,13 +12399,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_leonard_anson",
@@ -12687,8 +12435,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lewie_wm",
@@ -12797,8 +12544,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_linkletter_george",
@@ -12877,8 +12623,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_logdson_cery",
@@ -12893,8 +12638,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_loner_oliver",
@@ -12924,9 +12668,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_loomis_amelizo",
@@ -12957,8 +12700,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_lorenzo_maccoy",
@@ -13005,8 +12747,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_louis_malzacher",
@@ -13101,8 +12842,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_loyell_j_hi",
@@ -13181,8 +12921,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_luke_pike",
@@ -13229,8 +12968,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mabbet_benjamin_f",
@@ -13341,8 +13079,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mann_john",
@@ -13357,8 +13094,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_markle_joseph_w",
@@ -13373,8 +13109,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_marknoble_jun",
@@ -13389,8 +13124,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_marknoble_sen",
@@ -13405,8 +13139,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_marsh_silvester",
@@ -13481,8 +13214,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mason_matthias",
@@ -13491,7 +13223,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "mason_blacksmith_shop",
@@ -13527,8 +13259,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_matthews_james_g",
@@ -13637,8 +13368,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mcclinton_wilson",
@@ -13669,8 +13399,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mcfadden_james",
@@ -13763,8 +13492,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mdolold_james",
@@ -13811,8 +13539,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_meeker_joseph",
@@ -13841,8 +13568,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_merill_isaac",
@@ -13889,8 +13615,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_merrill_winthrop",
@@ -13953,8 +13678,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mgrigg_a_a",
@@ -14017,8 +13741,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_miller_george",
@@ -14064,8 +13787,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mills_joel_c",
@@ -14095,9 +13817,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "present_on_scene_date": "present",
+   "review_required": false
   },
   {
    "id": "hh_mills_philo_c",
@@ -14128,8 +13849,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_milow_john",
@@ -14239,8 +13959,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mkean_joseph",
@@ -14317,8 +14036,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_moody_robert",
@@ -14363,8 +14081,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_moreland_thomas_u",
@@ -14411,8 +14128,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_morland_f_h",
@@ -14473,8 +14189,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_morrison_amanda",
@@ -14489,8 +14204,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_morrison_james_m",
@@ -14505,8 +14219,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_morrison_ordemus",
@@ -14537,8 +14250,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_morrison_t_m",
@@ -14631,8 +14343,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_mumer_theodore",
@@ -14647,8 +14358,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_munriou_joseph",
@@ -14695,8 +14405,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_murray_alonzo",
@@ -14727,8 +14436,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_murray_patrick",
@@ -14918,8 +14626,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_newton_daniel",
@@ -14950,8 +14657,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_night_clapp",
@@ -14982,8 +14688,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_noble_mark",
@@ -15012,8 +14717,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_noble_william_b",
@@ -15044,8 +14748,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_noon_albert",
@@ -15060,8 +14763,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_northrop_francis_b",
@@ -15154,8 +14856,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_oakley_benjamin_w",
@@ -15202,8 +14903,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ogleby_robert",
@@ -15345,8 +15045,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_j_v",
@@ -15361,8 +15060,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_t_j_v",
@@ -15377,8 +15075,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_th_j_v",
@@ -15393,8 +15090,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_thomas",
@@ -15409,8 +15105,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_thomas_j_v",
@@ -15425,8 +15120,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_owen_thomas_jv",
@@ -15456,8 +15150,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_paddock_jane",
@@ -15568,8 +15261,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_palmer_n_h",
@@ -15600,8 +15292,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_parcel_aaron",
@@ -15728,8 +15419,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_paterson_a_c",
@@ -15744,8 +15434,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_paylor_john_o",
@@ -15792,8 +15481,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_payne_william",
@@ -15808,8 +15496,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_peacock_elijah",
@@ -15824,8 +15511,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_pearce_eliza",
@@ -15856,8 +15542,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_pearsons_hiram",
@@ -15902,8 +15587,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_peck_p_f_w",
@@ -15918,8 +15602,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_peck_philip",
@@ -16028,8 +15711,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_phelan_andrew_j_f",
@@ -16044,8 +15726,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_phelps_james_h",
@@ -16154,8 +15835,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_pixley_john_l",
@@ -16282,8 +15962,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_porter_jeremiah",
@@ -16438,8 +16117,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_provis_joshua",
@@ -16479,13 +16157,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_pugsley_john_k",
@@ -16547,8 +16224,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rameyn_theodore",
@@ -16563,8 +16239,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_ranwin_o",
@@ -16611,8 +16286,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_raymore_ira",
@@ -16643,8 +16317,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_reed_s_w",
@@ -16659,8 +16332,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_reed_thomas",
@@ -16675,8 +16347,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_reed_william",
@@ -16691,8 +16362,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_reeder_henry",
@@ -16803,8 +16473,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_reynolds_joseph",
@@ -16819,8 +16488,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rhuns_henry",
@@ -16835,8 +16503,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rice_john",
@@ -16851,8 +16518,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_richard_mcadams",
@@ -16915,8 +16581,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rider_elia",
@@ -16931,8 +16596,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rinhart_james_h",
@@ -17106,8 +16770,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_robinson_hugh",
@@ -17122,8 +16785,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rodney_mcdole",
@@ -17154,8 +16816,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rogers_edward_a",
@@ -17186,8 +16847,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rollins_john",
@@ -17202,8 +16862,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_romer_carl",
@@ -17249,9 +16908,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_ross_niles",
@@ -17266,8 +16924,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_rowley_herman_a",
@@ -17298,8 +16955,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_russel_john",
@@ -17344,8 +17000,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_russell_samuel",
@@ -17484,8 +17139,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sammons_richard",
@@ -17580,8 +17234,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sanford_ruth",
@@ -17660,8 +17313,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_savage_david",
@@ -17692,8 +17344,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_scarritt_isaac",
@@ -17804,8 +17455,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_selden_saml_l",
@@ -17895,13 +17545,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_shattick_walter",
@@ -17932,8 +17581,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_shaw_samuel",
@@ -17996,8 +17644,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sheldon_james",
@@ -18012,8 +17659,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_shelton_edward_n",
@@ -18028,8 +17674,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_shepherd_a",
@@ -18074,8 +17719,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sherman_silas_w",
@@ -18090,8 +17734,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sherwood_s",
@@ -18202,8 +17845,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sidney_roberts",
@@ -18266,8 +17908,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_simmons_john",
@@ -18282,8 +17923,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_simmons_marion",
@@ -18298,8 +17938,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_simmons_medad_i",
@@ -18373,13 +18012,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_skinner_heury_c",
@@ -18405,13 +18043,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sloan_douglass",
@@ -18458,8 +18095,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smith_e_kirby",
@@ -18473,9 +18109,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "present",
+   "review_required": false
   },
   {
    "id": "hh_smith_elded",
@@ -18520,8 +18155,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smith_jeremiah",
@@ -18536,8 +18170,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smith_l_w",
@@ -18568,8 +18201,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smith_matthias",
@@ -18583,9 +18215,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "present_on_scene_date": "present",
+   "review_required": false
   },
   {
    "id": "hh_smith_william",
@@ -18600,8 +18231,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smith_william_v",
@@ -18616,8 +18246,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_smow_george_w",
@@ -18648,8 +18277,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_snow_george_w",
@@ -18678,8 +18306,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_souee_theson",
@@ -18742,8 +18369,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_spence_james_c",
@@ -18753,13 +18379,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_spencer_william",
@@ -18852,8 +18477,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sproat_g_n",
@@ -18868,8 +18492,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sproat_g_t",
@@ -18884,8 +18507,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sproat_grenville",
@@ -19040,8 +18662,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_stater_asa_p",
@@ -19150,8 +18771,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_stevens_issac",
@@ -19182,8 +18802,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_steward_joseph",
@@ -19214,8 +18833,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_stewart_r",
@@ -19244,8 +18862,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_stimson_s_c",
@@ -19356,8 +18973,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_stout_samuel",
@@ -19560,8 +19176,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_sweet_richard_m",
@@ -19576,8 +19191,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_swena_benjam_n",
@@ -19608,8 +19222,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_taylor_anson",
@@ -19654,8 +19267,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_taylor_augustine",
@@ -19684,8 +19296,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_taylor_edmund_d",
@@ -19700,8 +19311,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_taylor_william",
@@ -19716,8 +19326,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_taylor_william_h",
@@ -19732,8 +19341,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_teal_william",
@@ -19780,8 +19388,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_temple_john_t",
@@ -19790,8 +19397,8 @@
    "division": "south",
    "persons": 4,
    "grades": {
-    "attested": 1,
-    "inferred": 3
+    "attested": 2,
+    "inferred": 2
    },
    "lives_at": null,
    "works_at": "temple_building",
@@ -19811,8 +19418,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_tensenring_peter",
@@ -19904,9 +19510,8 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_thompson_o_i",
@@ -19921,8 +19526,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_thrall_e_l",
@@ -20015,8 +19619,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_toby_samuel",
@@ -20079,8 +19682,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_townsend_c_e",
@@ -20111,8 +19713,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_townsend_robert",
@@ -20127,8 +19728,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_townsend_samuel",
@@ -20143,8 +19743,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_trall_e_l",
@@ -20159,8 +19758,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_trimble_edward",
@@ -20191,8 +19789,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_trowbridge_g_g",
@@ -20207,8 +19804,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_trowbridge_s_g",
@@ -20223,8 +19819,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_tryon_david",
@@ -20271,8 +19866,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_tuller_elam",
@@ -20333,8 +19927,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_vale_john",
@@ -20349,8 +19942,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_vanderbogart_h",
@@ -20360,13 +19952,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_vanderbogert_henry",
@@ -20493,8 +20084,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_varren_anreus",
@@ -20572,8 +20162,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_vaughan_dow_w",
@@ -20588,8 +20177,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_vaughn_alison_b",
@@ -20652,8 +20240,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_volk_john",
@@ -20716,8 +20303,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_walford_h",
@@ -20759,13 +20345,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_walker_james",
@@ -20794,8 +20379,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_walter_francis",
@@ -20840,8 +20424,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wame_john",
@@ -20952,8 +20535,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_watkins_john",
@@ -20982,8 +20564,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wear_amy_c",
@@ -21014,8 +20595,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_weaver_d",
@@ -21030,8 +20610,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_webb_tho_c",
@@ -21062,8 +20641,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wellmaker_john",
@@ -21078,8 +20656,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wells_charles",
@@ -21126,8 +20703,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_welsh_t",
@@ -21142,8 +20718,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wendell_peter",
@@ -21158,8 +20733,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wendell_v_a",
@@ -21174,8 +20748,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wentworth_elijah",
@@ -21190,8 +20763,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wentworth_h_e",
@@ -21206,8 +20778,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wescott_seth",
@@ -21238,8 +20809,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wesencraft_charlotte",
@@ -21254,8 +20824,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wessencraft_charles",
@@ -21302,8 +20871,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_westover_roy_k",
@@ -21412,8 +20980,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wight_j_ambrose",
@@ -21428,8 +20995,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wilcox_d",
@@ -21444,8 +21010,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wilden_pearce",
@@ -21524,8 +21089,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_williams_john_l",
@@ -21540,8 +21104,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_willinm_g",
@@ -21572,8 +21135,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wilson_john",
@@ -21604,8 +21166,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_win_payne",
@@ -21748,8 +21309,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wolcott_alexander",
@@ -21764,8 +21324,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wood_wm",
@@ -21796,8 +21355,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_woods_john_h",
@@ -21828,8 +21386,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_woodworth_james_h",
@@ -21971,8 +21528,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wright_john",
@@ -22001,8 +21557,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_wright_truman_g",
@@ -22012,13 +21567,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_young_gideon",
@@ -22049,8 +21603,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": false
+   "review_required": false
   },
   {
    "id": "hh_zearly_reason",

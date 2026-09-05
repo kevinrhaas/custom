@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 4:58 PM",
+  "generated_ct": "Sep 5, 2026, 12:02 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 122
+      "queue_rank": 105
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 121
+      "queue_rank": 104
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 120
+      "queue_rank": 103
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 119
+      "queue_rank": 102
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 118
+      "queue_rank": 101
     },
     {
       "id": "T-0137",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 110
+      "queue_rank": 93
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 134
+      "queue_rank": 117
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 135
+      "queue_rank": 118
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 81
+      "queue_rank": 64
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 116
+      "queue_rank": 99
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 133
+      "queue_rank": 116
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 130
+      "queue_rank": 113
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 131
+      "queue_rank": 114
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 126
+      "queue_rank": 109
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 106
+      "queue_rank": 89
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 127
+      "queue_rank": 110
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 115
+      "queue_rank": 98
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 111
+      "queue_rank": 94
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 112
+      "queue_rank": 95
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 123
+      "queue_rank": 106
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 85
+      "queue_rank": 68
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 91
+      "queue_rank": 74
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 136
+      "queue_rank": 119
     },
     {
       "id": "T-0272",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": 70
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 71
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 89
+      "queue_rank": 72
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 90
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 91
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 132
+      "queue_rank": 115
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 90
+      "queue_rank": 73
     },
     {
       "id": "T-0304",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 60
     },
     {
       "id": "T-0321",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 86
+      "queue_rank": 69
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 83
+      "queue_rank": 66
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 109
+      "queue_rank": 92
     },
     {
       "id": "T-0365",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 117
+      "queue_rank": 100
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 137
+      "queue_rank": 120
     },
     {
       "id": "T-0378",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 57
+      "queue_rank": 40
     },
     {
       "id": "T-0386",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 138
+      "queue_rank": 121
     },
     {
       "id": "T-0389",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 47
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 54
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 46
     },
     {
       "id": "T-0397",
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 53
     },
     {
       "id": "T-0399",
@@ -6603,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 45
     },
     {
       "id": "T-0404",
@@ -6621,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 55
     },
     {
       "id": "T-0405",
@@ -6639,7 +6639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 56
     },
     {
       "id": "T-0406",
@@ -6657,7 +6657,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 44
     },
     {
       "id": "T-0407",
@@ -6675,7 +6675,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 48
     },
     {
       "id": "T-0408",
@@ -6693,7 +6693,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 49
     },
     {
       "id": "T-0409",
@@ -6729,7 +6729,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 50
     },
     {
       "id": "T-0411",
@@ -6747,7 +6747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 51
     },
     {
       "id": "T-0412",
@@ -6765,7 +6765,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 42
     },
     {
       "id": "T-0413",
@@ -6783,7 +6783,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 52
     },
     {
       "id": "T-0414",
@@ -6801,7 +6801,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 41
     },
     {
       "id": "T-0415",
@@ -6819,7 +6819,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 43
     },
     {
       "id": "T-0416",
@@ -6893,7 +6893,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 61
     },
     {
       "id": "T-0420",
@@ -6929,7 +6929,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 62
     },
     {
       "id": "T-0422",
@@ -6947,7 +6947,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 80
+      "queue_rank": 63
     },
     {
       "id": "T-0423",
@@ -6985,7 +6985,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 58
     },
     {
       "id": "T-0425",
@@ -7003,7 +7003,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 57
     },
     {
       "id": "T-0426",
@@ -7059,7 +7059,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 59
     },
     {
       "id": "T-0429",
@@ -7077,7 +7077,7 @@
       "claimed_by": "run 8/30/2026, 1:51:13 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 54
+      "queue_rank": 37
     },
     {
       "id": "T-0430",
@@ -7113,7 +7113,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 55
+      "queue_rank": 38
     },
     {
       "id": "T-0432",
@@ -7131,7 +7131,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 56
+      "queue_rank": 39
     },
     {
       "id": "T-0433",
@@ -7149,7 +7149,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 124
+      "queue_rank": 107
     },
     {
       "id": "T-0435",
@@ -7167,7 +7167,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 82
+      "queue_rank": 65
     },
     {
       "id": "T-0436",
@@ -7185,7 +7185,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 84
+      "queue_rank": 67
     },
     {
       "id": "T-0437",
@@ -7203,7 +7203,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 128
+      "queue_rank": 111
     },
     {
       "id": "T-0438",
@@ -7221,7 +7221,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 142
+      "queue_rank": 125
     },
     {
       "id": "T-0439",
@@ -7239,7 +7239,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 143
+      "queue_rank": 126
     },
     {
       "id": "T-0440",
@@ -7257,7 +7257,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 3
     },
     {
       "id": "T-0442",
@@ -7331,7 +7331,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 31
     },
     {
       "id": "T-0446",
@@ -7369,7 +7369,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 32
     },
     {
       "id": "T-0448",
@@ -7405,7 +7405,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 144
+      "queue_rank": 127
     },
     {
       "id": "T-0450",
@@ -7443,7 +7443,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 36
     },
     {
       "id": "T-0452",
@@ -7608,7 +7608,7 @@
       "claimed_by": null,
       "blocked_on": "T-0219",
       "needs_bake": true,
-      "queue_rank": 92
+      "queue_rank": 75
     },
     {
       "id": "T-0465",
@@ -7625,7 +7625,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": true,
-      "queue_rank": 93
+      "queue_rank": 76
     },
     {
       "id": "T-0466",
@@ -7642,7 +7642,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 94
+      "queue_rank": 77
     },
     {
       "id": "T-0467",
@@ -7659,7 +7659,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 95
+      "queue_rank": 78
     },
     {
       "id": "T-0468",
@@ -7676,7 +7676,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 96
+      "queue_rank": 79
     },
     {
       "id": "T-0469",
@@ -7693,7 +7693,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 97
+      "queue_rank": 80
     },
     {
       "id": "T-0470",
@@ -7710,7 +7710,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": false,
-      "queue_rank": 98
+      "queue_rank": 81
     },
     {
       "id": "T-0471",
@@ -7727,7 +7727,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 99
+      "queue_rank": 82
     },
     {
       "id": "T-0472",
@@ -7744,7 +7744,7 @@
       "claimed_by": null,
       "blocked_on": "T-0470",
       "needs_bake": false,
-      "queue_rank": 100
+      "queue_rank": 83
     },
     {
       "id": "T-0473",
@@ -7761,7 +7761,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 101
+      "queue_rank": 84
     },
     {
       "id": "T-0474",
@@ -7778,7 +7778,7 @@
       "claimed_by": null,
       "blocked_on": "T-0473",
       "needs_bake": true,
-      "queue_rank": 102
+      "queue_rank": 85
     },
     {
       "id": "T-0475",
@@ -7795,7 +7795,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 103
+      "queue_rank": 86
     },
     {
       "id": "T-0476",
@@ -7812,7 +7812,7 @@
       "claimed_by": null,
       "blocked_on": "T-0475",
       "needs_bake": true,
-      "queue_rank": 104
+      "queue_rank": 87
     },
     {
       "id": "T-0477",
@@ -7829,7 +7829,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 105
+      "queue_rank": 88
     },
     {
       "id": "T-0478",
@@ -8171,7 +8171,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 16
     },
     {
       "id": "T-0497",
@@ -8189,7 +8189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 17
     },
     {
       "id": "T-0498",
@@ -8287,7 +8287,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 10
     },
     {
       "id": "T-0503",
@@ -8372,7 +8372,7 @@
     {
       "id": "T-0507",
       "title": "964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8380,12 +8380,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "811",
+      "claimed_by": "run 9/4/2026, 4:00:36 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "closed_at": "2026-09-04T21:35:20.218Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33918546773",
+      "queue_rank": null
     },
     {
       "id": "T-0508",
@@ -8403,7 +8405,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 5
     },
     {
       "id": "T-0509",
@@ -8421,12 +8423,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 6
     },
     {
       "id": "T-0510",
       "title": "237 named residents have no research row: cohort 15 of 79",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8434,17 +8436,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "844",
+      "claimed_by": "run 9/4/2026, 10:26:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "closed_at": "2026-09-05T04:49:08.278Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941745252",
+      "queue_rank": null
     },
     {
       "id": "T-0511",
       "title": "The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8452,17 +8456,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "837",
+      "claimed_by": "run 9/4/2026, 10:28:34 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "closed_at": "2026-09-05T03:54:43.338Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941770781",
+      "queue_rank": null
     },
     {
       "id": "T-0512",
       "title": "T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8470,12 +8476,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "842",
+      "claimed_by": "run 9/4/2026, 10:36:33 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "closed_at": "2026-09-05T04:23:57.860Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941756242",
+      "queue_rank": null
     },
     {
       "id": "T-0513",
@@ -8520,7 +8528,7 @@
     {
       "id": "T-0515",
       "title": "727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": false,
@@ -8528,17 +8536,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "797",
+      "claimed_by": "run 9/4/2026, 11:55:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "closed_at": "2026-09-04T17:59:44.559Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33897541903",
+      "queue_rank": null
     },
     {
       "id": "T-0516",
       "title": "31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": false,
@@ -8546,12 +8556,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "843",
+      "claimed_by": "run 9/4/2026, 10:27:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "closed_at": "2026-09-05T04:26:18.353Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941752969",
+      "queue_rank": null
     },
     {
       "id": "T-0517",
@@ -8569,7 +8581,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 7
     },
     {
       "id": "T-0518",
@@ -8587,7 +8599,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 8
     },
     {
       "id": "T-0520",
@@ -8605,7 +8617,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 145
+      "queue_rank": 128
     },
     {
       "id": "T-0521",
@@ -8643,7 +8655,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 139
+      "queue_rank": 122
     },
     {
       "id": "T-0523",
@@ -8901,7 +8913,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 18
     },
     {
       "id": "T-0537",
@@ -8919,7 +8931,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 146
+      "queue_rank": 129
     },
     {
       "id": "T-0538",
@@ -9031,7 +9043,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 15
     },
     {
       "id": "T-0544",
@@ -9329,7 +9341,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 14
     },
     {
       "id": "T-0562",
@@ -9695,7 +9707,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 11
     },
     {
       "id": "T-0582",
@@ -9713,7 +9725,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 12
     },
     {
       "id": "T-0583",
@@ -9731,7 +9743,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 13
     },
     {
       "id": "T-0584",
@@ -9832,7 +9844,7 @@
     {
       "id": "T-0589",
       "title": "Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -9840,14 +9852,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "813",
+      "claimed_by": "run 9/4/2026, 4:37:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 5
+      "closed_at": "2026-09-04T22:04:03.468Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33918604701",
+      "queue_rank": null
     },
     {
       "id": "T-0590",
@@ -9887,12 +9899,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 13
+      "queue_rank": 4
     },
     {
       "id": "T-0593",
       "title": "A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -9900,14 +9912,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "823",
+      "claimed_by": "run 9/4/2026, 5:41:21 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 10
+      "closed_at": "2026-09-04T23:40:46.407Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33926179612",
+      "queue_rank": null
     },
     {
       "id": "T-0594",
@@ -9927,12 +9939,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 8
+      "queue_rank": 2
     },
     {
       "id": "T-0595",
       "title": "jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -9940,19 +9952,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "818",
+      "claimed_by": "run 9/4/2026, 5:38:15 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 9
+      "closed_at": "2026-09-04T23:02:11.902Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33926198826",
+      "queue_rank": null
     },
     {
       "id": "T-0596",
       "title": "About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -9960,14 +9972,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "819",
+      "claimed_by": "run 9/4/2026, 5:38:59 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 12
+      "closed_at": "2026-09-04T23:40:11.556Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33926214360",
+      "queue_rank": null
     },
     {
       "id": "T-0597",
@@ -9987,7 +9999,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 7
+      "queue_rank": 1
     },
     {
       "id": "T-0598",
@@ -10047,7 +10059,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 46
+      "queue_rank": 29
     },
     {
       "id": "T-0601",
@@ -10067,7 +10079,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 47
+      "queue_rank": 30
     },
     {
       "id": "T-0602",
@@ -10147,7 +10159,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 26
+      "queue_rank": 9
     },
     {
       "id": "T-0606",
@@ -10247,7 +10259,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 123
     },
     {
       "id": "T-0613",
@@ -10347,7 +10359,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 43
+      "queue_rank": 26
     },
     {
       "id": "T-0620",
@@ -10367,7 +10379,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 44
+      "queue_rank": 27
     },
     {
       "id": "T-0621",
@@ -10387,7 +10399,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 45
+      "queue_rank": 28
     },
     {
       "id": "T-0625",
@@ -10487,7 +10499,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 37
+      "queue_rank": 20
     },
     {
       "id": "T-0630",
@@ -10592,7 +10604,7 @@
     {
       "id": "T-0635",
       "title": "Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10600,19 +10612,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "796",
+      "claimed_by": "run 9/4/2026, 11:55:07 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 4
+      "closed_at": "2026-09-04T23:26:32.121Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33897570769",
+      "queue_rank": null
     },
     {
       "id": "T-0636",
       "title": "Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10620,19 +10632,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "833",
+      "claimed_by": "run 9/4/2026, 8:20:10 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 17
+      "closed_at": "2026-09-05T02:12:38.596Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935468156",
+      "queue_rank": null
     },
     {
       "id": "T-0637",
       "title": "289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -10640,14 +10652,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "828",
+      "claimed_by": "run 9/4/2026, 8:17:25 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 16
+      "closed_at": "2026-09-05T01:54:37.054Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935464750",
+      "queue_rank": null
     },
     {
       "id": "T-0638",
@@ -10827,7 +10839,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 38
+      "queue_rank": 21
     },
     {
       "id": "T-0648",
@@ -10872,7 +10884,7 @@
     {
       "id": "T-0650",
       "title": "The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -10880,14 +10892,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "830",
+      "claimed_by": "run 9/4/2026, 8:15:40 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 14
+      "closed_at": "2026-09-05T02:01:05.710Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935471720",
+      "queue_rank": null
     },
     {
       "id": "T-0652",
@@ -10907,7 +10919,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 39
+      "queue_rank": 22
     },
     {
       "id": "T-0653",
@@ -11007,7 +11019,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 40
+      "queue_rank": 23
     },
     {
       "id": "T-0658",
@@ -11027,7 +11039,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 41
+      "queue_rank": 24
     },
     {
       "id": "T-0659",
@@ -11047,7 +11059,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 42
+      "queue_rank": 25
     },
     {
       "id": "T-0660",
@@ -11107,12 +11119,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 125
+      "queue_rank": 108
     },
     {
       "id": "T-0663",
       "title": "Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11120,14 +11132,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "826",
+      "claimed_by": "run 9/4/2026, 8:15:28 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 15
+      "closed_at": "2026-09-05T01:35:29.573Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33935461254",
+      "queue_rank": null
     },
     {
       "id": "T-0664",
@@ -11252,7 +11264,7 @@
     {
       "id": "T-0670",
       "title": "The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11260,14 +11272,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-04",
+      "pr": "814",
+      "claimed_by": "run 9/4/2026, 4:03:34 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 1
+      "closed_at": "2026-09-04T21:39:54.498Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33918567032",
+      "queue_rank": null
     },
     {
       "id": "T-0671",
@@ -11287,7 +11299,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 36
+      "queue_rank": 19
     },
     {
       "id": "T-0672",
@@ -11307,7 +11319,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 113
+      "queue_rank": 96
     },
     {
       "id": "T-0673",
@@ -11327,7 +11339,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 114
+      "queue_rank": 97
     },
     {
       "id": "T-0674",
@@ -11347,7 +11359,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 129
+      "queue_rank": 112
     },
     {
       "id": "T-0675",
@@ -11372,13 +11384,33 @@
     {
       "id": "T-0676",
       "title": "The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
       "effort": "S",
       "legacy_id": null,
       "parent": "T-0610",
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "816",
+      "claimed_by": "run 9/4/2026, 3:59:08 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-04T21:56:18.678Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33918584044",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0677",
+      "title": "Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
@@ -11387,7 +11419,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 2
+      "queue_rank": 134
+    },
+    {
+      "id": "T-0678",
+      "title": "The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 135
     },
     {
       "id": "T-0679",
@@ -11407,7 +11459,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 3
+      "queue_rank": 0
+    },
+    {
+      "id": "T-0681",
+      "title": "T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 136
     },
     {
       "id": "T-0683",
@@ -11427,7 +11499,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 141
+      "queue_rank": 124
     },
     {
       "id": "T-0684",
@@ -11467,7 +11539,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 50
+      "queue_rank": 33
     },
     {
       "id": "T-0686",
@@ -11487,7 +11559,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 51
+      "queue_rank": 34
     },
     {
       "id": "T-0687",
@@ -11507,7 +11579,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 52
+      "queue_rank": 35
     },
     {
       "id": "T-0689",
@@ -11527,7 +11599,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 131
     },
     {
       "id": "T-0690",
@@ -11547,7 +11619,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 130
     },
     {
       "id": "T-0691",
@@ -11567,7 +11639,43 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 132
+    },
+    {
+      "id": "T-0692",
+      "title": "18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 137
+    },
+    {
+      "id": "T-0693",
+      "title": "Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 138
     },
     {
       "id": "T-0694",
@@ -11587,7 +11695,587 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
+      "queue_rank": 133
+    },
+    {
+      "id": "T-0695",
+      "title": "A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 139
+    },
+    {
+      "id": "T-0696",
+      "title": "The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 140
+    },
+    {
+      "id": "T-0697",
+      "title": "The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 141
+    },
+    {
+      "id": "T-0698",
+      "title": "The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 142
+    },
+    {
+      "id": "T-0699",
+      "title": "Six men on the 1835 poll AND other lists are graded \"the 1835 poll alone\", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "817",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:15:26.204Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0700",
+      "title": "The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 143
+    },
+    {
+      "id": "T-0701",
+      "title": "The menu becomes a right-hand drawer with an icon rail, a bottom sheet on a phone",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:45.639Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0702",
+      "title": "Go to hides reconstructed roofs by default and filters by kind: taverns, stores, trades, homes, fort, waterfront",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:45.789Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0703",
+      "title": "Every Go to row says how far and which way; arrow keys walk the list",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:45.935Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0704",
+      "title": "Travel: instantly, walk, wagon, horse, fly — the pace and seated eye height apply to free movement",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.080Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0705",
+      "title": "Horse gait moves the rider's eye; off under reduced motion and by a setting",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.224Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0706",
+      "title": "Choosing a place walks or rides you there along the streets, with a Stop banner and the card on arrival",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.366Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0707",
+      "title": "Fly travel rises to a cruise height, glides, and lands in front of the building",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.510Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0708",
+      "title": "A people directory: every resident searchable by name, occupation, arrival, division, age and how they are known",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.662Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0709",
+      "title": "People appear in Go to; choosing one takes you to where they lived or worked",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.812Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0710",
+      "title": "The Evidence panel becomes a hub of browsable topics with search, instead of one scroll",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:46.960Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0711",
+      "title": "The building card opens on a narrative lead and a key-facts grid with quiet grade dots",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:47.105Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0712",
+      "title": "The card's evidence, liberties and record move under three tabs at its foot",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": "2026-09-04",
+      "pr": "829",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T01:52:47.250Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0713",
+      "title": "The platted street lines are graded inferred; the owner rules them attested from the Thompson plat",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 144
+    },
+    {
+      "id": "T-0714",
+      "title": "The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 145
+    },
+    {
+      "id": "T-0715",
+      "title": "data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 146
+    },
+    {
+      "id": "T-0716",
+      "title": "Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 147
+    },
+    {
+      "id": "T-0717",
+      "title": "The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 148
+    },
+    {
+      "id": "T-0718",
+      "title": "Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 149
+    },
+    {
+      "id": "T-0727",
+      "title": "Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
       "queue_rank": 150
+    },
+    {
+      "id": "T-0728",
+      "title": "The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 151
+    },
+    {
+      "id": "T-0733",
+      "title": "103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 152
+    },
+    {
+      "id": "T-0734",
+      "title": "14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0735",
+      "title": "check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
     }
   ]
 }

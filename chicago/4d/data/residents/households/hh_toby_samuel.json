@@ -76,6 +76,26 @@
      "chicago_democrat_1833_1835"
     ]
    },
+   "press_evidence": [
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Samuel E. Toby",
+     "locator": "chicago_democrat_1834_07_02#c033",
+     "record_id": "person_samuel_e_toby",
+     "describes_date": "1834-07-02",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    },
+    {
+     "list": "newspaper_letter_list",
+     "as_read": "Samuel. Toby",
+     "locator": "chicago_democrat_1834_07_09#c009",
+     "record_id": "person_samuel_toby",
+     "describes_date": "1834-07-09",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G2e"
+    }
+   ],
    "resident_subtype": "projected_resident"
   }
  ],

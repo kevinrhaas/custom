@@ -41,7 +41,29 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "land_sales"
 RESIDENTS = ROOT / "data" / "residents"
 SOURCE_ID = "isa_public_domain_land_tract_sales"
-TSV = "isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
+# THE DEPOSITS, IN THE ORDER THEY WERE ADDED, and that order is load-bearing. Record
+# ids are positional — `ls0001` upward across the whole reading — and data/structures/
+# *.json cite them by id, so a new deposit APPENDS and never renumbers what is already
+# cited. Each carries the (township, range) pairs its sweep asked for, section by
+# section, and the ticket that read them; coverage is derived from exactly that.
+DEPOSITS = (
+    {"tsv": "isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv",
+     "ticket": "T-0675", "pairs": ((39, 14), (40, 14))},
+    {"tsv": "isa_land_tract_sales_t39n_t40n_r13e_t38n_t41n_r14e_t38n_r15e_through_1836.tsv",
+     "ticket": "T-0676", "pairs": ((39, 13), (40, 13), (38, 14), (41, 14), (38, 15))},
+)
+
+
+def deposit_of(name: str) -> dict:
+    for d in DEPOSITS:
+        if d["tsv"] == name:
+            return d
+    raise SystemExit("land_sales: no deposit named %s" % name)
+
+
+def records_name(tsv: str) -> str:
+    """The records file a deposit derives: one per deposit, named after it."""
+    return "records/entries_" + tsv[len("isa_land_tract_sales_"):-len(".tsv")] + ".json"
 
 # T-0557 read three sections of T39N R14E — 16, 21 and 29 — as truncated: their section
 # query returned exactly 150 rows, the database's per-page ceiling, and the pass took
@@ -82,20 +104,31 @@ def dump(p: Path, doc) -> None:
 
 
 def read_tsv(domain: Path) -> list:
-    lines = (domain / "text" / TSV).read_text(encoding="utf-8").splitlines()
-    head = lines[0].split("\t")
-    if head != COLS:
-        raise SystemExit("land_sales: the deposit's header is not the harvest's header")
+    """Every committed deposit, in DEPOSITS order, each row carrying the file it is on.
+
+    A row's citation is a file AND a line, so the file travels with the row: two
+    deposits both have a line 2 and they are not the same sale.
+    """
     rows = []
-    for n, line in enumerate(lines[1:], start=2):
-        if not line.strip():
+    for dep in DEPOSITS:
+        path = domain / "text" / dep["tsv"]
+        if not path.exists():
             continue
-        cells = line.split("\t")
-        if len(cells) != len(COLS):
-            raise SystemExit("land_sales: line %d has %d cells, not %d" % (n, len(cells), len(COLS)))
-        row = dict(zip(COLS, cells))
-        row["_line"] = n
-        rows.append(row)
+        lines = path.read_text(encoding="utf-8").splitlines()
+        head = lines[0].split("\t")
+        if head != COLS:
+            raise SystemExit("land_sales: the deposit's header is not the harvest's header")
+        for n, line in enumerate(lines[1:], start=2):
+            if not line.strip():
+                continue
+            cells = line.split("\t")
+            if len(cells) != len(COLS):
+                raise SystemExit("land_sales: %s line %d has %d cells, not %d"
+                                 % (dep["tsv"], n, len(cells), len(COLS)))
+            row = dict(zip(COLS, cells))
+            row["_line"] = n
+            row["_file"] = dep["tsv"]
+            rows.append(row)
     return rows
 
 
@@ -157,9 +190,9 @@ def list_name(row: dict) -> str:
     return "T%s R%s sec %s" % (row["township"], row["range"], row["section"])
 
 
-def build_records(rows: list) -> dict:
+def build_records(rows: list, start: int = 1) -> dict:
     records = []
-    for i, row in enumerate(rows, start=1):
+    for i, row in enumerate(rows, start=start):
         cook = row["residence"].upper() == "COOK"
         records.append({
             "id": "ls%04d" % i,
@@ -168,7 +201,7 @@ def build_records(rows: list) -> dict:
             "locator": {"list": list_name(row), "line": row["_line"],
                         "purchase_no": row["purchase_no"],
                         "volume": row["volume"], "page": row["page"],
-                        "text_file": TSV},
+                        "text_file": row["_file"]},
             "reading": "transcription_mediated",
             "confidence": "documented" if cook else "inferred",
             "notes": ("The register's Residence column reads COOK: contemporary evidence "
@@ -210,56 +243,65 @@ def build_records(rows: list) -> dict:
 
 def build_coverage(rows: list) -> dict:
     # A DECLARATION is a promise that something in the domain reaches the item, and the
-    # gate is right to call a declared item nothing reaches a hole. Sixty-nine sections
-    # were queried; only the ones that returned a sale through 1836 can be declared. The
-    # rest were read and were empty, which is a fact worth keeping and is not coverage —
-    # so it is kept beside the declaration rather than inside it.
-    reached = sorted({list_name(r) for r in rows})
-    queried = ["T%sN R14E sec %02d" % (t, s) for t in (39, 40) for s in range(1, 37)]
+    # gate is right to call a declared item nothing reaches a hole. Every section of
+    # every township in DEPOSITS was queried; only the ones that returned a sale through
+    # 1836 can be declared. The rest were read and were empty, which is a fact worth
+    # keeping and is not coverage — so it is kept beside the declaration rather than
+    # inside it, one block per deposit, because the two readings are two promises.
+    reached = {list_name(r) for r in rows}
     truncated = ["T%s R%s sec %s" % tr for tr in sorted(TRUNCATED)]
-    declared = [n for n in reached if n not in truncated]
-    empty = [n for n in queried if n not in reached and n not in truncated]
+    declarations, empty = [], []
+    for dep in DEPOSITS:
+        queried = ["T%dN R%dE sec %02d" % (tw, rg, sn)
+                   for tw, rg in dep["pairs"] for sn in range(1, 37)]
+        declarations.append({
+            "unit": "list",
+            "ticket": dep["ticket"],
+            "note": "Read in full: the section query was walked to its end through the "
+                    "More cursor, so every sale it holds through 1836 is in %s."
+                    % dep["tsv"],
+            "items": [n for n in queried if n in reached and n not in truncated],
+        })
+        empty.append({
+            "ticket": dep["ticket"],
+            "deposit": dep["tsv"],
+            "note": "Walked section by section to the end of the results; the section "
+                    "holds no sale dated on or before 31 December 1836. Read, empty, and "
+                    "not a hole.",
+            "items": [n for n in queried if n not in reached and n not in truncated],
+        })
+    townships = ", ".join("T%dN R%dE" % tr for dep in DEPOSITS for tr in dep["pairs"])
     return {
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
         "note": "The reading is BY SECTION because a whole-township query stops at the "
-                "database's 150-row page and looks complete. Seventy-two section queries "
-                "were run (T39N and T40N, R14E, third principal meridian, sections 01-36) "
-                "and each was walked to its end through the results page's own More "
-                "button, whose keyset cursor returns the rows after the last one shown "
-                "(T-0675). Every section here is therefore read whole, including the "
-                "three — 16, 21 and 29 — that T-0557 declared truncated because it took "
-                "the first page for the whole. A declaration promises that a record "
-                "reaches the item, so a section that was walked and held no sale through "
-                "1836 is listed under `queried_no_sales_through_1836` instead — read, "
-                "empty, and not a hole. The ring townships T39N R13E, T38N R14E, "
-                "T38N R15E, T40N R13E and T41N R14E are not read at all and are not "
-                "declared; that is T-0676.",
-        "declarations": [{
-            "unit": "list",
-            "ticket": "T-0675",
-            "note": "Read in full: the section query was walked to its end through the "
-                    "More cursor, so every sale it holds through 1836 is in the deposit.",
-            "items": declared,
-        }],
-        "queried_no_sales_through_1836": {
-            "ticket": "T-0675",
-            "note": "Walked section by section to the end of the results; the section "
-                    "holds no sale dated on or before 31 December 1836. Read, empty, and "
-                    "not a hole.",
-            "items": empty,
-        },
+                "database's 150-row page and looks complete. %d section queries were run "
+                "(%s, third principal meridian, sections 01-36) and each was walked to "
+                "its end through the results page's own More button, whose keyset cursor "
+                "returns the rows after the last one shown (T-0675). Every section here "
+                "is therefore read whole, including the three — 16, 21 and 29 — that "
+                "T-0557 declared truncated because it took the first page for the whole. "
+                "A declaration promises that a record reaches the item, so a section that "
+                "was walked and held no sale through 1836 is listed under "
+                "`queried_no_sales_through_1836` instead — read, empty, and not a hole. "
+                "T-0676 added the five ring townships, which are the last of what T-0610 "
+                "asked for: nothing around the town is unread now."
+                % (36 * sum(len(d["pairs"]) for d in DEPOSITS), townships),
+        "declarations": declarations,
+        "queried_no_sales_through_1836": empty,
         "not_read": {
             "ticket": "T-0676",
             "truncated_at_the_150_row_ceiling": truncated,
-            "townships_not_read": ["T39N R13E", "T38N R14E", "T38N R15E", "T40N R13E",
-                                   "T41N R14E"],
-            "note": "An undeclared item is not read yet and is not a fault. These are "
-                    "named so that the next pass knows exactly what is left. Nothing in "
-                    "R14E is truncated any more: T-0675 walked all seventy-two sections "
-                    "to their end, so that list is empty and is kept as the shape a "
-                    "future truncation would fill.",
+            "townships_not_read": [],
+            "note": "Nothing is left unread of what T-0610 asked for: T-0675 walked the "
+                    "two townships the town stands on to the end of every section, and "
+                    "T-0676 did the same for the five ring townships. Both lists are kept "
+                    "as the shape a future hole would fill. What remains outside this "
+                    "domain is stated in the README and is not a hole in it: purchasers "
+                    "whose stated residence is Cook County but whose ground lies "
+                    "elsewhere, which the database cannot be asked for, and the canal "
+                    "sections, which the land office did not sell.",
         },
     }
 
@@ -279,7 +321,7 @@ def resident_names() -> list:
     return out
 
 
-def build_resident_crosswalk(rows: list) -> dict:
+def build_resident_crosswalk(rows: list, ids: dict) -> dict:
     """Propose a correspondence between a purchaser and a person the town already holds.
 
     ONE rule, and it is deliberately the strictest of the ones this project uses: the
@@ -289,6 +331,14 @@ def build_resident_crosswalk(rows: list) -> dict:
     and is graded as one. Everything else is a refusal, written out with the rule that
     made it, because an absent match reads exactly like a pair nobody looked at.
     """
+    # `record_ids` is the ruling's anchor: WHICH sales this purchaser spelling was
+    # adjudicated from. tools/measure_research_spend.py asks for it in as many words —
+    # "a spelling pair whose evidence names no unit this domain has read — write the
+    # record id" — and it is provenance either way: a refusal a reader cannot trace back
+    # to the rows behind it is a refusal nobody can check.
+    by_name = {}
+    for row in rows:
+        by_name.setdefault(row["purchaser"], []).append(ids[row["purchase_no"]])
     people = resident_names()
     by_surname = {}
     for pid, name, hh in people:
@@ -309,7 +359,8 @@ def build_resident_crosswalk(rows: list) -> dict:
                 "rule": "%r is a surname with no forename, and a surname-only purchaser "
                         "is always a refusal against %s however well the tract agrees."
                         % (as_read, "(the residents layer)"),
-                "evidence": ["data/research/land_sales/text/" + TSV],
+                "record_ids": sorted(by_name[as_read]),
+                "evidence": ["data/research/land_sales/text/" + row["_file"]],
             })
             continue
         if len(candidates) != 1:
@@ -320,6 +371,7 @@ def build_resident_crosswalk(rows: list) -> dict:
                         "the surname in the residents layer, and there are %d."
                         % (as_read, "%d residents named %s" % (len(candidates), surname.title()),
                            len(candidates)),
+                "record_ids": sorted(by_name[as_read]),
                 "evidence": ["data/residents/index.json"],
             })
             continue
@@ -335,11 +387,13 @@ def build_resident_crosswalk(rows: list) -> dict:
                 "a": as_read, "b": name,
                 "rule": "%s is refused against %s: the surname agrees and the forename "
                         "does not." % (as_read, name),
+                "record_ids": sorted(by_name[as_read]),
                 "evidence": ["data/residents/" + (RESIDENTS / "index.json").name],
             })
             continue
         matches.append({
             "purchaser_as_read": as_read,
+            "record_ids": sorted(by_name[as_read]),
             "resident_id": pid,
             "resident_name": name,
             "household_id": hh,
@@ -361,6 +415,14 @@ def build_resident_crosswalk(rows: list) -> dict:
         "schema": 1,
         "domain": "land_sales",
         "generated_by": "tools/read_land_sales.py --build",
+        # T-0635. What this file adjudicates FROM, stated once at the top in the narrow
+        # form T-0598 asks for. Every ruling below rests on the same deposit — the
+        # Illinois public-domain tract-sales database — so a per-entry repetition would
+        # say nothing a reader could not read here. Without it the second hop of
+        # tools/measure_research_spend.py counted all fourteen matches UNSOURCED, which
+        # is that instrument saying, correctly, that a crosswalk which cannot name what
+        # it rests on cannot be spent.
+        "source_id": SOURCE_ID,
         "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, "
                 "or writes to data/residents/. T-0514 and T-0515 spend this file.",
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),
@@ -370,7 +432,7 @@ def build_resident_crosswalk(rows: list) -> dict:
     }
 
 
-def build_crosswalk(rows: list) -> dict:
+def build_crosswalk(rows: list, ids: dict) -> dict:
     """The within-domain identity layer: two spellings in THIS source, one purchaser.
 
     The only rule strong enough to use here is tract agreement — the same aliquot part
@@ -399,7 +461,10 @@ def build_crosswalk(rows: list) -> dict:
                                 "are not merged: tract agreement is where two spellings "
                                 "MIGHT be one man, and it is never proof that they are."
                                 % (a, b, key[0], key[1], key[2], key[3]),
-                        "evidence": ["data/research/land_sales/text/" + TSV],
+                        "record_ids": sorted(ids[r["purchase_no"]] for r in group
+                                             if r["purchaser"] in (a, b)),
+                        "evidence": sorted({"data/research/land_sales/text/" + r["_file"]
+                                            for r in group}),
                     })
     return {
         "schema": 1,
@@ -410,23 +475,30 @@ def build_crosswalk(rows: list) -> dict:
                 "its rules. No merge is made here at all, and every near-pair the tract "
                 "index found is written out as a refusal so the next pass does not have "
                 "to find them again.",
-        "passes": [{"ticket": "T-0557", "what": "Every pair of differently-spelled "
-                    "purchasers entering the same tract in T39N R14E and T40N R14E "
-                    "through 1836.", "merges": 0, "refusals": len(refusals)}],
+        "passes": [{
+            "ticket": dep["ticket"],
+            "what": "Every pair of differently-spelled purchasers entering the same tract "
+                    "in %s through 1836."
+                    % " and ".join("T%dN R%dE" % tr for tr in dep["pairs"]),
+            "merges": 0,
+            "refusals": sum(1 for r in refusals
+                            if "data/research/land_sales/text/" + dep["tsv"] in r["evidence"]),
+        } for dep in DEPOSITS],
         "merges": [],
         "refusals": refusals,
     }
 
 
-def build_entries(rows: list, records: dict) -> dict:
+def build_entries(rows: list, records: list) -> dict:
     """`entries.json` — the flat, verbatim list T-0557 asked for, one object per sale."""
     return {
         "schema": 1,
         "domain": "land_sales",
         "source_id": SOURCE_ID,
         "generated_by": "tools/read_land_sales.py --build",
-        "scope": "Third principal meridian, T39N R14E and T40N R14E, every sale dated "
-                 "on or before 31 December 1836.",
+        "scope": "Third principal meridian, %s, every sale dated on or before "
+                 "31 December 1836."
+                 % ", ".join("T%dN R%dE" % tr for dep in DEPOSITS for tr in dep["pairs"]),
         "note": "Fields are the database's own, unsummarised. `tract` is derived and is "
                 "the only computed field here.",
         "count": len(rows),
@@ -446,24 +518,35 @@ def build_entries(rows: list, records: dict) -> dict:
             "date_purchased_as_read": row["date_purchased"],
             "volume": row["volume"], "page": row["page"],
             "tract": rec["tract"],
-        } for row, rec in zip(rows, records["records"])],
+        } for row, rec in zip(rows, records)],
     }
 
 
-GENERATED = ("records/entries_t39n_t40n_r14e_through_1836.json", "entries.json",
-             "coverage.json", "crosswalk.json", "resident_crosswalk.json")
+GENERATED = tuple(records_name(d["tsv"]) for d in DEPOSITS) + (
+    "entries.json", "coverage.json", "crosswalk.json", "resident_crosswalk.json")
 
 
 def derive(domain: Path) -> dict:
+    """Every generated file, from every committed deposit.
+
+    One records file PER DEPOSIT, named after it, and the ids run on across them in
+    DEPOSITS order — so the second reading appends to the first rather than renumbering
+    the ids data/structures/*.json already cite.
+    """
     rows = read_tsv(domain)
-    records = build_records(rows)
-    return {
-        "records/entries_t39n_t40n_r14e_through_1836.json": records,
-        "entries.json": build_entries(rows, records),
-        "coverage.json": build_coverage(rows),
-        "crosswalk.json": build_crosswalk(rows),
-        "resident_crosswalk.json": build_resident_crosswalk(rows),
-    }
+    out, ordered, n = {}, [], 1
+    for dep in DEPOSITS:
+        mine = [r for r in rows if r["_file"] == dep["tsv"]]
+        recs = build_records(mine, start=n)
+        n += len(mine)
+        out[records_name(dep["tsv"])] = recs
+        ordered += recs["records"]
+    ids = {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)}
+    out["entries.json"] = build_entries(rows, ordered)
+    out["coverage.json"] = build_coverage(rows)
+    out["crosswalk.json"] = build_crosswalk(rows, ids)
+    out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids)
+    return out
 
 
 def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
@@ -479,8 +562,9 @@ def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
 
 def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
     bad = []
-    if not (domain / "text" / TSV).exists():
-        return ["land_sales: the deposit %s is not committed" % TSV]
+    missing = [d["tsv"] for d in DEPOSITS if not (domain / "text" / d["tsv"]).exists()]
+    if missing:
+        return ["land_sales: the deposit %s is not committed" % m for m in missing]
     out = derive(domain)
     for rel, doc in out.items():
         path = domain / rel
@@ -499,7 +583,7 @@ def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
 def _fixture(tmp: Path) -> Path:
     d = tmp / "land_sales"
     (d / "text").mkdir(parents=True)
-    (d / "text" / TSV).write_text(
+    (d / "text" / DEPOSITS[0]["tsv"]).write_text(
         "\t".join(COLS) + "\n"
         + "\t".join(["0000001", "CHIPMAN ANSEL", "COOK", "", "E2NE", "04", "39N", "14E",
                      "3", "COOK", "80.00", "1.25", "100.00", "FD", "11/17/1834", "687",
@@ -513,6 +597,15 @@ def _fixture(tmp: Path) -> Path:
         + "\t".join(["0000003", "HALE JOHN", "UNKNOWN", "", "LOT2BL79", "16", "39N",
                      "14E", "3", "COOK", "0000.00", "000.00", "60.00", "SC",
                      "10/22/1833", "817", "100"]) + "\n", encoding="utf-8")
+    # The second deposit — the ring townships (T-0676). It is in the fixture because a
+    # reading spread over two files is exactly what can go wrong quietly: ids that
+    # restart, a coverage block that declares one file's sections against the other's
+    # rows, a citation that names the wrong deposit.
+    (d / "text" / DEPOSITS[1]["tsv"]).write_text(
+        "\t".join(COLS) + "\n"
+        + "\t".join(["0000004", "HUNTER EDWARD E", "UNKNOWN", "", "E2SW", "02", "38N",
+                      "14E", "3", "COOK", "80.00", "1.25", "100.00", "FD", "11/15/1834",
+                      "687", "260"]) + "\n", encoding="utf-8")
     build(d, quiet=True)
     return d
 
@@ -524,7 +617,7 @@ def self_test() -> int:
         if check(d, quiet=True):
             print("SELF-TEST: the fixture is not green to begin with"); return 1
 
-        recs = load(d / "records/entries_t39n_t40n_r14e_through_1836.json")
+        recs = load(d / records_name(DEPOSITS[0]["tsv"]))
         if recs["records"][0]["confidence"] != "documented":
             print("SELF-TEST: a COOK residence must grade documented"); return 1
         fired.append("a COOK residence grades documented")
@@ -533,9 +626,22 @@ def self_test() -> int:
         fired.append("a purchase with no stated residence grades inferred")
 
         cross = load(d / "resident_crosswalk.json")
-        if not any(r["a"] == "BRIGGS" for r in cross["refusals"]):
+        briggs = [r for r in cross["refusals"] if r["a"] == "BRIGGS"]
+        if not briggs:
             print("SELF-TEST: a surname-only purchaser must be refused"); return 1
         fired.append("a surname-only purchaser is refused")
+        # A ruling that names no record is a ruling nobody can check, and the spend
+        # meter counts it as nothing at all.
+        if briggs[0].get("record_ids") != ["ls0002"]:
+            print("SELF-TEST: a refusal must name the records it was made from"); return 1
+        fired.append("a refusal names the records it was made from")
+
+        ring = load(d / records_name(DEPOSITS[1]["tsv"]))
+        if [r["id"] for r in ring["records"]] != ["ls0004"]:
+            print("SELF-TEST: the second deposit's ids must continue the first's"); return 1
+        if ring["records"][0]["locator"]["text_file"] != DEPOSITS[1]["tsv"]:
+            print("SELF-TEST: a record must cite the deposit it is on"); return 1
+        fired.append("a second deposit appends its ids and cites its own file")
 
         cov = load(d / "coverage.json")
         # T-0675 read the three sections T-0557 could not, so they MUST be declared now;
@@ -546,6 +652,13 @@ def self_test() -> int:
             return 1
         if cov["not_read"]["truncated_at_the_150_row_ceiling"]:
             print("SELF-TEST: no section of R14E is truncated after T-0675"); return 1
+        # The ring's own declaration, under its own ticket: a second deposit that read
+        # nothing would look exactly like one whose sections all came back empty.
+        ringdec = [x for x in cov["declarations"] if x["ticket"] == DEPOSITS[1]["ticket"]]
+        if [x["items"] for x in ringdec] != [["T38N R14E sec 02"]]:
+            print("SELF-TEST: the ring deposit must declare the sections it reached"); return 1
+        if "T38N R14E sec 01" not in cov["queried_no_sales_through_1836"][1]["items"]:
+            print("SELF-TEST: a ring section walked and empty must be recorded as read"); return 1
         fired.append("every section walked whole is declared read, and none is truncated")
 
         for rel, breaker in (
@@ -553,8 +666,10 @@ def self_test() -> int:
             ("coverage.json", lambda doc: doc["declarations"][0]["items"].append("T99N R99E sec 01")),
             ("crosswalk.json", lambda doc: doc["merges"].append({"into": "x", "from": "y"})),
             ("resident_crosswalk.json", lambda doc: doc["refusals"].clear()),
-            ("records/entries_t39n_t40n_r14e_through_1836.json",
+            (records_name(DEPOSITS[0]["tsv"]),
              lambda doc: doc["records"][0].update({"as_read": "CHIPMAN ANCEL"})),
+            (records_name(DEPOSITS[1]["tsv"]),
+             lambda doc: doc["records"][0].update({"as_read": "HUNTER EDWARD"})),
         ):
             doc = load(d / rel)
             breaker(doc)
@@ -564,8 +679,9 @@ def self_test() -> int:
             fired.append("a hand-edit to %s fails the gate" % rel)
             build(d, quiet=True)
 
-        line = (d / "text" / TSV).read_text(encoding="utf-8").replace("E2NE", "E2NW")
-        (d / "text" / TSV).write_text(line, encoding="utf-8")
+        tsv = d / "text" / DEPOSITS[0]["tsv"]
+        tsv.write_text(tsv.read_text(encoding="utf-8").replace("E2NE", "E2NW"),
+                       encoding="utf-8")
         if not check(d, quiet=True):
             print("SELF-TEST: a changed deposit did not fail the gate"); return 1
         fired.append("a changed deposit fails the gate")

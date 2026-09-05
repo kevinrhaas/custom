@@ -8,9 +8,9 @@
   "census_1840": 229,
   "church": 0,
   "books": 173,
-  "directories": 7004,
+  "directories": 7210,
   "newberry_index": 4914,
-  "land_sales": 542
+  "land_sales": 442
  },
  "witness": {
   "civic": {
@@ -34,16 +34,16 @@
    "spent": 37
   },
   "directories": {
-   "read": 7560,
-   "spent": 556
+   "read": 8256,
+   "spent": 1046
   },
   "newberry_index": {
    "read": 7005,
    "spent": 2091
   },
   "land_sales": {
-   "read": 566,
-   "spent": 24
+   "read": 953,
+   "spent": 511
   }
  },
  "raised": [
@@ -195,6 +195,38 @@
    "to": 173,
    "date": "2026-09-04",
    "why": "T-0500 read the second half of Fergus' Historical Series Nos. 26-29 — 58 claims and 45 town findings — completing the volume T-0499 began. The reading is deliberately wider than its rulings for the reason the first half already recorded: most of what these numbers carry is landscape, buildings, streets, civic institutions and port statistics, which the resident crosswalk has nothing to rule on. The names that DO fall in the 1830-1836 window are ruled on in the same pass; what this ceiling holds open is town findings waiting on the structure and terrain tickets that will spend them. Re-measured against the merged tree rather than carried over from this branch's earlier raise, because the baseline has moved several times since."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7004,
+   "to": 7199,
+   "date": "2026-09-04",
+   "why": "T-0589 read the civic account of Fergus's 1843 directory, page 1 lines 37-750: 388 claims, of which 264 are the town's own account of itself — the ward population count of 1 August 1843, the port's trade tables, the churches and their memberships, the offices and companies — and not names awaiting a crosswalk. 124 office-holder rows name 215 Chicagoans and are what the next crosswalk pass has to rule on. The ceiling moves by the reading; the spend it owes is T-0635's consolidation and the 1843 crosswalk, not this ticket."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7199,
+   "to": 7210,
+   "date": "2026-09-04",
+   "why": "T-0670 tightened the directory crosswalks to refuse a match where both readings print a full forename and the two disagree (Thomas L. Abbott was being merged onto Titus H. Abbott). 147 joins across Fergus 1843 and Norris 1844 are refused and 11 net rulings go with them: a resident whose only route to a printed claim was a bad initial-match no longer rules on it at all. The reading did not shrink; the town stopped claiming to have adjudicated eleven entries it had adjudicated wrongly. T-0696 is where the second discriminator that would win some of them back is decided."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "write",
+   "from": null,
+   "to": 35,
+   "date": "2026-09-04",
+   "why": "T-0635 (consolidation pass 2) made these thirty-five visible; it did not create them. The second hop could not see land_sales at all until this pass taught it two things: that a ruling filed under `matches` declares itself a match by the name of its container, and that resident_crosswalk.json states what it rests on (T-0598's narrow form, added to tools/read_land_sales.py in the same PR). With both, the domain's purchaser matches — Hiram Pearsons, Walter Loomis Newberry, Daniel Elston, Thomas Hartzell and the rest, each naming a household_id and a resident_id — are judgeable for the first time, and NOT ONE is on the card it names. The count is 35 rather than the 14 this pass first measured because T-0675 and T-0676 (PRs #798, #816) read the ring townships and the paged sections while this pass was in flight, taking the register from 375 sales to 953 and its matches from 14 to 35. The ceiling is the size of that finding, recorded so it is paid down rather than rediscovered. This pass does not pay it: resident_crosswalk.json's own note assigns the spend to T-0514 and T-0515, T-0514 is closed and did not take it, and T-0515 is live in the queue as another run's row. T-0677 is filed to spend it, and a working tools/spend_land_sales.py is pushed on the branch steward/salvage-t0635-mine for whoever takes it. The number comes down when that lands and it may not drift up."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 0,
+   "to": 3,
+   "date": "2026-09-04",
+   "why": "NOT THIS PASS'S DEBT, AND NOT A DRIFT BACK UP THROUGH NEGLECT. T-0632 pinned this hop at zero and said what would raise it: 'a later directory reading that rules on a person and does not reach their card raises this number and the gate says so'. That is exactly what happened. T-0666 (PR #791) read Fergus 1839's Fort Dearborn Addition lot sale of June 1839 and crosswalked 100 bidders against the town; 11 of them match a resident and 3 of those 11 name a card that cites nothing the ruling rests on. T-0635 is the pass that can SEE them — the second hop could not read a ruling grouped under a pool until this PR taught it to, so #791 merged green against an instrument that was not asking. The number is 3, it is T-0666's to pay, and T-0681 is filed to pay it by extending tools/spend_fergus_1839_later_lists.py to the third crosswalk of the same volume, which has the same shape, the same source id and the same carry rule. This pass does not take it: it would mean rewriting this PR's ledger and its counts after its verification had already been run, and the 101 rulings it does write are already gated in both directions. The ceiling comes back down to 0 when T-0681 lands."
   }
  ],
  "lowered": [
@@ -209,7 +241,8 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0
+  "directories": 3,
+  "land_sales": 0
  },
  "unsourced_ceiling": {}
 }

@@ -1,7 +1,7 @@
 ---
 id: T-0596
 title: About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 819
+claimed_by: run 9/4/2026, 5:38:59 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T23:40:11.556Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926214360
 ---
 
 About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it.

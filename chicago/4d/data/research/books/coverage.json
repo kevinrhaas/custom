@@ -189,6 +189,17 @@
       "read": "2026-09-03",
       "text": "data/research/books/text/fergus_26_29.txt, lines 5585 to 6894",
       "not_read": "Nothing in No. 29. What it does not CONTAIN is the more useful statement: it names Chicago four times in ninety-five pages and places nothing there. The sketch is Jacksonville and Vandalia and Washington, and its 1835 is a house being finished in Morgan County. A run reaching into this number for the town of 1835 will come back with the canal and nothing else."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "ichr_v4_1921_22_thompson_vincennes_pp256_259"
+      ],
+      "ticket": "T-0650",
+      "what": "Joseph J. Thompson, 'The Illinois Part of the Diocese of Vincennes', Illinois Catholic Historical Review vol. 4 (July 1921 - April 1922), printed pages 256-259, read in full: the succession of priests at Chicago from St. Cyr through Schaefer to O'Meara with its dates, the first Catholic church standing near the south-west corner of State and Lake on ground controlled by the Canal Commissioners, the canal auction that took the lot away at a $10,000 valuation, the removal to Michigan Avenue and Madison Street, the rectory on the same ground, and the enlargement, belfry and bell that all came AFTER the removal.",
+      "read": "2026-09-05",
+      "text": "data/research/books/text/ichr_v4_1921_22.txt - the whole volume's Internet Archive djvu OCR (6,181 lines), of which lines 1760-2138 are the four pages declared here. The running heads that fix those page boundaries are named in data/sources/ichr_v4_thompson_illinois_vincennes.json's locator.",
+      "not_read": "THE REST OF THE VOLUME, and it is committed rather than read. The 290 KB of OCR holds the whole of Illinois Catholic Historical Review vol. 4 - a papal conclave, the diocese of St. Louis, the Michigan and Indiana missions, Bardstown, and much else - because a quote is checked against a committed file and committing four pages out of the middle of an OCR run would mean cutting the file this project claims is byte-identical to the Internet Archive's. It is a LIST item and not four `page` items for the same reason Hurlbut's chapter is one: this article was read as one run of prose, and a page here is a running head rather than a unit of reading. Every claim's locator names its printed page anyway, so page-level coverage is available to a later pass without a re-read. ALSO NOT READ AND DELIBERATELY SO: the same volume's printing of St. Cyr's marriage and death register, which this project already holds through a Genealogy Trails transcription at data/sources/st_cyr_register_ichr_v4.json and in data/research/church/. Reading it again off this OCR would be a second reading of a source already read, and the two would then disagree wherever the OCR is worse than the transcription; T-0503's search log is where that question belongs."
     }
   ]
 }

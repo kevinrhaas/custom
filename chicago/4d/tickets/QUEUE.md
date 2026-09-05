@@ -69,44 +69,27 @@
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
 # --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
 # --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
-T-0515 — 727 projected residents rest on a letter list alone: regrade every one a second source corroborates and attach its evidence
-T-0670 — The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
 # --- yield is a list the town made of its own named inhabitants. The land sales are the
 # --- largest untouched source of POSITION in the project, and T-0676/T-0679 are what T-0610
 # --- and T-0666 left unfinished.
-T-0676 — The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E
 T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
-T-0635 — Consolidation pass 2: write every ruling closed since consolidation pass 1 onto the card it names, and report the delta on both hops
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
 # --- T-0589 is the town's civic account; T-0507 the household composition calibration;
 # --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
 # --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
-T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
-T-0507 — 964 IPUMS 1840 households carry age-band and industry composition, and no calibration summary exists for the household reconstruction
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and Hurlbut prints the sentence it wanted: Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or first of November
-T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
-T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
-T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
-T-0650 — The Illinois Catholic Historical Review says where St Cyr's first church stood, and nothing has read it out
-T-0663 — Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
-T-0637 — 289 lot-line runs and 13 dooryard fences belong to nobody: join every enclosure to the household or business whose ground it bounds
-T-0636 — Consolidation pass 3: write every ruling closed since consolidation pass 2 onto the card it names, and report the delta on both hops
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
 T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
-T-0510 — 237 named residents have no research row: cohort 15 of 79
-T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
-T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
-T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
 
@@ -299,3 +282,27 @@ T-0691 — The letter-list cohort is 76 households out of step with its own deri
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
+T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
+T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
+T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
+T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
+T-0695 — A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira
+T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
+T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
+T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
+T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
+T-0713 — The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
+T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
+T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
+T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
+T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
+T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
+T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
+T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire

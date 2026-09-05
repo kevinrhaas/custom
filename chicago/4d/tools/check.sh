@@ -152,6 +152,15 @@ step "the dooryard garden pickets re-derive from the rule that chose their lots"
 step "the lot-line yard fences re-derive from the rule that chose their lots and types" \
   python3 tools/generate_lot_line_fences.py --check
 
+# And every one of those runs can now say WHOSE ground it stands on (T-0637). The join is a
+# derivation off the committed lots, the committed footprints and the committed household
+# index, so it is worth nothing unless it stays derivable and stays truthful about what it
+# could not answer: this asks that every run on the whole layer names an owner or records a
+# refusal, that no belongs_to names a structure or a household this repository does not
+# hold, and that the two hand-authored yards keep the owners somebody read out of a source.
+step "every enclosure run says whose ground it stands on, or records why it cannot" \
+  python3 tools/check_enclosure_owners.py
+
 # The dooryard plantings are the same shape one layer greener: the owner's brief and its
 # image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
 # source counts or places any particular house's stems. So which house keeps what is a
@@ -1008,6 +1017,13 @@ step "…and its own assertions still fire when broken" \
 if [ -d ../../site/chicago/4d ]; then
   step "published mirror matches its source" \
     node tools/check_published.mjs
+
+  # …and the one layer in it publish.sh transforms rather than copies. The residents
+  # records ship minified for the size budget, so the byte comparison above cannot see
+  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+  # files, nothing dropped.
+  step "the published residents layer carries its source's value" \
+    node tools/check_published_residents.mjs
 fi
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
@@ -1233,6 +1249,18 @@ step "the fifteenth research cohort is fixed" \
 step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
+# T-0511. The reference README's completion rule says a cohort ticket is not complete
+# "while its XLSX/CSV/README package exists only locally", and on 2026-09-04 the folders
+# existed for T-0478..T-0486 only: the first three slices — 225 people — had findings JSON
+# and a dossier and nothing a reader could open. The packages are now DERIVED from the
+# frozen manifests and the committed review payload, so this step is what keeps them from
+# quietly stopping being true, and the index in the README with them.
+step "every completed research cohort has a durable package, and it still matches its records" \
+  python3 tools/export_resident_research_package.py --check
+
+step "…and that gate's own assertions still fire when broken" \
+  python3 tools/export_resident_research_package.py --self-test
+
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
 # are what the pass derives; this proves the DERIVATION is what the owner permitted —
 # every minted person carrying `letter_list_only` and the dated return behind it, and not
@@ -1275,6 +1303,16 @@ step "…and its two readings of a printed name are still two" \
 # with their reasons; docs/LIBERTIES.md L218 carries the scale.
 step "the civic, church, press and book residents re-derive from the ladder" \
   python3 tools/mint_civic_residents.py --check
+
+# T-0515, the second mode of the same pass. `--build` above mints the identities
+# the town does NOT hold; this applies the ladder to the 162 it proposes for people
+# already on a card, and its whole value is that the decision is DERIVED — the
+# regrade, the eight it refuses on the forename the volume prints, and the forty-five
+# downgrades it declines because the card rests on Andreas or on an adjudicated
+# research outcome the ladder never read. A hand-edit to any one of those grades
+# would otherwise stand as a reading.
+step "the regraded residents re-derive from the ladder too" \
+  python3 tools/mint_civic_residents.py --regrade --check
 
 step "…and none of them claims more than a person and a reading" \
   python3 tools/mint_civic_residents.py --gate
@@ -1427,6 +1465,32 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
 
+# T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
+# Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
+# had matched 101 entries to people this town holds, and the second hop could not even see
+# them, because both crosswalks group their rulings under the pool each was matched against
+# rather than at the top of the file. This pass writes them, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made.
+step "…and Fergus 1839's later lists are on the 97 cards they name" \
+  python3 tools/spend_fergus_1839_later_lists.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_later_lists.py --self-test
+
+# T-0636, consolidation pass 3. The Illinois State Archives' land tract sales matched 35
+# purchasers to people this town holds a card for, and not one of those cards cited the
+# register — the largest unwritten block the second hop could see. This pass writes them,
+# and it is gated in the same two directions as its three predecessors: a ruling that stops
+# reaching its card, and a card that carries the paragraph for a ruling the crosswalk never
+# made. The paragraph says PURCHASE and never residence, because the register's own
+# Residence column reads COOK, ILLINOIS or UNKNOWN on every one of these rows.
+step "…and the land tract sales are on the 31 cards they name" \
+  python3 tools/spend_land_sales.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_land_sales.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
@@ -1487,6 +1551,18 @@ step "Fergus's 1843 directory rebuilds from its committed text, at the declared 
 
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
+
+# T-0589. The CIVIC ACCOUNT above that directory, on the same page: the officers and
+# courts, the churches and societies with their memberships, the newspapers, the mails,
+# the fire and military companies, the schools, the ward population count of 1 August
+# 1843 and the port's trade. Three shapes on one range — a wrapped line, a heading that
+# is not a claim, and three tables the transcription runs down the page one cell to a
+# line — so the same guard as the directory's: the reading is REBUILT from the committed
+# text and compared, and the count is held to what coverage.json declares. A segmenter
+# that quietly rejoins the population table's rows off by one would be invisible to
+# every other gate here.
+step "Fergus's 1843 civic account rebuilds from its committed text, at the declared count" \
+  python3 tools/read_fergus_1843_civic.py --check
 
 # T-0506. Fergus's 1839 directory — the closest address list to 1835 this project can
 # reach, and until now cited only through somebody else's web transcription. Same three
@@ -1799,6 +1875,21 @@ step "the 1840 census line-to-serial crosswalk re-derives from the page readings
 
 step "…and its own assertions still fire when broken" \
   python3 tools/census_1840_fingerprint.py --self-test
+
+# T-0507. The 1840 composition summary, and it is gated for a reason that is not staleness.
+# The figures are cheap to re-derive and would matter little if they drifted a person or two;
+# what matters is the LINE the file stands on. It is built from an extract that carries 55
+# transcribed head-of-household names and 964 household serials, and the whole value of the
+# summary is that it is counts and nothing else — 1840 household members are never minted
+# into 1835 from census counts, which is the owner's own rule. --self-test refuses the build
+# if a single one of those names or serials reaches the output, and --check refuses a
+# committed file that no longer re-derives from the extract and from T-0504's column_map. A
+# hand-edited count in there would be a fact about this town that nobody counted.
+step "the 1840 household composition re-derives, and no name or serial reaches it" \
+  python3 tools/census_1840_composition.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/census_1840_composition.py --self-test
 # T-0513. The consolidation, and the reason it is gated rather than reported: it is the
 # only file that says, for one identity, everything the project knows — and it is DERIVED
 # from seven domains that each move on their own ticket. A source read on Tuesday that
@@ -1826,6 +1917,19 @@ step "…and its own assertions still fire when broken" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
+
+# T-0512, the second half of the owner's publish ask. The final audit is the one file that
+# says, for every person in the town, what they rest on — which ticket reviewed them, which
+# source ids stand behind them by category, and what is still open. It is DERIVED from the
+# residents layer, so it is exactly the kind of artifact that reads as current long after
+# it has stopped being true: a cohort lands, the layer moves, and a stale CSV keeps telling
+# the owner the programme reached 611 people. Gated in both directions — the committed
+# package must re-derive, and a hand edit to it is refused.
+step "the final resident audit still re-derives from the residents layer" \
+  python3 tools/export_resident_audit.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/export_resident_audit.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

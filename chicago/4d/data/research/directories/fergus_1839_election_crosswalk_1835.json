@@ -930,7 +930,7 @@
     ],
     "person_id": "spence_james_c",
     "household_id": "hh_spence_james_c",
-    "grade_1835": "attested",
+    "grade_1835": "inferred",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1304,7 +1304,7 @@
     ],
     "person_id": "shapley_major_l",
     "household_id": "hh_shapley_major_l",
-    "grade_1835": "attested",
+    "grade_1835": "inferred",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1634,7 +1634,7 @@
     ],
     "person_id": "downer_stephen",
     "household_id": "hh_downer_stephen",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1722,7 +1722,7 @@
     ],
     "person_id": "wright_truman_g",
     "household_id": "hh_wright_truman_g",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -2300,7 +2300,7 @@
     ],
     "person_id": "haddock_edward",
     "household_id": "hh_haddock_edward",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "E Haddock",
      "E W Haddock",
@@ -2545,7 +2545,7 @@
     ],
     "person_id": "cook_john",
     "household_id": "hh_cook_john",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "J. B. Cook",
      "Josiah P Cook"
@@ -2969,7 +2969,7 @@
     ],
     "person_id": "johnson_seth",
     "household_id": "hh_johnson_seth",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "Samuel Johnson",
      "Sanford Johnson"
@@ -3311,7 +3311,7 @@
     ],
     "person_id": "inf_physician_south_01",
     "household_id": "hh_inf_physician_south_01",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "E S Kimberly",
@@ -3410,7 +3410,7 @@
     ],
     "person_id": "kimberly_edmund_l",
     "household_id": "hh_kimberly_edmund_l",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "Erastus Selden Bowen",
@@ -3743,7 +3743,7 @@
     ],
     "person_id": "inf_tavern_keeper_north_01",
     "household_id": "hh_inf_tavern_keeper_north_01",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "James Kinzie",
