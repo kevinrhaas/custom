@@ -114,7 +114,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- the whole grid sits one street west — is `canal` really Clinton — is unmeasured, and every
 # --- building west of the river turns on it. T-0685/T-0686/T-0687 are the bank measurements
 # --- T-0453 left behind when it closed.
-T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
