@@ -4219,8 +4219,8 @@
       "yoke": false,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        643.08,
-        100.99
+        643.67,
+        100.97
       ],
       "bearing_deg": 182.2,
       "drawn_up": "square to the road",
@@ -4236,8 +4236,8 @@
       "yoke": false,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        783.68,
-        114.08
+        784.27,
+        114.02
       ],
       "bearing_deg": 96.2,
       "drawn_up": "along the road",
@@ -4253,8 +4253,8 @@
       "yoke": false,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        900.54,
-        164.82
+        900.97,
+        165.23
       ],
       "bearing_deg": 226.4,
       "drawn_up": "along the road",
