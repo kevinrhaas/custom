@@ -1,5 +1,5 @@
 ---
-id: T-0716
+id: T-0720
 title: 459 household cards are stale against tools/synthesize_resident_research.py and --check does not notice: the T-0493 voter evidence never reached the cards
 state: open
 epic: META

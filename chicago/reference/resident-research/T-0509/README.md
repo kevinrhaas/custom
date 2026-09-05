@@ -87,6 +87,9 @@ of `attested` and 60 into `projected_resident`, because a letter-list-only perso
 carries a *documented* no-corroboration reads differently from one who was never
 reviewed. That is a grade movement, this ticket forbids grade movement, and so the
 synthesis write is NOT run here — the numbers are reported for T-0515 to rule on.
+The 459-file drift underneath that write is pre-existing on `dev` and unrelated to this
+cohort; it is filed as **T-0720**, with the measurement and with the reason `--check`
+cannot see it.
 
 Files:
 - `T-0509_resident_research.csv` — machine-readable outcome export, one row per person

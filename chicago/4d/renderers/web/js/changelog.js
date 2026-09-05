@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Seventy-six people the town had never actually looked for', kind: 'feat', ts: '', date: '',
+  { v: 538, title: 'Seventy-six people the town had never actually looked for', kind: 'feat', ts: '2026-09-05T01:47:58.973Z', date: 'Sep 4, 2026, 8:47 PM CT',
     items: [
       'Two hundred and twenty-eight of the people standing in this town had never been researched \u2014 not researched and found wanting, simply never asked about. Seventy-six of them were asked today, and every one now carries a dated answer with the rule that produced it written beside it.',
       'The striking part is that almost nothing had to be read. Twenty-three of the seventy-six had ALREADY been read \u2014 a Whiteside County biography that puts the Tuller family in Chicago in July 1833, a University of Illinois finding aid naming the English merchant who made this town\u2019s soap and candles, the Chicago History Museum\u2019s catalogue of Charles H. Bartlett\u2019s diaries, a Buffalo directory, a Du Page county history. Three earlier passes did that reading and then closed without ever writing a ledger, so the findings sat in source records nobody\u2019s card pointed at. Thirteen of those readings are carried across word for word, credited and dated to the pass that made them.',
