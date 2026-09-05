@@ -383,3 +383,5 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
+T-0728 — The published tree has 944 bytes of headroom under the 32 MB budget, and 2.8 MB of it is two byte-identical copies of changelog.js
+T-0729 — check.sh is red on dev: six cohort manifests read stale against their own selectors, so every branch inherits a failing gate
