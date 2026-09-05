@@ -309,4 +309,4 @@ T-0739 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
 T-0740 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
-
+T-0741 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
