@@ -26,7 +26,7 @@ Piece 1 of 2 of **T-0621 — Volume 4 read by OCR, pages 613-918: the shards, th
 read by OCR, and THEN the stitch, re-parse and forty-card re-sample of the whole volume. The stitch
 cannot run until every band is in, and the first band — pages 1-306, **T-0619** — was claimed by
 another run at the same minute this one started and is not on `dev`. So the reading is this ticket
-and the stitch is **T-0770**, blocked on T-0619.
+and the stitch is **T-0775**, blocked on T-0619.
 
 **Acceptance:** (one demonstration, never weakened to pass)
 - `--extract --ocr --volume 4 --pdf <path> --pages A-B` over pages 613 to 918, in as many foreground
@@ -34,7 +34,7 @@ and the stitch is **T-0770**, blocked on T-0619.
   and the 10-minute ceiling. Each shard committed as it finishes.
 - The shards under `text/ocr/vol_04/` and nothing else. No stitch, and no touch to
   `text/vol_04_locality_cards.txt`, `records/entries_vol_04.json` or the leads: the volume's
-  committed reading stays the text-layer one until T-0770.
+  committed reading stays the text-layer one until T-0775.
 - `python3 tools/read_newberry_index.py --check` green, `./tools/check.sh` no redder than dev.
 - Counts in the PR: pages read, shard files committed, their compressed size, and the cards the
   assembler finds in this band against what the text layer found in it.
