@@ -58601,10 +58601,8 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "note": "The firm advertises three times in this issue and gives no address in any of them; it is placed only by a later advertiser who takes an office 'one door east of Brewster, Hogan & Co.' on South Water Street (1833-12-17 c007)."
+        "class": "street_only",
+        "anchor": null
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -58663,6 +58661,16 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-03-04",
+        "claims": [
+          "chicago_democrat_1834_03_04#c010"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
@@ -58739,13 +58747,13 @@
       ],
       "trade": "carriage, sign, ornamental and figure painting, and gilding",
       "goods": [],
-      "street": null,
+      "street": "Randolph Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "Briggs & Humphrey's",
+        "offset_text": "ihirassif in the abore business.ca Randolph & 2 | over Briggs & Humphrey's Cat",
+        "offset_normalized": "himself in the above business [o]n Randolph [Street …] over Briggs & Humphrey's",
+        "street": "Randolph Street"
       },
       "evidence": {
         "first_issue": "1835-06-08",
@@ -58794,6 +58802,18 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1835-06-13",
+        "claims": [
+          "chicago_american_1835_06_13#c014",
+          "chicago_american_1835_08_15#c004"
+        ],
+        "superseded": {
+          "class": "none"
+        },
+        "street_from_reading": "Randolph Street"
+      },
       "refused_merges": [
         {
           "with": "W. H. Brown",
@@ -59416,9 +59436,13 @@
         "sofas",
         "tables"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
-        "class": "none"
+        "class": "relative",
+        "anchor": "the corner of Randolph st.",
+        "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
+        "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-05-28",
@@ -59483,6 +59507,19 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-06-11",
+        "claims": [
+          "chicago_democrat_1834_06_11#c005",
+          "chicago_democrat_1834_06_18#c009",
+          "chicago_democrat_1834_07_02#c014"
+        ],
+        "superseded": {
+          "class": "none"
+        },
+        "street_from_reading": "South Water Street"
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -60308,10 +60345,7 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "note": "No address is advertised; Carver's own store house and lumber yard are announced four weeks later (1833-12-31 c002) and are also unplaced."
+        "class": "street_only"
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -60391,6 +60425,19 @@
           "merge_rule": "'David Carver' and 'David Carver, storage, commission and lumber' are one house, and the witness is a single standing advertisement: 'Storage, Commission and Lumber Business', copy-dated 1834-02-25, printed at 1834-02-25 c003 and 1834-03-04 c006 in the first record and at 1834-04-01 c006 in the second. Same copy date, same trade, same man, and neither printing gives an address."
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-02-25",
+        "claims": [
+          "chicago_democrat_1834_02_25#c003",
+          "chicago_democrat_1834_06_04#c010",
+          "chicago_democrat_1834_06_11#c009",
+          "chicago_democrat_1834_06_18#c010"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -61519,10 +61566,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
+        "class": "relative",
+        "anchor": "the drawbridge",
+        "offset_text": "tise taken a store a Ji Drawbridge, W BIC atveet, (rwe and | American olfice;",
+        "offset_normalized": "[has] taken a store a[t the] Drawbridge, W[ater?] [s]t[r]eet, [t]w[o … from the] American office",
         "street": null
       },
       "evidence": {
@@ -61611,6 +61658,16 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1835-06-13",
+        "claims": [
+          "chicago_american_1835_06_13#c018"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -62151,13 +62208,14 @@
         "trunks",
         "valises"
       ],
-      "street": null,
+      "street": "Lake Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "corner",
+        "anchor": "corner of Lake and Canal streets",
+        "offset_text": "[uncertain: Mualatrecte, where th]",
+        "offset_normalized": "on the corner of Lake and Canal streets",
+        "street": "Lake Street",
+        "note": "Supplied from the scan-verified source record; the transcription's address line is destroyed. The junction, not the corner."
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -62243,6 +62301,19 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1833-11-26",
+        "claims": [
+          "chicago_democrat_1833_11_26#c019",
+          "chicago_democrat_1834_06_04#c001",
+          "chicago_democrat_1834_07_02#c001"
+        ],
+        "superseded": {
+          "class": "none"
+        },
+        "street_from_reading": "Lake Street"
+      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
@@ -62798,7 +62869,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
+        "class": "corner",
+        "anchor": "a corner with Clark street, unread on this line",
+        "offset_text": "corner of\nand char",
+        "offset_normalized": "corner of […] and [Cl]ar[k]",
         "street": null
       },
       "evidence": {
@@ -62883,6 +62957,16 @@
           "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-08-27",
+        "claims": [
+          "chicago_democrat_1834_08_27#c008"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "refused_merges": [
         {
           "with": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
@@ -65128,10 +65212,13 @@
         "window glass",
         "window sash"
       ],
-      "street": null,
+      "street": "Water Street",
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "relative",
+        "anchor": "the bridge",
+        "offset_text": "dit store in Water-st\nacar the bridge",
+        "offset_normalized": "their store in Water-street, near the bridge",
+        "street": "Water Street"
       },
       "evidence": {
         "first_issue": "1834-07-09",
@@ -65189,6 +65276,17 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-09-10",
+        "claims": [
+          "chicago_democrat_1834_09_10#c008"
+        ],
+        "superseded": {
+          "class": "none"
+        },
+        "street_from_reading": "Water Street"
+      },
       "refused_merges": [
         {
           "with": "Jones, King & Co.",
@@ -65411,8 +65509,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "relative",
+        "anchor": "the office of the Chicago Democrat",
+        "offset_text": "They can wise be found at the office"
       },
       "evidence": {
         "first_issue": "1834-07-02",
@@ -65454,6 +65553,16 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-11-19",
+        "claims": [
+          "chicago_democrat_1834_11_19#c011"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -66842,11 +66951,8 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "street_only",
+        "anchor": null
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -66922,6 +67028,17 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-03-04",
+        "claims": [
+          "chicago_democrat_1834_03_04#c021",
+          "chicago_democrat_1834_05_07#c009"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -67749,8 +67866,8 @@
       ],
       "street": null,
       "placement": {
-        "class": "none",
-        "note": "The advertisement carries no address. It therefore does NOT settle which of Carpenter's shops is meant."
+        "class": "street_only",
+        "street": "unstated"
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -67824,6 +67941,18 @@
           "merge_rule": "'Philo Carpenter' and 'Philo Carpenter, drugs and medicines' are the town's druggist in the two papers: the Democrat from 1833-11-26 c011 to 1835-07-22 c015 in the first record, the American of 1835-06-27 c013 and 1835-07-18 c004 plus the Democrat's almanac notice of 1833-12-17 c002 in the second, all of them signed Philo Carpenter and selling drugs, medicines, dye woods and dye stuffs wholesale and retail. Neither record carries a street on its placement, so the Sign of the Golden Mortar stays where its own claim puts it."
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-05-07",
+        "claims": [
+          "chicago_democrat_1834_05_07#c010",
+          "chicago_democrat_1834_06_25#c003",
+          "chicago_democrat_1834_07_02#c054"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -68263,13 +68392,13 @@
         "Tables",
         "Wardrobes"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
-        "class": "none",
+        "class": "street_only",
         "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "offset_text": "Apply 10 < ROCKWELL, Bouth Wate ant",
+        "offset_normalized": "Apply to […] ROCKWELL, [S]outh Wate[r street]",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1835-06-13",
@@ -68337,6 +68466,17 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1835-06-27",
+        "claims": [
+          "chicago_american_1835_06_27#c002"
+        ],
+        "superseded": {
+          "class": "none"
+        },
+        "street_from_reading": "South Water Street"
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -71990,7 +72130,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "none"
+        "class": "relative",
+        "anchor": "P. Pruyne & Co's store",
+        "offset_text": "toor to P. Pruyne and co's."
       },
       "evidence": {
         "first_issue": "1834-09-03",
@@ -72049,6 +72191,16 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "first_issue": "1834-11-05",
+        "claims": [
+          "chicago_democrat_1834_11_05#c002"
+        ],
+        "superseded": {
+          "class": "none"
+        }
+      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
