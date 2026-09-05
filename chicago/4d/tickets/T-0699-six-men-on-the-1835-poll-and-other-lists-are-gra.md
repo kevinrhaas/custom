@@ -1,7 +1,7 @@
 ---
 id: T-0699
 title: Six men on the 1835 poll AND other lists are graded "the 1835 poll alone", and nothing has ever applied a regrade to an existing card: fix the test, add the convergence rung, spend it
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 817
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T01:15:26.204Z
 claimed_run: null
 ---
 
