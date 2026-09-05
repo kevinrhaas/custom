@@ -103,7 +103,8 @@
    "resident_research": {
     "regraded_on": "2026-09-04",
     "rule": "G2e"
-   }
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

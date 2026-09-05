@@ -187,8 +187,14 @@ def independent(item):
             if s not in {"chicago_democrat_1833_1835", "chicago_american_1835"}]
 
 
+def item_text(item):
+    """Only what the research pass itself wrote about THIS person."""
+    return " ".join([item.get("proposed_facts") or "", item.get("evidence_for") or "",
+                     item.get("summary") or ""])
+
+
 def evidence_text(item):
-    bits = [item.get("proposed_facts") or "", item.get("evidence_for") or "", item.get("summary") or ""]
+    bits = [item_text(item)]
     for sid in independent(item):
         doc = source_doc(sid)
         bits += [str(doc.get(k) or "") for k in ("citation","locator","note","describes_date")]
@@ -199,8 +205,13 @@ def promote(person, hh, item):
     srcs = independent(item)
     if not srcs: return []
     text = evidence_text(item); low = text.lower(); changes = []
+    # A TRADE IS READ ONLY OUT OF THE PASS'S OWN WORDS.  A cited volume's imprint is a
+    # description of the BOOK, not of the person: Norris 1844 was printed by Ellis &
+    # Fergus and the St Cyr register was kept by a priest, and scanning those citations
+    # gave Gregory E. Legg the occupation "priest" and B. S. Morris "printer" (T-0510).
+    own = item_text(item).lower()
     for pat, occ in OCCUPATIONS:
-        if re.search(pat, low):
+        if re.search(pat, own):
             old = person.get("occupation") or {}
             if value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed":
                 person["occupation"] = {"value": occ, "confidence": "attested", "sources": srcs,
@@ -480,8 +491,12 @@ def main():
     sitehh=SITE/"data"/"residents"/"households"; sitehh.mkdir(parents=True,exist_ok=True); names={p.name for p in docs}
     for p in sitehh.glob("*.json"):
         if p.name not in names: p.unlink()
-    for p,d in docs.items(): dump(sitehh/p.name,d,1)
-    (SITE/"data"/"residents"/"index.json").write_text(INDEX.read_text(encoding="utf-8"),encoding="utf-8")
+    # Minified, matching tools/publish.sh: the published residents layer is under a
+    # size budget the authored tree is not (see the comment there).
+    for p,d in docs.items():
+        (sitehh/p.name).write_text(json.dumps(d,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
+    (SITE/"data"/"residents"/"index.json").write_text(
+        json.dumps(load(INDEX),ensure_ascii=False,separators=(",",":")),encoding="utf-8")
     sitestruct=SITE/"data"/"structures"
     if sitestruct.exists():
         for p in changed:

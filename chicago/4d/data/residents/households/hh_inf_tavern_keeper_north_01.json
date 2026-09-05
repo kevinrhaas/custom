@@ -105,8 +105,15 @@
     }
    ],
    "resident_research": {
-    "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    "programme": "resident-research-2026",
+    "ticket": "T-0493",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "forenames agree initial for initial: entry 'John Shrigley' against resident 'J. Shrigley'",
+    "source_ids": [
+     "chicago_voter_lists_1833_1835_irad"
+    ]
    }
   }
  ],

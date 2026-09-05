@@ -51,7 +51,7 @@
    "id": "chapman_chas_h",
    "name": "Chas. H. Chapman",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-01"
@@ -142,7 +142,8 @@
    "resident_research": {
     "regraded_on": "2026-09-04",
     "rule": "G1b"
-   }
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,
