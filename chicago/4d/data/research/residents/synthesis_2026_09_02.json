@@ -847,6 +847,7 @@
     "removed_people": 108,
     "removed_households": 96,
     "retained_hh_inf": 5,
-    "structures_unassigned": 30
+    "structures_unassigned": 30,
+    "roofs_enrolled_anonymous": 30
   }
 }
