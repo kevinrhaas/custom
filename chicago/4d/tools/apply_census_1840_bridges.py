@@ -12,11 +12,15 @@ import argparse
 import csv
 import gzip
 import json
+import os
 import re
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+# T-0836: rerooted with the synthesis it is re-applied by, so `--drift` can run the pair
+# against a scratch copy of the tree.  Unset in every ordinary run.
+ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_ROOT") \
+    else Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
