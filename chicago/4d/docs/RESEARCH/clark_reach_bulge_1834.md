@@ -151,7 +151,19 @@ the middle of the frame.
 337°, 13 m up ≈ `p9_0.png`): the gallery timber stands along both banks and nothing stands
 in the channel.
 
-## 8. Bearing on K7 (Thompson plat lot lines)
+## 8. The same family, on the South Branch — and why the repair is not shared
+
+`south_branch_spike_1834.md` measures the same fault on `tools/trace_river.py`: a dry seam
+inside Wright's wash, and a traced boundary that walks the seam instead of the bank. It was
+repaired under T-0686 by a `bank_wash()` rule that puts back a wash fragment large enough to
+have been brushed, lying within a seam's width of the channel, and touching the inked bank.
+
+That rule does not fix this window and this window's `LETTERING` box does not fix that seam —
+§ 9 of that memo sets out why, in both directions. The two obstructions have different shapes
+and the two tools stay separate. What the two share is the principle: where the wash is
+interrupted, the ink Wright drew is the arbiter.
+
+## 9. Bearing on K7 (Thompson plat lot lines)
 
 The owner's crop reads cleanly at 3×: **block numbers 19 and 18**, the lot numbers **4 3 2**
 along the north row of block 18 and **5 6 7** along its south row, and the platted **80**
