@@ -9,7 +9,7 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "476ea9922dd1fc2e1c40322c152608d12c4c4835293cc011a8ab91d50724c63c",
+    "fingerprint": "ef3ec9a962994dfc9a45555b3a7c0fca818fbbed2dd680ca01bdb1fd6b416af6",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 788,
@@ -19,14 +19,14 @@
     }
   },
   "counts": {
-    "cards": 6553,
-    "distinct_surname_keys": 4460,
-    "leads": 918,
+    "cards": 6728,
+    "distinct_surname_keys": 4603,
+    "leads": 981,
     "leads_by_layer": {
-      "census_1840": 279,
-      "residents": 455,
-      "structures": 35,
-      "voters": 149
+      "census_1840": 310,
+      "residents": 483,
+      "structures": 36,
+      "voters": 152
     }
   },
   "leads": [
@@ -1973,6 +1973,28 @@
         "nbi_v01_0400"
       ],
       "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_beaman_census_1840",
+      "surname_key": "beaman",
+      "spellings_as_printed": [
+        "Beaman"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9M5:l21",
+          "name": "Warman Beaman",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0037"
+      ],
+      "works_cited": [
+        "la_salle_book_co_cook_county"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -4324,6 +4346,26 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v01_broone_census_1840",
+      "surname_key": "broone",
+      "spellings_as_printed": [
+        "Broone"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-W6:l2",
+          "name": "Jos. D. Boone",
+          "rule": "OCR variant (0.91 similarity to 'boone')"
+        }
+      ],
+      "entries": [
+        "nbi_v01_0920"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v01_brown_census_1840",
       "surname_key": "brown",
       "spellings_as_printed": [
@@ -4776,6 +4818,28 @@
       ],
       "works_cited": [
         "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_burn_census_1840",
+      "surname_key": "burn",
+      "spellings_as_printed": [
+        "burn"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-992:l28",
+          "name": "[?] Burns",
+          "rule": "OCR variant (0.89 similarity to 'burns')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0340"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
       ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
@@ -7597,7 +7661,8 @@
       ],
       "entries": [
         "nbi_v01_1513",
-        "nbi_v01_1514"
+        "nbi_v01_1514",
+        "nbi_v01_1517"
       ],
       "works_cited": [
         "county_histories_kett_and_co",
@@ -13119,8 +13184,7 @@
       "id": "lead_v02_hall_census_1840",
       "surname_key": "hall",
       "spellings_as_printed": [
-        "Hall",
-        "hall"
+        "Hall"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -13141,11 +13205,9 @@
         "nbi_v02_0606",
         "nbi_v02_0607",
         "nbi_v02_0608",
-        "nbi_v02_0609",
-        "nbi_v04_0158"
+        "nbi_v02_0609"
       ],
       "works_cited": [
-        "andreas_history_of_chicago",
         "county_histories_kett_and_co",
         "moses_kirkland_history_of_chicago"
       ],
@@ -13155,8 +13217,7 @@
       "id": "lead_v02_hall_residents",
       "surname_key": "hall",
       "spellings_as_printed": [
-        "Hall",
-        "hall"
+        "Hall"
       ],
       "layer": "residents",
       "candidates": [
@@ -13182,11 +13243,9 @@
         "nbi_v02_0606",
         "nbi_v02_0607",
         "nbi_v02_0608",
-        "nbi_v02_0609",
-        "nbi_v04_0158"
+        "nbi_v02_0609"
       ],
       "works_cited": [
-        "andreas_history_of_chicago",
         "county_histories_kett_and_co",
         "moses_kirkland_history_of_chicago"
       ],
@@ -13196,8 +13255,7 @@
       "id": "lead_v02_hall_structures",
       "surname_key": "hall",
       "spellings_as_printed": [
-        "Hall",
-        "hall"
+        "Hall"
       ],
       "layer": "structures",
       "candidates": [
@@ -13218,11 +13276,9 @@
         "nbi_v02_0606",
         "nbi_v02_0607",
         "nbi_v02_0608",
-        "nbi_v02_0609",
-        "nbi_v04_0158"
+        "nbi_v02_0609"
       ],
       "works_cited": [
-        "andreas_history_of_chicago",
         "county_histories_kett_and_co",
         "moses_kirkland_history_of_chicago"
       ],
@@ -14669,8 +14725,7 @@
       "id": "lead_v02_howell_census_1840",
       "surname_key": "howell",
       "spellings_as_printed": [
-        "Howell f",
-        "I Howell"
+        "Howell f"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -14681,8 +14736,7 @@
         }
       ],
       "entries": [
-        "nbi_v02_1155",
-        "nbi_v04_0239"
+        "nbi_v02_1155"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -14691,8 +14745,7 @@
       "id": "lead_v02_howell_residents",
       "surname_key": "howell",
       "spellings_as_printed": [
-        "Howell f",
-        "I Howell"
+        "Howell f"
       ],
       "layer": "residents",
       "candidates": [
@@ -14703,8 +14756,7 @@
         }
       ],
       "entries": [
-        "nbi_v02_1155",
-        "nbi_v04_0239"
+        "nbi_v02_1155"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -17988,8 +18040,7 @@
       "entries": [
         "nbi_v01_2296",
         "nbi_v03_0173",
-        "nbi_v03_0175",
-        "nbi_v04_0047"
+        "nbi_v03_0175"
       ],
       "works_cited": [
         "moses_illinois_historical_and_statistical"
@@ -18439,8 +18490,7 @@
       "id": "lead_v03_may_residents",
       "surname_key": "may",
       "spellings_as_printed": [
-        "May",
-        "may"
+        "May"
       ],
       "layer": "residents",
       "candidates": [
@@ -18455,8 +18505,7 @@
         "nbi_v03_0546",
         "nbi_v03_0549",
         "nbi_v03_0550",
-        "nbi_v03_0551",
-        "nbi_v04_0187"
+        "nbi_v03_0551"
       ],
       "works_cited": [
         "county_histories_kett_and_co",
@@ -23938,131 +23987,408 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_sayer_structures",
-      "surname_key": "sayer",
+      "id": "lead_v04_scott_census_1840",
+      "surname_key": "scott",
       "spellings_as_printed": [
-        "Sayer"
-      ],
-      "layer": "structures",
-      "candidates": [
-        {
-          "id": "inf_sawpit_shed",
-          "name": "Reconstructed sawpit shed (sawyer)",
-          "rule": "OCR variant (0.91 similarity to 'sawyer')"
-        },
-        {
-          "id": "inf_sawyer_dwelling_a",
-          "name": "Reconstructed dwelling (sawyer)",
-          "rule": "OCR variant (0.91 similarity to 'sawyer')"
-        },
-        {
-          "id": "inf_sawyer_dwelling_b",
-          "name": "Reconstructed dwelling (sawyer)",
-          "rule": "OCR variant (0.91 similarity to 'sawyer')"
-        }
-      ],
-      "entries": [
-        "nbi_v04_0009"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
-      "id": "lead_v04_shaw_census_1840",
-      "surname_key": "shaw",
-      "spellings_as_printed": [
-        "Shaw"
+        "Scott"
       ],
       "layer": "census_1840",
       "candidates": [
         {
-          "id": "33S7-9YYJ-99F:l30",
-          "name": "John Shaw",
-          "rule": "exact surname"
-        },
-        {
-          "id": "33S7-9YYJ-RC:l5",
-          "name": "Nancy Shaw",
+          "id": "33S7-9YYJ-JM:l6",
+          "name": "James N. Scott",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0029"
+        "nbi_v04_0031"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "century_encyclopedia_of_biography"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_shaw_residents",
-      "surname_key": "shaw",
+      "id": "lead_v04_scott_residents",
+      "surname_key": "scott",
       "spellings_as_printed": [
-        "Shaw"
+        "Scott"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "shaw_samuel",
-          "name": "Samuel Shaw",
+          "id": "scott_john",
+          "name": "John Scott",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0029"
+        "nbi_v04_0031"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "century_encyclopedia_of_biography"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_sinner_residents",
-      "surname_key": "sinner",
+      "id": "lead_v04_scoville_census_1840",
+      "surname_key": "scoville",
       "spellings_as_printed": [
-        "Sinner"
+        "Scoville"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-W6:l5",
+          "name": "William J. C. Scovill",
+          "rule": "OCR variant (0.93 similarity to 'scovill')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0034"
+      ],
+      "works_cited": [
+        "fergus_chicago_directory_1839"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_searkweather_residents",
+      "surname_key": "searkweather",
+      "spellings_as_printed": [
+        "Searkweather"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "skinner_e_f",
-          "name": "E F Skinner",
-          "rule": "OCR variant (0.92 similarity to 'skinner')"
-        },
-        {
-          "id": "skinner_heury_c",
-          "name": "Heury C. Skinner",
-          "rule": "OCR variant (0.92 similarity to 'skinner')"
-        },
-        {
-          "id": "skinner_joseph",
-          "name": "Joseph Skinner",
-          "rule": "OCR variant (0.92 similarity to 'skinner')"
+          "id": "starkweather_robt",
+          "name": "Rob't. Starkweather",
+          "rule": "OCR variant (0.92 similarity to 'starkweather')"
         }
       ],
       "entries": [
-        "nbi_v04_0024"
+        "nbi_v04_0134"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_sinner_voters",
-      "surname_key": "sinner",
+      "id": "lead_v04_sharp_census_1840",
+      "surname_key": "sharp",
       "spellings_as_printed": [
-        "Sinner"
+        "i Sharp"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l31",
+          "name": "William R. Sharp",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0058"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shattuck_census_1840",
+      "surname_key": "shattuck",
+      "spellings_as_printed": [
+        "Shattuck"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-Q1:l2",
+          "name": "H. Shattuck",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0060"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shattuck_residents",
+      "surname_key": "shattuck",
+      "spellings_as_printed": [
+        "Shattuck"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "shattick_walter",
+          "name": "Walter Shattick",
+          "rule": "OCR variant (0.88 similarity to 'shattick')"
+        },
+        {
+          "id": "shatttuck_walter",
+          "name": "Walter Shatttuck",
+          "rule": "OCR variant (0.94 similarity to 'shatttuck')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0060"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shattuck_voters",
+      "surname_key": "shattuck",
+      "spellings_as_printed": [
+        "Shattuck"
       ],
       "layer": "voters",
       "candidates": [
         {
-          "id": "tax_1833_095",
-          "name": "Joseph Skinner",
-          "rule": "OCR variant (0.92 similarity to 'skinner')"
-        },
-        {
-          "id": "poll_1834_100",
-          "name": "E. F. Skinner",
-          "rule": "OCR variant (0.92 similarity to 'skinner')"
+          "id": "poll_1835_069",
+          "name": "Walter Shatttuck",
+          "rule": "OCR variant (0.94 similarity to 'shatttuck')"
         }
       ],
       "entries": [
-        "nbi_v04_0024"
+        "nbi_v04_0060"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shepard_census_1840",
+      "surname_key": "shepard",
+      "spellings_as_printed": [
+        "Shepard"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-97P:l18",
+          "name": "O. W. Shepard",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-RJ:l7",
+          "name": "Robert Shepard",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0066",
+        "nbi_v04_0067"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sherwood_census_1840",
+      "surname_key": "sherwood",
+      "spellings_as_printed": [
+        "Sherwood"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9WF:l20",
+          "name": "J. J. Sherwood",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0073"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sherwood_residents",
+      "surname_key": "sherwood",
+      "spellings_as_printed": [
+        "Sherwood"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "sherwood_s",
+          "name": "S. Sherwood",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0073"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shively_residents",
+      "surname_key": "shively",
+      "spellings_as_printed": [
+        "Shively"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "shively_samuel",
+          "name": "Samuel Shively",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0078"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shoup_residents",
+      "surname_key": "shoup",
+      "spellings_as_printed": [
+        "Shoup"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "shoup_michael",
+          "name": "Michael Shoup",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0080"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_shoup_structures",
+      "surname_key": "shoup",
+      "spellings_as_printed": [
+        "Shoup"
+      ],
+      "layer": "structures",
+      "candidates": [
+        {
+          "id": "blacksmith_shop_state_st",
+          "name": "Government Blacksmith Shop",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_north_w1_018",
+          "name": "Reconstructed W1 blacksmith shop #018",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_north_w2_005",
+          "name": "Reconstructed W2 carpenter or joiner shop #005",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_south_w1_023",
+          "name": "Reconstructed W1 blacksmith shop #023",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_south_w2_026",
+          "name": "Reconstructed W2 carpenter or joiner shop #026",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_south_w3_029",
+          "name": "Reconstructed W3 cooper, wagon, or wheelwright shop #029",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_south_w4_032",
+          "name": "Reconstructed W4 small artisan shop #032",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_west_008",
+          "name": "Reconstructed W1 blacksmith shop #007",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_west_009",
+          "name": "Reconstructed W2 carpenter or joiner shop #008",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_west_021",
+          "name": "Reconstructed W3 cooper, wagon or wheelwright shop #017",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "recon_1835_west_022",
+          "name": "Reconstructed W4 small artisan shop #018",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0080"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_simpson_census_1840",
+      "surname_key": "simpson",
+      "spellings_as_printed": [
+        "Simpson, Simson,or Sympaon"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9WF:l8",
+          "name": "W. S[?]imson",
+          "rule": "OCR variant (0.92 similarity to 'simson')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0090"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_simpson_residents",
+      "surname_key": "simpson",
+      "spellings_as_printed": [
+        "Simpson, Simson,or Sympaon"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "simpson_john_p",
+          "name": "John P. Simpson",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0090"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -24092,9 +24418,12 @@
         }
       ],
       "entries": [
-        "nbi_v04_0043"
+        "nbi_v04_0096"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -24117,67 +24446,30 @@
         }
       ],
       "entries": [
-        "nbi_v04_0043"
+        "nbi_v04_0096"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_sloan_census_1840",
-      "surname_key": "sloan",
+      "id": "lead_v04_sloat_residents",
+      "surname_key": "sloat",
       "spellings_as_printed": [
-        "Sloan"
-      ],
-      "layer": "census_1840",
-      "candidates": [
-        {
-          "id": "33SQ-GYYJ-6V:l29",
-          "name": "Jonathan Soan",
-          "rule": "OCR variant (0.89 similarity to 'soan')"
-        }
-      ],
-      "entries": [
-        "nbi_v04_0040"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
-      "id": "lead_v04_sloan_residents",
-      "surname_key": "sloan",
-      "spellings_as_printed": [
-        "Sloan"
+        "Sloat"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "sloan_douglass",
-          "name": "Douglass Sloan",
+          "id": "sloat_benjamin",
+          "name": "Benjamin Sloat",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0040"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
-      "id": "lead_v04_sloane_residents",
-      "surname_key": "sloane",
-      "spellings_as_printed": [
-        "Sloane"
-      ],
-      "layer": "residents",
-      "candidates": [
-        {
-          "id": "sloan_douglass",
-          "name": "Douglass Sloan",
-          "rule": "OCR variant (0.91 similarity to 'sloan')"
-        }
-      ],
-      "entries": [
-        "nbi_v04_0045"
+        "nbi_v04_0100"
       ],
       "works_cited": [
         "andreas_history_of_chicago"
@@ -24188,7 +24480,8 @@
       "id": "lead_v04_smith_census_1840",
       "surname_key": "smith",
       "spellings_as_printed": [
-        "Smith"
+        "Smith",
+        "al Smith"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -24254,7 +24547,8 @@
         }
       ],
       "entries": [
-        "nbi_v04_0056"
+        "nbi_v04_0103",
+        "nbi_v04_0104"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -24263,7 +24557,8 @@
       "id": "lead_v04_smith_residents",
       "surname_key": "smith",
       "spellings_as_printed": [
-        "Smith"
+        "Smith",
+        "al Smith"
       ],
       "layer": "residents",
       "candidates": [
@@ -24324,7 +24619,8 @@
         }
       ],
       "entries": [
-        "nbi_v04_0056"
+        "nbi_v04_0103",
+        "nbi_v04_0104"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
@@ -24333,7 +24629,8 @@
       "id": "lead_v04_smith_voters",
       "surname_key": "smith",
       "spellings_as_printed": [
-        "Smith"
+        "Smith",
+        "al Smith"
       ],
       "layer": "voters",
       "candidates": [
@@ -24359,81 +24656,106 @@
         }
       ],
       "entries": [
-        "nbi_v04_0056"
+        "nbi_v04_0103",
+        "nbi_v04_0104"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_spence_census_1840",
-      "surname_key": "spence",
+      "id": "lead_v04_snow_census_1840",
+      "surname_key": "snow",
       "spellings_as_printed": [
-        "Spence"
+        "Snow"
       ],
       "layer": "census_1840",
       "candidates": [
         {
-          "id": "33SQ-GYYJ-992:l3",
-          "name": "Spencer [?]",
-          "rule": "OCR variant (0.92 similarity to 'spencer')"
+          "id": "33S7-9YYJ-9RG:l1",
+          "name": "Cha[?]. M. Snow",
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0066"
+        "nbi_v04_0105",
+        "nbi_v04_0106"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_spence_residents",
-      "surname_key": "spence",
+      "id": "lead_v04_snow_residents",
+      "surname_key": "snow",
       "spellings_as_printed": [
-        "Spence"
+        "Snow"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "spence_james_c",
-          "name": "James C Spence",
+          "id": "snow_g_w",
+          "name": "G W Snow",
           "rule": "exact surname"
         },
         {
-          "id": "spencer_william",
-          "name": "William Spencer",
-          "rule": "OCR variant (0.92 similarity to 'spencer')"
+          "id": "snow_george_w",
+          "name": "George W. Snow",
+          "rule": "exact surname"
+        },
+        {
+          "id": "snow_watson_m",
+          "name": "Watson M Snow",
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0066"
+        "nbi_v04_0105",
+        "nbi_v04_0106"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_spence_voters",
-      "surname_key": "spence",
+      "id": "lead_v04_snow_voters",
+      "surname_key": "snow",
       "spellings_as_printed": [
-        "Spence"
+        "Snow"
       ],
       "layer": "voters",
       "candidates": [
         {
-          "id": "poll_1835_074",
-          "name": "James C. Spence",
+          "id": "tax_1833_096",
+          "name": "George W. Snow",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1834_102",
+          "name": "George W. Snow",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0066"
+        "nbi_v04_0105",
+        "nbi_v04_0106"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_spencer_census_1840",
       "surname_key": "spencer",
       "spellings_as_printed": [
-        "Spencer"
+        "' Spencer",
+        "Spencer",
+        "f Spencer"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -24444,16 +24766,23 @@
         }
       ],
       "entries": [
-        "nbi_v04_0067"
+        "nbi_v04_0119",
+        "nbi_v04_0120",
+        "nbi_v04_0121"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_spencer_residents",
       "surname_key": "spencer",
       "spellings_as_printed": [
-        "Spencer"
+        "' Spencer",
+        "Spencer",
+        "f Spencer"
       ],
       "layer": "residents",
       "candidates": [
@@ -24469,16 +24798,23 @@
         }
       ],
       "entries": [
-        "nbi_v04_0067"
+        "nbi_v04_0119",
+        "nbi_v04_0120",
+        "nbi_v04_0121"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_spencer_voters",
       "surname_key": "spencer",
       "spellings_as_printed": [
-        "Spencer"
+        "' Spencer",
+        "Spencer",
+        "f Spencer"
       ],
       "layer": "voters",
       "candidates": [
@@ -24489,67 +24825,382 @@
         }
       ],
       "entries": [
-        "nbi_v04_0067"
+        "nbi_v04_0119",
+        "nbi_v04_0120",
+        "nbi_v04_0121"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_spicer_residents",
+      "surname_key": "spicer",
+      "spellings_as_printed": [
+        "Spicer"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "spicer_charles",
+          "name": "Charles Spicer",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0122",
+        "nbi_v04_0123"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_sprague_residents",
+      "surname_key": "sprague",
+      "spellings_as_printed": [
+        "Sprague"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "sprague_willinm_b",
+          "name": "Willinm B. Sprague",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0125",
+        "nbi_v04_0126"
+      ],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_springer_residents",
+      "surname_key": "springer",
+      "spellings_as_printed": [
+        "Springer"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stringer_john",
+          "name": "John Stringer",
+          "rule": "OCR variant (0.88 similarity to 'stringer')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0127"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_steel_residents",
-      "surname_key": "steel",
+      "id": "lead_v04_stanley_residents",
+      "surname_key": "stanley",
       "spellings_as_printed": [
-        "Steel"
+        "Stanley"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stanley_j",
+          "name": "J Stanley",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0132"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stanley_voters",
+      "surname_key": "stanley",
+      "spellings_as_printed": [
+        "Stanley"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "tax_1833_097",
+          "name": "J. Stanley",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0132"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_starr_residents",
+      "surname_key": "starr",
+      "spellings_as_printed": [
+        "Starr"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "starr_ruel",
+          "name": "Ruel Starr",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0135",
+        "nbi_v04_0136",
+        "nbi_v04_0137",
+        "nbi_v04_0138"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stearns_residents",
+      "surname_key": "stearns",
+      "spellings_as_printed": [
+        "Stearns"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stearns_palmer",
+          "name": "Palmer Stearns",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0140",
+        "nbi_v04_0141"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_steele_residents",
+      "surname_key": "steele",
+      "spellings_as_printed": [
+        "Steele"
       ],
       "layer": "residents",
       "candidates": [
         {
           "id": "steel_richard",
           "name": "Richard Steel",
-          "rule": "exact surname"
+          "rule": "OCR variant (0.91 similarity to 'steel')"
         },
         {
           "id": "steele_ashbel",
           "name": "Ashbel Steele",
-          "rule": "OCR variant (0.91 similarity to 'steele')"
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0076"
+        "nbi_v04_0143",
+        "nbi_v04_0144"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_steel_voters",
-      "surname_key": "steel",
+      "id": "lead_v04_steele_voters",
+      "surname_key": "steele",
       "spellings_as_printed": [
-        "Steel"
+        "Steele"
       ],
       "layer": "voters",
       "candidates": [
         {
           "id": "poll_1834_104",
           "name": "Ashbel Steele",
-          "rule": "OCR variant (0.91 similarity to 'steele')"
+          "rule": "exact surname"
         },
         {
           "id": "poll_1835_076",
           "name": "Ashbel Steele",
-          "rule": "OCR variant (0.91 similarity to 'steele')"
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0076"
+        "nbi_v04_0143",
+        "nbi_v04_0144"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stephenaon_census_1840",
+      "surname_key": "stephenaon",
+      "spellings_as_printed": [
+        "Stephenaon"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-NY:l7",
+          "name": "John Stephenson",
+          "rule": "OCR variant (0.90 similarity to 'stephenson')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0148",
+        "nbi_v04_0149"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stephenaon_residents",
+      "surname_key": "stephenaon",
+      "spellings_as_printed": [
+        "Stephenaon"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stephenson_james_w",
+          "name": "James W Stephenson",
+          "rule": "OCR variant (0.90 similarity to 'stephenson')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0148",
+        "nbi_v04_0149"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stevens_census_1840",
+      "surname_key": "stevens",
+      "spellings_as_printed": [
+        "Stevens"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9K3:l27",
+          "name": "William H. Stevens",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0153"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stevens_residents",
+      "surname_key": "stevens",
+      "spellings_as_printed": [
+        "Stevens"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stevens_issac",
+          "name": "Issac Stevens",
+          "rule": "exact surname"
+        },
+        {
+          "id": "stevens_l",
+          "name": "L Stevens",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0153"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stevenson_census_1840",
+      "surname_key": "stevenson",
+      "spellings_as_printed": [
+        "Stevenson"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9K3:l27",
+          "name": "William H. Stevens",
+          "rule": "OCR variant (0.88 similarity to 'stevens')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0156"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stevenson_residents",
+      "surname_key": "stevenson",
+      "spellings_as_printed": [
+        "Stevenson"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stevens_issac",
+          "name": "Issac Stevens",
+          "rule": "OCR variant (0.88 similarity to 'stevens')"
+        },
+        {
+          "id": "stevens_l",
+          "name": "L Stevens",
+          "rule": "OCR variant (0.88 similarity to 'stevens')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0156"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_stone_census_1840",
       "surname_key": "stone",
       "spellings_as_printed": [
-        "Stone",
-        "Vood Stone"
+        "ndex, Stone"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -24565,9 +25216,29 @@
         }
       ],
       "entries": [
-        "nbi_v04_0084",
-        "nbi_v04_0085",
-        "nbi_v04_0086"
+        "nbi_v04_0174"
+      ],
+      "works_cited": [
+        "century_encyclopedia_of_biography"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stow_census_1840",
+      "surname_key": "stow",
+      "spellings_as_printed": [
+        "Stow"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9HY:l20",
+          "name": "William H. Stow",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0179"
       ],
       "works_cited": [
         "andreas_history_of_chicago"
@@ -24575,70 +25246,164 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_stringer_residents",
-      "surname_key": "stringer",
+      "id": "lead_v04_stow_residents",
+      "surname_key": "stow",
       "spellings_as_printed": [
-        "stringer"
+        "Stow"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "stringer_john",
-          "name": "John Stringer",
+          "id": "stow_william_h",
+          "name": "William H. Stow",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0094"
+        "nbi_v04_0179"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stowell_residents",
+      "surname_key": "stowell",
+      "spellings_as_printed": [
+        "Stowell"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stowell_ralph",
+          "name": "Ralph Stowell",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0180"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_strong_residents",
-      "surname_key": "strong",
+      "id": "lead_v04_strode_census_1840",
+      "surname_key": "strode",
       "spellings_as_printed": [
-        "Strong"
+        "Strode"
       ],
-      "layer": "residents",
+      "layer": "census_1840",
       "candidates": [
         {
-          "id": "strong_george",
-          "name": "George Strong",
+          "id": "33S7-9YYJ-9RG:l21",
+          "name": "J. M. Strode",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0100"
+        "nbi_v04_0185"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_swift_residents",
-      "surname_key": "swift",
+      "id": "lead_v04_strode_residents",
+      "surname_key": "strode",
       "spellings_as_printed": [
-        "Swift"
+        "Strode"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "swift_h_c",
-          "name": "H C Swift",
+          "id": "strode_p_m",
+          "name": "P'. M. Strode",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0109"
+        "nbi_v04_0185"
       ],
       "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stuart_census_1840",
+      "surname_key": "stuart",
+      "spellings_as_printed": [
+        "Stuart"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-W6:l28",
+          "name": "R. S. Stuart",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0191",
+        "nbi_v04_0192"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_stuart_residents",
+      "surname_key": "stuart",
+      "spellings_as_printed": [
+        "Stuart"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "stuart_samuel",
+          "name": "Samuel Stuart",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0191",
+        "nbi_v04_0192"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_tayer_census_1840",
+      "surname_key": "tayer",
+      "spellings_as_printed": [
+        "WW Tayer"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-93Y:l4",
+          "name": "[?] C. Tyer",
+          "rule": "OCR variant (0.89 similarity to 'tyer')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0224"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_taylor_census_1840",
       "surname_key": "taylor",
       "spellings_as_printed": [
-        "Taylor"
+        "taylor"
       ],
       "layer": "census_1840",
       "candidates": [
@@ -24684,16 +25449,18 @@
         }
       ],
       "entries": [
-        "nbi_v04_0120"
+        "nbi_v04_0216"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "hurlbut_chicago_antiquities"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_taylor_residents",
       "surname_key": "taylor",
       "spellings_as_printed": [
-        "Taylor"
+        "taylor"
       ],
       "layer": "residents",
       "candidates": [
@@ -24744,16 +25511,18 @@
         }
       ],
       "entries": [
-        "nbi_v04_0120"
+        "nbi_v04_0216"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "hurlbut_chicago_antiquities"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_taylor_voters",
       "surname_key": "taylor",
       "spellings_as_printed": [
-        "Taylor"
+        "taylor"
       ],
       "layer": "voters",
       "candidates": [
@@ -24779,82 +25548,204 @@
         }
       ],
       "entries": [
-        "nbi_v04_0120"
+        "nbi_v04_0216"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "hurlbut_chicago_antiquities"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_thoma_census_1840",
-      "surname_key": "thoma",
+      "id": "lead_v04_thomas_census_1840",
+      "surname_key": "thomas",
       "spellings_as_printed": [
-        "' Thoma"
+        "Thomas",
+        "j Thomas"
       ],
       "layer": "census_1840",
       "candidates": [
         {
           "id": "33S7-9YYJ-9MX:l23",
           "name": "William Thomas[?]",
-          "rule": "OCR variant (0.91 similarity to 'thomas')"
+          "rule": "exact surname"
         },
         {
           "id": "33SQ-GYYJ-93G:l8",
           "name": "William H. Thomas",
-          "rule": "OCR variant (0.91 similarity to 'thomas')"
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0131"
+        "nbi_v04_0226",
+        "nbi_v04_0227"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_thoma_residents",
-      "surname_key": "thoma",
+      "id": "lead_v04_thomas_residents",
+      "surname_key": "thomas",
       "spellings_as_printed": [
-        "' Thoma"
+        "Thomas",
+        "j Thomas"
       ],
       "layer": "residents",
       "candidates": [
         {
           "id": "thomas_frederick",
           "name": "Frederick Thomas",
-          "rule": "OCR variant (0.91 similarity to 'thomas')"
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0131"
+        "nbi_v04_0226",
+        "nbi_v04_0227"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_thoma_structures",
-      "surname_key": "thoma",
+      "id": "lead_v04_thomas_structures",
+      "surname_key": "thomas",
       "spellings_as_printed": [
-        "' Thoma"
+        "Thomas",
+        "j Thomas"
       ],
       "layer": "structures",
       "candidates": [
         {
           "id": "frederick_thomas_shop",
           "name": "Frederick Thomas's Shop",
-          "rule": "OCR variant (0.91 similarity to 'thomas')"
+          "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0131"
+        "nbi_v04_0226",
+        "nbi_v04_0227"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thomson_census_1840",
+      "surname_key": "thomson",
+      "spellings_as_printed": [
+        "en, Thomson"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9MX:l3",
+          "name": "William Thomson",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-DD:l31",
+          "name": "J. C. Thompson",
+          "rule": "OCR variant (0.93 similarity to 'thompson')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0229"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thomson_residents",
+      "surname_key": "thomson",
+      "spellings_as_printed": [
+        "en, Thomson"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "thompson_john",
+          "name": "John Thompson",
+          "rule": "OCR variant (0.93 similarity to 'thompson')"
+        },
+        {
+          "id": "thompson_lieut_j_l",
+          "name": "Lieut J L Thompson",
+          "rule": "OCR variant (0.93 similarity to 'thompson')"
+        },
+        {
+          "id": "thompson_o_i",
+          "name": "O I Thompson",
+          "rule": "OCR variant (0.93 similarity to 'thompson')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0229"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thrall_residents",
+      "surname_key": "thrall",
+      "spellings_as_printed": [
+        "Thrall"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "thrall_e_l",
+          "name": "E. L. Thrall",
+          "rule": "exact surname"
+        },
+        {
+          "id": "trall_e_l",
+          "name": "E L Trall",
+          "rule": "OCR variant (0.91 similarity to 'trall')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0230"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_thrall_voters",
+      "surname_key": "thrall",
+      "spellings_as_printed": [
+        "Thrall"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1835_080",
+          "name": "E.L. Trall",
+          "rule": "OCR variant (0.91 similarity to 'trall')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0230"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
       "id": "lead_v04_todd_residents",
       "surname_key": "todd",
       "spellings_as_printed": [
-        "' Todd",
-        "Todd"
+        "Todd",
+        "i Todd"
       ],
       "layer": "residents",
       "candidates": [
@@ -24865,104 +25756,279 @@
         }
       ],
       "entries": [
-        "nbi_v04_0144",
-        "nbi_v04_0145"
+        "nbi_v04_0241",
+        "nbi_v04_0242"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_tucker_residents",
-      "surname_key": "tucker",
+      "id": "lead_v04_tyler_census_1840",
+      "surname_key": "tyler",
       "spellings_as_printed": [
-        "Tucker"
-      ],
-      "layer": "residents",
-      "candidates": [
-        {
-          "id": "tucker_alexr_h",
-          "name": "Alexr. H. Tucker",
-          "rule": "exact surname"
-        },
-        {
-          "id": "tucker_henry",
-          "name": "Henry Tucker",
-          "rule": "exact surname"
-        }
-      ],
-      "entries": [
-        "nbi_v04_0154"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
-      "id": "lead_v04_tucker_voters",
-      "surname_key": "tucker",
-      "spellings_as_printed": [
-        "Tucker"
-      ],
-      "layer": "voters",
-      "candidates": [
-        {
-          "id": "poll_1834_108",
-          "name": "H. Tucker",
-          "rule": "exact surname"
-        }
-      ],
-      "entries": [
-        "nbi_v04_0154"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
-      "id": "lead_v04_turner_census_1840",
-      "surname_key": "turner",
-      "spellings_as_printed": [
-        "Turner"
+        "Tyler"
       ],
       "layer": "census_1840",
       "candidates": [
         {
-          "id": "33S7-9YYJ-38:l4",
-          "name": "Stephen Turner",
-          "rule": "exact surname"
-        },
-        {
-          "id": "33S7-9YYJ-B3:l4",
-          "name": "John M. Turner",
-          "rule": "exact surname"
+          "id": "33SQ-GYYJ-93Y:l4",
+          "name": "[?] C. Tyer",
+          "rule": "OCR variant (0.89 similarity to 'tyer')"
         }
       ],
       "entries": [
-        "nbi_v04_0155",
-        "nbi_v04_0156",
-        "nbi_v04_0157"
+        "nbi_v04_0259"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_vaughan_residents",
+      "surname_key": "vaughan",
+      "spellings_as_printed": [
+        "Vaughan"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "vaughan_alanson_b",
+          "name": "Alanson B. Vaughan",
+          "rule": "exact surname"
+        },
+        {
+          "id": "vaughan_angeline",
+          "name": "Angeline Vaughan",
+          "rule": "exact surname"
+        },
+        {
+          "id": "vaughan_dow_w",
+          "name": "Dow W Vaughan",
+          "rule": "exact surname"
+        },
+        {
+          "id": "vaughn_alison_b",
+          "name": "Alison B. Vaughn",
+          "rule": "OCR variant (0.92 similarity to 'vaughn')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0274"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_turner_residents",
-      "surname_key": "turner",
+      "id": "lead_v04_wadaworth_census_1840",
+      "surname_key": "wadaworth",
       "spellings_as_printed": [
-        "Turner"
+        "Wadaworth"
       ],
-      "layer": "residents",
+      "layer": "census_1840",
       "candidates": [
         {
-          "id": "turner_ezekiel",
-          "name": "Ezekiel Turner",
+          "id": "33SQ-GYYJ-97P:l16",
+          "name": "[?] Wadsworth",
+          "rule": "OCR variant (0.89 similarity to 'wadsworth')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0283",
+        "nbi_v04_0284"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wagner_census_1840",
+      "surname_key": "wagner",
+      "spellings_as_printed": [
+        "x Wagner"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9HY:l13",
+          "name": "Hiram Wagoner",
+          "rule": "OCR variant (0.92 similarity to 'wagoner')"
+        },
+        {
+          "id": "33S7-9YYJ-9K3:l6",
+          "name": "John Wagner",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0155",
-        "nbi_v04_0156",
-        "nbi_v04_0157"
+        "nbi_v04_0285"
       ],
       "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_walker_residents",
+      "surname_key": "walker",
+      "spellings_as_printed": [
+        "Walker",
+        "y Index Walker"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "walker_george_e",
+          "name": "George E. Walker",
+          "rule": "exact surname"
+        },
+        {
+          "id": "walker_george_h",
+          "name": "George H Walker",
+          "rule": "exact surname"
+        },
+        {
+          "id": "walker_james",
+          "name": "James Walker",
+          "rule": "exact surname"
+        },
+        {
+          "id": "walker_jeremiah",
+          "name": "Jeremiah Walker",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0289",
+        "nbi_v04_0290"
+      ],
+      "works_cited": [
+        "century_encyclopedia_of_biography",
+        "wood_1881_chicago_and_its_distinguished_citizens"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_walters_residents",
+      "surname_key": "walters",
+      "spellings_as_printed": [
+        "ET EEE Walters"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "walter_francis",
+          "name": "Francis Walter",
+          "rule": "OCR variant (0.92 similarity to 'walter')"
+        },
+        {
+          "id": "walters_william",
+          "name": "William Walters",
+          "rule": "exact surname"
+        },
+        {
+          "id": "waters_asury",
+          "name": "Asury Waters",
+          "rule": "OCR variant (0.92 similarity to 'waters')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0298",
+        "nbi_v04_0299"
+      ],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_walters_voters",
+      "surname_key": "walters",
+      "spellings_as_printed": [
+        "ET EEE Walters"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1834_110",
+          "name": "Francis Walter",
+          "rule": "OCR variant (0.92 similarity to 'walter')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0298",
+        "nbi_v04_0299"
+      ],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_walton_census_1840",
+      "surname_key": "walton",
+      "spellings_as_printed": [
+        "J Walton",
+        "Walton"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-38:l16",
+          "name": "A. C. Walton",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0300",
+        "nbi_v04_0301"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_walton_residents",
+      "surname_key": "walton",
+      "spellings_as_printed": [
+        "J Walton",
+        "Walton"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "walton_henry",
+          "name": "Henry Walton",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0300",
+        "nbi_v04_0301"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_warner_census_1840",
+      "surname_key": "warner",
+      "spellings_as_printed": [
+        "Warner"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-RJ:l29",
+          "name": "Warner L. [?]",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0306"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -24980,30 +26046,84 @@
         }
       ],
       "entries": [
-        "nbi_v04_0188",
-        "nbi_v04_0190"
+        "nbi_v04_0307"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "la_salle_book_co_cook_county"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_washington_residents",
-      "surname_key": "washington",
+      "id": "lead_v04_webb_residents",
+      "surname_key": "webb",
       "spellings_as_printed": [
-        "Washington"
+        "Webb"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "washington_morrow",
-          "name": "Morrow Washington",
+          "id": "webb_tho_c",
+          "name": "Tho. C. Webb",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0191"
+        "nbi_v04_0315",
+        "nbi_v04_0316"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_well_residents",
+      "surname_key": "well",
+      "spellings_as_printed": [
+        "Well"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wells_charles",
+          "name": "Charles Wells",
+          "rule": "OCR variant (0.89 similarity to 'wells')"
+        },
+        {
+          "id": "wells_george",
+          "name": "George Wells",
+          "rule": "OCR variant (0.89 similarity to 'wells')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0323"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_well_voters",
+      "surname_key": "well",
+      "spellings_as_printed": [
+        "Well"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1834_113",
+          "name": "George Wells",
+          "rule": "OCR variant (0.89 similarity to 'wells')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0323"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -25026,9 +26146,11 @@
         }
       ],
       "entries": [
-        "nbi_v04_0209"
+        "nbi_v04_0327"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -25046,129 +26168,274 @@
         }
       ],
       "entries": [
-        "nbi_v04_0209"
+        "nbi_v04_0327"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_whistler_voters",
-      "surname_key": "whistler",
+      "id": "lead_v04_wendel_residents",
+      "surname_key": "wendel",
       "spellings_as_printed": [
-        "Whistler"
+        "Wendel"
       ],
-      "layer": "voters",
+      "layer": "residents",
       "candidates": [
         {
-          "id": "tax_1833_108",
-          "name": "Whistler",
-          "rule": "exact surname"
+          "id": "wendell_peter",
+          "name": "Peter Wendell",
+          "rule": "OCR variant (0.92 similarity to 'wendell')"
+        },
+        {
+          "id": "wendell_v_a",
+          "name": "V A Wendell",
+          "rule": "OCR variant (0.92 similarity to 'wendell')"
         }
       ],
       "entries": [
-        "nbi_v04_0217"
+        "nbi_v04_0329"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_whiting_census_1840",
-      "surname_key": "whiting",
+      "id": "lead_v04_wentworth_census_1840",
+      "surname_key": "wentworth",
       "spellings_as_printed": [
-        "Whiting"
+        "Wentworth"
       ],
       "layer": "census_1840",
       "candidates": [
         {
-          "id": "33SQ-GYYJ-RJ:l23",
-          "name": "William S. Whiting",
+          "id": "33S7-9YYJ-Q1:l6",
+          "name": "Elijah Wentworth",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-97P:l19",
+          "name": "John Wentworth",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0223"
+        "nbi_v04_0331",
+        "nbi_v04_0332"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_whiting_residents",
-      "surname_key": "whiting",
+      "id": "lead_v04_wentworth_residents",
+      "surname_key": "wentworth",
       "spellings_as_printed": [
-        "Whiting"
+        "Wentworth"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "whiting_henry",
-          "name": "Henry Whiting",
+          "id": "wentworth_elijah",
+          "name": "Elijah Wentworth",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wentworth_h_e",
+          "name": "H E Wentworth",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0223"
+        "nbi_v04_0331",
+        "nbi_v04_0332"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wheeler_census_1840",
+      "surname_key": "wheeler",
+      "spellings_as_printed": [
+        "Wt Wheeler"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-ZQ:l1",
+          "name": "[?] S. Wheeler",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0343"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_wilcox_residents",
-      "surname_key": "wilcox",
+      "id": "lead_v04_wheeler_residents",
+      "surname_key": "wheeler",
       "spellings_as_printed": [
-        "Wilcox"
+        "Wt Wheeler"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "wilcox_d",
-          "name": "D Wilcox",
+          "id": "wheeler_orson",
+          "name": "Orson Wheeler",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0226"
+        "nbi_v04_0343"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_wilton_residents",
-      "surname_key": "wilton",
+      "id": "lead_v04_white_census_1840",
+      "surname_key": "white",
       "spellings_as_printed": [
-        "Wilton"
+        "White"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l12",
+          "name": "George White",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33SQ-GYYJ-93Y:l20",
+          "name": "[?] W. White",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0347"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_white_residents",
+      "surname_key": "white",
+      "spellings_as_printed": [
+        "White"
       ],
       "layer": "residents",
       "candidates": [
         {
-          "id": "wilton_john_l",
-          "name": "John L Wilton",
+          "id": "white_edson",
+          "name": "Edson White",
           "rule": "exact surname"
         }
       ],
       "entries": [
-        "nbi_v04_0186"
+        "nbi_v04_0347"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_whitman_census_1840",
+      "surname_key": "whitman",
+      "spellings_as_printed": [
+        "Whitman"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-97P:l20",
+          "name": "H. L. Whitman",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0349"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wiley_census_1840",
+      "surname_key": "wiley",
+      "spellings_as_printed": [
+        "Vel Wiley"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-9HY:l11",
+          "name": "Calvin Wiley",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0360"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v04_wilton_voters",
-      "surname_key": "wilton",
+      "id": "lead_v04_wilkey_census_1840",
+      "surname_key": "wilkey",
       "spellings_as_printed": [
-        "Wilton"
+        "yl Wilkey"
       ],
-      "layer": "voters",
+      "layer": "census_1840",
       "candidates": [
         {
-          "id": "poll_1835_084",
-          "name": "John L. Wilton",
-          "rule": "exact surname"
+          "id": "33S7-9YYJ-9HY:l11",
+          "name": "Calvin Wiley",
+          "rule": "OCR variant (0.91 similarity to 'wiley')"
         }
       ],
       "entries": [
-        "nbi_v04_0186"
+        "nbi_v04_0361"
       ],
-      "works_cited": [],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wilkinson_census_1840",
+      "surname_key": "wilkinson",
+      "spellings_as_printed": [
+        "Wilkinson"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-RC:l16",
+          "name": "B. K. Wilkin[?]on",
+          "rule": "OCR variant (0.94 similarity to 'wilkinon')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0362",
+        "nbi_v04_0363",
+        "nbi_v04_0364"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "county_histories_kett_and_co"
+      ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
@@ -25191,6 +26458,450 @@
       "works_cited": [
         "moses_illinois_historical_and_statistical",
         "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_witts_census_1840",
+      "surname_key": "witts",
+      "spellings_as_printed": [
+        "witts"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-B3:l27",
+          "name": "James Witt",
+          "rule": "OCR variant (0.89 similarity to 'witt')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0207"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wolcott_residents",
+      "surname_key": "wolcott",
+      "spellings_as_printed": [
+        "Wolcott"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wolcott_alexander",
+          "name": "Alexander Wolcott",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0388"
+      ],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wolcott_voters",
+      "surname_key": "wolcott",
+      "spellings_as_printed": [
+        "Wolcott"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "tax_1833_110",
+          "name": "Alexander Wolcott",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0388"
+      ],
+      "works_cited": [
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wood_census_1840",
+      "surname_key": "wood",
+      "spellings_as_printed": [
+        "Wood"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33SQ-GYYJ-RJ:l8",
+          "name": "Alanson C. Wood",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0393",
+        "nbi_v04_0394"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wood_residents",
+      "surname_key": "wood",
+      "spellings_as_printed": [
+        "Wood"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wood_wm",
+          "name": "Wm. Wood",
+          "rule": "exact surname"
+        },
+        {
+          "id": "woods_john_h",
+          "name": "John H. Woods",
+          "rule": "OCR variant (0.89 similarity to 'woods')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0393",
+        "nbi_v04_0394"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_woodard_residents",
+      "surname_key": "woodard",
+      "spellings_as_printed": [
+        "Woodard"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "woodward_g_w",
+          "name": "G W Woodward",
+          "rule": "OCR variant (0.93 similarity to 'woodward')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0395"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_woodruft_census_1840",
+      "surname_key": "woodruft",
+      "spellings_as_printed": [
+        "Woodruft"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-JM:l28",
+          "name": "Al[ean?] D. Woodruff",
+          "rule": "OCR variant (0.88 similarity to 'woodruff')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0398",
+        "nbi_v04_0399"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co",
+        "la_salle_book_co_cook_county"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_woodruft_residents",
+      "surname_key": "woodruft",
+      "spellings_as_printed": [
+        "Woodruft"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "woodruff_alson",
+          "name": "Alson Woodruff",
+          "rule": "OCR variant (0.88 similarity to 'woodruff')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0398",
+        "nbi_v04_0399"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co",
+        "la_salle_book_co_cook_county"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_worden_residents",
+      "surname_key": "worden",
+      "spellings_as_printed": [
+        "Worden"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "worden_nathaniel",
+          "name": "Nathaniel Worden",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0401"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_work_residents",
+      "surname_key": "work",
+      "spellings_as_printed": [
+        "Work"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "work_james_houston",
+          "name": "James Houston Work",
+          "rule": "exact surname"
+        },
+        {
+          "id": "works_charles",
+          "name": "Charles Works",
+          "rule": "OCR variant (0.89 similarity to 'works')"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0311",
+        "nbi_v04_0312"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wright_census_1840",
+      "surname_key": "wright",
+      "spellings_as_printed": [
+        "Wright"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-JM:l21",
+          "name": "Thomas Wraight",
+          "rule": "OCR variant (0.92 similarity to 'wraight')"
+        },
+        {
+          "id": "33SQ-GYYJ-93G:l17",
+          "name": "John Wright",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0405"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wright_residents",
+      "surname_key": "wright",
+      "spellings_as_printed": [
+        "Wright"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "wight_j_ambrose",
+          "name": "J Ambrose Wight",
+          "rule": "OCR variant (0.91 similarity to 'wight')"
+        },
+        {
+          "id": "wright_amasa",
+          "name": "Amasa Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_j",
+          "name": "J Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_john",
+          "name": "John Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_john_s",
+          "name": "John S. Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_robert_c",
+          "name": "Robert C Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_truman_g",
+          "name": "Truman G Wright",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0405"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wright_structures",
+      "surname_key": "wright",
+      "spellings_as_printed": [
+        "Wright"
+      ],
+      "layer": "structures",
+      "candidates": [
+        {
+          "id": "wright_building_to_let_a",
+          "name": "John Wright's Building to Let (east)",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_building_to_let_b",
+          "name": "John Wright's Building to Let (west)",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0405"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_wright_voters",
+      "surname_key": "wright",
+      "spellings_as_printed": [
+        "Wright"
+      ],
+      "layer": "voters",
+      "candidates": [
+        {
+          "id": "poll_1833_030",
+          "name": "John Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "tax_1833_113",
+          "name": "Amasa Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "tax_1833_114",
+          "name": "John Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "tax_1833_115",
+          "name": "T. G. Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1834_115",
+          "name": "T. G. Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "poll_1835_085",
+          "name": "Robert Wright",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0405"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_young_census_1840",
+      "surname_key": "young",
+      "spellings_as_printed": [
+        "Young"
+      ],
+      "layer": "census_1840",
+      "candidates": [
+        {
+          "id": "33S7-9YYJ-2T:l3",
+          "name": "Hugh C. Young",
+          "rule": "exact surname"
+        },
+        {
+          "id": "33S7-9YYJ-2T:l6",
+          "name": "Mrs Anna M. Young",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0410"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v04_young_residents",
+      "surname_key": "young",
+      "spellings_as_printed": [
+        "Young"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "young_gideon",
+          "name": "Gideon Young",
+          "rule": "exact surname"
+        },
+        {
+          "id": "young_richard_m",
+          "name": "Richard M Young",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v04_0410"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
       ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     }

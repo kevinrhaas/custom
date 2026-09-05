@@ -1,5 +1,79 @@
 # STATUS
 
+## Shipped 2026-09-05 — T-0713: the platted streets are attested, and the line grades the ribbon
+
+**What shipped.** Seventeen streets in `data/streets/1835.json` move from
+`geometry_confidence: inferred` to `attested` and each now cites
+`thompson_plat_1830`: the sixteen the owner named — `south_water`, `lake`, `randolph`,
+`washington`, `market`, `franklin`, `wells`, `lasalle`, `clark`, `dearborn`, `state`,
+`canal`, `clinton`, `kinzie`, `wolcott`, `michigan_north` — and `fulton`, which already
+cited the plat and is the best-held line in the file at RMS 0.35 m across four surviving
+intersections. `surface_confidence` and `wear_confidence` are untouched everywhere: the
+plat attests where a street ran, and carries nothing about what it was paved with or how
+it was worn. `north_water`, `fort_road` and `fort_bank_track` stay `reconstructed` — a
+line derived from the committed bank and two fort tracks the plat does not draw — and
+`carroll` stays `inferred`, because it is the one West Division tier that does not survive
+inside the plat and its line is interpolated between Kinzie and Fulton.
+
+### The distinction each upgraded note now states
+
+The 17.5 m RMS in `data/datum.json` `derivation.residual_m` is COORDINATE UNCERTAINTY —
+how well the 1834 sheet warped onto modern ground — and it bounds how precisely a line is
+PLACED, not whether the street was there. Confusing the two is what held these sixteen at
+`inferred`: a metric bracket on a position was being read as a doubt about existence. Every
+upgraded note says so in its own words, and each was re-read for
+`tools/audit_confidence.py`'s SILENCE vocabulary. One hit, in `fulton`: "no source gives
+Fulton a crossing" is a sentence about a BRIDGE and not about the line, and it is reworded
+so an attested field is not hedged in its own note.
+
+### The composition decision, which is what makes it visible
+
+`streets.js` graded a ribbon by `Math.max()` of geometry, surface and wear (T-0100), and
+every record in the file carries `wear_confidence: reconstructed` — so upgrading the lines
+alone would have moved no pixel and the whole platted town would have gone on dithering as
+invention. T-0713 splits the one grade into the two claims it had flattened:
+
+- **the LINE decides whether the ribbon STANDS** — presence, dither, and which level hides
+  it. That is the claim "a street ran here", and it is the only one of the three the
+  visitor's own footing depends on. It is carried on `_confidence`, the contract's channel,
+  and it is the channel the confidence view reads.
+- **SURFACE and WEAR decide only the TRACK painted on it.** They are carried on a second
+  attribute, `_trackConfidence`, read nowhere but the street material's own fragment block,
+  which fades the worn texture toward the bare corridor in proportion to how invented it is
+  — and only while the confidence view is on (`vTrackConfidence * uConfMode`), so the
+  ordinary daylight frame is the frame that shipped before this.
+
+T-0100's guard is kept rather than traded away, and `tools/test_street_confidence.mjs` is
+restated to prove it: an invented line under an attested surface still dithers out, and a
+record with no geometry grade still falls to `reconstructed` rather than reading as
+attested. What the split adds is the converse the `max()` could not express — an attested
+line under an invented wear no longer dithers away, because "we do not know how worn it was"
+is not a reason to tell a visitor the street was not there. The test now extracts BOTH
+expressions from the source and refuses to pass if the ribbon's one reads `surface_` or
+`wear_confidence` again, if the track's one has dropped either of them, or if
+`_trackConfidence` reaches the shader and is never spent.
+
+**Measured on the shipped index:** 21 street records — 17 ribbons attested, 1 inferred
+(`carroll`), 3 reconstructed. Hiding `inferred` drops Carroll and leaves the platted town
+standing; hiding `reconstructed` drops the two fort tracks and the north bank line.
+
+### Not decided here
+
+`INVENTED_TRACK_ALPHA` is 0.45, chosen to sit clear of the 0.34 the confidence view already
+uses to dither invented massing — a track we made up should read fainter than one we did
+not, and still plainly fainter than the road it is painted on is solid. It is a legibility
+constant and no measurement fixed it; if the fade reads wrong against the amber tint at a
+distance, that number is the thing to move, not the split.
+
+### Carried, not caused
+
+`python3 tools/compile_scene.py --all` was run and five sidecars —
+`clybourn_slaughterhouse`, `elston_soap_candle_manufactory`, `green_tree_tavern`,
+`pruyne_kimball_drugstore` and `residents_sources.json` — recompiled with land-sale evidence
+that had landed on `dev` without a recompile. That drift was on `dev` before this branch
+existed (verified against a clean tree) and `check.sh` fails on it either way, so the
+recompile is carried here rather than left for the next run to trip over.
+
 ## Shipped 2026-09-05 — T-0637: 302 runs of fence stop belonging to nobody
 
 **What shipped.** `tools/enclosure_owners.py`, a derivation, and the two generators that now

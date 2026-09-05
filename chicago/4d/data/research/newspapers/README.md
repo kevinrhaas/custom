@@ -421,6 +421,39 @@ the union of mentions, proprietors, goods and copy dates, the wider issue window
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.
 
+**A VENDOR'S FOR-SALE NOTICE PLACES NOTHING** (T-0412). A `building` claim carries an
+address because the notice gives one, and the extractor attaches the business the
+signature names to it — which is right where the signer KEEPS the house and wrong where he
+is only selling it. P. Pruyne signs "[W]E offer for sale the House on [the corner] of
+Lasalle and Lake streets. [It] is 16 by 30 feet" (`chicago_democrat_1834_05_21` c001) as
+VENDOR; the record it minted was merged into `P. Pruyne & Co.`, whose store the papers put
+between Clark and Dearborn streets across four printings, and the corner then stood among
+that firm's `placement_readings` as though it were a second frontage of the store. It did
+no harm there, and that was luck: the minting printing's own placement was `none`, so
+`placement_rank` never promoted the corner. **A vendor notice that happened to be the only
+reading on its record would have moved a firm to a house it was selling.**
+
+So a `building` claim whose own entities sign it as the **vendor** of that building
+contributes no placing reading to the business the signature names. What the printing said
+about the firm's own ground is nothing, and it records `{"class": "none"}` — the same value
+every other silent printing records, so the claim key still stands in the record's readings
+and no printing is dropped out of the history. The notice is kept on the business as
+`vendor_placements`: the placement as printed, the address text, the role as authored and
+the claim, so the judgement can be read back off the record it was made about. **The
+building is not lost** — the claim in `extracted/` is untouched, a documented Chicago house
+with a named corner and a 16-by-30-foot footprint, and it is a candidate for the buildings
+programme rather than a frontage of somebody's store (T-0783).
+
+The match on `role` is **exact** — `vendor`, or `vendor` followed by a qualifier ("vendor at
+auction") — because `role` is free prose in this corpus, some three hundred distinct
+strings, and a looser rule would silence an auctioneer selling at his own store house.
+`chicago_democrat_1834_04_16` c008 is precisely that: "auctioneer, selling at his own store
+house", and the business is David Carver's own commission house. Anything other than
+`vendor` is a role somebody has to write a rule for, deliberately, having read it. **The
+sweep found exactly one record in the position** — the corpus carries three `vendor` roles
+in all, and the other two are on claims that place nothing (`1834_05_14` c006 is
+`street_only`, `1835_08_05` c023 mints no business).
+
 **A pair judged NOT one house is a record too** (T-0399). `firm_surnames()` groups the
 register on the partner surname alone, so it puts together houses that are not one house
 — the two Montgomerys, a namesake, an anchor mistaken for a partner. Until this ticket the
