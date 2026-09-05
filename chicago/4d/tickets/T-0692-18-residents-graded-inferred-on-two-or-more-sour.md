@@ -1,7 +1,7 @@
 ---
 id: T-0692
 title: 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 827
 claimed_by: run 9/4/2026, 8:16:05 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T01:48:07.249Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935445500
 ---
 
