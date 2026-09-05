@@ -518,6 +518,19 @@ step "the West Division's tiers, and Carroll's midpoint still inside its own bra
 step "West Water still stands one half-corridor off the bank, and the two refusals still hold" \
   python3 tools/measure_west_division_streets.py --self-test
 
+# T-0451, the same shape on the other side of the river. Six North Division lines are seated
+# as the committed South Division streets continued north, and everything that entitles them
+# to be there is arithmetic on two committed files — the pixel reading of the plat in
+# data/traces/thompson_north_division_streets.json and the street lines themselves. So it all
+# goes stale silently: move a South Division centreline and its northern half no longer lies
+# on it, re-grade one and the North Division line keeps an attestation the parent lost. This
+# holds the collinearity to 2 cm, holds each line's ends on North Water and Kinzie, holds the
+# one line graded lower than the rest at `inferred`, and holds the sheet reading that says the
+# plat letters no name in any North Division corridor. It needs no image library; the reading
+# is committed data and `--reread` is what goes back to the 7 MB sheet.
+step "the North Division lines still lie on the streets they continue, and say what names them" \
+  python3 tools/measure_north_division_streets.py --self-test
+
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
 # block recipes quietly acted on it: every log dwelling the five South Water blocks were
@@ -1145,6 +1158,22 @@ PY
 # that changed without the pools or the generator changing is a real finding.
 step "the reconstructed residents' invented names re-derive" \
   python3 tools/synthesize_resident_research.py --check
+
+# `none_recorded` was carrying two facts at once (T-0693): "no trade anywhere" and
+# "no trade for 1835, and a dated one for 1839". The owner opened one card and found
+# the man's trade printed three times on it while the field a reader consults said he
+# had none. The pointer that separates them is DERIVED from the `directories` block on
+# the same record, so it is checkable rather than asserted — and gated here, because a
+# later pass that stopped writing it would otherwise put every one of those cards back
+# to asserting an absence its own file contradicts.
+step "no person asserts a bare 'none_recorded' while the same record dates a trade" \
+  python3 tools/qualify_later_trades.py --check
+
+# ...and the four rules that derivation rests on, held over a record built to trip
+# each: only an absence is qualified, the 1835 claim never moves, and the year travels
+# with the trade. Nothing here is back-projection; T-0633 is where an address is.
+step "the later-trade pointer obeys its own four rules" \
+  python3 tools/qualify_later_trades.py --self-test
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one

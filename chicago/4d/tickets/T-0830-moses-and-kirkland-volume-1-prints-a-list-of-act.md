@@ -1,5 +1,5 @@
 ---
-id: T-0825
+id: T-0830
 title: Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
 state: open
 epic: META
