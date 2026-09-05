@@ -5,7 +5,7 @@
 - **T-0512** T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it · **OWNER** · claimed · run 9/4/2026, 10:36:33 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33941756242)
 - **T-0429** Open blk_south_water_lasalle: 8 roofs of headroom on three free lots · needs-bake · claimed · run 8/30/2026, 1:51:13 AM CT
 
-## In the queue, in the owner’s order (155)
+## In the queue, in the owner’s order (157)
 
 - **T-0669** Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop
 - **T-0679** Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
@@ -162,6 +162,8 @@
 - **T-0717** The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 - **T-0718** Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 - **T-0728** The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
+- **T-0733** 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
+- **T-0734** 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 
 ## ⏸ Waiting on an owner decision (6)
 
