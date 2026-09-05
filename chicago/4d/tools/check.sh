@@ -1898,6 +1898,19 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
 
+# T-0512, the second half of the owner's publish ask. The final audit is the one file that
+# says, for every person in the town, what they rest on — which ticket reviewed them, which
+# source ids stand behind them by category, and what is still open. It is DERIVED from the
+# residents layer, so it is exactly the kind of artifact that reads as current long after
+# it has stopped being true: a cohort lands, the layer moves, and a stale CSV keeps telling
+# the owner the programme reached 611 people. Gated in both directions — the committed
+# package must re-derive, and a hand edit to it is refused.
+step "the final resident audit still re-derives from the residents layer" \
+  python3 tools/export_resident_audit.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/export_resident_audit.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

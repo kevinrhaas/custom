@@ -91,3 +91,25 @@ Facts promoted later into canonical resident/household data must retain per-attr
 ## Completion rule
 
 A cohort ticket is not complete while any manifest person remains `pending`, or while its XLSX/CSV/README package exists only locally. The completion PR to `dev` is the research receipt: it must contain the durable artifact package, completed findings ledger, source records and necessary compiler/sidecar integration.
+
+## `final/audit/` — the programme's audit, across every cohort
+
+`chicago/reference/resident-research/final/audit/` is the one artifact here that is **not**
+a cohort package: it is the whole residents layer, one row per person, and it is
+**generated**. `chicago/4d/tools/export_resident_audit.py --build` writes it and
+`--check` runs in `chicago/4d/tools/check.sh`, so a hand edit is refused and a stale
+package fails the gate the moment the layer moves under it.
+
+- `resident_audit_master.csv` — every person: household, grade, which cohort ticket
+  reviewed them and what it concluded, the source ids behind them **by category**
+  (newspaper / civic / census / church / book / directory / secondary), the census
+  bridge, the unresolved flags, and a one-word audit result saying what the person
+  rests on.
+- `resident_audit_master.xlsx` — the same table plus Metrics, Gaps and Sources sheets.
+  Written when `openpyxl` imports; the CSV is the gated artifact.
+- `README.md` — the coverage metrics table and the named list of remaining gaps.
+
+The cohort packages above are the *research receipts*, one ticket at a time. This one is
+the *ledger*: what the programme has reached, what it has not, and where the town's
+people are still standing on a single source. T-0512 took the baseline; T-0517 re-runs
+it after the update tickets land, so the two readings bracket the programme.
