@@ -293,6 +293,73 @@ def alpha(s: str) -> str:
     return re.sub(r"[^a-z]", "", s.lower())
 
 
+# ------------------------------------------------- the column sliver (T-0601)
+#
+# The four crop windows are 200 points wide on a 173-point pitch (CROPS), so every
+# window carries the leftmost 27 points of the NEXT column. When a card sits on that
+# boundary the pass over column c reads the first few characters of a card the pass
+# over column c+1 reads in full, and keeps it as a second, short card of the same
+# locality. The dedup in assemble() cannot see it: that keys on (page, heading,
+# body) and a truncation is equal to nothing, so the sliver survives and the domain
+# counts one card twice.
+#
+# MEASURED on the committed reading before the rule was written. The sliver's body
+# is a BYTE-EXACT prefix of the full card's body, because it is the same ink read
+# twice by the same engine — the reader's own errors come through verbatim ('Pike
+# Ce, III.', 'Fua Co., III.', 'Chicago, in.'). That exactness is the whole test.
+# Matching on alpha() instead, which drops the digits and the stops, admits two
+# DIFFERENT cards that cite the same county history: 'Sangamon Co, III. (Power, J.
+# C.) 1878.' and '... (Power, J. C.) I876.' are one string under alpha() and are two
+# readings on the leaf.
+#
+# The figure the rule was earned on: 9 pairs over the four volumes, every one of
+# them at column delta +1 and NONE at any other delta — which is the crop geometry's
+# own prediction, and is why the adjacency clause is in the rule rather than assumed.
+# The same test run without the adjacency clause and folded through alpha() finds 17,
+# of which 8 are two cards sharing a citation.
+#
+# A sliver is MARKED, never dropped. Three reasons, and all three are load-bearing:
+# the record id is positional, so striking one renumbers every card after it and
+# orphans precision_sample.json's hand-adjudications and lead_crosswalk.json's
+# rulings; the sliver is real ink that was really read, and check() rebuilds every
+# `as_read` out of the committed text, which still carries it; and a wrong call
+# stays visible and reversible instead of silently deleting a card.
+SLIVER_MIN_GAP = 8
+_SLIVER_LEAD = re.compile(r"^[^0-9A-Za-z]+")
+
+
+def sliver_core(body: str) -> str:
+    """A body with its leading rule-dashes and specks off — collapsed, but NOT
+    alpha-folded: the comparison has to keep the digits and the stops."""
+    return _SLIVER_LEAD.sub("", collapse(body))
+
+
+def find_slivers(cards: list) -> dict:
+    """{index of a sliver: index of the card it is a truncated copy of}.
+
+    `cards` is the committed reading of one volume, in the order the records are
+    numbered — read_committed_cards() order.
+    """
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = {}
+    for idxs in bypage.values():
+        for i in idxs:
+            a = cards[i]
+            head = sliver_core(a["body"])
+            if len(head) < 4:
+                continue
+            for j in idxs:
+                if j == i or cards[j]["column"] != a["column"] + 1:
+                    continue
+                full = sliver_core(cards[j]["body"])
+                if len(full) >= len(head) + SLIVER_MIN_GAP and full.startswith(head):
+                    out[i] = j
+                    break
+    return out
+
+
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -1186,19 +1253,38 @@ def parse(volume: int) -> dict:
                      % (", ".join(card["buckets"]) or "a locality"),
         })
 
+    # The crop windows overlap, so a card on a column boundary is read twice — once
+    # in full and once as a truncated sliver. The sliver keeps its record, because
+    # the ink is real and the ids are positional, and is marked and withheld from
+    # every count below. See find_slivers().
+    slivers = find_slivers(cards)
+    for i, j in slivers.items():
+        records[i]["normalized"]["sliver_of"] = records[j]["id"]
+        records[i]["notes"] = (
+            "A COLUMN SLIVER: the leftmost few points of %s, which the pass over "
+            "column %d read in full, caught by the pass over column %d because the "
+            "crop windows overlap by 27 points. Its body is a byte-exact prefix of "
+            "that card's. It is kept because the ink is real and it was really read, "
+            "and it is withheld from this volume's counts, from the leads and from "
+            "the reading order, because it is not a second card."
+            % (records[j]["id"], cards[j]["column"], cards[i]["column"]))
+    live = [r for k, r in enumerate(records) if k not in slivers]
+
     leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
-        records, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
+        live, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
 
     counts = {
-        "cards": len(records),
-        "by_locality": {name: sum(1 for r in records
+        "cards": len(live),
+        "records": len(records),
+        "slivers": len(slivers),
+        "by_locality": {name: sum(1 for r in live
                                   if name in r["normalized"]["localities"])
                         for name, _ in LOCALITY_BUCKETS},
         "distinct_surname_keys": len(by_key),
         "leads": len(leads),
         "leads_by_layer": {layer: sum(1 for ld in leads if ld["layer"] == layer)
                            for layer in sorted(layers)},
-        "chicago_or_cook_cards": sum(1 for r in records
+        "chicago_or_cook_cards": sum(1 for r in live
                                      if r["normalized"]["chicago_or_cook"]),
         "cards_matching_no_known_work": len(unmatched),
         "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi),
@@ -1242,7 +1328,8 @@ def parse(volume: int) -> dict:
     for vol in parsed:
         path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
         if path.exists():
-            all_records.extend(load(path).get("records") or [])
+            all_records.extend(r for r in (load(path).get("records") or [])
+                               if not (r.get("normalized") or {}).get("sliver_of"))
     # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
     # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
     # surname filed in both volumes must keep the id its ruling was written against;
@@ -1405,6 +1492,53 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
                 bad.append("%s: the localities do not re-derive from the committed "
                            "body line" % where)
 
+    # THE SLIVER MARK, BOTH WAYS (T-0601). A record that calls itself a sliver has to
+    # be one on the committed text, and — the half that actually earns its keep —
+    # every sliver the committed text carries has to be marked. Without the second
+    # clause a records file parsed before the rule existed goes on counting one card
+    # twice and nothing says so; with it, the count and the text cannot drift apart.
+    for path in sorted((domain / "records").glob("entries_vol_*.json")):
+        doc = load(path)
+        label = "records/" + path.name
+        volume = doc.get("volume")
+        text_path = domain / "text" / ("vol_%02d_locality_cards.txt" % (volume or 0))
+        if not text_path.exists():
+            continue
+        tlines = text_path.read_text(encoding="utf-8").splitlines()
+        recs = doc.get("records") or []
+        cards, moored = [], True
+        for rec in recs:
+            loc = rec.get("locator") or {}
+            pair = loc.get("lines") or []
+            if len(pair) != 2 or not (1 <= pair[1] <= len(tlines)):
+                moored = False
+                break
+            cards.append({"page": loc.get("index_page"), "column": loc.get("column"),
+                          "body": tlines[pair[1] - 1][8:]})
+        if not moored:
+            continue                      # the locator gate above has already said so
+        found = find_slivers(cards)
+        for i, rec in enumerate(recs):
+            marked = (rec.get("normalized") or {}).get("sliver_of")
+            truth = recs[found[i]].get("id") if i in found else None
+            if truth and not marked:
+                bad.append("%s %s: a column sliver of %s that the records do not mark "
+                           "— the domain is counting one card twice"
+                           % (label, rec.get("id"), truth))
+            elif marked and not truth:
+                bad.append("%s %s: marked a sliver of %s, and the committed text does "
+                           "not make it one" % (label, rec.get("id"), marked))
+            elif marked and marked != truth:
+                bad.append("%s %s: marked a sliver of %s, and the card it truncates on "
+                           "the committed text is %s"
+                           % (label, rec.get("id"), marked, truth))
+        net = len(recs) - len(found)
+        stated = (doc.get("counts") or {}).get("cards")
+        if stated is not None and stated != net:
+            bad.append("%s: counts.cards says %s, and the file holds %d records of "
+                       "which %d are column slivers — %d cards"
+                       % (label, stated, len(recs), len(found), net))
+
     cross_path = domain / "crosswalk.json"
     if cross_path.exists():
         cross = load(cross_path)
@@ -1541,6 +1675,45 @@ def self_test() -> int:
     ok &= run("MANIFEST naming the wrong Internet Archive item",
               lambda d: dump(d / "text" / "MANIFEST.json",
                              dict(load(d / "text" / "MANIFEST.json"), ia_item="wrong")))
+    def unmark_sliver(dom):
+        for path in sorted((dom / "records").glob("entries_vol_*.json")):
+            doc = load(path)
+            for rec in doc.get("records") or []:
+                if (rec.get("normalized") or {}).get("sliver_of"):
+                    rec["normalized"].pop("sliver_of")
+                    doc["counts"]["cards"] = doc["counts"]["cards"] + 1
+                    dump(path, doc)
+                    return
+        raise AssertionError("no sliver in the committed records to unmark")
+    ok &= run("a column sliver the records no longer mark", unmark_sliver)
+
+    def invent_sliver(dom):
+        path = next((dom / "records").glob("entries_vol_*.json"))
+        doc = load(path)
+        for rec in doc.get("records") or []:
+            if not (rec.get("normalized") or {}).get("sliver_of"):
+                rec["normalized"]["sliver_of"] = doc["records"][0]["id"]
+                break
+        dump(path, doc)
+    ok &= run("a card marked a sliver of one it does not truncate", invent_sliver)
+
+    def miscount_slivers(dom):
+        # The fixture has to break a volume that HAS a sliver to deduct. It used to
+        # take whichever the glob yielded first, which was safe only while every
+        # volume carried one. T-0775's OCR re-read of volume 4 rewrote all its cards
+        # and carries no sliver count at all (T-0810), so on a glob that lands there
+        # `cards` already equals `len(records)`, the fixture changes nothing and the
+        # assertion silently stops testing anything. Pick a volume that can be broken.
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("slivers")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a sliver to miscount — "
+                                 "this fixture can no longer test what it claims to")
+        doc = load(path)
+        doc["counts"]["cards"] = len(doc["records"])
+        dump(path, doc)
+    ok &= run("a volume counting its slivers as cards", miscount_slivers)
+
     ok &= run("a merge in the crosswalk",
               lambda d: dump(d / "crosswalk.json",
                              dict(load(d / "crosswalk.json"),

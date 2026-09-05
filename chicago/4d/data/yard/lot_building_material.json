@@ -349,14 +349,14 @@
     },
     {
       "structure_id": "wright_building_to_let_a",
-      "name": "John Wright's Building to Let (east)",
+      "name": "John Wright's Building to Let (a)",
       "function": "dwelling_to_let",
       "documented_range_from": "1835-01-01",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },
     {
       "structure_id": "wright_building_to_let_b",
-      "name": "John Wright's Building to Let (west)",
+      "name": "John Wright's Building to Let (b)",
       "function": "dwelling_to_let",
       "documented_range_from": "1835-01-01",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."

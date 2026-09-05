@@ -108,6 +108,48 @@ refused with numbers:
     the fork because that is where the street ended; moving it buys 6.7 m of clearance
     by making the terminus arbitrary instead of sourced.
 
+THE EAST END IS THE MEETING WITH KINZIE -- T-0447, and it is the last piece of the
+1834 schematic to go. Until 2026-09-04 the derived east reach stopped at E +830 and two
+AUTHORED vertices carried the street on from there to [970, 270]. They were not derived
+from anything: they are `[920, 190]` and `[970, 270]` verbatim off the hand-drawn line
+T-0226 replaced everywhere else -- the line whose own note read "the committed street
+module does not yet carry enough control to claim this curve as a trace" -- and they
+survived only because they were dry, which is not a derivation. Measured against this
+tool's own rule they stand 21.1 m and 6.7 m north of what the setback asks; measured
+against the town they are worse, because the terminus at [970, 270] is 17.2 m NORTH OF
+KINZIE STREET's committed line and North Water Street therefore ended in the block
+beyond the street it runs to.
+
+The owner's fault report for T-0447 called the whole course wrong. It is not: the open
+reach is derived and holds. But BOTH of the excursions the report names are real and
+they are opposite in kind, which is why they are answered separately.
+
+  * THE DIP TO N +2.2 AT E +5 IS THE BANK'S, AND IT IS COMMITTED. It is the west
+    reach's offset curve coming round Wolf Point into the forks, where the traced bank
+    falls 45 m of northing in 35 m of easting; the street follows it half a module off
+    and ends AT the fork, which T-0372 ruled on and did not move. It is a reading of
+    the committed bank, not a draughtsman's line, and it stays.
+  * THE CLIMB TO N +270 AT E +970 IS THE DRAUGHTSMAN'S, AND IT GOES. What replaces it
+    is the same climb DERIVED: east of E +830 the main stem swings north-east into the
+    mouth and its north bank climbs from N +92 to N +236 in 145 m of easting, so a
+    street laid half a module off it climbs too. The reach is simply continued under
+    the rule that already governs the rest of the street, and it is CUT where the
+    offset curve crosses `kinzie`'s committed line -- E +973.6, N +252.9. East of that
+    the requirement stands north of Kinzie Street, and the plat draws no pair of
+    east-west streets that swap sides. So the east end is the crossing of two committed
+    records, the bank and Kinzie, and a Kinzie that moves moves it.
+
+    The climb is 148.1 m of derived line where it was 165.8 m of drawn line, the street
+    is 1165.3 m where it was 1175.8 m, and the verge over that reach came in from
+    12.00 .. 27.00 m to 12.00 .. 18.00 m. Nothing west of E +830 moved: the west reach,
+    the crossing and the open reach east of the slough are vertex-for-vertex what they
+    were, so this is the east end and not a re-derivation of the street.
+
+    `--self-test` case 6 holds the terminus to being a genuine crossing rather than
+    wherever the search began, and case 7 makes `north_bank` refuse a bank reading that
+    runs into its own walk ceiling -- the way this reach would fail silently, since the
+    bank climbs toward that ceiling and a truncated read would lay the street on it.
+
 So the exemption is written down, BOUNDED, and gated at its own floor rather than the
 whole street being loosened to 5 m -- a flat 5 m gate would stop testing the 96 per cent
 of this street where the half module is the actual requirement, and the open reach
@@ -150,8 +192,20 @@ STATION_M = 5.0             # how finely the bank is read
 MAX_ABOVE_M = 8.0           # how far a straight run may stand north of what it needs
 BANK_STEP_M = 0.5           # how finely the traced bank is walked for the offset curve
 BELOW_M = 0.5               # how far a run may fall short of the setback (see fit)
-E_EAST = 830.0              # where the street leaves the bank and climbs to Kinzie
-TAIL = [[920.0, 190.0], [970.0, 270.0]]   # unchanged: dry, drawn, and not in question
+# THE EAST END (T-0447). The street runs east on the bank until the bank's own offset
+# curve MEETS KINZIE STREET's committed line, and it ends there. Until 2026-09-04 the
+# derivation stopped at E +830 and two authored vertices carried it on to [970, 270] --
+# `TAIL = [[920.0, 190.0], [970.0, 270.0]]`, kept verbatim from the hand-drawn
+# schematic T-0226 replaced everywhere else and commented "unchanged: dry, drawn, and
+# not in question". They were the last surviving fragment of a line whose own note said
+# "the committed street module does not yet carry enough control to claim this curve as
+# a trace", and they stood 21.1 m north of what the setback rule asks at E +970 and
+# 17.2 m north of KINZIE STREET ITSELF -- North Water Street ended in the block beyond
+# the street it runs to. See the module docstring, THE EAST END IS THE MEETING WITH
+# KINZIE.
+E_EAST_LIMIT = 995.0        # how far east the bank is read while looking for the meeting
+KINZIE = "kinzie"           # the committed line the east end is found against
+BANK_WALK_N_MAX = 260.0     # north_bank's own walk ceiling, asserted against below
 
 # THE CROSSING (T-0254). These three numbers are the deck's, and they are read off
 # `data/structures/north_water_slough_crossing.json` rather than restated -- the
@@ -215,7 +269,7 @@ def north_bank(is_water, e, step=0.25):
     runs = []
     n = -80.0
     start = None
-    while n < 260.0:
+    while n < BANK_WALK_N_MAX:
         wet = is_water(e, n)
         if wet and start is None:
             start = n
@@ -227,7 +281,43 @@ def north_bank(is_water, e, step=0.25):
         runs.append((start, n))
     if not runs:
         return None
-    return max(runs, key=lambda r: r[1] - r[0])[1]
+    top = max(runs, key=lambda r: r[1] - r[0])[1]
+    # THE WALK HAS A CEILING AND IT MUST NOT BIND (T-0447). East of the mouth the main
+    # stem swings north-east and its bank climbs fast; a bank read that ran into the
+    # ceiling would answer with the ceiling and the street would be laid on a number
+    # this tool invented. Refuse instead. 5 m of headroom is two station steps of the
+    # bank's own steepest climb.
+    if top > BANK_WALK_N_MAX - 5.0:
+        raise SystemExit("the north bank at E %.1f reads N %.1f, within 5 m of "
+                         "north_bank's own walk ceiling of N %.1f -- raise the ceiling "
+                         "and re-derive rather than laying the street on a truncated "
+                         "reading" % (e, top, BANK_WALK_N_MAX))
+    return top
+
+
+def kinzie_line():
+    """Kinzie Street's committed centreline, as a northing per easting.
+
+    Read from the same file this tool writes, and it is a different record: North Water
+    Street's east end is found AGAINST Kinzie, so a Kinzie that moves moves this
+    terminus with it instead of leaving the two streets disagreeing about where they
+    meet -- the same rule the crossing's deck is read under.
+    """
+    doc = json.loads(STREETS.read_text())
+    path = [(float(e), float(n))
+            for e, n in next(s for s in doc["streets"]
+                             if s["id"] == KINZIE)["path_local_enu_m"]]
+
+    def n_at(e):
+        for i in range(len(path) - 1):
+            e0, n0 = path[i]
+            e1, n1 = path[i + 1]
+            if min(e0, e1) <= e <= max(e0, e1):
+                t = (e - e0) / (e1 - e0) if e1 != e0 else 0.0
+                return n0 + (n1 - n0) * t
+        raise SystemExit("E %.1f is off %s's committed line" % (e, KINZIE))
+
+    return n_at
 
 
 def deck():
@@ -394,27 +484,63 @@ def fit(st):
     return pts
 
 
-def reach(is_water, e_from, e_to, anchor):
-    st = stations(is_water, e_from, e_to, anchor)
+def fit_reach(st):
     pts = [[round(e, 1), round(n, 1)] for e, n in fit(st)]
     # Rounding to a decimetre can only move a vertex 5 cm; lift any that fell short.
     for pt in pts:
         need = next(s for s in st if abs(s[0] - pt[0]) < 1e-6)[2]
         if pt[1] < need:
             pt[1] = round(need + 0.05, 1)
-    return pts, st
+    return pts
+
+
+def reach(is_water, e_from, e_to, anchor):
+    st = stations(is_water, e_from, e_to, anchor)
+    return fit_reach(st), st
+
+
+def east_stations(is_water, e_from, anchor):
+    """The east reach's stations, ending where the offset curve meets Kinzie Street.
+
+    T-0447. The bank is read east to E_EAST_LIMIT so the offset curve is complete over
+    the whole reach, and the reach is then CUT at the easting where that curve crosses
+    `kinzie`'s committed line. East of the crossing the requirement stands NORTH of
+    Kinzie Street: the bank has swung north-east into the mouth far enough that a line
+    half a platted street off it would be on the far side of the street it runs to, and
+    the plat draws no such pair. So the crossing is the street's east end, and it is
+    derived from two committed records rather than authored -- the bank and Kinzie.
+
+    Returns (stations, meeting easting).
+    """
+    st = stations(is_water, e_from, E_EAST_LIMIT, anchor)
+    kin = kinzie_line()
+    e_meet = None
+    for i in range(1, len(st)):
+        (ea, _ba, na), (eb, _bb, nb) = st[i - 1], st[i]
+        da, db = na - kin(ea), nb - kin(eb)
+        if da < 0.0 <= db:
+            e_meet = round(ea + (eb - ea) * (-da) / (db - da), 1)
+            break
+    if e_meet is None:
+        raise SystemExit("the bank's offset curve never meets %s between E %.1f and "
+                         "E %.1f, so this street has no derived east end"
+                         % (KINZIE, e_from, E_EAST_LIMIT))
+    out = [s for s in st if s[0] < e_meet - 1e-9]
+    out.append((e_meet, north_bank(is_water, e_meet), kin(e_meet)))
+    return out, e_meet
 
 
 def derive():
     is_water = load_field()
     w_end, e_end, n_deck = deck()
     west, st_w = reach(is_water, E_WEST_END, w_end, (w_end, n_deck))
-    east, st_e = reach(is_water, e_end, E_EAST, (e_end, n_deck))
+    st_e, _e_meet = east_stations(is_water, e_end, (e_end, n_deck))
+    east = fit_reach(st_e)
     # THE BEND IN THE WATER. One vertex at the deck's midpoint, and it is wet on
     # purpose: R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels
     # that reach the abutments go with it and the deck is what a visitor crosses on.
     mid = [round(0.5 * (w_end + e_end), 1), round(n_deck, 1)]
-    return west + [mid] + east + [list(t) for t in TAIL], st_w + st_e, is_water
+    return west + [mid] + east, st_w + st_e, is_water
 
 
 def report(path, st, is_water):
@@ -457,9 +583,10 @@ def report(path, st, is_water):
           % perpendicular_clearance(path, is_water, w_end, e_end))
     # PER REACH, because the two reaches are not the same problem (T-0307): the east
     # reach's bank runs roughly east-west and the west reach's turns Wolf Point.
-    for label, lo_e, hi_e in (("west of the slough ", E_WEST_END, w_end),
-                              ("east of the slough ", e_end, E_EAST),
-                              ("the climb to Kinzie", E_EAST, TAIL[-1][0])):
+    e_meet = path[-1][0]
+    for label, lo_e, hi_e in (("west of the slough  ", E_WEST_END, w_end),
+                              ("east of the slough  ", e_end, 830.0),
+                              ("the climb to Kinzie ", 830.0, e_meet)):
         print("    %s: %.2f m .. %.2f m" % (
             (label,) + perpendicular_clearance(path, is_water, w_end, e_end,
                                                lo_e, hi_e)))
@@ -706,12 +833,50 @@ def self_test():
     else:
         print("  ok:    both windows end where they are declared to (6 edge cases)")
 
+    # 6. THE EAST END IS A CROSSING, NOT A NUMBER -- T-0447. The terminus is only
+    # derived if the offset curve is genuinely SOUTH of Kinzie Street a station before
+    # it and NORTH of Kinzie a station after; a curve that merely grazed the line, or
+    # one that had already been north of it for 200 m, would put the street's end
+    # wherever the search happened to start.
+    cases += 1
+    st_e, e_meet = east_stations(is_water, e_end, (e_end, deck()[2]))
+    kin = kinzie_line()
+    before = st_e[-2]
+    after = stations(is_water, e_meet, e_meet + 2 * STATION_M, None)[-1]
+    gap_before = kin(before[0]) - before[2]
+    gap_after = after[2] - kin(after[0])
+    if gap_before > 0.0 and gap_after > 0.0:
+        print("  ok:    the east end at E %+.1f is a crossing: the offset curve is "
+              "%.2f m SOUTH of %s one station before it and %.2f m NORTH of it two "
+              "stations after" % (e_meet, gap_before, KINZIE, gap_after))
+    else:
+        fails.append("the east end at E %+.1f is not a crossing of the offset curve "
+                     "and %s (%.2f m before, %.2f m after), so the terminus is not "
+                     "derived from those two records"
+                     % (e_meet, KINZIE, gap_before, gap_after))
+
+    # 7. THE BANK WALK'S CEILING REFUSES A TRUNCATED READ. north_bank answers with the
+    # top of the widest wet run below BANK_WALK_N_MAX, so a ceiling that bound would
+    # return the ceiling and this street would be laid on it. Proved by lowering the
+    # ceiling under a reading the committed line depends on.
+    cases += 1
+    saved = globals()["BANK_WALK_N_MAX"]
+    globals()["BANK_WALK_N_MAX"] = 120.0
+    try:
+        north_bank(is_water, e_meet)
+        fails.append("north_bank did not refuse a bank read into its own walk ceiling")
+    except SystemExit:
+        print("  fires: north_bank refuses a bank reading that runs into its ceiling")
+    finally:
+        globals()["BANK_WALK_N_MAX"] = saved
+
     if fails:
         for f in fails:
             print("SELF-TEST FAIL: %s" % f)
         return 1
-    print("SELF-TEST PASS — the clearance rule refuses every tier, and its two "
-          "exemptions are the ones holding the committed line up (%d cases)" % cases)
+    print("SELF-TEST PASS — the clearance rule refuses every tier, its two exemptions "
+          "are the ones holding the committed line up, and the east end is a crossing "
+          "of two committed records (%d cases)" % cases)
     return 0
 
 
