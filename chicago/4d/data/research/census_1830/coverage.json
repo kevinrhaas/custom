@@ -5,12 +5,31 @@
   "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
   "declarations": [
     {
+      "ticket": "T-0605",
+      "unit": "image",
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "item": "populationsc18300024unit",
+      "read_on": "2026-09-05",
+      "items": [
+        "n576",
+        "n578",
+        "n584",
+        "n586"
+      ],
+      "what_was_read": "Every head of family in the names column of n576 (55), n578 (56) and n584 (22), in the enumerator's order, plus each leaf's totals row to its first nine male columns; and the whole of n586, which carries the division's recapitulation and no head of family. 133 entries.",
+      "what_was_not_read": "The per-household age-band cells on n576, n578 and n584, as on n580 and n582 before them — twenty-eight columns per household is a pass of its own. On n586, the female half of the recapitulation grid beyond the columns transcribed, and the right-hand continuation half of every sheet (the odd leaves).",
+      "note": "This closes the division. n586's five page rows are the totals rows of n576, n578, n580, n582 and n584 — page 1's row carries the same six struck-and-rewritten cells as n576's — so the district is those five leaves, printed pages 299 to 303, and it ends at n584 because n586 is its recapitulation. T-0605 was opened believing the district ran ON past n584; it runs BACK to n576 instead, and the two leaves at the front of it were the unread ones."
+    },
+    {
       "ticket": "T-0498",
       "unit": "image",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "item": "populationsc18300024unit",
       "read_on": "2026-09-03",
-      "items": ["n580", "n582"],
+      "items": [
+        "n580",
+        "n582"
+      ],
       "what_was_read": "Every head of family in the names column of both leaves, in the enumerator's order, plus the county heading on n580 and the first five male columns of each leaf's totals row. 39 entries on n580, 28 on n582.",
       "what_was_not_read": "The per-household age-band cells. They are on the page and legible in parts; reading twenty-eight columns for sixty-seven households is a pass of its own and half of it would be worse than none.",
       "note": "These are the first two leaves of the enumeration district headed 'Peoria & Putnam Counties & Territory attached', which is where Chicago was enumerated in 1830."
@@ -18,12 +37,20 @@
   ],
   "not_declared_and_why": [
     {
-      "items": ["n584", "and the leaves after it until the district ends"],
-      "why": "The same district continues on n584 with the county cell left empty — Reuben Flagg, John Cooper, Timothy B Clark, Pierce Hawley, Bailey Hobson, Jacob Kite and the Groves, which is the Du Page and Fox River settlement rather than the mouth of the river. Its county column was looked at to establish that the district had not ended; NOTHING on it was read. It is undeclared because it is unread, and T-0605 exists to finish it."
+      "items": [
+        "n577",
+        "n579",
+        "n581",
+        "n583",
+        "n585"
+      ],
+      "why": "The ODD leaves are the right-hand halves of the same sheets — the continuation columns (slaves, free coloured persons, aliens) that this project has not needed and has not read. The even leaves n576 and n578, which this same note used to consign to 'the county before this district', are read: T-0605 found them to be pages 1 and 2 of the division and declared them above. The claim they carried was a guess from an empty county cell and it was wrong."
     },
     {
-      "items": ["n576", "n577", "n578", "n579", "n581", "n583"],
-      "why": "The odd leaves are the right-hand halves of the same sheets (the continuation columns), and n576-n579 belong to the county before this district. Neither was read."
+      "items": [
+        "the division's recapitulation, reconciled"
+      ],
+      "why": "n586's family column as read sums to 247 against its own written total of 199, and the leaves as read carry 200 heads. Pages 1 and 3 are where they part (53 written against 55 read on n576, 88 written against 39 read on n580). Neither figure is preferred here and no record is graded on it; the re-count is a ticket of its own."
     }
   ]
 }
