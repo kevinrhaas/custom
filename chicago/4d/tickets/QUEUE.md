@@ -176,7 +176,6 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Each puts a building a visitor can walk to.
 # --- Gated by the band above; the owner's standing priority is the dataset first (see the top band),
 # --- so these sit here rather than at the head of the file.
-T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed.
@@ -338,3 +337,9 @@ T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any confli
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
+T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
+T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched

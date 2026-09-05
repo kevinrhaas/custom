@@ -44,14 +44,14 @@
   }
  ],
  "counts": {
-  "leads_ruled": 981,
-  "cards_ruled": 1391,
+  "leads_ruled": 980,
+  "cards_ruled": 1389,
   "by_outcome": {
-   "refused": 724,
+   "refused": 723,
    "candidate": 257
   },
   "by_class": {
-   "ocr_variant_only": 341,
+   "ocr_variant_only": 340,
    "testable_in_a_held_work": 257,
    "locality_absent": 288,
    "surname_only_chicago": 95
@@ -5461,31 +5461,6 @@
    "discriminators": []
   },
   {
-   "lead_id": "lead_v01_broone_census_1840",
-   "surname_key": "broone",
-   "spellings_as_printed": [
-    "Broone"
-   ],
-   "layer": "census_1840",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Broone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Broone' at all. And if it were, a heading against Jos. D. Boone would still be a surname against a person, which is always a refusal here.",
-   "record_ids": [
-    "nbi_v01_0920"
-   ],
-   "candidates": [
-    {
-     "id": "33S7-9YYJ-W6:l2",
-     "name": "Jos. D. Boone",
-     "rule": "OCR variant (0.91 similarity to 'boone')"
-    }
-   ],
-   "person_ids": [],
-   "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
    "lead_id": "lead_v01_brown_census_1840",
    "surname_key": "brown",
    "spellings_as_printed": [
@@ -9605,11 +9580,10 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 3 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_1513",
-    "nbi_v01_1514",
-    "nbi_v01_1517"
+    "nbi_v01_1514"
    ],
    "candidates": [
     {
@@ -60753,37 +60727,6 @@
    "ticket": "T-0590"
   },
   {
-   "record_id": "nbi_v01_0920",
-   "a": "Broone | Illinois, (M",
-   "b": "Jos. D. Boone",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Broone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Broone' at all. And if it were, a heading against Jos. D. Boone would still be a surname against a person, which is always a refusal here. Ruled on the card 'Broone | Illinois, (M' against Jos. D. Boone.",
-   "layers": [
-    "census_1840"
-   ],
-   "leads": [
-    "lead_v01_broone_census_1840"
-   ],
-   "person_ids": [],
-   "person_id": null,
-   "evidence": [
-    "nbi_v01_0920",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_01",
-    "text_file": "vol_01_locality_cards.txt",
-    "lines": [
-     1845,
-     1846
-    ],
-    "index_page": 288,
-    "column": 2
-   },
-   "ticket": "T-0590"
-  },
-  {
    "record_id": "nbi_v01_0931",
    "a": "Brown | 1 Illinois. (Moses, ).) 1880.92. 2v. See Inde»",
    "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; W H Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
@@ -63633,7 +63576,7 @@
    "b": "Reuben Conant",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Conant | Illinois. Sec. Sons Am, Rev, 1896: 176-' against Reuben Conant.",
+   "rule": "Refused. All 2 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Conant | Illinois. Sec. Sons Am, Rev, 1896: 176-' against Reuben Conant.",
    "layers": [
     "residents"
    ],
@@ -63666,7 +63609,7 @@
    "b": "Reuben Conant",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Conant | Ogle Co., III. (Kelt, H. F„ 4 Co.) 1878: \" -' against Reuben Conant.",
+   "rule": "Refused. All 2 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Conant | Ogle Co., III. (Kelt, H. F„ 4 Co.) 1878: \" -' against Reuben Conant.",
    "layers": [
     "residents"
    ],
@@ -63690,39 +63633,6 @@
     ],
     "index_page": 490,
     "column": 0
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v01_1517",
-   "a": "Conant | —Füa Co., III.",
-   "b": "Reuben Conant",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Conant' name Illinois and neither Chicago nor Cook County, so the lead against Reuben Conant stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Conant | —Füa Co., III.' against Reuben Conant.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v01_conant_residents"
-   ],
-   "person_ids": [
-    "conant_reuben"
-   ],
-   "person_id": "conant_reuben",
-   "evidence": [
-    "nbi_v01_1517",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_01",
-    "text_file": "vol_01_locality_cards.txt",
-    "lines": [
-     3039,
-     3040
-    ],
-    "index_page": 490,
-    "column": 2
    },
    "ticket": "T-0590"
   },
