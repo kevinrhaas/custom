@@ -6,8 +6,8 @@
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file.",
   "counts": {
     "purchasers": 431,
-    "matched": 35,
-    "refused": 396
+    "matched": 38,
+    "refused": 393
   },
   "matches": [
     {
@@ -193,6 +193,42 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
+      "purchaser_as_read": "DOLE GEORGE W",
+      "record_ids": [
+        "ls0147",
+        "ls0148",
+        "ls0149",
+        "ls0150"
+      ],
+      "resident_id": "dole_george_w",
+      "resident_name": "George Washington Dole",
+      "household_id": "hh_dole_george_w",
+      "match": "forename_agrees",
+      "rule": "DOLE GEORGE W matches George Washington Dole: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "FULLERTON ALEXANDER",
+      "record_ids": [
+        "ls0160",
+        "ls0161",
+        "ls0162",
+        "ls0737",
+        "ls0745",
+        "ls0863"
+      ],
+      "resident_id": "fullerton_alexander",
+      "resident_name": "Alexander N. Fullerton",
+      "household_id": "hh_fullerton_alexander",
+      "match": "forename_agrees",
+      "rule": "FULLERTON ALEXANDER matches Alexander N. Fullerton: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
       "purchaser_as_read": "HALE JOHN",
       "record_ids": [
         "ls0199",
@@ -294,6 +330,21 @@
       "household_id": "hh_newberry_walter_loomis",
       "match": "forename_agrees",
       "rule": "NEWBERRY WALTER S matches Walter Loomis Newberry: the residents layer holds exactly one person of the surname and the forename agrees in full.",
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "PECK P F W",
+      "record_ids": [
+        "ls0319",
+        "ls0320"
+      ],
+      "resident_id": "peck_philip",
+      "resident_name": "Philip F. W. Peck",
+      "household_id": "hh_peck_philip",
+      "match": "initial_agrees",
+      "rule": "PECK P F W matches Philip F. W. Peck: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
@@ -728,8 +779,8 @@
     },
     {
       "a": "TAYLOR CHARLES",
-      "b": "9 residents named Taylor",
-      "rule": "TAYLOR CHARLES is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "b": "6 residents named Taylor",
+      "rule": "TAYLOR CHARLES is refused against 6 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0014",
         "ls0015",
@@ -1002,8 +1053,8 @@
     },
     {
       "a": "KINZIE JAMES",
-      "b": "7 residents named Kinzie",
-      "rule": "KINZIE JAMES is refused against 7 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "5 residents named Kinzie",
+      "rule": "KINZIE JAMES is refused against 5 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0052",
         "ls0053"
@@ -1048,8 +1099,8 @@
     },
     {
       "a": "KINZIE ROBERT A",
-      "b": "7 residents named Kinzie",
-      "rule": "KINZIE ROBERT A is refused against 7 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "5 residents named Kinzie",
+      "rule": "KINZIE ROBERT A is refused against 5 residents named Kinzie: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0059"
       ],
@@ -1108,8 +1159,8 @@
     },
     {
       "a": "BATES JOHN JR",
-      "b": "2 residents named Bates",
-      "rule": "BATES JOHN JR is refused against 2 residents named Bates: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
+      "b": "Harriet Ellen Bates",
+      "rule": "BATES JOHN JR is refused against Harriet Ellen Bates: the surname agrees and the forename does not.",
       "record_ids": [
         "ls0065",
         "ls0066",
@@ -1122,8 +1173,8 @@
     },
     {
       "a": "BEAUBIEN MARK",
-      "b": "12 residents named Beaubien",
-      "rule": "BEAUBIEN MARK is refused against 12 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 12.",
+      "b": "10 residents named Beaubien",
+      "rule": "BEAUBIEN MARK is refused against 10 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 10.",
       "record_ids": [
         "ls0069",
         "ls0070"
@@ -1288,8 +1339,8 @@
     },
     {
       "a": "BROWN RUFUS",
-      "b": "7 residents named Brown",
-      "rule": "BROWN RUFUS is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "6 residents named Brown",
+      "rule": "BROWN RUFUS is refused against 6 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0124",
         "ls0125"
@@ -1382,20 +1433,6 @@
       ]
     },
     {
-      "a": "DOLE GEORGE W",
-      "b": "2 residents named Dole",
-      "rule": "DOLE GEORGE W is refused against 2 residents named Dole: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
-      "record_ids": [
-        "ls0147",
-        "ls0148",
-        "ls0149",
-        "ls0150"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "DOLLY FRANCIS",
       "b": "Joseph Dolly",
       "rule": "DOLLY FRANCIS is refused against Joseph Dolly: the surname agrees and the forename does not.",
@@ -1455,22 +1492,6 @@
       ]
     },
     {
-      "a": "FULLERTON ALEXANDER",
-      "b": "4 residents named Fullerton",
-      "rule": "FULLERTON ALEXANDER is refused against 4 residents named Fullerton: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
-      "record_ids": [
-        "ls0160",
-        "ls0161",
-        "ls0162",
-        "ls0737",
-        "ls0745",
-        "ls0863"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "GOODHUE JOSIAH C",
       "b": "Dr. Josiah C. Goodhue",
       "rule": "GOODHUE JOSIAH C is refused against Dr. Josiah C. Goodhue: the surname agrees and the forename does not.",
@@ -1508,8 +1529,8 @@
     },
     {
       "a": "HADDOCK E H",
-      "b": "5 residents named Haddock",
-      "rule": "HADDOCK E H is refused against 5 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
+      "b": "2 residents named Haddock",
+      "rule": "HADDOCK E H is refused against 2 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "record_ids": [
         "ls0169",
         "ls0170",
@@ -1521,8 +1542,8 @@
     },
     {
       "a": "HADDOCK EDWARD H",
-      "b": "5 residents named Haddock",
-      "rule": "HADDOCK EDWARD H is refused against 5 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
+      "b": "2 residents named Haddock",
+      "rule": "HADDOCK EDWARD H is refused against 2 residents named Haddock: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "record_ids": [
         "ls0172",
         "ls0669"
@@ -1569,8 +1590,8 @@
     },
     {
       "a": "HAMILTON RICHARD J",
-      "b": "4 residents named Hamilton",
-      "rule": "HAMILTON RICHARD J is refused against 4 residents named Hamilton: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
+      "b": "3 residents named Hamilton",
+      "rule": "HAMILTON RICHARD J is refused against 3 residents named Hamilton: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0225",
         "ls0226"
@@ -1581,8 +1602,8 @@
     },
     {
       "a": "HARMON CHARLES L",
-      "b": "6 residents named Harmon",
-      "rule": "HARMON CHARLES L is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "5 residents named Harmon",
+      "rule": "HARMON CHARLES L is refused against 5 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0227"
       ],
@@ -1592,8 +1613,8 @@
     },
     {
       "a": "HARMON ISAAC",
-      "b": "6 residents named Harmon",
-      "rule": "HARMON ISAAC is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "5 residents named Harmon",
+      "rule": "HARMON ISAAC is refused against 5 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0228"
       ],
@@ -1603,8 +1624,8 @@
     },
     {
       "a": "HARMON ISAAC D",
-      "b": "6 residents named Harmon",
-      "rule": "HARMON ISAAC D is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "5 residents named Harmon",
+      "rule": "HARMON ISAAC D is refused against 5 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0229"
       ],
@@ -1645,8 +1666,8 @@
     },
     {
       "a": "HUBBARD GURDON S",
-      "b": "11 residents named Hubbard",
-      "rule": "HUBBARD GURDON S is refused against 11 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
+      "b": "6 residents named Hubbard",
+      "rule": "HUBBARD GURDON S is refused against 6 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0239"
       ],
@@ -1783,8 +1804,8 @@
     },
     {
       "a": "KIMBERLY J E",
-      "b": "6 residents named Kimberly",
-      "rule": "KIMBERLY J E is refused against 6 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "3 residents named Kimberly",
+      "rule": "KIMBERLY J E is refused against 3 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0265"
       ],
@@ -1794,8 +1815,8 @@
     },
     {
       "a": "KIMBERLY S A",
-      "b": "6 residents named Kimberly",
-      "rule": "KIMBERLY S A is refused against 6 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "3 residents named Kimberly",
+      "rule": "KIMBERLY S A is refused against 3 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0266"
       ],
@@ -1892,25 +1913,13 @@
     },
     {
       "a": "OWEN THOMAS J V",
-      "b": "7 residents named Owen",
-      "rule": "OWEN THOMAS J V is refused against 7 residents named Owen: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "3 residents named Owen",
+      "rule": "OWEN THOMAS J V is refused against 3 residents named Owen: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0297",
         "ls0298",
         "ls0299",
         "ls0300"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "PECK P F W",
-      "b": "3 residents named Peck",
-      "rule": "PECK P F W is refused against 3 residents named Peck: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
-      "record_ids": [
-        "ls0319",
-        "ls0320"
       ],
       "evidence": [
         "data/residents/index.json"
@@ -1967,8 +1976,8 @@
     },
     {
       "a": "SNOW GEORGE W",
-      "b": "3 residents named Snow",
-      "rule": "SNOW GEORGE W is refused against 3 residents named Snow: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "2 residents named Snow",
+      "rule": "SNOW GEORGE W is refused against 2 residents named Snow: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
       "record_ids": [
         "ls0334",
         "ls0335"
@@ -2030,8 +2039,8 @@
     },
     {
       "a": "TEMPLE JOHN T",
-      "b": "5 residents named Temple",
-      "rule": "TEMPLE JOHN T is refused against 5 residents named Temple: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
+      "b": "4 residents named Temple",
+      "rule": "TEMPLE JOHN T is refused against 4 residents named Temple: the rule needs exactly one person of the surname in the residents layer, and there are 4.",
       "record_ids": [
         "ls0353",
         "ls0354",
@@ -2159,8 +2168,8 @@
     },
     {
       "a": "BROWN WILLIAM H",
-      "b": "7 residents named Brown",
-      "rule": "BROWN WILLIAM H is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "6 residents named Brown",
+      "rule": "BROWN WILLIAM H is refused against 6 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0399",
         "ls0400"
@@ -2437,8 +2446,8 @@
     },
     {
       "a": "HARMON ELIJAH D",
-      "b": "6 residents named Harmon",
-      "rule": "HARMON ELIJAH D is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "5 residents named Harmon",
+      "rule": "HARMON ELIJAH D is refused against 5 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0435",
         "ls0436"
@@ -2585,8 +2594,8 @@
     },
     {
       "a": "TAYLOR WILLIAM",
-      "b": "9 residents named Taylor",
-      "rule": "TAYLOR WILLIAM is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "b": "6 residents named Taylor",
+      "rule": "TAYLOR WILLIAM is refused against 6 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0452"
       ],
@@ -2607,8 +2616,8 @@
     },
     {
       "a": "BEAUBIEN J B",
-      "b": "12 residents named Beaubien",
-      "rule": "BEAUBIEN J B is refused against 12 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 12.",
+      "b": "10 residents named Beaubien",
+      "rule": "BEAUBIEN J B is refused against 10 residents named Beaubien: the rule needs exactly one person of the surname in the residents layer, and there are 10.",
       "record_ids": [
         "ls0454",
         "ls0455",
@@ -2794,8 +2803,8 @@
     },
     {
       "a": "KIMBERLY EDMUND S",
-      "b": "6 residents named Kimberly",
-      "rule": "KIMBERLY EDMUND S is refused against 6 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "3 residents named Kimberly",
+      "rule": "KIMBERLY EDMUND S is refused against 3 residents named Kimberly: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0479"
       ],
@@ -3091,8 +3100,8 @@
     },
     {
       "a": "TAYLOR SOLOMON",
-      "b": "9 residents named Taylor",
-      "rule": "TAYLOR SOLOMON is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "b": "6 residents named Taylor",
+      "rule": "TAYLOR SOLOMON is refused against 6 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0517"
       ],
@@ -3240,8 +3249,8 @@
     },
     {
       "a": "TAYLOR EDMUND D",
-      "b": "9 residents named Taylor",
-      "rule": "TAYLOR EDMUND D is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "b": "6 residents named Taylor",
+      "rule": "TAYLOR EDMUND D is refused against 6 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0538",
         "ls0634",
@@ -3382,8 +3391,8 @@
     },
     {
       "a": "TAYLOR ANSON H",
-      "b": "9 residents named Taylor",
-      "rule": "TAYLOR ANSON H is refused against 9 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 9.",
+      "b": "6 residents named Taylor",
+      "rule": "TAYLOR ANSON H is refused against 6 residents named Taylor: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0552"
       ],
@@ -3692,8 +3701,8 @@
     },
     {
       "a": "HUBBARD THOMAS R",
-      "b": "11 residents named Hubbard",
-      "rule": "HUBBARD THOMAS R is refused against 11 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
+      "b": "6 residents named Hubbard",
+      "rule": "HUBBARD THOMAS R is refused against 6 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0593",
         "ls0619",
@@ -3833,8 +3842,8 @@
     },
     {
       "a": "ALLEN WILLIAM",
-      "b": "6 residents named Allen",
-      "rule": "ALLEN WILLIAM is refused against 6 residents named Allen: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "3 residents named Allen",
+      "rule": "ALLEN WILLIAM is refused against 3 residents named Allen: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
       "record_ids": [
         "ls0609"
       ],
@@ -3889,8 +3898,8 @@
     },
     {
       "a": "HUBBARD ELIJAH K",
-      "b": "11 residents named Hubbard",
-      "rule": "HUBBARD ELIJAH K is refused against 11 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 11.",
+      "b": "6 residents named Hubbard",
+      "rule": "HUBBARD ELIJAH K is refused against 6 residents named Hubbard: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0617",
         "ls0618",
@@ -4163,8 +4172,8 @@
     },
     {
       "a": "BROWN WM",
-      "b": "7 residents named Brown",
-      "rule": "BROWN WM is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "6 residents named Brown",
+      "rule": "BROWN WM is refused against 6 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0682",
         "ls0686"
@@ -4186,8 +4195,8 @@
     },
     {
       "a": "PECK EBENEZER",
-      "b": "3 residents named Peck",
-      "rule": "PECK EBENEZER is refused against 3 residents named Peck: the rule needs exactly one person of the surname in the residents layer, and there are 3.",
+      "b": "Philip F. W. Peck",
+      "rule": "PECK EBENEZER is refused against Philip F. W. Peck: the surname agrees and the forename does not.",
       "record_ids": [
         "ls0685"
       ],
@@ -4518,8 +4527,8 @@
     },
     {
       "a": "HARMON CHAS L",
-      "b": "6 residents named Harmon",
-      "rule": "HARMON CHAS L is refused against 6 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
+      "b": "5 residents named Harmon",
+      "rule": "HARMON CHAS L is refused against 5 residents named Harmon: the rule needs exactly one person of the surname in the residents layer, and there are 5.",
       "record_ids": [
         "ls0751"
       ],
@@ -5088,8 +5097,8 @@
     },
     {
       "a": "BROWN JEREMIAH",
-      "b": "7 residents named Brown",
-      "rule": "BROWN JEREMIAH is refused against 7 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 7.",
+      "b": "6 residents named Brown",
+      "rule": "BROWN JEREMIAH is refused against 6 residents named Brown: the rule needs exactly one person of the surname in the residents layer, and there are 6.",
       "record_ids": [
         "ls0895"
       ],
