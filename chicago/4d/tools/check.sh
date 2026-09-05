@@ -1439,6 +1439,19 @@ step "…and the later addresses re-derive through the back-projection clauses" 
 step "…and no back-projected face has grown a grade, a roof or an 1835 link" \
   python3 tools/back_project_addresses.py --self-test
 
+# T-0669, the residence half of the same grammar: docs/RESIDENCE-BACK-PROJECTION.md, which
+# reads a street the volume prints as a HOME — its own `res` or `bds` — and carries it as
+# the household's street FACE and never as a point. All 48 residence addresses are
+# adjudicated and the 41 refusals are committed beside the 7 placements, for the same
+# reason the business pass's are: a refusal that disappears from the record reads to the
+# next run as an address nobody looked at. The self-test additionally holds the invariant
+# the two policies share — no printed address is PLACED by both of them.
+step "…and the later HOME addresses re-derive through the residence clauses" \
+  python3 tools/back_project_residences.py --check
+
+step "…and no back-projected home has grown a point, a roof or an 1835 link" \
+  python3 tools/back_project_residences.py --self-test
+
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
 # the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99
