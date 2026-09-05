@@ -1,7 +1,7 @@
 ---
 id: T-0820
 title: Arriving anywhere frames the whole building from its front and opens its card
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 907
 claimed_by: run 9/5/2026, 12:57:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T18:22:54.696Z
 claimed_run: null
 ---
 

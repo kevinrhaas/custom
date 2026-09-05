@@ -36,8 +36,6 @@
 
 # --- OWNER ASKS 2026-09-05 — a speed slider per pace with named gaits (20/30/60 mph ceilings), and
 # --- every arrival framing the whole building from its front with the card open.
-T-0819 — Walk, wagon and horse each get a speed slider with a named gait, up to 20, 30 and 60 mph
-T-0820 — Arriving anywhere frames the whole building from its front and opens its card
 
 # --- ==========================================================================
 # --- DRAIN THE OPEN-PR QUEUE FIRST — OWNER INSTRUCTION, 2026-09-05

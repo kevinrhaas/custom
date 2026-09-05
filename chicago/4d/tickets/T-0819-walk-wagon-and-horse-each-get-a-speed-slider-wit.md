@@ -1,7 +1,7 @@
 ---
 id: T-0819
 title: Walk, wagon and horse each get a speed slider with a named gait, up to 20, 30 and 60 mph
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 907
 claimed_by: run 9/5/2026, 12:57:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T18:22:54.548Z
 claimed_run: null
 ---
 
