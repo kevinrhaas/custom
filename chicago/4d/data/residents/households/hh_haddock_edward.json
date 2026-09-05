@@ -100,6 +100,15 @@
      "describes_date": "1835",
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G1a"
+    },
+    {
+     "list": "poll_1834",
+     "as_read": "Haddock, Edward E.",
+     "locator": "poll_1834",
+     "record_id": "poll_1834_048",
+     "describes_date": "1834",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G3"
     }
    ],
    "census_evidence": [
@@ -122,8 +131,37 @@
      "describes_date": "1834-07-02",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1a"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "E. W. Haddock",
+     "locator": "chicago_democrat_1834_03_18#c011",
+     "record_id": "person_e_w_haddock",
+     "describes_date": "1834-03-18",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "E. Haddock",
+     "locator": "chicago_democrat_1834_06_18#c002",
+     "record_id": "person_e_haddock",
+     "describes_date": "1834-06-18",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
     }
-   ]
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C0",
+    "cluster": "haddock",
+    "cards": [
+     "haddock_e",
+     "haddock_e_w",
+     "haddock_edward_e"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+   }
   }
  ],
  "touches_removal": false,

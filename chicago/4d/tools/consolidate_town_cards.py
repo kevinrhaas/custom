@@ -372,7 +372,8 @@ def crosswalk_doc(rulings: dict) -> dict:
             record_ids, sources = [], set()
             if stub.exists():
                 doc = json.loads(stub.read_text(encoding="utf-8"))
-                person = next((p for p in doc.get("persons") or []
+                record = doc.get("superseded_record") or doc
+                person = next((p for p in record.get("persons") or []
                                if p.get("id") == folded), None) or {}
                 sources = set(person.get("sources") or [])
                 for key in BLOCK_KEYS:
@@ -471,6 +472,7 @@ def apply(write: bool = True) -> dict:
             for p in sorted(HOUSEHOLDS.glob("*.json"))}
     home = {person["id"]: hid for hid, doc in docs.items()
             for person in doc.get("persons") or []}
+    stub_home = {row["person"]: row["household"] for row in index.get("merged", [])}
 
     files: dict = {}
     redirects: list = []
@@ -487,30 +489,42 @@ def apply(write: bool = True) -> dict:
         for folded in sorted(ruling["folded"]):
             hid = home.get(folded)
             if hid is None:
-                continue                 # already folded
-            doc = docs[hid]
-            person = next(p for p in doc["persons"] if p["id"] == folded)
-            files[MERGED / f"{hid}.json"] = dump(
-                stub_doc(doc, folded, ruling, survivor_home))
-            redirects.append({
-                "person": folded, "household": hid,
-                "name": person.get("name") or "",
-                "merged_into_person": ruling["survivor"],
-                "merged_into_household": survivor_home,
-                "record": f"merged/{hid}.json",
-                "rule": ruling["rule"], "cluster": ruling["cluster"], "ticket": TICKET,
-            })
-            folded_households.add(hid)
+                # ALREADY FOLDED ON AN EARLIER RUN. The union is still read, out of the
+                # stub, so --apply is idempotent and can repair a survivor a later
+                # derivation stripped rather than only ever landing a merge once.
+                hid = stub_home.get(folded)
+                if hid is None:
+                    continue
+                stub = json.loads((MERGED / f"{hid}.json").read_text(encoding="utf-8"))
+                person = next(p for p in (stub.get("superseded_record") or {}
+                                          ).get("persons") or [] if p["id"] == folded)
+            else:
+                doc = docs[hid]
+                person = next(p for p in doc["persons"] if p["id"] == folded)
+                files[MERGED / f"{hid}.json"] = dump(
+                    stub_doc(doc, folded, ruling, survivor_home))
+                redirects.append({
+                    "person": folded, "household": hid,
+                    "name": person.get("name") or "",
+                    "merged_into_person": ruling["survivor"],
+                    "merged_into_household": survivor_home,
+                    "record": f"merged/{hid}.json",
+                    "rule": ruling["rule"], "cluster": ruling["cluster"],
+                    "ticket": TICKET,
+                })
+                folded_households.add(hid)
             gained_sources |= set(person.get("sources") or [])
             for key in BLOCK_KEYS:
                 for entry in person.get(key) or []:
                     gained_blocks[key].append(entry)
-        # THE UNION, but only where nothing else will write it. A card a mint pass owns
-        # is re-derived from the identity master every run, and the crosswalk above has
-        # already put the folded appearances into that identity — so writing the union
-        # here as well would be a hand-edit the next --build silently reverts, and
-        # --check would call it stale. A hand-authored card has no such pass behind it.
-        if survivor_doc.get("source_pass"):
+        # THE UNION, but only where nothing else will write it. `mint_civic_residents.py`
+        # derives its whole card from the identity master, and the crosswalk above has
+        # already put the folded appearances INTO that identity — so a civic survivor
+        # carries the union without being touched here, and writing it here as well would
+        # be a hand-edit the next --build reverts and --check calls stale. Every other
+        # card — hand-authored, or minted by a pass that reads its own pool rather than
+        # the master — gains nothing unless this pass writes it, so it is written.
+        if survivor_doc.get("source_pass") == "civic":
             continue
         if gained_sources or gained_blocks:
             survivor["sources"] = sorted(set(survivor.get("sources") or [])
@@ -651,6 +665,27 @@ def check() -> int:
         if ruling["survivor"] not in people:
             problems.append(f"the survivor '{ruling['survivor']}' of cluster "
                             f"'{ruling['cluster']}' is on no card")
+
+    # THE UNION IS STILL ON THE SURVIVOR. Where the survivor is a card no derivation
+    # spends onto, --apply wrote the folded cards' sources by hand; a later --build of the
+    # pass that owns it would re-derive them away silently, and this is what says so.
+    by_person = {r["person"]: r["record"] for r in town}
+    for row in index.get("merged", []):
+        survivor = by_person.get(row["merged_into_person"])
+        if survivor is None:
+            continue
+        stub = RESIDENTS / row["record"]
+        if not stub.exists():
+            continue
+        record = json.loads(stub.read_text(encoding="utf-8")).get("superseded_record") or {}
+        folded = next((p for p in record.get("persons") or []
+                       if p["id"] == row["person"]), {})
+        lost = sorted(set(folded.get("sources") or []) - set(survivor.get("sources") or []))
+        if lost:
+            problems.append(
+                f"'{row['merged_into_person']}' no longer cites "
+                f"{', '.join(lost)}, which '{row['person']}' brought to the merge. A "
+                f"merge loses nothing: run --apply to write the union back")
 
     want = {LEDGER: dump(ledger_doc(town, rulings)),
             CROSSWALK: dump(crosswalk_doc(rulings))}

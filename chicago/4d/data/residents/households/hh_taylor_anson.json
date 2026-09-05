@@ -67,7 +67,10 @@
     "note": "'Anson H. and his brother, Charles Taylor, came in 1832.' John Bates, interviewed in 1883, remembered 'a sort of bridge built the year before by Anson Taylor across the South Branch near Randolph Street - a log-bridge, quite near the water, over which teams could pass'; Andreas dates that bridge to 1832 and credits it to Anson H. Taylor and his brother Charles. He hauled the lumber for St Mary's from the schooner to the site with his own team."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "blackhawk_war_chicago_enrollments_isa",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
    ],
    "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge.",
    "resident_research": {
@@ -86,6 +89,47 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
+   },
+   "civic_evidence": [
+    {
+     "list": "muster_1832",
+     "as_read": "TAYLOR, A W",
+     "locator": "muster",
+     "record_id": "blackhawk_1832_110",
+     "describes_date": "1832",
+     "source": "blackhawk_war_chicago_enrollments_isa",
+     "rule": "G1b"
+    },
+    {
+     "list": "tax_1833",
+     "as_read": "Taylor, Anson N.",
+     "locator": "tax_1833",
+     "record_id": "tax_1833_101",
+     "describes_date": "1833",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G3"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Anson W. Taylor",
+     "locator": "chicago_democrat_1834_11_12#c004",
+     "record_id": "person_anson_w_taylor",
+     "describes_date": "1834-11-12",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C4",
+    "cluster": "taylor-anson",
+    "cards": [
+     "taylor_anson_n",
+     "taylor_anson_w"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   },
   {
