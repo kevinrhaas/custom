@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:52 AM",
+  "generated_ct": "Sep 5, 2026, 5:17 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12281,11 +12281,11 @@
       "parent": null,
       "opened": "2026-09-04",
       "closed": "2026-09-05",
-      "pr": "0",
+      "pr": "867",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": "2026-09-05T09:52:18.731Z",
+      "closed_at": "2026-09-05T10:17:56.493Z",
       "claimed_run": null,
       "queue_rank": null
     },
@@ -12432,7 +12432,7 @@
     {
       "id": "T-0745",
       "title": "dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12440,14 +12440,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "867",
       "claimed_by": "run 9/5/2026, 4:28:19 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T10:17:56.372Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33957698251",
-      "queue_rank": 150
+      "queue_rank": null
     },
     {
       "id": "T-0746",
@@ -12467,7 +12467,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 150
     },
     {
       "id": "T-0747",
@@ -12507,7 +12507,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 152
     },
     {
       "id": "T-0753",
@@ -12527,7 +12527,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": 151
     },
     {
       "id": "T-0754",
@@ -12607,7 +12607,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 153
     }
   ]
 }

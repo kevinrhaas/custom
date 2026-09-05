@@ -10,11 +10,11 @@ legacy_id: null
 parent: null
 opened: 2026-09-04
 closed: 2026-09-05
-pr: 0
+pr: 867
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-05T09:52:18.731Z
+closed_at: 2026-09-05T10:17:56.493Z
 claimed_run: null
 ---
 

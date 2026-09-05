@@ -310,7 +310,6 @@ T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
 T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
-T-0745 — dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
 T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
 

@@ -1,7 +1,7 @@
 ---
 id: T-0745
 title: dev's gate is still red, but not on T-0739's nine: the four that remain are the cross-street faces, blk_washington_clark's southern ground, the far-timber census, and a duplicate ticket id
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 867
 claimed_by: run 9/5/2026, 4:28:19 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T10:17:56.372Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33957698251
 ---
 
