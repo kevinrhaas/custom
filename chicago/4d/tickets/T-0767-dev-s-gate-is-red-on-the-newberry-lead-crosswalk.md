@@ -1,7 +1,7 @@
 ---
 id: T-0767
 title: dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 878
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T12:27:15.528Z
 claimed_run: null
 ---
 

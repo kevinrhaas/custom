@@ -277,15 +277,6 @@ WORKS = [
         "reachable": "held — located and opened for T-0582; Internet Archive "
                      "chicagoitsdistin00wood. Its printed pages 23-25 are a continuous "
                      "account of the year 1835 in Chicago",
-        # NOT YET IN THE COMMITTED CARDS. T-0582 ran the re-parse and measured it — 8
-        # cards, 5 of them Chicago or Cook, 1 on a lead surname (carpenter), and the
-        # unmatched residue falling 4,175 -> 4,167 and its Chicago half 375 -> 370 —
-        # and did not commit the output, because a plain `--parse` on dev rewrites
-        # leads.json by 6,039 lines for a reason that has nothing to do with this
-        # table: the residents, voter and census_1840 layers have grown since the
-        # committed leads were generated, and five of the new leads are unruled, which
-        # is a separate unit of work. T-0740 carries it. Until then follow_up.json does
-        # not list this work and this comment is where its count lives.
     },
 ]
 
@@ -1191,6 +1182,40 @@ def leads_and_follow(records, layers, lead_id):
     return leads, follow, unmatched, unmatched_chi, by_key
 
 
+# ------------------------------------------------- the re-derivation fingerprint
+
+# T-0740. `--parse` is deterministic over TWO inputs: the committed card text, and the
+# layers the leads are looked up in — the households, the 1833-1835 voter lists, the
+# 1840 census pages and the named structures. The card text is gated already (its
+# sha256 is in MANIFEST). The LAYERS are not, and they are the ones that move: a
+# cohort lands, a census page is read, a household is renamed, and the committed
+# leads quietly stop being what a fresh parse produces. Nothing was wrong in the
+# files; they were just old, and the gate could not see it because it re-derived the
+# crosswalk from the COMMITTED leads rather than from the inputs.
+#
+# Re-parsing inside the gate would cost four minutes (64 s a volume, measured), which
+# is four minutes on every commit to catch a drift that happens weekly. So the gate
+# hashes the inputs instead. A fingerprint that still matches means a re-parse is a
+# no-op; one that does not means the leads are stale and must be regenerated AND
+# re-ruled (tools/rule_newberry_leads.py --write), because new leads arrive unruled.
+def parse_fingerprint(domain: Path = None, volumes: list = None) -> str:
+    domain = domain or DOMAIN
+    h = hashlib.sha256()
+    layers = layer_names()
+    h.update(json.dumps(layers, sort_keys=True, ensure_ascii=False).encode("utf-8"))
+    # The WORKS table lives in this file, not in data/, so an edit to it changes the
+    # parse without changing any committed input. T-0582 added a pattern and could
+    # not commit the re-parse; that is the case this line covers.
+    h.update(json.dumps([[w["key"], w["pattern"].pattern, w.get("fuzzy")]
+                         for w in WORKS], sort_keys=True,
+                        ensure_ascii=False).encode("utf-8"))
+    for vol in sorted(volumes if volumes is not None else VOLUMES):
+        path = domain / "text" / ("vol_%02d_locality_cards.txt" % vol)
+        h.update(("vol_%02d:" % vol).encode("utf-8"))
+        h.update(sha256_file(path).encode("utf-8") if path.exists() else b"absent")
+    return h.hexdigest()
+
+
 def parse(volume: int) -> dict:
     text_name, _lines, cards = read_committed_cards(volume)
     layers = layer_names()
@@ -1326,6 +1351,17 @@ def parse(volume: int) -> dict:
                 "merge: see crosswalk.json, which holds none and says why.",
         "generated_by": "tools/read_newberry_index.py --parse",
         "volumes": parsed,
+        # What this file re-derives from. --check recomputes it and fails when it has
+        # moved, so a stale leads.json is found by the gate rather than by the next
+        # run that happens to touch the works table (T-0740).
+        "derives_from": {
+            "fingerprint": parse_fingerprint(volumes=parsed),
+            "_doc": "sha256 over the layers the leads are looked up in, the WORKS "
+                    "table, and the committed card text of every parsed volume. "
+                    "Recomputed by --check; a mismatch means --parse is no longer a "
+                    "no-op and the leads must be regenerated and re-ruled.",
+            "layer_counts": {name: len(rows) for name, rows in sorted(layers.items())},
+        },
         "counts": {
             "cards": len(all_records),
             "distinct_surname_keys": len(by_key_all),
@@ -1512,7 +1548,22 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
 
     leads_path = domain / "leads.json"
     if leads_path.exists():
-        for lead in load(leads_path).get("leads") or []:
+        leads_doc = load(leads_path)
+        # T-0740: the committed leads must still be what a fresh --parse produces.
+        want = parse_fingerprint(domain=domain,
+                                 volumes=leads_doc.get("volumes") or None)
+        got = (leads_doc.get("derives_from") or {}).get("fingerprint")
+        if not got:
+            bad.append("leads.json carries no derives_from.fingerprint — it was "
+                       "written before the re-derivation gate; re-run "
+                       "tools/read_newberry_index.py --parse --volume 1..4")
+        elif got != want:
+            bad.append("leads.json does not re-derive from its inputs: the layers, "
+                       "the WORKS table or the committed card text have moved under "
+                       "it. Re-run --parse over every volume in leads.json's "
+                       "`volumes`, then tools/rule_newberry_leads.py --write — new "
+                       "leads arrive unruled")
+        for lead in leads_doc.get("leads") or []:
             if not lead.get("candidates"):
                 bad.append("leads.json %s: a lead with no candidate" % lead.get("id"))
             for cand in lead.get("candidates") or []:
@@ -1657,6 +1708,20 @@ def self_test() -> int:
               lambda d: dump(d / "crosswalk.json",
                              dict(load(d / "crosswalk.json"),
                                   merges=[{"into": "Adams", "from": "Adams"}])))
+
+    def stale_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.setdefault("derives_from", {})["fingerprint"] = "0" * 64
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads that no longer re-derive from their inputs",
+              stale_fingerprint)
+
+    def no_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.pop("derives_from", None)
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads with no re-derivation fingerprint at all",
+              no_fingerprint)
 
     def drop_rule(dom):
         doc = load(dom / "leads.json")
