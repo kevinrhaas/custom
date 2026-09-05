@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:25 PM",
+  "generated_ct": "Sep 5, 2026, 4:28 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14343,7 +14343,7 @@
     },
     {
       "id": "T-0839",
-      "title": "One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. Review and consolidate the residents, losing nothing",
+      "title": "One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing",
       "state": "open",
       "epic": "META",
       "requested_by": "owner",

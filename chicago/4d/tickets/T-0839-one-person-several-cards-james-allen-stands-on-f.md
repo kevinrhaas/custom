@@ -1,6 +1,6 @@
 ---
 id: T-0839
-title: One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. Review and consolidate the residents, losing nothing
+title: One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing
 state: open
 epic: META
 requested_by: owner
@@ -67,16 +67,26 @@ consolidation already knows is one identity stays several cards for ever, and ev
 spends onto cards (T-0720, the directories, the regrade) spends onto the wrong one or onto all of
 them.
 
+## The owner's second instruction, 2026-09-05, which sets the deliverable
+
+*"make the ticket merge those records — research without consolidation is useless."*
+
+So: **the PR that closes this ticket lands merged cards.** The candidates report below is the
+ledger the merges are made from and the place refusals are written; it is not an output on its
+own. A run that ends at the report has not done this ticket and may not close it.
+
 ## The ask — *"don't lose any data"* is the constraint everything else serves
 
-1. **A `--candidates` report first**, not a merge: every cluster of town cards the consolidation's
+1. **A `--candidates` ledger, then the merges in the same PR.** The ledger: every cluster of town cards the consolidation's
    identity master already joins OR a surname-plus-compatible-forename test joins, with per pair
    the evidence FOR (shared sources, agreeing trade, agreeing dates, a title that fits a documented
    role) and AGAINST (a contradicted forename, two people in one source on one date, a spouse or a
    sibling the sources name). Same standard as the directory forename test T-0515 wrote.
-2. **Rule each cluster, in writing:** MERGE, DISTINCT, or UNDECIDED, with the rule that fired. A
-   DISTINCT ruling is written onto both cards so the next pass does not re-ask; an UNDECIDED goes
-   to the owner with the two readings side by side.
+2. **Rule each cluster, in writing, and ACT on the ruling:** MERGE is merged in this PR; DISTINCT is
+   written onto both cards so the next pass does not re-ask; UNDECIDED goes to the owner with the
+   two readings side by side — and UNDECIDED is the exception that has to earn its place, not the
+   default for a cluster nobody looked at hard. Where the evidence is one man with a title, an
+   initial and a full name (Allen, Hubbard, Owen, Fullerton, Kimberly, Haddock), it is a MERGE.
 3. **A merge loses nothing.** The surviving card takes the UNION of the sources, evidence blocks,
    notes, `directories` blocks, `resident_research`, kinship, old-settler citations and grade
    evidence of every card folded into it; the folded cards are not deleted but become **redirect
@@ -89,10 +99,13 @@ them.
 5. **Then fix the cause**, or this recurs on the next mint: a minting pass must consult the identity
    master before writing a new card, and `--check` must fail when a new card's identity already has
    a canonical card. T-0723's two cases land inside this sweep.
-6. Land James Allen and Gurdon Hubbard as the two demonstrations in the PR body — before and after,
-   with what each surviving card gained and the stubs that point at it.
+6. James Allen and Gurdon Hubbard are the two demonstrations in the PR body — before and after,
+   with what each surviving card gained and the stubs that point at it — and they are two of the
+   merges, not the only two. The PR states how many clusters were MERGED, DISTINCT and UNDECIDED,
+   and the town's person count before and after.
 
-**Done when** the candidates report exists and every one of its clusters carries a written ruling,
-every MERGE is a union with redirect stubs and nothing a consumer cites fails to resolve, the
-grades are re-derived by the ladder, the minting passes refuse to re-split an identity, and the
-town's person count is the number of people it can actually name.
+**Done when** the merges are LANDED — every cluster ruled MERGE is one card, a union with redirect
+stubs, and nothing a consumer cites fails to resolve; every other cluster carries a written
+DISTINCT or UNDECIDED ruling; the grades are re-derived by the ladder; the minting passes refuse to
+re-split an identity; and the town's person count has gone DOWN to the number of people it can
+actually name. A report with no merged card behind it does not close this.
