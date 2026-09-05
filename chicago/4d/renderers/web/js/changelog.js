@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'What the ladder has ruled on, and the nine it cannot see', kind: 'fix', ts: '',
+  { v: 581, title: 'What the ladder has ruled on, and the nine it cannot see', kind: 'fix', ts: '2026-09-05T15:39:29.689Z', date: 'Sep 5, 2026, 10:39 AM CT',
     items: [
       'Every person in this town carries a grade \u2014 attested, inferred, or not a resident of 1835 \u2014 and the point of the published ladder of rungs is that the grade can be argued with. A person the ladder never looked at has a grade that means whatever the pass that wrote it meant, and until today nothing counted how many of those there were. Now everybody is accounted for: of one thousand four hundred and four people, five hundred and thirty-one carry the rung on their card and eight hundred and seventy-three do not.',
       'The eight hundred and seventy-three are not one thing, and that is the finding. For eight hundred and sixty-four of them the ladder has already ruled \u2014 the rung was worked out, written down and filed \u2014 and no pass has ever carried it onto the card. A hundred and six of those are attested rungs sitting unspent. So what is missing is not more reading; it is spending what is already decided, which is what the owner said the bottleneck was.',
