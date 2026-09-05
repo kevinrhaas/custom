@@ -15,6 +15,9 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  "Pull 802 up" — the owner, after T-0802's fault was caught live: T-0722 sat
+#               `claimed` on a queue a run reads top-down for hours after PR #836 landed its
+#               work. Moved into the blocking band beside T-0819.
 #   2026-09-05  ...AND THE REST OF THE FILE, same instruction: "And other logical ordering
 #               across the queue". Applied ORDERING RULE 4 where the bands' own text already
 #               said it: the triangle ceiling gates every roof, so it now sits ABOVE the roofs
@@ -139,7 +142,16 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 # --- T-0819 first: the promotion workflow cannot push its back-merge, so PRODUCTION CANNOT BE
 # --- PROMOTED AT ALL. Then dev's standing red — T-0728, T-0729 and T-0781 are three reports of the
 # --- same failure set on an untouched checkout, and T-0763 is why they were hard to tell apart.
+# --- T-0802 IS HERE ON EVIDENCE, NOT ON THEORY — owner, 2026-09-05: "Pull 802 up". It was caught
+# --- live the same day: T-0722 FIXED the 32 MB ceiling in PR #836, that PR merged, and the ticket
+# --- still read `state: claimed, pr: null` hours later — sitting workable at the top of a queue
+# --- a run reads top-down. That is the seventy-minute failure of 2026-08-19 (run 943's #258 left
+# --- open, run 944 rebuilding T-0062 from scratch) with the branch guard closed and the OTHER
+# --- hole open: `claim` checks for a rival BRANCH, and nothing checks a ticket against the PRs
+# --- that already landed. It blocks nothing by itself; it silently duplicates whatever it
+# --- touches, which is worse, and it is why this band is the right place for it.
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
 T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
@@ -265,7 +277,6 @@ T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their 
 T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice

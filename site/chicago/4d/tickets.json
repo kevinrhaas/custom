@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:03 PM",
+  "generated_ct": "Sep 5, 2026, 3:42 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 68
     },
     {
       "id": "T-0191",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 110
+      "queue_rank": 111
     },
     {
       "id": "T-0220",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 64
     },
     {
       "id": "T-0238",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 69
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 70
     },
     {
       "id": "T-0254",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 114
+      "queue_rank": 115
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 120
+      "queue_rank": 121
     },
     {
       "id": "T-0271",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 116
+      "queue_rank": 117
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 117
+      "queue_rank": 118
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 118
+      "queue_rank": 119
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 65
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 66
     },
     {
       "id": "T-0289",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 119
+      "queue_rank": 120
     },
     {
       "id": "T-0304",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 91
+      "queue_rank": 92
     },
     {
       "id": "T-0321",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 115
+      "queue_rank": 116
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 112
+      "queue_rank": 113
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 67
     },
     {
       "id": "T-0365",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 74
+      "queue_rank": 75
     },
     {
       "id": "T-0386",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 79
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 85
+      "queue_rank": 86
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 78
     },
     {
       "id": "T-0397",
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 84
+      "queue_rank": 85
     },
     {
       "id": "T-0399",
@@ -6603,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 77
     },
     {
       "id": "T-0404",
@@ -6621,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 86
+      "queue_rank": 87
     },
     {
       "id": "T-0405",
@@ -6639,7 +6639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": 88
     },
     {
       "id": "T-0406",
@@ -6657,7 +6657,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 76
     },
     {
       "id": "T-0407",
@@ -6675,7 +6675,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 80
     },
     {
       "id": "T-0408",
@@ -6693,7 +6693,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 80
+      "queue_rank": 81
     },
     {
       "id": "T-0409",
@@ -6729,7 +6729,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 81
+      "queue_rank": 82
     },
     {
       "id": "T-0411",
@@ -6747,7 +6747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 82
+      "queue_rank": 83
     },
     {
       "id": "T-0412",
@@ -6785,7 +6785,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 83
+      "queue_rank": 84
     },
     {
       "id": "T-0414",
@@ -6899,7 +6899,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 108
     },
     {
       "id": "T-0420",
@@ -6935,7 +6935,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 109
     },
     {
       "id": "T-0422",
@@ -6953,7 +6953,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 109
+      "queue_rank": 110
     },
     {
       "id": "T-0423",
@@ -6991,7 +6991,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 89
+      "queue_rank": 90
     },
     {
       "id": "T-0425",
@@ -7009,7 +7009,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 89
     },
     {
       "id": "T-0426",
@@ -7065,7 +7065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 90
+      "queue_rank": 91
     },
     {
       "id": "T-0429",
@@ -7121,7 +7121,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 72
+      "queue_rank": 73
     },
     {
       "id": "T-0432",
@@ -7139,7 +7139,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 73
+      "queue_rank": 74
     },
     {
       "id": "T-0433",
@@ -7175,7 +7175,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 111
+      "queue_rank": 112
     },
     {
       "id": "T-0436",
@@ -7193,7 +7193,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 113
+      "queue_rank": 114
     },
     {
       "id": "T-0437",
@@ -7383,7 +7383,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737",
-      "queue_rank": 102
+      "queue_rank": 103
     },
     {
       "id": "T-0448",
@@ -7624,7 +7624,7 @@
       "claimed_by": null,
       "blocked_on": "T-0219",
       "needs_bake": true,
-      "queue_rank": 121
+      "queue_rank": 122
     },
     {
       "id": "T-0465",
@@ -7641,7 +7641,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": true,
-      "queue_rank": 122
+      "queue_rank": 123
     },
     {
       "id": "T-0466",
@@ -7658,7 +7658,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 123
+      "queue_rank": 124
     },
     {
       "id": "T-0467",
@@ -7675,7 +7675,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 124
+      "queue_rank": 125
     },
     {
       "id": "T-0468",
@@ -7692,7 +7692,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 125
+      "queue_rank": 126
     },
     {
       "id": "T-0469",
@@ -7709,7 +7709,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 126
+      "queue_rank": 127
     },
     {
       "id": "T-0470",
@@ -7726,7 +7726,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": false,
-      "queue_rank": 127
+      "queue_rank": 128
     },
     {
       "id": "T-0471",
@@ -7743,7 +7743,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 128
+      "queue_rank": 129
     },
     {
       "id": "T-0472",
@@ -7760,7 +7760,7 @@
       "claimed_by": null,
       "blocked_on": "T-0470",
       "needs_bake": false,
-      "queue_rank": 129
+      "queue_rank": 130
     },
     {
       "id": "T-0473",
@@ -7777,7 +7777,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 130
+      "queue_rank": 131
     },
     {
       "id": "T-0474",
@@ -7794,7 +7794,7 @@
       "claimed_by": null,
       "blocked_on": "T-0473",
       "needs_bake": true,
-      "queue_rank": 131
+      "queue_rank": 132
     },
     {
       "id": "T-0475",
@@ -7811,7 +7811,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 132
+      "queue_rank": 133
     },
     {
       "id": "T-0476",
@@ -7828,7 +7828,7 @@
       "claimed_by": null,
       "blocked_on": "T-0475",
       "needs_bake": true,
-      "queue_rank": 133
+      "queue_rank": 134
     },
     {
       "id": "T-0477",
@@ -7845,7 +7845,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 134
+      "queue_rank": 135
     },
     {
       "id": "T-0478",
@@ -11355,7 +11355,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 70
+      "queue_rank": 71
     },
     {
       "id": "T-0673",
@@ -11375,7 +11375,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 71
+      "queue_rank": 72
     },
     {
       "id": "T-0674",
@@ -11655,7 +11655,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 103
+      "queue_rank": 104
     },
     {
       "id": "T-0690",
@@ -12375,7 +12375,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 140
     },
     {
       "id": "T-0728",
@@ -12395,7 +12395,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 58
+      "queue_rank": 59
     },
     {
       "id": "T-0729",
@@ -12415,7 +12415,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 59
+      "queue_rank": 60
     },
     {
       "id": "T-0731",
@@ -12935,7 +12935,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 61
+      "queue_rank": 62
     },
     {
       "id": "T-0764",
@@ -13035,7 +13035,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 104
+      "queue_rank": 105
     },
     {
       "id": "T-0769",
@@ -13075,7 +13075,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 105
+      "queue_rank": 106
     },
     {
       "id": "T-0771",
@@ -13295,7 +13295,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 60
+      "queue_rank": 61
     },
     {
       "id": "T-0782",
@@ -13395,7 +13395,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 92
+      "queue_rank": 93
     },
     {
       "id": "T-0788",
@@ -13435,7 +13435,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 93
+      "queue_rank": 94
     },
     {
       "id": "T-0790",
@@ -13455,7 +13455,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 94
+      "queue_rank": 95
     },
     {
       "id": "T-0791",
@@ -13495,7 +13495,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 95
+      "queue_rank": 96
     },
     {
       "id": "T-0793",
@@ -13535,7 +13535,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 96
+      "queue_rank": 97
     },
     {
       "id": "T-0795",
@@ -13555,7 +13555,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 97
+      "queue_rank": 98
     },
     {
       "id": "T-0796",
@@ -13575,7 +13575,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 98
+      "queue_rank": 99
     },
     {
       "id": "T-0797",
@@ -13635,7 +13635,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 99
+      "queue_rank": 100
     },
     {
       "id": "T-0800",
@@ -13655,7 +13655,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 100
+      "queue_rank": 101
     },
     {
       "id": "T-0801",
@@ -13675,7 +13675,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 101
+      "queue_rank": 102
     },
     {
       "id": "T-0802",
@@ -13695,7 +13695,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": 58
     },
     {
       "id": "T-0803",
@@ -13775,7 +13775,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 136
+      "queue_rank": 137
     },
     {
       "id": "T-0807",
@@ -13795,7 +13795,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 137
+      "queue_rank": 138
     },
     {
       "id": "T-0808",
@@ -13815,7 +13815,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 138
+      "queue_rank": 139
     },
     {
       "id": "T-0809",
@@ -13835,7 +13835,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 135
+      "queue_rank": 136
     },
     {
       "id": "T-0810",
@@ -14135,7 +14135,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 62
+      "queue_rank": 63
     },
     {
       "id": "T-0827",
@@ -14155,7 +14155,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 106
+      "queue_rank": 107
     },
     {
       "id": "T-0828",
