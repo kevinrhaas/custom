@@ -2053,6 +2053,24 @@ step "…and its own assertions still fire when broken" \
 step "the cross-domain identity master re-derives, and no grade stands above its rung" \
   python3 tools/consolidate_resident_evidence.py --check
 
+# T-0839. THE TOWN HELD ONE MAN ON SEVERAL CARDS AND NOTHING SAID SO. The identity layer
+# is careful by design — an initial with rival full forenames is R3, a refusal — and the
+# residents layer is minted from it, so every refusal became another card: Gurdon
+# Saltonstall Hubbard on six, Thomas Jefferson Vance Owen on five, Lieut. James Allen on
+# four. These three steps are the cause fix. The first says the candidate clusters still
+# derive and that every folded id still resolves through data/residents/redirects.json;
+# the SECOND is the ratchet — a cluster of cards that might be one person and carries no
+# written ruling is a failure here, so the next mint cannot re-split an identity in
+# silence the way this one did for eight months.
+step "the town-card merges landed, and every folded id still resolves" \
+  python3 tools/consolidate_town_cards.py --check
+
+step "…and no cluster of cards that might be one person is unruled" \
+  python3 tools/consolidate_town_cards.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/consolidate_town_cards.py --self-test
+
 # T-0638 fault C. The two READING RULES that ticket fixed are mechanical and were
 # applied; the dozen names whose LETTERS look wrong are not, and this project does not
 # invent readings. So they are written down instead — the printing, the column it was

@@ -10328,9 +10328,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04.
 
-### L220 — 531 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 497 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 531 people
+**Scope:** `residents.persons[civic_mint]` — 497 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10342,6 +10342,15 @@ rest: every identity the ladder grades `attested` or `inferred` that the town di
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
 census. 531 of them, in 531 households of one.
+
+**497 of them stand today, and the 34 that went are the point.** T-0839 ruled the town's
+own duplicate cards on 2026-09-05 and folded 34 of this pass's people onto the cards that
+already held them — Gurdon Saltonstall Hubbard on six cards, Thomas Jefferson Vance Owen
+on five, Lieut. James Allen on four. Nothing was deleted: every folded record is kept
+whole in `data/residents/redirects.json`, keyed by the ids other files cite, and the
+rulings and their evidence are in
+`data/research/residents/town_card_crosswalk.json`. The counts below describe the pass as
+it landed and are left as they were written; the scope above is what it reaches now.
 
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no
 confidence was upgraded to allow it: every one of the 531 is named in a record this project

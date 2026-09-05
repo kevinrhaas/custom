@@ -57,6 +57,7 @@
    "name": "Grenville Temple Sproat",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",
@@ -69,7 +70,8 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "chicago_democrat_1833_1835"
    ],
    "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date.",
    "resident_research": {
@@ -83,10 +85,30 @@
     "source_ids": [
      "goodman_history_cook_county_early"
     ]
-   }
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "G. T. Sproat",
+     "locator": "chicago_democrat_1833_12_03#c015",
+     "record_id": "person_g_t_sproat",
+     "describes_date": "1833-12-03",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ]
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel."
+ "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel.",
+ "merged_from": [
+  {
+   "person_id": "sproat_g_t",
+   "household_id": null,
+   "name": null,
+   "ruled_in": "T-0839",
+   "redirect": "data/residents/redirects.json"
+  }
+ ]
 }

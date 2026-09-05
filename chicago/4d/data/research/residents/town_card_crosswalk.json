@@ -1,0 +1,782 @@
+{
+ "schema": 1,
+ "_doc": "THE RULINGS on the town-card candidates (T-0839). Hand-made adjudications, one per pair or per folded card, over the clusters tools/consolidate_town_cards.py --candidates puts up. A `merge` is spent by tools/consolidate_resident_evidence.py as rule D3: it folds the two identities so the LADDER grades the union and the mint writes one card where it wrote several. A `distinct` is written so the next pass does not re-ask. An `undecided` is for the owner, with both readings stated. Nothing here is derived; every row is a reading of the sources it names in `rests_on`.",
+ "not_a_reading": "adjudications over readings the domains have already made — it reads no new source, so it must never be counted as research read",
+ "ruled_in": "T-0839",
+ "rules": {
+  "merge": "One person, several town cards. The surviving card is named; the folded card's identity is folded onto the survivor's and its whole record is kept verbatim in data/residents/redirects.json, so no id any file cites stops resolving.",
+  "distinct": "Two people the name alone could join. Written down so no later pass re-asks.",
+  "undecided": "The evidence stands both ways and the reading is the owner's. Both readings are stated; neither card moves.",
+  "deferred": "Another OPEN ticket owns this pair by name. Stated here so the gate can see that the cluster was looked at, and pointed at the ticket that will rule it."
+ },
+ "counts": {
+  "merges": 34,
+  "distinct": 7,
+  "undecided": 9,
+  "deferred": 2
+ },
+ "merges": [
+  {
+   "folded_person_id": "adams_william",
+   "folded_identity": "id_adams_william",
+   "survivor_person_id": "adams_william_h",
+   "survivor_identity": "id_adams_william_hanford",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "One man, and the rivalry that held them apart is between two readings of his OWN name. The voter crosswalk has already ruled 'Adams, W. H.' (1833 poll) and 'Adams, William H.' (1835 poll) onto adams_william_h, and the 1843 directory prints him at length as 'Adams, Wm. Hanford'. M3 could not fold the Democrat's bare 'William Adams' of 25 March 1834 because the surname carries two full readings beginning William — 'William H.' and 'William Hanford' — and those two are the same man on the same card. No second Adams of that forename stands anywhere in the corpus.",
+   "rests_on": [
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "folded_person_id": "allen_james",
+   "folded_identity": "id_allen_james",
+   "survivor_person_id": "allen_lieut_james",
+   "survivor_identity": "id_allen_lieut_james",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The rank stands beside the forename on the town's own poll list: the 1833 list prints 'Allen, Lt. James' and the 1834 list 'Allen, James', both already on this card, while the Democrat of 13 August 1834 names 'Lieut. James Allen', army officer and engineer — the harbour works. One Lieut. Allen is in the corpus and he is an Allen of forename James.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "allen_lieut_j",
+   "folded_identity": "id_allen_lieut_j",
+   "survivor_person_id": "allen_lieut_james",
+   "survivor_identity": "id_allen_lieut_james",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The American of 18 July 1835 prints 'Lieut. J. Allen'. The rank and the initial together name the officer the Democrat names in full a year earlier, and the corpus holds no second Lieut. Allen of any forename.",
+   "rests_on": [
+    "chicago_american_1835",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "folded_person_id": "allen_lieut",
+   "folded_identity": "id_allen_lieut",
+   "survivor_person_id": "allen_lieut_james",
+   "survivor_identity": "id_allen_lieut_james",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Lieut Allen' prints a rank and a surname and no forename at all, which is why the identity layer refuses it on R1 and no derived rule could ever reach it. The rank is the discriminator: one Lieut. Allen is in the corpus, the Democrat names him Lieut. James Allen, and the 1833 poll list prints 'Allen, Lt. James' — the same rank on the same surname on the town's own list.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "beaubien_j_b",
+   "folded_identity": "id_beaubien_j_b",
+   "survivor_person_id": "beaubien_jean_baptiste",
+   "survivor_identity": "id_beaubien_jean_baptiste",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The voter crosswalk has already ruled the civic lists' 'Beaubien, J. B.' (1833) and 'Beaubien, Col. J. B.' (1835) onto this card. The Democrat of 17 December 1833 and of 16 April 1834 print the same initials for the same Colonel in the same years; the merge spends an adjudication the town has already made rather than making a new one.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "brown_w_h",
+   "folded_identity": "id_brown_w_h",
+   "survivor_person_id": "brown_william_h",
+   "survivor_identity": "id_brown_william_h",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The Democrat prints 'W. H. Brown' on 28 May 1834 and 'Wm. H. Brown' a week later, on 4 June 1834; the 1844 directory gives William H. Brown, attorney, office in the Bank Building. Two initials and a middle initial that agree, one week apart in one paper.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "cobb_s_b",
+   "folded_identity": "id_cobb_s_b",
+   "survivor_person_id": "cobb_silas_b",
+   "survivor_identity": "id_cobb_silas_b",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'S. B. Cobb' in the Democrat of 13 June 1835 and Silas B. Cobb, saddler and harness maker at 171 Lake in both printed directories. The initials agree, the surname is rare in the corpus, and no second Cobb of an S forename appears anywhere.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "dole_g_w",
+   "folded_identity": "id_dole_g_w",
+   "survivor_person_id": "dole_george_w",
+   "survivor_identity": "id_dole_george_washington",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'G. W. Dole' in the Democrat of 10 December 1833 against George W. Dole on the 1833 and 1834 poll lists and 'Dole, George Washington' in the 1843 directory. One forwarding and commission merchant, three readings of two initials.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "folded_person_id": "fullerton_a_n",
+   "folded_identity": "id_fullerton_a_n",
+   "survivor_person_id": "fullerton_alexander",
+   "survivor_identity": "id_fullerton_alexander_n",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'A. N. Fullerton' in the American of 13 June 1835 and in the 1844 directory as an attorney; the card is Alexander N. Fullerton, attorney, on the 1833 poll list. The initials and the trade both agree.",
+   "rests_on": [
+    "chicago_american_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "fullerton_alex_n",
+   "folded_identity": "id_fullerton_alex_n",
+   "survivor_person_id": "fullerton_alexander",
+   "survivor_identity": "id_fullerton_alexander_n",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Fullerton, Alex. N.' in the Democrat of 19 August 1835 is the printer's abbreviation of the same Alexander N. Fullerton the 1833 poll list carries. The middle initial agrees; the town's other Fullerton, Alexander M., does not carry it and is not touched by this ruling.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "haddock_e",
+   "folded_identity": "id_haddock_e",
+   "survivor_person_id": "haddock_edward",
+   "survivor_identity": "id_haddock_edward_h",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "A bare 'E. Haddock' in the Democrat of 18 June 1834, a fortnight after the same paper prints 'E. H. Haddock' — the tavern keeper the 1833 and 1835 poll lists and the 1840 census also carry. The reading is an initial and a surname, and Edward H. Haddock is the only Haddock the town's own lists name.",
+   "rests_on": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "hamilton_r_j",
+   "folded_identity": "id_hamilton_r_j",
+   "survivor_person_id": "hamilton_richard_j",
+   "survivor_identity": "id_hamilton_richard_jones",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The 1833 poll list prints both 'Hamilton, R. J.' and 'Hamilton, Richard J.' and both are already on this card; the Democrat's 'Col. R. J. Hamilton', 'Hon. R. J. Hamilton' and 'R. J. Hamilton' of 1834 are the county clerk under his title. The town names one Hamilton of that initial.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "harmon_isaac",
+   "folded_identity": "id_harmon_isaac",
+   "survivor_person_id": "harmon_isaac_d",
+   "survivor_identity": "id_harmon_isaac_dewey",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The 1832 muster roll prints 'HARMON, ISAAC', the 1833 poll list 'Harmon, Isaac' — that second reading is already on this card — and the old settlers' roll names him at length, Isaac Dewey Harmon, dead 9 April 1886. One Isaac Harmon, and the merge puts him back in his brother's household rather than leaving him heading a second one.",
+   "rests_on": [
+    "blackhawk_war_chicago_enrollments_isa",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "folded_person_id": "hogan_j_s_c",
+   "folded_identity": "id_hogan_j_s_c",
+   "survivor_person_id": "hogan_john_s_c",
+   "survivor_identity": "id_hogan_john_s_c",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'J. S. C. Hogan' in the Democrat of 11 February and 3 September 1834 against John S. C. Hogan, postmaster, on the 1832 muster and the 1833 and 1834 poll lists. Three initials in that order belong to one man in this corpus.",
+   "rests_on": [
+    "blackhawk_war_chicago_enrollments_isa",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "hubbard_g_s",
+   "folded_identity": "id_hubbard_g_s",
+   "survivor_person_id": "hubbard_gurdon",
+   "survivor_identity": "id_hubbard_gurdon_saltonstall",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'G. S. Hubbard' in the Democrat of 1 April 1834 and 'Col. G. S. Hubbard' of 17 June 1835, the 1843 directory's forwarding merchant on South Water between Clark and LaSalle, and the 1844 directory's 'Hubbard, G. S. forwarding and commission merchant'. This card already carries the 1834 poll list's own 'Hubbard, G. S.' and the 1843 directory's 'Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark'. Same initials, same trade, same street.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "hubbard_gurdon_s",
+   "folded_identity": "id_hubbard_gurdon_s",
+   "survivor_person_id": "hubbard_gurdon",
+   "survivor_identity": "id_hubbard_gurdon_saltonstall",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Gurdon S. Hubbard' in the Democrat of 1 July and 5 August 1835 and in the 1840 census. The forename is the same word as the card's, letter for letter, and the middle initial agrees with the 1833 poll list's 'Hubbard, Gurdon S.' already on it.",
+   "rests_on": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "hubbard_gordon_s",
+   "folded_identity": "id_hubbard_gordon_s",
+   "survivor_person_id": "hubbard_gurdon",
+   "survivor_identity": "id_hubbard_gurdon_saltonstall",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Gordon S. Hubbard' in the Democrat of 13 August 1834. Gurdon is the rarer spelling and the papers of the 1830s set it as Gordon repeatedly; the middle initial, the surname and the year all agree, and no Gordon Hubbard stands anywhere else in the corpus.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "hubbard_g_t",
+   "folded_identity": "id_hubbard_g_t",
+   "survivor_person_id": "hubbard_gurdon",
+   "survivor_identity": "id_hubbard_gurdon_saltonstall",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The 1835 poll list's only Hubbard is 'Hubbard, G. T.'. This card carries the same man on the 1833 list as 'Hubbard, Gurdon S.' and on the 1834 list as 'Hubbard, G. S.', so the 1835 line is the third of three consecutive polls and the town has no other Hubbard whose initials could stand behind it. THE MIDDLE INITIAL DISAGREES and the ruling says so: T against S on one line of one list, against S on the two lists either side of it. The merge is the reading of that line, not a correction of it — the line is kept as printed in the evidence block.",
+   "rests_on": [
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "kimberly_e_s",
+   "folded_identity": "id_kimberly_e_s",
+   "survivor_person_id": "kimberly_edmund_s",
+   "survivor_identity": "id_kimberly_edmund_stoughton",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'E. S. Kimberly' in the Democrat of 1 July 1835 against Dr Edmund Stoughton Kimberly, whom the 1834 poll list prints as 'Kimberly, Dr. E. S.' and the 1833 list as 'Kimberly, Edmund S.' — both already on this card.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "kimberly_ed_s",
+   "folded_identity": "id_kimberly_ed_s",
+   "survivor_person_id": "kimberly_edmund_s",
+   "survivor_identity": "id_kimberly_edmund_stoughton",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Kimberly, Ed. S.' on the 1833 poll list is the same list's own abbreviation of the 'Kimberly, Edmund S.' it prints, and the 1834 list prints 'Kimberly, Dr. E. S.'. One physician, three readings of one name on the town's own lists.",
+   "rests_on": [
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "kinzie_j_h",
+   "folded_identity": "id_kinzie_j_h",
+   "survivor_person_id": "kinzie_john_h",
+   "survivor_identity": "id_kinzie_john_harris",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'J. H. Kinzie' in the Democrat of 1 October 1834. The 1834 poll list prints 'Kinzie, John H.' and the old settlers' roll names John Harris Kinzie; his brother James, the other Kinzie the lists carry, has no middle initial in any reading and is ruled distinct below.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "folded_person_id": "kinzie_r_a",
+   "folded_identity": "id_kinzie_r_a",
+   "survivor_person_id": "kinzie_robert_a",
+   "survivor_identity": "id_kinzie_robert_allen",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'R. A. Kinzie' in the Democrat of 10 December 1833 against the 1833 poll list's own 'Kinzie, R. A.' and 'Kinzie, Robert A.', both already on this card, and the 1843 directory's Robert Allen Kinzie.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "folded_person_id": "owen_t_j_v",
+   "folded_identity": "id_owen_t_j_v",
+   "survivor_person_id": "owen_thomas_jv",
+   "survivor_identity": "id_owen_thomas_jefferson_vance",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'T. J. V. Owen' and 'Col. T. J. V. Owen' in the Democrat of June and November 1834 against the 1833 poll list's 'Owen, Col. T. J. V.', already on this card. Three initials in that order, and the town's Indian agent is the only Owen carrying them.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "owen_th_j_v",
+   "folded_identity": "id_owen_th_j_v",
+   "survivor_person_id": "owen_thomas_jv",
+   "survivor_identity": "id_owen_thomas_jefferson_vance",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Th. J. V. Owen' on the 1834 poll list and in the Democrat of 2 July 1834 — the printer's abbreviation of Thomas, with the same two middle initials the 1833 list gives.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "owen_thomas_j_v",
+   "folded_identity": "id_owen_thomas_j_v",
+   "survivor_person_id": "owen_thomas_jv",
+   "survivor_identity": "id_owen_thomas_jefferson_vance",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Thomas J. V. Owen' in the Democrat of 24 December 1833, and the old settlers' roll's 'Owen, Thomas J. V. (Indian agent)' dead 15 October 1835. The forename in full and both middle initials.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "folded_person_id": "owen_thomas",
+   "folded_identity": "id_owen_thomas",
+   "survivor_person_id": "owen_thomas_jv",
+   "survivor_identity": "id_owen_thomas_jefferson_vance",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The St Cyr register names a decedent Thomas Owen on 15 OCTOBER 1835 and the old settlers' roll gives Thomas J. V. Owen, Indian agent, dead 15 OCTOBER 1835. The date is the discriminator and it is exact to the day; the parish register is burying the man the roll names.",
+   "rests_on": [
+    "fergus_1843_old_settler_death_notices",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  {
+   "folded_person_id": "peck_p_f",
+   "folded_identity": "id_peck_p_f",
+   "survivor_person_id": "peck_philip",
+   "survivor_identity": "id_peck_philip_f_w",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'P. F. Peck' in the Democrat of 3 December 1833 against the 1833 and 1834 poll lists' 'Peck, P. F. W.', already on this card. The corpus holds one Peck of those initials.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "folded_person_id": "peck_p_f_w",
+   "folded_identity": "id_peck_p_f_w",
+   "survivor_person_id": "peck_philip",
+   "survivor_identity": "id_peck_philip_f_w",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'P. F. W. Peck' in the Democrat of April and September 1834, the 1840 census and the 1844 directory — the same three initials the poll lists give this card.",
+   "rests_on": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "snow_g_w",
+   "folded_identity": "id_snow_g_w",
+   "survivor_person_id": "snow_george_w",
+   "survivor_identity": "id_snow_george_w",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'G. W. Snow' in the Democrat of 18 June 1834 and the 1844 directory's lumber merchant on South Water against George W. Snow on the 1833 and 1834 poll lists and in the Democrat of 10 December 1833, all already on this card.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "folded_person_id": "sproat_g_t",
+   "folded_identity": "id_sproat_g_t",
+   "survivor_person_id": "sproat_grenville",
+   "survivor_identity": "id_sproat_grenville_temple",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'G. T. Sproat' in the Democrat of 3 December 1833. Grenville Temple Sproat is the schoolteacher, and G and T are his own two names; Sproat appears in this corpus for no other person.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "folded_person_id": "taylor_e_d",
+   "folded_identity": "id_taylor_e_d",
+   "survivor_person_id": "taylor_edmund_d",
+   "survivor_identity": "id_taylor_edmund_d",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'E. D. Taylor' in the Democrat of 8 July 1835 and 'Edmund D. Taylor' in the same paper of 25 March 1835 — three and a half months apart, one initial against the forename it opens, with the middle initial agreeing. The 1843 directory entry for '[Col.] Ezra' Taylor rides on this card by a landed adjudication made elsewhere; this ruling neither makes nor overturns it.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "folded_person_id": "taylor_william",
+   "folded_identity": "id_taylor_william",
+   "survivor_person_id": "taylor_william_h",
+   "survivor_identity": "id_taylor_william_h",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The Democrat prints 'William Taylor' in December 1833 and 'Wm. Taylor' in January 1834, then 'Taylor, Wm. H.' in October 1834 and 'Wm. H. Taylor' in May 1835. This is M3's own standard — a middle initial present on one reading and absent on the other, forename and surname agreeing — and no rival Taylor of another William stands in the corpus to hold them apart.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "folded_person_id": "temple_j_t",
+   "folded_identity": "id_temple_j_t",
+   "survivor_person_id": "temple_john_t",
+   "survivor_identity": "id_temple_john_taylor",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "'Dr. J. T. Temple' in the Democrat of 3 December 1833 and 'J. T. Temple' of 4 March 1834 against the 1833 and 1834 poll lists' 'Temple, John T.', the 1843 directory's John Taylor Temple, physician, at 218 Lake. The title, the initials and the trade all agree.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "folded_person_id": "hubbard_g",
+   "folded_identity": "id_hubbard_g",
+   "survivor_person_id": "hubbard_henry_g",
+   "survivor_identity": "id_hubbard_henry_g",
+   "ruling": "merge",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "NOT Gurdon. The Democrat of 5 August 1835 is transcribed 'Hubbard, [Henry] G.' — the transcriber's own bracket supplies the forename — and the town already holds a Henry G. Hubbard. The card was minted from the initial alone and clustered with Gurdon Saltonstall Hubbard because an initial and a surname were all it carried; the bracket is what settles it, and it settles it the other way.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  }
+ ],
+ "refused_merges": [
+  {
+   "a": "cook_j_b",
+   "b": "cook_john",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The trades contradict. The Democrat of 5 November 1834 names J. B. Cook, BAKER; John Cook is a TAILOR in both printed directories, on Jefferson between Randolph and Washington, and the 1834 poll list's 'Cook, J.' is already ruled onto his card. Two Cooks, two trades.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "a": "hogan_john",
+   "b": "hogan_john_s_c",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "The St Cyr register names John Hogan as a DECEDENT in October 1834. John S. C. Hogan the postmaster is on the 1834 poll list, in the Democrat of 12 August 1835 and in the 1844 directory — alive for a decade after the burial. Two men.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "norris_directory_1844",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  {
+   "a": "kinzie_james",
+   "b": "kinzie_john_h",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "Brothers, not a duplicate. The 1833 and 1834 poll lists print 'Kinzie, James' and 'Kinzie, John H.' in the same years, the old settlers' roll carries James (dead 13 January 1866) and John Harris (dead 17 June 1863) as separate notices, and Andreas names them as sons of John Kinzie by different mothers.",
+   "rests_on": [
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "a": "smith_william",
+   "b": "smith_william_v",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "Both stand on the SAME list: the 1835 poll list prints 'Smith, William' and 'Smith, William V.' as two lines. A list does not poll one man twice, and the Democrat of 1 April 1834 prints 'Wm. V. Smith' separately again.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "a": "wright_john",
+   "b": "wright_john_s",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "Father and son, and the card says so: John S. Wright stands in the Wright household as `son`. Andreas carries both.",
+   "rests_on": [
+    "andreas_1884_v1"
+   ]
+  },
+  {
+   "a": "hubbard_g",
+   "b": "hubbard_gurdon",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "See the merge above: 'Hubbard, [Henry] G.' is the transcriber's reading and it names Henry, so this card is ruled onto hubbard_henry_g and is not Gurdon Saltonstall Hubbard.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "a": "haddock_e_w",
+   "b": "haddock_edward_e",
+   "ruling": "distinct",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "evidence": "Whatever else these two readings are, they are not each other: the Democrat of 18 March 1834 gives a middle initial W and the 1834 poll list a middle initial E, and neither can be the other. Each is separately undecided against Edward H. Haddock and keeps its own card until that is ruled.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  }
+ ],
+ "undecided": [
+  {
+   "a": "beaubien_john_b",
+   "b": "beaubien_jean_baptiste",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "The Democrat of 3 September 1834 prints 'Beaubien, John B.', and John B. is the ordinary English of Jean Baptiste — the same Colonel the 1833 and 1835 poll lists carry as J. B.",
+   "reading_b": "The town separately holds John S. Beaubien, a second man of that family and generation, so an English forename on a Beaubien is not on its own the Colonel.",
+   "for_the_owner": "Is the Democrat's 'John B. Beaubien' of 3 September 1834 Colonel Jean Baptiste Beaubien Englished, or a second Beaubien the corpus reached does not otherwise name?",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "a": "haddock_e_w",
+   "b": "haddock_edward",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'E. W. Haddock' in the Democrat of 18 March 1834 is three months from the same paper's 'E. H. Haddock', and the town's lists name one Haddock household.",
+   "reading_b": "The middle initial contradicts — W against the H the poll lists, the census and the paper all give.",
+   "for_the_owner": "Is 'E. W. Haddock' a misprint of E. H., or a second Haddock? Nothing reached settles it, and the card is kept rather than folded on a guess.",
+   "rests_on": [
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "a": "haddock_edward_e",
+   "b": "haddock_edward",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'Haddock, Edward E.' is the 1834 poll list's only Haddock, between the 1833 and 1835 lists that both print 'Haddock, E. H.' — one office-holder across three consecutive polls.",
+   "reading_b": "The middle initial contradicts, and it contradicts on the town's OWN list rather than in a paper: Edward E. against Edward H.",
+   "for_the_owner": "Is the 1834 poll list's 'Edward E. Haddock' the Edward H. Haddock of the lists either side of it, or a second Haddock the town polled once?",
+   "rests_on": [
+    "chicago_voter_lists_1833_1835_irad"
+   ]
+  },
+  {
+   "a": "smith_e_kirby",
+   "b": "smith_elded",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'Smith, Elded' in the Democrat of 1 July 1835 is a garbled forename opening with E, and the E. Kirby Smith card already carries the 1843 and 1844 directories' Elijah Smith by a landed adjudication — Elded may be that Elijah.",
+   "reading_b": "The two readings share no source, stand a year and a half apart, and the only thing joining them is one letter. The town holds forty Smiths.",
+   "for_the_owner": "Is 'Elded Smith' a garbling of a Smith the town already holds, and if so of which one?",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "a": "smith_l_w",
+   "b": "smith_lawrence",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'Smith, L. W.' on the 1834 poll list and Lawrence Smith, a groom in the St Cyr register on 27 October 1835: the initial opens the forename and no other Smith of an L stands in the corpus.",
+   "reading_b": "Smith is the surname where one initial proves least. The two readings share no source, no trade and no address, and the church register and the poll list reach different halves of the town.",
+   "for_the_owner": "Is the 1834 poll list's L. W. Smith the Lawrence Smith the parish married in 1835?",
+   "rests_on": [
+    "chicago_voter_lists_1833_1835_irad",
+    "st_cyr_register_ichr_v4"
+   ]
+  },
+  {
+   "a": "thompson_john",
+   "b": "thompson_lieut_j_l",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'Lieut. J. L. Thompson' in the Democrat of 4 February 1834 carries exactly the initials of the John Leverett Thompson the old settlers' roll attaches to the other card.",
+   "reading_b": "If that old-settlers match is right the two cannot be one man: the roll's John Leverett Thompson died on 31 January 1888 as a general, and a lieutenant at Chicago in February 1834 would make him improbably old for it.",
+   "for_the_owner": "Which Thompson does the Democrat's 'Lieut. J. L. Thompson' name — and is the old settlers' roll right to put Gen. John Leverett Thompson on the other card at all?",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ]
+  },
+  {
+   "a": "wright_j",
+   "b": "wright_john",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "'J. Wright' in the American of 11 July 1835 is an initial and a surname, and John Wright the merchant is the Wright the poll list, the census and the old settlers' roll carry.",
+   "reading_b": "The town holds TWO Wrights of that initial at once — John Wright and his son John S. Wright, a clerk — which is R3 exactly: an initial with rival full forenames, refused with the rivals named rather than guessed at.",
+   "for_the_owner": "Which Wright does the American of 11 July 1835 name, the father or the son?",
+   "rests_on": [
+    "andreas_1884_v1",
+    "chicago_american_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "a": "wright_j",
+   "b": "wright_john_s",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "The same reading against the son: John S. Wright was in the town in 1835 and is the Wright of that initial the sources follow furthest.",
+   "reading_b": "Same rivalry, from the other side. Nothing in the notice distinguishes them.",
+   "for_the_owner": "See the ruling on wright_j against wright_john: one question, two cards.",
+   "rests_on": [
+    "andreas_1884_v1",
+    "chicago_american_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  },
+  {
+   "a": "bates_harriet_e",
+   "b": "bates_harriet_ellen",
+   "ruling": "undecided",
+   "ruled_on": "2026-09-05",
+   "ruled_in": "T-0839",
+   "reading_a": "One woman, printed twice. 'Bates, Harriet E.' and 'Bates, Harriet Ellen' stand in ONE column of ONE issue of the Democrat, 26 August 1835; the initial is the first letter of the name beside it, and the town minted a card from each reading because the identity layer could not choose between them.",
+   "reading_b": "Two women. Two entries in one column of one list is the ordinary mark of two people — it is the AGAINST this whole ledger tests for — and a post-office letter list prints whom it prints.",
+   "for_the_owner": "Does the Democrat's letter list of 26 August 1835 name one Harriet Bates twice or two Harriet Bateses? Nothing else in the corpus reaches either card, so the reading is the list's alone.",
+   "rests_on": [
+    "chicago_democrat_1833_1835",
+    "chicago_newspapers_1833_1835"
+   ]
+  }
+ ],
+ "deferred": [
+  {
+   "a": "brown_mrs_rufus",
+   "b": "brown_rufus",
+   "ruling": "deferred",
+   "to": "T-0723",
+   "why": "T-0723 is the narrow sibling of this ticket and owns this pair by name: 'Mrs Rufus Brown is folded onto her husband by the honorific strip.' The question there is whether she is a second person at all, which is not a merge question, and a ruling made here would land on top of that one."
+  },
+  {
+   "a": "norton_n_r",
+   "b": "norton_nelson_r",
+   "ruling": "deferred",
+   "to": "T-0723",
+   "why": "T-0723 owns this pair by name too: 'N. R. Norton is Nelson R. Norton carried twice.' The two cards already stand on ONE identity — id_norton_nelson_r holds both — so the defect is in the minting, not in the identity, and it is T-0723's."
+  }
+ ]
+}

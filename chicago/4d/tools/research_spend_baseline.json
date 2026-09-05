@@ -6,9 +6,9 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 458,
+  "church": 485,
   "books": 176,
-  "directories": 7211,
+  "directories": 7225,
   "newberry_index": 4914,
   "land_sales": 442
  },
@@ -27,7 +27,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1286
+   "spent": 1259
   },
   "books": {
    "read": 226,
@@ -35,7 +35,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1046
+   "spent": 1032
   },
   "newberry_index": {
    "read": 7005,
@@ -267,6 +267,22 @@
    "to": 7211,
    "date": "2026-09-05",
    "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 458,
+   "to": 485,
+   "date": "2026-09-05",
+   "why": "T-0839 folded 34 duplicate town cards onto the people who already held them, so the town went from 1,401 named people to 1,367 and the Second Presbyterian crosswalk now rules on 27 fewer of them (6 matches and 21 surname-only refusals that were the SAME people twice). Nothing new was read and no ruling was withdrawn: the divisor shrank because the town stopped counting one man as several. The rulings that stood on a folded card still resolve through data/residents/redirects.json."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7211,
+   "to": 7225,
+   "date": "2026-09-05",
+   "why": "T-0839's town-card consolidation, same cause: with 34 duplicate cards folded, a directory line that had two or three rival town candidates now has one, so 14 candidate-and-refusal rulings that existed only because the town held a man twice are gone. No directory reading was undone and none was added."
   }
  ],
  "lowered": [

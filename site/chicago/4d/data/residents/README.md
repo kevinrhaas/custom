@@ -8,6 +8,27 @@ different times, like it was encoding something it wasn't** — see "On the
 `hh_doc_`/`hh_placed_`/`hh_ll_` prefixes" below, which is the direct answer to
 that question.
 
+## `redirects.json` — the ids of cards that were folded onto other cards
+
+A person the town held on two cards is one person, and T-0839 rules those cases in
+`data/research/residents/town_card_crosswalk.json`. A ruled merge is spent in the
+IDENTITY layer — `tools/consolidate_resident_evidence.py` reads the ruling as rule D3 and
+folds the two identities, so the ladder grades the union and the mint writes one card
+where it wrote several — and the folded card's file therefore leaves this directory.
+
+**It is not deleted.** `redirects.json` keeps every folded record WHOLE, keyed by the
+`person_id` and `household_id` other files cite, beside the id that now carries the
+person and the ruling that moved it. That is what makes the merge safe: a crosswalk, a
+frozen research cohort, a placed-resident parcel or a smoke fixture that names a folded
+id still resolves, and the prose a mint does not write — the research note, the arrival
+bound — is kept exactly as it stood.
+
+So: **a consumer that resolves a person id against `households/` alone is incomplete.**
+Read `redirects.json` too, or the merge reads to you as somebody leaving the town.
+`tools/consolidate_town_cards.py --check` holds both halves — every ruled merge has a
+redirect, every redirect has a ruling — and `--gate` fails when a cluster of cards that
+might be one person carries no written ruling at all.
+
 ## The rule
 
 A household's id is always `hh_<surname>_<given...>`, lowercase-slugged, surname

@@ -117,6 +117,15 @@
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",
+     "as_read": "E. Haddock",
+     "locator": "chicago_democrat_1834_06_18#c002",
+     "record_id": "person_e_haddock",
+     "describes_date": "1834-06-18",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    },
+    {
+     "list": "newspaper_1833_1835",
      "as_read": "E. H. Haddock",
      "locator": "chicago_democrat_1834_07_02#c017",
      "record_id": "person_e_h_haddock",
@@ -130,6 +139,15 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "THE HOUSEHOLD THAT EXISTS TO CARRY AN UNRESOLVED HANDOVER RATHER THAN TO HIDE IT. The Mansion House had a keeper on 1 July 1835 and this project cannot say which of two named men it was. Writing no household would lose a documented tavern keeper; writing two would double-count a job only one man held; writing Markle would be a coin-flip stated as a fact. So one household is written, graded derived throughout, with presence recorded as uncertain and the alternative named in the notes. A LATER PARCEL SHOULD LOOK FOR THE MONTH - the Chicago American began publishing in June 1835 and a change of landlord is exactly the thing a new paper advertises.",
+ "merged_from": [
+  {
+   "person_id": "haddock_e",
+   "household_id": null,
+   "name": null,
+   "ruled_in": "T-0839",
+   "redirect": "data/residents/redirects.json"
+  }
+ ],
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [

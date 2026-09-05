@@ -213,6 +213,18 @@ def resident_records() -> dict:
         doc = read_json(path)
         if isinstance(doc, dict) and doc.get("id"):
             out[doc["id"]] = doc
+    # A CARD FOLDED ONTO ANOTHER IS STILL A RECORD A RULING REACHES (T-0839). When two
+    # cards are ruled to be one man the folded file leaves the tree, and every landed
+    # adjudication that named it would read here as reaching nobody — the meter would
+    # fall by 41 rulings for a consolidation that read nothing and lost nothing. The
+    # folded record is kept whole in redirects.json and is indexed from there, under
+    # the id the crosswalks cite, so the spend is measured against the town as it is
+    # rather than against the filenames.
+    redirects = read_json(RESIDENTS / "redirects.json")
+    for row in (redirects or {}).get("redirects", []) if isinstance(redirects, dict) else []:
+        record = row.get("record")
+        if isinstance(record, dict) and record.get("id"):
+            out.setdefault(record["id"], record)
     return out
 
 

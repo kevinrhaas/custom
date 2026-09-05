@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_2.py",
   "population_frame": {
-    "eligible_real_named_people": 1404,
+    "eligible_real_named_people": 1370,
     "previously_reviewed": 75,
     "sample_size": 75,
     "cumulative_reviewed": 150,
@@ -44,7 +44,9 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -167,7 +169,11 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -182,7 +188,11 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "blackhawk_war_chicago_enrollments_isa",
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "norris_directory_1844"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -197,8 +207,11 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_american_1835",
         "chicago_antiquities_american_fur_co",
         "chicago_voter_lists_1833_1835_irad",
+        "fergus_1843_old_settler_death_notices",
+        "fergus_chicago_directory_1843",
         "kinzie_waubun_1856"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
@@ -258,7 +271,10 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_1843_old_settler_death_notices",
+        "st_cyr_register_ichr_v4"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -289,7 +305,12 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "isa_public_domain_land_tract_sales",
+        "norris_directory_1844"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -332,7 +353,11 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },
@@ -377,7 +402,9 @@
       "sources": [
         "andreas_1884_v1",
         "baptisthistoryhomepage",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843"
       ],
       "selection_reason": "Established named resident selected to deepen an existing household profile."
     },

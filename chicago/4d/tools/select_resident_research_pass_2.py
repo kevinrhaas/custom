@@ -58,6 +58,16 @@ def load_people() -> tuple[dict[str, tuple[dict, dict]], list[dict]]:
             if person["id"] in people:
                 raise SystemExit(f"duplicate person id {person['id']}")
             people[person["id"]] = (household, person)
+    # A CARD FOLDED ONTO ANOTHER IS NOT A MEMBER WHO WENT MISSING (T-0839). A ruled
+    # merge takes the folded file out of the tree and keeps the record WHOLE in
+    # redirects.json; a cohort frozen before the ruling reads it from there, exactly
+    # as it stood, so the reservation holds and the snapshot does not move.
+    redirects = RESIDENTS / "redirects.json"
+    if redirects.exists():
+        for row in json.loads(redirects.read_text(encoding="utf-8")).get("redirects", []):
+            household = row.get("record") or {}
+            for person in household.get("persons") or []:
+                people.setdefault(person.get("id"), (household, person))
     return people, households
 
 

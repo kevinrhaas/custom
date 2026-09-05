@@ -84,6 +84,12 @@ MERGE_RULES = {
           "agreeing, and no rival of that surname carrying a different middle initial.",
     "D1": "A merge already declared by a domain's own crosswalk or by the newspapers' identity.json. "
           "A declared merge outranks every derived rule; this tool never overturns an adjudication.",
+    "D3": "A TOWN-CARD merge ruled by hand in residents/town_card_crosswalk.json, on evidence "
+          "the ruling states. It folds two identities the derived rules held apart — an "
+          "initial with rival full forenames (R3), a rank read as a forename (R4) — and it is "
+          "the only rule here a person wrote rather than a pass derived. It names the surviving "
+          "card, so the ladder grades the union and the mint writes one card where it wrote "
+          "several (T-0839).",
 }
 
 REFUSAL_RULES = {
@@ -810,6 +816,68 @@ def apply_anchors(identities, refusals, anchors):
 
 
 # ---------------------------------------------------------------------------
+# THE RULED TOWN-CARD MERGES. The one rule in this file a person wrote.
+
+TOWN_CARD_CROSSWALK = OUT_DIR / "town_card_crosswalk.json"
+
+
+def town_card_merges() -> list:
+    """The hand-made rulings that fold one town card's identity onto another's.
+
+    WHY A HAND RULING GETS TO OVERTURN A DERIVED REFUSAL, and why only here. R3 and R4
+    are refusals of CAUTION: an initial with two rival full forenames, or two full
+    forenames behind one initial, are held apart because nothing in the name settles
+    them. They are right as defaults and wrong as verdicts — Gurdon Saltonstall Hubbard
+    stood on six cards and Thomas Jefferson Vance Owen on five because caution was the
+    last word. A ruling is what says otherwise, and it says it with evidence, in a file
+    a reader can argue with (`tools/consolidate_town_cards.py --report` prints the
+    evidence for and against each pair). This tool still derives nothing: it reads the
+    ruling and spends it.
+    """
+    doc = load(TOWN_CARD_CROSSWALK)
+    return list(doc.get("merges", [])) if isinstance(doc, dict) else []
+
+
+def apply_town_card_merges(identities, rulings):
+    """Fold each ruled identity onto the survivor's, and say which ones moved.
+
+    THE RULING NAMES THE IDENTITY, NOT ONLY THE CARD, and it has to. A merge's whole
+    point is that the folded CARD stops existing — the mint writes one card where it
+    wrote several — so a fold that found its subject by looking for the card would undo
+    itself on the next run: no card, no fold, no merged identity, and the mint mints the
+    duplicate straight back. Both are recorded, the identity is what is followed, and
+    the card is what a reader recognises.
+    """
+    by_id = {identity["id"]: identity for identity in identities}
+    home = {}
+    for identity in identities:
+        for member in identity["members"]:
+            if member["domain"] == "residents":
+                home[member["record_id"]] = identity
+    made = []
+    for row in sorted(rulings, key=lambda r: str(r.get("folded_person_id"))):
+        folded = by_id.get(row.get("folded_identity")) or home.get(row.get("folded_person_id"))
+        target = (by_id.get(row.get("survivor_identity"))
+                  or home.get(row.get("survivor_person_id")))
+        if folded is None or target is None or folded is target:
+            continue
+        for member in list(folded["members"]):
+            member["_merge_rule"] = "D3"
+            target["members"].append(member)
+        folded["members"] = []
+        target["merge_rules"] = sorted(set(target["merge_rules"]) | {"D3"})
+        target["_canonical"] = row["survivor_person_id"]
+        made.append({
+            "a": row.get("folded_person_id"),
+            "b": row.get("survivor_person_id"),
+            "rule": "D3",
+            "declared_in": "residents/town_card_crosswalk.json#merges",
+            "evidence": row.get("evidence"),
+        })
+    return [i for i in identities if i["members"]], made
+
+
+# ---------------------------------------------------------------------------
 # THE LADDER, applied as a proposal.
 
 
@@ -917,15 +985,16 @@ def build():
         appearances.extend(reader())
     identities, refusals = cluster(appearances)
     identities, refusals, anchored = apply_anchors(identities, refusals, declared_anchors())
+    identities, ruled = apply_town_card_merges(identities, town_card_merges())
     declared_merges, declared_refusals = declared_rulings()
-    declared_merges = anchored + declared_merges
+    declared_merges = anchored + ruled + declared_merges
     links = person_links()
 
     rows = []
     for identity in sorted(identities, key=lambda i: i["id"]):
         members = identity["members"]
         town = [m for m in members if m["domain"] == "residents"]
-        canonical = town[0]["record_id"] if town else None
+        canonical = identity.get("_canonical") or (town[0]["record_id"] if town else None)
         # EVERY town card this identity absorbed, not only the one `canonical` names.
         # `canonical` is `town[0]` and always was, so an identity holding two cards
         # reported one and dropped the other in silence — which is how `brown_mrs_rufus`
@@ -981,6 +1050,7 @@ def build():
             "derived_refusals": len(refusals),
             "declared_merges": len(declared_merges),
             "appearances_moved_by_a_landed_adjudication": len(anchored),
+            "identities_folded_by_a_town_card_ruling": len(ruled),
             "declared_refusals": len(declared_refusals),
         },
         "identities": rows,

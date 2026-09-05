@@ -170,6 +170,19 @@ def load_people() -> dict:
             if pid in people:
                 raise SystemExit("duplicate person id %s" % pid)
             people[pid] = (household, person)
+    # A CARD FOLDED ONTO ANOTHER IS NOT A PERSON WHO LEFT THE TOWN (T-0839). When a
+    # ruling merges two cards the folded file leaves the tree, and a cohort frozen
+    # before the ruling would read that as its member vanishing — which is the one
+    # staleness this manifest is supposed to catch, fired on the opposite of the case
+    # it exists for. The folded record is kept WHOLE in redirects.json, so the member
+    # is read from there, exactly as it stood when it was folded, and the frozen
+    # snapshot does not move.
+    redirects = RESIDENTS / "redirects.json"
+    if redirects.exists():
+        for row in json.loads(redirects.read_text(encoding="utf-8")).get("redirects", []):
+            household = row.get("record") or {}
+            for person in household.get("persons") or []:
+                people.setdefault(person.get("id"), (household, person))
     return people
 
 

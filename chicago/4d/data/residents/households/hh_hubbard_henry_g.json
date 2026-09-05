@@ -122,6 +122,15 @@
      "describes_date": "1834-07-02",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Hubbard, [Henry] G.",
+     "locator": "chicago_democrat_1835_08_05#c022",
+     "record_id": "person_hubbard_henry_g",
+     "describes_date": "1835-08-05",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
     }
    ]
   }
@@ -129,6 +138,15 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "MINTED FROM THE CONSOLIDATED CIVIC, CHURCH, PRESS, BOOK AND CENSUS EVIDENCE (T-0513, T-0514). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here is written unattested in its own block, because the lists that name this person name a person and not a family. What is claimed is that the sources cited on the member below name them at Chicago, and the grade is the owner's ratified ladder applied by tools/consolidate_resident_evidence.py --build and spent by tools/mint_civic_residents.py, which prints every refusal. docs/LIBERTIES.md L215 carries the liberty and the tension with L213.",
+ "merged_from": [
+  {
+   "person_id": "hubbard_g",
+   "household_id": null,
+   "name": null,
+   "ruled_in": "T-0839",
+   "redirect": "data/residents/redirects.json"
+  }
+ ],
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [
