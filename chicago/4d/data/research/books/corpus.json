@@ -138,6 +138,36 @@
    "claims": "chicago/4d/data/research/books/claims/porter_hh_short_autobiography_1915.json — 8 claims, T-0502",
    "read": "ALL SEVENTY LEAVES, declared as one `list` item in coverage.json. The whole volume was swept and read closely where it answered; nothing is undeclared, because the ticket's question was about the whole book and the answer had to be about the whole book.",
    "note": "THE BOOK CARRIES NO DOCUMENT OF CHICAGO 1830-1836 AND THAT IS ITS ENTRY HERE. Its earliest Chicago is September 1853, the author's own arrival; its author was born at Machias, Maine, on 7 December 1835, five months after the scene date; and his parents lived and died in Maine, so the family memory the ticket allowed for does not exist. Two 1853 statements are recorded as town findings — the Fort Dearborn blockhouse still standing, and the street grade five to twelve feet below 1904's — and neither is used. Text is committed for a book with eight claims on it because the verbatim gate checks quotes against a committed file, and a carries-no-document finding that cannot be re-checked is an assertion rather than a reading."
+  },
+  {
+   "id": "moses_kirkland_history_of_chicago_v1_1895",
+   "title": "John Moses and Joseph Kirkland, History of Chicago, Illinois, volume 1",
+   "imprint": "Chicago and New York: Munsell & Company, 1895 — one of two volumes; only volume 1 is held here",
+   "source_id": "moses_kirkland_history_of_chicago_v1_1895",
+   "archive_item": "historyofchicago01mose_202609",
+   "deposit": {
+    "path": "chicago/reference/moses-kirkland-history-of-chicago-v1/historyofchicago01mose_hocr_searchtext",
+    "path_kind": "deposit",
+    "sha256": "edcabeca9aa35706318a4f3e0be3c16d6316156fbdf8091777d101a9ec2011e1",
+    "leaves": 1056
+   },
+   "text": {
+    "path": "chicago/4d/data/research/books/text/moses_kirkland_history_of_chicago_v1_1895.txt",
+    "path_kind": "derived",
+    "sha256": "edcabeca9aa35706318a4f3e0be3c16d6316156fbdf8091777d101a9ec2011e1",
+    "how": "The Internet Archive's own hOCR search text for this project's own deposit item, fetched 2026-09-05 from https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz, gunzipped and committed byte for byte. The hOCR page index was fetched in the same call and is deposited beside it; tools/build_book_page_index.py --build refuses to write the index unless the committed text is byte-identical to that deposit file, so the copy is gated and not merely asserted.",
+    "corroborated_by": null
+   },
+   "page_index": {
+    "path": "chicago/4d/data/research/books/page_index/moses_kirkland_history_of_chicago_v1_1895.json",
+    "path_kind": "derived",
+    "generated_by": "tools/build_book_page_index.py --build",
+    "why": "THE BOUNDARIES ARE EXACT AND NOT ALIGNED. The Internet Archive emitted the hOCR page index beside the search text, so leaf i IS text[start:end]; --build checks the 1,056 ranges tile the committed text end to end with no gap and no overlap and refuses to write otherwise. 917 leaves are non-blank and 451 print a folio in a running head this OCR could read. THE READ FOLIO IS THE OCR'S AND THE OCR MISREADS DIGITS: leaf 46 reports '94' where the page prints 24 and leaf 109 reports '88' where it prints 83. `folio_source` is 'read' throughout and never 'offset', so a wrong folio here is a wrong READING and not an invented number; every claim states the folio its author read off the running head himself.",
+    "folios_read_off_the_page": 451
+   },
+   "claims": "chicago/4d/data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json — 33 claims, T-0581",
+   "read": "Chapter V, leaves 99-104, and chapter VI, leaves 107-142, read closely and declared as four `list` items in coverage.json; all 1,056 leaves swept by machine for the Newberry index's forty-nine lead surnames and declared as a fifth. Everything else — the geology, 1837 to 1893, the railroad, banking, real-estate and biographical chapters, and the appendix and index — is NOT read and is not declared.",
+   "note": "THE ITEM BUNDLES TWO DIFFERENT BOOKS AND ONLY ONE OF THEM IS THIS ONE. Beside the 'mose' files the deposit carries historyofchicago01andr.pdf and .epub with their own OCR derivatives; T-0581 asked whether they were really Moses and Kirkland and they are not — historyofchicago01andr_djvu.txt opens with A. T. Andreas's own title page, 'HISTORY OF GHICACO FROM THE EARLIEST Period TO THE Present TIME. IN THREE VOLUMES. VOLUME I.— ENDING WITH THE YEAR 1857 BY A. T. ANDREAS. CHICAGO: A T. ANDREAS. PUBLISHER. 1884.' Andreas volume 1 is already held at data/sources/andreas_1884_v1.json and nothing was taken from the stray copy. Every artifact registered in this entry is from the 'mose' set. THE DEPOSIT PDF IS NOT IN THIS CHECKOUT: the 72 MB scan is offloaded and chicago/reference/moses-kirkland-history-of-chicago-v1.yaml is the pointer to it, which is why the two small OCR artifacts are deposited under chicago/reference/ — they are what makes this index re-derivable by someone who does not hold the scan."
   }
  ]
 }

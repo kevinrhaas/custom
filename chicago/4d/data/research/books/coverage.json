@@ -2,7 +2,7 @@
  "schema": 1,
  "domain": "books",
  "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
- "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio. T-0500 adds five declarations for the SECOND half (leaves 430-858), and they are `list` items for a reason of their own: this volume's page boundaries ARE exact — page_index/fergus_26_29.json carries all 858 — but declaring 429 `page` items, 234 of them blank leaves, would bury the four ranges that mean something under four hundred that do not. Every claim's locator names its own scan LEAF beside its line range, so page-level coverage is available to a later pass without a re-read. ONE OF THE FIVE IS A SWEEP AND NOT A READING and says so in its own `what`: the 1843 alphabetical name directory was passed by machine against dated and known-name patterns and read closely only where it answered.",
+ "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. THE UNIT IS `list` AND NOT `page`, ON PURPOSE, AND FOR TWO DIFFERENT REASONS. Hurlbut's chapter is delivered to this project as one Genealogy Trails transcription of pages 28-36 with no page breaks marked anywhere in it, so declaring nine pages would mean assigning each claim to a page nobody has seen. Hubbard's autobiography is the opposite case: its pages ARE known — data/research/books/page_index/hubbard_autobiography_1911.json carries all 226 leaf boundaries and 179 folios read off the page — but a reading pass declares the RANGE it swept, and a range is what the ticket asks for. Every Hubbard claim's locator names its printed page as well as its range, so the day a consolidation wants page-level coverage it can have it without a re-read. T-0499 adds four more `list` declarations, for the same reason again and one more: Fergus' Historical Series Nos. 26-29 is FOUR PAMPHLETS BOUND AS ONE, each restarting its own printed folio at 1, so a page number in this volume is not unique and a `page` unit would collide four ways. data/research/books/page_index/fergus_26_29.json carries all 858 leaf boundaries exactly - they come from the deposit's own hOCR page index rather than an alignment - and every Fergus claim's locator names its leaf and, where the head printed one, its folio. T-0500 adds five declarations for the SECOND half (leaves 430-858), and they are `list` items for a reason of their own: this volume's page boundaries ARE exact — page_index/fergus_26_29.json carries all 858 — but declaring 429 `page` items, 234 of them blank leaves, would bury the four ranges that mean something under four hundred that do not. Every claim's locator names its own scan LEAF beside its line range, so page-level coverage is available to a later pass without a re-read. ONE OF THE FIVE IS A SWEEP AND NOT A READING and says so in its own `what`: the 1843 alphabetical name directory was passed by machine against dated and known-name patterns and read closely only where it answered. T-0581 adds five declarations for volume 1 of Moses and Kirkland's History of Chicago, and they are `list` items for the reasons already stated here and one more: the volume is 1,056 leaves and only eleven of them were read closely, so declaring the read leaves as pages would say nothing the ranges do not, while declaring the SWEPT leaves as pages would declare 1,056 pages a machine passed over and a reader did not. The fifth item is that sweep and says so in its own `what`: all 1,056 leaves were passed by machine against the forty-nine surnames the Newberry index says this work's Chicago and Cook County cards stand on, and read closely only where a surname answered. Every Moses and Kirkland claim's locator names its exact character spans and, in `original`, its scan LEAF and printed folio, so page-level coverage is available to a later pass without a re-read.",
  "declarations": [
   {
    "unit": "list",
@@ -211,6 +211,46 @@
    "read": "2026-09-05",
    "text": "data/research/books/text/porter_hh_short_autobiography_1915.txt (279 lines, byte-identical to the Internet Archive's hOCR search text for item chicago1835-hh-porter-autobiography). Leaf boundaries for all seventy leaves are exact and committed at page_index/porter_hh_short_autobiography_1915.json, so page-level coverage is available to a later pass without a re-read; every claim's locator names its leaf and, where the running head prints one, its folio.",
    "not_read": "Nothing. THE DECLARATION IS ONE `list` ITEM AND NOT SEVENTY `page` ITEMS, for the reason this file's note already gives twice over: a reading pass declares the RANGE it swept, and here the range is the volume. Declaring seventy pages would bury one finding under sixty-nine declarations of emptiness — and emptiness is what the sweep found. What it found instead is written down as eight claims and a carries-no-document ruling in data/sources/porter_hh_short_autobiography_1915.json."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_ch5_log_cabin_age_leaves_99_104"
+   ],
+   "ticket": "T-0581",
+   "what": "Moses and Kirkland, History of Chicago vol. 1 (1895), chapter V, 'Rudimentary — the Log Cabin Age', scan leaves 99-104 (printed pages 75-80): the 1825 Peoria County tax list, the first state election of 7 August 1826 and its thirty-five voters, the occupations of the American voters not named earlier, the fort's commanders and Indian agents, the American Fur Company at Chicago, the first school trustees and ferry and tavern licences of 1829 with their rate schedules, the first births and marriages, and John L. Wilson's weather notes for 1830-1880."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_ch6_1830_1832_leaves_107_122"
+   ],
+   "ticket": "T-0581",
+   "what": "Chapter VI, 'From Village to City — 1830 to 1837 — the Balloon Age', scan leaves 107-122 (printed pages 81-90), the years 1830 to 1832: the canal grant, the platting of the town by James Thompson on 4 August 1830, the first sale of lots on 27 September 1830, the three elections of 1830 and their sixty-six voters, the creation of Cook County and its first officers and licences, the post office, the Black Hawk war companies, the cholera, and the first bridges, schools and packing houses."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_ch6_1833_leaves_122_128"
+   ],
+   "ticket": "T-0581",
+   "what": "Chapter VI continued, scan leaves 122-128 (printed pages 90-94), the year 1833: the 1833 arrivals, the 165 frame buildings and the first brick building, the harbour appropriation, the town's incorporation on 5 August and the first town election of 10 August with its twenty-eight voters, the Indian treaty of September, the first churches and schools, the school-section sale of October, the first newspaper and its advertisers, the prices current, the estray pen and the log jail, the first ordinance, and Latrobe's and Sproat's descriptions of the town and its streets."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_ch6_1834_1836_leaves_128_142"
+   ],
+   "ticket": "T-0581",
+   "what": "Chapter VI continued, scan leaves 128-142 (printed pages 94-101), the years 1834 to 1836: the balloon frame, the first drawbridge, the 1834 and 1835 and 1836 arrivals and trustees, the State census of 1835 with its trade counts, the enlargement of the town limits on 11 February 1835, the first fire company, the first cemeteries, the 1835 court-house, the canal groundbreaking of 4 July 1836, the 1836 buildings, the land speculation and the canal-lot sale of June 1836, the departure of the tribes, and the pioneers' amusements."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_lead_surname_sweep_all_1056_leaves"
+   ],
+   "ticket": "T-0581",
+   "what": "A SWEEP AND NOT A READING, and it is declared because the ticket asked for it: all 1,056 leaves of volume 1 passed by machine against the forty-nine surnames data/research/newberry_index/follow_up.json names as the lead surnames this work's Chicago and Cook County cards stand on, with every hit's leaf and chapter recorded, and read closely only where a surname landed in a Chicago context before 1837. The counts are in the claims file's _doc and in the source record: seven surnames occur nowhere in the volume, fifteen only after 1837, eleven in the earlier chapters but not in the 1830-1837 narrative, and eleven pay. bk_mk1_033 is the sweep's own finding — the editorial note that rules Gurdon S. Hubbard not permanently resident until 1832 — and it is what this declaration is reached by."
   }
  ]
 }

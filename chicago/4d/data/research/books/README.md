@@ -1,6 +1,7 @@
 # Books and reminiscences — prose, read the way the newspapers are read
 
-**What lives here.** Fergus' Historical Series Nos. 26-29 (read in its first half
+**What lives here.** Moses and Kirkland's *History of Chicago, Illinois* vol. 1 (1895), read
+for 1825-1836 by T-0581, Fergus' Historical Series Nos. 26-29 (read in its first half
 by T-0499 - see the contents table below), Gurdon Hubbard's
 autobiography (a 226-page scan the project has never mentioned), H. H. Porter's
 *Short Autobiography* (read in full by T-0502 and it carries no Chicago before
@@ -430,3 +431,76 @@ for Chicago plus a canal context would take it for 1835.
 all twenty-five people named inside the 1830–1836 window by name with the outcome of
 each, because a crosswalk that reports only its merges cannot be audited. Nothing in
 `data/residents/`, `data/structures/` or `data/assets/` was edited.
+
+---
+
+## What has been read (T-0581, 2026-09-05)
+
+**John Moses and Joseph Kirkland, *History of Chicago, Illinois*, volume 1 (Chicago and
+New York: Munsell & Company, 1895) — eleven leaves read closely, 1,056 swept.** Thirty-three
+claims at `claims/moses_kirkland_history_of_chicago_v1_1895.json`, out of the Internet
+Archive's own hOCR search text of this project's own deposit, committed at
+`text/moses_kirkland_history_of_chicago_v1_1895.txt`. Source record:
+`data/sources/moses_kirkland_history_of_chicago_v1_1895.json`, tier 4. The page index takes
+the Fergus and Porter route — the Archive emitted the hOCR page index beside the search
+text, so all 1,056 leaf boundaries are exact and none is aligned.
+
+**WHY THIS BOOK, AND WHAT IT WAS WORTH.** T-0570 read volume 1 of the Newberry
+genealogical index and found 76 of its 581 Chicago and Cook County cards citing this work
+— the largest Chicago book the index points at that this project did not hold. Read, the
+verdict is that it is **a good second source and a poor first one**: everything in it is a
+compiler's, at sixty years' distance, frequently from Andreas or Fergus or the *Chicago
+Democrat*, all of which this project either holds or can reach and all of which outrank it.
+Its value is corroboration and **composition**.
+
+**The one thing nothing else reached gives** is the Illinois State census taken between 1
+September and December 1835 (`bk_mk1_003`): 3,297 people, and beside them a TRADE COUNT of
+the town — forty-four stores, two book stores, four druggists, two silversmiths and
+jewellers, two tin and copper manufactories, two printing offices, two breweries, one steam
+saw-mill, one iron foundry, four storage and forwarding houses, eight taverns, one lottery
+office, one bank, five churches, seven schools, twenty-two lawyers, fourteen physicians and
+a lyceum. `data/town_census.json` already carries Andreas's November 1835 figure of 3,265 in
+398 dwellings; **the two are not reconciled here and must not be averaged** — they differ by
+32 and settling that needs the schedules, not two compilers. The breakdown has no rival in
+this project and is a ceiling on how many of each trade the reconstruction may show.
+
+**Three more that a later pass will want.** The *Chicago Democrat*'s advertising column of
+November 1833 (`bk_mk1_005`), sixteen firms with their trades printed beside them and four
+hotels with their keepers named. The winter of 1834-5 (`bk_mk1_029`), out of John L.
+Wilson's own weather notes filed at the Chicago Historical Society: open, little snow, front
+doors open all winter, cattle living on grass on the river bank — the season immediately
+before the scene date, and the only weather this volume gives for the scene's own year. And
+the 1835 court-house (`bk_mk1_002`), whose 'pretentious columns, fronting the east' are an
+appearance and an orientation Andreas does not print.
+
+**THIRTY-EIGHT OF THE FORTY-NINE LEAD SURNAMES ARE A MEASURED NOTHING**, and the measurement
+is the deliverable as much as the claims are. Seven occur nowhere in the volume — `blodget`,
+`caapbell`, `gardiner`, `gunn`, `mattoson`, `nlan`, `obrien`, which are the index's own OCR
+corruptions rather than surnames. Fifteen occur only after 1837. Eleven reach the earlier
+chapters but not the 1830-1837 narrative. Four reach that chapter and are not surnames there
+at all: `black` is Black Hawk and blacksmith, `hall` is a public hall, `price` is prices
+current, `andrew` is Andrew Jackson — all four refused in `crosswalk.json`, in writing, so
+the next surname-frequency pass does not score them as hits. **Eleven pay**: hubbard, peck,
+carpenter, jones, caton, pierce, kimball, blodgett, allen, gray, baldwin — with `allen`
+resolving to a given name, the Rev. Allen B. Freeman, and refused too.
+
+**TWO PRINTED TABLES ARE REFUSED AND THE REFUSAL IS THE HONEST ANSWER.** The 36 purchasers
+at the first lot sale of 27 September 1830, and the list of actual settlers prior to 1830
+with its NAME / NATIVITY / date / REMARKS columns, are both set in rules this OCR has
+collapsed into rubble. The names survive; the ROWS do not, and building rows out of them
+would be invention. Both need the page images and both are filed as their own tickets
+(T-0758, T-0759).
+
+**THE DEPOSIT ITEM BUNDLES TWO DIFFERENT BOOKS, and the ticket's question about it is
+answered.** T-0581 flagged that `historyofchicago01mose_202609` carries an epub named
+`historyofchicago01andr.epub` and asked whether it was really the Moses/Kirkland text. It is
+not, and neither is the 35 MB PDF beside it: `historyofchicago01andr_djvu.txt` opens with A.
+T. Andreas's own title page — *HISTORY OF GHICACO FROM THE EARLIEST Period TO THE Present
+TIME. IN THREE VOLUMES. VOLUME I.— ENDING WITH THE YEAR 1857 BY A. T. ANDREAS. CHICAGO: A T.
+ANDREAS. PUBLISHER. 1884.* — with the Allen County Public Library plate and the 2009
+digitisation notice. Andreas is already held at `data/sources/andreas_1884_v1.json` and
+nothing was taken from the stray copy. Everything read here is from the `mose` set.
+
+**VOLUME 2 IS NOT READ AND IS NOT DECLARED.** It is not in the project's deposit; its
+locator remains the pre-existing Archive item `historyofchicagov2mose`, and it covers the
+city after 1857.

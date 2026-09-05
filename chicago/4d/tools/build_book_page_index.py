@@ -149,6 +149,29 @@ BOOKS_INDEXED = {
                               "narrative, whose printed folios run 9 to 43; leaves "
                               "46-70 are the plates, their captions and the endpapers.",
     },
+    # The fourth, added by T-0581 for volume 1 of Moses and Kirkland's History of
+    # Chicago (1895). It takes the Fergus/Porter route for the Fergus/Porter reason:
+    # the Internet Archive emitted this item's hOCR search text AND the hOCR page
+    # index beside it, so leaf i IS text[start:end] and nothing is aligned. The
+    # deposit PDF is 72 MB and is NOT in this checkout — chicago/reference/
+    # moses-kirkland-history-of-chicago-v1.yaml is the pointer to it — so Hubbard's
+    # pdftotext transfer could not be run here even if it were wanted.
+    "moses_kirkland_history_of_chicago_v1_1895": {
+        "title": "John Moses and Joseph Kirkland, History of Chicago, Illinois, "
+                 "volume 1 (Chicago and New York: Munsell & Company, 1895)",
+        "archive_item": "historyofchicago01mose_202609",
+        "derivation": "hocr_page_index",
+        "deposit_text": "chicago/reference/moses-kirkland-history-of-chicago-v1/historyofchicago01mose_hocr_searchtext",
+        "deposit_page_index": "chicago/reference/moses-kirkland-history-of-chicago-v1/historyofchicago01mose_hocr_pageindex.json",
+        "leaves": 1056,
+        # NO `folio_runs`. The volume prints roman front matter, an arabic body that
+        # restarts at 1, and an appendix and index whose runs restart again, with
+        # unfoliated plates scattered through all of them; a carried offset would
+        # invent a folio on every plate it crossed. A folio here is READ off the
+        # running head or it is null, and `folio_source` is never "offset".
+        "folios": "read_only",
+        "reading_order_note": "Leaf order throughout.",
+    },
 }
 
 ROMAN = [(1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"),

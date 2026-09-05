@@ -25,7 +25,39 @@ files:
   - name: historyofchicago01andr.epub
     bytes: 32817206
     note: >
-      Filename suggests this may be an Andreas epub rather than a
-      Moses/Kirkland one - worth the owner double-checking this file's
-      actual contents.
+      RESOLVED by T-0581, 2026-09-05, and the answer is yes: this is
+      Andreas and not Moses/Kirkland. The item bundles two different
+      books. historyofchicago01andr_djvu.txt opens with A. T. Andreas's
+      own title page - "HISTORY OF GHICACO FROM THE EARLIEST Period TO
+      THE Present TIME. IN THREE VOLUMES. VOLUME I.- ENDING WITH THE
+      YEAR 1857 BY A. T. ANDREAS. CHICAGO: A T. ANDREAS. PUBLISHER.
+      1884." - with the Allen County Public Library plate and the 2009
+      digitisation notice for archive.org/details/historyofchicago01andr.
+      The same goes for historyofchicago01andr.pdf (35582552 bytes) and
+      every other "andr" derivative in the item. Andreas volume 1 is
+      already held at chicago/4d/data/sources/andreas_1884_v1.json and
+      nothing has been taken from this copy. Everything read for T-0581
+      comes from the "mose" set.
+  - name: historyofchicago01andr.pdf
+    bytes: 35582552
+    note: >
+      Andreas, History of Chicago vol. 1 (1884) - see the note above.
+      Not this work.
 ticket: T-0581
+deposit:
+  note: >
+    The 72 MB scan is offloaded and is not in this repository. What IS
+    committed beside this pointer, laid down by T-0581, is the pair of
+    small OCR artifacts the Internet Archive derived from it - the hOCR
+    search text and the hOCR page index emitted with it - because those
+    are what make the committed reading re-derivable by somebody who
+    does not hold the scan. The page index gives every one of the 1,056
+    leaves its exact character range in that very text, so the leaf
+    boundaries in chicago/4d/data/research/books/page_index/ are exact
+    and not aligned.
+  files:
+    - name: historyofchicago01mose_hocr_searchtext
+      sha256: edcabeca9aa35706318a4f3e0be3c16d6316156fbdf8091777d101a9ec2011e1
+    - name: historyofchicago01mose_hocr_pageindex.json
+      sha256: b9579a27ab334df4c6faf4ba7d20e654a276e117ea6a8fd3f7bb5bf9caaedf15
+read_by: T-0581

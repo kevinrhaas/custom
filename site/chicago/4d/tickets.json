@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 4:24 AM",
+  "generated_ct": "Sep 5, 2026, 4:39 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12590,6 +12590,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 148
+    },
+    {
+      "id": "T-0758",
+      "title": "Moses and Kirkland vol. 1, printed page 83: the 36 purchasers at the first Chicago lot sale of 27 September 1830, read off the page images because the OCR has collapsed the table",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 155
+    },
+    {
+      "id": "T-0759",
+      "title": "Moses and Kirkland vol. 1, printed pages 78-79: the list of actual settlers prior to 1830 with its NAME / NATIVITY / date / REMARKS columns, read off the page images",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }

@@ -318,3 +318,5 @@ T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the h
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0748 — The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
+T-0758 — Moses and Kirkland vol. 1, printed page 83: the 36 purchasers at the first Chicago lot sale of 27 September 1830, read off the page images because the OCR has collapsed the table
+T-0759 — Moses and Kirkland vol. 1, printed pages 78-79: the list of actual settlers prior to 1830 with its NAME / NATIVITY / date / REMARKS columns, read off the page images

@@ -160,8 +160,11 @@ WORKS = [
         "date": "1895",
         "pattern": re.compile(r"k[il1]r[kh][a-z]{0,4}[a-z]?d", re.I),
         "fuzzy": ("kirkland", 0.55),
-        "held": None,
-        "reachable": "Internet Archive: historyofchicago01mose, historyofchicagov2mose",
+        "held": "moses_kirkland_history_of_chicago_v1_1895",
+        "reachable": "held for VOLUME 1 ONLY — read for T-0581; the project's own "
+                     "Internet Archive deposit is historyofchicago01mose_202609 and its "
+                     "hOCR text is committed at data/research/books/text/. Volume 2 is "
+                     "NOT held; its locator remains historyofchicagov2mose.",
     },
     {
         "key": "moses_illinois_historical_and_statistical",

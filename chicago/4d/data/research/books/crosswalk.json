@@ -171,6 +171,15 @@
    "detail": "In this file. Eight claims is small enough that a separate detail file would only hide the reasoning, and two of the three pairs are ruled here.",
    "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS, and nothing could have been: the source carries no document of Chicago before September 1853 and places nobody in the town in 1835. data/research/civic/voter_crosswalk.json's ruling on poll_1835_059 is left exactly as it stands — 'candidate', matched to no resident — because this pass removes a wrong answer and does not supply a right one.",
    "ruled_on": "The two rulings are anchored to bk_porter_003, the sentence 'I was born in Machias, оп the 7th day of December, 1835'. THE THIRD PAIR IS NOT RULED ON HERE and that is deliberate: whether the poll list's 'Porter, H.' is the Reverend Jeremiah Porter is a question about the poll list and the chaplain, not about this book, and it belongs to T-0493. This source can say who 'Porter, H.' is NOT only where it holds the evidence, and it holds it for exactly one of the three men."
+  },
+  {
+   "pass": "T-0581",
+   "what": "The lead-surname sweep of Moses and Kirkland's History of Chicago vol. 1 (1895) against the forty-nine surnames the Newberry index says this work's Chicago and Cook County cards stand on. Eleven of the forty-nine land on a Chicago person before 1837 and are claimed; four MORE appear in the 1830-1837 chapter and are not surnames there at all, and a fifth resolves to a given name. THOSE FIVE ARE WHERE A LATER RUN WOULD MAKE THE MISTAKE — a surname-frequency pass would count them as hits — so they are refused here in writing rather than left to be rediscovered. Two same-surname pairs inside the volume are refused for the ordinary reason: a shared surname is not a person.",
+   "readings_examined": 33,
+   "residents_examined": 0,
+   "merges": 0,
+   "refusals": 7,
+   "detail": "In this file. No merge is proposed on this pass and none could be: every claim here is a compiler's list of names at sixty years' distance, and this project's rule is that a merge needs a rule naming both spellings verbatim. Nothing in data/residents/ was touched."
   }
  ],
  "merges": [
@@ -881,6 +890,79 @@
    ],
    "does_not_follow": "hh_porter_jeremiah.json is not edited. The refusal is an identity statement inside the research layer.",
    "evidence_note": "bk_porter_002 is named bare because tools/measure_research_spend.py resolves it: the mother's line, East Dennis to Wiscasset to Machias, is the half of the family this refusal uses — there is no minister anywhere in it and no relation of the chaplain's."
+  },
+  {
+   "a": "Black",
+   "b": "Black Hawk",
+   "rule": "The surname `black` returns 63 hits across this volume and seven inside the 1830-1837 chapter, and every one of the seven is either the Sauk leader Black Hawk — 'the Indian disturbance, dignified by the name of the Black Hawk War' — or the trade word in 'blacksmith shop' and 'blacksmithing'. There is no person surnamed Black in this book's Chicago before 1837. A surname-frequency pass would score `black` as one of the volume's densest leads; it is a false positive of the index's own OCR and it is refused.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json — the sweep counts in _doc",
+    "data/research/newberry_index/follow_up.json — `black` is on the lead list for moses_kirkland_history_of_chicago"
+   ],
+   "pass": "T-0581",
+   "claim_id": null
+  },
+  {
+   "a": "Allen",
+   "b": "Rev. Allen B. Freeman",
+   "rule": "The only occurrence of `allen` in this volume's 1830-1837 chapter is 'The first Baptist church was organized by Rev. Allen B. Freeman, with fourteen members, October 19, 1833', and it is a GIVEN name — the man's surname is Freeman. Reading it as the lead surname Allen would attach a Chicago residence of 1833 to a family this book never mentions. Refused; the man himself is claimed under his own name at bk_mk1_027.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json bk_mk1_027"
+   ],
+   "pass": "T-0581",
+   "claim_id": "bk_mk1_027"
+  },
+  {
+   "a": "Hall",
+   "b": "Chicago's first public hall",
+   "rule": "`hall` appears twice in the 1830-1837 chapter and both are the common noun: 'It was Chicago's first public hall' of the Saloon building, and 'there was no public hall, theater or other place of amusement'. No person surnamed Hall is named in this book's Chicago before 1837. Refused. Same for `price`, whose sixteen hits in the chapter are all 'price' and 'prices current', and for `andrew`, whose one hit is President Andrew Jackson approving the canal land selections in 1830.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json — the sweep counts in _doc"
+   ],
+   "pass": "T-0581",
+   "claim_id": null
+  },
+  {
+   "a": "Philip F. W. Peck",
+   "b": "Ebenezer Peck",
+   "rule": "This volume names both men in the same chapter and they are two people. Philip F. W. Peck arrives from Rhode Island in 1831 'who brought with him a stock of goods' and builds one of the first two frame business buildings, on the south-east corner of South Water and La Salle; Ebenezer Peck arrives in 1834 and is elected town clerk in 1836. A surname-only merge is always a refusal here, and this pair would be one even if it were not, because the book keeps them apart by year, by origin and by office. Refused.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json bk_mk1_004, bk_mk1_028"
+   ],
+   "pass": "T-0581",
+   "claim_id": "bk_mk1_004"
+  },
+  {
+   "a": "Gurdon S. Hubbard",
+   "b": "E. K. Hubbard",
+   "rule": "The 1835 arrivals list names 'E. К. Hubbard' — the OCR sets a Cyrillic К, and the man is E. K. Hubbard — among men who came to Chicago that year; Gurdon S. Hubbard is in the town from the 1820s and this same volume rules his permanent residence to 1832. Two Hubbards, one arriving nine years after the other, cannot be merged on the surname, and this project holds Gurdon S. Hubbard's own autobiography, which would be the thing to merge them against and does not. Refused.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json bk_mk1_019, bk_mk1_033",
+    "data/research/books/claims/hubbard_autobiography_1911.json"
+   ],
+   "pass": "T-0581",
+   "claim_id": "bk_mk1_019"
+  },
+  {
+   "a": "the Noble brothers",
+   "b": "John Noble",
+   "rule": "The packing sentence names 'George W. Dole, A. Clybourn, the Noble brothers, and Gurdon S. Hubbard'. 'the Noble brothers' is a surname and a plural, and this same chapter names Mark Noble and John Noble as two separate 1831 arrivals from England; reading the plural as either one of them would attach a trade to a named man on the strength of a family word. It is the refusal this domain already made for 'the Kinzies' and it is made again here for the same reason. Refused.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json bk_mk1_026"
+   ],
+   "pass": "T-0581",
+   "claim_id": "bk_mk1_026"
+  },
+  {
+   "a": "Rev. Jeremiah Porter",
+   "b": "Hibbard Porter",
+   "rule": "The 1833 arrivals list names both 'Hibbard Porter' and 'Rev. Jeremiah Porter' in one sentence, so the book itself treats them as two men, and this project already holds the chaplain at hh_porter_jeremiah. Hibbard Porter is a name and nothing else here — no trade, no address, no further mention — and merging him into the chaplain on the surname would invent a second identity for a man the project has. Refused. This does not disturb T-0502's ruling that neither of them is the H. H. Porter of the 1915 autobiography.",
+   "evidence": [
+    "data/research/books/claims/moses_kirkland_history_of_chicago_v1_1895.json bk_mk1_027",
+    "data/research/books/crosswalk.json — the T-0502 Porter refusals"
+   ],
+   "pass": "T-0581",
+   "claim_id": "bk_mk1_027"
   }
  ]
 }

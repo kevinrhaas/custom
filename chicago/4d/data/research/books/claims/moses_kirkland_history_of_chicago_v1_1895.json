@@ -1,0 +1,1121 @@
+{
+  "schema": 1,
+  "domain": "books",
+  "source_id": "moses_kirkland_history_of_chicago_v1_1895",
+  "_doc": "HAND-AUTHORED, T-0581. John Moses and Joseph Kirkland, History of Chicago, Illinois, volume 1 (Chicago and New York: Munsell & Company, 1895) — read for what it carries about Chicago and Cook County before 1836, and swept end to end for the surnames the Newberry genealogical index says its cards stand on. THIRTY-THREE CLAIMS OUT OF ELEVEN LEAVES READ CLOSELY (chapter V, 'Rudimentary — the Log Cabin Age', leaves 99-104, and chapter VI, 'From Village to City — 1830 to 1837 — the Balloon Age', leaves 107-142) PLUS A MACHINE SWEEP OF ALL 1,056 LEAVES for the forty-nine lead surnames. WHY THIS BOOK. T-0570 read volume 1 of the Newberry genealogical index and found that of its 581 Chicago and Cook County cards, 76 cite Moses and Kirkland — the largest Chicago work the index points at that this project did not hold — and that 50 of those cards stand on a surname this project already has in its residents, its 1833-1835 poll and tax lists, or the 1840 census. WHAT THE SWEEP FOUND, AND IT IS AS MUCH A PART OF THE DELIVERABLE AS THE CLAIMS ARE. Of the forty-nine lead surnames, SEVEN CARRY NOTHING AT ALL in this volume — blodget, caapbell, gardiner, gunn, mattoson, nlan, obrien, all of them index OCR corruptions of a real surname rather than surnames. FIFTEEN OCCUR ONLY AFTER 1837 and are the volume's later-century biographies: marsh, murphy, elliott, gardner, richards, barry, herrick, dow, andrews, fitch, haddock, lathrop, morey, doyle, pratt. ELEVEN REACH THE PRE-1837 CHAPTERS BUT NOT THE 1830-1837 NARRATIVE: lincoln, hull, carter, fullerton, rouse, hyde, root, garrett, win, greene and anderson — and of those, `hull` is General William Hull of the 1812 surrender, `lincoln` is the president, `carter` is Carter H. Harrison the mayor, `win` is Winnebago, `root` and `rouse` are the common nouns, and only `anderson` is a Chicago person before 1836 (bk_mk1_030). FIFTEEN REACH THE 1830-1837 CHAPTER, and four of those fifteen are not surnames there either: `black` is Black Hawk and blacksmith, `hall` is a public hall, `price` is prices current, and `andrew` is Andrew Jackson. THE ELEVEN THAT ANSWER are hubbard, peck, carpenter, jones, caton, pierce, kimball, blodgett, allen, gray and baldwin, and every one of them is claimed below — with the note that `allen` resolves to a GIVEN name, the Rev. Allan B. Freeman, and is a refusal. SO THE HONEST SUMMARY IS: eleven of forty-nine lead surnames pay, and thirty-eight do not. NOTHING HERE IS PAYLOAD. No structure, resident, household, business or terrain record is edited on this ticket; the acceptance clause routes every layer edit to the layer's own PR, and the claims that argue for one say so on themselves — the Sauganash corner (bk_mk1_001), the court-house's columns and orientation (bk_mk1_002), the 1835 trade census (bk_mk1_003) and the open winter of 1834-5 (bk_mk1_029) are the four most likely to be spent. EVERY QUOTE IS REBUILT out of data/research/books/text/moses_kirkland_history_of_chicago_v1_1895.txt by tools/research_domains.py --check and fails on one changed character. The OCR's own faults are committed as printed — 'A. Olybourn' for A. Clybourn, 'St-phen F. Gale', 'merehandise', '64c' for 6¼ cents, 'Тһе' with a Cyrillic Т — and the smoothed reading lives in `normalized`, which is the field that exists for it. TWO PRINTED TABLES ARE REFUSED AND THE REFUSAL IS RECORDED: the 36 purchasers at the first lot sale of 27 September 1830 (bk_mk1_010) and the list of actual settlers prior to 1830 (bk_mk1_033) are both set in ruled columns that this OCR has collapsed into rubble. The names survive; the ROWS do not, and building rows out of them would be invention. Both need the page images and both are filed as their own tickets.",
+  "generated_by": "hand - T-0581",
+  "claims": [
+    {
+      "id": "bk_mk1_001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Chicago’s largest and most noted among its early hotels was erected this year—the ** Sauganash,\" by Mark Beaubien, which for many years was the most attractive hostlery the city possessed, and its genial landlord, with his merry fiddle, the most popular of hosts. It was located on the southeast corner of Lake and Market streets. It was des- troyed by fire March 4, 1851.",
+      "normalized": "Chicago's largest and best-known early hotel, the Sauganash, was built by Mark Beaubien in 1831 on the south-east corner of Lake and Market streets, and burned on 4 March 1851.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1411,
+            "from": 0,
+            "to": 372
+          }
+        ],
+        "original": "John Moses and Joseph Kirkland, History of Chicago, Illinois, vol. 1 (1895), scan leaf 117, printed page 87 (the running head reads 'FROM VILLAGE TO CITY—1830 TO 1837—THE BALLOON AGE. 87')",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1831 for the erection; the corner is stated without a date and the fire is 1851-03-04",
+      "entities": [
+        "the Sauganash",
+        "Mark Beaubien",
+        "Lake Street",
+        "Market Street"
+      ],
+      "town_finding": true,
+      "notes": "A SECOND PRINTED CORROBORATION OF A CORNER THIS PROJECT ALREADY HOLDS, and that is its whole value. data/structures/sauganash_hotel.json has stood at the south-east corner of Lake and Market since before this reading, but its position cites drloih_hotels and chicago_landmark_sauganash — two web pages — and carries confidence `inferred`. Moses and Kirkland is a printed 1895 history stating the same corner independently, so the corner now rests on a printed source as well as on two web transcriptions. IT DOES NOT NARROW THE LOT and it is not read here as doing so: 'located on the southeast corner' names a corner, not a frontage or a footprint, and the record's stated positional error is untouched by it. WHETHER THAT SUPPORTS A CONFIDENCE CHANGE IS NOT DECIDED HERE — the ticket routes any layer edit to the layer's own PR and no structure record is edited on this one. The fire date, 4 March 1851, is fifteen years past the scene and is recorded only because it is the sentence's other half."
+    },
+    {
+      "id": "bk_mk1_002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Further improvements were made by the erection of a one-story and basement brick building with pretentious columns, fronting the east on the northeast corner of the public square, for a court-house; and also an engine-house, which was not completed until the following year.",
+      "normalized": "In 1835 a one-story-and-basement brick court-house with columns, fronting east, was put up on the north-east corner of the public square, together with an engine-house that was not finished until 1836.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1551,
+            "from": 0,
+            "to": 274
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 132, printed page 96",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1835, and the engine-house is finished in 1836",
+      "entities": [
+        "the first Cook County court-house",
+        "the public square",
+        "the town engine-house"
+      ],
+      "town_finding": true,
+      "notes": "TWO ATTRIBUTES ANDREAS DOES NOT PRINT. data/structures/cook_county_courthouse_1835.json already carries the corner, the storey count and the material off Andreas ('a one-story and basement brick court-house was erected on the northeast corner of the square, on Clark and Randolph streets'), and dates the building into the fall of 1835 — after the scene date, which is why it is not standing on 1 July. What Moses and Kirkland adds is APPEARANCE and ORIENTATION: 'with pretentious columns' and 'fronting the east'. Neither is in the Andreas passage this project placed the record from. The corner is corroborated by a second printed history. NO RECORD IS EDITED HERE; the two new attributes are offered to the structures layer in its own PR, where the question of whether an 1895 compiler's 'pretentious columns' is evidence for a building nobody in this project has seen a picture of can be argued on its merits. THE ENGINE-HOUSE IS A SECOND BUILDING and this project holds no record of it."
+    },
+    {
+      "id": "bk_mk1_003",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "Тһе result of the State census taken this year between September 1st and De- cember showed that the population of Chicago numbered 3,297 and, as further evidence ofits progress,demonstrated the fact that there were forty-four stores (dry goods, hardware, and groceries), two book stores, four druggists, two silversmiths and jewelers, two tin and copper manufac- tories, two printing offices, two breweries, one steam saw-mill, one iron foundry, four storage and forwarding houses, eight taverns, one lottery office, one bank, five churches, seven schools, twenty-two lawyers, fourteen physi- cians, and a lyceum and reading room. Of the buildings erected nine were of brick.",
+      "normalized": "The State census taken between 1 September and December 1835 counted 3,297 people at Chicago, and with them forty-four dry-goods, hardware and grocery stores, two book stores, four druggists, two silversmiths and jewellers, two tin and copper manufactories, two printing offices, two breweries, one steam saw-mill, one iron foundry, four storage and forwarding houses, eight taverns, one lottery office, one bank, five churches, seven schools, twenty-two lawyers, fourteen physicians, and a lyceum and reading room; nine of the year's new buildings were brick.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1543,
+            "from": 0,
+            "to": 675
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 131, printed page 95",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "the count is taken between 1835-09-01 and December 1835, four to six months after the scene date of 1835-07-01",
+      "entities": [
+        "the Illinois State census of 1835"
+      ],
+      "town_finding": true,
+      "notes": "THE MOST USEFUL SENTENCE IN THE CHAPTER FOR THE TOWN'S COMPOSITION, and it is a TRADE CENSUS and not only a headcount. data/town_census.json already quotes a town figure — 3,265 people in 398 dwellings, from Andreas, printed p. 180, dated November 1835 — and this is a second figure, 3,297, from the STATE census of the same autumn. THE TWO ARE NOT RECONCILED HERE and must not be silently averaged: they differ by 32, they may be the same enumeration counted twice or two different enumerations, and settling that needs the schedules and not two compilers. What is new and has no rival in this project is the BREAKDOWN — forty-four stores, eight taverns, twenty-two lawyers, fourteen physicians and the rest. The owner's standing instruction asks for the town's business and occupation composition; this is a documented count of it, four months off the scene date, and it is a ceiling on how many of each trade the reconstruction may show. It names NOT ONE PERSON, so it cannot be spent into a household by itself; it is what the spend is measured against."
+    },
+    {
+      "id": "bk_mk1_004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Mr. Carpenter was the proprietor of the first drug store in the town; and George W. Dole and P. F. W. Peck erected the first frame buildings used for business purposes, the former on the southeast corner of South Water and Dearborn; and the latter on the southeast corner of South Water and La Salle streets.",
+      "normalized": "Philo Carpenter kept the town's first drug store; George W. Dole and P. F. W. Peck put up the first frame buildings used for business, Dole's on the south-east corner of South Water and Dearborn and Peck's on the south-east corner of South Water and La Salle.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1442,
+            "from": 0,
+            "to": 308
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 121, printed page 89",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1832",
+      "entities": [
+        "Philo Carpenter",
+        "George W. Dole",
+        "Philip F. W. Peck",
+        "South Water Street",
+        "Dearborn Street",
+        "La Salle Street"
+      ],
+      "town_finding": true,
+      "notes": "TWO NAMED MEN, TWO TRADES AND TWO CORNERS — the exact shape the owner's core-dataset instruction asks for. Both surnames are on the Newberry index's lead list for this work (`carpenter`, `peck`), so this is one of the lookups T-0581 was opened to make and it answers. The project already holds data/structures/carpenter_south_water_store.json, peck_store.json and dole_warehouse_south.json; whether each stands on the corner this sentence names is a structures-layer question and is not settled here. NOTE THE HEDGE THE SENTENCE ITSELF CARRIES: 'the first frame buildings USED FOR BUSINESS PURPOSES' — it is a claim about precedence in a class, not a claim that no frame building stood earlier, and it must not be cited as the latter."
+    },
+    {
+      "id": "bk_mk1_005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "pear the advertisements of Philo Carpenter, druggist; W. Kimball,dry goods: Jno. Wright, Brewster, Hogan & Co., P. F. W. Peck, P. Pruyne & Co., general store, dry goods, etc. Newberry and Dole, and B. Jones, and John H. Kinzie, forwarding and commission mer- chants; Peter Cohen, clothing, provisions and groceries; S. Foot, groceries and liquors; Goss and Cobb, saddlers and harness mak- ing; Matthias Mason, blacksmithing; Daniel Elston & Co., soap and candle manufactory; A. Olybourn, butchering; Chester Inger- soll gives notice that he is running the hotel known as The Traveler's House (the Wolf Point Tavern); the Sauganash, by Mark Beaubien; the Green Tree Tavern, by David Clock, and the Mansion House, by Dexter Graves, did not then advertise.",
+      "normalized": "The first numbers of the Chicago Democrat, from 26 November 1833, carried the advertisements of Philo Carpenter, druggist; W. Kimball, dry goods; John Wright; Brewster, Hogan & Co.; P. F. W. Peck; P. Pruyne & Co., general store and dry goods; Newberry and Dole, B. Jones and John H. Kinzie, forwarding and commission merchants; Peter Cohen, clothing, provisions and groceries; S. Foot, groceries and liquors; Goss and Cobb, saddlers and harness makers; Matthias Mason, blacksmith; Daniel Elston & Co., soap and candle manufactory; A. Clybourn, butcher; and Chester Ingersoll's notice that he kept the Traveler's House, the Wolf Point Tavern. The Sauganash under Mark Beaubien, the Green Tree Tavern under David Clock and the Mansion House under Dexter Graves did not advertise.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1505,
+            "from": 28,
+            "to": 781
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 127; the leaf's running head is split by the OCR and the folio is 93",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "the winter of 1833-34, from the Chicago Democrat's first numbers of 26 November 1833 onward",
+      "entities": [
+        "Philo Carpenter",
+        "W. Kimball",
+        "John Wright",
+        "Brewster, Hogan & Co.",
+        "P. F. W. Peck",
+        "P. Pruyne & Co.",
+        "Newberry and Dole",
+        "B. Jones",
+        "John H. Kinzie",
+        "Peter Cohen",
+        "S. Foot",
+        "Goss and Cobb",
+        "Matthias Mason",
+        "Daniel Elston & Co.",
+        "A. Clybourn",
+        "Chester Ingersoll",
+        "the Traveler's House",
+        "the Wolf Point Tavern",
+        "the Sauganash",
+        "Mark Beaubien",
+        "the Green Tree Tavern",
+        "David Clock",
+        "the Mansion House",
+        "Dexter Graves"
+      ],
+      "town_finding": true,
+      "notes": "A TRADE LIST OF THE TOWN TWENTY MONTHS BEFORE THE SCENE DATE, with the trade printed beside each name — sixteen firms and four hotels with their keepers. This is the densest occupation evidence in the chapter and it is why this book was worth reading. It is A COMPILER READING A NEWSPAPER, not the newspaper: Moses and Kirkland are summarising the Democrat's advertising columns in 1895, so a trade here is at one remove and grades transcription_mediated. Where this project holds the paper itself, the paper outranks this list and this list must not be cited over it. FOUR OF THESE ARE ALREADY LIVE QUESTIONS in the ticket queue — P. Pruyne & Co. (T-0412), the Wolf Point Tavern under the name 'The Traveler's House' with Ingersoll keeping it, Goss and Cobb (data/structures/goss_cobb_saddlery.json) and Elston's soap and candle works (elston_soap_candle_manufactory.json) — and NONE of them is edited here. THE READING IS OF THE OCR AND THE OCR IS DAMAGED IN ONE PLACE: 'A. Olybourn' is committed as printed and is Archibald Clybourn, the same fold this OCR makes of Cl- throughout; 'Jno. Wright' is expanded to John Wright in `normalized` and nowhere else."
+    },
+    {
+      "id": "bk_mk1_006",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "The Green Tree tavern, on the north- east corner of North Canal and West Lake streets, was likewise erected this year by James Kinzie. It remained standing there",
+      "normalized": "The Green Tree tavern was built in 1833 by James Kinzie on the north-east corner of North Canal and West Lake streets.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1458,
+            "from": 449,
+            "to": 610
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833",
+      "entities": [
+        "the Green Tree Tavern",
+        "James Kinzie",
+        "North Canal Street",
+        "West Lake Street"
+      ],
+      "town_finding": true,
+      "notes": "A CORNER AND A BUILDER FOR A STRUCTURE THIS PROJECT ALREADY STANDS — data/structures/green_tree_tavern.json. The street names are the 1895 names, not the 1833 ones, which is the ordinary hazard of a compiler writing sixty years later, and it is the reason this is offered as corroboration rather than as a re-placement. The sentence continues past the quote to say the building was moved in 1880 to 33-35 Milwaukee avenue; that is the compiler's own present and is outside everything this project models."
+    },
+    {
+      "id": "bk_mk1_007",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "John $. C. Hogan was appointed postmaster Novem- ber 2, 1832, and received and distributed mail in a room partitioned off for that pur- pose from his story-and-a-half storehouse, a\nlog building 45x18, situated at the angle formed by the intersection of Lake and South Water streets.",
+      "normalized": "John S. C. Hogan was made postmaster on 2 November 1832 and kept the post office in a room partitioned off from his own story-and-a-half log storehouse, 45 feet by 18, standing at the angle where Lake and South Water streets meet.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1452,
+            "from": 116,
+            "to": 296
+          },
+          {
+            "line": 1453,
+            "from": 0,
+            "to": 101
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "from 1832-11-02",
+      "entities": [
+        "John S. C. Hogan",
+        "the Chicago post office",
+        "Lake Street",
+        "South Water Street"
+      ],
+      "town_finding": true,
+      "notes": "A DIMENSIONED BUILDING WITH A POSITION AND A DOUBLE USE, which is as much as any sentence in this chapter gives. 45 x 18 feet is 13.7 x 5.5 m; 'story-and-a-half' is a height; 'the angle formed by the intersection of Lake and South Water streets' is the wedge where the two streets converge east of the forks, which is a position and not a lot. data/structures/hogan_store.json exists and this reading is not applied to it here. THE POST OFFICE IS NOT A SEPARATE BUILDING and must not become one: the sentence is explicit that the office was a partitioned room inside the storehouse."
+    },
+    {
+      "id": "bk_mk1_008",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "The Rev. Jeremiah Por- ter, a native of Massachusetts, arrived at Fort Dearborn, from Fort Brady, where he had been acting as chaplain, May 13, 1833, and on June 26th organized the first Presbyterian Church of Chicago, with twenty-six members. A frame building costing 8600 was erected on the southwest corner of Lake and Clark streets, and dedi- cated to the use of a church June 4, 1834.",
+      "normalized": "The Rev. Jeremiah Porter reached Fort Dearborn from Fort Brady on 13 May 1833, organised the First Presbyterian Church of Chicago with twenty-six members on 26 June 1833, and the congregation put up a frame building costing $600 on the south-west corner of Lake and Clark streets, dedicated 4 June 1834.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1492,
+            "from": 92,
+            "to": 481
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 124, printed page 92",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833-05-13, 1833-06-26 and 1834-06-04",
+      "entities": [
+        "Rev. Jeremiah Porter",
+        "the First Presbyterian Church of Chicago",
+        "Lake Street",
+        "Clark Street"
+      ],
+      "town_finding": true,
+      "notes": "A CORNER, A COST AND THREE DATES for a building the project stands as data/structures/first_presbyterian_church.json. The dedication of 4 June 1834 is thirteen months before the scene date, so the building is standing on 1 July 1835 on this reading as on the ones the record already cites. The $600 is a construction cost and not a valuation. NOTE FOR THE PORTER CROSSWALK: this is the Reverend Jeremiah Porter the project holds at hh_porter_jeremiah, and he is NOT the H. H. Porter of the 1915 autobiography read by T-0502, who was born in Maine in December 1835 — that refusal is already written in this domain's crosswalk and nothing here disturbs it."
+    },
+    {
+      "id": "bk_mk1_009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "to sell merehandise were also issued to Robert A. Kinzie, Samuel Miller and B. H. Laughton ; and as an auctioneer, to James Kinzie. A publie ferry was established across the Chicago river at the forks, over which, it was provided, the people of the county should be crossed free, all others to be charged “schedule rates.” Mark Beaubien was the first duly appointed ferryman. The record shows that merchants' licenses were also issued to Alexander Robinson, John B. Beaubien, Medore B. Beaubien, Mark Beau- bien, Oliver Newberry, Joseph Laframboise, Brewster, Hogan & Co., Peck, Walker & Co., Joseph Naper, and Nicholas Boilvin.",
+      "normalized": "Cook County also issued licences to sell merchandise to Alexander Robinson, John B. Beaubien, Medore B. Beaubien, Mark Beaubien, Oliver Newberry, Joseph Laframboise, Brewster, Hogan & Co., Peck, Walker & Co., Joseph Naper and Nicholas Boilvin.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1391,
+            "from": 0,
+            "to": 628
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 114, printed page 86",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1831",
+      "entities": [
+        "Alexander Robinson",
+        "John B. Beaubien",
+        "Medore B. Beaubien",
+        "Mark Beaubien",
+        "Oliver Newberry",
+        "Joseph Laframboise",
+        "Brewster, Hogan & Co.",
+        "Peck, Walker & Co.",
+        "Joseph Naper",
+        "Nicholas Boilvin"
+      ],
+      "town_finding": true,
+      "notes": "TEN MERCHANTS' LICENCES IN THE TOWN'S FIRST COUNTY YEAR — a named occupation apiece, four years before the scene. A licence is a stronger document than a reminiscence: it is a county record the compiler is reading out of the commissioners' minute book, and it says the man was trading, not that somebody remembered him trading. It carries NO ADDRESS, which is the limit of it: none of these ten can be positioned off this sentence. The same paragraph, just before the quote, licenses Robert A. Kinzie, Samuel Miller and B. H. Laughton to sell merchandise and James Kinzie as auctioneer, and licenses taverns to Elijah Wentworth ($7), Samuel Miller ($5) and Russel E. Heacock at his residence on the South Branch at Heacock's Point."
+    },
+    {
+      "id": "bk_mk1_010",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "The first sale of lots was made on Septem- ber 27, 1830, by the commissioners, at which FirstSale time one hundred and thirty- of Lots. two lots were disposed of at an average price of $34—the terms of the sale being “cash in hand.” The lot which brought the highest price was lot 4 in block 29, sold to E. Roberts and Pierre Menard, Jr. for $100, lots 1 and 2 having been bid off by Alexander Robinson for $67 and $71 respectively. They were on West Water street, between Randolph and Lake. Charles Dunn paid 873 for lot 1 in block 16, on the corner of State and South Water streets. The lots which commanded the next highest prices were Nos. 8 in block 4 ($16) and 5 in block 5 ($10), purchased by Amos Foster, and 7 in block S ($11), by Clark Hollenbeck. There were but thirty-six purchasers, and only ten lots were sold south of Randolph street, they being in blocks 43 and 44.",
+      "normalized": "The canal commissioners sold 132 town lots at Chicago on 27 September 1830 at an average of $34, cash in hand. The dearest was lot 4 in block 29, to E. Roberts and Pierre Menard, Jr., for $100; Alexander Robinson took lots 1 and 2 for $67 and $71, on West Water street between Randolph and Lake; Charles Dunn paid $73 for lot 1 in block 16 at the corner of State and South Water; then lot 8 in block 4 ($16) and lot 5 in block 5 ($10) to Amos Foster and lot 7 in block 8 ($11) to Clark Hollenbeck. There were thirty-six purchasers, and only ten lots south of Randolph, in blocks 43 and 44.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1304,
+            "from": 246,
+            "to": 1127
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 109, printed page 83 (the leaf's running head is OCR'd '88'; the page is 83, between 82 at line 1293 and 84 at line 1354)",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1830-09-27",
+      "entities": [
+        "the Illinois and Michigan Canal commissioners",
+        "Edmund Roberts",
+        "Pierre Menard, Jr.",
+        "Alexander Robinson",
+        "Charles Dunn",
+        "Amos Foster",
+        "Clark Hollenbeck",
+        "West Water Street",
+        "Randolph Street",
+        "Lake Street",
+        "State Street",
+        "South Water Street"
+      ],
+      "town_finding": true,
+      "notes": "SIX NAMED MEN TIED TO NUMBERED LOTS — position evidence of the kind the queue's land-sales band exists for, five years before the scene date. It is a 1930-block-and-lot geometry the project already holds through the Thompson plat, so each of these six can in principle be put on the ground. WHAT IT IS NOT: an ownership statement for 1835. A lot bought in 1830 changed hands repeatedly in the 1834-36 speculation this same chapter describes, and nothing here says any of these six still held his lot on 1 July 1835. THE FULL TABLE OF THIRTY-SIX PURCHASERS IS PRINTED AND CANNOT BE READ FROM THIS TEXT. It follows immediately at lines 1306-1352 and the OCR has shredded it: the columns are interleaved, prices and lot numbers are scattered across lines that hold no name, and reconstructing rows from it would be invention. THE NAMES SURVIVE AND THE ROWS DO NOT, so the names are listed in the source record's what_it_supplies and no row is claimed. Reading that table needs the page images, and it is filed as its own ticket."
+    },
+    {
+      "id": "bk_mk1_011",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "It would seem that but little interest was taken in the question, as but thirteen votes were cast by the twenty-eight legal electora—twelve being in favor, and one, that cast by Russel E. Heacock, opposed to the measure.",
+      "normalized": "Chicago's incorporation as a town was decided at a public meeting on 5 August 1833, at which only thirteen of the twenty-eight legal electors voted — twelve for and one, Russel E. Heacock, against.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1471,
+            "from": 64,
+            "to": 284
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 123, printed page 91",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833-08-05",
+      "entities": [
+        "Russel E. Heacock",
+        "the town of Chicago"
+      ],
+      "town_finding": true,
+      "notes": "TWENTY-EIGHT LEGAL ELECTORS IS A CEILING ON THE TOWN'S ADULT MALE HOUSEHOLDERS in August 1833, and it is the most exact statement of the town's size in this chapter before the census figures. The list of the twenty-eight follows at lines 1480-1483 and is read as its own claim. Heacock's single opposing vote is recorded because the same paragraph's footnote explains why his name is absent from the voter list — he lived outside the town limits — and a later run reconciling the two lists will need that."
+    },
+    {
+      "id": "bk_mk1_012",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "W. R. Adams, R. J. Hamilton, J. B. Beaubien, E. S. Kimberly, Mark Beaubien, James Kinzie, C. A. Ballard, Gholson Kercheval. Medore Beaubien, William Ninson, Philo Carpenter, T. J. V. Owen,\nGeorge Chapman, Hiram Pearsons, David Carver, Eli A. Rider, G. W. Dole, Matthias Smith, Enoch Darling, G. W. Snow,\nSt-phen F. Gale, James Gilbert,\nJohn T. Temple, Charles Taylor, J. 8. C. Hogan, John 8. Wright, Dexter J. Hapgood, John Watkins.",
+      "normalized": "The voters at the first election ever held in the town of Chicago, 10 August 1833, were W. R. Adams, R. J. Hamilton, J. B. Beaubien, E. S. Kimberly, Mark Beaubien, James Kinzie, C. A. Ballard, Gholson Kercheval, Medore Beaubien, William Ninson, Philo Carpenter, T. J. V. Owen, George Chapman, Hiram Pearsons, David Carver, Eli A. Rider, G. W. Dole, Matthias Smith, Enoch Darling, G. W. Snow, Stephen F. Gale, James Gilbert, John T. Temple, Charles Taylor, J. S. C. Hogan, John S. Wright, Dexter J. Hapgood and John Watkins.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1480,
+            "from": 106,
+            "to": 294
+          },
+          {
+            "line": 1481,
+            "from": 0,
+            "to": 114
+          },
+          {
+            "line": 1482,
+            "from": 0,
+            "to": 31
+          },
+          {
+            "line": 1483,
+            "from": 0,
+            "to": 96
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 123, printed page 91",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833-08-10",
+      "entities": [
+        "W. R. Adams",
+        "Richard J. Hamilton",
+        "John B. Beaubien",
+        "E. S. Kimberly",
+        "Mark Beaubien",
+        "James Kinzie",
+        "C. A. Ballard",
+        "Gholson Kercheval",
+        "Medore Beaubien",
+        "William Ninson",
+        "Philo Carpenter",
+        "Thomas J. V. Owen",
+        "George Chapman",
+        "Hiram Pearsons",
+        "David Carver",
+        "Eli A. Rider",
+        "George W. Dole",
+        "Matthias Smith",
+        "Enoch Darling",
+        "George W. Snow",
+        "Stephen F. Gale",
+        "James Gilbert",
+        "John T. Temple",
+        "Charles Taylor",
+        "John S. C. Hogan",
+        "John S. Wright",
+        "Dexter J. Hapgood",
+        "John Watkins"
+      ],
+      "town_finding": true,
+      "notes": "TWENTY-EIGHT MEN, NAMED, IN THE TOWN IN AUGUST 1833 — a list the town made of its own qualified inhabitants, which is the class of source this project has measured as paying twenty times better than a census. It is TWO YEARS SHORT OF THE SCENE DATE and residence in 1833 is not residence in 1835; each name is a candidate for a residents-layer row and not one of them is written into one here, because the ticket routes layer edits to the layer's own PR. THE OCR IS SET IN TWO COLUMNS AND THE READING FOLLOWS THE PRINTED ORDER DOWN THE LEFT COLUMN THEN THE RIGHT, which is how the names pair off in the text; where a pairing is ambiguous the name is still read, because the list is a set and its order carries nothing. 'St-phen F. Gale' is committed as the OCR prints it and is Stephen F. Gale. The paragraph's own footnote adds two things a later pass needs: R. E. Heacock is absent because he lived outside the limits, and 'the absence of former French and Indian voters will also be noticed' — a change of composition between the 1830 poll and this one, stated by the compiler and not measured here."
+    },
+    {
+      "id": "bk_mk1_013",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "The first brickyard was established by Tyler K. Blodgett, this year, and also the manufacturing establishment of Asahel Pierce.",
+      "normalized": "Tyler K. Blodgett set up the town's first brickyard in 1833, and Asahel Pierce his manufacturing establishment in the same year.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1506,
+            "from": 0,
+            "to": 127
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 127; the folio is 93",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833",
+      "entities": [
+        "Tyler K. Blodgett",
+        "Asahel Pierce"
+      ],
+      "town_finding": true,
+      "notes": "TWO OF THE FORTY-NINE LEAD SURNAMES, ANSWERING. `blodgett` and `pierce` are both on the Newberry index's list of surnames this project already holds that the index's Moses and Kirkland cards stand on, and this is the sentence they land on: each names a man, a trade and a year, two years before the scene. data/structures/brickyard_north_side.json is the project's brickyard record and this reading is not applied to it — whether Blodgett's yard is that yard is a structures-layer question. 'the first brickyard' is a precedence claim by an 1895 compiler and is graded accordingly; what is solid is that a brickyard and a manufactory both existed in 1833."
+    },
+    {
+      "id": "bk_mk1_014",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "In the column of prices current, flour is quoted at $6 per bar- rel, and corn and wheat at thesame price, 63 to 75 cents per bushel. Beef was quoted at from 2 to 4 cents per pound, dried, 10 to 12. Green hams 6 cents, smoked 10. Lard 10, butter 17 and cheese 9 cents per pound; tea was quoted 87c. to $1.25 per pound; loaf sugar 20 cents, and brown 14; coffee 17, whiskey 40 cents a gallon. Brown sheet- ings 13 cents per yard and calicos from 15 to 38 cents.",
+      "normalized": "The Chicago Democrat's prices current in the winter of 1833-34 quoted flour at $6 a barrel, corn and wheat at 63 to 75 cents a bushel, beef 2 to 4 cents a pound and dried 10 to 12, green hams 6 cents and smoked 10, lard 10, butter 17, cheese 9, tea 87 cents to $1.25, loaf sugar 20 cents and brown 14, coffee 17, whiskey 40 cents a gallon, brown sheetings 13 cents a yard and calicos 15 to 38 cents.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1506,
+            "from": 128,
+            "to": 587
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 127; the folio is 93",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "the winter of 1833-34",
+      "entities": [
+        "the Chicago Democrat"
+      ],
+      "town_finding": false,
+      "notes": "A PRICE COLUMN AND NOT A TOWN FINDING, and `town_finding` is false for a reason worth stating: nothing in the reconstruction is priced, no record's confidence turns on the cost of a barrel of flour, and a run that treats this as evidence for what the town looked like will have mistaken a reading for a finding. It is recorded because it is what a sweep of this chapter yields and because it is the one place the chapter says what was FOR SALE — flour, corn, wheat, beef, ham, lard, butter, cheese, tea, sugar, coffee, whiskey, sheeting and calico — which does bear on what a grocery's or a dry-goods store's shelves held, if a later pass wants it. THE FIGURES ARE THE COMPILER'S TRANSCRIPTION of a newspaper column he read and this project does not hold; where the Democrat itself is reached, it outranks this."
+    },
+    {
+      "id": "bk_mk1_015",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "The first of these to be built was across the north branch for the use of foot passengers only, and was erected by Samuel Miller. One across the south branch, near Randolph street, at first consisted of floating logs tied together, but was subsequently recon- structed,was used until 1840. It was built by Alanson H. and Charles Taylor from funds raised by subscription,amounting to $486.20, of which the Indians of the vicinity con- tributed $200.",
+      "normalized": "The first bridge was a foot bridge across the north branch, built by Samuel Miller. The one across the south branch near Randolph street was at first floating logs tied together, was afterwards rebuilt, and was used until 1840; Alanson H. and Charles Taylor built it out of $486.20 raised by subscription, $200 of which was given by the Indians of the neighbourhood.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1451,
+            "from": 33,
+            "to": 481
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1832 for both, from the paragraph's own year; the south-branch bridge is said to last until 1840",
+      "entities": [
+        "Samuel Miller",
+        "Alanson H. Taylor",
+        "Charles Taylor",
+        "the north branch",
+        "the south branch",
+        "Randolph Street"
+      ],
+      "town_finding": true,
+      "notes": "TWO BRIDGES, A POSITION FOR ONE, A BUILDER FOR EACH AND A SUBSCRIPTION LIST'S TOTAL. The south-branch crossing 'near Randolph street' still standing in 1840 is a bridge that is standing on the scene date of 1 July 1835 on this reading, and its first form — floating logs tied together — is an APPEARANCE claim, which is rarer in this chapter than a date. The $200 from 'the Indians of the vicinity' is a fact about who paid for the town's infrastructure in 1832 and is recorded verbatim rather than paraphrased. NOTHING IS APPLIED to data/structures/ here; whether this is the crossing the project already stands is a structures-layer question."
+    },
+    {
+      "id": "bk_mk1_016",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "bridge. Dearborn street, Nelson R. Nor- ton being the contractor, It was300 feet in length, by sixteen in width, and had a double draw.",
+      "normalized": "The first drawbridge over the river, at Dearborn street, was built in 1834 by the contractor Nelson R. Norton; it was 300 feet long by sixteen wide and had a double draw.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1530,
+            "from": 0,
+            "to": 135
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 131, printed page 95",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1834",
+      "entities": [
+        "Nelson R. Norton",
+        "the Dearborn Street drawbridge",
+        "Dearborn Street",
+        "the Chicago river"
+      ],
+      "town_finding": true,
+      "notes": "A DIMENSIONED BRIDGE ON A NAMED STREET, A YEAR BEFORE THE SCENE — 300 x 16 feet is 91.4 x 4.9 m, and 'a double draw' is a mechanism, not a decoration. data/structures/dearborn_street_drawbridge.json is the project's record of it and is not edited here. The contractor's name is the kind of occupation evidence the owner's instruction asks for: Nelson R. Norton was building bridges at Chicago in 1834."
+    },
+    {
+      "id": "bk_mk1_017",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "The trustees elected this year were Hiram Hugunin, president, and W. Kim- ball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Lloyd and George W. Dole. The new board prohibited gaming houses, and tne sale of liquors on Sunday; provided for the election of police constables; and adopted a seal for the town, the device represent- ing a spread eagle holding three arrows and a sprig in his claws, surrounded with the words “ United States of America.” They also selected two pieces of ground which they ordered the surveyor to lay out as cemeteries. One of these comprised sixteen acres on the south side, near the corner of Wabash avenue and Twenty-third street, and the other twelve acres, on the north side, near Chicago avenue on Clark street. These were the first places set apart for the burial of the dead; there having hitherto been no special loca- tion,private grounds around the residence of the deceased being frequently used for that purpose.",
+      "normalized": "The town trustees elected in 1835 were Hiram Hugunin as president with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Lloyd and George W. Dole. They prohibited gaming houses and Sunday liquor selling, provided for electing police constables, adopted a town seal showing a spread eagle with three arrows and a sprig, and had two grounds laid out as cemeteries — sixteen acres on the south side near Wabash avenue and Twenty-third street and twelve acres on the north side near Chicago avenue on Clark street — the first places set apart for burial, private grounds around a house having been used before.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1550,
+            "from": 0,
+            "to": 963
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 132, printed page 96",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1835, the trustees taking office in the year of the scene",
+      "entities": [
+        "Hiram Hugunin",
+        "W. Kimball",
+        "B. King",
+        "S. Jackson",
+        "E. B. Williams",
+        "F. C. Sherman",
+        "A. Lloyd",
+        "George W. Dole",
+        "the town of Chicago"
+      ],
+      "town_finding": true,
+      "notes": "EIGHT MEN HOLDING TOWN OFFICE IN THE SCENE YEAR, and two pieces of GROUND. The trustees are eight named residents of 1835 — the strongest kind of residence evidence for the scene date this chapter offers, because a trustee had to be there to serve. The cemeteries are a land-use finding: two parcels, sized and located, set apart during 1835. WHICH SIDE OF 1 JULY THEY FALL ON IS NOT STATED and must not be assumed — the sentence gives a year and no month, so the reconstruction cannot show a laid-out cemetery on the strength of it. The closing clause is a statement about the town BEFORE this: burials were made in private grounds around the house of the deceased, which is a fact about the yards this project models and is offered to no layer here."
+    },
+    {
+      "id": "bk_mk1_018",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "The limits of the town had been increased by act of the legislature of February 11, 1835, to include therein all the land east of State street from Twelfth street to Chi- cago avenue, except the Fort Dearborn reservation.",
+      "normalized": "An act of the legislature of 11 February 1835 enlarged the town limits to take in all the land east of State street from Twelfth street to Chicago avenue, except the Fort Dearborn reservation.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1549,
+            "from": 96,
+            "to": 317
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 132, printed page 96",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1835-02-11",
+      "entities": [
+        "the town of Chicago",
+        "State Street",
+        "Twelfth Street",
+        "Chicago Avenue",
+        "the Fort Dearborn reservation"
+      ],
+      "town_finding": true,
+      "notes": "A DATED BOUNDARY FOUR AND A HALF MONTHS BEFORE THE SCENE DATE, which makes it one of the few statements in this chapter that describes the town as it stood on 1 July 1835 rather than before or after it. It is a legal limit and not a built extent: the town's corporate boundary moved east to the lake between Twelfth and Chicago avenue, and NOTHING here says a building stood in the added ground. The reservation is excepted, which is consistent with everything this project holds about Fort Dearborn's land."
+    },
+    {
+      "id": "bk_mk1_019",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "Among the most prominent of these were William H. Brown, J. Young Scammon, William B. Ogden, Dr. C. V. Dyer, Charles L. Wilson, George Manierre, H. O. Stone, William G. Powers, Edward D. Taylor, Norman Clarke, Abram Gale, Arthur G. Burley, William Hickling, Alonzo Huntington, Tuthill King, Edward Manierre, E. К. Hubbard, and Julian 8. Rumsey.",
+      "normalized": "Among the most prominent of those who settled at Chicago in 1835 were William H. Brown, J. Young Scammon, William B. Ogden, Dr. C. V. Dyer, Charles L. Wilson, George Manierre, H. O. Stone, William G. Powers, Edward D. Taylor, Norman Clarke, Abram Gale, Arthur G. Burley, William Hickling, Alonzo Huntington, Tuthill King, Edward Manierre, E. K. Hubbard and Julian S. Rumsey.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1542,
+            "from": 409,
+            "to": 753
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 131, printed page 95",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1835, month unstated",
+      "entities": [
+        "William H. Brown",
+        "J. Young Scammon",
+        "William B. Ogden",
+        "Charles Volney Dyer",
+        "Charles L. Wilson",
+        "George Manierre",
+        "H. O. Stone",
+        "William G. Powers",
+        "Edward D. Taylor",
+        "Norman Clarke",
+        "Abram Gale",
+        "Arthur G. Burley",
+        "William Hickling",
+        "Alonzo Huntington",
+        "Tuthill King",
+        "Edward Manierre",
+        "E. K. Hubbard",
+        "Julian S. Rumsey"
+      ],
+      "town_finding": true,
+      "notes": "EIGHTEEN NAMED ARRIVALS IN THE SCENE YEAR, AND THE MONTH IS THE WHOLE PROBLEM. The scene date is 1 July 1835 and this sentence gives no month for any of the eighteen, so not one of them can be placed in the town on that date off this passage alone — an arrival in November 1835 is as consistent with it as an arrival in March. They are CANDIDATES, and the value of the list is that it is a short, printed, checkable set of names to run against the poll and tax lists this project already holds, where a month may be recoverable. `hubbard` and `clarke` are on the Newberry lead list for this work; E. K. Hubbard is not Gurdon S. Hubbard, who is in the town from the 1820s, and the two must not be merged on a surname. The compiler's selection principle is stated in his own words and is a warning: these are the ones who 'subsequently became prominent', so the list is biased toward men who prospered and is not a sample of who arrived."
+    },
+    {
+      "id": "bk_mk1_020",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "The fact that a comparatively large num- ber of frame buildings was erected this year (1833) —abont 165—indicates a corresponding influx of permanent settlers. They nearly all located on either South or North Water streets. One brick building was also erected—the first in the town outside the fort. It was built by Alanson Sweet and Wm. Worthingham, for John Noble, on a lot adjoining that afterwards oceupied by the Lake House, on the North Side.",
+      "normalized": "About 165 frame buildings went up at Chicago in 1833, nearly all of them on South or North Water street, and one brick building — the first in the town outside the fort — was put up by Alanson Sweet and William Worthingham for John Noble, on a lot next to the one afterwards occupied by the Lake House on the north side.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1458,
+            "from": 0,
+            "to": 448
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833",
+      "entities": [
+        "Alanson Sweet",
+        "William Worthingham",
+        "John Noble",
+        "South Water Street",
+        "North Water Street",
+        "the Lake House"
+      ],
+      "town_finding": true,
+      "notes": "A BUILDING COUNT, A DISTRIBUTION AND A FIRST-BRICK CLAIM WITH THREE NAMES ON IT. 165 frame buildings in one year, 'nearly all' on the two Water streets, is a statement about WHERE the town was dense two years before the scene, and it is the kind of thing the roof programme is measured against. The brick building is placed only by a neighbour — the lot beside the future Lake House site on the north side — which is a position good to a block and not to a lot, and it is read as no better than that. THE FIRST-BRICK PRECEDENCE IS THE COMPILER'S and this project holds other candidates; nothing here settles it, and no structure record is added."
+    },
+    {
+      "id": "bk_mk1_021",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "By June 18th, according to the Democrat, seventy-five new buildings had been erected, some of them being substantial and three stories high.\nThe old system of using heavy sills, posts, beams and rafters for frame buildings was found too slow, and now came in vogue the new style called the balloon frame, originated by George W. Snow.",
+      "normalized": "By 18 June 1834 seventy-five new buildings had been put up, some substantial and three storeys high; and the heavy-timbered frame gave way to the balloon frame, which George W. Snow originated, its foot-square timbers replaced by two-by-fours.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1521,
+            "from": 268,
+            "to": 408
+          },
+          {
+            "line": 1522,
+            "from": 0,
+            "to": 193
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 128, printed page 94",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1834, the building count to 18 June 1834",
+      "entities": [
+        "George W. Snow",
+        "the balloon frame",
+        "the Chicago Democrat"
+      ],
+      "town_finding": true,
+      "notes": "THE BALLOON FRAME'S ORIGIN, WHICH IS A CLAIM ABOUT HOW EVERY FRAME BUILDING IN THIS RECONSTRUCTION WAS PUT TOGETHER. Moses and Kirkland credit George W. Snow by name and date the change to 1834, a year before the scene, and give the dimensions of the change: timbers 'a foot square' replaced by 'two by four inches'. This project models framing at the level of appearance rather than joinery, so nothing is edited by it, but a run that ever asks what a Chicago frame of 1835 was made of now has a printed answer with a name and a date on it. THE ATTRIBUTION IS DISPUTED IN THE WIDER LITERATURE — Snow and Augustine Taylor are both credited elsewhere — and this claim records what THIS book says, not who is right. The 75 buildings by 18 June 1834 is a second dated count to set beside the 165 of 1833."
+    },
+    {
+      "id": "bk_mk1_022",
+      "kind": "appearance",
+      "reading": "transcription_mediated",
+      "quote": "This little mushroom town is situated upon the verge of a perfectly level tract of country, for the greater part consisting of open prairie lands, at a point where a small river, whose sources interlock in the wet season with those of the Illinois, enters Lake Michigan. The upstart village lies principally on the right bank of the river, above the fort. Nextin rank to the officers and commissioners may be noted certain storekeepers and merchants resident here, looking either to the influx of new set- tlers establishing themselvesin the neighbor- hood, or those passing yet farther to the westward, for custom and profit. Add to these a doctor or two, two or three lawyers, a land agent and five or six hotel keepers. These may be considered as stationary, and proprietors of the half a hundred clapboard houses around town.\nThestreets of the village (in the fall) soon became deluged with mud. It lay in many places half a leg deep, up to the hubs of the carts and wagons in the middle of the streets, and the only sidewalk we had was a single plank stretched from one building to another.",
+      "normalized": "Charles Joseph Latrobe, seeing Chicago in September 1833, described a mushroom town on the verge of level open prairie where a small river enters the lake, lying mostly on the right bank above the fort, with storekeepers and merchants, a doctor or two, two or three lawyers, a land agent and five or six hotel keepers as its settled inhabitants, owning about fifty clapboard houses; and the village schoolmaster Granville T. Sproat described its streets in the same autumn as deluged with mud half a leg deep, up to the hubs of the carts in mid-street, with a single plank stretched from building to building for the only sidewalk.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1512,
+            "from": 63,
+            "to": 892
+          },
+          {
+            "line": 1513,
+            "from": 105,
+            "to": 370
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 128, printed page 94",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "September and the autumn of 1833",
+      "entities": [
+        "Charles Joseph Latrobe",
+        "Granville T. Sproat",
+        "the Chicago river",
+        "Fort Dearborn"
+      ],
+      "town_finding": true,
+      "notes": "THE ONLY EYEWITNESS DESCRIPTION OF THE TOWN'S FABRIC IN THIS CHAPTER, and it is two eyewitnesses, twenty-two months before the scene date. 'Half a hundred clapboard houses' is a building count with a CLADDING on it — clapboard, not log — and a settled-inhabitant occupation list beside it. Sproat's mud is a GROUND-SURFACE reading: mud half a leg deep in the streets and up to the wagon hubs, with one plank for a sidewalk, is a statement about the road surface this project models and about the absence of any made sidewalk. NEITHER IS APPLIED HERE. Both are 1833, both are autumn, and the scene is a July, so a run using them for the summer surface would be reading a wet season onto a dry one. THEY ARE ALSO QUOTED AT SECOND HAND: Moses and Kirkland are printing Latrobe's Rambler in North America and a letter Sproat wrote to the Tribune in June 1887, and where this project reaches those originals they outrank this."
+    },
+    {
+      "id": "bk_mk1_023",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "The public improvementa of the town at this time consisted of an estray pen, built by Samuel Miller under contract for the county, costing $12, and a jail, constructed “оѓ logs well bolted together,\" located at the north- west corner of the public square.",
+      "normalized": "The town's public improvements at the end of 1833 amounted to an estray pen built by Samuel Miller under contract to the county for $12, and a jail of logs well bolted together at the north-west corner of the public square.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1507,
+            "from": 0,
+            "to": 255
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 127; the folio is 93",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1833",
+      "entities": [
+        "Samuel Miller",
+        "the town estray pen",
+        "the first Cook County jail",
+        "the public square"
+      ],
+      "town_finding": true,
+      "notes": "A CORNER FOR THE JAIL AND A BUILDER AND PRICE FOR THE ESTRAY PEN. data/structures/estray_pen.json is already in the scene; the $12 contract and Samuel Miller's name are new to it here and are not applied. THE JAIL'S CORNER IS THE FINDING: 'the northwest corner of the public square', with a construction — 'of logs well bolted together' — which is a material and a method in five words. The public square is block 39 of the Thompson plat, which this project holds, so a north-west corner is a placeable position. It is also the OPPOSITE corner from the 1835 court-house of bk_mk1_002, which puts two county buildings on one square and is worth stating because a later run will otherwise wonder whether the two sentences describe the same building. They do not."
+    },
+    {
+      "id": "bk_mk1_024",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Before it was completed, owing to the defective foundation and construction, the walls of the tower, fifty feet high, fell. Another tower, forty feet in height, was erected in 1832 with a fourteen inch reflector. Samuel S. Lasby was the first, and Mark Beaubien the last keeper of the old light house.",
+      "normalized": "The first Chicago light-house tower fell before it was finished, its fifty-foot walls failing on a defective foundation and construction; a second tower forty feet high was put up in 1832 with a fourteen-inch reflector. Samuel S. Lasby was its first keeper and Mark Beaubien its last.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1464,
+            "from": 202,
+            "to": 503
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 123, printed page 91",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1831 for the collapse and 1832 for the second tower",
+      "entities": [
+        "the Chicago light-house",
+        "Samuel S. Lasby",
+        "Mark Beaubien"
+      ],
+      "town_finding": true,
+      "notes": "A HEIGHT, AN OPTIC AND TWO KEEPERS FOR A STRUCTURE THIS PROJECT STANDS — data/structures/chicago_lighthouse_1832.json. Forty feet is 12.2 m and is a dimension the record can be checked against; a fourteen-inch reflector is a fitting; and a keeper is an OCCUPATION attached to a named man at a named building, which is what the owner's instruction asks for. THE SENTENCE CITES ANDREAS FOR ITSELF — the OCR carries '(Andreas 1,240.)' at its end — so this is a compiler quoting a compiler the project already holds, and it corroborates rather than adds a source. IT IS NOT APPLIED and no record is edited. 'the last keeper' is undated and may be long after 1835."
+    },
+    {
+      "id": "bk_mk1_025",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "The bank referred to was a branch of the State bank, of which Wm. H. Brown was president, and the second printing office was that of the American, a weekly newspaper established June 8, 1835, by T. O. Davis.",
+      "normalized": "The bank counted by the 1835 census was a branch of the State bank with William H. Brown as its president, and the second printing office was that of the American, a weekly newspaper founded on 8 June 1835 by T. O. Davis.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1544,
+            "from": 0,
+            "to": 207
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 131, printed page 95",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1835; the American is founded 1835-06-08",
+      "entities": [
+        "William H. Brown",
+        "the State Bank of Illinois, Chicago branch",
+        "the Chicago American",
+        "T. O. Davis"
+      ],
+      "town_finding": true,
+      "notes": "TWO BUSINESSES IN THE SCENE YEAR AND ONE OF THEM IS DATED TO THE DAY, THREE WEEKS BEFORE THE SCENE. The Chicago American was founded on 8 June 1835 and so is trading on 1 July 1835 — one of very few statements in this chapter that lands unambiguously on the right side of the scene date. data/structures/chicago_american_office.json is the project's record of its office and is not edited here. The bank is the one the census sentence counts (bk_mk1_003, 'one bank'), which is what makes the two claims read together: the census gives the count, this gives the name and the man. NO ADDRESS FOR EITHER."
+    },
+    {
+      "id": "bk_mk1_026",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "The year 1832 also witnessed the beginning of the slaughtering and packing business of Chicago by George W. Dole, A. Clybourn, the Noble brothers, and Gurdon S. Hubbard,",
+      "normalized": "The slaughtering and packing business of Chicago began in 1832 with George W. Dole, Archibald Clybourn, the Noble brothers and Gurdon S. Hubbard.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1448,
+            "from": 0,
+            "to": 169
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1830_1832_leaves_107_122",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1832",
+      "entities": [
+        "George W. Dole",
+        "Archibald Clybourn",
+        "the Noble brothers",
+        "Gurdon S. Hubbard"
+      ],
+      "town_finding": true,
+      "notes": "FOUR MEN AND A TRADE, THREE YEARS BEFORE THE SCENE, and `hubbard` is the highest-ranked lead surname on the Newberry index's list for this work — so this is the lookup T-0581 exists to make, answering. The project already stands data/structures/clybourn_slaughterhouse.json and dole_warehouse_south.json, and holds Gurdon S. Hubbard's own autobiography in this same domain, which is a FIRST-PERSON source and outranks this compiler wherever the two speak to the same thing. What this adds is the partnership: four names in one trade in one year. NO POSITION. 'the Noble brothers' is a plural surname and cannot be merged onto John Noble or Mark Noble individually — that refusal is written into this domain's crosswalk on this pass."
+    },
+    {
+      "id": "bk_mk1_027",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "Among the new arrivals are found the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Oleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel’ Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter, Rev. Allan B. Freeman.",
+      "normalized": "Among those who arrived at Chicago in the spring of 1833 were John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, the Rev. Jeremiah Porter and the Rev. Allan B. Freeman.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1457,
+            "from": 70,
+            "to": 385
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 122, printed page 90",
+        "list": "moses_kirkland_v1_ch6_1833_leaves_122_128",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "the spring of 1833",
+      "entities": [
+        "John Dean Caton",
+        "John K. Botsford",
+        "Silas B. Cobb",
+        "Charles Cleaver",
+        "Walter Kimball",
+        "H. W. Knickerbocker",
+        "Ezekiel Morrison",
+        "Asahel Pierce",
+        "Hibbard Porter",
+        "Stephen Rexford",
+        "Henry Whitehead",
+        "Eli B. Williams",
+        "Dr. John T. Temple",
+        "Rev. Jeremiah Porter",
+        "Rev. Allan B. Freeman"
+      ],
+      "town_finding": true,
+      "notes": "FIFTEEN NAMED ARRIVALS TWO YEARS BEFORE THE SCENE, and FOUR LEAD SURNAMES LAND HERE — `caton`, `kimball`, `pierce` and `allen`, the last of which resolves to a GIVEN name (the Rev. Allan B. Freeman) and not to a surname at all, which is a refusal and is written as one in this domain's crosswalk. A 1833 arrival is a far better bet for 1835 residence than an 1835 arrival with no month, because two years of the town's own records lie between it and the scene date for a later pass to check it against; three of these fifteen — Caton, Kimball and Williams — already appear elsewhere in this chapter holding town office in 1833, 1835 or 1836, which is exactly that check working. NOT ONE IS WRITTEN INTO THE RESIDENTS LAYER HERE."
+    },
+    {
+      "id": "bk_mk1_028",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "Among the new arrivals who became dis- tinguished and leading citizens were F. C. Sherman, Bennett Bailey, James B. Bradwell, Isaac Cook, Ebenezer Peck, Grant Goodrich, James Grant, George M. Gray, Frederick A. Howe, Horatio G. Loomis, Ephraim Morrison, William Jones, Thomas Church, James H. Collins, and John L. Wilson.",
+      "normalized": "Among those who arrived in 1834 and became leading citizens were F. C. Sherman, Bennett Bailey, James B. Bradwell, Isaac Cook, Ebenezer Peck, Grant Goodrich, James Grant, George M. Gray, Frederick A. Howe, Horatio G. Loomis, Ephraim Morrison, William Jones, Thomas Church, James H. Collins and John L. Wilson.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1527,
+            "from": 203,
+            "to": 524
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 131, printed page 95",
+        "list": "moses_kirkland_v1_ch6_1834_1836_leaves_128_142",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1834, month unstated",
+      "entities": [
+        "F. C. Sherman",
+        "Bennett Bailey",
+        "James B. Bradwell",
+        "Isaac Cook",
+        "Ebenezer Peck",
+        "Grant Goodrich",
+        "James Grant",
+        "George M. Gray",
+        "Frederick A. Howe",
+        "Horatio G. Loomis",
+        "Ephraim Morrison",
+        "William Jones",
+        "Thomas Church",
+        "James H. Collins",
+        "John L. Wilson"
+      ],
+      "town_finding": true,
+      "notes": "FIFTEEN MORE NAMES, A YEAR NEARER THE SCENE, AND THREE LEAD SURNAMES ANSWERING — `peck` (Ebenezer Peck, who is NOT Philip F. W. Peck of bk_mk1_004 and must not be merged with him on the surname), `gray` (George M. Gray) and `jones` (William Jones). F. C. Sherman appears again in this chapter as a town trustee in 1835, which corroborates his presence across the scene date from a second sentence. THE SELECTION BIAS OF bk_mk1_019 APPLIES HERE TOO and in the compiler's own words: these are the arrivals 'who became distinguished and leading citizens', so the list says nothing about who else came in 1834. Horatio G. Loomis is the Loomis of the Harmon and Loomis block this same chapter has built in 1836; that is a later building and is not read back onto 1835."
+    },
+    {
+      "id": "bk_mk1_029",
+      "kind": "landscape",
+      "reading": "transcription_mediated",
+      "quote": "1834-5. Open winter, little snow, front doors open all winter, cattle lived on grass on river bank.",
+      "normalized": "The winter of 1834-5 at Chicago was open, with little snow; front doors stood open all winter and cattle lived on grass on the river bank.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1237,
+            "from": 0,
+            "to": 99
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 103, printed page 79",
+        "list": "moses_kirkland_v1_ch5_log_cabin_age_leaves_99_104",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "the winter of 1834-35, ending in the spring immediately before the scene date of 1835-07-01",
+      "entities": [
+        "the Chicago river",
+        "the river bank"
+      ],
+      "town_finding": true,
+      "notes": "THE ONLY STATEMENT IN THIS VOLUME ABOUT THE WEATHER OF THE SCENE'S OWN YEAR, and it describes the winter that ended four months before 1 July 1835. Three things are in it and all three bear on the ground this project models: the winter was OPEN with LITTLE SNOW, so there was no long freeze to kill back the sward; front doors stood open all winter, which is a claim about how mild it was and not about the doors; and CATTLE LIVED ON GRASS ON THE RIVER BANK, which says the bank carried standing grass through the winter and that the town's cattle were grazing it. WHAT IT DOES NOT SAY is what the following summer was like, and a run must not read an open winter as a dry June. IT IS NOT APPLIED to data/flora/ or data/terrain/ here. The provenance is unusually good for a weather note and is worth stating: these are John L. Wilson's own 'weather notes, 1830 to 1880, 50 years', from his experience and from the Evening Journal, and the manuscript was filed at the Chicago Historical Society when Moses and Kirkland printed it — a contemporary Chicagoan's running record, not a recollection composed afterwards. Wilson himself is in this chapter as an 1834 arrival (bk_mk1_028), so he was in the town for the winter he describes."
+    },
+    {
+      "id": "bk_mk1_030",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "Of the American names not heretofore mentioned, Henry Kelley was a single man working for Samuel Miller. Cole Weeks was a discharged soldier, Joseph Anderson was a laborer without family.",
+      "normalized": "Of the American voters of 1826 not mentioned before, Henry Kelley was a single man working for Samuel Miller, Cole Weeks a discharged soldier, and Joseph Anderson a labourer without family.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1175,
+            "from": 0,
+            "to": 187
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 100; the leaf's running head is OCR'd and the folio is 76",
+        "list": "moses_kirkland_v1_ch5_log_cabin_age_leaves_99_104",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1826",
+      "entities": [
+        "Henry Kelley",
+        "Samuel Miller",
+        "Cole Weeks",
+        "Joseph Anderson"
+      ],
+      "town_finding": true,
+      "notes": "THREE MEN, THREE OCCUPATIONS AND THREE HOUSEHOLD STATEMENTS IN ONE SENTENCE — the densest occupation-plus-composition line found anywhere in this reading, and exactly the shape the owner's core-dataset instruction asks for. Kelley is a SINGLE man and EMPLOYED BY A NAMED MAN, which is a works_at relation and not merely a trade; Weeks is a discharged soldier, which is a former occupation and an origin; Anderson is a labourer WITHOUT FAMILY, which is a household size of one. `anderson` is on the Newberry index's lead list for this work and this is where it lands. IT IS 1826, NINE YEARS BEFORE THE SCENE, and a household of one in 1826 is not a household of one in 1835 — none of the three is written into the residents layer here, and a later pass that spends them must carry the nine years with them."
+    },
+    {
+      "id": "bk_mk1_031",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "Taxpayers. the amount of taxes assessed against each; upon a valuation of one per cent: John B. Beaubien, $10; Jonas Cly- bourn, $6.25; John K. Clark, $2.50 ; John Crafts, $50; Jeremy Clairmont, $1; Louis Coutra, $.50; John Kinzie, $5; Claude\nLaframboise, $1 ; Joseph Laframboise, 3.50 ;\nDavid MeKee, $1; Peter Piche, $1; Alex- ander Robinson, $2; Alexander Woleott, $5.72 ; Antoine Wilemet (Ouilmette), $4.",
+      "normalized": "The tax-payers living near Fort Dearborn in 1825, assessed at one per cent of valuation, were John B. Beaubien $10, Jonas Clybourn $6.25, John K. Clark $2.50, John Crafts $50, Jeremy Clairmont $1, Louis Coutra 50 cents, John Kinzie $5, Claude Laframboise $1, Joseph Laframboise $3.50, David McKee $1, Peter Piche $1, Alexander Robinson $2, Alexander Wolcott $5.72 and Antoine Ouilmette $4.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1168,
+            "from": 0,
+            "to": 242
+          },
+          {
+            "line": 1169,
+            "from": 0,
+            "to": 44
+          },
+          {
+            "line": 1170,
+            "from": 0,
+            "to": 119
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 100; the folio is 76",
+        "list": "moses_kirkland_v1_ch5_log_cabin_age_leaves_99_104",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1825",
+      "entities": [
+        "John B. Beaubien",
+        "Jonas Clybourn",
+        "John K. Clark",
+        "John Crafts",
+        "Jeremy Clairmont",
+        "Louis Coutra",
+        "John Kinzie",
+        "Claude Laframboise",
+        "Joseph Laframboise",
+        "David McKee",
+        "Peter Piche",
+        "Alexander Robinson",
+        "Alexander Wolcott",
+        "Antoine Ouilmette"
+      ],
+      "town_finding": true,
+      "notes": "FOURTEEN NAMES WITH A NUMBER APIECE — the earliest RANKED list of Chicago's inhabitants this reading found, and the number is a proxy for wealth because the assessment is one per cent of valuation. Crafts at $50 is valued five times the next man; Coutra at fifty cents is valued a hundredth of Crafts. THE RANKING IS THE FINDING, not the money: it says who in 1825 had property worth taxing and by roughly how much they differed, which is the only quantitative statement about the settlement's social range in this volume. The compiler draws his own inference in the next sentence — that fourteen taxpayers matches John H. Fonda's fourteen houses of the same year, so each taxpayer was a householder — and that inference is HIS and is recorded as his, not adopted here. TEN YEARS BEFORE THE SCENE. 'Antoine Wilemet (Ouilmette)' is printed with its own gloss and is committed as printed."
+    },
+    {
+      "id": "bk_mk1_032",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "The first ferry license was issued June 2, 1829, to Archibald Clybourn and Samuel\nMiller, authorizing them ‘to\nkeep a ferry across the Chicago river, at the lower forks, near Wolf's Point,\ncrossing the river below the northeast branch, and to land on either side of both branches, to meet the convenience of per- sons wishing to cross.” The tax was two dollars, and the rates established were as follows: For each foot passenger, 64c; man and horse, 124c; Dearborn sulky chair, with springs, 50c; one horse wagon, 25c; cattle or mules, 10c; hogs, 3c; merchandise per hun- dred weight, and grain per bushel, 64е.",
+      "normalized": "The first ferry licence was issued on 2 June 1829 to Archibald Clybourn and Samuel Miller, to keep a ferry across the Chicago river at the lower forks near Wolf's Point, crossing below the north-east branch and landing on either side of both branches. The tax was two dollars and the rates were: foot passenger 6¼ cents, man and horse 12½, Dearborn sulky chair with springs 50, one-horse wagon 25, cattle or mules 10, hogs 3, and merchandise per hundredweight and grain per bushel 6¼.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1205,
+            "from": 0,
+            "to": 81
+          },
+          {
+            "line": 1206,
+            "from": 12,
+            "to": 40
+          },
+          {
+            "line": 1207,
+            "from": 9,
+            "to": 86
+          },
+          {
+            "line": 1209,
+            "from": 0,
+            "to": 422
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 102, printed page 78",
+        "list": "moses_kirkland_v1_ch5_log_cabin_age_leaves_99_104",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "1829-06-02",
+      "entities": [
+        "Archibald Clybourn",
+        "Samuel Miller",
+        "the Chicago river ferry",
+        "Wolf's Point",
+        "the north branch",
+        "the south branch"
+      ],
+      "town_finding": true,
+      "notes": "A LICENSED BUSINESS WITH TWO PROPRIETORS, A POSITION AND A PRICE LIST. The position is the useful part: the ferry crossed 'at the lower forks, near Wolf's Point ... below the northeast branch', landing on either side of BOTH branches, which is a described crossing and not merely a named one. The rate schedule is a document of what moved across the river — people, horses, a sprung sulky chair, wagons, cattle, mules, hogs, merchandise by weight and grain by the bushel — and that list is worth as much to a reconstruction as the prices are. THE OCR MANGLES THE FRACTIONS: it prints '64c' and '124c' where the page sets 6¼ and 12½, a fold this OCR makes throughout, and the quote is committed AS PRINTED with the reading given in `normalized`. SIX YEARS BEFORE THE SCENE, and the same paragraph continues to the first tavern licence — issued 8 December 1829 by the Peoria County commissioners to Archibald Caldwell, tax eight dollars, with its own schedule of meals at 25 cents and a night's lodging at 12½ — which is read as part of the same declaration and not separately claimed."
+    },
+    {
+      "id": "bk_mk1_033",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "The subjoined list of actual settlers prior to 1830 con- tains the names of all those who are known to have had a residence at the settlement, nearly all of whom paid taxes in 1825, and voted in 1826. The name of Gurdon S.",
+      "normalized": "The list of actual settlers at Chicago prior to 1830 names all those known to have had a residence at the settlement, nearly all of whom paid taxes in 1825 and voted in 1826. Gurdon S. Hubbard is left out of it because, although he spent much of his time here, he did not take up a permanent residence until 1832.",
+      "locator": {
+        "text_file": "moses_kirkland_history_of_chicago_v1_1895.txt",
+        "spans": [
+          {
+            "line": 1214,
+            "from": 2,
+            "to": 224
+          }
+        ],
+        "original": "Moses and Kirkland, History of Chicago vol. 1 (1895), scan leaf 102, printed page 78 — the footnote introducing the list of actual settlers prior to 1830",
+        "list": "moses_kirkland_v1_lead_surname_sweep_all_1056_leaves",
+        "url": "https://archive.org/download/historyofchicago01mose_202609/historyofchicago01mose_hocr_searchtext.txt.gz"
+      },
+      "describes_date": "before 1830, with a ruling on Gurdon S. Hubbard's residence dated 1832",
+      "entities": [
+        "Gurdon S. Hubbard"
+      ],
+      "town_finding": true,
+      "notes": "A RULING ON WHEN A MAN THIS PROJECT HOLDS BECAME A RESIDENT, and it is the answer the lead-surname sweep was run to find. `hubbard` is the highest-ranked of the forty-nine Newberry lead surnames for this work — fifty occurrences across the volume — and this is the sentence that pays: Moses and Kirkland state, as an editorial ruling and not in passing, that Gurdon S. Hubbard was PRESENT MUCH OF THE TIME but NOT PERMANENTLY RESIDENT UNTIL 1832. The project holds Hubbard's own autobiography in this domain (92 claims, T-0501) and that first-person source outranks this one on Hubbard's own movements; what this adds is that a second, independent compiler drew the residence line at 1832, which is a check on the same question from outside. 1832 is three years before the scene date, so the ruling puts Hubbard IN the town for 1 July 1835 either way, and nothing here changes his record. THE TABLE THE NOTE INTRODUCES CANNOT BE READ FROM THIS TEXT: the settlers list is set in four ruled columns — NAME, NATIVITY, date and REMARKS — and the OCR at lines 1218-1232 has collapsed them into rubble, losing which remark belongs to which name. About forty surnames survive legibly and not one row does. Reading that table needs the page images and it is filed as its own ticket."
+    }
+  ]
+}
