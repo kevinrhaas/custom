@@ -94,9 +94,7 @@ T-0517 — What the residents and households look like: the summary the owner as
 
 # --- GROUP 5 — THE REST OF THE SOURCES, by their own measured yield, kept below the spend
 # --- and NOT withdrawn. The 1830 schedule leads: the only pre-1835 enumeration, few leaves left.
-T-0502 — H. H. Porter's Short Autobiography is a 66 MB scan with a garbled text layer, and nothing says whether it carries 1835 Chicago at all
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
-T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
 
 # --- The 1840 census reads — 1.0% match. coverage.json is a completeness contract, so these
 # --- stay; they are behind sources paying twenty times better. T-0536 is this domain's gate debt.
@@ -311,3 +309,4 @@ T-0739 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
 T-0740 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
+

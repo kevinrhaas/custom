@@ -3,8 +3,8 @@
 **What lives here.** Fergus' Historical Series Nos. 26-29 (read in its first half
 by T-0499 - see the contents table below), Gurdon Hubbard's
 autobiography (a 226-page scan the project has never mentioned), H. H. Porter's
-*Short Autobiography* (66 MB, a garbled text layer, and nothing yet saying whether
-it carries 1835 Chicago at all), and the memoirs printed beside them (T-0499,
+*Short Autobiography* (read in full by T-0502 and it carries no Chicago before
+September 1853), and the memoirs printed beside them (T-0499,
 T-0500, T-0501, T-0502).
 
 **Shape: `claims`.** A book is PROSE, so the unit is a claim and not a row —
@@ -46,6 +46,69 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 **This is research, not payload.** Nothing under `data/research/` reaches
 `site/chicago/4d/`.
+
+---
+
+## What has been read (T-0502, 2026-09-05)
+
+**H. H. Porter, *A Short Autobiography* (1915) — all seventy leaves, and it carries no
+document of Chicago 1830-1836.** Eight claims at
+`claims/porter_hh_short_autobiography_1915.json`, out of the Internet Archive's own hOCR
+search text of this project's own deposit, committed at
+`text/porter_hh_short_autobiography_1915.txt`. Source record:
+`data/sources/porter_hh_short_autobiography_1915.json`, tier 4.
+
+**THE DELIVERABLE IS AN ABSENCE, AND THE POINT IS THAT SOMEBODY LOOKED FOR IT.** The
+owner listed this book among the reference materials to read. T-0502 read it end to end
+and the answer is: nothing. The volume prints no year between 1829 and 1848 except the
+author's own birth year, and its earliest Chicago is **September 1853**, when Porter
+stepped off the Michigan Central onto the prairie at about Sixteenth Street. An absence a
+pass has looked for is evidence; an absence nobody looked for is a hole, and without this
+record the next run that meets a 66 MB scan of a Chicago memoir spends its budget
+discovering the same nothing.
+
+**The sentence that rules on the volume** is one line of leaf 11: *"I was born in
+Machias, оп the 7th day of December, 1835."* On the scene date the author was unborn, and
+he was born five months later 1,300 miles away. The ticket allowed for family memory of
+the 1830s reaching him second hand; it does not exist either. His father, Rufus King
+Porter, was a Biddeford man who read law at Portland and practised at Machias "until his
+death, in 1856"; his mother died at Machias in 1862. **There is no Chicago anywhere in the
+family.**
+
+**Two town findings, and both of them describe 1853.** They are recorded because they are
+what the sweep yielded and because a later run should not have to re-read seventy leaves
+to learn that this is all there is:
+
+1. *The old blockhouse of Fort Dearborn was still standing in September 1853* — a
+   terminus ante quem non for its removal, seen by a man who was there. It constrains no
+   dimension, no position and no appearance, and no fort record is edited by it.
+2. *The grade.* In 1853 the street level from the river south to Monroe stood five to
+   twelve feet below the grade of 1904, the raising having begun some years before the
+   fire of 1871. This is the statement most likely to be cited loosely, so it is written
+   down with its date attached: it is a reading of 1853 against 1904 and it is **not**
+   evidence for the natural surface of 1835. `data/datum.json` is derived from committed
+   ground control and nothing here touches it.
+
+**Three Porters, two of them ruled apart here.** `crosswalk.json` refuses H. H. Porter
+against the poll list's `Porter, H.` on the birth date, and against the Rev. Jeremiah
+Porter on given name, trade and dates alike. **The third pair is deliberately not ruled
+on**: whether `Porter, H.` is Jeremiah Porter is a question about the poll list and the
+chaplain, not about this book, and it stays with T-0493. `poll_1835_059` remains a
+candidate matched to nobody — this pass removes a wrong answer and does not supply a
+right one.
+
+**The text is the hOCR search text and not the djvu text, and the reason is the page
+index.** The deposited PDF's own text layer is garbage, exactly as the ticket said — it
+uses subset encodings — and it could not have been used here in any case, because the 66
+MB scan is offloaded outside this repository and is not in the checkout. Two Internet
+Archive derivations of the same OCR pass were available; the hOCR search text was
+committed because the Archive emitted its **page index** beside it, which gives every
+leaf's exact character range in that very text. So `page_index/porter_hh_short_autobiography_1915.json`
+holds all seventy leaf boundaries **exactly and not by alignment**, and
+`tools/build_book_page_index.py --build` refuses to write it unless the ranges tile the
+committed text end to end. That is the Fergus arrangement, for the Fergus reason, and the
+two deposit artifacts sit beside the pointer at
+`chicago/reference/hh-porter-a-short-autobiography/`.
 
 ---
 
