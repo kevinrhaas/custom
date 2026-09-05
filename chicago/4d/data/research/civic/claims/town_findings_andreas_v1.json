@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "_doc": "Town findings read out of Andreas vol. 1 while sweeping it for second sources for the men on the 1835 poll list (T-0493). The owner asked that anything a source yields about the town — businesses, structures, landscape, streets, appearance — be kept as it is found rather than looked for again later, and these are that.",
+  "_doc": "Town findings read out of Andreas vol. 1 while sweeping it for second sources for the men on the 1835 poll list (T-0493). The owner asked that anything a source yields about the town — businesses, structures, landscape, streets, appearance — be kept as it is found rather than looked for again later, and these are that. EXTENDED BY T-0592: claims c012-c014 are the water question — the town's one public well, the water carts that answered it instead, and the waterworks that did not exist yet — read out of the same file under the same sha256.",
   "source_id": "andreas_1884_v1",
   "corpus": {
     "item": "historyofchicago01andr",
@@ -238,6 +238,69 @@
       ],
       "town_finding": true,
       "notes": "The June items stand before the 1 July 1835 scene date; the August and November ones do not. Cholera was a live fear in the town that June."
+    },
+    {
+      "id": "c012",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "Water Works. — The first public effort made by Chicago to assist her inhabitants to a supply of fresh water, dates from November lo, 1834, when the Board of Trustees paid $95.50 for the digging of a well in Kinzie's addition.",
+      "normalized": "The town's first public act about drinking water was a WELL: on 10 November 1834 the Board of Trustees paid $95.50 for the digging of a well in Kinzie's Addition. It is the only public well this project has found, it is eight months before the scene date, and its position is given as an addition and not as a lot.",
+      "locator": {
+        "item": "historyofchicago01andr",
+        "text": "historyofchicago01andr_djvu.txt",
+        "offset_in_flattened_text": 1274369,
+        "how_to_find": "flatten the OCR with re.sub(r'\\s+', ' ', text) and search for the quote verbatim"
+      },
+      "describes_date": "1834-11-10",
+      "entities": [
+        "Board of Trustees",
+        "Kinzie's Addition",
+        "Town of Chicago"
+      ],
+      "town_finding": true,
+      "notes": "READ FOR T-0592, which asked what this town does about wells. This is the town acting on the question with money, and the sum is small enough to say what was bought: one well, dug, for $95.50. WHAT IT DOES NOT GIVE IS A POSITION. 'Kinzie's addition' is the North Division subdivision, not a lot and not a corner, so nothing here can be drawn; it is recorded so the next run does not have to find it again. The OCR reads 'November lo' for 'November 10' and the quote keeps the damage."
+    },
+    {
+      "id": "c013",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "But the settlers early cast longing eyes towards the lake, reahzing that that source of water supply was the true one and not to be compared to the sluggish and unprepossessing river. For some years private enterprise reaped a comfortable little financial harvest in the operation of water carts, which ran to and from the lake. These carts were two wheeled vehicles, upon which hogsheads were mounted. Having driven into the lake, generally at the foot of Randolph Street, the watermen loaded up their reservoirs by means of pails, and then commenced their journeys ** around town.\" Backing their carts up to the doors of their customers* houses, with a short leathern hose they filled the barrels or other receptacles placed there for the purpose. The price per barrel varied, according to competition, from five to ten cents.",
+      "normalized": "HOW CHICAGO GOT ITS WATER BETWEEN THE ONE PUBLIC WELL AND THE WATERWORKS: not from wells, and not from the river, but from the lake by cart. Two-wheeled vehicles carrying a mounted hogshead were driven into the lake, generally at the foot of Randolph Street, filled by pail, and driven round the town; the waterman backed up to a customer's door and ran the water off through a short leathern hose into barrels set there for it. Five to ten cents the barrel, according to competition.",
+      "locator": {
+        "item": "historyofchicago01andr",
+        "text": "historyofchicago01andr_djvu.txt",
+        "offset_in_flattened_text": 1274580,
+        "how_to_find": "flatten the OCR with re.sub(r'\\s+', ' ', text) and search for the quote verbatim"
+      },
+      "describes_date": "1835",
+      "entities": [
+        "Randolph Street",
+        "Lake Michigan",
+        "Chicago River"
+      ],
+      "town_finding": true,
+      "notes": "THE ANSWER TO T-0592'S QUESTION, and it is not a well. Andreas puts the cart trade between the public well of November 1834 and the Hydraulic Company's works of 1842, so July 1835 falls inside 'for some years' — but the sentence dates nothing itself, and this claim therefore carries `describes_date` 1835 as the span it brackets and NOT as a statement that a cart ran on the scene date. It is a retrospective account written in 1884 of a trade nobody minuted. Anything drawn from it — a cart, a hogshead, a barrel at a door, the watering place at the foot of Randolph — would be `inferred` at best and is filed as its own ticket rather than taken here. The OCR reads 'reahzing' for 'realizing' and mangles two quotation marks; the quote keeps the damage."
+    },
+    {
+      "id": "c014",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "January 18, 1836, the State Legislature passed a law incorporating the Chicago Hydraulic Company. [...] Although incorporated, the panic of 1837 so disarranged the affairs of the new company that it did not get fairly to work until 1S40 [...] Not until the spring of 1842 was this first water works system completed.",
+      "normalized": "Chicago had no waterworks of any kind until the spring of 1842. The Chicago Hydraulic Company was not incorporated until 18 January 1836 — six months after the scene date — was stalled by the panic of 1837, and did not finish its reservoir at Lake Street and Michigan Avenue until 1842.",
+      "locator": {
+        "item": "historyofchicago01andr",
+        "text": "historyofchicago01andr_djvu.txt",
+        "offset_in_flattened_text": 1275634,
+        "how_to_find": "flatten the OCR with re.sub(r'\\s+', ' ', text) and search for the quote verbatim"
+      },
+      "describes_date": "1836-01-18",
+      "entities": [
+        "Chicago Hydraulic Company",
+        "Lake Street",
+        "Michigan Avenue"
+      ],
+      "town_finding": true,
+      "notes": "THE CLOSING BRACKET on the water question, and the reason the answer for July 1835 cannot be a system: the town's first waterworks is a year off being chartered and seven years off working. Quoted with elisions across a passage of about 1,000 characters; the offset is the first sentence and the later sentences follow it in the same section. The OCR reads '1S40' for '1840'."
     }
   ]
 }
