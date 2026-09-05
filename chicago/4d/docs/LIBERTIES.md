@@ -163,8 +163,8 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Fourteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 14 businesses
+### L218 — Fifteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 15 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
@@ -177,16 +177,16 @@ doors are all later than the scene, so the choice was a stated back-projection o
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Fourteen businesses therefore stand
+frontage and numbered its streets for the first time. Fifteen businesses therefore stand
 on a face on the authority of a volume printed four to nine years after the scene, and
 nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names and twelve have no point at all. A reader who thinks that is too far to
+directory names and the rest have no point at all. A reader who thinks that is too far to
 carry a shop is reading the `reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic
+The refusals and stand-offs are on the record beside the fifteen, so the arithmetic
 is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
@@ -207,6 +207,16 @@ the same larger town let the directory spend reach more people; 105 of the new r
 clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was
 invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that
 caused it.
+**Restated:** 2026-09-05 (T-0839), from fourteen back to fifteen, and this time the reason is
+the repair. The 2026-09-04 withdrawal above is the clearest single measurement of what
+duplicate cards cost this town: `Fullerton` reached two people, so Alexander N. Fullerton's
+1839 entry went ambiguous and his North Water Street face — the one street in the town no
+other rule can seat a shop on — was withdrawn. The two were never two men. T-0839 folded
+`A. N. Fullerton`, `Alex N Fullerton` and `Alexander M Fullerton` onto him under the owner's
+own ruling, the surname reaches one person again, and the face comes back on the same
+authority it was withdrawn under. Nothing was regraded and no placement was invented; the
+crosswalk's own uniqueness test simply stopped being confused by a man the town held four
+times. T-0670's weakness is unchanged and still open — this repaired one instance of it.
 
 ---
 

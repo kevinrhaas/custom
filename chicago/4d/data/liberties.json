@@ -96,20 +96,20 @@
     },
     {
       "id": "L218",
-      "title": "Fourteen businesses stand on a street a directory printed after 1835",
+      "title": "Fifteen businesses stand on a street a directory printed after 1835",
       "section": "standing",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "address_back_projection.positions[placed]",
-        "count": 14
+        "count": 15
       },
       "recorded": "2026-09-04",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`address_back_projection.positions[placed]` — 14 businesses"
+          "text": "`address_back_projection.positions[placed]` — 15 businesses"
         },
         {
           "label": "Decision",
@@ -121,11 +121,11 @@
         },
         {
           "label": "Consequence",
-          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Fourteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names and twelve have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
+          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Fifteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names and the rest have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
         },
         {
           "label": "What is NOT claimed, and this is the load-bearing half",
-          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic is visible and not just the successes."
+          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The refusals and stand-offs are on the record beside the fifteen, so the arithmetic is visible and not just the successes."
         },
         {
           "label": "Where it reaches a reader",
@@ -142,6 +142,10 @@
         {
           "label": "Restated",
           "text": "2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass binds a later entry to a resident only where the surname reaches one person. A bigger town made `Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer carries the later address this pass reads, and his North Water Street face is withdrawn — the one street in the town no other rule can seat a shop on, which is what makes the withdrawal worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because the same larger town let the directory spend reach more people; 105 of the new refusals are clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that caused it."
+        },
+        {
+          "label": "Restated",
+          "text": "2026-09-05 (T-0839), from fourteen back to fifteen, and this time the reason is the repair. The 2026-09-04 withdrawal above is the clearest single measurement of what duplicate cards cost this town: `Fullerton` reached two people, so Alexander N. Fullerton's 1839 entry went ambiguous and his North Water Street face — the one street in the town no other rule can seat a shop on — was withdrawn. The two were never two men. T-0839 folded `A. N. Fullerton`, `Alex N Fullerton` and `Alexander M Fullerton` onto him under the owner's own ruling, the surname reaches one person again, and the face comes back on the same authority it was withdrawn under. Nothing was regraded and no placement was invented; the crosswalk's own uniqueness test simply stopped being confused by a man the town held four times. T-0670's weakness is unchanged and still open — this repaired one instance of it."
         }
       ]
     },
