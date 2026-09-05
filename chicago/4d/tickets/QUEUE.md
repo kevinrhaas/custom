@@ -32,12 +32,6 @@
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
 
-# --- OWNER ASK 2026-09-05 — THE OPENING CARD. Verbatim: "for the named residents dont include
-# --- the projected number there" · "29 people housed of 3265 is a portion of what will eventually
-# --- be the 1404 named residents ... and the balance will be reconstructed to get to the 3265, can
-# --- you improve the way that is presented" · "at the top it says 371 structures, just remove that".
-# --- Small and visible; placed here by the owner so a run picks it up ahead of the research band.
-
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
 # --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04, and
@@ -75,6 +69,61 @@
 # --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0602 (the
 # --- measurement), T-0418 and T-0638 (a vocabulary and a surname slot the spend runs INTO),
 # --- T-0632/T-0633 and T-0514/T-0634 have all landed; this is what remains of the group.
+# --- THE GRADES THE OWNER QUESTIONED — 2026-09-04, opening hh_allen_edward_richards.json: "we have
+# --- people now who have been identified in multiple sources, but they are still being marked as
+# --- inferred? they should be attested if you have seen them like this in multiple sources."
+# ---
+# --- REVIEWED, AND THE ANSWER IS THREE THINGS, NOT ONE.
+# ---
+# --- T-0699. THE FIRST REVIEW OF HIS QUESTION PUSHED BACK AND WAS WRONG, and the ticket says so.
+# --- The objection was "the ladder grades by CLASS not COUNT, and a count rule would make a man
+# --- attested on two 1843 directory entries". That conflated the NUMBER OF APPEARANCES with the
+# --- CONVERGENCE OF INDEPENDENT CLASSES. Two 1843 directory entries are one class, one era, maybe
+# --- one lineage; the town's poll list and the town's newspaper are two different bodies recording
+# --- the same man in the same window. He named the pair himself: chicago_democrat_1833_1835 and
+# --- chicago_voter_lists_1833_1835_irad. 17 inferred people carry both.
+# ---
+# --- AND MEASURING IT FOUND A PLAIN DEFECT UNDERNEATH. G1a fires on
+# --- `POLL_1835 in classes and len(sources) > 1`, where `sources` counts archival source_ids —
+# --- and every poll, tax and muster list in this project carries the single IRAD id. So a man on
+# --- the 1833 tax list, the 1834 poll AND the 1835 poll has len(sources)==1, misses G1a, and is
+# --- graded G2a: "The 1835 poll list alone", which is FALSE OF HIS OWN EVIDENCE BLOCKS. Six men
+# --- read that way today (Willard Jones, Peter Pryne, Ira Kimberly, John Foot, Dexter Hapgood,
+# --- Edmund L Kimberly). That half is a bug fix under the ladder AS RATIFIED, not a policy change.
+# ---
+# --- THE GUARD THAT STAYS: G0. Later evidence never attests on its own — a letter list is still
+# --- not promoted alone, it only COUNTS TOWARD convergence, which is exactly his reading: "the
+# --- letter list places someone as likely there, AND there are voter records". ~20 people move,
+# --- not the ~1,500 a letter-list-as-G1b reading would have moved.
+# ---
+# --- AND A THIRD PIECE, on his follow-up "so what will this fix them going forward and the existing
+# --- ones?" — AND A CORRECTION TO THIS BAND'S FIRST ANSWER. It said "NOTHING applies a regrade to
+# --- a card that exists". That was too strong and is wrong: consolidate_resident_evidence.py
+# --- indeed writes no household file, but mint_civic_residents.py --build RE-WRITES every one of
+# --- the 531 civic-minted cards from the proposal, grade and ladder_rule included, and --check
+# --- gates them. T-0699 landed on that route: the new rung was spent onto 16 existing cards by
+# --- --build, and the directory spend, which is grade-gated, then carried those men's 1839/1843/
+# --- 1844 lines onto the same cards. What is NOT covered is the ~870 cards the civic mint does not
+# --- own, and the 63 standing DOWNGRADES, which must go to a conflict list for the owner and are
+# --- never auto-applied. PR #797 already builds exactly that (mint_civic_residents.py --regrade,
+# --- 73 applied / 89 refused, refusals written onto the person, plus a --regrade --check ratchet)
+# --- and is parked on `hold` only because dev outran its gate — land it rather than rebuild it.
+# ---
+# --- T-0692 is the plainer fault found underneath: of the 54 people graded inferred on 2+ sources,
+# --- 18 carry NO ladder_rule at all. The consolidation never reached them, so their grade means
+# --- whatever the pass that wrote it meant and nothing can be argued with. An ungraded person
+# --- cannot be regraded whichever way T-0699 goes.
+# ---
+# --- T-0693 is the owner's second observation on the same card: "there is evidence in there he is
+# --- a druggist but that is not in his person record". The file quotes the trade three times and
+# --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
+# --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
+T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
+
+# --- GROUP 1 — SPEND WHAT IS ADJUDICATED. Nothing here reads a new source. T-0418 and
+# --- T-0638 lead because they are what the spend runs INTO: an occupation cannot be written
+# --- in a word the vocabulary does not have, and 19 households whose surname slot holds a
+# --- middle initial cannot fold to a directory surname however often they are read.
 
 # --- GROUP 2 — THE SOURCES THAT PAY, AND THE LOCATIONS THEY CARRY. Measured match rates:
 # --- civic poll/tax/voter 28.7%, 1840 census 1.0%, church 0.0%, Newberry 0.0%. What predicts
@@ -83,9 +132,13 @@
 # --- and T-0666 left unfinished.
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
-# --- T-0589 is the town's civic account; T-0507 the household composition calibration;
-# --- T-0597 a family relation two records refuse to state. T-0637 is last on a real
-# --- dependency — joining 289 fence runs before the addresses land joins them to 20 houses.
+# --- T-0589 is the town's civic account; T-0597 a family relation two records refuse to
+# --- state. T-0637 is last on a real dependency — joining 289 fence runs before the
+# --- addresses land joins them to 20 houses. T-0507, the household-composition
+# --- calibration this band was ordered around, closed on PR #811: 964 households of 1840
+# --- counted, and the one figure that moves the rest is that the 1835 town census gives
+# --- 8.20 people per DWELLING against a mean HOUSEHOLD of 5.02 five years later — a
+# --- dwelling held more than one household, so one family per roof undercounts.
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
@@ -107,62 +160,6 @@ T-0647 — 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key
 # --- The Newberry index — 319 leads, 0 merges, 719 refusals and nothing else. Volume 4's
 # --- re-OCR is measured to recover 7.7x the cards. T-0600/T-0601 are its reading defects.
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
-
-
-# --- ==========================================================================
-# --- THE WRIGHT 1834 SHEET, WHOLE — OWNER, 2026-09-05. Placed BELOW the research groups
-# --- and above everything else, on his instruction: "move these into the queue below the
-# --- research items but near the top because its foundational."
-# --- ==========================================================================
-# --- The owner added a second copy of Wright's 1834 manuscript survey — the National Archives
-# --- original via Historic Urban Plans, 5050 x 6628 px at 600 dpi — at
-# --- chicago/pre_fire_v1/maps/images/1834-wright-map.jpg. Verbatim: "several items from this
-# --- map should be incorporated including the streets, there are streets documented here that
-# --- are missing, including the blocks, where the public square is, where the various sloughs
-# --- are, things like 'the kinzie block' ... look at all of the streets and block numbers";
-# --- "the lakeshore edge and that whole area, you currently dont have that whole edge where the
-# --- river comes out and ends correct"; "the whole path of the river going south"; "note the
-# --- sections as labeled in the legend"; on the School Section, "no alleys and no street names
-# --- but still a grid that should have some wilderness trees" and "a reserved school section on
-# --- the south"; on the north-west, "kain, owen, hubbard, right or hight, sailors st, trade st";
-# --- and "that michigan street area north of the river, that has some alleys and small parcels,
-# --- so that must be special."
-# ---
-# --- WHAT THE REVIEW FOUND, measured against dev at e28de4c1. The town already traces this
-# --- drawing from the BPL scan: five GCPs at +/-20 m, the forks, the harbour reach, three
-# --- sloughs. What it has NOT read is nearly everything the sheet LETTERS. Streets: 22 ids,
-# --- none of Kinzie's Addition's eleven, none of Wabansia's eight, none of the School Section's
-# --- four named or eight unnamed tiers. Blocks: 6 numbered of the Original Town's 58, and 0 of
-# --- Kinzie's 54, Wabansia's 79, the School Section's 142. Tracts: the legend's nine coloured
-# --- surveys, dated and owned, have no layer at all. Water: the shoreline trace's own
-# --- provenance says its east edge is "the traced window, not a shore", the old channel stops
-# --- at N -580 instead of closing, the piers are not modelled and the bar's height is "chosen,
-# --- not found" — the owner's reading of the mouth is correct. AND THE YIELD IS ALREADY
-# --- COUNTED: 125 rows of data/research/land_sales/ name a School Section block and lot and are
-# --- marked "read, and not put on the ground" because no block exists south of Madison; the
-# --- G. Spring notice ("lot 7, block 16, on Lake street") has waited since T-0324 for a number.
-# ---
-# --- ORDER IS DEPENDENCY. T-0787 registers the new scan so anything can cite it. T-0788 reads
-# --- the Original Town's numerals — the cheapest, and it lands the first address. T-0792 is the
-# --- tract layer every other tract ticket closes on. T-0793 and T-0794 are the water the
-# --- tracts and blocks close against (both needs_bake). Then the three tracts by yield —
-# --- School Section first (125 rows waiting), Kinzie's Addition, Wabansia — the unidentified
-# --- Michigan St tract, and the slough audit last because it is a check on the two water
-# --- tickets rather than a thing of its own. T-0219/T-0464/T-0465 (the ground south) are the
-# --- consumers of the southern half of this and stay where they are.
-T-0787 — The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check
-T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
-T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
-T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
-T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
-T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-T-0797 — The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
-T-0798 — Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
-T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
-T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
 
 # --- THE GROUND IS WRONG WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31,
 # --- against the Thompson plat. Two of five West Division streets exist; Carroll and Fulton
@@ -321,63 +318,57 @@ T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice g
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
-T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
-T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
-T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
+T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
 T-0695 — A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira
 T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
 T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
-T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
+T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
+T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0720 — 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
+T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
+T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
+T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
+T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
-T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+T-0725 — The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate
 T-0727 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
-T-0754 — 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
-T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
 T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
-T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0748 — The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
-T-0765 — A page number in a citation is read as the state: ', 111,' after a digit run, 65 kept cards across the four volumes
-T-0766 — The Illinois abbreviation still matches on the wreck of a word — 'Eng.', an author's initials, a France card — and those are the bad keeps the four precision samples have left
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
+T-0754 — 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
+T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
 T-0758 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
 T-0759 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0765 — A page number in a citation is read as the state: ', 111,' after a digit run, 65 kept cards across the four volumes
+T-0766 — The Illinois abbreviation still matches on the wreck of a word — 'Eng.', an author's initials, a France card — and those are the bad keeps the four precision samples have left
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
 T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
@@ -386,9 +377,22 @@ T-0773 — Seven houses hold a printed address that a later printing outranks, a
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0778 — Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
 T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
 T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0787 — The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check
+T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
+T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
+T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
+T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
+T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
+T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
+T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
+T-0797 — The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
+T-0798 — Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
+T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
+T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
