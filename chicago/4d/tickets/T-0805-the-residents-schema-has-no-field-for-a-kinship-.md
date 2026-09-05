@@ -1,7 +1,7 @@
 ---
 id: T-0805
 title: The residents schema has no field for a kinship BETWEEN two households, so every cross-household relationship the sources print lands as prose
-state: blocked-owner
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: null
 blocked_on: Should this reconstruction model kinship across households at all, and if so in what shape — a kin[] block on the person (PR #839 is a worked, validated demonstration), a separate edge file, or nothing and the prose stands by design? Nothing gets invented before the answer.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T16:23:17.424Z
 claimed_run: null
 ---
 
