@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834.",
+    "evidence_for": "A same-name lead, unasserted: cand_andrew_miles_geneva.",
     "evidence_against": "The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial.",
-    "summary": "Reviewed 2026-09-05. A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834. The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "kane_geneva_andrew_miles"
     ],
@@ -88,7 +88,7 @@
       "asserted": false,
       "basis": "A Kane County township history recalls an Andrew Miles (or Mills) claim of 1834.",
       "conflicts": [
-       "The same passage carries a Miles/Mills spelling conflict, and Fergus 1843 and Norris 1844 both refuse the surname on the initial."
+       "The passage carries a Miles/Mills spelling conflict, and two directories refuse the surname on the initial."
       ]
      }
     ]

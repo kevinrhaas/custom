@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "'Alison B. Vaughn' and 'Alanson B. Vaughan' are the same initial and middle initial under two spellings of one surname, in the same list family; the 1830 schedule's 'James Vaughn' is refused on the forename.",
+    "evidence_for": "A same-name lead, unasserted: cand_vaughan_vaughn_same_hand.",
     "evidence_against": "No independent record carries either spelling in Chicago, so the pair stays two rows rather than becoming one man.",
-    "summary": "Reviewed 2026-09-05. 'Alison B. Vaughn' and 'Alanson B. Vaughan' are the same initial and middle initial under two spellings of one surname, in the same list family; the 1830 schedule's 'James Vaughn' is refused on the forename. No independent record carries either spelling in Chicago, so the pair stays two rows rather than becoming one man. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "chicago_democrat_1833_1835"
     ],
@@ -86,9 +86,9 @@
      {
       "id": "cand_vaughan_vaughn_same_hand",
       "asserted": false,
-      "basis": "'Alison B. Vaughn' and 'Alanson B. Vaughan' are the same initial and middle initial under two spellings of one surname, in the same list family; the 1830 schedule's 'James Vaughn' is refused on the forename.",
+      "basis": "One forename and middle initial under two spellings of one surname, in the same list family.",
       "conflicts": [
-       "No independent record carries either spelling in Chicago, so the pair stays two rows rather than becoming one man."
+       "No independent record carries either spelling in Chicago, so the pair stays two rows rather than one man."
       ]
      }
     ]

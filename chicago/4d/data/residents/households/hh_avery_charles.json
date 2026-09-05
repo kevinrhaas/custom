@@ -96,10 +96,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Fergus 1839 prints 'Avery, Charles E., lumber dealer, cor. LaSalle and So. Water'.",
+    "evidence_for": "A same-name lead, unasserted: cand_charles_e_avery_lumber.",
     "evidence_against": "The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk.",
-    "summary": "Reviewed 2026-09-05. Fergus 1839 prints 'Avery, Charles E., lumber dealer, cor. LaSalle and So. Water'. The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "fergus_chicago_directory_1839"
     ],
@@ -112,7 +112,7 @@
       "asserted": false,
       "basis": "Fergus 1839 prints 'Avery, Charles E., lumber dealer, cor. LaSalle and So. Water'.",
       "conflicts": [
-       "The directory's man carries a middle initial the letter list does not, and the 1840 reading's 'C. E. Avery' is refused against 'Charles Avery' on the forename in the committed crosswalk."
+       "The directory's man carries a middle initial the letter list does not, and the 1840 'C. E. Avery' is already refused on the forename."
       ]
      }
     ]

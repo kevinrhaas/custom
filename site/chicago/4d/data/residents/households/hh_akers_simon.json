@@ -73,10 +73,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial.",
+    "evidence_for": "A same-name lead, unasserted: cand_simon_akers_1837_poll.",
     "evidence_against": "Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict.",
-    "summary": "Reviewed 2026-09-05. The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial. Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "fergus_chicago_directory_1839"
     ],
@@ -89,7 +89,7 @@
       "asserted": false,
       "basis": "The 1837 poll printed in Fergus 1839 carries an Akers whose surname folds to this one and whose given name agrees on the initial.",
       "conflicts": [
-       "Two years after the scene and on an initial agreement only; the committed crosswalk records it as evidence handed on, not a verdict."
+       "Two years after the scene and on an initial agreement only; the crosswalk hands on evidence, not a verdict."
       ]
      }
     ]

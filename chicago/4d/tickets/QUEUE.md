@@ -375,3 +375,4 @@ T-0715 — data/residents/index.json rows go stale for any household no minting 
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+T-0721 — The published tree is 31.998 MB against a 32 MB ceiling: the next data PR cannot land

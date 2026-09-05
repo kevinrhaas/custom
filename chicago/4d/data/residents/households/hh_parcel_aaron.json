@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "'Aaron Parcel' and 'Aron Parcell' are two post-office readings one letter apart, in the same list family; the 1830 schedule's 'William Parcel' shares only the surname and is refused.",
+    "evidence_for": "A same-name lead, unasserted: cand_parcel_parcell_same_hand.",
     "evidence_against": "Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into.",
-    "summary": "Reviewed 2026-09-05. 'Aaron Parcel' and 'Aron Parcell' are two post-office readings one letter apart, in the same list family; the 1830 schedule's 'William Parcel' shares only the surname and is refused. Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "chicago_democrat_1833_1835"
     ],
@@ -86,9 +86,9 @@
      {
       "id": "cand_parcel_parcell_same_hand",
       "asserted": false,
-      "basis": "'Aaron Parcel' and 'Aron Parcell' are two post-office readings one letter apart, in the same list family; the 1830 schedule's 'William Parcel' shares only the surname and is refused.",
+      "basis": "Two post-office readings one letter apart in the same list family; the 1830 schedule's 'William Parcel' shares only the surname.",
       "conflicts": [
-       "Nothing outside the letter lists names either spelling, so the pair cannot be collapsed without inventing the man they would collapse into."
+       "Nothing outside the letter lists names either spelling, so collapsing the pair would invent the man they collapse into."
       ]
      }
     ]

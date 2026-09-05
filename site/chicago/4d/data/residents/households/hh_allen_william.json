@@ -108,10 +108,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Fergus 1839 prints 'Allen, William, saloon, North Canal street south of Kinzie', and the 1840 reading carries 'Wm. Allen' at printed page 230 line 26.",
+    "evidence_for": "A same-name lead, unasserted: cand_william_allen_1839_saloon.",
     "evidence_against": "William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list.",
-    "summary": "Reviewed 2026-09-05. Fergus 1839 prints 'Allen, William, saloon, North Canal street south of Kinzie', and the 1840 reading carries 'Wm. Allen' at printed page 230 line 26. William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "fergus_chicago_directory_1839",
      "census_1840_chicago_name_crosswalk"
@@ -125,7 +125,7 @@
       "asserted": false,
       "basis": "Fergus 1839 prints 'Allen, William, saloon, North Canal street south of Kinzie', and the 1840 reading carries 'Wm. Allen' at printed page 230 line 26.",
       "conflicts": [
-       "William Allen is among the commonest names in the corpus and this project's own directory policy holds that a 1839 or 1840 entry never attests 1835 presence; nothing dates either man back to the letter list."
+       "One of the commonest names here, and this project's directory policy holds that an 1839 or 1840 entry never attests 1835 presence."
       ]
      }
     ]

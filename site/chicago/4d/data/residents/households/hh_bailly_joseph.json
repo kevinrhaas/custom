@@ -96,10 +96,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'.",
+    "evidence_for": "A same-name lead, unasserted: cand_joseph_bailly_baillytown.",
     "evidence_against": "Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence.",
-    "summary": "Reviewed 2026-09-05. Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'. Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "nps_bailly_homestead",
      "fergus_historical_series_26_29"
@@ -113,7 +113,7 @@
       "asserted": false,
       "basis": "Joseph Bailly the American Fur Company trader is licensed for the Lake Michigan trade in 1821 (Hurlbut) and Fergus's old-settler death notices print 'Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61'.",
       "conflicts": [
-       "Bailly's household stood on the Little Calumet in Indiana, not in Chicago; a letter waiting at the Chicago post office is consistent with a trader who collected mail there and is not evidence of residence."
+       "His household stood on the Little Calumet in Indiana; a letter waiting at the Chicago post office is what a trader who collected mail here leaves, not a residence."
       ]
      }
     ]

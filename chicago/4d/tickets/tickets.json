@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 9:26 PM",
+  "generated_ct": "Sep 4, 2026, 9:38 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12190,6 +12190,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 150
+    },
+    {
+      "id": "T-0721",
+      "title": "The published tree is 31.998 MB against a 32 MB ceiling: the next data PR cannot land",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
     }
   ]
 }

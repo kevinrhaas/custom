@@ -116,10 +116,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J.",
+    "evidence_for": "A same-name lead, unasserted: cand_j_e_bishop_1839_illinois_st.",
     "evidence_against": "Illinois Street is a Kinzie's Addition name the 1835 street layer does not carry, so the entry cannot even be placed in the modelled town, and the 1837 poll refuses the surname on the initial.",
-    "summary": "Reviewed 2026-09-05. Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J. Illinois Street is a Kinzie's Addition name the 1835 street layer does not carry, so the entry cannot even be placed in the modelled town, and the 1837 poll refuses the surname on the initial. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "fergus_chicago_directory_1839"
     ],
@@ -132,7 +132,7 @@
       "asserted": false,
       "basis": "Fergus 1839 carries a Bishop on Illinois street whose surname folds to this one and whose given name agrees on the initial J.",
       "conflicts": [
-       "Illinois Street is a Kinzie's Addition name the 1835 street layer does not carry, so the entry cannot even be placed in the modelled town, and the 1837 poll refuses the surname on the initial."
+       "Illinois Street is not in the 1835 layer, so the entry cannot be placed in the town at all, and the 1837 poll refuses the surname."
       ]
      }
     ]

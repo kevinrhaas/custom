@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "The Firelands Pioneer of 1888 carries an exact-name Rouse Bly in Huron County, Ohio.",
+    "evidence_for": "A same-name lead, unasserted: cand_rouse_bly_firelands.",
     "evidence_against": "A competing Ohio identity of the same uncommon name is a reason for caution, not a bridge; nothing in the Chicago corpus repeats the name.",
-    "summary": "Reviewed 2026-09-05. The Firelands Pioneer of 1888 carries an exact-name Rouse Bly in Huron County, Ohio. A competing Ohio identity of the same uncommon name is a reason for caution, not a bridge; nothing in the Chicago corpus repeats the name. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "ohio_firelands_rouse_bly"
     ],
@@ -88,7 +88,7 @@
       "asserted": false,
       "basis": "The Firelands Pioneer of 1888 carries an exact-name Rouse Bly in Huron County, Ohio.",
       "conflicts": [
-       "A competing Ohio identity of the same uncommon name is a reason for caution, not a bridge; nothing in the Chicago corpus repeats the name."
+       "A competing Ohio identity of the same uncommon name is caution, not a bridge; the Chicago corpus never repeats the name."
       ]
      }
     ]

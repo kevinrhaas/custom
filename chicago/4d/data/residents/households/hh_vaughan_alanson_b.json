@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A history of Mower County, Minnesota carries an exact Alanson B. Vaughan.",
+    "evidence_for": "A same-name lead, unasserted: cand_alanson_b_vaughan_mower.",
     "evidence_against": "Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial.",
-    "summary": "Reviewed 2026-09-05. A history of Mower County, Minnesota carries an exact Alanson B. Vaughan. Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "mower_history_alanson_vaughan"
     ],
@@ -88,7 +88,7 @@
       "asserted": false,
       "basis": "A history of Mower County, Minnesota carries an exact Alanson B. Vaughan.",
       "conflicts": [
-       "Later, and a thousand miles north-west; the St Cyr register's 1837 'Ann Vaughan' is a refusal on the forename and the directories refuse the surname on the initial."
+       "Later, and a thousand miles north-west; St Cyr's 1837 'Ann Vaughan' and the directories both refuse on the forename."
       ]
      }
     ]

@@ -86,9 +86,9 @@
     "outcome": "corroborated",
     "reviewed_on": "2026-09-05",
     "asserted_identity": true,
-    "evidence_for": "Named independently of the post-office lists in the 1833-1835 Chicago poll, tax and voter rolls (IRAD); Fergus's Chicago directories of 1839 and 1843 and Norris's of 1844; the transcribed county-history corpus; the Newberry family-history index cards.",
-    "summary": "Reviewed 2026-09-05. Independent corroboration stands in the committed corpus; the identity was already carried by this project's own source records and is confirmed, not moved.",
-    "notes": "Established profile; the row records the corroboration this person already stood on and asserts no new fact.",
+    "evidence_for": "Independent of the post office in civic rolls, directories, county histories and more.",
+    "summary": "Independently corroborated; confirmed, not moved.",
+    "notes": "records corroboration already standing; asserts no new fact",
     "source_ids": [
      "chicagology_chicago_brick",
      "andreas_1884_v1",

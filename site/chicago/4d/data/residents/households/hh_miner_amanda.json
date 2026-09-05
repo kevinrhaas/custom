@@ -72,10 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "Kaneville Township's history names Amos and Amanda Miner among its settlers.",
+    "evidence_for": "A same-name lead, unasserted: cand_amanda_miner_kaneville.",
     "evidence_against": "Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'.",
-    "summary": "Reviewed 2026-09-05. Kaneville Township's history names Amos and Amanda Miner among its settlers. Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "kaneville_amanda_miner"
     ],
@@ -88,7 +88,7 @@
       "asserted": false,
       "basis": "Kaneville Township's history names Amos and Amanda Miner among its settlers.",
       "conflicts": [
-       "Kane County, and no record ties the pair to the Chicago post office; the Newberry card the sweep reaches is a 'Milner' heading, not 'Miner'."
+       "Kane County, and nothing ties the pair to the Chicago post office; the Newberry card is a 'Milner' heading."
       ]
      }
     ]

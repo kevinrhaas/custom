@@ -106,10 +106,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-05",
     "asserted_identity": false,
-    "evidence_for": "A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36.",
+    "evidence_for": "A same-name lead, unasserted: cand_william_g_blair_winnebago.",
     "evidence_against": "Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry.",
-    "summary": "Reviewed 2026-09-05. A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36. Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry. The candidate is retained and not asserted.",
-    "notes": "research-only; candidate retained unasserted; no grade, household or placement is moved by this row",
+    "summary": "A same-name lead, recorded and NOT asserted.",
+    "notes": "candidate retained unasserted; no grade or placement moves",
     "source_ids": [
      "rockford_first_settlers_1835"
     ],
@@ -122,7 +122,7 @@
       "asserted": false,
       "basis": "A William G. Blair stands among the first settlers rostered for Winnebago County in 1835-36.",
       "conflicts": [
-       "Fergus 1843's Chicago hardware Blair is 'Blair, William' of 111 S. Water with no middle initial and a documented later arrival; the Winnebago roster is a different county and neither bridges the 1834-35 Chicago postal entry."
+       "Fergus 1843's Chicago hardware Blair carries no middle initial and a later arrival; Winnebago is another county. Neither bridges the postal entry."
       ]
      }
     ]
