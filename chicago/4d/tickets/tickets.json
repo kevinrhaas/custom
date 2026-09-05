@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 2:35 PM",
+  "generated_ct": "Sep 5, 2026, 3:16 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14158,6 +14158,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 185
+    },
+    {
+      "id": "T-0836",
+      "title": "The 665 schedule sizes a block's principal room in free LOTS, and on a business-front lot the free frontage METRES bind first",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 186
     }
   ]
 }

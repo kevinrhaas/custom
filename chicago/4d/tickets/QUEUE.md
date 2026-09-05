@@ -427,3 +427,4 @@ T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
+T-0836 — The 665 schedule sizes a block's principal room in free LOTS, and on a business-front lot the free frontage METRES bind first

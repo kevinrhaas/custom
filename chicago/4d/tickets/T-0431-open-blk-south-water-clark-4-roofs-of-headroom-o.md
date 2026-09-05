@@ -73,7 +73,7 @@ again. First, the finding that **the schedule dealt 4 roofs and the ground holds
 `reconcile_665.py` sizes principal room as `ROW_UNITS_PER_LOT * (free_lots - 1)`, which
 counts LOTS, and lot 2 is free only under the owner's 2026-08-27 business-front clause, so
 it is by construction not a whole lot — measured, 12.97 m free to the west of the drug
-store and 1.42 m to the east. Filed as **T-0439**. Second, the correction that made the
+store and 1.42 m to the east. That prior run filed it as T-0439; that id had already been taken on `dev` by an unrelated ticket, so this run re-filed the finding as **T-0836**. Second, the correction that made the
 parcel possible at all: the first deal (2026-08-15) was declared on frontage lots `[2, 4]`
 but stands entirely on lot 4, so `reconcile_665.py` counted lot 2 free while
 `generate_block_infill.py`'s T-0105 lot accounting counted it built on. Narrowing the

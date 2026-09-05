@@ -1,6 +1,65 @@
 # STATUS
 
 
+## Shipped 2026-09-05 — T-0431: the second deal on blk_south_water_clark
+
+Piece 3 of 4 of T-0420, and the third of the four South Water blocks T-0009's ruling unblocked
+(`blk_south_water_lasalle` under T-0429, `blk_south_water_franklin` under T-0430, both 2026-08-30).
+
+**What stands.** Two roofs on the block bounded by South Water, Dearborn, Lake and Clark:
+`recon_1835_blk_south_water_clark_c4_06`, a wide two-storey store on the South Water frontage
+whose east wall is the west wall of Pruyne & Kimball's drug store, and
+`recon_1835_blk_south_water_clark_a4_07`, the woodshed in its yard. Both baked
+(`tools/bake.sh --only`), published, and carried to the sidecars. The party wall is the first
+time this project has joined an invented roof to a DOCUMENTED one on the same street wall;
+nothing about the drug store moved, and every record the first deal (2026-08-15) wrote keeps
+its id, family, footprint and form values.
+
+**The block is now `at_capacity` with lot 1 open.** `tools/reconcile_665.py` re-derives it from
+10 standing roofs, 2 free lots and 4 of headroom to 12 standing, 1 free lot and 0 — because lot 2
+stops being a shared business front the moment a second roof stands on it. Lot 1, the
+Lake-and-Clark corner, stays open on the measured reason: `tools/measure_end_rule.py
+blk_south_water_clark --list` walks it 231.87 m from the foot of the Dearborn Street drawbridge
+against 35.15 m for lot 6 at the other corner, the remotest of the block's eight lots from the
+only crossing of the main stem in July 1835.
+
+**THE SCHEDULE DEALT FOUR ROOFS AND THE GROUND HELD TWO, and that is the run's finding.**
+`reconcile_665.py` sizes principal room as `ROW_UNITS_PER_LOT * (free_lots - 1)`, which counts
+LOTS; on a business-front lot already carrying a documented store at the street it is the free
+FRONTAGE METRES that bind first. Measured on the committed north face: lot 2 projects
+24.64 m → 49.75 m, less the plat module's 1.5 m margin each side is 22.11 m buildable, of which
+the drug store holds 39.11 m → 46.83 m, leaving 12.97 m clear west and 1.42 m east. The store is
+10.63 m wide and takes the west gap with 2.34 m to spare; the east sliver holds nothing. The two
+unbuilt roofs — a larger one-and-a-half-storey house and a merchant two-storey house — are not
+deferred by name; the ground would not hold them, and they return to the south district's balance
+where every marginal still sums to the programme's total. **Filed as T-0836**, which owns the
+sizing repair.
+
+**A declaration was narrowed, and no coordinate moved.** The first deal was declared on frontage
+lots `[2, 4]` and stands entirely on lot 4, so `reconcile_665.py` counted lot 2 free while
+`generate_block_infill.py`'s T-0105 lot accounting counted it built on. Narrowing the declaration
+to `[4]` re-derives both of that deal's units byte-identical — the east anchor reads `along_max`,
+which lot 4 sets either way — and it is what let this deal take the frontage the first never
+reached. The same repair was made on `blk_south_water_franklin` under T-0430.
+
+**One figure in the parcel's own prose was corrected against the tool rather than copied.**
+`tools/measure_street_frontage.py` no longer prints the documented/inferred household split an
+August run quoted; re-run for this parcel it reads South Water at 16 research-record structures
+within 25 m of the centreline against Lake's 17, and the parcel now quotes that. The reading that
+decides the face is the BLOCK's either way: four documented records on its South Water face
+(Harmon & Loomis's store, Pruyne & Kimball's drug store, John Bates Jr.'s auction room, Madore
+Beaubien's house) against one on Lake, the first Tremont House.
+
+**A side effect worth naming.** A nineteenth roof on the South Water face let
+`tools/adopt_street_faces.py` seat one more street-only business — J. Curtiss, attorney and
+counsellor at law — and shifted eighteen others one place along the face. Which roof a
+street-only business gets is an allocation by that tool and not a reading of any source, and
+every adopted card says so.
+
+**What is invented is everything that matters:** that a building stood on this ground at all,
+that it was a store, that it was two storeys, and that it shared a wall with the drug store. The
+side lot lines the row crosses are conjectural in every record this generator has written.
+
 ## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
 
 The owner, in session: three speed sliders "like you have for walk speed", ceilings "like
