@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 578, title: 'One street drawn twice, and one that had not followed the river', kind: 'fix', ts: '2026-09-05T14:49:50.814Z', date: 'Sep 5, 2026, 9:49 AM CT',
+    items: [
+      'West Water Street \u2014 the West Division\u2019s riverfront line, added a few days ago \u2014 was in the town twice. Two identical ribbons on the same ground, one on top of the other: a merge that took both sides of the same addition. There is one street there now.',
+      'North Water Street is not drawn from a source; it is derived, by stepping half a street\u2019s width north of the river\u2019s own bank. Yesterday\u2019s repair to that bank moved the water and left the street where it was, so for about a hundred and thirty metres east of the slough crossing the road sat on the old line rather than the new one. It has been re-derived off the corrected bank and still clears the water everywhere it is required to.',
+      'The walks, crossings, fences and hitching posts that line the streets, the dooryard plantings and the goods stacked outside the shops are all dealt off ground heights, and the ground was rebuilt with the river. All of them have been re-dealt, which moves a few of them by millimetres and none of them anywhere you would notice.',
+    ] },
   { v: 577, title: 'The auctioneer had a roof refused because the bootmaker shared his surname', kind: 'fix', ts: '2026-09-05T14:07:03.208Z', date: 'Sep 5, 2026, 9:07 AM CT',
     items: [
       'When a newspaper advertisement names a street but no address, this project seats the business on a roof that actually fronts that street, best-evidenced first. One of the rules that pass follows is that a man does not keep two shops on one street: if a proprietor already stands on a face, the next heading printed under the same surname is refused and the better-evidenced one keeps the roof. It is a good rule, and on South Water Street it was catching the wrong man.',
