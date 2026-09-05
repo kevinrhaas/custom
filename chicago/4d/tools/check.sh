@@ -1242,6 +1242,18 @@ step "the fifteenth research cohort is fixed" \
 step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
+# T-0511. The reference README's completion rule says a cohort ticket is not complete
+# "while its XLSX/CSV/README package exists only locally", and on 2026-09-04 the folders
+# existed for T-0478..T-0486 only: the first three slices — 225 people — had findings JSON
+# and a dossier and nothing a reader could open. The packages are now DERIVED from the
+# frozen manifests and the committed review payload, so this step is what keeps them from
+# quietly stopping being true, and the index in the README with them.
+step "every completed research cohort has a durable package, and it still matches its records" \
+  python3 tools/export_resident_research_package.py --check
+
+step "…and that gate's own assertions still fire when broken" \
+  python3 tools/export_resident_research_package.py --self-test
+
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
 # are what the pass derives; this proves the DERIVATION is what the owner permitted —
 # every minted person carrying `letter_list_only` and the dated return behind it, and not
