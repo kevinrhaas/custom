@@ -152,6 +152,15 @@ step "the dooryard garden pickets re-derive from the rule that chose their lots"
 step "the lot-line yard fences re-derive from the rule that chose their lots and types" \
   python3 tools/generate_lot_line_fences.py --check
 
+# And every one of those runs can now say WHOSE ground it stands on (T-0637). The join is a
+# derivation off the committed lots, the committed footprints and the committed household
+# index, so it is worth nothing unless it stays derivable and stays truthful about what it
+# could not answer: this asks that every run on the whole layer names an owner or records a
+# refusal, that no belongs_to names a structure or a household this repository does not
+# hold, and that the two hand-authored yards keep the owners somebody read out of a source.
+step "every enclosure run says whose ground it stands on, or records why it cannot" \
+  python3 tools/check_enclosure_owners.py
+
 # The dooryard plantings are the same shape one layer greener: the owner's brief and its
 # image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
 # source counts or places any particular house's stems. So which house keeps what is a

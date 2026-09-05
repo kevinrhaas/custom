@@ -85,6 +85,7 @@ import math
 from pathlib import Path
 
 from generate_dooryard_pickets import footprint_world, poly_contains
+import enclosure_owners
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -380,6 +381,10 @@ def build(entries, sidecars):
 
     # A side line proposed by two neighbours is ONE fence: keyed on the pair of committed
     # corners, so the two proposals meet to the centimetre or they are different lines.
+    # THE GROUND, indexed by lot id: the polygon and the committed buildings standing
+    # in it, which is everything tools/enclosure_owners.py needs to say whose fence
+    # this is.
+    ground: dict[str, tuple[list, list[str]]] = {}
     sides: dict[tuple, dict] = {}
     rears: list[dict] = []
     refused: list[str] = []
@@ -388,6 +393,7 @@ def build(entries, sidecars):
     for entry in sorted(entries, key=lambda e: (e["block"]["id"], e["index"])):
         yard, why = yard_for(entry)
         lot_id = f"{entry['block']['id']}_lot{entry['index']}"
+        ground[lot_id] = (entry["lot"]["polygon"], entry["buildings"])
         if yard is None:
             refused.append(f"{lot_id} ({', '.join(entry['buildings'])}): {why}")
             continue
@@ -447,6 +453,12 @@ def build(entries, sidecars):
 
     runs = {"board": [], "picket": [], "post_and_rail": []}
     openings = {"board": [], "picket": [], "post_and_rail": []}
+    links = enclosure_owners.household_links()
+
+    def belongs(lot_ids, path):
+        return enclosure_owners.owners_for(
+            [(lid, ground[lid][0], ground[lid][1]) for lid in sorted(set(lot_ids))],
+            path, links)
 
     for k in sorted(sides.keys()):
         rec = sides[k]
@@ -456,6 +468,7 @@ def build(entries, sidecars):
                       + (f"_{n}" if n else ""),
                 "path_local_enu_m": [[round(p[0], 2), round(p[1], 2)],
                                      [round(q[0], 2), round(q[1], 2)]],
+                "belongs_to": belongs(rec["lots"], [p, q]),
                 "note": (
                     f"A SIDE LOT LINE, and the fence on it is built ONCE: "
                     f"{' and '.join(sorted(set(rec['lots'])))} "
@@ -481,6 +494,7 @@ def build(entries, sidecars):
                 "id": f"rear_{rec['lot']}" + (f"_{n}" if n else ""),
                 "path_local_enu_m": [[round(p[0], 2), round(p[1], 2)],
                                      [round(q[0], 2), round(q[1], 2)]],
+                "belongs_to": belongs([rec["lot"]], [p, q]),
                 "note": (
                     f"THE REAR LOT LINE of {rec['lot']}, which in this grid is the ALLEY "
                     f"line: the plat drives a service alley through the middle of every "
@@ -690,7 +704,7 @@ def form_block(kind: str) -> dict:
     return out
 
 
-def record(kind: str, runs, openings, refused, fenced, counts) -> dict:
+def record(kind: str, runs, openings, refused, fenced, counts, owners, prose) -> dict:
     rid, name, aka = TITLE[kind]
     where = ("the built core — every block all four of whose bounding streets the project "
              "classes `principal` or `ordinary`"
@@ -713,6 +727,7 @@ def record(kind: str, runs, openings, refused, fenced, counts) -> dict:
             "data/enclosures/*.json",
         ],
         "belongs_to": [],
+        "belongs_to_rule": enclosure_owners.rule_block(owners, prose),
         "documented_range": {
             "from": "1835-01-01",
             "to": "1835-12-31",
@@ -822,8 +837,16 @@ def main() -> int:
     }
     failed = 0
     total_runs = 0
+    # The ownership counts are stated the same on all three records, because a visitor
+    # reading one of them is asking about the town's fences and not about this file's
+    # third of them.
+    owners = enclosure_owners.tally([{"runs": runs[k]} for k in sorted(runs)])
+    prose = enclosure_owners.prose_report(
+        sid for k in sorted(runs) for run in runs[k]
+        for entry in run["belongs_to"] for sid in entry["structures"])
     for kind, path in OUT.items():
-        text = json.dumps(record(kind, runs[kind], openings[kind], refused, fenced, counts),
+        text = json.dumps(record(kind, runs[kind], openings[kind], refused, fenced, counts,
+                                 owners, prose),
                           indent=2, ensure_ascii=False) + "\n"
         total_runs += len(runs[kind])
         if args.check:
