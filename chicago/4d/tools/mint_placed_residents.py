@@ -565,6 +565,33 @@ def carry_civic_rolls(doc: dict, existing: dict) -> None:
                 person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
 
 
+def carry_later_trade(doc: dict, existing: dict) -> None:
+    """Keep the later-trade pointer another pass wrote INSIDE this pass's occupation.
+
+    T-0693. `carry_research` above saves a key another pass added to the PERSON, and the
+    `directories` block is carried over whole for the same reason. `occupation` is this
+    pass's own key, though, so the `later_occupation` that
+    `tools/qualify_later_trades.py` writes into it — the pointer that stops "no trade
+    anywhere" and "no trade for 1835, one printed in 1839" being the same record — is
+    inside something this mint re-derives, and would be deleted every run. It is put back
+    where it is written, after `confidence`, so `--check` stays byte-identical. It is
+    derived from the `directories` block and asserts nothing about the scene date.
+    """
+    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
+    for person in doc.get("persons") or []:
+        pointer = ((by_id.get(person.get("id")) or {}).get("occupation") or {}).get(
+            "later_occupation")
+        occ = person.get("occupation")
+        if pointer is None or not isinstance(occ, dict):
+            continue
+        rebuilt = {}
+        for key, value in occ.items():
+            rebuilt[key] = value
+            if key == "confidence":
+                rebuilt["later_occupation"] = pointer
+        person["occupation"] = rebuilt
+
+
 def carry_research(doc: dict, existing: dict) -> None:
     """Keep a `resident_research` block another pass wrote onto one of these people."""
     by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
@@ -619,6 +646,7 @@ def build(preload: dict | None = None):
         # person, refused in writing because the card rests on a dated Democrat issue
         # the consolidation never read, and the refusal is the whole point of it.
         carry_research(doc, existing)
+        carry_later_trade(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
