@@ -15,6 +15,12 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  ...AND THE REST OF THE FILE, same instruction: "And other logical ordering
+#               across the queue". Applied ORDERING RULE 4 where the bands' own text already
+#               said it: the triangle ceiling gates every roof, so it now sits ABOVE the roofs
+#               instead of 60 lines below them; a red dev and an unpromotable production block
+#               everything, so they lead. Four bands merged into two. Nothing of the research
+#               band moved.
 #   2026-09-05  THE CORE DATASET, RE-ISSUED AND REBUILT. The owner repeated his 2026-09-04
 #               instruction almost word for word against the newly filed tickets (quoted in the
 #               band below), and asked for the comments tightened. The 09-04 band had DRAINED —
@@ -33,32 +39,6 @@
 
 # --- ==========================================================================
 # --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
-# --- ==========================================================================
-# --- Verbatim, because it re-ranks the file: "move any tickets that are research related that
-# --- move us towards getting a best and complete resident and family and household structure
-# --- household business occupation town details and composition, enclosures, etc ... into the
-# --- research area at the top in a logical dependency order do the most impactful ones first and
-# --- if possible do some periodic consolidations along the way tk turn the research created into
-# --- actual data household et al not just research, I want to get the core research and people
-# --- and household and business dataset together and then we can go back to the app and improve
-# --- the look and fill out all of the business and residences from the data, so locations matter
-# --- so capture those too of course, like there are business references that have addresses later
-# --- and while we don't have that in 1835, you might use a documented address from later to
-# --- position the business where you have limited other information or it could contribute."
-# ---
-# --- MEASURED, and this band is ordered by the numbers rather than by taste:
-# ---   read 16,063 · spent 3,990 · UNSPENT 12,073
-# ---   rulings naming a town person: 109 reached · 4 on a card · 105 UNWRITTEN
-# ---   1,404 people: occupation 13.1% · works_at 6.1% · lives_at 2.4% · one source only 92.8%
-# ---   99 adjudicated LATER addresses against 20 households holding any address at all
-# ---
-# --- THE BOTTLENECK IS SPENDING, NOT READING — so G1 makes the card able to hold it, G2 spends
-# --- what is already ruled, and reading sits at the bottom in G6. The addresses the owner wants
-# --- are already read: fergus_1843 has 46 matches that could carry one, norris_1844 39, and all
-# --- 14 norris advertiser proprietors carry a printed trade AND address.
-# ---
-# --- The 2026-09-04 band that stood here drained — T-0507, T-0602, T-0699, T-0692, T-0693,
-# --- T-0632/3, T-0514/634, T-0418, T-0638 all landed. This is rebuilt from what arrived since.
 
 # --- G1 — THE CARD MUST BE ABLE TO HOLD IT. Small repairs the spend below writes THROUGH: a card
 # --- that drifts silently, or one identity split across two cards, makes every figure under it
@@ -151,31 +131,40 @@ T-0754 — 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and d
 T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 
-# --- THE WRIGHT 1834 SHEET — owner ask, 2026-09-05. The National Archives copy arrived whole at
-# --- 600 dpi and the town has read almost nothing it LETTERS. T-0788 (the block numerals), T-0797
-# --- and T-0798 are in G4 above, because they are what makes an address land; these are the rest,
-# --- in the dependency order the owner placed them in.
-T-0787 — The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check
-T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
-T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
-T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
-T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
-T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
+# --- ==========================================================================
+# --- WHAT BLOCKS EVERYTHING ELSE — ordering rule 4, and these are the cases
+# --- ==========================================================================
+# --- An invisible ticket outranks a visible one only when it BLOCKS one. These block ALL of them,
+# --- and each band below used to state that about itself while sitting under the work it gated.
+# --- T-0819 first: the promotion workflow cannot push its back-merge, so PRODUCTION CANNOT BE
+# --- PROMOTED AT ALL. Then dev's standing red — T-0728, T-0729 and T-0781 are three reports of the
+# --- same failure set on an untouched checkout, and T-0763 is why they were hard to tell apart.
+T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
+T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
+T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
+T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
+T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
 
-# --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is the one
-# --- T-0451 left open: the committed market line is fitted to N Wacker Drive and stands 9.1 m off
-# --- the plat's own module, so the suspect is the parent line rather than the North Division.
-T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
-T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
-T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
-T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
-T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
+# --- THE TRIANGLE AND DRAW-CALL BUDGET — MOVED ABOVE THE ROOFS IT GATES. Its own text has always
+# --- said "it gates every ticket above that adds a roof", and it was sitting sixty lines BELOW them.
+# --- Measured on the closed #599: dev had 1,566 triangles of `balanced` headroom and four roofs cost
+# --- 2,174 — so the next visible parcel of any size fails whatever it is. T-0441 held that
+# --- measurement and its three options and NEVER REACHED DEV; it dies with that branch and wants
+# --- re-filing by whoever takes this band.
+T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
+T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
+T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
+T-0190 — A second street tier for the street edge, and the ceiling that refuses it
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
+T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Each puts a building a visitor can walk to.
+# --- Gated by the band above; the owner's standing priority is the dataset first (see the top band),
+# --- so these sit here rather than at the head of the file.
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 
@@ -183,7 +172,7 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings; the
-# --- buildings above cannot be placed correctly without them.
+# --- buildings above cannot be placed CORRECTLY without them.
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
@@ -201,6 +190,28 @@ T-0425 — A letter-list household's arrival bound is dated by the printing it w
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
+
+# --- THE WRIGHT 1834 SHEET — owner ask, 2026-09-05. T-0788, T-0797 and T-0798 are in G4 above,
+# --- because they are what makes an address land; these are the rest, in his own dependency order.
+T-0787 — The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check
+T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
+T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
+T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
+T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
+T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
+T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
+T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
+T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
+
+# --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
+# --- T-0451 left open: the committed market line is fitted to N Wacker Drive and stands 9.1 m off
+# --- the plat's own module, so the suspect is the parent line rather than the North Division.
+T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
+T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
+T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
+T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
+T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 
 # --- THE LOT GRID QUESTION — measure, THEN ask.
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
@@ -220,8 +231,7 @@ T-0280 — The far band's grass-or-flower split is made on the forb lattice's CL
 T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 
-# --- SOUTH THROUGH TIME — owner epic, 2026-09-01. T-0219's ground continued south through the
-# --- decades; one ticket per epoch, in order.
+# --- SOUTH THROUGH TIME — owner epic, 2026-09-01. One ticket per epoch, in order.
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -238,66 +248,56 @@ T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 
 # --- ==========================================================================
-# --- DRAIN THE OPEN-PR QUEUE — OWNER INSTRUCTION, 2026-09-05
+# --- THE LOOP'S OWN HEALTH — the drain band and the pipeline, merged
 # --- ==========================================================================
-# --- Verbatim: "we have a whole lot of PRs that get left open on dev ... add a ticket or tickets
-# --- to queue in the correct order to work and close and merge correctly open PRs?"
+# --- Owner instruction, 2026-09-05: "we have a whole lot of PRs that get left open on dev ... add a
+# --- ticket or tickets to queue in the correct order to work and close and merge correctly open PRs?"
 # ---
-# --- Measured 16:00Z: 21 PRs open, 21 of 21 CONFLICTING, and on the same six GENERATED files every
-# --- time — both tickets.json, build.json, BOARD.md, walk/index.html, dev-smoke-state.json.
-# --- changelog.js, which HAS a merge driver, conflicted on 0 of 21. That contrast is T-0813.
-# ---
-# --- WHAT ACTUALLY DRAINED IT, because the first diagnosis was half wrong: T-0815 closed five PRs
-# --- dev had outrun, and then THE LANE DRAINED ITSELF the moment #836 took the published tree off
-# --- the 32 MB wall and dev's gate went green. 21 open at 16:00Z, 6 by 19:15Z. The constraint was
-# --- never "nobody is merging" — it was two stop-the-world faults plus a janitor blind to both.
-# ---
-# --- WHAT A LAP COSTS, from T-0818's four: the same five build-product conflicts every time and no
-# --- content disagreement at all · four changelog rebuilds, because the driver renumbers dev's
-# --- PUBLISHED entries when a feature branch is merged into a dev-based branch · nine id restamps
-# --- of one ticket · and this band stripped three times, because merge-queue.mjs gives the file to
-# --- "the side that RE-ORDERED" and a band added at the top re-orders by construction. A driver
-# --- that silently discards the owner's ranking is worse than one that refuses. All T-0813's.
+# --- Measured 16:00Z: 21 PRs open, 21 of 21 CONFLICTING, on the same six GENERATED files every time.
+# --- changelog.js, which HAS a merge driver, conflicted on 0 of 21 — that contrast is T-0813, and
+# --- #910 has since landed its first half. WHAT ACTUALLY DRAINED THE PILE was not laps: T-0815 closed
+# --- five PRs dev had outrun, and the lane then drained itself the moment #836 took the published
+# --- tree off the 32 MB wall and dev's gate went green. 21 open at 16:00Z, 6 by 19:15Z. The
+# --- constraint was never "nobody is merging" — it was two stop-the-world faults and a janitor blind
+# --- to both, which is why T-0809 outranks the remaining laps.
 T-0813 — Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
 T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
+T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
+T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
+T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
+T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
+T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
+T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
+T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 
-# --- THE PUBLISHED BUDGET — SIX TICKETS FOR ONE FAULT. T-0722, T-0725, T-0731, T-0774, T-0803 and
-# --- T-0804 were each filed by a different run hitting the same 32 MB ceiling within a day, and
-# --- #836 has since fixed it (31.999 -> 30.4 MB by publishing changelog.js once). One run should
-# --- read all six, keep what is still true, and withdraw the rest WITH the evidence. T-0727, the
-# --- boot-payload budget the owner ranked, is in the drain band above and is not one of these.
+# --- CLEANUP — MANY TICKETS, FEW FAULTS. Verify, keep what is still true, and withdraw the rest
+# --- WITH THE EVIDENCE. T-0722, T-0725, T-0731, T-0774, T-0803 and T-0804 are six reports of ONE
+# --- 32 MB ceiling, each filed by a different run inside a day, and #836 has since fixed it
+# --- (31.999 -> 30.4 MB). The eight below them were already banded this way.
 T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
 T-0725 — The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate
 T-0731 — The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0803 — The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again
 T-0804 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
+T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
+T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
+T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
+T-0377 — Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
+T-0388 — Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
+T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
+T-0612 — dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
+T-0683 — Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
 
-# --- THE TRIANGLE AND DRAW-CALL BUDGET — invisible, and it gates every ticket above that adds a
-# --- roof.
-T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
-T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
-T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
-T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
-T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
-T-0253 — May an invented building stand on the river margin of a platted street corridor
-T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
-T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
-
-# --- MEASUREMENT, GATES AND PROVENANCE — invisible; nothing here blocks a visible ticket. T-0728,
-# --- T-0729 and T-0781 are three reports of the same standing red on an untouched dev and should be
-# --- read together; T-0763 is why they were hard to tell apart (check.sh self-tests print FAIL lines
-# --- indistinguishable from a failing step).
-T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
-T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
-T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
-T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
-T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
+# --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing here blocks a visible ticket. The
+# --- red-gate reports moved up to the blocking band; these are the rest.
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
@@ -313,29 +313,6 @@ T-0030 — A queue card in Manager reading tickets.json
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
-
-# --- THE PIPELINE AND ITS RUNNERS — the loop's own health.
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
-T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
-T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
-T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
-T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
-T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
-T-0674 — A bot-opened PR never runs the dev gate before merge, and two of them broke dev
-T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
-T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
-T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
-T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
-
-# --- PROBABLY ALREADY ANSWERED — verify, then withdraw WITH THE EVIDENCE.
-T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
-T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
-T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
-T-0377 — Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
-T-0388 — Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
-T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
-T-0612 — dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
-T-0683 — Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
 
 # --- NEWLY FILED — `ticket.mjs new` appends here. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
