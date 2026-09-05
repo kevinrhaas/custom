@@ -65,6 +65,27 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# T-0820, and it sits here because it is the same fault as the line above: a
+# merge that kept both sides. `dev` went red TWICE on 2026-09-05 on a duplicated
+# id — two branches minting ticket T-0739, then a second byte-identical
+# `west_water` in data/streets/1835.json from a branch cut before the first one
+# landed — and a third came the same evening from an agent staging a `UU` with
+# `git add -A`. None was caught on the branch that wrote it; all three were found
+# by this script running against dev AFTER the merge, which is the expensive
+# place to find anything, because the dev gate is the base every open PR
+# inherits. One duplicate parked nineteen PRs behind a red they had not caused.
+# It is worse now than it was then: dev carries a ruleset requiring `gate`, so a
+# red dev no longer discourages merging, it forbids it.
+#
+# The rule is DISCOVERED, not listed — it applies wherever the shape appears (a
+# list of two or more objects that all carry an `id`), so a list added tomorrow
+# is covered without anybody remembering to register it. 2,835 files, 0.6 s.
+step "no committed list carries the same id twice" \
+  python3 tools/check_unique_ids.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/check_unique_ids.py --self-test
+
 # THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
 # ours' order, theirs' closes and theirs' new tickets — because a text merge of
 # a re-ranked queue against a branch that closed tickets conflicts on every hunk,
@@ -80,15 +101,40 @@ step "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the changelog merge driver still does what .gitattributes promises" \
   node tools/merge-changelog-selftest.mjs
 
+# T-0831. THE BUILD PRODUCTS' DRIVER, AND THE LEDGER'S. The measurement that
+# bought these: PR #906 was open seventy minutes, `dev` moved FIVE times under it,
+# and all five merges conflicted — always in generated files, never once in the
+# substantive diff. #894 and #850 record the same, #850 pricing a lap at ~19
+# minutes of verification during which dev took three more merges. Keeping ours is
+# safe on those five because the gate ALREADY refuses each of them stale
+# (ticket.mjs check, test_ticket_mirror.mjs, check_published.mjs), so the conflict
+# was never what protected them.
+#
+# The half worth testing hardest is the file that is NOT one of them:
+# tools/dev-smoke-state.json sits in the same conflict set and is an append-only
+# ledger whose rows carry no id and which no step here reads — "keep ours" would
+# have dropped the other side's readings silently. The suite proves no reading is
+# ever lost, and ends with a REAL git merge, because a driver that works perfectly
+# and is never invoked looks exactly like no driver at all.
+step "the build-product and smoke-ledger merge drivers do what .gitattributes promises" \
+  node tools/merge-generated-selftest.mjs
+
 # ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
 # say what `queue` runs — git keeps a driver command out of tracked content on
 # purpose. So each clone registers it once, and a clone that has not is NOT
 # broken: git falls back to the ordinary text merge, which is what this repo did
 # before the driver existed. Say so and move on.
-if [ -z "$(git config merge.queue.driver || true)" ] || [ -z "$(git config merge.changelog.driver || true)" ]; then
-  printf '\033[33m   note: this clone has not registered the custom merge drivers.\033[0m\n'
-  printf '\033[33m         QUEUE.md and changelog.js will conflict the old way until you run:\033[0m\n'
+MISSING_DRIVERS=""
+for d in queue changelog generated smokestate; do
+  [ -z "$(git config "merge.$d.driver" || true)" ] && MISSING_DRIVERS="$MISSING_DRIVERS $d"
+done
+if [ -n "$MISSING_DRIVERS" ]; then
+  printf '\033[33m   note: this clone has not registered the custom merge driver(s):%s\033[0m\n' "$MISSING_DRIVERS"
+  printf '\033[33m         those paths will conflict the old way until you run:\033[0m\n'
   printf '\033[33m           bash chicago/4d/tools/setup-merge-drivers.sh\033[0m\n'
+  # Worth saying once rather than leaving to be rediscovered: registering
+  # `generated` is what stops BOARD.md, tickets.json x2, build.json and
+  # walk/index.html conflicting on EVERY merge (T-0831 — five for five on #906).
 fi
 
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then

@@ -65,7 +65,193 @@ attorney and counsellor at law** — 38 adoptions → 39, refusals 22 → 21.
 - Re-derived: the 665 programme, `town_census.json`, `street_face_adoptions.json`,
   `register_1835.json`, `land_sales/ground.json`, all sidecars, and the publish mirror.
 
+## Shipped 2026-09-05 — T-0832 (of T-0813): the five files that conflict on every merge stop conflicting
 
+**What shipped.** Two merge drivers and the `.gitattributes` to reach them:
+`tools/merge-generated.mjs` (the five build products — keep ours, print the
+rebuild command, never conflict) and `tools/merge-smoke-state.mjs` (the smoke
+ledger — union of whole readings, never of lines). Registered by
+`setup-merge-drivers.sh` beside the existing two; twenty assertions in
+`tools/merge-generated-selftest.mjs`, wired into `check.sh`.
+
+### The measurement, which is a log rather than an argument
+
+PR #906 was open about seventy minutes. `dev` moved **five times** under it —
+#904, #907, #908, #905, #858 — and every one of the five merges conflicted,
+**always in generated files and never once in the substantive diff**:
+
+| lap | dev landed | conflicted |
+|---|---|---|
+| 1 | #904 | BOARD.md, tickets.json ×2, build.json, walk/index.html |
+| 2 | #907 | the same five, plus STATUS.md (a real conflict, hand-merged) |
+| 3 | — | the same five, measured with `merge-tree` before the lap |
+| 4 | #905 | the same five |
+| 5 | #858 | BOARD.md, tickets.json ×2 |
+
+`check.sh`, `QUEUE.md`, `changelog.js` and every ticket source auto-merged every
+time, because those carry a driver or are hand-authored. Two other PRs report it
+independently: **#894** — *"each one collides on the same four generated files"*,
+four rebases paid and the fifth is where that run's clock ran out; **#850** —
+*"Every conflict so far has been in a generated file… The substantive diff has
+merged cleanly every time"*, rebased twice, the gate run three times on three
+bases, then parked. #850 prices a lap at ~19 minutes of honest verification,
+during which dev took three more merges.
+
+### Why keeping ours is safe on those five, and only those
+
+Each is **already refused by the gate when stale** — read out of `check.sh`, not
+assumed: BOARD.md and tickets.json by `ticket.mjs check`; the site tickets.json by
+`test_ticket_mirror.mjs`, which asserts a mirror somebody else made stale still
+fails; build.json and walk/index.html by `check_published.mjs`. **So the conflict
+was never what protected these files — the gate was, and the conflict was pure
+cost.** That is the same reasoning `chicago/4d/.gitattributes` already sets out
+for the liberty register.
+
+### The file that looks like one of them and is not
+
+`tools/dev-smoke-state.json` sits in exactly the same conflict set. Measured
+before writing any rule: it is an **append-only** register of smoke readings
+(T-0216), 62 of them; its rows carry **no `id`**, so T-0820's uniqueness check
+cannot see it; and **no step of `check.sh` reads it at all**. Nothing regenerates
+it and nothing would notice a merge throwing half of it away. #905 resolved one
+lap by taking dev's side and said so — right for one lap, wrong as a standing
+rule, because a reading is evidence that a gate was run on a tree, and evidence
+is not regenerable.
+
+**Treating all six alike would have destroyed data silently.** The ledger gets a
+union of whole readings instead, deduplicated on a canonical form that sorts keys
+at every depth — not `JSON.stringify(r, keys.sort())`, whose replacer array is
+applied at every level and would flatten two readings that differ only inside a
+nested object, dropping one. In a driver whose single promise is that no reading
+is ever lost, that was the bug that mattered, and it is its own test case.
+
+### The last test is a real merge, on purpose
+
+Nineteen cases test the scripts. The twentieth builds a git repo, writes the
+`.gitattributes`, registers the drivers and performs an actual conflicting merge.
+`.gitattributes` naming a driver, the driver being registered, and git reaching it
+are three separate things, and only the third is what a branch experiences — **a
+driver that works perfectly and is never invoked looks exactly like no driver at
+all**, which is the state this repo was in for all five laps of #906.
+
+### Visible-progress rule — stated against me, not around me
+
+**This is the second consecutive invisible run I have shipped**, after T-0820, and
+the four-entry window already carries two or three invisible entries. The hard
+trigger in AGENTS.md (three consecutive entries opening "Nothing you can see") is
+not met — v596 does not — but the one-in-four ratio is stretched and pretending
+otherwise would be the gaming the rule warns about.
+
+What justifies it is exemption 3's substance rather than its letter: it is not a
+gate, it is the thing parking gates' worth of finished work. The parcels are
+nameable, which the exemption requires — **#850** (T-0559, two readings settled
+against the sheets), **#856** (T-0497, the Dalton index), **#841** (T-0581, Moses
+and Kirkland vol. 1) are all sitting with green work behind this exact conflict,
+and #894 ran out of clock on it outright.
+
+**The next run must be visible, and this entry is the commitment.**
+
+### A correction, because it was my own duplicate
+
+This work was first filed as **T-0831** and it should not have been: **T-0813**
+already asked for exactly it, on the owner's request, and was ranked at the top of
+the drain band. T-0813's measurement is also better than the one above — it counted
+**21 of 21 open PRs** conflicting on the same six files, and observed that the two
+files which already had drivers conflicted on **0 of 21** and **3 of 21**
+respectively. That is the real evidence; my five laps are a second sample of it.
+
+T-0813 is now split — **T-0832** (this, the merge treatment) and **T-0833**
+(`tools/drain.mjs`, its untouched second half) — and the children hold its queue
+place. T-0831 is withdrawn.
+
+**Two deliberate deviations from what T-0813 specified**, recorded in T-0832 rather
+than left to be found:
+
+1. It asked for a driver that *re-runs the tool that owns the file*. A merge driver
+   runs during the merge on a HALF-MERGED tree, once per conflicting file, and the
+   owning tools here are `ticket.mjs board` and `publish.sh` — the second reads the
+   whole tree and takes a minute or two. Regenerating from a state that never
+   existed is worse than keeping a stale copy. So it keeps ours and PRINTS the
+   command, and the gate's existing staleness checks are what make that safe.
+2. It asked to union the ledger *by (tree hash, viewport, stage), newest wins on a
+   tie*. Newest-wins **discards a reading**, and two runs of one stage on one tree
+   are not redundant — they are the evidence it was run twice. This unions on full
+   identity and drops nothing; pruning, if ever wanted, is a deliberate pass and not
+   a merge driver's silent side effect.
+
+## Shipped 2026-09-05 — T-0820: an id used twice is refused on the branch, not on dev
+
+**What shipped.** `tools/check_unique_ids.py`, wired into `tools/check.sh` beside the
+conflict-marker check it is a sibling of. It walks every committed JSON under `data/`,
+`tools/` and `tickets/` — 2,835 files, 0.6 s — and refuses any list of objects that
+carries the same `id` twice, naming the file, the key, the id, and whether the two
+bodies are identical (a merge that kept both) or different (an id that names two
+things). Fourteen self-test cases prove it fires.
+
+**Why it is on the branch's gate and not a nightly.** `dev` went red twice on
+2026-09-05 on this exact fault — T-0739 minted by two branches (#863), then a second
+byte-identical `west_water` in `data/streets/1835.json` from a branch cut before the
+first landed (#889) — and a third came that evening from an agent staging a `UU`
+conflict with `git add -A`. None was caught on the branch that wrote it. All three were
+caught by `check.sh` against `dev` AFTER the merge, which is the expensive place: the
+dev gate is the base every open PR inherits, so one duplicate parked nineteen PRs
+behind a red they had not caused. `dev` now carries a ruleset requiring `gate`, so a
+red dev no longer discourages merging — it forbids it.
+
+### The rule is discovered, not listed
+
+A hand-maintained table of "lists to check" goes stale the first time somebody adds a
+list, and the list they add is the one that breaks. So the check applies wherever the
+SHAPE appears: a dict value that is a list of two or more objects, every one carrying
+an `id`. Measured over the tree before it was switched on: **68 kinds of list, 67
+already clean.** The rule is what the data already obeyed, written down.
+
+### What it found, and the cause was not the one expected
+
+One real fault: `fulton` in `data/streets/1835.json` cited `thompson_plat_1830`
+**twice**. It is not a merge artefact. `abacee6e4` — the T-0713 sweep that attested the
+platted streets — appended the plat to every street's `sources`, and Fulton's list
+already contained it. T-0713's own STATUS entry above says so in as many words: "and
+`fulton`, which already cited the plat". The sweep knew and appended anyway. Fixed
+here, one element removed; every other street in the file cites the plat once.
+
+That matters beyond the one line: **the fault the check was built for arrived by a
+route nobody predicted.** Three duplicates from merges, and the fourth from a
+single-branch sweep that read the value and added it again. A check written to catch
+merges would have missed it; a check written against the shape caught it.
+
+### The one exception, named rather than skipped — T-0828
+
+`runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeats ids, and
+those are NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sit at easting
+709.8 and 735.7 — one lot's width apart, the east and the west line of that lot. Both
+are real fence; the generator names a run after the LOT and a lot has two sides, so the
+id under-specifies. Asserting there would refuse correct data. **T-0828** fixes the
+generator; the check refuses the exception the day it stops being needed, so it cannot
+outlive its ticket.
+
+### Not covered, and measured rather than assumed — T-0829
+
+T-0820's acceptance also named `data/research/*/coverage.json` →
+`declarations[].items[]`. It is **not** covered: those are lists of strings and the
+declarations carry no `id`. All ten files are clean today, but nothing holds them.
+The obvious extension was measured and refused: 222 kinds of string list, 28,331 lists,
+14 with a repeat — and most of those repeats are **correct**, because the lists are
+multisets (`by_ward` has one entry per person, and two people share a ward). A blanket
+rule would refuse honest data, the same mistake `raised[]` forced this check to avoid.
+Three `mentions` lists in `gazetteer.json` are genuinely suspect and are written up in
+T-0829 for adjudication against the clippings, not silently deduplicated — the same
+clipping id twice is either a double count or a clipping-level id doing a
+mention-level job, and which one it is decides whether the fix is a deletion or a
+rename.
+
+### Visible-progress rule
+
+This is an invisible run under **exemption 3** — a gate blocking visible parcels. It is
+not speculative: with `dev`'s ruleset active, the next duplicate id stops every merge
+on the lane, and the parcels it stopped on 2026-09-05 were the nineteen PRs held behind
+#889. The last three merged entries (v588–v590) are all visible, so the one-in-four cap
+is not in play.
 
 ## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
 
