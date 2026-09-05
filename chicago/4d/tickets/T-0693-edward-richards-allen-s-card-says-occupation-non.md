@@ -1,7 +1,7 @@
 ---
 id: T-0693
 title: Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-04
+pr: 834
 claimed_by: run 9/4/2026, 8:17:20 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T02:15:08.128Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935441064
 ---
 

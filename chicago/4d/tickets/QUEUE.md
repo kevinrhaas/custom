@@ -119,7 +119,6 @@
 # --- then says occupation is `none_recorded`. NOT a back-projection ask — T-0633 settled that and
 # --- stays; the fault is that "no trade in 1835" and "no trade anywhere" are the same string.
 T-0692 — 18 residents graded inferred on two or more sources carry no ladder_rule at all: the consolidation never reached them
-T-0693 — Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing
 
 # --- AND THE TWO GAPS LANDING THAT RULING EXPOSED, 2026-09-04. Both are the owner's original
 # --- question — "you do a lot of work and not a lot of updates happen" — found one layer down,
