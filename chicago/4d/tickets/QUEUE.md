@@ -376,3 +376,4 @@ T-0715 — data/residents/index.json rows go stale for any household no minting 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0713 — The platted street lines are graded inferred; the owner rules them attested from the Thompson plat
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
