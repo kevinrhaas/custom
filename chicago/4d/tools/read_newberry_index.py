@@ -1698,7 +1698,17 @@ def self_test() -> int:
     ok &= run("a card marked a sliver of one it does not truncate", invent_sliver)
 
     def miscount_slivers(dom):
-        path = next((dom / "records").glob("entries_vol_*.json"))
+        # The fixture has to break a volume that HAS a sliver to deduct. It used to
+        # take whichever the glob yielded first, which was safe only while every
+        # volume carried one. T-0775's OCR re-read of volume 4 rewrote all its cards
+        # and carries no sliver count at all (T-0810), so on a glob that lands there
+        # `cards` already equals `len(records)`, the fixture changes nothing and the
+        # assertion silently stops testing anything. Pick a volume that can be broken.
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("slivers")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a sliver to miscount — "
+                                 "this fixture can no longer test what it claims to")
         doc = load(path)
         doc["counts"]["cards"] = len(doc["records"])
         dump(path, doc)

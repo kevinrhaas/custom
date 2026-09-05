@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'One card read twice, nine times over', kind: 'fix', ts: '',
+  { v: 585, title: 'One card read twice, nine times over', kind: 'fix', ts: '2026-09-05T16:31:30.239Z', date: 'Sep 5, 2026, 11:31 AM CT',
     items: [
       'Each page of the Newberry Library\u2019s genealogical index is four columns of typed cards, and the reader takes them one column at a time by cutting a window out of the page. The windows are wider than the columns \u2014 they have to be, because the page width drifts by up to forty-four points across a volume and a narrower window would slice a column in half. So every window carries the leftmost inch of the column beside it, and a card standing on that seam gets read twice: once whole, and once as the few characters that fell inside the neighbour\u2019s window.',
       'The reader already threw away exact duplicates, and could never catch these, because a fragment is not equal to the card it came from. So the fragment survived as a second, short card of the same place, and the index counted one card as two.',
