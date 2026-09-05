@@ -1,7 +1,7 @@
 ---
 id: T-0742
 title: The 1840 census continuation sheet 33SQ-GYYJ-9CZ read line by line
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0659
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 859
 claimed_by: run 9/5/2026, 2:01:08 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T07:21:55.461Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950213967
 ---
 
