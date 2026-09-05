@@ -428,4 +428,4 @@ T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0741 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
+T-0827 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold

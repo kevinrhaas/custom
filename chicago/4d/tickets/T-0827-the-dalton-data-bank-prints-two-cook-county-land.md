@@ -1,5 +1,5 @@
 ---
-id: T-0741
+id: T-0827
 title: The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
 state: open
 epic: META
