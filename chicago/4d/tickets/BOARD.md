@@ -4,9 +4,9 @@
 
 - **T-0429** Open blk_south_water_lasalle: 8 roofs of headroom on three free lots · needs-bake · claimed · run 8/30/2026, 1:51:13 AM CT
 
-## In the queue, in the owner’s order (154)
+## In the queue, in the owner’s order (156)
 
-- **T-0679** Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
+- **T-0782** The opening card drops the projected count and the 371-structures line and reads as two parallel completeness ladders — buildings and people · **OWNER** · SEEN
 - **T-0597** James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
 - **T-0508** 237 named residents have no research row: cohort 13 of 79 · **OWNER**
 - **T-0509** 237 named residents have no research row: cohort 14 of 79 · **OWNER**
@@ -23,7 +23,6 @@
 - **T-0431** Open blk_south_water_clark: 4 roofs of headroom on two free lots · needs-bake
 - **T-0432** Open blk_south_water_dearborn: 4 roofs of headroom on two free lots · needs-bake
 - **T-0385** The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street · needs-bake
-- **T-0414** The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 - **T-0412** A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 - **T-0415** John Wright's two buildings to let are named (east) and (west) and stand the other way round
 - **T-0406** 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
@@ -160,6 +159,9 @@
 - **T-0774** The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 - **T-0776** A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 - **T-0777** assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
+- **T-0778** Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
+- **T-0779** The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
+- **T-0781** tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
 
 ## ⏸ Waiting on an owner decision (6)
 
@@ -245,9 +247,10 @@
 - **T-0657** The 1840 census images 26-50: continuation sheets 33S7-9YYJ-FJ, -K2 and -L3 read line by line · **OWNER** — T-0742, T-0743, T-0744
 - **T-0659** The 1840 census images 26-50: continuation sheets 33SQ-GYYJ-5H and 33SQ-GYYJ-9CZ read line by line · **OWNER** — T-0747, T-0748
 
-## Finished, newest first — 100 of 456; the older ones are in the ticket files (100)
+## Finished, newest first — 100 of 458; the older ones are in the ticket files (100)
 
 - **T-0775** Volume 4's OCR reading stitched, re-parsed and re-sampled, now that every band is in · Sep 5, 2026, 9:42 AM · [PR #888](https://github.com/kevinrhaas/custom/pull/888)
+- **T-0414** The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses · Sep 5, 2026, 9:19 AM · [PR #885](https://github.com/kevinrhaas/custom/pull/885)
 - **T-0619** Volume 4 read by OCR, pages 1-306: the shards · Sep 5, 2026, 8:28 AM · [PR #879](https://github.com/kevinrhaas/custom/pull/879)
 - **T-0713** The platted street lines are graded inferred; the owner rules them attested from the Thompson plat · **OWNER** · SEEN · Sep 5, 2026, 8:05 AM · [PR #840](https://github.com/kevinrhaas/custom/pull/840)
 - **T-0671** The anchor-offset test that places 5V's last unassigned_ink stroke, salvaged from the closed PR #746 · **OWNER** · Sep 5, 2026, 8:05 AM · [PR #861](https://github.com/kevinrhaas/custom/pull/861)
@@ -306,6 +309,7 @@
 - **T-0595** jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien · Sep 4, 2026, 6:02 PM · [PR #818](https://github.com/kevinrhaas/custom/pull/818)
 - **T-0589** Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3 · Sep 4, 2026, 5:04 PM · [PR #813](https://github.com/kevinrhaas/custom/pull/813)
 - **T-0676** The ring townships around Chicago are unread: T39N R13E, T38N R14E, T38N R15E, T40N R13E, T41N R14E · Sep 4, 2026, 4:56 PM · [PR #816](https://github.com/kevinrhaas/custom/pull/816)
+- **T-0679** Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images · Sep 4, 2026, 4:55 PM · [PR #815](https://github.com/kevinrhaas/custom/pull/815)
 - **T-0668** The 531 civic residents ship a reading a browser never shows: put the evidence blocks on the resident card · Sep 4, 2026, 4:43 PM · [PR #809](https://github.com/kevinrhaas/custom/pull/809)
 - **T-0670** The directory crosswalks bind a later entry on surname plus a first initial, and 532 new anchors made that rule bind Thomas L. Abbott onto Titus H. Abbott · Sep 4, 2026, 4:39 PM · [PR #814](https://github.com/kevinrhaas/custom/pull/814)
 - **T-0669** Position a RESIDENCE from its later documented address: the six the directories print as res or bds, and the rule that governs a home rather than a shop · Sep 4, 2026, 4:36 PM · [PR #812](https://github.com/kevinrhaas/custom/pull/812)
@@ -345,6 +349,4 @@
 - **T-0646** The 1840 census image 33S7-9YYJ-6Q: the TOTAL column reads 173 against a printed 198, and no reading of the matched-pair glyph closes the gap · **OWNER** · Sep 4, 2026, 2:47 AM · [PR #767](https://github.com/kevinrhaas/custom/pull/767)
 - **T-0642** The 1840 census images 1-25: the twelve left-sheet population key, and the pairing of all eleven continuation sheets to their left sheets · **OWNER** · Sep 4, 2026, 2:32 AM · [PR #766](https://github.com/kevinrhaas/custom/pull/766)
 - **T-0645** Ten of the TOTAL figures on 33S7-9YYJ-6H are two strokes and nothing else: 11 over-runs the footing, 4 under-runs 8D's · Sep 4, 2026, 1:34 AM · [PR #764](https://github.com/kevinrhaas/custom/pull/764)
-- **T-0503** Eleven images of the St Mary's baptismal register 1833-1835 are deposited and unread · **OWNER** · Sep 4, 2026, 1:21 AM · [PR #742](https://github.com/kevinrhaas/custom/pull/742)
-- **T-0617** The Sauganash read off its four attested views: plan of both masses, roof pitches, the door, the window rhythm, the chimneys and the log annex's notching, each measured to a stated scale datum and graded · **OWNER** · Sep 4, 2026, 1:08 AM · [PR #763](https://github.com/kevinrhaas/custom/pull/763)
 

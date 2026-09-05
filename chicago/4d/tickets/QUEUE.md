@@ -32,6 +32,13 @@
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
 
+# --- OWNER ASK 2026-09-05 — THE OPENING CARD. Verbatim: "for the named residents dont include
+# --- the projected number there" · "29 people housed of 3265 is a portion of what will eventually
+# --- be the 1404 named residents ... and the balance will be reconstructed to get to the 3265, can
+# --- you improve the way that is presented" · "at the top it says 371 structures, just remove that".
+# --- Small and visible; placed here by the owner so a run picks it up ahead of the research band.
+T-0782 — The opening card drops the projected count and the 371-structures line and reads as two parallel completeness ladders — buildings and people
+
 # --- THE SAUGANASH — owner, 2026-09-03: "an early visible ticket to do a deep dive on the
 # --- sauganash hotel ... this is an attested structure we are putting fine points on it".
 # --- T-0617 read the four plates and T-0626 rebuilt the massing; both landed 2026-09-04, and
@@ -75,7 +82,6 @@
 # --- yield is a list the town made of its own named inhabitants. The land sales are the
 # --- largest untouched source of POSITION in the project, and T-0676/T-0679 are what T-0610
 # --- and T-0666 left unfinished.
-T-0679 — Fergus 1839's Fort Dearborn lot sale has 62 rows with no lot number and 22 with no price: settle the destroyed numerals off the page images
 
 # --- GROUP 3 — COMPOSITION, FAMILIES, BUSINESSES, ENCLOSURES: the four the owner named.
 # --- T-0589 is the town's civic account; T-0507 the household composition calibration;
@@ -122,7 +128,6 @@ T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed; each puts something in
 # --- the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
@@ -326,3 +331,9 @@ T-0773 — Seven houses hold a printed address that a later printing outranks, a
 T-0774 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0778 — Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it
+T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
+T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout

@@ -163,6 +163,27 @@ That is refusal 4 doing its job, and **T-0375** is where more Dearborn frontage 
    surname with a sole trader is the same house is **T-0338's** open question over
    thirty-one such groups, and a placement pass must not answer it by seating or refusing.
    Variant spellings escape it too, which **T-0408** measures.
+
+   **And where the corpus HAS already ruled, the collapse obeys the ruling instead of
+   re-deciding it (T-0414, 2026-09-05).** `data/research/newspapers/identity.json`
+   § `refused_firm_merges` is where this project writes down that two headings are not one
+   business, and a refusal of kind `two_houses` says exactly what the surname collapse
+   would otherwise assume away. Inside a surname set carrying such a ruling the collapse
+   keys on **(surname set, occupation)** rather than on the surname set alone — because
+   the trade is the axis the ruling itself used. `identity.json` on W. Montgomery: *"a
+   different trade, a different stand and eighteen months later."* Before this, refusal 3
+   answered that identity question by refusing, and answered it *against* the corpus's own
+   written ruling: L. W. Montgomery the bootmaker took the roof and W. Montgomery the
+   auctioneer was refused for being called Montgomery.
+
+   The rule is narrow in three ways on purpose. It admits a `two_houses` refusal **only
+   when both headings' surname sets are equal**, because a refusal between "New York
+   Clothing Store" and "Peter Cohen's store" is not about anything this collapse does.
+   It reaches **five** surname groups in the register today — Curtiss, Kinzie, Montgomery,
+   Mulford and Taylor — and every other surname is still keyed on the surname alone. And
+   two headings of the **same** trade inside a ruled group still collide and one is still
+   refused: whether the three surplus Montgomery auction headings are one house is the
+   gazetteer's question, and this pass still does not answer it.
 4. **`every roof on the face is spoken for`** — the supply ran out. This is a count, not a
    failure, and it is the number this policy exists to produce.
 5. **the roof is a household's dwelling — under EITHER layer** — a refusal of a ROOF
