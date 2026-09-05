@@ -86,7 +86,7 @@ reached them"*. Over the whole layer that is true of **nine people, not 873**:
 
 **The fault is a SPEND, not a READ.** For 864 people the rung exists in
 `grading_proposal.json` and nothing has ever carried it onto the card; 106 of those are
-`attested` rungs. Filed as **T-0716**, which is the successor to this ticket.
+`attested` rungs. Filed as **T-0720**, which is the successor to this ticket.
 
 **And the nine each say why now.** Seven were refusals the master had recorded all along
 under a reason that is false of four of them — R1, *"names no forename"*, filed against

@@ -1,5 +1,5 @@
 ---
-id: T-0716
+id: T-0720
 title: 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
 state: open
 epic: META
