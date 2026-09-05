@@ -1,5 +1,5 @@
 ---
-id: T-0820
+id: T-0822
 title: The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
 state: open
 epic: META

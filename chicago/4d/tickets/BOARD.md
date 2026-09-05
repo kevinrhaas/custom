@@ -5,14 +5,8 @@
 - **T-0447** North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it · **OWNER** · SEEN · claimed · run 9/4/2026, 2:25:19 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737)
 - **T-0722** The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green · claimed · run 9/4/2026, 10:30:40 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33941748580)
 
-## In the queue, in the owner’s order (186)
+## In the queue, in the owner’s order (188)
 
-- **T-0813** Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool · **OWNER**
-- **T-0818** Drain lap 1: the four PRs whose conflict is build products and nothing else · **OWNER**
-- **T-0806** Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations · **OWNER**
-- **T-0807** Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work · **OWNER**
-- **T-0808** The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked · **OWNER**
-- **T-0809** The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap · **OWNER**
 - **T-0693** Edward Richards Allen's card says occupation none_recorded while the same file quotes him as a druggist twice: say what is known and when, not nothing · **OWNER**
 - **T-0581** Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 - **T-0559** The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
@@ -192,7 +186,15 @@
 - **T-0688** The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 - **T-0812** The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
 - **T-0817** QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
-- **T-0820** The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
+- **T-0820** A duplicate in a keyed list takes dev red instead of failing the branch that wrote it: assert unique ids on streets, tickets and coverage declarations at the branch's own gate · **OWNER**
+- **T-0819** The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted · **OWNER**
+- **T-0806** Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations · **OWNER**
+- **T-0807** Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work · **OWNER**
+- **T-0808** The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked · **OWNER**
+- **T-0809** The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap · **OWNER**
+- **T-0813** Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool · **OWNER**
+- **T-0818** Drain lap 1: the four PRs whose conflict is build products and nothing else · **OWNER**
+- **T-0822** The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
 
 ## ⏸ Waiting on an owner decision (6)
 
