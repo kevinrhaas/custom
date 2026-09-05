@@ -1,5 +1,5 @@
 ---
-id: T-0743
+id: T-0748
 title: The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
 state: open
 epic: META
@@ -30,7 +30,7 @@ Piece 2 of 2 of **T-0659 — The 1840 census images 26-50: continuation sheets 3
 - The pairing re-tested on the corrected keys, and 33SQ-GYYJ-97P's refusal either confirmed or overturned
   on the evidence.
 
-**What T-0742's run already measured on this leaf, so this one does not start cold:**
+**What T-0747's run already measured on this leaf, so this one does not start cold:**
 
 - The column geometry is in `data/research/census_1840/pages/33SQ-GYYJ-5H.json`, measured off the FOOTER
   band rather than the header - the header band on this leaf carries printed lettering and the rules read

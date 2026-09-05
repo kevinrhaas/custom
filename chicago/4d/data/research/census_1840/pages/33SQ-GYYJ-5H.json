@@ -10,7 +10,7 @@
  "county": "Cook",
  "reading": "scan_verified",
  "read_state": "geometry_and_footings_read",
- "read_state_note": "THIS FILE IS NOT A COMPLETE READING AND MUST NOT BE READ AS ONE. It carries what T-0742's run measured on this leaf and could stand behind: the column geometry, the enumerator's own footings, and what the ink says about the line count. It carries NO per-line record, because the line count itself is not settled - see open_questions. T-0743 is the ticket that finishes it.",
+ "read_state_note": "THIS FILE IS NOT A COMPLETE READING AND MUST NOT BE READ AS ONE. It carries what T-0747's run measured on this leaf and could stand behind: the column geometry, the enumerator's own footings, and what the ink says about the line count. It carries NO per-line record, because the line count itself is not settled - see open_questions. T-0748 is the ticket that finishes it.",
  "why_it_is_not_finished": "The leaf is a pale exposure and its ink is patchy. read_census_continuation's ink mask - 45 grey levels below a 25-px local background, the setting every other sheet in this deposit was read at - resolves the TOTAL column into 28 lines. Lowered to 24 it finds a further figure near y1574, in a 158-px gap between the 28-line index's lines 12 and 13 where the leaf's median line step is 78. And the manufactures column carries two strokes, near y1139 and y2428, that sit in TOTAL-column gaps of 85 and 128 px - each wide enough for a line whose TOTAL figure this threshold does not see. So the committed 28 is an artefact of the threshold, the count is probably 30 or 31, and a per-line reading written on top of a wrong line index would be worse than no reading at all. Recorded rather than guessed.",
  "column_geometry": {
   "how": "Vertical printed rules located as a column-darkness profile over the ENUMERATOR'S FOOTER band, y2933-3000, against a 61-px moving-average background. The footer band is used and not the header band, and that is the finding worth carrying: the header band on this leaf carries the printed column captions, whose lettering pulls the profile's peaks about 35 px off true. Read off the header, this sheet's industry rules come out at 1381/1449/1513/1577/1658/1739/1819 - a whole column's width of error on a 65-px column, which put every entry in the wrong column and made the footings land on rules. The footer band is printed rules and the enumerator's own figures only.",
@@ -64,7 +64,7 @@
     1847
    ]
   },
-  "corroboration": "The seven industry widths that fall out of these rules are 65, 65, 65, 81, 81, 82, 62. 33SQ-GYYJ-9CZ, read in full by T-0742 off the same printed form, measures 72, 64, 64, 81, 79, 82, 64. The two leaves agree column for column, which is what says these rules are the form's and not this profile's."
+  "corroboration": "The seven industry widths that fall out of these rules are 65, 65, 65, 81, 81, 82, 62. 33SQ-GYYJ-9CZ, read in full by T-0747 off the same printed form, measures 72, 64, 64, 81, 79, 82, 64. The two leaves agree column for column, which is what says these rules are the form's and not this profile's."
  },
  "no_horizontal_rules": "MEASURED: a row-darkness profile across the empty slaves block finds two strong rules on the leaf - y553 under the printed heading at 110 grey levels of excess, and y2933 above the enumerator's footer at 42 - and nothing between them. The body band is y553-2933 and it is unruled.",
  "footer_as_read": {
@@ -81,7 +81,7 @@
   "blank_cells_note": "mining, agriculture and navigation of canals, lakes and rivers are footed with an EMPTY cell, and are recorded null rather than 0."
  },
  "industry_columns_as_measured": {
-  "what_this_is": "the ink of each industry column, at the module's own mask and grouping, on the corrected windows above. Every stroke listed was cropped and looked at at 4x. They are single slashes - the figure 1 - with the exceptions noted. They are NOT yet attached to lines, because the line index is not settled; that is T-0743's work and the boxes are here so it does not have to measure them again.",
+  "what_this_is": "the ink of each industry column, at the module's own mask and grouping, on the corrected windows above. Every stroke listed was cropped and looked at at 4x. They are single slashes - the figure 1 - with the exceptions noted. They are NOT yet attached to lines, because the line index is not settled; that is T-0748's work and the boxes are here so it does not have to measure them again.",
   "mining": {
    "strokes": 0,
    "footed": null
@@ -266,13 +266,13 @@
    "a manufactures stroke at y1123-1155 sitting 42 px from the line indexed 7 and 43 from the line indexed 8, in an 85-px gap - on 33SQ-GYYJ-9CZ every industry entry sits within 31 px of its own TOTAL figure",
    "a manufactures stroke at y2406-2451 sitting in the 128-px gap between the lines indexed 22 and 23"
   ],
-  "so": "the count is not 28. coverage.json and pairing_key_26_50.json both carry 28 and both are restated by T-0743, not by this file."
+  "so": "the count is not 28. coverage.json and pairing_key_26_50.json both carry 28 and both are restated by T-0748, not by this file."
  },
  "pairing": {
   "state": "unpaired",
   "paired_to_printed_page": null,
   "established_by": "pairing_key_26_50.json (T-0656): no left sheet read anywhere in the deposit foots 154.",
-  "the_refusal_this_ticket_reopens": "That file refused 33SQ-GYYJ-97P, printed 211, on 'population 4 short, line count 2 short, sequence at the noise floor' - 97P foots 158 over 30 lines against this leaf's 154 over 28. BOTH halves of that refusal rest on numbers this reading unsettles: the 28 is a threshold artefact, and the 154 is the enumerator's footing, which on a leaf this patchy need not equal the sum of its own cells. Nothing is overturned here - the refusal stands as pairing_key_26_50.json wrote it - but T-0743 has to re-test it rather than inherit it."
+  "the_refusal_this_ticket_reopens": "That file refused 33SQ-GYYJ-97P, printed 211, on 'population 4 short, line count 2 short, sequence at the noise floor' - 97P foots 158 over 30 lines against this leaf's 154 over 28. BOTH halves of that refusal rest on numbers this reading unsettles: the 28 is a threshold artefact, and the 154 is the enumerator's footing, which on a leaf this patchy need not equal the sum of its own cells. Nothing is overturned here - the refusal stands as pairing_key_26_50.json wrote it - but T-0748 has to re-test it rather than inherit it."
  },
  "open_questions": [
   "How many lines does this leaf enumerate? Not 28.",
@@ -280,5 +280,5 @@
   "Which twelve manufactures strokes are eleven entries?",
   "Does the corrected population and line count pair this leaf to printed 211, or leave it unpaired?"
  ],
- "ticket": "T-0742 measured this; T-0743 finishes the reading. Both are pieces of T-0659, itself piece 4 of T-0528; the ask is T-0495's and before it T-0494's."
+ "ticket": "T-0747 measured this; T-0748 finishes the reading. Both are pieces of T-0659, itself piece 4 of T-0528; the ask is T-0495's and before it T-0494's."
 }
