@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 41 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1404 rows and 45 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -245,6 +245,56 @@ secondary). A source id no rule reaches stops the build.
 | `corroborated_enrichment` | 29 |
 | `candidate` | 5 |
 
+## The conflicts, and what was ruled on them
+
+Under **T-0733**. The ledgers record a conflict against a candidate for **68**
+of the 1404 people. Before T-0733 nothing ruled on any of them, and a conflict
+that is recorded and never adjudicated reads, to anybody downstream, exactly like
+a conflict nobody found. `data/research/residents/conflict_rulings.json` is the
+adjudication: a verdict, the conflict text it was made against, and the record
+that would reopen it.
+
+**Every verdict is a decline, and no candidate is adopted here.** The decline is
+what the layer already did silently — the candidate was never asserted and the
+card carries no identity on its strength. What was missing was the writing down.
+
+| verdict | people | what it means |
+| --- | ---: | --- |
+| `declined_competing_residence` | 35 | An independent record documents the candidate living somewhere other than the 1835 town, and nothing puts them under a Chicago roof. The candidate is NOT adopted. This rules out the match on the present record; it does not rule the town person out of existence, and it is not a statement that the two people are different. |
+| `declined_chronology` | 12 | The only record joining the candidate to the town stands years away from the scene date, on the wrong side of it. The candidate is NOT adopted. A date gap is not a refutation of identity — it is the absence of a bridge, and a nearer record reopens it. |
+| `declined_names_not_equated` | 8 | Two spellings, or two cards, are kept apart rather than collapsed, because no source equates them. The merge is NOT made. Collapsing them would assert an identity no record states, which is the more expensive error here than carrying two rows. |
+| `declined_forename_refused` | 6 | The candidate's forename or middle initial is refused by the town's own committed readings. The candidate is NOT adopted. The initial is the discriminator and it disagrees; the printed page that resolves it reopens the question. |
+| `declined_no_bridge` | 5 | The candidate is plausible on name and period and no record links the two people. The candidate is NOT adopted. Plausibility is not evidence; the town asserts nothing on this candidate's strength. |
+| `declined_reading_unverified` | 2 | The page behind the candidate has not been seen — an index entry, a truncated excerpt, an unavailable scan — so the reading the match rests on cannot be checked. The candidate is NOT adopted. This is a decline on the ACCESS to the evidence, not on the evidence; the page itself reopens it. |
+| **unruled** | **0** | a recorded conflict no ruling reaches; the flag fires |
+
+A ruling is pinned to the conflict text it read: `ruled_conflicts` carries the
+ledger's strings verbatim, and the moment one is reworded — or a second conflict
+is added to a person already ruled — the ruling stops reaching them and
+`flag_conflicting_evidence` fires again. A ruling may not rubber-stamp a conflict
+it has never read.
+
+### The standing constraints are not conflicts
+
+13 people in 8 households carry `review_required`, and folding them into the
+conflicting-evidence flag was a defect in the flag. Every one of those households
+carries `touches_removal` with it: they are the households the final removal of
+the Potawatomi from Chicago reaches, AGENTS.md requires the flag to stand on them
+permanently, and `tools/measure_review_constraint.py --gate` refuses its silent
+removal. It is a standing ethical constraint, not an open evidentiary question,
+and no research retires it. They are counted under `flag_standing_constraint`.
+
+| household | people |
+| --- | ---: |
+| `hh_beaubien_jean_baptiste` | 3 |
+| `hh_beaubien_madore` | 1 |
+| `hh_caldwell_billy` | 1 |
+| `hh_kercheval_gholson` | 1 |
+| `hh_mckee_david` | 1 |
+| `hh_owen_thomas_jv` | 2 |
+| `hh_porthier_joseph` | 1 |
+| `hh_robinson_alexander` | 3 |
+
 ## The gaps
 
 Named, largest first. Each is a ticket somebody could write; none of them is a
@@ -259,8 +309,10 @@ defect in this export.
 | no research row | 562 | no cohort ticket has reviewed this person; the programme reached 842 of 1404 |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
-| conflicting evidence | 81 | the ledger records a conflict against a candidate, or the household is flagged for review |
+| conflicting evidence, ruled | 68 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
+| standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
+| conflicting evidence, unruled | 0 | the ledger records a conflict against a candidate and no ruling in `data/research/residents/conflict_rulings.json` reaches it (T-0733) |
 
 ## Reading the table
 
@@ -268,6 +320,14 @@ defect in this export.
   `sources`, the research row, the five evidence blocks the consolidation wrote,
   the `later_census` bridge, the occupation block, and — for a head — the
   household's own graded blocks. `src_<category>` splits the same list.
+- `conflict_recorded` says the ledgers hold a conflict against a candidate for
+  this person; `conflict_ruling` and `conflict_reopens_on` are the adjudication
+  T-0733 wrote, and are empty when no ruling reaches the conflicts on record.
+- `flag_conflicting_evidence` means an UNRULED conflict — the flag fires on what
+  nobody has looked at, not on the fact that a conflict exists. Before T-0733 it
+  meant "a conflict exists" and also swept in the `review_required` households,
+  which are a standing constraint and not a conflict at all; those now count
+  under `flag_standing_constraint`. T-0517 compares against that definition.
 - `flag_*` columns are the unresolved list. They are not failures; they are what
   is still open, and they are what T-0517's re-run will be measured against.
 - `research_ticket` empty and `flag_no_research_row` true means no cohort has
