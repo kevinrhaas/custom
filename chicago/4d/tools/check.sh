@@ -65,6 +65,27 @@ step "no committed file carries a conflict marker" \
 step "…and its own assertions still fire when broken" \
   python3 tools/test_no_conflict_markers.py --self-test
 
+# T-0820, and it sits here because it is the same fault as the line above: a
+# merge that kept both sides. `dev` went red TWICE on 2026-09-05 on a duplicated
+# id — two branches minting ticket T-0739, then a second byte-identical
+# `west_water` in data/streets/1835.json from a branch cut before the first one
+# landed — and a third came the same evening from an agent staging a `UU` with
+# `git add -A`. None was caught on the branch that wrote it; all three were found
+# by this script running against dev AFTER the merge, which is the expensive
+# place to find anything, because the dev gate is the base every open PR
+# inherits. One duplicate parked nineteen PRs behind a red they had not caused.
+# It is worse now than it was then: dev carries a ruleset requiring `gate`, so a
+# red dev no longer discourages merging, it forbids it.
+#
+# The rule is DISCOVERED, not listed — it applies wherever the shape appears (a
+# list of two or more objects that all carry an `id`), so a list added tomorrow
+# is covered without anybody remembering to register it. 2,835 files, 0.6 s.
+step "no committed list carries the same id twice" \
+  python3 tools/check_unique_ids.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/check_unique_ids.py --self-test
+
 # THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
 # ours' order, theirs' closes and theirs' new tickets — because a text merge of
 # a re-ranked queue against a branch that closed tickets conflicts on every hunk,
