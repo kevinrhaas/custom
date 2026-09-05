@@ -13,8 +13,8 @@
  "_doc": "GENERATED. The Chicago and Cook County cards, over every volume read, whose citation the works table did not reach. An ACQUISITION LIST, not leads: each names a printed work that this project cannot open, and nothing here says which work. Deliberately keyed `cards` and not `records`, because these are already counted as read under records/entries_vol_NN.json and a second copy would read as a second reading in tools/measure_research_spend.py.",
  "note": "T-0581, T-0582 and T-0583 already exist for three of the works the Chicago cards name. This residue is the rest, and it is the weakest part of the volume-1 reading: the photostat's text layer mangles author names so badly that a citation reading '(Ayidrciu, K T.) 1884' cannot be assigned to a work without opening the index page again. The publication year is what survives, so it is carried and nothing is inferred from it.",
  "counts": {
-  "cards": 324,
-  "with_a_year_on_the_card": 81
+  "cards": 365,
+  "with_a_year_on_the_card": 88
  },
  "cards": [
   {
@@ -6401,9 +6401,9 @@
    }
   },
   {
-   "record_id": "nbi_v04_0010",
-   "as_read": "Sayn | Cook co.. m. <A.....-.- . . . 14.4 mm.",
-   "surname_key": "Sayn",
+   "record_id": "nbi_v04_0003",
+   "as_read": "Benduan | i) — Cook Coy Hf, de (Ve Tadd 145,",
+   "surname_key": "Benduan",
    "localities": [
     "cook_county"
    ],
@@ -6412,17 +6412,174 @@
     "list": "vol_04",
     "text_file": "vol_04_locality_cards.txt",
     "lines": [
-     25,
-     26
+     11,
+     12
     ],
-    "index_page": 36,
+    "index_page": 13,
     "column": 3
    }
   },
   {
-   "record_id": "nbi_v04_0132",
-   "as_read": "Thnnpson | 15331193­ -- Chicago, 111. , C1-ostwo",
-   "surname_key": "Thnnpson",
+   "record_id": "nbi_v04_0007",
+   "as_read": "Sargent | —— Cook Co. tl (hudr-.. - 1) odd 2453,",
+   "surname_key": "Sargent",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     19,
+     20
+    ],
+    "index_page": 19,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0013",
+   "as_read": "Sclwfor | — Cook Coy, MI, (hve a. Tod 1720y Schaffer",
+   "surname_key": "Sclwfor",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     31,
+     32
+    ],
+    "index_page": 40,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0023",
+   "as_read": "Bchaltx | — Cook Con, Mh (Arderss AL Te 1884 9757. (",
+   "surname_key": "Bchaltx",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     51,
+     52
+    ],
+    "index_page": 45,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0026",
+   "as_read": "Behddnherr | — Cook Co, Mi. (Andiuac, ty 1) 18245902.",
+   "surname_key": "Behddnherr",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     57,
+     58
+    ],
+    "index_page": 47,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0027",
+   "as_read": "Schrack | o— Cook Cosy MI Unitimsa AL Ted 1104247\"",
+   "surname_key": "Schrack",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     59,
+     60
+    ],
+    "index_page": 49,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0052",
+   "as_read": "Senlie, | — Cook Co,, lil, tandtuss, A (Ty (884 49%",
+   "surname_key": "Senlie,",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     109,
+     110
+    ],
+    "index_page": 80,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0054",
+   "as_read": "Sextea | genase C, Cok Cou Pub)",
+   "surname_key": "Sextea",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     113,
+     114
+    ],
+    "index_page": 87,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0055",
+   "as_read": "Seybold | —— —— Cook Co, Hh) tandicos, A Td 1984 1638. i",
+   "surname_key": "Seybold",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [
+    "1638"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     115,
+     116
+    ],
+    "index_page": 87,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0072",
+   "as_read": "Sheruen | “E 48483.1 { —— Chicago, ill, (Wood, v4.4) 18s 395.",
+   "surname_key": "Sheruen",
    "localities": [
     "chicago",
     "illinois_abbreviated"
@@ -6432,55 +6589,117 @@
     "list": "vol_04",
     "text_file": "vol_04_locality_cards.txt",
     "lines": [
-     269,
-     270
+     149,
+     150
     ],
-    "index_page": 421,
-    "column": 1
-   }
-  },
-  {
-   "record_id": "nbi_v04_0143",
-   "as_read": "EILH Todd | w.on n9a.2v. -—- lllinoinﬂnrly ﬂizicaro and. (Chicago",
-   "surname_key": "EILH Todd",
-   "localities": [
-    "chicago"
-   ],
-   "years_on_the_card": [],
-   "locator": {
-    "list": "vol_04",
-    "text_file": "vol_04_locality_cards.txt",
-    "lines": [
-     291,
-     292
-    ],
-    "index_page": 457,
-    "column": 1
-   }
-  },
-  {
-   "record_id": "nbi_v04_0145",
-   "as_read": "' Todd | Chicago .__Iuuc CI.‘lalicyin. (End: L.H.)1316:»",
-   "surname_key": "' Todd",
-   "localities": [
-    "chicago"
-   ],
-   "years_on_the_card": [],
-   "locator": {
-    "list": "vol_04",
-    "text_file": "vol_04_locality_cards.txt",
-    "lines": [
-     295,
-     296
-    ],
-    "index_page": 457,
+    "index_page": 119,
     "column": 2
    }
   },
   {
-   "record_id": "nbi_v04_0191",
-   "as_read": "Washington | - Chicago, 113., Grant: and com: cf",
-   "surname_key": "Washington",
+   "record_id": "nbi_v04_0087",
+   "as_read": "Milvermn | —— COOK Cory Kn Ard AL TE 4 wae, H",
+   "surname_key": "Milvermn",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     179,
+     180
+    ],
+    "index_page": 144,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0128",
+   "as_read": "Sqular | —— Cook Coy bik taiviiacy Ac iv WUE y599,",
+   "surname_key": "Sqular",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     261,
+     262
+    ],
+    "index_page": 238,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0147",
+   "as_read": "Steimer | —_ Cook Cou; lil, (Andicaz, A 1) 184 ggg | |",
+   "surname_key": "Steimer",
+   "localities": [
+    "cook_county",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     299,
+     300
+    ],
+    "index_page": 268,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0158",
+   "as_read": "Btewart | | — Chicago, tl. Second Presb, Gh. 1842-02, (Gran, Brees",
+   "surname_key": "Btewart",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1842"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     321,
+     322
+    ],
+    "index_page": 284,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0162",
+   "as_read": "tiles | ) — Chicago, Iii (Woed, 0, WY) 1881\" 299, P :",
+   "surname_key": "tiles",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [
+    "1881"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     329,
+     330
+    ],
+    "index_page": 290,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0168",
+   "as_read": "J, Stockton | — Chicago, TLi.,Crante and co",
+   "surname_key": "J, Stockton",
    "localities": [
     "chicago"
    ],
@@ -6489,10 +6708,589 @@
     "list": "vol_04",
     "text_file": "vol_04_locality_cards.txt",
     "lines": [
-     387,
-     388
+     341,
+     342
     ],
-    "index_page": 664,
+    "index_page": 297,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0170",
+   "as_read": "AC Stoffrepen | Sssss = —— Cook Cov, lil (Wrarce A, Thi dga4 1740.. _",
+   "surname_key": "AC Stoffrepen",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [
+    "1740"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     345,
+     346
+    ],
+    "index_page": 301,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0180",
+   "as_read": "Stowell | Son — Chleago, Ill, (Ande 1, a",
+   "surname_key": "Stowell",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     365,
+     366
+    ],
+    "index_page": 316,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0186",
+   "as_read": "Strombaueh | ne — Cook Co ce A, Tu $288 1 TAue",
+   "surname_key": "Strombaueh",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     377,
+     378
+    ],
+    "index_page": 325,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0189",
+   "as_read": "srrang furdly Strong | — Chieagoy Wh (hssis, J, oe Mi taady 30) 18951 HH eRe",
+   "surname_key": "srrang furdly Strong",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     383,
+     384
+    ],
+    "index_page": 326,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0201",
+   "as_read": "monty Batherlend | F 8445.8 —— Cook Coy Mh (Ardecar, %, 7.) 1084 1509,",
+   "surname_key": "monty Batherlend",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     407,
+     408
+    ],
+    "index_page": 345,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0219",
+   "as_read": "- Tellinr | Index. — 1inoia,farly Chicnge and. (Chicago —",
+   "surname_key": "- Tellinr",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     443,
+     444
+    ],
+    "index_page": 395,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0222",
+   "as_read": "S Tervische | —— Cook Cory tile (Ancioss, A Ty 1884 1627 ed",
+   "surname_key": "S Tervische",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [
+    "1627",
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     449,
+     450
+    ],
+    "index_page": 404,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0225",
+   "as_read": "Thon | Cook Cory Ms (riicrcass fa id HSA 1497,",
+   "surname_key": "Thon",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     455,
+     456
+    ],
+    "index_page": 414,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0236",
+   "as_read": "Tilden | —— Chicago, IN, (Ar ree 4 TY 40s 3, See",
+   "surname_key": "Tilden",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     477,
+     478
+    ],
+    "index_page": 444,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0239",
+   "as_read": "iiprim Tinkham, Tinkws | —————- f — Chicago, Wedts vaca NT) BBE 23, -",
+   "surname_key": "iiprim Tinkham, Tinkws",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     483,
+     484
+    ],
+    "index_page": 451,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0241",
+   "as_read": "i Todd | We HD BIG 2v — MU linoin Borly Milcara und, (chicago",
+   "surname_key": "i Todd",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     487,
+     488
+    ],
+    "index_page": 457,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0249",
+   "as_read": "Trotier | — Tilinoia,Rurly Chicago and. (Chicaro",
+   "surname_key": "Trotier",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     503,
+     504
+    ],
+    "index_page": 497,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0262",
+   "as_read": "Vanderbosk | 8 — Chicago, enn 2 7 fy ate oteland, 1) NOS =",
+   "surname_key": "Vanderbosk",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     529,
+     530
+    ],
+    "index_page": 556,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0267",
+   "as_read": "Von der Straton-tiuitlot | ‘ —— Cook Co,, til, Acdicas, A. Ty) 1096 2629. } Yan",
+   "surname_key": "Von der Straton-tiuitlot",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     539,
+     540
+    ],
+    "index_page": 558,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0270",
+   "as_read": "Van Niewworen | ewan EZRA —— Cook Co, Me thndines he Td je 30",
+   "surname_key": "Van Niewworen",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     545,
+     546
+    ],
+    "index_page": 567,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0272",
+   "as_read": "Favsolot | — MH linoin,furly Chicago and. (Thiearo",
+   "surname_key": "Favsolot",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     549,
+     550
+    ],
+    "index_page": 578,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0274",
+   "as_read": "Vaughan | ; —— Chicago, Hi, (AL vs seh 2",
+   "surname_key": "Vaughan",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     553,
+     554
+    ],
+    "index_page": 579,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0277",
+   "as_read": "rill | — Cook Co, Mi, (Asuras, Ay ty) lued FAS.",
+   "surname_key": "rill",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     559,
+     560
+    ],
+    "index_page": 586,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0279",
+   "as_read": "Vores | — Cook Co, Hi dindin M Te ueg 160Te",
+   "surname_key": "Vores",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     563,
+     564
+    ],
+    "index_page": 600,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0283",
+   "as_read": "Wadaworth | 06 —Chleago, ML, (si i",
+   "surname_key": "Wadaworth",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     571,
+     572
+    ],
+    "index_page": 608,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0287",
+   "as_read": "i Waite | ES: ; —— Chicago Wie vo ty gd ented Me) 139%)",
+   "surname_key": "i Waite",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     579,
+     580
+    ],
+    "index_page": 613,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0329",
+   "as_read": "Wendel | Cook Coy, Hil, (Apdecet, Av Ts) 1084",
+   "surname_key": "Wendel",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     663,
+     664
+    ],
+    "index_page": 715,
+    "column": 0
+   }
+  },
+  {
+   "record_id": "nbi_v04_0336",
+   "as_read": "foaton | Chicago, file (seta, fy ard Vichtane, ),1 1295,",
+   "surname_key": "foaton",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     677,
+     678
+    ],
+    "index_page": 726,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0358",
+   "as_read": "Wileocks | Chicago, Ih, Gndeaae, A. 7.) 188461 3. Soe",
+   "surname_key": "Wileocks",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     721,
+     722
+    ],
+    "index_page": 789,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0362",
+   "as_read": "Wilkinson | I] ¢ — chicago, 111., Crests and coute of",
+   "surname_key": "Wilkinson",
+   "localities": [
+    "chicago",
+    "illinois_abbreviated"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     729,
+     730
+    ],
+    "index_page": 801,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0371",
+   "as_read": "- Witean | hard. —— Cook Co) Hi, Wiiuress, A, TE sand 2592,",
+   "surname_key": "- Witean",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     747,
+     748
+    ],
+    "index_page": 825,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0379",
+   "as_read": "fingate | gthora.) neds Bao itdoxe —— Cook Co,",
+   "surname_key": "fingate",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     763,
+     764
+    ],
+    "index_page": 836,
+    "column": 2
+   }
+  },
+  {
+   "record_id": "nbi_v04_0380",
+   "as_read": "rort | ~Cook Co., MM. MAvdeeae, A, 7. 1884 1490,",
+   "surname_key": "rort",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [
+    "1884"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     765,
+     766
+    ],
+    "index_page": 836,
+    "column": 3
+   }
+  },
+  {
+   "record_id": "nbi_v04_0406",
+   "as_read": "Oy as | — ‘y tae Cook Cor, Mh ee caer udetoe A",
+   "surname_key": "Oy as",
+   "localities": [
+    "cook_county"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     817,
+     818
+    ],
+    "index_page": 903,
+    "column": 1
+   }
+  },
+  {
+   "record_id": "nbi_v04_0413",
+   "as_read": "iumerly | —— Chicago, tr ree 1 198M dSd.",
+   "surname_key": "iumerly",
+   "localities": [
+    "chicago"
+   ],
+   "years_on_the_card": [],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     831,
+     832
+    ],
+    "index_page": 916,
     "column": 3
    }
   }
