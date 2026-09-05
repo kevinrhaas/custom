@@ -962,6 +962,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "isa_public_domain_land_tract_sales": {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
+    },
     "jsp_illinois_statutes_gale_imprint": {
       "source_id": "jsp_illinois_statutes_gale_imprint",
       "citation": "Joseph Smith Papers bibliography, Public and General Statute Laws of Illinois, Chicago: Stephen F. Gale, 1839",

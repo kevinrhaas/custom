@@ -205,37 +205,37 @@
       "id": "blk_south_water_dearborn_lot5",
       "path_local_enu_m": [
         [
-          777.62,
-          -88.88
+          777.66,
+          -85.3
         ],
         [
-          769.08,
-          -88.82
+          769.13,
+          -85.23
         ],
         [
-          769.12,
-          -82.72
+          769.17,
+          -79.14
+        ],
+        [
+          777.7,
+          -79.21
         ],
         [
           777.66,
-          -82.79
-        ],
-        [
-          777.62,
-          -88.88
+          -85.3
         ]
       ],
       "belongs_to": [
         {
           "lot": "blk_south_water_dearborn_lot5",
           "structures": [
-            "recon_1835_blk_south_water_dearborn_d3_03"
+            "recon_1835_blk_south_water_dearborn_h1_03"
           ],
           "households": [],
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE HOUSE LOT: blk_south_water_dearborn lot 5 of the platted grid, holding recon_1835_blk_south_water_dearborn_d3_03 (one-room frame cottage) and nothing else. IT PASSES THE RULE THIS RECORD IS BUILT ON — one building on the lot, a dwelling by archetype and by function, and a household recorded as living in it — and the rule is the answer to 'why this lot': no source puts a garden here or anywhere else in the town. THE RECTANGLE IS DERIVED AND NOT PLACED: 8.53 x 6.10 m at the back of the lot, 0.914 m inside the rear and side lot lines, 3.048 m or more clear of the house's own back face, and centred on the house. Every metre of it comes from data/traces/vectors/thompson_lots.json and this building's committed footprint; the SIZE of the plot and its position at the rear are the invention, and they are the same for every lot on this record. THE CEILING ON THE PLOT — 28 x 20 ft — is invented twice over: nothing states a garden's size, and the number is additionally bounded by the renderer's own triangle budget, because a paled fence is thousands of small boxes and this layer draws in one pass. docs/LIBERTIES.md L129 claims that, on the precedent of L121."
+      "note": "THE HOUSE LOT: blk_south_water_dearborn lot 5 of the platted grid, holding recon_1835_blk_south_water_dearborn_h1_03 (larger one-and-a-half-story house) and nothing else. IT PASSES THE RULE THIS RECORD IS BUILT ON — one building on the lot, a dwelling by archetype and by function, and a household recorded as living in it — and the rule is the answer to 'why this lot': no source puts a garden here or anywhere else in the town. THE RECTANGLE IS DERIVED AND NOT PLACED: 8.53 x 6.10 m at the back of the lot, 0.914 m inside the rear and side lot lines, 3.048 m or more clear of the house's own back face, and centred on the house. Every metre of it comes from data/traces/vectors/thompson_lots.json and this building's committed footprint; the SIZE of the plot and its position at the rear are the invention, and they are the same for every lot on this record. THE CEILING ON THE PLOT — 28 x 20 ft — is invented twice over: nothing states a garden's size, and the number is additionally bounded by the renderer's own triangle budget, because a paled fence is thousands of small boxes and this layer draws in one pass. docs/LIBERTIES.md L129 claims that, on the precedent of L121."
     },
     {
       "id": "blk_lake_market_lot1",
@@ -580,8 +580,8 @@
       "id": "blk_south_water_dearborn_lot5_gate",
       "on": "dooryard",
       "at_local_enu_m": [
-        773.35,
-        -88.85
+        773.39,
+        -85.27
       ],
       "width_m": 1.067,
       "confidence": "reconstructed",

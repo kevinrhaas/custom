@@ -1683,14 +1683,14 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_dearborn_d2_04"
     },
-    "recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb": {
+    "recon_1835_blk_south_water_dearborn_h1_03__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 24592,
-      "inputs_sha256": "061dd2e0b20593a194672b4ff5e38017c7e05c71fb70b782bb4e1154a0f27b4e",
+      "bytes": 32392,
+      "inputs_sha256": "cd506c407a7b7725e427327e14a4c5d01a4ff31cf839c263ce233831a6365599",
       "kind": "generated",
       "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_blk_south_water_dearborn_d3_03"
+      "structure_id": "recon_1835_blk_south_water_dearborn_h1_03"
     },
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
