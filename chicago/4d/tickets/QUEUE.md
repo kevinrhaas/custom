@@ -325,3 +325,4 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
+T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card

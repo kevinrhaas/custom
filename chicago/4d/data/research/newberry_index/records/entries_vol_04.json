@@ -5,23 +5,25 @@
   "source_id": "newberry_genealogical_index",
   "volume": 4,
   "counts": {
-    "cards": 247,
+    "cards": 246,
+    "records": 247,
+    "slivers": 1,
     "by_locality": {
       "chicago": 7,
       "cook_county": 2,
       "illinois_named": 10,
-      "illinois_abbreviated": 229
+      "illinois_abbreviated": 228
     },
-    "distinct_surname_keys": 212,
-    "leads": 51,
+    "distinct_surname_keys": 211,
+    "leads": 53,
     "leads_by_layer": {
-      "census_1840": 10,
+      "census_1840": 12,
       "residents": 27,
       "structures": 3,
       "voters": 11
     },
     "chicago_or_cook_cards": 9,
-    "cards_matching_no_known_work": 219,
+    "cards_matching_no_known_work": 218,
     "chicago_or_cook_cards_matching_no_known_work": 5
   },
   "records": [
@@ -4835,7 +4837,8 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "sliver_of": "nbi_v04_0185"
       },
       "locator": {
         "list": "vol_04",
@@ -4849,7 +4852,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A COLUMN SLIVER: the leftmost few points of nbi_v04_0185, which the pass over column 2 read in full, caught by the pass over column 1 because the crop windows overlap by 27 points. Its body is a byte-exact prefix of that card's. It is kept because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order, because it is not a second card."
     },
     {
       "id": "nbi_v04_0185",

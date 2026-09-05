@@ -16,8 +16,8 @@
       "date": "1884-1886",
       "cards": 1127,
       "chicago_or_cook_cards": 898,
-      "cards_on_a_lead_surname": 233,
-      "chicago_or_cook_cards_on_a_lead_surname": 175,
+      "cards_on_a_lead_surname": 234,
+      "chicago_or_cook_cards_on_a_lead_surname": 176,
       "surnames_on_a_lead_in_chicago_or_cook": [
         "allan",
         "andersen",
@@ -146,6 +146,7 @@
         "laner",
         "lawrence",
         "lewis",
+        "lill",
         "lincoln",
         "lyon",
         "mack",
@@ -450,8 +451,8 @@
       "reachable": "not yet located — search the Internet Archive and HathiTrust"
     }
   ],
-  "cards": 6562,
-  "cards_matching_no_known_work": 3724,
-  "chicago_or_cook_cards_matching_no_known_work": 324,
+  "cards": 6553,
+  "cards_matching_no_known_work": 3715,
+  "chicago_or_cook_cards_matching_no_known_work": 322,
   "note": "A card whose citation matches no pattern in WORKS is counted here and kept in the records; it is the queue of works nobody has named yet. Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, Baldwin, Murray Williamson, Power — which are Illinois and are not Chicago, and which is why the ranking is on the Chicago and Cook County cards."
 }
