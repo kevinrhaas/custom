@@ -1437,6 +1437,19 @@ step "…and Fergus 1839's later lists are on the 97 cards they name" \
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_fergus_1839_later_lists.py --self-test
 
+# T-0636, consolidation pass 3. The Illinois State Archives' land tract sales matched 35
+# purchasers to people this town holds a card for, and not one of those cards cited the
+# register — the largest unwritten block the second hop could see. This pass writes them,
+# and it is gated in the same two directions as its three predecessors: a ruling that stops
+# reaching its card, and a card that carries the paragraph for a ruling the crosswalk never
+# made. The paragraph says PURCHASE and never residence, because the register's own
+# Residence column reads COOK, ILLINOIS or UNKNOWN on every one of these rows.
+step "…and the land tract sales are on the 31 cards they name" \
+  python3 tools/spend_land_sales.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_land_sales.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
