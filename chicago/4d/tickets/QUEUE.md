@@ -161,7 +161,6 @@ T-0592 — The fine well on lot 7 of block 16 is documented and the town has no 
 # --- GROUP 4 — THE REMAINDER AND THE CLOSE-OUT. The summary sits after consolidation pass 3
 # --- on purpose: it should describe a town whose cards are current.
 T-0508 — 237 named residents have no research row: cohort 13 of 79
-T-0509 — 237 named residents have no research row: cohort 14 of 79
 T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
 T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
