@@ -364,7 +364,7 @@
    "household_id": "hh_albee_clark_b",
    "resident": "Clark B. Albee",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -416,7 +416,7 @@
    "household_id": "hh_allen_edward_richards",
    "resident": "Edward Richards Allen",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -602,7 +602,7 @@
    "household_id": "hh_allen_william",
    "resident": "William Allen",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -759,7 +759,7 @@
    "household_id": "hh_andrews_davi",
    "resident": "Davi Andrews",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -811,7 +811,7 @@
    "household_id": "hh_andrews_william",
    "resident": "William Andrews",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -863,7 +863,7 @@
    "household_id": "hh_austin_w_g",
    "resident": "W G Austin",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -928,7 +928,7 @@
    "household_id": "hh_avery_charles",
    "resident": "Charles Avery",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -980,7 +980,7 @@
    "household_id": "hh_bailey_amos",
    "resident": "Amos Bailey",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1032,7 +1032,7 @@
    "household_id": "hh_bailey_bennet",
    "resident": "Bennet Bailey",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1145,7 +1145,7 @@
    "household_id": "hh_bandle_will_nm",
    "resident": "Willınm Bandle",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1197,7 +1197,7 @@
    "household_id": "hh_beaubien_charles_h",
    "resident": "Charles H Beaubien",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1765,7 +1765,7 @@
    "household_id": "hh_bennett_william",
    "resident": "William Bennett",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1817,7 +1817,7 @@
    "household_id": "hh_berry_benjamin",
    "resident": "Benjamin / Berry",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -1882,7 +1882,7 @@
    "household_id": "hh_bishop_j_e",
    "resident": "J. E. Bishop",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -2100,7 +2100,7 @@
    "household_id": "hh_blakesley_harvey_a",
    "resident": "Harvey A. Blakesley",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -2235,7 +2235,7 @@
    "household_id": "hh_blanchard_f_gantry",
    "resident": "F Gantry Blanchard",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -2681,7 +2681,7 @@
    "household_id": "hh_bowen_erastus_selden",
    "resident": "Erastus Selden Bowen",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -2798,7 +2798,7 @@
    "household_id": "hh_boyer_j_k",
    "resident": "J. K. Boyer",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -2950,7 +2950,7 @@
    "household_id": "hh_breese_judge_sidney",
    "resident": "Judge Sidney Breese",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -3002,7 +3002,7 @@
    "household_id": "hh_bristol_charles_l",
    "resident": "Charles L Bristol",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -3201,7 +3201,7 @@
    "household_id": "hh_brown_hanna_e",
    "resident": "Hanna E Brown",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -3863,7 +3863,7 @@
    "household_id": "hh_burton_john",
    "resident": "John Burton",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -3952,7 +3952,7 @@
    "household_id": "hh_calhoun_alvin",
    "resident": "Alvin Calhoun",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4216,7 +4216,7 @@
    "household_id": "hh_carli_paul_j",
    "resident": "Paul J Carli",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4625,7 +4625,7 @@
    "household_id": "hh_chandler_joseph",
    "resident": "Joseph Chandler",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4737,7 +4737,7 @@
    "household_id": "hh_chapman_chas_h",
    "resident": "Chas. H. Chapman",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4850,7 +4850,7 @@
    "household_id": "hh_chapman_george",
    "resident": "George Chapman",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4902,7 +4902,7 @@
    "household_id": "hh_childs_sarah",
    "resident": "Sarah Childs",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -4967,7 +4967,7 @@
    "household_id": "hh_christy_nathan",
    "resident": "Nathan Christy",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -5440,7 +5440,7 @@
    "household_id": "hh_clark_timothy_j",
    "resident": "Timothy J Clark",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -5648,7 +5648,7 @@
    "household_id": "hh_clarke_w_b",
    "resident": "W B Clarke",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -5762,7 +5762,7 @@
    "household_id": "hh_clybourn_archibald",
    "resident": "Archibald Clybourn",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -6143,7 +6143,7 @@
    "household_id": "hh_cole_parker_m",
    "resident": "Parker M. Cole",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -6609,7 +6609,7 @@
    "household_id": "hh_cook_thomas",
    "resident": "Thomas Cook",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -7160,7 +7160,7 @@
    "household_id": "hh_davis_abissinia",
    "resident": "Abissinia Davis",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -7225,7 +7225,7 @@
    "household_id": "hh_davis_george",
    "resident": "George Davis",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -7497,7 +7497,7 @@
    "household_id": "hh_dewey_d_s",
    "resident": "D S Dewey",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -7562,7 +7562,7 @@
    "household_id": "hh_dimmick_e",
    "resident": "E. Dimmick",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -8018,7 +8018,7 @@
    "household_id": "hh_ellis_j",
    "resident": "J Ellis",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -8409,7 +8409,7 @@
    "household_id": "hh_foot_john",
    "resident": "John Foot",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -8572,7 +8572,7 @@
    "household_id": "hh_forsyth_william",
    "resident": "William Forsyth",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -9143,7 +9143,7 @@
    "household_id": "hh_funk_absolom",
    "resident": "Absolom Funk",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -9887,7 +9887,7 @@
    "household_id": "hh_hamilton_amos_c",
    "resident": "Amos C Hamilton",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -10734,7 +10734,7 @@
    "household_id": "hh_henry_hamilton_s",
    "resident": "Hamilton S. Henry",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -10799,7 +10799,7 @@
    "household_id": "hh_herrick_ira",
    "resident": "Ira Herrick",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -10851,7 +10851,7 @@
    "household_id": "hh_hinton_isaac_t",
    "resident": "Isaac T Hinton",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -11219,7 +11219,7 @@
    "household_id": "hh_holsman_george",
    "resident": "George Holsman",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -11284,7 +11284,7 @@
    "household_id": "hh_howard_joshua",
    "resident": "Joshua Howard",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -11413,7 +11413,7 @@
    "household_id": "hh_hubbard_elijah_kent",
    "resident": "Elijah Kent Hubbard",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12066,7 +12066,7 @@
    "household_id": "hh_hubbard_henry_g",
    "resident": "Henry G Hubbard",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12283,7 +12283,7 @@
    "household_id": "hh_hunter_david",
    "resident": "David Hunter",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12335,7 +12335,7 @@
    "household_id": "hh_hunter_edward_e",
    "resident": "Edward E Hunter",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12400,7 +12400,7 @@
    "household_id": "hh_hyde_thomas_s",
    "resident": "Thomas S. Hyde",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12564,7 +12564,7 @@
    "household_id": "hh_jackson_j_y",
    "resident": "J Y Jackson",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -12670,7 +12670,7 @@
    "household_id": "hh_jackson_samuel",
    "resident": "Samuel Jackson",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -13084,7 +13084,7 @@
    "household_id": "hh_jones_d_e",
    "resident": "D E Jones",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -14158,7 +14158,7 @@
    "household_id": "hh_king_hyram",
    "resident": "Hyram King",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -14323,7 +14323,7 @@
    "household_id": "hh_king_nehemiah",
    "resident": "Nehemiah King",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -14400,7 +14400,7 @@
    "household_id": "hh_king_tuthill",
    "resident": "Tuthill King",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -14880,7 +14880,7 @@
    "household_id": "hh_knapp_b_s",
    "resident": "B S Knapp",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -15196,7 +15196,7 @@
    "household_id": "hh_lincoln_solomon",
    "resident": "Solomon Lincoln",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -15354,7 +15354,7 @@
    "household_id": "hh_loomis_henry",
    "resident": "Henry Loomis",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -15469,7 +15469,7 @@
    "household_id": "hh_loyd_alexander",
    "resident": "Alexander Loyd",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -16410,7 +16410,7 @@
    "household_id": "hh_mitchell_henry",
    "resident": "Henry Mitchell",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -16625,7 +16625,7 @@
    "household_id": "hh_morris_b_s",
    "resident": "B. S. Morris",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -16765,7 +16765,7 @@
    "household_id": "hh_morrison_amanda",
    "resident": "Amanda Morrison",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17090,7 +17090,7 @@
    "household_id": "hh_mulford_james_h",
    "resident": "James H Mulford",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17431,7 +17431,7 @@
    "household_id": "hh_newberry_walter_loomis",
    "resident": "Walter Loomis Newberry",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17519,7 +17519,7 @@
    "household_id": "hh_noble_john",
    "resident": "John Noble",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17733,7 +17733,7 @@
    "household_id": "hh_ogden_w_b",
    "resident": "W B Ogden",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17869,7 +17869,7 @@
    "household_id": "hh_osborn_wm",
    "resident": "Wm. Osborn",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -17996,7 +17996,7 @@
    "household_id": "hh_parsons_edward",
    "resident": "Edward Parsons",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -18147,7 +18147,7 @@
    "household_id": "hh_peacock_elijah",
    "resident": "Elijah Peacock",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -18607,7 +18607,7 @@
    "household_id": "hh_perry_a_8",
    "resident": "A. 8. Perry",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -18720,7 +18720,7 @@
    "household_id": "hh_phelps_james_h",
    "resident": "James H. Phelps",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -18848,7 +18848,7 @@
    "household_id": "hh_porter_hibbard",
    "resident": "Hibbard Porter",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -18960,7 +18960,7 @@
    "household_id": "hh_powell_geo_n",
    "resident": "Geo. N. Powell",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -19025,7 +19025,7 @@
    "household_id": "hh_price_jeremiah",
    "resident": "Jeremiah Price",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -19266,7 +19266,7 @@
    "household_id": "hh_reed_thomas",
    "resident": "Thomas Reed",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -19408,7 +19408,7 @@
    "household_id": "hh_rice_john",
    "resident": "John Rice",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -19661,7 +19661,7 @@
    "household_id": "hh_robinson_d_o",
    "resident": "D O Robinson",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -19713,7 +19713,7 @@
    "household_id": "hh_rogers_edward_a",
    "resident": "Edward A. Rogers",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20006,7 +20006,7 @@
    "household_id": "hh_scott_john",
    "resident": "John Scott",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20119,7 +20119,7 @@
    "household_id": "hh_shapley_major_l",
    "resident": "Major L Shapley",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20212,7 +20212,7 @@
    "household_id": "hh_sherman_silas_w",
    "resident": "Silas W Sherman",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20299,7 +20299,7 @@
    "household_id": "hh_sherwood_s",
    "resident": "S. Sherwood",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20440,7 +20440,7 @@
    "household_id": "hh_simons_e",
    "resident": "E. Simons",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -20580,7 +20580,7 @@
    "household_id": "hh_smith_d_a",
    "resident": "D A Smith",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -21254,7 +21254,7 @@
    "household_id": "hh_smith_matthias",
    "resident": "Matthias Smith",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -21827,7 +21827,7 @@
    "household_id": "hh_stewart_james",
    "resident": "James Stewart",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -22929,7 +22929,7 @@
    "household_id": "hh_thompson_o_i",
    "resident": "O I Thompson",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23054,7 +23054,7 @@
    "household_id": "hh_trowbridge_s_g",
    "resident": "S G Trowbridge",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23119,7 +23119,7 @@
    "household_id": "hh_tucker_henry",
    "resident": "Henry Tucker",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23269,7 +23269,7 @@
    "household_id": "hh_ward_hanibal",
    "resident": "Hanibal Ward",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23554,7 +23554,7 @@
    "household_id": "hh_williams_eli_b",
    "resident": "Eli B Williams",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23670,7 +23670,7 @@
    "household_id": "hh_williams_john_l",
    "resident": "John L Williams",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -23881,7 +23881,7 @@
    "household_id": "hh_wolcott_alexander",
    "resident": "Alexander Wolcott",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [

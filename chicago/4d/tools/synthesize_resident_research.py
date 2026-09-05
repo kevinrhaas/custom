@@ -202,7 +202,8 @@ def promote(person, hh, item):
     for pat, occ in OCCUPATIONS:
         if re.search(pat, low):
             old = person.get("occupation") or {}
-            if value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed":
+            if (value(old) in (None, "", "none_recorded", "none_recorded_in_1835")
+                    or old.get("confidence") == "reconstructed"):
                 person["occupation"] = {"value": occ, "confidence": "attested", "sources": srcs,
                     "note": f"{item.get('ticket')}: independently corroborated resident research. " +
                             (item.get("evidence_for") or item.get("summary") or "")}

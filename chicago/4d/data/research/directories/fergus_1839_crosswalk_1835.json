@@ -70,7 +70,7 @@
     "person_id": "perry_a_8",
     "household_id": "hh_perry_a_8",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -118,7 +118,7 @@
     "person_id": "davis_abissinia",
     "household_id": "hh_davis_abissinia",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -143,7 +143,7 @@
     "person_id": "funk_absolom",
     "household_id": "hh_funk_absolom",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -169,7 +169,7 @@
     "person_id": "loyd_alexander",
     "household_id": "hh_loyd_alexander",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -196,7 +196,7 @@
     "person_id": "wolcott_alexander",
     "household_id": "hh_wolcott_alexander",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -223,7 +223,7 @@
     "person_id": "calhoun_alvin",
     "household_id": "hh_calhoun_alvin",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -248,7 +248,7 @@
     "person_id": "morrison_amanda",
     "household_id": "hh_morrison_amanda",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -272,7 +272,7 @@
     "person_id": "bailey_amos",
     "household_id": "hh_bailey_amos",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -296,7 +296,7 @@
     "person_id": "hamilton_amos_c",
     "household_id": "hh_hamilton_amos_c",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -322,7 +322,7 @@
     "person_id": "clybourn_archibald",
     "household_id": "hh_clybourn_archibald",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -397,7 +397,7 @@
     "person_id": "knapp_b_s",
     "household_id": "hh_knapp_b_s",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -422,7 +422,7 @@
     "person_id": "morris_b_s",
     "household_id": "hh_morris_b_s",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -448,7 +448,7 @@
     "person_id": "berry_benjamin",
     "household_id": "hh_berry_benjamin",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -499,7 +499,7 @@
     "person_id": "bailey_bennet",
     "household_id": "hh_bailey_bennet",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -523,7 +523,7 @@
     "person_id": "avery_charles",
     "household_id": "hh_avery_charles",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -547,7 +547,7 @@
     "person_id": "beaubien_charles_h",
     "household_id": "hh_beaubien_charles_h",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -571,7 +571,7 @@
     "person_id": "bristol_charles_l",
     "household_id": "hh_bristol_charles_l",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -597,7 +597,7 @@
     "person_id": "chapman_chas_h",
     "household_id": "hh_chapman_chas_h",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -622,7 +622,7 @@
     "person_id": "albee_clark_b",
     "household_id": "hh_albee_clark_b",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -646,7 +646,7 @@
     "person_id": "smith_d_a",
     "household_id": "hh_smith_d_a",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -672,7 +672,7 @@
     "person_id": "jones_d_e",
     "household_id": "hh_jones_d_e",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -697,7 +697,7 @@
     "person_id": "robinson_d_o",
     "household_id": "hh_robinson_d_o",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -723,7 +723,7 @@
     "person_id": "dewey_d_s",
     "household_id": "hh_dewey_d_s",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -748,7 +748,7 @@
     "person_id": "andrews_davi",
     "household_id": "hh_andrews_davi",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -794,7 +794,7 @@
     "person_id": "hunter_david",
     "household_id": "hh_hunter_david",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -933,7 +933,7 @@
     "person_id": "dimmick_e",
     "household_id": "hh_dimmick_e",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -957,7 +957,7 @@
     "person_id": "simons_e",
     "household_id": "hh_simons_e",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -981,7 +981,7 @@
     "person_id": "rogers_edward_a",
     "household_id": "hh_rogers_edward_a",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1007,7 +1007,7 @@
     "person_id": "hunter_edward_e",
     "household_id": "hh_hunter_edward_e",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1032,7 +1032,7 @@
     "person_id": "parsons_edward",
     "household_id": "hh_parsons_edward",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1056,7 +1056,7 @@
     "person_id": "allen_edward_richards",
     "household_id": "hh_allen_edward_richards",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1106,7 +1106,7 @@
     "person_id": "williams_eli_b",
     "household_id": "hh_williams_eli_b",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1133,7 +1133,7 @@
     "person_id": "hubbard_elijah_kent",
     "household_id": "hh_hubbard_elijah_kent",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1160,7 +1160,7 @@
     "person_id": "peacock_elijah",
     "household_id": "hh_peacock_elijah",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1188,7 +1188,7 @@
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1215,7 +1215,7 @@
     "person_id": "blanchard_f_gantry",
     "household_id": "hh_blanchard_f_gantry",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1268,7 +1268,7 @@
     "person_id": "powell_geo_n",
     "household_id": "hh_powell_geo_n",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1293,7 +1293,7 @@
     "person_id": "chapman_george",
     "household_id": "hh_chapman_george",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1319,7 +1319,7 @@
     "person_id": "davis_george",
     "household_id": "hh_davis_george",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1346,7 +1346,7 @@
     "person_id": "holsman_george",
     "household_id": "hh_holsman_george",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1470,7 +1470,7 @@
     "person_id": "henry_hamilton_s",
     "household_id": "hh_henry_hamilton_s",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1497,7 +1497,7 @@
     "person_id": "ward_hanibal",
     "household_id": "hh_ward_hanibal",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1524,7 +1524,7 @@
     "person_id": "brown_hanna_e",
     "household_id": "hh_brown_hanna_e",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1575,7 +1575,7 @@
     "person_id": "blakesley_harvey_a",
     "household_id": "hh_blakesley_harvey_a",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1599,7 +1599,7 @@
     "person_id": "hubbard_henry_g",
     "household_id": "hh_hubbard_henry_g",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1623,7 +1623,7 @@
     "person_id": "loomis_henry",
     "household_id": "hh_loomis_henry",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1649,7 +1649,7 @@
     "person_id": "mitchell_henry",
     "household_id": "hh_mitchell_henry",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1700,7 +1700,7 @@
     "person_id": "tucker_henry",
     "household_id": "hh_tucker_henry",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1724,7 +1724,7 @@
     "person_id": "porter_hibbard",
     "household_id": "hh_porter_hibbard",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1803,7 +1803,7 @@
     "person_id": "king_hyram",
     "household_id": "hh_king_hyram",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1828,7 +1828,7 @@
     "person_id": "herrick_ira",
     "household_id": "hh_herrick_ira",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1854,7 +1854,7 @@
     "person_id": "hinton_isaac_t",
     "household_id": "hh_hinton_isaac_t",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1881,7 +1881,7 @@
     "person_id": "ellis_j",
     "household_id": "hh_ellis_j",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -1906,7 +1906,7 @@
     "person_id": "jackson_j_y",
     "household_id": "hh_jackson_j_y",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -1984,7 +1984,7 @@
     "person_id": "bishop_j_e",
     "household_id": "hh_bishop_j_e",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2033,7 +2033,7 @@
     "person_id": "boyer_j_k",
     "household_id": "hh_boyer_j_k",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2126,7 +2126,7 @@
     "person_id": "mulford_james_h",
     "household_id": "hh_mulford_james_h",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2151,7 +2151,7 @@
     "person_id": "phelps_james_h",
     "household_id": "hh_phelps_james_h",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2175,7 +2175,7 @@
     "person_id": "stewart_james",
     "household_id": "hh_stewart_james",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2201,7 +2201,7 @@
     "person_id": "price_jeremiah",
     "household_id": "hh_price_jeremiah",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2229,7 +2229,7 @@
     "person_id": "burton_john",
     "household_id": "hh_burton_john",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2334,7 +2334,7 @@
     "person_id": "foot_john",
     "household_id": "hh_foot_john",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2387,7 +2387,7 @@
     "person_id": "williams_john_l",
     "household_id": "hh_williams_john_l",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2464,7 +2464,7 @@
     "person_id": "noble_john",
     "household_id": "hh_noble_john",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2490,7 +2490,7 @@
     "person_id": "rice_john",
     "household_id": "hh_rice_john",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2515,7 +2515,7 @@
     "person_id": "scott_john",
     "household_id": "hh_scott_john",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2591,7 +2591,7 @@
     "person_id": "chandler_joseph",
     "household_id": "hh_chandler_joseph",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2641,7 +2641,7 @@
     "person_id": "howard_joshua",
     "household_id": "hh_howard_joshua",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2665,7 +2665,7 @@
     "person_id": "breese_judge_sidney",
     "household_id": "hh_breese_judge_sidney",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2759,7 +2759,7 @@
     "person_id": "shapley_major_l",
     "household_id": "hh_shapley_major_l",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2783,7 +2783,7 @@
     "person_id": "smith_matthias",
     "household_id": "hh_smith_matthias",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2809,7 +2809,7 @@
     "person_id": "christy_nathan",
     "household_id": "hh_christy_nathan",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2834,7 +2834,7 @@
     "person_id": "king_nehemiah",
     "household_id": "hh_king_nehemiah",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2860,7 +2860,7 @@
     "person_id": "thompson_o_i",
     "household_id": "hh_thompson_o_i",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -2885,7 +2885,7 @@
     "person_id": "cole_parker_m",
     "household_id": "hh_cole_parker_m",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -2911,7 +2911,7 @@
     "person_id": "carli_paul_j",
     "household_id": "hh_carli_paul_j",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3042,7 +3042,7 @@
     "person_id": "trowbridge_s_g",
     "household_id": "hh_trowbridge_s_g",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3095,7 +3095,7 @@
     "person_id": "sherwood_s",
     "household_id": "hh_sherwood_s",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3120,7 +3120,7 @@
     "person_id": "jackson_samuel",
     "household_id": "hh_jackson_samuel",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3146,7 +3146,7 @@
     "person_id": "childs_sarah",
     "household_id": "hh_childs_sarah",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3173,7 +3173,7 @@
     "person_id": "sherman_silas_w",
     "household_id": "hh_sherman_silas_w",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3200,7 +3200,7 @@
     "person_id": "lincoln_solomon",
     "household_id": "hh_lincoln_solomon",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3279,7 +3279,7 @@
     "person_id": "cook_thomas",
     "household_id": "hh_cook_thomas",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3306,7 +3306,7 @@
     "person_id": "reed_thomas",
     "household_id": "hh_reed_thomas",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3331,7 +3331,7 @@
     "person_id": "hyde_thomas_s",
     "household_id": "hh_hyde_thomas_s",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3357,7 +3357,7 @@
     "person_id": "clark_timothy_j",
     "household_id": "hh_clark_timothy_j",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3384,7 +3384,7 @@
     "person_id": "king_tuthill",
     "household_id": "hh_king_tuthill",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3437,7 +3437,7 @@
     "person_id": "clarke_w_b",
     "household_id": "hh_clarke_w_b",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3464,7 +3464,7 @@
     "person_id": "ogden_w_b",
     "household_id": "hh_ogden_w_b",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3491,7 +3491,7 @@
     "person_id": "austin_w_g",
     "household_id": "hh_austin_w_g",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3542,7 +3542,7 @@
     "person_id": "newberry_walter_loomis",
     "household_id": "hh_newberry_walter_loomis",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3568,7 +3568,7 @@
     "person_id": "allen_william",
     "household_id": "hh_allen_william",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3593,7 +3593,7 @@
     "person_id": "andrews_william",
     "household_id": "hh_andrews_william",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3617,7 +3617,7 @@
     "person_id": "bennett_william",
     "household_id": "hh_bennett_william",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3643,7 +3643,7 @@
     "person_id": "forsyth_william",
     "household_id": "hh_forsyth_william",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",
@@ -3716,7 +3716,7 @@
     "person_id": "bandle_will_nm",
     "household_id": "hh_bandle_will_nm",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
@@ -3742,7 +3742,7 @@
     "person_id": "osborn_wm",
     "household_id": "hh_osborn_wm",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
+    "occupation_1835": "none_recorded_in_1835",
     "lives_at_1835": null,
     "could_carry": [
      "occupation",

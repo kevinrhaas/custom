@@ -465,7 +465,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1835-07-01"
       ],

@@ -159,6 +159,12 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+
+# T-0693. The pass that dates a trade-absence, imported rather than copied: the value it
+# writes is derived from this record's own `directories` block, so there is one
+# implementation of the rule and one place it can drift.
+sys.path.insert(0, str(ROOT / "tools"))
+import reconcile_occupation_dates  # noqa: E402  (needs the path above)
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -646,6 +652,14 @@ def build(preload: dict | None = None):
     for row, appearances in accepted:
         doc = record(row, appearances, others, taken)
         doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"))
+        # T-0693. AND THE DATE ON A TRADE-ABSENCE, DERIVED RATHER THAN CARRIED. Where the
+        # `directories` block on this record holds a DATED later trade for one of these
+        # people, their 1835 occupation reads `none_recorded_in_1835` — the absence with a
+        # date on it — rather than `none_recorded`, which means no trade anywhere. This
+        # pass re-derives `occupation` from its own evidence and would put the plain word
+        # back, so the reconciliation is re-applied here, off the record's own block. It is
+        # a derivation and not a carry: nothing is read out of the prior file.
+        reconcile_occupation_dates.rewrite(doc)
         if doc["id"] in taken:
             raise SystemExit(f"two identities mint the same household id {doc['id']}")
         taken.add(doc["id"])
@@ -1121,7 +1135,8 @@ def gate_problems(docs: dict, index: dict) -> list:
             if not any(p.get(k) for k in BLOCK_KEYS):
                 problems.append(f"{where}/{p.get('id')}: carries no evidence block; a person "
                                 f"minted here is minted FROM a reading and must show it")
-            if p.get("occupation", {}).get("value") != "none_recorded":
+            if p.get("occupation", {}).get("value") not in ("none_recorded",
+                                                            "none_recorded_in_1835"):
                 problems.append(f"{where}/{p.get('id')}: gained a trade; no source in this "
                                 f"pass records one")
             if p.get("grade") not in MINTABLE_GRADES:
@@ -1287,7 +1302,8 @@ def self_test() -> int:
             ("a bound after the scene date leaves presence uncertain",
              doc["present_on_scene_date"]["value"] == "uncertain"),
             ("no dwelling is dealt", doc["lives_at"]["value"] is None),
-            ("no trade is read in", person["occupation"]["value"] == "none_recorded"),
+            ("no trade is read in",
+             person["occupation"]["value"] in ("none_recorded", "none_recorded_in_1835")),
             ("the source resolves to a file, not a domain label",
              person["sources"] == ["chicago_voter_lists_1833_1835_irad"]),
     ):

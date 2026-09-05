@@ -439,7 +439,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1835-07-01"
       ],
@@ -601,7 +601,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "present",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1835-07-01"
       ],
@@ -1088,7 +1088,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "uncertain",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1835-05-20"
       ],
@@ -1156,7 +1156,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "attested",
       "starting_presence": "uncertain",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1834-04-01"
       ],
@@ -1177,7 +1177,7 @@
       "starting_evidence": "letter_list_only",
       "starting_grade": "inferred",
       "starting_presence": "uncertain",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [
         "1834-04-01"
       ],

@@ -40,7 +40,10 @@ names the first clause that failed, not every clause that would have.
 
 **1. The 1835 record has to attest a business to position.** A person the 1835 corpus
 gives no trade — `occupation: none_recorded`, this dataset's own word for an absent
-record — has no business for a later door to place. This pass never mints a business out
+record, or `none_recorded_in_1835`, the same absence on a person the project holds a
+DATED LATER trade for (T-0693) — has no business for a later door to place. The second
+value changes nothing here: a trade printed in 1839 is evidence about 1839, and clause 1
+refuses both alike. This pass never mints a business out
 of a directory printed after the scene date, and clause 1 is where that is enforced
 rather than promised. It is also, by a distance, the largest refusal: **39 of the 87**.
 

@@ -303,7 +303,7 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
         return row
 
     # Clause 1 — there has to be a business in 1835 to position.
-    if not trade or trade == "none_recorded":
+    if not trade or trade in ("none_recorded", "none_recorded_in_1835"):
         row.update(outcome="refused", clause="1",
                    reason="The 1835 record prints no trade for this person, so there is "
                           "no 1835 business for a later door to position. Minting one out "

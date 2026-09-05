@@ -340,7 +340,7 @@
       "starting_evidence": "newspaper_profile_unplaced",
       "starting_grade": "attested",
       "starting_presence": "uncertain",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [],
       "sources": [
         "chicago_democrat_1833_1835",
@@ -369,7 +369,7 @@
       "starting_evidence": "newspaper_profile_unplaced",
       "starting_grade": "attested",
       "starting_presence": "present",
-      "starting_occupation": "none_recorded",
+      "starting_occupation": "none_recorded_in_1835",
       "letter_list_returns": [],
       "sources": [
         "chicago_democrat_1833_1835",

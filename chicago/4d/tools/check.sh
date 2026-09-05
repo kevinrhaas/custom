@@ -1864,6 +1864,19 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
 
+# T-0693. A person record may not assert an absence its own file contradicts. Where the
+# `directories` block holds a DATED later trade for someone, their 1835 occupation reads
+# `none_recorded_in_1835` — the absence with a date on it — and its note closes with the
+# trade, the year and the source it is known from. `none_recorded` keeps its older and
+# stricter meaning: no trade anywhere. Without this step the two states drift back into
+# one string the moment a new directory is crosswalked, which is how 97 cards came to
+# print a trade on one screen and deny it on the next.
+step "no person record asserts a trade-absence its own file contradicts" \
+  python3 tools/reconcile_occupation_dates.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/reconcile_occupation_dates.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

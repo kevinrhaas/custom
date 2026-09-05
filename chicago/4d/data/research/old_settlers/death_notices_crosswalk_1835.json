@@ -78,7 +78,7 @@
    "person_id": "wolcott_alexander",
    "household_id": "hh_wolcott_alexander",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Wolcott' folds to the same string as the entry's, and the given name of both begins A.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -244,7 +244,7 @@
    "person_id": "beaubien_charles_h",
    "household_id": "hh_beaubien_charles_h",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Beaubien' folds to the same string as the entry's, and the given name of both begins C.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -300,7 +300,7 @@
    "person_id": "jones_d_e",
    "household_id": "hh_jones_d_e",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Jones' folds to the same string as the entry's, and the given name of both begins D.",
    "resident_given_is_initial_only": true,
    "entries": [
@@ -328,7 +328,7 @@
    "person_id": "andrews_davi",
    "household_id": "hh_andrews_davi",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Andrews' folds to the same string as the entry's, and the given name of both begins D.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -356,7 +356,7 @@
    "person_id": "hunter_david",
    "household_id": "hh_hunter_david",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Hunter' folds to the same string as the entry's, and the given name of both begins D.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -466,7 +466,7 @@
    "person_id": "rogers_edward_a",
    "household_id": "hh_rogers_edward_a",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Rogers' folds to the same string as the entry's, and the given name of both begins E.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -494,7 +494,7 @@
    "person_id": "hunter_edward_e",
    "household_id": "hh_hunter_edward_e",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Hunter' folds to the same string as the entry's, and the given name of both begins E.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -571,7 +571,7 @@
    "person_id": "hubbard_elijah_kent",
    "household_id": "hh_hubbard_elijah_kent",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Hubbard' folds to the same string as the entry's, and the given name of both begins E.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -627,7 +627,7 @@
    "person_id": "powell_geo_n",
    "household_id": "hh_powell_geo_n",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Powell' folds to the same string as the entry's, and the given name of both begins G.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -765,7 +765,7 @@
    "person_id": "mitchell_henry",
    "household_id": "hh_mitchell_henry",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Mitchell' folds to the same string as the entry's, and the given name of both begins H.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -904,7 +904,7 @@
    "person_id": "hinton_isaac_t",
    "household_id": "hh_hinton_isaac_t",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Hinton' folds to the same string as the entry's, and the given name of both begins I.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -932,7 +932,7 @@
    "person_id": "ellis_j",
    "household_id": "hh_ellis_j",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Ellis' folds to the same string as the entry's, and the given name of both begins J.",
    "resident_given_is_initial_only": true,
    "entries": [
@@ -1208,7 +1208,7 @@
    "person_id": "noble_john",
    "household_id": "hh_noble_john",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Noble' folds to the same string as the entry's, and the given name of both begins J.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -1504,7 +1504,7 @@
    "person_id": "ogden_w_b",
    "household_id": "hh_ogden_w_b",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Ogden' folds to the same string as the entry's, and the given name of both begins W.",
    "resident_given_is_initial_only": true,
    "entries": [
@@ -3437,7 +3437,7 @@
    "person_id": "rice_john",
    "household_id": "hh_rice_john",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Rice' folds to the same string as the entry's, and the given name of both begins J.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -3581,7 +3581,7 @@
    "person_id": "scott_john",
    "household_id": "hh_scott_john",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
+   "occupation_1835": "none_recorded_in_1835",
    "rule": "Surname 'Scott' folds to the same string as the entry's, and the given name of both begins J.",
    "resident_given_is_initial_only": false,
    "entries": [

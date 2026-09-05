@@ -59,7 +59,8 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 871,
+        "none_recorded": 830,
+        "none_recorded_in_1835": 41,
         "printer": 1,
         "saddler": 1,
         "tavern_keeper": 2

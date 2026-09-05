@@ -183,7 +183,8 @@ def main():
     # carry that — an absent trade is the field's most common value, not a null.
     for m in res_matched:
         carries = []
-        has_trade = m["occupation_1835"] not in (None, "", "none_recorded", "unknown")
+        has_trade = m["occupation_1835"] not in (None, "", "none_recorded",
+                                                 "none_recorded_in_1835", "unknown")
         if not has_trade and any(x["occupation_1839"] for x in m["entries_1839"]):
             carries.append("occupation")
         if any(x["streets_1839"] for x in m["entries_1839"]):

@@ -86,8 +86,10 @@ def residents():
 
 
 def blank_occupation(value) -> bool:
-    """True where the 1835 layer records a trade. `none_recorded` records none."""
-    return bool(value) and value != "none_recorded"
+    """True where the 1835 layer records a trade. Both `none_recorded` (no trade
+    anywhere) and `none_recorded_in_1835` (none in the window, one dated later)
+    record none for 1835 — T-0693."""
+    return bool(value) and value not in ("none_recorded", "none_recorded_in_1835")
 
 
 def main():

@@ -109,6 +109,12 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+
+# T-0693. The pass that dates a trade-absence, imported rather than copied: the value it
+# writes is derived from this record's own `directories` block, so there is one
+# implementation of the rule and one place it can drift.
+sys.path.insert(0, str(ROOT / "tools"))
+import reconcile_occupation_dates  # noqa: E402  (needs the path above)
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -715,6 +721,14 @@ def build(preload: dict | None = None):
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
+        # T-0693. AND THE DATE ON A TRADE-ABSENCE, DERIVED RATHER THAN CARRIED. Where the
+        # `directories` block on this record holds a DATED later trade for one of these
+        # people, their 1835 occupation reads `none_recorded_in_1835` — the absence with a
+        # date on it — rather than `none_recorded`, which means no trade anywhere. This
+        # pass re-derives `occupation` from its own evidence and would put the plain word
+        # back, so the reconciliation is re-applied here, off the record's own block. It is
+        # a derivation and not a carry: nothing is read out of the prior file.
+        reconcile_occupation_dates.rewrite(doc)
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
         tally: dict = {}
         for person in doc["persons"]:
@@ -923,7 +937,8 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
             occ = person.get("occupation") or {}
             rr = person.get("resident_research") or {}
             independently_corroborated = bool(rr.get("asserted_identity") and rr.get("source_ids"))
-            if occ.get("value") != "none_recorded" and not independently_corroborated:
+            if (occ.get("value") not in ("none_recorded", "none_recorded_in_1835")
+                    and not independently_corroborated):
                 problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "
                                 f"letter list gives no trade and this pass may not read "
                                 f"one in without independently corroborated resident research")

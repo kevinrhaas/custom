@@ -53,9 +53,9 @@
    "relationship": "head",
    "grade": "attested",
    "occupation": {
-    "value": "none_recorded",
+    "value": "none_recorded_in_1835",
     "confidence": "reconstructed",
-    "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work: the papers name them in a proceedings column, a public card or an advertisement and simply do not say what they did for a living, and `data/research/newspapers/register_1835.json` reads no trade for them. Reasoning a trade out of the company they keep would be inventing one, so the vocabulary's own word for an absent record is what stands here."
+    "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work: the papers name them in a proceedings column, a public card or an advertisement and simply do not say what they did for a living, and `data/research/newspapers/register_1835.json` reads no trade for them. Reasoning a trade out of the company they keep would be inventing one, so the vocabulary's own word for an absent record is what stands here. WHAT IS KNOWN, AND WHEN — this is an absence for 1835, not an absence altogether: fergus_chicago_directory_1839 prints \"coroner\" against this person and describes 1839. That reading is held in this household's directories block, dated there, and is read back onto no 1835 claim; the value reads none_recorded_in_1835 rather than none_recorded because the project holds a dated trade for this person and holds none for the scene window. Nothing about the 1835 record — its grade, its date, its placement — moved to say so. T-0693."
    },
    "sources": [
     "chicago_democrat_1833_1835",

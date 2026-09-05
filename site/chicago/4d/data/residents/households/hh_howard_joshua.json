@@ -57,9 +57,9 @@
     "1835-07-01"
    ],
    "occupation": {
-    "value": "none_recorded",
+    "value": "none_recorded_in_1835",
     "confidence": "reconstructed",
-    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
+    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in. WHAT IS KNOWN, AND WHEN — this is an absence for 1835, not an absence altogether: fergus_chicago_directory_1839 prints \"druggist, W\" against this person and describes 1839. That reading is held in this household's directories block, dated there, and is read back onto no 1835 claim; the value reads none_recorded_in_1835 rather than none_recorded because the project holds a dated trade for this person and holds none for the scene window. Nothing about the 1835 record — its grade, its date, its placement — moved to say so. T-0693."
    },
    "sources": [
     "chicago_democrat_1833_1835"

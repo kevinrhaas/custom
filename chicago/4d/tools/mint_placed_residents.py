@@ -125,6 +125,12 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+
+# T-0693. The pass that dates a trade-absence, imported rather than copied: the value it
+# writes is derived from this record's own `directories` block, so there is one
+# implementation of the rule and one place it can drift.
+sys.path.insert(0, str(ROOT / "tools"))
+import reconcile_occupation_dates  # noqa: E402  (needs the path above)
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -619,6 +625,14 @@ def build(preload: dict | None = None):
         # person, refused in writing because the card rests on a dated Democrat issue
         # the consolidation never read, and the refusal is the whole point of it.
         carry_research(doc, existing)
+        # T-0693. AND THE DATE ON A TRADE-ABSENCE, DERIVED RATHER THAN CARRIED. Where the
+        # `directories` block on this record holds a DATED later trade for one of these
+        # people, their 1835 occupation reads `none_recorded_in_1835` — the absence with a
+        # date on it — rather than `none_recorded`, which means no trade anywhere. This
+        # pass re-derives `occupation` from its own evidence and would put the plain word
+        # back, so the reconciliation is re-applied here, off the record's own block. It is
+        # a derivation and not a carry: nothing is read out of the prior file.
+        reconcile_occupation_dates.rewrite(doc)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
