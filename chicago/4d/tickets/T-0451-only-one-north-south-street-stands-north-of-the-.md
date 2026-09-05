@@ -1,7 +1,7 @@
 ---
 id: T-0451
 title: Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 894
 claimed_by: run 9/5/2026, 9:13:53 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T15:30:29.310Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33970979218
 ---
 

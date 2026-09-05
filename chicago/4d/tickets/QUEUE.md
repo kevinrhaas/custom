@@ -169,7 +169,6 @@ T-0601 — A column sliver is kept as a second, truncated copy of a card the nei
 # --- T-0453 left behind when it closed.
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
-T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
 # --- blocks, one block per run. Take from the top.
@@ -396,4 +395,3 @@ T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, th
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
-
