@@ -116,7 +116,6 @@ T-0445 — West Water, Jefferson and Des Plaines: the three West Division street
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0685 — Georeference the Thompson 1830 plat at the forks and measure its bank against the Wright 1834 line for the owner's ruling
 T-0686 — The traced South Branch bank walks a dry seam in Wright's wash for 30 m, and repairing it moves the waterline
-T-0687 — hydrology.geojson's two confidence strings no longer match the generator that says it is generated
 T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
 
 # --- THE CITY GAINS ROOFS — owner rulings, 2026-08-30. Twenty roofs across four South Water
@@ -329,3 +328,4 @@ T-0767 — dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0702 — Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them
 T-0703 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
+
