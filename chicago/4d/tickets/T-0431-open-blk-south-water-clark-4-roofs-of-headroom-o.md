@@ -1,7 +1,7 @@
 ---
 id: T-0431
 title: Open blk_south_water_clark: 4 roofs of headroom on two free lots
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0420
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 916
 claimed_by: run 9/5/2026, 2:27:53 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-05T20:33:26.622Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33987077283
 ---
 
