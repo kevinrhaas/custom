@@ -15,6 +15,9 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-05  "Pull 802 up" — the owner, after T-0802's fault was caught live: T-0722 sat
+#               `claimed` on a queue a run reads top-down for hours after PR #836 landed its
+#               work. Moved into the blocking band beside T-0819.
 #   2026-09-05  ...AND THE REST OF THE FILE, same instruction: "And other logical ordering
 #               across the queue". Applied ORDERING RULE 4 where the bands' own text already
 #               said it: the triangle ceiling gates every roof, so it now sits ABOVE the roofs
@@ -46,6 +49,7 @@
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
 T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
+T-0839 — One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing
 T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
@@ -136,7 +140,16 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 # --- T-0819 first: the promotion workflow cannot push its back-merge, so PRODUCTION CANNOT BE
 # --- PROMOTED AT ALL. Then dev's standing red — T-0728, T-0729 and T-0781 are three reports of the
 # --- same failure set on an untouched checkout, and T-0763 is why they were hard to tell apart.
+# --- T-0802 IS HERE ON EVIDENCE, NOT ON THEORY — owner, 2026-09-05: "Pull 802 up". It was caught
+# --- live the same day: T-0722 FIXED the 32 MB ceiling in PR #836, that PR merged, and the ticket
+# --- still read `state: claimed, pr: null` hours later — sitting workable at the top of a queue
+# --- a run reads top-down. That is the seventy-minute failure of 2026-08-19 (run 943's #258 left
+# --- open, run 944 rebuilding T-0062 from scratch) with the branch guard closed and the OTHER
+# --- hole open: `claim` checks for a rival BRANCH, and nothing checks a ticket against the PRs
+# --- that already landed. It blocks nothing by itself; it silently duplicates whatever it
+# --- touches, which is worse, and it is why this band is the right place for it.
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
+T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
 T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
@@ -261,7 +274,6 @@ T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their 
 T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0817 — QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
@@ -324,6 +336,9 @@ T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any confli
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
