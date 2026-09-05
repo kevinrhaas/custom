@@ -1,5 +1,5 @@
 ---
-id: T-0728
+id: T-0770
 title: The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 state: open
 epic: META

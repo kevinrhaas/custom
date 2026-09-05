@@ -1,5 +1,5 @@
 ---
-id: T-0702
+id: T-0773
 title: Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them
 state: open
 epic: META

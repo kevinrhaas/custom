@@ -1,5 +1,5 @@
 ---
-id: T-0703
+id: T-0771
 title: Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
 state: open
 epic: META
