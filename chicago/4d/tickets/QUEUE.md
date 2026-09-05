@@ -384,3 +384,5 @@ T-0717 — The first Catholic church still stood at State and Lake in June 1837,
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0715 — data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices
 T-0722 — The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
+T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
+T-0728 — Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
