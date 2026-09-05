@@ -78,6 +78,14 @@
     "summary": "DuPage history gives a detailed chronology for Thomas Andrus: arrival in Chicago Dec. 1, 1833, carpenter/pile-driving work in 1834, return east in autumn 1834, and arrival back at Chicago in June 1835 before settling in DuPage in July. This independently identifies the exact person behind the regional postal seed.",
     "source_ids": [
      "rr_dupage_andrus_1882"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — rr_dupage_andrus_1882. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }
