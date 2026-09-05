@@ -1,0 +1,12 @@
+ticket,cohort,scene_date,reviewed_on,metric,value
+T-0463,pass_03_75,1835-07-01,2026-09-01,cohort size,75
+T-0463,pass_03_75,1835-07-01,2026-09-01,corroborated,16
+T-0463,pass_03_75,1835-07-01,2026-09-01,candidate,15
+T-0463,pass_03_75,1835-07-01,2026-09-01,no_corroboration,44
+T-0463,pass_03_75,1835-07-01,2026-09-01,pending,0
+T-0463,pass_03_75,1835-07-01,2026-09-01,candidate rows,15
+T-0463,pass_03_75,1835-07-01,2026-09-01,sources cited,22
+T-0463,pass_03_75,1835-07-01,2026-09-01,search-log rows,225
+T-0463,pass_03_75,1835-07-01,2026-09-01,stratum established_profile,25
+T-0463,pass_03_75,1835-07-01,2026-09-01,stratum letter_list_only_present,25
+T-0463,pass_03_75,1835-07-01,2026-09-01,stratum letter_list_only_uncertain,25

@@ -1242,6 +1242,14 @@ step "the fifteenth research cohort is fixed" \
 step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
+# T-0511. `chicago/reference/resident-research/README.md` says a cohort ticket is not
+# complete while its XLSX/CSV/README package exists only locally, and for three months
+# nothing enforced it: the pilot, pass 2 and pass 3 shipped 225 reviewed people with no
+# package a reader could open. This proves every CLOSED cohort has a folder, and that the
+# three generated packages still equal the JSON they are a view of.
+step "every completed research cohort has a reference package, and the generated ones match their JSON" \
+  python3 tools/export_resident_research_package.py --check-all
+
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
 # are what the pass derives; this proves the DERIVATION is what the owner permitted —
 # every minted person carrying `letter_list_only` and the dated return behind it, and not

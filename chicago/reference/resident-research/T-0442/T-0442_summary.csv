@@ -1,0 +1,13 @@
+ticket,cohort,scene_date,reviewed_on,metric,value
+T-0442,pilot_75,1835-07-01,2026-08-31,cohort size,75
+T-0442,pilot_75,1835-07-01,2026-08-31,corroborated,4
+T-0442,pilot_75,1835-07-01,2026-08-31,candidate,7
+T-0442,pilot_75,1835-07-01,2026-08-31,no_corroboration,64
+T-0442,pilot_75,1835-07-01,2026-08-31,pending,0
+T-0442,pilot_75,1835-07-01,2026-08-31,candidate rows,7
+T-0442,pilot_75,1835-07-01,2026-08-31,sources cited,12
+T-0442,pilot_75,1835-07-01,2026-08-31,search-log rows,150
+T-0442,pilot_75,1835-07-01,2026-08-31,stratum established_profile,5
+T-0442,pilot_75,1835-07-01,2026-08-31,stratum newspaper_profile_unplaced,20
+T-0442,pilot_75,1835-07-01,2026-08-31,stratum letter_list_only_present,25
+T-0442,pilot_75,1835-07-01,2026-08-31,stratum letter_list_only_uncertain,25
