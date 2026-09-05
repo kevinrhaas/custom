@@ -593,12 +593,31 @@ def carry_later_trade(doc: dict, existing: dict) -> None:
 
 
 def carry_research(doc: dict, existing: dict) -> None:
-    """Keep a `resident_research` block another pass wrote onto one of these people."""
+    """Keep what another pass wrote onto one of these people: the `resident_research`
+    block, and the `ladder_rule` `tools/spend_ladder_rungs.py` spends onto the card.
+
+    T-0720. The rung is the REASON for a grade this pass already wrote and asserts
+    nothing this pass derives, so it survives a re-mint the way the research block does.
+    It goes back immediately after `grade`, which is where the spend writes it and where
+    the civic mint writes its own, so `--check` stays byte-identical either way round.
+    """
     by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
     for person in doc.get("persons") or []:
         prior = by_id.get(person.get("id")) or {}
         if prior.get("resident_research") and "resident_research" not in person:
             person["resident_research"] = prior["resident_research"]
+        rung = prior.get("ladder_rule")
+        if not rung or "ladder_rule" in person:
+            continue
+        rebuilt = {}
+        for key, value in person.items():
+            rebuilt[key] = value
+            if key == "grade":
+                rebuilt["ladder_rule"] = rung
+        if "ladder_rule" not in rebuilt:
+            rebuilt["ladder_rule"] = rung
+        person.clear()
+        person.update(rebuilt)
 
 
 def build(preload: dict | None = None):

@@ -68,6 +68,7 @@
    "name": "James Kinzie",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "merchant",

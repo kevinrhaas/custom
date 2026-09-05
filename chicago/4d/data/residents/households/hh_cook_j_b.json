@@ -52,6 +52,7 @@
    "name": "J. B. Cook",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "baker",
     "confidence": "attested",

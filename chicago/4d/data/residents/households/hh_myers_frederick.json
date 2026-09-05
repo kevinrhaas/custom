@@ -52,6 +52,7 @@
    "name": "Frederick Myers",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-10-22",
