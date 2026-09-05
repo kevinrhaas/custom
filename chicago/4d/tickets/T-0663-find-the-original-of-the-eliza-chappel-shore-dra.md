@@ -1,7 +1,7 @@
 ---
 id: T-0663
 title: Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication, since its lighthouse cannot settle its subject
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 826
+claimed_by: run 9/4/2026, 8:15:28 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T01:35:29.573Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33935461254
 ---
 
 Find the original of the Eliza Chappel shore drawing: a hand, a date and a publication.

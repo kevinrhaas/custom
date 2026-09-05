@@ -1,5 +1,5 @@
 ---
-id: T-0716
+id: T-0717
 title: The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 state: open
 epic: META

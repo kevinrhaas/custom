@@ -103,7 +103,7 @@ something about the town — until at least 1837 no church bell had ever rung in
 resident or household record was changed. The June 1837 terminus sits against a phase end of
 1836-12-31 on `st_marys_church.json`, which that record took as the conservative of two
 readings; the scene is not wrong either way — the record's own note says so — but the end bound
-is, and **T-0716** carries that question rather than this ticket. Jean Baptiste Beaubien's
+is, and **T-0717** carries that question rather than this ticket. Jean Baptiste Beaubien's
 claim on the whole Fort Dearborn reservation, which the removal passage states in passing, is
 recorded in `bk_ichr4_003` and written into no resident record.
 
