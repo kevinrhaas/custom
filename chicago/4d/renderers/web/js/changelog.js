@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 593, title: 'Nothing you can see: the 1830 plat draws a different river', kind: 'change', ts: '2026-09-05T18:39:34.726Z', date: 'Sep 5, 2026, 1:39 PM CT',
+  { v: 594, title: 'Nothing you can see: the 1830 plat draws a different river', kind: 'change', ts: '2026-09-05T18:49:00.418Z', date: 'Sep 5, 2026, 1:49 PM CT',
     items: [
       'Nothing you can see in the town changed today, and nothing moved on purpose. This is about a question the owner asked \u2014 that James Thompson\u2019s 1830 plat seems to put Wolf Point somewhere other than this town puts it \u2014 and about finally being able to answer it with a number instead of an impression.',
       'It could not be answered before because the 1830 sheet had never been pinned to the ground. This town\u2019s river is traced from an 1834 survey that was fitted to modern street corners; the plat was only ever read for its written figures. So it was fitted the same way, against the same kind of modern control: twenty-two street crossings, matched and least-squared, landing within 4.9 metres. The 1834 sheets manage 17.5.',
@@ -8,7 +8,7 @@ export const CHANGELOG = [ // newest first
       'None of that is the new fit\u2019s doing: the arithmetic allows it about three metres of error at that distance. It is two draughtsmen disagreeing, four years and a harbour cut apart, one surveying a landscape and one bounding lots he was about to sell.',
       'Which line the town should stand on is not a decision to take quietly \u2014 the bank is the argument of the ground, the water, the landings and every frontage on them. So nothing was moved, the measurement is written down, and the question goes to the owner.',
     ] },
-  { v: 592, title: 'Six streets that were on the plat and not in the town', kind: 'change', ts: '2026-09-05T18:39:34.726Z', date: 'Sep 5, 2026, 1:39 PM CT',
+  { v: 593, title: 'Six streets that were on the plat and not in the town', kind: 'change', ts: '2026-09-05T18:49:00.418Z', date: 'Sep 5, 2026, 1:49 PM CT',
     items: [
       'North of the river the walk had one street running north and south \u2014 Wolcott, on the town\u2019s eastern boundary. James Thompson\u2019s 1830 plat draws seven numbered blocks up there, side by side between Kinzie Street and North Water Street, and seven blocks cannot be bounded east and west by one line. The other six corridors were simply missing, so a walker crossing the North Division saw unbroken ground where the sheet shows a grid.',
       'The sheet was read again for them, at three and five times. The tier runs block 1 at the eastern boundary to block 7 against the North Branch, with six eighty-foot streets between; a second, part tier of two blocks lies south of North Water Street at the western end. All six streets are in the town now, from North Water Street up to Kinzie.',
@@ -16,6 +16,12 @@ export const CHANGELOG = [ // newest first
       'The plat writes these names once each, down in the South Division \u2014 MARKET, FRANKLIN, WELLS, LA SALLE, CLARKE with an E, DEARBORN \u2014 and writes not one of them north of the river, where every corridor carries an 80 at its head and a vertical ST. and nothing else. So each new record says its name is carried across the water rather than read where it stands; Wolcott, which the North Division called something else entirely, is why that distinction is kept.',
       'Market is held back. Its corridor on the sheet stands nine metres west of the line the town holds, four times the worst of the other five, and that line is fitted to modern Wacker Drive \u2014 ground made long after the river was walled. Nothing read here can choose between two lines nine metres apart, so nothing moved: Market\u2019s northern half is graded lower, carries no modern name, and the re-measurement is filed.',
       'No block grid was laid up there and no ground moved. Every metre of the six lines was checked to stand on modelled dry land \u2014 a hundred and eighty-two soundings, none in water.',
+    ] },
+  { v: 592, title: 'Set your own pace, and arrive with the whole building in view', kind: 'feature', ts: '2026-09-05T18:36:15.876Z', date: 'Sep 5, 2026, 1:36 PM CT',
+    items: [
+      'Under Travel there are now three speed sliders — walking, wagon and horse — and each names the gait as you move it: a stroll, a brisk walk, a jog, a run; a wagon at a walking pace, a steady roll, rattling along; a horse at a walk, a trot, a canter, a gallop. The tops are deliberately far past the possible, 20 mph on foot, 30 by wagon and 60 in the saddle, and the readout says plainly when a figure is beyond any man or any horse.',
+      'Shift still hurries you: a run on foot, a gallop on horseback, nothing on a wagon — and never past the slider\u2019s top. The horse\u2019s gait in your eye beats faster the faster you have set it.',
+      'Arriving anywhere — an instant Go to, the end of a ride, the end of a flight — now stands you on the building\u2019s front at the distance that fits the whole of it in view, aimed at its middle, with its card open. The distance comes from the building\u2019s own footprint and height and the camera\u2019s field of view, so a privy is framed as closely as a long store is framed wide.',
     ] },
   { v: 591, title: 'Seventy-six people the research programme had reserved and never read', kind: 'feat', ts: '2026-09-05T17:52:04.387Z', date: 'Sep 5, 2026, 12:52 PM CT',
     items: [

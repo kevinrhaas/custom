@@ -972,6 +972,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
     currentRecord = null;
     root.setAttribute('hidden', '');
     root.innerHTML = '';
+    document.documentElement.classList.remove('card-open');
   }
 
   root.addEventListener('click', (e) => {
@@ -1100,6 +1101,9 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
         ${paneHtml('record', recordPane)}
       `;
       root.removeAttribute('hidden');
+      // On a phone the sheet takes the lower screen and the building is framed into
+      // the strip above it (T-0824); the map and compass would cover that strip.
+      document.documentElement.classList.add('card-open');
       root.scrollTop = 0;
       return true;
     },

@@ -704,15 +704,29 @@ export function createRouter({
    * @param {number} radiusM
    * @returns {{e:number,n:number}}
    */
-  function standOff(id, centre, radiusM = 0) {
+  /**
+   * Which way a building FACES, as the router reads it: the bearing from its
+   * centre to the nearest street track (radians, compass), or south-west when
+   * no street is within 150 m — the walker's own default stance.
+   */
+  function frontBearing(centre) {
+    ensure();
+    const track = nearestCell(centre.e, centre.n, Math.ceil(150 / cell), CLS_TRACK);
+    if (track < 0) return 200 * DEG;
+    return Math.atan2(centreE(track % grid.cols) - centre.e, centreN((track / grid.cols) | 0) - centre.n);
+  }
+
+  /**
+   * A free standing point in front of a building. `distance` (metres from the
+   * centre) is the caller's when given — main.js's framing rule computes the one
+   * that fits the whole building in view (T-0824) — else the old stand-off,
+   * `max(8, radius + 5)`.
+   */
+  function standOff(id, centre, radiusM = 0, { distance = null } = {}) {
     if (!centre || !Number.isFinite(centre.e) || !Number.isFinite(centre.n)) return centre;
     ensure();
-    const d = Math.max(8, (Number(radiusM) || 0) + 5);
-    const track = nearestCell(centre.e, centre.n, Math.ceil(150 / cell), CLS_TRACK);
-    let bearing = 200 * DEG;      // south-west, the walker's own default stance
-    if (track >= 0) {
-      bearing = Math.atan2(centreE(track % grid.cols) - centre.e, centreN((track / grid.cols) | 0) - centre.n);
-    }
+    const d = Number.isFinite(distance) && distance > 0 ? distance : Math.max(8, (Number(radiusM) || 0) + 5);
+    const bearing = frontBearing(centre);
     // 0, +30, -30, +60, -60, … 180.
     for (let step = 0; step <= 6; step++) {
       for (const sign of (step === 0 || step === 6) ? [1] : [1, -1]) {
@@ -756,6 +770,7 @@ export function createRouter({
   return {
     plan,
     standOff,
+    frontBearing,
     blockedAt,
     classAt,
     heightAt,
