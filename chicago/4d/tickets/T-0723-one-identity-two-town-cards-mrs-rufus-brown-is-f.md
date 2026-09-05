@@ -1,5 +1,5 @@
 ---
-id: T-0718
+id: T-0723
 title: One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 state: open
 epic: META

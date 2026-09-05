@@ -101,9 +101,9 @@ grade moved, no household file was touched, nobody was downgraded to close the g
 ticket is explicit that the measurement and the regrade do not ride in one PR.
 
 **The three repairs the nine turned up** are their own tickets, because each is a different
-job: **T-0721** (three cards named from an OCR misreading of an initial), **T-0718** (one
+job: **T-0721** (three cards named from an OCR misreading of an initial), **T-0723** (one
 identity holding two town cards — a wife folded onto her husband, and a man carried twice),
-**T-0719** (the four-token cap that turns away the parish priest).
+**T-0724** (the four-token cap that turns away the parish priest).
 
 **What guards it.** `invariants()` now fails if the coverage does not account for the whole
 layer, if any person sits in state `unclassified`, or if any uncovered person states no

@@ -1,5 +1,5 @@
 ---
-id: T-0719
+id: T-0724
 title: The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
 state: open
 epic: META
