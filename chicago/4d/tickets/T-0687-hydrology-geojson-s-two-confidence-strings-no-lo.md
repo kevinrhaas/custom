@@ -1,7 +1,7 @@
 ---
 id: T-0687
 title: hydrology.geojson's two confidence strings no longer match the generator that says it is generated
-state: open
+state: claimed
 epic: GROUND
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 6:33:36 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33963525521
 ---
 
 hydrology.geojson's two confidence strings no longer match the generator that says it is generated.
