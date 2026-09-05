@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 7:21 AM",
+  "generated_ct": "Sep 5, 2026, 7:26 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12774,7 +12774,7 @@
     {
       "id": "T-0767",
       "title": "dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12782,19 +12782,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "877",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T12:26:11.591Z",
       "claimed_run": null,
-      "queue_rank": 156
+      "queue_rank": null
     },
     {
       "id": "T-0771",
       "title": "dev's gate is red: 160 Newberry leads went unruled when T-0600 struck 443 cards, and neither derived file was re-derived",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12802,14 +12802,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "877",
       "claimed_by": "run 9/5/2026, 6:50:28 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T12:26:11.472Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33963513683",
-      "queue_rank": 155
+      "queue_rank": null
     }
   ]
 }

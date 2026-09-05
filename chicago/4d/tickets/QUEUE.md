@@ -324,5 +324,3 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
-T-0771 — dev's gate is red: 160 Newberry leads went unruled when T-0600 struck 443 cards, and neither derived file was re-derived
-T-0767 — dev's gate is red on the Newberry lead crosswalk: 56 leads anchor to cards T-0600 struck, and acquisition_list.json no longer re-derives
