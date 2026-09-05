@@ -117,7 +117,16 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "NAMED, DATED AND PLACED ON THE JOURNEY, which is rare. Andreas: 'On January 21, 1832, he was married to Miss Emeline Mahbutt, who accompanied the Doctor in his pilgrimage to this city.' The surname is printed 'Malib.tt' in the scanned text and is read here as Mahbutt; the reading is uncertain and the forename is not."
+   "note": "NAMED, DATED AND PLACED ON THE JOURNEY, which is rare. Andreas: 'On January 21, 1832, he was married to Miss Emeline Mahbutt, who accompanied the Doctor in his pilgrimage to this city.' The surname is printed 'Malib.tt' in the scanned text and is read here as Mahbutt; the reading is uncertain and the forename is not.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0463",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+   }
   }
  ],
  "touches_removal": false,

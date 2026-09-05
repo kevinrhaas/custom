@@ -320,3 +320,4 @@ T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien move
 T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
 T-0733 — 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
 T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
+T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire

@@ -19,7 +19,7 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 
 ## Research adjudication
 
-The synthesis resolved **744 unique research outcomes**: candidate: 5, candidate_identity: 74, corroborated: 20, corroborated_enrichment: 29, no_corroboration: 187, no_corroboration_yet: 429.
+The synthesis resolved **873 unique research outcomes**: candidate: 5, candidate_identity: 74, corroborated: 20, corroborated_enrichment: 29, no_corroboration: 187, no_corroboration_yet: 558.
 
 A post-office letter now documents a real named person considered reachable through Chicago; it is not automatic proof of Chicago residence. Independently corroborated letter-list identities are `attested`; other qualifying letter-list names are `inferred` + `projected_resident`. Candidate identities remain explicitly unasserted with evidence for/against retained.
 
