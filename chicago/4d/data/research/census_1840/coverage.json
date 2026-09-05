@@ -8,7 +8,8 @@
   "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg — byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each, md5 4cc1ca3ff88c213598c1cfe409938a35)",
   "correction": "the deposit holds 74 DISTINCT images, not 75. `ls chicago/reference/census1840/*.jpg | wc -l` is 75 and one of those 75 is the duplicate copy, so 74 remain; `md5sum *.jpg | awk '{print $1}' | sort -u | wc -l` is 74. T-0494/T-0495/T-0496, the source record and the schema-1 coverage all said 75 distinct / 76 files. Group 3 is therefore images 51-74 — 24 images, not 25.",
   "ordering": "ls chicago/reference/census1840/*.jpg | sort, with the duplicate copy removed first so the index runs 1..74 over the 74 distinct images. Group 1 ends at 33S7-9YYJ-C8 and group 2 begins at 33S7-9YYJ-DD, which is the boundary the schema-1 declaration already used.",
-  "deposit_is_read_only": true
+  "deposit_is_read_only": true,
+  "all_three_groups_declared": true
  },
  "groups": [
   {
@@ -861,6 +862,368 @@
     "counts_note": "recomputed from the images array by T-0527 rather than incremented, as T-0546 and T-0552/T-0553 did before it, and recomputed again as this branch merged the passes that landed beside it (T-0529, T-0654, T-0655, T-0656). T-0527 also CORRECTED TWO INVENTORY LINE COUNTS by reading them: 33S7-9YYN-3CDH from 33 to 31 and 33S7-9YYJ-Q1 from 22 to 21. The inventory's figures were taken `to the nearest line` and are superseded where a sheet has been read line by line; both corrections are argued on their page files."
    },
    "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Eight pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523), printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high), printed 217 (33 declared, 31 read, T-0552), printed 218 and 224 (both declared 33 'to the nearest line' and both carrying 30, T-0553), and printed 209 and 211 (counted by T-0546: 209 carries 31, exactly what the estimate said, and 211 carries 30 against an estimate of 34, the largest correction the inventory has taken). SIX of the eight counted left sheets had an inventory figure that was HIGH and none had one that was low, so the contact-sheet pass reads long by one to four lines and a transcribing pass should expect to remove lines rather than find them. The rest are stated to the nearest line and a transcribing pass restates them exactly."
+  },
+  {
+   "range": "images 51-74 of 74",
+   "declared_by": "T-0741, piece 1 of T-0496. This pass INVENTORIED all 24 images of the group and read nothing else from them: what each sheet is, which side it is, the printed page number where the sheet carries one, and how many ruled lines carry an entry. No name, no cell, no serial and no resident. T-0742 reads them, and will split by printed page - which is what this inventory is for. THE GROUP WAS THE ONLY ONE THE DEPOSIT DECLARATION DID NOT DESCRIBE: coverage.json carried two groups while its own schema_note promised three, so a hole in images 51-74 could not fail.",
+   "images": [
+    {
+     "index": 51,
+     "familysearch_id": "33SQ-GYYJ-9J5",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-9J5.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet: slaves, family TOTAL, the six industry columns, pensioners, deaf/dumb/blind and schools - filled. The TOTAL column carries a figure on every one of its 31 lines and the sheet foots 179.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 52,
+     "familysearch_id": "33SQ-GYYJ-9SQ",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-9SQ.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 30,
+     "what_it_is": "continuation sheet - filled, with one blank ruled line inside the run; foots 175.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 53,
+     "familysearch_id": "33SQ-GYYJ-9ZK",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-9ZK.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 23,
+     "what_it_is": "continuation sheet - filled for 23 lines and blank below them; foots 119, and the 23 TOTAL figures read at this magnification sum to 118.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 54,
+     "familysearch_id": "33SQ-GYYJ-BH",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-BH.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 0,
+     "what_it_is": "continuation sheet, BLANK - not one entry on any line, in any column, and no footing row. The form is ruled and printed and nothing was ever written on it.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 55,
+     "familysearch_id": "33SQ-GYYJ-BP",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-BP.jpg",
+     "sheet_side": "left",
+     "printed_page": 214,
+     "lines_with_an_entry": 30,
+     "what_it_is": "names + free-white age bands, filled.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 56,
+     "familysearch_id": "33SQ-GYYJ-BS",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-BS.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 29,
+     "what_it_is": "continuation sheet - filled; foots 131.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 57,
+     "familysearch_id": "33SQ-GYYJ-CK",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-CK.jpg",
+     "sheet_side": "left",
+     "printed_page": 240,
+     "lines_with_an_entry": 27,
+     "what_it_is": "names + free-white age bands, filled for 27 lines and blank below them. The left margin carries a vertical manuscript annotation beginning 'Chicago'.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 58,
+     "familysearch_id": "33SQ-GYYJ-FS",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-FS.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 28,
+     "what_it_is": "continuation sheet - filled, with blank ruled lines inside the run; foots 152.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 59,
+     "familysearch_id": "33SQ-GYYJ-J2",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-J2.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 30,
+     "what_it_is": "continuation sheet - filled; foots 112.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 60,
+     "familysearch_id": "33SQ-GYYJ-K5",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-K5.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 29,
+     "what_it_is": "continuation sheet - filled but very faint; foots 150 (the footing's middle digit is not certain at this magnification).",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 61,
+     "familysearch_id": "33SQ-GYYJ-LC",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-LC.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 28,
+     "what_it_is": "continuation sheet - filled; foots 175, with 43 in the manufactures-and-trades column.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 62,
+     "familysearch_id": "33SQ-GYYJ-LK",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-LK.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 157.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 63,
+     "familysearch_id": "33SQ-GYYJ-LV",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-LV.jpg",
+     "sheet_side": "left",
+     "printed_page": 223,
+     "lines_with_an_entry": 28,
+     "what_it_is": "names + free-white age bands, filled for 28 lines and blank below them.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 64,
+     "familysearch_id": "33SQ-GYYJ-NV",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-NV.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 17,
+     "what_it_is": "continuation sheet - filled for 17 lines and blank below them; foots 70, and the seventeen TOTAL figures read at this magnification sum to EXACTLY 70.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 65,
+     "familysearch_id": "33SQ-GYYJ-P1",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-P1.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 162.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 66,
+     "familysearch_id": "33SQ-GYYJ-P5",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-P5.jpg",
+     "sheet_side": "left",
+     "printed_page": 220,
+     "lines_with_an_entry": 31,
+     "what_it_is": "names + free-white age bands, filled.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 67,
+     "familysearch_id": "33SQ-GYYJ-PW",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-PW.jpg",
+     "sheet_side": "left",
+     "printed_page": null,
+     "lines_with_an_entry": 30,
+     "what_it_is": "NOT AN ENUMERATING PAGE. The left-sheet form is used as a RECAPITULATION of the Chicago city enumeration: instead of names the first column runs 1 to 30 under the heading 'Page', each numbered page carrying its own totals across the free-white age bands, and a brace in the left margin groups the thirty pages into First, Second, Third, Fourth, Fifth and Sixth Ward. Ward subtotal rules cut across the table and a grand total closes it. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages', with one word struck through before the parenthesis.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "no printed page number is legible where this form carries it. On every other left sheet of this group the number is printed at the TOP RIGHT, past the marshal's signature; here that corner carries the signature 'S. W. Sherman' and nothing else. It is not guessed from the run of its neighbours."
+    },
+    {
+     "index": 68,
+     "familysearch_id": "33SQ-GYYJ-RJ",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-RJ.jpg",
+     "sheet_side": "left",
+     "printed_page": 233,
+     "lines_with_an_entry": 31,
+     "what_it_is": "names + free-white age bands, filled. One of PR #670's seven calibration pages.",
+     "in_pr_670_calibration_set": true,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 69,
+     "familysearch_id": "33SQ-GYYJ-RK",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-RK.jpg",
+     "sheet_side": "left",
+     "printed_page": 213,
+     "lines_with_an_entry": 30,
+     "what_it_is": "names + free-white age bands, filled.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 70,
+     "familysearch_id": "33SQ-GYYJ-RY",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-RY.jpg",
+     "sheet_side": "left",
+     "printed_page": 212,
+     "lines_with_an_entry": 31,
+     "what_it_is": "names + free-white age bands, filled.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 71,
+     "familysearch_id": "33SQ-GYYJ-Z1",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-Z1.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 181.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 72,
+     "familysearch_id": "33SQ-GYYJ-ZQ",
+     "file": "chicago/reference/census1840/33SQ-GYYJ-ZQ.jpg",
+     "sheet_side": "left",
+     "printed_page": 235,
+     "lines_with_an_entry": 24,
+     "what_it_is": "names + free-white age bands, filled for 24 lines and blank below them. One of PR #670's seven calibration pages.",
+     "in_pr_670_calibration_set": true,
+     "read_state": "inventoried_only",
+     "page_file": null
+    },
+    {
+     "index": 73,
+     "familysearch_id": "33SQ-GYYN-385R",
+     "file": "chicago/reference/census1840/33SQ-GYYN-385R.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 24,
+     "what_it_is": "continuation sheet - filled for 24 lines and blank below them; foots 125. Its 24 filled lines match the 24 names on printed 235 (image 72), which is a pairing hint and not a pairing: T-0742 settles it.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    },
+    {
+     "index": 74,
+     "familysearch_id": "33SQ-GYYN-38YY",
+     "file": "chicago/reference/census1840/33SQ-GYYN-38YY.jpg",
+     "sheet_side": "right",
+     "printed_page": null,
+     "lines_with_an_entry": 31,
+     "what_it_is": "continuation sheet - filled; foots 147. The AGRICULTURE column carries a figure on every one of the 31 lines and foots 53 with 52 written under it - the only sheet in this group whose families are agricultural throughout, which is evidence about WHICH district it enumerates and is not read further here.",
+     "in_pr_670_calibration_set": false,
+     "read_state": "inventoried_only",
+     "page_file": null,
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0742 pairs these sheets to their left sheets."
+    }
+   ],
+   "counts": {
+    "images": 24,
+    "left_sheets": 9,
+    "right_sheets": 15,
+    "left_sheets_with_entries": 9,
+    "blank_or_cancelled": 1,
+    "printed_page_numbers_read": [
+     212,
+     213,
+     214,
+     220,
+     223,
+     233,
+     235,
+     240
+    ],
+    "pr_670_calibration_pages_in_this_group": [
+     233,
+     235
+    ],
+    "names_transcribed_pages": 0,
+    "names_transcribed_lines": 0,
+    "cells_transcribed_pages": 0,
+    "cells_transcribed_lines": 0,
+    "inventoried_only": 24,
+    "lines_with_an_entry_total": 655,
+    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72."
+   },
+   "line_counts_are": "read off a rendering of each page image at 820 px across the left half of the sheet - the NAMES column on a left sheet, the TOTAL column on a continuation - and are the count of ruled lines CARRYING AN ENTRY, not a printed figure. They are stated to the nearest line and a transcribing pass restates them exactly. Group 1 and group 2 both found the contact-sheet estimate reads LONG by one to four lines and never short (six of the eight left sheets counted there), so T-0742 should expect to remove lines rather than find them. Two counts here have an independent check: image 64's seventeen TOTAL figures sum to exactly its printed footing of 70, and image 53's twenty-three sum to 118 against a footing of 119.",
+   "findings": [
+    {
+     "image": "33SQ-GYYJ-PW",
+     "index": 67,
+     "finding": "the group holds a THIRD non-household sheet, and it is the one that names the wards. Thirty numbered enumerating pages, each with its own free-white age-band totals, braced into First through Sixth Ward, with ward subtotal rules and a grand total. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages'.",
+     "why_it_matters": "the README already records two non-household sheets - printed 206, the certificate, and printed 237, 'the other recapitulation', whose THIRTY ruled lines carry division totals gathered into SIX blocks summing to 4,466 against the 4,470 written at its foot. This sheet has the SAME shape - thirty rows, six groups - but broken out by age band and with the six groups NAMED as the city's wards. So it is a second, independent statement of the same recapitulation: it can be added against 237's division totals, it may bear on the residual of 4 that 237 leaves open, and it attributes every one of the thirty enumerating pages to a ward. Thirty pages at the ~31 ruled lines these sheets carry is about 930 households against the 964 the IPUMS extract holds, so it is also a completeness test for the whole reading programme. NONE of that is done here: this pass records that the sheet exists and what it is.",
+     "not_read_here": true
+    },
+    {
+     "image": "33SQ-GYYJ-BH",
+     "index": 54,
+     "finding": "a printed, ruled continuation sheet with no entry anywhere on it - the group's one blank.",
+     "why_it_matters": "a blank image is evidence and not a hole: it is declared read and empty, so the coverage gate cannot mistake it for something nobody looked at.",
+     "not_read_here": false
+    },
+    {
+     "image": "33SQ-GYYN-38YY",
+     "index": 74,
+     "finding": "every one of its 31 lines carries a figure in the AGRICULTURE column, footing 53.",
+     "why_it_matters": "Chicago's own sheets in this deposit foot agriculture at zero or near it and carry their families under commerce and under manufactures and trades. A sheet that is agricultural throughout is evidence about WHICH enumeration district it belongs to, and the question is left open here rather than answered.",
+     "not_read_here": false
+    }
+   ]
   }
  ],
  "negative_and_inaccessible": [
