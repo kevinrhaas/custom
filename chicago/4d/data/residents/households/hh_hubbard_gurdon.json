@@ -4,10 +4,13 @@
  "division": "south",
  "head": "hubbard_gurdon",
  "arrival": {
-  "value": "1818",
-  "confidence": "reconstructed",
-  "note": "NOT ATTESTED IN ANYTHING WORKED FOR THIS PARCEL. Hubbard's arrival with the American Fur Company as a boy is a commonplace of the Chicago literature and Andreas's own chapter calls him the oldest living resident; the year could not be traced to a sentence here, so it is carried as a conjecture citing nothing and flagged for a later parcel to fix or delete.",
-  "precision": "year"
+  "value": "1818-10-31",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_antiquities_american_fur_co"
+  ],
+  "note": "HURLBUT PRINTS THE SENTENCE, AND IT IS HURLBUT'S OWN AND NOT HUBBARD'S. Chicago Antiquities (1881) pages 28-36: \"Mr. Hubbard left Montreal, were his parents then lived, May 13, 1818, reaching Mackinaw, July 4 and first arrived at Chicago on the last day of October or first day of November of that year\" (bk_afc_004; data/research/books/text/hurlbut_chicago_antiquities_28_36.txt lines 31-34). THE VALUE IS THE EARLIER OF THE TWO DAYS THE SOURCE OFFERS AND THE PRECISION SAYS SO: the page gives 31 October OR 1 November and refuses to choose between them, so this record refuses too - `day` would pick one on the reader's behalf and `year` would throw away a reading that is exact to within a day. WHY THIS IS GRADED INFERRED AND NOT ATTESTED. The sentence stands OUTSIDE the quotation marks that open four lines later at 'Having entire charge of the management of the company in the West' - it is Henry H. Hurlbut compiling in 1881, sixty-three years after the day and forty-six after the scene, not Gurdon Hubbard remembering in his own voice. data/sources/chicago_antiquities_american_fur_co.json grades that layer rung 4 and says in terms that nothing taken from Hurlbut's own narrative may be used as if it were period evidence; the source record's tier of 1 is earned by the 1821-22 invoice book alone and is not a licence over the compiler's prose. So the day is cited rather than conjectured, and it is still one man's account of another man's boyhood at second hand. It REPLACES the conjecture this record used to carry - 'NOT ATTESTED IN ANYTHING WORKED FOR THIS PARCEL... carried as a conjecture citing nothing and flagged for a later parcel to fix or delete' - which named the commonplace of the Chicago literature and no sentence (T-0594, closing what T-0575's crosswalk deferred). Arriving in 1818 is not residing here in 1835: the residence claim is unchanged and rests where it always did, on the trusteeship and the town's own rolls.",
+  "precision": "either_of_two_days"
  },
  "party_size_on_arrival": {
   "value": null,
@@ -88,7 +91,7 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS. Everything about Hubbard's later Chicago life is documented here; the date he first came is a fact everyone knows and nothing in data/sources/ states. That asymmetry is worth leaving visible rather than quietly filling: it is precisely the case AGENTS.md rule 1 exists for.",
+ "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS - UNTIL A SENTENCE TURNED UP. Everything about Hubbard's later Chicago life was documented here and the date he first came was a fact everyone knew and nothing in data/sources/ stated, so it was carried as a conjecture citing nothing and left visibly empty rather than quietly filled: it was the case AGENTS.md rule 1 exists for. Hurlbut's American Fur Company chapter, read for T-0575 and cited by this record since T-0594, closes it - Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or the first of November - and the asymmetry that was worth leaving visible is now a smaller and more interesting one. The sentence is the COMPILER'S, not the man's: it stands outside the quotation marks in which Hubbard speaks four lines later, so a date this project had no source for at all now has a source of 1881 at rung 4, and the record says both things on its face rather than letting the citation look like an attestation.",
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [

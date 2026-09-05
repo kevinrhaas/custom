@@ -59,14 +59,22 @@ An arrival after 1835-07-01 is the population layer's version of the Saloon Buil
 and it fails **silently**: a household record for a man who reached Chicago in September 1835
 looks exactly like one for a man who reached it in 1832, and this layer licenses buildings.
 
-Arrival values carry a **`precision`** — `day`, `month`, `season`, `year`, `not_later_than` —
-because the sources give years far more often than days. Of 72 households: 43 year, 12
+Arrival values carry a **`precision`** — `day`, `either_of_two_days`, `month`, `season`,
+`year`, `not_later_than` — because the sources give years far more often than days. Of 72 households: 43 year, 12
 not_later_than, 6 day, 6 month, 5 season. The rule is **asymmetric on purpose**:
 
 - the **earliest** day the value permits must not be after the scene date → **error**;
 - a value whose **latest** day is after it → **warning**, because "1835" with no month is a
   real state of the evidence and not a mistake. Two households sit there (`hh_davis_john`,
   `hh_haddock_edward`) and both say so in their notes.
+
+`either_of_two_days` exists for the opposite reason, and for one record: a source that is
+exact to within a day and *will not pick between two of them*. Hurlbut has Gurdon Hubbard
+first reaching Chicago "on the last day of October or first day of November" of 1818, and
+every other precision here misreports that sentence — `day` chooses one of the two on the
+reader's behalf, and `month`, `season` or `year` widen a nearly-exact reading in order to
+contain both. The value is the **earlier** day and the bound runs to the day after it, so
+the gate sees the two days the source offered and no others. (`hh_hubbard_gurdon`, T-0594.)
 
 `not_later_than` exists because the commonest evidence of residence in this corpus is *an act
 performed at Chicago on a date* — an advertisement placed, an office taken, a tavern licensed.
