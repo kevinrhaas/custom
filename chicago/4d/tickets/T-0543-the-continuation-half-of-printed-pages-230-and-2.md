@@ -1,7 +1,7 @@
 ---
 id: T-0543
 title: The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 848
 claimed_by: run 9/5/2026, 12:00:22 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T05:44:11.776Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945841743
 ---
 The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50.
