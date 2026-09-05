@@ -213,7 +213,6 @@
    "why": "T-0670 tightened the directory crosswalks to refuse a match where both readings print a full forename and the two disagree (Thomas L. Abbott was being merged onto Titus H. Abbott). 147 joins across Fergus 1843 and Norris 1844 are refused and 11 net rulings go with them: a resident whose only route to a printed claim was a bad initial-match no longer rules on it at all. The reading did not shrink; the town stopped claiming to have adjudicated eleven entries it had adjudicated wrongly. T-0696 is where the second discriminator that would win some of them back is decided."
   },
   {
-<<<<<<< HEAD
    "domain": "land_sales",
    "hop": "write",
    "from": null,
@@ -228,14 +227,14 @@
    "to": 3,
    "date": "2026-09-04",
    "why": "NOT THIS PASS'S DEBT, AND NOT A DRIFT BACK UP THROUGH NEGLECT. T-0632 pinned this hop at zero and said what would raise it: 'a later directory reading that rules on a person and does not reach their card raises this number and the gate says so'. That is exactly what happened. T-0666 (PR #791) read Fergus 1839's Fort Dearborn Addition lot sale of June 1839 and crosswalked 100 bidders against the town; 11 of them match a resident and 3 of those 11 name a card that cites nothing the ruling rests on. T-0635 is the pass that can SEE them — the second hop could not read a ruling grouped under a pool until this PR taught it to, so #791 merged green against an instrument that was not asking. The number is 3, it is T-0666's to pay, and T-0681 is filed to pay it by extending tools/spend_fergus_1839_later_lists.py to the third crosswalk of the same volume, which has the same shape, the same source id and the same carry rule. This pass does not take it: it would mean rewriting this PR's ledger and its counts after its verification had already been run, and the 101 rulings it does write are already gated in both directions. The ceiling comes back down to 0 when T-0681 lands."
-=======
+  },
+  {
    "domain": "civic",
    "hop": "read",
    "from": 13,
    "to": 16,
    "date": "2026-09-04",
    "why": "T-0592 added three claims to town_findings_andreas_v1.json (c012-c014) that carry no town person to rule on: the trustees' $95.50 well of 10 Nov 1834, the water carts that served the town from the lake instead, and the Hydraulic Company's 1836 charter. They are town findings about water supply, quoted for docs/RESEARCH/wells.md, and the spend they demand is a ruling rather than a name — which the ticket made in full. Reclaim with --tighten once the civic domain next spends."
->>>>>>> 10065754 (T-0592: what this town did about wells — read, ruled, and refused on an argument)
   }
  ],
  "lowered": [
