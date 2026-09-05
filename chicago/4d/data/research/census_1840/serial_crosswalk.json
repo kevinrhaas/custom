@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 40,
+    "pages_held": 42,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 254,
@@ -33513,6 +33513,16 @@
       }
     },
     {
+      "familysearch_id": "33SQ-GYYJ-5H",
+      "image": "chicago/reference/census1840/33SQ-GYYJ-5H.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": null,
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
+    },
+    {
       "familysearch_id": "33SQ-GYYJ-6V",
       "image": "chicago/reference/census1840/33SQ-GYYJ-6V.jpg",
       "printed_page": 227,
@@ -45279,6 +45289,16 @@
         "no_band_level_cells": 0,
         "pattern_carried_by_no_household": 2
       }
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-9CZ",
+      "image": "chicago/reference/census1840/33SQ-GYYJ-9CZ.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "T-0747 (piece 1 of T-0659). The whole leaf read: the line index measured off the TOTAL column's own ink, all 30 TOTAL figures read at 3.2x, the seven industry columns read entry by entry, and the slaves, pensioners, deaf/dumb/blind/insane and schools blocks each examined and recorded as carrying no entry on any line. Every one of the five printed footings this leaf carries closes exactly on the lines above it.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
     }
   ],
   "reproduction": {
