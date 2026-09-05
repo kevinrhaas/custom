@@ -1,5 +1,5 @@
 ---
-id: T-0758
+id: T-0761
 title: The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 state: open
 epic: META
@@ -55,6 +55,6 @@ crease, and the banded fit is what can say so.
 - The non-leaning crease reported as a crease rather than as a rule.
 - No digit read by the tool. `tools/check.sh` green.
 
-**Links:** T-0658 (the two readings that found this) · T-0759 · `pages/33S7-9YYN-3CF6.json`
+**Links:** T-0658 (the two readings that found this) · T-0762 · `pages/33S7-9YYN-3CF6.json`
 § grid_note and § tooling_note · `pages/33S7-9YYJ-V4.json` § grid_note and § exposure_note.
 

@@ -997,6 +997,10 @@ household figure to a name; both remain LATER EVIDENCE that names nobody.
 | `33S7-9YYN-3CF6` | **27** | TOTAL 116 · agriculture 25 · canals 31 | TOTAL and canals **exactly**; agriculture short one illegible cell | 116 people, 25 in agriculture, 31 on the canal |
 | `33S7-9YYJ-V4` | **21** | TOTAL 100 · agriculture 33 | TOTAL **exactly**; agriculture reads 34 against 33 | 100 people, agriculture on nearly every line |
 
+The group's third continuation sheet, `33S7-9YYJ-VJ`, is **not** read here. T-0658 was sized
+at three and two is what one run could demonstrate, so the third is split out as T-0762 with
+the method above written down for it rather than shipped as a self-invented half.
+
 **`33S7-9YYN-3CF6` is a canal sheet, and that is the reading's finding rather than its
 premise.** Twenty-seven households hold 116 people; twenty-five of them are returned in
 agriculture and thirty-one in the navigation of canals, lakes and rivers, and *not one*
@@ -1052,7 +1056,7 @@ further right at its foot; on V4 the lean is 41 px. That tool locates its rules 
 darkness profile over the whole body, and a rule that walks 41 px across the leaf smears out
 of such a profile entirely. Both page files carry the banded measurement that replaced it, so
 the next reader does not spend the same passes rediscovering it. The tool is **not** changed
-here — the fix it wants is a banded profile, and that is filed as its own ticket rather than
+here — the fix it wants is a banded profile, and that is filed as T-0761 rather than
 slipped into a reading.
 
 Both leaves also show the other trap a fixed grid sets. A tenth apparent rule on 3CF6 at

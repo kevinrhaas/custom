@@ -1,5 +1,5 @@
 ---
-id: T-0759
+id: T-0762
 title: The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 state: open
 epic: META
@@ -55,6 +55,6 @@ fixed that leaf's line count against two earlier counts of 20 and 31.
 - `tools/check.sh` green.
 
 **Links:** T-0528 (parent) · T-0656 (the pairing and the two keys) · T-0658 (the two sheets
-already read, and the method) · T-0758 (the tooling fix this reading will want and must not
+already read, and the method) · T-0761 (the tooling fix this reading will want and must not
 wait for).
 

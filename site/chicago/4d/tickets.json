@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 5:23 AM",
+  "generated_ct": "Sep 5, 2026, 5:24 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12587,27 +12587,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 155
-    },
-    {
-      "id": "T-0758",
-      "title": "The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them",
-      "state": "open",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "S",
-      "legacy_id": null,
-      "parent": null,
-      "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
-      "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 157
     },
     {
       "id": "T-0758",
@@ -12627,7 +12607,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": 155
     },
     {
       "id": "T-0759",
@@ -12647,10 +12627,30 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 156
     },
     {
-      "id": "T-0759",
+      "id": "T-0761",
+      "title": "The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0762",
       "title": "The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line",
       "state": "open",
       "epic": "META",
