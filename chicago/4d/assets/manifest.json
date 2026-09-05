@@ -66,8 +66,8 @@
     "chicago_american_office__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 53836,
-      "inputs_sha256": "1022d1f7ac675d58dd2eecbb5b7922b257a1632212fcc6ca3d459e07ee67c968",
+      "bytes": 51652,
+      "inputs_sha256": "ecf8238c4e6e9b42c0897293dbce4ccbfe562829679828b7f42fa4dab3155063",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "chicago_american_office"
@@ -300,8 +300,8 @@
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 45516,
-      "inputs_sha256": "85420783e87cd5618f5cf30c8b64d6044031a9277e8aea8353acd9173df8c97e",
+      "bytes": 42552,
+      "inputs_sha256": "0375834989fbb9fbd00f0f7f7a399f20345782dad495766b1a2eacc6c9de2704",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "frederick_thomas_shop"
@@ -1602,6 +1602,24 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_clark_a3_05"
     },
+    "recon_1835_blk_south_water_clark_a3_07__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 33280,
+      "inputs_sha256": "2225f9c5992b166ff06df120b9f2faee27f284d3e020ee8292cc68353cb45a11",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_clark_a3_07"
+    },
+    "recon_1835_blk_south_water_clark_c2_06__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 45612,
+      "inputs_sha256": "0bce593ab145a5312655a79427a97c7204e4c543409efb277a9e7decdd4400f4",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_clark_c2_06"
+    },
     "recon_1835_blk_south_water_clark_d1_04__inferred_1835.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -1632,8 +1650,8 @@
     "recon_1835_blk_south_water_clark_d5_01__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 27072,
-      "inputs_sha256": "b98165b6f8e148043e469cc57b52b730b37069195acfb7b4a49196f4e3c37da4",
+      "bytes": 32688,
+      "inputs_sha256": "32e5f6b86c93189e4c5a18919ce8d6efa51cf21f50321655a9f72896fe67f3a9",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_clark_d5_01"
