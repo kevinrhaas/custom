@@ -170,8 +170,11 @@ WORKS = [
         "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
         "pattern": re.compile(r"18[68]8\s*[-\u2013]\s*9[23]", re.I),
         "fuzzy": ("moses", 0.6),
-        "held": None,
-        "reachable": "Internet Archive: illinoishistoric01inmose, cu31924092214752",
+        "held": "moses_illinois_historical_and_statistical",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "illinoishistoric01inmose (vol. 1) and illinoishistoricv2mose "
+                     "(vol. 2). Reachable and thin: 169 Chicago or Cook cards stand on "
+                     "a STATE history whose 1835 sentences are population and revenue",
     },
     {
         "key": "sons_of_the_american_revolution_illinois_1896",
@@ -230,19 +233,59 @@ WORKS = [
         "date": "1881",
         "pattern": re.compile(r"h[uv]r[il1]b[uv]t", re.I),
         "fuzzy": ("antiquities", 0.55),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "hurlbut_chicago_antiquities",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoantiquiti00hurl. TWO cards, and the densest 1830s Chicago "
+                     "text of any work in this table: the index is the wrong instrument "
+                     "for ranking it",
     },
     {
         "key": "la_salle_book_co_cook_county",
         "title": "The biographical and portrait volumes of Cook County published by "
                  "the La Salle Book Co.",
         "author": "La Salle Book Co.",
-        "date": "1900, 1909",
+        # The cards print 1900 fifty-three times and 1909 once, beside a 1903 and an
+        # 1854 that are as likely to be OCR of 1900. T-0582 opened the work: it is the
+        # Album of Genealogy and Biography, Cook County, eleventh edition 1899 and
+        # thirteenth 1900, and no 1909 Cook County volume of this publisher was found.
+        "date": "1899 (11th ed.) and 1900 (13th ed.)",
         "pattern": re.compile(r"la\s*sa[il1]le", re.I),
         "fuzzy": ("salle", 0.7),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "la_salle_album_of_genealogy_cook_county",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "albumofgenealogy1900chic and albumofgenealogy1899lasa. The "
+                     "lowest-yield work in this table: about a dozen pre-1840 Chicago "
+                     "arrival sentences per edition, under 91 Chicago or Cook cards",
+    },
+    {
+        "key": "wood_1881_chicago_and_its_distinguished_citizens",
+        "title": "Chicago and its distinguished citizens; or, The progress of forty "
+                 "years",
+        "author": "David Ward Wood",
+        "date": "1881",
+        # The author's surname and initials as the card prints them — 'Wood, D. W.',
+        # and the OCR's 'Wood, D. V/.', 'Wood, D, W.' and 'Wood, D. W J'. The YEAR is
+        # unusable as a key here: the same eight cards carry it as 1881, I88li, I88I1,
+        # 1381 and loWi. Keyed on the initials for the reason Andreas is — the letters
+        # survive the photostat and the spelled-out name does not — but tighter, since
+        # this needs the surname AND both initials where Andreas needs two letters.
+        # No `fuzzy`: 'wood' is four letters and would take Good, Hood, Ward and
+        # Woods with it, and `works_of` reads `.get("fuzzy")` for exactly this case.
+        "pattern": re.compile(r"w[o0]{2}d\s*[.,;:'\u00b4]?\s*[dbo]\s*[.,;:'\u00b4]?\s*[wv]",
+                              re.I),
+        "held": "wood_1881_chicago_and_its_distinguished_citizens",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoitsdistin00wood. Its printed pages 23-25 are a continuous "
+                     "account of the year 1835 in Chicago",
+        # NOT YET IN THE COMMITTED CARDS. T-0582 ran the re-parse and measured it — 8
+        # cards, 5 of them Chicago or Cook, 1 on a lead surname (carpenter), and the
+        # unmatched residue falling 4,175 -> 4,167 and its Chicago half 375 -> 370 —
+        # and did not commit the output, because a plain `--parse` on dev rewrites
+        # leads.json by 6,039 lines for a reason that has nothing to do with this
+        # table: the residents, voter and census_1840 layers have grown since the
+        # committed leads were generated, and five of the new leads are unruled, which
+        # is a separate unit of work. T-0739 carries it. Until then follow_up.json does
+        # not list this work and this comment is where its count lives.
     },
 ]
 

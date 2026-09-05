@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 12:01 AM",
+  "generated_ct": "Sep 5, 2026, 12:37 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12278,6 +12278,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 155
+    },
+    {
+      "id": "T-0739",
+      "title": "The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }

@@ -323,3 +323,4 @@ T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the ki
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0727 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 T-0735 — check.sh is red on dev: nine steps fail before any branch touches them, five because finishing a research cohort is what makes its own gate fire
+T-0739 — The Newberry leads have drifted from the layers beneath them: a plain --parse rewrites leads.json by 6,039 lines and leaves five leads unruled
