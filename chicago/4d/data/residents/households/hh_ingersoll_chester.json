@@ -62,6 +62,7 @@
    "name": "Chester Ingersoll",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",

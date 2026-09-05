@@ -52,6 +52,7 @@
    "name": "Samuel Jackson",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1c",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-10-22"

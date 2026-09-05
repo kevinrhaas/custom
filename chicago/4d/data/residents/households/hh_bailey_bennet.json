@@ -52,6 +52,7 @@
    "name": "Bennet Bailey",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G2e",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
