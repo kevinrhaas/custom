@@ -97,7 +97,6 @@ T-0508 — 237 named residents have no research row: cohort 13 of 79
 T-0509 — 237 named residents have no research row: cohort 14 of 79
 T-0510 — 237 named residents have no research row: cohort 15 of 79
 T-0516 — 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
-T-0511 — The pilot, pass 2 and pass 3 cohorts have no reference package while T-0478 to T-0486 do
 T-0512 — T-0490 promised chicago/reference/resident-research/final/audit/ and closed without it
 T-0517 — What the residents and households look like: the summary the owner asked for, and residents_1835.md still documents the pre-rename model
 T-0518 — The census, voter and research packages are on dev and indexed nowhere: index them and close the publish ask
@@ -316,3 +315,7 @@ T-0715 — data/residents/index.json rows go stale for any household no minting 
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0728 — The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice
