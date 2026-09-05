@@ -428,3 +428,4 @@ T-0825 — dev is red at desktop part 2: the town's wagons vary in type and in t
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
+T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
