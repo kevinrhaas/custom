@@ -49,6 +49,74 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 ---
 
+## What has been read (T-0650, 2026-09-05)
+
+**Illinois Catholic Historical Review, vol. 4 (1921-22), pages 256-259** — Joseph J.
+Thompson's *The Illinois Part of the Diocese of Vincennes*, read for one sentence and the
+four pages around it. Eight claims at `claims/ichr_v4_thompson_vincennes.json`, out of the
+Internet Archive's own OCR of the whole volume committed at `text/ichr_v4_1921_22.txt`.
+Source record: `data/sources/ichr_v4_thompson_illinois_vincennes.json`, tier 4.
+
+**THE TICKET'S PREMISE WAS WRONG TWICE AND THAT IS THE FINDING.** T-0650 was opened on the
+belief that the first Catholic church is not in the scene, and that this passage is the only
+located statement of the building the project holds. Neither is true.
+`data/structures/st_marys_church.json` has stood on the south-west quadrant of Lake and State
+since 2026-08-11, and it was placed off `chicagology_prefire216`, whose Andreas transcription
+has St. Cyr selecting *a canal lot near the southwest corner of Lake and State streets*. So
+this reading is a CORROBORATION of a placement already made, and it is written down as one.
+A run reaching for "the ICHR passage that puts the church on the map" is reaching for a second
+witness, not a first.
+
+**What the passage fixes.** Four things, and only the last two are new to the project.
+
+1. *The quadrant, said again by a second author.* "near the southwest corner of what is now
+   State and Lake Streets", and a second time sixty lines later as "the State-Lake location".
+   Same quadrant as the record already carries, same hedge word — **near** — so it does not
+   narrow the lot and the unbounded westward error `st_marys_church.json` states is untouched.
+2. *Whose ground it was.* "upon ground controlled by the Canal Commissioners". On the scene
+   date the congregation stood on a canal lot it did not own. That is a fact about the parcel,
+   and the project had the word *canal lot* but not the ownership.
+3. *A price.* The commissioners' valuation was "fixed at $10,000", the Catholics could not
+   raise it, and "the lot was purchased by a private party". The project held the shape of
+   this story from Andreas and not the figure.
+4. *A terminus post quem for the removal, which is what this article is worth to a scene dated
+   1835-07-01.* "When he came he found the little church … standing" is O'Meara's arrival, and
+   the same article dates that to "the early or middle part of June, 1837". **The church had
+   not moved 23 months after the scene date.**
+
+**What it does not fix.** The lot — "near" is still *near*. Any dimension, material, plan or
+orientation; the article says "the little church" and no more. The date of the removal: it
+names the auction as the cause and dates neither. Anything about 1835 in particular — it looks
+back from 1837 at a building of 1833 and is silent on the years between. And it is not an
+independent voice: the run read here footnotes Garraghan on six of its pages, this project does
+not hold Garraghan, and **the sentence about State and Lake carries no footnote at all**, so
+which of those words are Thompson's cannot be said.
+
+**One sentence is a NEGATIVE constraint on the scene and is the second most useful thing here.**
+The rear addition, the small belfry, the three-pound bell and the cross all come *after* the
+removal. The building standing at Lake and State on 1835-07-01 therefore had no belfry, no bell
+and no rear addition, and was one length rather than two. `st_marys_church.json` already refuses
+a tower and calls the belfry "the tower trap on this record"; this dates the trap. It also says
+something about the town — until at least 1837 no church bell had ever rung in Chicago.
+
+**Nothing here is payload, and one reading is deliberately left unspent.** No structure, asset,
+resident or household record was changed. The June 1837 terminus sits against a phase end of
+1836-12-31 on `st_marys_church.json`, which that record took as the conservative of two
+readings; the scene is not wrong either way — the record's own note says so — but the end bound
+is, and **T-0716** carries that question rather than this ticket. Jean Baptiste Beaubien's
+claim on the whole Fort Dearborn reservation, which the removal passage states in passing, is
+recorded in `bk_ichr4_003` and written into no resident record.
+
+**The volume is committed and four pages of it are read.** 290,298 bytes of OCR for four pages
+of reading, because a quote is checked against a committed file and cutting the middle out of an
+OCR run would break the byte-identity the corpus asserts. There is no deposit PDF and no page
+index: the page boundaries were read off the volume's own running heads, which this OCR prints,
+so no alignment was needed. `data/sources/st_cyr_register_ichr_v4.json` reads the SAME volume
+through a Genealogy Trails transcription of two of its register pages — two source records of
+one volume, by two different routes, and neither was re-read against the other.
+
+---
+
 ## What has been read (T-0575, 2026-09-03)
 
 **Hurlbut's *Chicago Antiquities* (1881), pages 28-36** — the chapter on the American

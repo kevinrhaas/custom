@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 4, 2026, 8:15 PM",
+  "generated_ct": "Sep 4, 2026, 8:22 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -11828,6 +11828,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 155
+    },
+    {
+      "id": "T-0716",
+      "title": "The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-04",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
     }
   ]
 }
