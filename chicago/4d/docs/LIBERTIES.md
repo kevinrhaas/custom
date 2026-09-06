@@ -2348,13 +2348,20 @@ numerous as were the guests"; the Wolf Point stable is smaller so the two are no
 building at two addresses; and the Beaubien barn is drawn at single-pen CABIN scale, 20 x 16 ft,
 because the source describes a dwelling that stopped being one rather than a barn that was built.
 **Consequence:** a visitor sees three buildings whose *presence* is evidenced and whose *shape and
-exact place* are ours. The Beaubien barn additionally inherits its parent record's two open
-questions — the corner Andreas contradicts himself about, some 45 m, and the fact that neither
-street existed on the unplatted reservation in 1835.
+exact place* are ours. The Beaubien barn additionally inherits what is left of its parent record's
+open questions. **Updated 2026-09-06 (T-0718):** the corner is no longer one of them — Andreas scan
+p. 339 turned out to be John Wentworth's 1881 address reprinted, expressly an instruction for finding
+this house, and the parent moved about 47 m to the **north-east** corner and this barn with it. What
+still travels is that neither street existed on the unplatted reservation in 1835, and that
+Wentworth's lots 6-10 lie north of the corner lot by an unmeasured distance. The move also put the
+barn on the flank of the sand ridge, where the heightfield's 0.35 m of relief across its footprint is
+two millimetres over the walker's step-up rule, so its **ground contact** is declared
+`approach_not_modelled` and is covered here too.
 **How to resolve:** Wright 1834 or Hathaway 1834 read at lot level for the Randolph-and-Canal
 block; Andreas "Wharfs, Piers and Early Hotels", scan pp. 626-631, at page-image level for the Wolf
-Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes.
-**Covers:** `western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`.
+Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes — that plat would
+now also fix how far north of the corner lot the group stood.
+**Covers:** `western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`, `beaubien_barn.converted_1817.ground_contact`.
 **Recorded:** 2026-08-11.
 
 ### L73 — Every outbuilding in the town is detailed by the archetype, not by a source
