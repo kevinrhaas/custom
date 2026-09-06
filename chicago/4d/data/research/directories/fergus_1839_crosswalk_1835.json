@@ -31,7 +31,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 492
+   "n": 775
   }
  ],
  "counts": {
@@ -45,9 +45,9 @@
   "letter_list_matched_one_entry": 334,
   "letter_list_ambiguous": 89,
   "letter_list_surname_only_refused": 653,
-  "heads_1840_matched_one_entry": 89,
-  "heads_1840_ambiguous": 31,
-  "heads_1840_surname_only_refused": 110,
+  "heads_1840_matched_one_entry": 149,
+  "heads_1840_ambiguous": 47,
+  "heads_1840_surname_only_refused": 183,
   "residents_could_carry_occupation": 98,
   "residents_could_carry_street": 95
  },
@@ -22862,6 +22862,53 @@
     ]
    },
    {
+    "name": "Alanson C. Wood",
+    "rule": "Surname 'Wood' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1637",
+      "as_printed": "Wood, Alonzo C. , mason builder, Cass street near Ohio",
+      "printed_page": 36,
+      "occupation_1839": "mason builder",
+      "address_1839": "Cass street near Ohio",
+      "streets_1839": [
+       "Cass street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Alexander Brand",
+    "rule": "Surname 'Brand' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0161",
+      "as_printed": "Brand, Alex., banker, (Murray & Brand)",
+      "printed_page": 8,
+      "occupation_1839": "banker, (Murray & Brand)",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Alexander C. Hamilton",
+    "rule": "Surname 'Hamilton' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0624",
+      "as_printed": "Hamilton, Amos C., clerk, B. F. Knapp",
+      "printed_page": 17,
+      "occupation_1839": "clerk",
+      "address_1839": "B. F. Knapp",
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Alexander Gillis",
     "rule": "Surname 'Gillis' folds to the same string as the 1839 entry's, and the given name of both begins A.",
     "entries_1839": [
@@ -22894,6 +22941,23 @@
     ]
    },
    {
+    "name": "Andrew Anderson",
+    "rule": "Surname 'Anderson' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0020",
+      "as_printed": "Anderson, Asle, musician, North State street",
+      "printed_page": 5,
+      "occupation_1839": "musician",
+      "address_1839": "North State street",
+      "streets_1839": [
+       "North State street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "B. Johnson",
     "rule": "Surname 'Johnson' folds to the same string as the 1839 entry's, and the given name of both begins B.",
     "entries_1839": [
@@ -22906,6 +22970,21 @@
       "streets_1839": [
        "Cass street"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Benjamin Briggs",
+    "rule": "Surname 'Briggs' folds to the same string as the 1839 entry's, and the given name of both begins B.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0166",
+      "as_printed": "Briggs, Benjamin, wagon-maker, Briggs & Humphrey",
+      "printed_page": 8,
+      "occupation_1839": "wagon-maker, Briggs & Humphrey",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -22936,6 +23015,23 @@
       "occupation_1839": "lumber dealer, cor. LaSalle and So. Water",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "C. E. Peck",
+    "rule": "Surname 'Peck' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1160",
+      "as_printed": "Peck, Charles E., harness maker, 164 Lake st",
+      "printed_page": 27,
+      "occupation_1839": "harness maker",
+      "address_1839": "164 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -23015,6 +23111,21 @@
       "streets_1839": [
        "North Water st"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Chas H. Cleaver",
+    "rule": "Surname 'Cleaver' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0295",
+      "as_printed": "Cleaver, Charles, candle and soap factory, on South Branch",
+      "printed_page": 10,
+      "occupation_1839": "candle and soap factory, on South Branch",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -23103,6 +23214,42 @@
     ]
    },
    {
+    "name": "E. B. Williams",
+    "rule": "Surname 'Williams' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1619",
+      "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "printed_page": 36,
+      "occupation_1839": "cor. Clark",
+      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "streets_1839": [
+       "and Randolph sts",
+       "South Water st",
+       "and State sts"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "E. Dewey",
+    "rule": "Surname 'Dewey' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0380",
+      "as_printed": "Dewey, Dr. E., druggist and apothecary, 22 Dearborn st",
+      "printed_page": 12,
+      "occupation_1839": "druggist and apothecary",
+      "address_1839": "22 Dearborn st",
+      "streets_1839": [
+       "Dearborn st"
+      ],
+      "address_is_street_only": true
+     }
+    ]
+   },
+   {
     "name": "E. H. Haddock",
     "rule": "Surname 'Haddock' folds to the same string as the 1839 entry's, and the given name of both begins E.",
     "entries_1839": [
@@ -23167,6 +23314,53 @@
     ]
    },
    {
+    "name": "Edward H. Rogers",
+    "rule": "Surname 'Rogers' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1243",
+      "as_printed": "Rogers, Edward K., (Horace Norton & Co.)",
+      "printed_page": 28,
+      "occupation_1839": "(Horace Norton & Co.)",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Edward H. Rudd",
+    "rule": "Surname 'Rudd' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1259",
+      "as_printed": "Rudd, Edward H., job and book printer, Saloon Bdgs., Clark st",
+      "printed_page": 29,
+      "occupation_1839": "job and book printer, Saloon Bdgs",
+      "address_1839": "Clark st",
+      "streets_1839": [
+       "Clark st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Edward Simons",
+    "rule": "Surname 'Simons' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1343",
+      "as_printed": "Simons, Edward, butcher, Archibald Clybourn",
+      "printed_page": 30,
+      "occupation_1839": "butcher, Archibald Clybourn",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Elijah Peacock",
     "rule": "Surname 'Peacock' folds to the same string as the 1839 entry's, and the given name of both begins E.",
     "entries_1839": [
@@ -23178,6 +23372,72 @@
       "address_1839": "155 Lake street",
       "streets_1839": [
        "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Eliza Haight",
+    "rule": "Surname 'Haight' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0615",
+      "as_printed": "Haight, Mrs. E., boarding-house, Clark street near Washington",
+      "printed_page": 17,
+      "occupation_1839": "boarding-house",
+      "address_1839": "Clark street near Washington",
+      "streets_1839": [
+       "Clark street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Eno[s] Plummer",
+    "rule": "Surname 'Plummer' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1183",
+      "as_printed": "Plummer, Encfch, plasterer, Adams st near State",
+      "printed_page": 27,
+      "occupation_1839": "plasterer",
+      "address_1839": "Adams st near State",
+      "streets_1839": [
+       "Adams st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "G. W. Cook",
+    "rule": "Surname 'Cook' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0320",
+      "as_printed": "Cook, George C., clerk, Thomas Church",
+      "printed_page": 11,
+      "occupation_1839": "clerk, Thomas Church",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Geo Davis",
+    "rule": "Surname 'Davis' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0364",
+      "as_printed": "Davis, George, county clerk, 109 Lake st",
+      "printed_page": 12,
+      "occupation_1839": "county clerk",
+      "address_1839": "109 Lake st",
+      "streets_1839": [
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -23218,6 +23478,40 @@
     ]
    },
    {
+    "name": "George Moore",
+    "rule": "Surname 'Moore' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1048",
+      "as_printed": "Moore, George, teamster, Clinton street near West Kinzie",
+      "printed_page": 25,
+      "occupation_1839": "teamster",
+      "address_1839": "Clinton street near West Kinzie",
+      "streets_1839": [
+       "Clinton street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "George Murray",
+    "rule": "Surname 'Murray' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1082",
+      "as_printed": "Murray, George, tailor and clothier, 198 Lake st",
+      "printed_page": 25,
+      "occupation_1839": "tailor and clothier",
+      "address_1839": "198 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "George Shelley",
     "rule": "Surname 'Shelley' folds to the same string as the 1839 entry's, and the given name of both begins G.",
     "entries_1839": [
@@ -23229,6 +23523,75 @@
       "address_1839": "and Rush sts",
       "streets_1839": [
        "and Rush sts"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "George W. Dole",
+    "rule": "Surname 'Dole' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0402",
+      "as_printed": "Dole, George W., city treasurer, Michigan st",
+      "printed_page": 12,
+      "occupation_1839": "city treasurer",
+      "address_1839": "Michigan st",
+      "streets_1839": [
+       "Michigan st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Hamilton Barnes",
+    "rule": "Surname 'Barnes' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0057",
+      "as_printed": "Barnes, Hamilton, carpenter, West Madison street",
+      "printed_page": 6,
+      "occupation_1839": "carpenter",
+      "address_1839": "West Madison street",
+      "streets_1839": [
+       "West Madison street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Henry Bowen",
+    "rule": "Surname 'Bowen' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0145",
+      "as_printed": "Bowen, Henry, wagon maker, Wabash ave. near Randolph st",
+      "printed_page": 8,
+      "occupation_1839": "wagon maker",
+      "address_1839": "Wabash ave. near Randolph st",
+      "streets_1839": [
+       "Wabash ave",
+       "near Randolph st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Henry Hall",
+    "rule": "Surname 'Hall' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0619",
+      "as_printed": "Hall, Henry P., barber, Rush street, on the River, nr N, Water",
+      "printed_page": 17,
+      "occupation_1839": "barber",
+      "address_1839": "Rush street, on the River, nr N, Water",
+      "streets_1839": [
+       "Rush street"
       ],
       "address_is_street_only": false
      }
@@ -23267,6 +23630,21 @@
     ]
    },
    {
+    "name": "Ira Miltimore",
+    "rule": "Surname 'Miltimore' folds to the same string as the 1839 entry's, and the given name of both begins I.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1038",
+      "as_printed": "Miltimore, Ira, steam sash and door factory, South Branch River",
+      "printed_page": 24,
+      "occupation_1839": "steam sash and door factory, South Branch River",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Isaac Milliken",
     "rule": "Surname 'Milliken' folds to the same string as the 1839 entry's, and the given name of both begins I.",
     "entries_1839": [
@@ -23279,6 +23657,21 @@
       "streets_1839": [
        "Wabash ave"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "J. Bailey",
+    "rule": "Surname 'Bailey' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0042",
+      "as_printed": "Bailey, Joseph, carpenter,",
+      "printed_page": 6,
+      "occupation_1839": "carpenter",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -23381,6 +23774,36 @@
     ]
    },
    {
+    "name": "J. Peacock",
+    "rule": "Surname 'Peacock' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1150",
+      "as_printed": "Peacock, Joseph, gunsmith, Peacock & Thatcher",
+      "printed_page": 27,
+      "occupation_1839": "gunsmith, Peacock & Thatcher",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "J. S. Sherman",
+    "rule": "Surname 'Sherman' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1332",
+      "as_printed": "Sherman, Joel Sterling, farmer, Northfield",
+      "printed_page": 30,
+      "occupation_1839": "farmer, Northfield",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Jam[?] A. Marshall",
     "rule": "Surname 'Marshall' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -23447,6 +23870,21 @@
     ]
    },
    {
+    "name": "James N. Scott",
+    "rule": "Surname 'Scott' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1304",
+      "as_printed": "Scott, John, carpenter, South Branch, west side",
+      "printed_page": 30,
+      "occupation_1839": "carpenter, South Branch, west side",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "James Robinson",
     "rule": "Surname 'Robinson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -23496,6 +23934,23 @@
     ]
    },
    {
+    "name": "Jeremiah Price",
+    "rule": "Surname 'Price' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1193",
+      "as_printed": "Price, Jeremiah, fire warden, South Water st near Wells",
+      "printed_page": 27,
+      "occupation_1839": "fire warden",
+      "address_1839": "South Water st near Wells",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "John Arnold",
     "rule": "Surname 'Arnold' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -23507,6 +23962,38 @@
       "address_1839": "Madison street, 2d ward",
       "streets_1839": [
        "Madison street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Brooks",
+    "rule": "Surname 'Brooks' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0181",
+      "as_printed": "Brooks, James, carpenter, Peter Graff",
+      "printed_page": 8,
+      "occupation_1839": "carpenter, Peter Graff",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Calhoun",
+    "rule": "Surname 'Calhoun' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0226",
+      "as_printed": "Calhoun, John, county collector, Eddy’s store, 105 Lake st",
+      "printed_page": 9,
+      "occupation_1839": "county collector, Eddy’s store",
+      "address_1839": "105 Lake st",
+      "streets_1839": [
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -23598,6 +24085,74 @@
     ]
    },
    {
+    "name": "John Marshall",
+    "rule": "Surname 'Marshall' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1004",
+      "as_printed": "Marshall, James A., auctioneer, commission, etc., So. Water st",
+      "printed_page": 24,
+      "occupation_1839": "auctioneer, commission, etc",
+      "address_1839": "So. Water st",
+      "streets_1839": [
+       "So. Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John McHale",
+    "rule": "Surname 'McHale' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0971",
+      "as_printed": "McHale, John, laborer, North Water street",
+      "printed_page": 23,
+      "occupation_1839": "laborer",
+      "address_1839": "North Water street",
+      "streets_1839": [
+       "North Water street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John O'Neil",
+    "rule": "Surname \"O'Neil\" folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1132",
+      "as_printed": "O’Neil, John, farmer, cor 22d and Halsted streets",
+      "printed_page": 26,
+      "occupation_1839": "farmer, cor 22d",
+      "address_1839": "and Halsted streets",
+      "streets_1839": [
+       "and Halsted streets"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Pearson",
+    "rule": "Surname 'Pearson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1153",
+      "as_printed": "Pearson, Hon. John, judge Circuit Court of Cook County",
+      "printed_page": 27,
+      "occupation_1839": null,
+      "address_1839": "Circuit Court of Cook County",
+      "streets_1839": [
+       "Circuit Court"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "John Robinson",
     "rule": "Surname 'Robinson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -23615,6 +24170,23 @@
     ]
    },
    {
+    "name": "John Russ",
+    "rule": "Surname 'Russ' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1266",
+      "as_printed": "Russ, John, farrier, Desplaines st, bet Jackson and VanBuren",
+      "printed_page": 29,
+      "occupation_1839": "farrier",
+      "address_1839": "Desplaines st, bet Jackson and VanBuren",
+      "streets_1839": [
+       "Desplaines st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "John Sullivan",
     "rule": "Surname 'Sullivan' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -23625,6 +24197,57 @@
       "occupation_1839": "canal sub-contractor",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Wentworth",
+    "rule": "Surname 'Wentworth' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1579",
+      "as_printed": "Wentworth, John, editor and publisher of Chicago Democrat, 107 Lake st",
+      "printed_page": 35,
+      "occupation_1839": "editor and publisher of Chicago Democrat",
+      "address_1839": "107 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Joseph L. Willemin",
+    "rule": "Surname 'Willemin' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1617",
+      "as_printed": "Willemin, Joseph, blacksmith, 141 Randolph street",
+      "printed_page": 36,
+      "occupation_1839": "blacksmith",
+      "address_1839": "141 Randolph street",
+      "streets_1839": [
+       "Randolph street"
+      ],
+      "address_is_street_only": true
+     }
+    ]
+   },
+   {
+    "name": "Joseph L. Williams",
+    "rule": "Surname 'Williams' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1622",
+      "as_printed": "Williams, J., haircutting and shaving-shop, 90 Lake st",
+      "printed_page": 36,
+      "occupation_1839": "haircutting and shaving-shop",
+      "address_1839": "90 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -23694,6 +24317,23 @@
     ]
    },
    {
+    "name": "Lyman Butterfield",
+    "rule": "Surname 'Butterfield' folds to the same string as the 1839 entry's, and the given name of both begins L.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0217",
+      "as_printed": "Butterfield, Lyman, Columbian House, Wells st cor. S. Water",
+      "printed_page": 9,
+      "occupation_1839": null,
+      "address_1839": "Wells st cor. S. Water",
+      "streets_1839": [
+       "Wells st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Mahlon D. Ogden",
     "rule": "Surname 'Ogden' folds to the same string as the 1839 entry's, and the given name of both begins M.",
     "entries_1839": [
@@ -23726,6 +24366,23 @@
     ]
    },
    {
+    "name": "N. B. Judd",
+    "rule": "Surname 'Judd' folds to the same string as the 1839 entry's, and the given name of both begins N.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0816",
+      "as_printed": "Judd, Norman B., attorney and counsellor at law, 105 Lake st",
+      "printed_page": 20,
+      "occupation_1839": "attorney and counsellor at law",
+      "address_1839": "105 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Nathaniel A. King",
     "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins N.",
     "entries_1839": [
@@ -23736,6 +24393,38 @@
       "occupation_1839": "clerk, Tuthill King",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Nicholas Neudorf",
+    "rule": "Surname 'Neudorf' folds to the same string as the 1839 entry's, and the given name of both begins N.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1091",
+      "as_printed": "Neudorf, Nicholas, laborer,",
+      "printed_page": 26,
+      "occupation_1839": "laborer",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Oliver Henson",
+    "rule": "Surname 'Henson' folds to the same string as the 1839 entry's, and the given name of both begins O.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0680",
+      "as_printed": "Henson, Oliver C., hair-cutting and shaving shop, 183 Lake st",
+      "printed_page": 18,
+      "occupation_1839": "hair-cutting and shaving shop",
+      "address_1839": "183 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -23824,6 +24513,40 @@
     ]
    },
    {
+    "name": "Rich[d] Lewis",
+    "rule": "Surname 'Lewis' folds to the same string as the 1839 entry's, and the given name of both begins R.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0909",
+      "as_printed": "Lewis, Reed, lime burner, Archer road, Bridgeport",
+      "printed_page": 22,
+      "occupation_1839": "lime burner",
+      "address_1839": "Archer road, Bridgeport",
+      "streets_1839": [
+       "Archer road"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Robert Price",
+    "rule": "Surname 'Price' folds to the same string as the 1839 entry's, and the given name of both begins R.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1194",
+      "as_printed": "Price, Robert, tailor and clothier, J53 * ,ake st",
+      "printed_page": 28,
+      "occupation_1839": "tailor and clothier, J53 *",
+      "address_1839": "ake st",
+      "streets_1839": [
+       "ake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Robert R. Woodworth",
     "rule": "Surname 'Woodworth' folds to the same string as the 1839 entry's, and the given name of both begins R.",
     "entries_1839": [
@@ -23849,6 +24572,21 @@
       "as_printed": "Collins, Samuel B. & Co., boots, shoes, and leather, J40 Lake",
       "printed_page": 11,
       "occupation_1839": "& Co., boots, shoes, and leather, J40 Lake",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "S. M. Clarke",
+    "rule": "Surname 'Clarke' folds to the same string as the 1839 entry's, and the given name of both begins S.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0289",
+      "as_printed": "Clarke, Samuel C., druggist",
+      "printed_page": 10,
+      "occupation_1839": "druggist",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -23969,6 +24707,23 @@
     ]
    },
    {
+    "name": "Stephen Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins S.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1477",
+      "as_printed": "Taylor, Solomon, boot and shoe maker, Lake st",
+      "printed_page": 33,
+      "occupation_1839": "boot and shoe maker",
+      "address_1839": "Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Thomas Brock",
     "rule": "Surname 'Brock' folds to the same string as the 1839 entry's, and the given name of both begins T.",
     "entries_1839": [
@@ -23977,6 +24732,38 @@
       "as_printed": "Brock, Thomas, ex-justice of peace, cor. Madison and Clark",
       "printed_page": 8,
       "occupation_1839": "ex-justice of peace, cor. Madison and Clark",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Thomas Cook",
+    "rule": "Surname 'Cook' folds to the same string as the 1839 entry's, and the given name of both begins T.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0325",
+      "as_printed": "Cook, Thomas, teamster, Desplaines st near Monroe",
+      "printed_page": 11,
+      "occupation_1839": "teamster",
+      "address_1839": "Desplaines st near Monroe",
+      "streets_1839": [
+       "Desplaines st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Thomas Downing",
+    "rule": "Surname 'Downing' folds to the same string as the 1839 entry's, and the given name of both begins T.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0413",
+      "as_printed": "Downing, Thomas, butcher, Funk’s market",
+      "printed_page": 13,
+      "occupation_1839": "butcher, Funk’s market",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -24014,6 +24801,23 @@
     ]
    },
    {
+    "name": "Thomas Norton",
+    "rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins T.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1108",
+      "as_printed": "Norton, Theron, dry goods, (Paine & Norton) 117 Lake st",
+      "printed_page": 26,
+      "occupation_1839": "dry goods, (Paine & Norton)",
+      "address_1839": "117 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Thomas Whitlock",
     "rule": "Surname 'Whitlock' folds to the same string as the 1839 entry's, and the given name of both begins T.",
     "entries_1839": [
@@ -24026,6 +24830,36 @@
       "streets_1839": [
        "Lake st"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Thomas Wraight",
+    "rule": "Surname 'Wraight' folds to the same string as the 1839 entry's, and the given name of both begins T.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1645",
+      "as_printed": "Wraight, Thomas, gardener, block c. Desplaines & Washington",
+      "printed_page": 36,
+      "occupation_1839": "gardener, block c. Desplaines & Washington",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "W. H. J. Armstrong",
+    "rule": "Surname 'Armstrong' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0028",
+      "as_printed": "Armstrong, William, clerk, G. S. Hubbard & Co.",
+      "printed_page": 5,
+      "occupation_1839": "clerk, G. S. Hubbard & Co",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -24165,6 +24999,38 @@
     ]
    },
    {
+    "name": "William H. Larrabee",
+    "rule": "Surname 'Larrabee' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0889",
+      "as_printed": "Larrabee, William M., bookkeeper, Wm. B. Ogden",
+      "printed_page": 22,
+      "occupation_1839": "bookkeeper, Wm",
+      "address_1839": "B. Ogden",
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "William H. Stevens",
+    "rule": "Surname 'Stevens' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1412",
+      "as_printed": "Stevens, Wm. M., light-housekeeper, River street",
+      "printed_page": 32,
+      "occupation_1839": "light-housekeeper",
+      "address_1839": "River street",
+      "streets_1839": [
+       "River street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "William H. Stow",
     "rule": "Surname 'Stow' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -24215,6 +25081,56 @@
     ]
    },
    {
+    "name": "William Lill",
+    "rule": "Surname 'Lill' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0911",
+      "as_printed": "Lill, Wm., brewer, Chicago ave. cor. Pine st",
+      "printed_page": 22,
+      "occupation_1839": "brewer",
+      "address_1839": "Chicago ave. cor. Pine st",
+      "streets_1839": [
+       "Chicago ave",
+       "Pine st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "William R. Miller",
+    "rule": "Surname 'Miller' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1033",
+      "as_printed": "Miller, William, clerk, Jas. M. Strode",
+      "printed_page": 24,
+      "occupation_1839": "clerk, Jas. M. Strode",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "William S. Whiting",
+    "rule": "Surname 'Whiting' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1603",
+      "as_printed": "Whiting, Wm. L., produce and commission merchant, Hub¬ bard & Co.’s warehouse, North Water st near Rush",
+      "printed_page": 35,
+      "occupation_1839": "produce and commission merchant, Hub¬ bard & Co.’s warehouse",
+      "address_1839": "North Water st near Rush",
+      "streets_1839": [
+       "North Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "William Thomas[?]",
     "rule": "Surname 'Thomas[?]' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -24225,6 +25141,58 @@
       "occupation_1839": "carpenter and joiner",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Wm Day",
+    "rule": "Surname 'Day' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0372",
+      "as_printed": "Day, William, boarding-house, LaSalle street near Lake st",
+      "printed_page": 12,
+      "occupation_1839": "boarding-house",
+      "address_1839": "LaSalle street near Lake st",
+      "streets_1839": [
+       "LaSalle street",
+       "near Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Wm Mitchell",
+    "rule": "Surname 'Mitchell' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1042",
+      "as_printed": "Mitchell, Wm,, carpenter, Canal street cor. Madison",
+      "printed_page": 25,
+      "occupation_1839": "carpenter",
+      "address_1839": "Canal street cor. Madison",
+      "streets_1839": [
+       "Canal street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "[?] W. Brown",
+    "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0192",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "printed_page": 8,
+      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
+      "address_1839": "Salle st cor. So. Water",
+      "streets_1839": [
+       "Salle st"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -24292,9 +25260,78 @@
       "address_is_street_only": false
      }
     ]
+   },
+   {
+    "name": "[P?]. D. Cole",
+    "rule": "Surname 'Cole' folds to the same string as the 1839 entry's, and the given name of both begins P.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0304",
+      "as_printed": "Cole, Parker M., dry goods and groceries, Lake streel",
+      "printed_page": 11,
+      "occupation_1839": "dry goods and groceries, Lake streel",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
    }
   ],
   "ambiguous": [
+   {
+    "name": "A[?]en H. Berg",
+    "rule": "Surname 'Berg' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0098",
+      "as_printed": "Berg, Adam, boarding-house, LaSalle st, near Lake",
+      "printed_page": 7,
+      "occupation_1839": "boarding-house",
+      "address_1839": "LaSalle st, near Lake",
+      "streets_1839": [
+       "LaSalle st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0099",
+      "as_printed": "Berg, Anton, teamster,",
+      "printed_page": 7,
+      "occupation_1839": "teamster",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Adam Gale",
+    "rule": "Surname 'Gale' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0522",
+      "as_printed": "Gale, Abraham, 99 Lake street",
+      "printed_page": 15,
+      "occupation_1839": null,
+      "address_1839": "99 Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0524",
+      "as_printed": "Gale, Mrs. A., New York millinery store, 99 Lake st",
+      "printed_page": 15,
+      "occupation_1839": "York millinery store",
+      "address_1839": "99 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
    {
     "name": "Barney Smith",
     "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins B.",
@@ -24330,6 +25367,32 @@
       "streets_1839": [
        "North State st"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Chas Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1464",
+      "as_printed": "Taylor, Charles, tailor, Clark street",
+      "printed_page": 33,
+      "occupation_1839": "tailor",
+      "address_1839": "Clark street",
+      "streets_1839": [
+       "Clark street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1465",
+      "as_printed": "Taylor, Charles H., tailor, Francis H. Taylor",
+      "printed_page": 33,
+      "occupation_1839": "tailor, Francis",
+      "address_1839": "H. Taylor",
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -24413,6 +25476,32 @@
     ]
    },
    {
+    "name": "E. Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1468",
+      "as_printed": "Taylor, Col. Edmund D., Taylor, Breese Co., Lake street",
+      "printed_page": 33,
+      "occupation_1839": "Taylor, Breese Co",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1469",
+      "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
+      "printed_page": 33,
+      "occupation_1839": "boarding-house",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Ezra Taylor",
     "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins E.",
     "entries_1839": [
@@ -24462,6 +25551,56 @@
       "streets_1839": [
        "Market st"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Henry Smith",
+    "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1363",
+      "as_printed": "Smith, Henry, (Wm. B. Ogden)",
+      "printed_page": 31,
+      "occupation_1839": "(Wm",
+      "address_1839": "B. Ogden)",
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1364",
+      "as_printed": "Smith, Hiram B., tinsmith, Wm. Wheeler",
+      "printed_page": 31,
+      "occupation_1839": "tinsmith, Wm. Wheeler",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Ira Couch",
+    "rule": "Surname 'Couch' folds to the same string as the 1839 entry's, and the given name of both begins I.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0329",
+      "as_printed": "Couch, Ira, hotel-keeper, Tremont House, n.-w. cor. Dearborn and Lake sts",
+      "printed_page": 11,
+      "occupation_1839": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
+      "address_1839": "and Lake sts",
+      "streets_1839": [
+       "and Lake sts"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0330",
+      "as_printed": "■Couch, Ira H., bds. Tremont House",
+      "printed_page": 11,
+      "occupation_1839": null,
+      "address_1839": "bds. Tremont House",
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -24661,6 +25800,32 @@
       "streets_1839": [
        "North Water street"
       ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Bates",
+    "rule": "Surname 'Bates' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0066",
+      "as_printed": "Bates, jr., John, auctioneer, Lake street",
+      "printed_page": 6,
+      "occupation_1839": "auctioneer",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0067",
+      "as_printed": "Bates, Jacob R., clerk, Mansion House",
+      "printed_page": 6,
+      "occupation_1839": "clerk, Mansion House",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -24940,6 +26105,67 @@
     ]
    },
    {
+    "name": "John Murphy",
+    "rule": "Surname 'Murphy' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1077",
+      "as_printed": "Murphy, James K., clerk, John Fennerty",
+      "printed_page": 25,
+      "occupation_1839": "clerk, John Fennerty",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1078",
+      "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
+      "printed_page": 25,
+      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "John Wilson",
+    "rule": "Surname 'Wilson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1625",
+      "as_printed": "Wilson, John C., grocer, North Clark st. alderman, 5th ward",
+      "printed_page": 36,
+      "occupation_1839": "grocer",
+      "address_1839": "North Clark st. alderman, 5th ward",
+      "streets_1839": [
+       "North Clark st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1627",
+      "as_printed": "Wilson, John M., attorney at law, Michigan ave",
+      "printed_page": 36,
+      "occupation_1839": "attorney at law",
+      "address_1839": "Michigan ave",
+      "streets_1839": [
+       "Michigan ave"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1628",
+      "as_printed": "Wilson, Joseph, farmer, Arch. Clybourn",
+      "printed_page": 36,
+      "occupation_1839": "farmer, Arch. Clybourn",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "John Wilson",
     "rule": "Surname 'Wilson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -25005,6 +26231,32 @@
     ]
    },
    {
+    "name": "Joseph Brown",
+    "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0187",
+      "as_printed": "Brown, John, porter, Illinois Exchange",
+      "printed_page": 8,
+      "occupation_1839": "porter, Illinois Exchange",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0188",
+      "as_printed": "Brown, Joseph E. , carpenter and builder, Clark st near Jackson",
+      "printed_page": 8,
+      "occupation_1839": "carpenter and builder",
+      "address_1839": "Clark st near Jackson",
+      "streets_1839": [
+       "Clark st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Joseph H. Smith",
     "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -25062,6 +26314,73 @@
       "occupation_1839": "clerk, Mansion House",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Joseph Johnson",
+    "rule": "Surname 'Johnson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0796",
+      "as_printed": "Johnson, John, haircutting and shav-ing-shop, 1 3 1 Lake st",
+      "printed_page": 20,
+      "occupation_1839": "haircutting and shav-ing-shop, 1 3",
+      "address_1839": "1 Lake st",
+      "streets_1839": [
+       "Lake st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0797",
+      "as_printed": "Johnson, John, laborer, Cass street, Dutch Settlement",
+      "printed_page": 20,
+      "occupation_1839": "laborer",
+      "address_1839": "Cass street, Dutch Settlement",
+      "streets_1839": [
+       "Cass street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0799",
+      "as_printed": "Johnson, J., dry goods aud groceries, Lake street",
+      "printed_page": 20,
+      "occupation_1839": "dry goods aud groceries",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Martin A. Kimball",
+    "rule": "Surname 'Kimball' folds to the same string as the 1839 entry's, and the given name of both begins M.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0847",
+      "as_printed": "Kimball, Mark, clerk, 1 55 Lake street",
+      "printed_page": 21,
+      "occupation_1839": "clerk, 1",
+      "address_1839": "55 Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0848",
+      "as_printed": "Kimball, Martin N., farmer and hay dealer, Milwaukee ave",
+      "printed_page": 21,
+      "occupation_1839": "farmer and hay dealer",
+      "address_1839": "Milwaukee ave",
+      "streets_1839": [
+       "Milwaukee ave"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -25227,6 +26546,56 @@
     ]
    },
    {
+    "name": "W. W. Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1478",
+      "as_printed": "Taylor, William, compositor, Daily American office",
+      "printed_page": 33,
+      "occupation_1839": "compositor, Daily American office",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1479",
+      "as_printed": "Taylor, William H., (Dan. Taylor)",
+      "printed_page": 33,
+      "occupation_1839": "(Dan. Taylor)",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "William W. Saltonstall",
+    "rule": "Surname 'Saltonstall' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1283",
+      "as_printed": "Saltonstall, William, fish dealer, West Madison street",
+      "printed_page": 29,
+      "occupation_1839": "fish dealer",
+      "address_1839": "West Madison street",
+      "streets_1839": [
+       "West Madison street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1284",
+      "as_printed": "Saltonstall, Wm W., bookkeeper, Hubbard & Co.’s warehouse",
+      "printed_page": 29,
+      "occupation_1839": "bookkeeper, Hubbard & Co.’s warehouse",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "[?] D. Taylor",
     "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins D.",
     "entries_1839": [
@@ -25246,6 +26615,32 @@
       "as_printed": "Taylor, Deodat, carpenter, A. D. Taylor",
       "printed_page": 33,
       "occupation_1839": "carpenter, A. D. Taylor",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "[?] Smith & Doyle",
+    "rule": "Surname 'Doyle' folds to the same string as the 1839 entry's, and the given name of both begins S.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0418",
+      "as_printed": "Doyle, Simon, tailor, junction of Ivinzie and North Water sts",
+      "printed_page": 13,
+      "occupation_1839": "tailor, junction of Ivinzie and",
+      "address_1839": "North Water sts",
+      "streets_1839": [
+       "North Water sts"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0419",
+      "as_printed": "Doyle, Simon, cattle drover",
+      "printed_page": 13,
+      "occupation_1839": "cattle drover",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -25277,6 +26672,32 @@
       "address_is_street_only": false
      }
     ]
+   },
+   {
+    "name": "[Jno?]. S. B. Gage",
+    "rule": "Surname 'Gage' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0519",
+      "as_printed": "Gage, John, flour store, .South Water st. ; mill South Branch",
+      "printed_page": 15,
+      "occupation_1839": "flour store",
+      "address_1839": "South Water st. ; mill South Branch",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0520",
+      "as_printed": "Gage, Jared, flour dealer, South Water, bet. Clark and Dearborn",
+      "printed_page": 15,
+      "occupation_1839": "flour dealer, South Water, bet. Clark and Dearborn",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
    }
   ],
   "refusals": [
@@ -25284,6 +26705,11 @@
     "name": "A. C. Walton",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Walton' is in Fergus 1839 and no entry under it carries the initial 'A' of 'A. C. Walton'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "A. J. Seymour",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Seymour' is in Fergus 1839 and no entry under it carries the initial 'A' of 'A. J. Seymour'. A surname-only agreement is a refusal."
    },
    {
     "name": "A. M. Barnes",
@@ -25306,9 +26732,19 @@
     "rule": "The surname 'Stewart' is in Fergus 1839 and no entry under it carries the initial 'A' of 'Alexander Stewart'. A surname-only agreement is a refusal."
    },
    {
+    "name": "B. S. Sherman",
+    "candidates_under_that_surname": 8,
+    "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'B' of 'B. S. Sherman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "B. W. Raymond",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Raymond' is in Fergus 1839 and no entry under it carries the initial 'B' of 'B. W. Raymond'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Barney Andrus",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Andrus' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Barney Andrus'. A surname-only agreement is a refusal."
    },
    {
     "name": "Barry Grant",
@@ -25319,6 +26755,11 @@
     "name": "Bart Doney",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Doney' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Bart Doney'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Benjamin Mason",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Mason' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Benjamin Mason'. A surname-only agreement is a refusal."
    },
    {
     "name": "Benjamin Williams",
@@ -25371,6 +26812,11 @@
     "rule": "The surname 'Page' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Charles Page'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Charles Stone",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Stone' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Charles Stone'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Chas. West",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'West' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Chas. West'. A surname-only agreement is a refusal."
@@ -25379,6 +26825,21 @@
     "name": "Christopher McLean",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'McLean' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Christopher McLean'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Cornelius Norton",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Norton' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Cornelius Norton'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "D. A. Haines",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Haines' is in Fergus 1839 and no entry under it carries the initial 'D' of 'D. A. Haines'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "D. A. Long",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Long' is in Fergus 1839 and no entry under it carries the initial 'D' of 'D. A. Long'. A surname-only agreement is a refusal."
    },
    {
     "name": "D. M. Wooster",
@@ -25421,9 +26882,29 @@
     "rule": "The surname 'Page' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Edward Page'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Edwin Freeman",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Freeman' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Edwin Freeman'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Elijah Wentworth",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Wentworth' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Elijah Wentworth'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "F[?]d Rowland",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Rowland' is in Fergus 1839 and no entry under it carries the initial 'F' of 'F[?]d Rowland'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Fred Miller",
+    "candidates_under_that_surname": 7,
+    "rule": "The surname 'Miller' is in Fergus 1839 and no entry under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Geo Roth",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Roth' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Geo Roth'. A surname-only agreement is a refusal."
    },
    {
     "name": "George Carpenter",
@@ -25436,9 +26917,29 @@
     "rule": "The surname 'Foster' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George F. Foster'. A surname-only agreement is a refusal."
    },
    {
+    "name": "George G. Vail",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Vail' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George G. Vail'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "George Merrick",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Merrick' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George Merrick'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Gerald Bigelow",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Bigelow' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Gerald Bigelow'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Gurdon S. Hubbard",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Hubbard' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Gurdon S. Hubbard'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "H. M. Merrill",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Merrill' is in Fergus 1839 and no entry under it carries the initial 'H' of 'H. M. Merrill'. A surname-only agreement is a refusal."
    },
    {
     "name": "Henry Brand",
@@ -25471,9 +26972,19 @@
     "rule": "The surname 'Welch' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Hugh Welch'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Isaac B. Phelps",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Phelps' is in Fergus 1839 and no entry under it carries the initial 'I' of 'Isaac B. Phelps'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Isaac Black",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Black' is in Fergus 1839 and no entry under it carries the initial 'I' of 'Isaac Black'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J. Black",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Black' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. Black'. A surname-only agreement is a refusal."
    },
    {
     "name": "J. C. Thompson",
@@ -25521,6 +27032,11 @@
     "rule": "The surname 'McDaniel' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James McDaniel'. A surname-only agreement is a refusal."
    },
    {
+    "name": "John B. Culver",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Culver' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John B. Culver'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "John Bennett",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Bennett' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Bennett'. A surname-only agreement is a refusal."
@@ -25529,6 +27045,11 @@
     "name": "John Bliss",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bliss' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Bliss'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John Brady",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Brady' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Brady'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Briggs",
@@ -25541,9 +27062,34 @@
     "rule": "The surname 'Christy' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Christy'. A surname-only agreement is a refusal."
    },
    {
+    "name": "John Clarke",
+    "candidates_under_that_surname": 9,
+    "rule": "The surname 'Clarke' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Clarke'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John Cleaver",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Cleaver' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Cleaver'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John Higgins",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Higgins' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Higgins'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John M. Chapman",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Chapman' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John M. Chapman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "John McBride",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'McBride' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John McBride'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John McCabe",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'McCabe' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John McCabe'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Rankin",
@@ -25564,6 +27110,16 @@
     "name": "Jos. D. Boone",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Boone' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Jos. D. Boone'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Lawrence L. Sullivan",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Sullivan' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Lawrence L. Sullivan'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "M. W. Brackett",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Brackett' is in Fergus 1839 and no entry under it carries the initial 'M' of 'M. W. Brackett'. A surname-only agreement is a refusal."
    },
    {
     "name": "Manny Berry",
@@ -25591,9 +27147,24 @@
     "rule": "The surname 'Reed' is in Fergus 1839 and no entry under it carries the initial 'M' of 'Mary Reed'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Mary Rhine[s?]",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Rhine[s?]' is in Fergus 1839 and no entry under it carries the initial 'M' of 'Mary Rhine[s?]'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mathias Miller",
+    "candidates_under_that_surname": 7,
+    "rule": "The surname 'Miller' is in Fergus 1839 and no entry under it carries the initial 'M' of 'Mathias Miller'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Michael Brown",
     "candidates_under_that_surname": 10,
     "rule": "The surname 'Brown' is in Fergus 1839 and no entry under it carries the initial 'M' of 'Michael Brown'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Michael C. Welch",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Welch' is in Fergus 1839 and no entry under it carries the initial 'M' of 'Michael C. Welch'. A surname-only agreement is a refusal."
    },
    {
     "name": "Michael Duffy",
@@ -25661,9 +27232,29 @@
     "rule": "The surname 'Bigelow' is in Fergus 1839 and no entry under it carries the initial 'N' of 'Nancy Bigelow'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Nancy Edwards",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Edwards' is in Fergus 1839 and no entry under it carries the initial 'N' of 'Nancy Edwards'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Nancy Greenwood",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Greenwood' is in Fergus 1839 and no entry under it carries the initial 'N' of 'Nancy Greenwood'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Nath[l?] Peck",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Peck' is in Fergus 1839 and no entry under it carries the initial 'N' of 'Nath[l?] Peck'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Owen Carroll",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Carroll' is in Fergus 1839 and no entry under it carries the initial 'O' of 'Owen Carroll'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "P. P. Smith",
+    "candidates_under_that_surname": 23,
+    "rule": "The surname 'Smith' is in Fergus 1839 and no entry under it carries the initial 'P' of 'P. P. Smith'. A surname-only agreement is a refusal."
    },
    {
     "name": "Patrick Egan",
@@ -25671,14 +27262,29 @@
     "rule": "The surname 'Egan' is in Fergus 1839 and no entry under it carries the initial 'P' of 'Patrick Egan'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Patrick Ward",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Ward' is in Fergus 1839 and no entry under it carries the initial 'P' of 'Patrick Ward'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Peter Coleman",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Coleman' is in Fergus 1839 and no entry under it carries the initial 'P' of 'Peter Coleman'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Phillip Marshall",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Marshall' is in Fergus 1839 and no entry under it carries the initial 'P' of 'Phillip Marshall'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "R. Ball",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Ball' is in Fergus 1839 and no entry under it carries the initial 'R' of 'R. Ball'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "R. C. Sheldon",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Sheldon' is in Fergus 1839 and no entry under it carries the initial 'R' of 'R. C. Sheldon'. A surname-only agreement is a refusal."
    },
    {
     "name": "R. R. Bristol",
@@ -25689,6 +27295,11 @@
     "name": "R. S. Stuart",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Stuart' is in Fergus 1839 and no entry under it carries the initial 'R' of 'R. S. Stuart'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Rebecca McComb[er?]",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'McComb[er?]' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Rebecca McComb[er?]'. A surname-only agreement is a refusal."
    },
    {
     "name": "Robert Berry",
@@ -25706,6 +27317,36 @@
     "rule": "The surname 'Morrison' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Robert Morrison'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Robert Robinson",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Robinson' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Robert Robinson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Robert Smith",
+    "candidates_under_that_surname": 23,
+    "rule": "The surname 'Smith' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Robert Smith'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "S. D. Lewis",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Lewis' is in Fergus 1839 and no entry under it carries the initial 'S' of 'S. D. Lewis'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "S. M. Osterhoudt",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Osterhoudt' is in Fergus 1839 and no entry under it carries the initial 'S' of 'S. M. Osterhoudt'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Sam[l] Anderson",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Anderson' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Sam[l] Anderson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Samuel Anderson",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Anderson' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Samuel Anderson'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Seth Johnson",
     "candidates_under_that_surname": 7,
     "rule": "The surname 'Johnson' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Seth Johnson'. A surname-only agreement is a refusal."
@@ -25721,6 +27362,16 @@
     "rule": "The surname 'Turner' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Stephen Turner'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Stephen [?] Black",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Black' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Stephen [?] Black'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Susan McCord",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'McCord' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Susan McCord'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Thomas Brown",
     "candidates_under_that_surname": 10,
     "rule": "The surname 'Brown' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Brown'. A surname-only agreement is a refusal."
@@ -25731,14 +27382,34 @@
     "rule": "The surname 'Clarke' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Clarke'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Thomas H. Cunningham",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Cunningham' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas H. Cunningham'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Thomas Lee",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Lee' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Lee'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Thomas Lee",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Lee' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Lee'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Thomas O'Brien",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname \"O'Brien\" is in Fergus 1839 and no entry under it carries the initial 'T' of \"Thomas O'Brien\". A surname-only agreement is a refusal."
+   },
+   {
     "name": "Timothy Murphy",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Murphy' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Timothy Murphy'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "W. Boyd",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Boyd' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. Boyd'. A surname-only agreement is a refusal."
    },
    {
     "name": "W. J. H. Eldridge",
@@ -25756,6 +27427,26 @@
     "rule": "The surname 'Stone' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. O. Stone'. A surname-only agreement is a refusal."
    },
    {
+    "name": "W. R. Cobb",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Cobb' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. R. Cobb'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "W. S. Roberts",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Roberts' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. S. Roberts'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "W. S. Wilson",
+    "candidates_under_that_surname": 6,
+    "rule": "The surname 'Wilson' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. S. Wilson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "W[m] Berry",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Berry' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W[m] Berry'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "William Burton",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Burton' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William Burton'. A surname-only agreement is a refusal."
@@ -25766,9 +27457,24 @@
     "rule": "The surname 'Harmon' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William Harmon'. A surname-only agreement is a refusal."
    },
    {
+    "name": "William Mann",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Mann' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William Mann'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "William McCabe",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'McCabe' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William McCabe'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William Pearson",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Pearson' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William Pearson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William Peck",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Peck' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William Peck'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] Allen",
@@ -25781,14 +27487,59 @@
     "rule": "The surname 'Russell' is in Fergus 1839 and no entry under it carries the initial 'B' of '[?] B. H. Russell'. A surname-only agreement is a refusal."
    },
    {
+    "name": "[?] Bond",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Bond' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Bond'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "[?] C. Kent",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Kent' is in Fergus 1839 and no entry under it carries the initial 'C' of '[?] C. Kent'. A surname-only agreement is a refusal."
    },
    {
+    "name": "[?] Calhoun",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Calhoun' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Calhoun'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "[?] D. Mason",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Mason' is in Fergus 1839 and no entry under it carries the initial 'D' of '[?] D. Mason'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Doty",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Doty' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Doty'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Hatch",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Hatch' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Hatch'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Johnson",
+    "candidates_under_that_surname": 7,
+    "rule": "The surname 'Johnson' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Johnson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Kimball",
+    "candidates_under_that_surname": 6,
+    "rule": "The surname 'Kimball' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Kimball'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] L. Goodrich",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Goodrich' is in Fergus 1839 and no entry under it carries the initial 'L' of '[?] L. Goodrich'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Larson",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Larson' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Larson'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Mills",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Mills' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Mills'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] Nicholson",
@@ -25811,14 +27562,44 @@
     "rule": "The surname 'Robertson' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Robertson'. A surname-only agreement is a refusal."
    },
    {
+    "name": "[?] S. Dixon",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Dixon' is in Fergus 1839 and no entry under it carries the initial 'S' of '[?] S. Dixon'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] S. Wheeler",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Wheeler' is in Fergus 1839 and no entry under it carries the initial 'S' of '[?] S. Wheeler'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "[?] Sullivan",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Sullivan' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Sullivan'. A surname-only agreement is a refusal."
    },
    {
+    "name": "[?] Tupper",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Tupper' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Tupper'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] W. White",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'White' is in Fergus 1839 and no entry under it carries the initial 'W' of '[?] W. White'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Wadsworth",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Wadsworth' is in Fergus 1839 and no entry under it carries the initial '-' of '[?] Wadsworth'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "[?]. G. Mill[?]s",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Mill[?]s' is in Fergus 1839 and no entry under it carries the initial 'G' of '[?]. G. Mill[?]s'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?]. Getzler",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Getzler' is in Fergus 1839 and no entry under it carries the initial '-' of '[?]. Getzler'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?]enny Campbell",
@@ -25829,6 +27610,11 @@
     "name": "[?]lena Blackman",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Blackman' is in Fergus 1839 and no entry under it carries the initial 'L' of '[?]lena Blackman'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[T?]. S. Williams",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Williams' is in Fergus 1839 and no entry under it carries the initial 'T' of '[T?]. S. Williams'. A surname-only agreement is a refusal."
    }
   ]
  }
