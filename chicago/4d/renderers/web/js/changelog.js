@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 654, title: 'A census leaf read line by line, and the footing it refuses', kind: 'change', ts: '2026-09-06T22:50:33.855Z', date: 'Sep 6, 2026, 5:50 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is one leaf of the 1840 census \u2014 the right-hand sheet, the one that carries the numbers rather than the names \u2014 read line by line for the first time.',
+      'The prize on this leaf was a single figure. The enumerator foots the family-size column at the bottom of the page, and the middle of its three glyphs is a short thin slant: 117, or 107, and nobody could tell. It reads 117, and now for a reason rather than an impression. A companion leaf in the same hand carries a committed 10, and that 0 is a closed filled oval nothing like this mark.',
+      'Then the column itself was read, thirty-one families of it, and it comes to eighty-four. That is thirty-three people short of the figure written underneath it, which is far too many to be a misread digit or two. So the column is recorded and NOT used: every line keeps its number where nothing downstream can consume it, and the residual is the finding rather than something to be smoothed away. There is no hidden second digit to explain it \u2014 the left half of every one of those cells is bare paper.',
+      'Three columns did close, exactly, against the enumerator\u2019s own totals: twenty-four people in commerce over fourteen families, five in manufactures and trades, two in the learned professions. Those are committed. Nobody at all is returned in agriculture, in mining or in either navigation column, which is a town\u2019s page and not a township\u2019s \u2014 the opposite of the leaf read before it, where thirty-three of a hundred people farmed.',
+      'The digits were read against a labelled alphabet rather than by eye. Another leaf of the same enumerator has its line totals already committed, so its figures can be cropped with their values known \u2014 which is what tells this hand\u2019s 2 from its 3: the 2 has a base stroke and the 3 has none.',
+      'The leaf is still unpaired to any sheet of names. What changes for that search is which key to trust: the line count, thirty-one, is now measured off the column\u2019s own ink; the page population is the weaker key, because the column it foots will not corroborate it.',
+    ] },
   { v: 653, title: 'The zero volume four had not earned', kind: 'fix', ts: '2026-09-06T22:02:18.812Z', date: 'Sep 6, 2026, 5:02 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the card file this project reads for the townspeople\u2019s names, and a count of nought that had never actually been taken.',
