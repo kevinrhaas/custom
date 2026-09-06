@@ -534,8 +534,8 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     Read in sorted filename order and reduced to sets, so the register does not depend
     on the order a filesystem hands back.
     """
-    town = {"structures": [], "streets": {}, "residents": [], "invented": {},
-            "has_creek": False}
+    town = {"structures": [], "streets": {}, "street_paths": {}, "residents": [],
+            "invented": {}, "has_creek": False}
 
     for path in sorted(Path(structures_dir).glob("*.json")):
         d = load_json(path)
@@ -572,6 +572,9 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
                     key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
         town["streets"].setdefault(street_key(s["name_1835"]), s["id"])
         town["streets"][s["id"]] = s["id"]
+        # The committed centreline, kept so `streets_cross` can ask the plat whether a
+        # named corner exists rather than assume it (T-0771).
+        town["street_paths"].setdefault(s["id"], s["path_local_enu_m"])
 
     # The creek marker in OUTSIDE_MARKERS is only sound while this stays False.
     town["has_creek"] = any(
@@ -929,6 +932,47 @@ def streets_in(town, text, require_suffix):
     return sorted(found)
 
 
+def streets_cross(town, a, b):
+    """Do two platted streets actually MEET? Asked of the committed centrelines (T-0771).
+
+    An ordinal counts doors from a CORNER, and a corner is a crossing. Two streets being
+    platted and different does not make one: **Randolph Street and South Water Street are
+    both east-west lines of the Original Town and run parallel for their whole length.**
+    Clark, Filer & Co. advertise "their ware house on South water St. five doors east of
+    the corner of Randolph st.", and the first three tests pass it — two platted streets,
+    not the same one — so without this test the register would count five doors east of a
+    corner that has never existed and stand a documented warehouse on it.
+
+    The answer is taken from `data/streets/1835.json`'s committed `path_local_enu_m`, the
+    same geometry every other placement is measured against, by segment intersection.
+    Nothing is inferred: if the plat's own lines meet, there is a corner, and if they do
+    not, there is not one. A street the town holds no path for cannot be shown to cross
+    anything and is refused, which is the cautious direction.
+    """
+    def segments(sid):
+        path = town.get("street_paths", {}).get(sid) or []
+        return list(zip(path, path[1:]))
+
+    def side(o, a, b):
+        return ((a[0] - o[0]) * (b[1] - o[1])) - ((a[1] - o[1]) * (b[0] - o[0]))
+
+    def meets(p, q, r, t):
+        d1, d2 = side(r, t, p), side(r, t, q)
+        d3, d4 = side(p, q, r), side(p, q, t)
+        if ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0)):
+            return True
+        # A T-junction is a corner: an endpoint lying ON the other line counts.
+        for o, x, y in ((r, t, p), (r, t, q), (p, q, r), (p, q, t)):
+            if abs(side(o, x, y)) < 1e-9 and \
+                    min(o[0], x[0]) - 1e-9 <= y[0] <= max(o[0], x[0]) + 1e-9 and \
+                    min(o[1], x[1]) - 1e-9 <= y[1] <= max(o[1], x[1]) + 1e-9:
+                return True
+        return False
+
+    return any(meets(p, q, r, t)
+               for p, q in segments(a) for r, t in segments(b))
+
+
 def ordinal_off_a_corner(town, placement):
     """A count of doors off a named cross street, resolved — or None.
 
@@ -955,6 +999,11 @@ def ordinal_off_a_corner(town, placement):
     3. the business's OWN street is platted and is a different street. "two doors north
        of Lake street" said by a house on Lake Street is not an ordinal off a corner;
        the crossing an ordinal counts from is the crossing of two streets.
+    4. the two streets MEET on the committed plat. Different is not crossing, and the
+       corpus prints the difference: Randolph and South Water are parallel east-west
+       lines of the Original Town, so Clark, Filer & Co.'s "five doors east of the corner
+       of Randolph st." counts from a corner that does not exist. Asked of the streets'
+       own centrelines by `streets_cross`; see T-0771.
 
     What comes back names the crossing in `streets` (the pair, as `corner` does) and the
     reading itself in `ordinal`, so a gate can read the count without parsing prose.
@@ -979,6 +1028,12 @@ def ordinal_off_a_corner(town, placement):
     # is not required of it — 'South Water' and 'South Water Street' are one answer.
     along = streets_in(town, placement.get("street"), False)
     if len(along) != 1 or along[0] == reference[0]:
+        return None
+    # 4. THE TWO STREETS MUST ACTUALLY MEET (T-0771). Different is not crossing: Randolph
+    # and South Water are parallel east-west lines and have no corner, so Clark, Filer &
+    # Co.'s "five doors east of the corner of Randolph st." counts from nothing this plat
+    # holds. Asked of the committed centrelines by `streets_cross` above.
+    if not streets_cross(town, along[0], reference[0]):
         return None
     count = ORDINAL_COUNT[m.group(1).lower()]
     direction = (m.group(2) or "").lower() or None
@@ -1640,6 +1695,14 @@ def self_test():
         # corpus actually prints rather than a stand-in.
         "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake",
                     "dearborn": "dearborn"},
+        # The plat's own shape, in miniature: South Water and Lake are the east-west
+        # lines and Clark and Dearborn cross them. The ordinal cases need real geometry
+        # because the fourth test asks whether two streets MEET (T-0771), and the pair
+        # that does NOT — two parallel east-west lines — is the case it exists to refuse.
+        "street_paths": {"south_water": [[100.0, 0.0], [800.0, 0.0]],
+                         "lake": [[-320.0, -112.0], [900.0, -112.0]],
+                         "clark": [[600.0, -400.0], [600.0, 20.0]],
+                         "dearborn": [[700.0, -400.0], [700.0, 20.0]]},
         "residents": [{"household": "hh_x", "person": "cohen_peter", "name": "Peter Cohen",
                        "grade": "attested", "occupation": "clothier"},
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
@@ -1924,6 +1987,13 @@ def self_test():
                             and d["businesses"][0]["anchor"]["ordinal"]["count"] == 2
                             and d["businesses"][0]["anchor"]["ordinal"]["direction"] == "north")
          else "anchor=%r" % (d["businesses"][0]["anchor"],))
+    case("two streets that never meet are no corner, however platted both are (T-0771)",
+         ordinal("Lake Street",
+                 "on South-Water st. five doors east of the corner of Lake street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "two parallel east-west lines were read as a crossing: anchor=%r"
+              % (d["businesses"][0]["anchor"],))
     case("'a few doors below' counts nothing and is refused the ordinal reading",
          ordinal("Newberry & Dole", "a few doors below Messrs. Newberry & Dole"),
          lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
