@@ -9,45 +9,27 @@
    "where": "data/residents/households/hh_harmon_brothers.json",
    "quote": "Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.'",
    "source": "andreas_1884_v1",
-   "subject": {
-    "household": "hh_harmon_brothers",
-    "person": "harmon_charles_l"
-   },
+   "subject": {"household": "hh_harmon_brothers", "person": "harmon_charles_l"},
    "relation": "son",
-   "other": {
-    "household": "hh_harmon_elijah_d",
-    "person": "harmon_elijah_d"
-   }
+   "other": {"household": "hh_harmon_elijah_d", "person": "harmon_elijah_d"}
   },
   {
    "id": "read_harmon_isaac_d__son__harmon_elijah_d",
    "where": "data/residents/households/hh_harmon_brothers.json",
    "quote": "Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.'",
    "source": "andreas_1884_v1",
-   "subject": {
-    "household": "hh_harmon_brothers",
-    "person": "harmon_isaac_d"
-   },
+   "subject": {"household": "hh_harmon_brothers", "person": "harmon_isaac_d"},
    "relation": "son",
-   "other": {
-    "household": "hh_harmon_elijah_d",
-    "person": "harmon_elijah_d"
-   }
+   "other": {"household": "hh_harmon_elijah_d", "person": "harmon_elijah_d"}
   },
   {
    "id": "read_taylor_augustine__brother__taylor_anson_h",
    "where": "data/research/residents/pass_02_findings.json",
    "quote": "Chicago History Museum identifies Augustine Deodat Taylor as designer and builder of St. Mary's in 1833 using balloon-frame construction, while keeping him distinct from brother Anson who hauled lumber.",
    "source": "encyclopedia_chicago_church_architecture",
-   "subject": {
-    "household": "hh_taylor_augustine",
-    "person": "taylor_augustine"
-   },
+   "subject": {"household": "hh_taylor_augustine", "person": "taylor_augustine"},
    "relation": "brother",
-   "other": {
-    "household": "hh_taylor_anson",
-    "person": "taylor_anson_h"
-   }
+   "other": {"household": "hh_taylor_anson", "person": "taylor_anson_h"}
   }
  ]
 }
