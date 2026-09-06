@@ -368,3 +368,4 @@ T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthe
 T-0880 — publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat
 T-0884 — The register sells Russel Heacock lot 7 of block 117 and his committed house stands 7 m outside block 118: one of the two is out by more than the construction admits
 T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
+T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
