@@ -1,7 +1,7 @@
 ---
 id: T-0736
 title: Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-06
 pr: null
 claimed_by: run 9/6/2026, 4:59:50 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T22:17:47.162Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34061858818
 ---
 
