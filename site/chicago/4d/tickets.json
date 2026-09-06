@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 12:03 AM",
+  "generated_ct": "Sep 6, 2026, 12:04 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14586,7 +14586,7 @@
     {
       "id": "T-0863",
       "title": "H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "PAPERS",
       "requested_by": "steward",
       "seen": false,
@@ -14594,19 +14594,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Duplicate of T-0842, filed first by PR #931 (T-0724), which is where the finding originated",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T05:04:41.248Z",
       "claimed_run": null,
-      "queue_rank": 174
+      "queue_rank": null
     },
     {
       "id": "T-0864",
       "title": "Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "PAPERS",
       "requested_by": "steward",
       "seen": false,
@@ -14614,14 +14614,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Duplicate of T-0841, filed first by PR #931 (T-0724), which is where the finding originated",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T05:04:41.394Z",
       "claimed_run": null,
-      "queue_rank": 175
+      "queue_rank": null
     }
   ]
 }

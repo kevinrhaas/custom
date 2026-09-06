@@ -1,7 +1,7 @@
 ---
 id: T-0864
 title: Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone
-state: open
+state: withdrawn
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,16 +9,18 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-06
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-0841, filed first by PR #931 (T-0724), which is where the finding originated
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T05:04:41.394Z
 claimed_run: null
 ---
 
 Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone.
+
+**WITHDRAWN — duplicate of T-0841.** PR #931 (T-0724) filed this finding first, in the run whose splitter fix made the priest visible to the ladder at all. Re-filed here from PR #954 without seeing it, because #954 was read against `dev` and T-0841 lives on #931's branch. The finding is not lost — it lands with #931, which also notes that `st_marys_baptisms_1833_1835.json` is in no reader at all.
 
 **Acceptance:** a written ruling on whether the celebrant of a register is attested
 BY that register. If he is, the appearances that carry it reach his identity and his

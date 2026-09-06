@@ -1,7 +1,7 @@
 ---
 id: T-0863
 title: H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities
-state: open
+state: withdrawn
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,16 +9,18 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-06
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-0842, filed first by PR #931 (T-0724), which is where the finding originated
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T05:04:41.248Z
 claimed_run: null
 ---
 
 H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities.
+
+**WITHDRAWN — duplicate of T-0842.** PR #931 (T-0724) filed this finding first and is where it originated: the particle rule is its rule, and it recorded the consequence in the same run that created it. This ticket was re-filed from PR #954 without seeing #931's, because #954 was read against `dev` and T-0842 lives on #931's branch, not on `dev`. The finding is not lost — it lands with #931.
 
 **Acceptance:** a stated ruling on whether `Van Den` and `Van der` are one surname
 here, argued from the two printings rather than assumed. If they are, the rule that
