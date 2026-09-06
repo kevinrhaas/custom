@@ -123,6 +123,29 @@ def compatible(a, b) -> bool:
     return (len(x) == 1 and y.startswith(x)) or (len(y) == 1 and x.startswith(y))
 
 
+def bracket_conflict(as_read: str, survivor_id: str) -> str | None:
+    """The forename a transcriber BRACKETED, when the survivor is not that man.
+
+    T-0855. A reading like "Hubbard, [Henry] G." carries an editorial expansion:
+    somebody read the page and said who this is. That is evidence about IDENTITY,
+    where an initial is only evidence about spelling — so a fold that contradicts
+    it has put one man's record on another man. Returns the forename when it
+    conflicts, else None.
+
+    A bracketed RANK is not a forename and never conflicts. "Allen, [Lieut] James"
+    folded onto `allen_james` would otherwise read as a contradiction, and it is
+    only a title the transcriber supplied — which is the false positive this check
+    would have shipped without the guard.
+    """
+    hit = re.search(r"\[([A-Za-z]+)\]", str(as_read or ""))
+    if not hit:
+        return None
+    word = hit.group(1)
+    if word.lower().rstrip(".") in RANKS:
+        return None
+    return None if word.lower() in survivor_id.lower() else word
+
+
 def read_town(root: Path | None = None) -> list:
     """One row per person on a card in the index, with the household it stands on."""
     root = root or RESIDENTS
@@ -502,6 +525,37 @@ def apply(write: bool = True) -> dict:
                 stub = json.loads((MERGED / f"{hid}.json").read_text(encoding="utf-8"))
                 person = next(p for p in (stub.get("superseded_record") or {}
                                           ).get("persons") or [] if p["id"] == folded)
+                # …AND A RULING THAT CHANGED ITS MIND IS FOLLOWED (T-0855).
+                #
+                # Reading the stub was all this branch used to do, so a card folded onto
+                # the WRONG survivor could not be corrected: rewrite the ruling, re-run
+                # --apply, and the stub and the redirect table went on naming the old
+                # survivor. The ruling said one thing and the data said another, which is
+                # this project's oldest failure shape, and --check could not see it
+                # because it never compared the two.
+                #
+                # That is not hypothetical. T-0839 folded `hubbard_g` onto Gurdon
+                # Saltonstall Hubbard when that card's own and only press evidence reads
+                # "Hubbard, [Henry] G." and cites person_hubbard_henry_g — a different,
+                # attested man on the same tree. Correcting it is what found this.
+                landed = stub.get("merged_into") or {}
+                if landed.get("person") != ruling["survivor"]:
+                    stub["merged_into"] = dict(landed, person=ruling["survivor"],
+                                               household=survivor_home,
+                                               rule=ruling["rule"],
+                                               cluster=ruling["cluster"],
+                                               ticket=TICKET,
+                                               repointed_from=landed.get("person"))
+                    files[MERGED / f"{hid}.json"] = dump(stub)
+                    redirects.append({
+                        "person": folded, "household": hid,
+                        "name": person.get("name") or "",
+                        "merged_into_person": ruling["survivor"],
+                        "merged_into_household": survivor_home,
+                        "record_file": f"merged/{hid}.json",
+                        "rule": ruling["rule"], "cluster": ruling["cluster"],
+                        "ticket": TICKET,
+                    })
             else:
                 doc = docs[hid]
                 person = next(p for p in doc["persons"] if p["id"] == folded)
@@ -659,6 +713,64 @@ def check() -> int:
             problems.append(f"the survivor '{ruling['survivor']}' of cluster "
                             f"'{ruling['cluster']}' is on no card")
 
+    # T-0855, AND IT IS TWO COPIES OF ONE FACT DISAGREEING, WHICH IS THIS PROJECT'S
+    # OLDEST FAILURE SHAPE. The ruling names a survivor and so does the landed redirect,
+    # and nothing compared them. So a CORRECTED ruling did not land: --apply's
+    # already-folded branch only read the stub, the redirect table kept its old row, and
+    # --check passed while card_merge_rulings.json said Henry and the data said Gurdon.
+    # A ruling nobody can act on is not a ruling.
+    landed_target = {row["person"]: row["merged_into_person"]
+                     for row in index.get("merged", [])}
+    for ruling in merges(rulings):
+        for folded in ruling["folded"]:
+            landed = landed_target.get(folded)
+            if landed is not None and landed != ruling["survivor"]:
+                problems.append(
+                    f"'{folded}' is RULED onto '{ruling['survivor']}' but the redirect "
+                    f"table lands it on '{landed}'. The ruling and the data disagree; "
+                    f"run --apply, which now re-points a corrected fold")
+        for row in index.get("merged", []):
+            if row["person"] not in ruling["folded"]:
+                continue
+            stub_file = RESIDENTS / row["record_file"]
+            if not stub_file.exists():
+                continue
+            got = (json.loads(stub_file.read_text(encoding="utf-8")
+                              ).get("merged_into") or {}).get("person")
+            if got != ruling["survivor"]:
+                problems.append(
+                    f"{row['record_file']} says it was merged into '{got}', but the "
+                    f"ruling for '{row['person']}' says '{ruling['survivor']}'")
+
+    # …AND THE RULING MUST AGREE WITH THE CARD'S OWN TRANSCRIPTION (T-0855).
+    #
+    # A reading like "Hubbard, [Henry] G." carries a BRACKETED forename: somebody looked
+    # at the page and said who this is. That is evidence about identity, not spelling, and
+    # a fold that contradicts it is putting one man's record on another man. Exactly that
+    # happened — hubbard_g, whose only press evidence reads "[Henry]" and cites
+    # person_hubbard_henry_g, was folded onto hubbard_gurdon while Henry stood attested on
+    # his own card two files away.
+    #
+    # Measured over the 42 folded records the day this was written: ONE tripped it, the
+    # one above. So this is a narrow check with a real catch, not a net cast at a guess.
+    for row in index.get("merged", []):
+        stub_file = RESIDENTS / row["record_file"]
+        if not stub_file.exists():
+            continue
+        stub = json.loads(stub_file.read_text(encoding="utf-8"))
+        survivor_id = row["merged_into_person"]
+        for person in (stub.get("superseded_record") or {}).get("persons") or []:
+            for key in BLOCK_KEYS:
+                for entry in person.get(key) or []:
+                    named = bracket_conflict(entry.get("as_read"), survivor_id)
+                    if named:
+                        problems.append(
+                            f"'{row['person']}' is folded onto '{survivor_id}', but its "
+                            f"{key} reads {entry.get('as_read')!r} — the transcriber "
+                            f"bracketed the forename '{named}', which names "
+                            f"somebody else. A bracket is a reading of the page and "
+                            f"outranks an inference from the initial (rule C5)")
+
     # THE UNION IS STILL ON THE SURVIVOR. Where the survivor is a card no derivation
     # spends onto, --apply wrote the folded cards' sources by hand; a later --build of the
     # pass that owns it would re-derive them away silently, and this is what says so.
@@ -758,6 +870,22 @@ def self_test() -> int:
        "a contradicted middle initial must be read as evidence AGAINST")
     ok(any("share 1 source" in f for f in pair["for"]),
        "a shared source must be read as evidence FOR")
+
+    # T-0855 — the transcriber's bracket. This is the rule that would have caught
+    # hubbard_g being folded onto Gurdon, so it is the one that must not rot.
+    ok(bracket_conflict("Hubbard, [Henry] G.", "hubbard_gurdon") == "Henry",
+       "a bracketed forename that is not the survivor's must be a conflict — this is "
+       "the real case: hubbard_g read '[Henry]' and was folded onto Gurdon")
+    ok(bracket_conflict("Hubbard, [Henry] G.", "hubbard_henry_g") is None,
+       "…and the same reading onto the man it names must be silent, or the check "
+       "fires for ever and gets switched off")
+    ok(bracket_conflict("G. S. Hubbard", "hubbard_gurdon") is None,
+       "a reading with no bracket says nothing about identity and must not be judged")
+    ok(bracket_conflict("Allen, [Lieut] James", "allen_james") is None,
+       "a bracketed RANK is not a forename — this is the false positive the check "
+       "would have shipped without its guard")
+    ok(bracket_conflict("", "anybody") is None and bracket_conflict(None, "x") is None,
+       "an absent reading must not raise")
 
     for fail in fails:
         print(f"   {fail}")
