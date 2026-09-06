@@ -990,6 +990,9 @@
           "role": "proprietor",
           "occupations": [
             "hatter"
+          ],
+          "associated_places": [
+            "Detroit"
           ]
         }
       ],
@@ -1013,7 +1016,7 @@
           "street": null
         }
       },
-      "notes": "A DETROIT HOUSE advertising to Chicago — 'Merchants of Chicago and vicinity, and citizens are respectfully invited to call and examine their Stock, when they visit Detroit' (4888-4890). Recorded because ruling 3 would otherwise let a later pass mistake it for a Chicago storefront: the placement is `none` and the trade line says Detroit. '1334'→'1834'. The 'gage' at the end of 4880 is the segmenter's, and the city is supplied from the signature line, bracketed."
+      "notes": "A DETROIT HOUSE advertising to Chicago — 'Merchants of Chicago and vicinity, and citizens are respectfully invited to call and examine their Stock, when they visit Detroit' (4888-4890). Recorded because ruling 3 would otherwise let a later pass mistake it for a Chicago storefront: the placement is `none` and the trade line says Detroit. '1334'→'1834'. The 'gage' at the end of 4880 is the segmenter's, and the city is supplied from the signature line, bracketed. T-0694: the entity now carries Detroit as its associated place, read off the two lines of this same notice that give it — the address line \"No, 109 Jefferson Avenue\" (4880) and the signature dateline \"Detroit, March 15, 1334\" (4900). The firm record already held the city inside its trade line and the PERSON record held nothing, so a pass reading the person alone saw a hatter with no address; the mints refuse on `associated_places`, and now it reaches this one."
     },
     {
       "id": "c019",

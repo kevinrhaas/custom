@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 629, title: 'The hatter who was never in Chicago', kind: 'fix', ts: '2026-09-06T08:09:53.308Z', date: 'Sep 6, 2026, 3:09 AM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about a shop that was never built, and the reason it could have been.',
+      'M\u2019Cormick & Moon sold hats \u2014 to Chicago, out of No. 109 Jefferson Avenue, Detroit. Their advertisement of 2 July 1834 says so twice: once in the address and once where they sign it. The town read that notice and kept two records of it. The FIRM knew it stood in Detroit. The PERSON knew only that he was a hatter, and had no address at all.',
+      'That gap matters because of which of the two a passer-by is built from. When this project decides whether somebody printed in a newspaper may be seated in the town, it asks the person\u2019s record where he is \u2014 and a hatter with a trade and nowhere to be is exactly the shape it seats. Two other refusals happened to stand in front of this one, so nobody was ever put on the plat in Michigan. It was luck, not a rule.',
+      'The man now carries Detroit, read off his own printing. So does Wm. McCaleb, half of a steam saw mill at St. Joseph, whose partner on the same page had carried it all along and who had not.',
+      'And the check that found the second one now runs on every claim in the corpus: where an advertisement ends its trade with a town, the men who keep that house have to carry the town too. It works out which words are towns from the places this project has already read, rather than from a list somebody types \u2014 which is how it knows that a firm advertising as agents of the Merchants Line has not told anyone where it lives.',
+    ] },
   { v: 628, title: 'A hundred and fifty-five cards that had been written and never posted', kind: 'change', ts: '2026-09-06T07:28:16.603Z', date: 'Sep 6, 2026, 2:28 AM CT',
     items: [
       'The tool that turns finished resident research into townspeople had been running and being thrown away. Every time it ran it produced the same hundred and fifty-five files \u2014 a hundred and thirty-two people\u2019s cards, the town directory and the research ledger \u2014 and every time, nobody committed them. Those files are now the town\u2019s.',

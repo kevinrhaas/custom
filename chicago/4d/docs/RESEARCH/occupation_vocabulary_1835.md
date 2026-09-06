@@ -295,14 +295,44 @@ victuals and rigs vessels and is not a maker of candles. Daniel Elston, the one
 prints four ship chandlers, and reading them as candle makers would have been exactly
 T-0376's milliner-as-miller again.
 
+## The city on the trade line belongs to the men who keep the house (T-0694)
+
+**Settled 2026-09-06.** M'Cormick & Moon read `hatter` as PERSONS. Their FIRM's phrase
+was refused on its own Detroit address — `hat manufacturers and wholesale dealers,
+Detroit` is in `T0661_NOT_IN_VOCABULARY` — but the gazetteer also held them as a person
+whose occupation is printed plainly as "hatter", and the person carried no place at
+all. So the firm knew where it stood and the man did not, and the mints refuse on the
+PERSON's `associated_places`.
+
+Nothing had gone wrong yet, and re-derivation says so: their register action is
+`new_resident` and was `new_resident` before, because ruling 1 turns on the town not
+holding the name; `mint_documented_residents` refuses them one step earlier still, as
+"a firm, not a person". What was missing was the *second* refusal behind the first —
+if a later reading ever split the sign into two men, nothing would have said Detroit.
+
+**Two corrections, both read off the printing that was already committed.**
+
+| claim | entity | place now carried | read from |
+|---|---|---|---|
+| `chicago_democrat_1834_07_02#c018` | M'Cormick & Moon, proprietor | Detroit | the address line "No, 109 Jefferson Avenue" and the dateline "Detroit, March 15, 1[8]34" of their own notice |
+| `chicago_democrat_1834_07_23#c006` | [uncertain: Wm. McCaleb], proprietor | St. Joseph | his partner's entity on the same claim, and c005's dissolution notice in the same issue |
+
+**And the gate, so the shape cannot recur silently.** `compile_gazetteer.py`'s
+`house_place_problems` requires that where a printed trade line ENDS in a place, every
+entity on that claim in a HOUSE role — `proprietor` or `partner`, never an assignee, an
+agent or a passenger — carries that place. It is DERIVED rather than a list of cities:
+a trade tail counts as a place only where the corpus itself already names it as one on
+some entity, which is what holds Newberry & Dole's `agents, Merchants Line` out of it
+without anybody typing which words are towns. Its blind spot is stated rather than
+papered over — a city this corpus names ONCE, on the very claim that omits it, is
+invisible here. Four `--self-test` cases assert the rule and its three controls, and
+`tools/check.sh` has run this pass's `--check` all along.
+
+Swept across all 1,168 claims, the rule found exactly the two rows above and nothing
+else.
+
 ## What this note still does not settle
 
-- **M'Cormick & Moon read `hatter` as PERSONS.** Their firm's phrase is refused on its
-  own Detroit address, but the gazetteer also holds them as a person whose occupation
-  is printed plainly as "hatter", and the person tables give them the word. Their
-  register action is `new_resident` and was `new_resident` before this ticket, so
-  nothing moved; but a later mint pass reading occupations alone could raise a hatter's
-  shop for a Detroit house. Filed as its own ticket.
 - **Twenty-one new words is a large addition to a closed vocabulary**, and the closure
   is the point of it. Every one of them is a phrase the papers print for a named person
   at Chicago; none is a category invented to tidy the list.
