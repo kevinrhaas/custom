@@ -29,10 +29,10 @@
     "confidence": "reconstructed",
     "note": "Five mountings, chosen by the trade's class and de-conflicted against every sign within 40 m so that no two neighbours hang alike: `bracket_board` (the wolf sign's own geometry — a plank hung by two straps 0.20 m under a 1.15 m bracket arm, 1.7 m to one side of the facade's centre and clear of the eave), `awning_board` (the same plank under a hood 1.45 m deep that falls 0.34 m to its outer edge), `wall_board` (a board fixed flat on the front under a cap), `post_board` (a pole at the street edge 1.9 m out from the wall, with a cross-arm and the board under it — the Green Tree's own arrangement, T-0082) and `facade_painted` (the name straight onto the boards of the building, no board at all — what image 5 of the owner's brief shows across the Tremont's row, standing with its foot 2.3 m up so it clears a door head, or lower where the wall has not the height for that and 0.25 m of eave besides). Not one of those numbers is a record's. A sign's SIZE is derived from the length of its own name inside the range its mounting allows and inside the frontage it stands on; its `aspect` comes from its style, so two boards on one street are not the same rectangle either.",
     "mountings": {
-      "awning_board": 7,
+      "awning_board": 6,
       "bracket_board": 8,
       "facade_painted": 13,
-      "post_board": 1,
+      "post_board": 2,
       "wall_board": 5
     }
   },
@@ -304,7 +304,7 @@
       },
       {
         "structure_id": "steamboat_hotel",
-        "mounting": "awning_board",
+        "mounting": "post_board",
         "covered_an_opening_before": false,
         "covered_before": [],
         "done": "not flat on the wall"
@@ -3372,7 +3372,7 @@
         }
       ],
       "sign_identity": "Steamboat Hotel",
-      "sign_text_from": "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, house, street — the board is the advertisement. The hyphen is the advertisement's own spelling and is kept. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a awning board, which carries 2 lines, so the place line — \"North Water Street\" — is not lettered here: a signwriter letters what fits.",
+      "sign_text_from": "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, house, street — the board is the advertisement. The hyphen is the advertisement's own spelling and is kept. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a post board, which carries 2 lines, so the place line — \"North Water Street\" — is not lettered here: a signwriter letters what fits.",
       "sign_text_confidence": "inferred",
       "sign_text_sources": [],
       "trade": "hotel",
@@ -3380,8 +3380,8 @@
       "trade_class": "house",
       "why_a_board": "a public house takes its custom from the road",
       "confidence": "reconstructed",
-      "mounting": "awning_board",
-      "mounting_note": "a post was refused here because no street lies in front of this wall within 22 m — a post here would stand in a yard",
+      "mounting": "post_board",
+      "mounting_note": null,
       "style": {
         "id": "gold_on_black",
         "ground": "#141009",
@@ -3392,41 +3392,42 @@
         "note": "gilt letters on a black ground, shaded — the commonest painted board of the trade"
       },
       "anchor_local_enu_m": [
-        958.8,
-        283.0
+        920.12,
+        210.71
       ],
-      "facade_bearing_deg": 180.0,
+      "facade_bearing_deg": 131.4,
       "arm_height_m": 2.55,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.62,
-      "board_h_m": 0.74,
+      "height_datum": "the ground under the post itself, sampled where it stands: the post is in the street, not on the building. `post_height_m` is its head over that ground and `arm_height_m` does not apply",
+      "board_w_m": 1.58,
+      "board_h_m": 0.81,
       "board_thickness_m": 0.05,
       "geometry": {
-        "awning_projection_m": 1.45,
-        "awning_drop_m": 0.34,
-        "awning_width_m": 2.52,
-        "hanger_drop_m": 0.2
+        "stand_m": 1.9,
+        "arm_m": 1.3,
+        "hanger_drop_m": 0.2,
+        "post_height_m": 3.3,
+        "post_square_m": 0.16
       },
-      "reach_m": 2.04,
+      "reach_m": 2.67,
       "wall_height_m": 5.2,
       "wall_height_from": "the record",
       "frontage_m": 15.0,
       "ground_quad_local_enu_m": [
         [
-          968.0,
-          291.0
+          920.2,
+          222.9
         ],
         [
-          953.0,
-          291.0
+          910.28,
+          211.65
         ],
         [
-          953.0,
-          283.0
+          916.28,
+          206.36
         ],
         [
-          968.0,
-          283.0
+          926.2,
+          217.61
         ]
       ]
     },
