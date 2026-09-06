@@ -1,5 +1,5 @@
 ---
-id: T-0852
+id: T-0854
 title: Andreas makes John Miller the brother of 'Samuel, the landlord' and the town holds a Samuel Miller card nobody has ruled identical to him
 state: open
 epic: META

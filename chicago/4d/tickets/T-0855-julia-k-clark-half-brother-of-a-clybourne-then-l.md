@@ -1,5 +1,5 @@
 ---
-id: T-0853
+id: T-0855
 title: 'Julia K. Clark, half-brother of A. Clybourne, then living with him' — a garbled forename, a person written into a household that does not hold one, and two Archibald Clybourn(e) cards
 state: open
 epic: META
