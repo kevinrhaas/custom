@@ -9,11 +9,11 @@
   "cards_in_open_clusters": 40,
   "rulings": {
    "distinct": 8,
-   "merge": 23,
+   "merge": 24,
    "undecided_owner": 6,
    "undecided_rule": 8
   },
-  "landed_merges": 23,
+  "landed_merges": 24,
   "cards_folded": 42
  },
  "landed": [
@@ -150,13 +150,22 @@
    "survivor_household": "hh_hubbard_gurdon",
    "survivor_on_the_cards": true,
    "folded": [
-    "hubbard_g",
     "hubbard_g_s",
     "hubbard_g_t",
     "hubbard_gordon_s",
     "hubbard_gurdon_s"
    ],
    "rule": "C0"
+  },
+  {
+   "cluster": "hubbard",
+   "survivor": "hubbard_henry_g",
+   "survivor_household": "hh_hubbard_henry_g",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hubbard_g"
+   ],
+   "rule": "C5"
   },
   {
    "cluster": "kimberly",

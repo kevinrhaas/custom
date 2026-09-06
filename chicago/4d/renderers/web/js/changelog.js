@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 619, title: 'A record put on the wrong Hubbard, and the man it belonged to', kind: 'fix', ts: '2026-09-06T04:23:03.058Z', date: 'Sep 5, 2026, 11:23 PM CT',
+    items: [
+      'Two men in this town were called Hubbard and something beginning with G. One is Gurdon Saltonstall Hubbard, the packer and forwarding merchant the records are full of. The other is Henry G. Hubbard, who is named far less often. A record belonging to Henry has been sitting on Gurdon’s card, and it is now back on Henry’s.',
+      'Yesterday’s consolidation gathered six scattered Hubbard cards onto one man, which was right five times. The sixth card gives only the initial — ‘G.’ — and on the strength of Gurdon being the better documented Hubbard it went to him. But the person who transcribed that page had already answered the question, writing the name as ‘Hubbard, [Henry] G.’ The brackets are theirs: they read the page and said who it was.',
+      'That is the rule this changes. A bracketed name is somebody’s reading of the original; an initial is only a way of writing a name down. So the reading now wins, and it settles cases the old rule refused to guess at — with two men sharing an initial, guessing was exactly the wrong thing to do.',
+      'Nothing else moved off Gurdon. One newspaper run that the wrong card brought stays with him, because three of the other five cards cite it too; it was checked before anything was taken away. He keeps five readings, all plainly his.',
+      'Two faults underneath this were the reason it survived. The tool that lands these decisions could not change its mind: correcting the written ruling and re-running it left the old answer in place, silently. And the check that guards the whole arrangement only asked whether a folded record pointed at somebody real, never at the person the ruling actually named — so the file said Henry, the town said Gurdon, and nothing complained.',
+      'Both are fixed, and the check now reads the transcription too: a record whose page names one man cannot be filed under another. It was tested on all forty-two folded records — this was the only one wrong.',
+    ] },
   { v: 618, title: 'Three townspeople whose middle initial is a printer\u2019s smudge', kind: 'fix', ts: '2026-09-06T04:13:43.365Z', date: 'Sep 5, 2026, 11:13 PM CT',
     items: [
       'Three people in this town were carried under a name with a NUMBER in the middle of it: \u20188. G. Abbot\u2019, \u2018A. 8. Perry\u2019, \u2018James I1. Gabbs\u2019. That is not what anybody was called. It is a scan misreading an S as an 8 and an H as the pair I-1, in a list of letters waiting uncollected at the Chicago post office on 1 July 1835.',

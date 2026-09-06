@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0855: the Hubbard fold rests on the man his own transcription names
+
+**What shipped.** `hubbard_g` folds onto `hubbard_henry_g`, not `hubbard_gurdon`.
+Its only press evidence is transcribed **`Hubbard, [Henry] G.`** and cites
+`person_hubbard_henry_g`; `hh_hubbard_henry_g.json` is a separate **attested** card
+in the same tree. T-0839 (#929) had put one man's record on another man.
+
+### It needed a new rule, not a bent one
+
+`C2` — an initial onto its one full forename — **refuses** a cluster with two rivals,
+on principle, and a bare `G.` has two here: Gurdon and Henry G. What settles it is not
+a name-matching inference at all: somebody read the page and wrote `[Henry]`.
+
+> **C5 — THE TRANSCRIBER NAMED HIM, IN BRACKETS.** A bracketed forename is an
+> editorial expansion by whoever transcribed the source. It is evidence about
+> IDENTITY where an initial is only evidence about spelling, so it outranks the
+> initial and settles a cluster C2 would refuse.
+
+The old ruling's `against` read *"No second Hubbard household is on any card, and no
+source reached names one."* Both halves were false. It now says so.
+
+**`chicago_democrat_1833_1835` stays on Gurdon** — three of the four cards still
+folded onto him cite it too, so it is his by other routes. Only the single wrong
+`press_evidence` entry came off, and that was checked before anything was removed.
+
+### Two defects found while fixing it, and both were hiding it
+
+1. **`--apply` could not correct a mis-fold.** Its already-folded branch only *read*
+   the stub, so rewriting the ruling and re-running changed nothing — the stub and the
+   redirect table went on naming Gurdon. It now re-points a corrected fold and records
+   `repointed_from`.
+2. **`--check` passed the whole time the ruling said Henry and the data said Gurdon.**
+   It verified a redirect points at *a* real person, never at the person the **ruling**
+   names. Two copies of one fact disagreeing — this project's oldest failure shape —
+   and it made a corrected ruling silently inert.
+
+Both are asserted now, and both were proved to fire by putting the redirect back and
+watching them catch it.
+
+### The gate the ticket asked for
+
+`bracket_conflict()`, pure and self-tested: a folded card whose reading brackets a
+forename absent from its survivor is refused. Five cases, including **the false
+positive it would otherwise have shipped** — a bracketed RANK (`Allen, [Lieut] James`)
+is not a forename and must not trip it.
+
+Measured over all 42 folded records: **one** tripped it, this one. The other 41 stand,
+so #929's consolidation is sound and this was an isolated ruling error.
+
+### Where it came from
+
+Draining the open-PR backlog. **#932** was the losing rival to #929 and superseded on
+coverage (36 clusters ruled against 31, 42 folds against 34) — but it was **right about
+this card**, and closing it on the numbers would have buried the finding. Reading a
+losing rival before closing it is what turned this up.
+
+### Visible-progress rule
+
+**Visible**, and it settles the commitment made two entries ago: a man's card now
+carries the reading that names him, and another man's stops carrying a record that was
+never his.
+
 ## Shipped 2026-09-05 — T-0817: the owner's queue ranking stops going backwards
 
 **What shipped.** Two halves, because the fault has two.
