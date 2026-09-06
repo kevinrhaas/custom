@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Chicago History Museum catalogs Charles H. Bartlett diaries beginning before his 1834 farming near Diamond Lake. Exact name, date and regional movement are strong; image-level diary review is still needed.",
     "evidence_against": "Regional farm rather than Chicago town; letter not identified in the finding aid.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "chm_bartlett_diaries"
     ],
     "candidate_ids": [
      "cand_charles_h_bartlett_of_diamond_lake__bartlett_charles_h"
-    ]
+    ],
+    "summary": "Chicago History Museum catalogs Charles H. Bartlett diaries beginning before his 1834 farming near Diamond Lake. Exact name, date and regional movement are strong; image-level diary review is still needed. [Read for pass 03 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

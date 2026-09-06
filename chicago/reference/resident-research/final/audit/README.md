@@ -31,15 +31,15 @@ Each line is *how many of the 1363 people carry at least one record of that kind
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
 | voter / civic evidence | **281** | 20.6% | a poll book, tax list, muster roll, treaty payment or other public record |
-| census linkage | **30** | 2.2% | an 1840 census row bridged to this person |
+| census linkage | **31** | 2.3% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 422 | 31.0% |
-| `two_or_more_sources_one_category` | 20 | 1.5% |
-| `one_source` | 356 | 26.1% |
+| `corroborated_across_categories` | 427 | 31.3% |
+| `two_or_more_sources_one_category` | 19 | 1.4% |
+| `one_source` | 352 | 25.8% |
 | `the_letter_lists_alone` | 562 | 41.2% |
 | `no_source` | 3 | 0.2% |
 
@@ -53,11 +53,11 @@ record agree; two newspaper notices of the same name are
 | --- | ---: |
 | newspaper | 1132 |
 | civic | 281 |
-| census | 30 |
+| census | 31 |
 | church | 46 |
-| book | 192 |
-| directory | 225 |
-| secondary | 75 |
+| book | 193 |
+| directory | 233 |
+| secondary | 80 |
 
 The category of a source id is the audit's one judgement, and it is a written
 table in the tool rather than a heuristic: census, directory, church and civic
@@ -93,6 +93,7 @@ secondary). A source id no rule reaches stops the build.
 | `chicagology_lastwardance` | secondary | website |
 | `chicagology_prefire021` | secondary | website |
 | `chicagology_prefire052` | secondary | website |
+| `chicagology_prefire112` | secondary | website |
 | `chicagology_prefire127` | secondary | website |
 | `chicagology_prefire216` | secondary | website |
 | `chicagology_prefire275` | secondary | website |
@@ -105,6 +106,7 @@ secondary). A source id no rule reaches stops the build.
 | `cpl_james_curtiss_biography` | secondary | website |
 | `cpl_john_s_wright_papers` | secondary | website |
 | `cpn_madore_beaubien` | secondary | website |
+| `desplaines_gardner_brooks` | secondary | website |
 | `drloih_beaubien` | secondary | website |
 | `drloih_chappell` | secondary | website |
 | `drloih_fort_dearborn` | secondary | website |
@@ -115,12 +117,14 @@ secondary). A source id no rule reaches stops the build.
 | `dupage_history_david_brookins` | book | book |
 | `early_illinois_barrows_school` | book | book |
 | `elgin_history_gifford` | secondary | website |
+| `encyclopedia_chicago_biographical_index_d` | secondary | website |
 | `encyclopedia_chicago_frederick_thomas` | secondary | website |
 | `encyclopedia_chicago_medical_pharmaceutical` | secondary | website |
 | `fergus_1843_old_settler_death_notices` | book | book |
 | `fergus_historical_series_26_29` | book | book |
 | `geneanet_cook_baumgarten_1836` | secondary | website |
 | `goodman_history_cook_county_early` | secondary | website |
+| `goodman_history_cook_county_hamilton` | secondary | website |
 | `greene_history_william_holliday_1834` | book | book |
 | `hathaway_1834` | secondary | map |
 | `history_medicine_chicago_kimberly_maxwell` | book | book |
@@ -128,6 +132,7 @@ secondary). A source id no rule reaches stops the build.
 | `hubbard_autobiography_1911` | book | book |
 | `illinois_courts_caton_biography` | secondary | website |
 | `indiana_absalom_reel_1834` | secondary | website |
+| `jsp_illinois_statutes_gale_imprint` | secondary | website |
 | `kane_geneva_andrew_miles` | secondary | website |
 | `kane_history_geneva_edward_trimble` | book | book |
 | `kane_history_gideon_young_naperville` | secondary | website |
@@ -148,7 +153,6 @@ secondary). A source id no rule reaches stops the build.
 | `nwchicago_elijah_wentworth` | secondary | website |
 | `ohio_firelands_rouse_bly` | secondary | website |
 | `old_settlers_bridges_1883` | book | manuscript |
-| `papers_abraham_lincoln_james_h_collins` | secondary | website |
 | `porter_curtis_parkes` | secondary | website |
 | `racine_old_settlers_elisha_raymond_1871` | book | book |
 | `resident_research_aurora_horr` | book | book |
@@ -217,9 +221,6 @@ secondary). A source id no rule reaches stops the build.
 
 | cohort ticket | people reviewed |
 | --- | ---: |
-| T-0442 | 21 |
-| T-0462 | 23 |
-| T-0463 | 23 |
 | T-0478 | 64 |
 | T-0479 | 73 |
 | T-0480 | 75 |
@@ -229,20 +230,20 @@ secondary). A source id no rule reaches stops the build.
 | T-0484 | 75 |
 | T-0485 | 74 |
 | T-0486 | 11 |
-| T-0493 | 28 |
+| T-0493 | 20 |
 | T-0508 | 76 |
-| T-0509 | 1 |
+| T-0509 | 76 |
 | T-0510 | 76 |
 | **reviewed** | **842** |
 | **not yet reviewed** | **521** |
 
 | research outcome | people |
 | --- | ---: |
-| `no_corroboration_yet` | 463 |
-| `no_corroboration` | 211 |
-| `candidate_identity` | 88 |
-| `corroborated` | 46 |
-| `corroborated_enrichment` | 29 |
+| `no_corroboration_yet` | 388 |
+| `no_corroboration` | 239 |
+| `candidate_identity` | 115 |
+| `corroborated` | 55 |
+| `corroborated_enrichment` | 40 |
 | `candidate` | 5 |
 
 ## The conflicts, and what was ruled on them
@@ -318,14 +319,14 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1333 | no 1840 census row is bridged to this person |
+| no census linkage | 1332 | no 1840 census row is bridged to this person |
 | no address | 1287 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1267 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 918 | one source id on the card and no second category to check it against |
+| rests on one source | 914 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | no research row | 521 | no cohort ticket has reviewed this person; the programme reached 842 of 1363 |
+| candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
-| candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
 | standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 | conflicting evidence, unruled | 0 | the ledger records a conflict against a candidate and no ruling in `data/research/residents/conflict_rulings.json` reaches it (T-0733) |

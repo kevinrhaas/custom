@@ -2951,7 +2951,7 @@
       "name": "Bennet Bailey",
       "person_id": "bailey_bennet",
       "household_id": "hh_bailey_bennet",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Bailey' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Bennet Bailey'. A surname-only agreement is a refusal."

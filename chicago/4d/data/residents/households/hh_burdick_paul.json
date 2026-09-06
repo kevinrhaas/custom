@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Milwaukee history says Paul Burdick occupied a frame house raised there in March 1835. Exact name and date make a regional candidate, while Milwaukee residence conflicts with physical Chicago presence.",
     "evidence_against": "Milwaukee residence; no linking Chicago record.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "buck_pioneer_milwaukee"
+     "buck_pioneer_milwaukee",
+     "chicago_democrat_1833_1835"
     ],
     "candidate_ids": [
      "cand_paul_burdick_of_milwaukee__burdick_paul"
-    ]
+    ],
+    "summary": "Milwaukee history says Paul Burdick occupied a frame house raised there in March 1835. Exact name and date make a regional candidate, while Milwaukee residence conflicts with physical Chicago presence. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],
