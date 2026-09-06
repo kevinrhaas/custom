@@ -66,3 +66,40 @@ merge that only holds on a developer's machine, and the next person to read it w
 **Links:** T-0831 (the drivers, working) · T-0813 (the six build products) · T-0809 (the
 janitor) · T-0802 and T-0820 (the same family — nothing here is visible before a PR merges) ·
 PR #940 (the measurement).
+
+---
+
+## WORKED, 2026-09-06 — acceptance 2, and the measurement that made it possible
+
+The owner added `STEWARD_PAT` to this repo and chose the janitor route.
+`.github/workflows/chicago-4d-pr-lap.yml` + `.github/steward/pr-lap.sh` bring every open
+non-draft, non-`hold` PR up to date and push; they never merge a PR, they only remove the
+reason GitHub calls it conflicting, and auto-merge does the rest.
+
+**The second trap is solved, and this is the part that was not obvious.** Registering dev's
+merge drivers by absolute path is NOT enough on a branch cut before T-0831: git reads `merge=`
+out of the .gitattributes in the WORKING TREE, so an old branch routes nothing to a driver
+however well it is registered. `$GIT_DIR/info/attributes` outranks the tree, so the lap injects
+dev's rules there and merges every branch under them.
+
+    measured on PR #841, cut before T-0831
+      drivers from the branch          REAL(3) + 5 generated  = 8 conflicts
+      drivers from dev, alone          8 conflicts — attributes still the branch's
+      drivers AND attributes from dev  3 conflicts, and all three are real
+
+**What it does NOT fix, measured across all sixteen open PRs on 2026-09-06.** Only #913 and
+#940 came out clean; every other PR has a genuine content disagreement with dev — crosswalks,
+household cards, minting tools, a research baseline — and the lap REFUSES those rather than
+picking a side, leaving one comment naming the files. So the lap is worth having for what it
+stops recurring, not as a drain: **it keeps tomorrow's PRs mergeable; it does not rescue
+today's, which want the runs that own their tickets.**
+
+**Still open under acceptance 1**, and still the better answer: taking the generated artifacts
+off the PR surface entirely would mean no drivers, no attributes injection, no PAT and no lap.
+This ticket stays open for it.
+
+**A follow-up the lap wants**: a DERIVED tier below the generated one, for files a tool
+rebuilds from sources (`identity_master.json`, `source_coverage.json`, `register_1835.json`,
+`street_face_adoptions.json`, the Newberry leads) — #880 already regenerated exactly those by
+hand rather than reconciling them. `*_baseline.json` must stay OUT of it: a ratchet is a
+measurement, and regenerating one silently lowers a bar.
