@@ -167,9 +167,11 @@ the resolved tracts reach. See the next section.
 ## The join to the ground, and the four tracts the town stands on
 
 `tools/resolve_land_tracts.py --build` derives `ground.json`: one row per sale, carrying
-either the polygon it lands on or the reason it does not. **10 of the 375 rows land on
-the ground and reach 63 of the 372 structures; the other 365 rows each say why they do
-not.** The
+either the polygon it lands on or the reason it does not. **346 of the 953 rows land on
+the ground; the other 607 each say why they do not.** Ten of them are country tracts and
+reach 63 of the 375 structures; the other 336 are school-section rows seated on the block
+polygons of T-0797, and they reach no structure at all, for the reason the next section
+gives. The
 section grid is CONSTRUCTED from the one PLSS corner this project holds — State &
 Madison, `G1` — on the plat's own bearing, in nominal one-mile squares, and is carried
 only across the four sections that meet at it. That is liberty **L219**, and the module
@@ -189,11 +191,43 @@ derives rather than a second construction of the same tract. **Whether the entry
 not read here** — it was litigated for years, and this domain records the transaction the
 register prints and nothing about its outcome.
 
-**The two silences, and both are the source's rather than the tool's.** 254 of the
-structures stand in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get
-nothing, because the canal commissioners sold those lots and this database does not hold
-them. And **337 rows — every one of them in section 16, the school section**, sold at the
-October 1833 auction, are refused: 336 because that subdivision's plat is not traced by
-this project, so a block and lot number in it names ground this repo cannot point at, and
-one because the register prints its lot as `06126` and the parser will not guess. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
-the only committed structure standing in section 16.
+## The school section, spent (T-0798)
+
+**337 rows of this register — every one of them in section 16, the school section — were
+read at the October 1833 auction and, until T-0797 traced the plat, not put on the
+ground.** 336 of them now are: each is seated on the block polygon its own number names
+in `data/traces/vectors/school_section_blocks_1834.json`, the 142 blocks measured off
+J. S. Wright's 1834 survey. The one that is not is the row whose lot the register prints
+as `06126`, refused because the parser will not guess at it.
+
+**The block, and not the lot.** The sheet's ruled LOT lines are not traced, so a row that
+buys lot 6 of block 48 is placed on block 48 with its lot carried as read and unplaced. A
+block is about a hectare and the auction sold most of them to several men apiece, so
+**no school-section row reaches a roof**, by rule rather than by geometry — a purchaser of
+some lot in a block did not thereby buy the ground under a particular house. The one
+committed structure standing in section 16, `heacock_house_monroe`, therefore still
+carries no `land_owner`, and that is the honest answer rather than a missing one.
+
+**What the 336 rows say about who owned the south.** The sale ran 22–25 October 1833 and
+**105 purchasers as the register spelled them took ground in 136 of the 142 blocks**. 218
+rows name a lot inside their block and 118 name the block alone. The busiest blocks are
+95 (12 rows), 26 (11), and 48, 81, 82 and 120 (10 apiece) — the northern tiers, nearest
+the town. The keenest buyers are Ebenezer and John Hale on fourteen blocks each, Arthur
+Bronson on thirteen (with eight more under the register's spelling `Broson`), and Hiram
+Pearsons on twelve, who is also the man who enters seventeen ring tracts above.
+
+**Six blocks changed no hands at all: 1, 41, 87, 88, 126 and 142.** Four of those are
+exactly the four Wright writes `Reserved` across and draws no numeral on. **Neither
+reading was made from the other** — one is a plat traced off a sheet in 2026, the other an
+auction list kept in 1833 — and they agree, which is the strongest corroboration the
+block numbering has. `--self-test` holds it. The ticket that asked for this spend expected
+the sheet and the sale to disagree somewhere near the tear at 87/88; they do not, because
+neither block was ever offered.
+
+**A block number the sheet does not carry is refused by name and never nudged onto a
+neighbour.** No row needs that refusal today; the reason is written into `ground.json` and
+the counter is printed at zero, so it is a standing check rather than a dead branch.
+
+**The other silence is the source's rather than the tool's.** 254 of the structures stand
+in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get nothing, because the
+canal commissioners sold those lots and this database does not hold them.
