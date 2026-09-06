@@ -8,6 +8,8 @@
     "cards": 410,
     "records": 410,
     "slivers": 0,
+    "bled_in": 0,
+    "bled_in_borrowing_their_locality": 0,
     "by_locality": {
       "chicago": 120,
       "cook_county": 87,

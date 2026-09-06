@@ -14,8 +14,8 @@
       "title": "History of Chicago, from the earliest period to the present time",
       "author": "A. T. Andreas",
       "date": "1884-1886",
-      "cards": 1231,
-      "chicago_or_cook_cards": 1010,
+      "cards": 1228,
+      "chicago_or_cook_cards": 1008,
       "cards_on_a_lead_surname": 260,
       "chicago_or_cook_cards_on_a_lead_surname": 204,
       "surnames_on_a_lead_in_chicago_or_cook": [
@@ -218,7 +218,7 @@
       "title": "History of Chicago, Illinois",
       "author": "John Moses and Joseph Kirkland",
       "date": "1895",
-      "cards": 337,
+      "cards": 336,
       "chicago_or_cook_cards": 228,
       "cards_on_a_lead_surname": 86,
       "chicago_or_cook_cards_on_a_lead_surname": 67,
@@ -297,7 +297,7 @@
       "title": "Illinois, historical and statistical",
       "author": "John Moses",
       "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
-      "cards": 460,
+      "cards": 458,
       "chicago_or_cook_cards": 202,
       "cards_on_a_lead_surname": 119,
       "chicago_or_cook_cards_on_a_lead_surname": 54,
@@ -466,7 +466,7 @@
       "title": "County histories published by H. F. Kett & Co. and its successors",
       "author": "H. F. Kett & Co.",
       "date": "1877-1880",
-      "cards": 773,
+      "cards": 771,
       "chicago_or_cook_cards": 4,
       "cards_on_a_lead_surname": 146,
       "chicago_or_cook_cards_on_a_lead_surname": 0,
@@ -479,7 +479,7 @@
       "title": "Illinois Society, Sons of the American Revolution — year book",
       "author": "Illinois Society, S.A.R.",
       "date": "1896",
-      "cards": 155,
+      "cards": 154,
       "chicago_or_cook_cards": 0,
       "cards_on_a_lead_surname": 33,
       "chicago_or_cook_cards_on_a_lead_surname": 0,
@@ -501,8 +501,8 @@
       "reachable": "not yet located — search the Internet Archive and HathiTrust"
     }
   ],
-  "cards": 6688,
-  "cards_matching_no_known_work": 3620,
-  "chicago_or_cook_cards_matching_no_known_work": 363,
+  "cards": 6645,
+  "cards_matching_no_known_work": 3585,
+  "chicago_or_cook_cards_matching_no_known_work": 362,
   "note": "A card whose citation matches no pattern in WORKS is counted here and kept in the records; it is the queue of works nobody has named yet. Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, Baldwin, Murray Williamson, Power — which are Illinois and are not Chicago, and which is why the ranking is on the Chicago and Cook County cards."
 }
