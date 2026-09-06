@@ -48,6 +48,19 @@
   ],
   "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
  },
+ "kin": [
+  {
+   "person": "simmons_henry_fitz",
+   "relation": "husband",
+   "household": "hh_logdson_cery",
+   "value": "logdson_cery",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "HENRY SIMMONS AND CERY LOGDSON ARE HUSBAND AND WIFE, AND THE REGISTER MARRIED THEM. Entry 4 of Father St Cyr's marriage register, at Chicago, 21 May 1834: 'Henry Simmons' and 'Cery Logdson', celebrated by J. M. I. Saint Cyr, filed as st_cyr_marriage_004_1 and st_cyr_marriage_004_2 in data/research/church/records/st_cyr_marriages_1834_1839.json. THE DATE IS AT OR BEFORE THE SCENE: they were married on the day this dataset reconstructs. THE GRADE IS WHAT A PARISH REGISTER IS WORTH FOR THE ACT IT RECORDS. The St Cyr register is the contemporary record OF this marriage — the date, the place, the celebrant and both parties by name, written by the priest who performed it — so the relationship is read off a record rather than reasoned to. The rung these two people carry (G2c, inferred) is a ruling about RESIDENCE: a parish register naming somebody is weak evidence that they LIVED in the town and strong evidence that the act happened, and this row claims only the second. THE LIMIT: the reading is transcription_mediated — the Illinois Catholic Historical Review's printed transcription, not the manuscript — and a transcription can mangle a name. It cannot invent a couple. NO IDENTIFICATION IS BEING MADE HERE. Both cards were minted FROM this entry and carry its record id in church_evidence, so the two people this row links are the two people the entry names; nothing is matched by surname. A KINSHIP IS NOT A PLACEMENT: neither household's position, arrival, trade or membership rests on this row."
+  }
+ ],
  "persons": [
   {
    "id": "simmons_henry_fitz",

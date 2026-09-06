@@ -4,6 +4,7 @@
  "generated_by": "tools/old_settlers.py --build",
  "what": "THREE rolls. The register of the Calumet Club's FIRST Old Settlers' reception, 27 May 1879, read off the printed plate of Early Chicago (pages 84-90) — the one roll in the series that carries each man's own year of arrival, birthplace and age. And the two rolls chicagology 063 reprints: the 118 guests present at the Calumet Club's fourth annual Old Settlers' reception of 18 May 1882, and John Wentworth's roll of settlers dead since 1 January 1881 — read as it is printed, matched against the residents layer under declared rules, and carrying the ladder rung this source PROPOSES and does not apply.",
  "scene_relation": "later_evidence_only",
+ "units_in": "people",
  "identity_rules": {
   "OS1": "surname equal AND both sides spell the first forename out AND they agree (a middle initial, where both give one, must agree too) → MERGED. Only an OS1 merge may be written onto a resident record.",
   "OS2A": "surname equal AND the forename initial agrees AND the resident's own record spells the roster's forename somewhere in it — its id, its name or its research note → MERGED. The spelling is the discriminator the roster does not supply.",
@@ -35,16 +36,16 @@
   "deaths": 40,
   "dated_by_the_1879_registry": 159,
   "arrival_at_or_before_1835": 70,
-  "OS1": 36,
+  "OS1": 40,
   "OS2A": 5,
   "OS2": 4,
-  "OS3": 105,
-  "OS4": 14,
+  "OS3": 106,
+  "OS4": 9,
   "OS5": 163,
-  "merged": 41,
+  "merged": 45,
   "probable": 4,
-  "candidate": 14,
-  "refused": 105,
+  "candidate": 9,
+  "refused": 106,
   "unmatched": 163
  },
  "people": [
@@ -71,18 +72,17 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
-    "person_id": null,
-    "candidates": [
-     "adams_william",
-     "adams_william_h"
-    ],
-    "why": "2 bearers of 'adams' share the forename initial 'w'; the roster does not discriminate between them"
+    "rule": "OS1",
+    "outcome": "merged",
+    "person_id": "adams_william_h",
+    "household_id": "hh_adams_william_h",
+    "resident_name": "William Hanford Adams",
+    "resident_grade": "attested",
+    "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
-    "rung": "not_a_resident_on_this_evidence",
-    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514). This man is NOT in the residents layer and registered 1837, Sept. as his date of arrival in 1879. That is a lead for T-0514 to run down in a contemporary record — it is not a mint."
+    "rung": "no_change",
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1837, Sept., registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1837."
    }
   },
   {
@@ -1135,12 +1135,12 @@
     "person_id": "cobb_silas_b",
     "household_id": "hh_goss_cobb",
     "resident_name": "Silas B. Cobb",
-    "resident_grade": "inferred",
+    "resident_grade": "attested",
     "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
     "rung": "no_change",
-    "reason": "the person is already in the residents layer at grade 'inferred'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1833, May 29, registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1833."
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1833, May 29, registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1833."
    }
   },
   {
@@ -2231,7 +2231,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 4 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
+    "why": "the residents layer has 3 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2294,14 +2294,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "candidates": [
-     "harmon_isaac_d",
-     "harmon_isaac"
-    ],
-    "why": "2 bearers of 'harmon' share the forename initial 'i'; the roster does not discriminate between them"
+    "why": "forename agrees but the middle initials disagree ('n' against 'dewey')"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2661,22 +2657,17 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
-    "person_id": null,
-    "candidates": [
-     "hubbard_g",
-     "hubbard_g_s",
-     "hubbard_g_t",
-     "hubbard_gordon_s",
-     "hubbard_gurdon",
-     "hubbard_gurdon_s"
-    ],
-    "why": "6 bearers of 'hubbard' share the forename initial 'g'; the roster does not discriminate between them"
+    "rule": "OS1",
+    "outcome": "merged",
+    "person_id": "hubbard_gurdon",
+    "household_id": "hh_hubbard_gurdon",
+    "resident_name": "Gurdon Saltonstall Hubbard",
+    "resident_grade": "attested",
+    "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
-    "rung": "not_a_resident_on_this_evidence",
-    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514). This man is NOT in the residents layer and registered 1818, Oct. 1 as his date of arrival in 1879. That is a lead for T-0514 to run down in a contemporary record — it is not a mint."
+    "rung": "no_change",
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1818, Oct. 1, registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1818."
    }
   },
   {
@@ -5414,18 +5405,17 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
-    "person_id": null,
-    "candidates": [
-     "adams_william",
-     "adams_william_h"
-    ],
-    "why": "2 bearers of 'adams' share the forename initial 'w'; the roster does not discriminate between them"
+    "rule": "OS1",
+    "outcome": "merged",
+    "person_id": "adams_william_h",
+    "household_id": "hh_adams_william_h",
+    "resident_name": "William Hanford Adams",
+    "resident_grade": "attested",
+    "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
-    "rung": "not_a_resident_on_this_evidence",
-    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514)."
+    "rung": "no_change",
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source."
    }
   },
   {
@@ -5480,7 +5470,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 6 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
+    "why": "the residents layer has 3 bearer(s) of 'allen', none with the forename initial 't'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -5857,7 +5847,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 7 bearer(s) of 'brown', none with the forename initial 'n'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'brown', none with the forename initial 'n'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -6967,7 +6957,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 4 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
+    "why": "the residents layer has 3 bearer(s) of 'hamilton', none with the forename initial 'p'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -7051,7 +7041,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 6 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
+    "why": "the residents layer has 5 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -7876,7 +7866,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'peck', none with the forename initial 'c'; same surname, different forename initial never merges"
+    "why": "the residents layer has 1 bearer(s) of 'peck', none with the forename initial 'c'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8446,7 +8436,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 9 bearer(s) of 'taylor', none with the forename initial 'l'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'taylor', none with the forename initial 'l'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8504,11 +8494,9 @@
     "person_id": null,
     "candidates": [
      "taylor_anson_h",
-     "taylor_anson_n",
-     "taylor_anson_w",
      "taylor_augustine"
     ],
-    "why": "4 bearers of 'taylor' share the forename initial 'a'; the roster does not discriminate between them"
+    "why": "2 bearers of 'taylor' share the forename initial 'a'; the roster does not discriminate between them"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8537,10 +8525,9 @@
     "outcome": "candidate",
     "person_id": null,
     "candidates": [
-     "taylor_e_d",
      "taylor_edmund_d"
     ],
-    "why": "2 bearers of 'taylor' share the forename initial 'e'; the roster does not discriminate between them"
+    "why": "1 bearers of 'taylor' share the forename initial 'e'; the roster does not discriminate between them"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8568,7 +8555,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 9 bearer(s) of 'taylor', none with the forename initial 'f'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'taylor', none with the forename initial 'f'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -9391,20 +9378,17 @@
    "places_in_1835": false,
    "places_in_1835_why": "a death in 1881 or 1882 says nothing about 1835 beyond the club's pre-1840 criterion.",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
-    "person_id": null,
-    "candidates": [
-     "haddock_e",
-     "haddock_e_w",
-     "haddock_edward",
-     "haddock_edward_e"
-    ],
-    "why": "4 bearers of 'haddock' share the forename initial 'e'; the roster does not discriminate between them"
+    "rule": "OS1",
+    "outcome": "merged",
+    "person_id": "haddock_edward",
+    "household_id": "hh_haddock_edward",
+    "resident_name": "Edward H. Haddock",
+    "resident_grade": "attested",
+    "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
-    "rung": "not_a_resident_on_this_evidence",
-    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514)."
+    "rung": "no_change",
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source."
    }
   },
   {
@@ -9857,7 +9841,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'peck', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 1 bearer(s) of 'peck', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

@@ -9,7 +9,7 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "names (T-0523) and cells (T-0534)",
+ "read_pass": "names (T-0523), cells (T-0534), cells reconciled against the second reading (T-0559)",
  "lines_ruled": 31,
  "lines_ruled_with_an_entry": 31,
  "lines_ruled_and_blank": 0,
@@ -208,7 +208,7 @@
  ],
  "grid_note": "HOW THE CELLS WERE LOCATED, because a mark one column off is a person of the wrong age. The 39 vertical rules were fitted as a SINGLE PITCH over the whole width by maximising the darkness profile of the sheet's own body at 39 evenly spaced positions, and the fit was CHECKED AGAINST THE PRINTED HEADING before a single cell was read — column 1 must read 'Under 5', column 27 'Under 10' under FREE COLORED MALES, column 38 '100 and upwards'. The rules of this book lean: measured against the printed heading the same grid sits about 10 px left at the head of the sheet and 10 px right at its foot, so the column positions carry that lean rather than a single x. The 30/31 writing lines were fitted the same way off the NAMES column and checked against the names themselves, and they lean too — on 33S7-9YYJ-9M5 the ruling drops about 45 px between the left edge of the table and its right, which is more than half a row, so a flat row grid puts the free-coloured end of a line into the wrong household. Every cell carrying ink was then read as an image, and every column carrying a mark was read a SECOND time as a montage of its own 30 or 31 cells; that second pass is what separated three name-tails intruding into column 1 of 33S7-9YYJ-9M5 from the tally marks. No cell value here is an OCR output.",
  "cells_state": "partial",
- "cells_note": "A column is committed only where the lines this pass read SUM to the figure the enumerator wrote at the foot of the sheet. `cells` carries the committed columns only; `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A column that is blank down the page and blank in the footing is treated as balanced at zero: the sheet says nothing and the reading says nothing.",
+ "cells_note": "A column is committed only where the lines this pass read SUM to the figure the enumerator wrote at the foot of the sheet. `cells` carries the committed columns only; `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A column that is blank down the page and blank in the footing is treated as balanced at zero: the sheet says nothing and the reading says nothing.\n\nRECONCILED, T-0559. This page was read to the cell twice by runs that did not know about each other — T-0550 (this file) and PR #698 (kept verbatim in ../second_readings/33S7-9YYJ-38.json) — and the two readings were settled here against the image, at 4x to 12x on a grid re-fitted off the sheet's own vertical rules and checked against the printed heading (column 14 reads `Under 5` under FEMALES, column 15 `5 under 10`, column 18 `20 under 30`, column 20 `40 under 50`). Every cell of the page survives both readings unchanged except ONE, and nothing on this page moved. THE CELL. Line 13 (Michael Duffy), column 15: this file reads a 4 and PR #698 a 1. It is a 4. At 12x the mark is a numeral, not a tally — a filled angular head with a long stem crossing it and descending to the lower left — where every tally stroke on the sheet, including the ones in column 14 on the lines above and below it, is a single thin slant. Column 15 therefore reads 12. THE FOOTINGS. Column 15: badly blotted, and PR #698 read the blot as a single 9; it is two glyphs — a long clean slant clear of the blot on the left, then the filled bowl — so 12, alternate 9, and 12 is what the twelve cells sum to. Column 18: a 2 and then a straight slant with a hooked head, which is this hand's 1 and not its 0 (compare the closed narrow loops in the 10s at columns 2 and 17 of printed page 229) — 21, alternate 20, so the column stays unbalanced at 20 read. Column 20: one glyph, a stroke entering from the upper right into a full open bowl — the same construction as the 5s at columns 15 and 21 of printed page 229 — so 5, alternate 3, and the column stays unbalanced at 3 read. WHAT THIS PAGE COST THE OTHER READING. All three footings go this file's way and all 37 committed columns stand; PR #698 read 9, 20 and 3, which balanced columns 15, 18 and 20 where this file balances only 15. A column that balances is necessary and not sufficient (T-0532): #698's column 15 balanced at 9 = 9 and was wrong in both halves at once.",
  "cells_columns_committed": [
   1,
   2,
@@ -417,7 +417,9 @@
    "printed_total_reading": "medium",
    "balanced": true,
    "residual": 0,
-   "printed_total_alternate_readings": null,
+   "printed_total_alternate_readings": [
+    9
+   ],
    "read_sum_matches_an_alternate_reading": false
   },
   {
@@ -447,9 +449,9 @@
    "band": "free white females 20 under 30",
    "read_sum": 20,
    "printed_total": 21,
-   "printed_total_reading": "low",
+   "printed_total_reading": "medium",
    "balanced": false,
-   "residual": -1,
+   "residual": 1,
    "printed_total_alternate_readings": [
     20
    ],
@@ -473,7 +475,7 @@
    "printed_total": 5,
    "printed_total_reading": "medium",
    "balanced": false,
-   "residual": -2,
+   "residual": 2,
    "printed_total_alternate_readings": [
     3
    ],

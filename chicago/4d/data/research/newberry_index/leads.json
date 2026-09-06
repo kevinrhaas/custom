@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "6f9631e431c08d8dc00010a02623ad803f43d02efbe53fff60549fb17505bf21",
+    "fingerprint": "36ca5aa705f747dc8d5e27288067c838626a08471574afff6d859045707ec4c9",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 788,
-      "residents": 1404,
+      "residents": 1362,
       "structures": 374,
       "voters": 345
     }
@@ -65,7 +65,7 @@
       "candidates": [
         {
           "id": "abbot_8_g",
-          "name": "8. G. Abbot",
+          "name": "[?] G. Abbot",
           "rule": "OCR variant (0.91 similarity to 'abbot')"
         },
         {
@@ -193,11 +193,6 @@
           "rule": "OCR variant (0.89 similarity to 'adams')"
         },
         {
-          "id": "adams_william",
-          "name": "William Adams",
-          "rule": "OCR variant (0.89 similarity to 'adams')"
-        },
-        {
           "id": "adams_william_h",
           "name": "William Hanford Adams",
           "rule": "OCR variant (0.89 similarity to 'adams')"
@@ -322,11 +317,6 @@
         {
           "id": "adams_james",
           "name": "James Adams",
-          "rule": "exact surname"
-        },
-        {
-          "id": "adams_william",
-          "name": "William Adams",
           "rule": "exact surname"
         },
         {
@@ -564,21 +554,6 @@
         {
           "id": "allen_edward_richards",
           "name": "Edward Richards Allen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "allen_james",
-          "name": "James Allen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "allen_lieut",
-          "name": "Lieut Allen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "allen_lieut_j",
-          "name": "Lieut J Allen",
           "rule": "exact surname"
         },
         {
@@ -3560,11 +3535,6 @@
           "rule": "OCR variant (0.89 similarity to 'brown')"
         },
         {
-          "id": "brown_w_h",
-          "name": "W H Brown",
-          "rule": "OCR variant (0.89 similarity to 'brown')"
-        },
-        {
           "id": "brown_william_h",
           "name": "William H Brown",
           "rule": "OCR variant (0.89 similarity to 'brown')"
@@ -4452,11 +4422,6 @@
           "rule": "exact surname"
         },
         {
-          "id": "brown_w_h",
-          "name": "W H Brown",
-          "rule": "exact surname"
-        },
-        {
           "id": "brown_william_h",
           "name": "William H Brown",
           "rule": "exact surname"
@@ -4634,11 +4599,6 @@
         {
           "id": "brown_mrs_rufus",
           "name": "Mrs Rufus Brown",
-          "rule": "OCR variant (0.91 similarity to 'brown')"
-        },
-        {
-          "id": "brown_w_h",
-          "name": "W H Brown",
           "rule": "OCR variant (0.91 similarity to 'brown')"
         },
         {
@@ -6973,11 +6933,6 @@
           "rule": "exact surname"
         },
         {
-          "id": "cobb_s_b",
-          "name": "S B Cobb",
-          "rule": "exact surname"
-        },
-        {
           "id": "cobb_silas_b",
           "name": "Silas B. Cobb",
           "rule": "exact surname"
@@ -7075,11 +7030,6 @@
         {
           "id": "cobb_l_b",
           "name": "L B Cobb",
-          "rule": "OCR variant (0.89 similarity to 'cobb')"
-        },
-        {
-          "id": "cobb_s_b",
-          "name": "S B Cobb",
           "rule": "OCR variant (0.89 similarity to 'cobb')"
         },
         {
@@ -9580,11 +9530,6 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "dole_g_w",
-          "name": "G W Dole",
-          "rule": "exact surname"
-        },
-        {
           "id": "dole_george_w",
           "name": "George Washington Dole",
           "rule": "exact surname"
@@ -9978,11 +9923,6 @@
       ],
       "layer": "residents",
       "candidates": [
-        {
-          "id": "dole_g_w",
-          "name": "G W Dole",
-          "rule": "OCR variant (0.89 similarity to 'dole')"
-        },
         {
           "id": "dole_george_w",
           "name": "George Washington Dole",
@@ -11494,23 +11434,8 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "fullerton_a_n",
-          "name": "A N Fullerton",
-          "rule": "exact surname"
-        },
-        {
-          "id": "fullerton_alex_n",
-          "name": "Alex N Fullerton",
-          "rule": "exact surname"
-        },
-        {
           "id": "fullerton_alexander",
           "name": "Alexander N. Fullerton",
-          "rule": "exact surname"
-        },
-        {
-          "id": "fullerton_alexander_m",
-          "name": "Alexander M Fullerton",
           "rule": "exact surname"
         }
       ],
@@ -13043,23 +12968,8 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "haddock_e",
-          "name": "E Haddock",
-          "rule": "exact surname"
-        },
-        {
-          "id": "haddock_e_w",
-          "name": "E W Haddock",
-          "rule": "exact surname"
-        },
-        {
           "id": "haddock_edward",
           "name": "Edward H. Haddock",
-          "rule": "exact surname"
-        },
-        {
-          "id": "haddock_edward_e",
-          "name": "Edward E Haddock",
           "rule": "exact surname"
         },
         {
@@ -13389,11 +13299,6 @@
           "rule": "exact surname"
         },
         {
-          "id": "hamilton_r_j",
-          "name": "R J Hamilton",
-          "rule": "exact surname"
-        },
-        {
           "id": "hamilton_richard_j",
           "name": "Richard Jones Hamilton",
           "rule": "exact surname"
@@ -13660,11 +13565,6 @@
         {
           "id": "harmon_elijah_d",
           "name": "Dr Elijah Dewey Harmon",
-          "rule": "exact surname"
-        },
-        {
-          "id": "harmon_isaac",
-          "name": "Isaac Harmon",
           "rule": "exact surname"
         },
         {
@@ -14912,33 +14812,8 @@
           "rule": "exact surname"
         },
         {
-          "id": "hubbard_g",
-          "name": "G Hubbard",
-          "rule": "exact surname"
-        },
-        {
-          "id": "hubbard_g_s",
-          "name": "G S Hubbard",
-          "rule": "exact surname"
-        },
-        {
-          "id": "hubbard_g_t",
-          "name": "G T Hubbard",
-          "rule": "exact surname"
-        },
-        {
-          "id": "hubbard_gordon_s",
-          "name": "Gordon S Hubbard",
-          "rule": "exact surname"
-        },
-        {
           "id": "hubbard_gurdon",
           "name": "Gurdon Saltonstall Hubbard",
-          "rule": "exact surname"
-        },
-        {
-          "id": "hubbard_gurdon_s",
-          "name": "Gurdon S Hubbard",
           "rule": "exact surname"
         },
         {
@@ -16862,21 +16737,6 @@
       ],
       "layer": "residents",
       "candidates": [
-        {
-          "id": "kimberly_e_s",
-          "name": "E S Kimberly",
-          "rule": "OCR variant (0.88 similarity to 'kimberly')"
-        },
-        {
-          "id": "kimberly_ed_s",
-          "name": "Ed S Kimberly",
-          "rule": "OCR variant (0.88 similarity to 'kimberly')"
-        },
-        {
-          "id": "kimberly_edmund_l",
-          "name": "Edmund L Kimberly",
-          "rule": "OCR variant (0.88 similarity to 'kimberly')"
-        },
         {
           "id": "kimberly_ira",
           "name": "Ira Kimberly",
@@ -20935,26 +20795,6 @@
           "rule": "exact surname"
         },
         {
-          "id": "owen_t_j_v",
-          "name": "T J V Owen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "owen_th_j_v",
-          "name": "Th J V Owen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "owen_thomas",
-          "name": "Thomas Owen",
-          "rule": "exact surname"
-        },
-        {
-          "id": "owen_thomas_j_v",
-          "name": "Thomas J V Owen",
-          "rule": "exact surname"
-        },
-        {
           "id": "owen_thomas_jv",
           "name": "Thomas Jefferson Vance Owen",
           "rule": "exact surname"
@@ -21019,26 +20859,6 @@
         {
           "id": "owen_j_v",
           "name": "J V Owen",
-          "rule": "OCR variant (0.89 similarity to 'owen')"
-        },
-        {
-          "id": "owen_t_j_v",
-          "name": "T J V Owen",
-          "rule": "OCR variant (0.89 similarity to 'owen')"
-        },
-        {
-          "id": "owen_th_j_v",
-          "name": "Th J V Owen",
-          "rule": "OCR variant (0.89 similarity to 'owen')"
-        },
-        {
-          "id": "owen_thomas",
-          "name": "Thomas Owen",
-          "rule": "OCR variant (0.89 similarity to 'owen')"
-        },
-        {
-          "id": "owen_thomas_j_v",
-          "name": "Thomas J V Owen",
           "rule": "OCR variant (0.89 similarity to 'owen')"
         },
         {
@@ -21672,16 +21492,6 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "peck_p_f",
-          "name": "P F Peck",
-          "rule": "exact surname"
-        },
-        {
-          "id": "peck_p_f_w",
-          "name": "P F W Peck",
-          "rule": "exact surname"
-        },
-        {
           "id": "peck_philip",
           "name": "Philip F. W. Peck",
           "rule": "exact surname"
@@ -21826,7 +21636,7 @@
       "candidates": [
         {
           "id": "perry_a_8",
-          "name": "A. 8. Perry",
+          "name": "A. [?] Perry",
           "rule": "exact surname"
         },
         {
@@ -21885,7 +21695,7 @@
       "candidates": [
         {
           "id": "perry_a_8",
-          "name": "A. 8. Perry",
+          "name": "A. [?] Perry",
           "rule": "OCR variant (0.89 similarity to 'perry')"
         },
         {
@@ -24674,11 +24484,6 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "snow_g_w",
-          "name": "G W Snow",
-          "rule": "exact surname"
-        },
-        {
           "id": "snow_george_w",
           "name": "George W. Snow",
           "rule": "exact surname"
@@ -25454,23 +25259,8 @@
           "rule": "exact surname"
         },
         {
-          "id": "taylor_anson_n",
-          "name": "Anson N Taylor",
-          "rule": "exact surname"
-        },
-        {
-          "id": "taylor_anson_w",
-          "name": "Anson W Taylor",
-          "rule": "exact surname"
-        },
-        {
           "id": "taylor_augustine",
           "name": "Augustine Deodat Taylor",
-          "rule": "exact surname"
-        },
-        {
-          "id": "taylor_e_d",
-          "name": "E D Taylor",
           "rule": "exact surname"
         },
         {

@@ -133,6 +133,7 @@ GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
 EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     BARE_TOWN, FEMALE_TITLES, FIRM, MALE_TITLES, PAPERS, SCENE_DATE, UNCERTAIN,
     cited, display, dumps, household_id, in_town_places, issue_of, load,
@@ -593,12 +594,31 @@ def carry_later_trade(doc: dict, existing: dict) -> None:
 
 
 def carry_research(doc: dict, existing: dict) -> None:
-    """Keep a `resident_research` block another pass wrote onto one of these people."""
+    """Keep what another pass wrote onto one of these people: the `resident_research`
+    block, and the `ladder_rule` `tools/spend_ladder_rungs.py` spends onto the card.
+
+    T-0720. The rung is the REASON for a grade this pass already wrote and asserts
+    nothing this pass derives, so it survives a re-mint the way the research block does.
+    It goes back immediately after `grade`, which is where the spend writes it and where
+    the civic mint writes its own, so `--check` stays byte-identical either way round.
+    """
     by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
     for person in doc.get("persons") or []:
         prior = by_id.get(person.get("id")) or {}
         if prior.get("resident_research") and "resident_research" not in person:
             person["resident_research"] = prior["resident_research"]
+        rung = prior.get("ladder_rule")
+        if not rung or "ladder_rule" in person:
+            continue
+        rebuilt = {}
+        for key, value in person.items():
+            rebuilt[key] = value
+            if key == "grade":
+                rebuilt["ladder_rule"] = rung
+        if "ladder_rule" not in rebuilt:
+            rebuilt["ladder_rule"] = rung
+        person.clear()
+        person.update(rebuilt)
 
 
 def build(preload: dict | None = None):
@@ -612,7 +632,6 @@ def build(preload: dict | None = None):
     accepted, refusals = mint(docs, index)
 
     files = {}
-    rows = []
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
         doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
@@ -651,34 +670,15 @@ def build(preload: dict | None = None):
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
+    # as this pass leaves it, and the derivation reads all of it.
+    final = {path: doc for path, doc in docs.items() if path not in mine_paths}
+    final.update({path: json.loads(text) for path, text in files.items()
+                  if path != INDEX})
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 

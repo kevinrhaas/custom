@@ -54,6 +54,7 @@
    "name": "John Holbrook",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "shoemaker",
     "confidence": "attested",

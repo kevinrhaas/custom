@@ -82,6 +82,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R4",
+     "cluster": "taylor-william",
+     "weighed_against": [
+      "taylor_william_h"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Both are in chicago_democrat_1833_1835 and the middle initial H is printed on only one of them, so nothing contradicts.",
+     "against_merge": "Neither card documents the man. Taylor is a common surname in this town — it already holds Anson, Charles H. and Edmund D. — and a bare forename with no anchor is refused by R4. T-0696."
+    }
    ]
   }
  ],

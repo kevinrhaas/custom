@@ -109,6 +109,9 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -227,6 +230,31 @@ def surname(name: str) -> str:
     return picked.lower().strip("'").replace("'", "")
 
 
+UNREAD = "[?]"
+"""The corpus's own marker for an initial the printing did not deliver.
+
+It is not invented here. The Chicago list of 1 January 1834 is already carried with
+it — `[?] Blodget`, `[?] T. Miner`, `[?] B. Northrop`, `[?] Gay` — under that
+column's stated rule that a bare surname with no initial is minted with the marker
+"rather than joined to anybody already in the gazetteer"
+(data/research/newspapers/extracted/chicago_democrat_1834_01_28.json). It says the
+character was not read. It never says which character it was.
+"""
+
+
+def unread_initial(token: str) -> bool:
+    """Is this token an initial slot the reading did not deliver? (T-0721)
+
+    A DIGIT IS NEVER PART OF A NAME — the same principle `split_name` states in
+    consolidate_resident_evidence.py, where it is the guard that stops the 1843
+    directory's `Reading Room (Y. M. A.), 37 Clark, 2d story` minting a person. Here
+    it lands on three of the town's own cards, whose middle initial the scan set as
+    `8.` (an S), `8.` again, and `I1.` (an H): `Abbot, 8. G.`, `Perry A. 8.`,
+    `Gabbs, James I1.`.
+    """
+    return any(ch.isdigit() for ch in token)
+
+
 def display(name: str) -> str:
     """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one.
 
@@ -234,19 +262,50 @@ def display(name: str) -> str:
     Mills`. Only the ORDER of the printed tokens moves, and the stop that followed
     the leading surname goes with it — no token is recased, respelled or dropped,
     because every one of these names is an OCR reading and this pass does not
-    correct readings (see docs/RESEARCH/letter-list-reading-suspicions.md).
+    correct readings (the register of the ones that look misread is
+    tools/register_letter_list_suspicions.py, written to
+    data/research/residents/letter_list_reading_suspicions.json).
+
+    T-0721 ADDS THE ONE THING A CARD MAY SAY ABOUT A READING, WHICH IS THAT THERE
+    ISN'T ONE. An initial the scan set as a digit is replaced by `UNREAD`, and by
+    nothing else: the surname is never touched, no letter is supplied, and the
+    verbatim printing stays where verbatim printings belong — in the extracted
+    column and in the gazetteer's `as_printed`, both of which this pass leaves
+    alone. What changes is that the card stops asserting `8.` is a name.
     """
     if "," in name:
         head, _, tail = name.partition(",")
         tail = tail.strip()
-        return f"{tail} {head.strip()}".strip() if tail else head.strip()
+        shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
+        return mark_unread(shown, name)
     tokens = name.split()
     if len(tokens) >= 2 and surname_is_first_token(name):
         moved = tokens[0]
         if full_word(moved) and moved.endswith("."):
             moved = moved[:-1]
-        return " ".join(tokens[1:] + [moved])
-    return name.strip()
+        return mark_unread(" ".join(tokens[1:] + [moved]), name)
+    return mark_unread(name.strip(), name)
+
+
+def mark_unread(shown: str, printed: str) -> str:
+    """Replace every unread initial in an ordered display name with `UNREAD`.
+
+    THE FAMILY NAME IS NEVER MARKED. A card whose surname is the unreadable token
+    has lost the only thing that could ever match it to anybody, and blanking it
+    would turn a bad reading into a nameless record; that is a different fault and
+    this pass leaves it exactly as printed for the register to carry. Nothing in the
+    corpus is in that state today, and the assertion is here so that if one ever is,
+    it is refused rather than quietly emptied.
+    """
+    if not any(unread_initial(t) for t in shown.split()):
+        return shown
+    fam = surname(printed)
+    return " ".join(
+        UNREAD if (unread_initial(token)
+                   and token.lower().strip("'.,").replace("'", "") != fam)
+        else token
+        for token in shown.split()
+    )
 
 
 def slug(name: str) -> str:
@@ -613,8 +672,23 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
                 + (f", reprinted over {len(groups[0])} consecutive issues"
                    if len(groups[0]) > 1 else "")
                 + f" — dated {span}. ")
+    unread = (
+        f"AN INITIAL THIS PROJECT CANNOT READ, MARKED AS ONE. The card shows "
+        f"'{name}': the scan sets a DIGIT where the middle initial goes, and a digit "
+        f"is never part of a name, so the character is carried as {UNREAD} — the "
+        f"marker the Chicago list of 1 January 1834 already uses for an initial the "
+        f"printing did not deliver. NO LETTER IS SUPPLIED. The deposit holds two "
+        f"transcriptions of this issue and no page image, and the alternate carries "
+        f"no letter list at all, so there is no cleaner impression here to settle it "
+        f"against and the project declines to guess (T-0721; the suspicion is "
+        f"registered, ungraded, at data/research/residents/"
+        f"letter_list_reading_suspicions.json). The verbatim setting is untouched "
+        f"and quoted above; what has stopped is the card asserting that setting is a "
+        f"name. A pass that reaches the page images settles it and this marker goes. "
+    ) if UNREAD in name else ""
     person["note"] = (
         held
+        + unread
         + f"Nothing else in the corpus names this person: no trade, no street, no "
         f"household, no arrival, so every other claim here is written unattested in its own "
         f"block. WHAT THAT IS WORTH: a correspondent believed a person of this name "
@@ -708,7 +782,6 @@ def build(preload: dict | None = None):
     accepted, refusals = mint(docs, index)
 
     files = {}
-    rows = []
     seen: set[str] = set()
     for cand, gaz in accepted:
         doc = record(cand, gaz, docs, seen)
@@ -716,49 +789,15 @@ def build(preload: dict | None = None):
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            # The manifest's own flag for the evidence strength, so the Evidence
-            # panel can hold these apart from the town's evidenced households
-            # WITHOUT fetching 900 records or reading a mint tool's id prefix
-            # (T-0379: they are most of the list now, and a visitor has to be able
-            # to tell which three quarters are names alone at a glance).
-            "letter_list_only": True,
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-    # The count sentence's own half of the parent's ask: the panel says how many
-    # of the people it lists are known only from the post office, so the evidence
-    # strength is legible before a visitor opens anything.
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
+    # as this pass leaves it, and the derivation reads all of it.
     final = {path: doc for path, doc in docs.items() if path not in mine_paths}
     final.update({path: json.loads(text) for path, text in files.items()
                   if path != INDEX})
-    index["counts"]["letter_list_only"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("letter_list_only"))
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -1001,7 +1040,7 @@ def gate() -> int:
 NAME_READING_CASES = (
     # printed as the post office set it,   surname,     the card's display name
     # --- surname printed FIRST, no comma to say so (T-0638, fault A) -----------
-    ("Perry A. 8.", "perry", "A. 8. Perry"),
+    ("Perry A. 8.", "perry", "A. [?] Perry"),
     ("Mason Sabrina A.", "mason", "Sabrina A. Mason"),
     ("merrich J. B.", "merrich", "J. B. merrich"),
     ("Mills Joel C.", "mills", "Joel C. Mills"),
@@ -1019,6 +1058,13 @@ NAME_READING_CASES = (
     ("Regera John V.", "regera", "John V. Regera"),
     ("Oakley Benjamin W.", "oakley", "Benjamin W. Oakley"),
     ("Nelts Wm.", "nelts", "Wm. Nelts"),
+    # --- an initial the scan did not deliver (T-0721) --------------------------
+    # The surname survives, the initial does not, and no letter is supplied for it.
+    ("Abbot, 8. G.", "abbot", "[?] G. Abbot"),
+    ("Gabbs, James I1.", "gabbs", "James [?] Gabbs"),
+    # …and the clusters that are ugly but are still LETTERS stay exactly as printed,
+    # because this pass marks what it cannot read and does not tidy what it can.
+    ("Conkiin, Robert I.", "conkiin", "Robert I. Conkiin"),
     # …and the three the printing gives no forename at all
     ("McLoud I.", "mcloud", "I. McLoud"),
     ("Willinm G.", "willinm", "G. Willinm"),
@@ -1030,9 +1076,14 @@ NAME_READING_CASES = (
     ("John Bates Jr.", "bates", "John Bates Jr."),
     ("Joshua Hathaway jr.", "hathaway", "Joshua Hathaway jr."),
     # a mangled INITIAL beside a sound surname is fault C, not fault A: the id is
-    # already right and this rule must leave both of them alone
-    ("8. G. Abbot", "abbot", "8. G. Abbot"),
-    ("James I1. Gabbs", "gabbs", "James I1. Gabbs"),
+    # already right and T-0638's reordering rule must leave both of them alone.
+    # T-0721 marks the initial as unread — from EITHER printed order, and the marked
+    # form is then a fixed point, which is what lets a card carry it (three rows).
+    ("8. G. Abbot", "abbot", "[?] G. Abbot"),
+    ("James I1. Gabbs", "gabbs", "James [?] Gabbs"),
+    ("[?] G. Abbot", "abbot", "[?] G. Abbot"),
+    ("A. [?] Perry", "perry", "A. [?] Perry"),
+    ("James [?] Gabbs", "gabbs", "James [?] Gabbs"),
     # --- the comma the papers do sometimes print -------------------------------
     ("Hail, Aifred", "hail", "Aifred Hail"),
     ("Foot, S.", "foot", "S. Foot"),
@@ -1054,6 +1105,11 @@ SLUG_CASES = (
     # a space is not an apostrophe: St Cyr slugs exactly as it always has
     ("Rev. John Mary Irenaeus St Cyr", "john_mary_irenaeus_st_cyr",
      "cyr_john_mary_irenaeus_st"),
+    # T-0721: the marker changes the DISPLAY name and nothing the id is built from,
+    # which is the whole reason it may be applied to a committed record at all.
+    ("Abbot, 8. G.", "abbot_8_g", "abbot_8_g"),
+    ("Perry A. 8.", "perry_a_8", "perry_a_8"),
+    ("Gabbs, James I1.", "gabbs_james_i1", "gabbs_james_i1"),
 )
 
 

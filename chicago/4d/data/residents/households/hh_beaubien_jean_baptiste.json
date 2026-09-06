@@ -57,12 +57,26 @@
   ],
   "note": "He was the claimant of the Fort Dearborn reservation in 1835 and the residence was his until 1839."
  },
+ "kin": [
+  {
+   "person": "beaubien_jean_baptiste",
+   "relation": "father",
+   "household": "hh_beaubien_madore",
+   "value": "beaubien_madore",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE MIRROR OF THE ROW ON hh_beaubien_madore. MADORE BEAUBIEN IS THE SON OF COL. JEAN BAPTISTE BEAUBIEN, AND HIS OWN CARD HAS SAID SO IN PROSE SINCE IT WAS WRITTEN: 'He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman' — Andreas, History of Chicago vol. 1, the same reading that grades the rest of that card. NOTHING IS UPGRADED HERE. The claim was already attested on the card and already cited to andreas_1884_v1; this row only puts it where a query can reach it, because a sentence in a note is not a relationship any tool can read. THE IDENTIFICATION IS NOT A SURNAME MATCH: the town holds one Jean Baptiste Beaubien, the card names him with all three forenames and a rank, and the 1831 county licence Andreas prints has Madore selling goods 'alongside Alexander Robinson and his father'. WHAT IT DOES NOT CLAIM: his mother Mah-naw-bun-no-quah is not a person in this dataset and no row is written for her, and this row says nothing about where either man lived."
+  }
+ ],
  "persons": [
   {
    "id": "beaubien_jean_baptiste",
    "name": "Col. Jean Baptiste Beaubien",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "occupation": {
     "value": "trader",
@@ -74,6 +88,7 @@
    },
    "sources": [
     "andreas_1884_v1",
+    "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad"
    ],
    "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Poll list of the first election of the Board of Trustees of the Town of Chicago, 10 August 1833 — “Beaubien, J. B.” (poll_1833_003, line 24); Poll list of 1835 — “Beaubien, Col. J. B.” (poll_1835_005, line 290). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Beaubien' agrees with the entry's forenames; 4 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json).",
@@ -91,6 +106,45 @@
      "andreas_1884_v1"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "J. B. Beaubien",
+     "locator": "chicago_democrat_1833_12_17#c007",
+     "record_id": "person_j_b_beaubien",
+     "describes_date": "1833-12-17",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "J. B[t]. Beaubien",
+     "locator": "chicago_democrat_1834_04_16#c009",
+     "record_id": "person_j_b_t_beaubien",
+     "describes_date": "1834-04-16",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Beaubien, John B.",
+     "locator": "chicago_democrat_1834_09_03#c010",
+     "record_id": "person_beaubien_john_b",
+     "describes_date": "1834-09-03",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C2",
+    "cluster": "beaubien",
+    "cards": [
+     "beaubien_j_b",
+     "beaubien_john_b"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   },
   {
@@ -123,7 +177,20 @@
      "fergus_chicago_directory_1843"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D1",
+     "cluster": "beaubien",
+     "weighed_against": [
+      "beaubien_john_s"
+     ],
+     "for_merge": "The surname, and in Josette's case one letter of a forename.",
+     "against_merge": "T-0839 names John S. Beaubien as a second man, not a duplicate of Jean Baptiste — the ticket's own worked warning. Josette LaFramboise Beaubien is Jean Baptiste's wife and is already a member of his household record; she is in this candidate cluster only because her forename begins with the letter J. and 'J. B. Beaubien' prints an initial."
+    }
+   ]
   },
   {
    "id": "beaubien_household_unnamed",

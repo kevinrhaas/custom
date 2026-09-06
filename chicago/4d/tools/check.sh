@@ -94,6 +94,26 @@ step "…and its own assertions still fire when broken" \
 step "the QUEUE.md merge driver still does what .gitattributes promises" \
   node tools/merge-queue-selftest.mjs
 
+# T-0817, AND IT IS A GATE BECAUSE A DRIVER CANNOT REACH FAR ENOUGH. The ranking
+# has been lost three times: 2026-09-04 ("the queue got massively reordered"),
+# again on 2026-09-05 via PR #801 — a branch cut long before the re-rank, which
+# took dev from the restored 415-line file back to the 2026-08-30 revision — and a
+# third time to the drain band (#909). The driver above REFUSED the #801 merge and
+# it made no difference, for the reason T-0817 names exactly: GitHub does not run
+# this repository's merge drivers, so a squash-merge on the server never loads one.
+# The driver protects a local `git merge` and cannot protect the thing that lands.
+#
+# check.sh is the required `gate` on dev's ruleset, so this refuses the merge
+# BUTTON, which is the only place the regression actually arrives. What it asserts
+# is not a judgement about ranking — it is that every re-rank the base already
+# records is still present here. A branch missing one predates it, and merging it
+# would put the old order back.
+step "the owner's queue ranking has not gone backwards" \
+  node tools/check_queue_order.mjs
+
+step "…and its own assertions still fire when broken" \
+  node tools/check_queue_order-selftest.mjs
+
 # THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
 # is seven repairs long, five of them in one day when `union` spliced one entry
 # into another and left valid JavaScript nobody noticed. The driver never works
@@ -155,6 +175,30 @@ step "West Division approaches parcel matches its recipe" \
 # plausible-looking number sitting beside a derived grid.
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
+
+# The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
+# minting passes and four rewriting passes each rebuilt the SLICE of
+# data/residents/index.json they owned and left the rest verbatim, so a household no
+# pass owned could be regraded elsewhere and keep a row saying something else for
+# ever - and the counts, summed from the rows, inherited the error. Landing #797
+# found 18 such households by hand. This re-derives every row and every derived
+# count from data/residents/households/*.json and fails if the committed file is not
+# what the derivation produces.
+step "the residents manifest re-derives from the household cards" \
+  python3 tools/rebuild_resident_index.py --check
+
+# The kinship the corpus already states (T-0734). The audit that opened that ticket
+# found 14 of 1,404 people related to anybody at all, and the reason was never that
+# the sources were silent: the register marries couples this town holds both halves
+# of, and nothing read it. The survey is DERIVED from the corpus, so it grows when a
+# reading lands, and this step is what makes that growth impossible to ignore - a
+# newly stated kinship whose two ends the town holds is a proposal, and a proposal
+# nobody has ruled on is a red build rather than a thing to notice one day.
+step "every stated kinship the corpus offers has been ruled on" \
+  python3 tools/survey_stated_kin.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/survey_stated_kin.py --self-test
 
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
@@ -1321,6 +1365,18 @@ step "no research domain reads further ahead of the town than its baseline" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
 
+# T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
+# RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
+# of the tree at the moment the cohort was fixed. The reservation is re-derived and must
+# match. The snapshot is not: research landing on a member is what the cohort is FOR, and
+# gating it made a finished pass fail its own build (dev went red on 2026-09-05 that way).
+# The other half of the same contract is on the write path — `freeze.write()` carries the
+# committed snapshot forward, so regenerating a manifest can no longer overwrite the freeze
+# with today's tree, which is how "this person came in at `inferred` on one source" was
+# being lost silently, without a diff anybody read.
+step "the cohort freeze's own assertions still fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.
@@ -1428,6 +1484,39 @@ step "…and none of them claims more than a person and a reading" \
 
 step "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
+
+# T-0720, the third spend of the same proposal. The two modes above own the 531 cards
+# that carry a `ladder_rule`; nothing owned the other 873, and T-0692's --coverage
+# measured 864 of them carrying a rung the ladder HAD ruled and no pass had ever
+# written down. This pass writes it — one scalar, only where the ladder AGREES with the
+# grade the card already carries, never a downgrade — and puts every disagreement on the
+# owner's conflict list instead. Gated because the whole value of a rung on a card is
+# that it is DERIVED: a hand-written one would be a grade's reason invented rather than
+# ruled, and `--check` is what says so.
+step "the ladder's ruled rungs re-derive on the cards no mint owns" \
+  python3 tools/spend_ladder_rungs.py --check
+
+step "…and none of them moves a grade to close the gap" \
+  python3 tools/spend_ladder_rungs.py --gate
+
+step "…and that pass's own refusals still fire when broken" \
+  python3 tools/spend_ladder_rungs.py --self-test
+
+# T-0839. THE MINTS' TEST FOR "the town already carries this person" IS THE NAME AS THE
+# SOURCE PRINTED IT, so a man his sources spell six ways was minted six times: Gurdon
+# Saltonstall Hubbard stood on six cards and Lieut. James Allen on four, and only the one
+# card the ladder never reached knew Allen was an army officer. The merges landed on
+# 2026-09-05 under written rulings. This gate is the half that stops it recurring — it
+# re-derives the candidate clusters from the committed cards and FAILS while any card in
+# one carries no written ruling, so a pass that re-splits an identity says so here rather
+# than in the town's population count. It also holds the promise the merge made: every
+# folded record still in the tree, every folded person_id still resolving, and every
+# source a folded card brought still cited by the survivor.
+step "one person, one card — every duplicate cluster carries a written ruling" \
+  python3 tools/consolidate_town_cards.py --check
+
+step "…and that pass's own assertions still fire when broken" \
+  python3 tools/consolidate_town_cards.py --self-test
 
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
@@ -1594,11 +1683,32 @@ step "…and that pass writes two fields, moves no grade and repeats without dri
 # reaching its card, and a card that carries the paragraph for a ruling the crosswalk never
 # made. The paragraph says PURCHASE and never residence, because the register's own
 # Residence column reads COOK, ILLINOIS or UNKNOWN on every one of these rows.
-step "…and the land tract sales are on the 31 cards they name" \
+#
+# T-0677 added a THIRD direction, because two was not enough to keep the cards right. This
+# tool was rewritten between passes 2 and 3 and the earlier version is still pushed on a
+# branch; running it against dev gives every one of the 31 cards a second paragraph about
+# the same register, and this step was GREEN on exactly that tree. A card says the register
+# once — once written twice, and once by a superseded pass left standing beside this one.
+step "…and the land tract sales are on the 31 cards they name, once each" \
   python3 tools/spend_land_sales.py --check
 
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_land_sales.py --self-test
+
+# T-0681. The third list in the same volume as the two above: the Fort Dearborn Addition lot
+# sale of 10-24 June 1839, printed pages 47-49. T-0666 crosswalked its 100 bidders and 11 of
+# them are people this town holds a card for; not one of those cards had been told what the
+# sale says, and three cited nothing the ruling rests on at all — the ceiling T-0635 recorded
+# as "T-0666's to pay". This pass writes the eleven, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made. The paragraph says BID and
+# never residence, and it says so twice — the Addition was the garrison's reservation in
+# 1835 and was not platted into lots at all, so a block and lot from this sale place nobody.
+step "…and the Fort Dearborn Addition lot sale is on every card it names" \
+  python3 tools/spend_fergus_1839_lot_sale.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_lot_sale.py --self-test
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
@@ -1611,6 +1721,19 @@ step "the old-settlers rolls rebuild from their committed transcription" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/old_settlers.py --self-test
+
+# T-0678, consolidation pass 4. The rolls above are spent onto their cards by the tool
+# that builds them; Fergus's 1843 old-settler death notices were not spent by anybody, and
+# 38 rulings that named a town person had never reached that person's card. The pass that
+# closes that gap is checked the same way passes 1-3 are: the ledger and every card
+# re-derive from the crosswalk, no card carries the block without a ruling behind it, and
+# the group this pass declares ALREADY spent by tools/old_settlers.py is verified rather
+# than believed.
+step "Fergus's death notices are on the cards the crosswalk names" \
+  python3 tools/spend_old_settlers.py --check
+
+step "…and that pass writes one block, moves no grade and repeats without drift" \
+  python3 tools/spend_old_settlers.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test

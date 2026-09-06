@@ -431,7 +431,15 @@ def resident_index() -> list[dict]:
         # matched on initials spells it out, and it silently added three merges the
         # moment the block landed. The block is excluded, so this rule reads what it
         # always read.
-        record_source = {k: v for k, v in h.items() if k != "directories"}
+        # T-0678 ADDS THE SECOND BLOCK, for exactly the reason the first one is here.
+        # `tools/spend_old_settlers.py` writes Fergus's death notices onto these cards,
+        # and a notice prints a forename — "Flint, Dr. Austin" lands on the card of
+        # "A. W. Flint". Left in the scan it hands OS2A the spelling OS2A exists to find
+        # independently, and the roster merge then follows from this project's own write:
+        # measured, it added two merges the moment the block landed, which is the same
+        # count the directories block silently added when it did.
+        record_source = {k: v for k, v in h.items()
+                         if k not in ("directories", "old_settler_deaths")}
         record_text = json.dumps(record_source, ensure_ascii=False)
         for p in h.get("persons") or []:
             surname, initial, fore = name_key(p.get("name") or "")
@@ -1005,6 +1013,13 @@ def people(guests: list[dict], deaths: list[dict], residents: list[dict],
                 "layer under declared rules, and carrying the ladder rung this source "
                 "PROPOSES and does not apply.",
         "scene_relation": "later_evidence_only",
+        # WHERE THIS FILE'S NAMED UNITS LIVE (T-0678). The registry and the spend measure
+        # count an entry of `records` or `claims`; this file calls its array `people`,
+        # because a roll of settlers is people, and both instruments read 327 rolls as
+        # zero for as long as nobody said so. One declared key is cheaper than renaming
+        # an array every consumer already reads, and it is checked rather than trusted:
+        # research_domains.py --check names the array and fails if it is not there.
+        "units_in": "people",
         "identity_rules": RULES,
         "spelling_bridges": SPELLING_BRIDGES,
         "counts": counts,

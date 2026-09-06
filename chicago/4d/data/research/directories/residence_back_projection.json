@@ -8,14 +8,14 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 43,
-  "printed_as_a_residence": 29,
+  "addresses_adjudicated": 46,
+  "printed_as_a_residence": 32,
   "printed_as_a_lodging": 14,
   "placed": 7,
   "placed_as_a_face": 7,
   "placed_with_no_1835_trade": 4,
   "already_better_placed": 0,
-  "refused": 36,
+  "refused": 39,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -46,6 +46,27 @@
    "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_adams_william_h",
+   "person_id": "adams_william_h",
+   "person": "William Hanford Adams",
+   "address_as_printed": "res 121 LaSalle, bet Washington and Madison",
+   "kind": "resides",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The face resolves — La Salle Street is 1835's — but the entry sets the house against a second street the town does not have: Madison Street bounds the 1830 plat on the south and the modelled town stops at it; the 1835 street layer carries no Madison. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
+   "street_id": "lasalle",
+   "face": "La Salle Street",
    "placement": null
   },
   {
@@ -681,7 +702,7 @@
   {
    "household_id": "hh_perry_a_8",
    "person_id": "perry_a_8",
-   "person": "A. 8. Perry",
+   "person": "A. [?] Perry",
    "address_as_printed": "res Governm't Reservation",
    "kind": "resides",
    "describes_date": 1843,
@@ -718,6 +739,27 @@
    "reason": "The face resolves — Clark Street is 1835's — but the entry sets the house against a second street the town does not have: Adams Street is south of Madison, outside the platted town of 1835. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
    "street_id": "clark",
    "face": "Clark Street",
+   "placement": null
+  },
+  {
+   "household_id": "hh_pruyne_kimberly",
+   "person_id": "kimberly_edmund_s",
+   "person": "Dr Edmund Stoughton Kimberly",
+   "address_as_printed": "res. N. Water st next Lake House",
+   "kind": "resides",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "physician",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "street_id": null,
+   "face": null,
    "placement": null
   },
   {
@@ -886,6 +928,27 @@
    "reason": "Ohio Street is a north-side name the 1835 street layer does not carry.",
    "street_id": null,
    "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_snow_george_w",
+   "person_id": "snow_george_w",
+   "person": "George W. Snow",
+   "address_as_printed": "res 244-6 State. s.-w. cor Jackson",
+   "kind": "resides",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "surveyor",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The face resolves — State Street is 1835's — but the entry sets the house against a second street the town does not have: Jackson Street is south of Madison, outside the platted town of 1835. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
+   "street_id": "state",
+   "face": "State Street",
    "placement": null
   },
   {

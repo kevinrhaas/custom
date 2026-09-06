@@ -52,6 +52,7 @@
    "name": "Chas. H. Chapman",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-01"

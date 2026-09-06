@@ -92,5 +92,34 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "MINTED FROM THE LETTER LISTS (T-0378, T-0379). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here argues for a household, and this one argues for a PERSON. `data/residents/` cannot carry a person outside a household, so one was written around them and told to claim nothing — one member, no dwelling, no division, no trade, no family, no arrival beyond the paper's bound. tools/mint_letter_list_residents.py derives the set and prints every refusal, `--gate` proves no record here gained a roof, a trade or a second member, and docs/LIBERTIES.md L214 carries the change of scale."
+ "research_note": "MINTED FROM THE LETTER LISTS (T-0378, T-0379). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here argues for a household, and this one argues for a PERSON. `data/residents/` cannot carry a person outside a household, so one was written around them and told to claim nothing — one member, no dwelling, no division, no trade, no family, no arrival beyond the paper's bound. tools/mint_letter_list_residents.py derives the set and prints every refusal, `--gate` proves no record here gained a roof, a trade or a second member, and docs/LIBERTIES.md L214 carries the change of scale.",
+ "old_settler_deaths": {
+  "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
+  "note": "LATER EVIDENCE OF A DEATH, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. Fergus's 1843 directory (1896) prints an obituary list of old settlers, and one of its entries meets somebody of this name. THE HEADER OF THE LIST IS QUOTED ABOVE, and it is the limit the whole reading turns on. It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload. Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record. THE AGREEMENT HERE IS A SURNAME AND ONE INITIAL: one of the two sides prints an initial where the forename would be, so a single letter is the whole of the discriminator and the match is as thin as the rule allows. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. A death notice printed in 1896 says a person of this name died on a day; under the ratified ladder (T-0513) that is later evidence about a DEATH, and it is never an 1835 residence. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+  "sources": [
+   "fergus_1843_old_settler_death_notices"
+  ],
+  "people": [
+   {
+    "person_id": "vanderbogart_h",
+    "matched_as": "H. Vanderbogart",
+    "matched_by": "Surname 'Vanderbogart' folds to the same string as the entry's, and the given name of both begins H.",
+    "matched_on_initial_only": true,
+    "resident_given_is_initial_only": true,
+    "entry_given_as_read": "Dr. Henry",
+    "entry_given_is_initial_only": false,
+    "the_agreement": "a surname and one initial",
+    "record_id": "fdn0683",
+    "trade_or_office": null,
+    "manner_of_death": "died",
+    "place_of_death": "Naperville, Ill.",
+    "death_date": "1835-04-08",
+    "age_as_printed": "aged 25",
+    "birth_year_earliest": 1809,
+    "birth_year_latest": 1810,
+    "birth_year_arithmetic": "The page prints the death as 'April 8, 1835' and the age as 'aged 25'. An age of 25 completed years means at least 25 and less than 26, so the birth falls between 1809-04-09 and 1810-04-08: the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth.",
+    "as_read": "Van der Bogart, Dr. Henry, died, Naperville, Ill., April 8, 1835, aged 25."
+   }
+  ]
+ }
 }
