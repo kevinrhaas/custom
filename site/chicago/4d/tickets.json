@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 1:33 AM",
+  "generated_ct": "Sep 6, 2026, 1:41 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14743,7 +14743,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 173
+      "queue_rank": 174
     },
     {
       "id": "T-0868",
@@ -14763,7 +14763,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 174
+      "queue_rank": 175
     },
     {
       "id": "T-0869",
@@ -14784,6 +14784,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 171
+    },
+    {
+      "id": "T-0870",
+      "title": "The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
     }
   ]
 }
