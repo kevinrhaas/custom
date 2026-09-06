@@ -208,6 +208,20 @@ step "…and its own assertions still fire when broken" \
 step "inferred households, adoptions and their buildings match the programme" \
   python3 tools/synthesize_resident_research.py --check
 
+# T-0838 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
+# it never asks whether that derivation matches the cards on disk, and on 2026-09-05 it
+# reported `OK: 1404 people` while the writer stood 132 household files from the tree,
+# with T-0509's eight corroborations sitting in the gap. This is the missing half — the
+# same re-derivation contract datum.json and the baked GLBs are held to, run against a
+# throwaway copy of the tree so it cannot touch the real one. It is a RATCHET over the
+# drift standing on 2026-09-05: undeclared drift fails, and drift that heals has to
+# shrink the baseline in the commit that heals it. T-0837 owns spending what is standing.
+step "the resident synthesizer has not drifted further from the cards it writes" \
+  python3 tools/synthesize_resident_research.py --drift
+
+step "…and that ratchet fires in both directions" \
+  python3 tools/synthesize_resident_research.py --drift-self-test
+
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 
