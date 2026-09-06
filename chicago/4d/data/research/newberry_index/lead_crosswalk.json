@@ -44,16 +44,16 @@
   }
  ],
  "counts": {
-  "leads_ruled": 980,
-  "cards_ruled": 1389,
+  "leads_ruled": 977,
+  "cards_ruled": 1384,
   "by_outcome": {
-   "refused": 723,
+   "refused": 720,
    "candidate": 257
   },
   "by_class": {
-   "ocr_variant_only": 340,
+   "ocr_variant_only": 338,
    "testable_in_a_held_work": 257,
-   "locality_absent": 288,
+   "locality_absent": 287,
    "surname_only_chicago": 95
   },
   "matched": 0,
@@ -18253,40 +18253,6 @@
    "discriminators": []
   },
   {
-   "lead_id": "lead_v02_horan_residents",
-   "surname_key": "horan",
-   "spellings_as_printed": [
-    "Horan",
-    "Horan r"
-   ],
-   "layer": "residents",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Horan/Horan r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Horan/Horan r' at all. And if it were, a heading against Cornelius C Van Horn would still be a surname against a person, which is always a refusal here.",
-   "record_ids": [
-    "nbi_v02_1031",
-    "nbi_v02_1102"
-   ],
-   "candidates": [
-    {
-     "id": "horn_cornelius_c_van",
-     "name": "Cornelius C Van Horn",
-     "rule": "OCR variant (0.89 similarity to 'horn')"
-    }
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "works_cited": [
-    "andreas_history_of_chicago",
-    "county_histories_kett_and_co"
-   ],
-   "held_works": [
-    "andreas_history_of_chicago"
-   ],
-   "discriminators": []
-  },
-  {
    "lead_id": "lead_v02_horer_residents",
    "surname_key": "horer",
    "spellings_as_printed": [
@@ -18308,61 +18274,6 @@
    ],
    "person_ids": [
     "horr_raiph_c"
-   ],
-   "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
-   "lead_id": "lead_v02_horn_residents",
-   "surname_key": "horn",
-   "spellings_as_printed": [
-    "Horn"
-   ],
-   "layer": "residents",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Horn' name Illinois and neither Chicago nor Cook County, so the lead against Cornelius C Van Horn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
-   "record_ids": [
-    "nbi_v02_1104",
-    "nbi_v02_1105"
-   ],
-   "candidates": [
-    {
-     "id": "horn_cornelius_c_van",
-     "name": "Cornelius C Van Horn",
-     "rule": "exact surname"
-    }
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
-   "lead_id": "lead_v03_horne_residents",
-   "surname_key": "horne",
-   "spellings_as_printed": [
-    "horne,"
-   ],
-   "layer": "residents",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'horne,' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'horne,' at all. And if it were, a heading against Cornelius C Van Horn would still be a surname against a person, which is always a refusal here.",
-   "record_ids": [
-    "nbi_v03_1104"
-   ],
-   "candidates": [
-    {
-     "id": "horn_cornelius_c_van",
-     "name": "Cornelius C Van Horn",
-     "rule": "OCR variant (0.89 similarity to 'horn')"
-    }
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
    ],
    "works_cited": [],
    "held_works": [],
@@ -70435,39 +70346,6 @@
    "ticket": "T-0590"
   },
   {
-   "record_id": "nbi_v02_1031",
-   "a": "Horan | Cook Co., III. (Andreas, A. T.) 1884 .139,",
-   "b": "Cornelius C Van Horn",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Horan/Horan r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Horan/Horan r' at all. And if it were, a heading against Cornelius C Van Horn would still be a surname against a person, which is always a refusal here. Ruled on the card 'Horan | Cook Co., III. (Andreas, A. T.) 1884 .139,' against Cornelius C Van Horn.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v02_horan_residents"
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "person_id": "horn_cornelius_c_van",
-   "evidence": [
-    "nbi_v02_1031",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_02",
-    "text_file": "vol_02_locality_cards.txt",
-    "lines": [
-     2067,
-     2068
-    ],
-    "index_page": 578,
-    "column": 3
-   },
-   "ticket": "T-0590"
-  },
-  {
    "record_id": "nbi_v02_1057",
    "a": "Holltday | 1 _Jtduoo Co,, III. (Brink, llcOonoovd, 4 Co., Pub:.) 1878, T6,",
    "b": "William Holliday",
@@ -70530,105 +70408,6 @@
     ],
     "index_page": 616,
     "column": 1
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v02_1102",
-   "a": "Horan r | I Boono Co., III. (Kett it Co., Pub.) 1877d",
-   "b": "Cornelius C Van Horn",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Horan/Horan r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Horan/Horan r' at all. And if it were, a heading against Cornelius C Van Horn would still be a surname against a person, which is always a refusal here. Ruled on the card 'Horan r | I Boono Co., III. (Kett it Co., Pub.) 1877d' against Cornelius C Van Horn.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v02_horan_residents"
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "person_id": "horn_cornelius_c_van",
-   "evidence": [
-    "nbi_v02_1102",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_02",
-    "text_file": "vol_02_locality_cards.txt",
-    "lines": [
-     2209,
-     2210
-    ],
-    "index_page": 622,
-    "column": 0
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v02_1104",
-   "a": "Horn | Fulton Co , III. (Chapman, C, C. ; Co.) I879i :",
-   "b": "Cornelius C Van Horn",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Horn' name Illinois and neither Chicago nor Cook County, so the lead against Cornelius C Van Horn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Horn | Fulton Co , III. (Chapman, C, C. ; Co.) I879i :' against Cornelius C Van Horn.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v02_horn_residents"
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "person_id": "horn_cornelius_c_van",
-   "evidence": [
-    "nbi_v02_1104",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_02",
-    "text_file": "vol_02_locality_cards.txt",
-    "lines": [
-     2213,
-     2214
-    ],
-    "index_page": 622,
-    "column": 3
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v02_1105",
-   "a": "Horn | R. —Edgw Co., III. (LofJaoo, W., «•., 4 Co. Pub,) I879,-",
-   "b": "Cornelius C Van Horn",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Horn' name Illinois and neither Chicago nor Cook County, so the lead against Cornelius C Van Horn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Horn | R. —Edgw Co., III. (LofJaoo, W., «•., 4 Co. Pub,) I879,-' against Cornelius C Van Horn.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v02_horn_residents"
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "person_id": "horn_cornelius_c_van",
-   "evidence": [
-    "nbi_v02_1105",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_02",
-    "text_file": "vol_02_locality_cards.txt",
-    "lines": [
-     2215,
-     2216
-    ],
-    "index_page": 622,
-    "column": 3
    },
    "ticket": "T-0590"
   },
@@ -76870,39 +76649,6 @@
     ],
     "index_page": 501,
     "column": 1
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v03_1104",
-   "a": "horne, | [•-\" «»», III, ItVuu,: 'a . . .",
-   "b": "Cornelius C Van Horn",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'horne,' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'horne,' at all. And if it were, a heading against Cornelius C Van Horn would still be a surname against a person, which is always a refusal here. Ruled on the card 'horne, | [•-\" «»», III, ItVuu,: \\'a . . .' against Cornelius C Van Horn.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v03_horne_residents"
-   ],
-   "person_ids": [
-    "horn_cornelius_c_van"
-   ],
-   "person_id": "horn_cornelius_c_van",
-   "evidence": [
-    "nbi_v03_1104",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_03",
-    "text_file": "vol_03_locality_cards.txt",
-    "lines": [
-     2213,
-     2214
-    ],
-    "index_page": 518,
-    "column": 0
    },
    "ticket": "T-0590"
   },

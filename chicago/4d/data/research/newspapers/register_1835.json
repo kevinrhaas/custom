@@ -12,7 +12,7 @@
     "structures": 374,
     "structures_sharing_a_name": 36,
     "streets": 28,
-    "resident_persons": 1362
+    "resident_persons": 1363
   },
   "counts": {
     "businesses": {
@@ -24,21 +24,21 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 61,
-        "unplaceable": 90
+        "new_building": 28,
+        "street_only": 59,
+        "unplaceable": 89
       },
       "by_placement_class": {
         "corner": 18,
-        "none": 61,
-        "relative": 104,
-        "street_only": 23
+        "none": 63,
+        "relative": 106,
+        "street_only": 19
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 61,
-        "unplaceable": 73
+        "new_building": 28,
+        "street_only": 59,
+        "unplaceable": 72
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1371,
-        "new_resident": 1235,
+        "enrich": 1366,
+        "new_resident": 1240,
         "replace_invented": 24
       },
       "letter_list_only": 1936
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 862,
+        "none_recorded": 863,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 868,
+      "households_total": 869,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -529,19 +529,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_b_jones_grocery_and_provision_store",
@@ -666,7 +666,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1834-06-11"
@@ -1643,7 +1643,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1835-07-29"
@@ -2577,11 +2577,11 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -2731,11 +2731,11 @@
             ],
             "live_at_scene_date": true,
             "resolved": {
-              "kind": "unresolved",
-              "target": null,
+              "kind": "structure",
+              "target": "tremont_house_1",
               "streets": null,
               "via": null,
-              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+              "note": "The landmark is the committed structure tremont_house_1."
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -2748,11 +2748,11 @@
                   "chicago_democrat_1835_08_05#c019"
                 ],
                 "resolved": {
-                  "kind": "unresolved",
-                  "target": null,
+                  "kind": "structure",
+                  "target": "tremont_house_1",
                   "streets": null,
                   "via": null,
-                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                  "note": "The landmark is the committed structure tremont_house_1."
                 }
               }
             ]
@@ -2760,11 +2760,11 @@
         ]
       },
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_g_w_keeney",
@@ -2985,19 +2985,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_h_doty_co",
@@ -3778,7 +3778,7 @@
       ],
       "street": "South Water Street",
       "street_id": "south_water",
-      "placement_class": "street_only",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-03-25",
         "last_issue": "1835-07-01"
@@ -3795,7 +3795,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the Post Office' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -4852,11 +4852,11 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -4972,11 +4972,11 @@
             ],
             "live_at_scene_date": true,
             "resolved": {
-              "kind": "unresolved",
-              "target": null,
+              "kind": "structure",
+              "target": "tremont_house_1",
               "streets": null,
               "via": null,
-              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+              "note": "The landmark is the committed structure tremont_house_1."
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -4991,11 +4991,11 @@
                   "chicago_democrat_1834_12_10#c007"
                 ],
                 "resolved": {
-                  "kind": "unresolved",
-                  "target": null,
+                  "kind": "structure",
+                  "target": "tremont_house_1",
                   "streets": null,
                   "via": null,
-                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                  "note": "The landmark is the committed structure tremont_house_1."
                 }
               }
             ]
@@ -5248,7 +5248,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-08-05"
@@ -5265,7 +5265,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'Fort Dearborn' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -5273,7 +5273,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor 'Fort Dearborn' names nothing the committed town holds."
     },
     {
       "id": "business_noble_wesencraft",
@@ -13163,9 +13163,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1834-07-23",
-      "action": "enrich",
-      "action_target": "horn_cornelius_c_van",
-      "action_note": "data/residents/ already holds this person as horn_cornelius_c_van (hh_horn_cornelius_c_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_costa_stefario",
@@ -17563,9 +17563,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cleve_h_p_van",
-      "action_note": "data/residents/ already holds this person as cleve_h_p_van (hh_cleve_h_p_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_pearsons",
@@ -17662,9 +17662,9 @@
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
-      "action": "enrich",
-      "action_target": "bogart_henry_van_der",
-      "action_note": "data/residents/ already holds this person as bogart_henry_van_der (hh_bogart_henry_van_der, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_vanderbogart",
@@ -21138,9 +21138,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
-      "action": "enrich",
-      "action_target": "grand_jaqua_le",
-      "action_note": "data/residents/ already holds this person as grand_jaqua_le (hh_grand_jaqua_le, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_jaques_elzabeth",
@@ -28321,9 +28321,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cortlandt_pierre_van",
-      "action_note": "data/residents/ already holds this person as cortlandt_pierre_van (hh_cortlandt_pierre_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pike_luke",

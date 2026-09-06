@@ -58601,8 +58601,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "note": "The firm advertises three times in this issue and gives no address in any of them; it is placed only by a later advertiser who takes an office 'one door east of Brewster, Hogan & Co.' on South Water Street (1833-12-17 c007)."
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -58661,16 +58663,6 @@
           }
         }
       ],
-      "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-03-04",
-        "claims": [
-          "chicago_democrat_1834_03_04#c010"
-        ],
-        "superseded": {
-          "class": "none"
-        }
-      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
@@ -58803,7 +58795,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-13",
         "claims": [
           "chicago_american_1835_06_13#c014",
@@ -59508,7 +59500,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-06-11",
         "claims": [
           "chicago_democrat_1834_06_11#c005",
@@ -60345,7 +60337,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only"
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "note": "No address is advertised; Carver's own store house and lumber yard are announced four weeks later (1833-12-31 c002) and are also unplaced."
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -60425,19 +60420,6 @@
           "merge_rule": "'David Carver' and 'David Carver, storage, commission and lumber' are one house, and the witness is a single standing advertisement: 'Storage, Commission and Lumber Business', copy-dated 1834-02-25, printed at 1834-02-25 c003 and 1834-03-04 c006 in the first record and at 1834-04-01 c006 in the second. Same copy date, same trade, same man, and neither printing gives an address."
         }
       ],
-      "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-02-25",
-        "claims": [
-          "chicago_democrat_1834_02_25#c003",
-          "chicago_democrat_1834_06_04#c010",
-          "chicago_democrat_1834_06_11#c009",
-          "chicago_democrat_1834_06_18#c010"
-        ],
-        "superseded": {
-          "class": "none"
-        }
-      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -61659,7 +61641,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-13",
         "claims": [
           "chicago_american_1835_06_13#c018"
@@ -62472,7 +62454,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1833-11-26",
         "claims": [
           "chicago_democrat_1833_11_26#c019",
@@ -63128,7 +63110,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-08-27",
         "claims": [
           "chicago_democrat_1834_08_27#c008"
@@ -64322,8 +64304,11 @@
       ],
       "street": "South Water Street",
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "in South Water Street, one\nthe Post Office",
+        "offset_normalized": "in South Water Street, one [door … of] the Post Office",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-03-25",
@@ -64412,6 +64397,23 @@
           "merge_rule": "'John S. C. Hogan' is 'J. S. C. Hogan' with the forename printed whole, and the printing that ties the two forms is the Brewster, Hogan & Co. dissolution — set at 1834-03-04 c010 and again at 1834-06-11 c002, where the record 'John S. C. Hogan' comes from. Its tail reads 'The business will be continued at the old stand, by Jno. S. C. Hogan, where he intends keeping on hand a general assortment as heretofore', the March printing puts the dissolved firm's stand in South Water Street, and from 25 March 1834 (c010) 'J. S. C. HOGAN' advertises on his own account in that street, with 'general assortment' among the goods, one door from the Post Office he kept (1834-08-13 c017). Same man, same trade, same street, three weeks apart. Merged INTO 'J. S. C. Hogan': that is the record that can be placed — the succession notice states no address at all, and the merge does not give it one, since the Post Office anchor it inherits is the store's own printing and not the notice's."
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
+        "first_issue": "1834-08-13",
+        "claims": [
+          "chicago_democrat_1834_08_13#c017",
+          "chicago_democrat_1834_08_20#c007",
+          "chicago_democrat_1834_09_03#c023",
+          "chicago_democrat_1834_11_19#c009",
+          "chicago_democrat_1834_12_03#c013",
+          "chicago_democrat_1834_12_17#c009",
+          "chicago_democrat_1835_05_20#c016",
+          "chicago_democrat_1835_07_01#c002"
+        ],
+        "superseded": {
+          "class": "street_only"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -65447,7 +65449,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-09-10",
         "claims": [
           "chicago_democrat_1834_09_10#c008"
@@ -65724,7 +65726,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-11-19",
         "claims": [
           "chicago_democrat_1834_11_19#c011"
@@ -67121,8 +67123,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "relative",
+        "anchor": "Fort Dearborn",
+        "offset_text": "opposite to Fort Dearborn"
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -67199,11 +67202,10 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-03-04",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
+        "first_issue": "1834-05-14",
         "claims": [
-          "chicago_democrat_1834_03_04#c021",
-          "chicago_democrat_1834_05_07#c009"
+          "chicago_democrat_1834_05_14#c007"
         ],
         "superseded": {
           "class": "none"
@@ -68113,7 +68115,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-05-07",
         "claims": [
           "chicago_democrat_1834_05_07#c010",
@@ -68638,7 +68640,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-27",
         "claims": [
           "chicago_american_1835_06_27#c002"
@@ -72363,7 +72365,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-11-05",
         "claims": [
           "chicago_democrat_1834_11_05#c002"

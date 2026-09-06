@@ -5,7 +5,7 @@
  "states": {
   "rule_on_the_card": {
    "says": "The card carries a `ladder_rule`. The ladder has ruled and the ruling is written down where a reader of the card can see it.",
-   "people": 1285
+   "people": 1286
   },
   "proposed_not_written": {
    "says": "The ladder HAS ruled this person — the rung is in grading_proposal.json — and no pass has written it onto the card. A spend, not a reading.",
@@ -17,27 +17,27 @@
   },
   "absorbed_by_another_card": {
    "says": "The person's row stands on an identity the ladder ruled, but that identity names a DIFFERENT town card as its canonical person, so the rung was never offered to this one. Two cards, one identity.",
-   "people": 2
+   "people": 3
   },
   "refused_no_identity": {
    "says": "The consolidation built no identity for this name and said so at the time: the refusal is in identity_master.json with its rule. The ladder abstains, and here is the reason it abstained.",
-   "people": 4
+   "people": 3
   }
  },
  "counts": {
-  "person_records": 1362,
-  "carry_a_rule": 1285,
+  "person_records": 1363,
+  "carry_a_rule": 1286,
   "carry_no_rule": 77,
   "proposed_not_written_by_rule": {},
   "ruled_but_disputed_by_rule": {
-   "G2b": 7,
+   "G2b": 8,
    "G2e": 7,
-   "G3": 20,
+   "G3": 19,
    "G5": 37
   },
   "refused_by_rule": {
    "R1": 2,
-   "R5": 2
+   "R5": 1
   },
   "the_ladder_has_never_looked": 6,
   "on_the_owners_conflict_list": 71
@@ -89,7 +89,7 @@
   {"person_id":"kinzie_juliette","household_id":"hh_kinzie_john_h","name":"Juliette Augusta Magill Kinzie","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","kinzie_waubun_1856"],"identity":"id_kinzie_juliette_augusta_magill","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"lathrop_samuel_s","household_id":"hh_lathrop_samuel_s","name":"Samuel S. Lathrop","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","chicago_tribune_1882_05_19_fourth_reception","rr_baptist_chicago_lathrop"],"identity":"id_lathrop_samuel_s","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"legg_gregory_e","household_id":"hh_legg_gregory_e","name":"Gregory E. Legg","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fergus_chicago_directory_1839","st_cyr_register_ichr_v4"],"identity":"id_legg_gregory_e","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"mckee_david","household_id":"hh_mckee_david","name":"David McKee","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_tribune_1882_04_25_old_settler_deaths","kinzie_waubun_1856"],"identity":"id_mckee_david","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
+  {"person_id":"mckee_david","household_id":"hh_mckee_david","name":"David McKee","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_tribune_1882_04_25_old_settler_deaths","kinzie_waubun_1856"],"identity":"id_mckee_david","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"meeker_joseph","household_id":"hh_meeker_joseph","name":"Joseph Meeker","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","fergus_chicago_directory_1839"],"identity":"id_meeker_joseph","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"hall_benjamin","household_id":"hh_miller_john","name":"Benjamin Hall","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","fergus_chicago_directory_1839"],"identity":"id_hall_benjamin","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"mitchell_henry","household_id":"hh_mitchell_henry","name":"Henry Mitchell","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fergus_chicago_directory_1839","resident_research_tribune_mitchell_1883"],"identity":"id_mitchell_henry","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
@@ -110,12 +110,12 @@
   {"person_id":"robinson_catherine","household_id":"hh_robinson_alexander","name":"Catherine Chevalier Robinson","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_robinson_catherine_chevalier","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"robinson_household_unnamed","household_id":"hh_robinson_alexander","name":"The rest of the Robinson household, unnamed","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1","kinzie_waubun_1856"],"identity":"id_therestoftherobinsonhousehold_unnamed","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"sherwood_s","household_id":"hh_sherwood_s","name":"S. Sherwood","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835","fergus_chicago_directory_1839"],"identity":"id_sherwood_stephen","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"st_cyr_john_mary","household_id":"hh_st_cyr_john_mary","name":"Rev. John Mary Irenaeus St Cyr","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"5 forename tokens, and the splitter caps at four — which is what a compound surname read as one token does to a long baptismal name"},
+  {"person_id":"st_cyr_john_mary","household_id":"hh_st_cyr_john_mary","name":"Rev. John Mary Irenaeus St Cyr","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_stcyr_john_mary_irenaeus","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"stow_william_h","household_id":"hh_stow_william_h","name":"William H. Stow","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_tribune_1882_04_25_old_settler_deaths","drloih_hotels","fergus_chicago_directory_1839"],"identity":"id_stow_william_h","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"taylor_augustine","household_id":"hh_taylor_augustine","name":"Augustine Deodat Taylor","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_taylor_augustine_deodat","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"temple_mrs_john_t","household_id":"hh_temple_john_t","name":"Mrs Temple","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":null,"state":"refused_no_identity","refusal_rule":"R1","why":"names no forename, so it can never be merged onto a person"},
   {"person_id":"temple_children_four","household_id":"hh_temple_john_t","name":"The four Temple children","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_children_the_four_temple","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"vanderbogart_h","household_id":"hh_vanderbogart_h","name":"H. Vanderbogart","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fergus_1843_old_settler_death_notices"],"identity":"id_vanderbogart_h","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
+  {"person_id":"vanderbogart_h","household_id":"hh_vanderbogart_h","name":"H. Vanderbogart","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fergus_1843_old_settler_death_notices"],"identity":"id_vanderbogart_henry","state":"absorbed_by_another_card","proposed_rule":"G2e","proposed_grade":"inferred","absorbed_by":"vanderbogart_henry","why":"identity id_vanderbogart_henry holds this card and vanderbogart_henry, and the proposal names the other one; the rung was ruled for the identity and never offered to this card"},
   {"person_id":"vasseur_noel","household_id":"hh_vasseur_noel","name":"Noel Vasseur","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fcp_treaty_chicago_1833_payments"],"identity":"id_vasseur_noel","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"walters_william","household_id":"hh_walters_william","name":"William Walters","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1","drloih_hotels"],"identity":"id_walters_william","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"woodworth_james_h","household_id":"hh_woodworth_james_h","name":"James H. Woodworth","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","ushouse_james_h_woodworth"],"identity":"id_woodworth_james_h","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},

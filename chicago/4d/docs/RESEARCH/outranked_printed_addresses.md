@@ -172,6 +172,59 @@ moved. What it needs is the compiler taught that a `street_only` naming no stree
 landmark places nothing, and T-0773 forbids teaching the compiler anything of the kind.
 **Filed as its own ticket** rather than done here.
 
+### T-0859 ruled it, and the row dissolved (2026-09-06)
+
+The ticket filed here was taken up the same night and the answer is the one this section
+predicted, with a count behind it.
+
+**The ruling.** A `street_only` placement carrying neither a `street` nor an `anchor` names
+no street, and puts a storefront on no more ground than `{"class": "none"}` does. It is a
+statement about the PLACEMENT RECORD and not about the advertisement. `places_nothing()`
+lives beside `placement_rank` in `compile_gazetteer.py` so the two cannot drift, and the
+T-0440 repair now uses it on BOTH sides — a pass may not take up a reading it would itself
+refuse to be held by. Nothing else changed: same earliest-placing tie-break, same scene-date
+bound, same refusal to let one printed address override another.
+
+**The count: twelve claims across eleven houses.** Four houses moved, and only four:
+
+| house | before | after |
+|---|---|---|
+| `business_j_s_c_hogan` | `street_only` off the cedar posts | **`relative`, one door from the Post Office**, off eight printings to the scene date |
+| `business_newberry_dole` | `street_only` naming no street | `relative`, *"opposite to Fort Dearborn"* — see below |
+| `business_brewster_hogan_co` | `street_only` naming no street | `none` — the dissolution notice says *"at the old stand"* and no more |
+| `business_david_carver` | `street_only` naming no street | `none` — the lumber notice says *"at his Store"* and no more |
+
+The last two are the ruling paying its own way in the other direction: two houses stop being
+placed on a street their own printings never named. Neither is re-placed, neither loses its
+business-level `street`, and both read `unplaceable` in the register as they did before.
+
+**Newberry & Dole is the one to argue with, and the argument is that this is not the
+judgement §3 deferred.** Its `street_only` reading names no street; once that places
+nothing, the firm has exactly ONE printing that places it, *"opposite to Fort Dearborn"*
+(1834-05-14), and taking it is T-0440's ordinary rule — silence does not contradict
+speech — applied as it is to twelve other houses. No printed address is preferred to
+another, because there is only one. **T-0396's question is untouched**: it asks which
+Newberry is the partner, and nothing here answers, prejudges or depends on that. The
+register row is still `unplaceable` — *"Fort Dearborn"* resolves to nothing this row can
+enrich — so the town does not move on it either.
+
+**And the count turned up a defect the ruling does not fix.** Eight of the twelve notices DO
+print a street in their own prose — *"a lot and Store[hous]e on South Water Street"*,
+*"Dearborn-stree[t]"*, *"a shop, on Randolph street"* twice, *"at the corner of […] and
+Canal streets"*, *"at his room on south water street"*, *"Montgomery's Auction Room, South
+Water Street"* — and the reading pass put it in the claim's business-level `street` field
+and left the placement empty. Nothing is mis-placed by it today, because
+`compile_register` adopts a street face off that field; what is wrong is that the reading
+does not say what the printing said. **T-0861** carries it.
+
+**One thing written here was wrong and is corrected.** The compiler's own comment named
+Jones, King & Co. as the house the scene-date bound holds — *"silent through its 1834
+printings and given South Water Street on 1835-08-05"*. It is not: that 1835-08-05 notice
+is a fire-insurance agency card printing no address at all, and the South Water Street
+beside it is again the business-level field. The house is silent on both counts and the
+bound is not what holds it. The bound is unchanged and still asserted, now on a fixture
+rather than on a house that turned out not to be one.
+
 ## 5 and 6. Rockwell, and Samuel Lewis — NO JUDGEMENT IS OWED
 
 Both are outranked only by a printing that ran **after the scene date**.

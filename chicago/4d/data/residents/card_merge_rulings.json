@@ -15,7 +15,8 @@
   "R5": "A GARBLED FORENAME CANNOT BE TESTED. T-0695 is the ticket that reads them.",
   "D1": "TWO PEOPLE THE SOURCES NAME SEPARATELY. A spouse, a sibling, a parent and child, or two explicit and different forenames.",
   "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town.",
-  "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies."
+  "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies.",
+  "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged."
  },
  "deferred": [
   {
@@ -769,6 +770,23 @@
      ],
      "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker.",
      "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."
+    }
+   ]
+  },
+  {
+   "id": "vanderbogart",
+   "surname": "vanderbogart",
+   "rulings": [
+    {
+     "state": "undecided",
+     "rule": "U1",
+     "members": [
+      "vanderbogart_h",
+      "vanderbogart_henry"
+     ],
+     "for": "They are very likely one man. 'H. Vanderbogart' and 'Henry Vanderbogart' agree on the surname and the initial expands to the forename, which is rule C2's shape — and before T-0724 the corpus carried them as one identity, because the old splitter truncated every Van der / Van Den printing to the bucket 'bogart'.",
+     "against": "That single identity was a MERGE NOBODY RULED ON. It existed only because the splitter took the last token of a printed name, which is the defect T-0724 fixes — so 'they were one before' is evidence about the old code and not about the man. The Chicago Democrat of 4 February 1834 prints 'H. Van Den Bogart'; Fergus's death notices print 'Van der Bogart, Dr. Henry'. DEN and DER are one letter of OCR apart and are also two real Dutch particles, and deciding which is a reading of the two printings.",
+     "note": "UNDECIDED on purpose, and T-0842 owns the question. T-0724's own PR says it: 'It is very likely the same man, and that is a reading somebody owes the page rather than an assumption the splitter makes silently.' Merging them here to satisfy this gate would be the splitter's old guess wearing a ruling's clothes. The cost of leaving it open is recorded in L220: the town reads 490 rather than 489 until somebody reads the page."
     }
    ]
   }

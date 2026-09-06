@@ -11,8 +11,8 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1362,
-  "carried_by_the_civic_mint": 489,
+  "person_records": 1363,
+  "carried_by_the_civic_mint": 490,
   "rungs_spent": 796,
   "conflicts_for_the_owner": 71,
   "spent_by_rule": {
@@ -48,7 +48,7 @@
    "person_id": "acker_jacob_van",
    "household_id": "hh_acker_jacob_van",
    "name": "Jacob Van Acker",
-   "identity": "id_acker_jacob_van",
+   "identity": "id_vanacker_jacob",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -2496,7 +2496,7 @@
    "person_id": "fleet_john_van",
    "household_id": "hh_fleet_john_van",
    "name": "John Van Fleet",
-   "identity": "id_fleet_john_van",
+   "identity": "id_vanfleet_john",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6744,7 +6744,7 @@
    "person_id": "vatzah_thomas_van",
    "household_id": "hh_vatzah_thomas_van",
    "name": "Thomas Van Vatzah",
-   "identity": "id_vatzah_thomas_van",
+   "identity": "id_vanvatzah_thomas",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -7851,15 +7851,15 @@
    "household_id": "hh_mckee_david",
    "name": "David McKee",
    "identity": "id_mckee_david",
-   "rule": "G5",
+   "rule": "G2b",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "abstention",
+   "kind": "downgrade",
    "proposed": {
-    "grade": null,
+    "grade": "inferred",
     "resident_subtype": null
    },
-   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "meeker_joseph",
@@ -8147,6 +8147,21 @@
    "why": "the rung proposes the same grade with a DIFFERENT resident_subtype. Taking a `projected_resident` caveat off a card, or putting one on, is a change to what the card claims and not a reason for what it already says."
   },
   {
+   "person_id": "st_cyr_john_mary",
+   "household_id": "hh_st_cyr_john_mary",
+   "name": "Rev. John Mary Irenaeus St Cyr",
+   "identity": "id_stcyr_john_mary_irenaeus",
+   "rule": "G5",
+   "grade": "attested",
+   "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
    "person_id": "stow_william_h",
    "household_id": "hh_stow_william_h",
    "name": "William H. Stow",
@@ -8190,21 +8205,6 @@
     "resident_subtype": null
    },
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
-  },
-  {
-   "person_id": "vanderbogart_h",
-   "household_id": "hh_vanderbogart_h",
-   "name": "H. Vanderbogart",
-   "identity": "id_vanderbogart_h",
-   "rule": "G3",
-   "grade": "attested",
-   "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "vasseur_noel",
