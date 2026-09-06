@@ -86,7 +86,6 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
-T-0828 — The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
 
 # --- G6 — THE READING, AND IT STAYS BELOW THE SPEND. Reading another volume moves none of the
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
@@ -372,3 +371,4 @@ T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a c
 T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
 T-0890 — tools/web_derivatives.sh compresses with an unpinned `npx --yes @gltf-transform/cli`, so a runner with a newer CLI rewrites the generator string in all 380 web assets
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
+T-0892 — The synthesizer drift ratchet turns red the moment anybody publishes: its T-0838 baseline names the data/ paths and not their site/ mirrors
