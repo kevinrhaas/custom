@@ -181,3 +181,9 @@ the evidence base is two blocks, and how far it can be pushed depends on knowing
 stream measured in § 4 is what identifies them: it runs in the La Salle corridor, so 19 is
 the Wells–La Salle block and 18 the La Salle–Clark block. See
 `docs/RESEARCH/thompson_block_numbering.md`.
+
+**Re-read 2026-09-06, T-0788.** Both numerals were read again on the georeferenced BPL scan, on
+crops cut to each block's own committed ground, and **both stand**: 19 on Wells–La Salle, 18 on
+La Salle–Clark. The identification this section argued from the watercourse is confirmed by the
+georeference independently of it. Twenty more numerals were read at the same time, and the run
+turns out to reverse from tier to tier — see `thompson_block_numbering.md` § 0.

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 624, title: 'The number on every block, read off the surveyor\u2019s sheet', kind: 'change', ts: '2026-09-06T05:54:46.841Z', date: 'Sep 6, 2026, 12:54 AM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the numbers Chicago used for addresses before it had street numbers \u2014 block 16, block 39 \u2014 and about having six of them yesterday and twenty-four today.',
+      'James S. Wright surveyed the town in 1834 and wrote a numeral across every block. This project could read two of them, off a small crop; every other number was counted outward from those two, one block at a time along the same row. So the count stopped at the end of the row, because nobody could tell whether the next row down carried on, started again, or ran backwards.',
+      'It ran backwards. Along South Water Street the numbers fall as you walk east \u2014 21 20 19 18 17 16. Along the row below they rise, 31 up to 36. Along the row below that they fall again. The numbering snakes, and a count carried straight down would have got the second row the wrong way round.',
+      'What made the reading possible was not a better photograph. This project already knows where the 1834 sheet sits over the ground, so each block\u2019s own street lines can be turned into a rectangle on the sheet and that rectangle asked for on its own. The block fills the picture, and nobody has to decide which block a numeral belongs to. Every number cites the rectangle it was read on.',
+      'All four counted numbers turned out right, including the one that mattered: the corpus\u2019s only lot-and-block address, G. Spring\u2019s \u201CLOT No. 7, in block No. 16 \u2026 on Lake street\u201D, now rests on a numeral rather than on arithmetic three blocks long. The Public Square is the exception \u2014 Wright letters its name across the block exactly where the number would go, so 39 is still counted, but counted between a read 40 to its west and a read 38 to its east.',
+      'Thirty-four blocks are still unread, and the reason is the honest one: the reading works by cutting the picture from streets this project has surveyed, and it has not surveyed north of the river, past Clinton, or south of Washington. Finding those numerals by eye on paper that has stretched four per cent would be putting them where the reader thinks they go.',
+    ] },
   { v: 623, title: 'The priest the town could not read the name of', kind: 'fix', ts: '2026-09-06T05:38:46.253Z', date: 'Sep 6, 2026, 12:38 AM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a way of reading names that had been quietly losing people, and the man it lost first.',

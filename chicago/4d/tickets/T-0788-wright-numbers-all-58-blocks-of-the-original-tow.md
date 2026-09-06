@@ -1,7 +1,7 @@
 ---
 id: T-0788
 title: Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 955
+claimed_by: run 9/5/2026, 10:19:42 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T03:41:16.392Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34007472562
 ---
 
 **The source, 2026-09-05.** The owner added a second copy of J. S. Wright's manuscript survey of

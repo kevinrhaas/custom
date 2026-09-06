@@ -72,7 +72,6 @@ T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- T-0788 LEADS BECAUSE IT IS THE ENABLER — Wright numbers all 58 blocks of the Original Town,
 # --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
-T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
 T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
 T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
 T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
@@ -336,7 +335,10 @@ T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'J
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
 T-0859 — J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
-

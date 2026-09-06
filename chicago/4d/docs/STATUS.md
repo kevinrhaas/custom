@@ -1,5 +1,69 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0788: Wright's block numbers, read off the sheet instead of counted
+
+**What shipped.** The Original Town's block numbers, **read**. `data/traces/thompson_block_numbering.json`
+carried six numbers derived from two numerals on a 639 × 719 px crop; it now carries
+**twenty-four blocks, twenty-two of them numerals read off the georeferenced sheet**. All
+nineteen generated blocks in `data/traces/vectors/thompson_lots.json` take a number where six did,
+and **144 lots** are numbered where 40 were.
+
+**The method is the finding.** This project is fitted to the BPL copy of Wright 1834 (RMS 17.5 m,
+eight ground control points). So a block's four bounding street centrelines give a box in local
+ENU, `tools/wright_px.py` maps it into the scan's pixel space, and IIIF returns that rectangle at
+6×. **The block fills the frame**, which takes "which block carries this numeral" away from the
+reader and gives it to the fit. Every entry cites the region it was read on.
+
+| tier | west → east |
+|---|---|
+| South Water – Lake | 21 20 19 18 17 16 — *falls* eastward |
+| Lake – Randolph | *28 29* · river · 31 32 33 34 35 36 — **rises** eastward |
+| Randolph – Washington | *45 44 43* 42 41 40 · **Public Square** · 38 37 — *falls* eastward |
+
+*(italic: West Division, west of the South Branch)*
+
+- **The run reverses tier by tier.** The old file refused to carry the count from one tier to the
+  next and named a boustrophedon as one thing it could not rule out. That is what the sheet draws.
+  A count carried straight down would have numbered the Lake tier backwards.
+- **All four previously counted numbers are confirmed** — 21, 20, 17 and 16. Nothing moves; they
+  stop being arithmetic. **Block 16 is G. Spring's** *"LOT No. 7, in block No. 16 … on Lake
+  street"*, and that address now rests on a numeral in the block's own frame.
+- **The Public Square is block 39, and Wright does not write it.** He washes the block pink, rules
+  it into eight lots and letters *Public Square* where the number would go. 39 is the one number
+  in the file still counted — across a single block, bracketed by 40 read west and 38 read east —
+  and it carries `numeral_on_sheet: false`. It is written onto
+  `data/reconstruction/1835_reserved_ground.json`, where the block's identity is argued.
+- **The lot scheme is read on four blocks now**, not one: 20, 18, 16 and 40 each print 4 3 2 1
+  across the north row west to east and 5 6 7 8 across the south. Block 40 sits in a tier whose
+  BLOCK numbering runs the other way, so the lot run belongs to the block. **The grade does not
+  move** — the lines it numbers are still the module's, and a number on a line nobody drew is
+  conjectural whatever its own provenance.
+- **Not every block carries eight lots.** The West Division block west of block 28 prints
+  `1 4 5 8 9` — ten lots in two rows of five. No West Division block is generated today, so
+  nothing is mis-numbered; it is recorded so the day one is, this is found first.
+
+**What is refused, and it is most of the plat.** Twenty-four blocks of fifty-eight. The
+Washington–Madison tier, the North Division and the West Division beyond Clinton are refused
+because the method is *cut the crop from committed street lines* and the street grid does not
+reach them; a numeral found by eye on paper that stretches 3.7% is a numeral placed by the reader.
+**Block 30** is refused separately — the Lake tier reads 29 on the west bank and 31 east of the
+branch and the ground between is water, so 30 is somewhere not yet read. And one grid cell,
+`blk_randolph_canal`, is **two** plat blocks with the river between them (44 and 43), so it takes
+no number at all and both readings wait in `blocks_not_in_the_grid`.
+
+**Nothing was promoted.** Every number stays `inferred`, not `documented`: the numeral is read,
+but WHICH BLOCK carries it is an identification made through a ±20 m fit against a 97 m block, and
+the grade is the weaker of the two steps, as it was before.
+
+**Verification.** `tools/check.sh` green, including `generate_plat_lots.py --check`, which
+re-derives the whole grid byte for byte offline.
+
+**Files.** `data/traces/thompson_block_numbering.json` (authored) ·
+`data/traces/vectors/thompson_lots.json` (generated) ·
+`data/reconstruction/1835_reserved_ground.json` · `tools/generate_plat_lots.py` (prose only) ·
+`docs/RESEARCH/thompson_block_numbering.md` § 0 · `docs/RESEARCH/thompson_plat_grid.md` § 4b ·
+`docs/RESEARCH/clark_reach_bulge_1834.md` § 9.
+
 ## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
 
 **What shipped.** Kin rows on both people for three ties `dev` did not hold, each
@@ -740,12 +804,13 @@ lie are in its `--self-test`.
 
 ### The grade does not move, and the chain is why
 
-The words are read. The block number is `inferred` — three blocks counted east of the one
-numeral the Wright sheet carries. The lot number is `conjectural` twice over: four lots to a
-face is a reading of one block, the lines it numbers are drawn from no sheet, and the
-counter-clockwise scheme was read off block 18. So the seating is graded at the **bottom
-tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads the
-phase and fails if a documented address has quietly promoted a reconstructed roof.
+The words are read. The block number is `inferred` — and since 2026-09-06 (T-0788) it is a
+numeral READ on block 16's own ground rather than three blocks counted east of another one.
+The lot number is still `conjectural` twice over: four lots to a face is now a reading of
+four blocks rather than one, but the lines the scheme numbers are drawn from no sheet, so a
+number put on them is conjectural whatever its own provenance. So the seating is graded at the
+**bottom tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads
+the phase and fails if a documented address has quietly promoted a reconstructed roof.
 
 The seating writes **one block** and nothing else — no coordinate, no footprint, no form
 value, and not even the record's `function`, which the dooryard, fence, planting and
