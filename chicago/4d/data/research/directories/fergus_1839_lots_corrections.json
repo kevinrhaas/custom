@@ -2,13 +2,13 @@
   "schema": 1,
   "_doc": "HAND-AUTHORED, and the only hand-authored file in this reading. T-0679: the numerals of Fergus 1839's printed pages 47-50 that archive.org's OCR destroyed, read off the page images themselves. tools/read_fergus_1839_lots.py --build applies it; every entry asserts the `was` ink the generated cell carries, so a re-map that moves a row makes its correction stop matching and --check fails rather than silently writing the wrong number onto the wrong lot.",
   "applied_by": "tools/read_fergus_1839_lots.py --build",
-  "ticket": "T-0679; added_rows T-0778",
+  "ticket": "T-0679; added_rows T-0778; bidder column T-0779",
   "read_off": {
     "item": "fergusdirectoryo00ferg",
     "images": "https://archive.org/download/fergusdirectoryo00ferg/page/leaf59.jpg and leaf60, leaf61, leaf62 — the same scan the OCR is of, at 2238 x 3640, which is the coordinate space the row map is written in",
     "how": "every row of printed pages 47-50 was cropped from the page image on the row map's own y and the band's own x and read by eye. A cell is filled only where the ink is legible; where the page prints nothing the correction says so and the value stays null."
   },
-  "grade_note": "A corrected row is regraded `scan_verified`, and on these pages that grade means its NUMERAL columns — block, lot, amount, and whether the lot was withheld — were read off the page image. The bidder column is still the OCR's and is still that of a transcription; the names it mangles (Prancis Walker for Francis Walker, John PTnnerty for John Fennerty, J. Iv. Botsford for J. K. Botsford) are not touched here.",
+  "grade_note": "A corrected row is regraded `scan_verified`, and since T-0779 that grade covers the WHOLE row — block, lot, amount, whether the lot was withheld, and the BIDDER. It used to cover the numeral columns only, because T-0679 deliberately left the bidder column alone and named the three names it could see were wrong without touching them. T-0779 read every bidder cell of all six half-pages off the same images: thirteen names the scan mangled are corrected here, three ditto marks it mapped no ink to are given the name their mark carries, and every other bidder cell on printed pages 47-49 agrees with the OCR as read.",
   "what_the_image_could_not_settle": [
     "The braced pairs and runs print ONE price against several lots — block 4's lots 1-6, block 5's lots 1-5, block 2's lots 8-10, and lots 39 and 40 of block 4 at $408 the pair. Those prices are not split across the lots they cover.",
     "Block 5's lot 5 was one of these until T-0778: the row map gathers no row for it, so there was no cell to correct. It is now an added row rather than a correction, and its price is still not settled — the brace prints one Reserved. over lots 1 to 5 and no amount at all."
@@ -98,6 +98,13 @@
         "read": 3
       }
     },
+    "f1839_lot0017": {
+      "bidder": {
+        "was": "T. Church and H. 0. Stone,",
+        "read": "T. Church and H. O. Stone",
+        "why": "the page prints the letter O in H. O. Stone; the OCR read the digit zero. The name is set over two lines and this is the folded cell, so the correction asserts the folded ink"
+      }
+    },
     "f1839_lot0021": {
       "lot": {
         "was": "n",
@@ -173,16 +180,40 @@
         "read": 350
       }
     },
+    "f1839_lot0047": {
+      "bidder": {
+        "was": "D. Brainarcl,",
+        "read": "D. Brainard"
+      }
+    },
     "f1839_lot0052": {
       "amount": {
         "was": "43i",
         "read": 431
+      },
+      "bidder": {
+        "was": "Dr . H. Humphrey,",
+        "read": "Dr. H. Humphrey",
+        "why": "the page sets Dr. close, with no space before the point"
       }
     },
     "f1839_lot0053": {
       "lot": {
         "was": "'l \"> OJ",
         "read": 33
+      }
+    },
+    "f1839_lot0058": {
+      "bidder": {
+        "was": "J- Burgess,",
+        "read": "J. Burgess"
+      }
+    },
+    "f1839_lot0059": {
+      "bidder": {
+        "was": "!c . Walker,",
+        "read": "C. Walker",
+        "why": "the exclamation is the printer's brace over lots 39 and 40, which the OCR gathered into the name"
       }
     },
     "f1839_lot0060": {
@@ -266,6 +297,13 @@
         "read": 315
       }
     },
+    "f1839_lot0108": {
+      "bidder": {
+        "was": "R. T. Plaines,",
+        "read": "R. T. Haines",
+        "why": "the H is read as Pl. This is the one that mattered: the crosswalk matches on surname, so a Plaines who is not in the town split R. T. Haines, who bought on five other rows of this same list, into two bidders"
+      }
+    },
     "f1839_lot0110": {
       "amount": {
         "was": "35i",
@@ -296,6 +334,12 @@
         "read": 451
       }
     },
+    "f1839_lot0124": {
+      "bidder": {
+        "was": "O. II. Thompson,",
+        "read": "O. H. Thompson"
+      }
+    },
     "f1839_lot0128": {
       "amount": {
         "was": "5io",
@@ -314,6 +358,13 @@
         "read": 19
       }
     },
+    "f1839_lot0132": {
+      "bidder": {
+        "was": "T. Wadsworth,",
+        "read": "J. Wadsworth",
+        "why": "the page prints J. Wadsworth, who takes eleven other lots on these pages; no T. Wadsworth is printed anywhere in the sale"
+      }
+    },
     "f1839_lot0134": {
       "lot": {
         "was": null,
@@ -324,6 +375,22 @@
       "amount": {
         "was": "5io",
         "read": 510
+      },
+      "bidder": {
+        "was": "J. J- Phelps,",
+        "read": "J. J. Phelps"
+      }
+    },
+    "f1839_lot0139": {
+      "bidder": {
+        "was": "Prancis Walker,",
+        "read": "Francis Walker"
+      }
+    },
+    "f1839_lot0140": {
+      "bidder": {
+        "was": "John PTnnerty,",
+        "read": "John Fennerty"
       }
     },
     "f1839_lot0141": {
@@ -515,6 +582,11 @@
       "lot": {
         "was": null,
         "read": 18
+      },
+      "bidder_ditto": {
+        "was": null,
+        "read": "J. Russell",
+        "why": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
       }
     },
     "f1839_lot0192": {
@@ -551,6 +623,11 @@
       "lot": {
         "was": "4*",
         "read": 24
+      },
+      "bidder_ditto": {
+        "was": null,
+        "read": "J. Y. Scammon",
+        "why": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
       }
     },
     "f1839_lot0198": {
@@ -644,6 +721,11 @@
       "lot": {
         "was": "4^",
         "read": 4
+      },
+      "bidder_ditto": {
+        "was": null,
+        "read": "A. D. Stewart",
+        "why": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
       }
     },
     "f1839_lot0212": {
@@ -719,6 +801,12 @@
         "read": 6
       }
     },
+    "f1839_lot0226": {
+      "bidder": {
+        "was": "J. Iv. Botsford,",
+        "read": "J. K. Botsford"
+      }
+    },
     "f1839_lot0227": {
       "amount": {
         "was": "47°",
@@ -736,6 +824,12 @@
       "lot": {
         "was": "I",
         "read": 1
+      }
+    },
+    "f1839_lot0258": {
+      "bidder": {
+        "was": "H. A. Blakeslv,",
+        "read": "H. A. Blakesly"
       }
     }
   },
@@ -794,5 +888,6 @@
         "read": 525000
       }
     }
-  ]
+  ],
+  "bidder_note": "THE SWEEP, AND WHAT IT COVERS (T-0779). All 268 rows of printed pages 47-49 were cropped from the page images by half-page column and read by eye, so the thirteen `bidder` corrections below are not a list of the errors somebody happened to notice — they are the whole disagreement between the OCR and the page in that column. Five of them are new here: T-0679's note named `Prancis Walker`, `John PTnnerty` and `J. Iv. Botsford`, and the sweep also found `T. Wadsworth` for J. Wadsworth, `J. J- Phelps`, `Dr . H. Humphrey`, `H. A. Blakeslv` and the digit zero in `H. 0. Stone`. THE ONE THAT CHANGES WHO THIS LIST CORROBORATES is `R. T. Plaines` for R. T. Haines: crosswalk_fergus_1839_lots.py matches on surname, so the mangle split one bidder who takes six lots across these pages into a Haines and a Plaines nobody could match. A CORRECTED NAME BECOMES THE CARRY, so the ditto rows under it inherit the repair rather than the ruin — O. H. Thompson's lots 14 and 15 and J. K. Botsford's lot 4 are named off their marks, not corrected individually. WHAT IS NOT TOUCHED: the page's own spellings. It prints `P. Fitzgibbons` on block 4's lot 29 and `P. Fitzgibbon` on lots 35 and 37, and `Isaac F. Massy.` ends in a point rather than a comma; all three are the printer's and are carried as printed."
 }
