@@ -1,0 +1,102 @@
+{
+  "id": "fort_dearborn_shop",
+  "name": "Fort Dearborn — shop",
+  "aka": [
+    "the Shop",
+    "the garrison workshop"
+  ],
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "drawn_1830",
+      "documented_range": {
+        "from": "1830-02-24",
+        "to": "1836-12-29",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "STANDING ON 1 JULY 1835 IS ARGUED, NOT ASSUMED. Nothing dates this building's building or its going. The range opens at the plate's own approval date, 24 February 1830, because that is the only dated witness to it - a deliberate departure from its 1816-opening siblings inside the pickets, which are dated by Hubbard naming them in 1827 and by the fort's rebuilding, neither of which reaches this building. It closes at 29 December 1836, the final evacuation, on the same reasoning fort_dearborn_garrison_garden and fort_dearborn_root_house close there: a service building on the fort's ground is kept by a garrison and is not kept by nobody. That is a housekeeping bound and NOT a demolition date. What carries it across 1 July 1835 is the garrison's continuity to that evacuation, which is documented; what is not documented is this particular building surviving it, and this record does not pretend otherwise. AND THIS BUILDING HAS ONE WITNESS ONLY. Hubbard corroborates the wash house beside it and says nothing about a shop, so there is no second reading here to open the range earlier or hold it later."
+      },
+      "position": {
+        "utm_e": 448279.47,
+        "utm_n": 4637520.92,
+        "rotation_deg": 298.7,
+        "symbolic_location": "On the fort's ground south-east of the pickets, close to the river's south bank where it turns for the old mouth — about 110 m from the fort centre, and about 22 m south-south-west of the wash house.",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "READ OFF THE 1830 HARRISON PLAN, AND THE READING IS WRITTEN DOWN THIS TIME. Every fort position in this dataset cites 'pixels on the plate Andreas reproduces at vol. 1 p. 113' and none of them records WHICH pixels, so the frame had to be re-established before anything new could be placed in it. It was, and it is reproducible: take the page image at https://archive.org/download/historyofchicago01andr/page/n242.jpg (2003 x 2715), rotate it 90 degrees anticlockwise so the sheet's own north arrow stands vertical, and the fort centre the committed records hang on - local E +1152, N +221 - lands at pixel (1466.1, 647.9) at 0.335 m per pixel. THE ANCHOR IS FITTED, NOT GUESSED: the ink centroids of the two small buildings flanking the south gate fall at (1424.8, 707.7) and (1467.4, 713.5), and solving each against the committed position of fort_dearborn_guard_house and fort_dearborn_store_house gives (1465.8, 647.7) and (1466.4, 648.1) - two independent solutions 0.6 px apart. THE SCALE IS CHECKED THE SAME WAY: those two buildings stand 42.96 px apart on the plate and 14.19 m apart in the committed dataset, which is 0.330 m/px against the 0.335 this reading uses, a 1.5 per cent disagreement. Marking all fourteen committed fort records back onto the plate at this frame puts every one of them on the feature it describes - the blockhouse on the square work at the south-west angle, the flagstaff at the centre of the parade, the barracks on the east range - which is the check that matters, because a wrong scale shows as an error that grows with distance from the anchor and there is none. THIS BUILDING'S OWN SYMBOL, the small tilted rectangle the plate sets immediately before the word 'Shop', has its ink centroid at pixel (1629.6, 934.1), which is local E +1206.8, N +125.1. The symbol is measured as a CONNECTED COMPONENT rather than in a box, because the S of 'Shop' overlaps the box that would hold it and a box measurement makes the building a third wider than it is. WHAT THE PLATE IS WORTH, STATED RATHER THAN BURIED. It says on its own face that it carries 'additions and changes suggested by the Memory of Early Settlers', so it is a period survey mixed with fifty-year-old recollection with no way to separate the two, and nothing taken from it is ever graded attested. It carries NO SCALE BAR - the 0.335 m/px above is derived, not read - and its own source record says it is to be used 'for ARRANGEMENT AND PROPORTION rather than for absolute size'. Carry +/-20 per cent on every dimension taken this way, on top of the about +/-20 m the georeference itself carries. And it is 1830, five years before the scene date. ONE WITNESS, AND THE GRADE STILL READS INFERRED FOR THE SAME REASON THE FORT'S OWN BUILDINGS DO: what is inferred is not that a shop stood on the fort's ground - the plate says so - but that the ground under the symbol is this point, through a scale the plate does not carry and a georeference with about 20 m of its own. THE FACADE BEARING IS NOT ATTESTED AND IS SET BY ONE STATED RULE APPLIED TO BOTH BUILDINGS THIS TICKET PLACES: the long side runs as the plate's symbol runs, and the facade takes the landward of the two possible bearings, facing the fort the building served. The rule is a rule so that the choice is visible and reversible rather than made twice by taste. THE 180-DEGREE FLIP IS GENUINELY OPEN - a wash house whose work was done at the water has an argument for facing the water, and nothing on the plate or in Hubbard settles it - so if this is wrong the building turns about its own centre and nothing else in the complex moves.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "The transform this position is read through is stated in full in position.note and is reproducible from the published page image, but the derivation module has no method for a hand-fitted plate anchor and no machine-checkable block is authored for it here."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            12.36,
+            0
+          ],
+          [
+            12.36,
+            5.92
+          ],
+          [
+            0,
+            5.92
+          ]
+        ],
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "TAKEN FROM THE PLATE'S OWN SYMBOL, MEASURED AS CONNECTED INK AND TRIMMED THE WAY THE COMMITTED RECORDS TRIM IT. The symbol's principal axes measure 38.6 x 18.6 px, which is 12.91 x 6.24 m at 0.335 m/px; the store house's committed footprint is 0.55 m and 0.32 m under its own symbol measured identically, and the same two numbers come off here, giving 12.36 x 5.92 m (about 41 x 19 ft). A NOTE ON THE MEASUREMENT, because it changes the answer: a bounding box round this symbol takes in the S of the label and returns 10.4 m of width. The width above is from the ink of the symbol alone. WHAT THE PLATE IS WORTH, STATED RATHER THAN BURIED. It says on its own face that it carries 'additions and changes suggested by the Memory of Early Settlers', so it is a period survey mixed with fifty-year-old recollection with no way to separate the two, and nothing taken from it is ever graded attested. It carries NO SCALE BAR - the 0.335 m/px above is derived, not read - and its own source record says it is to be used 'for ARRANGEMENT AND PROPORTION rather than for absolute size'. Carry +/-20 per cent on every dimension taken this way, on top of the about +/-20 m the georeference itself carries. And it is 1830, five years before the scene date."
+      },
+      "form": {
+        "door": {
+          "value": "stable",
+          "confidence": "reconstructed",
+          "note": "INVENTED WITHIN A BOUND, AND THE BOUND IS THE WORD 'Shop'. The plate names a shop and does not say what trade, so this record does not choose one; what it does choose is an opening wider than a person, because the work of a post's shop - a smith's, a carpenter's, a wheelwright's - is done on things carried or led in, and a man's door would assert a storeroom. The archetype's stable leaf is 1.35 m clear, the narrowest opening that is not a person's. A wagon door would assert a cart bay nothing supports."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "note": "No source describes a finish, and no secondary building at the forks in this dataset is recorded painted. Not attested either way."
+        }
+      },
+      "change_note": "The shop the 1830 plan names on the fort's ground south-east of the pickets, between the stockade and the bank of the river. What trade worked in it is not recorded."
+    }
+  ],
+  "function": {
+    "value": "workshop",
+    "confidence": "attested",
+    "sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "note": "The plate LABELS this building 'Shop', which attests that a shop stood here and nothing further. WHAT TRADE IS NOT RECORDED and is not guessed: a garrison of this period kept an armourer and usually a carpenter, and the quartermaster's returns that would say which of them worked here have not been reached. 'Workshop' is the plate's own word carried over, not a trade assigned."
+  },
+  "research_note": "THE SECOND OF THE TWO BUILDINGS T-0881 PLACES, and the weaker of the pair on evidence: one witness where the wash house has two. It is here anyway, and it is here rather than refused because the objection to placing it is an objection to the SCALE and the FRAME, which are declared, and not to the building - the plate draws a building and names it, on a sheet whose arrangement is corroborated building by building by an eyewitness wherever the two overlap. WHAT IS OURS: the size (a symbol, trimmed), the facade bearing (a stated rule, and the flip is open), the door (invented within the bound the word 'shop' sets), the fabric (unstated, so the archetype's conventions carry it and render conjectural), and both ends of the date range. WHAT WOULD UPGRADE IT: a quartermaster's return or a post order naming the shop and its trade; failing that, the original 1830 drawing rather than Andreas's re-engraving.",
+  "review_required": false,
+  "land_owner": {
+    "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+    "confidence": "inferred",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS 43 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "the south-west fractional quarter of section 10",
+    "entries": [
+      "ls0057"
+    ],
+    "date_purchased": "1835-05-28",
+    "type_of_sale": "federal land sale (cash entry)",
+    "margin_m": 43.0,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  }
+}

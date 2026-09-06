@@ -100,6 +100,38 @@ So **±20 %** on every dimension derived this way, on top of the ±20 m the datu
 The fort's stockade comes out **about 53 m (174 ft) square** — somewhere between 140 and
 210 ft on a side.
 
+**The reading frame, written down (T-0881, 2026-09-06).** Every fort position in
+`data/structures/` cites "pixels on the plate" and not one of them records WHICH pixels, so
+the frame existed only inside the run that made it and the next placement had to rebuild it
+from nothing. It is here now. Take the page image at
+`https://archive.org/download/historyofchicago01andr/page/n242.jpg` (2003 × 2715), rotate it
+**90° anticlockwise** so the sheet's north arrow stands vertical, and:
+
+> the fort centre the committed records hang on — local **E +1152, N +221** — is at pixel
+> **(1466.1, 647.9)**, at **0.335 m/px**, north up.
+>
+> `local_E = 1152 + (px − 1466.1) × 0.335` · `local_N = 221 − (py − 647.9) × 0.335`
+
+**The anchor is fitted, not guessed.** The ink centroids of the two small buildings flanking
+the south gate are at (1424.8, 707.7) and (1467.4, 713.5); solving each against the committed
+position of `fort_dearborn_guard_house` and `fort_dearborn_store_house` gives (1465.8, 647.7)
+and (1466.4, 648.1) — two independent solutions 0.6 px apart. Marking all fourteen committed
+fort records back onto the plate at this frame puts every one of them on the feature it
+describes, which is the check that matters: a wrong scale shows as an error that grows with
+distance from the anchor, and there is none across the 170 px the complex spans.
+
+**Two independent checks on the scale, and they do not quite agree with § 3's 1.10 ft/px.**
+The guard house and store house stand 42.96 px apart on the plate and 14.19 m apart in the
+committed dataset, which is **0.330 m/px**. And the plate's own building symbols measure close
+to the footprints taken off them: the store house symbol is 12.79 × 4.69 m by the principal
+axes of its connected ink against a committed 12.24 × 4.37 m, so the 2026-08 reader trimmed
+0.55 m off the long axis and 0.32 m off the short one for the drawn line weight. **The source
+record and this document disagree on the figure itself** — `harrison_1830_river_mouth.json`
+prints "about 1.06 feet per pixel … 0.32 m/px" and the same two texts disagree on the parade
+cross-check (74 ft there, 71 ft here). That is **T-0885**, and it is a disagreement in the
+documentation rather than in the placements: the anchor absorbs a constant, so nothing
+committed moves whichever figure wins.
+
 **Rotation.** The fort's four walls are drawn a mean **8° clockwise of true north**,
 measured against the sheet's own north arrow, which sits within 0.2° of vertical once the
 leaf is rotated 90°. Eight degrees is inside what a woodcut can invent, so it is
@@ -265,11 +297,17 @@ carries the `geometry:` declaration and a liberty:
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
-- **Named ground on the 1830 plan and not modelled**: the Big Barn with Cupola, the Wash
-  house, the Well, the Shop, the Out Buildings, the U.S. Factor's House, the Cultivated
-  Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and each
-  would be almost entirely invention today — the plan gives a symbol and a label and no
-  form. The **Fort Cemetery** in particular is left alone deliberately.
+- **Named ground on the 1830 plan and not modelled**: the Big Barn with Cupola, the Well,
+  the Out Buildings, the U.S. Factor's House, the Cultivated Field, the Fort Cemetery, the
+  Ferry. Each is a candidate for a later slice and each would be almost entirely invention
+  today — the plan gives a symbol and a label and no form. The **Fort Cemetery** in
+  particular is left alone deliberately.
+  **The Wash house and the Shop came off this list on 2026-09-06** (T-0881, of T-0758):
+  `fort_dearborn_wash_house` and `fort_dearborn_shop`, both placed off the plate at the
+  frame recorded in § 3 below, both `inferred` in position and footprint, everything else
+  the archetype's conventions. T-0758's other two children hold the rest: **T-0882** the
+  Well and the Big Barn with Cupola (neither form exists in `generators/archetypes/`),
+  **T-0883** the Out Buildings and the Fort Cemetery.
 - **The ordnance.** No gun is drawn. See § 6.
 
 ---

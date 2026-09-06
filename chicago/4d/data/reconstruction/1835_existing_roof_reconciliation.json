@@ -369,6 +369,28 @@
       "reasoning": "A distinct covered root cellar outside the fort, counted in the ten-roof compound schedule."
     },
     {
+      "structure_id": "fort_dearborn_wash_house",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "W3",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "moderate",
+      "reasoning": "A covered service building of the garrison OUTSIDE the pickets, drawn and named on the 1830 Harrison plan and independently remembered on the same ground by Hubbard. One roof mass. DISTRICT SOUTH, NOT FORT, AND THAT IS THE WHOLE JUDGEMENT IN THIS ROW: the `fort` district of this inventory is the compound's ten PRINCIPAL roofs and nothing else — its own character line says so and its target has stood at ten since the spec was authored. This building is not one of the ten; it is a service building on reservation ground in the South Division, which is where jb_beaubien_homestead and beaubien_barn already sit for the same reason. W3 by size: 18.3 x 38.0 ft against the W3 band of 18-26 x 26-40."
+    },
+    {
+      "structure_id": "fort_dearborn_shop",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "W3",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "moderate",
+      "reasoning": "A covered service building of the garrison OUTSIDE the pickets, drawn and named 'Shop' on the 1830 Harrison plan; one witness only, which the record states. One roof mass. District south on the same reading as the wash house above: the `fort` district is the compound's ten principal roofs and this is not one of them. W3 by size and by use — a shop is a workshop — at 19.4 x 40.6 ft against the W3 band of 18-26 x 26-40, half a foot long on the deep end of the band, which is well inside the +/-20 per cent the plate's own scale carries."
+    },
+    {
       "structure_id": "fort_dearborn_store_house",
       "district": "fort",
       "roof_count": 1,

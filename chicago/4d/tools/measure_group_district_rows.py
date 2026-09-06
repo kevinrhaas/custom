@@ -84,6 +84,28 @@ DISTRICTS = ("south", "west", "north", "fort")
 # the declaration went with it. The one left is not a fault at all: it is two gates reading
 # one liberty differently, and it moves when the liberty does.
 DECLARED_OVERSHOOT = {
+    ("south", "workshops"): {
+        "over": 1,
+        "why": "T-0881, 2026-09-06. The South Division stands 16 workshop roofs against an "
+               "authored row of 15, and the extra one is not an invention — it is the two "
+               "buildings the 1830 Harrison plan names on Fort Dearborn's ground and nobody "
+               "had ever drawn: `fort_dearborn_wash_house` and `fort_dearborn_shop`, both "
+               "outside the pickets, both on the reservation, both therefore South Division "
+               "on the same reading that puts `jb_beaubien_homestead` and `beaubien_barn` "
+               "there. The `fort` district of this inventory is the compound's TEN PRINCIPAL "
+               "roofs by its own character line and its target has never moved; these are "
+               "service buildings and not two of the ten. WHY THE ROW IS DECLARED RATHER "
+               "THAN REPAIRED: repairing it means moving a cell of the authored matrix, and "
+               "the inventory's own reconciliation_note allows that only when evidence "
+               "RE-TYPES a slot — which is a claim about the town's mix, not about the fort. "
+               "What this evidence says is narrower and is exactly what a declaration "
+               "records: the spec was authored without the 1830 plan's service buildings in "
+               "front of it, and the division sheds one anonymous slot from another group to "
+               "pay for a documented roof, which is the protected_existing_policy working "
+               "rather than failing. The row moves if T-0882 and T-0883 place the Well, the "
+               "Big Barn with Cupola, the Out Buildings or the Fort Cemetery and the "
+               "overshoot grows past what one shed slot can carry.",
+    },
     ("north", "institutional_public"): {
         "over": 1,
         "why": "T-0032 set this row to the NAMED institutional census — south 5 / west 1 / "

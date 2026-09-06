@@ -368,3 +368,5 @@ T-0878 — Wright's 1834 registration is three per cent long in y: the School Se
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
+T-0884 — tools/publish.sh minifies three household mirrors the resident writer owns, and the T-0838 drift gate fails the next PR that publishes
+T-0885 — The Harrison plate's scale is printed two ways: the source record says 1.06 ft/px (0.32 m/px) and docs/RESEARCH/fort_dearborn.md says 1.10 (0.335) — a measurement between two committed buildings says 0.330

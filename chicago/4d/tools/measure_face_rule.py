@@ -30,28 +30,39 @@ own reconciliation credits a non-dwelling family, and where they stand is a meas
 Per family letter, over the documented layer, by the traffic class the committed street
 hierarchy authors in `data/streets/1835.json` for the street each building stands nearest:
 
-    C  stores        15 records — 10 principal   5 ordinary   0 light
+    C  stores        16 records — 11 principal   5 ordinary   0 light
     F  warehouses     9 records —  9 principal   0 ordinary   0 light
     W  workshops      7 records —  2 principal   5 ordinary   0 light
-    T  lodging        8 records —  3 principal   4 ordinary   1 light
-    I  institutions   9 records —  1 principal   4 ordinary   4 light
+    T  lodging        9 records —  4 principal   4 ordinary   1 light
+    I  institutions   8 records —  1 principal   4 ordinary   3 light
 
 Run this module with no arguments and the table above is what it prints, from the tree
 rather than from this docstring. **Not one documented store, warehouse or workshop in this
 town stands on a light street**, and that zero is the load-bearing figure: it is what makes
 "a store takes the better face" a reading of the record rather than a preference about
-frontage. It is a zero across 31 buildings, on the three letters a block parcel may
+frontage. It is a zero across 32 buildings, on the three letters a block parcel may
 actually be dealt.
 
-The two letters that are not zero are stated rather than trimmed away. **T's one** is the
-Steamboat Hotel, which this table puts 287 m from the State Street centreline: it does not
-front State, State is simply the nearest committed line in a division that has almost no
-street control yet, and the same artefact accounts for most of the invented residual at the
-bottom of the printout. **I's four** are the lighthouse, the council house, St Mary's and
-the Watkins school house — and `tools/generate_block_infill.py` refuses the institutional
-families to a block parcel BY NAME anyway (L93, ROADMAP T-I3), so no rule about frontage
-ever reaches them. The assertion below reads this table rather than a list typed beside it,
-so it asserts nothing about a letter the record does not put a zero on.
+The two letters that are not zero are stated rather than trimmed away. **T's one** is in
+the North Division, where there is almost no street control yet, so the "nearest committed
+line" is a line the building does not front — the artefact that accounts for most of the
+invented residual at the bottom of the printout too. **I's three** are the council house,
+St Mary's and the Watkins school house — and `tools/generate_block_infill.py` refuses the
+institutional families to a block parcel BY NAME anyway (L93, ROADMAP T-I3), so no rule
+about frontage ever reaches them. The assertion below reads this table rather than a list
+typed beside it, so it asserts nothing about a letter the record does not put a zero on.
+
+**Ground the plat never reached is not a frontage, and since T-0881 it is not counted as
+one.** A row of this table claims that a building stands nearest a street OF A CLASS, and
+on the United States Reservation that claim is empty: `1835_no_build_ground.json` records,
+with its sources, that the reservation was unplatted in 1835 and that no street crossed it.
+Three documented buildings stand there — the lighthouse, and the wash house and the shop
+the 1830 Harrison plan puts on the fort's ground — 338 m, 405 m and 378 m from the State
+Street line, across ground the town had not laid out. They are read out of the WITNESS and
+printed in a section of their own, because a workshop that fronts nothing is not evidence
+that a workshop may front a light street. The set is read from that file's own
+`what_may_stand_here.permitted` lists rather than from a distance this module would have
+had to pick; see `unplatted_ground`.
 
 The second reading is the SETBACK, and it is what the word "functional" in T-A15's
 sentence actually buys. Thirteen of the fifteen documented stores stand ON the street
@@ -96,6 +107,7 @@ record that is 9-of-9 on principal streets, are a real residual and are printed 
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -129,10 +141,38 @@ def family_of(record_id: str) -> str | None:
     return match.group(1).upper() if match else None
 
 
+def unplatted_ground() -> set:
+    """The structures standing on ground the plat never reached (T-0881).
+
+    A row of this table says "this building stands nearest THIS street, of THIS class",
+    and the whole reading turns on that being a statement about FRONTAGE. On the United
+    States Reservation it is not one, and the reason is documented rather than estimated:
+    `data/reconstruction/1835_no_build_ground.json` records, with its sources, that the
+    reservation was UNPLATTED in 1835 and that no street crossed it. A building there is
+    not on a light street; it is on no street, and the nearest committed centreline is
+    hundreds of metres away across ground the town had not laid out.
+
+    This is the artefact the docstring above already describes for the North Division,
+    named and read instead of narrated: the two buildings that brought it here,
+    `fort_dearborn_wash_house` and `fort_dearborn_shop`, stand 405 m and 378 m from the
+    State Street line. Rather than a distance threshold this module would have had to
+    choose, the set is READ from that file's own `what_may_stand_here.permitted` lists —
+    the hand-authored, per-structure record of which buildings stand on refused ground on
+    their own evidence. Nothing is hidden by it: these rows are printed in their own
+    section of the table, beside the residual.
+    """
+    doc = json.loads((DATA / "reconstruction" / "1835_no_build_ground.json")
+                     .read_text(encoding="utf-8"))
+    return {entry["structure_id"]
+            for region in doc.get("regions") or []
+            for entry in (region.get("what_may_stand_here") or {}).get("permitted") or []}
+
+
 def reading() -> dict:
     """Every building placed against the street it stands nearest, with its family."""
     traffic = street_traffic()
     documented = documented_families()
+    off_plat = unplatted_ground()
     rows = []
     for row in census()["rows"]:
         family = (documented.get(row["id"]) if row["layer"] == "research"
@@ -143,6 +183,7 @@ def reading() -> dict:
                      "letter": family[0], "street": row["street"],
                      "class": traffic.get(row["street"]),
                      "setback_m": row["setback_m"], "on_line": row["on_line"],
+                     "off_plat": row["id"] in off_plat,
                      "block_parcel": row["id"].startswith(BLOCK_PREFIX)})
     return {"rows": rows}
 
@@ -151,7 +192,7 @@ def documented_classes(rows: list[dict]) -> dict[str, dict[str, int]]:
     """letter -> {traffic class: how many DOCUMENTED buildings of it stand there}."""
     out: dict[str, dict[str, int]] = {}
     for row in rows:
-        if row["layer"] != "research":
+        if row["layer"] != "research" or row.get("off_plat"):
             continue
         out.setdefault(row["letter"], {k: 0 for k in CLASSES})
         if row["class"] in CLASSES:
@@ -185,7 +226,8 @@ def _table(result: dict) -> str:
     lines = ["\n   where a non-dwelling stands, by the class of the street it is nearest",
              "   (the documented reading is the rule; see the module docstring)\n",
              "   layer        letter      n   principal   ordinary      light"]
-    for label, test in (("documented", lambda r: r["layer"] == "research"),
+    for label, test in (("documented", lambda r: r["layer"] == "research"
+                         and not r.get("off_plat")),
                         ("block parcels", lambda r: r["block_parcel"]),
                         ("other invented", lambda r: r["layer"] != "research"
                          and not r["block_parcel"])):
@@ -204,6 +246,13 @@ def _table(result: dict) -> str:
         lines.append(f"   {row['family']:<4} {row['id']:<44} {row['street']:<13}"
                      f"{str(row['class']):<11}{row['setback_m']:>7.2f} m"
                      f"{'  on the line' if row['on_line'] else '  set back'}")
+    lines.append("\n   documented, but on ground the plat never reached — no street to front,"
+                 "\n   so no frontage class, and not part of the witness (T-0881):")
+    for row in sorted(rows, key=lambda r: r["id"]):
+        if row["layer"] != "research" or not row.get("off_plat"):
+            continue
+        lines.append(f"   {row['family']:<4} {row['id']:<44} {row['street']:<13}"
+                     f"{str(row['class']):<11}{row['setback_m']:>7.2f} m")
     lines.append("\n   the residual this module reports and does not assert on:")
     for row in sorted(rows, key=lambda r: r["id"]):
         if row["layer"] == "research" or row["block_parcel"]:

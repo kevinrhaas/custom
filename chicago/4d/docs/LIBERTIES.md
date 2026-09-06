@@ -10286,10 +10286,10 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
 
-### L219 — Sixty-three roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 63 structures
+### L219 — Sixty-five roofs are told who entered their ground by a survey grid nobody traced
+**Scope:** `structures.land_owner[constructed_section_grid]` — 65 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 63 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 65 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10314,7 +10314,7 @@ and deliberately NOT put on the ground** for being outside them. Inside them eac
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
 tract line than that drops to `reconstructed`, and the metres are printed on the row. **49 of
-the 63 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+the 65 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Only 14
 documented buildings carry the middle tier. Two tracts are not grid squares at all
@@ -10336,7 +10336,10 @@ refuses.
 Related: **L108** (the reservation boundary, from the same corner and the same bearing) ·
 **L182** (Madison's centreline, likewise) · **L216** (the other placement that rests on lot
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
-**Recorded:** 2026-09-04.
+**Recorded:** 2026-09-04. **Count updated 2026-09-06 (T-0881): 63 → 65.** The wash house and
+the shop the 1830 Harrison plan draws on Fort Dearborn's ground were placed, and
+`tools/resolve_land_tracts.py --build` dealt each of them the same reservation tract on the
+same constructed grid. The liberty is unchanged; two more roofs stand on it.
 
 ### L220 — 490 people join the town on the town's own lists, and a household is written round each of them
 
@@ -10722,3 +10725,31 @@ notice) · **L26** (the archetype's chimney) · **L148** (the clapboard stock) �
 **T-0783** (this), **T-0412** (the vendor rule that took the house off P. Pruyne & Co.).
 **Covers:** `lasalle_lake_house.occupants`, `lasalle_lake_house.documented_1834.position`, `lasalle_lake_house.documented_1834.form.stories`, `lasalle_lake_house.documented_1834.form.wall_height_m`, `lasalle_lake_house.documented_1834.form.roof_pitch_deg`, `lasalle_lake_house.documented_1834.form.plan`, `lasalle_lake_house.documented_1834.form.bays`, `lasalle_lake_house.documented_1834.form.chimneys`, `lasalle_lake_house.documented_1834.form.paint`.
 **Recorded:** 2026-09-06 (T-0783).
+
+### L225 — A shop the plan names and no source describes gets a door wide enough to work through
+**Decision:** the shop the 1830 Harrison plan draws and labels on Fort Dearborn's ground is
+built with the outbuilding archetype's **stable** door — a single 1.35 m clear leaf — rather
+than with the man door the archetype would otherwise default to. Nothing describes an opening
+in this building, or anything else about it beyond the word *Shop* and a symbol.
+**Why:** the plate names a shop and names no trade, and this record deliberately does not pick
+one. But a door is not a trade. What the archetype's default would assert is a **storeroom** —
+a man's door is an opening for a person and an armful — and every reading of the word *shop* on
+a military post, whether the armourer's, the carpenter's or the wheelwright's, is work done on
+things brought in bodily: iron stock, a wheel, a gun carriage, a section of fence. So the choice
+is between two inventions, and the narrower one is the one the noun supports. A wagon door was
+refused for the opposite reason: it would assert a cart bay, which is a claim about the building
+rather than about its use.
+**Consequence:** a visitor sees a garrison workshop with one wide leaf on its landward
+elevation, and the Evidence panel grades the door `reconstructed` while the building's position
+and footprint read `inferred` — the door is the most invented thing about a building that is
+already mostly ours. The wash house placed in the same pass is NOT covered here: its `man` door
+is the archetype's own default for the footprint, and stating the default states nothing.
+**What is NOT claimed:** no trade, no smith, no forge, no occupant, and nothing about what was
+made or mended here. `function` carries the plate's own word, `workshop`, and stops.
+**How to resolve:** a quartermaster's return or a post order for Fort Dearborn naming the shop
+and its trade settles the door and most of the rest of the record with it; failing that, the
+original 1830 Harrison drawing rather than Andreas's 1884 re-engraving of it.
+Related: **L26** (the archetype's chimney, the same class of default made visible) · tickets
+**T-0881** (this), **T-0758** (the six named things on the fort's ground).
+**Covers:** `fort_dearborn_shop.drawn_1830.form.door`.
+**Recorded:** 2026-09-06 (T-0881).

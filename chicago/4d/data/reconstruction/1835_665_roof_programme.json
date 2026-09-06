@@ -23,9 +23,9 @@
    "weight": "A block's weight is the mean of its four faces' class shares, read off data/streets/1835.json. Re-class a street there and every block on it re-weights in the same commit.",
    "trade_share_by_class": {
     "light": {
-     "n": 19,
-     "trade": 0,
-     "share": 0.0
+     "n": 21,
+     "trade": 2,
+     "share": 0.0952
     },
     "ordinary": {
      "n": 22,
@@ -66,20 +66,20 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 375,
+  "structure_records": 377,
   "physical_roofs": {
-   "min": 362,
-   "max": 363,
+   "min": 364,
+   "max": 365,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
    "generated": 251,
    "inferred_household_programme": 7,
-   "pre_existing": 73,
+   "pre_existing": 75,
    "retired_household_roofs": 31
   },
   "by_district": {
-   "south": 219,
+   "south": 221,
    "west": 48,
    "north": 85,
    "fort": 10
@@ -89,7 +89,7 @@
    "larger_boarding_houses": 12,
    "stores_mixed_use": 39,
    "inns_taverns": 10,
-   "workshops": 29,
+   "workshops": 31,
    "warehouses_freight": 12,
    "institutional_public": 10,
    "fort_principal": 10,
@@ -129,7 +129,7 @@
    "T3": 1,
    "W1": 7,
    "W2": 3,
-   "W3": 5,
+   "W3": 7,
    "W4": 8,
    "W5": 6
   },
@@ -152,10 +152,10 @@
   ]
  },
  "remaining": {
-  "roofs": 300,
+  "roofs": 298,
   "of_target": 662,
   "by_district": {
-   "south": 146,
+   "south": 144,
    "west": 87,
    "north": 67,
    "fort": 0
@@ -164,11 +164,10 @@
    "south": {
     "barns_stables": 17,
     "larger_boarding_houses": 21,
-    "ordinary_dwellings": 68,
+    "ordinary_dwellings": 67,
     "small_outbuildings": 23,
     "stores_mixed_use": 10,
-    "warehouses_freight": 6,
-    "workshops": 1
+    "warehouses_freight": 6
    },
    "west": {
     "barns_stables": 12,
@@ -199,7 +198,7 @@
    "D1": 14,
    "D2": 15,
    "D3": 31,
-   "D4": 32,
+   "D4": 31,
    "D5": 32,
    "D6": 16,
    "D7": 14,
@@ -219,7 +218,7 @@
    "T3": 0,
    "W1": 0,
    "W2": 5,
-   "W3": 1,
+   "W3": 0,
    "W4": 0,
    "W5": 0
   },
@@ -231,7 +230,7 @@
     "H2": 8,
     "H3": 6,
     "D1": 6,
-    "D2": 7,
+    "D2": 6,
     "D3": 14,
     "D4": 14,
     "D5": 14,
@@ -245,8 +244,7 @@
     "C4": 3,
     "F2": 3,
     "F3": 2,
-    "F4": 1,
-    "W2": 1
+    "F4": 1
    },
    "west": {
     "A1": 6,
@@ -278,8 +276,8 @@
     "H3": 1,
     "D1": 4,
     "D2": 4,
-    "D3": 8,
-    "D4": 9,
+    "D3": 9,
+    "D4": 8,
     "D5": 9,
     "D6": 4,
     "D7": 4,
@@ -294,18 +292,25 @@
    "I2": 1,
    "T2": 3,
    "W1": 1,
+   "W3": 1,
    "W4": 2,
    "W5": 2
   },
   "absorbed_from": {
-   "D4": 11
+   "D4": 12
   },
   "district_group_rows_overshot": {
+   "south": {
+    "workshops": 1
+   },
    "north": {
     "institutional_public": 1
    }
   },
   "district_group_slots_shed": {
+   "south": {
+    "ordinary_dwellings": 1
+   },
    "north": {
     "ordinary_dwellings": 1
    }
@@ -313,8 +318,8 @@
  },
  "coverage": {
   "schedulable_on_committed_ground": 4,
-  "gated_on_coverage": 296,
-  "statement": "4 of the 300 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
+  "gated_on_coverage": 294,
+  "statement": "4 of the 298 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 294 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -448,7 +453,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.4803,
+   "frontage_weight": 0.5041,
    "trade_roofs": 0
   },
   {
@@ -815,8 +820,8 @@
     "C2": 1,
     "C3": 1,
     "C4": 1,
-    "D1": 1,
-    "D2": 2,
+    "D1": 2,
+    "D2": 1,
     "D3": 2,
     "D4": 2,
     "D5": 2,
@@ -890,12 +895,12 @@
    "id": "south_plat_beyond_committed_control",
    "kind": "district_balance",
    "district": "south",
-   "capacity_roofs": 115,
+   "capacity_roofs": 113,
    "standing_roofs": 0,
-   "headroom": 115,
+   "headroom": 113,
    "state": "gated",
    "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-   "roofs": 115,
+   "roofs": 113,
    "families": {
     "A1": 7,
     "A2": 7,
@@ -905,7 +910,7 @@
     "C2": 2,
     "C3": 3,
     "C4": 2,
-    "D1": 5,
+    "D1": 4,
     "D2": 5,
     "D3": 11,
     "D4": 11,
@@ -917,10 +922,9 @@
     "F4": 1,
     "H1": 5,
     "H2": 6,
-    "H3": 5,
-    "W2": 1
+    "H3": 5
    },
-   "principal": 82,
+   "principal": 80,
    "ancillary": 33
   },
   {
@@ -976,8 +980,8 @@
     "A5": 3,
     "D1": 4,
     "D2": 4,
-    "D3": 8,
-    "D4": 9,
+    "D3": 9,
+    "D4": 8,
     "D5": 9,
     "D6": 4,
     "D7": 4,

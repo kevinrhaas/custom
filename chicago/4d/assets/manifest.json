@@ -279,6 +279,15 @@
       "phase_id": "cellar_1816",
       "structure_id": "fort_dearborn_root_house"
     },
+    "fort_dearborn_shop__drawn_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 143876,
+      "inputs_sha256": "c37932ea063e896460c32c6cbd5a7ed9e2d2d9fb6380988f8aeb44aa96ccc767",
+      "kind": "generated",
+      "phase_id": "drawn_1830",
+      "structure_id": "fort_dearborn_shop"
+    },
     "fort_dearborn_store_house__log_1816.glb": {
       "archetype": "fort_structure",
       "baked_ao": false,
@@ -296,6 +305,15 @@
       "kind": "generated",
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_sutlers_store"
+    },
+    "fort_dearborn_wash_house__drawn_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 132036,
+      "inputs_sha256": "dab944714bd7cefb876e2fcce1fd3df9dea527f1dec64435e8b4d2b08a31010c",
+      "kind": "generated",
+      "phase_id": "drawn_1830",
+      "structure_id": "fort_dearborn_wash_house"
     },
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",

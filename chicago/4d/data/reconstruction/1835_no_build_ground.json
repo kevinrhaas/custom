@@ -10,10 +10,18 @@
     {
       "id": "fort_dearborn_reservation",
       "name": "The United States Reservation",
-      "aka": ["the Fort Dearborn reservation", "the military reservation", "the government reservation"],
+      "aka": [
+        "the Fort Dearborn reservation",
+        "the military reservation",
+        "the government reservation"
+      ],
       "kind": "military_reservation",
       "confidence": "documented",
-      "sources": ["andreas_1884_v1", "chicagology_southwaterstreet", "chicagology_prefire278"],
+      "sources": [
+        "andreas_1884_v1",
+        "chicagology_southwaterstreet",
+        "chicagology_prefire278"
+      ],
       "note": "THE REFUSAL IS DOCUMENTED AND THE REASONING IS NOT NEEDED FOR IT. Andreas I, scan p. 183, gives the reservation as 75.69 acres, the southwest fractional quarter of Section 10, T39N R14E, 3rd P.M. It was UNPLATTED in 1835 — no street crossed it, and the town order of August 1833 has South Water Street 'pitched' only from the United States Reservation to Randolph Street (chicagology/southwaterstreet). The town's own eastern boundary on the south side was State Street until the February 1835 extension, with the reservation beyond it (chicagology prefire278). It was federal ground under an active claim on the scene date: Jean Baptiste Beaubien's pre-emption certificate for the whole reservation is dated 1835-05-28 and was recorded 1835-06-26 at $94.61 — about five weeks old on 1835-07-01, and voided by the Supreme Court in Wilcox v. Jackson four years later. Ground the United States has not sold, that carries no street and no lot line, and over which a single contested claim was filed weeks earlier, is not ground on which this project may stand an invented dwelling for an invented household. docs/research/04-structures-south.md sections 1.3 and G carry the passages.",
       "boundary": {
         "method": "derived",
@@ -48,24 +56,86 @@
       "what_may_stand_here": {
         "rule": "A structure record may stand on refused ground when its own committed evidence puts it there. Everything else is refused — in particular every roof of the 665-roof programme's anonymous infill, whose whole justification is that the ground was ordinary building ground.",
         "permitted": [
-          {"structure_id": "fort_dearborn_palisade", "why": "The fort is the reason the reservation exists."},
-          {"structure_id": "fort_dearborn_parade", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_barracks", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_officers_quarters", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_commandants_quarters", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_guard_house", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_magazine", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_store_house", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_artillery_house", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_root_house", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_flagstaff", "why": "Inside the stockade, on the parade. Andreas puts a fifty-foot flagstaff at the fort in the years the scene sits in; see docs/RESEARCH/fort_dearborn.md \u00a7 10."},
-          {"structure_id": "fort_dearborn_blockhouse", "why": "Inside the stockade."},
-          {"structure_id": "fort_dearborn_sutlers_store", "why": "A garrison building on the garrison's own ground."},
-          {"structure_id": "fort_dearborn_garrison_garden", "why": "Andreas and Kinzie both put the garrison's garden and orchard on the reservation, extending south toward Madison Street."},
-          {"structure_id": "chicago_lighthouse_1832", "why": "Andreas, scan p. 263: 'Fort Dearborn and the light-house are placed at the angle thus formed' — the light stood on the reservation beside the fort at the river mouth."},
-          {"structure_id": "jb_beaubien_homestead", "why": "The one private dwelling documented ON the reservation. Beaubien lived there and filed the pre-emption claim over the whole 75.69 acres on 1835-05-28; the record carries the passages and the unresolved corner."},
-          {"structure_id": "beaubien_barn", "why": "Beaubien's own outbuilding beside the homestead, on the same evidence."},
-          {"structure_id": "south_pier", "why": "The 1834 harbour work itself. It runs out from the reservation's shore and through the bar, which is why it is the one record that touches both regions in this file."}
+          {
+            "structure_id": "fort_dearborn_palisade",
+            "why": "The fort is the reason the reservation exists."
+          },
+          {
+            "structure_id": "fort_dearborn_parade",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_barracks",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_officers_quarters",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_commandants_quarters",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_guard_house",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_magazine",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_store_house",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_artillery_house",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_root_house",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_flagstaff",
+            "why": "Inside the stockade, on the parade. Andreas puts a fifty-foot flagstaff at the fort in the years the scene sits in; see docs/RESEARCH/fort_dearborn.md § 10."
+          },
+          {
+            "structure_id": "fort_dearborn_blockhouse",
+            "why": "Inside the stockade."
+          },
+          {
+            "structure_id": "fort_dearborn_sutlers_store",
+            "why": "A garrison building on the garrison's own ground."
+          },
+          {
+            "structure_id": "fort_dearborn_garrison_garden",
+            "why": "Andreas and Kinzie both put the garrison's garden and orchard on the reservation, extending south toward Madison Street."
+          },
+          {
+            "structure_id": "fort_dearborn_wash_house",
+            "why": "A garrison service building on the garrison's own ground, drawn and named on the 1830 Harrison plan east of the pickets and independently remembered there by Hubbard: 'rude wash-houses' on the low sandy beach east of the stockade. Outside the pickets and inside the reservation, on the same footing as the garden."
+          },
+          {
+            "structure_id": "fort_dearborn_shop",
+            "why": "A garrison service building on the garrison's own ground, drawn and named 'Shop' on the 1830 Harrison plan south-east of the pickets. Outside the pickets and inside the reservation, on the same footing as the garden and the wash house."
+          },
+          {
+            "structure_id": "chicago_lighthouse_1832",
+            "why": "Andreas, scan p. 263: 'Fort Dearborn and the light-house are placed at the angle thus formed' — the light stood on the reservation beside the fort at the river mouth."
+          },
+          {
+            "structure_id": "jb_beaubien_homestead",
+            "why": "The one private dwelling documented ON the reservation. Beaubien lived there and filed the pre-emption claim over the whole 75.69 acres on 1835-05-28; the record carries the passages and the unresolved corner."
+          },
+          {
+            "structure_id": "beaubien_barn",
+            "why": "Beaubien's own outbuilding beside the homestead, on the same evidence."
+          },
+          {
+            "structure_id": "south_pier",
+            "why": "The 1834 harbour work itself. It runs out from the reservation's shore and through the bar, which is why it is the one record that touches both regions in this file."
+          }
         ]
       },
       "refused": {
@@ -78,7 +148,10 @@
       "name": "The sand bar across the river mouth",
       "kind": "sand_bar",
       "confidence": "documented",
-      "sources": ["wright_1834", "harrison_1830_river_mouth"],
+      "sources": [
+        "wright_1834",
+        "harrison_1830_river_mouth"
+      ],
       "note": "Not building ground in any period, and it needs no argument beyond what it is: a lake-built sand bar at a river mouth, cut through by the 1834 harbour works and drawn by Wright with the old southward channel behind it still narrowing. The committed trace declines to claim any elevation for it at all — 'a bar is a surface a few feet of lake stage moves, no source gives its height' — which is the same reason a dwelling may not stand on it. T-E1 predicted this half of the parcel would need no new evidence, and it did not.",
       "boundary": {
         "method": "committed_polygon",
@@ -89,7 +162,10 @@
       "what_may_stand_here": {
         "rule": "The harbour works, and nothing else. A structure record may stand here on its own evidence; no anonymous roof may.",
         "permitted": [
-          {"structure_id": "south_pier", "why": "The pier is the thing that cut the bar. Two of its four corners fall inside the bar polygon and one inside the reservation's, which is the geometry of a pier run out from the shore through a bar."}
+          {
+            "structure_id": "south_pier",
+            "why": "The pier is the thing that cut the bar. Two of its four corners fall inside the bar polygon and one inside the reservation's, which is the geometry of a pier run out from the shore through a bar."
+          }
         ]
       },
       "refused": {

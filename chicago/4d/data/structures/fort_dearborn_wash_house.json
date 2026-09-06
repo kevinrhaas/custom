@@ -1,0 +1,105 @@
+{
+  "id": "fort_dearborn_wash_house",
+  "name": "Fort Dearborn — wash house",
+  "aka": [
+    "the Wash house",
+    "the garrison wash-houses"
+  ],
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "drawn_1830",
+      "documented_range": {
+        "from": "1830-02-24",
+        "to": "1836-12-29",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth",
+          "hubbard_autobiography_1911"
+        ],
+        "note": "STANDING ON 1 JULY 1835 IS ARGUED, NOT ASSUMED. Nothing dates this building's building or its going. The range opens at the plate's own approval date, 24 February 1830, because that is the only dated witness to it - a deliberate departure from its 1816-opening siblings inside the pickets, which are dated by Hubbard naming them in 1827 and by the fort's rebuilding, neither of which reaches this building. It closes at 29 December 1836, the final evacuation, on the same reasoning fort_dearborn_garrison_garden and fort_dearborn_root_house close there: a service building on the fort's ground is kept by a garrison and is not kept by nobody. That is a housekeeping bound and NOT a demolition date. What carries it across 1 July 1835 is the garrison's continuity to that evacuation, which is documented; what is not documented is this particular building surviving it, and this record does not pretend otherwise. HUBBARD PUTS WASH-HOUSES ON THIS GROUND EARLIER AND THE RANGE IS NOT OPENED TO MEET HIM: he describes the fort's surroundings from an acquaintance beginning in October 1818, and gives no year for the wash-houses themselves, so an earlier opening would be a date invented to look better."
+      },
+      "position": {
+        "utm_e": 448294.11,
+        "utm_n": 4637561.39,
+        "rotation_deg": 290.7,
+        "symbolic_location": "On the fort's ground east-south-east of the pickets, on the low sandy strip between the stockade and the river's south bank — about 89 m from the fort centre and roughly 62 m outside the east wall.",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth",
+          "hubbard_autobiography_1911"
+        ],
+        "note": "READ OFF THE 1830 HARRISON PLAN, AND THE READING IS WRITTEN DOWN THIS TIME. Every fort position in this dataset cites 'pixels on the plate Andreas reproduces at vol. 1 p. 113' and none of them records WHICH pixels, so the frame had to be re-established before anything new could be placed in it. It was, and it is reproducible: take the page image at https://archive.org/download/historyofchicago01andr/page/n242.jpg (2003 x 2715), rotate it 90 degrees anticlockwise so the sheet's own north arrow stands vertical, and the fort centre the committed records hang on - local E +1152, N +221 - lands at pixel (1466.1, 647.9) at 0.335 m per pixel. THE ANCHOR IS FITTED, NOT GUESSED: the ink centroids of the two small buildings flanking the south gate fall at (1424.8, 707.7) and (1467.4, 713.5), and solving each against the committed position of fort_dearborn_guard_house and fort_dearborn_store_house gives (1465.8, 647.7) and (1466.4, 648.1) - two independent solutions 0.6 px apart. THE SCALE IS CHECKED THE SAME WAY: those two buildings stand 42.96 px apart on the plate and 14.19 m apart in the committed dataset, which is 0.330 m/px against the 0.335 this reading uses, a 1.5 per cent disagreement. Marking all fourteen committed fort records back onto the plate at this frame puts every one of them on the feature it describes - the blockhouse on the square work at the south-west angle, the flagstaff at the centre of the parade, the barracks on the east range - which is the check that matters, because a wrong scale shows as an error that grows with distance from the anchor and there is none. THIS BUILDING'S OWN SYMBOL, the small tilted rectangle the plate sets immediately after the words 'Wash house', has its ink centroid at pixel (1673.3, 813.3), which is local E +1221.4, N +165.6. WHAT THE PLATE IS WORTH, STATED RATHER THAN BURIED. It says on its own face that it carries 'additions and changes suggested by the Memory of Early Settlers', so it is a period survey mixed with fifty-year-old recollection with no way to separate the two, and nothing taken from it is ever graded attested. It carries NO SCALE BAR - the 0.335 m/px above is derived, not read - and its own source record says it is to be used 'for ARRANGEMENT AND PROPORTION rather than for absolute size'. Carry +/-20 per cent on every dimension taken this way, on top of the about +/-20 m the georeference itself carries. And it is 1830, five years before the scene date. AND THE SECOND WITNESS AGREES WITH THE PLATE ON WHERE, WHICH IS WHY THIS IS INFERRED RATHER THAN RECONSTRUCTED. Gurdon S. Hubbard: 'On the east side of the fort the river was from four to five hundred feet from the pickets, and a part of this distance was a low, sandy beach, where rude wash-houses had been constructed, in which the men and women of the garrison conducted their laundry operations.' Four to five hundred feet is 122 to 152 m; this point stands about 62 m outside the east wall, which is on that strip and not across it. WHERE THE TWO WITNESSES DISAGREE IS NUMBER, NOT PLACE: Hubbard says wash-houseS and the plate draws one. THE PLURAL IS NOT MODELLED, for the reason fort_dearborn_root_house gives for the root-houses - a count invented would be an invention on top of a position taken from a symbol - and one building stands where the plate draws one. THE FACADE BEARING IS NOT ATTESTED AND IS SET BY ONE STATED RULE APPLIED TO BOTH BUILDINGS THIS TICKET PLACES: the long side runs as the plate's symbol runs, and the facade takes the landward of the two possible bearings, facing the fort the building served. The rule is a rule so that the choice is visible and reversible rather than made twice by taste. THE 180-DEGREE FLIP IS GENUINELY OPEN - a wash house whose work was done at the water has an argument for facing the water, and nothing on the plate or in Hubbard settles it - so if this is wrong the building turns about its own centre and nothing else in the complex moves.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "The transform this position is read through is stated in full in position.note and is reproducible from the published page image, but the derivation module has no method for a hand-fitted plate anchor and no machine-checkable block is authored for it here."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            11.57,
+            0
+          ],
+          [
+            11.57,
+            5.57
+          ],
+          [
+            0,
+            5.57
+          ]
+        ],
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "TAKEN FROM THE PLATE'S OWN SYMBOL AND TRIMMED THE WAY THE COMMITTED RECORDS TRIM IT. The connected ink of the symbol measures 36.2 x 17.6 px on its principal axes, which is 12.12 x 5.89 m at 0.335 m/px. That is the OUTSIDE of a drawn line, so it is larger than the building by the line weight, and the size of the trim is not invented here either: the store house symbol measures 12.79 x 4.69 m the same way and its committed footprint is 12.24 x 4.37 m, so the reader of 2026-08 took 0.55 m off the long axis and 0.32 m off the short one. The same two numbers are taken off here, giving 11.57 x 5.57 m (about 38 x 18 ft). IT IS A LARGE WASH HOUSE and that is what the plate draws - within 6 per cent of the store house's length. The symbols are NOT a stock block, which is the obvious objection: the three small buildings measured on this sheet agree to 6 per cent on length and differ by a third on width, so the engraver drew proportions rather than repeating one shape. WHAT THE PLATE IS WORTH, STATED RATHER THAN BURIED. It says on its own face that it carries 'additions and changes suggested by the Memory of Early Settlers', so it is a period survey mixed with fifty-year-old recollection with no way to separate the two, and nothing taken from it is ever graded attested. It carries NO SCALE BAR - the 0.335 m/px above is derived, not read - and its own source record says it is to be used 'for ARRANGEMENT AND PROPORTION rather than for absolute size'. Carry +/-20 per cent on every dimension taken this way, on top of the about +/-20 m the georeference itself carries. And it is 1830, five years before the scene date."
+      },
+      "form": {
+        "door": {
+          "value": "man",
+          "confidence": "inferred",
+          "note": "Nothing describes an opening. A wash house takes people and armfuls of linen and never a beast or a cart, so the archetype's man door (0.86 m clear) is the opening the use implies. What is inferred is the use-to-opening step; the opening itself is attested nowhere."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "note": "No source describes a finish. Hubbard's word for these buildings is 'rude', which is the opposite of a finish, and no secondary building at the forks in this dataset is recorded painted. Not attested either way."
+        }
+      },
+      "change_note": "One of the wash-houses Hubbard puts on the sandy beach east of the pickets, standing where the 1830 plan draws and labels one, on the ground between Fort Dearborn's east wall and the river. On the scene date the garrison is still here and the laundry of the post is still done out here rather than inside the stockade."
+    }
+  ],
+  "function": {
+    "value": "garrison laundry",
+    "confidence": "attested",
+    "sources": [
+      "harrison_1830_river_mouth",
+      "hubbard_autobiography_1911"
+    ],
+    "note": "The plate LABELS this building 'Wash house' in so many words, which is as direct as a function statement gets on a map, and Hubbard independently says what happened in the type: 'the men and women of the garrison conducted their laundry operations'. Attested is the function; nothing else about the building is."
+  },
+  "research_note": "THE FIRST OF THE SIX NAMED THINGS ON THE FORT'S GROUND TO BE DRAWN. docs/RESEARCH/fort_dearborn.md has listed the Big Barn with Cupola, the Wash house, the Well, the Shop, the Out Buildings, the U.S. Factor's House, the Cultivated Field, the Fort Cemetery and the Ferry as 'named ground on the 1830 plan and not modelled' since the plan was found; T-0758 made that a ticket and split into three when it turned out the six do not divide by taste but by what the model can build. This one and the Shop are the two the plate draws AS BUILDINGS and that the outbuilding archetype builds today. TWO WITNESSES, NOT ONE, which is unusual for a secondary building here and is the whole reason this record is graded inferred rather than reconstructed: an engineer's plan draws a wash house east of the pickets and a man who lived at this fort remembers wash-houses on the beach east of the pickets. They agree on the side, on the ground and on the use, and disagree only on the count. WHAT IS STILL OURS: the size (a symbol trimmed by the trim the store house record used), the facade bearing (a stated rule, and the flip is open), the fabric (unstated, so the archetype's conventions carry it and every one of them renders conjectural), and both ends of the date range. WHAT WOULD UPGRADE IT: the original 1830 Harrison drawing rather than Andreas's 1884 re-engraving of it, which would separate the survey from the 'Memory of Early Settlers' the engraved sheet mixes in; failing that, a quartermaster's return listing the post's outbuildings.",
+  "review_required": false,
+  "land_owner": {
+    "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+    "confidence": "reconstructed",
+    "sources": [
+      "isa_public_domain_land_tract_sales"
+    ],
+    "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS ONLY 23 m, which is inside the working horizontal uncertainty of the georeference (about 20 m) doubled, so the grade drops a tier: the tract is right if the constructed line is, and nothing here proves the line to better than that. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares.",
+    "tract": "the south-west fractional quarter of section 10",
+    "entries": [
+      "ls0057"
+    ],
+    "date_purchased": "1835-05-28",
+    "type_of_sale": "federal land sale (cash entry)",
+    "margin_m": 22.9,
+    "generated_by": "tools/resolve_land_tracts.py --build"
+  }
+}

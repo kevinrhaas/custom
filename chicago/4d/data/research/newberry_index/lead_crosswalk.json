@@ -30393,7 +30393,7 @@
    "layer": "structures",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Shoup' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Shoup' at all. And if it were, a heading against Government Blacksmith Shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018 would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Shoup' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Shoup' at all. And if it were, a heading against Government Blacksmith Shop; Fort Dearborn — shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018 would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v04_0080"
    ],
@@ -30401,6 +30401,11 @@
     {
      "id": "blacksmith_shop_state_st",
      "name": "Government Blacksmith Shop",
+     "rule": "OCR variant (0.89 similarity to 'shop')"
+    },
+    {
+     "id": "fort_dearborn_shop",
+     "name": "Fort Dearborn — shop",
      "rule": "OCR variant (0.89 similarity to 'shop')"
     },
     {
@@ -79986,10 +79991,10 @@
   {
    "record_id": "nbi_v04_0080",
    "a": "Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.",
-   "b": "Michael Shoup; Government Blacksmith Shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018",
+   "b": "Michael Shoup; Government Blacksmith Shop; Fort Dearborn — shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Shoup' name Illinois and neither Chicago nor Cook County, so the lead against Michael Shoup stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.' against Michael Shoup; Government Blacksmith Shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018.",
+   "rule": "Refused. All 1 card(s) heading 'Shoup' name Illinois and neither Chicago nor Cook County, so the lead against Michael Shoup stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.' against Michael Shoup; Government Blacksmith Shop; Fort Dearborn — shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005; Reconstructed W1 blacksmith shop #023; Reconstructed W2 carpenter or joiner shop #026; Reconstructed W3 cooper, wagon, or wheelwright shop #029; Reconstructed W4 small artisan shop #032; Reconstructed W1 blacksmith shop #007; Reconstructed W2 carpenter or joiner shop #008; Reconstructed W3 cooper, wagon or wheelwright shop #017; Reconstructed W4 small artisan shop #018.",
    "layers": [
     "residents",
     "structures"
