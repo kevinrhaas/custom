@@ -281,7 +281,7 @@ carries the `geometry:` declaration and a liberty:
   by 3 x 3 and taking each surviving component's own second moments, which is on both
   records because an eye-read box would have carried the fence into the building. One
   witness only — Hubbard never mentions them — and everything above the ground is invented
-  at **L227**.
+  at **L228**.
 - **The Well is measured and still not drawn** — T-0881. Its ring on the plate centres at
   pixel (1446.5, 887.0), which is 0.5 m east and 81.5 m south of the enclosure centre:
   UTM 448225.20 E, 4637535.33 N, all but exactly due south of the fort and 52.6 m clear of
