@@ -30,9 +30,9 @@
       },
       "by_placement_class": {
         "corner": 18,
-        "none": 61,
-        "relative": 104,
-        "street_only": 23
+        "none": 63,
+        "relative": 106,
+        "street_only": 19
       },
       "present_by_action": {
         "enrich_existing": 30,
@@ -666,7 +666,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1834-06-11"
@@ -1643,7 +1643,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
         "last_issue": "1835-07-29"
@@ -3778,7 +3778,7 @@
       ],
       "street": "South Water Street",
       "street_id": "south_water",
-      "placement_class": "street_only",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-03-25",
         "last_issue": "1835-07-01"
@@ -3795,7 +3795,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the Post Office' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -5248,7 +5248,7 @@
       ],
       "street": null,
       "street_id": null,
-      "placement_class": "street_only",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-08-05"
@@ -5265,7 +5265,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'Fort Dearborn' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -5273,7 +5273,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "No street the model holds. The anchor 'Fort Dearborn' names nothing the committed town holds."
     },
     {
       "id": "business_noble_wesencraft",
