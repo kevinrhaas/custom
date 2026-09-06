@@ -1028,8 +1028,6 @@ p0231 c2  Mather
         DuPage Ce., III. (Blc-- !n4, R.) 1892: pt.2:
 p0231 c2  Uather family Uathor
         Sangamon Co., III. (Power, J. C.) 1876.
-p0233 c0  Unthee
-        19, 22, 111. S 7. H 25542
 p0233 c2  Mathews
         — vnampal^n Co., III. Mnl;, UcOxnaragk ^ t«-> 1876,
 p0234 c3  Uathiassn
@@ -1116,8 +1114,6 @@ p0248 c3  Itayea
         . Winnebago Co., lil. (Kell, H. F., ct Co.. Pub)
 p0249 c1  Mayhem
         »Co., III. Iflrink, McLWugh 4 Co., 1^6x1 1878,
-p0249 c1  Mayhow
-        3.1184, 11I.-.0 index.
 p0250 c1  llaynard
         39.63 Chicago, III. (Andreas, A. T.) 1894-61 2-3. ' ' I
 p0250 c1  lavnard
@@ -2112,8 +2108,6 @@ p0495 c0  Odom
         1882,3,111. Ftuaia E-96I9JI
 p0495 c0  O'Donnell
         . Chicago, I I I . (Hoses, J, and Kirkland, J.) I895i
-p0495 c1  O'Donnell
-        Decaan, WSt. t t o d i , 19X4-90, 111,11, 0. 8., Camp.) IS94-B —r- irel
 p0496 c3  Ofdon
         Chicago, ill. (Anirt is, A. T.) 1884-61 2-3.
 p0496 c3  Ogden
@@ -2274,8 +2268,6 @@ p0534 c0  Paft,
         Odiaje, lil. Second Pratb O) 184? no «• H
 p0534 c0  Paft,
         — Chicago, 1,1. ! , , o s , , L ^ l 1 M r k ,, ,n (
-p0537 c2  Pagott
-        1600.1:0,13,13,15,18,68,68,111. .
 p0537 c2  Pngee fttmily ' Muipe
         Illinois. Sec. Sons Am. Rev. 1896, 201. L^x
 p0537 c3  Paige
@@ -2798,8 +2790,6 @@ p0694 c1  p Plandar
         DuPega Co., III. (Blanehard, R.) I882i pt.2t
 p0695 c0  Plato
         — Chicago, III. (Andreas, A. T.) 1884-451 •••
-p0695 c2  Piatt
-        101-3,110, 111, 125, l i f t ,69838,83? Hun
 p0696 c3  Platten
         Fulton Co, III. (Chapman, C, C, at Co.) 18791.
 p0696 c3  P i a
@@ -2940,8 +2930,6 @@ p0735 c0  j Powoll
         I P ^ * » Co., III. \%%Mm EJ Í877: 330.
 p0735 c0  Powell
         1-'e r,., III. (Kett, H. F., 4 Co.l 1878t S 9 S
-p0735 c2  Powoll
-        . "«>>I'31,34,66,68,106,110,111, - i
 p0737 c0  Powolnon
         . Fulton C o , III, (Chapman, C. C. i Co.) 1979s
 p0737 c1  ide, Power
@@ -3288,8 +3276,6 @@ p0812 c1  Rauoh
         ' ^ _ S « n g a m e n Co., III. (Power, JVC.) 1878. Ra
 p0812 c2  Raukohl
         Adam, Co., III. IMurm,, Willlamm, t Pbelp,, f j f ^ •_,_,
-p0812 c3  Ruuach
-        • Dedham, Maia. FUcardi, 1844-90,11,111, 0. G„ Comp.) tS94-ft
 p0813 c1  Pje rXi
         , Fulton Co, III, (Chapman, C, C. f: Co.) 1879i Rowlo
 p0813 c3  vlee
@@ -3412,8 +3398,6 @@ p0835 c3  eves
         Schuyler and Brown Co't., 111. (Brink, W, R. 4 Ce , Pubt.)
 p0836 c2  Regan
         ——Rockford nnd Winnebago Co.,111.
-p0837 c0  Rehbaua
-        n«. Jl. Vortlnarr.) 1611,5,66,111, Roioh
 p0837 c0  Rolun
         Cook Oe,, III, tA",d'0«»( A. F.) I6J4 ,595. lmím
 p0837 c1  Reiehar lt
@@ -3768,8 +3752,6 @@ p0925 c1  Rogere
         1.,-grtn O., ill. (IrTtt-wr- W.. A, A Ce., Puts.) 16)*.'
 p0925 c1  Rogere
         Ogle Co,, Iii. '; • ' • • ; '078; 698. Fort
-p0927 c2  Rogers
-        1807:23,34,31-34,66,61,76,111, Rogors f a n
 p0930 c2  'Roggen
         ; Bureau Co., III. (Kett! 4 Co., Pub,) I877t 368. Rohan-Vo
 p0930 c3  Rohde

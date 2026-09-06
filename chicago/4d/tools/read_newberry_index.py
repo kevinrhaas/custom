@@ -480,6 +480,46 @@ def call_number_slot(body: str, m) -> bool:
     return bool(FAMILY_AFTER.search(rest if cut < 0 else rest[:cut]))
 
 
+# THREE — THE PAGE NUMBER STANDING WHERE THE STATE STANDS (T-0765, measured by
+# T-0600 and left undone there). A card's citation ends in the pages the surname is
+# on, printed as a comma-separated list — '1897: 130,111,183,186,371' — and 111 is a
+# page in that list, not Illinois. The anchor `illinois_abbreviated` needs is the
+# comma the list itself supplies, so every page list that happens to reach page 111
+# is kept as an Illinois card. So is the illustration note: '(Delano, J. A.) 1899:
+# 203,ill.' is page 203, illustrated.
+#
+# WHAT THE RULE MAY NOT BE. T-0600 measured the obvious one — refuse when a digit
+# precedes the comma — and refused to ship it, because this OCR reads a trailing 'o'
+# as '0' and '««g0, III.' and '> — Chiear.0, 111.,' are both *Chicago, Ill.* Both are
+# a SINGLE digit, and both sit against a letter or a stop that a real number would
+# not. So the shape tested is narrower: a run of TWO OR MORE digits, ending at the
+# anchor, with no letter immediately in front of it. A page list always presents that
+# shape; a wrecked 'Chicago' presents one digit, because it is one letter that fell.
+#
+# WHAT IT STRIKES, per volume, over the committed text of 2026-09-06: 11 in volume 1,
+# 9 in volume 2, 9 in volume 3 and 3 in volume 4 — 32 cards, every one of them read
+# against its body and every one a page list or an illustration note. It cannot strike
+# a Chicago or Cook County card by construction: it disables one bucket, so a card
+# with any other locality bucket keeps it and stays. The stratum genuinely at risk is
+# the wrecked 'Chicago' that reaches the file only through the abbreviation, and the
+# two the ticket names are the two the digit-run test spares.
+#
+# WHAT IT DELIBERATELY LEAVES. 21 further candidates precede the anchor with a digit
+# and are not struck: mostly page lists whose last run this OCR ran into the word in
+# front of it ('1899il09,lll,113.'). Dropping the letter guard would take exactly two
+# of them across all four volumes — measured, not guessed — and would spend the one
+# test that tells a fallen letter from a number to do it. The trade is refused.
+PAGE_LIST_BEFORE = re.compile(r"(?<![A-Za-z])\d{2,}$")
+
+
+def page_number_slot(body: str, m) -> bool:
+    """True when the stroke is a page in the citation's page list, not the state."""
+    pre = body[:m.start() + 1]
+    if not pre.endswith((",", ";")):
+        return False
+    return bool(PAGE_LIST_BEFORE.search(pre[:-1]))
+
+
 CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
 
 
@@ -510,6 +550,8 @@ def buckets_of(body: str):
         if name == "illinois_abbreviated" and REGNAL.search(body[:m.start() + 1]):
             continue
         if name == "illinois_abbreviated" and call_number_slot(body, m):
+            continue
+        if name == "illinois_abbreviated" and page_number_slot(body, m):
             continue
         out.append(name)
         spans.append((m.start(), m.end()))
@@ -1885,6 +1927,17 @@ def self_test() -> int:
          "Chicago,'I;....' . .' 1895:", ["chicago"]),
         ("an ordinary Cook County card", "Cook Co.. I l l (La Sa'le Bock Co., Pub.l I9CB,",
          ["cook_county"]),
+        # T-0765 — the page list, and the two wrecked Chicagos it must not reach.
+        ("a page list that reaches page 111 (nbi_v01_1054)",
+         "Ura.H.D.,Ed.) v . l . 1003:145,111.", []),
+        ("the illustration note, page 203 illustrated (nbi_v01_1707)",
+         "\u2014Delano fam. (Delano, J, A.) 1899: 203,ill.", []),
+        ("Chicago with its trailing o read as a nought (nbi_v02_0809)",
+         "\u00ab\u00abg0, III. ((-'cs,'. i . \u2022 .", ["illinois_abbreviated"]),
+        ("Chicago wrecked to a stop and a nought (nbi_v02_1144)",
+         "> \u2014 Chiear.0, 111., Create and conte of", ["illinois_abbreviated"]),
+        ("a page list the OCR ran into the word before it, kept on purpose (nbi_v03_0596)",
+         "I \\ (Boogher. W.P.) 1899il09,lll,113.", ["illinois_abbreviated"]),
     ):
         got = buckets_of(body)
         if got != want:

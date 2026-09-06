@@ -364,8 +364,6 @@ p0060 c0  Arnold
         -Chicago, III, i i . , , . , .
 p0060 c0  Arnold f
         Cook Co., I l l , fflnircas, A. , ) T t 8 5 4 : 8r 8 5
-p0060 c3  Arnold
-        1. fee lndlc.a 11,111. ' K 472.85
 p0062 c0  Aramlth
         .—rumorrtnd. Ix-per nnd Bienlxnd Co',., III. (OaHoy, f. A.
 p0062 c0  Artorburn
@@ -1998,8 +1996,6 @@ p0313 c1  Bull
         E 6966.27 _!_v/est*lno'ics. B'ltlsb. (Archer, 1 II. l.t 1875.
 p0313 c2  Bullard
         84569.1 Sangamon Co., III. (Power, J. C.) 1876.
-p0314 c0  Bullard
-        1S92I 2173,111 , I H , 1 H . " '
 p0315 c2  Bulton
         _ S I . CUk Co, III. (Brink, McOonoogt, 1 Co,Iïbj.) 1881, 075.
 p0315 c3  r Bunp
@@ -2110,8 +2106,6 @@ p0334 c2  tman ftamily Burton
         —-Caicago, 111, S
 p0335 c3  Burun
         ÍBSland. iRcoerl,, C, id. Calend.riom, Ken, iii. ana i n . |.
-p0335 c3  Burwoll
-        Ura.H.D.,Ed.) v . l . 1003:145,111.
 p0336 c1  Buoch
         Cola Co., III. (Le8arao, Wj, lr.,liCo., PutaJ I879i
 p0336 c2  Buaby
@@ -2268,8 +2262,6 @@ p0358 c2  Cam ron
         Chicago, lil, (Andreas, A, T.) I3E4-6I 2-3.
 p0358 c2  Cam ron
         • Chicago, II!. i M c i o : , J. juui Kirkíaoi, J.t 1"3i>! C/aupn
-p0359 c1  Camp
-        i East Haven, Ct. (Dodd, S.) 1824, 111.
 p0359 c2  amp
         CMcan, III. CVndrtas, A. U I3C4-61 3. Son Camp fam
 p0359 c2  amp
@@ -2726,8 +2718,6 @@ p0431 c0  Chrieman
         ".,"•„ Co., Ill, (Kelt 4 Co, Pob.) 18771 315.
 p0431 c1  WU CFiristlan
         . Fallen Co , 111. (Chapman, C. C. t Co.) 1379s Ch
-p0431 c3  Chrletie
-        C.B.,Ed.) 19001 42,106,111,295.
 p0432 c0  Christa h
         iii .Sjojndea. F 86383.2 !
 p0432 c2  Chrltciuy
@@ -3120,8 +3110,6 @@ p0503 c0  Cook
         LaSalle Co., III. (Baldwin, E.l 1877: . i 4 f
 p0503 c0  Cook
         _Bledlsoa Co.,, 111. (Brink, W. R. dt Co,, Pabt.l
-p0506 c0  Oook
-        ——loverly tarn. (cavorly,R.8.) 1080,111.
 p0508 c1  Cooko
         —-Chicsga, III, (Andreas, A. T.) I3S44| 2-3.
 p0508 c1  Cooko
@@ -3416,8 +3404,6 @@ p0589 c0  Crooby f
         Chicago, III. (Andreas, A. T.) I684-8| 3^
 p0589 c0  Croebv
         Chicago, m. (Moses, J, and Kirkland, J,) l895i
-p0590 c2  Crosby
-        —Delano fam. (Delano, J, A.) 1899: 203,ill.
 p0591 c0  Crooinr
         USalle Co., III. (Baldwin, E.) 18771 355.
 p0591 c3  Cross
@@ -3582,8 +3568,6 @@ p0637 c0  Dalloy
         Fulton Co , III. (Chapman, C. C. It Co.) I979l
 p0638 c0  fake
         ' ° M e " * . ' , III. 'Kelt, H. F„ 4 Ce.) IB78: n 3 3
-p0638 c1  Dakin
-        1. 1900121,(04,111. E 69109.74 Da
 p0638 c3  Dale
         Madlaon Co., III. (Brink, W. B. 4 Co., Pubs.)
 p0638 c3  Dale
@@ -3740,8 +3724,6 @@ p0684 c0  baan
         , Chicago, ill. (des,:, -'. an,' " 1895Í
 p0686 c3  Deano
         Chicago, III (Andreas, A. T.) 1884-61 3. Soo
-p0688 c1  Dearborn
-        s.., N.H. ( H u r d , D. H . ) 1882:36,111, Dear
 p0688 c3  Deardorff
         Sangamon Co., III. (Power,'J. C.) 1876.
 p0689 c1  r, rln
@@ -4084,8 +4066,6 @@ p0780 c3  Dorrance
         Sangamon fo., III. (Power, J, C.) 1876,
 p0781 c2  - Doreev
         Fulton Co , I I I . (Cliapm-ii:, C. C. t Co.) I879l Doree
-p0782 c3  Dottin
-        (fem™, 8., Ed.1 HSC-Bll'Sl 301, I I I . imiex. I C5I.65
 p0783 c0  Doty r
         .Boone Co., III. (Kett It Co., Pub.) 1877: 347.
 p0783 c0  Doty r
@@ -4756,8 +4736,6 @@ p0963 c2  Farwell
         n^buga'Co., III. (Kett, H. F., i Co., Pub) VVoooo, Maaa. Roo. (1
 p0963 c3  rwel, or Farewell
         i l l , H e a a . Want C o n g . C h . M a n u a l .
-p0964 c3  Faaat' t
-        » i * * Í «f fax». ( * » n t i n t Jt • ) 1895, i i i .
 p0965 c0  Faueher
         Fulton Co , III. (Chspmsn, C. C. & Co.) 1979i
 p0965 c0  Fau, d u
