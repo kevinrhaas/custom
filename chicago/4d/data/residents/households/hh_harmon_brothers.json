@@ -189,6 +189,30 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "TWO BROTHERS IDENTIFIED BY CROSS-READING TWO CHAPTERS OF THE SAME BOOK, which is the kind of result this layer exists to produce: a newspaper masthead of initials becomes two named men with a father, a home town and a reason for being in Illinois. THE THIRD HARMON IS DELIBERATELY ABSENT. An Isaac Harmon was the town's clerk and collector in 1833-34 and is not written here, because Andreas's 1832 militia list carries two distinct Isaac Harmons and this project cannot tell which is which. That is a documented resident consciously left out of the count rather than guessed into it.",
+ "kin": [
+  {
+   "person": "harmon_charles_l",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "SON OF DR ELIJAH DEWEY HARMON. Andreas's life of the doctor lists his five surviving children, and that sentence is what resolved the newspaper masthead 'C. & I. Harmon' into his two eldest sons — it is the reason this household exists at all. Graded inferred: the parentage is stated, the identification of the initials with these cards is this project's. Ruled under T-0734; found by PR #947."
+  },
+  {
+   "person": "harmon_isaac_d",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "SON OF DR ELIJAH DEWEY HARMON. Andreas's life of the doctor lists his five surviving children, and that sentence is what resolved the newspaper masthead 'C. & I. Harmon' into his two eldest sons — it is the reason this household exists at all. Graded inferred: the parentage is stated, the identification of the initials with these cards is this project's. Ruled under T-0734; found by PR #947."
+  }
+ ],
  "old_settler_deaths": {
   "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
   "note": "LATER EVIDENCE OF A DEATH, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. Fergus's 1843 directory (1896) prints an obituary list of old settlers, and one of its entries meets somebody of this name. THE HEADER OF THE LIST IS QUOTED ABOVE, and it is the limit the whole reading turns on. It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload. Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. A death notice printed in 1896 says a person of this name died on a day; under the ratified ladder (T-0513) that is later evidence about a DEATH, and it is never an 1835 residence. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",

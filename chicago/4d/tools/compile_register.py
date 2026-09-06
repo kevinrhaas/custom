@@ -1310,10 +1310,27 @@ def compile_register(gazetteer, town, quiet=True):
                                 "would be placing this house against a superseded "
                                 "printing" % (b["id"], entry["anchor"]["note"]))
             for w in ac["history"]:
+                # T-0773. `street` PLACES NOTHING — the docstring on `resolve_anchor`
+                # says so and `ANCHOR_KIND_RANK` ranks it below everything that does —
+                # so a reading that resolves to a street is not a second PLACE, it is a
+                # reading the pass swept less of the sentence into. That is the same
+                # thing `unresolved` is, and this gate already excused `unresolved`
+                # while refusing the half-swept case beside it. G. Spring is where it
+                # showed: eleven printings of one card, of which 1834-05-28 survives as
+                # "[corne]r [F]ra[n]klin and South W[at]er-str[ee]t" — the word "of" lost
+                # with the type, so `CORNER` does not match and the reach of South Water
+                # Street is all that resolves. Refusing that grouping would have said the
+                # corner and one of its own two streets are two places.
+                #
+                # It is excused only where the coarser reading is CONTAINED by the
+                # placing one. A street the placing resolution does not name is still two
+                # different things declared one landmark, and still fails.
                 placed = {(r["resolved"]["kind"], r["resolved"]["target"],
                            r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
                           for r in w["readings"]
-                          if r["resolved"]["kind"] != "unresolved"}
+                          if r["resolved"]["kind"] not in ("unresolved", "street")}
+                reaches = {tuple(r["resolved"]["streets"] or [])
+                           for r in w["readings"] if r["resolved"]["kind"] == "street"}
                 if len(placed) > 1:
                     problems.append(
                         "%s: the readings grouped under the anchor %r resolve to %d "
@@ -1321,6 +1338,24 @@ def compile_register(gazetteer, town, quiet=True):
                         "declared one landmark, and one landmark is one place"
                         % (b["id"], w["anchor"], len(placed),
                            ", ".join(sorted(str(x) for x in placed))))
+                elif not placed and len(reaches - {()}) > 1:
+                    problems.append(
+                        "%s: the readings grouped under the anchor %r resolve to %d "
+                        "different reaches of the plat (%s) and to nothing that places — "
+                        "they were declared one landmark, and one landmark is one place"
+                        % (b["id"], w["anchor"], len(reaches),
+                           ", ".join(sorted(str(x) for x in reaches))))
+                elif placed:
+                    named = set(next(iter(placed))[3])
+                    stray = [r for r in reaches if r and not set(r) <= named]
+                    if stray:
+                        problems.append(
+                            "%s: the readings grouped under the anchor %r resolve to %s "
+                            "and also to %s, which it does not name — a coarser reading "
+                            "of one landmark is a reach of that landmark's own streets, "
+                            "and anything else is a second place"
+                            % (b["id"], w["anchor"], sorted(named) or "no street",
+                               ", ".join(sorted(str(list(x)) for x in stray))))
         businesses.append(entry)
 
     # ---- persons -----------------------------------------------------------
@@ -1585,6 +1620,15 @@ def self_test():
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
              "occupation": None, "anonymous": False},
+            # T-0406's own case, and the real record's shape: a record whose NAME
+            # carries a disambiguator the printed corpus never uses — there was a second
+            # Tremont House — and an AKA carrying the plain form the Democrat prints.
+            {"id": "tremont_house_1", "name": "Tremont House (the first)",
+             "name_words": [{"tremont", "house", "first"}, {"tremont", "house"}],
+             "aka_head_words": [{"tremont", "house"}], "aka_texts": ["Tremont House"],
+             "occupant_words": set(), "occupant_text": "", "function": "tavern_inn",
+             "identity_text": "Tremont House (the first) ; Tremont House",
+             "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
@@ -1775,6 +1819,29 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
                                        d["businesses"][0]["action"]))
+    # 4b. T-0406. AN AKA IS HOW A RECORD ANSWERS TO THE NAME THE PAPERS PRINT, and it
+    #     resolves on the SAME whole-set rule as a name. The committed Tremont is named
+    #     "Tremont House (the first)" and the Democrat prints "the Tremont House" — the
+    #     anchor of six advertisements. Loosening the rule to containment would have
+    #     resolved it and would also have put "the store" on the first store in the town.
+    case("an anchor resolves on a record's AKA, not only on its name",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "structure"
+                            and d["businesses"][0]["anchor"]["target"] == "tremont_house_1")
+         else "anchor=%r" % d["businesses"][0]["anchor"])
+    case("…and the aka still only matches WHOLE: a SUBSET names nothing",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "unresolved"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and a SUPERSET names nothing either",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House stables"})]),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] == "unresolved"
+         else "anchor=%r" % d["businesses"][0]["anchor"])
     case("…and an anchor naming exactly ONE still places on it",
          gaz([biz("b1", street="Lake Street", placement={
              "class": "relative", "anchor": "Dole's Warehouse"})]),
@@ -1956,6 +2023,38 @@ def self_test():
                                 ["Wolf Point Tavern", "Dole's Warehouse"]),
                          window("the hotel", True, ["the hotel"])))]),
             "one landmark is one place")
+    # T-0773. The same grouping with a COARSER reading of the one landmark rather than a
+    # second one: a corner, and one of the two streets that make it, which is what a
+    # printing reads as when the word "corner" goes with the type.
+    case("a reach of the landmark's own street is one landmark, not two",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("the corner of Lake and Clark streets", False,
+                             ["the corner of Lake and Clark streets", "Clark-street"]),
+                      window("the hotel", True, ["the hotel"])))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved"]["kind"]
+             == "corner")
+         else "resolved %r"
+              % d["businesses"][0]["anchor_change"]["history"][0]["resolved"])
+    refuses("a reach the landmark does not name is still a second place",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the corner of Lake and Clark streets", False,
+                                ["the corner of Lake and Clark streets",
+                                 "South Water-street"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "which it does not name")
+    refuses("two reaches and nothing that places is two landmarks",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the street", False,
+                                ["Clark-street", "South Water-street"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "different reaches of the plat")
     # 4c. T-0355 — the two readings that put a Flag Creek tavern in a Wolf Point stable.
     # First the occupants line that caused it, read directly, because the town fixture
     # above supplies `occupant_words` ready-made and cannot exercise the clause filter.

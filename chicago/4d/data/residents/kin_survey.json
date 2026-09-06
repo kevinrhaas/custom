@@ -13,13 +13,13 @@
   "the_1840_census_households": "The densest kinship the corpus holds, and its crosswalk is 235 named heads stale on dev (T-0714) and derived against 849 residents where the town now holds 1,404 (T-0698). Kin read off it would land on the wrong people. Deliberately out of this pass."
  },
  "counts": {
-  "statements_read": 247,
-  "both_ends_in_town": 24,
-  "landable": 13,
-  "same_household": 1,
+  "statements_read": 257,
+  "both_ends_in_town": 30,
+  "landable": 17,
+  "same_household": 3,
   "ambiguous": 0,
   "identity_not_asserted": 10,
-  "other_not_in_town": 6,
+  "other_not_in_town": 10,
   "subject_unresolved": 217,
   "relation_undeclared": 0
  },
@@ -34,7 +34,7 @@
    "other_as_read": "Leon Bourrassa",
    "subject_record": null,
    "other_record": null,
-   "other_read_with_subject_surname": false,
+   "other_read_with_subject_surname": true,
    "subject": [
     {
      "household": "hh_baptist_john",
@@ -45,6 +45,31 @@
     {
      "household": "hh_bourrassa_leon",
      "person": "bourrassa_leon"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
+   "id": "hh_beaubien_jean_baptiste__son__charles_henry",
+   "source": "card_prose",
+   "locator": "hh_beaubien_jean_baptiste",
+   "as_read": "OUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, dau",
+   "subject_as_read": "Col. Jean Baptiste Beaubien",
+   "relation": "son",
+   "other_as_read": "Charles Henry",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_beaubien_jean_baptiste",
+     "person": "beaubien_jean_baptiste"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_beaubien_charles_h",
+     "person": "beaubien_charles_h"
     }
    ],
    "outcome": "landable"
@@ -75,6 +100,31 @@
    "outcome": "landable"
   },
   {
+   "id": "hh_beaubien_mark__brother__jean_baptiste",
+   "source": "card_prose",
+   "locator": "hh_beaubien_mark",
+   "as_read": "ry\", \"confidence\": \"inferred\", \"sources\": [\"andreas_1884_v1\"], \"note\": \"Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about ",
+   "subject_as_read": "Mark Beaubien",
+   "relation": "brother",
+   "other_as_read": "Jean Baptiste",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_beaubien_mark",
+     "person": "beaubien_mark"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_beaubien_jean_baptiste",
+     "person": "beaubien_jean_baptiste"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
    "id": "hh_clybourne_archibald__half_brother__a_clybourne",
    "source": "card_prose",
    "locator": "hh_clybourne_archibald",
@@ -84,7 +134,7 @@
    "other_as_read": "A. Clybourne",
    "subject_record": null,
    "other_record": null,
-   "other_read_with_subject_surname": false,
+   "other_read_with_subject_surname": true,
    "subject": [
     {
      "household": "hh_clybourne_archibald",
@@ -95,6 +145,31 @@
     {
      "household": "hh_clybourne_archibald",
      "person": "clybourne_archibald"
+    }
+   ],
+   "outcome": "same_household"
+  },
+  {
+   "id": "hh_couch_ira__brother__james",
+   "source": "card_prose",
+   "locator": "hh_couch_ira",
+   "as_read": "ers purchased the property and Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.'\"}, \"sources\": [\"andreas_1884_v1\", \"fergus_ch",
+   "subject_as_read": "Ira Couch",
+   "relation": "brother",
+   "other_as_read": "James",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_couch_ira",
+     "person": "couch_ira"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_couch_ira",
+     "person": "couch_james"
     }
    ],
    "outcome": "same_household"
@@ -120,6 +195,81 @@
     {
      "household": "hh_miller_samuel",
      "person": "miller_samuel"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
+   "id": "hh_taylor_anson__brother__charles_he",
+   "source": "card_prose",
+   "locator": "hh_taylor_anson",
+   "as_read": "eams could pass'; Andreas dates that bridge to 1832 and credits it to Anson H. Taylor and his brother Charles. He hauled the lumber for St Mary's from the schooner to the si",
+   "subject_as_read": "Anson H. Taylor",
+   "relation": "brother",
+   "other_as_read": "Charles. He",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_taylor_anson",
+     "person": "taylor_anson_h"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_taylor_anson",
+     "person": "taylor_charles"
+    }
+   ],
+   "outcome": "same_household"
+  },
+  {
+   "id": "read_harmon_charles_l__son__harmon_elijah_d",
+   "source": "andreas_1884_v1",
+   "locator": "hh_harmon_brothers",
+   "as_read": "Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.'",
+   "subject_as_read": "harmon_charles_l",
+   "relation": "son",
+   "other_as_read": "harmon_elijah_d",
+   "subject_record": "harmon_charles_l",
+   "other_record": "harmon_elijah_d",
+   "authored_reading": true,
+   "subject": [
+    {
+     "household": "hh_harmon_brothers",
+     "person": "harmon_charles_l"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_harmon_elijah_d",
+     "person": "harmon_elijah_d"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
+   "id": "read_harmon_isaac_d__son__harmon_elijah_d",
+   "source": "andreas_1884_v1",
+   "locator": "hh_harmon_brothers",
+   "as_read": "Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.'",
+   "subject_as_read": "harmon_isaac_d",
+   "relation": "son",
+   "other_as_read": "harmon_elijah_d",
+   "subject_record": "harmon_isaac_d",
+   "other_record": "harmon_elijah_d",
+   "authored_reading": true,
+   "subject": [
+    {
+     "household": "hh_harmon_brothers",
+     "person": "harmon_isaac_d"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_harmon_elijah_d",
+     "person": "harmon_elijah_d"
     }
    ],
    "outcome": "landable"

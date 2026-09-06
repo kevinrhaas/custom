@@ -14,424 +14,780 @@
   "R4": "A BARE FORENAME WITH NO ANCHOR. Neither card documents the person, so there is nothing for the bare forename to attach to. T-0696 is the ticket that would give this test a second discriminator.",
   "R5": "A GARBLED FORENAME CANNOT BE TESTED. T-0695 is the ticket that reads them.",
   "D1": "TWO PEOPLE THE SOURCES NAME SEPARATELY. A spouse, a sibling, a parent and child, or two explicit and different forenames.",
-  "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town."
+  "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town.",
+  "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies.",
+  "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged."
  },
  "deferred": [
-  {"cluster": "brown-rufus", "cards": ["brown_rufus", "brown_mrs_rufus"], "to": "T-0723",
-   "why": "T-0723 — 'one identity, two town cards' — owns both this cluster and the Norton one by name, and a branch for it was in flight when this pass ran. Ruling them here would put two runs on the same two cards. The rulings are recorded below as this pass reads them and the cards are left for T-0723 to move."},
-  {"cluster": "norton", "cards": ["norton_n_r", "norton_nelson_r"], "to": "T-0723",
-   "why": "The same. T-0723 names N. R. Norton and Nelson R. Norton in its title."}
+  {
+   "cluster": "brown-rufus",
+   "cards": [
+    "brown_rufus",
+    "brown_mrs_rufus"
+   ],
+   "to": "T-0723",
+   "why": "T-0723 — 'one identity, two town cards' — owns both this cluster and the Norton one by name, and a branch for it was in flight when this pass ran. Ruling them here would put two runs on the same two cards. The rulings are recorded below as this pass reads them and the cards are left for T-0723 to move."
+  },
+  {
+   "cluster": "norton",
+   "cards": [
+    "norton_n_r",
+    "norton_nelson_r"
+   ],
+   "to": "T-0723",
+   "why": "The same. T-0723 names N. R. Norton and Nelson R. Norton in its title."
+  }
  ],
  "clusters": [
   {
    "id": "allen",
    "surname": "allen",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "allen_lieut_james",
-     "folded": ["allen_james", "allen_lieut", "allen_lieut_j"],
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "allen_lieut_james",
+     "folded": [
+      "allen_james",
+      "allen_lieut",
+      "allen_lieut_j"
+     ],
      "for": "The owner's own demonstration in T-0839. Four cards, one man: Lieut. James Allen of the United States Army, the harbour engineer. hh_allen_lieut_james is the only card that knows his trade (army_officer, from the Democrat of 13 August 1834, column 2) and the only one the ladder never reached; hh_allen_james is the one the ladder graded best and it knows nothing about the army. 'Lieut Allen', 'Lieut J Allen' and 'Lieut. James Allen' are the same title, the same initial and the same full name, printed by the Democrat and the American between March 1834 and July 1835; 'James Allen' is that full name without the rank. Merged he is one attested man with a trade, four sources and two newspapers behind him.",
      "against": "Nothing reached says the town held a second James Allen. Two other Allens are on cards and both are ruled distinct below on their own forenames.",
-     "survivor_note": "The survivor is the card that carries the TRADE, because the trade is the thing a merge onto any other card would lose: mint_civic_residents.py writes `occupation: none_recorded` onto every card it derives and would re-derive an army officer away."},
-    {"state": "distinct", "rule": "D1", "members": ["allen_edward_richards", "allen_william"],
+     "survivor_note": "The survivor is the card that carries the TRADE, because the trade is the thing a merge onto any other card would lose: mint_civic_residents.py writes `occupation: none_recorded` onto every card it derives and would re-derive an army officer away."
+    },
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "allen_edward_richards",
+      "allen_william"
+     ],
      "against_merge": "Edward Richards Allen and William Allen are full forenames, and neither is James. They are in this candidate cluster only because a title-only card — 'Lieut Allen' — is compatible with every Allen in the town, which is what R1 exists to say.",
-     "for_merge": "Nothing but the surname."}
+     "for_merge": "Nothing but the surname."
+    }
    ]
   },
   {
    "id": "hubbard",
    "surname": "hubbard",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "hubbard_gurdon",
-     "folded": ["hubbard_g", "hubbard_g_s", "hubbard_g_t", "hubbard_gordon_s", "hubbard_gurdon_s"],
-     "for": "The owner names Hubbard on six as the worst case in the ticket. Gurdon Saltonstall Hubbard is the one Hubbard the town documents — a packer at the old bank building, in Andreas and on the 1833-1835 voter rolls — and 'G', 'G. S.', 'Gurdon S.' are his initials, 'Gordon S.' is his forename mis-set, and 'G. T.' is the same initials with the S read as a T off a manuscript poll list. The Democrat, the American, the 1840 census, Fergus 1843 and Norris 1844 are spread across the six.",
-     "against": "No second Hubbard household is on any card, and no source reached names one.",
-     "survivor_note": "hubbard_gurdon is hand-authored from Andreas and carries the trade, the arrival of 1818 and the premises; no derivation pass owns it, so the union written onto it stays."}
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "hubbard_gurdon",
+     "folded": [
+      "hubbard_g_s",
+      "hubbard_g_t",
+      "hubbard_gordon_s",
+      "hubbard_gurdon_s"
+     ],
+     "for": "The owner names Hubbard on six as the worst case in the ticket. Gurdon Saltonstall Hubbard is the one Hubbard the town documents — a packer at the old bank building, in Andreas and on the 1833-1835 voter rolls — and 'G. S.', 'Gurdon S.' are his initials, 'Gordon S.' is his forename mis-set, and 'G. T.' is the same initials with the S read as a T off a manuscript poll list. The Democrat, the American, the 1840 census, Fergus 1843 and Norris 1844 are spread across the five.",
+     "against": "T-0855. THIS RULING ONCE FOLDED A SIXTH CARD, 'hubbard_g', AND THAT WAS WRONG. Its earlier reasoning read 'No second Hubbard household is on any card, and no source reached names one', and both halves are false: hubbard_henry_g is a second Hubbard on a card in this same tree, attested, and hubbard_g's own and only press evidence reads 'Hubbard, [Henry] G.' citing person_hubbard_henry_g. A bare 'G.' has TWO rivals here — Gurdon and Henry G. — which is the case C2 refuses on principle. hubbard_g is now ruled onto Henry under C5, below. The five cards left here are not in question: none of them reads as anything but Gurdon.",
+     "survivor_note": "hubbard_gurdon is hand-authored from Andreas and carries the trade, the arrival of 1818 and the premises; no derivation pass owns it, so the union written onto it stays."
+    },
+    {
+     "state": "merge",
+     "rule": "C5",
+     "survivor": "hubbard_henry_g",
+     "folded": [
+      "hubbard_g"
+     ],
+     "for": "hubbard_g's only press evidence is transcribed 'Hubbard, [Henry] G.' and cites record_id person_hubbard_henry_g. The bracket is the transcriber's own expansion, carried identically in five committed source files — fergus_1839_crosswalk_1835.json, fergus_1839_election_crosswalk_1835.json, newspapers/extracted/chicago_democrat_1835_08_05.json, newspapers/gazetteer.json and newspapers/register_1835.json — so it is a reading somebody made of the page rather than an inference from the initial. hubbard_henry_g is 'Henry G Hubbard', graded attested, already standing in the town.",
+     "against": "'G.' alone is also Gurdon's initial, and Gurdon is by far the better documented Hubbard — which is exactly why the initial cannot decide this and the transcription must. Ruling it onto Gurdon on the strength of his documentation is what T-0839 did, and it put one man's record on another man.",
+     "survivor_note": "hubbard_henry_g is minted civic, so --apply does not write the union onto it: the appearance reaches him through the identity master and the mint, which is the pass that owns his card."
+    }
    ]
   },
   {
    "id": "beaubien",
    "surname": "beaubien",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "beaubien_jean_baptiste",
-     "folded": ["beaubien_j_b", "beaubien_john_b"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "beaubien_jean_baptiste",
+     "folded": [
+      "beaubien_j_b",
+      "beaubien_john_b"
+     ],
      "for": "Col. Jean Baptiste Beaubien is the documented Beaubien of the south division — trader, at his own homestead, in Andreas and on the voter rolls. 'J. B. Beaubien' is his initials letter for letter. 'John B. Beaubien' is the English rendering the Chicago papers used for Jean Baptiste all through the 1830s, and the middle initial B agrees.",
      "against": "The Beaubien surname holds more than one man, which is why the two other cards in this candidate cluster are refused below rather than swept in.",
-     "survivor_note": "Hand-authored from Andreas; no pass owns it."},
-    {"state": "distinct", "rule": "D1", "members": ["beaubien_john_s", "beaubien_josette"],
+     "survivor_note": "Hand-authored from Andreas; no pass owns it."
+    },
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "beaubien_john_s",
+      "beaubien_josette"
+     ],
      "against_merge": "T-0839 names John S. Beaubien as a second man, not a duplicate of Jean Baptiste — the ticket's own worked warning. Josette LaFramboise Beaubien is Jean Baptiste's wife and is already a member of his household record; she is in this candidate cluster only because her forename begins with the letter J. and 'J. B. Beaubien' prints an initial.",
-     "for_merge": "The surname, and in Josette's case one letter of a forename."}
+     "for_merge": "The surname, and in Josette's case one letter of a forename."
+    }
    ]
   },
   {
    "id": "kinzie-john",
    "surname": "kinzie",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "kinzie_john_h",
-     "folded": ["kinzie_j_h"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "kinzie_john_h",
+     "folded": [
+      "kinzie_j_h"
+     ],
      "for": "John Harris Kinzie is documented in the north division — forwarding and commission, at his own store, Andreas and Waubun and the voter rolls. The middle initial is what carries this one: the Kinzie surname holds a James as well as a John, so the bare initial J would be two rivals and refused, but 'J. H.' agrees with John Harris and no card and no source reached reads James Kinzie with a middle initial at all.",
      "against": "James Kinzie is his half-brother and is on his own card. The initial alone would not have been enough.",
-     "survivor_note": "Hand-authored; no pass owns it."},
-    {"state": "distinct", "rule": "D1", "members": ["kinzie_james", "kinzie_juliette"],
+     "survivor_note": "Hand-authored; no pass owns it."
+    },
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "kinzie_james",
+      "kinzie_juliette"
+     ],
      "against_merge": "T-0839's own warning: John H. Kinzie and James Kinzie are brothers, not a duplicate. Juliette Augusta Magill Kinzie is John Harris's wife and already a member of his household record.",
-     "for_merge": "The surname, and the letter J."},
-    {"state": "undecided", "referred_to": "owner", "rule": "R3",
-     "members": ["kinzie_john_s", "kinzie_john_h"],
+     "for_merge": "The surname, and the letter J."
+    },
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R3",
+     "members": [
+      "kinzie_john_s",
+      "kinzie_john_h"
+     ],
      "for_merge": "'John S. Kinzie', printed once by the Democrat on 10 December 1833, is the forename of the documented John Harris Kinzie and the town holds no other John Kinzie in 1835.",
-     "against_merge": "The middle initial S contradicts H, and the Kinzie surname is precisely the one T-0839 warns about: four Kinzie men stand on the town's cards and this project has already mis-folded a Kinzie once (T-0732). C4 would fire here on a surname with one documented bearer of the forename; it is withheld because the owner named this family as the trap. His call."}
+     "against_merge": "The middle initial S contradicts H, and the Kinzie surname is precisely the one T-0839 warns about: four Kinzie men stand on the town's cards and this project has already mis-folded a Kinzie once (T-0732). C4 would fire here on a surname with one documented bearer of the forename; it is withheld because the owner named this family as the trap. His call."
+    }
    ]
   },
   {
    "id": "owen",
    "surname": "owen",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "owen_thomas_jv",
-     "folded": ["owen_t_j_v", "owen_th_j_v", "owen_thomas_j_v", "owen_thomas"],
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "owen_thomas_jv",
+     "folded": [
+      "owen_t_j_v",
+      "owen_th_j_v",
+      "owen_thomas_j_v",
+      "owen_thomas"
+     ],
      "for": "The owner names Owen on five. Thomas Jefferson Vance Owen — United States Indian agent, first president of the town's board of trustees, born 5 April 1801, died at Chicago 15 October 1835 (Andreas, scan p. 195) — is the one Owen the town documents, and 'T. J. V.', 'Th. J. V.' and 'Thomas J. V.' are his initials. The fourth card is the striking one: 'Thomas Owen' was minted from st_cyr_death_07_1, where he is the DECEDENT, and the register dates that death 1835-10-15 — the day Andreas gives for Owen's death, from an independent source in another domain. The merge turns a bare G2c church card into a second, contemporary attestation of a death this project had on one nineteenth-century compilation alone.",
      "against": "The scene date is 1 July 1835 and the death is fifteen weeks after it, so the register entry contradicts nothing on the surviving card. No second Thomas Owen is named anywhere reached.",
-     "survivor_note": "Hand-authored from Andreas; no pass owns it."}
+     "survivor_note": "Hand-authored from Andreas; no pass owns it."
+    }
    ]
   },
   {
    "id": "temple",
    "surname": "temple",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "temple_john_t",
-     "folded": ["temple_j_t"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "temple_john_t",
+     "folded": [
+      "temple_j_t"
+     ],
      "for": "Dr John Taylor Temple — physician, at the Temple building, Andreas and the Baptist history and the voter rolls — is the one Temple whose initials are J. T. The Democrat prints him as 'J. T. Temple'.",
      "against": "His brother Dr Peter Temple is in the same household, but his initial is P.",
-     "survivor_note": "Hand-authored; no pass owns it."},
-    {"state": "distinct", "rule": "D1", "members": ["temple_peter", "temple_mrs_john_t"],
+     "survivor_note": "Hand-authored; no pass owns it."
+    },
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "temple_peter",
+      "temple_mrs_john_t"
+     ],
      "against_merge": "Dr Peter Temple is John Taylor Temple's brother and Mrs Temple is his wife; both are already members of his household record and both are named separately by Andreas.",
-     "for_merge": "The surname, and the household."},
-    {"state": "undecided", "referred_to": "owner", "rule": "R2",
-     "members": ["temple_t", "temple_john_t"],
+     "for_merge": "The surname, and the household."
+    },
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R2",
+     "members": [
+      "temple_t",
+      "temple_john_t"
+     ],
      "for_merge": "'T. Temple' in the Democrat of 3 December 1834 is most probably Dr John Taylor Temple with the first initial dropped — the paper prints him as J. T. Temple the year before.",
-     "against_merge": "T matches neither Temple's forename initial: the town's two documented Temples are John and Peter. A card whose only forename token is a MIDDLE initial has no rule in this project that attaches it, and inventing one here would attach every stray middle initial in the corpus. His call."}
+     "against_merge": "T matches neither Temple's forename initial: the town's two documented Temples are John and Peter. A card whose only forename token is a MIDDLE initial has no rule in this project that attaches it, and inventing one here would attach every stray middle initial in the corpus. His call."
+    }
    ]
   },
   {
    "id": "fullerton",
    "surname": "fullerton",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "fullerton_alexander",
-     "folded": ["fullerton_a_n", "fullerton_alex_n", "fullerton_alexander_m"],
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "fullerton_alexander",
+     "folded": [
+      "fullerton_a_n",
+      "fullerton_alex_n",
+      "fullerton_alexander_m"
+     ],
      "for": "The owner names Fullerton on four. Alexander N. Fullerton — attorney, south division, Andreas and the voter rolls — is the one Fullerton the town documents; 'A. N.' and 'Alex N.' are his initials and his forename abbreviated, and 'Alexander M.' is the same name with the N read as an M off the poll list.",
      "against": "No second Fullerton is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "haddock",
    "surname": "haddock",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "haddock_edward",
-     "folded": ["haddock_e", "haddock_e_w", "haddock_edward_e"],
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "haddock_edward",
+     "folded": [
+      "haddock_e",
+      "haddock_e_w",
+      "haddock_edward_e"
+     ],
      "for": "The owner names Haddock on four, and it is the case that fixes the shape of C4: E. / E. W. / Edward E. / Edward H., one documented Edward H. Haddock keeping the Mansion House in the south division, in Andreas, the Democrat, the 1840 census, the voter rolls and the Tribune's old-settler deaths. The middle initial is the only thing that varies and it varies across three manuscript and printed lists.",
      "against": "No second Haddock is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "kimberly",
    "surname": "kimberly",
    "rulings": [
-    {"state": "merge", "rule": "C0", "survivor": "kimberly_edmund_s",
-     "folded": ["kimberly_e_s", "kimberly_ed_s", "kimberly_edmund_l"],
+    {
+     "state": "merge",
+     "rule": "C0",
+     "survivor": "kimberly_edmund_s",
+     "folded": [
+      "kimberly_e_s",
+      "kimberly_ed_s",
+      "kimberly_edmund_l"
+     ],
      "for": "The owner names Kimberly on four. Dr Edmund Stoughton Kimberly — physician, partner in the Pruyne & Kimberly drugstore, Andreas, the history of medicine in Chicago and the voter rolls — is the one Kimberly the town documents; 'E. S.' and 'Ed S.' are his initials, and 'Edmund L.' is the same forename with the S read as an L.",
      "against": "No second Kimberly is named anywhere reached.",
-     "survivor_note": "Hand-authored, and a PARTNER in hh_pruyne_kimberly rather than a head — the merge lands on the person, not the household, and Peter Pruyne's record is untouched."}
+     "survivor_note": "Hand-authored, and a PARTNER in hh_pruyne_kimberly rather than a head — the merge lands on the person, not the household, and Peter Pruyne's record is untouched."
+    }
    ]
   },
   {
    "id": "cook",
    "surname": "cook",
    "rulings": [
-    {"state": "distinct", "rule": "D1", "members": ["cook_john", "cook_josiah_p"],
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "cook_john",
+      "cook_josiah_p"
+     ],
      "against_merge": "John and Josiah are two full forenames, and the project's ratified rule has never merged one full forename onto another.",
-     "for_merge": "Both are in Fergus 1843 and Norris 1844 as well as the town's own lists, which is a shared corpus and not a shared identity."},
-    {"state": "undecided", "referred_to": "rule", "rule": "R2",
-     "members": ["cook_j_b", "cook_john", "cook_josiah_p"],
+     "for_merge": "Both are in Fergus 1843 and Norris 1844 as well as the town's own lists, which is a shared corpus and not a shared identity."
+    },
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R2",
+     "members": [
+      "cook_j_b",
+      "cook_john",
+      "cook_josiah_p"
+     ],
      "for_merge": "'J. B. Cook', a documented baker from the Democrat of 5 November 1834, shares a surname with both.",
-     "against_merge": "The initial J has two rivals in this cluster — John and Josiah — and R2 refuses both. Josiah's middle initial P contradicts B outright; John's is unrecorded, so nothing decides. Refused by a ratified rule rather than referred: the next pass will refuse it identically and needs no ballot."}
+     "against_merge": "The initial J has two rivals in this cluster — John and Josiah — and R2 refuses both. Josiah's middle initial P contradicts B outright; John's is unrecorded, so nothing decides. Refused by a ratified rule rather than referred: the next pass will refuse it identically and needs no ballot."
+    }
    ]
   },
   {
    "id": "hogan",
    "surname": "hogan",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "hogan_john_s_c",
-     "folded": ["hogan_j_s_c"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "hogan_john_s_c",
+     "folded": [
+      "hogan_j_s_c"
+     ],
      "for": "John S. C. Hogan — postmaster, at his own store in the south division, Andreas and the voter rolls — and 'J. S. C. Hogan' in the American and the Democrat are the same three initials in the same order.",
      "against": "Nothing.",
-     "survivor_note": "Hand-authored; no pass owns it."},
-    {"state": "distinct", "rule": "D2", "members": ["hogan_john", "hogan_john_s_c"],
+     "survivor_note": "Hand-authored; no pass owns it."
+    },
+    {
+     "state": "distinct",
+     "rule": "D2",
+     "members": [
+      "hogan_john",
+      "hogan_john_s_c"
+     ],
      "against_merge": "hh_hogan_john was minted from st_cyr_death_03_1, where John Hogan is the DECEDENT, and the register dates that death to October 1834. John S. C. Hogan is documented in the town as postmaster and keeping his store on the scene date of 1 July 1835 and is named on the 1833-1835 voter rolls. A man cannot be buried in 1834 and vote in 1835: these are two men, and the ruling is written onto both cards so no later pass folds the postmaster onto his own namesake's burial.",
-     "for_merge": "Surname and forename agree exactly, which is why the candidate test raises it."}
+     "for_merge": "Surname and forename agree exactly, which is why the candidate test raises it."
+    }
    ]
   },
   {
    "id": "peck",
    "surname": "peck",
    "rulings": [
-    {"state": "merge", "rule": "C4", "survivor": "peck_philip",
-     "folded": ["peck_p_f", "peck_p_f_w"],
+    {
+     "state": "merge",
+     "rule": "C4",
+     "survivor": "peck_philip",
+     "folded": [
+      "peck_p_f",
+      "peck_p_f_w"
+     ],
      "for": "Philip F. W. Peck — merchant, at Peck's store in the south division, Andreas and the voter rolls — is the one Peck the town documents; 'P. F. W.' is his initials letter for letter and 'P. F.' is the same initials with the third dropped, which is not a contradiction.",
      "against": "No second Peck is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "sproat",
    "surname": "sproat",
    "rulings": [
-    {"state": "merge", "rule": "C4", "survivor": "sproat_grenville",
-     "folded": ["sproat_g_n", "sproat_g_t"],
+    {
+     "state": "merge",
+     "rule": "C4",
+     "survivor": "sproat_grenville",
+     "folded": [
+      "sproat_g_n",
+      "sproat_g_t"
+     ],
      "for": "Grenville Temple Sproat — schoolteacher, teaching in the Temple building, Andreas and the Democrat of 26 November 1833 — is the one Sproat the town documents. 'G. T.' is his initials; 'G. N.' is the same initials with the T read as an N, and both were printed by the same paper within eight weeks of each other.",
      "against": "No second Sproat is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "taylor-anson",
    "surname": "taylor",
    "rulings": [
-    {"state": "merge", "rule": "C4", "survivor": "taylor_anson_h",
-     "folded": ["taylor_anson_n", "taylor_anson_w"],
+    {
+     "state": "merge",
+     "rule": "C4",
+     "survivor": "taylor_anson_h",
+     "folded": [
+      "taylor_anson_n",
+      "taylor_anson_w"
+     ],
      "for": "Anson H. Taylor — carpenter, who built the south branch raft bridge, Andreas — is the one Anson Taylor the town documents. The forename is uncommon and agrees in full on all three cards; only the middle initial moves, across a poll list and a Black Hawk enrollment, which is the Haddock shape exactly.",
      "against": "The Taylor surname holds other men — Charles H., E. D./Edmund D., William — and each is ruled on its own below. None of them is an Anson.",
-     "survivor_note": "Hand-authored; the household also holds Charles H. Taylor, who is untouched."}
+     "survivor_note": "Hand-authored; the household also holds Charles H. Taylor, who is untouched."
+    }
    ]
   },
   {
    "id": "wright",
    "surname": "wright",
    "rulings": [
-    {"state": "distinct", "rule": "D1", "members": ["wright_john", "wright_john_s"],
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "wright_john",
+      "wright_john_s"
+     ],
      "against_merge": "John Wright the merchant and John S. Wright his son, both from Andreas, are already recorded as father and son inside one household record.",
-     "for_merge": "Nothing but the surname and the forename they share."},
-    {"state": "undecided", "referred_to": "rule", "rule": "R2",
-     "members": ["wright_j", "wright_john", "wright_john_s"],
+     "for_merge": "Nothing but the surname and the forename they share."
+    },
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R2",
+     "members": [
+      "wright_j",
+      "wright_john",
+      "wright_john_s"
+     ],
      "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
-     "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."}
+     "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
    ]
   },
   {
    "id": "adams",
    "surname": "adams",
    "rulings": [
-    {"state": "merge", "rule": "C3", "survivor": "adams_william_h",
-     "folded": ["adams_william"],
+    {
+     "state": "merge",
+     "rule": "C3",
+     "survivor": "adams_william_h",
+     "folded": [
+      "adams_william"
+     ],
      "for": "William Hanford Adams is documented — the 1835 census bridge, the voter rolls, and the Tribune's report of the old settlers' fourth reception in 1882, which is a man remembered by name half a century later. 'William Adams' in the Democrat of 25 March 1834 is the same full forename with no middle name printed, and the town holds no second Adams of that forename.",
      "against": "Nothing contradicts. Adams is a common surname, which is why the anchor is required and stated.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "bates-harriet",
    "surname": "bates",
    "rulings": [
-    {"state": "merge", "rule": "C1", "survivor": "bates_harriet_ellen",
-     "folded": ["bates_harriet_e"],
+    {
+     "state": "merge",
+     "rule": "C1",
+     "survivor": "bates_harriet_ellen",
+     "folded": [
+      "bates_harriet_e"
+     ],
      "for": "'Harriet E Bates' and 'Harriet Ellen Bates' are the same woman printed twice in the SAME source on the SAME day — chicago_democrat_1833_1835, 26 August 1835. The E is the Ellen. There is nothing here to weigh.",
      "against": "Nothing.",
-     "survivor_note": "Both cards are civic-mint, so the merge is landed by the derivation itself: the consolidation joins the two identities and mint_civic_residents.py writes one card carrying both appearances."}
+     "survivor_note": "Both cards are civic-mint, so the merge is landed by the derivation itself: the consolidation joins the two identities and mint_civic_residents.py writes one card carrying both appearances."
+    }
    ]
   },
   {
    "id": "brown-william-h",
    "surname": "brown",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "brown_william_h",
-     "folded": ["brown_w_h"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "brown_william_h",
+     "folded": [
+      "brown_w_h"
+     ],
      "for": "'W. H. Brown' and 'William H Brown' are the same initials in the same paper — chicago_democrat_1833_1835 — a week apart, 28 May and 4 June 1834. The middle initial agrees.",
      "against": "Brown is a common surname; nothing else in the cluster carries the forename William with the middle initial H.",
-     "survivor_note": "Both cards are civic-mint; the derivation lands the merge."}
+     "survivor_note": "Both cards are civic-mint; the derivation lands the merge."
+    }
    ]
   },
   {
    "id": "clark-john",
    "surname": "clark",
    "rulings": [
-    {"state": "distinct", "rule": "D1", "members": ["clark_john_a", "clark_john_k"],
+    {
+     "state": "distinct",
+     "rule": "D1",
+     "members": [
+      "clark_john_a",
+      "clark_john_k"
+     ],
      "against_merge": "Both cards print an explicit middle initial and the two disagree — A against K — with no anchor on either side to say one of them is mis-set. Two men until something says otherwise, and the ruling is written onto both cards so the next pass does not re-ask.",
-     "for_merge": "The forename and the surname."}
+     "for_merge": "The forename and the surname."
+    }
    ]
   },
   {
    "id": "cobb",
    "surname": "cobb",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "cobb_silas_b",
-     "folded": ["cobb_s_b"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "cobb_silas_b",
+     "folded": [
+      "cobb_s_b"
+     ],
      "for": "Silas B. Cobb — saddler, partner in the Goss & Cobb saddlery in the west division, Andreas, the Democrat of 26 November 1833 and the Calumet Club's early-Chicago roll — is the one Cobb the town documents. 'S. B.' is his initials letter for letter, printed by the American in June 1835.",
      "against": "No second Cobb is named anywhere reached.",
-     "survivor_note": "Hand-authored, and a PARTNER in hh_goss_cobb — O. Goss's record is untouched."}
+     "survivor_note": "Hand-authored, and a PARTNER in hh_goss_cobb — O. Goss's record is untouched."
+    }
    ]
   },
   {
    "id": "dole",
    "surname": "dole",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "dole_george_w",
-     "folded": ["dole_g_w"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "dole_george_w",
+     "folded": [
+      "dole_g_w"
+     ],
      "for": "George Washington Dole — forwarding and commission at the Newberry & Dole warehouse, Andreas, the Democrat of 26 November 1833 and the voter rolls — is the one Dole the town documents, and 'G. W.' is his initials.",
      "against": "No second Dole is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "hamilton",
    "surname": "hamilton",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "hamilton_richard_j",
-     "folded": ["hamilton_r_j"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "hamilton_richard_j",
+     "folded": [
+      "hamilton_r_j"
+     ],
      "for": "Richard Jones Hamilton — county clerk, at Cobweb Castle in the north division, Andreas and the voter rolls — is the one Hamilton the town documents, and 'R. J.' is his initials. The folded card carries the Democrat three times, the 1840 census and Norris 1844, all of which the merge spends onto the man.",
      "against": "No second Hamilton is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "handy",
    "surname": "handy",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R1",
-     "members": ["handy_major", "handy_henry_s"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R1",
+     "members": [
+      "handy_major",
+      "handy_henry_s"
+     ],
      "for_merge": "The town documents one Handy, a mason, from Andreas; Henry S. Handy is in the Democrat and Fergus's 1843 death notices. A 'Major Handy' and a Henry S. Handy may well be the same man under a militia title.",
-     "against_merge": "'Major Handy' prints no forename at all. Surname-plus-a-title is the refusal data/research/newspapers/identity.json has ratified since the press pass, and this pass does not make an exception to it. Refused by rule."}
+     "against_merge": "'Major Handy' prints no forename at all. Surname-plus-a-title is the refusal data/research/newspapers/identity.json has ratified since the press pass, and this pass does not make an exception to it. Refused by rule."
+    }
    ]
   },
   {
    "id": "harmon-isaac",
    "surname": "harmon",
    "rulings": [
-    {"state": "merge", "rule": "C3", "survivor": "harmon_isaac_d",
-     "folded": ["harmon_isaac"],
+    {
+     "state": "merge",
+     "rule": "C3",
+     "survivor": "harmon_isaac_d",
+     "folded": [
+      "harmon_isaac"
+     ],
      "for": "Isaac Dewey Harmon — dry-goods merchant at the Harmon & Loomis store, Andreas, the Democrat of 26 November 1833 and the voter rolls — is the one Isaac Harmon the town documents. 'Isaac Harmon' from the Black Hawk enrollment and the Democrat is the same uncommon forename with no middle name printed.",
      "against": "His brother Charles Loomis Harmon is in the same household record and is untouched — a different forename.",
-     "survivor_note": "Hand-authored, and a brother in hh_harmon_brothers rather than a head."}
+     "survivor_note": "Hand-authored, and a brother in hh_harmon_brothers rather than a head."
+    }
    ]
   },
   {
    "id": "hunt-c",
    "surname": "hunt",
    "rulings": [
-    {"state": "undecided", "referred_to": "owner", "rule": "R3",
-     "members": ["hunt_c_s", "hunt_charles_cotesworth_pinckney"],
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R3",
+     "members": [
+      "hunt_c_s",
+      "hunt_charles_cotesworth_pinckney"
+     ],
      "for_merge": "Both are printed in Chicago papers within seventeen days of each other in August 1835 — the Democrat on the 12th, the American on the 29th — and Charles Cotesworth Pinckney Hunt is the only Hunt forename in the town's cards beginning with C.",
-     "against_merge": "The middle initial S contradicts C, and neither card is an anchor: neither carries a trade, a dwelling or a source beyond a list and a death notice. C4 needs a documented bearer and there is none. His call."}
+     "against_merge": "The middle initial S contradicts C, and neither card is an anchor: neither carries a trade, a dwelling or a source beyond a list and a death notice. C4 needs a documented bearer and there is none. His call."
+    }
    ]
   },
   {
    "id": "kennicott",
    "surname": "kennicott",
    "rulings": [
-    {"state": "undecided", "referred_to": "owner", "rule": "R3",
-     "members": ["kennicott_w_l", "kennicott_william_h"],
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R3",
+     "members": [
+      "kennicott_w_l",
+      "kennicott_william_h"
+     ],
      "for_merge": "Kennicott is an uncommon surname and the town holds no third bearer.",
-     "against_merge": "The middle initials L and H disagree, and neither card documents the man — one is a poll-list line graded G2a, the other is the Democrat and Norris 1844. No anchor, so C4 does not fire. His call."}
+     "against_merge": "The middle initials L and H disagree, and neither card documents the man — one is a poll-list line graded G2a, the other is the Democrat and Norris 1844. No anchor, so C4 does not fire. His call."
+    }
    ]
   },
   {
    "id": "kinzie-robert",
    "surname": "kinzie",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "kinzie_robert_a",
-     "folded": ["kinzie_r_a"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "kinzie_robert_a",
+     "folded": [
+      "kinzie_r_a"
+     ],
      "for": "Robert Allen Kinzie — merchant, at his own store in the west division, Andreas and the voter rolls — is the one Kinzie whose initials are R. A., and no other Kinzie card carries the letter R at all.",
      "against": "T-0732 records that there are two Robert Kinzie households in the wider research; the town's cards hold exactly one, and this merge does not touch that question.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "saunders",
    "surname": "saunders",
    "rulings": [
-    {"state": "undecided", "referred_to": "owner", "rule": "R3",
-     "members": ["saunders_william_s", "saunders_william_w"],
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R3",
+     "members": [
+      "saunders_william_s",
+      "saunders_william_w"
+     ],
      "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town.",
-     "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."}
+     "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."
+    }
    ]
   },
   {
    "id": "smith-e-kirby",
    "surname": "smith",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R5",
-     "members": ["smith_e_kirby", "smith_elded"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R5",
+     "members": [
+      "smith_e_kirby",
+      "smith_elded"
+     ],
      "for_merge": "Both are Smiths in the Democrat, and 'Elded' begins with the E that 'E Kirby' prints.",
-     "against_merge": "'Elded' is not a name — it is a garbled printed forename off the post office's letter list, and T-0695 is the open ticket that reads that class of wreck. A merge cannot be tested against a word nobody has read yet. Refused by rule until T-0695 lands."}
+     "against_merge": "'Elded' is not a name — it is a garbled printed forename off the post office's letter list, and T-0695 is the open ticket that reads that class of wreck. A merge cannot be tested against a word nobody has read yet. Refused by rule until T-0695 lands."
+    }
    ]
   },
   {
    "id": "smith-lawrence",
    "surname": "smith",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R4",
-     "members": ["smith_l_w", "smith_lawrence"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R4",
+     "members": [
+      "smith_l_w",
+      "smith_lawrence"
+     ],
      "for_merge": "L expands to Lawrence and no other Smith forename in the cluster begins with L.",
-     "against_merge": "Neither card documents the man: one is a poll-list line graded G3, the other a groom in the St Cyr marriage register graded G2c, in different domains eleven months apart with no shared source, no trade and no address. Smith is the commonest surname in the dataset and a bare expansion on it is exactly what T-0696 was opened to give a second discriminator for. Refused by rule."}
+     "against_merge": "Neither card documents the man: one is a poll-list line graded G3, the other a groom in the St Cyr marriage register graded G2c, in different domains eleven months apart with no shared source, no trade and no address. Smith is the commonest surname in the dataset and a bare expansion on it is exactly what T-0696 was opened to give a second discriminator for. Refused by rule."
+    }
    ]
   },
   {
    "id": "smith-william",
    "surname": "smith",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R4",
-     "members": ["smith_william", "smith_william_v"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R4",
+     "members": [
+      "smith_william",
+      "smith_william_v"
+     ],
      "for_merge": "Both are graded G1a on five and two sources respectively, and 'William V' is 'William' with a middle initial the other card does not print.",
-     "against_merge": "Neither card documents the man beyond lists — no trade, no dwelling, no household. William Smith is the least distinctive name in the town and there is no anchor for the bare forename to attach to. T-0696 again. Refused by rule."}
+     "against_merge": "Neither card documents the man beyond lists — no trade, no dwelling, no household. William Smith is the least distinctive name in the town and there is no anchor for the bare forename to attach to. T-0696 again. Refused by rule."
+    }
    ]
   },
   {
    "id": "snow",
    "surname": "snow",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "snow_george_w",
-     "folded": ["snow_g_w"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "snow_george_w",
+     "folded": [
+      "snow_g_w"
+     ],
      "for": "George W. Snow — surveyor, south division, Andreas and the voter rolls — is the one Snow the town documents, and 'G. W.' is his initials.",
      "against": "No second Snow is named anywhere reached.",
-     "survivor_note": "Hand-authored; no pass owns it."}
+     "survivor_note": "Hand-authored; no pass owns it."
+    }
    ]
   },
   {
    "id": "taylor-edmund",
    "surname": "taylor",
    "rulings": [
-    {"state": "merge", "rule": "C2", "survivor": "taylor_edmund_d",
-     "folded": ["taylor_e_d"],
+    {
+     "state": "merge",
+     "rule": "C2",
+     "survivor": "taylor_edmund_d",
+     "folded": [
+      "taylor_e_d"
+     ],
      "for": "'E. D. Taylor' and 'Edmund D Taylor' are the same initials with the same middle letter, both printed by chicago_democrat_1833_1835 in 1835, and no other Taylor in the town carries the forename Edmund.",
      "against": "The Taylor surname holds Anson and William as well; neither begins with E.",
-     "survivor_note": "Both cards are civic-mint; the derivation lands the merge."}
+     "survivor_note": "Both cards are civic-mint; the derivation lands the merge."
+    }
    ]
   },
   {
    "id": "taylor-william",
    "surname": "taylor",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R4",
-     "members": ["taylor_william", "taylor_william_h"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R4",
+     "members": [
+      "taylor_william",
+      "taylor_william_h"
+     ],
      "for_merge": "Both are in chicago_democrat_1833_1835 and the middle initial H is printed on only one of them, so nothing contradicts.",
-     "against_merge": "Neither card documents the man. Taylor is a common surname in this town — it already holds Anson, Charles H. and Edmund D. — and a bare forename with no anchor is refused by R4. T-0696."}
+     "against_merge": "Neither card documents the man. Taylor is a common surname in this town — it already holds Anson, Charles H. and Edmund D. — and a bare forename with no anchor is refused by R4. T-0696."
+    }
    ]
   },
   {
    "id": "thompson",
    "surname": "thompson",
    "rulings": [
-    {"state": "undecided", "referred_to": "rule", "rule": "R4",
-     "members": ["thompson_john", "thompson_lieut_j_l"],
+    {
+     "state": "undecided",
+     "referred_to": "rule",
+     "rule": "R4",
+     "members": [
+      "thompson_john",
+      "thompson_lieut_j_l"
+     ],
      "for_merge": "Both are Thompsons in the Democrat in the first quarter of 1834, and J expands to John.",
-     "against_merge": "One card carries a military rank and the middle initial L; the other is letter-list only and prints no middle initial. Neither documents the man. A rank is a strong discriminator in the wrong direction — an army lieutenant and a name on a post office list are not the same claim — and there is no anchor. Refused by R4."}
+     "against_merge": "One card carries a military rank and the middle initial L; the other is letter-list only and prints no middle initial. Neither documents the man. A rank is a strong discriminator in the wrong direction — an army lieutenant and a name on a post office list are not the same claim — and there is no anchor. Refused by R4."
+    }
    ]
   },
   {
    "id": "walker-george",
    "surname": "walker",
    "rulings": [
-    {"state": "undecided", "referred_to": "owner", "rule": "R3",
-     "members": ["walker_george_e", "walker_george_h"],
+    {
+     "state": "undecided",
+     "referred_to": "owner",
+     "rule": "R3",
+     "members": [
+      "walker_george_e",
+      "walker_george_h"
+     ],
      "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker.",
-     "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."}
+     "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."
+    }
+   ]
+  },
+  {
+   "id": "vanderbogart",
+   "surname": "vanderbogart",
+   "rulings": [
+    {
+     "state": "undecided",
+     "rule": "U1",
+     "members": [
+      "vanderbogart_h",
+      "vanderbogart_henry"
+     ],
+     "for": "They are very likely one man. 'H. Vanderbogart' and 'Henry Vanderbogart' agree on the surname and the initial expands to the forename, which is rule C2's shape — and before T-0724 the corpus carried them as one identity, because the old splitter truncated every Van der / Van Den printing to the bucket 'bogart'.",
+     "against": "That single identity was a MERGE NOBODY RULED ON. It existed only because the splitter took the last token of a printed name, which is the defect T-0724 fixes — so 'they were one before' is evidence about the old code and not about the man. The Chicago Democrat of 4 February 1834 prints 'H. Van Den Bogart'; Fergus's death notices print 'Van der Bogart, Dr. Henry'. DEN and DER are one letter of OCR apart and are also two real Dutch particles, and deciding which is a reading of the two printings.",
+     "note": "UNDECIDED on purpose, and T-0842 owns the question. T-0724's own PR says it: 'It is very likely the same man, and that is a reading somebody owes the page rather than an assumption the splitter makes silently.' Merging them here to satisfy this gate would be the splitter's old guess wearing a ruling's clothes. The cost of leaving it open is recorded in L220: the town reads 490 rather than 489 until somebody reads the page."
+    }
    ]
   }
  ]

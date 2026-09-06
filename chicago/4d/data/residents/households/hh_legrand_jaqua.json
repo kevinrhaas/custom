@@ -1,16 +1,16 @@
 {
- "id": "hh_horn_cornelius_c_van",
- "name": "The Horn household — a name the town's own records carry",
+ "id": "hh_legrand_jaqua",
+ "name": "The Legrand household — a name the town's own records carry",
  "division": "unplaced",
- "head": "horn_cornelius_c_van",
+ "head": "legrand_jaqua",
  "source_pass": "civic",
  "arrival": {
-  "value": "1834-03-18",
+  "value": "1834-11-19",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 18 March 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 19 November 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -48,8 +48,8 @@
  },
  "persons": [
   {
-   "id": "horn_cornelius_c_van",
-   "name": "Cornelius C Van Horn",
+   "id": "legrand_jaqua",
+   "name": "Jaqua Legrand",
    "relationship": "head",
    "grade": "attested",
    "civic_mint": true,
@@ -62,14 +62,14 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 18 March 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 19 November 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",
-     "as_read": "Cornelius C. Van Horn",
-     "locator": "chicago_democrat_1834_03_18#c003",
-     "record_id": "person_cornelius_c_van_horn",
-     "describes_date": "1834-03-18",
+     "as_read": "Jaqua Le Grand",
+     "locator": "chicago_democrat_1834_11_19#c002",
+     "record_id": "person_jaqua_le_grand",
+     "describes_date": "1834-11-19",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
