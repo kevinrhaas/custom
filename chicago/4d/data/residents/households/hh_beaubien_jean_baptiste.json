@@ -68,6 +68,17 @@
     "andreas_1884_v1"
    ],
    "note": "THE MIRROR OF THE ROW ON hh_beaubien_madore. MADORE BEAUBIEN IS THE SON OF COL. JEAN BAPTISTE BEAUBIEN, AND HIS OWN CARD HAS SAID SO IN PROSE SINCE IT WAS WRITTEN: 'He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman' — Andreas, History of Chicago vol. 1, the same reading that grades the rest of that card. NOTHING IS UPGRADED HERE. The claim was already attested on the card and already cited to andreas_1884_v1; this row only puts it where a query can reach it, because a sentence in a note is not a relationship any tool can read. THE IDENTIFICATION IS NOT A SURNAME MATCH: the town holds one Jean Baptiste Beaubien, the card names him with all three forenames and a rank, and the 1831 county licence Andreas prints has Madore selling goods 'alongside Alexander Robinson and his father'. WHAT IT DOES NOT CLAIM: his mother Mah-naw-bun-no-quah is not a person in this dataset and no row is written for her, and this row says nothing about where either man lived."
+  },
+  {
+   "person": "beaubien_jean_baptiste",
+   "relation": "brother",
+   "household": "hh_beaubien_mark",
+   "value": "beaubien_mark",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MARK BEAUBIEN AND JEAN BAPTISTE BEAUBIEN ARE BROTHERS. Mark's own card reaches for \"Andreas's life of his brother Jean Baptiste\" to date the family's move to Chicago from Milwaukee, and states the tie while doing it. Graded inferred: the brotherhood is stated in the source, and the reading that ties the elided forename to this card — twelve Beaubiens stand in the dataset — is this project's. Ruled under T-0734; found by PR #947."
   }
  ],
  "persons": [

@@ -255,5 +255,29 @@
     }
    }
   ]
- }
+ },
+ "kin": [
+  {
+   "person": "harmon_charles_l",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "SON OF DR ELIJAH DEWEY HARMON. Andreas's life of the doctor lists his five surviving children, and that sentence is what resolved the newspaper masthead 'C. & I. Harmon' into his two eldest sons — it is the reason this household exists at all. Graded inferred: the parentage is stated, the identification of the initials with these cards is this project's. Ruled under T-0734; found by PR #947."
+  },
+  {
+   "person": "harmon_isaac_d",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "SON OF DR ELIJAH DEWEY HARMON. Andreas's life of the doctor lists his five surviving children, and that sentence is what resolved the newspaper masthead 'C. & I. Harmon' into his two eldest sons — it is the reason this household exists at all. Graded inferred: the parentage is stated, the identification of the initials with these cards is this project's. Ruled under T-0734; found by PR #947."
+  }
+ ]
 }

@@ -137,5 +137,18 @@
     }
    }
   ]
- }
+ },
+ "kin": [
+  {
+   "person": "beaubien_mark",
+   "relation": "brother",
+   "household": "hh_beaubien_jean_baptiste",
+   "value": "beaubien_jean_baptiste",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MARK BEAUBIEN AND JEAN BAPTISTE BEAUBIEN ARE BROTHERS. Mark's own card reaches for \"Andreas's life of his brother Jean Baptiste\" to date the family's move to Chicago from Milwaukee, and states the tie while doing it. Graded inferred: the brotherhood is stated in the source, and the reading that ties the elided forename to this card — twelve Beaubiens stand in the dataset — is this project's. Ruled under T-0734; found by PR #947."
+  }
+ ]
 }
