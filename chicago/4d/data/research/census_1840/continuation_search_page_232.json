@@ -530,8 +530,36 @@
   "nearest_unpaired_footing_below": "33SQ-GYYJ-Z1 at 181, 12 short of 193",
   "nearest_unpaired_footing_above": "33S7-9YYJ-6Q at 198, 5 over 193 and 3 over 195, refused by its 30-entry line count",
   "what_the_result_means": "The continuation half of printed page 232 is NOT IN THIS DEPOSIT. The search is exhausted: every one of the 37 right sheets across all three image groups has been looked at, 33 of them are household continuations, and not one foots 193 or 195. The single sheet that matches printed 232 on the line count, 33SQ-GYYJ-9J5, is refused by the population key and again by the sequence screen. This is a statement about the deposit and not about the schedule: the 1840 book had a facing leaf for every page it enumerated, and this deposit of 74 images does not hold all of them \u2014 the same fact that leaves ten of image group 1's eleven continuations without a partner. So printed 232's family totals, industry columns, pensioners and schools cells are UNREADABLE from what this project holds, and pages/33S7-9YYJ-W6.json now says so on the page rather than leaving the hole silent.",
-  "what_would_change_it": "A leaf from outside this deposit. FamilySearch collection 1786457 \u2014 the collection these image ids belong to \u2014 is login-walled and was recorded as inaccessible rather than absent on 2026-09-03, so the facing leaf may well exist there. The 1840 population schedules also survive on National Archives microfilm (publication M704); this project holds no roll of it and this file does not name one, because it has not looked. Either route is a NEW SOURCE RECORD, not a re-reading of these 74 images.",
+  "what_would_change_it": "ANSWERED BY T-0736, 2026-09-06, and both routes this file named were tried. The leaf was outside the deposit and it was found.",
   "blank_leaves_with_no_footing_to_read": 3,
   "footings_held_by_another_ticket": 1
+ },
+ "the_two_routes_outside_this_deposit": {
+  "read": "2026-09-06",
+  "ticket": "T-0736",
+  "route_a_familysearch_collection_1786457": {
+   "tried": true,
+   "result": "CLOSED, and it is inaccessibility rather than absence \u2014 the same finding as 2026-09-03, now with the requests written down. Three URLs were fetched unauthenticated from this runner on 2026-09-06 and all three answered HTTP 403: the collection's own search page https://www.familysearch.org/search/collection/1786457, the image ark of printed 232's left sheet https://www.familysearch.org/ark:/61903/3:1:33S7-9YYJ-W6, and the collection's search service. Nothing about the collection's CONTENTS was learned and nothing may be inferred from the refusal.",
+   "what_it_would_take": "a logged-in session, which this runner does not have and must not fabricate."
+  },
+  "route_b_national_archives_microfilm_m704": {
+   "tried": true,
+   "result": "OPEN, and it yielded the leaf.",
+   "the_roll_number_this_file_said_nobody_had_looked_up": "M704 roll 57 \u2014 \u201cColes, Cook, Crawford Counties\u201d, Illinois.",
+   "how_it_was_established": [
+    "archives.gov's 1840 census page states the publication and its extent \u2014 \u201cDigital images of National Archives Microfilm Publication M704, Sixth Census of the United States, 1840 (580 rolls), can be seen on popular genealogy websites, including Ancestry.com, FamilySearch.org, and others\u201d \u2014 and NARA does not serve the images itself, so the publication is named there and the images are not.",
+    "The Internet Archive holds the Allen County Public Library Genealogy Center's scan of the Illinois rolls of M704, one item per roll, and each item's description carries the roll contents for the whole state. Roll 57 is \u201cColes, Cook, Crawford Counties\u201d; the item is populationsc18400057unit, 330 leaves, public and unauthenticated."
+   ],
+   "the_leaf": {
+    "printed_232_left_sheet": "leaf n166",
+    "its_continuation_right_sheet": "leaf n167",
+    "identified_by": "the 31 heads of families on n166, which are printed 232's own 31 in printed 232's own order \u2014 Nicholas W. Smith, Jos. D. Boone, Jacob Miller, Amy Brown, Wm J. C. Scovill, J. B. C. Russell, Geo. O'Bryan, Chas. Sweet, Elizabeth T. Estey, John Wm Mullen, James H. Cassady, Danl Shelby, John Davis and on to C. H. Holcomb and Emanuel M[?]. The stamped 232 agrees and the film's own left-then-right order agrees, but the names are what settles it.",
+    "both_of_t0642s_keys": "31 entries in n167's TOTAL column against printed 232's 31 ruled lines, and a printed TOTAL footing read as 195 \u2014 the figure printed 232's own footings give \u2014 with 198 named as the arguable alternate at this exposure.",
+    "the_sequence_screen": "n167's TOTAL column opens 5, 7, 5, 9, 6, 4, which is printed 232's own per-line free-person count. This is the screen that REFUSED 33SQ-GYYJ-9J5, whose column opens 5, 6, 25, 11, 8.",
+    "source_record": "data/sources/census_1840_chicago_nara_m704_roll57.json, with each leaf's URL and sha256."
+   }
+  },
+  "what_this_does_not_change": "Not one cell of the deposit's reading of printed 232, and not one cell of n167 either: this pass PAIRED the leaf and read nothing off it below the two keys and the opening of the TOTAL column. The 31 households' industry, pension and schools cells are still unread, and they have their own ticket.",
+  "what_the_deposit_turns_out_to_be": "A PARTIAL SELECTION OF FRAMES, exactly as this file's own outcome guessed: \u201cthe 1840 book had a facing leaf for every page it enumerated, and this deposit of 74 images does not hold all of them\u201d. Printed 232's continuation was on the film the whole time. The ten continuations of image group 1 that stand without a partner are the same shape of hole and the same roll is where they will be."
  }
 }
