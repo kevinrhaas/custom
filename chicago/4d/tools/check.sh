@@ -222,6 +222,16 @@ step "the resident synthesizer has not drifted further from the cards it writes"
 step "…and that ratchet fires in both directions" \
   python3 tools/synthesize_resident_research.py --drift-self-test
 
+# T-0837 (of T-0814), the spend the ratchet was holding. Two of the three promotions
+# standing in that drift wrote a trade printed in 1839 or 1843 into the 1835 occupation
+# field at `attested`, deleting T-0693's dated `later_occupation` pointer and the note
+# saying why. One of them read "printer" out of "where 'II.' is the printer's H" — the
+# compositor of the volume, T-0510's defect recurring inside the research row itself.
+# Both are refused now, and both refusals are named in the ledger; this is the test that
+# says so, and that a trade the scene's own sources print still lands.
+step "a trade printed after 1835 is refused the 1835 occupation field" \
+  python3 tools/synthesize_resident_research.py --promotion-self-test
+
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 

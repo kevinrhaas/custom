@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Racine histories identify exact-name Elihu D. Filer as an early settler and carpenter, but no record bridges the Chicago letter to the Racine man. Reprinted OCR variants are not separate people.",
     "evidence_against": "No Chicago-to-Racine migration bridge.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "whs_elihu_filer_house"
     ],
     "candidate_ids": [
      "cand_elihu_d_filer_of_racine__filer_elihu_d"
-    ]
+    ],
+    "summary": "Racine histories identify exact-name Elihu D. Filer as an early settler and carpenter, but no record bridges the Chicago letter to the Racine man. Reprinted OCR variants are not separate people. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

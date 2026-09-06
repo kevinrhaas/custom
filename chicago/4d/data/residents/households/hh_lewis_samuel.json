@@ -67,12 +67,17 @@
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'SAMUEL LEWIS' and 'SAMYEL LEWIS,' and 'Samuel Lewis' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 2 July 1834, column 29; the Democrat of 9 July 1834, column 1; the Democrat of 16 July 1834, column 1; the Democrat of 22 July 1835, column 5; the Democrat of 29 July 1835, column 8; the Democrat of 5 August 1835, column 4. The corpus associates the name with South Water Street; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `schoolteacher` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed web, institutional-history, digitized-book, newspaper-index and genealogy-finding-aid searches could be tied to this 1835 Chicago person without relying on the name alone.",
-    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
+    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity.",
+    "summary": "Samuel Lewis is held as a candidate and not asserted: 6 Newberry genealogical-index card(s) stand under this surname on an exact-surname rule with nothing to separate the bearers; the census 1840 chicago familysearch images, chicago tribune 1882 04 25 old settler deaths agreement is a surname-only refusal; the papers carry the name 1834-07-02 to 1835-08-05, 1835-08-12 as schoolteacher.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "newberry_genealogical_index"
+    ]
    }
   }
  ],

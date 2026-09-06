@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Frederick William Curtenius is a possible candidate who moved to Michigan and farmed at Grand Prairie in 1835. The middle initial conflicts and no Chicago bridge was found.",
     "evidence_against": "Middle initial differs and the source supplies no Chicago link.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "michigan_frederick_curtenius"
     ],
     "candidate_ids": [
      "cand_frederick_william_curtenius__curtenius_fredk"
-    ]
+    ],
+    "summary": "Frederick William Curtenius is a possible candidate who moved to Michigan and farmed at Grand Prairie in 1835. The middle initial conflicts and no Chicago bridge was found. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

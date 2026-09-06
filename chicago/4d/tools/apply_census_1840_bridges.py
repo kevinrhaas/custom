@@ -326,12 +326,22 @@ def apply():
     for path, doc in docs.items(): dump(path, doc, 1)
     index = rebuild_index(load(INDEX), docs); dump(INDEX, index, 1)
     update_ledger(rows, all_rows); update_summary(rows, all_rows)
+    # T-0837.  MINIFIED, because three other writers of this same mirror are: `publish.sh`
+    # holds the published residents layer to a size budget the authored tree is not held
+    # to, and `synthesize_resident_research.py` matches it for the households it writes.
+    # This tool wrote its three bridged cards and the index PRETTY, and it runs LAST — off
+    # the tail of the synthesis, by T-0491's own design — so the mirror ended every write
+    # pretty and every publish minified.  Semantically the two agree, which is why
+    # `mirror_carries` below never saw it; by BYTES they never converge, so the T-0838
+    # drift ratchet could not reach zero however much of the standing spend landed.  Four
+    # files were stuck on that baseline for no reason a reader could act on.
     site_hh = SITE / "data" / "residents" / "households"; site_hh.mkdir(parents=True, exist_ok=True)
     for row in rows:
         _person, path, doc = people[row["person_id"].strip()]
-        dump(site_hh / path.name, doc, 1)
+        (site_hh / path.name).write_text(
+            json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     site_index = SITE / "data" / "residents" / "index.json"; site_index.parent.mkdir(parents=True, exist_ok=True)
-    site_index.write_text(INDEX.read_text(encoding="utf-8"), encoding="utf-8")
+    site_index.write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return check()
 
 
