@@ -1,7 +1,7 @@
 ---
 id: T-0757
 title: The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 953
+claimed_by: run 9/5/2026, 9:03:48 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T02:57:34.454Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34005348292
 ---
 
 The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column.
