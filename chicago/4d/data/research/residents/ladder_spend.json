@@ -13,17 +13,17 @@
  "counts": {
   "person_records": 1362,
   "carried_by_the_civic_mint": 489,
-  "rungs_spent": 796,
-  "conflicts_for_the_owner": 68,
+  "rungs_spent": 798,
+  "conflicts_for_the_owner": 69,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 88,
    "G1c": 10,
    "G2e": 48,
-   "G3": 628
+   "G3": 630
   },
   "conflicts_by_kind": {
-   "abstention": 34,
+   "abstention": 35,
    "downgrade": 33,
    "subtype": 1
   }
@@ -35,6 +35,15 @@
   "grade_disagrees": "the rung proposes a grade the card does not carry and no row in `changes_to_existing_people` accounts for the difference."
  },
  "spent": [
+  {
+   "person_id": "abbot_8_g",
+   "household_id": "hh_abbot_8_g",
+   "name": "8. G. Abbot",
+   "identity": "id_abbot_g",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
   {
    "person_id": "abbott_constant",
    "household_id": "hh_abbott_constant",
@@ -2662,6 +2671,15 @@
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
+  },
+  {
+   "person_id": "gabbs_james_i1",
+   "household_id": "hh_gabbs_james_i1",
+   "name": "James I1. Gabbs",
+   "identity": "id_gabbs_james",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "galaher_thomas",
@@ -7959,6 +7977,21 @@
    "rule": "G5",
    "grade": "inferred",
    "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "name": "A. 8. Perry",
+   "identity": "id_perry_abijah_s",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
    "kind": "abstention",
    "proposed": {
     "grade": null,
