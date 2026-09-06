@@ -1,12 +1,88 @@
 # Thompson's block numbers, and the one address in the corpus that needed them
 
-**Investigated:** 2026-08-29 · **Ticket:** T-0358 ·
+**Investigated:** 2026-08-29 · **Re-read block by block:** 2026-09-06 ·
+**Tickets:** T-0358, then T-0788 (owner ask) ·
 **Record:** none — this is a memo about a *reading* and the count made from it ·
 **Data:** `data/traces/thompson_block_numbering.json` (authored),
 `data/traces/vectors/thompson_lots.json` (`plat_block_number`, `plat_lot_number`) ·
-**Source:** `wright_1834`, through
+**Source:** `wright_1834`, through the georeferenced BPL scan
+(IIIF `commonwealth:js957744g`); previously through
 `data/sources/assets/prefire_views_kevin_2026_08/wright1834_clark_reach_crop.jpeg` ·
 **Gate:** `tools/generate_plat_lots.py --check`, in `tools/check.sh`
+
+---
+
+## 0. Superseded in the best way: the numerals were there all along
+
+**2026-09-06, T-0788.** Everything below §§ 1–3 stands as the record of how six blocks got
+their numbers from two numerals. **The counting is over.** Twenty-two numerals are now READ off
+the sheet, one crop per block, and the four numbers this memo counted — 21, 20, 17, 16 — are
+among them. **All four counted values were right.** Nothing moves; what changes is that the
+numbers are evidence instead of arithmetic.
+
+**What made it possible was not a better scan — it was asking the georeference for the crop.**
+This project is fitted to the BPL copy (`data/traces/gcp/wright_1834_gcps.json`, affine from
+eight ground control points, RMS 17.5 m). So for any block the grid holds, the four bounding
+street centrelines of `data/streets/1835.json` give a box in local ENU, `tools/wright_px.py`
+maps it into the scan's pixel space, and IIIF returns that box at 6×. The block fills the frame.
+**Which block carries a numeral stops being a thing the reader decides.** Every entry in
+`data/traces/thompson_block_numbering.json` cites the region it was read on, so any reader may
+re-open the same rectangle and disagree.
+
+**The run reverses tier by tier, and § 4's refusal was right to refuse it.**
+
+| tier | west → east | direction |
+|---|---|---|
+| South Water – Lake | 21 20 19 18 **17 16** | falls eastward |
+| Lake – Randolph | *28 29* · river · 31 32 33 34 35 36 | **rises** eastward |
+| Randolph – Washington | *45 44 43* 42 41 40 · **Public Square** · 38 37 | falls eastward |
+
+*(italic = West Division, west of the South Branch)*
+
+A count carried straight down from the South Water tier would have numbered the Lake tier
+backwards. § 4 refused to carry it and said, in terms, that a boustrophedon was one of the
+possibilities it could not choose between. It was the one the sheet draws.
+
+**The Public Square carries no numeral.** Wright washes the block pink, rules it into eight lots
+like its neighbours, and letters *Public Square* across it where the number would go. So **39 is
+the one number in the file that is still counted** — and it is counted across a single block
+bracketed by numerals read on both sides: 40 immediately west, 38 immediately east, in a tier
+falling by one. One number fits between them. `numeral_on_sheet: false` says so on the record,
+and the same reasoning is written onto
+`data/reconstruction/1835_reserved_ground.json`, which is where this block's identity is argued.
+
+**Block 16's numeral is on the sheet.** G. Spring's *"LOT No. 7, in block No. 16 … on Lake
+street"* no longer rests on a count three blocks long (§ 6). It rests on a numeral in the block's
+own frame, on the notice's own "on Lake street", and on the Botsford/Andreas placement of
+Haddock's Tavern. The three-way agreement of § 6 is unchanged and is now a check on a reading
+rather than a check on arithmetic.
+
+**The lot scheme is read on four blocks, not one.** Blocks 20, 18, 16 and 40 each print
+**4 3 2 1** across the north row west to east and **5 6 7 8** across the south row west to east.
+Block 40 is in a different tier, whose BLOCK numbering runs the other way — so the lot run is a
+property of the block, not of the tier. § 5's grade does not move: the scheme is read, the LINES
+it numbers are still the module's, and a number on a conjectural line is conjectural. What the
+three extra readings buy is that the scheme is no longer a one-block reading.
+
+**Not every block carries eight lots.** The West Division block west of block 28 prints
+`1 4 5 8 9` down its side — ten lots, two rows of five, numerals written across a horizontal
+alley. No West Division block is emitted by the generator today, so nothing is mis-numbered;
+it is recorded in `lot_numbering.ten_lot_blocks` so that the day one is, this is found first.
+
+**What is still refused, and why it is the same refusal.** Twenty-four of fifty-eight blocks are
+held. The Washington–Madison tier, the North Division and the West Division beyond Clinton are
+refused because the method is *cut the crop from committed street lines*, and the committed
+street grid does not reach them. A numeral found by eye instead, on paper that stretches 3.7%
+anisotropically, is a numeral placed by the reader — the mistake this file was rebuilt to stop
+making. Block **30** is refused separately: the Lake tier reads 29 on the west bank and 31 on the
+first block east of the branch, and the ground between them is water, so 30 is somewhere not yet
+read and nothing here says where.
+
+**One cell is two blocks.** The grid's `blk_randolph_canal` runs Canal Street to Market Street,
+243 m, and spans **44** on the west bank and **43** on the east with the river between them. It
+therefore takes NO number — one number on a cell that is two blocks is a claim the sheet does not
+make — and both readings are parked in `blocks_not_in_the_grid`, waiting for the day the grid has
+an id for them.
 
 ---
 
@@ -64,14 +140,19 @@ step is an inference and is graded as one; it is not a close call.
 
 ## 4. Counting along the tier
 
-| block | id | number | numeral |
-|---|---|---:|---|
-| Market–Franklin | `blk_south_water_market` | 21 | counted (2 west) |
-| Franklin–Wells | `blk_south_water_franklin` | 20 | counted (1 west) |
-| Wells–La Salle | `blk_south_water_wells` | **19** | **read** |
-| La Salle–Clark | `blk_south_water_lasalle` | **18** | **read** |
-| Clark–Dearborn | `blk_south_water_clark` | 17 | counted (2 east) |
-| Dearborn–State | `blk_south_water_dearborn` | **16** | counted (3 east) |
+| block | id | number | numeral, 2026-08-29 | numeral, 2026-09-06 |
+|---|---|---:|---|---|
+| Market–Franklin | `blk_south_water_market` | 21 | counted (2 west) | **read** |
+| Franklin–Wells | `blk_south_water_franklin` | 20 | counted (1 west) | **read** |
+| Wells–La Salle | `blk_south_water_wells` | **19** | **read** | **read** |
+| La Salle–Clark | `blk_south_water_lasalle` | **18** | **read** | **read** |
+| Clark–Dearborn | `blk_south_water_clark` | 17 | counted (2 east) | **read** |
+| Dearborn–State | `blk_south_water_dearborn` | **16** | counted (3 east) | **read** |
+
+The last column is § 0's re-reading, kept beside the count so the two can be compared. **Every
+counted value was right**, which is worth exactly as much as it is worth: four out of four is a
+good record for a step of one along a row, and it is not a reason to trust a count over a
+reading anywhere else.
 
 `blk_south_water_market` is not in the grid — South Water's committed centreline stops 24 m short
 of it (`thompson_plat_grid.md` § 6) — so its number is stamped onto the omission, where the two
@@ -164,4 +245,5 @@ it has not paid for.
   on a survey sheet, and everything that could not be counted is refused in writing.
 - **Not a cadastre.** No lot is owned and no lot is claimed to be the lot a particular building
   stood on. § 7 is a report of where this dataset's own buildings fall, not a title.
-- **Not the whole plat.** Six blocks of fifty-eight.
+- **Not the whole plat.** Twenty-four blocks of fifty-eight — six when this memo was written,
+  and the other eighteen read in § 0. The rest are refused there, by name.

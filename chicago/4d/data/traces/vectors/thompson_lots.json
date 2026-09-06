@@ -1,5 +1,5 @@
 {
- "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, and only for the six blocks of the South Water tier that two numerals on Wright's 1834 sheet can be counted along — see `block_numbering` below and data/traces/thompson_block_numbering.json. Every other block in this file is unnumbered on purpose.",
+ "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, read block by block off the georeferenced Wright 1834 scan — see `block_numbering` below and data/traces/thompson_block_numbering.json. A block left unnumbered here is one the sheet was not read on, and the authored file says which and why.",
  "tool": "tools/generate_plat_lots.py",
  "generated_from": [
   "data/traces/street_control.json",
@@ -35,20 +35,20 @@
  },
  "block_numbering": {
   "authored_in": "data/traces/thompson_block_numbering.json",
-  "read": "TWO adjacent blocks in one tier, the western numbered 19 and the eastern 18, separated by a street with the platted 80 written in it, and a narrow sinuous watercourse drawn down that street. Block 18's north row of lots is numbered 4 3 2 running west to east and its south row 5 6 7 running west to east; the fourth lot of each row falls outside the crop.",
+  "read": "Wright writes a numeral across the middle of every block of the Original Town. TWENTY-TWO of them fall on ground this project's street grid can address, and all twenty-two are read here: the South Water-Lake tier 21 20 19 18 17 16 west to east; the Lake-Randolph tier 28 29 west of the South Branch and 31 32 33 34 35 36 east of it; the Randolph-Washington tier 45 44 west of the branch, 43 42 41 40 east of it, then the block labelled 'Public Square' and no numeral, then 38 37. Lot numerals are printed inside several blocks; four of them are read in `lot_numbering` below.",
   "source": "wright_1834",
   "step": -1,
-  "direction": "The number falls by one for each block eastward along a tier, so it rises westward. That the run is along the TIER and not down a column follows from the two numerals being side by side in one row and one apart: a column-major numbering would separate two blocks in the same row by the number of rows.",
+  "direction": "THE RUN REVERSES TIER BY TIER, which is why it could never be counted from two numerals. Along South Water-Lake the number FALLS eastward (21 -> 16). Along Lake-Randolph it RISES eastward (31 -> 36). Along Randolph-Washington it FALLS again (43 -> 37). The refusal this file used to carry — that nothing said how the run passes from one tier to the next — was the right refusal: a boustrophedon is exactly what the sheet turns out to draw, and a run counted straight down the tiers would have numbered the Lake tier backwards.",
   "lot_scheme": "counter-clockwise from the block's north-east corner: lot 1 at the east end of the north row, running WEST to lot 4 at its west end; lot 5 at the west end of the south row, running EAST to lot 8 at its east end.",
   "lot_confidence": "conjectural",
   "refused": [
-   "every block of the Lake–Randolph and Randolph–Washington tiers (14 held by this reconstruction)",
-   "blk_south_water_clinton, blk_lake_clinton, blk_randolph_clinton and every other West Division block",
-   "the North Division",
-   "where the tier's run begins and ends",
+   "the Washington-Madison tier (52-58), the North Division (1-7, 14-15) and the West Division outside the two tiers read here (8-13, 22-27, 46-51)",
+   "block 30",
+   "where each tier's run begins and ends",
+   "the confidence grade",
    "a modern plat reprint"
   ],
-  "note": "Two numerals were read and the rest were counted along one tier. `numeral_on_sheet` on each block says which is which, and the authored file carries the reading, the identification and the refusals in full."
+  "note": "Each numeral is read on a crop cut to that block's own committed ground, so the reading is identified by the georeference rather than counted from a neighbour. `numeral_on_sheet` on each block says which numbers are read and which are not, and the authored file carries the reading, the crop regions and the refusals in full."
  },
  "confidence": "inferred",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
@@ -56,10 +56,10 @@
   "blocks": 19,
   "omitted": 5,
   "reserved": 1,
-  "numbered": 5,
-  "numbered_omitted": 1,
+  "numbered": 19,
+  "numbered_omitted": 2,
   "lots": 144,
-  "numbered_lots": 40,
+  "numbered_lots": 144,
   "block_frontage_ft": {
    "min": 309.6,
    "median": 323.4,
@@ -329,12 +329,12 @@
    "plat_block_number": {
     "number": 20,
     "confidence": "inferred",
-    "numeral_on_sheet": false,
+    "numeral_on_sheet": true,
     "sources": [
      "wright_1834"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "One block west of the read 19, counted at one block per step along the tier. No independent statement corroborates this number."
+    "note": "READ, where it used to be counted one block west of 19. The crop also carries this block's lot numerals: north row 4 3 2 1 west to east, south row 5 6 7 8 west to east. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -596,7 +596,7 @@
      "wright_1834"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "THE NUMERAL IS READ OFF THE SHEET; WHICH BLOCK CARRIES IT IS INFERRED. The crop sets 19 on the western of its two blocks, and the watercourse drawn in the street between them is the one this project traced at local E +462…+469, which is the La Salle corridor — so the block west of it is the Wells–La Salle block. The grade is the weaker of the two steps."
+    "note": "READ, and re-read: this is one of the two numerals the 2026-08-29 owner crop carried, and the block-cut crop puts it on the Wells-La Salle block without needing the watercourse to identify it. The platted 80 of the street west of it is in the frame. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -858,7 +858,7 @@
      "wright_1834"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "THE NUMERAL IS READ OFF THE SHEET; WHICH BLOCK CARRIES IT IS INFERRED, by the same watercourse. This is also the block whose lot numbering the crop shows, and the block from which four-lots-to-a-face was read in the first place — so it is the one block here where the plat grid's subdivision and its numbering rest on the same reading."
+    "note": "READ, and re-read — the second numeral of the owner crop. Lot numerals 4 3 2 1 / 5 6 7 8, now complete where the old crop cut the fourth of each row. This is the block the lot scheme was first read from. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -1115,12 +1115,12 @@
    "plat_block_number": {
     "number": 17,
     "confidence": "inferred",
-    "numeral_on_sheet": false,
+    "numeral_on_sheet": true,
     "sources": [
      "wright_1834"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "Two blocks east of the read 19, counted at one block per step along the tier. No independent statement corroborates this number. Both memos that previously claimed the crop READ a 17 were describing this block; it is counted, not read."
+    "note": "READ, where it used to be counted two blocks east of 19 — and where two memos once claimed the owner crop showed a 17 it did not contain. The sheet does carry 17 here; what was wrong was which crop it was on. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -1381,14 +1381,14 @@
    "plat_block_number": {
     "number": 16,
     "confidence": "inferred",
-    "numeral_on_sheet": false,
+    "numeral_on_sheet": true,
     "sources": [
      "wright_1834",
      "chicago_democrat_1833_1835",
      "andreas_1884_v1"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "THREE BLOCKS EAST OF THE READ 19 — AND THE ONE DERIVED NUMBER HERE THAT AN INDEPENDENT SOURCE AGREES WITH. G. Spring's For-Sale notice puts 'LOT No. 7, in block No. 16' ON LAKE STREET and 'one lot east of Haddock's Tavern' (Chicago Democrat, 1834-06-18 c006; also 1834-09-03 c005, 1834-10-15 c006, 1834-11-19 c010). Counting east gives block 16 the Dearborn–State block of the South Water tier, whose Lake Street frontage is its south row — and under the lot scheme above the south row runs 5 6 7 8 west to east from the Dearborn corner, so lot 7 is the THIRD lot east of Dearborn and Haddock's Tavern, one lot west of it, is the SECOND. That is where this dataset already stands the Mansion House, which is Haddock's Tavern: Andreas has it 'on Lake near Dearborn', and T-0324 read J. K. Botsford's advertisements — 'next door to Graves' Tavern' and 'Corner of Dearborn and Lake-sts.' — as one frontage on the corner lot, which puts the tavern on the second lot from Dearborn (docs/RESEARCH/botsford_graves_1834.md). The count, the newspaper's own 'on Lake street', and a placement argued from Andreas and Botsford before this file existed all land on the same block face. The arithmetic is still arithmetic and the grade stays `inferred`; what the agreement buys is that three statements made independently do not contradict it."
+    "note": "READ — the block of G. Spring's 'LOT No. 7, in block No. 16 ... on Lake street'. The numeral is on the sheet, so the address no longer rests on arithmetic: it rests on a numeral, on the notice's own 'on Lake street' (this block's south frontage), and on the Botsford/Andreas placement of Haddock's Tavern one lot west of lot 7. The crop also carries the lot numerals 4 3 2 1 / 5 6 7 8, so lot 7 is the third lot east of Dearborn in the Lake Street row. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -1462,7 +1462,9 @@
        -269.67,
        -176.16
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1485,7 +1487,9 @@
        -268.18,
        -238.11
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1508,7 +1512,9 @@
        -245.66,
        -176.35
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1531,7 +1537,9 @@
        -243.81,
        -238.3
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1554,7 +1562,9 @@
        -221.66,
        -176.54
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1577,7 +1587,9 @@
        -219.44,
        -238.49
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1600,7 +1612,9 @@
        -197.66,
        -176.73
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1623,9 +1637,21 @@
        -195.07,
        -238.69
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 28,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. West Division, west bank of the South Branch. The numeral straddles the alley between the block's two halves, which is where Wright writes it on every West Division block. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_market",
@@ -1698,7 +1724,9 @@
        100.85,
        -179.14
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1721,7 +1749,9 @@
        100.35,
        -241.08
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1744,7 +1774,9 @@
        124.44,
        -179.34
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1767,7 +1799,9 @@
        123.98,
        -241.28
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1790,7 +1824,9 @@
        148.03,
        -179.53
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1813,7 +1849,9 @@
        147.6,
        -241.47
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1836,7 +1874,9 @@
        171.62,
        -179.72
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1859,9 +1899,21 @@
        171.22,
        -241.66
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 31,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. First block of the tier east of the branch; the Market Street label is in the frame. The tier's run RISES eastward from here. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_franklin",
@@ -1934,7 +1986,9 @@
        219.6,
        -180.11
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1957,7 +2011,9 @@
        219.23,
        -242.05
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1980,7 +2036,9 @@
        244.0,
        -180.31
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2003,7 +2061,9 @@
        243.63,
        -242.25
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2026,7 +2086,9 @@
        268.4,
        -180.51
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2049,7 +2111,9 @@
        268.03,
        -242.45
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2072,7 +2136,9 @@
        292.8,
        -180.71
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2095,9 +2161,21 @@
        292.43,
        -242.65
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 32,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_wells",
@@ -2170,7 +2248,9 @@
        341.58,
        -181.11
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2193,7 +2273,9 @@
        341.22,
        -243.05
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2216,7 +2298,9 @@
        365.98,
        -181.3
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2239,7 +2323,9 @@
        365.62,
        -243.25
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2262,7 +2348,9 @@
        390.39,
        -181.5
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2285,7 +2373,9 @@
        390.02,
        -243.45
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2308,7 +2398,9 @@
        414.79,
        -181.7
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2331,9 +2423,21 @@
        414.42,
        -243.65
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 33,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_lasalle",
@@ -2406,7 +2510,9 @@
        463.57,
        -182.1
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2429,7 +2535,9 @@
        463.21,
        -244.04
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2452,7 +2560,9 @@
        488.33,
        -182.3
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2475,7 +2585,9 @@
        487.96,
        -244.25
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2498,7 +2610,9 @@
        513.08,
        -182.5
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2521,7 +2635,9 @@
        512.7,
        -244.45
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2544,7 +2660,9 @@
        537.83,
        -182.71
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2567,9 +2685,21 @@
        537.45,
        -244.65
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 34,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_clark",
@@ -2642,7 +2772,9 @@
        586.97,
        -183.11
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2665,7 +2797,9 @@
        586.58,
        -245.05
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2688,7 +2822,9 @@
        611.62,
        -183.31
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2711,7 +2847,9 @@
        611.22,
        -245.25
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2734,7 +2872,9 @@
        636.26,
        -183.51
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2757,7 +2897,9 @@
        635.87,
        -245.45
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2780,7 +2922,9 @@
        660.91,
        -183.71
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2803,9 +2947,21 @@
        660.52,
        -245.65
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 35,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_lake_dearborn",
@@ -2878,7 +3034,9 @@
        709.94,
        -184.11
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2901,7 +3059,9 @@
        709.55,
        -246.05
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2924,7 +3084,9 @@
        735.85,
        -184.32
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2947,7 +3109,9 @@
        735.46,
        -246.27
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -2970,7 +3134,9 @@
        761.76,
        -184.53
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -2993,7 +3159,9 @@
        761.37,
        -246.48
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3016,7 +3184,9 @@
        787.68,
        -184.74
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3039,9 +3209,21 @@
        787.28,
        -246.69
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 36,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Last block of the tier; State Street's wash is at the frame's east edge. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_randolph_clinton",
@@ -3114,7 +3296,9 @@
        -266.34,
        -315.24
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3137,7 +3321,9 @@
        -264.94,
        -373.45
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3160,7 +3346,9 @@
        -241.5,
        -315.43
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3183,7 +3371,9 @@
        -239.76,
        -373.66
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3206,7 +3396,9 @@
        -216.67,
        -315.63
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3229,7 +3421,9 @@
        -214.59,
        -373.86
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3252,7 +3446,9 @@
        -191.84,
        -315.83
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3275,9 +3471,21 @@
        -189.41,
        -374.07
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 45,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. West Division, west bank. The Washington Street label is in the frame, and the block west of it carries lot numerals 1 4 5 8 9 — a TEN-lot block, which the module does not know about and which is recorded in `lot_numbering` rather than acted on. Randolph-Washington tier; the run falls eastward again."
+   }
   },
   {
    "id": "blk_randolph_market",
@@ -3350,7 +3558,9 @@
        99.74,
        -318.2
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3373,7 +3583,9 @@
        99.28,
        -376.41
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3396,7 +3608,9 @@
        123.4,
        -318.39
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3419,7 +3633,9 @@
        122.97,
        -376.6
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3442,7 +3658,9 @@
        147.07,
        -318.58
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3465,7 +3683,9 @@
        146.66,
        -376.79
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3488,7 +3708,9 @@
        170.73,
        -318.77
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3511,9 +3733,21 @@
        170.35,
        -376.99
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 42,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. First block of the tier east of the branch that the grid draws. Randolph-Washington tier; the run falls eastward again."
+   }
   },
   {
    "id": "blk_randolph_franklin",
@@ -3586,7 +3820,9 @@
        218.77,
        -319.16
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3609,7 +3845,9 @@
        218.43,
        -377.38
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3632,7 +3870,9 @@
        243.17,
        -319.36
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3655,7 +3895,9 @@
        242.83,
        -377.57
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3678,7 +3920,9 @@
        267.58,
        -319.56
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3701,7 +3945,9 @@
        267.23,
        -377.77
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3724,7 +3970,9 @@
        291.98,
        -319.76
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3747,9 +3995,21 @@
        291.63,
        -377.97
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 41,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ; the Franklin Street label is in the frame. Randolph-Washington tier; the run falls eastward again."
+   }
   },
   {
    "id": "blk_randolph_wells",
@@ -3822,7 +4082,9 @@
        340.76,
        -320.16
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3845,7 +4107,9 @@
        340.42,
        -378.37
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3868,7 +4132,9 @@
        365.17,
        -320.35
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3891,7 +4157,9 @@
        364.82,
        -378.56
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3914,7 +4182,9 @@
        389.57,
        -320.55
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3937,7 +4207,9 @@
        389.23,
        -378.76
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -3960,7 +4232,9 @@
        413.97,
        -320.75
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -3983,9 +4257,21 @@
        413.63,
        -378.96
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 40,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ, with complete lot numerals 4 3 2 1 / 5 6 7 8 — the fourth block on which the counter-clockwise-from-north-east scheme is read, and the first outside the South Water tier. Randolph-Washington tier; the run falls eastward again."
+   }
   },
   {
    "id": "blk_randolph_lasalle",
@@ -4030,7 +4316,18 @@
     "authored_in": "data/reconstruction/1835_reserved_ground.json",
     "note": "This block is not subdivided. See the reservation record for the evidence and for what may stand here."
    },
-   "lots_per_face_withheld": 4
+   "lots_per_face_withheld": 4,
+   "plat_block_number": {
+    "number": 39,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "NO NUMERAL. Wright washes this block pink, rules it into eight lots like its neighbours, and letters 'Public Square' across it instead of a number — the crop cited here shows exactly that and nothing else. 39 is therefore the ONE number in this file that is still counted, and it is counted across a single block from numerals read on both sides of it: 40 stands in the block immediately west and 38 in the block immediately east, in a tier whose run falls eastward by one. There is one number between them and the square is the block that takes it. That is a stronger position than the old tier counts had — the gap is one block wide and it is bracketed — but it is not a reading, and `numeral_on_sheet` says so. The block's identity is not in question: it is the block this project's own ground control labels 'NW corner of the Public Square block' and 'SE corner of the Public Square block', and the block data/reconstruction/1835_reserved_ground.json reserves.",
+    "lots_not_numbered": "the module divided this block into 0 lot(s), and the scheme read off block 18 numbers four to a face; a scheme stretched to fit is an invention"
+   }
   },
   {
    "id": "blk_randolph_clark",
@@ -4103,7 +4400,9 @@
        586.09,
        -322.15
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4126,7 +4425,9 @@
        585.72,
        -380.36
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4149,7 +4450,9 @@
        610.74,
        -322.35
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4172,7 +4475,9 @@
        610.37,
        -380.56
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4195,7 +4500,9 @@
        635.39,
        -322.55
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4218,7 +4525,9 @@
        635.02,
        -380.76
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4241,7 +4550,9 @@
        660.04,
        -322.75
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4264,9 +4575,21 @@
        659.67,
        -380.96
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 38,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. The block east of the Public Square; the square's pink wash is at the frame's west edge. This numeral and 40 are what bracket the square. Randolph-Washington tier; the run falls eastward again."
+   }
   },
   {
    "id": "blk_randolph_dearborn",
@@ -4339,7 +4662,9 @@
        709.07,
        -323.15
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4362,7 +4687,9 @@
        708.71,
        -381.36
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4385,7 +4712,9 @@
        734.98,
        -323.36
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4408,7 +4737,9 @@
        734.61,
        -381.57
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4431,7 +4762,9 @@
        760.88,
        -323.57
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4454,7 +4787,9 @@
        760.52,
        -381.78
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -4477,7 +4812,9 @@
        786.79,
        -323.79
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -4500,9 +4837,21 @@
        786.42,
        -381.99
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 37,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ. Last block of the tier; the Dearborn Street label is in the frame. Randolph-Washington tier; the run falls eastward again."
+   }
   }
  ],
  "omitted": [
@@ -4538,12 +4887,12 @@
    "plat_block_number": {
     "number": 21,
     "confidence": "inferred",
-    "numeral_on_sheet": false,
+    "numeral_on_sheet": true,
     "sources": [
      "wright_1834"
     ],
     "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
+    "note": "READ. The triangular block the river's bend leaves between Franklin Street and the bank. The numeral's first digit is unmistakably 2; its second is crossed by the diagonal 'Water' of the South Water Street label, and reads as 1 against the tier's own run, which has 20 in the block immediately east. This block is OMITTED from the generated grid — South Water's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md section 6) — so the number is carried on the omission. South Water-Lake tier; the run falls eastward here."
    }
   },
   {
@@ -4554,7 +4903,17 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block",
+   "plat_block_number": {
+    "number": 29,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "READ, with a caveat about the CELL rather than the number. This grid cell runs Canal Street to Market Street, 243 m, and what lies between them is block 29 on the west bank and then the river — Market Street runs along the east bank in this tier and no block stands between them (the crop at 1406,1957,152,212 is water and the South Branch label). So the cell is omitted from the grid, and the number on it is the number of the only platted ground in it. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   }
   },
   {
    "id": "blk_randolph_canal",
