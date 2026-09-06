@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A house the newspaper measured, at LaSalle and Lake', kind: 'feat', ts: '',
+  { v: 628, title: 'A house the newspaper measured, at LaSalle and Lake', kind: 'feat', ts: '2026-09-06T07:43:56.932Z', date: 'Sep 6, 2026, 2:43 AM CT',
     items: [
       'There is a new house on the corner of LaSalle and Lake, and it is the right size. Sixteen feet by thirty \u2014 four hundred and eighty square feet, two rooms, one chimney, no paint. That is not a guess: it is what the Chicago Democrat printed on 21 May 1834, over an advertisement offering the house for sale at $250, possession on the first of the month.',
       'Almost every ordinary house you walk past in this town is the right KIND of house in the right place at the wrong size, because the sources give a name, a trade and a corner and almost never a dimension. This is the first dwelling here whose plan came off a page instead of out of a pattern book. Turn the confidence view on and its footprint is the only part of it that does not dither.',
