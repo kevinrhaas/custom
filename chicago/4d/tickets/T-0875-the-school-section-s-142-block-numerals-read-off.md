@@ -1,7 +1,7 @@
 ---
 id: T-0875
 title: The School Section's 142 block numerals, read off the registered 600-dpi sheet and each cited to its crop: the boustrophedon scheme stated, and the run the South Branch makes unreadable refused rather than guessed
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0797
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 976
 claimed_by: run 9/6/2026, 4:42:12 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T10:12:23.426Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34024504440
 ---
 
