@@ -76,9 +76,12 @@ put guesses:
     the generated cell carries today, and a mismatch is a hard failure rather than a
     silent write. A re-map that moves a row cannot slide somebody else's lot number
     under a correction.
-  * A CORRECTED ROW IS REGRADED `scan_verified`, and on these pages that grade covers
-    the NUMERAL columns only — block, lot, amount and whether the lot was withheld. The
-    bidder column is still the OCR's, and the corrections file says so.
+  * A CORRECTED ROW IS REGRADED `scan_verified`, and since T-0779 that grade covers the
+    WHOLE row — block, lot, amount, whether the lot was withheld, AND the bidder. T-0679
+    deliberately left the bidder column alone and said so; T-0779 read all six half-page
+    bidder columns off the same images and corrected the thirteen names the scan mangled
+    and the three ditto marks it mapped no ink to. A row that carries no correction is
+    still `transcription_mediated`, which is what its numerals are.
 
 What the image settles is the ink, not the sequence: where the page prints nothing —
 a braced run of reserved lots sharing one price, the blank line between two blocks —
@@ -512,7 +515,8 @@ def build():
 
     lots, n, last_bidder, last_block, last_lot = [], 0, None, None, None
     illegible = {"lot": 0, "amount": 0, "block": 0}
-    settled = {"lot": 0, "amount": 0, "block": 0, "withheld_from_sale": 0, "rows": 0}
+    settled = {"lot": 0, "amount": 0, "block": 0, "withheld_from_sale": 0,
+               "bidder": 0, "bidder_ditto": 0, "rows": 0}
     for cell in raw:
         quote = "\n".join(v for v in (cell["block"], cell["lot"], cell["bidder"],
                                       cell["amount"]) if v)
@@ -526,9 +530,35 @@ def build():
         withheld_word = withheld.group(0).lower() if withheld else None
         named = bool(NAME.search(cell["bidder"])) and not withheld
         ditto = reads_as_ditto(cell["bidder"], cell["amount"])
-        if named:
+        # THE BIDDER COLUMN, off the page image (T-0779). Applied HERE and not beside the
+        # numeral fixes below, because a bidder is the one cell the rows under it read:
+        # `last_bidder` is what every ditto inherits, so a name corrected after it was
+        # carried would leave the mangle standing on the ditto rows and only mend the
+        # named one. Two kinds, and they are different repairs:
+        #   `bidder`       the page prints a name the scan destroyed — `O. II. Thompson`
+        #                  for O. H. Thompson. The read name replaces the ink and becomes
+        #                  the carry, so the dittos below it inherit the repair.
+        #   `bidder_ditto` the page prints a DITTO MARK the OCR mapped no ink to at all,
+        #                  so `reads_as_ditto` never saw it and the row lost its bidder.
+        #                  Its `read` is the name the mark carries, and it is checked
+        #                  against the carry rather than trusted: a ditto that disagrees
+        #                  with the name standing above it is a row map that moved, not a
+        #                  correction, and it raises like every other broken assertion.
+        fix = lot_fixes.get("f1839_lot%04d" % n, {})
+        read_name, fixed_bidder = apply_fix(fix, "bidder", cell["bidder"], None)
+        carried_name, fixed_ditto = apply_fix(fix, "bidder_ditto", cell["bidder"], None)
+        if fixed_bidder:
+            named, ditto, last_bidder = True, False, read_name
+        elif named:
             last_bidder = re.sub(r"\s+[.,]$", "",
                                  flat(cell["bidder"].replace("\n", " "))).rstrip(",")
+        if fixed_ditto:
+            if carried_name != last_bidder:
+                raise SystemExit(
+                    "fergus 1839 lots: the ditto correction for f1839_lot%04d reads %r, "
+                    "but the name standing above it is %r — re-read the page image rather "
+                    "than editing the assertion" % (n, carried_name, last_bidder))
+            ditto = True
         # WHAT THE SCAN DESTROYED is counted on the OCR's reading, before the page image
         # is allowed to speak: the count describes the scan, not what was rescued from it.
         if cell["block"].strip() and block is None:
@@ -541,7 +571,6 @@ def build():
         # THE PAGE IMAGE, where it was read. Applied BEFORE the block is carried, so the
         # carrying re-derives off the settled lot numbers rather than off the ruin —
         # which is the whole reason printed page 49 lost blocks 11 and 12.
-        fix = lot_fixes.get("f1839_lot%04d" % n, {})
         block, fixed_block = apply_fix(fix, "block", cell["block"], block)
         lot, fixed_lot = apply_fix(fix, "lot", cell["lot"], lot)
         amount, fixed_amount = apply_fix(fix, "amount", cell["amount"], amount)
@@ -551,7 +580,8 @@ def build():
             named, ditto = False, False
         for what, did in (("block", fixed_block), ("lot", fixed_lot),
                           ("amount", fixed_amount),
-                          ("withheld_from_sale", fixed_withheld)):
+                          ("withheld_from_sale", fixed_withheld),
+                          ("bidder", fixed_bidder), ("bidder_ditto", fixed_ditto)):
             settled[what] += 1 if did else 0
         settled["rows"] += 1 if fix else 0
 

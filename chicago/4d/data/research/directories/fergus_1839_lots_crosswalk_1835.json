@@ -14,7 +14,7 @@
   {
    "what": "distinct bidders read at the sale",
    "path": "data/research/directories/claims/fergus_1839_ft_dearborn_lots.json",
-   "n": 100
+   "n": 96
   },
   {
    "what": "residents layer, persons",
@@ -38,17 +38,17 @@
   }
  ],
  "counts": {
-  "bidders": 100,
-  "bidders_with_a_usable_surname": 100,
-  "residents_matched_one_bidder": 15,
-  "residents_ambiguous": 3,
+  "bidders": 96,
+  "bidders_with_a_usable_surname": 96,
+  "residents_matched_one_bidder": 17,
+  "residents_ambiguous": 1,
   "residents_contested": 12,
   "residents_surname_only_refused": 86,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
-  "letter_list_matched_one_bidder": 51,
-  "letter_list_ambiguous": 3,
+  "letter_list_matched_one_bidder": 54,
+  "letter_list_ambiguous": 0,
   "letter_list_surname_only_refused": 188,
   "heads_1840_matched_one_bidder": 24,
   "heads_1840_ambiguous": 0,
@@ -600,6 +600,117 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
+    "name": "J. K. Botsford",
+    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. K. Botsford",
+      "lots_bid": 3,
+      "amount_read_usd": 1155,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0200",
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
+        "amount_usd": 215,
+        "as_printed": {
+         "block": null,
+         "lot": "^",
+         "bidder": "J. K. Botsford,",
+         "amount": "215"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0226",
+        "block": 13,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "3",
+         "bidder": "J. Iv. Botsford,",
+         "amount": "470"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0227",
+        "block": 13,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "4",
+         "bidder": "\"",
+         "amount": "47°"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ],
+    "person_id": "botsford_j_k",
+    "household_id": "hh_botsford_j_k",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
+    "name": "James H. Phelps",
+    "rule": "Surname 'Phelps' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. J. Phelps",
+      "lots_bid": 2,
+      "amount_read_usd": 1074,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0138",
+        "block": 8,
+        "block_carried": true,
+        "lot": 27,
+        "amount_usd": 510,
+        "as_printed": {
+         "block": null,
+         "lot": "27",
+         "bidder": "J. J- Phelps,",
+         "amount": "5io"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0220",
+        "block": 12,
+        "block_carried": true,
+        "lot": 5,
+        "amount_usd": 564,
+        "as_printed": {
+         "block": null,
+         "lot": "Of",
+         "bidder": "J. J. Phelps,",
+         "amount": "564"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       }
+      ]
+     }
+    ],
+    "person_id": "phelps_james_h",
+    "household_id": "hh_phelps_james_h",
+    "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
     "name": "John Calhoun",
     "rule": "Surname 'Calhoun' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -703,7 +814,7 @@
     "rule": "Surname 'Thompson' folds to the same string as the bidder's, and the given name of both begins O.",
     "bids_1839": [
      {
-      "bidder_as_printed": "O. II. Thompson",
+      "bidder_as_printed": "O. H. Thompson",
       "lots_bid": 3,
       "amount_read_usd": 1969,
       "lots_whose_price_the_scan_destroyed": 0,
@@ -1544,131 +1655,6 @@
    }
   ],
   "ambiguous": [
-   {
-    "name": "J. K. Botsford",
-    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. K. Botsford",
-      "lots_bid": 1,
-      "amount_read_usd": 215,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0200",
-        "block": 10,
-        "block_carried": true,
-        "lot": 27,
-        "amount_usd": 215,
-        "as_printed": {
-         "block": null,
-         "lot": "^",
-         "bidder": "J. K. Botsford,",
-         "amount": "215"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       }
-      ]
-     },
-     {
-      "bidder_as_printed": "J. Iv. Botsford",
-      "lots_bid": 2,
-      "amount_read_usd": 940,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0226",
-        "block": 13,
-        "block_carried": true,
-        "lot": 3,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "3",
-         "bidder": "J. Iv. Botsford,",
-         "amount": "470"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0227",
-        "block": 13,
-        "block_carried": true,
-        "lot": 4,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "4",
-         "bidder": "\"",
-         "amount": "47°"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "botsford_j_k",
-    "household_id": "hh_botsford_j_k",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "James H. Phelps",
-    "rule": "Surname 'Phelps' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. J- Phelps",
-      "lots_bid": 1,
-      "amount_read_usd": 510,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0138",
-        "block": 8,
-        "block_carried": true,
-        "lot": 27,
-        "amount_usd": 510,
-        "as_printed": {
-         "block": null,
-         "lot": "27",
-         "bidder": "J. J- Phelps,",
-         "amount": "5io"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     },
-     {
-      "bidder_as_printed": "J. J. Phelps",
-      "lots_bid": 1,
-      "amount_read_usd": 564,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0220",
-        "block": 12,
-        "block_carried": true,
-        "lot": 5,
-        "amount_usd": 564,
-        "as_printed": {
-         "block": null,
-         "lot": "Of",
-         "bidder": "J. J. Phelps,",
-         "amount": "564"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "phelps_james_h",
-    "household_id": "hh_phelps_james_h",
-    "grade_1835": "inferred"
-   },
    {
     "name": "James M Morrison",
     "rule": "Surname 'Morrison' folds to the same string as the bidder's, and the given name of both begins J.",
@@ -3510,6 +3496,65 @@
     ]
    },
    {
+    "name": "Botsford, J. K.",
+    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. K. Botsford",
+      "lots_bid": 3,
+      "amount_read_usd": 1155,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0200",
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
+        "amount_usd": 215,
+        "as_printed": {
+         "block": null,
+         "lot": "^",
+         "bidder": "J. K. Botsford,",
+         "amount": "215"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0226",
+        "block": 13,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "3",
+         "bidder": "J. Iv. Botsford,",
+         "amount": "470"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0227",
+        "block": 13,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "4",
+         "bidder": "\"",
+         "amount": "47°"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ]
+   },
+   {
     "name": "Calhoun, John",
     "rule": "Surname 'Calhoun' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -4246,6 +4291,65 @@
     ]
    },
    {
+    "name": "J. K. Botsford",
+    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. K. Botsford",
+      "lots_bid": 3,
+      "amount_read_usd": 1155,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0200",
+        "block": 10,
+        "block_carried": true,
+        "lot": 27,
+        "amount_usd": 215,
+        "as_printed": {
+         "block": null,
+         "lot": "^",
+         "bidder": "J. K. Botsford,",
+         "amount": "215"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0226",
+        "block": 13,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "3",
+         "bidder": "J. Iv. Botsford,",
+         "amount": "470"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0227",
+        "block": 13,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 470,
+        "as_printed": {
+         "block": null,
+         "lot": "4",
+         "bidder": "\"",
+         "amount": "47°"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ]
+   },
+   {
     "name": "J. W. Smith",
     "rule": "Surname 'Smith' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -4417,6 +4521,50 @@
         },
         "printed_page": 49,
         "bidder_ditto": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "James H. Phelps",
+    "rule": "Surname 'Phelps' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. J. Phelps",
+      "lots_bid": 2,
+      "amount_read_usd": 1074,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0138",
+        "block": 8,
+        "block_carried": true,
+        "lot": 27,
+        "amount_usd": 510,
+        "as_printed": {
+         "block": null,
+         "lot": "27",
+         "bidder": "J. J- Phelps,",
+         "amount": "5io"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0220",
+        "block": 12,
+        "block_carried": true,
+        "lot": 5,
+        "amount_usd": 564,
+        "as_printed": {
+         "block": null,
+         "lot": "Of",
+         "bidder": "J. J. Phelps,",
+         "amount": "564"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
        }
       ]
      }
@@ -5089,7 +5237,7 @@
     "rule": "Surname 'Thompson' folds to the same string as the bidder's, and the given name of both begins O.",
     "bids_1839": [
      {
-      "bidder_as_printed": "O. II. Thompson",
+      "bidder_as_printed": "O. H. Thompson",
       "lots_bid": 3,
       "amount_read_usd": 1969,
       "lots_whose_price_the_scan_destroyed": 0,
@@ -5675,8 +5823,8 @@
     "bids_1839": [
      {
       "bidder_as_printed": "A. D. Stewart",
-      "lots_bid": 6,
-      "amount_read_usd": 1153,
+      "lots_bid": 7,
+      "amount_read_usd": 1204,
       "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
@@ -5765,6 +5913,21 @@
          "lot": "Oj",
          "bidder": "»",
          "amount": "5i"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       },
+       {
+        "claim": "f1839_lot0211",
+        "block": 11,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 51,
+        "as_printed": {
+         "block": null,
+         "lot": "4^",
+         "bidder": null,
+         "amount": "51"
         },
         "printed_page": 49,
         "bidder_ditto": true
@@ -5779,8 +5942,8 @@
     "bids_1839": [
      {
       "bidder_as_printed": "A. D. Stewart",
-      "lots_bid": 6,
-      "amount_read_usd": 1153,
+      "lots_bid": 7,
+      "amount_read_usd": 1204,
       "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
@@ -5869,6 +6032,21 @@
          "lot": "Oj",
          "bidder": "»",
          "amount": "5i"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       },
+       {
+        "claim": "f1839_lot0211",
+        "block": 11,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 51,
+        "as_printed": {
+         "block": null,
+         "lot": "4^",
+         "bidder": null,
+         "amount": "51"
         },
         "printed_page": 49,
         "bidder_ditto": true
@@ -5980,194 +6158,7 @@
     ]
    }
   ],
-  "ambiguous": [
-   {
-    "name": "Botsford, J. K.",
-    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. K. Botsford",
-      "lots_bid": 1,
-      "amount_read_usd": 215,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0200",
-        "block": 10,
-        "block_carried": true,
-        "lot": 27,
-        "amount_usd": 215,
-        "as_printed": {
-         "block": null,
-         "lot": "^",
-         "bidder": "J. K. Botsford,",
-         "amount": "215"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       }
-      ]
-     },
-     {
-      "bidder_as_printed": "J. Iv. Botsford",
-      "lots_bid": 2,
-      "amount_read_usd": 940,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0226",
-        "block": 13,
-        "block_carried": true,
-        "lot": 3,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "3",
-         "bidder": "J. Iv. Botsford,",
-         "amount": "470"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0227",
-        "block": 13,
-        "block_carried": true,
-        "lot": 4,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "4",
-         "bidder": "\"",
-         "amount": "47°"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "name": "J. K. Botsford",
-    "rule": "Surname 'Botsford' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. K. Botsford",
-      "lots_bid": 1,
-      "amount_read_usd": 215,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0200",
-        "block": 10,
-        "block_carried": true,
-        "lot": 27,
-        "amount_usd": 215,
-        "as_printed": {
-         "block": null,
-         "lot": "^",
-         "bidder": "J. K. Botsford,",
-         "amount": "215"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       }
-      ]
-     },
-     {
-      "bidder_as_printed": "J. Iv. Botsford",
-      "lots_bid": 2,
-      "amount_read_usd": 940,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0226",
-        "block": 13,
-        "block_carried": true,
-        "lot": 3,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "3",
-         "bidder": "J. Iv. Botsford,",
-         "amount": "470"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0227",
-        "block": 13,
-        "block_carried": true,
-        "lot": 4,
-        "amount_usd": 470,
-        "as_printed": {
-         "block": null,
-         "lot": "4",
-         "bidder": "\"",
-         "amount": "47°"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "name": "James H. Phelps",
-    "rule": "Surname 'Phelps' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. J- Phelps",
-      "lots_bid": 1,
-      "amount_read_usd": 510,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0138",
-        "block": 8,
-        "block_carried": true,
-        "lot": 27,
-        "amount_usd": 510,
-        "as_printed": {
-         "block": null,
-         "lot": "27",
-         "bidder": "J. J- Phelps,",
-         "amount": "5io"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     },
-     {
-      "bidder_as_printed": "J. J. Phelps",
-      "lots_bid": 1,
-      "amount_read_usd": 564,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0220",
-        "block": 12,
-        "block_carried": true,
-        "lot": 5,
-        "amount_usd": 564,
-        "as_printed": {
-         "block": null,
-         "lot": "Of",
-         "bidder": "J. J. Phelps,",
-         "amount": "564"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ]
-   }
-  ],
+  "ambiguous": [],
   "refusals": [
    {
     "name": "A. H. Taylor",
@@ -6351,7 +6342,7 @@
    },
    {
     "name": "Fullerton & Botsford",
-    "candidates_under_that_surname": 2,
+    "candidates_under_that_surname": 1,
     "rule": "The surname 'Botsford' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'F' of 'Fullerton & Botsford'. A surname-only agreement is a refusal."
    },
    {
@@ -7001,7 +6992,7 @@
    },
    {
     "name": "[?] Phelps",
-    "candidates_under_that_surname": 3,
+    "candidates_under_that_surname": 2,
     "rule": "The surname 'Phelps' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Phelps'. A surname-only agreement is a refusal."
    },
    {
@@ -7011,7 +7002,7 @@
    },
    {
     "name": "[K.] Botsford",
-    "candidates_under_that_surname": 2,
+    "candidates_under_that_surname": 1,
     "rule": "The surname 'Botsford' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'K' of '[K.] Botsford'. A surname-only agreement is a refusal."
    },
    {
@@ -7119,8 +7110,8 @@
     "bids_1839": [
      {
       "bidder_as_printed": "A. D. Stewart",
-      "lots_bid": 6,
-      "amount_read_usd": 1153,
+      "lots_bid": 7,
+      "amount_read_usd": 1204,
       "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
@@ -7209,6 +7200,21 @@
          "lot": "Oj",
          "bidder": "»",
          "amount": "5i"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       },
+       {
+        "claim": "f1839_lot0211",
+        "block": 11,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 51,
+        "as_printed": {
+         "block": null,
+         "lot": "4^",
+         "bidder": null,
+         "amount": "51"
         },
         "printed_page": 49,
         "bidder_ditto": true
@@ -7384,8 +7390,8 @@
     "bids_1839": [
      {
       "bidder_as_printed": "J. Russell",
-      "lots_bid": 4,
-      "amount_read_usd": 887,
+      "lots_bid": 5,
+      "amount_read_usd": 1118,
       "lots_whose_price_the_scan_destroyed": 0,
       "lots": [
        {
@@ -7447,6 +7453,21 @@
         },
         "printed_page": 49,
         "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0191",
+        "block": 10,
+        "block_carried": true,
+        "lot": 18,
+        "amount_usd": 231,
+        "as_printed": {
+         "block": null,
+         "lot": null,
+         "bidder": null,
+         "amount": "231"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
        }
       ]
      }
@@ -8204,7 +8225,7 @@
    },
    {
     "name": "Isaac B. Phelps",
-    "candidates_under_that_surname": 3,
+    "candidates_under_that_surname": 2,
     "rule": "The surname 'Phelps' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'I' of 'Isaac B. Phelps'. A surname-only agreement is a refusal."
    },
    {
@@ -8394,7 +8415,7 @@
    },
    {
     "name": "[?] Wadsworth",
-    "candidates_under_that_surname": 2,
+    "candidates_under_that_surname": 1,
     "rule": "The surname 'Wadsworth' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Wadsworth'. A surname-only agreement is a refusal."
    },
    {
