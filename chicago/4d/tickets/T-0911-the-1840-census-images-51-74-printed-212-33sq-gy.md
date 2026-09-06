@@ -1,7 +1,7 @@
 ---
 id: T-0911
 title: The 1840 census images 51-74: printed 212 (33SQ-GYYJ-RY) and 213 (33SQ-GYYJ-RK) read line by line to the name
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1009
 claimed_by: run 9/6/2026, 5:19:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T23:23:09.435Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34062955531
 ---
 
