@@ -11,7 +11,7 @@
     },
     "structures": 375,
     "structures_sharing_a_name": 36,
-    "streets": 28,
+    "streets": 40,
     "resident_persons": 1363
   },
   "counts": {
@@ -25,8 +25,8 @@
       "by_action": {
         "enrich_existing": 30,
         "new_building": 28,
-        "street_only": 59,
-        "unplaceable": 89
+        "street_only": 60,
+        "unplaceable": 88
       },
       "by_placement_class": {
         "corner": 18,
@@ -37,8 +37,8 @@
       "present_by_action": {
         "enrich_existing": 30,
         "new_building": 28,
-        "street_only": 59,
-        "unplaceable": 72
+        "street_only": 60,
+        "unplaceable": 71
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -2226,7 +2226,7 @@
         "Ebenezer S. More"
       ],
       "street": "Monroe Street",
-      "street_id": null,
+      "street_id": "monroe",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-07-04",
@@ -2248,11 +2248,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "monroe",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Public Square' names nothing the committed town holds."
+      "action_note": "The paper names Monroe Street and nothing narrower; the anchor 'the Public Square' names nothing the committed town holds."
     },
     {
       "id": "business_edward_w_casey",
