@@ -84,7 +84,6 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 # --- G5 — TOWN DETAILS, COMPOSITION AND ENCLOSURES. The rest of what the owner named. Each puts
 # --- something a visitor can see on the ground, off evidence already read.
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
-T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 
 # --- G6 — THE READING, AND IT STAYS BELOW THE SPEND. Reading another volume moves none of the
@@ -372,3 +371,6 @@ T-0886 — The water at the foot of Randolph Street is the old channel behind th
 T-0890 — tools/web_derivatives.sh compresses with an unpinned `npx --yes @gltf-transform/cli`, so a runner with a newer CLI rewrites the generator string in all 380 web assets
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0892 — The synthesizer drift ratchet turns red the moment anybody publishes: its T-0838 baseline names the data/ paths and not their site/ mirrors
+T-0893 — The Beaubien homestead's phase id and start date still say 1817, and Andreas's own pages say the factory building reached Beaubien in 1822
+T-0894 — Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it
+T-0895 — The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there
