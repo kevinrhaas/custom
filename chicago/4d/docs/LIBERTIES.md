@@ -10338,9 +10338,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04.
 
-### L220 — 489 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 490 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 489 people
+**Scope:** `residents.persons[civic_mint]` — 490 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10351,8 +10351,13 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **489
-today**, because T-0839 found that some of those containers held one man twice. The pass
+census. 531 of them, in 531 households of one when this liberty was first written; **490
+today**, and the figure has moved twice for opposite reasons. T-0839 took it to 489, because
+it found that some of those containers held one man twice. T-0724 took it to 490, because the
+compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
+`bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
+the town gained the card it had been folding away. Whether those two are one man is a reading
+somebody owes the page; it is filed as T-0842 and is not assumed here in either direction. The pass
 minted a card for every identity the ladder graded and the town did not already carry, and
 its test for "already carry" was the name as the source printed it — so Gurdon Saltonstall
 Hubbard, who is printed G., G. S., Gurdon S., Gordon S. and G. T., was minted five times
@@ -10363,6 +10368,16 @@ none was deleted, each is kept whole under `data/residents/merged/` and redirect
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 
+**The 532nd, and why every other figure below still says 531.** The 531 were minted in one
+pass on 2026-09-03 and every count in this entry is a count about that pass, left as it
+stands. On 2026-09-05 T-0724 taught the splitter that a compound surname is one surname,
+which parted `H. Van Den Bogart` from `Dr Henry Van der Bogart` — two printings the
+consolidation had been holding as one man only because both truncated to the surname
+`Bogart`, a merge nobody ever ruled on. The minting pass then wrote a household round the
+one it had never seen standing on its own. Whether the two are the same man is a reading
+somebody owes the page, and it is T-0842's; the liberty here is unchanged in kind and one
+larger in size.
+
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no
 confidence was upgraded to allow it: every one of them is named in a record this project
 has transcribed, and the person carries that reading AS READ, with its locator, its record
@@ -10371,7 +10386,7 @@ id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_ev
 L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
 **that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
 `works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
-figure drawn (L1). A reader who counts this town's households is counting 489 containers
+figure drawn (L1). A reader who counts this town's households is counting 490 containers
 that were written to hold a name, and no single record says so, because no single record
 is wrong.
 

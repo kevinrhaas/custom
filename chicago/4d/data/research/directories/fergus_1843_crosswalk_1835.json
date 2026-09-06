@@ -5,11 +5,11 @@
  "source_id": "fergus_chicago_directory_1843",
  "rule": "so it reads back without the code:\n  SURNAME must match after both are folded (case, punctuation and the\n  transcriber's usual confusions removed), AND the first initial of the given\n  name must match. A surname-only agreement is a REFUSAL, however good it looks —\n  Fergus lists thirty-one Smiths. AND, since T-0670, where BOTH readings print a\n  full forename and the two full forenames DISAGREE the match is refused as well:\n  the initial rule was written for a town of 848 names and it declared\n  `Abbott, Thomas L.` onto Titus H. Abbott once T-0514 minted 532 more. An\n  initial standing against a full name is untouched and stays a match. The\n  forename rule lives in tools/name_agreement.py, which carries its own\n  self-test. Where one 1835 person meets more than one 1843 entry on that rule\n  the match is AMBIGUOUS and is filed as such, not resolved; where two 1835\n  people meet one 1843 entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1360,
+  "residents_considered": 1361,
   "matched_one_1843_entry": 119,
   "matched_more_than_one_ambiguous": 41,
   "one_1843_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 351,
+  "surname_present_initial_absent_refused": 350,
   "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
@@ -5918,13 +5918,6 @@
    "surname_in_1843": "Abbott",
    "candidates": 2,
    "rule": "The surname 'Abbott' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Cornelius C Van Horn",
-   "person_id": "horn_cornelius_c_van",
-   "surname_in_1843": "Horn",
-   "candidates": 1,
-   "rule": "The surname 'Horn' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Cornelius C Van Horn'. A surname-only agreement is a refusal."
   },
   {
    "resident": "D H Butterfield",
