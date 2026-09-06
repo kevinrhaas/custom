@@ -1,7 +1,7 @@
 ---
 id: T-0881
 title: The fort's well and the Out Buildings: the class T-0592 refused the town, and a plural label the plate draws once
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-0758
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 7:44:42 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34033480306
 ---
 
 The fort's well and the Out Buildings: the class T-0592 refused the town, and a plural label the plate draws once.

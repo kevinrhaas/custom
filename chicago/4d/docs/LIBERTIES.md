@@ -10790,3 +10790,48 @@ Related: **L225** (the barn's cupola) · **T-0883** (this) · **T-0758** (the pa
 **T-0881** (the well and the Out Buildings, still unplaced).
 **Covers:** `fort_dearborn_big_barn.barn_1830.form.loft`, `fort_dearborn_shop.shop_1830.form.construction`, `fort_dearborn_shop.shop_1830.form.roof_type`, `fort_dearborn_shop.shop_1830.form.roof_pitch_deg`, `fort_dearborn_shop.shop_1830.form.wall_height_m`, `fort_dearborn_shop.shop_1830.form.door`, `fort_dearborn_shop.shop_1830.form.door_side`, `fort_dearborn_shop.shop_1830.form.paint`, `fort_dearborn_wash_house.wash_house_1830.form.roof_type`, `fort_dearborn_wash_house.wash_house_1830.form.roof_pitch_deg`, `fort_dearborn_wash_house.wash_house_1830.form.wall_height_m`, `fort_dearborn_wash_house.wash_house_1830.form.door`, `fort_dearborn_wash_house.wash_house_1830.form.door_side`, `fort_dearborn_wash_house.wash_house_1830.ground_contact`.
 **Recorded:** 2026-09-06 (T-0883).
+
+### L227 — A plural label, two drawn blocks, and everything above the ground invented
+**Decision:** `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b` stand about
+160 m south of Fort Dearborn's pickets, where the 1830 Harrison plan letters **Out Buildings**
+against a pair of solid blocks. **Where they stand, how big they are and how they are turned is
+read off the plate. What they are made of, how high they are, what shape their roofs are and
+where their doors are is invented**, and every one of those attributes is graded
+`reconstructed` on both records, so a visitor turning the reconstructed tier off sees both
+buildings' fabric go with it.
+**Why:** T-0881 was opened believing this was the wash house's problem in reverse — *a plural
+label the plate draws once*. Measured, it is not: the label is plural and the plate draws TWO
+blocks, 224 px and 69 px of solid ink, 7.0 m apart, with the outer fence line running between
+them. So there are two buildings whose position this project can defend to a few metres and
+whose walls it cannot defend at all, on ONE witness rather than the wash house's two — Hubbard
+describes the fort's well and its wash-houses and never mentions out buildings. The alternative
+to inventing the walls was leaving a labelled pair off the model for a fifth year.
+`RECONSTRUCTED IS A TIER, NOT A FAILURE` (AGENTS.md) is the ruling that says build them and
+grade them down; this entry is the price of it, and the price is higher here than at L226
+because there is no second witness to check the first against.
+**What was invented, item by item.** Both buildings: `log` construction, a roof, its pitch, an
+eave height, a man door, which wall the door is in, and no paint. (a) carries a gable at 32
+degrees on a 2.4 m eave; (b) a shed at 20 degrees on a 2.1 m eave. Every figure is the
+`outbuilding` archetype's own size-aware default. None of them is a reading, and `log` in
+particular is recorded as INVENTED rather than as an inference from the garrison's practice —
+the wash house next door earns `plank` from Hubbard's word *rude*, and there is no equivalent
+word here.
+**What is measured and is NOT invented:** the two centres, the two sizes and the two bearings,
+all of them second moments of the drawn ink after a 3 x 3 erosion that deletes the fence line
+crossing both blocks. The method is on the records because an eye-read bounding box would have
+carried the fence into the building.
+**Consequence:** a visitor walking south from the fort's gate meets two small log buildings on
+ground that was empty, the larger with a gable and the smaller barely bigger than a privy. The
+confidence view tells them the difference between the two claims: the footprint chips read
+`inferred`, every wall chip reads `reconstructed`.
+**What is NOT claimed:** what either building was for. `Out Buildings` names what a building is
+not — not the barn, not the shop, not the wash house, all three of which this same plate letters
+separately — and a post's out buildings are privies, wood sheds, stores and pens. Nor is it
+claimed which of the pair stood inside the outer fence and which outside: the drawn line is two
+to three pixels wide, which is a metre on the ground at this scale, and both blocks touch it.
+Nor is the pair claimed to be all of them — the label is plural over two, and a third that the
+engraver did not draw would not be visible to this reading.
+Related: **L226** (the wash house and the shop) · **L225** (the barn's cupola) · **T-0881**
+(this) · **T-0758** (the parent) · **T-0592** (the well class this project refused the town).
+**Covers:** `fort_dearborn_out_building_a.out_building_a_1830.form.construction`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_type`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_a.out_building_a_1830.form.wall_height_m`, `fort_dearborn_out_building_a.out_building_a_1830.form.door`, `fort_dearborn_out_building_a.out_building_a_1830.form.door_side`, `fort_dearborn_out_building_a.out_building_a_1830.form.paint`, `fort_dearborn_out_building_b.out_building_b_1830.form.construction`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_type`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_b.out_building_b_1830.form.wall_height_m`, `fort_dearborn_out_building_b.out_building_b_1830.form.door`, `fort_dearborn_out_building_b.out_building_b_1830.form.door_side`, `fort_dearborn_out_building_b.out_building_b_1830.form.paint`.
+**Recorded:** 2026-09-06 (T-0881).
