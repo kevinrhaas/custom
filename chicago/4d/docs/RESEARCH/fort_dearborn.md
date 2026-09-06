@@ -266,11 +266,37 @@ carries the `geometry:` declaration and a liberty:
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
 - **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
-  U.S. Factor's House, the Cultivated Field, the Fort Cemetery, the Ferry. Each is a
-  candidate for a later slice and each would be almost entirely invention today — the plan
-  gives a symbol and a label and no form. The **Fort Cemetery** in particular is left alone
-  deliberately. The **Well** and the **Out Buildings** are T-0881's; the **Fort Cemetery**
-  is T-0882's.
+  U.S. Factor's House, the Cultivated Field, the Ferry. Each is a candidate for a later
+  slice and each would be almost entirely invention today — the plan gives a symbol and a
+  label and no form. The **Well** and the **Out Buildings** are T-0881's.
+- **The Fort Cemetery is read and refused** — 2026-09-06, T-0882, and the refusal is now a
+  record rather than a silence. The sheet letters the name across a strip of ground between
+  the road and the lake, south-south-east of the fort, and draws it exactly as it draws
+  John Crafts's Lot beside it: two property lines and a name. Both boundaries were fitted
+  over the plate (0.7 px and 0.5 px of scatter), both die on the road's south-east edge
+  (0.2 px), and the parcel resolves to 5,886 m² — about an acre and a half — with its
+  corners at local ENU (1058, -5), (1124, -86), (1120, -154) and (1023, -33). Nothing in
+  `data/structures/` stands inside it or within 30 m of it. It is **not built**, and the
+  reason is on the record: no fence is drawn on a sheet that draws the garden's worm fence
+  and the stockade, no gate, no wall, no marker, no path, no count of burials and no
+  position for any of them. `data/traces/harrison_1830_fort_burial_ground.json` is the
+  reading and the refusal; **L228** is the liberty.
+- **One burial on this ground IS built** — 2026-09-06, T-0882: `fort_dearborn_jouett_grave_pickets`,
+  a picket fence 10 × 8 ft on the west verge of the road at local east 1107.0, north 64.8.
+  Two independent witnesses: the plate letters *Grave of Mrs Chas Jouett*, and Hubbard has
+  *"by the west side of the road, adjoining the government garden, in a picket-fence
+  inclosure, was the grave of his wife"* (leaf 76, printed p. 38). The position is derived
+  from the label's ink centre dropped perpendicular onto the line the plate draws as the
+  garden's south-east side — which is the road's north-west edge, the road band measuring
+  23.9 m across — and lands 9.9 m outside the committed garden's south-east face, on the
+  road side of it, which is where both witnesses put it. **Nothing but the fence is drawn**:
+  no mound, no marker, no gate, no ground treatment. Its size and every dimension of the
+  fence are invented and graded `reconstructed` (**L228**).
+- **And the grave is not Charles Jouett's.** This dossier and
+  `fort_dearborn_garrison_garden`'s position note both called it his until T-0882 read the
+  label. The plate says *Mrs* Chas Jouett; Hubbard says *his wife*; and the Fergus 1843
+  old-settler death notices have Charles Jouett dying at Trigg County, Kentucky on 28 May
+  1834, aged 62 (`fdn0347`). The garden record is corrected and its geometry is untouched.
 - **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
   `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
   plate turned to ground by one rule, stated in full on each record's `position.note` and
