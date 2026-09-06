@@ -1210,3 +1210,90 @@ named heads, **0** of the 1833–1835 poll and voter lists, and **0** of the fed
 Dalton households the index names are not on any of the seven printed pages read so far, so they
 stand on unread images of this deposit — something for T-0496 and T-0657–T-0659 to watch for. The
 index's own 1820 and 1830 blocks carry no Cook County row at all.
+
+## The adjudication caught up with the reading, and a gate now says when it has not (T-0714, 2026-09-06)
+
+The owner's complaint, in its purest form: *the pages were read and nothing across.* On `dev`,
+`crosswalk_census_1840_heads.py --check` was red and had been for some time — **498** named heads
+adjudicated on disk against **788** read off the page images. 290 heads of finished reading had
+never been put to the ladder. Nothing said so, because `tools/check.sh` ran that tool under no mode
+at all, while every sibling crosswalk — Norris 1844, Fergus 1843, the three Fergus 1839 passes, the
+death notices — fails the gate the moment its committed file stops re-deriving.
+
+**Re-derived, and the movement itemised.** `--build`, then `--report --baseline` against the file
+that was on disk. Nothing was dropped: the 290 are additions, and they come off ten sheets read
+after the crosswalk was last built.
+
+| printed | familysearch | heads added |
+|---|---|---|
+| 209 | 33SQ-GYYJ-93Y | 31 |
+| 211 | 33SQ-GYYJ-97P | 30 |
+| 218 | 33S7-9YYJ-PC | 30 |
+| 219 | 33S7-9YYJ-9K3 | 31 |
+| 224 | 33S7-9YYJ-JM | 30 |
+| 227 | 33SQ-GYYJ-6V | 31 |
+| 233 | 33SQ-GYYJ-RJ | 31 |
+| 235 | 33SQ-GYYJ-ZQ | 24 |
+| 239 | 33S7-9YYN-3CDH | 31 |
+| 241 | 33S7-9YYJ-Q1 | 21 |
+
+So the answer to *"did reading those pages produce anything?"* is a number and not a shrug: the
+sheets carried the town **6 more matched heads and 11 more candidates**, 5 → 11 matched and
+5 → 16 candidate, and `--report` will print the same table off the committed file at any time.
+
+**Ten heads already on disk changed outcome, and every one of them is the ladder reading a town
+that moved, not a rule that moved.** No rule was edited in this pass. The 1835 pools gained people
+between the two builds, so a surname absent in the old build is present in the new one — 21 heads
+moved from L2 *no surname in the 1835 pools* to L3 *given-name conflict* on that ground alone.
+
+| the head | printed, line | was | is | why |
+|---|---|---|---|---|
+| John Knight | 207, 21 | refused | candidate | the surname is in the pools now |
+| James A. Smith | 207, 23 | refused | candidate | ditto, and no longer a given-name conflict |
+| Henry Fitz Simmons | 207, 28 | refused | candidate | ditto |
+| William Brown | 208, 24 | refused | candidate | ditto |
+| John C. Rue | 216, 18 | refused | candidate | L6a — the 1844 directory holds the person, the read is graded `low` |
+| **Elijah Peacock** | 217, 19 | refused | **matched** | L6 — unique on both sides, and separately adjudicated into BOTH the 1843 and the 1844 directory |
+| Seth Johnson | 226, 7 | refused | candidate | L6a — 1844 directory at a stated address, read graded `low` |
+| John Wilson | 229, 2 | candidate | **refused** | L5 — a second 1840 line now carries the name, so it identifies nobody |
+| John H. Kinzie | 232, 25 | candidate | **refused** | L5 — the town now holds two John H. Kinzies |
+| Ed. Kimberley | 234, 3 | refused | candidate | the surname is in the pools now |
+
+The two withdrawals matter as much as the promotions. A candidate is a claim about a person, and
+L5 withdrew two of them because the name stopped being unique — which is the ladder working, not
+the crosswalk losing something. Peacock is the only promotion to `matched`, and it rests on a
+discriminator independent of the name in the sense this file has always meant: attestation in
+Chicago *after* the 1840 book was taken.
+
+**Gated, in the same commit as the re-derivation, so the gate never lands red.** `check.sh` now
+runs `crosswalk_census_1840_heads.py --check` beside the bridges gate it belongs with.
+
+**And the class of fault, not just this instance.** `tools/audit_check_gates.py` surveys every tool
+carrying a `--check` mode and reports which ones `check.sh` never runs one on: **18 of 100** today,
+17 of them not invoked by the gate under any mode at all. Gating those 18 is work with rulings in
+it — `mint_letter_list_residents.py --check` is red for a reason that is T-0691's, not this
+ticket's — so this pass does not do it. What it does is stop the set GROWING:
+`data/research/check_gate_baseline.json` records the 18, and `audit_check_gates.py --gate` fails
+when a tool appears with a `--check` mode nothing runs and no line saying why. T-0896 drains the
+list.
+
+One sheet in the by-sheet report has no printed page: `33S7-9YYJ-9MX` carries
+`printed_page: "unknown"` because the number is torn off the image. Its 31 heads are adjudicated
+like any other; only the label is missing.
+
+**What moved downstream, and what deliberately did not.** The cross-domain identity master is
+derived from this crosswalk among its sources, so it was re-derived in the same commit: declared
+merges 379 → **385**, declared refusals 1,680 → **2,084**. Identities, appearances and
+identities-on-a-card do not move at all — 6,697 / 10,412 / 1,357, unchanged — because this
+crosswalk mints nobody and regrades nobody. It rules on names; the town's population is untouched,
+and applying a `matched` head to a household record is still `apply_census_1840_bridges.py`'s job
+under T-0515, on the ratified ladder, one bridge at a time.
+
+**One ruling reaches a person and not their card, and it is written down rather than absorbed.**
+`measure_research_spend.py --gate`'s second hop — *has the town's card learned what was ruled onto
+the person?* — went red on exactly one head: **Ira Couch**, printed 211 line 3, ruled L7 candidate,
+whose card cites no 1840 source. Spending it means writing a household record, which this crosswalk
+does not do by design. The domain's write-hop ceiling was raised from 0 to 1 with that reason
+recorded in the baseline, and **T-0899** spends it and drops the ceiling back to 0. A ceiling raised
+by one with a named person on it is a debt anybody can see; a re-derivation that quietly wrote the
+card would not be.

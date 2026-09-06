@@ -108,6 +108,38 @@ regrade those 65, because the advertiser is a separate 158-card file that stands
 beside the directory proper rather than editing it, and regrading a generated file
 from a second source is a pass of its own.
 
+**Eleven garbled forenames are repaired in the reading, and cited (T-0695).**
+archive.org's OCR set characters no compositor had — `C!;as.` for Chas.,
+`Alonzt> C.` for Alonzo C., `Ge>~` for Geo., a stray quote welded onto Edward and
+Patrick — and `tools/name_agreement.garbled()` names them. A crosswalk refusal
+raised against one of those is a scanner defect and not two people disagreeing, so
+the READING is repaired rather than the rule loosened. The table is `REPAIRS` in
+`tools/read_norris_1844.py`, one row per entry, and **the evidence is a second
+hand, never this project's guess**: Kim Torp typed the same directory from the
+printed page for genealogytrails.com in 2002 off a different copy, her
+transcription is cached under `../genealogytrails/text/`, and every row cites it by
+file and line. `quote` and `normalized.as_printed` keep the damage; `normalized.given`,
+`normalized.printed_name` and the claim's `entities` carry the repair, and the
+repaired claim states both readings in `normalized.given_repair` so a reader of the
+card sees what moved. `--self-test` fails if a row stops matching exactly one
+entry, if a repair tidies a quote, or if a new garbled forename arrives with no row,
+and `tools/check.sh` runs it beside `--check`.
+
+Three of the eleven retired a PHANTOM IDENTITY the garble had minted, and each was
+absorbed by a man another volume already names, which is corroboration the repair
+did not ask for: `Ge>~ Frost` is the George Frost of Fergus 1843, `V/m. Lill` is
+the William Lill of Fergus 1843 and the 1840 census, and `J>ctij. F. Hale` — read
+`Benj. F.` by the second hand — is the **Benjamin F. Hale** that same 1843 volume
+prints, a botanic physician in both books. He is NOT the John Hale of 1835 the
+crosswalk was refusing him to; that refusal was right for the wrong reason and is
+now made on the initial, where it belongs.
+
+**One is left damaged on purpose.** `Couch, Iia,` — the Tremont House entry, and
+Ira Couch of 1835 kept the Tremont — is read `(can't read)` by the second hand too.
+There is no second reading to correct it with, and reading `Ira` into it would be
+reading the wanted match into the page. It is listed in `UNREPAIRED` with that
+reasoning, and it needs the page image (T-0900).
+
 **1844 IS NINE YEARS LATE, and this is the whole discipline of the file.** Every
 claim carries `describes_date: "1844"`. Nothing here is an 1835 fact. The one place
 a name in this volume touches a person standing in the scene of 1 July 1835 is
@@ -148,6 +180,35 @@ and the Woodbury clerking at T. W. Salisbury's is `Hiram` here and `A. J.` in he
 which is a person this reconstruction would get wrong. Rewriting a generated claims file out of a
 second source is a pass of its own, with its own rule to write down, and it has not been done
 here for the same reason T-0568 did not regrade the 65 businesses.
+
+### …and the four the second hand could not lift — T-0903
+
+**The eleven repairs above rest on a transcription. Four lines needed the scan itself.**
+`UNREPAIRED` named one of them and said what it would take — *"there is no second hand to
+correct it with … It needs the page image"* — and that one is the best line in the book:
+`Couch, Iia`, the proprietor of the Tremont House at Lake and Dearborn, whom the town holds
+as **Ira Couch**, attested. Kim Torp reads the same token `(can't read)`.
+
+**The other three are a class no sweep could have named.** `VV` is the compositor's **W**
+set by the scanner as two V's. `name_agreement.garbled()` looks for a character no
+compositor set, and `VV` is made entirely of letters, so that test is blind to it:
+`Abbott, VV.`, `Day, VVm.` and `Hequenbourg, G. VV.` sat in the claims file with nothing
+said about them at all. `--self-test` now asserts this class by hand, both ways — every
+`VV` in a forename must have a row, and no repaired reading may still carry one.
+
+**How they were read.** Each line was located by its own word coordinates in
+`generaldirectory19norr_djvu.xml`, cropped from the page image on that bounding box,
+enlarged three times and read by eye. `IMAGE_REPAIRS` in `tools/read_norris_1844.py` holds
+them on T-0695's own convention: the repair goes in `normalized.given`, the quote and
+`as_printed` keep the damage, each row asserts the token it replaces, and each cites the
+leaf image so a reader can go back to it. Two of the three `VV` readings are independently
+confirmed by Torp as well; Couch is the one where the image is the only witness there is.
+
+**What it moved.** One refusal became a match — **Ira Couch's 1844 entry** (Norris matched
+97 → 98, forename refusals 49 → 48, residents left with no 1844 entry 25 → 24). Downstream
+that entry is the discriminator independent of the name that the 1840 head crosswalk
+requires, so his 1840 census head moves `candidate` → `matched` (L7 → L6). The bridge is
+still `proposed` and no grade moved anywhere.
 
 ### What T-0632 spends them on — the layer, the ledger and the cards
 
@@ -450,9 +511,13 @@ standing against a full name is untouched, and a contraction (`Wm.`, `Chas.`,
 The rule is `tools/name_agreement.py`, it carries its own self-test, and both this
 crosswalk and Norris's import it rather than restate it. Every refusal is FILED
 under `forename_refusals` with the entry as printed and both forenames, and where
-the printed forename is garbled — the scanner's `C!;as.` for Chas., `J>ctij` for
-John — the record says so, because that is a transcription defect and not a
-disagreement between two people.
+the printed forename is garbled — the scanner's `C!;as.` for Chas. — the record
+says so, because that is a transcription defect and not a disagreement between
+two people. **Since T-0695 the Norris file carries none of them**: the eleven
+garbled forenames there are repaired in the reading against a second hand, and the
+repair is described under that volume above. This crosswalk's one remaining
+garbled record is on the 1835 side, not the printed one — `Willınm Bandle`, a
+resident name carrying a dotless `ı`, which is T-0901 and not a directory fix.
 
 **Page 1's civic account is NOT read here.** Lines 37-750 — the officers and
 courts, twenty-odd churches and societies with their ministers and memberships,

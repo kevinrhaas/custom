@@ -114,9 +114,176 @@ def split_entry(text: str):
     }
 
 
+# GARBLED FORENAMES, REPAIRED (T-0695)
+#
+# archive.org's OCR sets characters no compositor ever did — `C!;as.` for Chas.,
+# `Alonzt> C.` for Alonzo C., a stray quote welded onto Edward and Patrick.
+# `tools/name_agreement.garbled()` names them, and a crosswalk refusal raised
+# against one of them is a transcription defect, not two people disagreeing.
+#
+# THE REPAIR MOVES THE READING ONLY. `quote` and `normalized.as_printed` keep
+# the damage — the reading_note below is the standing convention, and a tidied
+# quote cannot be found again. `normalized.given`, `normalized.printed_name` and
+# the claim's `entities` carry the repair, and every repaired claim states it in
+# `normalized.given_repair`, so a reader of the card sees both readings.
+#
+# THE EVIDENCE IS THE SECOND READING, NOT THIS TOOL'S GUESS. Kim Torp typed this
+# same directory from the printed page for genealogytrails.com in 2002, off a
+# different copy; her transcription is cached at
+# `data/research/genealogytrails/text/` and every row below cites it by file and
+# line, so the repair can be argued with against a hand that was not this one.
+# Where SHE cannot read the token either, the entry stays damaged — see
+# UNREPAIRED. Nothing here is inferred from the person the crosswalk would like
+# to match: `Hale, J>ctij. F.` reads Benj. F., not the John Hale of 1835.
+#
+# `surname` + `as_read` is the key, and `--self-test` fails if a row stops
+# matching exactly one entry or if a new garbled forename appears with no row.
+REPAIRS = [
+    {"surname": "Barry", "as_read": 'Edward"', "reading": "Edward",
+     "second_reading": "Barry, Edward, laborer, house near North Branch Bridge",
+     "file": "1844directory.txt", "line": 109},
+    {"surname": "Burch", "as_read": "G/H", "reading": "G.H",
+     "second_reading": "Burch, G.H. of Newberry & B, res City Hotel",
+     "file": "1844directory.txt", "line": 268},
+    {"surname": "Frost", "as_read": "Ge>~", "reading": "Geo",
+     "second_reading": "Frost, Geo., h Michigan ave",
+     "file": "1844directory.txt", "line": 691},
+    {"surname": "Hale", "as_read": "J>ctij. F", "reading": "Benj. F",
+     "second_reading": "Hale, Benj. F., botanic physician, 185 Lake st res Wells st",
+     "file": "1844directory.txt", "line": 817},
+    {"surname": "Kane", "as_read": 'Patrick"', "reading": "Patrick",
+     "second_reading": "Kane, Patrick, drayman, house Kinzie st b Clark & Lasalle sts",
+     "file": "1844directory.txt", "line": 1032},
+    {"surname": "Leach", "as_read": "Patrick^", "reading": "Patrick",
+     "second_reading": "Leach, Patrick, laborer, N. Water st. b Dearborn & Wolcott sts",
+     "file": "1844directory.txt", "line": 1132},
+    {"surname": "Lill", "as_read": "V/m", "reading": "Wm",
+     "second_reading": "Lill, Wm. of L. & Diversy, brewers, n Sand & Chicago Ave.",
+     "file": "1844directory.txt", "line": 1153},
+    {"surname": "Peck", "as_read": "A/.el", "reading": "Azel",
+     "second_reading": "Peck, Azel, builder, h Clinton b Washington & Madison sts",
+     "file": "1844dir2.txt", "line": 289},
+    {"surname": "Perrior", "as_read": 'William"', "reading": "William",
+     "second_reading": "Perrior, William, jailor, res Jail buildings",
+     "file": "1844dir2.txt", "line": 305},
+    {"surname": "Wesencraft", "as_read": "C!;as", "reading": "Chas",
+     "second_reading": "Wesencraft, Chas., carpenter and wagon maker, c Clin and Monroe",
+     "file": "1844dir2.txt", "line": 764},
+    {"surname": "Wood", "as_read": "Alonzt> C", "reading": "Alonzo C",
+     "second_reading": "Wood, Alonzo C., mason builder, house Cass st., b Indiana and Ohio",
+     "file": "1844dir2.txt", "line": 815},
+]
+
+# The damage the second reading cannot lift either. Left exactly as the scanner
+# set it, and named here so the next run does not spend itself rediscovering it.
+UNREPAIRED = []
+
+# T-0903. THE SECOND HAND CANNOT ALWAYS BE ASKED, AND SOMETIMES THERE IS NO NEED.
+# The eleven repairs above rest on Kim Torp's transcription. UNREPAIRED held the one
+# she could not lift and said what it would take — "It needs the page image" — and
+# these four are read off that image. Two classes:
+#
+#   * Couch, where the second hand wrote "(can't read)" and only the scan can answer.
+#   * The compositor's W set by the scanner as two V's. `name_agreement.garbled()`
+#     looks for a character no compositor set, and `VV` is made entirely of letters,
+#     so the sweep above cannot see this class at all — which is why three of them
+#     sat in the file with nothing said about them. The self-test below now asserts
+#     that every `VV` in a forename is accounted for here.
+#
+# The repair goes in the READING. The quote and as_printed keep the damage, and every
+# row asserts the token it replaces, so a re-read that moves a line fails the build
+# instead of writing the wrong forename onto the wrong man.
+IMAGE_SOURCE = (
+    "the archive.org scan the OCR is itself made from, item generaldirectory19norr. "
+    "Each line was located by its own word coordinates in "
+    "generaldirectory19norr_djvu.xml, cropped from the page image on that bounding "
+    "box, enlarged three times and read by eye. The page images are at "
+    "https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, "
+    "which is the coordinate space that XML is written in.")
+
+IMAGE_REPAIRS = [
+    {"surname": "Couch", "as_read": "Iia", "reading": "Ira", "leaf": 40,
+     "reads": "Couch, Ira, proprietor of the Tremont House, corner of Lake and Dearborn sts",
+     "why": "the r of Ira read as an i. UNREPAIRED asked for this line by name: Kim "
+            "Torp reads the same token '(can't read)', so the page image is the only "
+            "witness there is, and it prints Ira.",
+     "second_reading": None},
+    {"surname": "Abbott", "as_read": "VV", "reading": "W", "leaf": 31,
+     "reads": "Abbott, W. clerk at Ward Rathbone's, residence same",
+     "why": "the compositor's W set by the scanner as two V's",
+     "second_reading": "Abbott, W., clerk at Ward Rathbone's, residence same"},
+    {"surname": "Day", "as_read": "VVm. Lasalle House", "reading": "Wm. Lasalle House",
+     "leaf": 42, "reads": "Day, Wm. Lasalle House, corner of Lasalle and Randolph sts",
+     "why": "the same W. Only the damaged token is repaired: the splitter reads "
+            "'Lasalle House' as part of the given name because the line prints no "
+            "comma after the forename, and that is a parse, not a transcription defect",
+     "second_reading": "Day, Wm., Lasalle House, corner of Lasalle & Randolph sts"},
+    {"surname": "Hequenbourg", "as_read": "G. VV", "reading": "G. W", "leaf": 49,
+     "reads": "Hequenbourg, G. W. clerk, at B. F. Sherman's, res same",
+     "why": "the same W, on the second of two initials",
+     "second_reading": "Hequenbourg, G.W., clerk, at B.F. Sherman's, res same"},
+]
+
+# The scanner's W. Letters only, so `name_agreement.garbled()` is blind to it and the
+# self-test has to look for it by hand.
+SCANNER_W = "VV"
+
+REPAIR_SOURCE = ("Kim Torp's transcription of Norris 1844 for genealogytrails.com "
+                 "(\u00a9 2002), cached at data/research/genealogytrails/text/ by "
+                 "tools/read_genealogytrails.py --fetch. An independent hand, typed "
+                 "from a different copy of the same printed book.")
+
+
+def apply_repair(norm):
+    """Repair a garbled forename READING in place, and say so. Returns the row."""
+    for row in REPAIRS:
+        if norm["surname"] == row["surname"] and norm["given"] == row["as_read"]:
+            norm["given"] = row["reading"]
+            norm["printed_name"] = norm["surname"] + ", " + row["reading"]
+            norm["given_repair"] = {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "why": "The printed forename as the scanner set it carries characters "
+                       "no compositor did; the quote keeps them and the reading does not.",
+                "evidence": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                },
+                "ticket": "T-0695",
+            }
+            return row
+    for row in IMAGE_REPAIRS:
+        if norm["surname"] == row["surname"] and norm["given"] == row["as_read"]:
+            norm["given"] = row["reading"]
+            norm["printed_name"] = norm["surname"] + ", " + row["reading"]
+            evidence = {
+                "source": IMAGE_SOURCE,
+                "image": "https://archive.org/download/generaldirectory19norr/page/"
+                         "leaf%d.jpg" % row["leaf"],
+                "reads": row["reads"],
+            }
+            if row["second_reading"]:
+                evidence["and_the_second_hand_agrees"] = row["second_reading"]
+            else:
+                evidence["the_second_hand_cannot_help"] = (
+                    "Kim Torp reads this token '(can't read)'. The page image is the "
+                    "only witness, which is what UNREPAIRED said it would take.")
+            norm["given_repair"] = {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "why": row["why"],
+                "evidence": evidence,
+                "ticket": "T-0903",
+            }
+            return row
+    return None
+
+
 def build_claims():
     claims, warnings = [], []
-    n = 0
+    n = repaired = 0
     for leaf in range(FIRST_LEAF, LAST_LEAF + 1):
         lines = leaf_lines(leaf)
         printed = leaf + LEAF_TO_PRINTED
@@ -140,6 +307,8 @@ def build_claims():
             raw = "\n".join(lines[first - 1:last])
             flat = re.sub(r"\s+", " ", raw.replace("-\n", "")).strip()
             norm = split_entry(flat)
+            if apply_repair(norm):
+                repaired += 1
             norm["as_printed"] = flat
             after = (leaf, first) >= ADDENDA_FROM
             norm["section"] = "addenda" if after else "directory"
@@ -160,6 +329,9 @@ def build_claims():
                 "town_finding": False,
                 "notes": None,
             })
+    if repaired != len(REPAIRS) + len(IMAGE_REPAIRS):
+        warnings.append("%d of %d garbled-forename repairs fired — see --self-test"
+                        % (repaired, len(REPAIRS) + len(IMAGE_REPAIRS)))
     return claims, warnings
 
 
@@ -192,13 +364,103 @@ def payload(claims):
                         "printed page, machine-read and not checked against the image by eye. "
                         "The damage is left in every quote on purpose — 'Win.' for 'Wm.', "
                         "'ISickalls' for 'Nickalls' — because a tidied quote cannot be found "
-                        "again. The repair, where one is safe, is in normalized.",
-        "counts": {"claims": len(claims), "person": people, "business": len(claims) - people},
+                        "again. The repair, where one is safe, is in normalized. A forename the "
+                        "scanner garbled beyond a compositor's alphabet is repaired against Kim "
+                        "Torp's independent transcription of the same directory, and the repaired "
+                        "entry carries normalized.given_repair with both readings and the citation "
+                        "(T-0695); where that second hand cannot read the token either, the damage "
+                        "stands.",
+        "counts": {"claims": len(claims), "person": people, "business": len(claims) - people,
+                   "given_repairs": sum(1 for c in claims
+                                        if "given_repair" in c["normalized"])},
         "claims": claims,
     }
 
 
+def self_test():
+    """The repair table against the book: every row fires exactly once, nothing
+    is repaired that was not garbled, and nothing garbled is left unaccounted."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import name_agreement as na
+    claims, _ = build_claims()
+    fired = []
+    for row in REPAIRS:
+        hits = [c for c in claims
+                if c["normalized"].get("given_repair", {}).get("as_read") == row["as_read"]
+                and c["normalized"]["surname"] == row["surname"]]
+        if len(hits) != 1:
+            fired.append("repair %s/%r fired on %d entries, not 1 — the reading moved "
+                         "under the table" % (row["surname"], row["as_read"], len(hits)))
+            continue
+        norm = hits[0]["normalized"]
+        if not na.garbled(row["as_read"]):
+            fired.append("repair %s/%r repairs a forename that is not garbled"
+                         % (row["surname"], row["as_read"]))
+        if na.garbled(norm["given"]):
+            fired.append("repair %s/%r leaves the reading garbled: %r"
+                         % (row["surname"], row["as_read"], norm["given"]))
+        if row["as_read"] not in norm["as_printed"] or row["as_read"] not in hits[0]["quote"]:
+            fired.append("repair %s/%r tidied the quote — the damage must stand there"
+                         % (row["surname"], row["as_read"]))
+    # T-0903. The page-image repairs, held to the same three rules as the eleven
+    # above — fires exactly once, does not repair a reading that was already sound,
+    # and does not tidy the quote — plus one the second hand cannot be asked for: an
+    # image repair must name the leaf its reading was cropped from.
+    for row in IMAGE_REPAIRS:
+        hits = [c for c in claims
+                if c["normalized"].get("given_repair", {}).get("as_read") == row["as_read"]
+                and c["normalized"]["surname"] == row["surname"]]
+        if len(hits) != 1:
+            fired.append("image repair %s/%r fired on %d entries, not 1 — the reading "
+                         "moved under the table" % (row["surname"], row["as_read"], len(hits)))
+            continue
+        norm = hits[0]["normalized"]
+        if row["as_read"] == row["reading"]:
+            fired.append("image repair %s/%r is a no-op" % (row["surname"], row["as_read"]))
+        if row["as_read"] not in norm["as_printed"] or row["as_read"] not in hits[0]["quote"]:
+            fired.append("image repair %s/%r tidied the quote — the damage must stand there"
+                         % (row["surname"], row["as_read"]))
+        if not norm["given_repair"]["evidence"].get("image"):
+            fired.append("image repair %s/%r cites no page image, which is the only "
+                         "thing that makes it checkable" % (row["surname"], row["as_read"]))
+
+    # The scanner's W is letters only, so na.garbled() is blind to it: nothing above
+    # would ever name this class. Assert it by hand instead of trusting the sweep.
+    for c in claims:
+        norm = c["normalized"]
+        as_read = norm.get("given_repair", {}).get("as_read", norm.get("given")) or ""
+        if SCANNER_W in as_read and (norm["surname"], as_read) not in \
+                {(r["surname"], r["as_read"]) for r in IMAGE_REPAIRS}:
+            fired.append("%s reads a forename carrying the scanner's %r with no row in "
+                         "IMAGE_REPAIRS — garbled() cannot see this class"
+                         % (c["id"], SCANNER_W))
+        if SCANNER_W in (norm.get("given") or ""):
+            fired.append("%s still reads the scanner's %r after repair"
+                         % (c["id"], SCANNER_W))
+
+    known = {(r["surname"], r["as_read"]) for r in REPAIRS}
+    known |= {(r["surname"], r["as_read"]) for r in IMAGE_REPAIRS}
+    known |= {(r["surname"], r["as_read"]) for r in UNREPAIRED}
+    for c in claims:
+        norm = c["normalized"]
+        as_read = norm.get("given_repair", {}).get("as_read", norm.get("given"))
+        if norm.get("given") and na.garbled(as_read or "") and (norm["surname"], as_read) not in known:
+            fired.append("%s reads a garbled forename %r with no row in REPAIRS or "
+                         "UNREPAIRED" % (c["id"], as_read))
+    if fired:
+        for line in fired:
+            print("  " + line, file=sys.stderr)
+        print("norris 1844 --self-test: %d case(s) failed" % len(fired), file=sys.stderr)
+        return 1
+    print("norris 1844 --self-test: %d forename repairs hold against the second hand "
+          "and %d against the page image, %d left damaged on purpose"
+          % (len(REPAIRS), len(IMAGE_REPAIRS), len(UNREPAIRED)))
+    return 0
+
+
 def main():
+    if "--self-test" in sys.argv:
+        return self_test()
     claims, warnings = build_claims()
     doc = payload(claims)
     if "--check" in sys.argv:

@@ -2,7 +2,7 @@
   "schema": 1,
   "_doc": "HAND-AUTHORED, and the only hand-authored file in this reading. T-0679: the numerals of Fergus 1839's printed pages 47-50 that archive.org's OCR destroyed, read off the page images themselves. tools/read_fergus_1839_lots.py --build applies it; every entry asserts the `was` ink the generated cell carries, so a re-map that moves a row makes its correction stop matching and --check fails rather than silently writing the wrong number onto the wrong lot.",
   "applied_by": "tools/read_fergus_1839_lots.py --build",
-  "ticket": "T-0679",
+  "ticket": "T-0679; added_rows T-0778",
   "read_off": {
     "item": "fergusdirectoryo00ferg",
     "images": "https://archive.org/download/fergusdirectoryo00ferg/page/leaf59.jpg and leaf60, leaf61, leaf62 — the same scan the OCR is of, at 2238 x 3640, which is the coordinate space the row map is written in",
@@ -10,8 +10,36 @@
   },
   "grade_note": "A corrected row is regraded `scan_verified`, and on these pages that grade means its NUMERAL columns — block, lot, amount, and whether the lot was withheld — were read off the page image. The bidder column is still the OCR's and is still that of a transcription; the names it mangles (Prancis Walker for Francis Walker, John PTnnerty for John Fennerty, J. Iv. Botsford for J. K. Botsford) are not touched here.",
   "what_the_image_could_not_settle": [
-    "Block 5's lot 5 has no claim at all: the row map never gathered it, so there is no cell to correct. The page prints it inside the same brace as lots 1 to 4, Reserved.",
-    "The braced pairs and runs print ONE price against several lots — block 4's lots 1-6, block 5's lots 1-5, block 2's lots 8-10, and lots 39 and 40 of block 4 at $408 the pair. Those prices are not split across the lots they cover."
+    "The braced pairs and runs print ONE price against several lots — block 4's lots 1-6, block 5's lots 1-5, block 2's lots 8-10, and lots 39 and 40 of block 4 at $408 the pair. Those prices are not split across the lots they cover.",
+    "Block 5's lot 5 was one of these until T-0778: the row map gathers no row for it, so there was no cell to correct. It is now an added row rather than a correction, and its price is still not settled — the brace prints one Reserved. over lots 1 to 5 and no amount at all."
+  ],
+  "added_rows_note": "A ROW THE OCR MAPPED NO INK TO AT ALL — not a destroyed numeral but no words on the line — cannot be corrected, because the row map has no row to correct and a layer that fills cells cannot mint one. T-0778 gives it a section of its own rather than teaching --map to gather ink that is not in the scan. An added row asserts three things and --build raises on any of them: the claim it follows still reads the block and lot it was written against, the row map still gathers NO row in the y band the added row occupies, and the ink that GOVERNS the row is quoted verbatim out of the committed page text. It takes the next free id rather than a positional one, so that adding a row in the middle of a page renumbers nothing and no f1839_lot id already cited on a town card moves off the ink it was written against.",
+  "added_rows": [
+    {
+      "leaf": 59,
+      "half": "R",
+      "y": 3275,
+      "after": {
+        "id": "f1839_lot0068",
+        "block": 5,
+        "lot": 4
+      },
+      "no_row_gathered_between": [
+        3245,
+        3330
+      ],
+      "read": {
+        "lot": 5,
+        "amount": null,
+        "withheld": "reserved"
+      },
+      "governing_ink": {
+        "line": 199,
+        "from": 6,
+        "to": 15
+      },
+      "why": "printed page 47's right half ends on block 5, whose lots 1 to 5 are braced together against a single Reserved. The OCR mapped words to the first four and none at all to the fifth, so the row map gathers four rows where the page prints five and lot 5 had no claim. The page image prints 5 as the last line of the column at y 3275, inside the same brace, with no bidder and no price — so the lot number is read off the image and the withholding is the brace's own Reserved., quoted from the committed text."
+    }
   ],
   "lots": {
     "f1839_lot0001": {

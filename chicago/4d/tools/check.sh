@@ -1365,6 +1365,28 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# T-0714, and the owner asked for it directly. The bridges gate above proves the eleven
+# links this project HAS made. The crosswalk below is the adjudication those links come
+# out of — every named 1840 head given an outcome against the 1835 pools — and it was the
+# one crosswalk in this repo that nothing gated. `crosswalk_norris_1844`,
+# `crosswalk_fergus_1843`, the three Fergus 1839 crosswalks and the death notices all fail
+# the moment their committed file stops re-deriving; this one drifted 290 heads without a
+# red build, because the sheets kept being read and the adjudication was never re-run.
+# Gated here in the same commit that re-derived it, so it never lands red.
+step "every named 1840 head still adjudicates as the pages and the pools say" \
+  python3 tools/crosswalk_census_1840_heads.py --check
+
+# …and the class of fault, not just this instance of it. An ungated derivation is a
+# research output that can silently stop existing, and until T-0714 nothing could answer
+# "which tools can re-derive themselves and are never asked to?" without a hand audit.
+# This is a RATCHET: the ungated set may shrink, and may not grow. A new tool arrives
+# gated, or with a deliberate line in data/research/check_gate_baseline.json.
+step "no new tool carries a --check mode the gate never runs" \
+  python3 tools/audit_check_gates.py --gate --quiet
+
+step "…and the audit's own assertions still fire when broken" \
+  python3 tools/audit_check_gates.py --self-test
+
 # THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
 # lots of research being done ... but there are not outputs or updates to the household
 # and resident data". The bridges gate above proves the links the project HAS made are
@@ -1634,6 +1656,14 @@ step "…and the tie discriminator's do too" \
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
 
+# T-0695. The eleven forenames archive.org's OCR set in characters no compositor had are
+# repaired in the READING against Kim Torp's independent transcription, and the quote
+# keeps the damage. The table that does it is the thing that rots: an entry re-read, a
+# leaf re-committed, and a row stops matching — or a new garble arrives with no row. The
+# self-test fails on either, and on a repair that tidied a quote.
+step "…and every garbled forename in them is repaired, cited, and none is left unnamed" \
+  python3 tools/read_norris_1844.py --self-test
+
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
@@ -1775,6 +1805,14 @@ step "…and its own assertions still fire when broken" \
 # database truncated at its own 150-row ceiling must never appear in the coverage
 # declaration — a ceiling recorded as a completed read is the one error here nothing
 # downstream could catch.
+# T-0697. THE RULE THE RESIDENT CROSSWALK IMPORTS RATHER THAN RESTATES, gated for the
+# same reason T-0696 gated the directories' two: the crosswalk below is re-derived here
+# and the rule it is re-derived BY was not, so a loosened namesake rule — one more name
+# folded onto another, M3's guard dropped, a suffix read as decoration — would re-derive
+# the crosswalk quietly and pass every check after it.
+step "the namesake rule's own assertions still fire when broken" \
+  python3 tools/namesake.py --self-test
+
 step "the land tract sales re-derive from their committed deposit" \
   python3 tools/read_land_sales.py --check
 

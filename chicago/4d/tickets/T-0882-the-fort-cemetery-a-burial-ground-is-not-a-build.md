@@ -1,7 +1,7 @@
 ---
 id: T-0882
 title: The Fort Cemetery: a burial ground is not a building, and this model has no record type that can say what it is
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0758
 opened: 2026-09-06
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 987
+claimed_by: run 9/6/2026, 9:15:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T14:50:45.243Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34037535931
 ---
 
 The Fort Cemetery: a burial ground is not a building, and this model has no record type that can say what it is.

@@ -1,7 +1,7 @@
 ---
 id: T-0765
 title: A page number in a citation is read as the state: ', 111,' after a digit run, 65 kept cards across the four volumes
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 999
+claimed_by: run 9/6/2026, 1:38:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T18:43:58.797Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34049602990
 ---
 
 A page number in a citation is read as the state: `, 111,` after a digit run, 65 kept

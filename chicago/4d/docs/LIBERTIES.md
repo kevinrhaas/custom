@@ -2348,13 +2348,20 @@ numerous as were the guests"; the Wolf Point stable is smaller so the two are no
 building at two addresses; and the Beaubien barn is drawn at single-pen CABIN scale, 20 x 16 ft,
 because the source describes a dwelling that stopped being one rather than a barn that was built.
 **Consequence:** a visitor sees three buildings whose *presence* is evidenced and whose *shape and
-exact place* are ours. The Beaubien barn additionally inherits its parent record's two open
-questions — the corner Andreas contradicts himself about, some 45 m, and the fact that neither
-street existed on the unplatted reservation in 1835.
+exact place* are ours. The Beaubien barn additionally inherits what is left of its parent record's
+open questions. **Updated 2026-09-06 (T-0718):** the corner is no longer one of them — Andreas scan
+p. 339 turned out to be John Wentworth's 1881 address reprinted, expressly an instruction for finding
+this house, and the parent moved about 47 m to the **north-east** corner and this barn with it. What
+still travels is that neither street existed on the unplatted reservation in 1835, and that
+Wentworth's lots 6-10 lie north of the corner lot by an unmeasured distance. The move also put the
+barn on the flank of the sand ridge, where the heightfield's 0.35 m of relief across its footprint is
+two millimetres over the walker's step-up rule, so its **ground contact** is declared
+`approach_not_modelled` and is covered here too.
 **How to resolve:** Wright 1834 or Hathaway 1834 read at lot level for the Randolph-and-Canal
 block; Andreas "Wharfs, Piers and Early Hotels", scan pp. 626-631, at page-image level for the Wolf
-Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes.
-**Covers:** `western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`.
+Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes — that plat would
+now also fix how far north of the corner lot the group stood.
+**Covers:** `western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`, `beaubien_barn.converted_1817.ground_contact`.
 **Recorded:** 2026-08-11.
 
 ### L73 — Every outbuilding in the town is detailed by the archetype, not by a source
@@ -10893,3 +10900,46 @@ Related: **L227** (the water cart, which took this number first) · **L226** (th
 (this) · **T-0758** (the parent) · **T-0592** (the well class this project refused the town).
 **Covers:** `fort_dearborn_out_building_a.out_building_a_1830.form.construction`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_type`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_a.out_building_a_1830.form.wall_height_m`, `fort_dearborn_out_building_a.out_building_a_1830.form.door`, `fort_dearborn_out_building_a.out_building_a_1830.form.door_side`, `fort_dearborn_out_building_a.out_building_a_1830.form.paint`, `fort_dearborn_out_building_b.out_building_b_1830.form.construction`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_type`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_b.out_building_b_1830.form.wall_height_m`, `fort_dearborn_out_building_b.out_building_b_1830.form.door`, `fort_dearborn_out_building_b.out_building_b_1830.form.door_side`, `fort_dearborn_out_building_b.out_building_b_1830.form.paint`.
 **Recorded:** 2026-09-06 (T-0881).
+
+### L229 — A fence round one grave, and a burial ground left as a polygon
+**Decision:** `data/enclosures/fort_dearborn_jouett_grave_pickets.json` stands a picket
+fence **3.05 x 2.44 m — 10 x 8 ft** — on the west verge of the road that ran past Fort
+Dearborn's garrison garden, at local east 1107.0, north 64.8, its long side on the road's
+bearing of 51.3 degrees. **The plot's size, its shape, its orientation, and every dimension
+of the fence — 1.07 m high, two rail courses, 5 ft bays, 4-inch posts, 3.5-inch pales at a
+pale's width apart — are invented**, and all of them are graded `reconstructed` on the
+record, so a visitor turning the reconstructed tier off is left with nothing here. **What is
+not invented is that a fenced grave was there.** The 1830 Harrison plan letters *Grave of
+Mrs Chas Jouett* on that ground, and Gurdon Hubbard, remembering it independently, gives it
+its fabric and its side of the road in one clause — *"by the west side of the road,
+adjoining the government garden, in a picket-fence inclosure, was the grave of his wife"*
+(`hubbard_autobiography_1911`, claim `bk_hub_063`, leaf 76, printed p. 38).
+**What is NOT drawn, and this half is the point:** no mound, no slab, no headboard, no
+marker of any kind, no gate, and no ground treatment inside the fence. Nothing in either
+witness describes any of them, a marker's form is a matter of who paid for it, and this
+project does not model human remains or the ground over them on a guess. The fence was
+attested; the fence is what stands.
+**And the Fort Cemetery is not drawn at all.** The same sheet letters a named parcel of that
+name between the road and the lake, south-south-east of the fort — 5,886 m², about an acre
+and a half — and draws it exactly as it draws John Crafts's Lot beside it: two property
+lines and a name. No fence, no gate, no marker, no burial and no count. It is read whole and
+resolved to ground in `data/traces/harrison_1830_fort_burial_ground.json`, and it is refused
+as fabric there rather than furnished out of nothing. A polygon that says *this ground was a
+burying ground and this project cannot say what stood on it* is a truthful record; a fenced
+enclosure invented around it would not be.
+**Why:** T-0758 asked for six things the plan names and nothing draws, and its own acceptance
+said each must be *"either placed off the plan with a stated grade and its own note, or
+refused in writing with the reason on the record — no silent omissions."* These are the two
+answers that clause allows, one of each, and which one a thing gets was decided by what the
+sources give it: one has two witnesses and a named fabric, the other has a boundary and a
+word.
+**How to resolve:** a quartermaster or post return, a chaplain's register or a burial list
+for Fort Dearborn 1816-1836; a later plat that draws the cemetery parcel again with a fence
+on it; or a removal record from the 1840s, when the town moved its burying grounds, naming
+what was lifted from either place. Any one of those turns the polygon into a place and the
+invented dimensions into measured ones.
+Related: **L228** (the same sheet, the same ticket family, and the other answer — two buildings BUILT off one witness) · **L226** (the same plate, the same grade, for two buildings whose walls are
+invented) · **L45** and **L47** (the fort's other `geometry: absent` declarations) · **L1**
+(no figure is drawn) · tickets **T-0882** (this), **T-0758** (the parent), **T-0883** (the
+three buildings off the same sheet).
+**Recorded:** 2026-09-06 (T-0882).

@@ -83,6 +83,18 @@ put guesses:
 What the image settles is the ink, not the sequence: where the page prints nothing —
 a braced run of reserved lots sharing one price, the blank line between two blocks —
 the correction fills nothing and says why.
+
+AND THE ROW THE SCAN HAS NO INK FOR AT ALL (T-0778). A correction reaches a cell the row
+map gathered; it cannot mint a row, and printed page 47 needs one. That half ends on
+block 5, whose lots 1 to 5 are braced against a single *Reserved.*, and the OCR mapped
+words to four of the five — so the reading held 267 rows where the page prints 268 and
+block 5 jumped from lot 4 to lot 6. `--map` cannot gather ink that is not in the scan, so
+the corrections file gains an `added_rows` section instead, and `added_row()` below states
+the three assertions that keep it from becoming a place to put rows that were never
+printed. The added row is numbered AFTER the last mapped row rather than in its printed
+position, because fourteen household cards and four sidecars cite `f1839_lot` ids and a
+positional insert would move every one of them after this page onto ink it was not
+written against.
 """
 import json, os, re, statistics, sys, urllib.request
 import xml.etree.ElementTree as ET
@@ -358,7 +370,93 @@ def corrections():
     pop = {(r["column_first_year"], r["y"]):
            {k: v for k, v in r.items() if k in ("year", "figure")}
            for r in doc["population"]}
-    return doc["lots"], pop
+    return doc["lots"], pop, doc.get("added_rows", [])
+
+
+def added_row(spec, lots, rowmap, lines, seq):
+    """One printed row the OCR mapped NO ink to, put back off the page image (T-0778).
+
+    A CORRECTION AND AN ADDITION ARE NOT THE SAME THING. A correction reaches a cell the
+    row map already gathered and replaces the number the scan ruined; the assertion that
+    makes it safe is the ink it was written against. An added row has no ink and therefore
+    no cell: printed page 47's right half ends on block 5, whose lots 1 to 5 are braced
+    against a single *Reserved.*, and the scan carries words for four of the five. A layer
+    that fills cells cannot mint a row, so the row is minted here — under three assertions
+    that fail LOUDLY rather than duplicate a lot or hang a reading on the wrong page:
+
+      1. THE ROW IT FOLLOWS still reads the block and lot it was written against. A re-map
+         that moves the page cannot slide this row in behind somebody else.
+      2. THE ROW MAP STILL GATHERS NOTHING in the y band this row occupies. If a later
+         --map DOES find the ink — a better scan, a wider window — the addition stops being
+         an addition and this raises instead of shipping block 5's lot 5 twice.
+      3. THE INK THAT GOVERNS THE ROW is quoted verbatim out of the committed page text.
+         The lot NUMERAL is not in the scan and the claim says so — `as_printed` is null on
+         every one of its four cells — but the brace's own *Reserved.* is, and that word is
+         what the page prints against this lot. The claim quotes it, so the verbatim gate
+         in research_domains.py rebuilds this row's quote like every other row's.
+
+    THE ID IS THE NEXT FREE ONE, NOT A POSITIONAL ONE. `f1839_lot%04d` is assigned by
+    position, and fourteen household cards and four sidecars cite those ids. Inserting a
+    row in the middle of printed page 47 with a positional id would move every id after it
+    onto ink it was not written against — silently, on a card a visitor opens. So the row
+    is inserted where it was printed and numbered after the last mapped row, and the
+    reading order it belongs to is carried by its locator and its block and lot, which is
+    where a reader looks for it anyway.
+    """
+    after = spec["after"]
+    prev = next((c for c in lots if c["id"] == after["id"]), None)
+    if prev is None:
+        raise SystemExit("fergus 1839 lots: added row follows %s, which the reading does "
+                         "not hold" % after["id"])
+    if (prev["normalized"]["block"], prev["normalized"]["lot"]) != (after["block"], after["lot"]):
+        raise SystemExit(
+            "fergus 1839 lots: added row follows %s asserting block %s lot %s, and that "
+            "claim now reads block %s lot %s — re-read the page image rather than editing "
+            "the assertion" % (after["id"], after["block"], after["lot"],
+                               prev["normalized"]["block"], prev["normalized"]["lot"]))
+    lo, hi = spec["no_row_gathered_between"]
+    clash = [r for r in rowmap["lots"] if r["leaf"] == spec["leaf"]
+             and r["half"] == spec["half"] and lo <= r["y"] <= hi]
+    if clash:
+        raise SystemExit(
+            "fergus 1839 lots: added row at y %d asserts the row map gathers nothing "
+            "between %d and %d on leaf %d %s, and it now gathers %d row(s) there — the ink "
+            "is in the scan after all, so gather it rather than adding it"
+            % (spec["y"], lo, hi, spec["leaf"], spec["half"], len(clash)))
+    span = spec["governing_ink"]
+    quote = lines[span["line"] - 1][span["from"]:span["to"]]
+    read = spec["read"]
+    return {
+        "id": "f1839_lot%04d" % seq,
+        "kind": "civic",
+        "reading": "scan_verified",
+        "quote": quote,
+        "normalized": {
+            "as_printed": {"block": None, "lot": None, "bidder": None, "amount": None},
+            "bidder": None,
+            "bidder_ditto": False,
+            "bidder_wrapped": False,
+            "block": prev["normalized"]["block"],
+            "block_carried": True,
+            "lot": read["lot"],
+            "amount_usd": read["amount"],
+            "withheld_from_sale": read["withheld"],
+            "addition": "Fort Dearborn Addition to the Town of Chicago",
+            "row_added_off_the_page_image": True,
+        },
+        "locator": {
+            "text_file": "fergus_1839_leaf_%03d.txt" % spec["leaf"],
+            "spans": [span],
+            "lines": [span["line"], span["line"]],
+            "page": "fergus_1839_leaf_%03d" % spec["leaf"],
+            "printed_page": spec["leaf"] + LEAF_TO_PRINTED,
+            "column": spec["half"],
+        },
+        "describes_date": "1839-06",
+        "entities": [],
+        "town_finding": False,
+        "notes": spec["why"],
+    }
 
 
 def apply_fix(fix, field, ink_now, value):
@@ -383,7 +481,7 @@ def apply_fix(fix, field, ink_now, value):
 def build():
     texts = {leaf: leaf_text(leaf) for leaf in LOT_LEAVES + (POP_LEAF,)}
     rowmap = json.loads(open(MAP, encoding="utf-8").read())
-    lot_fixes, pop_fixes = corrections()
+    lot_fixes, pop_fixes, additions = corrections()
 
     # PASS 1 — the ink of every mapped row, and the WRAPPED NAMES folded back into the
     # row above. A bidder too long for the column is set on a second line, and the OCR
@@ -490,6 +588,16 @@ def build():
             "town_finding": False,
             "notes": "; ".join(v["why"] for v in fix.values() if v.get("why")) or None,
         })
+
+    # THE ROWS THE OCR MAPPED NO INK TO, put back off the page image. Applied after the
+    # loop above and never inside it, so that neither the ids nor the carried block move:
+    # an added row is numbered after the last mapped row and inserted where it was
+    # printed. See added_row() for the three assertions that hold it in place.
+    added = 0
+    for spec in additions:
+        row = added_row(spec, lots, rowmap, texts[spec["leaf"]], n + added + 1)
+        lots.insert(1 + next(i for i, c in enumerate(lots) if c["id"] == spec["after"]["id"]), row)
+        added += 1
 
     pop, m, unread, pop_settled = [], 0, [], {"year": 0, "figure": 0}
     for row in rowmap["population"]:
@@ -602,7 +710,9 @@ def build():
                       "mark it was is not recoverable and the ink is kept in as_printed.",
         "counts": {
             "claims": len(lots),
-            "rows": n,
+            "rows": len(lots),
+            "rows_the_row_map_gathered": n,
+            "rows_added_off_the_page_image": added,
             "bidders_named": len({c["normalized"]["bidder"] for c in lots
                                   if c["normalized"]["bidder"]}),
             "rows_with_a_lot_number": sum(1 for c in lots if c["normalized"]["lot"] is not None),
@@ -752,7 +862,62 @@ def self_test() -> int:
          ["scan_verified"], "and it says so in its grade")
     want([c["normalized"]["year"] for c in pop["claims"]],
          list(range(1835, 1877)), "so the table runs 1835 to 1876 with no year missing")
-    del by_id
+
+    # 4b. THE ADDED ROW (T-0778). Block 5's lot 5 is printed inside the same brace as
+    #     lots 1 to 4 and the OCR mapped it no ink at all, so the row map gathers four
+    #     rows where the page prints five.
+    b5 = [c for c in lots["claims"] if c["normalized"]["block"] == 5
+          and c["locator"]["printed_page"] == 47]
+    want([c["normalized"]["lot"] for c in b5], [1, 2, 3, 4, 5],
+         "printed page 47's block 5 runs 1 to 5 with no gap — the brace covers five lots")
+    want([c["normalized"]["withheld_from_sale"] for c in b5], ["reserved"] * 5,
+         "and the one Reserved. over the brace withholds all five")
+    want([c["normalized"]["bidder"] for c in b5], [None] * 5,
+         "so the brace still gives nobody a lot")
+    lot5 = b5[-1]
+    want(lot5["normalized"]["as_printed"], {"block": None, "lot": None, "bidder": None,
+                                            "amount": None},
+         "the added row's own cells are EMPTY in the scan and say so — the numeral was "
+         "read off the page image, not recovered from the run it sits in")
+    want(lot5["quote"], "Reserved.",
+         "and it quotes the ink that governs it, verbatim out of the committed text, so "
+         "the verbatim gate rebuilds it like every other row")
+    want(lot5["reading"], "scan_verified", "which is the grade a row read off the image carries")
+    want(lot5["normalized"]["amount_usd"], None,
+         "the brace prints one word and no price, and no price is invented for it")
+    # THE IDS DID NOT MOVE. Fourteen household cards and four sidecars cite f1839_lot ids.
+    want([by_id["f1839_lot0068"]["normalized"]["lot"],
+          by_id["f1839_lot0069"]["normalized"]["lot"]], [4, 6],
+         "the added row is numbered after the last mapped row, so inserting it in the "
+         "middle of printed page 47 renumbers nothing")
+    want(lot5["id"], "f1839_lot%04d" % len(lots["claims"]),
+         "and it takes the next free id")
+    want(by_id["f1839_lot0069"]["normalized"]["block"], 5,
+         "block 5's lot 6 still carries block 5 across the leaf")
+
+    # 4c. and the two assertions that hold it there, fired against breakage
+    rowmap = json.loads(open(MAP, encoding="utf-8").read())
+    lines = leaf_text(59)
+    spec = json.loads(open(CORRECTIONS, encoding="utf-8").read())["added_rows"][0]
+    moved = [dict(c) for c in lots["claims"]]
+    for c in moved:
+        if c["id"] == "f1839_lot0068":
+            c["normalized"] = dict(c["normalized"], lot=9)
+    try:
+        added_row(spec, moved, rowmap, lines, 999)
+        bad.append("an added row was applied behind a claim that no longer reads what it "
+                   "was written against")
+    except SystemExit:
+        pass
+    gathered = dict(rowmap, lots=rowmap["lots"] + [{"leaf": 59, "half": "R", "y": 3275,
+                                                    "block": [], "lot": [], "bidder": [],
+                                                    "amount": []}])
+    try:
+        added_row(spec, lots["claims"], gathered, lines, 999)
+        bad.append("an added row was applied although the row map now gathers the ink "
+                   "itself, which would ship block 5's lot 5 twice")
+    except SystemExit:
+        pass
 
     # 5. the corrections layer's own guard: a correction written against ink that is no
     #    longer there must RAISE, not write its number onto whatever row moved under it.

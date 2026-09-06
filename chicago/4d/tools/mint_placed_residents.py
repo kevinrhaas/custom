@@ -545,8 +545,18 @@ CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A G
 FERGUS_1839_SOURCE = "fergus_chicago_directory_1839"
 FERGUS_1839_MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
 
+# T-0697, and the third row the arrangement above anticipated. The land-sales crosswalk
+# stopped counting namesakes and started putting the reading to every person of the
+# surname, so consolidation pass 3 now reaches 124 cards where it reached 34 — and one of
+# them, J. K. Boyer, is a record THIS mint rebuilds. Without the row the mint deletes the
+# register's citation on every rebuild, which is the exact failure T-0634 wrote the carry
+# for. `tools/spend_land_sales.py --self-test` holds both constants against this file.
+LAND_SALES_SOURCE = "isa_public_domain_land_tract_sales"
+LAND_SALES_MARKER = "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE."
+
 CARRIED_SPENDS = ((CIVIC_ROLLS_SOURCE, CIVIC_ROLLS_MARKER),
-                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER))
+                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER),
+                  (LAND_SALES_SOURCE, LAND_SALES_MARKER))
 
 
 def carry_civic_rolls(doc: dict, existing: dict) -> None:
