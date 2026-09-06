@@ -5,16 +5,18 @@
   "source_id": "newberry_genealogical_index",
   "volume": 1,
   "counts": {
-    "cards": 2422,
+    "cards": 2398,
     "records": 2425,
     "slivers": 3,
+    "bled_in": 26,
+    "bled_in_borrowing_their_locality": 24,
     "by_locality": {
-      "chicago": 404,
+      "chicago": 403,
       "cook_county": 158,
-      "illinois_named": 235,
-      "illinois_abbreviated": 1998
+      "illinois_named": 234,
+      "illinois_abbreviated": 1976
     },
-    "distinct_surname_keys": 1613,
+    "distinct_surname_keys": 1599,
     "leads": 400,
     "leads_by_layer": {
       "census_1840": 124,
@@ -22,9 +24,9 @@
       "structures": 18,
       "voters": 62
     },
-    "chicago_or_cook_cards": 562,
-    "cards_matching_no_known_work": 1349,
-    "chicago_or_cook_cards_matching_no_known_work": 142
+    "chicago_or_cook_cards": 561,
+    "cards_matching_no_known_work": 1330,
+    "chicago_or_cook_cards_matching_no_known_work": 141
   },
   "records": [
     {
@@ -4196,7 +4198,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0152",
+        "bled_in_run": "an, iii, Iwl ed",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -4210,7 +4215,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'an, iii, Iwl ed', the 15 characters that close nbi_v01_0152 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0156",
@@ -20047,7 +20052,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "county_histories_kett_and_co"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_0733",
+        "bled_in_run": "l Co,, 111. (Ke",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -20061,7 +20069,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'l Co,, 111. (Ke', the 15 characters that close nbi_v01_0733 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0740",
@@ -20102,7 +20110,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0734",
+        "bled_in_run": "cago, III. (",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -20116,7 +20127,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'cago, III. (', the 12 characters that close nbi_v01_0734 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0742",
@@ -20128,7 +20139,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0736",
+        "bled_in_run": "Co., Ill, (LoBu",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -20142,7 +20156,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Co., Ill, (LoBu', the 15 characters that close nbi_v01_0736 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0743",
@@ -21935,7 +21949,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0806",
+        "bled_in_run": "Co, III. (Chap",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -21949,7 +21966,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Co, III. (Chap', the 14 characters that close nbi_v01_0806 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0809",
@@ -22934,7 +22951,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0839",
+        "bled_in_run": "y.dwn, Co., III.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -22948,7 +22968,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'y.dwn, Co., III.', the 16 characters that close nbi_v01_0839 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0846",
@@ -22960,7 +22980,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0842",
+        "bled_in_run": ".(un. Co., III. (M",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -22974,7 +22997,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '.(un. Co., III. (M', the 18 characters that close nbi_v01_0842 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0847",
@@ -23581,7 +23604,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0868",
+        "bled_in_run": "» Co., Ill, (U",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -23595,7 +23621,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '» Co., Ill, (U', the 14 characters that close nbi_v01_0868 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0870",
@@ -25008,7 +25034,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0919",
+        "bled_in_run": "Clair Co, 111. (B",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -25022,7 +25051,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Clair Co, 111. (B', the 17 characters that close nbi_v01_0919 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0923",
@@ -25607,7 +25636,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0943",
+        "bled_in_run": "Co., 111. (Chxp",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -25621,7 +25653,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Co., 111. (Chxp', the 15 characters that close nbi_v01_0943 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0945",
@@ -26352,7 +26384,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_0970",
+        "bled_in_run": "ik« Co, III.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -26366,7 +26401,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'ik« Co, III.', the 12 characters that close nbi_v01_0970 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_0973",
@@ -27205,7 +27240,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1003",
+        "bled_in_run": "Co., III. (Oup",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -27219,7 +27257,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Co., III. (Oup', the 14 characters that close nbi_v01_1003 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1005",
@@ -27231,7 +27269,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1002",
+        "bled_in_run": "ll Co., III. (Ke",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -27245,7 +27286,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'll Co., III. (Ke', the 16 characters that close nbi_v01_1002 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1006",
@@ -28681,7 +28722,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1056",
+        "bled_in_run": "ollCo.,111. ( &",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -28695,7 +28739,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'ollCo.,111. ( &', the 15 characters that close nbi_v01_1056 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1060",
@@ -29066,7 +29110,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1072",
+        "bled_in_run": "ams Co., III. ( M",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -29080,7 +29127,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'ams Co., III. ( M', the 17 characters that close nbi_v01_1072 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1074",
@@ -41129,7 +41176,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1517",
+        "bled_in_run": "Füa Co., III.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -41143,7 +41193,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Füa Co., III.', the 13 characters that close nbi_v01_1517 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1519",
@@ -50795,7 +50845,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_1873",
+        "bled_in_run": "am.Ce., 111. 'M",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -50809,7 +50862,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with \"am.Ce., 111. 'M\", the 15 characters that close nbi_v01_1873 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_1876",
@@ -56381,7 +56434,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "moses_illinois_historical_and_statistical"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_2078",
+        "bled_in_run": "& Co.,",
+        "locality_is_borrowed": false
       },
       "locator": {
         "list": "vol_01",
@@ -56395,7 +56451,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_named; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '& Co.,', the 6 characters that close nbi_v01_2078 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The card names illinois_named on its own text as well, so it keeps its place in the counts. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2082",
@@ -56407,7 +56463,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_2079",
+        "bled_in_run": "17,262-",
+        "locality_is_borrowed": false
       },
       "locator": {
         "list": "vol_01",
@@ -56421,7 +56480,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '17,262-', the 7 characters that close nbi_v01_2079 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The card names illinois_abbreviated on its own text as well, so it keeps its place in the counts. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2083",
@@ -59343,7 +59402,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_2189",
+        "bled_in_run": "_Pilt Co., III.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -59357,7 +59419,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '_Pilt Co., III.', the 15 characters that close nbi_v01_2189 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2192",
@@ -62002,7 +62064,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_2289",
+        "bled_in_run": "d a m i Co., III.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -62016,7 +62081,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'd a m i Co., III.', the 17 characters that close nbi_v01_2289 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2291",
@@ -63522,7 +63587,10 @@
           "chicago"
         ],
         "chicago_or_cook": true,
-        "works_cited": []
+        "works_cited": [],
+        "bled_in_from": "nbi_v01_2345",
+        "bled_in_run": "ChlcagoAill,",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -63536,7 +63604,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming chicago; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'ChlcagoAill,', the 12 characters that close nbi_v01_2345 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2347",
@@ -63711,7 +63779,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "andreas_history_of_chicago"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_2352",
+        "bled_in_run": "ago, III. (An",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -63725,7 +63796,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'ago, III. (An', the 13 characters that close nbi_v01_2352 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2354",
@@ -63899,7 +63970,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "sons_of_the_american_revolution_illinois_1896"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_2358",
+        "bled_in_run": "—Illinois.",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -63913,7 +63987,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_named; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with '—Illinois.', the 10 characters that close nbi_v01_2358 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2361",
@@ -64981,7 +65055,10 @@
         "works_cited": [
           "moses_kirkland_history_of_chicago",
           "moses_illinois_historical_and_statistical"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_2399",
+        "bled_in_run": "go, III. (Mo",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -64995,7 +65072,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'go, III. (Mo', the 12 characters that close nbi_v01_2399 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2401",
@@ -65063,7 +65140,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "county_histories_kett_and_co"
-        ]
+        ],
+        "bled_in_from": "nbi_v01_2402",
+        "bled_in_run": "Co., III. ((tee,",
+        "locality_is_borrowed": true
       },
       "locator": {
         "list": "vol_01",
@@ -65077,7 +65157,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN PREFIX: this body opens with 'Co., III. ((tee,', the 16 characters that close nbi_v01_2402 in the column to its left on the same page — the crop window reaching past a wide page's column boundary (T-0769). The locality this card was kept for is on that fragment and not on this card, so it is withheld from this volume's counts, from the leads and from the reading order. It is kept because the ink is real and it was really read, and the run is left on the reading because a tidied transcription is one nobody can check."
     },
     {
       "id": "nbi_v01_2404",

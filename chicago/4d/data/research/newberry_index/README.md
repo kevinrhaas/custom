@@ -264,11 +264,71 @@ T-0601 carries". It is not. `nbi_v02_0610` — `Hallam | , 111.19 Hallam faaily.
 with `, 111.19`, which is the **tail** of the card in the column to its *left*
 (`Hall | -±~2.' la letk» te,'», 111.19`). That is the mirror artefact: a window catching
 the right edge of the previous column on a page wide enough to push it past the boundary,
-and it contaminates a body rather than duplicating a card — which makes it a precision
-defect, not a count one. A first pass finds **117** candidates at delta −1 against 4 at
-every other delta, but most of those are two cards sharing a common word and the figure
-is an upper bound that needs adjudicating card by card. It is filed as its own ticket
-rather than folded into this rule.
+and it contaminates a body rather than duplicating a card. A first pass found **117**
+candidates at a byte-exact run of six characters, an upper bound and not a measurement.
+It is measured in the section below.
+
+### The bled-in prefix, measured and withheld (T-0769)
+
+**The artefact.** A crop window is 200 points wide on a 173-point pitch, and page widths
+in a volume run from 689 to 733 points. On a wide page the PREVIOUS column's text is
+pushed past the boundary and the window catches its right edge — not as a card of its
+own, which is T-0601's sliver, but glued to the FRONT of a real card's body. The locality
+patterns then match on ink that is not on that card.
+
+**The test, and why length alone will not do it.** T-0601's argument run the other way:
+the fragment is the SAME INK READ TWICE BY THE SAME ENGINE, so the run must be
+byte-exact — not alpha-folded, because the damage is the evidence — and long enough that
+two independent cards could not both reach it. Six byte-exact characters finds 113
+candidates and most are a common formula: `Chicago,` opens **519** bodies in this domain,
+`Illinois` 285, `Cook Co.` 274, `Pike Co., Ill.` 34. So the run must also be **unique** —
+the prefix of no other body in the four volumes — and that clause, not the length, is
+what makes it this ink rather than that formula.
+
+**The figure, with the delta profile beside it.** **47 cards** over the four volumes —
+26, 14, 7 and 0 — and **every one of them at column delta +1**: the contaminated card
+sits one column to the RIGHT of the body its prefix closes, which is the crop geometry's
+own prediction. **None at any other delta.** The same test without the uniqueness clause
+finds 113, of which 3 sit at delta 0, where a column cannot bleed into itself and the
+artefact is impossible. That control channel is empty under the rule and populated
+without it, which is the sense in which the rule has found the artefact and not a word.
+Asked per volume instead of over the domain the rule finds 53, and the six it adds are
+the formula class exactly (`Carroll Co., Ill,`, `Pika Co., III.`, `hicago, III`); marking
+a sound card is worse than missing a contaminated one, so the corpus is the domain.
+
+**43 of the 47 have no locality of their own.** Strip the fragment and nothing on the
+card names Chicago, Cook County or Illinois — `nbi_v01_0845` is `y.dwn, Co., III.` from
+the card to its left followed by ` (Murray, Williamson & Phelps, Publ.) 1870:`, and the
+locality it was kept for was never on it. Those 43 are withheld from the volume's counts,
+from the leads and from the reading order, exactly as a sliver is. The other four name
+their locality on their own text as well, so the contamination cost them nothing and they
+keep their place.
+
+**Marked, not trimmed, and the choice is forced.** Trimming the body would edit a
+reading, and `MANIFEST.text_sha256` and `check()` would both refuse it — rightly, because
+a reading this project has tidied is a reading nobody can check. So the record keeps its
+place and gains `normalized.bled_in_from`, `bled_in_run` and `locality_is_borrowed`, for
+the same three reasons a sliver is marked rather than dropped: the id is positional, the
+ink is real, and a wrong call must stay visible. The gate runs **both ways** here too,
+and six cases in `--self-test` cover the geometry — the fragment one column right, a
+shared formula in the column alongside, the card it would have been read off, a page
+boundary, the locality really being on the fragment, and a run that repeats in the
+corpus.
+
+**Only one of the 160 adjudicated precision rows is affected** — `nbi_v02_0610`, volume
+2's one remaining bad keep, which is now withheld — so no other row leaves the sample and
+no other precision figure in this file moves.
+
+| | before T-0769 | after |
+|---|---|---|
+| cards, all four volumes | 6,720 | **6,677** |
+| distinct surname keys | 4,598 | **4,570** |
+| leads | 978 | 978 |
+
+The lead count does not move: a surname the withheld cards carried is carried by a sound
+card too, so what leaves is 28 surname keys that stood on nothing else and the cards the
+surviving leads are anchored on. `lead_crosswalk.json` and `acquisition_list.json`
+re-derive byte-identically.
 
 ## Volume 1 (A-C), read 2026-09-03 under T-0570
 
@@ -353,18 +413,20 @@ own text layer was worth, measured rather than asserted, and it is the reason th
 reader was built at all. The second is what the re-read did to those numbers. Neither is
 deleted: a project that only records its final figure cannot show that it earned it.
 
-| volume | pages | cards assembled | per page | kept | column slivers | cards | Chicago/Cook | precision |
-|---|---|---|---|---|---|---|---|---|
-| 1 (A-C) | 987 | 58,488 | 59 | 2,425 | 3 | 2,422 | 562 | 0.975 |
-| 2 (C-H) | 1,016 | 58,589 | 58 | 1,886 | 1 | 1,885 | 491 | 0.975 |
-| 3 (H-P) | 1,003 | 68,552 | 68 | 2,004 | 4 | 2,000 | 502 | 0.925 |
-| 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | 246 | 9 | 0.513 |
-| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **413** | **not checked** | **413** | **207** | **0.975** |
+| volume | pages | cards assembled | per page | kept | column slivers | borrowed locality | cards | Chicago/Cook | precision |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 (A-C) | 987 | 58,488 | 59 | 2,425 | 3 | 24 | 2,398 | 561 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,886 | 1 | 12 | 1,873 | 489 | 0.975 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 2,004 | 4 | 7 | 1,993 | 502 | 0.925 |
+| 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | not checked | 246 | 9 | 0.513 |
+| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **413** | **not checked** | **0** | **413** | **207** | **0.975** |
 
 `kept` is the rows in the committed text; `cards` is what the volume actually read, which
-is `kept` less the column slivers T-0601 marked. The precision figures are unchanged: not
-one of the 160 adjudicated rows is a sliver, so no row leaves the sample and no number in
-it moves.
+is `kept` less the column slivers T-0601 marked and the cards T-0769 found borrowing their
+only locality from the column to their left. The precision figures are unchanged: not one
+of the 160 adjudicated rows is a sliver, and the one that is a bled-in prefix
+(`nbi_v02_0610`) was already adjudicated `not_demonstrated`, so no row leaves the sample
+and no number in it moves.
 
 The OCR re-read of volume 4 (T-0775) carries **no sliver count**, and the blank is
 deliberate rather than a zero. T-0601's pass ran over the text-layer reading; the re-read

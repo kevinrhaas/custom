@@ -360,6 +360,105 @@ def find_slivers(cards: list) -> dict:
     return out
 
 
+# THE OTHER END OF THE SAME OVERLAP (T-0769). A sliver is what a crop window catches
+# when it reaches 27 points INTO the next column: the left edge of a card that column
+# reads in full, arriving as a card of its own. This is what it catches when the page is
+# WIDE — 689 to 733 points across a volume — and the PREVIOUS column's text is pushed
+# past the boundary: the fragment does not arrive as a card, it arrives glued to the
+# FRONT of a real card's body, and the locality patterns then match on ink that is not
+# on that card. `nbi_v02_0610` is the adjudicated one: 'Hallam | , 111.19 Hallam
+# faaily.' opens with the eight characters that CLOSE the body of `Hall` in the column
+# to its left, and `, 111.` is the Illinois abbreviation.
+#
+# THE TEST, and it is T-0601's argument run the other way: the fragment is the SAME INK
+# READ TWICE BY THE SAME ENGINE, so the run has to be byte-exact — not alpha-folded,
+# because the damage is the evidence — and it has to be a run two independent cards
+# could not both reach. Length alone will not do that. Asking only for six byte-exact
+# characters finds 113 candidates and most of them are a common formula: `Chicago,`
+# opens 519 bodies in this domain, `Illinois` 285, `Pike Co., Ill.` 34, and two
+# unrelated cards on one page share them constantly. So the run must also be UNIQUE —
+# the prefix of no other body in the volume — which is what makes it this ink and not
+# that formula.
+#
+# THE FIGURE THE RULE WAS EARNED ON, with the delta profile beside it as the ticket
+# asked: 47 cards over the four volumes, EVERY ONE at column delta +1 — the card is one
+# column right of the body its prefix closes — and NONE at any other delta. The same
+# test without the uniqueness clause finds 113, of which 3 sit at delta 0, where the
+# same column cannot bleed into itself and the crop geometry forbids the artefact. That
+# control channel is empty under the rule and populated without it, which is the sense
+# in which the rule has found the artefact rather than a word.
+#
+# 43 of the 47 carry NO LOCALITY once the fragment is taken off — they are in this
+# domain solely for ink printed on the card to their left — and they are withheld from
+# the counts, the leads and the reading order, exactly as a sliver is. Like a sliver
+# they are MARKED and never dropped, and for the same three reasons: the id is
+# positional, the ink is real and check() rebuilds every `as_read` out of the committed
+# text, and a wrong call must stay visible. Trimming the body was the alternative and is
+# refused: it would edit a reading, and MANIFEST.text_sha256 and check() would both
+# refuse it — rightly, because a reading this project has tidied is a reading nobody can
+# check.
+BLEED_MIN = 6
+
+
+def committed_bodies() -> list:
+    """Every committed card body of every volume that has one — the corpus the
+    uniqueness clause is asked against.
+
+    Volume-wide would be the easier question and it is the wrong one: an index and an
+    engine do not change between volumes, so a run that opens a card in volume 3 is a
+    formula this reader produces, whatever volume the candidate sits in. Asked per
+    volume the rule finds 53 cards instead of 47, and the six it adds are the formula
+    class exactly — 'Carroll Co., Ill,', 'Pika Co., III.', 'hicago, III'. Marking a
+    sound card is worse than missing a contaminated one, so the corpus is the domain.
+    """
+    out = []
+    for volume in sorted(VOLUMES):
+        path = DOMAIN / "text" / ("vol_%02d_locality_cards.txt" % volume)
+        if not path.exists():
+            continue
+        _name, _lines, cards = read_committed_cards(volume)
+        out.extend(card["body"] for card in cards)
+    return out
+
+
+def find_bleed_ins(cards: list, corpus: list = None) -> dict:
+    """{index of a contaminated card: (index of the card that bled, the run)}.
+
+    `cards` is one volume's committed reading in record order, as find_slivers takes it.
+    `corpus` is every committed body of every volume, and defaults to reading them.
+    """
+    starts = {}
+    for body in (committed_bodies() if corpus is None else corpus):
+        for k in range(BLEED_MIN, len(body) + 1):
+            starts[body[:k]] = starts.get(body[:k], 0) + 1
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = {}
+    for idxs in bypage.values():
+        for i in idxs:
+            body = cards[i]["body"]
+            seed = body[:BLEED_MIN]
+            best = (BLEED_MIN - 1, None)
+            for j in idxs:
+                if j == i or cards[j]["column"] != cards[i]["column"] - 1:
+                    continue
+                tail = cards[j]["body"]
+                # Every k that can hold puts `seed` somewhere in `tail`, and the
+                # position fixes k — so the run is found by walking the seed's
+                # occurrences rather than by trying every length. The whole body
+                # repeated is a sliver and T-0601's business, so the prefix is proper.
+                pos = tail.find(seed)
+                while pos >= 0:
+                    k = len(tail) - pos
+                    if best[0] < k < len(body) and body[:k] == tail[-k:]:
+                        best = (k, j)
+                    pos = tail.find(seed, pos + 1)
+            if best[1] is not None and starts.get(body[:best[0]], 0) == 1:
+                out[i] = (best[1], body[:best[0]])
+    return out
+
+
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -1268,7 +1367,38 @@ def parse(volume: int) -> dict:
             "and it is withheld from this volume's counts, from the leads and from "
             "the reading order, because it is not a second card."
             % (records[j]["id"], cards[j]["column"], cards[i]["column"]))
-    live = [r for k, r in enumerate(records) if k not in slivers]
+    # T-0769, and it is the sliver's mirror: not a card read twice, but a card whose
+    # body OPENS with the tail of the card in the column to its left. 43 of the 47 the
+    # rule finds carry no locality at all once the fragment is taken off — they are in
+    # this domain for ink that is not on them — and those are withheld from the counts,
+    # the leads and the reading order the way a sliver is. The other four name the same
+    # locality with the fragment or without it, so the contamination cost them nothing;
+    # they are marked and still counted, because the card really does say Illinois.
+    bled = find_bleed_ins(cards)
+    borrowed = set()
+    for i, (j, run) in sorted(bled.items()):
+        rest = buckets_of(cards[i]["body"][len(run):])
+        own = bool(rest)
+        if not own and cards[i]["buckets"]:
+            borrowed.add(i)
+        records[i]["normalized"]["bled_in_from"] = records[j]["id"]
+        records[i]["normalized"]["bled_in_run"] = run
+        records[i]["normalized"]["locality_is_borrowed"] = i in borrowed
+        records[i]["notes"] = (
+            "A BLED-IN PREFIX: this body opens with %r, the %d characters that close "
+            "%s in the column to its left on the same page — the crop window reaching "
+            "past a wide page's column boundary (T-0769). %s It is kept because the ink "
+            "is real and it was really read, and the run is left on the reading because "
+            "a tidied transcription is one nobody can check."
+            % (run, len(run), records[j]["id"],
+               "The locality this card was kept for is on that fragment and not on this "
+               "card, so it is withheld from this volume's counts, from the leads and "
+               "from the reading order." if i in borrowed else
+               "The card names %s on its own text as well, so it keeps its place in the "
+               "counts." % ", ".join(rest)))
+
+    live = [r for k, r in enumerate(records)
+            if k not in slivers and k not in borrowed]
 
     leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
         live, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
@@ -1277,6 +1407,8 @@ def parse(volume: int) -> dict:
         "cards": len(live),
         "records": len(records),
         "slivers": len(slivers),
+        "bled_in": len(bled),
+        "bled_in_borrowing_their_locality": len(borrowed),
         "by_locality": {name: sum(1 for r in live
                                   if name in r["normalized"]["localities"])
                         for name, _ in LOCALITY_BUCKETS},
@@ -1328,8 +1460,13 @@ def parse(volume: int) -> dict:
     for vol in parsed:
         path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
         if path.exists():
-            all_records.extend(r for r in (load(path).get("records") or [])
-                               if not (r.get("normalized") or {}).get("sliver_of"))
+            # A sliver is not a second card, and a card whose only locality was
+            # printed on the card to its left is not a card of this domain at all
+            # (T-0769) — neither may reach the leads or the reading order.
+            all_records.extend(
+                r for r in (load(path).get("records") or [])
+                if not (r.get("normalized") or {}).get("sliver_of")
+                and not (r.get("normalized") or {}).get("locality_is_borrowed"))
     # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
     # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
     # surname filed in both volumes must keep the id its ruling was written against;
@@ -1528,16 +1665,40 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
             elif marked and not truth:
                 bad.append("%s %s: marked a sliver of %s, and the committed text does "
                            "not make it one" % (label, rec.get("id"), marked))
-            elif marked and marked != truth:
-                bad.append("%s %s: marked a sliver of %s, and the card it truncates on "
-                           "the committed text is %s"
-                           % (label, rec.get("id"), marked, truth))
-        net = len(recs) - len(found)
+
+        # THE BLED-IN PREFIX, BOTH WAYS TOO (T-0769). The second clause is the one that
+        # earns its keep: a records file parsed before the rule existed goes on counting
+        # 43 cards for a locality printed on the card to their left, and nothing says so.
+        bled = find_bleed_ins(cards, committed_bodies())
+        borrowed = set()
+        for i, rec in enumerate(recs):
+            norm = rec.get("normalized") or {}
+            marked, truth = norm.get("bled_in_from"), bled.get(i)
+            if truth:
+                own = buckets_of(cards[i]["body"][len(truth[1]):])
+                if (norm.get("localities") or []) and not own:
+                    borrowed.add(i)
+            if truth and not marked:
+                bad.append("%s %s: its body opens with the %d characters that close "
+                           "%s, and the records do not mark it — the domain is reading "
+                           "a locality off the card to its left"
+                           % (label, rec.get("id"), len(truth[1]),
+                              recs[truth[0]].get("id")))
+            elif marked and not truth:
+                bad.append("%s %s: marked as bled in from %s, and the committed text "
+                           "does not make it so" % (label, rec.get("id"), marked))
+            elif truth and (norm.get("bled_in_run") != truth[1]
+                            or marked != recs[truth[0]].get("id")
+                            or bool(norm.get("locality_is_borrowed")) != (i in borrowed)):
+                bad.append("%s %s: the bled-in run, its source or the borrowed mark is "
+                           "not what the committed text says" % (label, rec.get("id")))
+        net = len(recs) - len(found) - len(borrowed - set(found))
         stated = (doc.get("counts") or {}).get("cards")
         if stated is not None and stated != net:
             bad.append("%s: counts.cards says %s, and the file holds %d records of "
-                       "which %d are column slivers — %d cards"
-                       % (label, stated, len(recs), len(found), net))
+                       "which %d are column slivers and %d borrow their locality from "
+                       "the card to their left — %d cards"
+                       % (label, stated, len(recs), len(found), len(borrowed), net))
 
     cross_path = domain / "crosswalk.json"
     if cross_path.exists():
@@ -1894,6 +2055,43 @@ def self_test() -> int:
         else:
             print("  holds: %s" % label)
             fired.append(label)
+
+    # THE BLED-IN PREFIX (T-0769), held over a page built by hand so the geometry is
+    # not taken on trust. Card A sits in column 1 and its body ENDS with the run; card
+    # B sits in column 2 and its body BEGINS with it; card C is B's own text without
+    # the fragment; card D repeats a common formula in the same column, which the
+    # uniqueness clause and the adjacency clause must both refuse.
+    RUN, FAR = "y.dwn, Co., III.", "ollCo.,111. ( &"
+    page = [
+        {"page": 7, "column": 1, "body": "Sangamon fam. (Power, J. C.) " + RUN},
+        {"page": 7, "column": 2, "body": RUN + " (Murray, Williamson & Phelps) 1870:"},
+        {"page": 7, "column": 2, "body": "Chicago, Ill. (Andreas, A. T.) 1884-6: 25."},
+        {"page": 7, "column": 1, "body": "Chicago, Ill. (Andreas, A. T.) 1884-6: 91."},
+        {"page": 9, "column": 2, "body": FAR + " (Chapman, C. C. & Co., Pub.) 1880:"},
+        {"page": 7, "column": 1, "body": "Knox fam. (Chapman, C. C.) " + FAR},
+    ]
+    corpus = [c["body"] for c in page]
+    got = find_bleed_ins(page, corpus)
+    for label, held in (
+        ("the fragment glued to the front of the card one column right", got.get(1)
+         == (0, RUN)),
+        ("a shared formula in the column alongside is refused", 2 not in got),
+        ("…and the card it would have been read off is refused too", 3 not in got),
+        ("a page boundary is a boundary — a run that closes a body on page 7 does "
+         "not contaminate a card on page 9", 4 not in got),
+        ("the locality really is on the fragment and not on the card",
+         buckets_of(page[1]["body"]) == ["illinois_abbreviated"]
+         and buckets_of(page[1]["body"][len(RUN):]) == []),
+        ("a run that repeats anywhere in the corpus is not this ink",
+         find_bleed_ins(page, corpus + [RUN + " something else entirely"]).get(1)
+         is None),
+    ):
+        if held:
+            print("  holds: %s" % label)
+            fired.append(label)
+        else:
+            print("  DID NOT HOLD: %s" % label)
+            ok = False
 
     if not ok:
         print("SELF-TEST FAIL")
