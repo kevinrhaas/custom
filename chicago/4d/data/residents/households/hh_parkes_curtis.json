@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Porter County history names Curtis Parkes in its February 1836 organization vote. Exact name and adjacent-region chronology are strong, but the Chicago letter may only reflect the nearest postal route.",
     "evidence_against": "Porter County residence and no direct letter bridge.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "porter_curtis_parkes"
     ],
     "candidate_ids": [
      "cand_curtis_parkes_of_porter_county__parkes_curtis"
-    ]
+    ],
+    "summary": "Porter County history names Curtis Parkes in its February 1836 organization vote. Exact name and adjacent-region chronology are strong, but the Chicago letter may only reflect the nearest postal route. [Read for pass 03 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

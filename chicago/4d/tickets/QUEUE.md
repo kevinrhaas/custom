@@ -52,7 +52,6 @@
 
 
 
-T-0837 — Spend the standing synthesis write: read the promotions it proposes and land them deliberately
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
@@ -359,3 +358,7 @@ T-0866 — The card rename of T-0721 broke the register's link to two townspeopl
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0868 — Norris 1844 normalizes 'Jones, B. & Co. dry goods and groceries' as a person, not a firm, so the firm filter never sees it
 T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
