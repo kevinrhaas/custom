@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 640, title: 'A fence run now names its side of the lot', kind: 'fix', ts: '2026-09-06T15:12:17.961Z', date: 'Sep 6, 2026, 10:12 AM CT',
+    items: [
+      'The town\u2019s lot-line fences are generated, not placed by hand, and each run carries an id so that anything reading them \u2014 a compile, an audit, a diff asking whether a run moved \u2014 can name the one it means. That id named the LOT: and a lot has two side lines, so the fence up one side and the fence down the other came out sharing a single name. Seventeen names across the three fence records were each doing duty for two runs.',
+      'Both runs were always real. The pair called side_blk_lake_dearborn_lot1 sit twenty-six metres apart, which is one lot\u2019s width \u2014 the east line and the west line of the same yard. Nothing was drawn twice and nothing was missing from the walk; the name simply identified the lot and then stopped.',
+      'The name now finishes the sentence. Each side run is measured against its own lot\u2019s centre and takes the compass side it falls on, so the two above are the west and the east line and read that way, and the note on every run says the side in words. No fence moved a centimetre: the whole change to the three records is names and notes, with every path, owner and count untouched.',
+      'The gate that asserts no committed list carries an id twice had been made to look away from these three files, with the reason and the ticket written down beside it rather than skipped in silence. It looks at them again today, and the list of things it is allowed to overlook is now empty.',
+    ] },
   { v: 639, title: 'One fenced grave, and a burying ground left unbuilt', kind: 'feat', ts: '2026-09-06T14:52:14.142Z', date: 'Sep 6, 2026, 9:52 AM CT',
     items: [
       'The 1830 plan of Fort Dearborn letters two burial places on the fort\u2019s ground, and this town had drawn neither. One of them is drawn tonight and the other deliberately is not \u2014 which of the two a place got came down to what the sources give it.',
