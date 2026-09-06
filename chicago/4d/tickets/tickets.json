@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 10:42 PM",
+  "generated_ct": "Sep 5, 2026, 11:00 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12266,7 +12266,7 @@
     {
       "id": "T-0721",
       "title": "Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12276,11 +12276,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 11:00:10 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34009698783",
       "queue_rank": 1
     },
     {
