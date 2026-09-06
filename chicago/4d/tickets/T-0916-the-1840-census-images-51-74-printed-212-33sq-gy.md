@@ -1,7 +1,7 @@
 ---
 id: T-0916
 title: The 1840 census images 51-74: printed 212 (33SQ-GYYJ-RY) and 213 (33SQ-GYYJ-RK) read line by line to the name
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1009
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T23:33:49.495Z
 claimed_run: null
 ---
 
