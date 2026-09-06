@@ -3,6 +3,107 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 269,
+      "takenAt": "2026-09-06T12:45:20.067Z",
+      "ref": "steward/t-0759-waterman-hogshead-cart",
+      "commit": "6f8da631e233",
+      "devCommit": "f5d1682dbc34",
+      "treeHash": "sha256:87825a76d5ea1663",
+      "treeDirty": false,
+      "changelogHash": "sha256:fe00c3ebb5f3bfe3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-4",
+      "parts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 248,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 397,
+      "takenAt": "2026-09-06T12:40:43.715Z",
+      "ref": "steward/t-0759-waterman-hogshead-cart",
+      "commit": "6f8da631e233",
+      "devCommit": "f5d1682dbc34",
+      "treeHash": "sha256:87825a76d5ea1663",
+      "treeDirty": false,
+      "changelogHash": "sha256:fe00c3ebb5f3bfe3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.7,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_m14.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 155,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 363,
+      "takenAt": "2026-09-06T12:33:54.323Z",
+      "ref": "steward/t-0759-waterman-hogshead-cart",
+      "commit": "6f8da631e233",
+      "devCommit": "f5d1682dbc34",
+      "treeHash": "sha256:87825a76d5ea1663",
+      "treeDirty": false,
+      "changelogHash": "sha256:fe00c3ebb5f3bfe3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3,
+          3.1,
+          1.7
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1394,100 +1495,6 @@
         ]
       },
       "source": "/tmp/s4_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 275,
-      "takenAt": "2026-09-06T00:27:45.727Z",
-      "ref": "steward/t-0845-unruled-conflicts",
-      "commit": "6b5e97d4c7fb",
-      "devCommit": "c647d01a11b5",
-      "treeHash": "sha256:4f6bf606d9aaec3f",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7ddfa0fad4add25",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.8,
-          4
-        ]
-      },
-      "source": "/tmp/s4_mobile.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 110,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 309,
-      "takenAt": "2026-09-06T00:08:39.969Z",
-      "ref": "steward/t-0845-unruled-conflicts",
-      "commit": "c9e72e6e515c",
-      "devCommit": "b77b1ae147be",
-      "treeHash": "sha256:4f6bf606d9aaec3f",
-      "treeDirty": false,
-      "changelogHash": "sha256:a24e4470c896f4e8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.2,
-          3.5
-        ]
-      },
-      "source": "/tmp/s3_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 253,
-      "takenAt": "2026-09-06T00:08:39.866Z",
-      "ref": "steward/t-0845-unruled-conflicts",
-      "commit": "c9e72e6e515c",
-      "devCommit": "b77b1ae147be",
-      "treeHash": "sha256:4f6bf606d9aaec3f",
-      "treeDirty": false,
-      "changelogHash": "sha256:a24e4470c896f4e8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.2,
-          3.5
-        ]
-      },
-      "source": "/tmp/s3_d12.log"
     },
     {
       "viewport": "mobile",
