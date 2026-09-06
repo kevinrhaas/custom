@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 4:03 PM",
+  "generated_ct": "Sep 6, 2026, 4:11 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15484,6 +15484,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 181
+    },
+    {
+      "id": "T-0909",
+      "title": "The Chappel shore drawing has no candidate left: the cheapest question is the depositor's, and it has never been asked",
+      "state": "blocked-owner",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Where did the Eliza Chappel shore drawing come from? The file was deposited with a social-media filename and no artist, date or repository, and T-0716 has now eliminated the last candidate on the picture. Every automated route this runner can reach has been run and recorded; the only one with a person behind it is you. If the scan came from a book, a museum page or a Facebook post, one sentence naming it settles what a catalogue sweep may not.",
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": null
     }
   ]
 }
