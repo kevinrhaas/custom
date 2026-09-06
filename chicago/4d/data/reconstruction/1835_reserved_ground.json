@@ -40,6 +40,94 @@
         "anonymous_infill": "Every family the 665-roof programme could deal here. The four roofs this block held at the moment of its reservation — A1, D3, D4, D5 — return to the south district's balance and wait on coverage with the rest.",
         "lots": "The block is emitted with no lots at all. Its eight conjectural lot lines were the plat module's default subdivision and this project has never read a lot line on this block off any sheet; drawing them asserted that the square was offered in lots, which is the claim being withdrawn."
       }
+    },
+    {
+      "block_id": "blk_school_section_1",
+      "name": "The north-west reservation",
+      "block_number": 1,
+      "spans": null,
+      "bounded_by": {
+        "north": "madison",
+        "south": "monroe",
+        "west_sheet_name": null,
+        "east_sheet_name": null
+      },
+      "where": "the corner of Madison Street and the section's west line",
+      "reserved_for": "unstated",
+      "confidence": "inferred",
+      "sources": ["wright_1834_nara_hup"],
+      "sale_test": {
+        "result": "corroborated",
+        "note": "No row of the sale sells a lot in block 1, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it.",
+        "tested_against": "data/research/land_sales/entries.json, section 16 T39N R14E, the October 1833 school-section sale"
+      },
+      "note": "Wright writes 'Reserved' across this block and no numeral. What it was reserved FOR is not on the sheet and is not supplied here. No row of the sale sells a lot in block 1, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it."
+    },
+    {
+      "block_id": "blk_school_section_142",
+      "name": "The north-east reservation",
+      "block_number": 142,
+      "spans": null,
+      "bounded_by": {
+        "north": "madison",
+        "south": "monroe",
+        "west_sheet_name": null,
+        "east_sheet_name": null
+      },
+      "where": "the corner of Madison Street and State Street",
+      "reserved_for": "unstated",
+      "confidence": "inferred",
+      "sources": ["wright_1834_nara_hup"],
+      "sale_test": {
+        "result": "corroborated",
+        "note": "No row of the sale sells a lot in block 142, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it.",
+        "tested_against": "data/research/land_sales/entries.json, section 16 T39N R14E, the October 1833 school-section sale"
+      },
+      "note": "Wright writes 'Reserved' across this block and no numeral. What it was reserved FOR is not on the sheet and is not supplied here. No row of the sale sells a lot in block 142, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it."
+    },
+    {
+      "block_id": "blk_school_section_87",
+      "name": "The South Branch reservation",
+      "block_number": 87,
+      "spans": [87, 88],
+      "bounded_by": {
+        "north": "school_section_tier_7",
+        "south": "school_section_tier_8",
+        "west_sheet_name": null,
+        "east_sheet_name": "Wells"
+      },
+      "where": "on the east bank of the South Branch, spanning blocks 87 and 88",
+      "reserved_for": "unstated",
+      "confidence": "inferred",
+      "sources": ["wright_1834_nara_hup"],
+      "sale_test": {
+        "result": "untested",
+        "note": "No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration.",
+        "tested_against": "data/research/land_sales/entries.json, section 16 T39N R14E, the October 1833 school-section sale"
+      },
+      "note": "Wright writes 'Reserved' across this block and no numeral. What it was reserved FOR is not on the sheet and is not supplied here. No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration."
+    },
+    {
+      "block_id": "blk_school_section_88",
+      "name": "The South Branch reservation",
+      "block_number": 88,
+      "spans": [87, 88],
+      "bounded_by": {
+        "north": "school_section_tier_6",
+        "south": "school_section_tier_7",
+        "west_sheet_name": null,
+        "east_sheet_name": "Wells"
+      },
+      "where": "on the east bank of the South Branch, spanning blocks 87 and 88",
+      "reserved_for": "unstated",
+      "confidence": "inferred",
+      "sources": ["wright_1834_nara_hup"],
+      "sale_test": {
+        "result": "untested",
+        "note": "No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration.",
+        "tested_against": "data/research/land_sales/entries.json, section 16 T39N R14E, the October 1833 school-section sale"
+      },
+      "note": "Wright writes 'Reserved' across this block and no numeral. What it was reserved FOR is not on the sheet and is not supplied here. No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration."
     }
   ]
 }
