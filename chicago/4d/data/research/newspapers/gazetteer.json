@@ -59432,8 +59432,8 @@
       "placement": {
         "class": "relative",
         "anchor": "the corner of Randolph st.",
-        "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
-        "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+        "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+        "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
         "street": "South Water Street"
       },
       "evidence": {
@@ -59479,8 +59479,8 @@
           "placement": {
             "class": "relative",
             "anchor": "the corner of Randolph st.",
-            "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
-            "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+            "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+            "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
             "street": "South Water Street"
           }
         },
@@ -60019,8 +60019,8 @@
           "placement": {
             "class": "relative",
             "anchor": "Messrs. Newberry & Dole's store",
-            "offset_text": "m South Water-street, a few doora north\n(rs, Newbury & Dole's store, where he",
-            "offset_normalized": "[on] South Water-street, a few doors north [of Mess]rs. Newbury & Dole's store",
+            "offset_text": "| town, on South Water-street, a few doors north}",
+            "offset_normalized": "on South Water-street, a few doors north of Messrs. Newbury & Dole's store",
             "street": "South Water Street"
           }
         },
