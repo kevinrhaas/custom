@@ -5,16 +5,17 @@
   "source_id": "newberry_genealogical_index",
   "volume": 1,
   "counts": {
-    "cards": 2394,
+    "cards": 2384,
     "records": 2397,
     "slivers": 3,
+    "bled_in_bodies": 10,
     "by_locality": {
       "chicago": 404,
       "cook_county": 158,
       "illinois_named": 235,
-      "illinois_abbreviated": 1970
+      "illinois_abbreviated": 1960
     },
-    "distinct_surname_keys": 1589,
+    "distinct_surname_keys": 1582,
     "leads": 398,
     "leads_by_layer": {
       "census_1840": 123,
@@ -23,7 +24,7 @@
       "voters": 62
     },
     "chicago_or_cook_cards": 562,
-    "cards_matching_no_known_work": 1325,
+    "cards_matching_no_known_work": 1316,
     "chicago_or_cook_cards_matching_no_known_work": 142
   },
   "records": [
@@ -22592,7 +22593,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_0826",
+        "bleed_run": "y.dwn, Co., III.",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -22606,7 +22610,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0826 — 'y.dwn, Co., III.', 16 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0833",
@@ -22618,7 +22622,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_0829",
+        "bleed_run": ".(un. Co., III. (M",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -22632,7 +22639,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0829 — '.(un. Co., III. (M', 18 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0834",
@@ -22646,7 +22653,10 @@
         "chicago_or_cook": false,
         "works_cited": [
           "county_histories_kett_and_co"
-        ]
+        ],
+        "bleed_of": "nbi_v01_0831",
+        "bleed_run": "Carroll Co., Ill,",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -22660,7 +22670,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0831 — 'Carroll Co., Ill,', 17 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0835",
@@ -24666,7 +24676,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_0906",
+        "bleed_run": "Clair Co, 111. (B",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -24680,7 +24693,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0906 — 'Clair Co, 111. (B', 17 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0910",
@@ -25265,7 +25278,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_0930",
+        "bleed_run": "Co., 111. (Chxp",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -25279,7 +25295,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0930 — 'Co., 111. (Chxp', 15 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0932",
@@ -26863,7 +26879,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_0988",
+        "bleed_run": "ll Co., III. (Ke",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -26877,7 +26896,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_0988 — 'll Co., III. (Ke', 16 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_0992",
@@ -28287,7 +28306,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_1041",
+        "bleed_run": "ollCo.,111. ( &",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -28301,7 +28323,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_1041 — 'ollCo.,111. ( &', 15 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_1045",
@@ -28672,7 +28694,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_1057",
+        "bleed_run": "ams Co., III. ( M",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -28686,7 +28711,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_1057 — 'ams Co., III. ( M', 17 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_1059",
@@ -58633,7 +58658,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_2162",
+        "bleed_run": "_Pilt Co., III.",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -58647,7 +58675,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_2162 — '_Pilt Co., III.', 15 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_2165",
@@ -61292,7 +61320,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v01_2262",
+        "bleed_run": "d a m i Co., III.",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_01",
@@ -61306,7 +61337,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v01_2262 — 'd a m i Co., III.', 17 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v01_2264",
