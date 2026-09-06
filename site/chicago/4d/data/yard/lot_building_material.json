@@ -17,11 +17,11 @@
     "refused": 14
   },
   "census": {
-    "standing": 377,
+    "standing": 379,
     "anonymous_refused": 281,
-    "named_examined": 96,
+    "named_examined": 98,
     "named_with_1835_start_refused": 14,
-    "state_not_stated_refused": 95,
+    "state_not_stated_refused": 97,
     "qualified": 1
   },
   "existence": {

@@ -10286,10 +10286,10 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
 
-### L219 — Sixty-six roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 66 structures
+### L219 — Sixty-eight roofs are told who entered their ground by a survey grid nobody traced
+**Scope:** `structures.land_owner[constructed_section_grid]` — 68 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 66 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 68 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10314,15 +10314,16 @@ and deliberately NOT put on the ground** for being outside them. Inside them eac
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
 tract line than that drops to `reconstructed`, and the metres are printed on the row. **51 of
-the 66 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+the 68 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
 the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
 are at the bottom tier for the ordinary geometric reason rather than for an invention behind
 them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
 the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
-15 documented buildings carry the middle tier, the newest of them the garrison's barn at
-47.4 m. Two tracts are not grid squares at all
+17 documented buildings carry the middle tier, the newest of them the fort's two out
+buildings, added 2026-09-06 by T-0881 at 81.1 m and 76.4 m from a tract line — the widest
+margins on the reservation ring, because they stand the furthest south of anything on it. Two tracts are not grid squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
 reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10
 clipped to the committed north bank of the main stem.
@@ -10848,7 +10849,52 @@ figure and no animal is drawn) · tickets **T-0759** (this), **T-0592** (the rea
 found the trade and left it undrawn).
 **Recorded:** 2026-09-06 (T-0759).
 
-### L228 — A fence round one grave, and a burial ground left as a polygon
+### L228 — A plural label, two drawn blocks, and everything above the ground invented
+**Decision:** `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b` stand about
+160 m south of Fort Dearborn's pickets, where the 1830 Harrison plan letters **Out Buildings**
+against a pair of solid blocks. **Where they stand, how big they are and how they are turned is
+read off the plate. What they are made of, how high they are, what shape their roofs are and
+where their doors are is invented**, and every one of those attributes is graded
+`reconstructed` on both records, so a visitor turning the reconstructed tier off sees both
+buildings' fabric go with it.
+**Why:** T-0881 was opened believing this was the wash house's problem in reverse — *a plural
+label the plate draws once*. Measured, it is not: the label is plural and the plate draws TWO
+blocks, 224 px and 69 px of solid ink, 7.0 m apart, with the outer fence line running between
+them. So there are two buildings whose position this project can defend to a few metres and
+whose walls it cannot defend at all, on ONE witness rather than the wash house's two — Hubbard
+describes the fort's well and its wash-houses and never mentions out buildings. The alternative
+to inventing the walls was leaving a labelled pair off the model for a fifth year.
+`RECONSTRUCTED IS A TIER, NOT A FAILURE` (AGENTS.md) is the ruling that says build them and
+grade them down; this entry is the price of it, and the price is higher here than at L226
+because there is no second witness to check the first against.
+**What was invented, item by item.** Both buildings: `log` construction, a roof, its pitch, an
+eave height, a man door, which wall the door is in, and no paint. (a) carries a gable at 32
+degrees on a 2.4 m eave; (b) a shed at 20 degrees on a 2.1 m eave. Every figure is the
+`outbuilding` archetype's own size-aware default. None of them is a reading, and `log` in
+particular is recorded as INVENTED rather than as an inference from the garrison's practice —
+the wash house next door earns `plank` from Hubbard's word *rude*, and there is no equivalent
+word here.
+**What is measured and is NOT invented:** the two centres, the two sizes and the two bearings,
+all of them second moments of the drawn ink after a 3 x 3 erosion that deletes the fence line
+crossing both blocks. The method is on the records because an eye-read bounding box would have
+carried the fence into the building.
+**Consequence:** a visitor walking south from the fort's gate meets two small log buildings on
+ground that was empty, the larger with a gable and the smaller barely bigger than a privy. The
+confidence view tells them the difference between the two claims: the footprint chips read
+`inferred`, every wall chip reads `reconstructed`.
+**What is NOT claimed:** what either building was for. `Out Buildings` names what a building is
+not — not the barn, not the shop, not the wash house, all three of which this same plate letters
+separately — and a post's out buildings are privies, wood sheds, stores and pens. Nor is it
+claimed which of the pair stood inside the outer fence and which outside: the drawn line is two
+to three pixels wide, which is a metre on the ground at this scale, and both blocks touch it.
+Nor is the pair claimed to be all of them — the label is plural over two, and a third that the
+engraver did not draw would not be visible to this reading.
+Related: **L227** (the water cart, which took this number first) · **L226** (the wash house and the shop) · **L225** (the barn's cupola) · **T-0881**
+(this) · **T-0758** (the parent) · **T-0592** (the well class this project refused the town).
+**Covers:** `fort_dearborn_out_building_a.out_building_a_1830.form.construction`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_type`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_a.out_building_a_1830.form.wall_height_m`, `fort_dearborn_out_building_a.out_building_a_1830.form.door`, `fort_dearborn_out_building_a.out_building_a_1830.form.door_side`, `fort_dearborn_out_building_a.out_building_a_1830.form.paint`, `fort_dearborn_out_building_b.out_building_b_1830.form.construction`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_type`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_b.out_building_b_1830.form.wall_height_m`, `fort_dearborn_out_building_b.out_building_b_1830.form.door`, `fort_dearborn_out_building_b.out_building_b_1830.form.door_side`, `fort_dearborn_out_building_b.out_building_b_1830.form.paint`.
+**Recorded:** 2026-09-06 (T-0881).
+
+### L229 — A fence round one grave, and a burial ground left as a polygon
 **Decision:** `data/enclosures/fort_dearborn_jouett_grave_pickets.json` stands a picket
 fence **3.05 x 2.44 m — 10 x 8 ft** — on the west verge of the road that ran past Fort
 Dearborn's garrison garden, at local east 1107.0, north 64.8, its long side on the road's
@@ -10885,7 +10931,7 @@ for Fort Dearborn 1816-1836; a later plat that draws the cemetery parcel again w
 on it; or a removal record from the 1840s, when the town moved its burying grounds, naming
 what was lifted from either place. Any one of those turns the polygon into a place and the
 invented dimensions into measured ones.
-Related: **L226** (the same plate, the same grade, for two buildings whose walls are
+Related: **L228** (the same sheet, the same ticket family, and the other answer — two buildings BUILT off one witness) · **L226** (the same plate, the same grade, for two buildings whose walls are
 invented) · **L45** and **L47** (the fort's other `geometry: absent` declarations) · **L1**
 (no figure is drawn) · tickets **T-0882** (this), **T-0758** (the parent), **T-0883** (the
 three buildings off the same sheet).

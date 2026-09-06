@@ -3,105 +3,34 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "11-12",
+      "stage": "1",
       "parts": [
-        11,
-        12
+        1
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 80,
+      "passed": 81,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 343,
-      "takenAt": "2026-09-06T14:49:37.126Z",
-      "ref": "steward/t-0882-fort-burial-ground",
-      "commit": "b7121c594ad0",
+      "wallSeconds": 290,
+      "takenAt": "2026-09-06T13:53:35.146Z",
+      "ref": "steward/t-0881-fort-well-outbuildings",
+      "commit": "cffb418fe53e",
       "devCommit": "9b489ece302f",
-      "treeHash": "sha256:49d7c8a922aa456b",
+      "treeHash": "sha256:63fdb35fb312fb26",
       "treeDirty": false,
-      "changelogHash": "sha256:15b90a4fa3e80317",
+      "changelogHash": "sha256:c3df996721e701bd",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
+          4.8,
           3.7,
-          4,
-          3.1
+          2.5
         ]
       },
-      "source": "/tmp/smoke_d1112.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 155,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
-      ],
-      "wallSeconds": 253,
-      "takenAt": "2026-09-06T14:43:34.285Z",
-      "ref": "steward/t-0882-fort-burial-ground",
-      "commit": "b7121c594ad0",
-      "devCommit": "9b489ece302f",
-      "treeHash": "sha256:49d7c8a922aa456b",
-      "treeDirty": false,
-      "changelogHash": "sha256:15b90a4fa3e80317",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke_d23.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-4",
-      "parts": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 248,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
-      ],
-      "wallSeconds": 274,
-      "takenAt": "2026-09-06T14:39:14.310Z",
-      "ref": "steward/t-0882-fort-burial-ground",
-      "commit": "b7121c594ad0",
-      "devCommit": "9b489ece302f",
-      "treeHash": "sha256:49d7c8a922aa456b",
-      "treeDirty": false,
-      "changelogHash": "sha256:15b90a4fa3e80317",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.6,
-          2.1
-        ]
-      },
-      "source": "/tmp/smoke_m14.log"
+      "source": "/tmp/smoke_d1b.log"
     },
     {
       "viewport": "desktop",
@@ -114,22 +43,22 @@
       "passed": 81,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 190,
-      "takenAt": "2026-09-06T14:39:14.233Z",
-      "ref": "steward/t-0882-fort-burial-ground",
-      "commit": "b7121c594ad0",
-      "devCommit": "9b489ece302f",
-      "treeHash": "sha256:49d7c8a922aa456b",
+      "wallSeconds": 294,
+      "takenAt": "2026-09-06T13:42:59.613Z",
+      "ref": "steward/t-0881-fort-well-outbuildings",
+      "commit": "245f623c1c56",
+      "devCommit": "bce91bdd8894",
+      "treeHash": "sha256:8c4c48b548f6325d",
       "treeDirty": false,
-      "changelogHash": "sha256:15b90a4fa3e80317",
+      "changelogHash": "sha256:973b558d4f19acac",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.3,
-          3.6,
-          2.1
+          4.9,
+          3.5,
+          2
         ]
       },
       "source": "/tmp/smoke_d1.log"
@@ -1345,6 +1274,68 @@
         ]
       },
       "source": "/tmp/wr/s2_m.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 198,
+      "takenAt": "2026-09-06T02:35:17.167Z",
+      "ref": "steward/t-0764-cohort-freeze-once",
+      "commit": "91c022e2c907",
+      "devCommit": "d566dc290f27",
+      "treeHash": "sha256:5998f1e2fe87cd2f",
+      "treeDirty": false,
+      "changelogHash": "sha256:27a9035c8006af2f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3,
+          1.5
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 105,
+      "takenAt": "2026-09-06T02:35:17.084Z",
+      "ref": "steward/t-0764-cohort-freeze-once",
+      "commit": "91c022e2c907",
+      "devCommit": "d566dc290f27",
+      "treeHash": "sha256:5998f1e2fe87cd2f",
+      "treeDirty": false,
+      "changelogHash": "sha256:27a9035c8006af2f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3,
+          1.5
+        ]
+      },
+      "source": "/tmp/smoke-mobile-12.log"
     },
     {
       "viewport": "mobile",

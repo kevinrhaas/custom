@@ -4884,6 +4884,18 @@
       "asset": "gltf/fort_dearborn_officers_quarters__log_1816.glb"
     },
     {
+      "id": "fort_dearborn_out_building_a",
+      "name": "Fort Dearborn — out building (a)",
+      "sidecar": "sidecars/1835/fort_dearborn_out_building_a.json",
+      "asset": "gltf/fort_dearborn_out_building_a__out_building_a_1830.glb"
+    },
+    {
+      "id": "fort_dearborn_out_building_b",
+      "name": "Fort Dearborn — out building (b)",
+      "sidecar": "sidecars/1835/fort_dearborn_out_building_b.json",
+      "asset": "gltf/fort_dearborn_out_building_b__out_building_b_1830.glb"
+    },
+    {
       "id": "fort_dearborn_palisade",
       "name": "Fort Dearborn — the stockade",
       "sidecar": "sidecars/1835/fort_dearborn_palisade.json",
