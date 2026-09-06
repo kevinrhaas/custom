@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 10:09 AM",
+  "generated_ct": "Sep 6, 2026, 11:07 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15224,6 +15224,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 179
+    },
+    {
+      "id": "T-0896",
+      "title": "publish.sh minifies four resident mirror files that synthesize_resident_research.py writes indented, and the T-0838 drift ratchet reads the whitespace as drift",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 180
+    },
+    {
+      "id": "T-0897",
+      "title": "census_1840 sits 291 under its read-vs-ruled ceiling after T-0698's spend, and --tighten can only lower every domain at once",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 181
     }
   ]
 }

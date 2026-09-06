@@ -372,3 +372,5 @@ T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a c
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
 T-0890 — tools/web_derivatives.sh compresses with an unpinned `npx --yes @gltf-transform/cli`, so a runner with a newer CLI rewrites the generator string in all 380 web assets
+T-0896 — publish.sh minifies four resident mirror files that synthesize_resident_research.py writes indented, and the T-0838 drift ratchet reads the whitespace as drift
+T-0897 — census_1840 sits 291 under its read-vs-ruled ceiling after T-0698's spend, and --tighten can only lower every domain at once
