@@ -2161,6 +2161,18 @@ step "the letter lists' suspected misreadings stay a worklist and not evidence" 
 step "…and its own assertions still fire when broken" \
   python3 tools/register_letter_list_suspicions.py --self-test
 
+# T-0721, and it is the other half of that worklist. THREE of the names above carry a
+# DIGIT rather than a doubtful letter — '8. G. Abbot', 'A. 8. Perry', 'James I1. Gabbs' —
+# and a digit is never part of a name, so the splitter refused the whole reading and
+# three real cards could never join an identity, be graded by the ladder or be matched to
+# anything. The page images are held outside this repository, so the column cannot be
+# re-read here; the rulings file says so, supplies NO letter, and licenses one narrow
+# thing: the consolidation drops the ruled token for that exact name so the LEGIBLE part
+# can be clustered. That licence is only sound while the ruling still describes the card,
+# which is what this gate holds — and it fails the moment a row acquires a letter.
+step "the unread letter-list initials are ruled, and no ruling names a letter" \
+  python3 tools/check_unread_initial_rulings.py --check
+
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
 

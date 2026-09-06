@@ -83,7 +83,23 @@
     "asserted_identity": false,
     "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "name_reading": {
+    "held_as": "A. 8. Perry",
+    "printed": "Perry A. 8.",
+    "claim": "chicago_democrat_1835_07_01#c005",
+    "token": "8.",
+    "stands_for": "the middle initial",
+    "outcome": "unreadable",
+    "reading": null,
+    "confidence": "inferred",
+    "ticket": "T-0721",
+    "ruled_on": "2026-09-06",
+    "sources": [
+     "chicago_democrat_1833_1835"
+    ],
+    "note": "THE PRINT CANNOT BE READ, AND THAT IS THE RULING (T-0721). The name this card is stored under carries a DIGIT, and a digit is never part of a name: it is what the OCR left where the compositor set an initial. No run here can go back to the column and read the letter, because the Chicago Democrat's page images are held OUTSIDE this repository — the source record says so in as many words and registers the deposit as text_only. So no letter is written here, and none may be: T-0638's suspicions register reached the same conclusion and set `suspected_reading: null` on this token. What HAS changed is that the illegible initial no longer refuses the whole name. `tools/consolidate_resident_evidence.py` drops the ruled token, for this name and no other, so the legible part can be clustered; the unread initial is absent from every key, so no identity is merged on it. The ruling, the impressions it rests on and the reason a letter is refused are in data/research/residents/letter_list_unread_initials.json, and tools/check_unread_initial_rulings.py fails the build if this card's name moves out from under it. The `8.` stands for the middle initial, and this is the one card where a letter was tempting. Fergus' Chicago directory of 1839 and 1843 print 'Perry, Abijah S., barber, ex-justice of peace', so an `S.` would fit the space exactly — and it is still refused. The crosswalk that reached that entry matched on the surname and the leading `A.` alone, so reading the digit off it and then letting the completed name strengthen the same crosswalk is a circle; and a directory four years after the scene date cannot say what a compositor set in July 1835. On the legible `A.` alone the consolidation attaches this card to identity id_perry_abijah_s by its standing rule M2 — the one full forename of that surname carrying the initial — which is a merge on `A.`, never on the digit. NO GRADE MOVES ON IT: the ladder's G5 rung disagrees with the grade this card carries, so the row goes to the owner's conflict list and the card is left alone."
+   }
   }
  ],
  "touches_removal": false,

@@ -76,7 +76,23 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "name_reading": {
+    "held_as": "8. G. Abbot",
+    "printed": "Abbot, 8. G.",
+    "claim": "chicago_democrat_1835_07_01#c004",
+    "token": "8.",
+    "stands_for": "the first of two forename initials",
+    "outcome": "unreadable",
+    "reading": null,
+    "confidence": "inferred",
+    "ticket": "T-0721",
+    "ruled_on": "2026-09-06",
+    "sources": [
+     "chicago_democrat_1833_1835"
+    ],
+    "note": "THE PRINT CANNOT BE READ, AND THAT IS THE RULING (T-0721). The name this card is stored under carries a DIGIT, and a digit is never part of a name: it is what the OCR left where the compositor set an initial. No run here can go back to the column and read the letter, because the Chicago Democrat's page images are held OUTSIDE this repository — the source record says so in as many words and registers the deposit as text_only. So no letter is written here, and none may be: T-0638's suspicions register reached the same conclusion and set `suspected_reading: null` on this token. What HAS changed is that the illegible initial no longer refuses the whole name. `tools/consolidate_resident_evidence.py` drops the ruled token, for this name and no other, so the legible part can be clustered; the unread initial is absent from every key, so no identity is merged on it. The ruling, the impressions it rests on and the reason a letter is refused are in data/research/residents/letter_list_unread_initials.json, and tools/check_unread_initial_rulings.py fails the build if this card's name moves out from under it. The `8.` stands for the first of two forename initials. Two impressions are in hand — the return of 1 July 1835 and the same list standing in the issue of 8 July, transcribed in a separate pass — and both give the digit, which makes it the ink or the scan rather than a slip of one reading, and still does not say which letter was set. The card now stands on `G. Abbot` as identity id_abbot_g, alone: it merges with nobody."
+   }
   }
  ],
  "touches_removal": false,

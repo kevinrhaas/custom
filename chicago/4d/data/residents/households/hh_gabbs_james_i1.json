@@ -75,7 +75,23 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "name_reading": {
+    "held_as": "James I1. Gabbs",
+    "printed": "Gabbs, James I1.",
+    "claim": "chicago_democrat_1835_07_01#c005",
+    "token": "I1.",
+    "stands_for": "the middle initial",
+    "outcome": "unreadable",
+    "reading": null,
+    "confidence": "inferred",
+    "ticket": "T-0721",
+    "ruled_on": "2026-09-06",
+    "sources": [
+     "chicago_democrat_1833_1835"
+    ],
+    "note": "THE PRINT CANNOT BE READ, AND THAT IS THE RULING (T-0721). The name this card is stored under carries a DIGIT, and a digit is never part of a name: it is what the OCR left where the compositor set an initial. No run here can go back to the column and read the letter, because the Chicago Democrat's page images are held OUTSIDE this repository — the source record says so in as many words and registers the deposit as text_only. So no letter is written here, and none may be: T-0638's suspicions register reached the same conclusion and set `suspected_reading: null` on this token. What HAS changed is that the illegible initial no longer refuses the whole name. `tools/consolidate_resident_evidence.py` drops the ruled token, for this name and no other, so the legible part can be clustered; the unread initial is absent from every key, so no identity is merged on it. The ruling, the impressions it rests on and the reason a letter is refused are in data/research/residents/letter_list_unread_initials.json, and tools/check_unread_initial_rulings.py fails the build if this card's name moves out from under it. The `I1.` stands for the middle initial. Only one impression is in hand; the surviving transcription of the 8 July issue is partial and does not carry this stretch of the list. `I1` is the shape an `H` leaves when its crossbar drops out, and equally the shape of a broken `N`, `M` or `U`, and this project will not choose among them. The card now stands on `James Gabbs` as identity id_gabbs_james, alone."
+   }
   }
  ],
  "touches_removal": false,

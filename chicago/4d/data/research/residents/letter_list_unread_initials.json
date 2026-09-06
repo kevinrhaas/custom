@@ -1,0 +1,60 @@
+{
+ "schema": "letter-list-unread-initial-rulings-v1",
+ "ticket": "T-0721",
+ "ruled_on": "2026-09-06",
+ "_doc": "THREE TOWN CARDS WHOSE STORED NAME CARRIES A DIGIT, AND THE RULING ON EACH. A digit is never part of a name, so `split_name` refuses the whole reading and the card can never join an identity, be graded by the ladder or be matched to another source (T-0721). This file rules on the digit ONE PERSON AT A TIME and its ruling is always the same: the print CANNOT BE READ from what this project holds, so the token stands for an initial nobody here may name. It supplies NO letter. `reading` is null on every row and must stay null unless a run reads the printed column itself. What the file licenses downstream is narrow and is the whole of it: `tools/consolidate_resident_evidence.py` drops the ruled token before its digit guard, for THIS name and no other, so the LEGIBLE part of the name may cluster. The unread initial contributes nothing to any key, so no identity is ever merged on it. Gated by `tools/check_unread_initial_rulings.py --check`, which fails if a ruled card's name moves, if the token stops standing in it, or if a row ever names a letter.",
+ "why_the_column_cannot_be_read": "The Chicago Democrat's PAGE IMAGES are not in this repository. `data/sources/chicago_democrat_1833_1835.json` records the deposit as `asset_use: text_only` and says in as many words that the project's rights do not extend to the images, 'which are held outside the repository'. What is on the shelf is the owner's OCR-assisted transcription of each issue. So there is no printed column here to go back to, and a letter written onto these three cards would be a guess dressed as a reading. T-0638's suspicions register reached the same conclusion from the other side and set `suspected_reading: null` on all three of these tokens: the project declines to guess at all.",
+ "counts": {
+  "rulings": 3,
+  "unreadable": 3,
+  "readings_supplied": 0
+ },
+ "rulings": [
+  {
+   "person": "abbot_8_g",
+   "household": "hh_abbot_8_g",
+   "held_as": "8. G. Abbot",
+   "printed": "Abbot, 8. G.",
+   "claim": "chicago_democrat_1835_07_01#c004",
+   "token": "8.",
+   "stands_for": "the first of two forename initials",
+   "outcome": "unreadable",
+   "reading": null,
+   "impressions_in_hand": [
+    "chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt — the return of 1 July 1835, column 4: 'Abbot, 8. G.'",
+    "chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-08_Vol2_No12_Transcription-2.docx — the same list standing in the following week's issue, transcribed in a separate pass: 'Abbot, 8. G.'"
+   ],
+   "note": "TWO IMPRESSIONS, TWO TRANSCRIPTION PASSES, THE SAME DIGIT. That is as far as the deposit goes: it makes the digit an artefact of the ink or the scan rather than a slip of one reading, and it still does not say which letter the compositor set. `G.` is legible and is what this card may be clustered on."
+  },
+  {
+   "person": "gabbs_james_i1",
+   "household": "hh_gabbs_james_i1",
+   "held_as": "James I1. Gabbs",
+   "printed": "Gabbs, James I1.",
+   "claim": "chicago_democrat_1835_07_01#c005",
+   "token": "I1.",
+   "stands_for": "the middle initial",
+   "outcome": "unreadable",
+   "reading": null,
+   "impressions_in_hand": [
+    "chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt — the return of 1 July 1835, column 5: 'Gabbs, James I1.'"
+   ],
+   "note": "ONE IMPRESSION ONLY: the surviving transcription of the 8 July issue is partial and does not carry this stretch of the list. `I1` is the shape an `H` leaves when its crossbar drops out, and it is also the shape of `N`, `M` and `U` broken the same way — the project will not choose among them. `James` is legible and is what this card may be clustered on."
+  },
+  {
+   "person": "perry_a_8",
+   "household": "hh_perry_a_8",
+   "held_as": "A. 8. Perry",
+   "printed": "Perry A. 8.",
+   "claim": "chicago_democrat_1835_07_01#c005",
+   "token": "8.",
+   "stands_for": "the middle initial",
+   "outcome": "unreadable",
+   "reading": null,
+   "impressions_in_hand": [
+    "chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt — the return of 1 July 1835, column 5: 'Perry A. 8.'"
+   ],
+   "note": "AND THE ONE CARD WHERE A LETTER WAS TEMPTING, WHICH IS WHY IT IS WRITTEN DOWN. This card already carries Fergus' Chicago directory of 1839 and 1843, which print 'Perry, Abijah S., barber, ex-justice of peace' — so an `S.` would fit the space exactly. It is still refused here, for two reasons. The crosswalk that reached that entry matched on the surname and on the leading `A.` alone (data/research/directories/fergus_1839_register_crosswalk_1835.json); reading the digit off it and then letting the completed name strengthen the same crosswalk is a circle. And the crosswalk is 1839 and 1837 evidence about a man who is not yet asserted to be this man — the card says so itself and moves no grade on it. A directory four years later may propose a letter; it cannot say what the compositor set in July 1835. `A.` is legible and is what this card may be clustered on."
+  }
+ ]
+}

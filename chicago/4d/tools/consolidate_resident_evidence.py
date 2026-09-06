@@ -68,6 +68,7 @@ PROPOSAL = OUT_DIR / "grading_proposal.json"
 LADDER_COVERAGE = OUT_DIR / "ladder_coverage.json"
 POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
 INDEX = RESIDENTS / "index.json"
+UNREAD_INITIALS = OUT_DIR / "letter_list_unread_initials.json"
 
 SCENE_YEAR = 1835
 GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
@@ -187,6 +188,51 @@ def split_name(text: str) -> tuple[str, list[str]] | None:
     return split_name_or_reason(text)[0]
 
 
+# T-0721. THE THREE TOWN CARDS WHOSE STORED NAME CARRIES A DIGIT, and what the project
+# is allowed to do about them. `8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR
+# readings of the post office's letter list; the digit stands where an initial was set,
+# and the guard below rightly refuses to call any of them a name. The consequence was
+# that three real cards could never join an identity, be graded by the ladder or be
+# matched to anything, on account of one illegible glyph in an otherwise legible name.
+#
+# The page images are held outside this repository, so no run here can go back to the
+# column and read the letter. `data/research/residents/letter_list_unread_initials.json`
+# rules on each of the three instead, and its ruling supplies NO letter: the token stands
+# for an initial nobody may name. All this reader does with that ruling is DROP the ruled
+# token — for that exact printed name and no other — so the legible part of the name can
+# be clustered. Nothing is guessed and nothing is merged on the unread initial, because
+# after this it is not in the key at all.
+#
+# It is deliberately a lookup and not a pattern. A digit in a name is usually an ADDRESS
+# on a directory line that names an institution — `Reading Room (Y. M. A.), 37 Clark, 2d
+# story` is how an identity called `a` got minted once — and any rule loose enough to
+# admit `A. 8. Perry` by shape alone admits those too.
+def _glyph_key(token: str) -> str:
+    """A token's letters AND digits, lowercased. `clean` drops the digits, which is
+    exactly the character a ruling is about, so it cannot be used here (T-0721)."""
+    return re.sub(r"[^a-z0-9]+", "", (token or "").lower())
+
+
+def _unread_initial_tokens() -> dict[str, str]:
+    """{name as the card holds it: the ruled token} — empty if the register is absent."""
+    try:
+        doc = json.loads(UNREAD_INITIALS.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+    out = {}
+    for row in doc.get("rulings") or []:
+        if row.get("outcome") != "unreadable" or row.get("reading") is not None:
+            continue
+        token = _glyph_key(row.get("token") or "")
+        for printed in (row.get("held_as"), row.get("printed")):
+            if printed and token:
+                out[printed.strip()] = token
+    return out
+
+
+UNREAD_TOKENS = _unread_initial_tokens()
+
+
 def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str | None]:
     """(parsed, reason). Exactly one of the two is set.
 
@@ -201,6 +247,7 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
     that each one now says which one it was."""
     if not text or not isinstance(text, str):
         return None, "the record prints no name at all"
+    original = text.strip()
     text = text.replace("&", " and ")
     if " and " in text.lower():
         # a firm style, not a person
@@ -228,6 +275,13 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
             surname_part, given_part = parts[0], " ".join(parts[1:])
         else:
             surname_part, given_part = parts[-1], " ".join(parts[:-1])
+    ruled = UNREAD_TOKENS.get(original)
+    if ruled is not None and not any(ch.isdigit() for ch in surname_part):
+        # The ruled token leaves the reading entirely (T-0721): it is not a letter, it is
+        # not a wildcard, and it may not stand in a key. What is left is what is legible.
+        raw = re.split(r"[\s.]+", given_part)
+        if any(_glyph_key(t) == ruled for t in raw):
+            given_part = " ".join(t for t in raw if _glyph_key(t) != ruled)
     tokens = [t for t in re.split(r"[\s.]+", given_part) if clean(t)]
     if any(ch.isdigit() for ch in surname_part + given_part):
         return None, ("a digit stands inside the printed name. On a directory line that "
@@ -1715,7 +1769,11 @@ def cmd_self_test() -> int:
     # sentence is false of every one of them. R1 is now reserved for the record that
     # genuinely prints no forename; R5 says which guard actually fired.
     for text, rule, must_say in [
-            ("8. G. Abbot", "R5", "digit"),
+            # T-0721 moved '8. G. Abbot' out of this list and into the one below: it is
+            # RULED, and a ruled card is read. An UNRULED digit is refused exactly as
+            # before, and this is the case that proves the guard did not simply go away.
+            ("8. G. Smith", "R5", "digit"),
+            ("Reading Room (Y. M. A.), 37 Clark, 2d story", "R5", "digit"),
             ("Rev. John Mary Irenaeus St Cyr", "R5", "four"),
             ("Heacock's wife and children, unnamed", "R5", "'and'"),
             ("Abbott", "R1", "no forename"),
@@ -1727,6 +1785,27 @@ def cmd_self_test() -> int:
         ok = len(rows) == 1 and rows[0]["rule"] == rule and must_say in rows[0]["why"]
         print(f"  {'ok   ' if ok else 'FAIL'} {text!r} is refused {rule} and says why"
               f" -> {rows[0]['rule'] + ': ' + rows[0]['why'][:60] if rows else 'no refusal'}")
+        failures += 0 if ok else 1
+
+    # ---- T-0721: A RULED UNREAD INITIAL IS DROPPED, NEVER READ --------------
+    # The three town cards whose stored name carries a digit. The ruling supplies no
+    # letter; it says the token is an initial nobody here may name. What must come out
+    # the far side is the LEGIBLE part of the name, with the unread token absent from
+    # the key — so an identity can be built on `G. Abbot`, and never on the `8.`
+    for text, want in [
+            ("8. G. Abbot", ("abbot", ["g"])),
+            ("A. 8. Perry", ("perry", ["a"])),
+            ("James I1. Gabbs", ("gabbs", ["james"])),
+    ]:
+        parsed, reason = split_name_or_reason(text)
+        ok = parsed == want and reason is None
+        print(f"  {'ok   ' if ok else 'FAIL'} {text!r} reads as {want} with the unread "
+              f"initial dropped -> {parsed if parsed else reason}")
+        failures += 0 if ok else 1
+    for text in ("8. G. Abbot", "A. 8. Perry", "James I1. Gabbs"):
+        parsed, _ = split_name_or_reason(text)
+        ok = parsed is not None and not any(ch.isdigit() for t in parsed[1] for ch in t)
+        print(f"  {'ok   ' if ok else 'FAIL'} the ruled token is absent from {text!r}'s key")
         failures += 0 if ok else 1
 
     # ---- T-0692: THE COVERAGE INVARIANT ------------------------------------
