@@ -1,5 +1,5 @@
 ---
-id: T-0906
+id: T-0907
 title: publish.sh minifies four resident files the committed mirror carries pretty-printed, and the T-0838 drift ratchet reads the mirror, so any run that publishes fails a gate it did not break
 state: open
 epic: META

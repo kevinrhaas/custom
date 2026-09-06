@@ -14,8 +14,8 @@
       "file": "records/entries_vol_01.json",
       "covers": "A - C (as printed on the cards)",
       "counts": {
-        "cards": 2398,
-        "records": 2425,
+        "cards": 2387,
+        "records": 2414,
         "slivers": 3,
         "bled_in": 26,
         "bled_in_borrowing_their_locality": 24,
@@ -23,18 +23,18 @@
           "chicago": 403,
           "cook_county": 158,
           "illinois_named": 234,
-          "illinois_abbreviated": 1976
+          "illinois_abbreviated": 1965
         },
-        "distinct_surname_keys": 1599,
-        "leads": 400,
+        "distinct_surname_keys": 1591,
+        "leads": 398,
         "leads_by_layer": {
-          "census_1840": 124,
+          "census_1840": 123,
           "residents": 196,
-          "structures": 18,
+          "structures": 17,
           "voters": 62
         },
         "chicago_or_cook_cards": 561,
-        "cards_matching_no_known_work": 1330,
+        "cards_matching_no_known_work": 1319,
         "chicago_or_cook_cards_matching_no_known_work": 141
       }
     },
@@ -42,8 +42,8 @@
       "file": "records/entries_vol_02.json",
       "covers": "C - H (as printed on the cards)",
       "counts": {
-        "cards": 1873,
-        "records": 1886,
+        "cards": 1864,
+        "records": 1877,
         "slivers": 1,
         "bled_in": 14,
         "bled_in_borrowing_their_locality": 12,
@@ -51,18 +51,18 @@
           "chicago": 283,
           "cook_county": 206,
           "illinois_named": 152,
-          "illinois_abbreviated": 1564
+          "illinois_abbreviated": 1555
         },
-        "distinct_surname_keys": 1246,
-        "leads": 245,
+        "distinct_surname_keys": 1241,
+        "leads": 243,
         "leads_by_layer": {
-          "census_1840": 73,
-          "residents": 127,
+          "census_1840": 72,
+          "residents": 126,
           "structures": 8,
           "voters": 37
         },
         "chicago_or_cook_cards": 489,
-        "cards_matching_no_known_work": 1012,
+        "cards_matching_no_known_work": 1003,
         "chicago_or_cook_cards_matching_no_known_work": 98
       }
     },
@@ -70,8 +70,8 @@
       "file": "records/entries_vol_03.json",
       "covers": "H - P (as printed on the cards)",
       "counts": {
-        "cards": 1993,
-        "records": 2004,
+        "cards": 1984,
+        "records": 1995,
         "slivers": 4,
         "bled_in": 7,
         "bled_in_borrowing_their_locality": 7,
@@ -79,18 +79,18 @@
           "chicago": 307,
           "cook_county": 195,
           "illinois_named": 184,
-          "illinois_abbreviated": 1677
+          "illinois_abbreviated": 1668
         },
-        "distinct_surname_keys": 1406,
-        "leads": 241,
+        "distinct_surname_keys": 1399,
+        "leads": 238,
         "leads_by_layer": {
-          "census_1840": 76,
-          "residents": 114,
+          "census_1840": 75,
+          "residents": 113,
           "structures": 8,
-          "voters": 43
+          "voters": 42
         },
         "chicago_or_cook_cards": 502,
-        "cards_matching_no_known_work": 1120,
+        "cards_matching_no_known_work": 1111,
         "chicago_or_cook_cards_matching_no_known_work": 77
       }
     },
@@ -98,8 +98,8 @@
       "file": "records/entries_vol_04.json",
       "covers": "P - Z (as printed on the cards)",
       "counts": {
-        "cards": 413,
-        "records": 413,
+        "cards": 410,
+        "records": 410,
         "slivers": 0,
         "bled_in": 0,
         "bled_in_borrowing_their_locality": 0,
@@ -107,18 +107,18 @@
           "chicago": 120,
           "cook_county": 87,
           "illinois_named": 22,
-          "illinois_abbreviated": 229
+          "illinois_abbreviated": 226
         },
-        "distinct_surname_keys": 345,
-        "leads": 108,
+        "distinct_surname_keys": 342,
+        "leads": 106,
         "leads_by_layer": {
-          "census_1840": 40,
-          "residents": 51,
+          "census_1840": 39,
+          "residents": 50,
           "structures": 3,
           "voters": 14
         },
         "chicago_or_cook_cards": 207,
-        "cards_matching_no_known_work": 155,
+        "cards_matching_no_known_work": 152,
         "chicago_or_cook_cards_matching_no_known_work": 46
       }
     }

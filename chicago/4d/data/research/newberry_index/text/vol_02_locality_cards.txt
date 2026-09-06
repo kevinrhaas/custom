@@ -80,8 +80,6 @@ p0018 c1  Fiaher
         I Sangamon Co.,1ll. (Power, J<C.) 1876.
 p0019 c0  Fleher
         Iii,,., ShiiLilding on, K40-ICI?.
-p0020 c3  Fiaher
-        890: 407,111. ~ E7. D 373
 p0022 c0  Fiahleirh
         Cook Co., III. (Andicss, A. T.) 1Q84«'715
 p0022 c1  Flak
@@ -562,8 +560,6 @@ p0161 c0  Gaetinon
         u.... eol Co., III. (Andrcaj, A. Ï.) 1334 i8C3. I
 p0161 c0  Canton
         ^JaciunCo., III. (Brink, HcDonodgh Co., IVikv) lOTIi " t Ii
-p0162 c0  Gatoa
-        1^4,91,109,lll.Panh,,,^ " f11fi(l7i8
 p0162 c0  Catos
         -—Ogle Co., III. (Kett, H. F., & Ce.) I878i 809.
 p0162 c0  Gates
@@ -1024,8 +1020,6 @@ p0309 c2  Orlffln
         J____ Chicago, III, (AnRteas, ... 1-1 -dvc-v. 2-3.
 p0309 c2  Orlffln
         Pike Co., III. (Oopnon, C, C. A Co.. J5*iJ Orl
-p0310 c1  Grirrin
-        1COOt^l46,43,06,111,816,647.E 87,63
 p0312 c1  prlfflth,oi Griffithe
         ' Chicago, Éi (Andreas, A. T.) 1884.61 1&
 p0312 c1  prlfflth,oi Griffithe
@@ -1276,8 +1270,6 @@ p0376 c0  ilamilton
         Sangamon Ce,, III, (Power, J, C.) 1876.
 p0376 c0  ilamilton
         Winnebáeo Co., Ill, (Kelt, H. F., at Co., Pob.)
-p0377 c0  Hamilton
-        ' 3 u ear. 12.1133,111,6),13.
 p0379 c0  Tl miltcr
         iil.lrx. ) K C,943.r42
 p0379 c2  Heal i
@@ -1442,8 +1434,6 @@ p0418 c0  Harris
         — Sangamon Co,, III. (Power, J. C.) 1876,
 p0418 c0  Harrie t
         Winnehego Co., III. (Kelt, H. F„ a Co., P j k . )
-p0420 c0  Harris
-        1882.2,10^44, 111, J . c t . . 4 T 1 > e » . B "-
 p0423 c3  Harrleon
         " Illinois. (Motes, J.) I8E6-92. ?v Sir <•*'<
 p0423 c3  Harrleon
@@ -1692,8 +1682,6 @@ p0492 c3  ''odgoa
         Sangamon Co., III. (Power, J. C.) 1876.
 p0493 c2  Hedrlch
         _ _ Sangamon Co,, III. (Power, J, C.) 1676.
-p0493 c3  Hoely
-        llcomair.,,,1. ^ r ' l „ n 11,11 I . a l r a a t Tn, JJ.T
 p0494 c3  Pnb Horer
         851 66 — Christian Co,, III. lOriuk, Kcfla: tig| _ c . .
 p0494 c3  I Hegley
@@ -2490,8 +2478,6 @@ p0687 c2  Hunt
         DuPage Co., Ill, (BlancFard, R.) 1882i Pt.ti
 p0687 c2  Hunt
         _ . tHageW Co., III. (LrBaron. W., jr., 4 Co., Porn.l IBID:
-p0690 c2  r i Hunt
-        140,144, i l l . . E 7 . d 373*
 p0690 c3  III Hunt
         III, i Heleey Thorn.,: ( H a l , . , , j . _ , ^ . ., , j
 p0692 c1  r unter
@@ -2574,8 +2560,6 @@ p0707 c0  Hotehins
         Chicego, l i l , (Andreas, A, T.) I 8 8 « - 6 | 3. noe
 p0707 c0  Hutchlns
         IMoaskoCo., III. (leturen, W„ V., 4Co., Proliant',
-p0708 c1  Hutohino
-        H 4254 1993:39,111,113,141,18,35.
 p0708 c3  nutohlnson
         . Boone Co., III. (KtH 4 Co., Pub.) 1877: 373.
 p0709 c0  Hurchinaon
@@ -2826,8 +2810,6 @@ p0776 c2  Joen' jr g
         E 67.625 —Madison Co., III. (Brink, W. R. 4 Co., Pubs)
 p0776 c2  Johaneon
         a Boone Co., Ill, (Kett 4 Co., Pub.) 1877) 394.
-p0777 c0  John ,
-        1902: 104,111. E 7.W 86
 p0777 c0  Johruio
         — Cook Co,. TH (Li Sill* Book Co,, Pub.) I SCO.
 p0777 c0  Johna

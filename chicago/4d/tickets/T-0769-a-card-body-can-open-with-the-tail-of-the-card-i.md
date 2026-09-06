@@ -14,7 +14,7 @@ pr: 1002
 claimed_by: run 9/6/2026, 2:01:46 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-06T20:08:14.663Z
+closed_at: 2026-09-06T20:09:16.493Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34052683530
 ---
 
