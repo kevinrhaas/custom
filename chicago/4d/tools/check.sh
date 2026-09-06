@@ -1797,6 +1797,14 @@ step "…and its own assertions still fire when broken" \
 # database truncated at its own 150-row ceiling must never appear in the coverage
 # declaration — a ceiling recorded as a completed read is the one error here nothing
 # downstream could catch.
+# T-0697. THE RULE THE RESIDENT CROSSWALK IMPORTS RATHER THAN RESTATES, gated for the
+# same reason T-0696 gated the directories' two: the crosswalk below is re-derived here
+# and the rule it is re-derived BY was not, so a loosened namesake rule — one more name
+# folded onto another, M3's guard dropped, a suffix read as decoration — would re-derive
+# the crosswalk quietly and pass every check after it.
+step "the namesake rule's own assertions still fire when broken" \
+  python3 tools/namesake.py --self-test
+
 step "the land tract sales re-derive from their committed deposit" \
   python3 tools/read_land_sales.py --check
 
