@@ -183,3 +183,21 @@ already take; nothing here changes it.
    ground.
 3. **Who kept the house on 1835-07-01.** Untouched by any of this. Haddock or Markle, and the
    record still declines to choose.
+
+---
+
+## Postscript (T-0773): why this house stays on the outranked report
+
+`tools/measure_placement_silence.py` lists `business_j_k_botsford` under *"a printed address
+outranked by a later printed address"* — its live placement is the `relative` reading *"next
+door to Graves' Tavern"* and the `corner` readings of Dearborn and Lake outrank it by class
+rank. **That is a rank artefact, not an unresolved question.** This note already ruled the two
+addresses one frontage, and the corner is the corner the tavern stands on, so no reordering is
+owed and the ground does not move either way.
+
+No `anchor_changes` rule may be written here even if one were wanted, and the mechanism is
+right to refuse it: the tavern reading runs 1834-02-18 to 1834-04-01 and the corner reading
+starts 1834-02-25, so the two anchors were printed in **overlapping weeks**, and guard 6 holds
+that a change is a change only where one anchor stops before the next starts. Overlapping
+anchors are two standing descriptions of one house — which is what this note found them to be.
+See `docs/RESEARCH/outranked_printed_addresses.md` § 2.
