@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 637, title: 'Out Buildings, plural \u2014 and the well the plan marks with a ring', kind: 'feat', ts: '2026-09-06T12:59:20.166Z', date: 'Sep 6, 2026, 7:59 AM CT',
+  { v: 637, title: 'Out Buildings, plural \u2014 and a well marked with a ring', kind: 'feat', ts: '2026-09-06T12:59:20.166Z', date: 'Sep 6, 2026, 7:59 AM CT',
     items: [
       'The 1830 harbour survey letters six things on Fort Dearborn\u2019s ground that this town never drew. Three of them became buildings yesterday. Two more are settled today, and one of the two turns out to have been miscounted every time anybody looked at it.',
       'The label reads \u201COut Buildings\u201D, plural, and every reading of the sheet so far treated that as one building with a careless caption \u2014 the same trouble as the wash house, where a witness remembered several and the engineer drew one. It is the other way round here. Under magnification the plate draws TWO solid blocks about a hundred and sixty metres south of the pickets, seven metres apart, with the outer fence line running between them: a larger one of about 7.3 by 5.8 metres and a smaller barely bigger than a privy. Both are standing in the town tonight.',

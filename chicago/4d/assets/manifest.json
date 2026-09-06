@@ -270,6 +270,15 @@
       "phase_id": "out_building_a_1830",
       "structure_id": "fort_dearborn_out_building_a"
     },
+    "fort_dearborn_out_building_b__out_building_b_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 46816,
+      "inputs_sha256": "0e24f6288eb8db3036109e7e4b22a4fb0ce7a48234d75c5bfa3676d905e8b4c3",
+      "kind": "generated",
+      "phase_id": "out_building_b_1830",
+      "structure_id": "fort_dearborn_out_building_b"
+    },
     "fort_dearborn_palisade__picket_1816.glb": {
       "archetype": "palisade",
       "baked_ao": false,
