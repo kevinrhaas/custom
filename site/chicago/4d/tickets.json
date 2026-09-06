@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 1:07 PM",
+  "generated_ct": "Sep 6, 2026, 1:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15448,7 +15448,7 @@
     {
       "id": "T-0903",
       "title": "The four Norris forenames the second hand could not lift, read off the page image — Iia is Ira Couch of the Tremont House",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -15456,14 +15456,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-06",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-06",
+      "pr": "997",
       "claimed_by": "run 9/6/2026, 1:07:36 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T18:25:43.205Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34048091257",
-      "queue_rank": 185
+      "queue_rank": null
     }
   ]
 }

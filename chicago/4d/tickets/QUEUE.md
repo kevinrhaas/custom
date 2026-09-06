@@ -380,4 +380,3 @@ T-0895 — The John-Dean house: an army contractor built a five-room house at th
 T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0902 — publish.sh and the resident synthesizer write four mirror files in two different shapes, so whichever ran last decides whether check.sh is green
-T-0903 — The four Norris forenames the second hand could not lift, read off the page image — Iia is Ira Couch of the Tremont House
