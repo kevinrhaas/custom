@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 1:08 AM",
+  "generated_ct": "Sep 6, 2026, 1:17 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13928,7 +13928,7 @@
     {
       "id": "T-0814",
       "title": "The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13936,14 +13936,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 3:21:30 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 0
+      "closed_at": "2026-09-05T20:24:23.177Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
+      "queue_rank": null
     },
     {
       "id": "T-0815",
@@ -14344,6 +14344,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 163
+    },
+    {
+      "id": "T-0837",
+      "title": "Spend the standing synthesis write: read the promotions it proposes and land them deliberately",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0814",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 0
+    },
+    {
+      "id": "T-0838",
+      "title": "Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0814",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "917",
+      "claimed_by": "run 9/5/2026, 3:25:53 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T20:38:58.596Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
+      "queue_rank": null
     },
     {
       "id": "T-0839",
