@@ -3234,8 +3234,8 @@
     "steamboat_hotel__frame_1835.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
-      "bytes": 24132,
-      "inputs_sha256": "76bad7755d2b174597ece5f09e9301922f63eb890cafe39d93e50b01d8a2b2c3",
+      "bytes": 20696,
+      "inputs_sha256": "13c58874432f8414a3f86d513061a6b93a0b13ec3fdb51efab46941e4b30e05d",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "steamboat_hotel"
