@@ -52,6 +52,18 @@ step "…and its own assertions still fire when broken" \
 step "the traced forks still carry what their generator writes" \
   python3 tools/trace_river.py --check-properties
 
+# The second Wright sheet — the National Archives manuscript the printed map was made
+# from — is registered onto the BPL frame in data/traces/gcp/wright_1834_nara_gcps.json,
+# and everything that will be read off it (T-0788 onwards: the block numerals, legible
+# there and not on the BPL scan) cites a region of it in ITS pixel space. So the file has
+# to answer for three things no schema can see: that the sheet in the tree is still the
+# sheet that was registered, that the affine still carries its own control, and that the
+# residuals quoted beside four hand-read crossings are the arithmetic on those readings
+# rather than numbers somebody typed. The real re-fit needs numpy, Pillow and the BPL
+# raster over IIIF and is a deliberate re-run; this is the offline half, in milliseconds.
+step "the NARA Wright sheet is still the one that was registered" \
+  python3 tools/register_wright_nara.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to

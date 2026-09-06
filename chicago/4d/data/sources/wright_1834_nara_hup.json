@@ -1,0 +1,29 @@
+{
+  "id": "wright_1834_nara_hup",
+  "type": "map",
+  "citation": "Wright, J. S. [Chicago], manuscript survey, 1834. National Archives, Washington, D.C. Facsimile reproduction: Historic Urban Plans, Ithaca, New York.",
+  "author": "John Stephen Wright",
+  "date": "1834",
+  "describes_date": "1834",
+  "repository": "National Archives, Washington, D.C. (the original drawing); reproduced by Historic Urban Plans, Ithaca, New York (the sheet held here)",
+  "locator": "Reproduction sheet, 5050 x 6628 px at 600 dpi, sha256 dbb92c0188881d9b6cdf84801b9185a5715496a328125bde895a04058b173266, held at chicago/pre_fire_v1/maps/images/1834-wright-map.jpg. Cite a region of it in this sheet's own pixel space; data/traces/gcp/wright_1834_nara_gcps.json carries the registration onto the BPL frame and the datum.",
+  "tier": 1,
+  "rights_status": "no_known_restrictions",
+  "rights_note": "REASONED, NOT CHECKED WITH THE PUBLISHER. The underlying drawing is an 1834 manuscript held by the National Archives and is out of copyright; a faithful photographic reproduction of a two-dimensional public-domain work adds no new copyrightable authorship under US practice. The publisher's own caption text IS modern and is quoted here as a quotation rather than reproduced as an asset. No enquiry has been made to Historic Urban Plans, so this grade is a reading of the situation and not a clearance; rights_checked is deliberately absent because filling it would assert a check nobody made.",
+  "asset_use": "geometry",
+  "verified": true,
+  "note": "THE MANUSCRIPT THE PRINTED MAP WAS MADE FROM, and a different artifact from wright_1834 rather than a second scan of it. The sheet's own caption says so: 'This reproduction is of James Wright's manuscript survey of Chicago in 1834. It was used in preparing one of the two earliest printed maps of the city published in that year.' Opened side by side at the title, wright_1834 carries drop-shadowed block capitals and roman 'DRWN BY J. S. WRIGHT, ACCORDING TO SURVEY' while this sheet is hand-lettered throughout in one hand — 'Chicago / by / Jas. S. Wright / according to survey / 1834'. Their GEOMETRY nevertheless corresponds at 1:1: twenty patches of the BPL sheet, placed on a blind grid and located here by correlation, put the two rasters at scale 1.000 with a constant offset near (+316, +659) px (tools/register_wright_nara.py). So the printed map was laid out from this drawing at the same size, and the two reproductions happen to have been made at nearly the same effective ppi. What this sheet adds is resolution: at 600 dpi the block numerals of the Original Town, the School Section and the West Division are legible, where on the BPL scan data/traces/thompson_block_numbering.json could read two of them and refused five.",
+  "access_notes": "Held in the working tree; no online copy is cited. The file is byte-identical to its sibling 1834-wright-map-lg.jpg in the same directory (same sha256) — the '-lg' name promises a larger raster that does not exist. Caption transcribed from the sheet's foot by OCR at 2x and read back by eye; the credit line reads 'Reproduced by HISTORIC URBAN PLANS, Ithaca, New York'.",
+  "what_it_supplies": [
+    "block numbering, legible where the BPL sheet's is not",
+    "street geometry and street names",
+    "block and lot subdivision",
+    "shoreline, river channel and the 1834 cut",
+    "the extent of the two portions of the manuscript that are lost"
+  ],
+  "what_it_does_not_supply": [
+    "building footprints",
+    "building locations",
+    "any independent survey — it is the same survey as wright_1834, one drawing earlier"
+  ]
+}
