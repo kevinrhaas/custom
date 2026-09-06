@@ -1,7 +1,7 @@
 ---
 id: T-0798
 title: Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0791
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 979
 claimed_by: run 9/6/2026, 5:47:10 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T11:26:00.711Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34028090901
 ---
 
