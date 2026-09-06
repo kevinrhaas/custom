@@ -285,7 +285,15 @@
      "rule": "line count and sequence agree, population 3 to 5 short",
      "why": "the pairing rests on a footing glyph this pass could not settle and on a strip reading that is not committed. T-0657 reads this sheet line by line; if its TOTAL column sums to 138 and the middle footing glyph is then read as an 8, this pair should be tried again - and 93G's own two figures, 140 printed against 138 by its cells, should be tried with it."
     }
-   ]
+   ],
+   "line_by_line_reading": {
+    "ticket": "T-0743",
+    "page_file": "data/research/census_1840/pages/33S7-9YYJ-FJ.json",
+    "what_it_settles": "THE FOOTING IS 135. This file named 138 and 185 as the readings a reader might disagree with, because the pairing to printed 207 turns on them, and asked T-0657 to settle it. 138 is refused on the glyph: the leaf's own 8 stands at line 2 of the TOTAL column and is a crossed figure-eight, while the footing's third glyph is the uncrossed bowl-under-a-right-curling-top the body writes seven times over. 185 is refused on the arithmetic: the 21 committed lines sum to 93, and 185 would leave 92 for the 9 unread lines - a mean of 10.2, when only two of the nine are groups wide or tall enough to hold two figures.",
+    "line_count_key_restated": "29, not the 28 this file counted by eye off a magnified strip. A uniform 30-line grid (first line y 668.0, pitch 75.60 px) fits every one of the TOTAL column's 30 groups and every one of the five written industry columns' 17 entries within 28 px, and all but three within 16. One of the 30 lines carries only a 13 x 14 px mark - half the height of every figure the leaf writes - so 29 lines carry an entry. The 32 groups this file's own census_total_column.py run reported came from a window (x 0.305-0.365, y 0.175-0.900) that runs past the TOTAL cell's right rule at x 1476 and opens above the heading rule at y 590; inside the leaf's own rules the same grouping rule reports 30, and 30 again at dy 45.",
+    "the_pairing": "still REFUSED, and now on the population key alone. The line-count key no longer refuses it - 29 against 93G's 30 - but the population key is where this file put the weight and it does not move: 93G is 140 by its own printed footings and 138 by its own cells, and this leaf's footing is 135. The 'try it again if the column sums to 138' clause below is answered and the answer is no.",
+    "what_would_still_settle_it": "the nine unread lines. They must account for 42 persons if the footing is 135 and 45 if it is 138, and two of them are two-figure groups this pass would not divide. That is a better exposure's work rather than a better reader's."
+   }
   },
   {
    "familysearch_id": "33S7-9YYJ-K2",
