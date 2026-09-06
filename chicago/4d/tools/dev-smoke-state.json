@@ -2102,6 +2102,103 @@
         ]
       },
       "source": "/tmp/smoke_d5.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2",
+      "parts": [
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 84,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 23 farm_box, 18 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 246,
+      "takenAt": "2026-09-06T03:41:28.684Z",
+      "ref": "steward/t-0787-wright-nara-register",
+      "commit": "ee09bed28479",
+      "devCommit": "96cdc4d177af",
+      "treeHash": "sha256:13c299ad4c13102f",
+      "treeDirty": false,
+      "changelogHash": "sha256:d01d5346bb8601ed",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4,
+          3.3
+        ]
+      },
+      "source": "/tmp/wr/smoke_d_2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 388,
+      "takenAt": "2026-09-06T03:41:28.587Z",
+      "ref": "steward/t-0787-wright-nara-register",
+      "commit": "ee09bed28479",
+      "devCommit": "96cdc4d177af",
+      "treeHash": "sha256:13c299ad4c13102f",
+      "treeDirty": false,
+      "changelogHash": "sha256:d01d5346bb8601ed",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4,
+          3.3
+        ]
+      },
+      "source": "/tmp/wr/s2_d.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 215,
+      "takenAt": "2026-09-06T03:41:28.491Z",
+      "ref": "steward/t-0787-wright-nara-register",
+      "commit": "ee09bed28479",
+      "devCommit": "96cdc4d177af",
+      "treeHash": "sha256:13c299ad4c13102f",
+      "treeDirty": false,
+      "changelogHash": "sha256:d01d5346bb8601ed",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4,
+          3.3
+        ]
+      },
+      "source": "/tmp/wr/s2_m.log"
     }
   ]
 }
